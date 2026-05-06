@@ -1,0 +1,56 @@
+{
+  "title": "Find and Replace Text (literal or regex, with options)",
+  "shortDescription": "Replace text with literal find/replace or full regex. Toggle case sensitivity and multi-line mode. Match count shown live.",
+  "description": "Paste text, set find and replace strings, optionally enable regex / case-insensitive / multi-line, and see the modified text plus match count instantly.",
+  "metaDescription": "Free find-and-replace tool for text. Literal or regex mode, case-insensitive option, live match count. Browser-only — your text never leaves your device.",
+  "keywords": ["find and replace", "text replace", "regex replace", "search replace", "bulk text edit"],
+  "input": { "text": "Source text", "find": "Find", "replace": "Replace with" },
+  "opt": { "regex": "Regex", "caseSensitive": "Case sensitive", "multiline": "Multi-line ^ / $" },
+  "output": { "result": "Result", "matches": "{n} matches" },
+  "error": "Regex error",
+  "copy": "Copy",
+  "copied": "Copied",
+  "article": {
+    "sections": [
+      {
+        "heading": "Two modes — literal and regex",
+        "paragraphs": [
+          "Literal (regex off): the find string is matched exactly. Special characters like '.' and '*' are treated as themselves. This is the safe default for most everyday text edits.",
+          "Regex (regex on): the find string is interpreted as a JavaScript regular expression. Use this for patterns — for example /\\b\\w+@\\w+\\.\\w+\\b/ to find emails, or (^.+:) to match labels at the start of a line. With multi-line mode, ^ and $ match at line breaks."
+        ]
+      },
+      {
+        "heading": "Replace string special syntax",
+        "paragraphs": [
+          "When in regex mode, the replace string supports backreferences: $1, $2 etc. for capture groups; $& for the entire match; $$ for a literal dollar sign. Example: find /(\\d{3})-(\\d{3})-(\\d{4})/ replace ($1) $2-$3 reformats US phone numbers.",
+          "In literal mode, the replace string is taken as-is — no backreferences, no special handling. What you type is what gets inserted."
+        ]
+      },
+      {
+        "heading": "Common uses",
+        "paragraphs": [
+          "Bulk edit: standardize spelling ('color' → 'colour' for UK style), update product names, fix typos in long documents.",
+          "Code refactoring: rename a variable across a paste of code (use case-sensitive). For real refactoring across many files, an IDE is better.",
+          "Data cleanup: convert tabs to commas in CSV, replace one delimiter with another, normalize whitespace.",
+          "Markdown to plain: strip Markdown syntax with regex (e.g., /\\*\\*([^*]+)\\*\\*/g → $1 to remove bold markers)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Paste your text", "text": "Or type it directly." },
+      { "name": "Enter find and replace", "text": "Find what to look for, replace with what to substitute." },
+      { "name": "Toggle options as needed", "text": "Regex for patterns; case-insensitive for fuzzy matches; multi-line for line-anchor patterns." },
+      { "name": "Read result and copy", "text": "Match count shows how many replacements happened." }
+    ]
+  },
+  "faq": [
+    { "q": "How is this different from the regex tester?", "a": "This focuses on the replace operation. The regex tester focuses on inspecting matches and capture groups. Use whichever fits the task." },
+    { "q": "Can I use Unicode in the find/replace?", "a": "Yes. Both find and replace strings support full UTF-8 including emoji and CJK characters." },
+    { "q": "Why didn't my find/replace work?", "a": "Most common: case sensitivity. 'Hello' won't match 'hello' unless you toggle case-insensitive. Or special regex characters in literal mode being misunderstood." },
+    { "q": "Does this preserve formatting?", "a": "It preserves text exactly except for the matches. If your text has tabs or specific newlines, they're preserved." },
+    { "q": "Can I undo a replacement?", "a": "The original is in the input field. Re-paste from there or use your browser's back-text behavior. We don't have a built-in undo." },
+    { "q": "How big can my text be?", "a": "Multi-megabyte text works, though regex on huge inputs can be slow if the pattern is poorly written." },
+    { "q": "What's a good way to learn regex?", "a": "Start with literal mode and switch to regex when you need patterns. Search 'JavaScript regex cheat sheet' or refer to MDN's RegExp docs." },
+    { "q": "Does the data leave my browser?", "a": "No. All find/replace runs locally." }
+  ]
+}

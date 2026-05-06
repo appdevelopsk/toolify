@@ -1,0 +1,58 @@
+{
+  "title": "Credit Card Validator (Luhn check + brand detection)",
+  "shortDescription": "Validate a credit card number's checksum (Luhn algorithm) and detect the issuing brand. Browser-only — your card number never leaves your device.",
+  "description": "Type a card number to verify it passes the Luhn check and detect the brand (Visa, Mastercard, Amex, Discover, JCB, Diners, UnionPay) by IIN/BIN range.",
+  "metaDescription": "Free credit card validator. Luhn algorithm check + brand detection (Visa, Mastercard, Amex, etc). All processing in your browser; no number is ever transmitted.",
+  "keywords": ["credit card validator", "Luhn algorithm", "card number check", "BIN check", "card brand detection"],
+  "warning": "⚠ Never enter a real card number on a site you don't trust. This tool runs entirely in your browser — but the same is impossible to verify on any unknown site.",
+  "input": { "cardNumber": "Card number" },
+  "status": { "valid": "Valid syntax", "invalid": "Invalid" },
+  "empty": "Type a card number to validate.",
+  "breakdown": {
+    "brand": "Brand",
+    "length": "Length",
+    "luhn": "Luhn check",
+    "formatted": "Formatted",
+    "unknown": "Unknown"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What this validator checks (and doesn't)",
+        "paragraphs": [
+          "Three checks: (1) the prefix matches a known issuer's IIN/BIN range, (2) the length is one of the valid lengths for that brand, (3) the Luhn checksum passes. If all three are true, the number is syntactically valid as a card number.",
+          "What this does NOT check: whether the card actually exists, whether it has funds, whether the cardholder authorized you to use it. That requires going through a real payment processor with proper authorization. This tool catches typos cheaply — like 1234 vs 1243 in a paste — but cannot verify the card belongs to a real account."
+        ]
+      },
+      {
+        "heading": "How the Luhn algorithm works",
+        "paragraphs": [
+          "Luhn (1954, by IBM scientist Hans Peter Luhn) is a simple checksum: starting from the rightmost digit, double every second digit. If a doubled digit is over 9, sum its two digits (or equivalently subtract 9). Sum all the resulting digits. The total must be divisible by 10.",
+          "Luhn catches single-digit errors and most adjacent transpositions — the two most common typos when humans copy long numbers. It's not cryptographic; you can't use it to detect malicious tampering. Real card processors use Luhn as a first-line filter before more expensive backend checks."
+        ]
+      },
+      {
+        "heading": "Brand detection by IIN/BIN",
+        "paragraphs": [
+          "The first 6-8 digits of a card number identify the issuer (Issuer Identification Number / Bank Identification Number). Major brands have well-known prefix ranges: Visa starts with 4, Mastercard with 51-55 or 2221-2720, Amex with 34 or 37, etc. We detect the brand by matching these ranges.",
+          "Brand and country can usually be inferred from the IIN. Full IIN database lookups give country, bank, card type (debit/credit), and program — used by merchants for risk scoring. We don't include a full IIN database; only the most common brand patterns."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type the card number", "text": "Spaces and dashes are ignored automatically." },
+      { "name": "Read the verdict", "text": "Green check = valid syntax (Luhn passes + length matches brand)." },
+      { "name": "Review the breakdown", "text": "Brand, length, Luhn check, and properly-formatted card number." }
+    ]
+  },
+  "faq": [
+    { "q": "Should I trust this with my real card number?", "a": "Even though we run only in your browser, you should never paste a real card number into a tool you don't trust deeply. Use one of the standard test card numbers (e.g., 4111 1111 1111 1111) for syntax checks." },
+    { "q": "Why do I get 'invalid' for a real-looking number?", "a": "Most often the Luhn checksum fails — likely a typo. Check the digits one more time." },
+    { "q": "Does Luhn validation prove the card exists?", "a": "No. Luhn only catches transcription errors. Many never-issued numbers pass Luhn; many real cards fail Luhn if mistyped." },
+    { "q": "What's a 'BIN'?", "a": "Bank Identification Number — first 6-8 digits identifying the issuer. Same as IIN (Issuer Identification Number); the terms are interchangeable." },
+    { "q": "Can I use this to generate test card numbers?", "a": "Not directly, but the standard Stripe/Visa/Mastercard test numbers are well-documented (e.g., 4242 4242 4242 4242). They pass Luhn but never charge." },
+    { "q": "Why isn't [some brand] detected?", "a": "We support the major brands. Regional or co-branded cards may not match. Check the issuer's documentation for the IIN ranges they use." },
+    { "q": "Does the data leave my browser?", "a": "No. Validation runs entirely in your browser with no network calls." },
+    { "q": "Is Luhn used for things other than credit cards?", "a": "Yes — IMEI numbers, Canadian SIN, ISIN, NPI, and many other ID systems use Luhn. The algorithm is the same; only the prefix mappings differ." }
+  ]
+}

@@ -51,6 +51,9 @@ import unitPrice from "@/tools/unit-price-calculator";
 import hash from "@/tools/hash-generator";
 import emailVal from "@/tools/email-validator";
 import aspectRatio from "@/tools/aspect-ratio-calculator";
+import textReplace from "@/tools/text-replace";
+import creditCard from "@/tools/credit-card-validator";
+import cron from "@/tools/cron-expression-tester";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -108,6 +111,9 @@ export const TOOLS: ToolDefinition[] = [
   hash,
   emailVal,
   aspectRatio,
+  textReplace,
+  creditCard,
+  cron,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

@@ -1,0 +1,60 @@
+{
+  "title": "Cron Expression Tester (preview next 5 runs)",
+  "shortDescription": "Test cron expressions and see the next 5 scheduled runs in your local timezone. Validates fields, supports ranges, lists, and steps.",
+  "description": "Type a 5-field cron expression (min, hour, day-of-month, month, day-of-week) and see the next 5 trigger times. Common presets included.",
+  "metaDescription": "Free cron expression tester. Validate syntax and preview the next 5 trigger times in your local timezone. Standard 5-field cron with ranges, lists, and steps.",
+  "keywords": ["cron tester", "crontab tester", "cron next run", "schedule preview", "cron syntax"],
+  "input": {
+    "expr": "Cron expression",
+    "format": "Format"
+  },
+  "result": { "next5": "Next 5 runs" },
+  "error": {
+    "label": "Error",
+    "fieldCount": "expression must have exactly 5 fields"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cron syntax in five fields",
+        "paragraphs": [
+          "Standard cron has 5 space-separated fields: minute (0-59), hour (0-23), day of month (1-31), month (1-12), day of week (0-6, 0=Sunday). Each field accepts: a single value (5), a range (1-5), a list (1,3,5), a step (*/15 means every 15), or wildcard (*). Combinations work: 1-5,10/2 means 1-5 then every 2 starting from 10.",
+          "This tester uses the strict POSIX/Linux crontab dialect. Some systems extend cron with named months (JAN-DEC) or weekdays (SUN-SAT) — those aren't supported here. Use numeric values for full compatibility."
+        ]
+      },
+      {
+        "heading": "Common patterns",
+        "paragraphs": [
+          "*/5 * * * * — every 5 minutes. Useful for cache refreshes and short polls.",
+          "0 9 * * 1-5 — 9am every weekday. Office-hour reports.",
+          "0 0 1 * * — midnight on the 1st of every month. Monthly billing or stats rollups.",
+          "0 */6 * * * — every 6 hours (00:00, 06:00, 12:00, 18:00). Long polls.",
+          "0 0 * * 0 — midnight every Sunday. Weekly reports.",
+          "*/15 9-17 * * 1-5 — every 15 minutes during business hours, weekdays. Active-hour polling."
+        ]
+      },
+      {
+        "heading": "Day-of-month vs day-of-week",
+        "paragraphs": [
+          "Both fields accept values, but watch out: in the standard dialect, when both fields are set (not '*'), the cron runs when EITHER condition matches, not both. So `0 0 1 * MON` (1st of month, OR Monday) fires more often than you might think.",
+          "To restrict to 'first Monday of the month', cron alone can't do it directly — you need to either run a script daily and check day-of-month <= 7 inside, or use a scheduler (Airflow, GitHub Actions schedule + check) that supports more expressive scheduling."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type a cron expression", "text": "5 fields: minute, hour, day-of-month, month, day-of-week." },
+      { "name": "Or pick a preset", "text": "Common patterns one-click load." },
+      { "name": "Read next 5 runs", "text": "Times in your local browser timezone. Useful to verify a schedule before deploying." }
+    ]
+  },
+  "faq": [
+    { "q": "Why do I see 5 runs in my local timezone?", "a": "Cron is always in the host's local timezone. Your browser's timezone is what's displayed here. Real cron daemons honor the server's TZ; check your host." },
+    { "q": "Can I use named months/weekdays?", "a": "Not yet — only numeric values. We may add JAN/MON-style aliases later." },
+    { "q": "What's the difference between * and ?", "a": "In standard cron they're identical. Some Quartz dialects use ? to distinguish 'unspecified' for the day-of-month vs day-of-week fields. Standard cron treats them the same." },
+    { "q": "Why doesn't day-of-month + day-of-week work like I expect?", "a": "When both fields aren't '*', standard cron uses OR (matches either). To get AND ('first Monday of month'), you need a wrapper script or a more expressive scheduler." },
+    { "q": "Does this support seconds?", "a": "Standard cron is minute-precision. Some systems add a sixth field for seconds; we don't support that. If you need second precision, use setInterval or a different scheduler." },
+    { "q": "What's the granularity limit?", "a": "Minute-level. Schedules finer than 1 minute aren't expressible in cron." },
+    { "q": "Can I test cron expressions for years in the past?", "a": "We compute forward from 'now'. For historical analysis, use a programming language's cron library." },
+    { "q": "Does the data leave my browser?", "a": "No. Parsing and computation are all local." }
+  ]
+}
