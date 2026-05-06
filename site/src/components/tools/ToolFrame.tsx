@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { AdBanner, AdBelowResult, AdInArticle, AdSticky } from "@/components/ads/AdBanner";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
@@ -20,6 +20,7 @@ interface Props {
 
 export function ToolFrame({ meta, title, description, related, children, article, faq }: Props) {
   const t = useTranslations();
+  const locale = useLocale();
   return (
     <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-6 lg:grid-cols-[minmax(0,1fr)_300px]">
       <main className="min-w-0">
@@ -75,7 +76,7 @@ export function ToolFrame({ meta, title, description, related, children, article
                     href={`/tools/${r.slug}`}
                     className="block rounded-lg border border-slate-200 p-4 hover:border-brand-500 hover:bg-brand-50 dark:border-slate-800 dark:hover:bg-slate-800"
                   >
-                    <span className="font-medium">{r.primaryKeyword.en ?? r.slug}</span>
+                    <span className="font-medium">{r.primaryKeyword[locale] ?? r.primaryKeyword.en ?? r.slug}</span>
                   </Link>
                 </li>
               ))}
