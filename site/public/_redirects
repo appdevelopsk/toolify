@@ -1,0 +1,11 @@
+# Cloudflare Pages redirects
+# Doc: https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Locale fallback: bare /tools redirects to default locale (next-intl middleware also handles this on dev,
+# but a static redirect is faster at the edge for tools deep-linked without a locale prefix).
+/tools                  /en/tools                  302
+/tools/*                /en/tools/:splat           302
+/about                  /en/about                  302
+/privacy                /en/privacy                302
+/terms                  /en/terms                  302
+/contact                /en/contact                302

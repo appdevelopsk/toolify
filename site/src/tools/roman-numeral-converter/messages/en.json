@@ -1,0 +1,54 @@
+{
+  "title": "Roman Numeral Converter (1 to 3999, both directions)",
+  "shortDescription": "Convert Arabic numbers to Roman numerals (and back). Validates canonical form so VIIII won't be silently accepted as 9.",
+  "description": "Type a number 1-3999 to get the Roman numeral, or paste Roman numerals to convert back. Strict validation rejects non-canonical forms.",
+  "metaDescription": "Free Roman numeral converter. Convert numbers 1-3999 to Roman numerals or decode Roman to Arabic. Validates canonical form, rejects 'IIII' and similar.",
+  "keywords": ["Roman numeral converter", "Arabic to Roman", "Roman to number", "MMXXVI", "Roman numerals"],
+  "input": { "number": "Number (1 to 3999)", "roman": "Roman numeral" },
+  "result": { "roman": "Roman numeral", "number": "Arabic number" },
+  "mode": { "toRoman": "Number → Roman", "fromRoman": "Roman → Number" },
+  "error": {
+    "invalidNumber": "Enter an integer.",
+    "outOfRange": "Roman numerals support 1 to 3999 only.",
+    "invalidRoman": "Not a valid Roman numeral (canonical form required)."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How Roman numerals work",
+        "paragraphs": [
+          "Roman numerals use seven letters: I=1, V=5, X=10, L=50, C=100, D=500, M=1000. Numbers are formed by addition (II=2, XX=20) or by subtraction when a smaller letter precedes a larger one (IV=4, IX=9, XL=40, XC=90, CD=400, CM=900). Each letter can repeat at most three times in a row, which is why 4 is IV, not IIII.",
+          "Standard Roman notation supports 1 to 3999. Numbers ≥ 4000 require an overline notation (V̄ = 5000) that's hard to type and rarely needed today, so this converter caps at 3999."
+        ]
+      },
+      {
+        "heading": "Canonical vs informal Roman",
+        "paragraphs": [
+          "Strict canonical form follows the rules above. 'Informal' Roman (sometimes called 'archaic') allows things like IIII for 4 — you'll see this on clock faces, where the symmetry is preferred. This converter requires canonical form for input and produces canonical form on output. So 'IIII' is rejected; type 'IV' instead.",
+          "The decoder validates by re-encoding: parse the Roman, get the number, encode that number, and check it matches the input. Anything that doesn't round-trip is rejected. This catches 'VV' (incorrectly = 10), 'IIX' (incorrectly = 8), and other non-standard forms."
+        ]
+      },
+      {
+        "heading": "Where Roman numerals appear today",
+        "paragraphs": [
+          "Movie copyright dates (MCMXCIX = 1999), Super Bowl numbering, monarch and pope sequences (Henry VIII, John XXIII), book chapters and outlines, clock faces, and stylized year markers. They've largely fallen out of arithmetic use because Arabic-numeral arithmetic is far easier — try multiplying MCXLVII by IV and you'll see why."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick direction", "text": "Number→Roman or Roman→Number." },
+      { "name": "Type your input", "text": "An integer 1-3999, or a Roman numeral." },
+      { "name": "Read the result", "text": "Invalid input shows a specific error so you can fix it." }
+    ]
+  },
+  "faq": [
+    { "q": "Why isn't IIII accepted as 4?", "a": "Canonical Roman writes 4 as IV. IIII appears on some clock faces but is not standard arithmetic notation. Use IV." },
+    { "q": "What's the largest Roman numeral?", "a": "Without overlines, 3999 = MMMCMXCIX. Numbers above that need an overline notation we don't support." },
+    { "q": "Can I have zero?", "a": "Romans had no zero. The notation starts at 1 (I)." },
+    { "q": "What does CMXLIV mean?", "a": "CM=900, XL=40, IV=4. Total = 944. Subtractive pairs (CM, XL, IV) plus their components." },
+    { "q": "How do I read MMXXVI?", "a": "MM=2000, XX=20, VI=6. Total = 2026." },
+    { "q": "Why are clock 4s sometimes IIII?", "a": "Tradition. Watchmakers historically preferred IIII for visual symmetry with VIII (both four characters). It's not 'correct' canonically." },
+    { "q": "Are Roman numerals base-10?", "a": "They have decimal-grouped letters (I/V for 1s, X/L for 10s, C/D for 100s, M for 1000s) but use addition and subtraction rather than positional notation. So they're decimal-influenced but not positional." },
+    { "q": "Does the data leave my browser?", "a": "No. Conversion runs locally." }
+  ]
+}

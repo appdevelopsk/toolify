@@ -1,0 +1,17 @@
+slug: temperature-converter
+category: converter
+applicationCategory: UtilitiesApplication
+related: [length-converter]
+primaryKeyword: { en: "temperature converter", ja: "温度変換" }
+inputs:
+  - { name: value, type: number }
+  - { name: from, type: select, options: [C, F, K, R] }
+output: { type: structured, fields: [C, F, K, R] }
+logic: |
+  Pivot via Celsius.
+  C = input -> show all four
+  F = (C * 9/5) + 32
+  K = C + 273.15
+  R = (C + 273.15) * 9/5  (Rankine)
+seo: { faq_count: 8, article_sections: 3 }
+locales: [en, ja]

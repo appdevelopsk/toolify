@@ -1,0 +1,65 @@
+{
+  "title": "Password Generator (cryptographically secure, with strength meter)",
+  "shortDescription": "Generate strong random passwords using your browser's secure crypto API. Configurable length, character sets, and ambiguity filter.",
+  "description": "Builds passwords using crypto.getRandomValues — the same source banks use, not Math.random. Adjust length and character classes; the entropy meter shows how strong the result actually is.",
+  "metaDescription": "Free password generator. Cryptographically secure random passwords with configurable length and character sets. Built-in entropy meter and ambiguous-character filter.",
+  "keywords": ["password generator", "secure password", "random password", "strong password", "passphrase generator"],
+  "copy": "Copy",
+  "copied": "Copied",
+  "regenerate": "New password",
+  "input": { "length": "Length" },
+  "opt": {
+    "upper": "Uppercase (A-Z)",
+    "lower": "Lowercase (a-z)",
+    "numbers": "Numbers (0-9)",
+    "symbols": "Symbols (!@#$...)",
+    "avoidAmbiguous": "Avoid ambiguous (0OoIl1)"
+  },
+  "strength": {
+    "weak": "Weak",
+    "medium": "Medium",
+    "strong": "Strong",
+    "excellent": "Excellent"
+  },
+  "entropy": "{bits} bits of entropy",
+  "article": {
+    "sections": [
+      {
+        "heading": "Why this generator is actually secure",
+        "paragraphs": [
+          "Most 'password generators' on the web use Math.random(), which is not cryptographically secure — its output can be predicted by an attacker who sees a few prior values. This generator uses crypto.getRandomValues from the Web Crypto API, the same primitive that backs HTTPS sessions and OS-level keychains. Each character is drawn from a uniform distribution over the selected alphabet.",
+          "The generation happens entirely in your browser. The password never travels over the network and never touches our servers. Even if our domain were compromised, an attacker would have nothing to steal because nothing is stored."
+        ]
+      },
+      {
+        "heading": "How the strength meter works",
+        "paragraphs": [
+          "The strength label is computed from entropy: bits = log₂(alphabet_size) × length. A 10-character lowercase-only password has log₂(26) × 10 ≈ 47 bits — vulnerable to a determined offline attacker. A 16-character password using all four character classes has about 105 bits — strong enough for most uses. The bands are: <50 weak, 50-80 medium, 80-128 strong, ≥128 excellent.",
+          "These thresholds correspond roughly to: weak = guessable in days by a moderate attacker; medium = takes a botnet years; strong = no realistic attacker today; excellent = comfortable margin against future attackers including quantum considerations."
+        ]
+      },
+      {
+        "heading": "Length beats complexity",
+        "paragraphs": [
+          "The math is unforgiving here: adding one character to your password roughly doubles the search space (depending on the alphabet). Adding one more character class only slightly enlarges it. A 20-character lowercase password has more entropy than a 12-character mixed-case-symbols password, and is easier to type. If you'd rather memorize, pick four random words from a 7000-word list — that's 51 bits, similar to a strong 8-character mixed password.",
+          "The 'avoid ambiguous' option excludes characters that look like other characters in many fonts (0/O, I/l/1). This makes the password slightly weaker but easier to read aloud or transcribe. Use it when you might need to type the password from a printed list."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choose a length", "text": "16 is a good default for accounts; 20+ for password manager master keys." },
+      { "name": "Pick character classes", "text": "Most sites accept all four — uppercase, lowercase, numbers, symbols. Some legacy sites reject symbols." },
+      { "name": "Generate and copy", "text": "Click 'New password' until you get one you like, then copy it directly into your password manager." }
+    ]
+  },
+  "faq": [
+    { "q": "Is this generator really secure?", "a": "Yes. We use the Web Crypto API's secure random source, not Math.random(). The browser-vendor-supplied implementation is audited and identical to what underlies HTTPS." },
+    { "q": "Does the password leave my browser?", "a": "Never. Generation, entropy calculation, and copy-to-clipboard all happen locally. We don't have a server endpoint to receive it even if we wanted to." },
+    { "q": "Is 16 characters enough?", "a": "For online accounts, yes — almost always. For password manager master passwords or encryption keys, go for 24+ characters or use a 6-word passphrase." },
+    { "q": "Why does the strength meter not love my long password?", "a": "It only knows what character classes you enabled. If you enabled lowercase only, the alphabet is just 26 — long passwords are still strong but not as fast to grow." },
+    { "q": "What does 'bits of entropy' mean?", "a": "It's the log₂ of the number of possible passwords your settings could produce. 80 bits ≈ 1.2 × 10²⁴ possibilities — far beyond brute-force reach today." },
+    { "q": "Should I include symbols?", "a": "Yes when allowed. Each symbol roughly adds the entropy of a number plus a letter combined. Some old sites reject them; if so, increase length to compensate." },
+    { "q": "Is 'avoid ambiguous' worth using?", "a": "Use it only when you need to read or type the password manually. Keep it off for password managers — readability cost is wasted there." },
+    { "q": "Can the same password be generated twice?", "a": "Theoretically yes, but with even 50 bits of entropy the chance per pair of generations is 1 in 2⁵⁰ ≈ 10¹⁵. Practically impossible." }
+  ]
+}

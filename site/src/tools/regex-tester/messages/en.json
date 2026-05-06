@@ -1,0 +1,65 @@
+{
+  "title": "Regex Tester (live matches, groups, replace)",
+  "shortDescription": "Test JavaScript regular expressions interactively. See live highlighted matches, capture groups, and a replace preview.",
+  "description": "Type a regex and test text — matches highlight live as you type. Toggle flags (g/i/m/s/u), inspect capture groups, and preview replacements.",
+  "metaDescription": "Free JavaScript regex tester with live highlighting, capture groups, named groups, and replace preview. Browser-only — patterns and text never leave your device.",
+  "keywords": ["regex tester", "regular expression tester", "JavaScript regex", "regex match", "regex replace"],
+  "input": {
+    "pattern": "Pattern",
+    "flags": "Flags",
+    "test": "Test text",
+    "replaceMode": "Show replace preview",
+    "replace": "Replacement"
+  },
+  "result": {
+    "matches": "Matches",
+    "replaced": "Replaced output",
+    "groups": "Capture groups"
+  },
+  "hint": {
+    "replaceVars": "Use $& for the full match, $1, $2 for groups, $<name> for named groups."
+  },
+  "error": { "invalid": "Invalid pattern" },
+  "article": {
+    "sections": [
+      {
+        "heading": "What flags do",
+        "paragraphs": [
+          "g (global): find all matches, not just the first. Required for replace-all behavior. i (case-insensitive): /[a-z]/i matches both cases. m (multiline): ^ and $ match at line breaks instead of only string start/end. s (dotall): . matches newlines as well. u (unicode): proper handling of code points above 0xFFFF (emoji, CJK in surrogate pairs).",
+          "Most people start with /g/i/m. /s/ becomes useful for multi-line text matching. /u/ is recommended whenever you might encounter emoji or non-BMP characters — without it, /./ won't match a 4-byte emoji as a single character."
+        ]
+      },
+      {
+        "heading": "Capture groups and replace",
+        "paragraphs": [
+          "Parentheses create a capture group: /(\\d{4})-(\\d{2})/ on '2026-05' captures '2026' and '05' separately. Reference them as $1, $2 in the replacement. Named groups use (?<name>...) and reference $<name> in replace.",
+          "Common replace tricks: $& inserts the full match. $1, $2 etc. insert capture groups. $$ inserts a literal $. The replace preview here lets you check before running the same pattern on a real text — much safer than running it directly on production data."
+        ]
+      },
+      {
+        "heading": "Pitfalls to watch for",
+        "paragraphs": [
+          "Backslash escaping. To match a literal '.', use '\\.'. In a JavaScript source string this becomes '\\\\.' but in this tool you type just '\\.' since it's the regex source.",
+          "Catastrophic backtracking. Patterns like /(a+)+/ on 'aaaa…!' can take forever. If your test seems frozen, your regex may have nested quantifiers. Simplify or use possessive/atomic groups (not available in JS regex; use careful design instead).",
+          "Greedy vs lazy. /<.+>/ on '<a><b>' matches '<a><b>' (greedy). /<.+?>/ matches '<a>' (lazy). Pick the right one for your use case."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type a pattern", "text": "Use JavaScript regex syntax (without the surrounding slashes)." },
+      { "name": "Set flags", "text": "Click letters to toggle: g (global), i (case-insensitive), m (multiline), s (dotall), u (unicode)." },
+      { "name": "Paste test text", "text": "Matches highlight in real time." },
+      { "name": "Optional: try replace", "text": "Toggle 'replace preview' to see the modified output." }
+    ]
+  },
+  "faq": [
+    { "q": "Which regex flavor does this use?", "a": "JavaScript ECMAScript regex (the one your browser implements). It differs slightly from PCRE used in PHP, .NET, or Python." },
+    { "q": "Why doesn't lookbehind work?", "a": "It does in modern browsers — Chrome, Firefox, Safari, Edge all support (?<=...) and (?<!...) since 2021. If yours doesn't, your browser may be outdated." },
+    { "q": "What does the 'u' flag do?", "a": "Enables proper Unicode handling. Emoji like 🎉 (which is a surrogate pair in UTF-16) is treated as one character with /u/ but two with the default mode." },
+    { "q": "How do I match a tab or newline?", "a": "\\t for tab, \\n for newline, \\r for carriage return, \\s for any whitespace including all of these." },
+    { "q": "Why is my replace not working?", "a": "Most often, you forgot the 'g' flag — replace without 'g' only replaces the first match. Toggle 'g' to replace all." },
+    { "q": "Can I use this for very long text?", "a": "Yes, up to a few MB. Beyond that, the browser may slow down. Avoid catastrophic patterns (nested quantifiers) on long input." },
+    { "q": "Does the data leave my browser?", "a": "No. Pattern and text are processed locally only." },
+    { "q": "Is there a regex cheat sheet?", "a": "Search 'JavaScript regex cheat sheet'. MDN's RegExp page is the authoritative reference." }
+  ]
+}

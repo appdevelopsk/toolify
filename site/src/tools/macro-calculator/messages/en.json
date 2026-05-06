@@ -1,0 +1,72 @@
+{
+  "title": "Macro Calculator (P/F/C grams from TDEE and goal)",
+  "shortDescription": "Calculate daily protein, fat, and carb targets from your TDEE and weight goal. Uses 30/30/40 split with a protein floor of 1.6 g/kg.",
+  "description": "Enter your stats, activity level, and goal (lose, maintain, gain). Get target daily calories plus grams of protein, fat, and carbs to hit them.",
+  "metaDescription": "Free macro calculator for protein, fat, and carbs. Mifflin-St Jeor BMR + activity multiplier + goal delta, with 30/30/40 split and 1.6 g/kg protein floor.",
+  "keywords": ["macro calculator", "macros for cutting", "macros for bulking", "protein fat carb calculator", "TDEE macros"],
+  "empty": "Fill in your stats to see your macro targets.",
+  "unit": { "metric": "Metric", "imperial": "Imperial" },
+  "sex": { "male": "Male", "female": "Female" },
+  "input": { "age": "Age", "height": "Height", "weight": "Weight", "activity": "Activity", "goal": "Goal" },
+  "activity": {
+    "sedentary": "Sedentary",
+    "light": "Lightly active",
+    "moderate": "Moderately active",
+    "active": "Very active",
+    "veryActive": "Extra active"
+  },
+  "goal": {
+    "lose": "Lose weight (-500 kcal)",
+    "maintain": "Maintain weight",
+    "gain": "Gain weight (+500 kcal)"
+  },
+  "result": {
+    "target": "Daily calorie target",
+    "protein": "Protein",
+    "fat": "Fat",
+    "carbs": "Carbs"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How macros are computed",
+        "paragraphs": [
+          "Step 1: BMR via Mifflin-St Jeor — the most accurate of the simple formulas. Step 2: TDEE = BMR × activity factor (1.2 for sedentary up to 1.9 for athletes). Step 3: target calories = TDEE ± 500 for cutting/bulking, or TDEE for maintenance.",
+          "Step 4: split the calories. We use protein 30%, fat 30%, carbs 40% by default. Protein has a floor of 1.6 g/kg of body weight (the lower bound from sports nutrition reviews) — if 30% of calories is below that, we raise protein. Fat at 30% provides hormone support and satiety. The remainder goes to carbs."
+        ]
+      },
+      {
+        "heading": "Why these splits and floors",
+        "paragraphs": [
+          "Protein: 1.6-2.2 g/kg is the evidence-based range for muscle protein synthesis in active people. Higher (up to 3 g/kg) doesn't hurt and may help during a deficit. Lower than 1.2 g/kg risks muscle loss during weight loss.",
+          "Fat: 0.6-1 g/kg is the minimum for hormone health. We target ~30% of calories which lands in this range for most people.",
+          "Carbs: fill the remaining calories. Carbs are the most flexible macro — your body can use protein and fat for energy, but performance in any high-intensity work suffers without sufficient carbs."
+        ]
+      },
+      {
+        "heading": "Adjusting for goals",
+        "paragraphs": [
+          "Cutting: ~500 kcal/day deficit gives ~0.5 kg/week loss. Aggressive cuts (>750 kcal) increase muscle loss and metabolic adaptation. Keep protein high during a cut.",
+          "Bulking: 250-500 kcal/day surplus is the lean-bulk range. More aggressive surpluses add fat without much extra muscle.",
+          "Maintenance: useful between phases or for body recomposition. Slow but the safest place to live long-term."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter your stats", "text": "Age, sex, height, weight." },
+      { "name": "Pick activity", "text": "Sedentary if desk job + no exercise; up to 'extra active' for athletes." },
+      { "name": "Pick goal", "text": "Lose, maintain, or gain." },
+      { "name": "Read the macros", "text": "Total calories plus grams of protein, fat, and carbs." }
+    ]
+  },
+  "faq": [
+    { "q": "Why a protein floor of 1.6 g/kg?", "a": "Sports nutrition research consistently shows muscle protein synthesis is maximized at 1.6-2.2 g/kg in active people. Below 1.2 g/kg risks muscle loss during a deficit." },
+    { "q": "Can I customize the 30/30/40 split?", "a": "Not yet — we use a research-backed default. Custom splits may come later. For now, the protein number is the most important; fat and carb proportions are flexible." },
+    { "q": "What if my macros add up to fewer calories than the target?", "a": "We display the macros derived from your target. Carbs round-fill the remainder, so totals should match within rounding error (a few kcal)." },
+    { "q": "Is 1 g/lb of bodyweight protein still recommended?", "a": "1 g/lb ≈ 2.2 g/kg, which is at the high end of the evidence-based range. It's safe and effective; not strictly necessary above 1.6 g/kg." },
+    { "q": "Should I cut faster than 500 kcal/day?", "a": "For most people, no. Larger deficits accelerate weight loss but also muscle loss and metabolic adaptation. 500 kcal/day is a good balance." },
+    { "q": "What about carb cycling or keto?", "a": "Keto and very-low-carb need a different macro split (often 75% fat, 20% protein, 5% carbs). This calculator uses a balanced split — keto-specific calculators are better for that approach." },
+    { "q": "Does this account for body composition?", "a": "No — it uses total weight. If you have a lot of muscle or low body fat, true protein needs may be higher. Use lean body mass × 2.2 as an alternative protein target." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally." }
+  ]
+}

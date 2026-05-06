@@ -1,0 +1,58 @@
+{
+  "title": "Temperature Converter (Celsius, Fahrenheit, Kelvin, Rankine)",
+  "shortDescription": "Convert between Celsius, Fahrenheit, Kelvin, and Rankine. All four scales update at once.",
+  "description": "Type a temperature, choose its scale, and see the equivalent value in the other three scales instantly. Uses exact conversion formulas, no rounding errors.",
+  "metaDescription": "Free temperature converter for Celsius, Fahrenheit, Kelvin, and Rankine. See all four scales at once with exact conversion formulas — instant, browser-based.",
+  "keywords": ["temperature converter", "celsius to fahrenheit", "kelvin", "fahrenheit to celsius", "rankine"],
+  "input": {
+    "value": "Value",
+    "from": "Scale"
+  },
+  "scale": {
+    "C": "Celsius",
+    "F": "Fahrenheit",
+    "K": "Kelvin",
+    "R": "Rankine"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How the conversion formulas work",
+        "paragraphs": [
+          "All four scales pivot through Celsius internally. Fahrenheit ↔ Celsius is F = C × 9/5 + 32 and C = (F − 32) × 5/9. Kelvin shifts Celsius by 273.15 (the absolute zero offset): K = C + 273.15. Rankine is to Fahrenheit what Kelvin is to Celsius — same scale spacing as Fahrenheit, but anchored at absolute zero: R = (C + 273.15) × 9/5.",
+          "These formulas are exact: the constants 273.15 (Kelvin offset) and 9/5 (Fahrenheit ratio) are defined by the SI system, not measured. Any rounding you see in the result is from converting to decimal display, not from the calculation itself."
+        ]
+      },
+      {
+        "heading": "When you'd use each scale",
+        "paragraphs": [
+          "Celsius is the everyday scale almost everywhere except the United States. Water freezes at 0°C and boils at 100°C at sea level — clean, easy boundaries.",
+          "Fahrenheit, used primarily in the US, has a finer-grained 'feel' for ambient air temperatures: 0°F is very cold, 100°F is very hot, and most weather sits in the 30-90°F band. The scale was designed around brine and human body temperature in the 18th century.",
+          "Kelvin is the scientific standard. It removes the negative-number awkwardness because absolute zero is 0 K, not −273.15. Used in physics, chemistry, and astronomy. Rankine is the imperial-system equivalent of Kelvin — same purpose, but with Fahrenheit-sized degrees. It's still used in some US engineering contexts."
+        ]
+      },
+      {
+        "heading": "Useful reference points",
+        "paragraphs": [
+          "Absolute zero: 0 K = −273.15°C = −459.67°F. Water freezes: 0°C = 32°F = 273.15 K. Body temperature: 37°C ≈ 98.6°F = 310.15 K. Water boils (sea level): 100°C = 212°F = 373.15 K. Hot oven: 200°C = 392°F. Earth's average surface temperature: about 15°C = 59°F = 288 K.",
+          "The Celsius and Fahrenheit scales meet at −40°: that's the same temperature on both. It's the only point where the two scales agree."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter the value", "text": "Type the number you want to convert." },
+      { "name": "Pick the source scale", "text": "Choose whether your value is in Celsius, Fahrenheit, Kelvin, or Rankine." },
+      { "name": "Read all four scales", "text": "The other three scales update automatically. The selected scale is highlighted." }
+    ]
+  },
+  "faq": [
+    { "q": "Why are these formulas exact?", "a": "The Celsius-Kelvin offset (273.15) and the Celsius-Fahrenheit ratio (9/5) are SI definitions. Any apparent imprecision is just decimal display rounding." },
+    { "q": "Why does Kelvin not use a degree symbol?", "a": "By SI convention, Kelvin is written without °. So '300 K' is correct; '300°K' is not." },
+    { "q": "What's the difference between Kelvin and Rankine?", "a": "Both are absolute scales (zero at absolute zero). Kelvin uses Celsius-sized degrees; Rankine uses Fahrenheit-sized degrees. 1 K = 1.8 R." },
+    { "q": "What's the temperature where Celsius and Fahrenheit are equal?", "a": "−40°. It's the only crossover point: −40°C = −40°F." },
+    { "q": "Why is body temperature 37°C and not 36 or 38?", "a": "37°C (98.6°F) is the historical average, but normal body temperature varies by 0.5°C through the day and from person to person. Modern data suggests the average is closer to 36.6°C." },
+    { "q": "Can I convert temperature differences?", "a": "Be careful: a difference of 10°C equals 18°F (you don't add 32). For differences, multiply by 9/5 to go C→F or by 5/9 to go F→C, and skip the offset." },
+    { "q": "Is the calculator accurate enough for science?", "a": "We display up to four decimals from double-precision math. For metrology-grade work, refer directly to NIST conversion tables, but for chemistry, cooking, and engineering this is more than sufficient." },
+    { "q": "Why include Rankine if it's rarely used?", "a": "It still appears in some US thermodynamics texts and HVAC engineering work. Including it costs nothing and helps people who actually need it." }
+  ]
+}

@@ -1,0 +1,17 @@
+slug: word-counter
+category: text
+applicationCategory: UtilitiesApplication
+related: [password-generator]
+primaryKeyword: { en: "word counter", ja: "文字数カウンター" }
+inputs:
+  - { name: text, type: textarea }
+output: { type: structured, fields: [characters, charactersNoSpaces, words, sentences, paragraphs, readingTime] }
+logic: |
+  characters = text.length
+  charactersNoSpaces = text.replace(/\s/g, '').length
+  words = text.trim().split(/\s+/).filter(Boolean).length  (locale-aware: CJK counts each char as a word)
+  sentences = count of [.!?。！？] not preceded by single letter
+  paragraphs = double-newline split count
+  readingTime = ceil(words / 200) minutes  (200 wpm average)
+seo: { faq_count: 8, article_sections: 3 }
+locales: [en, ja]

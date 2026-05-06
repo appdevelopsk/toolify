@@ -1,0 +1,61 @@
+{
+  "title": "Discount Calculator (with optional sales tax)",
+  "shortDescription": "Calculate the final price after a percentage discount, plus optional sales tax. See how much you saved at a glance.",
+  "description": "Enter the original price and the discount percentage to see the final price and how much you saved. Add a sales tax rate if your jurisdiction adds tax after the discount.",
+  "metaDescription": "Free discount calculator. Compute final price after a percentage discount, with optional sales tax. See savings, after-discount price, and tax breakdown instantly.",
+  "keywords": ["discount calculator", "percent off", "sale price calculator", "discount with tax", "savings calculator"],
+  "empty": "Enter an original price and discount to see the result.",
+  "input": {
+    "original": "Original price",
+    "discountPct": "Discount %",
+    "taxPct": "Sales tax %"
+  },
+  "result": {
+    "finalPrice": "Final price",
+    "saved": "You save",
+    "afterDiscount": "After discount",
+    "tax": "Tax"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How discount math works",
+        "paragraphs": [
+          "Discounted price = original × (1 − discount/100). A 20% discount on a $100 item leaves $80. Sales tax is applied to the discounted amount, not the original — so $80 × (1 + 8% tax/100) = $86.40 final.",
+          "The 'you save' amount is the discount in dollars: original × discount/100. For our $100 example at 20% off, you save $20. This is what shoppers naturally want to see — not just the percent."
+        ]
+      },
+      {
+        "heading": "Stacking discounts",
+        "paragraphs": [
+          "Two discounts don't add. A '20% off' coupon on top of a '20% off sale' is 36% off total, not 40% — because the second discount applies to the already-reduced price (0.8 × 0.8 = 0.64 = 36% off the original).",
+          "To stack, run the calculator twice: first with the bigger discount, then plug the result back in as the new 'original' with the second discount. Or, if you have multiple coupons, multiply (1 − d1/100) × (1 − d2/100) × ... and subtract from 1 to get the total effective discount."
+        ]
+      },
+      {
+        "heading": "Tax timing varies by country",
+        "paragraphs": [
+          "United States: sales tax is added at the register, after any discounts. Use this calculator's tax field directly. Each state and city has its own rate (NYC 8.875%, LA 9.5%, no tax in Oregon).",
+          "EU/UK: VAT is typically already in the displayed price, so don't double-count. Set tax to 0 if the price you entered is VAT-inclusive. Japan's consumption tax is also usually included in displayed prices (総額表示).",
+          "Sometimes shipping is taxable, sometimes not. This calculator assumes the price you enter is the taxable amount. For complete cart math, total your taxable items separately."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter the original price", "text": "Use the listed price before any discount." },
+      { "name": "Enter the discount %", "text": "The percent off — 20 for '20% off'." },
+      { "name": "Optional: enter tax %", "text": "Skip if tax is already included or doesn't apply." },
+      { "name": "Read the breakdown", "text": "Final price, savings, after-discount, and tax all appear together." }
+    ]
+  },
+  "faq": [
+    { "q": "Is the discount applied before or after tax?", "a": "Almost always before. The discount reduces the taxable amount; tax is then added to the discounted price." },
+    { "q": "How do I stack multiple coupons?", "a": "Apply them sequentially: original × (1 − d1/100) × (1 − d2/100). Use the calculator twice or compute manually." },
+    { "q": "What's the formula for 'percent off'?", "a": "Final = original × (1 − discount/100). Savings = original × discount/100." },
+    { "q": "Does this work for buy-one-get-one (BOGO)?", "a": "Roughly — BOGO half off is effectively a 25% discount on a two-item bundle. For exact BOGO math, divide your bundle price into per-item amounts first." },
+    { "q": "Why did I see a 'comparison' price that wasn't real?", "a": "Some retailers inflate the 'original' price to make discounts look bigger. Compare to other stores or historical prices to know the real discount." },
+    { "q": "Are stacking 'mystery' discount codes worth it?", "a": "Run the math both ways. Often a single big code beats two small ones because of the multiplicative effect." },
+    { "q": "How do I find the discount % from two prices?", "a": "Discount % = (original − sale) / original × 100. Or use our percentage calculator's 'percent change' mode." },
+    { "q": "Is the data sent anywhere?", "a": "No. Calculation runs in your browser." }
+  ]
+}

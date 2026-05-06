@@ -1,0 +1,64 @@
+{
+  "title": "Random Number Generator (cryptographically secure, unique mode)",
+  "shortDescription": "Generate random integers in any range using your browser's secure random API. Optionally enforce uniqueness for lottery, raffle, or sample-without-replacement use cases.",
+  "description": "Pick a min, max, and count to generate cryptographically secure random integers. Toggle 'unique' for sample-without-replacement (raffles, lotteries).",
+  "metaDescription": "Free cryptographically secure random number generator. Set range and count, optionally unique. Built for lottery, raffles, randomized testing, and games.",
+  "keywords": ["random number generator", "secure random", "lottery numbers", "random integer", "RNG"],
+  "empty": "Set a range and click 'Regenerate' to get random numbers.",
+  "input": {
+    "min": "Minimum",
+    "max": "Maximum",
+    "count": "How many"
+  },
+  "unique": "All unique (no duplicates)",
+  "regenerate": "Regenerate",
+  "copyAll": "Copy all",
+  "copied": "Copied",
+  "error": {
+    "invalidRange": "Min must be less than or equal to Max.",
+    "tooManyUnique": "Can't pick more unique numbers than the range allows."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Why this is actually random",
+        "paragraphs": [
+          "We use crypto.getRandomValues — the browser's cryptographically secure random source — instead of Math.random(). The CSPRNG output can't be predicted from prior values, which matters for lottery picks, gambling-adjacent applications, and any use where 'random' is a real requirement, not just 'arbitrary'.",
+          "We also use rejection sampling to make the distribution exactly uniform across the chosen range. Naive 'random % range' introduces bias when the range doesn't divide evenly into 2³². Rejection sampling discards values that would cause bias and tries again, so every number in your range has exactly the same probability."
+        ]
+      },
+      {
+        "heading": "Unique vs duplicate-allowed",
+        "paragraphs": [
+          "Default mode: each number is independent — duplicates can occur. This is what 'random' usually means in casual use (rolling dice, picking a movie, randomized testing).",
+          "Unique mode: sample without replacement — once a number is picked, it can't be picked again in the same batch. Useful for: lottery picks (e.g., 6 numbers from 1-49), raffles (drawing winners), team assignments, and any 'pick N from M' situation. Requires count ≤ range."
+        ]
+      },
+      {
+        "heading": "Common use cases",
+        "paragraphs": [
+          "Lottery / raffle: 6 unique numbers from 1-49, or whatever your draw uses. Toggle 'unique' on.",
+          "Dice rolls: range 1-6 (or 1-20 for D20). Leave 'unique' off so each roll is independent.",
+          "Random sampling for testing: pick 10 random user IDs from 1-10000 to spot-check. Use 'unique' to avoid duplicates.",
+          "Simulating coin flips: range 0-1, multiple results. Tally heads/tails for fairness checks (you'll see ~50/50 on large samples)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Set the range", "text": "Min and max — both inclusive. Negative numbers are allowed." },
+      { "name": "Set how many", "text": "1 to 100 numbers per generation." },
+      { "name": "Toggle 'unique' if needed", "text": "On for sample-without-replacement (raffles, lotteries)." },
+      { "name": "Click regenerate", "text": "A new set is drawn each time. Copy all in one go if you need them all." }
+    ]
+  },
+  "faq": [
+    { "q": "Is this fair for raffles or lotteries?", "a": "The randomness is cryptographically secure and unbiased. Whether it's legally 'fair' for an official lottery depends on your jurisdiction's rules — many require certified hardware RNGs." },
+    { "q": "What's the difference from Math.random()?", "a": "Math.random() uses an algorithm whose output can be predicted from prior outputs by an attacker. crypto.getRandomValues uses an OS-level cryptographic RNG that can't be predicted. For real fairness, use this." },
+    { "q": "Can I get negative numbers?", "a": "Yes. Set min to a negative value." },
+    { "q": "What's the maximum range?", "a": "Limited by JavaScript's safe integer range (~2⁵³), but practically you can go to billions without trouble. The rejection-sampling technique handles any range correctly." },
+    { "q": "Why does 'unique' fail when count > range?", "a": "If you pick 10 unique numbers from 1-5, four don't exist. The validation catches this and asks you to widen the range or reduce the count." },
+    { "q": "Does this work for dice rolls?", "a": "Yes — set range to 1-6 (or whatever your dice are) and turn off 'unique' so each roll is independent." },
+    { "q": "Can I save the seed and reproduce?", "a": "No — secure random by design has no seed. If you need reproducible 'random' for testing, use a seeded PRNG library." },
+    { "q": "Is the data sent anywhere?", "a": "No. Generation is entirely local." }
+  ]
+}

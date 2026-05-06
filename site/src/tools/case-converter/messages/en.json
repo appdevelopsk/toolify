@@ -1,0 +1,62 @@
+{
+  "title": "Case Converter (camel, snake, kebab, Title, etc.)",
+  "shortDescription": "Convert text into 10 case styles: UPPER, lower, Title, Sentence, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and inverted.",
+  "description": "Type any text and see ten common case transformations side by side, each with a copy button. Useful for renaming variables, file names, headings, slugs, and dataset cleanup.",
+  "metaDescription": "Free case converter for camelCase, snake_case, kebab-case, PascalCase, Title Case, and more. Ten cases at once with one-click copy. Built for code and content.",
+  "keywords": ["case converter", "camel case", "snake case", "kebab case", "title case"],
+  "input": { "text": "Source text" },
+  "copy": "Copy",
+  "copied": "Copied",
+  "case": {
+    "lower": "lowercase",
+    "upper": "UPPERCASE",
+    "title": "Title Case",
+    "sentence": "Sentence case",
+    "camel": "camelCase",
+    "pascal": "PascalCase",
+    "snake": "snake_case",
+    "kebab": "kebab-case",
+    "constant": "CONSTANT_CASE",
+    "invert": "InVeRtEd Case"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Where each style is used",
+        "paragraphs": [
+          "camelCase: JavaScript and Java identifiers (myVariableName). PascalCase: classes and React components (UserProfile). snake_case: Python and Ruby variables (user_profile). kebab-case: URLs and CSS classes (user-profile). CONSTANT_CASE: environment variables and constants (USER_PROFILE).",
+          "Title Case: book and article titles, headings. Sentence case: most modern UI labels and headings — easier to read than Title Case for long strings. UPPERCASE: emphasis, abbreviations. lowercase: tags, labels, file names that need to be case-insensitive."
+        ]
+      },
+      {
+        "heading": "How the converter parses words",
+        "paragraphs": [
+          "We split on whitespace, hyphens, underscores, slashes, and dots. We also split on the boundary between a lowercase letter and an uppercase letter (so 'helloWorld' splits into ['hello', 'World']) and between a letter and a digit. This handles most everyday cases including pasted code, slugs, and file paths.",
+          "Edge cases: all-caps acronyms ('XMLHTTPRequest') don't split cleanly without context, so we treat consecutive uppercase letters as a single word block and rely on the user to clean up if needed. For most everyday text — sentences, titles, dataset column names — the parser produces the result you expect."
+        ]
+      },
+      {
+        "heading": "Tips for code review and refactoring",
+        "paragraphs": [
+          "When migrating between languages, paste a list of identifier names and copy out the converted version. snake-to-camel is the most common JavaScript-to-Python boundary; kebab-to-snake is common when refactoring HTML attributes into JS objects.",
+          "For SEO slugs, kebab-case is the standard — readable in URLs and Google treats hyphens as word separators (underscores are not). 'product-name' is preferable to 'product_name' for any user-facing URL path."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type or paste text", "text": "Anything — sentences, code identifiers, file names." },
+      { "name": "Read all 10 conversions", "text": "Each case appears in its own labeled block." },
+      { "name": "Copy the one you need", "text": "Click 'Copy' next to any block." }
+    ]
+  },
+  "faq": [
+    { "q": "What if my input has acronyms like 'XML'?", "a": "Consecutive uppercase letters are treated as a single block. 'XMLParser' splits into 'XML' and 'Parser'. This works for most code; review and tweak by hand for edge cases." },
+    { "q": "Why are URL slugs always kebab-case?", "a": "Hyphens are treated as word boundaries by Google's URL parser; underscores aren't. kebab-case URLs index more reliably for SEO." },
+    { "q": "What's the difference between Title and Sentence case?", "a": "Title Case capitalizes most words ('The Quick Brown Fox'). Sentence case capitalizes only the first word and proper nouns ('The quick brown fox'). Modern UI tends to prefer sentence case." },
+    { "q": "Does this support Unicode?", "a": "Yes — JavaScript's toLowerCase/toUpperCase are Unicode-aware. Diacritics and non-Latin scripts pass through correctly." },
+    { "q": "Can I convert back?", "a": "Yes — paste any case-converted output back in and use a different conversion. Round-tripping camelCase ↔ snake_case is lossless." },
+    { "q": "Why doesn't camelCase preserve acronyms in caps?", "a": "Conventionally, camelCase capitalizes only the first letter of each subsequent word. 'XmlHttpRequest' is preferred over 'XMLHTTPRequest' in modern style guides." },
+    { "q": "Does the data leave my browser?", "a": "No. All transformations run locally." },
+    { "q": "Is there a way to bulk-convert a list?", "a": "Paste your whole list at once. Each line is treated as a separate input within the same case style — convert, then split lines as needed." }
+  ]
+}

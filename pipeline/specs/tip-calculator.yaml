@@ -1,0 +1,16 @@
+slug: tip-calculator
+category: finance
+applicationCategory: FinanceApplication
+related: [percentage-calculator, compound-interest-calculator]
+primaryKeyword: { en: "tip calculator", ja: "チップ計算機" }
+inputs:
+  - { name: bill, type: number }
+  - { name: tipPct, type: number, default: 18 }
+  - { name: people, type: number, default: 1 }
+output: { type: structured, fields: [tip, total, perPerson] }
+logic: |
+  tip = bill * tipPct/100
+  total = bill + tip
+  perPerson = total / people
+seo: { faq_count: 8, article_sections: 3 }
+locales: [en, ja]

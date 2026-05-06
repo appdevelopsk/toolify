@@ -1,0 +1,53 @@
+{
+  "title": "Sales Tax / VAT Calculator (add tax or extract from total)",
+  "shortDescription": "Add sales tax to a pre-tax amount or extract the tax from a tax-inclusive total. Works for any tax rate (sales tax, VAT, GST).",
+  "description": "Toggle between 'add tax' and 'extract from total' modes, enter the amount and rate, and see the breakdown into net, tax, and gross.",
+  "metaDescription": "Free sales tax / VAT / GST calculator. Add tax to a pre-tax amount or extract tax from a tax-inclusive total. Works with any rate, in your browser.",
+  "keywords": ["sales tax calculator", "VAT calculator", "GST calculator", "tax calculator", "extract tax from total"],
+  "empty": "Enter an amount to compute the tax breakdown.",
+  "mode": { "addTax": "Add tax to net", "fromTotal": "Extract tax from total" },
+  "input": { "amountNet": "Pre-tax amount", "amountGross": "Tax-inclusive total", "taxPct": "Tax rate (%)" },
+  "result": { "net": "Pre-tax", "tax": "Tax", "gross": "Total" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Add tax vs extract tax",
+        "paragraphs": [
+          "Adding tax: you have the price before tax and want the final price. Multiply by (1 + rate/100). Example: $100 at 8% sales tax = $108.",
+          "Extracting tax: you have the total a customer paid (or saw on the receipt) and need to reverse-engineer how much was tax. Divide the total by (1 + rate/100) to get the pre-tax amount; the difference is the tax. Example: $108 at 8% extracts to $100 + $8 tax. Don't multiply $108 by 8% — that gives $8.64, which is wrong."
+        ]
+      },
+      {
+        "heading": "Sales tax, VAT, and GST",
+        "paragraphs": [
+          "Sales tax (US): added at the point of sale, varies by state and city. New York City is 8.875%, Oregon has none, California ranges 7.25-10.75% depending on city. Many US prices are advertised pre-tax and tax is added at checkout.",
+          "VAT (EU, UK): typically already included in the displayed price. UK standard rate is 20%, France is 20%, Germany is 19%. Use 'extract from total' to find the tax in a quoted price.",
+          "GST (Australia, NZ, Canada, India): a single national rate (Australia and NZ at 10% and 15% respectively, Canada has GST plus provincial taxes). India uses tiered GST rates (5/12/18/28%) by product category."
+        ]
+      },
+      {
+        "heading": "Common pitfalls",
+        "paragraphs": [
+          "Don't multiply tax-inclusive totals by the rate. To extract tax from $108 at 8%, divide by 1.08 first. Multiplying by 8% gives the wrong answer because the $108 already includes the 8% on the original $100 — and you'd be taxing the tax.",
+          "Some products are exempt or zero-rated (groceries in many US states; books in the EU at reduced rate; etc.). When advertising prices including/excluding tax, follow your jurisdiction's rules."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick the mode", "text": "Add tax to a pre-tax amount, or extract tax from a tax-inclusive total." },
+      { "name": "Enter the amount", "text": "Pre-tax in 'add' mode; total in 'extract' mode." },
+      { "name": "Enter the rate", "text": "Tax rate as a percent (e.g., 8.875 for NYC, 10 for Japan, 20 for UK VAT)." },
+      { "name": "Read the breakdown", "text": "Net (pre-tax), tax amount, and total are all displayed." }
+    ]
+  },
+  "faq": [
+    { "q": "Why is extract-from-total ÷ (1 + rate) instead of × rate?", "a": "Because the total already includes the tax on the original. Multiplying gives the tax on the inclusive total, which is too much. Dividing by (1 + rate/100) reverses the addition correctly." },
+    { "q": "What rate should I use for the US?", "a": "US sales tax varies by state and city. Common: NYC 8.875%, LA 9.5%, Chicago 10.25%, Texas state 6.25%, Florida state 6%. Add city/county on top in many places." },
+    { "q": "Is Japan's consumption tax just 10%?", "a": "Mostly yes — 10% is standard. Food and beverages other than alcohol/dining are at the reduced 8% rate." },
+    { "q": "Are taxes the same as the displayed price?", "a": "Depends on country. EU/UK/Japan typically advertise tax-inclusive prices. The US, Australia, and Canada often show pre-tax. Use the 'extract' mode for inclusive prices, 'add' mode for pre-tax." },
+    { "q": "Can this handle multiple tax rates?", "a": "Not at once. For combined rates (e.g., state + local), add them up first and use the combined rate." },
+    { "q": "What about VAT-included business invoices?", "a": "Same math: 'extract from total' to see VAT and pre-VAT net. Most accounting software does this automatically." },
+    { "q": "Currency?", "a": "Currency is displayed in JPY for Japanese pages, USD elsewhere. Math is currency-independent — use any unit consistently." },
+    { "q": "Is the data sent anywhere?", "a": "No. All math runs locally in your browser." }
+  ]
+}

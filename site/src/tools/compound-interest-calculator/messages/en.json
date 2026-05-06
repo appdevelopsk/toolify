@@ -1,0 +1,69 @@
+{
+  "title": "Compound Interest Calculator (with monthly contributions)",
+  "shortDescription": "See how an investment grows over time with compounding interest and optional monthly contributions. Customizable compounding frequency.",
+  "description": "Enter your starting balance, interest rate, time horizon, and optional monthly contribution. The calculator shows the final balance plus a breakdown of contributions vs interest earned.",
+  "metaDescription": "Free compound interest calculator with monthly contributions. See final balance, total contributed, and total interest. Daily, monthly, quarterly, or annual compounding.",
+  "keywords": ["compound interest calculator", "investment growth", "savings calculator", "interest calculator", "future value"],
+  "empty": "Fill in the fields to see the projection.",
+  "input": {
+    "principal": "Starting balance",
+    "ratePct": "Annual interest rate (%)",
+    "years": "Years",
+    "compoundsPerYear": "Compounding frequency",
+    "monthlyContribution": "Monthly contribution"
+  },
+  "compound": {
+    "annual": "Annually (1×/year)",
+    "semiannual": "Semi-annually (2×/year)",
+    "quarterly": "Quarterly (4×/year)",
+    "monthly": "Monthly (12×/year)",
+    "daily": "Daily (365×/year)"
+  },
+  "result": {
+    "finalBalance": "Final balance",
+    "totalContributed": "Total contributed",
+    "totalInterest": "Total interest"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How compound interest works",
+        "paragraphs": [
+          "Compound interest is interest earned on both your original principal and on the interest you've already earned. The formula for the principal portion is FV = P × (1 + r/n)^(n × t), where P is principal, r is annual rate as a decimal, n is the number of compounding periods per year, and t is the number of years. With a 5% rate compounded monthly for 30 years, $10,000 grows to about $44,677 — over 4× the starting amount, all from compounding.",
+          "Adding a monthly contribution turns it into an annuity. The future value of regular contributions is M × ((1 + r/12)^(12×t) − 1) / (r/12), where M is the monthly amount. This calculator combines both formulas, so you can see what 'invest a lump now and add a bit each month' produces."
+        ]
+      },
+      {
+        "heading": "Why compounding frequency matters less than you think",
+        "paragraphs": [
+          "Going from annual to monthly compounding boosts the effective rate slightly, but the difference shrinks fast. At 5% for 10 years on $10,000: annual gives $16,289; monthly gives $16,470; daily gives $16,486. Past monthly, the gains are tiny. Continuous compounding (the mathematical limit) on the same example gives $16,487 — essentially indistinguishable from daily.",
+          "What dominates real returns is rate × time, not compounding frequency. Doubling your investment horizon from 10 to 20 years roughly squares your multiplier (assuming the same rate). Doubling the rate roughly squares it too. Doubling the compounding frequency? Adds maybe a fraction of a percent."
+        ]
+      },
+      {
+        "heading": "Realistic assumptions",
+        "paragraphs": [
+          "These projections assume a constant rate, which doesn't match reality — stock returns vary, bond rates change, and bank promotional rates expire. For long-term planning, run the calculator at three rates: pessimistic (3-4%), expected (6-7%), and optimistic (9-10%) to see a range of outcomes.",
+          "Inflation eats into nominal returns. A 7% nominal return at 3% inflation is about 4% in 'real' purchasing power. If you want the real-terms balance, plug in (rate − expected inflation) instead of the nominal rate. Also, fees and taxes typically reduce real returns by 1-2% — subtract that from the rate too for a closer approximation."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter your starting balance", "text": "How much you have invested today." },
+      { "name": "Enter the rate and term", "text": "Annual interest rate as a percentage, and how many years you plan to invest." },
+      { "name": "Pick the compounding frequency", "text": "Monthly is a good default. Daily makes a small difference; annual is conservative." },
+      { "name": "Add a monthly contribution (optional)", "text": "If you plan to add money regularly, enter the monthly amount." },
+      { "name": "Read the breakdown", "text": "Final balance, total contributed (principal + contributions), and total interest earned." }
+    ]
+  },
+  "faq": [
+    { "q": "What's a realistic interest rate to use?", "a": "Long-term US stock market averages are around 7% real / 10% nominal. Bonds historically return 2-4% real. Bank savings accounts are 0.5-5% depending on type and era. Try 6-7% as a baseline for a diversified portfolio." },
+    { "q": "Why do small rate differences matter so much over time?", "a": "Compounding multiplies. At 30 years, a 6% return triples your money about 2.86× more than a 4% return, even though the rate gap is just 2 percentage points." },
+    { "q": "Should monthly contributions be made at the start or end of the month?", "a": "We use end-of-period contribution timing (an 'ordinary annuity'). Start-of-period would add one extra period of compounding, raising the result by about 1 month's worth of interest. Close enough not to matter for planning." },
+    { "q": "Does this account for inflation?", "a": "No. Use a 'real' rate (nominal minus expected inflation) if you want today-dollar projections. A 7% return at 3% inflation is 4% real." },
+    { "q": "What about taxes and fees?", "a": "Not modeled. Subtract 1-2% from your rate as a rough adjustment for taxes (in taxable accounts) and fund fees." },
+    { "q": "Why doesn't the result match my bank's app?", "a": "Banks may compound at slightly different intervals or use simple interest for short periods. For exact bank-specific projections, use the bank's own calculator." },
+    { "q": "Can interest rates be negative?", "a": "Yes, mathematically — the formula handles it. Negative rates have appeared on European government bonds, but rarely on retail products." },
+    { "q": "Is the data sent anywhere?", "a": "No. All math runs in your browser." }
+  ]
+}

@@ -1,0 +1,29 @@
+slug: age-calculator
+category: datetime
+applicationCategory: UtilitiesApplication
+related: [bmi-calculator, length-converter]
+primaryKeyword:
+  en: "age calculator"
+  ja: "年齢計算"
+
+inputs:
+  - { name: birth, type: date, label_key: "input.birth" }
+  - { name: target, type: date, label_key: "input.target", default: today }
+
+output:
+  type: structured
+  fields: [years, months, days, totalMonths, totalWeeks, totalDays, totalHours]
+
+logic: |
+  Compute Y/M/D using calendar-aware borrow logic.
+  totalDays = floor((target - birth) / 86400000)
+  totalWeeks = floor(totalDays / 7)
+  totalMonths = years * 12 + months
+  totalHours = totalDays * 24
+
+seo:
+  faq_count: 8
+  article_sections: 3
+  long_form_words: 1200
+
+locales: [en, ja]

@@ -1,0 +1,22 @@
+slug: compound-interest-calculator
+category: finance
+applicationCategory: FinanceApplication
+related: [tip-calculator, percentage-calculator]
+primaryKeyword: { en: "compound interest calculator", ja: "複利計算機" }
+inputs:
+  - { name: principal, type: number }
+  - { name: ratePct, type: number }
+  - { name: years, type: number }
+  - { name: compoundsPerYear, type: select, options: [1, 2, 4, 12, 365] }
+  - { name: monthlyContribution, type: number, default: 0 }
+output: { type: structured, fields: [finalBalance, totalContributed, totalInterest] }
+logic: |
+  r = ratePct/100
+  n = compoundsPerYear
+  t = years
+  Future value of principal:    P * (1 + r/n)^(n*t)
+  Future value of contributions: M * [((1 + r/12)^(12*t) - 1) / (r/12)] (monthly contribution annuity)
+  totalContributed = principal + monthlyContribution * 12 * t
+  totalInterest = finalBalance - totalContributed
+seo: { faq_count: 8, article_sections: 3 }
+locales: [en, ja]

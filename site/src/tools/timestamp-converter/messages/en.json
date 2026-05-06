@@ -1,0 +1,72 @@
+{
+  "title": "Unix Timestamp Converter (sec, ms, ISO, local)",
+  "shortDescription": "Convert between Unix timestamps (seconds or milliseconds) and human-readable dates. Shows ISO 8601, local time, and relative time.",
+  "description": "Type a Unix timestamp to see the date in multiple formats, or pick a date to get its Unix value. Live current timestamp displayed for reference.",
+  "metaDescription": "Free Unix timestamp converter. Convert seconds or milliseconds to ISO/local dates and back. Live current timestamp, relative-time display included.",
+  "keywords": ["Unix timestamp", "epoch converter", "timestamp to date", "date to timestamp", "ISO 8601"],
+  "empty": "Enter a timestamp or date to convert.",
+  "input": { "timestamp": "Unix timestamp", "date": "Date & time" },
+  "now": "Now",
+  "currentTimestamp": "Current",
+  "mode": { "fromTimestamp": "Timestamp → Date", "fromDate": "Date → Timestamp" },
+  "unit": { "seconds": "Seconds", "milliseconds": "Milliseconds" },
+  "result": {
+    "timestampSec": "Timestamp (sec)",
+    "timestampMs": "Timestamp (ms)",
+    "iso": "ISO 8601 (UTC)",
+    "local": "Local time",
+    "locale": "Localized",
+    "relative": "Relative"
+  },
+  "relative": {
+    "justNow": "in a moment",
+    "justPast": "moments ago",
+    "minutesFromNow": "in {n} min",
+    "minutesAgo": "{n} min ago",
+    "hoursFromNow": "in {n} h",
+    "hoursAgo": "{n} h ago",
+    "daysFromNow": "in {n} days",
+    "daysAgo": "{n} days ago"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What a Unix timestamp is",
+        "paragraphs": [
+          "A Unix timestamp is the number of seconds (or milliseconds, in JavaScript) since the Unix epoch — midnight UTC on 1 January 1970. It's a single number that encodes a moment in time without ambiguity. APIs, databases, and log files use it everywhere because comparing timestamps is just integer arithmetic.",
+          "JavaScript, Python, and many other systems use milliseconds (Date.now() returns ms in JS). C, Go, and Unix shells use seconds (date +%s). When converting, always check which unit your timestamp is in — a 1.7 trillion value is milliseconds; 1.7 billion is seconds."
+        ]
+      },
+      {
+        "heading": "ISO 8601 vs locale formats",
+        "paragraphs": [
+          "ISO 8601 (e.g., 2026-05-06T14:30:00Z) is the universal interchange format. Time zone is explicit ('Z' = UTC, or +09:00 etc.), and it sorts correctly as text. Always use it for storage and APIs.",
+          "Locale formats (e.g., 'May 6, 2026, 2:30:00 PM') are for display. They depend on user language and region. The calculator shows both — copy ISO for code, copy locale for emails or reports."
+        ]
+      },
+      {
+        "heading": "The Year 2038 problem",
+        "paragraphs": [
+          "32-bit signed integer Unix timestamps overflow at 2³¹ − 1 seconds = 2,147,483,647 = 03:14:07 UTC on 19 January 2038. Systems using int32 will roll over to negative values, breaking date arithmetic. Modern systems use 64-bit timestamps which are safe for ~292 billion years.",
+          "If you're working with embedded systems, old database schemas, or legacy C code, audit for time_t size. Migrating to 64-bit integers is the fix; storing timestamps as strings (ISO) avoids the issue entirely."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick direction", "text": "Timestamp → Date or Date → Timestamp." },
+      { "name": "Choose unit", "text": "Seconds (Unix standard) or milliseconds (JavaScript)." },
+      { "name": "Type or pick", "text": "Type a number, or use the 'Now' button for the current moment." },
+      { "name": "Read all formats", "text": "Sec, ms, ISO, local, and relative all shown together." }
+    ]
+  },
+  "faq": [
+    { "q": "Why do timestamps sometimes have 13 digits?", "a": "Those are milliseconds. JavaScript and many web APIs use ms. Divide by 1000 to get seconds." },
+    { "q": "What time zone is a Unix timestamp in?", "a": "None — it's UTC seconds since epoch. Convert it to a local date using the timezone your application or user is in." },
+    { "q": "Is the conversion accurate?", "a": "Yes. We use the browser's Date API, which uses the system clock. Precision is to the millisecond." },
+    { "q": "What's ISO 8601?", "a": "An international standard date-time format: YYYY-MM-DDTHH:MM:SS+TZ. Sortable as text, unambiguous about time zone." },
+    { "q": "Why doesn't 'local time' match my system clock?", "a": "It uses your browser's reported time zone. If your system clock is wrong or the browser zone differs, results differ." },
+    { "q": "Are negative timestamps valid?", "a": "Yes — they represent dates before 1970. Most languages handle them; be careful with database compatibility." },
+    { "q": "Can I batch convert?", "a": "Not yet. For one-off conversions, this tool is fine; for thousands of values, use a script." },
+    { "q": "Does the data leave my browser?", "a": "No. Conversion runs locally." }
+  ]
+}

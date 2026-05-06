@@ -1,0 +1,60 @@
+{
+  "title": "Character Frequency Analyzer (letters, all chars, or words)",
+  "shortDescription": "Count how often each character or word appears in your text. Sortable, with percentages, and optional case sensitivity.",
+  "description": "Paste any text to get a sorted frequency table. Three modes: all characters, letters/digits only, or whole words. Useful for cryptanalysis, writing analysis, and dataset cleanup.",
+  "metaDescription": "Free character frequency analyzer. Count letters, all characters, or words. Sortable table with percentages. UTF-8 aware including CJK and emoji.",
+  "keywords": ["character frequency", "letter frequency", "word frequency", "frequency analysis", "text statistics"],
+  "input": { "text": "Text" },
+  "mode": { "all": "All characters", "letters": "Letters and digits", "words": "Words" },
+  "caseSensitive": "Case sensitive",
+  "stats": {
+    "unique": "{n} unique",
+    "total": "{n} total",
+    "showingTop": "showing top {n}",
+    "remainingCount": "+{n} more in tail not shown"
+  },
+  "col": { "item": "Item", "count": "Count" },
+  "article": {
+    "sections": [
+      {
+        "heading": "What's it for",
+        "paragraphs": [
+          "Cryptanalysis: classical ciphers (Caesar, substitution) preserve letter frequencies. English text always has E as the most common letter, then T, A, O, I, N. If you see roughly that distribution in cipher text, you have a substitution. CJK languages have very different distributions but still recognizable.",
+          "Writing analysis: spotting overused words is one of the fastest ways to improve drafts. If 'just' or 'really' appears 50 times in a 1000-word essay, you've found a tic to fix.",
+          "Dataset cleanup: scanning a CSV column with this tool reveals stray characters, encoding errors, and unexpected casing. Useful before importing data into a stricter system."
+        ]
+      },
+      {
+        "heading": "Three modes",
+        "paragraphs": [
+          "All characters: includes spaces, punctuation, line breaks, emoji. Best for raw text analysis. Useful when you suspect hidden characters (zero-width space, BOM) corrupting a file.",
+          "Letters and digits: filters to only Unicode letters and numbers. Best for traditional letter-frequency analysis (cryptanalysis, language identification).",
+          "Words: splits on whitespace and counts whole words. Best for writing analysis and stylistic checking."
+        ]
+      },
+      {
+        "heading": "What 'case sensitive' does",
+        "paragraphs": [
+          "Off (default): 'A' and 'a' count together. Best for letter-frequency on natural text where case is incidental.",
+          "On: 'A' and 'a' count separately. Useful when case is meaningful — programming identifiers, branded terms, or analyzing capitalization patterns. Note: case-insensitive folding uses the locale's lowercase rules; for most languages this is the conventional Unicode case folding."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Paste text", "text": "Anything from a sentence to a multi-megabyte file." },
+      { "name": "Pick mode", "text": "All characters, letters/digits, or words." },
+      { "name": "Toggle case sensitivity", "text": "Off for natural text; on when case is meaningful." },
+      { "name": "Read the table", "text": "Sorted by frequency. Top 50 shown; remaining tail summarized below." }
+    ]
+  },
+  "faq": [
+    { "q": "Does it work for Japanese, Chinese, Korean text?", "a": "Yes. Letter mode treats each ideograph as one 'letter', so you get hanzi/kanji frequency. Word mode splits on whitespace, which means CJK text without spaces shows as one giant word — use letter mode for those." },
+    { "q": "What's the most common English letter?", "a": "'E' (about 12.7%), then T (9.1%), A (8.2%), O (7.5%), I (7.0%), N (6.7%). Knowing this is the foundation of breaking simple substitution ciphers." },
+    { "q": "Are emoji counted?", "a": "Yes in 'all characters' mode. Letter mode filters them out (they're not letters per Unicode classification)." },
+    { "q": "Why are emoji sometimes split into multiple characters?", "a": "Some emoji are multiple Unicode code points (e.g., flags = two regional indicator letters). The counter follows JavaScript string iteration which respects code points but not all grapheme clusters. For most analysis this is fine." },
+    { "q": "Can I export the table?", "a": "Not yet — copy-paste the rendered table for now. CSV export is on the roadmap." },
+    { "q": "How many entries does it show?", "a": "Top 50 in the table. The tail count is summarized at the bottom." },
+    { "q": "Why don't case-insensitive Greek/Turkish results match my expectation?", "a": "Some languages have unusual case rules (Turkish dotted/dotless I; German ß ↔ SS). We use JavaScript's toLowerCase() which follows the default Unicode case folding — usually fine but can surprise in edge cases." },
+    { "q": "Does the data leave my browser?", "a": "No. All counting runs locally." }
+  ]
+}

@@ -1,0 +1,28 @@
+slug: bmi-calculator
+category: health
+applicationCategory: HealthApplication
+related: [age-calculator]
+primaryKeyword:
+  en: "BMI calculator"
+  ja: "BMI計算機"
+
+inputs:
+  - { name: unit, type: toggle, options: [metric, imperial], default_by_locale: { en: imperial, default: metric } }
+  - { name: height, type: number, label_key: "input.height" }
+  - { name: weight, type: number, label_key: "input.weight" }
+
+output:
+  type: number
+  label_key: "result.label"
+
+logic: |
+  metric:    bmi = weight_kg / (height_cm / 100) ^ 2
+  imperial:  bmi = 703 * weight_lb / (height_in)^2
+  Categorize per WHO bands.
+
+seo:
+  faq_count: 8
+  article_sections: 3
+  long_form_words: 1500
+
+locales: [en, ja]

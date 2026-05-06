@@ -1,0 +1,45 @@
+# spec.yaml — Claude が読み取って 1 ツール一式を生成する単位
+#
+# 必須フィールドの全例。新規ツールを作る時はこのファイルをコピーして
+# 値を埋め、`pipeline/scripts/generate.sh <slug>` を実行する。
+slug: example-tool
+category: math            # health | math | converter | datetime | text | color | finance
+applicationCategory: UtilitiesApplication  # schema.org SoftwareApplication category
+related:                  # 関連ツール (登録済みの slug を 2-5 個)
+  - bmi-calculator
+primaryKeyword:
+  en: "Example tool"
+  ja: "サンプルツール"
+
+# 入力の定義（Claudeがコンポーネント生成に使う）
+inputs:
+  - name: a
+    type: number
+    label_key: "input.a"
+    placeholder: "10"
+  - name: b
+    type: select
+    label_key: "input.b"
+    options: [option1, option2]
+
+# 出力の定義
+output:
+  type: number     # number | text | table | chart
+  label_key: "result.label"
+
+# ロジック（Claude実装の指示）
+logic: |
+  Compute a + (option-specific factor).
+  option1 -> a * 2
+  option2 -> a * 3
+
+# SEO仕様（Claudeがen.jsonの該当セクションを書く際に参照）
+seo:
+  title_pattern: "{primary_keyword}"
+  description_pattern: "{primary_keyword} — instant browser-based calculation."
+  faq_count: 8
+  article_sections: 3
+  long_form_words: 1500
+
+# i18n
+locales: [en, ja]   # Phase 0は en/ja のみ

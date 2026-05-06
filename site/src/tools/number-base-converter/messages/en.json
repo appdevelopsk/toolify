@@ -1,0 +1,50 @@
+{
+  "title": "Number Base Converter (binary, octal, decimal, hex)",
+  "shortDescription": "Convert numbers between binary, octal, decimal, and hexadecimal. Validates input for the chosen base and shows all four representations.",
+  "description": "Pick a source base, type a value, and see equivalents in binary, octal, decimal, and hex. Useful for programming, networking, and electronics.",
+  "metaDescription": "Free number base converter for binary, octal, decimal, and hex. Validates input per base, shows all four representations side by side.",
+  "keywords": ["number base converter", "binary to decimal", "decimal to hex", "hex to binary", "base 2 base 16"],
+  "input": { "value": "Value", "from": "From base" },
+  "error": { "invalidForBase": "Input contains characters that aren't valid for the selected base." },
+  "article": {
+    "sections": [
+      {
+        "heading": "How positional number bases work",
+        "paragraphs": [
+          "Every base uses positional notation: the rightmost digit is base⁰ = 1, the next is base¹, then base², and so on. In decimal, '255' means 2×100 + 5×10 + 5×1. In binary, '11111111' means 1×128 + 1×64 + ... + 1×1 = 255. The same number, different bases.",
+          "Hexadecimal uses 0-9 and A-F to fit 16 values per digit. 'FF' = 15×16 + 15×1 = 255. Octal uses 0-7 (3 bits per digit), and binary uses just 0 and 1. The conversion is mechanical — convert to decimal then back to the target base — and the calculator does it for you for any non-negative integer."
+        ]
+      },
+      {
+        "heading": "When you'll use each base",
+        "paragraphs": [
+          "Binary (base 2): low-level computer work — bit fields, masks, embedded firmware. Reading register layouts, debugging at the hardware level.",
+          "Octal (base 8): Unix file permissions (chmod 755 = rwxr-xr-x), some legacy file formats. Less common today.",
+          "Decimal (base 10): everything humans count. The default for normal arithmetic.",
+          "Hexadecimal (base 16): most common in software — colors (#FF6B35), memory addresses (0x7fff...), MAC addresses, byte representations of binary data, encoded hashes."
+        ]
+      },
+      {
+        "heading": "Quick reference",
+        "paragraphs": [
+          "1 byte = 8 bits = 2 hex digits = 256 values (0-255). 1 hex digit = 4 bits = 16 values. 1 octal digit = 3 bits. Hex 'FF' = decimal 255 = binary 11111111. Hex '100' = decimal 256. Hex 'FFFF' = decimal 65535 (max for 16-bit unsigned). Hex 'FFFFFFFF' = decimal 4294967295 (max for 32-bit unsigned)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick the source base", "text": "Choose binary, octal, decimal, or hex." },
+      { "name": "Enter your value", "text": "Use only digits valid for that base. Hex is case-insensitive." },
+      { "name": "Read all four bases", "text": "Conversion to each of the other three appears alongside." }
+    ]
+  },
+  "faq": [
+    { "q": "Is hex case-sensitive?", "a": "Both 'ff' and 'FF' decode to the same value. We display uppercase by convention." },
+    { "q": "Can I enter negative numbers?", "a": "Yes, prefix with '-'. The calculator displays each base's representation with the sign preserved (e.g., -255 → -FF in hex)." },
+    { "q": "What's the maximum value?", "a": "Limited by JavaScript's safe integer range (about 2⁵³). For larger values, use BigInt-aware tools." },
+    { "q": "How do I read 0x prefix or 0b prefix?", "a": "Strip the prefix before entering. '0xFF' → just 'FF' with hex selected. '0b1010' → '1010' with binary selected." },
+    { "q": "Why does Unix chmod use octal?", "a": "Permissions have three groups (owner/group/other) of three bits each. Each group's 3 bits map cleanly to one octal digit, so 755 = 111 101 101 = rwx r-x r-x." },
+    { "q": "Can I convert fractional values?", "a": "Not yet — only non-negative integers are supported. We may add fixed-point support later." },
+    { "q": "What if I see 'invalid for base'?", "a": "You typed a character that's not allowed in the chosen base. Hex allows 0-9 and A-F; binary only 0 and 1; etc." },
+    { "q": "Is the data sent anywhere?", "a": "No. Conversion runs locally." }
+  ]
+}

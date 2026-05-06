@@ -1,0 +1,57 @@
+{
+  "title": "Time Unit Converter (ms, s, min, h, days, weeks, months, years)",
+  "shortDescription": "Convert between time units from milliseconds to years. Months use the average length, years use the Julian definition.",
+  "description": "Type a duration and select its unit to see equivalents in every other supported unit. Useful for scheduling, billing, scientific calculations, and quick mental arithmetic.",
+  "metaDescription": "Free time unit converter for milliseconds, seconds, minutes, hours, days, weeks, months, and years. Instant browser-based conversion using standard definitions.",
+  "keywords": ["time converter", "minutes to seconds", "hours to days", "days to weeks", "milliseconds"],
+  "input": { "value": "Value", "from": "From unit" },
+  "unit": {
+    "ms": "Milliseconds (ms)",
+    "s": "Seconds (s)",
+    "min": "Minutes (min)",
+    "h": "Hours (h)",
+    "d": "Days (d)",
+    "wk": "Weeks (wk)",
+    "mo": "Months (avg)",
+    "yr": "Years (Julian)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Why months and years aren't exact",
+        "paragraphs": [
+          "Seconds, minutes, hours, days, and weeks are exact: 1 minute is always 60 seconds, 1 day is always 86,400 seconds. Months and years are not — calendar months range from 28 to 31 days, and years can be 365 or 366 days. To convert at all, we have to pick a single average value.",
+          "This calculator uses the Julian year (365.25 days = 31,557,600 seconds), the standard in astronomy and the SI scientific community. The 'month' is one twelfth of a Julian year (30.4375 days = 2,629,800 seconds). These choices give consistent two-way conversions; they may differ from your calendar by a day or two."
+        ]
+      },
+      {
+        "heading": "What's exact and what isn't",
+        "paragraphs": [
+          "Exact: ms ↔ s, s ↔ min, min ↔ h, h ↔ day, day ↔ week. These can be converted forward and back without losing any precision.",
+          "Approximate: any conversion involving 'month' or 'year', because the calendar values are not constant. If you need accurate calendar arithmetic ('how many days from March 1 to August 15'), use a date difference calculator instead — the time-unit converter is for averages."
+        ]
+      },
+      {
+        "heading": "Useful reference points",
+        "paragraphs": [
+          "1 year ≈ 525,960 minutes ≈ 31.56 million seconds. 1 day = 1,440 minutes = 86,400 seconds. 1 week = 168 hours. 'A million seconds' ≈ 11.6 days; 'a billion seconds' ≈ 31.7 years. 1 hour of HD video ≈ 3.6 GB; 1 hour of audio ≈ 50 MB."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter the duration", "text": "Type the time value." },
+      { "name": "Pick the unit", "text": "Select what your value is in." },
+      { "name": "See all units", "text": "Conversions to every other unit appear instantly." }
+    ]
+  },
+  "faq": [
+    { "q": "Why is the year 365.25 days?", "a": "We use the Julian year, the SI standard for astronomy. It's the average over the 4-year leap cycle. Calendar years vary by ±1 day; this is the long-run average." },
+    { "q": "What's the month definition here?", "a": "1/12 of a Julian year, or 30.4375 days. It does not match any specific calendar month." },
+    { "q": "Why did 1 minute → 60.0 s but 1 month → 30.4375 d?", "a": "Minutes are defined exactly. Months are calendar units that don't have a single fixed length, so we pick the long-run average for conversion." },
+    { "q": "Is this accurate for billing or scheduling?", "a": "For exact calendar arithmetic, use a date difference calculator. For averages and rates ('hours per year'), this is the right tool." },
+    { "q": "What about leap seconds?", "a": "Not modeled. Leap seconds happen rarely (~1 per 1.5 years on average) and are smaller than the rounding error from any month-or-year conversion." },
+    { "q": "How precise are the smaller units?", "a": "ms ↔ s ↔ min ↔ h ↔ d are exact, displayed to up to 8 significant digits." },
+    { "q": "Can I use this for video duration?", "a": "Yes. Film and video duration is just seconds-to-minutes-to-hours, which is exact." },
+    { "q": "Can this replace a stopwatch?", "a": "It converts a known duration; it doesn't measure live time. For measuring elapsed time, use a stopwatch app or our countdown timer." }
+  ]
+}

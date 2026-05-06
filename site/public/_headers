@@ -1,0 +1,32 @@
+# Cloudflare Pages headers (applied at the edge)
+# Doc: https://developers.cloudflare.com/pages/configuration/headers/
+
+# Default secure headers for all paths
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(self)
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+# Long cache for hashed assets
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Static public assets — short cache, long must-revalidate
+/*.png
+  Cache-Control: public, max-age=86400, must-revalidate
+/*.jpg
+  Cache-Control: public, max-age=86400, must-revalidate
+/*.svg
+  Cache-Control: public, max-age=86400, must-revalidate
+/favicon.ico
+  Cache-Control: public, max-age=86400
+
+# AdSense / SEO files — short cache so updates propagate quickly
+/ads.txt
+  Cache-Control: public, max-age=300
+/robots.txt
+  Cache-Control: public, max-age=3600
+/sitemap.xml
+  Cache-Control: public, max-age=3600

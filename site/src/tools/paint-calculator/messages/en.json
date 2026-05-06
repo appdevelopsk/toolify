@@ -1,0 +1,65 @@
+{
+  "title": "Paint Calculator (gallons or liters from room size)",
+  "shortDescription": "Calculate how much paint you need based on room dimensions, number of coats, and doors/windows. Output in liters or gallons.",
+  "description": "Enter room length, width, height, plus number of coats and openings. Get the paint needed in liters (metric) or gallons (US imperial) using realistic coverage rates.",
+  "metaDescription": "Free paint calculator. Estimate how many liters or gallons of paint you need from room dimensions, coat count, and door/window openings.",
+  "keywords": ["paint calculator", "how much paint", "paint coverage", "gallons paint room", "liters paint room"],
+  "empty": "Enter room dimensions to estimate paint needed.",
+  "unit": { "metric": "Metric (m, L)", "imperial": "Imperial (ft, gal)", "liters": "L", "gallons": "gal" },
+  "input": {
+    "length": "Room length",
+    "width": "Room width",
+    "height": "Wall height",
+    "coats": "Number of coats",
+    "openings": "Doors and windows"
+  },
+  "result": {
+    "paint": "Paint needed",
+    "wallArea": "Wall area",
+    "totalCoverage": "Total coverage (with coats)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How the math works",
+        "paragraphs": [
+          "Wall area = perimeter × ceiling height. Perimeter for a rectangular room is 2 × (length + width). For a 4 m × 3 m × 2.5 m room: perimeter is 14 m, wall area is 35 m². Subtract approximately 1.7 m² per opening (a typical door or window). Multiply by the number of coats. Divide by 10 m² per liter (typical interior latex one-coat coverage) to get liters needed.",
+          "US figures use 350 sq ft per gallon at one coat, which is the industry standard for flat to eggshell interior latex paint. Glossier finishes and primers cover slightly less; high-coverage one-coat formulas cover slightly more. Manufacturers print coverage on the can — adjust if your paint differs significantly."
+        ]
+      },
+      {
+        "heading": "Why two coats are usually correct",
+        "paragraphs": [
+          "Two coats give consistent color and uniform sheen, especially when going from a darker to lighter color or repainting after years. Single-coat 'one and done' products exist but require careful preparation and the right surface; for typical drywall in a typical home, two coats is the safe default.",
+          "Three coats is rarely needed and usually means a primer would have been better. If you're going over deep red, navy, or stained surfaces, use a primer first instead of stacking color coats."
+        ]
+      },
+      {
+        "heading": "What this estimate does not include",
+        "paragraphs": [
+          "Ceiling: this calculator covers walls only. To paint the ceiling, calculate length × width and add it as additional area at the same coverage rate.",
+          "Trim and detail work: doors, baseboards, and window frames need separate trim paint. Add 10-20% for trim depending on detail.",
+          "Texture and porosity: rough textured walls or unprimed drywall absorb more paint. Add 15-25% to be safe.",
+          "Always buy slightly more than you need — running out mid-job means a second can-mix that may show as a stripe."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick units", "text": "Metric (meters, liters) or imperial (feet, gallons)." },
+      { "name": "Enter room dimensions", "text": "Length, width, and ceiling height." },
+      { "name": "Set coats", "text": "Two is standard for most repaints." },
+      { "name": "Count openings", "text": "Total number of doors plus windows in the room." },
+      { "name": "Read paint needed", "text": "Liters or gallons; round up and add 10-15% margin for safety." }
+    ]
+  },
+  "faq": [
+    { "q": "Is the coverage rate realistic?", "a": "Yes — 10 m²/L (350 sqft/gal) is the standard for one coat of interior latex on smooth drywall. Rough surfaces, primers, and glossy paints cover less; check the can." },
+    { "q": "Should I include the ceiling?", "a": "Not in this calculator. Add length × width × coats / coverage as a separate calculation." },
+    { "q": "Why does it subtract 1.7 m² per opening?", "a": "That's a typical interior door (~2 m²) or window (~1.5 m²) average. If your room has unusually large openings, multiply the count by an average that fits your room." },
+    { "q": "Does this account for trim?", "a": "No. Trim work uses separate trim paint. Add roughly 10-20% to your wall paint estimate if you don't want to buy a separate trim can." },
+    { "q": "How many coats should I plan?", "a": "Two for most projects. One only if you're touching up the same color. Three suggests using a primer first." },
+    { "q": "Can I paint metric L over imperial gal cans?", "a": "Yes — but cans are sold in fixed sizes (1 gal, 1 quart, 5 gal in US; 1 L, 2.5 L, 5 L in EU). Round up to the nearest can size you can buy." },
+    { "q": "Why not include the ceiling automatically?", "a": "Many people only paint walls (different paint, different finish for ceiling). The calculator stays focused on walls; do the ceiling separately if needed." },
+    { "q": "Is the data sent anywhere?", "a": "No. Calculation runs locally." }
+  ]
+}

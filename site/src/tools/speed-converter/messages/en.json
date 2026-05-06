@@ -1,0 +1,57 @@
+{
+  "title": "Speed Converter (km/h, mph, m/s, knot, Mach)",
+  "shortDescription": "Convert between common speed units: km/h, mph, m/s, ft/s, knots, and Mach. Used for vehicles, weather, aviation, and physics.",
+  "description": "Type a speed and pick the source unit; see all other speed units update at once. Includes Mach (sea-level standard atmosphere) for aviation context.",
+  "metaDescription": "Free speed converter for km/h, mph, m/s, ft/s, knots, and Mach. Vehicle, aviation, and physics-friendly with exact conversion factors.",
+  "keywords": ["speed converter", "kmh to mph", "mph to kmh", "knot to kmh", "mach to kmh"],
+  "input": { "value": "Value", "from": "From unit" },
+  "unit": {
+    "mps": "Meters per second (m/s)",
+    "kmh": "Kilometers per hour (km/h)",
+    "mph": "Miles per hour (mph)",
+    "fps": "Feet per second (ft/s)",
+    "knot": "Knot (kn)",
+    "mach": "Mach (sea level, 20°C)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How speed conversion works",
+        "paragraphs": [
+          "All units pivot through meters per second internally. 1 km/h = 1/3.6 m/s, 1 mph = 0.44704 m/s (exactly), 1 knot = 1852/3600 m/s. These factors are derived from exact length and time definitions, so the conversion is numerically exact.",
+          "Mach is special: it's a ratio to the local speed of sound, which depends on temperature and altitude. We use 343 m/s (sea level, 20°C) for the conversion. Real-world Mach numbers in aviation differ slightly because cruise altitudes are colder."
+        ]
+      },
+      {
+        "heading": "Where each unit appears",
+        "paragraphs": [
+          "Vehicles: km/h in most of the world, mph in the US and UK. Speed limits, speedometers, and vehicle specs use these.",
+          "Aviation: knots (1 nautical mile per hour ≈ 1.852 km/h) for ground speed and indicated airspeed. Mach for jets at high altitude.",
+          "Marine: knots for ship and boat speed, related to nautical miles for navigation.",
+          "Physics and engineering: m/s as the SI base unit. Wind speed in meteorology often uses m/s in scientific contexts and km/h or mph in consumer weather apps."
+        ]
+      },
+      {
+        "heading": "Useful reference points",
+        "paragraphs": [
+          "Walking: ~5 km/h ≈ 3 mph ≈ 1.4 m/s. Running: 10 km/h ≈ 6 mph for a moderate jog. Highway driving: 100 km/h ≈ 62 mph ≈ 28 m/s. Cruising airliner: 850 km/h ≈ 530 mph ≈ Mach 0.78. Speed of sound: 343 m/s ≈ 1235 km/h ≈ Mach 1.0. Speed of light: 299,792,458 m/s exactly."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter the speed", "text": "Type the value." },
+      { "name": "Pick the source unit", "text": "Vehicle, aviation, marine, or physics." },
+      { "name": "Read all units", "text": "Conversion to every other unit appears below." }
+    ]
+  },
+  "faq": [
+    { "q": "Is the Mach value altitude-dependent in real life?", "a": "Yes. Sound travels slower in colder, thinner air. We use 343 m/s (sea level, 20°C). At 35,000 ft cruise altitude, 1 Mach ≈ 295 m/s. Real cockpit displays compute it from local conditions." },
+    { "q": "What's a knot exactly?", "a": "1 knot = 1 nautical mile per hour = 1852/3600 m/s ≈ 0.5144 m/s ≈ 1.852 km/h ≈ 1.151 mph. Standardized internationally since 1929." },
+    { "q": "Why do aviation and marine use knots?", "a": "Nautical miles align with the geometry of the Earth (1 minute of latitude). Navigation calculations are simpler when speed and distance share the system." },
+    { "q": "Are these conversions exact?", "a": "All except Mach. The non-Mach units are linked by exact integer ratios (km/h, mph, ft/s, knot). Mach depends on local temperature." },
+    { "q": "What's the speed of light in km/h?", "a": "299,792,458 m/s × 3.6 = 1,079,252,848.8 km/h. The base unit is exact (defined this way since 1983); km/h is its conversion." },
+    { "q": "How do I find my running pace?", "a": "Pace is time per distance, not speed. For a 5 min/km pace, that's 12 km/h or 7.46 mph. Divide 60 by pace minutes to get km/h." },
+    { "q": "Is this accurate enough for aviation?", "a": "For learning and quick conversions, yes. For flight planning, use certified avionics." },
+    { "q": "Does the data leave my browser?", "a": "No. All math runs locally." }
+  ]
+}

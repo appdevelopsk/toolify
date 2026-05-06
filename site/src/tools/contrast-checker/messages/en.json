@@ -1,0 +1,62 @@
+{
+  "title": "Contrast Checker (WCAG AA / AAA grades)",
+  "shortDescription": "Check the color contrast ratio between text and background. Shows live preview and pass/fail badges for WCAG AA and AAA at normal and large text sizes.",
+  "description": "Pick a foreground and background color to compute the WCAG contrast ratio. Live text preview and four grade badges (AA normal, AA large, AAA normal, AAA large) update in real time.",
+  "metaDescription": "Free WCAG contrast checker. Compare any foreground/background colors and see AA and AAA grade pass/fail badges with a live text preview.",
+  "keywords": ["contrast checker", "WCAG contrast", "AA AAA color", "accessibility color", "color ratio"],
+  "input": { "fg": "Foreground (text)", "bg": "Background" },
+  "result": { "label": "Contrast ratio" },
+  "preview": {
+    "large": "Large heading sample (24px+ or 18.66px+ bold)",
+    "normal": "Normal body text sample for everyday paragraphs.",
+    "small": "Smaller text used for captions, footnotes, and labels."
+  },
+  "badge": {
+    "aaNormal": "WCAG AA — Normal text",
+    "aaLarge": "WCAG AA — Large text",
+    "aaaNormal": "WCAG AAA — Normal text",
+    "aaaLarge": "WCAG AAA — Large text"
+  },
+  "empty": "Enter two valid colors (HEX) to see the contrast ratio.",
+  "article": {
+    "sections": [
+      {
+        "heading": "How the contrast ratio works",
+        "paragraphs": [
+          "WCAG (Web Content Accessibility Guidelines) defines contrast as the ratio between the relative luminance of two colors. The formula linearizes each sRGB channel, weighs them by human eye sensitivity (R 0.2126, G 0.7152, B 0.0722), then computes (lighter + 0.05) / (darker + 0.05). The result ranges from 1:1 (identical) to 21:1 (black on white).",
+          "We compute this in your browser using the official WCAG 2.x formula. The four grade badges check against AA's 4.5:1 (normal) and 3:1 (large), and AAA's 7:1 (normal) and 4.5:1 (large) thresholds. 'Large text' is 24px / 18pt, or 18.66px / 14pt bold."
+        ]
+      },
+      {
+        "heading": "Why pass AA at minimum",
+        "paragraphs": [
+          "AA is the legally enforceable level in many jurisdictions (US ADA, EU EN 301 549, UK Equality Act for digital services). Failing AA on body text is the single most common accessibility issue and the easiest to fix during design rather than after launch.",
+          "AAA is recommended for long-form reading, government services, and high-stakes interfaces. It's strict — a designer's first instinct of pale gray on white usually fails AAA easily. If your site mostly serves quick-glance content, target AA; if you publish books, articles, or critical info, target AAA."
+        ]
+      },
+      {
+        "heading": "Common mistakes",
+        "paragraphs": [
+          "'It looks fine on my screen.' Calibrated screens, fluorescent office lights, and outdoor smartphone use all change perceived contrast. Use the ratio, not your eye.",
+          "Designing dark mode by inverting hex codes. Inversion changes hue and breaks contrast. Re-test every color pair after switching themes.",
+          "Trusting brand guidelines. Many brand palettes were chosen before WCAG awareness. If brand pink-on-white fails, propose a slightly darker pink for body copy and reserve the original for decorative use."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick the foreground", "text": "The text color." },
+      { "name": "Pick the background", "text": "The color behind the text." },
+      { "name": "Read the ratio and badges", "text": "The number is the WCAG ratio. The four badges show pass/fail for AA and AAA at normal and large text sizes." }
+    ]
+  },
+  "faq": [
+    { "q": "What's the difference between AA and AAA?", "a": "AA requires 4.5:1 for normal text and 3:1 for large text. AAA tightens to 7:1 and 4.5:1. AAA is recommended but not always achievable." },
+    { "q": "What is 'large text'?", "a": "WCAG defines it as 18pt (24px) or larger, or 14pt (18.66px) and bold." },
+    { "q": "Does this tool support transparency?", "a": "Not yet. Pick the actual color the user sees (foreground composited over background). Transparency support may come later." },
+    { "q": "Why doesn't my brand pass?", "a": "Many brand palettes were chosen for aesthetics, not accessibility. Common fixes: darken accent colors used as text, reserve light variants for backgrounds or decorative elements." },
+    { "q": "Is the ratio the same as 'perceived contrast'?", "a": "No — WCAG 2.x uses a simplified luminance-based formula. WCAG 3 (in development) uses APCA, which better predicts perceived contrast but isn't yet standardized." },
+    { "q": "What ratio for icons or UI controls?", "a": "WCAG 2.1 added a 3:1 minimum for non-text contrast (icons, form controls, focus indicators). Use the same checker — meet or exceed 3:1." },
+    { "q": "Does this work for graphic charts?", "a": "Same threshold applies between adjacent colors that convey meaning. For data viz, 3:1 between adjacent colors is the WCAG 1.4.11 minimum." },
+    { "q": "Is the data sent anywhere?", "a": "No. Calculation runs locally in your browser." }
+  ]
+}

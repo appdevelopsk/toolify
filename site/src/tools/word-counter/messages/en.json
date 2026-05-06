@@ -1,0 +1,58 @@
+{
+  "title": "Word Counter (with reading and speaking time)",
+  "shortDescription": "Count words, characters, sentences, paragraphs, plus estimated reading and speaking time. Handles CJK languages correctly.",
+  "description": "Paste any text to see word count, character count (with and without spaces), sentence count, paragraph count, and time estimates for reading silently and aloud.",
+  "metaDescription": "Free online word counter with reading time. Counts words, characters, sentences, and paragraphs in real-time. CJK-aware for Japanese, Chinese, Korean text.",
+  "keywords": ["word counter", "character count", "reading time", "essay word count", "letter counter"],
+  "placeholder": "Paste or type your text here…",
+  "stat": {
+    "words": "Words",
+    "characters": "Characters",
+    "charactersNoSpaces": "Without spaces",
+    "sentences": "Sentences",
+    "paragraphs": "Paragraphs",
+    "readingTime": "Reading time",
+    "speakingTime": "Speaking time"
+  },
+  "unit": { "min": "min" },
+  "article": {
+    "sections": [
+      {
+        "heading": "How each metric is computed",
+        "paragraphs": [
+          "Characters are the raw length of the text, including spaces, line breaks, and emoji. 'Without spaces' strips whitespace before counting. Words are split by whitespace for Latin-script languages; for Japanese, Chinese, Korean, and Thai, each ideograph is counted as one word, since these languages don't use word-spacing the way English does.",
+          "Sentences are detected by terminal punctuation (. ! ? in Latin scripts; 。！？ in CJK). Paragraphs are blocks separated by blank lines. These rules are pragmatic — text with quirky punctuation may be off by one, but for normal prose the counts are reliable."
+        ]
+      },
+      {
+        "heading": "How reading time is estimated",
+        "paragraphs": [
+          "Reading time uses 200 words per minute, the median for adults reading prose. Speaking time uses 130 words per minute, the rate of an experienced public speaker. Both are rounded up to the nearest whole minute, so a 50-word sentence shows '1 min'.",
+          "These numbers are approximations. Heavy technical text reads slower (closer to 150 wpm), light fiction reads faster (closer to 250 wpm), and presentation pacing varies wildly with style and audience. Use the figure as a sanity check, not a stopwatch."
+        ]
+      },
+      {
+        "heading": "Common uses",
+        "paragraphs": [
+          "Bloggers and writers use word counts to hit a target length (most longform articles target 1500-2500 words for SEO). Students use it for essay assignments. Marketers use character-with-spaces for X (Twitter) post limits and meta description tag lengths. Public speakers use the speaking-time figure to calibrate scripts for a 5-minute lightning talk versus a 20-minute keynote.",
+          "Translators and editors track all four counts when invoicing per word or per character — the choice between 'with spaces' and 'without' affects rates by 10-20%."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Paste your text", "text": "Type or paste into the text area. Counts update with every keystroke." },
+      { "name": "Read the metrics", "text": "All seven metrics are visible at once — words, characters, sentences, paragraphs, and the time estimates." },
+      { "name": "Adjust as needed", "text": "Edit the text directly to bring word count to a target, then copy the cleaned version." }
+    ]
+  },
+  "faq": [
+    { "q": "Why is my CJK word count higher than I expected?", "a": "We count each ideograph (Chinese hanzi, Japanese kanji/kana, Korean hangul) as one word. Latin words elsewhere in the same text are still counted by whitespace." },
+    { "q": "Are emoji counted as characters?", "a": "Yes. Some emoji are technically multiple Unicode code units; the counter follows JavaScript string length, which counts each UTF-16 code unit." },
+    { "q": "Is reading time accurate?", "a": "The 200 wpm figure matches median adult silent reading speed for prose. Highly technical text reads slower, easy fiction faster — treat it as a ±30% estimate." },
+    { "q": "Why does sentence count seem off?", "a": "Detection is based on terminal punctuation. Lists, headings without punctuation, or unusual prose styles can throw it off. The word count remains reliable." },
+    { "q": "Does the text leave my browser?", "a": "No. Everything runs locally; we don't have a server endpoint that receives the input." },
+    { "q": "What's the limit on text length?", "a": "There's no enforced limit. Modern browsers handle multi-megabyte text without issue, though the textarea may slow down past about 100,000 characters." },
+    { "q": "Can I count Tweets or X posts?", "a": "Yes — use 'characters' (with spaces) since X counts whitespace. The 280-character limit also includes URLs as 23 characters." },
+    { "q": "Does this support Markdown?", "a": "It counts the raw text including Markdown syntax. If you want a 'rendered' word count, paste only the rendered output." }
+  ]
+}

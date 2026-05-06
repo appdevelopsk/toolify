@@ -1,0 +1,59 @@
+{
+  "title": "Age Calculator (years, months, days, weeks, hours)",
+  "shortDescription": "Calculate exact age in years, months, days, weeks, and hours from any birth date to any target date.",
+  "description": "Pick a birth date and a target date to see the age difference broken down into years, months, and days, plus totals in weeks, days, and hours.",
+  "metaDescription": "Free online age calculator. Find exact age in years, months, days, weeks, and hours between any two dates. Handles leap years and month boundaries correctly.",
+  "keywords": ["age calculator", "date difference", "how old am I", "age in days", "age in weeks"],
+  "input": {
+    "birth": "Date of birth",
+    "target": "Calculate age as of"
+  },
+  "result": {
+    "label": "Age",
+    "ymd": "{years} years, {months} months, {days} days",
+    "totalMonths": "Total months",
+    "totalWeeks": "Total weeks",
+    "totalDays": "Total days",
+    "totalHours": "Total hours",
+    "empty": "Pick a birth date to see the age calculation."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How age is calculated",
+        "paragraphs": [
+          "This calculator uses the standard 'calendar age' method: count whole years from birth, then whole months past the most recent birthday, then remaining days. Months are counted using the actual calendar (28–31 days), so a difference of 'one month' may be 28, 29, 30, or 31 days depending on which months are involved.",
+          "When the day-of-month on the target date is earlier than the day-of-birth, we borrow days from the previous month to keep the result correct. Example: from 1990-05-31 to 2026-05-06 is 35 years, 11 months, 5 days — not 35 years, 12 months, -25 days."
+        ]
+      },
+      {
+        "heading": "Why the day count includes leap years",
+        "paragraphs": [
+          "The 'total days' figure counts every actual day between the two dates, including February 29 in leap years. This is more accurate than 365 × years for medical, legal, or scientific calculations where a difference of one or two days matters.",
+          "If you need 'days lived as of your next birthday', enter your next birthday as the target date and read the total days field."
+        ]
+      },
+      {
+        "heading": "Common uses",
+        "paragraphs": [
+          "Working out medication dosing for children, eligibility windows for school enrollment, retirement planning, anniversary planning, and historical research all need age calculation that's accurate to the day. This tool gives you all of those at once: the human-friendly Y/M/D form plus totals in months, weeks, days, and hours."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter date of birth", "text": "Use the date picker to select the birth date." },
+      { "name": "Choose the target date", "text": "Defaults to today, but you can pick any date to see age 'as of' that date." },
+      { "name": "Read the result", "text": "Age appears as years, months, and days, plus totals in months, weeks, days, and hours." }
+    ]
+  },
+  "faq": [
+    { "q": "Does this account for leap years?", "a": "Yes. The day count and month rollover logic both use the real calendar, so February 29 is included whenever it falls between the two dates." },
+    { "q": "Why don't months always equal 30 days?", "a": "Because real calendar months range from 28 to 31 days. Counting actual months avoids the drift that '30-day months' would introduce over a lifetime." },
+    { "q": "Can I calculate someone's age on a future date?", "a": "Yes. Set the target date to a future day to see how old someone will be on that date." },
+    { "q": "What if my birth date is after the target date?", "a": "The calculator displays no result in that case to avoid showing negative values. Swap the dates if you need the difference." },
+    { "q": "Does the calculator know my time zone?", "a": "It uses your browser's local date as 'today'. The calculation itself is independent of time zones because it works with whole calendar days." },
+    { "q": "Is the input data sent to a server?", "a": "No. Everything is calculated in your browser." },
+    { "q": "How is the total weeks figure rounded?", "a": "It's the integer part of total days divided by 7. Partial weeks are not counted." },
+    { "q": "What about Korean age or East Asian age?", "a": "This tool calculates Western-style calendar age. East Asian age systems add 1 at birth and may add another at the new year — see a culture-specific calculator for those rules." }
+  ]
+}

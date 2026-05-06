@@ -1,0 +1,28 @@
+slug: length-converter
+category: converter
+applicationCategory: UtilitiesApplication
+related: [bmi-calculator, age-calculator]
+primaryKeyword:
+  en: "length converter"
+  ja: "長さ単位変換"
+
+inputs:
+  - { name: value, type: number, label_key: "input.value" }
+  - { name: from, type: select, options: [mm, cm, m, km, in, ft, yd, mi] }
+  - { name: to,   type: select, options: [mm, cm, m, km, in, ft, yd, mi] }
+
+output:
+  type: number
+  label_key: "output.value"
+
+logic: |
+  Internal pivot: meters.
+  factors (m): mm=0.001 cm=0.01 m=1 km=1000 in=0.0254 ft=0.3048 yd=0.9144 mi=1609.344
+  result = value * factor[from] / factor[to]
+
+seo:
+  faq_count: 8
+  article_sections: 3
+  long_form_words: 1200
+
+locales: [en, ja]

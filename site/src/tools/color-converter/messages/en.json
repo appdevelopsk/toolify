@@ -1,0 +1,51 @@
+{
+  "title": "Color Converter (HEX, RGB, HSL — instant)",
+  "shortDescription": "Convert colors between HEX, RGB, and HSL with a live preview swatch. Edit any field; the others update.",
+  "description": "Type a hex code, RGB triplet, or HSL value — the other formats update instantly with a visible preview swatch. Useful for designers, web developers, and anyone matching colors across tools.",
+  "metaDescription": "Free HEX, RGB, HSL color converter with live preview. Edit any format and the others update instantly. Perfect for web design and CSS work.",
+  "keywords": ["color converter", "hex to rgb", "rgb to hsl", "color picker", "hex code converter"],
+  "hex": "HEX",
+  "rgb": "RGB",
+  "hsl": "HSL",
+  "article": {
+    "sections": [
+      {
+        "heading": "Three ways to describe the same color",
+        "paragraphs": [
+          "HEX, RGB, and HSL are three notations for sRGB color. HEX is shorthand for RGB: #FF6B35 means red=255, green=107, blue=53. RGB describes a color by how much red, green, and blue light to mix (0-255 each). HSL re-encodes the same RGB color in terms of hue (which color), saturation (how vivid), and lightness (how bright).",
+          "All three are equivalent — you can round-trip without loss. Designers prefer HSL for adjusting tones (raising lightness keeps the hue stable), while developers usually paste HEX from design tools straight into CSS. RGB shows up most often when working with image-processing or canvas APIs."
+        ]
+      },
+      {
+        "heading": "When to use each",
+        "paragraphs": [
+          "HEX: copy-pasting from designs, Figma exports, brand guidelines, CSS color literals. Concise but opaque to read.",
+          "RGB: programmatic color work (canvas, image manipulation), accessibility checks (contrast computations work in linear RGB), and when you want exact integer values to dial in.",
+          "HSL: tweaking colors by feel — making 'a slightly more saturated version', 'a darker variant for hover states', or generating a palette by stepping the hue. Far easier to reason about for those tasks than HEX."
+        ]
+      },
+      {
+        "heading": "What you don't see in this tool",
+        "paragraphs": [
+          "We omit the alpha channel (transparency) for now — but #RRGGBBAA works in all modern browsers if you append two hex digits for opacity (00 = transparent, FF = opaque).",
+          "We also don't cover wider color gamuts (P3, Rec.2020, OKLCH). For most web work the sRGB-based HEX/RGB/HSL are the right choice. If you're targeting HDR or wide-gamut displays, look into the CSS Color Module Level 4 syntaxes."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Edit any field", "text": "Type a HEX code, RGB triplet, or HSL value." },
+      { "name": "Watch the others update", "text": "All three formats stay in sync; the preview swatch shows the result." },
+      { "name": "Copy what you need", "text": "The text block at the bottom has all three formats ready to copy into CSS." }
+    ]
+  },
+  "faq": [
+    { "q": "Can I round-trip from HSL to HEX without losing precision?", "a": "Mostly. HSL is stored as integer degrees and percent, so 360 × 101 × 101 = 3.7M HSL values map onto 16.7M RGB combinations. Some tiny rounding can occur at the corners. Use HEX as the canonical for exact storage." },
+    { "q": "Does this support 3-digit HEX codes?", "a": "Yes. #f60 is treated as #ff6600. Both expand to the same RGB triplet." },
+    { "q": "Why doesn't HSL go to 360 in saturation/lightness?", "a": "Hue is in degrees (0-360 around the color wheel). Saturation and lightness are percentages (0-100)." },
+    { "q": "Is HSL the same as HSB or HSV?", "a": "No. HSV (and HSB) replace 'lightness' with 'value', a different brightness model. HSL's L=50% is full color; HSV's V=100% is full color. We use HSL because it matches CSS." },
+    { "q": "Does this support transparency?", "a": "Not yet. For now, append a two-digit alpha to the HEX (e.g., #00000080 for 50% black)." },
+    { "q": "Why is RGB not showing 0-1 floats?", "a": "Because most contexts (CSS, design tools) use 0-255 integers. For shader work, divide by 255 to get 0-1 floats." },
+    { "q": "Where do designers get the right colors?", "a": "Brand guidelines, design tokens, or palette generators. The contrast checker tool can verify a foreground/background pair meets WCAG AA/AAA." },
+    { "q": "Is the calculator accurate?", "a": "Yes. It uses standard sRGB conversion math. Round-trip differences come only from HSL being integer-quantized." }
+  ]
+}

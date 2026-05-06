@@ -1,0 +1,61 @@
+{
+  "title": "Countdown Timer (live, days/hours/minutes/seconds)",
+  "shortDescription": "Live countdown to any future date and time. Updates every second; works for events, deadlines, launches, vacations.",
+  "description": "Pick a target date and time and watch the countdown tick down by the second. Add an optional title to label the event. After the target passes, the same display shows time elapsed.",
+  "metaDescription": "Free live countdown timer to any date. Days, hours, minutes, seconds — updates every second. Add a custom title for your event, deadline, or launch date.",
+  "keywords": ["countdown timer", "countdown to date", "live countdown", "deadline timer", "event countdown"],
+  "input": {
+    "target": "Target date & time",
+    "title": "Event name (optional)",
+    "titlePlaceholder": "Project deadline"
+  },
+  "remaining": "Time remaining until",
+  "ended": "Time elapsed since",
+  "empty": "Pick a target date and time to start the countdown.",
+  "unit": {
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How the timer works",
+        "paragraphs": [
+          "The countdown ticks once per second using setInterval. Each tick reads the current local time, subtracts it from your target, and breaks the difference into days, hours, minutes, and seconds. There's no server round-trip, so the countdown stays accurate even if your network drops — only the page itself needs to be loaded.",
+          "Time zones use whatever your browser thinks is 'local'. If you set the target to '12:00 today' and another person in a different time zone visits the page, the countdown will be different — both correct, but for their local 12:00."
+        ]
+      },
+      {
+        "heading": "Common use cases",
+        "paragraphs": [
+          "Project deadlines (display the countdown on a meeting room screen), product launches (count down to a public release), travel (vacation, flight, train), exams and certifications, weddings and anniversaries, sports events. The optional title field lets you label the event so the page is self-explanatory.",
+          "After the target passes, the same display flips to 'time elapsed since' and continues counting up. This is useful when 'how long ago did X happen' is what you actually want — e.g., 'days since the last incident' for an SRE dashboard."
+        ]
+      },
+      {
+        "heading": "Why a countdown rather than a calendar reminder",
+        "paragraphs": [
+          "Calendar reminders pop up once at the time of the event. A live countdown gives you a constant peripheral awareness — useful for goals you want to keep top-of-mind. Sports teams display them, software teams show them in war rooms, and marathoners pin them to their training screens.",
+          "If you want this to live on a public dashboard, bookmark the URL after setting the target. The state stays in the inputs; reloading the page resets it (no shared link yet, but the input fields are preserved within a session)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick the target", "text": "Choose the date and time you're counting down to. The picker uses your local time zone." },
+      { "name": "Add a title (optional)", "text": "Type the event name so the display is meaningful at a glance." },
+      { "name": "Watch the countdown", "text": "Days, hours, minutes, and seconds tick down once per second. After the target, the same display switches to time elapsed." }
+    ]
+  },
+  "faq": [
+    { "q": "Is the countdown second-accurate?", "a": "Yes — the display updates once per second, and each update recomputes from the current clock, so accumulated drift can't happen." },
+    { "q": "What time zone does it use?", "a": "Your browser's local time zone. The target you pick is interpreted in your local zone, not UTC." },
+    { "q": "Does the countdown work offline?", "a": "Yes, once the page is loaded. No network connection is needed for the timer to keep ticking." },
+    { "q": "Can I share a countdown with someone else?", "a": "Not yet via URL. We're working on encoded-state URLs so a link can carry the target and title; for now you can paste a screenshot or take a screen recording." },
+    { "q": "What happens after the target passes?", "a": "The display switches to 'time elapsed since' and continues counting up. The numbers are positive but the label changes." },
+    { "q": "Can I have multiple countdowns?", "a": "Open multiple tabs — each is independent. A built-in multi-event mode is on the roadmap." },
+    { "q": "Will the timer keep running if I switch tabs?", "a": "Browsers throttle setInterval in background tabs. The countdown will catch up correctly when you return — recomputation is from the clock, not from accumulated ticks." },
+    { "q": "Is the input data sent anywhere?", "a": "No. Everything stays in your browser." }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "title": "Date Calculator (add/subtract days, or difference between dates)",
+  "shortDescription": "Add or subtract years/months/days from a date, or find the precise difference between two dates including business days.",
+  "description": "Two modes: 'add or subtract' to compute a future or past date, or 'between' to find the difference in years, months, days, weeks, and business days.",
+  "metaDescription": "Free date calculator. Add or subtract years/months/days, or find difference between two dates with business-day count. Calendar-aware, leap years included.",
+  "keywords": ["date calculator", "add days to date", "date difference", "business days", "days between dates"],
+  "empty": "Pick dates to compute.",
+  "mode": { "addSubtract": "Add or subtract", "between": "Difference between dates" },
+  "op": { "add": "Add", "subtract": "Subtract" },
+  "input": { "start": "Start date", "end": "End date", "years": "Years", "months": "Months", "days": "Days" },
+  "result": {
+    "resultDate": "Result date",
+    "difference": "Difference",
+    "ymd": "{y} years, {m} months, {d} days",
+    "totalDays": "Total days",
+    "totalWeeks": "Total weeks",
+    "totalMonths": "Total months",
+    "businessDays": "Business days (Mon-Fri)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What it computes",
+        "paragraphs": [
+          "Add/subtract mode: takes a date, adds or subtracts a number of years, months, and days, and gives you the resulting calendar date. Years and months use calendar arithmetic (so adding 1 month to Jan 31 gives Feb 28 or Feb 29 depending on leap year, not Mar 3). Days are exact — adding 30 days always advances exactly 30 calendar days.",
+          "Between mode: takes two dates and gives the difference in years/months/days plus totals in days, weeks, months, and business days (Monday through Friday, no holidays). The Y/M/D form uses the same borrow logic as our age calculator — a difference is e.g. '2 years, 5 months, 3 days', not a decimal year."
+        ]
+      },
+      {
+        "heading": "Why business days don't include holidays",
+        "paragraphs": [
+          "We count Monday through Friday as business days and exclude Saturday and Sunday. Public holidays vary by country, region, and year, so we don't subtract them automatically. For US business-day work, subtract roughly 10 federal holidays per year from the result; for UK, about 8 bank holidays; for Japan, about 16.",
+          "If holidays matter for your calculation (deadline tracking, contract negotiations), do the calendar count here, then check your country's holiday list manually. We may add country-specific holiday subtraction in a future version."
+        ]
+      },
+      {
+        "heading": "Common use cases",
+        "paragraphs": [
+          "Project deadlines: 'this is due 90 days after kickoff'. Add 90 days to the start date.",
+          "Contract terms: count days between contract start and end. Match against your contract language for billing.",
+          "Travel planning: how many business days between leaving and returning? Useful for out-of-office calendars and expense reports.",
+          "Personal milestones: anniversaries, sobriety counts, time since a major life event."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick a mode", "text": "Add/subtract for moving from one date, or between for finding a difference." },
+      { "name": "Enter the start date", "text": "Use the date picker." },
+      { "name": "Add the offset or end date", "text": "Years/months/days for add mode, or end date for between mode." },
+      { "name": "Read the result", "text": "Resulting date or full difference breakdown." }
+    ]
+  },
+  "faq": [
+    { "q": "What happens if I add 1 month to Jan 31?", "a": "You get Feb 28 (or Feb 29 in a leap year). Calendar arithmetic clamps to the last day of the target month when the source day doesn't exist." },
+    { "q": "Are holidays subtracted from business days?", "a": "No — only weekends. Subtract the country-specific holidays manually based on your jurisdiction's calendar." },
+    { "q": "Does it handle negative date arithmetic?", "a": "Yes via the 'subtract' mode. Internally, subtraction is just adding negative deltas. The 'difference between' mode always returns positive values regardless of order." },
+    { "q": "What time zone does this use?", "a": "Your browser's local time zone. Dates are interpreted as midnight local. Cross-time-zone calculations may need adjustment." },
+    { "q": "Can I add hours and minutes?", "a": "Not yet — date granularity only. Use a separate timestamp tool for hour-level math." },
+    { "q": "What's the largest difference it handles?", "a": "Hundreds of years comfortably. JavaScript's Date supports ±100 million days from 1970, so this is the practical limit." },
+    { "q": "Why does it count both endpoints differently?", "a": "Total days is the count of nights between the two dates. Two consecutive days have a difference of 1 day. Business day count walks through each calendar day in between." },
+    { "q": "Does the data leave my browser?", "a": "No. All math runs locally." }
+  ]
+}

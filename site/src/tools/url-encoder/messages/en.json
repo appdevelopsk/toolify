@@ -1,0 +1,54 @@
+{
+  "title": "URL Encoder / Decoder (percent-encoding, UTF-8 safe)",
+  "shortDescription": "Encode any text into URL percent-encoding or decode an encoded string back. UTF-8 safe — handles emoji and CJK characters correctly.",
+  "description": "Use to embed text safely in URLs, query parameters, or form data. Handles spaces, special characters, and Unicode (including CJK and emoji) correctly.",
+  "metaDescription": "Free URL encoder and decoder. Convert text to percent-encoding or decode encoded strings back to plain text. UTF-8 safe, handles all Unicode.",
+  "keywords": ["URL encoder", "URL decoder", "percent encoding", "URI encode", "decodeURIComponent"],
+  "input": { "plain": "Plain text", "encoded": "Encoded URL string" },
+  "output": { "encoded": "Encoded result", "plain": "Decoded result" },
+  "mode": { "encode": "Encode", "decode": "Decode" },
+  "copy": "Copy",
+  "copied": "Copied",
+  "error": "Decode error",
+  "article": {
+    "sections": [
+      {
+        "heading": "What URL encoding is",
+        "paragraphs": [
+          "URLs are restricted to a small set of ASCII characters. To include anything else — spaces, accents, Chinese characters, emoji, special symbols — you replace each unsafe byte with %XX where XX is its hexadecimal byte value. A space becomes %20, a slash %2F, the kanji 漢 becomes %E6%BC%A2 (its UTF-8 bytes percent-encoded).",
+          "This calculator uses the browser's built-in encodeURIComponent and decodeURIComponent. It encodes everything that isn't an unreserved character (letters, digits, -._~), which is the right behavior for query parameters and form data."
+        ]
+      },
+      {
+        "heading": "encodeURI vs encodeURIComponent",
+        "paragraphs": [
+          "JavaScript has two encoders. encodeURI leaves URL structure characters (/ ? & # = + etc.) alone — use it on a full URL. encodeURIComponent escapes all of those — use it on the value inside a query parameter.",
+          "This tool uses encodeURIComponent, the safer choice for embedding arbitrary text into a URL. If you have a full URL with structure you want to preserve, encode only the parts that need it."
+        ]
+      },
+      {
+        "heading": "Common gotchas",
+        "paragraphs": [
+          "Plus sign in URLs. Some servers treat '+' as a space (a legacy from form encoding). encodeURIComponent leaves '+' alone, but a server might decode it to space. To be safe, replace '+' with %2B if you're sending it as data.",
+          "Double encoding. Encoding an already-encoded string adds another layer (% becomes %25, so '%20' becomes '%2520'). Always check whether the input is already encoded before running encode again.",
+          "Length increase. UTF-8 multi-byte characters expand to 3-4 percent-codes each. A 100-character Japanese string easily becomes a 900+ character URL."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick mode", "text": "Encode plain text into URL-safe form, or decode a URL-encoded string back to plain." },
+      { "name": "Paste your input", "text": "Plain text for encoding, percent-encoded string for decoding." },
+      { "name": "Copy the result", "text": "The output appears below; click 'Copy' to use it." }
+    ]
+  },
+  "faq": [
+    { "q": "Why isn't my space '%20' decoding to space?", "a": "It should — but if you have '+' in a URL it might also represent space (legacy form encoding). Replace + with space first if needed." },
+    { "q": "Does this handle emoji?", "a": "Yes. Emoji are encoded as their UTF-8 byte sequences (typically 4 bytes / 4 percent-codes per emoji)." },
+    { "q": "What's the difference between URL encoding and HTML encoding?", "a": "URL encoding uses % notation for URL contexts. HTML encoding uses &lt; &gt; etc. for HTML. Different contexts, different rules." },
+    { "q": "When should I encode and when not?", "a": "Encode any value going into a URL query parameter, path segment containing user input, or form data. Don't encode an already-built URL — that double-encodes." },
+    { "q": "Why does '%' in my decoded text cause an error?", "a": "A bare '%' followed by something that isn't valid hex is invalid percent-encoding. Encode '%' to '%25' before including it in a URL." },
+    { "q": "Does the browser do this automatically?", "a": "Yes — when building URLs via URL or URLSearchParams APIs. This tool exposes the same logic for ad-hoc use." },
+    { "q": "What characters are 'safe' and don't need encoding?", "a": "Letters (A-Z, a-z), digits (0-9), and these: - . _ ~ . Everything else gets percent-encoded by encodeURIComponent." },
+    { "q": "Does the data leave my browser?", "a": "No. Encoding and decoding both run locally." }
+  ]
+}

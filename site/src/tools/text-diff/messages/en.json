@@ -1,0 +1,53 @@
+{
+  "title": "Text Diff Tool (line-level comparison, color-coded)",
+  "shortDescription": "Compare two blocks of text line by line. Added, removed, and unchanged lines are color-coded with line numbers.",
+  "description": "Paste an original and revised version to see a side-by-side line-level diff. Useful for documents, configs, code review, and prose editing.",
+  "metaDescription": "Free online text diff tool. Line-by-line comparison with added, removed, and unchanged lines color-coded. Browser-only — your text never leaves your device.",
+  "keywords": ["text diff", "compare text", "diff tool", "line diff", "find differences"],
+  "input": { "left": "Original (left)", "right": "Revised (right)" },
+  "stats": { "added": "added", "removed": "removed", "unchanged": "unchanged" },
+  "empty": "Paste both versions to see the diff.",
+  "article": {
+    "sections": [
+      {
+        "heading": "How the diff is computed",
+        "paragraphs": [
+          "We use the Longest Common Subsequence (LCS) algorithm to find which lines are shared between the two versions. Lines that appear in both are 'unchanged'. Lines only in the original are 'removed'. Lines only in the revised version are 'added'. The result is a clear annotated comparison with line numbers preserved on both sides.",
+          "LCS is the standard approach used by git and most diff tools. It picks the longest possible matching sequence, which usually matches what a human would call 'the same paragraph'. For very large inputs (10,000+ lines) the runtime grows quadratically; if you need to compare large logs, use a streaming diff tool instead."
+        ]
+      },
+      {
+        "heading": "What this is good for",
+        "paragraphs": [
+          "Document revisions: see exactly what changed between drafts. Useful for legal contracts, terms of service, and any text where 'what changed?' matters.",
+          "Configuration files: compare two .env or YAML files to spot a misconfiguration. Or two versions of a deploy script.",
+          "Prose editing: writers can see the editor's revisions in context, especially when only a few lines changed.",
+          "Code review (light use): for small snippets. For real code review, use a tool that understands syntax — git diff with semantic flags or a dedicated review tool will give better results."
+        ]
+      },
+      {
+        "heading": "Limitations",
+        "paragraphs": [
+          "We diff at line granularity. If you change 'cat' to 'cats' on a line, the whole line shows as removed-and-added; we don't highlight the inserted 's'. Word-level and character-level diffs are useful for that, but harder to read on long lines.",
+          "Trailing whitespace is significant — 'foo' and 'foo ' (trailing space) count as different lines. If you want whitespace-insensitive comparison, normalize the text before pasting.",
+          "Order matters. Two paragraphs in different positions count as both removed and added. The diff doesn't try to detect 'moved' blocks."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Paste the original", "text": "On the left." },
+      { "name": "Paste the revised", "text": "On the right." },
+      { "name": "Read the diff", "text": "Lines update as you type. Green = added, red = removed, plain = unchanged." }
+    ]
+  },
+  "faq": [
+    { "q": "Does this support word-level diff?", "a": "Not yet — only line-level. We may add character or word granularity later for short comparisons." },
+    { "q": "How big can my text be?", "a": "Practically up to a few thousand lines per side. Quadratic complexity means very large inputs may freeze the browser tab briefly." },
+    { "q": "Does the data leave my browser?", "a": "No. Diffing runs entirely locally." },
+    { "q": "Are trailing spaces significant?", "a": "Yes. Two lines that differ only by trailing whitespace are counted as different. Normalize whitespace before pasting if you want whitespace-insensitive matching." },
+    { "q": "Can I save the diff?", "a": "Not as a saved file. Copy-paste the rendered text or take a screenshot for now." },
+    { "q": "Is this the same algorithm as git diff?", "a": "Conceptually yes — we use LCS, which is one of git's options. Git defaults to a similar but more sophisticated algorithm (Myers diff with Patience as opt-in). Output for short inputs is essentially identical." },
+    { "q": "Why are entire lines marked when only one word changed?", "a": "Because we work at line granularity. A character-level diff would highlight the changed word, but it's harder to read on long lines." },
+    { "q": "Can I compare more than two versions?", "a": "Not in this tool. For multi-way merge, use a dedicated 3-way diff tool." }
+  ]
+}

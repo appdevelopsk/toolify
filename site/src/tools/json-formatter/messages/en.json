@@ -1,0 +1,57 @@
+{
+  "title": "JSON Formatter & Minifier (validates and pretty-prints)",
+  "shortDescription": "Pretty-print or minify JSON. Validates the input and shows a clear error with line and column on failure.",
+  "description": "Paste any JSON to format with 2/4/8 spaces of indentation, or minify to a single line. Invalid JSON shows a parse error so you can find the issue quickly.",
+  "metaDescription": "Free JSON formatter and minifier. Validates input, pretty-prints with chosen indent, or minifies to one line. Browser-only — your data never leaves the page.",
+  "keywords": ["JSON formatter", "JSON minifier", "JSON validator", "pretty print JSON", "format JSON"],
+  "input": "JSON input",
+  "output": "Formatted output",
+  "mode": { "format": "Format", "minify": "Minify" },
+  "indent": "Indent",
+  "copy": "Copy",
+  "copied": "Copied",
+  "error": "Parse error",
+  "stats": "Input: {input} bytes · Output: {output} bytes",
+  "article": {
+    "sections": [
+      {
+        "heading": "What this tool does",
+        "paragraphs": [
+          "JSON is a strict format — every quote, comma, and bracket has to be in the right place. Browsers and APIs return cryptic 'Unexpected token' messages when something is off, and the issue is often invisible at a glance. This formatter parses the input with the browser's native JSON parser, then re-serializes it pretty (with indent) or minified (no whitespace).",
+          "If parsing fails, you get the underlying error directly — usually with the position of the bad character. From there, you can find the missing comma, unescaped quote, or trailing comma quickly."
+        ]
+      },
+      {
+        "heading": "Format vs minify",
+        "paragraphs": [
+          "Format with indent: the standard way to read JSON. 2 spaces is conventional in JavaScript-land; 4 spaces is common in Python and Java contexts. Pick whichever your project uses.",
+          "Minify: collapse to a single line with no whitespace. Useful when embedding JSON in URLs, environment variables, or anywhere whitespace matters. The size difference is meaningful: a typical pretty-printed config file shrinks 20-40% when minified."
+        ]
+      },
+      {
+        "heading": "Common JSON gotchas",
+        "paragraphs": [
+          "Trailing commas. Allowed in JavaScript, not in JSON. {a:1, b:2,} parses in your code editor but fails when sent over the wire.",
+          "Single quotes. JSON requires double quotes for both keys and string values. {'a': 1} is invalid JSON. {\"a\": 1} is correct.",
+          "Comments. JSON has no comments. // or /* */ inside JSON breaks parsing. JSONC (used by VS Code config) supports comments but isn't standard JSON.",
+          "Numbers. JSON doesn't support NaN or Infinity. Use null, or wrap in a string, depending on your downstream consumer."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Paste your JSON", "text": "Anywhere from a few bytes to a few hundred KB works without lag." },
+      { "name": "Pick format or minify", "text": "Plus an indent level for format mode." },
+      { "name": "Read or copy the result", "text": "On error, the underlying parser message points at the issue." }
+    ]
+  },
+  "faq": [
+    { "q": "Does this support JSONC (JSON with comments)?", "a": "Not yet. Strip comments first or use a tool that supports JSONC." },
+    { "q": "What's the size limit?", "a": "Modern browsers handle multi-megabyte JSON, though the textarea may slow down past ~1 MB. For huge files, use a desktop tool." },
+    { "q": "Why is my JSON invalid?", "a": "Most often: a trailing comma, single quotes, or an unescaped quote inside a string. The parser error points at the column where the issue is detected." },
+    { "q": "Can I sort keys alphabetically?", "a": "Not in this version. Pasting into a sort-aware tool (like jq with --sort-keys) is the cleanest path; we may add the option later." },
+    { "q": "Does it handle deeply nested JSON?", "a": "Yes. The browser's JSON parser handles any practical depth." },
+    { "q": "Why doesn't minify make a 1 MB file 1 byte?", "a": "Minify only removes whitespace. The actual data is still there. For real size reduction, gzip or use a binary format like MessagePack." },
+    { "q": "Is the data sent anywhere?", "a": "No. All parsing and formatting happens in your browser." },
+    { "q": "What about JSON Schema validation?", "a": "This tool validates syntax only. For schema validation, use a JSON Schema validator with your schema file." }
+  ]
+}

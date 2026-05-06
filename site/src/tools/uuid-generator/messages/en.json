@@ -1,0 +1,53 @@
+{
+  "title": "UUID Generator (v4 random, v7 time-ordered)",
+  "shortDescription": "Generate cryptographically random UUID v4 or time-ordered UUID v7. Bulk-generate up to 100 at a time with one-click copy.",
+  "description": "Click to generate one or many UUIDs. Use v4 for fully random IDs and v7 for time-sortable IDs that order naturally by creation time — useful for database keys.",
+  "metaDescription": "Free UUID generator for v4 (random) and v7 (time-ordered). Cryptographically secure, bulk-generate up to 100, copy each or copy all.",
+  "keywords": ["UUID generator", "UUID v4", "UUID v7", "GUID generator", "random UUID"],
+  "count": "Count",
+  "regenerate": "Regenerate",
+  "copy": "Copy",
+  "copyAll": "Copy all",
+  "copied": "Copied",
+  "article": {
+    "sections": [
+      {
+        "heading": "When to use v4 vs v7",
+        "paragraphs": [
+          "UUID v4 is purely random — 122 random bits with two version/variant bits, giving about 5.3 × 10³⁶ possible values. Two are basically guaranteed to never collide. Use v4 anywhere you don't need ordering, like API request IDs or anonymous user identifiers.",
+          "UUID v7 (RFC 9562, published in 2024) starts with a 48-bit Unix millisecond timestamp followed by 74 random bits. They sort lexicographically in creation order, which is huge for database performance — primary keys that sort by time mean inserts always go to the end of the B-tree, no random page splits. Use v7 for new database primary keys."
+        ]
+      },
+      {
+        "heading": "How this generator works",
+        "paragraphs": [
+          "Both v4 and v7 use crypto.getRandomValues — the browser's secure random source, the same primitive used by HTTPS and password managers. v4 fills 122 bits randomly. v7 splits 48 bits of timestamp + 74 bits of random plus version/variant markers per the RFC.",
+          "Generation happens in your browser. The UUIDs are not stored or transmitted. If you generate 100 v4 UUIDs the chance of a collision among them is astronomically small — well below the chance of cosmic rays flipping bits in your CPU."
+        ]
+      },
+      {
+        "heading": "Common UUID gotchas",
+        "paragraphs": [
+          "v4 UUIDs as database primary keys hurt performance compared to auto-incrementing integers because random values cause B-tree page splits during inserts. v7 fixes this — use v7 if you want UUID benefits without the index pain.",
+          "Don't expose UUIDs to users where guessability matters. v4 UUIDs have 122 bits of entropy and are unguessable. v7 UUIDs leak creation time, which is fine for most uses but bad if creation time is sensitive.",
+          "UUIDs are 36 chars including hyphens (32 hex + 4 hyphens). They take 16 bytes binary or 36 bytes text. For very high-cardinality columns, consider storing as binary BLOB / UUID native type rather than VARCHAR(36)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick v4 or v7", "text": "v4 for fully random, v7 for time-ordered." },
+      { "name": "Set count", "text": "1 to 100. Default is 5." },
+      { "name": "Copy what you need", "text": "Click 'Copy' next to a UUID, or 'Copy all' to grab every one as a newline-separated list." }
+    ]
+  },
+  "faq": [
+    { "q": "Are these cryptographically secure?", "a": "Yes. Both v4 and v7 use crypto.getRandomValues, the secure random API. v4 has 122 bits of entropy; v7 has 74." },
+    { "q": "Why is v7 better for database keys?", "a": "Because v7 UUIDs sort by creation time, inserts always go at the end of the B-tree index instead of random positions. This avoids page splits and dramatically improves write throughput." },
+    { "q": "Can two UUIDs collide?", "a": "Theoretically yes. With v4 you'd need to generate ~10¹⁸ before any 50% collision risk. With v7 the time component reduces this to about 2⁷⁴ within the same millisecond — still practically impossible." },
+    { "q": "Are UUIDs the same as GUIDs?", "a": "Yes. GUID is Microsoft's name for UUID. Same format, same uniqueness guarantees." },
+    { "q": "What's the format?", "a": "8-4-4-4-12 hex digits with hyphens. 32 hex chars total + 4 hyphens = 36 characters. Lowercase by RFC convention." },
+    { "q": "Should I use v1 instead?", "a": "v1 includes the MAC address, which is a privacy leak. v7 supersedes v1 for time-ordered IDs without exposing hardware identifiers." },
+    { "q": "Can I generate v4 in URL-safe Base64?", "a": "Not directly here. Encode the UUID's 16 bytes as URL-safe Base64 to get a 22-character ID. Useful for shorter URLs." },
+    { "q": "Does the data leave my browser?", "a": "No. Generation happens entirely in your browser." }
+  ]
+}

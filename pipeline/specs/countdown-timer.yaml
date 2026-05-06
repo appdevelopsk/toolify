@@ -1,0 +1,17 @@
+slug: countdown-timer
+category: datetime
+applicationCategory: UtilitiesApplication
+related: [age-calculator]
+primaryKeyword: { en: "countdown timer", ja: "カウントダウンタイマー" }
+inputs:
+  - { name: target, type: datetime-local }
+  - { name: title, type: text, optional: true }
+output: { type: structured, fields: [days, hours, minutes, seconds] }
+logic: |
+  Live tick once per second via setInterval.
+  diff = target - now
+  days = floor(diff / 86400000)
+  remainder hours/minutes/seconds via modulo.
+  When diff < 0, show "ended" state.
+seo: { faq_count: 8, article_sections: 3 }
+locales: [en, ja]

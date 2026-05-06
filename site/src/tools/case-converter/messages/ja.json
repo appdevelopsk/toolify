@@ -1,0 +1,62 @@
+{
+  "title": "大文字小文字・camelCase変換ツール",
+  "shortDescription": "10種類のケース変換（UPPER・lower・Title・Sentence・camelCase・PascalCase・snake_case・kebab-case・CONSTANT・反転）を同時表示。",
+  "description": "テキストを入力すると、よく使う10種類のケーススタイルに同時変換し、各形式にコピーボタン付き。変数名・ファイル名・URLスラッグ作成に。",
+  "metaDescription": "無料の大文字小文字変換ツール。camelCase・snake_case・kebab-case・Title Case など10種類を同時生成、ワンクリックコピー対応。",
+  "keywords": ["大文字 小文字 変換", "camelCase 変換", "snake_case", "kebab-case", "ケース変換"],
+  "input": { "text": "元のテキスト" },
+  "copy": "コピー",
+  "copied": "コピー済",
+  "case": {
+    "lower": "全小文字",
+    "upper": "全大文字",
+    "title": "Title Case",
+    "sentence": "Sentence case",
+    "camel": "camelCase",
+    "pascal": "PascalCase",
+    "snake": "snake_case",
+    "kebab": "kebab-case",
+    "constant": "CONSTANT_CASE",
+    "invert": "InVeRtEd Case"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "各スタイルの使い分け",
+        "paragraphs": [
+          "camelCase: JavaScript・Javaの識別子（myVariableName）。PascalCase: クラス名・Reactコンポーネント（UserProfile）。snake_case: Python・Rubyの変数（user_profile）。kebab-case: URL・CSSクラス（user-profile）。CONSTANT_CASE: 環境変数・定数（USER_PROFILE）。",
+          "Title Case: 書籍・記事タイトル、見出し。Sentence case: 最近のUIラベル・見出しで主流（長文ではTitle Caseより読みやすい）。UPPERCASE: 強調・略語。lowercase: タグ・ラベル・大文字小文字を区別しないファイル名。"
+        ]
+      },
+      {
+        "heading": "単語分割のロジック",
+        "paragraphs": [
+          "本ツールは空白・ハイフン・アンダースコア・スラッシュ・ドットで分割し、さらに「小文字 → 大文字」の境界（'helloWorld' → 'hello'/'World'）と「文字 → 数字」の境界でも分割します。コードのコピペ・スラッグ・ファイルパスのほぼ全てを正しく処理できます。",
+          "エッジケース: 全大文字の略語（XMLHTTPRequest）は文脈なしには綺麗に分割できないため、連続する大文字は1単語ブロックとして扱います。一般的な文章・タイトル・データセットのカラム名なら期待通りの結果になります。"
+        ]
+      },
+      {
+        "heading": "コードレビュー・リファクタリングでの活用",
+        "paragraphs": [
+          "言語間移植時、識別子のリストを貼り付けて変換結果をコピー。snake → camelはJavaScript ↔ Python間で最も多い境界。HTML属性をJSオブジェクトにする時はkebab → snake。",
+          "SEOスラッグはkebab-caseが標準です。Googleはハイフンを単語境界として扱いますが、アンダースコアは扱いません。ユーザー向けURLには 'product-name' を 'product_name' より優先してください。"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "テキストを入力", "text": "文章・コード識別子・ファイル名など何でも。" },
+      { "name": "10種類の結果を確認", "text": "各ケースが個別のブロックで表示されます。" },
+      { "name": "必要な形式をコピー", "text": "ブロック横の「コピー」ボタンでクリップボードへ。" }
+    ]
+  },
+  "faq": [
+    { "q": "「XML」のような略語はどう扱われますか?", "a": "連続する大文字は1ブロックとして扱います。'XMLParser' は 'XML' と 'Parser' に分割されます。一般的なコードでは正しく動きますが、特殊なケースは手動調整してください。" },
+    { "q": "URLスラッグがkebab-caseなのはなぜ?", "a": "Googleはハイフンを単語境界として認識しますが、アンダースコアは認識しません。SEO観点でkebab-case URLが標準です。" },
+    { "q": "Title CaseとSentence caseの違いは?", "a": "Title Caseはほとんどの単語を大文字化（'The Quick Brown Fox'）、Sentence caseは先頭と固有名詞のみ大文字化（'The quick brown fox'）。最近のUIはSentence caseを好む傾向です。" },
+    { "q": "Unicode に対応していますか?", "a": "はい。JavaScriptのtoLowerCase/toUpperCaseはUnicode対応で、ダイアクリティカルマークや非ラテン文字も正しく処理されます。" },
+    { "q": "逆変換できますか?", "a": "はい。変換結果を再入力して別形式に変換できます。camelCase ↔ snake_case の往復は無損失です。" },
+    { "q": "camelCaseで略語が大文字維持されないのはなぜ?", "a": "現代の慣例ではcamelCaseは各単語の先頭1文字のみ大文字化します。'XmlHttpRequest'が'XMLHTTPRequest'より好まれます。" },
+    { "q": "入力データはサーバーに送信されますか?", "a": "いいえ。すべてブラウザ内で変換されます。" },
+    { "q": "リスト一括変換は?", "a": "リスト全体を貼り付けて一括変換できます。各行は同じケーススタイルで処理されます。" }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "title": "Percentage Calculator (% of, what %, % change)",
+  "shortDescription": "Three percentage calculators in one: 'X% of Y', 'X is what % of Y', and percentage change between two values.",
+  "description": "Pick a mode, enter two numbers, and get the answer instantly. Handles 'percent of', 'what percent', and 'percent change' — the three operations behind almost every percentage question.",
+  "metaDescription": "Free percentage calculator: find X% of Y, what percent one number is of another, or the percent change between two values. Instant, in-browser.",
+  "keywords": ["percentage calculator", "percent of", "percentage change", "discount calculator", "increase decrease percent"],
+  "empty": "Enter both values to see the result.",
+  "mode": {
+    "pct_of": {
+      "title": "X% of Y",
+      "labelA": "X (percentage)",
+      "labelB": "Y (value)",
+      "resultLabel": "X% of Y",
+      "resultUnit": ""
+    },
+    "what_pct": {
+      "title": "X is what % of Y",
+      "labelA": "X (part)",
+      "labelB": "Y (whole)",
+      "resultLabel": "X is this % of Y",
+      "resultUnit": "%"
+    },
+    "pct_change": {
+      "title": "Change from A to B",
+      "labelA": "A (start)",
+      "labelB": "B (end)",
+      "resultLabel": "Change",
+      "resultUnit": "%"
+    }
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "The three percentage operations",
+        "paragraphs": [
+          "Almost every real-world percentage problem reduces to one of three patterns: 'X% of Y' (a discount or tax), 'X is what % of Y' (a ratio expressed as a percent), or the percent change from A to B (year-over-year growth, weight loss, exam score improvement).",
+          "This calculator exposes all three in a single interface. Switch the mode at the top, then plug in the two values. The math is simple but the bookkeeping — which number goes where — is where most mistakes happen, so labels here are explicit about which input is the part and which is the whole."
+        ]
+      },
+      {
+        "heading": "How percent change is computed",
+        "paragraphs": [
+          "Percent change = (new − old) / old × 100. A positive result means an increase, a negative result means a decrease. Notice the formula uses the old value, not the new one or the average — that's why a 50% drop followed by a 50% gain doesn't bring you back to where you started: it ends at 75% of the original.",
+          "When the old value is zero, percent change is undefined (you can't divide by zero). The calculator returns no result in that case rather than showing 'infinity', because the answer to 'how big is the change relative to nothing' isn't meaningful."
+        ]
+      },
+      {
+        "heading": "Common pitfalls",
+        "paragraphs": [
+          "Compounding percentages. A 10% raise after a 10% raise is 21%, not 20% (1.10 × 1.10 = 1.21). Use the percent-of mode twice or the percent-change mode for the final ratio.",
+          "Percentage points vs percent. If a poll moves from 40% to 42%, that's a change of 2 percentage points but a 5% relative increase. The calculator's 'percent change' mode reports the relative change.",
+          "Discount stacking. A '20% off' coupon applied after a '20% off' sale is 36% off the original (0.8 × 0.8 = 0.64), not 40%. Run the calculator twice in 'percent of' mode to see this directly."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick a mode", "text": "Choose 'percent of', 'what percent', or 'percent change' depending on what you're trying to find." },
+      { "name": "Enter the first number", "text": "The label tells you which value goes here for the chosen mode." },
+      { "name": "Enter the second number", "text": "The result updates as you type." },
+      { "name": "Read the answer", "text": "The result includes the appropriate unit (%, plain number) for the mode you chose." }
+    ]
+  },
+  "faq": [
+    { "q": "Is the calculation accurate to many decimals?", "a": "Yes — we use double-precision floating point and round display to four decimals. For very high-precision financial work, treat the result as approximate at the 16th significant digit." },
+    { "q": "Why does percent change ask for old then new?", "a": "Because the formula divides by the old value. Swapping the two inputs flips the sign of the result." },
+    { "q": "How do I calculate a discounted price?", "a": "Use 'percent of' with X = the discount percent and Y = the original price; subtract the result from the original. Or use percent-of with X = (100 − discount) and Y = price for the final price directly." },
+    { "q": "How do I find percent off if I know both prices?", "a": "Use 'percent change' with A = original price and B = sale price. The negative number is your discount." },
+    { "q": "What if I enter a negative number?", "a": "All three modes accept negatives. Percent change in particular is well-defined: change from −5 to 5 is −200% (the sign of the divisor flips the result)." },
+    { "q": "Can I use this for tax calculations?", "a": "Yes — 'percent of' with X = tax rate and Y = pre-tax amount gives the tax. Add it to the original or use percent-of with X = (100 + tax)." },
+    { "q": "Why doesn't 'increase by 50% then decrease by 50%' return the original?", "a": "Because percentages compound. 100 × 1.5 × 0.5 = 75, not 100. Run the percent-change mode end-to-end to see the net change is −25%." },
+    { "q": "Does this work for grade calculations?", "a": "Yes. Use 'what percent' with X = points earned and Y = points possible to get your percentage grade." }
+  ]
+}

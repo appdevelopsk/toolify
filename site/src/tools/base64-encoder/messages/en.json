@@ -1,0 +1,54 @@
+{
+  "title": "Base64 Encoder / Decoder (UTF-8 and URL-safe)",
+  "shortDescription": "Encode any UTF-8 text to Base64 or decode it back. Toggle URL-safe encoding for use in URLs and JWTs.",
+  "description": "Type any text or paste a Base64 string to convert in either direction. Handles UTF-8 (including emoji and CJK) and supports the URL-safe variant used in JWT and OAuth.",
+  "metaDescription": "Free Base64 encoder and decoder with UTF-8 and URL-safe support. Convert text to Base64 or decode JWT-style strings instantly in your browser.",
+  "keywords": ["base64 encoder", "base64 decoder", "url safe base64", "base64 utf8", "encode text"],
+  "input": { "plain": "Plain text", "encoded": "Base64 string" },
+  "output": { "encoded": "Encoded result", "plain": "Decoded result" },
+  "mode": { "encode": "Encode", "decode": "Decode" },
+  "urlSafe": "URL-safe (-, _, no padding)",
+  "copy": "Copy",
+  "copied": "Copied",
+  "invalidInput": "Invalid Base64 input.",
+  "article": {
+    "sections": [
+      {
+        "heading": "What Base64 is and isn't",
+        "paragraphs": [
+          "Base64 encodes arbitrary bytes using a 64-character alphabet (A-Z, a-z, 0-9, +, /, with = padding). It's the standard way to embed binary data — image bytes, encrypted blobs, signed tokens — into text-only formats like JSON, HTML, or email headers. Output is about 33% larger than the input.",
+          "Base64 is encoding, not encryption. Anyone can decode a Base64 string back to its original bytes. Don't use it to hide secrets — use a real encryption algorithm if you need confidentiality."
+        ]
+      },
+      {
+        "heading": "URL-safe vs standard",
+        "paragraphs": [
+          "Standard Base64 includes '+' and '/', which have special meanings in URLs and need to be percent-encoded. URL-safe Base64 (RFC 4648 §5) replaces '+' with '-', '/' with '_', and drops the trailing '=' padding. JWTs, OAuth tokens, and many web APIs use the URL-safe form.",
+          "If decoding a JWT or token by hand, toggle URL-safe ON. If working with classic email or PDF embedded data, leave it off. The decoder accepts both forms when URL-safe is on, since the standard alphabet is a superset minus the special pair."
+        ]
+      },
+      {
+        "heading": "UTF-8 handling",
+        "paragraphs": [
+          "Old browser btoa() can only handle ASCII. This tool uses TextEncoder to convert your input to UTF-8 bytes first, then Base64-encodes those bytes. That means emoji, CJK characters, accented Latin, and any other Unicode all encode and round-trip correctly. The bytes-then-base64 approach is the same one used by JWT libraries and most modern frameworks."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick encode or decode", "text": "Toggle the mode at the top." },
+      { "name": "Set URL-safe if needed", "text": "On for JWTs and OAuth tokens; off for everything else." },
+      { "name": "Paste your input", "text": "Plain text for encoding, Base64 string for decoding." },
+      { "name": "Copy the result", "text": "Click 'Copy' next to the output." }
+    ]
+  },
+  "faq": [
+    { "q": "Is Base64 encryption?", "a": "No. It's a way to encode binary as ASCII text. Anyone can decode it. Use real encryption (AES, RSA, etc.) for secrecy." },
+    { "q": "Why is URL-safe different?", "a": "Standard Base64 uses '+' and '/' which have special meaning in URLs and need percent-encoding. URL-safe Base64 substitutes '-' and '_' to avoid that." },
+    { "q": "Can I decode the JWT signature?", "a": "Decoding the signature gives you the raw bytes of the signature, but those are intended for verification, not human reading. Decode the JWT's header and payload (the first two segments) to see the data." },
+    { "q": "Does this work for binary files?", "a": "Not directly — paste text only. For files, use a binary-aware tool. (Most browsers have a built-in atob/btoa pair you can use in DevTools for small files.)" },
+    { "q": "Why is my decoded text garbled?", "a": "Either the input wasn't valid Base64, or it encoded non-UTF-8 bytes (e.g., a Latin-1 file). Verify the original encoding. Tools that decode 'as text' assume UTF-8." },
+    { "q": "Is the data sent anywhere?", "a": "No. Encoding and decoding run entirely in your browser." },
+    { "q": "What's the size overhead?", "a": "About 33% larger than the source bytes (every 3 input bytes become 4 output characters). URL-safe without padding is the same overhead." },
+    { "q": "Why does padding matter?", "a": "Standard Base64 pads the end with '=' so the length is a multiple of 4. URL-safe versions often skip this since it's not needed for decoding." }
+  ]
+}
