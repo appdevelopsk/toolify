@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { siteConfig } from "@/lib/config";
 
 const STORAGE_KEY = "consent.v1";
 
@@ -34,6 +35,8 @@ export function ConsentBanner() {
     if (saved !== "unset") applyConsent(saved);
   }, []);
 
+  // CMP（Funding Choices）が設定されている場合は二重表示を避けるためこちらは出さない
+  if (siteConfig.cmp.fcId) return null;
   if (value !== "unset") return null;
 
   function decide(v: ConsentValue) {

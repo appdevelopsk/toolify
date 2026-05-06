@@ -1,0 +1,73 @@
+{
+  "title": "Calculadora de porcentajes (% de, qué %, cambio %)",
+  "shortDescription": "Tres calculadoras de porcentaje en una: «X% de Y», «X es qué % de Y» y cambio porcentual entre dos valores.",
+  "description": "Elige un modo, introduce dos números y obtén la respuesta al instante. Cubre los tres cálculos detrás de casi cualquier pregunta sobre porcentajes.",
+  "metaDescription": "Calculadora de porcentajes gratuita: encuentra X% de Y, qué porcentaje un número es de otro, o el cambio porcentual entre dos valores. Al instante en tu navegador.",
+  "keywords": ["calculadora porcentaje", "porcentaje de", "cambio porcentual", "calculadora descuento", "aumento disminución porcentaje"],
+  "empty": "Introduce ambos valores para ver el resultado.",
+  "mode": {
+    "pct_of": {
+      "title": "X% de Y",
+      "labelA": "X (porcentaje)",
+      "labelB": "Y (valor)",
+      "resultLabel": "X% de Y",
+      "resultUnit": ""
+    },
+    "what_pct": {
+      "title": "X es qué % de Y",
+      "labelA": "X (parte)",
+      "labelB": "Y (total)",
+      "resultLabel": "X es este % de Y",
+      "resultUnit": "%"
+    },
+    "pct_change": {
+      "title": "Cambio de A a B",
+      "labelA": "A (inicio)",
+      "labelB": "B (final)",
+      "resultLabel": "Cambio",
+      "resultUnit": "%"
+    }
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Las tres operaciones de porcentaje",
+        "paragraphs": [
+          "Casi todo problema de porcentaje del mundo real se reduce a uno de tres patrones: «X% de Y» (un descuento o impuesto), «X es qué % de Y» (una proporción expresada en porcentaje), o el cambio porcentual de A a B (crecimiento interanual, pérdida de peso, mejora en una nota).",
+          "Esta calculadora muestra los tres en una sola interfaz. Cambia el modo en la parte superior y luego introduce los dos valores. Las matemáticas son simples, pero la contabilidad — qué número va dónde — es donde ocurren la mayoría de los errores, así que las etiquetas aquí son explícitas sobre cuál entrada es la parte y cuál el total."
+        ]
+      },
+      {
+        "heading": "Cómo se calcula el cambio porcentual",
+        "paragraphs": [
+          "Cambio % = (nuevo − antiguo) / antiguo × 100. Resultado positivo indica aumento, negativo indica disminución. Nota que la fórmula usa el valor antiguo, no el nuevo o el promedio — por eso una caída del 50% seguida de un aumento del 50% no te devuelve al inicio: termina en el 75% del valor original.",
+          "Cuando el valor antiguo es cero, el cambio porcentual está indefinido (no se puede dividir por cero). La calculadora no devuelve resultado en ese caso en lugar de mostrar «infinito», porque la respuesta a «cuán grande es el cambio respecto a nada» no tiene significado."
+        ]
+      },
+      {
+        "heading": "Errores comunes",
+        "paragraphs": [
+          "Composición de porcentajes. Un aumento del 10% tras otro 10% es 21%, no 20% (1,10 × 1,10 = 1,21). Usa el modo porcentaje-de dos veces o el modo cambio-porcentual para la razón final.",
+          "Puntos porcentuales vs porcentaje. Si una encuesta pasa del 40% al 42%, eso es un cambio de 2 puntos porcentuales pero un aumento relativo del 5%. El modo «cambio porcentual» de la calculadora reporta el cambio relativo.",
+          "Apilamiento de descuentos. Un cupón «20% de descuento» aplicado tras una rebaja «20% de descuento» es 36% sobre el original (0,8 × 0,8 = 0,64), no 40%. Ejecuta la calculadora dos veces en modo «porcentaje de» para verlo directamente."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige un modo", "text": "Selecciona «porcentaje de», «qué porcentaje» o «cambio porcentual» según lo que quieras encontrar." },
+      { "name": "Introduce el primer número", "text": "La etiqueta indica qué valor va aquí para el modo elegido." },
+      { "name": "Introduce el segundo número", "text": "El resultado se actualiza mientras escribes." },
+      { "name": "Lee la respuesta", "text": "El resultado incluye la unidad apropiada (%, número simple) para el modo elegido." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Es preciso el cálculo a muchos decimales?", "a": "Sí — usamos coma flotante de doble precisión y redondeamos la pantalla a cuatro decimales. Para trabajo financiero de muy alta precisión, considera el resultado aproximado en el dígito significativo 16." },
+    { "q": "¿Por qué el cambio porcentual pide antiguo y luego nuevo?", "a": "Porque la fórmula divide por el valor antiguo. Intercambiar las dos entradas invierte el signo del resultado." },
+    { "q": "¿Cómo calculo un precio con descuento?", "a": "Usa «porcentaje de» con X = el porcentaje de descuento e Y = el precio original; resta el resultado del original. O usa porcentaje-de con X = (100 − descuento) e Y = precio para el precio final directamente." },
+    { "q": "¿Cómo encuentro el porcentaje de descuento si conozco ambos precios?", "a": "Usa «cambio porcentual» con A = precio original y B = precio rebajado. El número negativo es tu descuento." },
+    { "q": "¿Y si introduzco un número negativo?", "a": "Los tres modos aceptan negativos. El cambio porcentual en particular está bien definido: el cambio de −5 a 5 es −200% (el signo del divisor invierte el resultado)." },
+    { "q": "¿Puedo usar esto para impuestos?", "a": "Sí — «porcentaje de» con X = tasa de impuesto e Y = monto antes de impuestos da el impuesto. Súmalo al original o usa porcentaje-de con X = (100 + impuesto)." },
+    { "q": "¿Por qué «aumentar 50% y luego disminuir 50%» no devuelve al original?", "a": "Porque los porcentajes se componen. 100 × 1,5 × 0,5 = 75, no 100. Ejecuta el modo cambio-porcentual de extremo a extremo para ver que el cambio neto es −25%." },
+    { "q": "¿Funciona para calcular calificaciones?", "a": "Sí. Usa «qué porcentaje» con X = puntos obtenidos e Y = puntos posibles para obtener tu calificación porcentual." }
+  ]
+}

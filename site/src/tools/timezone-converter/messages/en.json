@@ -1,0 +1,54 @@
+{
+  "title": "Timezone Converter (compare time across multiple zones)",
+  "shortDescription": "Convert one moment in time across multiple timezones at once. Add or remove zones; great for scheduling international meetings.",
+  "description": "Pick a source timezone and date/time, then add as many target timezones as you need. Each target shows the equivalent local time with timezone abbreviation.",
+  "metaDescription": "Free timezone converter. See one moment across many cities at once. Useful for scheduling meetings, travel, broadcasts across multiple time zones.",
+  "keywords": ["timezone converter", "world clock", "meeting time across zones", "convert UTC", "timezone difference"],
+  "empty": "Add timezones to see equivalents.",
+  "input": { "sourceTz": "Source timezone", "dt": "Date & time" },
+  "now": "Now",
+  "addTz": "Add timezone",
+  "remove": "Remove",
+  "article": {
+    "sections": [
+      {
+        "heading": "How timezone conversion works",
+        "paragraphs": [
+          "Every moment in time is a single point — Tuesday 9am in Tokyo is the same moment as Monday 5pm in San Francisco. Timezone conversion just relabels that single moment with the local clock-face time of each zone. Daylight saving time complicates this — between March and November in the US, Eastern time is UTC-4 (EDT); the rest of the year it's UTC-5 (EST). The browser's Intl.DateTimeFormat handles all this correctly when you pass an IANA timezone name like 'America/New_York'.",
+          "We use IANA names (like 'Asia/Tokyo' or 'Europe/London') because they're unambiguous and follow each location's DST rules historically. 'JST' or 'GMT' are abbreviations that may collide; IANA names won't."
+        ]
+      },
+      {
+        "heading": "Common scheduling pitfalls",
+        "paragraphs": [
+          "DST transitions: 'next Tuesday at 9am EST' is ambiguous in March or November because the rules change. Always say 'New York time' or send a calendar invite — Outlook, Google Calendar, and Slack all handle conversion correctly when both sides specify their zone.",
+          "Half-hour offsets: India is UTC+5:30, Newfoundland is UTC-3:30, parts of Australia are UTC+9:30 or +10:30. If your meeting math is in 'whole hours', you'll be 30 minutes off for these regions.",
+          "Cross-date-line jumps: Tokyo to San Francisco is the next-day vs same-day depending on direction. The calendar shows it correctly, but the human assumption can be wrong."
+        ]
+      },
+      {
+        "heading": "Useful patterns",
+        "paragraphs": [
+          "International standup: Pick a source zone (often UTC) and the team's home timezones. Set the meeting time and verify no one is asked to attend at 3am.",
+          "Product launch: Pick the launch zone and add the major markets. Useful for verifying the marketing email arrives at a sensible local hour.",
+          "Travel planning: Pick your departure zone and add destination zone(s) to find the local arrival time without manual math."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Set the source", "text": "Choose your source timezone (defaults to your browser's zone) and the date/time you want to convert." },
+      { "name": "Add target timezones", "text": "Use the dropdown to add as many as you need." },
+      { "name": "Read the equivalents", "text": "Each target shows the same moment in its local clock." }
+    ]
+  },
+  "faq": [
+    { "q": "Does it handle DST?", "a": "Yes — IANA timezone data includes DST rules for each location. The browser's Intl API handles past, present, and (where known) future transitions." },
+    { "q": "What's the difference between EST and ET?", "a": "EST is fixed at UTC-5. ET (Eastern Time) is EST in winter and EDT in summer — it tracks DST. We use IANA names like 'America/New_York' which automatically pick EST or EDT based on the date." },
+    { "q": "Can I convert between two specific cities?", "a": "Yes. Set one as the source and add the other as a target. The displayed time is the source moment expressed in target's local clock." },
+    { "q": "Why do some zones have :30 offsets?", "a": "Historical decisions. India, Iran, Afghanistan, Newfoundland, parts of Australia all use 30-minute or 45-minute offsets from UTC. The calculator handles these correctly." },
+    { "q": "Does this work for past dates?", "a": "Yes, including DST boundaries that may have been different historically. IANA data covers most location histories from 1970 onward." },
+    { "q": "What about Antarctica or Hawaii?", "a": "The IANA list includes them. Add 'Pacific/Honolulu' or 'Antarctica/McMurdo' from the dropdown if needed." },
+    { "q": "Is the data sent anywhere?", "a": "No. The browser's Intl APIs handle everything locally." },
+    { "q": "Can I save my list of timezones?", "a": "Not yet. Refreshing the page resets the list. We may add local-storage persistence later." }
+  ]
+}

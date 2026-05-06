@@ -20,6 +20,10 @@ export const siteConfig = {
   analytics: {
     gaId: process.env.NEXT_PUBLIC_GA_ID ?? "",
   },
+  cmp: {
+    /** Google Funding Choices publisher ID. Same value as adsense.client without the "ca-" prefix. */
+    fcId: process.env.NEXT_PUBLIC_FC_ID ?? "",
+  },
   social: {
     ogImageVersion: 1,
   },

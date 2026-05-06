@@ -46,6 +46,9 @@ import pace from "@/tools/pace-calculator";
 import macro from "@/tools/macro-calculator";
 import charFreq from "@/tools/character-frequency";
 import dateCalc from "@/tools/date-calculator";
+import timezone from "@/tools/timezone-converter";
+import unitPrice from "@/tools/unit-price-calculator";
+import hash from "@/tools/hash-generator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -98,6 +101,9 @@ export const TOOLS: ToolDefinition[] = [
   macro,
   charFreq,
   dateCalc,
+  timezone,
+  unitPrice,
+  hash,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

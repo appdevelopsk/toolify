@@ -12,6 +12,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ConsentBanner } from "@/components/ConsentBanner";
 import { AdScript } from "@/components/ads/AdScript";
+import { FundingChoices } from "@/components/cmp/FundingChoices";
 import { GoogleAnalytics } from "@/lib/analytics/gtag";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/structured-data";
@@ -69,6 +70,7 @@ export default async function LocaleLayout({
           <ConsentBanner />
         </NextIntlClientProvider>
         <GoogleAnalytics />
+        <FundingChoices />
         <AdScript />
         <JsonLd data={[organizationJsonLd(), websiteJsonLd(locale)]} />
       </body>
