@@ -49,6 +49,8 @@ import dateCalc from "@/tools/date-calculator";
 import timezone from "@/tools/timezone-converter";
 import unitPrice from "@/tools/unit-price-calculator";
 import hash from "@/tools/hash-generator";
+import emailVal from "@/tools/email-validator";
+import aspectRatio from "@/tools/aspect-ratio-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -104,6 +106,8 @@ export const TOOLS: ToolDefinition[] = [
   timezone,
   unitPrice,
   hash,
+  emailVal,
+  aspectRatio,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

@@ -38,7 +38,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: { default: t("name"), template: `%s · ${t("name")}` },
     description: t("description"),
     applicationName: t("name"),
-    icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
+    icons: {
+      icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+      apple: "/icon.svg",
+    },
   };
 }
 

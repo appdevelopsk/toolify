@@ -74,7 +74,20 @@ AdSense承認後、`site/public/ads.txt` の `pub-XXXXXXXXXXXXXXXX` を実 publi
 1. **Google Search Console**: ドメインプロパティを追加 → DNS TXT 認証 → 認証済み後、 `https://toolify.example/sitemap.xml` を送信
 2. **Bing Webmaster Tools**: 同様に追加 + sitemap 送信
 3. **GA4**: プロパティ作成 → 測定 ID を取得 → CF Pages の `NEXT_PUBLIC_GA_ID` に設定 → 再デプロイ
-4. **IndexNow**: Bing/Yandex 等への即時インデックス通知。CF Pages の Functions / Workers から実装可能（後日）
+4. **IndexNow**（Bing/Yandex/Naver 即時通知）:
+
+   ```bash
+   # 初回セットアップ（一度だけ）
+   KEY=$(openssl rand -hex 32)
+   echo "$KEY" > site/public/$KEY.txt
+   git add site/public/$KEY.txt && git commit -m "feat: IndexNow key" && git push
+
+   # 通知（デプロイ後に実行）
+   cd site
+   INDEXNOW_KEY=$KEY SITE_URL=https://toolify.example npm run indexnow
+   ```
+
+   sitemap.xml から全 URL を自動取得して Bing API に送信（Yandex/Naver/Seznam にも転送）。Google は IndexNow 未対応だが、Bing 経由でクロール頻度が大幅向上。
 
 ## 7. AdSense 申請
 

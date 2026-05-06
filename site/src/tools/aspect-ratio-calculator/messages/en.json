@@ -1,0 +1,63 @@
+{
+  "title": "Aspect Ratio Calculator (preserve ratio when resizing)",
+  "shortDescription": "Calculate width or height to preserve a target aspect ratio. Common ratios (16:9, 9:16, 1:1, 4:3, 21:9) one-click presets included.",
+  "description": "Set a target ratio and one dimension; the other auto-fills. Reverse direction works the same way. Useful for video, photo cropping, and responsive web layout.",
+  "metaDescription": "Free aspect ratio calculator. Preserve ratios like 16:9, 9:16, 1:1, 4:3 when resizing. Compute missing width or height instantly.",
+  "keywords": ["aspect ratio calculator", "ratio resize", "16:9 calculator", "image aspect ratio", "video aspect ratio"],
+  "input": {
+    "ratioW": "Ratio W",
+    "ratioH": "Ratio H",
+    "width": "Width",
+    "height": "Height"
+  },
+  "result": {
+    "ratio": "Aspect ratio",
+    "decimal": "Decimal",
+    "dimensions": "Dimensions",
+    "simplified": "Simplified"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What aspect ratio is",
+        "paragraphs": [
+          "Aspect ratio describes width relative to height: 16:9 means 16 units wide for every 9 tall. The same ratio works at any size — 1920×1080 and 800×450 are both 16:9. Preserving aspect ratio when resizing prevents stretched or squished images and is the basis of responsive design.",
+          "We accept whole numbers (16:9) or decimals (1.78:1) for the ratio, and any size for width/height. Edit any field — the others update to maintain the ratio. The decimal ratio (width / height) is shown for use in CSS calc() expressions or video editing tools."
+        ]
+      },
+      {
+        "heading": "Common ratios and where they're used",
+        "paragraphs": [
+          "16:9 — modern HDTV, computer monitors, YouTube, most films since 2009. The default for almost everything you do today.",
+          "9:16 — vertical video for Instagram Stories, TikTok, YouTube Shorts. The flip side of 16:9 for phone-first content.",
+          "1:1 — square. Instagram feed default until 2021. Album covers, profile photos.",
+          "4:3 — old TVs and computer monitors before HD. Still used for some classic-style content.",
+          "3:2 — DSLR camera default. 35mm film. Larger prints.",
+          "21:9 — ultrawide cinematic. Films shot anamorphically. Some PC monitors and LG TVs."
+        ]
+      },
+      {
+        "heading": "Why CSS aspect-ratio matters",
+        "paragraphs": [
+          "Modern CSS has aspect-ratio: 16/9; — set the ratio and let the browser compute height from width (or vice versa). Avoids the old padding-bottom hack and is essential for responsive embeds and image placeholders to prevent layout shift.",
+          "Cumulative Layout Shift (CLS) is a Core Web Vital. Embedded videos, images without dimensions, and ads can all cause CLS — fix by setting an explicit width/height (which the browser uses to compute aspect ratio) or using CSS aspect-ratio."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick a ratio", "text": "Tap a preset or enter custom W:H values." },
+      { "name": "Enter a known dimension", "text": "Either width or height — the other auto-fills." },
+      { "name": "Edit any field", "text": "Updates propagate to maintain the ratio." }
+    ]
+  },
+  "faq": [
+    { "q": "What's the difference between 16:9 and 1.78:1?", "a": "Same ratio, different notation. 16/9 = 1.778. The colon form is conventional in TV/web; the decimal form is conventional in cinema." },
+    { "q": "How do I preserve aspect ratio in CSS?", "a": "Use the aspect-ratio property: img { aspect-ratio: 16/9; width: 100%; height: auto; }. The image fills the container width and height adjusts to preserve the ratio." },
+    { "q": "Why does my video look wrong on a 4:3 TV?", "a": "Most modern videos are 16:9. On a 4:3 display, they either letterbox (black bars), pillar-box, or stretch. The TV's settings control which." },
+    { "q": "Can I use non-integer ratios?", "a": "Yes — type 1.5 or 2.39. The calculator treats them as decimals; the simplified-ratio output only appears for integer ratios." },
+    { "q": "What's a 'pixel aspect ratio'?", "a": "A separate concept: the shape of an individual pixel. Modern displays use square pixels (1:1). Some legacy SD video formats used non-square pixels (e.g., 1.0667 for NTSC widescreen). This calculator handles display aspect ratio, not pixel aspect ratio." },
+    { "q": "What's the 'cinematic' look?", "a": "21:9 (more precisely 2.39:1 or 2.40:1) — wider than HDTV. Common in modern blockbusters. Streaming services often serve films in this ratio." },
+    { "q": "Why does Instagram Reel/TikTok use 9:16?", "a": "Because phones are typically held vertically. 9:16 fills the entire phone screen with content; 16:9 leaves bands at top and bottom on a vertical phone." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally." }
+  ]
+}

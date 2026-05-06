@@ -1,0 +1,60 @@
+{
+  "title": "Email Validator (syntax + common typo detection)",
+  "shortDescription": "Validate email address syntax against RFC 5322 and detect common typos in popular providers (gmail, yahoo, hotmail, etc).",
+  "description": "Type an email to check whether the syntax is valid and to spot domain typos like 'gmial.com' → 'gmail.com'. Breaks down local-part, domain, TLD, and warns on RFC limit violations.",
+  "metaDescription": "Free email validator. Checks RFC 5322 syntax and catches common typos like gmial.com or yaho.com. Shows local-part, domain, TLD breakdown.",
+  "keywords": ["email validator", "email syntax check", "email format check", "verify email", "email typo"],
+  "input": { "email": "Email address" },
+  "status": { "valid": "Valid syntax", "invalid": "Invalid syntax" },
+  "suggestion": "Did you mean: {suggestion}?",
+  "empty": "Type an email address to validate.",
+  "breakdown": {
+    "localPart": "Local part",
+    "domain": "Domain",
+    "tld": "TLD",
+    "hasPlus": "Plus tag (+)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What this validator does (and what it can't)",
+        "paragraphs": [
+          "Email syntax validation checks whether 'name@domain.tld' follows the structural rules in RFC 5322. We use a pragmatic regex that catches almost all real-world typos while staying flexible enough for legitimate addresses with plus tags, dots, and unusual TLDs.",
+          "What this can NOT do: confirm the address actually receives mail. That requires sending a real email or doing an SMTP check, both of which require server-side code and risk false positives (catch-all domains, greylisting). Syntax validation catches typos cheaply; deliverability checks need a different approach."
+        ]
+      },
+      {
+        "heading": "Common typo detection",
+        "paragraphs": [
+          "We watch for typos in the major free email providers — 'gmial.com' instead of 'gmail.com', 'yaho.com' instead of 'yahoo.com', etc. About 95% of email signup typos are domain typos in these few providers. Catching them client-side saves you a bounced welcome email and an uncomfortable 'please check your address' follow-up.",
+          "If you're building a signup form, run this same logic before submitting. Show a 'Did you mean…?' suggestion and let the user accept or override. Mature signup flows do this routinely; it noticeably improves email deliverability."
+        ]
+      },
+      {
+        "heading": "Local part rules",
+        "paragraphs": [
+          "Plus tag ('user+filter@gmail.com'): widely supported by major providers. Use to create unique addresses for different sign-ups while keeping a single inbox.",
+          "Dots ('user.name@gmail.com'): treated as the same address by Gmail (dots are ignored), but other providers may treat them as different addresses. Don't rely on dot-equivalence outside Gmail.",
+          "Length: RFC 5321 limits local part to 64 chars and the full address to 254 chars. We warn when these are exceeded — most servers reject longer addresses.",
+          "Case sensitivity: per RFC, local part is case-sensitive but most providers treat it as case-insensitive. Domain is always case-insensitive."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type the email", "text": "Or paste from a form / list." },
+      { "name": "Read the verdict", "text": "Green check = valid syntax; red X = invalid." },
+      { "name": "Watch for suggestions", "text": "Common typos in popular providers are flagged with a suggestion." },
+      { "name": "Review the breakdown", "text": "Local part, domain, TLD, and warning notes are shown below." }
+    ]
+  },
+  "faq": [
+    { "q": "Does this confirm the email exists?", "a": "No — only syntax. Confirming an inbox exists requires a server-side SMTP check or sending a verification email. This tool catches typos cheaply." },
+    { "q": "Why did it accept 'a@b.co'?", "a": "Because that is technically valid syntax. The TLD '.co' is real (Colombia). Validation by syntax can't filter real-but-rare TLDs." },
+    { "q": "What about emails with unicode (e.g., 用户@例え.jp)?", "a": "Internationalized email addresses are valid per RFC 6531 but the regex used here doesn't accept them. Most form backends still don't either. For unicode-friendly validation, use a dedicated library." },
+    { "q": "What's a plus tag?", "a": "Anything between + and @ is treated by Gmail and many providers as part of routing. user+toolify@gmail.com goes to user@gmail.com but you can filter by the +toolify suffix." },
+    { "q": "Why does Gmail ignore dots?", "a": "Historical Gmail policy. user.name@gmail.com and username@gmail.com deliver to the same inbox. Other providers (Yahoo, Outlook) treat them as distinct." },
+    { "q": "What's the longest valid email?", "a": "254 characters total per RFC 5321. Local part ≤ 64. Most servers reject anything longer." },
+    { "q": "Does the data leave my browser?", "a": "No. Validation runs locally; nothing is sent to any server." },
+    { "q": "Can I bulk-validate?", "a": "Not in this tool — paste one address at a time. For lists, use a script or dedicated bulk-validation service (with consent for those whose addresses you check)." }
+  ]
+}
