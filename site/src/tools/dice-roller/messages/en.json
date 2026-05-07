@@ -1,0 +1,56 @@
+{
+  "title": "Dice Roller (d4 to d100, with modifier and history)",
+  "shortDescription": "Roll any number of dice with any number of sides. Cryptographically random, with modifier (+N), running total, and roll history.",
+  "description": "Pick the count, sides (4, 6, 8, 10, 12, 20, 100, or custom up to 1000), and modifier. Each roll uses crypto.getRandomValues for unbiased uniform distribution.",
+  "metaDescription": "Free dice roller for D&D and any TTRPG. d4/d6/d8/d10/d12/d20/d100 + custom, modifier, history. Cryptographically secure unbiased rolls in your browser.",
+  "keywords": ["dice roller", "online dice", "d20 roll", "TTRPG dice", "d6 d10 d100"],
+  "input": { "count": "How many", "sides": "Sides", "modifier": "Modifier (±)" },
+  "roll": "Roll {count}d{sides}{modifier}",
+  "result": {
+    "total": "Total",
+    "history": "Recent rolls"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How the rolls are generated",
+        "paragraphs": [
+          "Each die uses crypto.getRandomValues — the browser's cryptographically secure random API, the same primitive that backs HTTPS sessions. We also apply rejection sampling to ensure every face has exactly equal probability, regardless of die size. Naive `random % sides` introduces bias when sides doesn't divide cleanly into 2³².",
+          "This means a d100 isn't slightly biased toward 1-36 (which would happen with a poorly-implemented modulo), and a d3 doesn't favor 1 over 2 or 3. The math is identical to physical dice with infinite precision."
+        ]
+      },
+      {
+        "heading": "TTRPG (Tabletop RPG) notation",
+        "paragraphs": [
+          "Common notation: 'NdS+M' where N is number of dice, S is sides, M is modifier. '2d6+3' means roll 2 six-sided dice and add 3. '1d20+5' is a typical D&D attack roll with +5 modifier from your character's bonus.",
+          "Standard die sets: d4 (pyramid), d6 (cube), d8 (octahedron), d10 (pentagonal trapezohedron), d12 (dodecahedron), d20 (icosahedron). d100 is usually rolled as 2d10 (one for tens, one for ones). Use the d100 preset to skip the manual conversion."
+        ]
+      },
+      {
+        "heading": "Common use cases",
+        "paragraphs": [
+          "D&D / Pathfinder / TTRPGs: d20+5 for attacks, 1d8+3 for damage, 4d6 drop lowest for character generation.",
+          "Random selection: pick a winner from N people by rolling a dN. For 7 people, set sides=7. The cryptographic randomness ensures fairness.",
+          "Probability lessons: roll many dice and observe the distribution. Sum of multiple dice approaches a normal distribution (central limit theorem).",
+          "Decision making: 'should I do X' with a 50/50? Roll d2 (2 sides). Want a weighted decision? Use a d10 and decide thresholds (1-7 = yes, 8-10 = no for 70/30)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick a die preset", "text": "Or type a custom side count from 2 to 1000." },
+      { "name": "Set count", "text": "How many dice to roll at once. Up to 50." },
+      { "name": "Add a modifier", "text": "Optional flat number added to the sum." },
+      { "name": "Roll", "text": "Total, individual rolls, and recent history all displayed." }
+    ]
+  },
+  "faq": [
+    { "q": "Are the rolls really fair?", "a": "Yes. We use crypto.getRandomValues (the secure RNG) plus rejection sampling so every face has exactly equal probability — no edge bias from the modulo operation." },
+    { "q": "What's the maximum number of dice?", "a": "50 per roll. For more, simply roll multiple times — each is independent." },
+    { "q": "What's the maximum sides?", "a": "1000. Beyond that the math still works but the use case becomes contrived." },
+    { "q": "Can I save my favorite die combinations?", "a": "Not yet. We may add saved presets later for your common combat rolls." },
+    { "q": "Why is d20 famous?", "a": "Dungeons & Dragons popularized it for skill checks and attack rolls. Each face has 5% probability — fine granularity for skill differences without the bookkeeping of a percentile (d100)." },
+    { "q": "Why does the history only show 10 rolls?", "a": "To keep the page tidy. For longer logs, paste each result into a notes file or RPG character sheet." },
+    { "q": "Will this replace my physical dice?", "a": "Functionally yes, especially for online games. Physical dice are loved for tactility and ritual — but mathematically a digital roll with crypto RNG is at least as fair as a physical d20." },
+    { "q": "Does the data leave my browser?", "a": "No. Every roll happens locally." }
+  ]
+}

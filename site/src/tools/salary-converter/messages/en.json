@@ -1,0 +1,57 @@
+{
+  "title": "Salary Converter (hourly, daily, weekly, monthly, annual)",
+  "shortDescription": "Convert pay between hourly, daily, weekly, monthly, and annual rates. Useful for comparing job offers and contractor rates.",
+  "description": "Type a salary amount and pick its period (hourly/daily/weekly/monthly/annual). All other periods update instantly. Assumes a 40-hour week / 2080-hour year.",
+  "metaDescription": "Free salary converter. Convert between hourly, daily, weekly, monthly, and annual pay. 2080-hour year assumption (US standard) for clean job-offer comparisons.",
+  "keywords": ["salary converter", "hourly to annual", "annual to hourly", "wage calculator", "pay rate converter"],
+  "input": { "amount": "Amount", "period": "Period" },
+  "period": {
+    "hourly": "Hourly",
+    "daily": "Daily (8 hr)",
+    "weekly": "Weekly (40 hr)",
+    "monthly": "Monthly",
+    "annual": "Annual"
+  },
+  "assumption": "Assumes a 40-hour work week, 8-hour work day, and 52 weeks per year (2080 hours/year — US standard). Adjust mentally if your hours differ significantly.",
+  "article": {
+    "sections": [
+      {
+        "heading": "How the conversion works",
+        "paragraphs": [
+          "All conversions pivot through hourly. We use the US-standard 2080 working hours per year (40 hours × 52 weeks), 173.33 hours per month (2080 / 12), 40 per week, 8 per day. Whatever period you input, we convert it to hourly first, then derive all the others.",
+          "These factors aren't universal — many countries use different week lengths (35 hours in France, ~37.5 in some EU countries) or holiday allowances that reduce paid hours. For a 35-hour week, multiply our annual numbers by 35/40 = 0.875 to adjust."
+        ]
+      },
+      {
+        "heading": "Why hourly-to-annual matters",
+        "paragraphs": [
+          "When evaluating a contractor or freelance rate, the 'annual equivalent' is the most useful comparison to a salaried role. A $50/hour contractor invoicing 30 productive hours per week (1500 hours/year, accounting for vacation, sick days, business development) earns about $75,000 — comparable to a $75k salary, but without benefits, paid time off, or employer 401(k) match.",
+          "Rule of thumb: a contractor needs to charge 1.3x to 1.5x the equivalent salaried hourly to break even on benefits, taxes, and unpaid time. So a $100k salaried role ≈ $48/hour W-2 ≈ $65/hour 1099 contractor."
+        ]
+      },
+      {
+        "heading": "What this calculator doesn't include",
+        "paragraphs": [
+          "Taxes: figures are gross (pre-tax). Tax burden varies by jurisdiction, filing status, and deductions. For US take-home, expect ~25-35% reduction depending on bracket and state.",
+          "Benefits: health insurance, 401(k)/retirement match, paid time off, equity. These can add 20-40% to the value of a salaried role over the headline number.",
+          "Unpaid time: salaried employees often work more than 40 hours/week without additional pay. Hourly workers typically get overtime above 40 hours. Use 40-50 hour-equivalent for fair salaried-vs-hourly comparison."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type your amount", "text": "Could be hourly wage, monthly salary, etc." },
+      { "name": "Pick the period", "text": "Tell the calculator which period the amount represents." },
+      { "name": "Read all periods", "text": "Hourly through annual all displayed; current selection is highlighted." }
+    ]
+  },
+  "faq": [
+    { "q": "Why 2080 hours per year?", "a": "It's the US standard: 40 hours × 52 weeks. Some calculations use 2087 (40 × 52.18, accounting for the extra 0.18 days per year on average) but 2080 is more common." },
+    { "q": "Does this account for taxes?", "a": "No, all figures are gross (pre-tax). Tax burden depends on your country, state, filing status, and deductions." },
+    { "q": "What about overtime?", "a": "Not included. US hourly workers typically get 1.5x overtime above 40 hours/week. Multiply hours over 40 by your overtime rate manually." },
+    { "q": "Are benefits included?", "a": "No. Salaried roles typically include benefits worth 20-40% of base salary. Compare total compensation, not just the headline number." },
+    { "q": "Why is my annual number different from my paycheck?", "a": "Bonuses, employer benefits, employer 401(k) match, deductions, and tax withholdings all affect what hits your bank account. Compare gross pay or total compensation, not net deposit." },
+    { "q": "How should contractors price?", "a": "Multiply the equivalent salaried hourly rate by 1.3x-1.5x to cover benefits, taxes, and unpaid time. A $100k salary ≈ $65-72/hour as a 1099 contractor." },
+    { "q": "What about part-time work?", "a": "Adjust hourly first, then use the calculator. Or scale the annual number by your fraction of full-time (e.g., 30 hours/week = 0.75x annual)." },
+    { "q": "Does the data leave my browser?", "a": "No. Conversion runs locally." }
+  ]
+}

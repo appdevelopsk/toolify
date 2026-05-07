@@ -1,0 +1,65 @@
+{
+  "title": "Savings Goal Calculator (time to reach target)",
+  "shortDescription": "Find out how long it takes to reach a savings goal given a starting balance, monthly contribution, and annual return.",
+  "description": "Enter your goal, current balance, monthly savings, and expected annual return. The calculator solves for the number of months until you hit the target.",
+  "metaDescription": "Free savings goal calculator. See how long to reach a target amount given monthly contributions and interest rate. Compound math, monthly compounding.",
+  "keywords": ["savings goal calculator", "time to save", "savings target", "how long to save", "savings calculator"],
+  "empty": "Enter the goal and either a monthly contribution or rate above 0.",
+  "input": {
+    "goal": "Goal amount",
+    "start": "Starting balance",
+    "monthly": "Monthly contribution",
+    "ratePct": "Annual return %"
+  },
+  "result": {
+    "timeToGoal": "Time to goal",
+    "years": "yrs",
+    "months": "mos",
+    "totalMonths": "Total months",
+    "totalContrib": "Total contributed",
+    "interest": "Interest earned"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How time-to-goal is computed",
+        "paragraphs": [
+          "The standard future value formula is FV = P × (1 + r)^n + M × ((1 + r)^n − 1) / r, where P is starting balance, M is monthly contribution, r is monthly rate (annual / 12), and n is months. Setting FV = your goal and solving for n gives n = log((G × r + M) / (P × r + M)) / log(1 + r).",
+          "When the rate is zero, the formula collapses to (G − P) / M months. The calculator picks the right path automatically and rounds up to the nearest whole month, since you can't 'partly' make a monthly contribution."
+        ]
+      },
+      {
+        "heading": "What matters most: monthly contribution or rate?",
+        "paragraphs": [
+          "For typical savings horizons (1-10 years), monthly contribution dominates. Going from $300 to $500 per month makes a far larger difference than going from 3% to 5% return. Time and contribution are linear; rate is exponential but only over very long horizons.",
+          "For 20+ year goals (retirement, college funds), rate becomes king. The same $500/month for 30 years produces vastly different totals at 4% vs 8%. This is why early retirement savings are exponentially more valuable than later ones."
+        ]
+      },
+      {
+        "heading": "Realistic rates",
+        "paragraphs": [
+          "High-yield savings: 4-5% in current US rates. Money market funds: similar. CD: 4-5% locked. Government bonds: 4-5% but lock period longer.",
+          "Diversified stock index (S&P 500 historical average): about 10% nominal / 7% real. Use 6-7% for conservative planning.",
+          "Inflation eats 2-4% per year. For 'today-dollar' goals, subtract expected inflation from your nominal rate."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter your goal", "text": "The amount you want to reach." },
+      { "name": "Enter starting balance", "text": "What you have today; can be 0." },
+      { "name": "Enter monthly contribution", "text": "What you'll add each month." },
+      { "name": "Enter expected annual return", "text": "Conservative: 4%. Stock market: 6-8%." },
+      { "name": "Read the result", "text": "Years, months to goal, plus total contributed and interest earned." }
+    ]
+  },
+  "faq": [
+    { "q": "Why is the answer rounded up to whole months?", "a": "Because you can't make a partial monthly contribution. If the math says 32.4 months, you'll actually hit your goal in month 33 (assuming consistent contribution)." },
+    { "q": "What rate should I use?", "a": "For high-yield savings: 4-5%. For S&P 500 long-term: 6-8%. For ultra-conservative: use 0% to see how long pure savings takes." },
+    { "q": "Should I include inflation?", "a": "If your goal is in today's dollars, subtract expected inflation from your rate (e.g., 7% nominal − 3% inflation = 4% real). The calculator gives a 'real' purchasing-power answer that way." },
+    { "q": "Does this assume monthly compounding?", "a": "Yes — interest compounds at the same monthly cadence as your contributions. For most savings products this matches reality closely." },
+    { "q": "What if I save 0 per month with 0 rate?", "a": "Then you can't reach a goal above your starting balance. The calculator returns no result in that case." },
+    { "q": "Is the interest taxable?", "a": "In most jurisdictions, yes (unless in a tax-advantaged account like 401(k), IRA, NISA, etc.). Consider after-tax rate if your goal is post-tax purchasing power." },
+    { "q": "What if my contribution amount changes?", "a": "Run the calculator multiple times for each phase. For variable contributions, a financial planning spreadsheet is more flexible." },
+    { "q": "Does the data leave my browser?", "a": "No — calculations run locally." }
+  ]
+}

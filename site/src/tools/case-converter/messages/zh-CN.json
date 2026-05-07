@@ -1,0 +1,62 @@
+{
+  "title": "大小写转换 — camelCase 等10种风格",
+  "shortDescription": "10种风格同时显示: UPPER、lower、Title、Sentence、camelCase、PascalCase、snake_case、kebab-case、CONSTANT、反转。",
+  "description": "输入文本, 同时生成10种常用大小写风格, 每种带一键复制。变量重命名、文件名、URL slug 制作。",
+  "metaDescription": "免费大小写转换工具。同时生成 camelCase、snake_case、kebab-case、Title Case 等10种风格, 一键复制, 适合代码与内容。",
+  "keywords": ["大小写 转换", "camelCase", "snake_case", "kebab-case", "驼峰 转换"],
+  "input": { "text": "源文本" },
+  "copy": "复制",
+  "copied": "已复制",
+  "case": {
+    "lower": "全小写",
+    "upper": "全大写",
+    "title": "Title Case",
+    "sentence": "Sentence case",
+    "camel": "camelCase",
+    "pascal": "PascalCase",
+    "snake": "snake_case",
+    "kebab": "kebab-case",
+    "constant": "CONSTANT_CASE",
+    "invert": "InVeRtEd Case"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "各风格的使用场景",
+        "paragraphs": [
+          "camelCase: JavaScript/Java 标识符 (myVariableName)。PascalCase: 类、React 组件 (UserProfile)。snake_case: Python/Ruby 变量 (user_profile)。kebab-case: URL/CSS 类 (user-profile)。CONSTANT_CASE: 环境变量、常量 (USER_PROFILE)。",
+          "Title Case: 书籍/文章标题、标头。Sentence case: 现代 UI 标签和标头主流(长文比 Title Case 更易读)。UPPERCASE: 强调、缩写。lowercase: 标签、不区分大小写的文件名。"
+        ]
+      },
+      {
+        "heading": "本工具的分词逻辑",
+        "paragraphs": [
+          "按空格、连字符、下划线、斜杠、点分割, 同时在「小写到大写」边界('helloWorld' → 'hello'/'World') 和「字母到数字」边界处分割。日常代码、slug、文件路径几乎都能正确处理。",
+          "边界情况: 全大写缩略词('XMLHTTPRequest') 不易自动分词, 我们把连续大写视为一个词块。一般文章/标题/数据集列名能得到预期结果。"
+        ]
+      },
+      {
+        "heading": "代码审查与重构",
+        "paragraphs": [
+          "跨语言迁移时, 粘贴标识符列表后复制转换结果。snake → camel 是 JavaScript ↔ Python 间最常见; HTML 属性转 JS 对象时 kebab → snake。",
+          "SEO slug 用 kebab-case 是标准 — Google 把连字符视为词分隔符, 下划线则不会。「product-name」比「product_name」对 SEO 更友好。"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "输入或粘贴文本", "text": "句子、代码标识符、文件名等。" },
+      { "name": "查看10种结果", "text": "每种风格独立显示。" },
+      { "name": "复制需要的风格", "text": "点击对应区块的「复制」按钮。" }
+    ]
+  },
+  "faq": [
+    { "q": "「XML」之类的缩略词如何处理?", "a": "连续大写视为一个词块。'XMLParser' 拆为 'XML' 和 'Parser'。多数代码场景适用, 边界情况手动调整。" },
+    { "q": "为什么 URL slug 用 kebab-case?", "a": "Google 把连字符当词边界, 下划线不会。kebab-case URL 对 SEO 更友好。" },
+    { "q": "Title Case 与 Sentence case 区别?", "a": "Title Case 几乎所有词首字母大写('The Quick Brown Fox'); Sentence case 仅句首和专有名词大写('The quick brown fox')。现代 UI 偏好 Sentence case。" },
+    { "q": "支持 Unicode?", "a": "支持。JavaScript 的 toLowerCase/toUpperCase 是 Unicode 感知的, 重音符与非拉丁字符正确处理。" },
+    { "q": "可以反向转换吗?", "a": "可以。把转换后的文本再粘贴并选不同风格。camelCase ↔ snake_case 来回无损。" },
+    { "q": "为什么 camelCase 不保留缩略词全大写?", "a": "现代规范中 camelCase 仅每个后续词首字母大写。'XmlHttpRequest' 优于 'XMLHTTPRequest'。" },
+    { "q": "数据会上传吗?", "a": "不会。所有转换在本地。" },
+    { "q": "可以批量转换列表吗?", "a": "粘贴整个列表即可。每行作为单独输入但用同一风格转换。" }
+  ]
+}

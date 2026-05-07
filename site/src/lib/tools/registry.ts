@@ -54,6 +54,10 @@ import aspectRatio from "@/tools/aspect-ratio-calculator";
 import textReplace from "@/tools/text-replace";
 import creditCard from "@/tools/credit-card-validator";
 import cron from "@/tools/cron-expression-tester";
+import savings from "@/tools/savings-goal-calculator";
+import salary from "@/tools/salary-converter";
+import pomodoro from "@/tools/pomodoro-timer";
+import dice from "@/tools/dice-roller";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -114,6 +118,10 @@ export const TOOLS: ToolDefinition[] = [
   textReplace,
   creditCard,
   cron,
+  savings,
+  salary,
+  pomodoro,
+  dice,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

@@ -1,0 +1,54 @@
+{
+  "title": "Base64 编码/解码 — UTF-8 与 URL Safe 双支持",
+  "shortDescription": "UTF-8 文本与 Base64 双向转换。支持 JWT/OAuth 中使用的 URL Safe 变体。",
+  "description": "输入文本或 Base64 字符串即可双向转换。支持 UTF-8 (含表情符号、CJK), URL Safe 变体可切换。",
+  "metaDescription": "免费 Base64 编码/解码工具。UTF-8 与 URL Safe 双支持, 浏览器内即时转换。JWT、OAuth、数据嵌入皆可。",
+  "keywords": ["Base64 编码", "Base64 解码", "URL Safe Base64", "JWT 解码", "Base64 转换"],
+  "input": { "plain": "文本", "encoded": "Base64 字符串" },
+  "output": { "encoded": "编码结果", "plain": "解码结果" },
+  "mode": { "encode": "编码", "decode": "解码" },
+  "urlSafe": "URL Safe (-、_, 无填充)",
+  "copy": "复制",
+  "copied": "已复制",
+  "invalidInput": "Base64 输入无效。",
+  "article": {
+    "sections": [
+      {
+        "heading": "Base64 是什么、用途为何",
+        "paragraphs": [
+          "Base64 用 64 个字符 (A-Z、a-z、0-9、+、/, 末尾 = 填充) 编码任意字节序列。是把图像字节、加密 blob、签名 token 等二进制数据嵌入 JSON、HTML、邮件头等纯文本格式的标准方式。输出比输入大约 33%。",
+          "Base64 是编码不是加密。任何人都可解码回原字节。需要保密时请用真正的加密(AES、RSA等)。"
+        ]
+      },
+      {
+        "heading": "URL Safe 与标准的差别",
+        "paragraphs": [
+          "标准 Base64 用「+」「/」, 它们在 URL 中有特殊含义需要 percent encoding。URL Safe Base64 (RFC 4648 §5) 把「+」替换为「-」, 「/」替换为「_」, 并去掉末尾「=」填充。JWT、OAuth token、许多 Web API 都用 URL Safe 形式。",
+          "手动解码 JWT 或 token 时打开 URL Safe。处理传统邮件或 PDF 嵌入数据时关闭即可。URL Safe 模式下解码也接受标准格式(因为标准字母表是超集减去那对特殊字符)。"
+        ]
+      },
+      {
+        "heading": "UTF-8 处理",
+        "paragraphs": [
+          "旧浏览器 btoa() 只能处理 ASCII。本工具用 TextEncoder 先把输入转为 UTF-8 字节再 Base64 编码。表情符号、CJK 字符、带音标拉丁字符等所有 Unicode 都能正确编码与往返。这与 JWT 库和现代框架的方式一致。"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "选择编码或解码", "text": "顶部模式切换。" },
+      { "name": "需要时打开 URL Safe", "text": "JWT、OAuth token 打开; 其他场景关闭。" },
+      { "name": "粘贴输入", "text": "编码用文本, 解码用 Base64 字符串。" },
+      { "name": "复制结果", "text": "点击输出旁边的「复制」按钮。" }
+    ]
+  },
+  "faq": [
+    { "q": "Base64 是加密吗?", "a": "不是。是把二进制编码成 ASCII 文本。任何人都能解码。需要保密用真正的加密(AES、RSA等)。" },
+    { "q": "为何 URL Safe 不同?", "a": "标准 Base64 的「+」「/」在 URL 有特殊意义需要 percent-encode。URL Safe 替换为「-」「_」避免此问题。" },
+    { "q": "可以解码 JWT 签名?", "a": "解码签名得到字节序列, 用于验证而非阅读。解码 JWT 的头部与负载(前两段)看数据。" },
+    { "q": "支持二进制文件吗?", "a": "本工具仅文本。文件请用二进制感知工具 (浏览器 DevTools 的 atob/btoa 适合小文件)。" },
+    { "q": "解码后乱码怎么办?", "a": "可能 Base64 无效, 或者编码的是非 UTF-8 字节(如 GBK 编码文本)。先检查原始编码。" },
+    { "q": "数据会上传吗?", "a": "不会。所有处理在浏览器内。" },
+    { "q": "大小开销?", "a": "约 33% 增大(每 3 输入字节 → 4 输出字符)。URL Safe 无填充也是相同开销。" },
+    { "q": "为何需要填充「=」?", "a": "标准 Base64 用「=」把输出长度补到 4 的倍数。URL Safe 版本常省略, 因为解码不需要。" }
+  ]
+}
