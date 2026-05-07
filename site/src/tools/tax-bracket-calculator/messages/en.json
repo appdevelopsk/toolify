@@ -1,0 +1,71 @@
+{
+  "title": "Income Tax Bracket Calculator (JP / US)",
+  "shortDescription": "Calculate income tax owed using progressive brackets. Japan, US single, and US married-filing-jointly. Returns total tax, effective rate, marginal rate, and per-bracket breakdown.",
+  "description": "Pick a country/filing status and enter taxable income. The calculator applies the official tax brackets and shows total owed, effective rate, marginal rate, and exactly how much is taxed at each bracket.",
+  "metaDescription": "Free income tax bracket calculator. Japan and US (single/married). See total tax, effective rate, marginal rate, and per-bracket breakdown of your income.",
+  "keywords": ["tax bracket calculator", "income tax calculator", "marginal tax rate", "effective tax rate", "progressive tax"],
+  "empty": "Pick a country and enter your taxable income.",
+  "disclaimer": "Educational estimate only. Real tax depends on deductions, credits, surtaxes, state/local taxes, and many specifics. Consult a tax professional for actual filing.",
+  "input": {
+    "country": "Country / filing status",
+    "income": "Taxable income"
+  },
+  "country": {
+    "JP": "Japan (national income tax)",
+    "US-single": "US — Single",
+    "US-married": "US — Married filing jointly"
+  },
+  "result": {
+    "tax": "Tax owed",
+    "effective": "Effective rate",
+    "marginal": "Marginal rate",
+    "byBracket": "By bracket",
+    "bracket": "Bracket",
+    "rate": "Rate",
+    "taxed": "Taxed at this rate",
+    "taxOwed": "Tax owed"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How progressive tax brackets work",
+        "paragraphs": [
+          "Most income tax systems use 'progressive' brackets: only income within each bracket is taxed at that bracket's rate. Going into a higher bracket doesn't tax all your income at the higher rate — only the portion above the threshold.",
+          "Example: with US 2025 brackets, a single filer earning $80,000 pays 10% on the first $11,600, 12% on the next $35,550, and 22% on the remaining $32,850. Total tax ≈ $12,668 (15.84% effective). The 'marginal rate' (next-dollar rate) is 22%."
+        ]
+      },
+      {
+        "heading": "Effective vs marginal rate",
+        "paragraphs": [
+          "Effective rate: total tax / total income. Reflects the average tax burden. Useful when comparing total tax burden between income levels or scenarios.",
+          "Marginal rate: the rate on the next dollar earned. Decision-relevant for whether to take overtime, accept a raise, or contribute to pre-tax retirement accounts (which save at the marginal rate).",
+          "Common confusion: getting a raise into a higher bracket doesn't lower your take-home from the previous level. It just means the new earnings are taxed at the higher marginal rate. There's no 'tax cliff' in standard progressive systems."
+        ]
+      },
+      {
+        "heading": "What this calculator doesn't include",
+        "paragraphs": [
+          "Deductions: standard deduction (US: $14,600 single, $29,200 married for 2024), 給与所得控除 (Japan, scales with income), 基礎控除 (Japan, ¥480k typical). Subtract these from gross income before using this calculator.",
+          "Credits: child tax credit, EITC, etc. (US); 配偶者控除 / 扶養控除 (Japan). These reduce tax owed directly, not income.",
+          "State/local taxes: US state income tax (0-13%), city tax (some), Japan resident tax (~10% flat), Japan reconstruction surtax (2.1% of national income tax).",
+          "Self-employment tax: US SE tax adds 15.3%; Japan national pension and health insurance separately."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick country / filing status", "text": "Japan (national tax), US single, or US married filing jointly." },
+      { "name": "Enter taxable income", "text": "After standard deductions. JP: 課税所得. US: AGI minus deductions." },
+      { "name": "Read the breakdown", "text": "Total tax, effective rate, marginal rate, plus per-bracket detail." }
+    ]
+  },
+  "faq": [
+    { "q": "Where do these brackets come from?", "a": "Japan: national income tax brackets per 国税庁 (NTA). US: IRS published brackets for 2025/2026. We do not include state/prefecture/local taxes; consult those separately." },
+    { "q": "Should I use gross or taxable income?", "a": "Taxable income (after deductions). For Japan: 給与収入 minus 給与所得控除 minus 各種所得控除. For US: AGI minus standard or itemized deduction minus QBI deduction." },
+    { "q": "Is the Japan reconstruction surtax included?", "a": "No — that's an additional 2.1% of national income tax, on top of the bracket calculation. Apply it manually to the total." },
+    { "q": "What about resident tax in Japan?", "a": "Resident tax (住民税, ~10% flat) is a separate tax administered by your prefecture and city. Not included in this calculator. For total tax burden, add ~10% of taxable income." },
+    { "q": "Why is my effective rate lower than I expected?", "a": "Because lower income is taxed at lower bracket rates. Even in the 24% US bracket, only the income above $100,525 is taxed at 24%; the rest is taxed at 10%, 12%, and 22%." },
+    { "q": "Does this work for capital gains?", "a": "Not directly — capital gains have separate rate schedules. US: 0%, 15%, or 20% depending on income. Japan: typically 20.315% flat for stocks. Use this calculator for ordinary income only." },
+    { "q": "What's a 'marginal rate' decision useful for?", "a": "Knowing your marginal rate helps with: 401(k)/iDeCo contributions (save at marginal rate), Roth vs traditional decisions, deciding whether overtime is worth it after taxes, charitable deduction value." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}

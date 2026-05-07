@@ -86,6 +86,12 @@ import quadratic from "@/tools/quadratic-equation-solver";
 import fraction from "@/tools/fraction-calculator";
 import wpm from "@/tools/wpm-counter";
 import gcdLcm from "@/tools/gcd-lcm-calculator";
+import shadow from "@/tools/shadow-generator";
+import slug from "@/tools/slug-generator";
+import emergencyFund from "@/tools/emergency-fund-calculator";
+import isoWeek from "@/tools/iso-week-calculator";
+import triangle from "@/tools/triangle-calculator";
+import taxBracket from "@/tools/tax-bracket-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -178,6 +184,12 @@ export const TOOLS: ToolDefinition[] = [
   fraction,
   wpm,
   gcdLcm,
+  shadow,
+  slug,
+  emergencyFund,
+  isoWeek,
+  triangle,
+  taxBracket,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

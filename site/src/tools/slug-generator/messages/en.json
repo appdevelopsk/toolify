@@ -1,0 +1,69 @@
+{
+  "title": "URL Slug Generator (SEO-friendly URLs)",
+  "shortDescription": "Convert any title or sentence into an SEO-friendly URL slug. Configurable separator, length cap, lowercase, and Unicode support.",
+  "description": "Type or paste a title; the generator strips punctuation, normalizes accents, collapses whitespace, and produces a clean slug. Supports hyphens, underscores, or dots; configurable max length; optional Unicode preservation for non-Latin URLs.",
+  "metaDescription": "Free URL slug generator. SEO-friendly slugs from any title. Hyphen/underscore/dot separators, max length, Unicode support, ASCII-only mode.",
+  "keywords": ["slug generator", "url slug", "seo url generator", "slugify", "permalink generator"],
+  "input": {
+    "text": "Title or sentence",
+    "separator": "Separator",
+    "lowercase": "Lowercase",
+    "allowUnicode": "Allow Unicode (non-ASCII)",
+    "maxLen": "Max length"
+  },
+  "sep": {
+    "hyphen": "Hyphen",
+    "underscore": "Underscore",
+    "dot": "Dot"
+  },
+  "result": {
+    "slug": "Slug",
+    "length": "Length"
+  },
+  "empty": "(empty)",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "article": {
+    "sections": [
+      {
+        "heading": "What's a URL slug",
+        "paragraphs": [
+          "A slug is the human-readable part of a URL after the domain — for example 'how-to-bake-bread' in '/blog/how-to-bake-bread'. Good slugs are short, descriptive, and stable. Search engines and humans both read them as part of the page's identity.",
+          "Standard rules: lowercase letters, digits, and hyphens only. Spaces become hyphens. Punctuation is removed. Stop words (the, a, is) may be omitted for brevity, though it's a stylistic choice."
+        ]
+      },
+      {
+        "heading": "ASCII vs Unicode slugs",
+        "paragraphs": [
+          "ASCII slugs (the default): Latin letters and digits only. Universally supported, never URL-encoded, share-friendly. The standard choice for SEO-focused English/multilingual blogs.",
+          "Unicode slugs: preserve original characters in URLs. Browsers display them readably (現代日本/?lang=ja), but copy-paste produces percent-encoded URLs (%E7%8F%BE%E4%BB%A3...). Some platforms restrict Unicode slugs; check before relying on them.",
+          "When to choose Unicode: Japanese, Chinese, or Korean blog targeting native readers. The IDN URL appears clean to native users and Google indexes them well. The downside is sharing on platforms that show raw URLs."
+        ]
+      },
+      {
+        "heading": "Slug length and SEO",
+        "paragraphs": [
+          "Google's URL display caps around 60-80 characters. Longer slugs get truncated and look 'spammy'. We default the max-length slider to 60 — short enough for most listings.",
+          "However, Google's algorithms don't penalize slug length directly. Length matters for click-through rates (humans skip long URLs) and for keeping the slug readable. Keywords in the slug help slightly with ranking; stuffing keywords into long slugs hurts more than helps.",
+          "Best practice: include the most important 2-3 keywords, drop stop words and articles, keep under 60 characters."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type or paste a title", "text": "Article title, product name, or any descriptive text." },
+      { "name": "Pick a separator", "text": "Hyphen is standard. Underscore works for some legacy CMSs. Dots are unusual but valid." },
+      { "name": "Configure options", "text": "Lowercase (recommended), Unicode (for non-Latin URLs), max length cap." },
+      { "name": "Copy the slug", "text": "Paste into your CMS, blog post, or routing config." }
+    ]
+  },
+  "faq": [
+    { "q": "Should I use hyphens or underscores?", "a": "Hyphens. Google explicitly treats hyphens as word separators in URLs; underscores are treated as part of the word. So 'fast-cars' is two keywords, 'fast_cars' is one. Hyphens win for SEO." },
+    { "q": "Should I include stop words like 'the' or 'a'?", "a": "Optional. Skipping them keeps slugs short. Including them keeps slugs readable. The SEO impact is negligible either way; readability matters more." },
+    { "q": "What about apostrophes (it's, don't)?", "a": "We strip them. 'don't' becomes 'dont'. Some generators preserve them as parts of words; we follow the simpler convention." },
+    { "q": "Does this handle Japanese / Chinese?", "a": "Yes — toggle 'Allow Unicode' to keep CJK characters in the slug. Without that flag, CJK characters are stripped (since they have no ASCII equivalent)." },
+    { "q": "Why is my Korean slug becoming empty in ASCII mode?", "a": "Korean characters don't have direct ASCII equivalents. Either enable Unicode mode, or transliterate manually before pasting." },
+    { "q": "Are emoji preserved?", "a": "Yes in Unicode mode. URL-encoded emoji are valid but ugly — most platforms strip them. Practical advice: don't use emoji in slugs." },
+    { "q": "What's the maximum slug length I should use?", "a": "60 characters or less is the sweet spot for SEO and CTR. Some CMS systems cap at 200 characters. Google's index supports much longer but rarely benefits readability." },
+    { "q": "Does the data leave my browser?", "a": "No. Generation runs locally; nothing is sent to a server." }
+  ]
+}

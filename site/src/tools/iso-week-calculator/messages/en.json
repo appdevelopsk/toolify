@@ -1,0 +1,61 @@
+{
+  "title": "ISO Week Number Calculator (week-of-year)",
+  "shortDescription": "Find the ISO 8601 week number, ISO weekday, and week date range for any calendar date. Includes day-of-year and weeks-in-year.",
+  "description": "Pick any date and see its ISO 8601 week number (1-53), the ISO weekday (1=Monday, 7=Sunday), the Monday-Sunday range of that week, and useful related counts (day of year, weeks in year).",
+  "metaDescription": "Free ISO week number calculator. ISO 8601 week, weekday, week date range, day of year, weeks in year. Standard week-of-year format.",
+  "keywords": ["iso week number", "week of year", "iso 8601 week", "week calculator", "calendar week"],
+  "input": { "date": "Date" },
+  "today": "Today",
+  "result": {
+    "iso": "ISO 8601 representation",
+    "weekNumber": "Week number",
+    "weekday": "Weekday",
+    "weekStart": "Week starts (Monday)",
+    "weekEnd": "Week ends (Sunday)",
+    "dayOfYear": "Day of year",
+    "weeksInYear": "Weeks in year"
+  },
+  "empty": "Pick a date.",
+  "article": {
+    "sections": [
+      {
+        "heading": "What's an ISO week",
+        "paragraphs": [
+          "ISO 8601 defines a calendar week starting Monday and ending Sunday. The first week of any ISO year is the one containing that year's first Thursday — or equivalently, the week containing January 4. This means a year can have 52 or 53 ISO weeks, and the ISO year doesn't always match the calendar year for late-December and early-January dates.",
+          "Format: 'YYYY-Www-D'. So '2026-W19-3' means Wednesday of week 19 of 2026. Weekday number: 1=Monday, 7=Sunday. Week number: 1-52 or 1-53."
+        ]
+      },
+      {
+        "heading": "Why ISO weeks differ from calendar weeks",
+        "paragraphs": [
+          "US calendars typically count Sunday as the first day. ISO is Monday-first. This means: a Sunday in your local calendar that's at end of week 30 is, ISO-wise, end of week 30. But your typed Sunday might fall on a different ISO week if it's the last Sunday of one year and the first Monday is another.",
+          "Also: ISO years can be off by one from calendar years. Dec 31 2024 is in ISO week 1 of 2025 (week containing the first Thursday of 2025). Jan 1 2024 was Monday — week 1 of 2024 starts Jan 1. Jan 1 2025 is Wednesday — week 1 of 2025 starts Dec 30 2024."
+        ]
+      },
+      {
+        "heading": "Where ISO weeks are used",
+        "paragraphs": [
+          "Business: many European companies invoice and ship by ISO week. 'Order will arrive in W23' is unambiguous and language-independent.",
+          "Software: many programming languages have ISO week functions. JavaScript Date doesn't directly, so libraries like date-fns and dayjs add it. Used in scheduling, log analysis, and reporting.",
+          "Healthcare epidemiology: weekly disease incidence reports use ISO weeks. WHO and CDC use them in their flu and COVID dashboards.",
+          "Sports / gaming: many leagues schedule by 'week 1, week 2, …' which often align with ISO weeks (especially European leagues)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick a date", "text": "Date picker or 'today' button." },
+      { "name": "Read the ISO representation", "text": "Format: YYYY-Www-D, where w is week number and D is weekday." },
+      { "name": "See the week range", "text": "Monday and Sunday of that week, in your locale's date format." }
+    ]
+  },
+  "faq": [
+    { "q": "Why doesn't this match Excel's WEEKNUM function?", "a": "Excel's WEEKNUM uses different conventions. The default is US-style (Sunday-first). For ISO weeks in Excel, use ISOWEEKNUM or specify return_type=21 in WEEKNUM." },
+    { "q": "Can a year have 53 weeks?", "a": "Yes. A year has 53 ISO weeks if Jan 1 is a Thursday OR Dec 31 is a Thursday. About 71 in every 400 years." },
+    { "q": "What's the ISO year vs calendar year?", "a": "Most days they're the same. Late-December and early-January edge cases differ. Dec 29 2008 is ISO week 1 of 2009 (calendar year 2008, ISO year 2009)." },
+    { "q": "Is week 1 always Jan 1's week?", "a": "Not always. ISO week 1 contains the year's first Thursday. So if Jan 1 is a Friday-Sunday, that day is part of the previous year's last ISO week." },
+    { "q": "What's the difference between W1 and Week 1?", "a": "Same thing in ISO context. The W prefix is the ISO format convention. '2026-W01' means ISO week 1 of 2026." },
+    { "q": "Why Monday as week start?", "a": "ISO 8601 standardized this. Most of the world uses Monday-first; only Saudi Arabia, US, Canada, and a few other countries customarily use Sunday-first." },
+    { "q": "Can I export to a calendar?", "a": "Not directly from this tool. Use the week start/end dates and create your own calendar event." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "title": "Triangle Calculator (right angle, SSS, SAS)",
+  "shortDescription": "Compute a triangle's area, perimeter, sides, and angles. Three modes: right triangle (Pythagorean), three sides (SSS), or two sides + included angle (SAS).",
+  "description": "Pick a mode, enter known values, and get all sides, all three angles, area, and perimeter. Validates triangle inequality for SSS mode.",
+  "metaDescription": "Free triangle calculator. Right angle (Pythagorean), SSS, or SAS modes. Returns sides, angles, area, perimeter. Useful for geometry homework and construction.",
+  "keywords": ["triangle calculator", "pythagorean theorem", "law of cosines", "triangle area", "triangle solver"],
+  "empty": "Enter known values for the selected mode.",
+  "invalid": "Invalid triangle: violates triangle inequality (the longest side must be shorter than the sum of the other two).",
+  "mode": {
+    "right": "Right triangle",
+    "sss": "Three sides (SSS)",
+    "sas": "Two sides + angle (SAS)"
+  },
+  "input": {
+    "legA": "Leg a",
+    "legB": "Leg b",
+    "sideA": "Side a",
+    "sideB": "Side b",
+    "sideC": "Side c",
+    "angleC": "Angle C (deg)"
+  },
+  "result": {
+    "area": "Area",
+    "perim": "Perimeter",
+    "sides": "Sides",
+    "angles": "Angles"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Three modes for three problems",
+        "paragraphs": [
+          "Right triangle (legs a, b): the most common case. Hypotenuse c = √(a² + b²) by the Pythagorean theorem. Angle A = arctan(a/b), B = arctan(b/a), C = 90°. Area = (a × b) / 2.",
+          "Three sides (SSS — Side-Side-Side): when you know all three side lengths. Validate with triangle inequality (longest side < sum of other two). Angles via law of cosines: cos A = (b² + c² − a²) / (2bc). Area via Heron's formula: √(s(s−a)(s−b)(s−c)) where s = (a+b+c)/2.",
+          "Two sides + included angle (SAS — Side-Angle-Side): when you know two sides and the angle between them. Third side via law of cosines: c = √(a² + b² − 2ab cos C). Other angles via law of sines. Area = (1/2) × a × b × sin C."
+        ]
+      },
+      {
+        "heading": "When to use each mode",
+        "paragraphs": [
+          "Right triangle is the most common in everyday geometry — building a wall corner, calculating a roof rise, finding a TV's diagonal from width and height. The Pythagorean theorem is one of the most-used formulas in construction and design.",
+          "SSS shows up in surveying, navigation, and any case where you measure three sides directly. Useful for verifying a triangle's shape from physical measurement.",
+          "SAS is for cases where you have two sides meeting at a known angle but the third side is unmeasured or hard to reach. Common in trigonometry classes and trigonometric problem sets."
+        ]
+      },
+      {
+        "heading": "Practical applications",
+        "paragraphs": [
+          "Construction: roof pitch from rise and run (right triangle). Carpenter's 'rule of three': a 3-4-5 triangle has a perfect right angle, no protractor needed.",
+          "Navigation: triangulation uses SSS or SAS to find your position from three known landmarks. The same math powers GPS (with relativistic corrections).",
+          "Computer graphics: every 3D model is decomposed into triangles. The triangle area formula appears in shader code computing surface lighting.",
+          "Astronomy: parallax distance measurements use SSS principles. The sun-Earth-star angle gives the star's distance via simple trig."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick a mode", "text": "Right triangle, SSS (three sides), or SAS (two sides + angle)." },
+      { "name": "Enter known values", "text": "Each mode requires different inputs." },
+      { "name": "Read all unknowns", "text": "Sides, angles, area, and perimeter all computed." }
+    ]
+  },
+  "faq": [
+    { "q": "What's the triangle inequality?", "a": "For three lengths to form a triangle, the sum of any two must exceed the third. So 3, 4, 5 is valid (3+4=7 > 5); 1, 2, 5 is not (1+2=3 < 5). The calculator catches this in SSS mode." },
+    { "q": "How accurate is this?", "a": "Floating-point precision (~15-17 significant digits). For typical inputs the error is much smaller than measurement error in the real world." },
+    { "q": "Can angles be in radians?", "a": "Not yet — we use degrees throughout. Convert via radians × 180/π if needed, or use our angle converter." },
+    { "q": "What if my triangle has obtuse angle?", "a": "All modes handle obtuse triangles correctly. Make sure for SAS that the included angle is between 0° and 180° exclusive." },
+    { "q": "Why doesn't this work for all 'two sides and an angle'?", "a": "We support SAS (the angle BETWEEN two sides). The ambiguous case (SSA — angle, then two sides where one is opposite the angle) sometimes has 0, 1, or 2 valid triangles. SSS and SAS are unambiguous." },
+    { "q": "Can I solve obtuse 3-4-5 type problems?", "a": "3-4-5 is a right triangle. For obtuse, try 4-5-7 in SSS mode — the largest angle is over 90°." },
+    { "q": "How do I find side from angles only?", "a": "You can't — angles alone determine shape but not size. You need at least one side. Two angles + one side is enough (third angle = 180 − sum of two)." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}

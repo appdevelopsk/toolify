@@ -1,0 +1,73 @@
+{
+  "title": "CSS Box Shadow Generator (with live preview)",
+  "shortDescription": "Build CSS box-shadow values visually. Adjust offset, blur, spread, color, opacity, and inset. Live preview, copy-paste CSS.",
+  "description": "Six common shadow presets (soft, card, lifted, glow, neumorphic, inset). Fine-tune all parameters with sliders, see the result live, and copy ready-to-paste CSS.",
+  "metaDescription": "Free CSS box-shadow generator with live preview. Offset, blur, spread, color, opacity, inset support. Includes 6 presets including neumorphic.",
+  "keywords": ["box shadow generator", "css shadow", "shadow css", "neumorphic generator", "drop shadow generator"],
+  "preset": {
+    "soft": "Soft",
+    "card": "Card",
+    "lifted": "Lifted",
+    "glow": "Glow",
+    "neumorphic": "Neumorphic",
+    "inset": "Inset"
+  },
+  "input": {
+    "x": "X offset",
+    "y": "Y offset",
+    "blur": "Blur",
+    "spread": "Spread",
+    "color": "Color",
+    "opacity": "Opacity",
+    "inset": "Inset (inner shadow)"
+  },
+  "output": { "css": "CSS code" },
+  "copy": "Copy CSS",
+  "copied": "Copied!",
+  "article": {
+    "sections": [
+      {
+        "heading": "The five shadow parameters",
+        "paragraphs": [
+          "X offset: horizontal displacement. Positive shifts the shadow right, negative left. For sun-from-upper-left lighting (the typical UI assumption), a small positive X simulates light from upper-left.",
+          "Y offset: vertical displacement. Positive shifts the shadow down, simulating a light source above. Almost all UI shadows use positive Y.",
+          "Blur radius: how soft the shadow's edge is. 0 = sharp edge (rare). 8-30px is typical for cards and buttons. Higher values create dreamy, soft shadows.",
+          "Spread: extends or shrinks the shadow uniformly. Positive values make the shadow larger than the element; negative shrinks it. Negative spread combined with offset creates a 'lifted' effect.",
+          "Color/opacity: shadows are usually black with low opacity (10-30%). Colored shadows are trendy but harder to use well. Match your background's value range — too-dark shadows on dark UIs disappear, too-light shadows on light UIs lack contrast."
+        ]
+      },
+      {
+        "heading": "Inset shadows",
+        "paragraphs": [
+          "An inset shadow is drawn inside the element instead of outside. Used for: pressed-button states, sunken input fields, neumorphic '3D pushed-in' effects.",
+          "Inset shadows respect the element's border radius and ignore overflow. They're useful for adding visual depth to flat UI elements without changing the actual layout."
+        ]
+      },
+      {
+        "heading": "Neumorphism and the 'soft UI' trend",
+        "paragraphs": [
+          "Neumorphism (popular 2020-2022) uses two opposing shadows — one light, one dark — to make elements appear extruded from a same-colored background. Our 'Neumorphic' preset shows a single dark shadow; for full neumorphism, combine with a light inset shadow on the opposite side: 'inset -8px -8px 20px rgba(255,255,255,0.5), 8px 8px 20px rgba(0,0,0,0.12)'.",
+          "Note: pure neumorphism has accessibility issues — the lack of contrast makes elements hard to distinguish. Modern designs use it sparingly, often combined with traditional shadows."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick a preset", "text": "Or build from scratch with the sliders." },
+      { "name": "Adjust X/Y offset", "text": "Direction of the shadow." },
+      { "name": "Tune blur and spread", "text": "Blur softens; spread enlarges." },
+      { "name": "Set color and opacity", "text": "Most UI shadows use black with 10-30% opacity." },
+      { "name": "Toggle inset", "text": "For inner shadows (pressed button, sunken input)." },
+      { "name": "Copy CSS", "text": "Paste into your stylesheet's box-shadow property." }
+    ]
+  },
+  "faq": [
+    { "q": "Can I add multiple shadows?", "a": "CSS supports comma-separated multiple shadows: 'box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)'. Our tool generates one shadow at a time; combine multiple by hand." },
+    { "q": "How do I make a neumorphic effect?", "a": "Combine a dark shadow on bottom-right with a light shadow on top-left, both inset or both outset. Example: '8px 8px 20px rgba(0,0,0,0.12), -8px -8px 20px rgba(255,255,255,0.7)'. Our preset shows the dark half; add the light shadow manually." },
+    { "q": "What's the difference between blur and spread?", "a": "Blur softens the shadow's edge (gradient transparency). Spread changes the shadow's overall size (more or less than the element). Blur=20 spread=0 is a soft glow at element size; blur=0 spread=20 is a hard shadow 20px larger." },
+    { "q": "Why does my shadow look flat?", "a": "Likely too low opacity, no offset, or shadow color too close to background. Try Y=8, blur=24, opacity=0.18 as a starting point — those values render visibly on most light backgrounds." },
+    { "q": "Can I use this for text-shadow?", "a": "Almost — text-shadow uses the same syntax minus 'spread' and 'inset'. Adjust manually after copying: take 'X Y blur color' (drop spread and inset)." },
+    { "q": "Are shadows performant?", "a": "Box-shadow is GPU-accelerated in modern browsers. Many shadows on many elements can still slow scrolling. Single shadows on cards and buttons: zero concern." },
+    { "q": "Should I use shadows or borders?", "a": "Both have uses. Borders are crisper and more accessible. Shadows look softer/more elevated. Modern flat-ish UIs often use both: a thin border for crispness + soft shadow for elevation." },
+    { "q": "Does the data leave my browser?", "a": "No. All preview and CSS generation runs locally; nothing is sent to a server." }
+  ]
+}
