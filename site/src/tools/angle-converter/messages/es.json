@@ -1,0 +1,70 @@
+{
+  "title": "Convertidor de ángulo (grados, radianes, gradianes)",
+  "shortDescription": "Convierte ángulos entre grados, radianes, gradianes, vueltas, minutos y segundos de arco. Las 6 unidades se actualizan a la vez.",
+  "description": "Escribe un valor de ángulo, elige la unidad de origen y ve al instante las 6 representaciones equivalentes. Útil para matemáticas, física, navegación, topografía y CSS.",
+  "metaDescription": "Convertidor gratis de ángulos. Cambia entre grados, radianes (π), gradianes, vueltas, minutos y segundos de arco. Friendly para mates/física/CSS.",
+  "keywords": ["convertidor ángulo", "grados a radianes", "radianes a grados", "gradianes", "minutos arco"],
+  "empty": "Introduce un valor y elige una unidad.",
+  "input": {
+    "value": "Valor",
+    "from": "Convertir desde"
+  },
+  "unit": {
+    "deg": "Grados (°)",
+    "rad": "Radianes (π)",
+    "grad": "Gradianes (gon)",
+    "turn": "Vueltas (revoluciones)",
+    "arcmin": "Minutos arco (')",
+    "arcsec": "Segundos arco (\")"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Seis unidades de ángulo explicadas",
+        "paragraphs": [
+          "Grados (°): círculo completo = 360°. La unidad más común a diario. Ángulo recto = 90°, media vuelta = 180°. Usado en geometría, navegación, intros de física, habla diaria.",
+          "Radianes (rad): círculo completo = 2π ≈ 6.283 rad. Unidad SI/científica; definida como longitud de arco entre radio para círculo unitario. Todas las fórmulas de mate y física usan radianes (sin, cos, tan esperan radianes en la mayoría de lenguajes).",
+          "Gradianes (gon, grad): círculo completo = 400 grad. Ángulo recto = 100 grad — el atractivo: friendly con decimales, usado en topografía y algunos contextos europeos de ingeniería.",
+          "Vueltas: círculo completo = 1 vuelta. Media vuelta = 0.5. Usado en física para movimiento cíclico y en CSS (transform: rotate(0.25turn) = 90°).",
+          "Minutos arco ('): 1° = 60 arcmin. Usados en navegación (1 milla náutica ≈ 1 arcmin de latitud) y astronomía.",
+          "Segundos arco (''): 1° = 3600 arcsec, 1 arcmin = 60 arcsec. La astronomía usa segundos arco extensamente (paralaje, resolución telescópica)."
+        ]
+      },
+      {
+        "heading": "Conversiones comunes que memorizar",
+        "paragraphs": [
+          "180° = π rad ≈ 3.14159 rad. La conversión más útil en mate y física. La mayoría sigue de esta.",
+          "90° = π/2 rad ≈ 1.5708 rad (ángulo recto).",
+          "60° = π/3 ≈ 1.047 rad. 45° = π/4 ≈ 0.785 rad. 30° = π/6 ≈ 0.524 rad. Estos tres son los 'ángulos especiales' de trigonometría.",
+          "1° = 60 arcmin = 3600 arcsec. 1 arcmin = 60 arcsec.",
+          "1 vuelta = 360° = 2π rad = 400 grad."
+        ]
+      },
+      {
+        "heading": "Dónde se prefiere cada unidad",
+        "paragraphs": [
+          "Programación y física: radianes. Math.sin, Math.cos, Math.tan de JavaScript esperan radianes. Convierte desde grados con × Math.PI / 180.",
+          "Educación y diario: grados. Casi todos aprenden trigonometría en grados. Construcción, navegación y medición casual usan grados.",
+          "Topografía (Europa): gradianes. Un ángulo recto de 100 gradianes simplifica aritmética decimal en cálculos de campo.",
+          "Astronomía: minutos y segundos arco para posiciones del cielo. Distancias por paralaje se cotizan en segundos arco.",
+          "Animaciones CSS: grados, radianes o vueltas. transform: rotate(45deg) y rotate(0.125turn) son equivalentes — elige el que lea más natural."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escribe el valor", "text": "Entrada numérica." },
+      { "name": "Elige la unidad de origen", "text": "Selecciona en qué unidad está tu valor." },
+      { "name": "Lee las 6 equivalencias", "text": "Todas las unidades mostradas lado a lado. Origen resaltado." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Cómo convierto grados a radianes manualmente?", "a": "Multiplica por π/180. Así 180° × π/180 = π rad. O recuerda: 180° = π, luego escala: 90° = π/2, 45° = π/4, 60° = π/3." },
+    { "q": "¿Por qué radianes son la unidad SI?", "a": "Porque son la elección natural para matemática de movimiento circular: longitud de arco = radio × ángulo (en radianes), pero solo si el ángulo está en radianes. Las fórmulas de física son más simples en radianes." },
+    { "q": "¿Para qué se usa el gradián (o gon)?", "a": "Topografía y algo de ingeniería europea. El ángulo recto de 100 gradianes friendly con decimales simplifica aritmética de campo. Hoy unidad de nicho." },
+    { "q": "¿Por qué 360 grados en un círculo?", "a": "Histórico, de las matemáticas babilónicas en base 60 hacia 2000 a.C. 360 tiene muchos divisores (1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 20, etc.) lo que lo hace cómodo para aritmética con fracciones sin decimales." },
+    { "q": "¿Qué tan precisa es la calculadora?", "a": "Precisión de coma flotante (15-17 cifras significativas). Conversiones ida y vuelta (grados → radianes → grados) preservan la entrada a esa precisión." },
+    { "q": "¿Puedo convertir ángulos negativos?", "a": "Sí. -90° = -π/2 rad = -100 grad = -0.25 vueltas. La matemática maneja signo." },
+    { "q": "¿Y ángulos mayores que una vuelta completa?", "a": "Soportado. 720° = 2 vueltas = 4π rad. La calculadora no normaliza a [0, 360) — para eso usa módulo (p.ej. x mod 360 para grados)." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. La conversión corre localmente; nada se envía a un servidor." }
+  ]
+}

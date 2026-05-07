@@ -1,0 +1,63 @@
+{
+  "title": "Calculadora de fechas (sumar/restar días o diferencia)",
+  "shortDescription": "Suma o resta años/meses/días a una fecha, o encuentra la diferencia precisa entre dos fechas incluyendo días hábiles.",
+  "description": "Dos modos: 'sumar o restar' para calcular una fecha futura o pasada, o 'entre' para encontrar la diferencia en años, meses, días, semanas y días hábiles.",
+  "metaDescription": "Calculadora gratis de fechas. Suma o resta años/meses/días, o encuentra la diferencia entre fechas con conteo de días hábiles. Consciente de calendario y bisiestos.",
+  "keywords": ["calculadora fechas", "sumar días a fecha", "diferencia fechas", "días hábiles", "días entre fechas"],
+  "empty": "Selecciona fechas para calcular.",
+  "mode": { "addSubtract": "Sumar o restar", "between": "Diferencia entre fechas" },
+  "op": { "add": "Sumar", "subtract": "Restar" },
+  "input": { "start": "Fecha inicio", "end": "Fecha fin", "years": "Años", "months": "Meses", "days": "Días" },
+  "result": {
+    "resultDate": "Fecha resultado",
+    "difference": "Diferencia",
+    "ymd": "{y} años, {m} meses, {d} días",
+    "totalDays": "Total días",
+    "totalWeeks": "Total semanas",
+    "totalMonths": "Total meses",
+    "businessDays": "Días hábiles (lun-vie)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué calcula",
+        "paragraphs": [
+          "Modo sumar/restar: toma una fecha, suma o resta un número de años, meses y días, y te da la fecha resultante. Años y meses usan aritmética de calendario (así sumar 1 mes a 31 ene da 28 feb o 29 feb dependiendo de bisiesto, no 3 mar). Los días son exactos — sumar 30 días siempre avanza exactamente 30 días de calendario.",
+          "Modo entre: toma dos fechas y da la diferencia en años/meses/días más totales en días, semanas, meses y días hábiles (lun a vie, sin festivos). La forma Y/M/D usa la misma lógica de préstamo que nuestra age calculator — una diferencia es p.ej. '2 años, 5 meses, 3 días', no un año decimal."
+        ]
+      },
+      {
+        "heading": "Por qué los días hábiles no incluyen festivos",
+        "paragraphs": [
+          "Contamos lunes a viernes como días hábiles y excluimos sábado y domingo. Los festivos varían por país, región y año, así que no los restamos automáticamente. Para EE.UU. resta unos 10 festivos federales por año del resultado; UK ~8 bank holidays; España ~14 festivos.",
+          "Si los festivos importan para tu cálculo (plazos, negociaciones contractuales), haz el conteo de calendario aquí, luego revisa la lista de festivos de tu país manualmente. Podríamos añadir resta de festivos por país en versión futura."
+        ]
+      },
+      {
+        "heading": "Casos de uso comunes",
+        "paragraphs": [
+          "Plazos de proyecto: 'esto vence 90 días después del kickoff'. Suma 90 días a la fecha inicial.",
+          "Términos contractuales: cuenta días entre inicio y fin del contrato. Coteja contra el contrato para facturación.",
+          "Planificación de viaje: ¿cuántos días hábiles entre salir y volver? Útil para calendarios fuera de oficina e informes de gastos.",
+          "Hitos personales: aniversarios, conteos de sobriedad, tiempo desde un evento mayor."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige un modo", "text": "Sumar/restar para mover desde una fecha, o entre para encontrar diferencia." },
+      { "name": "Introduce la fecha inicial", "text": "Usa el selector de fechas." },
+      { "name": "Añade el offset o fecha final", "text": "Años/meses/días para modo sumar, o fecha final para modo entre." },
+      { "name": "Lee el resultado", "text": "Fecha resultante o desglose completo de diferencia." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Qué pasa si sumo 1 mes al 31 de enero?", "a": "Obtienes 28 feb (o 29 feb en bisiesto). La aritmética de calendario fija al último día del mes destino cuando el día origen no existe." },
+    { "q": "¿Se restan festivos de los días hábiles?", "a": "No — solo fines de semana. Resta los festivos específicos de tu país manualmente según el calendario de tu jurisdicción." },
+    { "q": "¿Maneja aritmética con fechas negativas?", "a": "Sí mediante el modo 'restar'. Internamente, restar es solo sumar deltas negativos. El modo 'diferencia entre' siempre devuelve valores positivos sin importar el orden." },
+    { "q": "¿Qué zona horaria usa?", "a": "La zona local de tu navegador. Las fechas se interpretan como medianoche local. Los cálculos cruzando zonas pueden necesitar ajuste." },
+    { "q": "¿Puedo sumar horas y minutos?", "a": "Aún no — solo granularidad de fecha. Usa una herramienta de timestamp aparte para matemática a nivel de hora." },
+    { "q": "¿Cuál es la diferencia más grande que maneja?", "a": "Cientos de años cómodamente. El Date de JavaScript soporta ±100 millones de días desde 1970, así que ese es el límite práctico." },
+    { "q": "¿Por qué cuenta ambos extremos diferente?", "a": "El total de días es el conteo de noches entre las dos fechas. Dos días consecutivos tienen diferencia de 1 día. El conteo de días hábiles camina por cada día de calendario en medio." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Todo el cálculo corre localmente." }
+  ]
+}

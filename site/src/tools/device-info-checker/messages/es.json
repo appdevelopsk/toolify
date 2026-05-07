@@ -1,0 +1,92 @@
+{
+  "title": "Comprobador de info de dispositivo (browser, OS, HW)",
+  "shortDescription": "Ve el navegador, OS, pantalla, hardware, GPU, almacenamiento, red y preferencias de modo oscuro de tu dispositivo en un sitio. Todo detectado en cliente.",
+  "description": "Volcado en navegador de cada Web API pública que el dispositivo expone: user agent, OS, versión, tamaño de pantalla, devicePixelRatio, hardwareConcurrency (núcleos), memoria, GPU vía WebGL, cuota de almacenamiento, tipo y velocidad de red, idioma, zona, modo oscuro y reduced-motion.",
+  "metaDescription": "Comprobador gratis de info de dispositivo. Browser, OS, núcleos CPU, memoria, GPU, pantalla, red, idioma, zona — toda la info en una página.",
+  "keywords": ["info dispositivo", "detección browser", "info sistema", "user agent", "info hardware"],
+  "loading": "Detectando…",
+  "copyJson": "Copiar JSON",
+  "copied": "¡Copiado!",
+  "notAvailable": "(no disponible)",
+  "automation": "Automatización detectada",
+  "real": "Navegador real",
+  "section": {
+    "browser": "Navegador y SO",
+    "display": "Pantalla",
+    "hardware": "Hardware",
+    "network": "Red",
+    "userAgent": "Cadena User-Agent"
+  },
+  "field": {
+    "browser": "Navegador",
+    "os": "Sistema operativo",
+    "platform": "Plataforma",
+    "language": "Idioma principal",
+    "languages": "Todos los idiomas",
+    "timezone": "Zona horaria",
+    "cookiesEnabled": "Cookies activadas",
+    "online": "Estado online",
+    "doNotTrack": "Do Not Track",
+    "webdriver": "Webdriver",
+    "screenSize": "Tamaño pantalla",
+    "availSize": "Área disponible",
+    "windowSize": "Tamaño ventana",
+    "colorDepth": "Profundidad color",
+    "pixelRatio": "devicePixelRatio",
+    "darkMode": "Prefiere modo oscuro",
+    "reducedMotion": "Movimiento reducido",
+    "cpuCores": "Hilos CPU",
+    "deviceMemory": "Memoria",
+    "touchPoints": "Puntos táctiles",
+    "gpu": "GPU (WebGL)",
+    "storageQuota": "Cuota almacenamiento",
+    "storageUsage": "Almacenamiento usado",
+    "connectionType": "Tipo conexión",
+    "downlink": "Downlink",
+    "rtt": "Round-trip time"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué se recopila",
+        "paragraphs": [
+          "Navegador y SO: user-agent, navegador/SO parseados, idioma, zona, cookies, estado online. La misma info que cualquier sitio puede leer.",
+          "Pantalla: tamaño de pantalla, viewport, profundidad de color, devicePixelRatio (Retina/HiDPI), prefers-color-scheme, prefers-reduced-motion. Usado por sitios para diseño responsivo y accesibilidad.",
+          "Hardware: hilos CPU (navigator.hardwareConcurrency), clase de memoria (navigator.deviceMemory, en GB, ≥4 reportado capado a 8), max touch points, info GPU desde WebGL, cuota de almacenamiento y uso actual.",
+          "Red: tipo efectivo (slow-2g/2g/3g/4g), downlink (Mbps) y RTT (ms) cuando el navegador lo soporta. Útil para carga adaptativa."
+        ]
+      },
+      {
+        "heading": "Privacidad: qué ven los sitios y qué no",
+        "paragraphs": [
+          "Todo lo mostrado aquí es información que cualquier sitio que visites ya puede acceder vía APIs JavaScript estándar. No se necesita permiso especial; todo está en los objetos públicos navigator y screen. Así esta herramienta es informativa, no extractiva.",
+          "Lo que los sitios NO ven (y esto no puede mostrar): tu IP (solo en servidor, esta herramienta es 100% cliente), tu sistema de archivos local, contenido de otras pestañas, ni nada fuera del sandbox del navegador. El fingerprinting combina muchos de estos campos visibles para identificar un navegador único, incluso sin cookies — preocupación de privacidad ampliamente documentada."
+        ]
+      },
+      {
+        "heading": "Útil para depurar",
+        "paragraphs": [
+          "Móvil vs escritorio: el user agent revela qué ve el sitio. A veces los problemas responsivos vienen de detección errónea.",
+          "GPU/WebGL: 'GPU (WebGL)' muestra tu renderer. Útil cuando sitios 3D complejos o canvas-pesados rinden mal — tu GPU puede ser el cuello de botella.",
+          "Almacenamiento: la cuota te dice cuánto localStorage/IndexedDB/cache puede usar el sitio. Default suele ser varios GB en escritorio, menos en móvil. Si una webapp da 'quota exceeded', este número es por qué."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Abre esta página", "text": "La detección corre automáticamente al cargar." },
+      { "name": "Lee cada sección", "text": "Navegador y SO, Pantalla, Hardware, Red, User-Agent." },
+      { "name": "Redimensiona tu ventana", "text": "Tamaño de ventana y campos relacionados con dpi se actualizan en vivo." },
+      { "name": "Opcional: copiar JSON", "text": "Haz clic en 'Copiar JSON' para capturar el snapshot completo para reportes de bugs o comparaciones." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Esto envía mis datos a algún sitio?", "a": "No. Todo se detecta y renderiza localmente en tu navegador. Nada se loguea ni transmite." },
+    { "q": "¿Por qué algunos campos están '(no disponible)'?", "a": "Los navegadores varían en qué APIs exponen. navigator.deviceMemory es solo Chrome/Edge; navigator.connection es mayormente Chrome; cuota de almacenamiento requiere HTTPS. Safari y Firefox restringen más en modo privado." },
+    { "q": "¿Por qué el tamaño de pantalla difiere de la resolución esperada?", "a": "Los navegadores reportan 'CSS pixel', no físico. devicePixelRatio muestra el multiplicador (p.ej. 2.0 en Retina). Resolución física = tamaño × devicePixelRatio." },
+    { "q": "¿Qué muestra 'GPU (WebGL)'?", "a": "El nombre del renderer reportado por WebGL. Navegadores nuevos pueden ofuscarlo por protección antifingerprinting — podrías ver 'Apple GPU' en vez de 'M2 Pro' en macOS." },
+    { "q": "¿Puedo confiar en el user agent?", "a": "Las cadenas UA pueden falsificarse por extensiones o ajustes. Son una pista, no garantía. Algunos navegadores reducen activamente el detalle UA (Safari, Firefox en privado)." },
+    { "q": "¿Por qué muestra 8 hilos si mi CPU tiene 12?", "a": "navigator.hardwareConcurrency puede capparse para protección antifingerprinting. Algunos navegadores reportan máximo 8 o 16 incluso en sistemas con más núcleos." },
+    { "q": "¿Y si mi móvil muestra 0 touch points?", "a": "En móvil, maxTouchPoints normalmente es ≥1. Si es 0 puede que estés en modo escritorio. Refresca o cambia a vista móvil en ajustes." },
+    { "q": "¿Funciona en iPhone?", "a": "Sí, con limitaciones de Safari iOS. Algunos campos (deviceMemory, connection) pueden no estar disponibles. UA y detección básica de browser/OS siempre funcionan." }
+  ]
+}

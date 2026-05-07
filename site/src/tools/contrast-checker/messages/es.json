@@ -1,0 +1,62 @@
+{
+  "title": "Comprobador de contraste (WCAG AA / AAA)",
+  "shortDescription": "Comprueba la relación de contraste entre texto y fondo. Vista previa en vivo y badges de aprobado/rechazado para WCAG AA y AAA en texto normal y grande.",
+  "description": "Elige un color de texto y de fondo para calcular la relación WCAG. Vista previa en vivo y cuatro badges (AA normal, AA grande, AAA normal, AAA grande) actualizados en tiempo real.",
+  "metaDescription": "Comprobador WCAG de contraste gratis. Compara cualquier par texto/fondo y ve badges de aprobado/rechazado AA y AAA con vista previa de texto en vivo.",
+  "keywords": ["comprobador contraste", "contraste WCAG", "AA AAA color", "color accesibilidad", "ratio color"],
+  "input": { "fg": "Texto (frente)", "bg": "Fondo" },
+  "result": { "label": "Relación de contraste" },
+  "preview": {
+    "large": "Encabezado grande (24px+ o 18.66px+ negrita)",
+    "normal": "Texto normal de cuerpo para párrafos cotidianos.",
+    "small": "Texto pequeño usado para pies, notas y etiquetas."
+  },
+  "badge": {
+    "aaNormal": "WCAG AA — Texto normal",
+    "aaLarge": "WCAG AA — Texto grande",
+    "aaaNormal": "WCAG AAA — Texto normal",
+    "aaaLarge": "WCAG AAA — Texto grande"
+  },
+  "empty": "Introduce dos colores válidos (HEX) para ver la relación de contraste.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo funciona la relación de contraste",
+        "paragraphs": [
+          "WCAG (Web Content Accessibility Guidelines) define el contraste como la relación entre la luminancia relativa de dos colores. La fórmula linealiza cada canal sRGB, los pondera por sensibilidad del ojo humano (R 0.2126, G 0.7152, B 0.0722), luego calcula (más claro + 0.05) / (más oscuro + 0.05). El resultado va de 1:1 (idénticos) a 21:1 (negro sobre blanco).",
+          "Calculamos esto en tu navegador con la fórmula oficial WCAG 2.x. Los cuatro badges comprueban los umbrales 4.5:1 (normal) y 3:1 (grande) de AA, y 7:1 (normal) y 4.5:1 (grande) de AAA. 'Texto grande' es 24px / 18pt, o 18.66px / 14pt negrita."
+        ]
+      },
+      {
+        "heading": "Por qué pasar AA como mínimo",
+        "paragraphs": [
+          "AA es el nivel legalmente exigible en muchas jurisdicciones (US ADA, EU EN 301 549, UK Equality Act para servicios digitales). Fallar AA en texto de cuerpo es el problema de accesibilidad más común y el más fácil de arreglar durante el diseño en vez de tras lanzar.",
+          "AAA se recomienda para lectura larga, servicios gubernamentales e interfaces críticas. Es estricto — el primer instinto de un diseñador de gris pálido sobre blanco suele fallar AAA fácilmente. Si tu sitio sirve sobre todo contenido de vistazo rápido, apunta a AA; si publicas libros, artículos o información crítica, apunta a AAA."
+        ]
+      },
+      {
+        "heading": "Errores comunes",
+        "paragraphs": [
+          "'Se ve bien en mi pantalla.' Pantallas calibradas, luces fluorescentes de oficina y uso de móvil al aire libre cambian todos el contraste percibido. Usa la relación, no tu ojo.",
+          "Diseñar dark mode invirtiendo códigos hex. La inversión cambia matiz y rompe contraste. Re-prueba cada par de colores tras cambiar de tema.",
+          "Confiar en guías de marca. Muchas paletas de marca se eligieron antes de la conciencia WCAG. Si rosa de marca sobre blanco falla, propón un rosa ligeramente más oscuro para el cuerpo y reserva el original para uso decorativo."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige el frente", "text": "El color del texto." },
+      { "name": "Elige el fondo", "text": "El color detrás del texto." },
+      { "name": "Lee la relación y badges", "text": "El número es la relación WCAG. Los cuatro badges muestran aprobado/rechazado para AA y AAA en tamaños normal y grande." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Diferencia entre AA y AAA?", "a": "AA requiere 4.5:1 para texto normal y 3:1 para grande. AAA aprieta a 7:1 y 4.5:1. AAA se recomienda pero no siempre es alcanzable." },
+    { "q": "¿Qué es 'texto grande'?", "a": "WCAG lo define como 18pt (24px) o mayor, o 14pt (18.66px) negrita." },
+    { "q": "¿Soporta transparencia?", "a": "Aún no. Elige el color real que ve el usuario (frente compuesto sobre fondo). El soporte de transparencia podría llegar luego." },
+    { "q": "¿Por qué mi marca no pasa?", "a": "Muchas paletas de marca se eligieron por estética, no accesibilidad. Arreglos comunes: oscurecer colores acentuados usados como texto, reservar variantes claras para fondos o decoración." },
+    { "q": "¿La relación es lo mismo que 'contraste percibido'?", "a": "No — WCAG 2.x usa fórmula simplificada basada en luminancia. WCAG 3 (en desarrollo) usa APCA, que predice mejor el contraste percibido pero aún no está estandarizado." },
+    { "q": "¿Qué relación para iconos o controles UI?", "a": "WCAG 2.1 añadió un mínimo 3:1 para contraste no-textual (iconos, controles, indicadores de foco). Usa el mismo comprobador — cumple o supera 3:1." },
+    { "q": "¿Funciona para gráficos?", "a": "Aplica el mismo umbral entre colores adyacentes que transmiten significado. Para data viz, 3:1 entre adyacentes es el mínimo WCAG 1.4.11." },
+    { "q": "¿Los datos se envían a algún sitio?", "a": "No. El cálculo corre localmente en tu navegador." }
+  ]
+}
