@@ -1,0 +1,63 @@
+{
+  "title": "Crypto Profit Calculator (with exchange fees)",
+  "shortDescription": "Calculate crypto trading profit, ROI, and fee impact. Enter amount held, buy price, sell price, and exchange fee % — get net profit after both buy and sell fees.",
+  "description": "Compute your crypto trade profit including exchange fees on both entry and exit. Useful for backtesting trades, comparing fees across exchanges, and understanding fee drag on small or frequent trades.",
+  "metaDescription": "Free crypto profit calculator. Net profit after fees, ROI%, and fee impact. Enter amount, buy/sell prices, and exchange fee. Works for BTC, ETH, any token.",
+  "keywords": ["crypto profit calculator", "crypto trade profit", "bitcoin profit", "crypto ROI", "exchange fee impact"],
+  "empty": "Enter amount, buy price, sell price, and fee.",
+  "input": {
+    "amount": "Amount of coin",
+    "buyPrice": "Buy price (per coin)",
+    "sellPrice": "Sell price (per coin)",
+    "feePct": "Exchange fee %"
+  },
+  "result": {
+    "netProfit": "Net profit",
+    "roi": "ROI",
+    "cost": "Total cost",
+    "gross": "Gross proceeds",
+    "totalFees": "Total fees"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How fees eat into profit",
+        "paragraphs": [
+          "Crypto exchanges charge fees on both entry and exit. A 0.2% maker/taker fee applied twice means 0.4% of your traded value is fee — small for big swings, devastating for small ones. To break even on a 0.2%/0.2% fee structure, the price must move at least 0.4% in your favor.",
+          "Fees vary widely: top centralized exchanges charge 0.1-0.4% per side. Decentralized exchanges (Uniswap etc.) charge 0.3% pool fees plus gas (which on Ethereum can be $5-50+ depending on network conditions). Some exchanges offer 0% fees on certain pairs as marketing — check whether they make it up via wider spreads."
+        ]
+      },
+      {
+        "heading": "Reading the ROI",
+        "paragraphs": [
+          "ROI (return on investment) is net profit divided by total invested capital (cost plus buy fee). It's the most useful comparison metric across trades of different sizes. A $100 trade making $20 (20% ROI) is mathematically the same outcome as $10,000 making $2,000 — both 20% ROI.",
+          "Watch for the difference between ROI and absolute profit. Day traders often optimize for many small ROI wins. Long-term holders care more about absolute profit. Both are valid; just don't confuse them when comparing strategies."
+        ]
+      },
+      {
+        "heading": "Tax implications (general)",
+        "paragraphs": [
+          "Most jurisdictions tax crypto trades as capital gains. Buying with one currency and selling for another is typically a taxable event. Even crypto-to-crypto swaps usually trigger a tax obligation in the US, UK, Canada, and many EU countries.",
+          "Track every trade with date, asset, amount, USD-equivalent at the time, and fees. Tools like CoinTracker, Koinly, and TaxBit can ingest exchange CSVs and produce tax reports. We are not tax advisors; consult your local rules."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter amount of coin", "text": "How much you bought (e.g., 0.5 BTC, 100 SOL)." },
+      { "name": "Enter buy price per coin", "text": "What you paid per unit at entry." },
+      { "name": "Enter sell price per coin", "text": "What you received (or expect to receive) per unit." },
+      { "name": "Enter exchange fee %", "text": "Per side. Most centralized exchanges charge 0.1-0.4%." },
+      { "name": "Read the breakdown", "text": "Net profit, ROI%, total fees, cost, and gross proceeds." }
+    ]
+  },
+  "faq": [
+    { "q": "Does the fee apply to both buy and sell?", "a": "Yes, in this calculator. We assume the same fee on both sides. If your fees differ (e.g., 0.1% buy, 0.4% sell), use the average or run two calculations." },
+    { "q": "What about slippage?", "a": "Slippage is the difference between expected and actual execution price, common in low-liquidity markets. This calculator doesn't model slippage — use your actual filled prices." },
+    { "q": "Should I include gas fees for DEX trades?", "a": "Convert your gas fees into a percentage of trade value and add to the fee field. For a $1000 trade with $10 gas, that's 1% additional fee per side." },
+    { "q": "Does this work for stablecoins?", "a": "Yes. Stablecoin-to-stablecoin trades are usually thin profit (0.1-0.3%) and fees can easily wipe out gains. The calculator handles them correctly." },
+    { "q": "How do I include a stop loss?", "a": "Use the calculator twice: once for the planned profit-taking exit, once for the stop loss exit. Compare both outcomes against your position size to size your risk." },
+    { "q": "What's a good fee % to assume?", "a": "0.1-0.2% for most major exchanges (Binance, Coinbase Pro, Kraken). 0.4-1% for retail/non-pro tiers. 0.3-1% for DEXes plus gas." },
+    { "q": "Why is ROI different from profit %?", "a": "ROI uses cost basis as the denominator (cost + buy fee). 'Profit %' often uses initial investment without buy fee, which slightly inflates the number." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}

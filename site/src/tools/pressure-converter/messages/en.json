@@ -1,0 +1,71 @@
+{
+  "title": "Pressure Converter (Pa, bar, psi, atm, mmHg)",
+  "shortDescription": "Convert between pressure units: Pascal, bar, psi, atmosphere, mmHg, Torr, and more. All units update simultaneously when you change one.",
+  "description": "Type a value, pick a source unit, and see equivalent values in 12 pressure units at once. Includes SI (Pa, kPa, MPa, hPa), industrial (bar, psi), atmospheric (atm, Torr, mmHg), and feet of water column.",
+  "metaDescription": "Free pressure converter. Convert between Pa, hPa, kPa, MPa, bar, psi, atm, mmHg, Torr, inHg, and more. All units shown side by side.",
+  "keywords": ["pressure converter", "pa to psi", "bar to psi", "atm to mmHg", "pressure units"],
+  "empty": "Enter a value and pick a unit.",
+  "input": {
+    "value": "Value",
+    "from": "Convert from"
+  },
+  "unit": {
+    "Pa": "Pascal",
+    "hPa": "Hectopascal",
+    "kPa": "Kilopascal",
+    "MPa": "Megapascal",
+    "bar": "Bar",
+    "mbar": "Millibar",
+    "atm": "Atmosphere",
+    "psi": "PSI (pounds per square inch)",
+    "mmHg": "mmHg",
+    "inHg": "inHg",
+    "Torr": "Torr",
+    "ft_H2O": "Feet of water"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Pressure units and where they're used",
+        "paragraphs": [
+          "SI base: Pascal (Pa) is force per area, 1 N/m². It's small — atmospheric pressure is about 100,000 Pa — so kPa, hPa, and MPa are commonly used in practice. Hectopascal (100 Pa) matches the older 'millibar' so weather forecasts often use hPa.",
+          "Industrial and engineering: bar (100,000 Pa, ≈ 1 atm) is widely used in Europe for tire and industrial pressures. PSI (pounds per square inch) is the US standard for tires (32 PSI typical for a passenger car), pneumatics, and hydraulics. 1 bar ≈ 14.5 psi.",
+          "Atmospheric and meteorology: 1 standard atmosphere (atm) = 101,325 Pa, the average sea-level pressure. Older units like mmHg (millimeters of mercury) and Torr survive in medical (blood pressure: 120/80 mmHg), vacuum technology, and aviation."
+        ]
+      },
+      {
+        "heading": "Common conversion benchmarks",
+        "paragraphs": [
+          "1 atm = 101,325 Pa = 1.01325 bar = 14.696 psi = 760 mmHg = 760 Torr",
+          "1 bar = 100,000 Pa = 100 kPa = 0.987 atm = 14.504 psi",
+          "1 psi = 6,894.757 Pa = 6.895 kPa = 0.0689 bar = 51.715 mmHg",
+          "1 kPa = 7.501 mmHg ≈ 0.145 psi",
+          "Memorizing these is useful for engineering and scientific contexts where unit confusion is common. Most calculators (this one included) handle the math for you, but knowing the ballpark prevents catastrophic errors."
+        ]
+      },
+      {
+        "heading": "Gauge vs absolute pressure",
+        "paragraphs": [
+          "Gauge pressure measures pressure above atmospheric. PSIG (PSI gauge) means pressure above atmosphere — a 32 psi tire really has ~46.7 psi absolute (32 gauge + 14.7 atm).",
+          "Absolute pressure is measured from a vacuum (0 psi). PSIA (PSI absolute) is what physics formulas use. Industrial and consumer applications mostly use gauge; physics and aviation mostly use absolute.",
+          "This converter operates on absolute values — pressures are converted as if they're absolute. To convert gauge to absolute, add 1 atm (14.7 psi or 1.013 bar). To convert absolute to gauge, subtract."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type the value", "text": "Numeric input." },
+      { "name": "Pick the source unit", "text": "Use the dropdown to select what unit your value is in." },
+      { "name": "Read all 12 conversions", "text": "All units update simultaneously. The source unit is highlighted." }
+    ]
+  },
+  "faq": [
+    { "q": "What's the difference between mbar and hPa?", "a": "Numerically identical: 1 mbar = 1 hPa = 100 Pa. Meteorologists prefer hPa as the SI-aligned unit; older equipment and labels often say mbar." },
+    { "q": "What's a 'bar' really worth?", "a": "1 bar = 100,000 Pa = 100 kPa, just slightly less than 1 standard atmosphere (1 atm = 1.01325 bar). It's a convenient round number close to atmospheric pressure." },
+    { "q": "Why do tires use PSI in the US but bar in Europe?", "a": "Historical: US uses imperial units, Europe uses metric. Tire pressures are 30-35 psi in US ranges, equivalent to ~2.07-2.41 bar in Europe. Both pump types are commonly available in modern gas stations." },
+    { "q": "What's the difference between mmHg and Torr?", "a": "Practically identical: 1 Torr = 1 mmHg = 133.322 Pa. Torr is the unit derived from the same physics; mmHg refers to the mercury column. Some scientific contexts prefer one over the other." },
+    { "q": "How does this work for vacuum?", "a": "Vacuum is just very low pressure. Atmospheric is 760 Torr; medium vacuum is 0.1 Torr; high vacuum is 10⁻⁶ Torr. The calculator handles small values correctly down to floating-point precision (~10⁻⁹ Pa)." },
+    { "q": "Are gauge and absolute supported?", "a": "Implicitly absolute. Convert gauge to absolute by adding 1 atm before entering, then back to gauge after if needed." },
+    { "q": "What about feet of water?", "a": "Used in plumbing and hydraulics. 1 ft of water column = 2989 Pa ≈ 0.433 psi. Useful for water tank pressure or water column manometer readings." },
+    { "q": "Does the data leave my browser?", "a": "No. Conversion runs locally; nothing is sent to a server." }
+  ]
+}

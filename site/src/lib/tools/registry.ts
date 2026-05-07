@@ -68,6 +68,12 @@ import bodyFat from "@/tools/body-fat-calculator";
 import statistics from "@/tools/statistics-calculator";
 import workdays from "@/tools/workdays-calculator";
 import gradient from "@/tools/gradient-generator";
+import pregnancyWeek from "@/tools/pregnancy-week-calculator";
+import cryptoProfit from "@/tools/crypto-profit-calculator";
+import stockProfit from "@/tools/stock-profit-calculator";
+import inflation from "@/tools/inflation-calculator";
+import pressure from "@/tools/pressure-converter";
+import oneRepMax from "@/tools/one-rep-max-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -142,6 +148,12 @@ export const TOOLS: ToolDefinition[] = [
   statistics,
   workdays,
   gradient,
+  pregnancyWeek,
+  cryptoProfit,
+  stockProfit,
+  inflation,
+  pressure,
+  oneRepMax,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

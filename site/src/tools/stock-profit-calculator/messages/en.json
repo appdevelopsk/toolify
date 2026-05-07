@@ -1,0 +1,72 @@
+{
+  "title": "Stock Profit Calculator (with dividends + taxes)",
+  "shortDescription": "Calculate stock trade profit including buy/sell commissions, dividends received, and capital-gains tax. Returns net after-tax profit and ROI.",
+  "description": "Enter shares, buy/sell prices, commissions, dividends received, and your capital-gains tax rate. The calculator returns total gain, tax owed, and after-tax net.",
+  "metaDescription": "Free stock profit calculator with dividend and tax support. Compute capital gain, dividend income, taxes owed, and after-tax ROI for any trade.",
+  "keywords": ["stock profit calculator", "stock trade profit", "capital gains calculator", "stock ROI", "after tax profit"],
+  "empty": "Enter shares, buy and sell prices, dividends, and tax rate.",
+  "input": {
+    "shares": "Shares",
+    "buyPrice": "Buy price (per share)",
+    "sellPrice": "Sell price (per share)",
+    "buyCommission": "Buy commission",
+    "sellCommission": "Sell commission",
+    "dividends": "Dividends received",
+    "taxPct": "Capital gains tax %"
+  },
+  "result": {
+    "afterTax": "After-tax profit",
+    "roi": "ROI (after tax)",
+    "cost": "Total cost",
+    "gross": "Gross proceeds",
+    "capitalGain": "Capital gain",
+    "dividendsLabel": "Dividends",
+    "totalGain": "Total gain (pre-tax)",
+    "totalTax": "Tax owed"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What goes into stock-trade profit",
+        "paragraphs": [
+          "Stock profit has three main components: capital gain (sell price minus buy price, times shares, minus commissions), dividends received during your holding period, and the tax owed on the combined gain. Most calculators only compute one of these — we compute all three for an accurate after-tax result.",
+          "Commissions: many US brokers offer $0 stock trades now, but ETFs, options, mutual funds, and international stocks may still carry fees. Japanese SBI/Rakuten Securities charge ~¥0-275 per trade depending on tier. Always check your broker's fee schedule."
+        ]
+      },
+      {
+        "heading": "Tax rate: long vs short term",
+        "paragraphs": [
+          "United States: short-term (held < 1 year) capital gains taxed at ordinary income rate (10-37%). Long-term (held ≥ 1 year) capital gains taxed at 0%, 15%, or 20% depending on income. Qualified dividends use long-term rates; non-qualified use ordinary income rates.",
+          "Japan: typically 20.315% (15% income tax + 5% local tax + 0.315% reconstruction surtax) for both capital gains and dividends in standard taxable accounts. NISA accounts (TUMI-nuri-style) are tax-free up to certain limits.",
+          "EU and UK rates vary widely (UK has CGT allowance, then 10/20%; Germany has 25% flat tax). Consult your country's specific rules — this calculator just applies whatever rate you enter."
+        ]
+      },
+      {
+        "heading": "What this calculator doesn't model",
+        "paragraphs": [
+          "Bid-ask spread costs: buying at the ask and selling at the bid means a tiny implicit cost per trade. For liquid large-caps it's negligible (cents on $100); for illiquid small-caps it can be 0.5-2%. Use realistic execution prices.",
+          "Currency conversion: if you bought USD stocks with JPY, your return is also affected by USD/JPY moves between buy and sell. We don't compute FX — just enter the prices in your home currency at the time of each trade.",
+          "Wash sale rules (US): if you repurchase substantially the same security within 30 days of a loss, the loss is disallowed for tax purposes. This calculator doesn't track wash sales — consult a CPA for complex situations."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter shares", "text": "Number of shares bought." },
+      { "name": "Enter buy and sell prices", "text": "Per-share prices at each transaction." },
+      { "name": "Enter commissions", "text": "Per-trade fees on buy and sell. Use 0 if your broker is commission-free." },
+      { "name": "Enter dividends received", "text": "Total dividends paid during your holding period." },
+      { "name": "Enter tax rate", "text": "Your applicable capital-gains rate. JP standard: 20.315%. US long-term high-bracket: 20%." },
+      { "name": "Read the breakdown", "text": "After-tax profit, ROI, capital gain, dividend income, total tax." }
+    ]
+  },
+  "faq": [
+    { "q": "Does this work for ETFs and mutual funds?", "a": "Yes — same math. Funds may distribute dividends and capital gains; enter both amounts in the dividends field, or use a separate calculation per source if rates differ." },
+    { "q": "What about reinvested dividends (DRIP)?", "a": "Each reinvestment is treated as a new tax lot in most jurisdictions. This calculator assumes a single buy/sell — for DRIP, run multiple calculations or use brokerage tax statements." },
+    { "q": "Why does the calculator apply tax to losses too?", "a": "It doesn't — we only apply tax when capital gain or dividends are positive. A loss reduces total tax owed in many countries, but the rules vary so we leave loss treatment to manual handling." },
+    { "q": "What's a 'capital gains tax allowance'?", "a": "Some countries (UK, France, etc.) offer a tax-free allowance per year before capital gains tax kicks in. Subtract your allowance from gain before applying the tax rate, or model it as a lower effective rate." },
+    { "q": "Should I include broker subscription fees?", "a": "Subscription/account fees are usually deductible from total return but not specific to a trade. Subtract from the after-tax profit if your broker charges them." },
+    { "q": "How is this different from the crypto calculator?", "a": "Stocks pay dividends; crypto generally doesn't. Crypto uses fee % (varies by trade size); stocks usually use flat commission. The math is similar but inputs differ." },
+    { "q": "Can ROI be negative?", "a": "Yes. If sell price + dividends < buy price + commissions + tax (the rare case where dividend tax exceeds dividend income), ROI is negative." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}
