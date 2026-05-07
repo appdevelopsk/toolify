@@ -1,0 +1,62 @@
+{
+  "title": "Convertidor de mayúsculas (camel, snake, kebab, Title)",
+  "shortDescription": "Convierte texto a 10 estilos: UPPER, lower, Title, Sentence, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE e invertido.",
+  "description": "Escribe texto y ve diez transformaciones de estilo lado a lado, cada una con botón de copia. Útil para renombrar variables, nombres de archivo, encabezados, slugs y limpieza de datasets.",
+  "metaDescription": "Convertidor de mayúsculas gratis para camelCase, snake_case, kebab-case, PascalCase, Title Case y más. Diez estilos a la vez con copia de un clic.",
+  "keywords": ["convertidor mayúsculas", "camel case", "snake case", "kebab case", "title case"],
+  "input": { "text": "Texto fuente" },
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "case": {
+    "lower": "minúsculas",
+    "upper": "MAYÚSCULAS",
+    "title": "Title Case",
+    "sentence": "Estilo oración",
+    "camel": "camelCase",
+    "pascal": "PascalCase",
+    "snake": "snake_case",
+    "kebab": "kebab-case",
+    "constant": "CONSTANT_CASE",
+    "invert": "InVeRtIdO"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Dónde se usa cada estilo",
+        "paragraphs": [
+          "camelCase: identificadores JavaScript y Java (myVariableName). PascalCase: clases y componentes React (UserProfile). snake_case: variables Python y Ruby (user_profile). kebab-case: URLs y clases CSS (user-profile). CONSTANT_CASE: variables de entorno y constantes (USER_PROFILE).",
+          "Title Case: títulos de libros y artículos, encabezados. Sentence case: la mayoría de etiquetas y encabezados modernos — más fácil de leer que Title Case en cadenas largas. MAYÚSCULAS: énfasis, abreviaturas. minúsculas: tags, etiquetas, nombres de archivo case-insensitive."
+        ]
+      },
+      {
+        "heading": "Cómo el convertidor parsea las palabras",
+        "paragraphs": [
+          "Dividimos por espacios, guiones, guiones bajos, barras y puntos. También dividimos en el límite entre minúscula y mayúscula (así 'helloWorld' se divide en ['hello', 'World']) y entre letra y dígito. Esto maneja la mayoría de casos cotidianos incluyendo código pegado, slugs y rutas de archivo.",
+          "Casos límite: acrónimos en mayúsculas ('XMLHTTPRequest') no dividen limpiamente sin contexto, así que tratamos letras mayúsculas consecutivas como un bloque de palabra y confiamos en el usuario para limpiar si es necesario. Para texto cotidiano — frases, títulos, nombres de columna de dataset — el parser produce el resultado esperado."
+        ]
+      },
+      {
+        "heading": "Consejos para revisión y refactor",
+        "paragraphs": [
+          "Al migrar entre lenguajes, pega una lista de identificadores y copia la versión convertida. snake-a-camel es el límite más común JavaScript-a-Python; kebab-a-snake es común al refactorizar atributos HTML a objetos JS.",
+          "Para slugs SEO, kebab-case es el estándar — legible en URLs y Google trata guiones como separadores de palabra (los guiones bajos no). 'product-name' es preferible a 'product_name' para cualquier ruta URL visible al usuario."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escribe o pega texto", "text": "Cualquier cosa — frases, identificadores de código, nombres de archivo." },
+      { "name": "Lee las 10 conversiones", "text": "Cada caso aparece en su propio bloque etiquetado." },
+      { "name": "Copia el que necesitas", "text": "Haz clic en 'Copiar' junto a cualquier bloque." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Qué pasa con acrónimos como 'XML'?", "a": "Las letras mayúsculas consecutivas se tratan como un solo bloque. 'XMLParser' se divide en 'XML' y 'Parser'. Funciona para la mayoría del código; revisa y ajusta a mano para casos límite." },
+    { "q": "¿Por qué los slugs URL son siempre kebab-case?", "a": "Los guiones se tratan como límites de palabra por el parser de URL de Google; los guiones bajos no. Las URLs en kebab-case se indexan más fiablemente para SEO." },
+    { "q": "¿Diferencia entre Title y Sentence case?", "a": "Title Case capitaliza la mayoría de palabras ('The Quick Brown Fox'). Sentence case solo capitaliza la primera palabra y nombres propios ('The quick brown fox'). La UI moderna tiende a preferir sentence case." },
+    { "q": "¿Soporta Unicode?", "a": "Sí — toLowerCase/toUpperCase de JavaScript son conscientes de Unicode. Los diacríticos y escrituras no latinas pasan correctamente." },
+    { "q": "¿Puedo convertir de vuelta?", "a": "Sí — pega cualquier salida convertida y usa una conversión diferente. La ida y vuelta camelCase ↔ snake_case es sin pérdida." },
+    { "q": "¿Por qué camelCase no preserva acrónimos en mayúsculas?", "a": "Convencionalmente, camelCase capitaliza solo la primera letra de cada palabra subsiguiente. 'XmlHttpRequest' se prefiere sobre 'XMLHTTPRequest' en guías de estilo modernas." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Todas las transformaciones corren localmente." },
+    { "q": "¿Hay forma de convertir una lista en lote?", "a": "Pega tu lista entera de una vez. Cada línea se trata como una entrada separada dentro del mismo estilo — convierte y luego divide líneas según necesites." }
+  ]
+}

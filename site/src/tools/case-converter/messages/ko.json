@@ -1,0 +1,62 @@
+{
+  "title": "케이스 변환기 (camel, snake, kebab, Title 등)",
+  "shortDescription": "텍스트를 10가지 케이스 스타일로 변환: UPPER, lower, Title, Sentence, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, 반전.",
+  "description": "텍스트 입력하면 10가지 흔한 케이스 변환을 나란히 표시, 각 복사 버튼 포함. 변수 이름 변경, 파일명, 헤딩, 슬러그, 데이터셋 정리에 유용.",
+  "metaDescription": "무료 케이스 변환기: camelCase, snake_case, kebab-case, Title Case 등. 한 번에 10 케이스, 원클릭 복사.",
+  "keywords": ["케이스 변환기", "camel case", "snake case", "kebab case", "title case"],
+  "input": { "text": "원본 텍스트" },
+  "copy": "복사",
+  "copied": "복사됨",
+  "case": {
+    "lower": "소문자",
+    "upper": "대문자",
+    "title": "Title Case",
+    "sentence": "Sentence case",
+    "camel": "camelCase",
+    "pascal": "PascalCase",
+    "snake": "snake_case",
+    "kebab": "kebab-case",
+    "constant": "CONSTANT_CASE",
+    "invert": "반전 케이스"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "각 스타일 사용처",
+        "paragraphs": [
+          "camelCase: JavaScript와 Java 식별자(myVariableName). PascalCase: 클래스와 React 컴포넌트(UserProfile). snake_case: Python과 Ruby 변수(user_profile). kebab-case: URL과 CSS 클래스(user-profile). CONSTANT_CASE: 환경 변수와 상수(USER_PROFILE).",
+          "Title Case: 책과 기사 제목, 헤딩. Sentence case: 대부분 현대 UI 라벨과 헤딩 — 긴 문자열에 Title Case보다 읽기 쉬움. 대문자: 강조, 약어. 소문자: 태그, 라벨, 대소문자 구분 없는 파일명."
+        ]
+      },
+      {
+        "heading": "변환기가 단어 파싱 방식",
+        "paragraphs": [
+          "공백, 하이픈, 밑줄, 슬래시, 점에서 분할. 또한 소문자와 대문자 사이 경계('helloWorld'는 ['hello', 'World']로 분할)와 글자와 숫자 사이도 분할. 이는 붙여넣은 코드, 슬러그, 파일 경로 포함 대부분 일상 케이스 처리.",
+          "엣지 케이스: 모두 대문자 약어('XMLHTTPRequest')는 컨텍스트 없이 깔끔히 분할 안 됨, 그래서 연속 대문자를 단일 단어 블록으로 처리하고 필요시 사용자 정리에 의존. 대부분 일상 텍스트 — 문장, 제목, 데이터셋 열 이름 — 파서가 예상 결과 생성."
+        ]
+      },
+      {
+        "heading": "코드 리뷰와 리팩토링 팁",
+        "paragraphs": [
+          "언어 간 마이그레이션 시 식별자 이름 목록 붙여넣고 변환된 버전 복사. snake-to-camel은 가장 흔한 JavaScript-to-Python 경계; kebab-to-snake은 HTML 속성을 JS 객체로 리팩토링 시 흔함.",
+          "SEO 슬러그는 kebab-case가 표준 — URL에서 읽기 쉽고 Google이 하이픈을 단어 구분자로 처리(밑줄은 아님). 'product-name'이 사용자 대상 URL 경로에 'product_name'보다 선호."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "텍스트 입력 또는 붙여넣기", "text": "어떤 것이든 — 문장, 코드 식별자, 파일명." },
+      { "name": "10가지 변환 모두 확인", "text": "각 케이스가 라벨된 자체 블록에 표시." },
+      { "name": "필요한 것 복사", "text": "어떤 블록 옆 '복사' 클릭." }
+    ]
+  },
+  "faq": [
+    { "q": "입력에 'XML' 같은 약어가 있으면?", "a": "연속 대문자는 단일 블록 처리. 'XMLParser'는 'XML'과 'Parser'로 분할. 대부분 코드 작동; 엣지 케이스는 수동 검토와 조정." },
+    { "q": "왜 URL 슬러그는 항상 kebab-case?", "a": "Google URL 파서가 하이픈을 단어 경계로 처리; 밑줄은 아님. kebab-case URL이 SEO에 더 안정적으로 인덱싱." },
+    { "q": "Title과 Sentence case 차이?", "a": "Title Case는 대부분 단어 대문자화('The Quick Brown Fox'). Sentence case는 첫 단어와 고유명사만('The quick brown fox'). 현대 UI는 sentence case 선호 경향." },
+    { "q": "유니코드 지원?", "a": "네 — JavaScript의 toLowerCase/toUpperCase는 유니코드 인식. 발음 부호와 비라틴 문자 올바르게 통과." },
+    { "q": "다시 변환 가능?", "a": "네 — 케이스 변환된 출력 다시 붙여넣고 다른 변환 사용. camelCase ↔ snake_case 왕복은 손실 없음." },
+    { "q": "왜 camelCase는 약어를 대문자로 보존 안 함?", "a": "관습적으로 camelCase는 후속 단어의 첫 글자만 대문자화. 'XmlHttpRequest'가 현대 스타일 가이드에서 'XMLHTTPRequest'보다 선호." },
+    { "q": "데이터가 전송되나요?", "a": "전송되지 않습니다. 모든 변환 로컬 실행." },
+    { "q": "목록 일괄 변환 방법?", "a": "전체 목록 한 번에 붙여넣기. 각 줄은 같은 케이스 스타일 내 별도 입력으로 처리 — 변환 후 필요시 줄 분할." }
+  ]
+}

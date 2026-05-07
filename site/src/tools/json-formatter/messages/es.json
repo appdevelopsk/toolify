@@ -1,0 +1,57 @@
+{
+  "title": "Formateador y minificador JSON (valida + indenta)",
+  "shortDescription": "Formatea o minifica JSON. Valida la entrada y muestra un error claro con línea y columna en caso de fallo.",
+  "description": "Pega cualquier JSON para formatear con 2/4/8 espacios de indentación, o minificar a una línea. JSON inválido muestra un error de parseo para que encuentres el problema rápido.",
+  "metaDescription": "Formateador y minificador JSON gratis. Valida entrada, indenta con elección de espacios, o minifica a una línea. Solo navegador — los datos no salen de la página.",
+  "keywords": ["formateador JSON", "minificador JSON", "validador JSON", "indentar JSON", "formato JSON"],
+  "input": "Entrada JSON",
+  "output": "Salida formateada",
+  "mode": { "format": "Formatear", "minify": "Minificar" },
+  "indent": "Indentación",
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "error": "Error de parseo",
+  "stats": "Entrada: {input} bytes · Salida: {output} bytes",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué hace esta herramienta",
+        "paragraphs": [
+          "JSON es un formato estricto — cada comilla, coma y corchete debe estar en el lugar correcto. Navegadores y APIs devuelven mensajes crípticos 'Unexpected token' cuando algo falla, y el problema suele ser invisible a simple vista. Este formateador parsea la entrada con el parser JSON nativo del navegador, luego la re-serializa formateada (con indent) o minificada (sin espacios).",
+          "Si el parseo falla, obtienes el error subyacente directamente — usualmente con la posición del carácter incorrecto. Desde ahí puedes encontrar la coma faltante, comilla sin escapar o coma final rápidamente."
+        ]
+      },
+      {
+        "heading": "Formatear vs minificar",
+        "paragraphs": [
+          "Formatear con indent: la forma estándar de leer JSON. 2 espacios es lo convencional en el mundo JavaScript; 4 espacios es común en contextos Python y Java. Elige el que use tu proyecto.",
+          "Minificar: colapsa a una sola línea sin espacios. Útil al embeber JSON en URLs, variables de entorno o donde los espacios importen. La diferencia de tamaño es significativa: un archivo de configuración típico se reduce 20-40% al minificar."
+        ]
+      },
+      {
+        "heading": "Trampas comunes de JSON",
+        "paragraphs": [
+          "Comas finales. Permitidas en JavaScript, no en JSON. {a:1, b:2,} parsea en tu editor pero falla al enviarse por la red.",
+          "Comillas simples. JSON requiere comillas dobles para claves y valores de cadena. {'a': 1} es JSON inválido. {\"a\": 1} es correcto.",
+          "Comentarios. JSON no tiene comentarios. // o /* */ dentro de JSON rompen el parseo. JSONC (usado por config de VS Code) soporta comentarios pero no es JSON estándar.",
+          "Números. JSON no soporta NaN o Infinity. Usa null, o envuelve en cadena, dependiendo de tu consumidor downstream."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pega tu JSON", "text": "Desde unos bytes a unos cientos de KB funciona sin lag." },
+      { "name": "Elige formatear o minificar", "text": "Más un nivel de indent para modo formatear." },
+      { "name": "Lee o copia el resultado", "text": "En error, el mensaje subyacente del parser apunta al problema." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Soporta JSONC (JSON con comentarios)?", "a": "Aún no. Quita los comentarios primero o usa una herramienta que soporte JSONC." },
+    { "q": "¿Cuál es el límite de tamaño?", "a": "Los navegadores modernos manejan JSON de varios megabytes, aunque el textarea puede ralentizarse pasados ~1 MB. Para archivos enormes, usa una herramienta de escritorio." },
+    { "q": "¿Por qué mi JSON es inválido?", "a": "Lo más común: una coma final, comillas simples o comilla sin escapar dentro de cadena. El error del parser apunta a la columna donde se detectó." },
+    { "q": "¿Puedo ordenar claves alfabéticamente?", "a": "No en esta versión. Pegar en una herramienta consciente del orden (como jq con --sort-keys) es lo más limpio; podríamos añadir la opción luego." },
+    { "q": "¿Maneja JSON profundamente anidado?", "a": "Sí. El parser JSON del navegador maneja cualquier profundidad práctica." },
+    { "q": "¿Por qué minificar no convierte 1 MB en 1 byte?", "a": "Minificar solo elimina espacios. Los datos siguen ahí. Para reducción real, usa gzip o un formato binario como MessagePack." },
+    { "q": "¿Se envían los datos a algún sitio?", "a": "No. Todo el parseo y formateo ocurre en tu navegador." },
+    { "q": "¿Y la validación con JSON Schema?", "a": "Esta herramienta valida solo la sintaxis. Para validación de esquema, usa un validador JSON Schema con tu archivo de esquema." }
+  ]
+}
