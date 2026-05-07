@@ -1,0 +1,56 @@
+{
+  "title": "Tirador de dados (d4 a d100, modificador + historial)",
+  "shortDescription": "Tira cualquier número de dados con cualquier número de caras. Criptográficamente aleatorio, con modificador (+N), total acumulado e historial.",
+  "description": "Elige el número, caras (4, 6, 8, 10, 12, 20, 100 o personalizado hasta 1000) y modificador. Cada tirada usa crypto.getRandomValues para distribución uniforme sin sesgo.",
+  "metaDescription": "Tirador gratis de dados para D&D y cualquier TTRPG. d4/d6/d8/d10/d12/d20/d100 + personalizado, modificador, historial. Tiradas seguras y sin sesgo.",
+  "keywords": ["tirador dados", "dados online", "tirada d20", "dados TTRPG", "d6 d10 d100"],
+  "input": { "count": "Cuántos", "sides": "Caras", "modifier": "Modificador (±)" },
+  "roll": "Tirar {count}d{sides}{modifier}",
+  "result": {
+    "total": "Total",
+    "history": "Tiradas recientes"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo se generan las tiradas",
+        "paragraphs": [
+          "Cada dado usa crypto.getRandomValues — la API de aleatoriedad criptográficamente segura del navegador, la misma primitiva que respalda las sesiones HTTPS. También aplicamos rejection sampling para garantizar que cada cara tenga exactamente la misma probabilidad, sin importar el tamaño del dado. Un `random % sides` ingenuo introduce sesgo cuando sides no divide limpiamente 2³².",
+          "Esto significa que un d100 no está ligeramente sesgado hacia 1-36 (lo que ocurriría con un módulo mal implementado), y un d3 no favorece 1 sobre 2 o 3. La matemática es idéntica a dados físicos con precisión infinita."
+        ]
+      },
+      {
+        "heading": "Notación TTRPG",
+        "paragraphs": [
+          "Notación común: 'NdS+M' donde N es número de dados, S caras, M modificador. '2d6+3' significa tirar 2 dados de 6 caras y sumar 3. '1d20+5' es una tirada de ataque típica de D&D con +5 del bonificador del personaje.",
+          "Sets estándar: d4 (pirámide), d6 (cubo), d8 (octaedro), d10 (trapezoedro pentagonal), d12 (dodecaedro), d20 (icosaedro). El d100 se tira normalmente como 2d10 (uno para decenas, otro para unidades). Usa el preset d100 para saltar la conversión manual."
+        ]
+      },
+      {
+        "heading": "Casos de uso comunes",
+        "paragraphs": [
+          "D&D / Pathfinder / TTRPG: d20+5 para ataques, 1d8+3 para daño, 4d6 quitar el menor para creación de personaje.",
+          "Selección aleatoria: elige un ganador entre N personas tirando un dN. Para 7 personas, fija sides=7. La aleatoriedad criptográfica garantiza imparcialidad.",
+          "Lecciones de probabilidad: tira muchos dados y observa la distribución. La suma de varios dados se aproxima a una normal (teorema central del límite).",
+          "Toma de decisiones: '¿debería hacer X?' al 50/50? Tira d2 (2 caras). ¿Decisión ponderada? Usa d10 y umbrales (1-7 = sí, 8-10 = no, para 70/30)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige un preset", "text": "O escribe un número de caras personalizado de 2 a 1000." },
+      { "name": "Establece la cantidad", "text": "Cuántos dados tirar a la vez. Hasta 50." },
+      { "name": "Añade un modificador", "text": "Número plano opcional añadido a la suma." },
+      { "name": "Tira", "text": "Total, tiradas individuales e historial reciente todos mostrados." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Las tiradas son realmente justas?", "a": "Sí. Usamos crypto.getRandomValues (RNG seguro) más rejection sampling para que cada cara tenga exactamente la misma probabilidad — sin sesgo de borde por la operación módulo." },
+    { "q": "¿Número máximo de dados?", "a": "50 por tirada. Para más, simplemente tira varias veces — cada una es independiente." },
+    { "q": "¿Caras máximas?", "a": "1000. Más allá la matemática sigue funcionando pero el caso de uso se vuelve forzado." },
+    { "q": "¿Puedo guardar mis combos favoritos?", "a": "Aún no. Podríamos añadir presets guardados después para tus tiradas de combate comunes." },
+    { "q": "¿Por qué es famoso el d20?", "a": "Dungeons & Dragons lo popularizó para chequeos de habilidad y ataques. Cada cara tiene 5% de probabilidad — granularidad fina sin la contabilidad de un percentil (d100)." },
+    { "q": "¿Por qué el historial solo muestra 10 tiradas?", "a": "Para mantener la página ordenada. Para logs más largos, pega cada resultado en un archivo de notas o ficha de personaje." },
+    { "q": "¿Esto reemplazará mis dados físicos?", "a": "Funcionalmente sí, especialmente para juegos online. Los dados físicos se aman por la tactilidad y el ritual — pero matemáticamente una tirada digital con RNG cripto es al menos tan justa como un d20 físico." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Cada tirada ocurre localmente." }
+  ]
+}

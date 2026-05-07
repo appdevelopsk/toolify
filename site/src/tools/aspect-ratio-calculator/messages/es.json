@@ -1,0 +1,63 @@
+{
+  "title": "Calculadora de relación de aspecto (preserva ratio)",
+  "shortDescription": "Calcula ancho o alto para preservar una relación de aspecto. Presets de un clic para ratios comunes (16:9, 9:16, 1:1, 4:3, 21:9).",
+  "description": "Define una relación objetivo y una dimensión; la otra se autocompleta. La dirección inversa funciona igual. Útil para vídeo, recorte de fotos y layout web responsivo.",
+  "metaDescription": "Calculadora gratis de relación de aspecto. Preserva ratios como 16:9, 9:16, 1:1, 4:3 al redimensionar. Calcula ancho o alto faltante al instante.",
+  "keywords": ["calculadora aspecto", "relación aspecto", "calculadora 16:9", "aspecto imagen", "aspecto vídeo"],
+  "input": {
+    "ratioW": "Ratio W",
+    "ratioH": "Ratio H",
+    "width": "Ancho",
+    "height": "Alto"
+  },
+  "result": {
+    "ratio": "Relación de aspecto",
+    "decimal": "Decimal",
+    "dimensions": "Dimensiones",
+    "simplified": "Simplificada"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué es la relación de aspecto",
+        "paragraphs": [
+          "La relación de aspecto describe el ancho relativo al alto: 16:9 significa 16 unidades de ancho por cada 9 de alto. La misma relación funciona a cualquier tamaño — 1920×1080 y 800×450 son ambos 16:9. Preservarla al redimensionar evita imágenes estiradas o aplastadas y es la base del diseño responsivo.",
+          "Aceptamos números enteros (16:9) o decimales (1.78:1) para la relación, y cualquier tamaño para ancho/alto. Edita cualquier campo — los demás se actualizan para mantener la relación. La relación decimal (ancho / alto) se muestra para usar en expresiones CSS calc() o herramientas de edición de vídeo."
+        ]
+      },
+      {
+        "heading": "Ratios comunes y dónde se usan",
+        "paragraphs": [
+          "16:9 — HDTV moderna, monitores, YouTube, la mayoría de películas desde 2009. El default para casi todo lo que hagas hoy.",
+          "9:16 — vídeo vertical para Instagram Stories, TikTok, YouTube Shorts. La cara opuesta de 16:9 para contenido orientado a móvil.",
+          "1:1 — cuadrado. Default del feed de Instagram hasta 2021. Carátulas de álbum, fotos de perfil.",
+          "4:3 — TVs y monitores antes de HD. Aún se usa para cierto contenido estilo clásico.",
+          "3:2 — default de cámara DSLR. Película de 35mm. Impresiones más grandes.",
+          "21:9 — ultrawide cinematográfico. Películas filmadas anamórficamente. Algunos monitores PC y TVs LG."
+        ]
+      },
+      {
+        "heading": "Por qué importa CSS aspect-ratio",
+        "paragraphs": [
+          "El CSS moderno tiene aspect-ratio: 16/9; — define la relación y deja que el navegador calcule el alto desde el ancho (o viceversa). Evita el viejo hack de padding-bottom y es esencial para embebes responsivos y placeholders de imagen para prevenir layout shift.",
+          "El Cumulative Layout Shift (CLS) es un Core Web Vital. Vídeos embebidos, imágenes sin dimensiones y anuncios pueden causar CLS — arregla con ancho/alto explícitos (que el navegador usa para calcular la relación) o con CSS aspect-ratio."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige una relación", "text": "Toca un preset o introduce valores W:H personalizados." },
+      { "name": "Introduce una dimensión conocida", "text": "Ancho o alto — la otra se autocompleta." },
+      { "name": "Edita cualquier campo", "text": "Las actualizaciones se propagan para mantener la relación." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Diferencia entre 16:9 y 1.78:1?", "a": "Misma relación, distinta notación. 16/9 = 1.778. La forma con dos puntos es convencional en TV/web; la decimal en cine." },
+    { "q": "¿Cómo preservo aspect ratio en CSS?", "a": "Usa la propiedad aspect-ratio: img { aspect-ratio: 16/9; width: 100%; height: auto; }. La imagen llena el ancho del contenedor y el alto se ajusta para preservar la relación." },
+    { "q": "¿Por qué mi vídeo se ve mal en una TV 4:3?", "a": "La mayoría de vídeos modernos son 16:9. En una pantalla 4:3, hacen letterbox (barras negras), pillar-box o se estiran. La configuración del TV controla cuál." },
+    { "q": "¿Puedo usar relaciones no enteras?", "a": "Sí — escribe 1.5 o 2.39. La calculadora las trata como decimales; la salida de relación simplificada solo aparece para relaciones enteras." },
+    { "q": "¿Qué es 'pixel aspect ratio'?", "a": "Un concepto separado: la forma de un píxel individual. Las pantallas modernas usan píxeles cuadrados (1:1). Algunos formatos legacy de SD usaban píxeles no cuadrados (p.ej. 1.0667 para NTSC widescreen). Esta calculadora maneja display aspect ratio, no pixel aspect ratio." },
+    { "q": "¿Qué es el look 'cinematográfico'?", "a": "21:9 (más exacto 2.39:1 o 2.40:1) — más ancho que HDTV. Común en blockbusters modernos. Servicios de streaming a menudo sirven películas en este ratio." },
+    { "q": "¿Por qué Instagram Reel/TikTok usa 9:16?", "a": "Porque los teléfonos típicamente se sostienen verticalmente. 9:16 llena toda la pantalla del teléfono con contenido; 16:9 deja bandas arriba y abajo en un teléfono vertical." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente." }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "title": "Validador de email (sintaxis + detección de erratas)",
+  "shortDescription": "Valida sintaxis de email contra RFC 5322 y detecta erratas comunes en proveedores populares (gmail, yahoo, hotmail, etc).",
+  "description": "Escribe un email para verificar si la sintaxis es válida y detectar erratas como 'gmial.com' → 'gmail.com'. Desglosa parte local, dominio, TLD y avisa de violaciones de límites RFC.",
+  "metaDescription": "Validador gratis de email. Comprueba sintaxis RFC 5322 y detecta erratas como gmial.com o yaho.com. Muestra desglose de parte local, dominio y TLD.",
+  "keywords": ["validador email", "comprobación sintaxis email", "verificar email", "errata email", "formato email"],
+  "input": { "email": "Dirección de email" },
+  "status": { "valid": "Sintaxis válida", "invalid": "Sintaxis no válida" },
+  "suggestion": "¿Quisiste decir: {suggestion}?",
+  "empty": "Escribe una dirección de email para validar.",
+  "breakdown": {
+    "localPart": "Parte local",
+    "domain": "Dominio",
+    "tld": "TLD",
+    "hasPlus": "Tag plus (+)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué hace este validador (y qué no puede)",
+        "paragraphs": [
+          "La validación de sintaxis de email comprueba si 'nombre@dominio.tld' sigue las reglas estructurales del RFC 5322. Usamos una regex pragmática que detecta casi todas las erratas reales manteniéndose flexible para direcciones legítimas con tags plus, puntos y TLDs inusuales.",
+          "Lo que NO puede hacer: confirmar que la dirección realmente recibe correo. Eso requiere enviar un email real o hacer una comprobación SMTP, ambos requieren código de servidor y arriesgan falsos positivos (dominios catch-all, greylisting). La validación de sintaxis detecta erratas barato; comprobaciones de entregabilidad necesitan otro enfoque."
+        ]
+      },
+      {
+        "heading": "Detección de erratas comunes",
+        "paragraphs": [
+          "Vigilamos erratas en los principales proveedores gratis — 'gmial.com' en lugar de 'gmail.com', 'yaho.com' en lugar de 'yahoo.com', etc. Aproximadamente el 95% de erratas en alta de email son erratas de dominio en estos pocos proveedores. Detectarlas en cliente ahorra un email de bienvenida rebotado y un incómodo 'comprueba tu dirección'.",
+          "Si construyes un formulario de alta, ejecuta la misma lógica antes de enviar. Muestra una sugerencia '¿Quisiste decir...?' y deja al usuario aceptar o anular. Los flujos maduros lo hacen rutinariamente; mejora notablemente la entregabilidad."
+        ]
+      },
+      {
+        "heading": "Reglas de la parte local",
+        "paragraphs": [
+          "Tag plus ('user+filter@gmail.com'): ampliamente soportado por proveedores principales. Úsalo para crear direcciones únicas para distintas altas manteniendo una sola bandeja.",
+          "Puntos ('user.name@gmail.com'): Gmail los trata como la misma dirección (los puntos se ignoran), pero otros proveedores pueden tratarlos como distintos. No confíes en la equivalencia de puntos fuera de Gmail.",
+          "Longitud: RFC 5321 limita la parte local a 64 caracteres y la dirección completa a 254. Avisamos cuando se exceden — la mayoría de servidores rechazan direcciones más largas.",
+          "Sensibilidad a mayúsculas: por RFC la parte local distingue mayúsculas pero la mayoría de proveedores la tratan sin distinción. El dominio nunca distingue."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escribe el email", "text": "O pega desde un formulario / lista." },
+      { "name": "Lee el veredicto", "text": "Check verde = sintaxis válida; X roja = no válida." },
+      { "name": "Atento a sugerencias", "text": "Las erratas comunes en proveedores populares se marcan con sugerencia." },
+      { "name": "Revisa el desglose", "text": "Parte local, dominio, TLD y notas de aviso aparecen abajo." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Confirma que el email existe?", "a": "No — solo sintaxis. Confirmar que existe la bandeja requiere comprobación SMTP en servidor o enviar email de verificación. Esta herramienta detecta erratas barato." },
+    { "q": "¿Por qué aceptó 'a@b.co'?", "a": "Porque técnicamente es sintaxis válida. El TLD '.co' es real (Colombia). La validación por sintaxis no puede filtrar TLDs reales pero raros." },
+    { "q": "¿Y emails con unicode (p.ej. 用户@例え.jp)?", "a": "Las direcciones internacionalizadas son válidas según RFC 6531 pero la regex usada aquí no las acepta. La mayoría de backends de formularios tampoco. Para validación con unicode, usa una librería dedicada." },
+    { "q": "¿Qué es un tag plus?", "a": "Cualquier cosa entre + y @ es tratada por Gmail y muchos proveedores como parte del enrutamiento. user+toolify@gmail.com va a user@gmail.com pero puedes filtrar por el sufijo +toolify." },
+    { "q": "¿Por qué Gmail ignora los puntos?", "a": "Política histórica de Gmail. user.name@gmail.com y username@gmail.com entregan a la misma bandeja. Otros proveedores (Yahoo, Outlook) los tratan como distintos." },
+    { "q": "¿Cuál es el email válido más largo?", "a": "254 caracteres totales según RFC 5321. Parte local ≤ 64. La mayoría de servidores rechazan más largos." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. La validación corre localmente; nada se envía a un servidor." },
+    { "q": "¿Puedo validar en bulk?", "a": "No en esta herramienta — pega una dirección a la vez. Para listas, usa un script o servicio dedicado de validación masiva (con consentimiento de los titulares)." }
+  ]
+}

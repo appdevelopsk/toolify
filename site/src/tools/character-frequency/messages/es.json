@@ -1,0 +1,60 @@
+{
+  "title": "Analizador de frecuencia (letras, caracteres o palabras)",
+  "shortDescription": "Cuenta la frecuencia de cada carácter o palabra en tu texto. Tabla ordenable, con porcentajes, sensibilidad a mayúsculas opcional.",
+  "description": "Pega cualquier texto para obtener una tabla de frecuencias ordenada. Tres modos: todos los caracteres, solo letras/dígitos, o palabras enteras. Útil para criptoanálisis, análisis de escritura y limpieza de datasets.",
+  "metaDescription": "Analizador gratis de frecuencia de caracteres. Cuenta letras, todos los caracteres o palabras. Tabla ordenable con porcentajes. UTF-8 incluyendo CJK y emoji.",
+  "keywords": ["frecuencia caracteres", "frecuencia letras", "frecuencia palabras", "análisis frecuencia", "estadísticas texto"],
+  "input": { "text": "Texto" },
+  "mode": { "all": "Todos los caracteres", "letters": "Letras y dígitos", "words": "Palabras" },
+  "caseSensitive": "Sensible a mayúsculas",
+  "stats": {
+    "unique": "{n} únicos",
+    "total": "{n} total",
+    "showingTop": "mostrando top {n}",
+    "remainingCount": "+{n} más en la cola no mostrados"
+  },
+  "col": { "item": "Ítem", "count": "Cuenta" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Para qué sirve",
+        "paragraphs": [
+          "Criptoanálisis: cifrados clásicos (César, sustitución) preservan frecuencias de letras. El texto en inglés siempre tiene la E como letra más común, luego T, A, O, I, N. Si ves más o menos esa distribución en cifrado, tienes una sustitución. Los idiomas CJK tienen distribuciones muy distintas pero aún reconocibles.",
+          "Análisis de escritura: detectar palabras sobreusadas es una de las formas más rápidas de mejorar borradores. Si 'just' o 'realmente' aparece 50 veces en un ensayo de 1000 palabras, has encontrado un tic que arreglar.",
+          "Limpieza de datasets: escanear una columna CSV con esta herramienta revela caracteres extraviados, errores de codificación y mayúsculas inesperadas. Útil antes de importar a un sistema más estricto."
+        ]
+      },
+      {
+        "heading": "Tres modos",
+        "paragraphs": [
+          "Todos los caracteres: incluye espacios, puntuación, saltos de línea, emoji. Mejor para análisis de texto bruto. Útil cuando sospechas caracteres ocultos (espacio de ancho cero, BOM) corrompiendo un archivo.",
+          "Letras y dígitos: filtra a solo letras y números Unicode. Mejor para análisis tradicional de frecuencia (criptoanálisis, identificación de idioma).",
+          "Palabras: divide por espacios y cuenta palabras enteras. Mejor para análisis de escritura y revisión estilística."
+        ]
+      },
+      {
+        "heading": "Qué hace 'sensible a mayúsculas'",
+        "paragraphs": [
+          "Off (por defecto): 'A' y 'a' cuentan juntas. Mejor para frecuencia de letras en texto natural donde el caso es incidental.",
+          "On: 'A' y 'a' cuentan separadas. Útil cuando el caso es significativo — identificadores de programación, términos de marca o análisis de patrones de capitalización. Nota: el plegado insensible a caso usa las reglas de minúsculas de la locale; para la mayoría de idiomas es el plegado Unicode convencional."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pega texto", "text": "Cualquier cosa, desde una frase hasta un archivo de varios MB." },
+      { "name": "Elige modo", "text": "Todos los caracteres, letras/dígitos o palabras." },
+      { "name": "Alterna sensibilidad a caso", "text": "Off para texto natural; on cuando el caso es significativo." },
+      { "name": "Lee la tabla", "text": "Ordenada por frecuencia. Top 50 mostrado; cola restante resumida abajo." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Funciona para japonés, chino, coreano?", "a": "Sí. El modo letras trata cada ideograma como una 'letra', así obtienes frecuencia de hanzi/kanji. El modo palabras divide por espacios, así que texto CJK sin espacios aparece como una palabra gigante — usa modo letras para esos." },
+    { "q": "¿Letra más común en inglés?", "a": "'E' (~12.7%), luego T (9.1%), A (8.2%), O (7.5%), I (7.0%), N (6.7%). Saber esto es la base para romper cifrados de sustitución simples." },
+    { "q": "¿Se cuentan los emojis?", "a": "Sí en modo 'todos los caracteres'. El modo letras los filtra (no son letras según la clasificación Unicode)." },
+    { "q": "¿Por qué los emojis a veces se dividen en varios caracteres?", "a": "Algunos emojis son múltiples puntos de código Unicode (p.ej. banderas = dos letras indicadoras regionales). El contador sigue la iteración de cadenas de JavaScript que respeta puntos de código pero no todos los grafemas. Para la mayoría de análisis está bien." },
+    { "q": "¿Puedo exportar la tabla?", "a": "Aún no — copia-pega la tabla por ahora. Exportar CSV está en el roadmap." },
+    { "q": "¿Cuántas entradas muestra?", "a": "Top 50 en la tabla. La cola se resume al final." },
+    { "q": "¿Por qué los resultados case-insensitive en griego/turco no coinciden con mi expectativa?", "a": "Algunos idiomas tienen reglas inusuales (turco I con/sin punto; alemán ß ↔ SS). Usamos toLowerCase() de JavaScript que sigue el plegado Unicode por defecto — bien usualmente pero puede sorprender en casos extremos." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Todo el conteo corre localmente." }
+  ]
+}
