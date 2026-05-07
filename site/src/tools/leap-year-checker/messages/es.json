@@ -1,0 +1,64 @@
+{
+  "title": "Comprobador de año bisiesto (con explicación de regla)",
+  "shortDescription": "Comprueba si un año es bisiesto y por qué. Muestra días de febrero, días del año, y el bisiesto anterior y siguiente.",
+  "description": "Introduce cualquier año para ver si es bisiesto y la regla que lo decidió. Más conteo de días de febrero, total de días del año y bisiestos adyacentes.",
+  "metaDescription": "Comprobador gratis de año bisiesto. Verifica cualquier año, ve la regla gregoriana que aplica, y los bisiestos previo/siguiente al instante.",
+  "keywords": ["comprobador bisiesto", "calculadora bisiesto", "es 2024 bisiesto", "bisiesto gregoriano", "año 366 días"],
+  "input": { "year": "Año" },
+  "result": {
+    "isLeap": "es bisiesto",
+    "notLeap": "NO es bisiesto",
+    "yearDays": "Días del año",
+    "febDays": "Días en febrero",
+    "prevLeap": "Bisiesto anterior",
+    "nextLeap": "Bisiesto siguiente"
+  },
+  "reason": {
+    "div400": "Divisible por 400 → bisiesto (excepción especial)",
+    "div100": "Divisible por 100 pero no 400 → NO bisiesto",
+    "div4": "Divisible por 4 (y no 100) → bisiesto",
+    "notDiv4": "No divisible por 4 → no bisiesto"
+  },
+  "empty": "Introduce un año para comprobar.",
+  "article": {
+    "sections": [
+      {
+        "heading": "La regla gregoriana de bisiesto",
+        "paragraphs": [
+          "Un año es bisiesto si es divisible por 4 — excepto los siglos (divisibles por 100), que solo son bisiestos cuando también lo son por 400. Así 1900 NO es bisiesto (divisible por 100, no 400), pero 2000 SÍ (divisible por 400). 2024 es bisiesto (divisible por 4); 2100 no lo será.",
+          "Esta regla mantiene el calendario en sincronía con la órbita real de la Tierra (~365.2425 días). Una regla simple de cada 4 años derivaría unos 3 días cada 400 años; la excepción del siglo corrige casi todo eso, dejando solo ~1 día de error en 3,300 años."
+        ]
+      },
+      {
+        "heading": "Por qué necesitamos años bisiestos",
+        "paragraphs": [
+          "La Tierra orbita el Sol en ~365.2422 días — no exactamente 365. Sin corrección periódica, las fechas del calendario derivarían lentamente respecto a las estaciones. Tras 100 años de años de 365 días el calendario estaría ~24 días detrás de los equinoccios y las estaciones parecerían correrse.",
+          "El calendario juliano (45 a.C.) añadió un bisiesto cada 4 años, cercano pero ligeramente sobrecorregido. La reforma del Papa Gregorio XIII en 1582 introdujo la regla del siglo, produciendo el calendario gregoriano moderno aún en uso."
+        ]
+      },
+      {
+        "heading": "Curiosidades del bisiesto",
+        "paragraphs": [
+          "Cumpleaños del 29 feb: las personas nacidas el 29 feb ('leaplings') celebran cada 4 años en la fecha real, o el 28 feb / 1 mar en años regulares. Legalmente, la mayoría de jurisdicciones los tratan como cumpleaños del 28 feb para edad legal.",
+          "Algún software ha tratado históricamente todos los años de siglo como no-bisiestos (bug introducido al implementar solo la regla de cada 4). 2000 funcionó correctamente porque es div por 400, pero 2100 revelará bugs latentes en sistemas que no hayan probado adelante.",
+          "El año bisiesto astronómico es algo más complejo: año solar ~365.2422 días, meses lunares ~29.53 días. Los calendarios hebreo, islámico y chino manejan los conceptos de bisiesto distinto, a menudo añadiendo un mes bisiesto entero en lugar de un solo día."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce un año", "text": "Cualquier año, pasado o futuro." },
+      { "name": "Lee el veredicto", "text": "Más la regla que decidió y los días de febrero." },
+      { "name": "Ve los bisiestos adyacentes", "text": "Navegación rápida adelante o atrás." }
+    ]
+  },
+  "faq": [
+    { "q": "¿2024 es bisiesto?", "a": "Sí — 2024 es divisible por 4 y no por 100, así que es bisiesto. Febrero 2024 tiene 29 días." },
+    { "q": "¿2100 es bisiesto?", "a": "No — 2100 es divisible por 100 pero no por 400, así que NO es bisiesto. Febrero 2100 tendrá 28 días." },
+    { "q": "¿Por qué 2000 es bisiesto pero 1900 no?", "a": "Ambos son divisibles por 100. Solo años divisibles por 400 (la excepción de siglo) son bisiestos. 2000 / 400 = 5 (entero), así bisiesto. 1900 / 400 = 4.75, no." },
+    { "q": "¿Cuál es el próximo bisiesto?", "a": "Tras 2024 viene 2028. El patrón sigue: 2032, 2036, etc. — cada 4 años hasta 2100, que se omite." },
+    { "q": "¿Cuántos días tiene un bisiesto?", "a": "366 días. El día extra es el 29 de febrero. Total: 52 semanas + 2 días." },
+    { "q": "¿El año 0 es bisiesto?", "a": "No hay año 0 en el calendario gregoriano (ni juliano) — los años saltan directamente de 1 a.C. a 1 d.C. Los astrónomos sí usan año 0 para mate; ese año hipotético sería bisiesto por la regla." },
+    { "q": "¿Por qué fue necesaria la reforma gregoriana?", "a": "El juliano sobrecorregía ligeramente: cada 4 años eran demasiados bisiestos. Para 1582 el calendario estaba 10 días desfasado de las estaciones reales. La reforma de Gregorio XIII saltó 10 días e introdujo la regla del siglo." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo es local." }
+  ]
+}

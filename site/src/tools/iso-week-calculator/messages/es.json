@@ -1,0 +1,61 @@
+{
+  "title": "Calculadora de semana ISO (semana del año)",
+  "shortDescription": "Encuentra el número de semana ISO 8601, día de la semana ISO y el rango de fechas para cualquier fecha. Incluye día del año y semanas del año.",
+  "description": "Elige cualquier fecha y mira su número de semana ISO 8601 (1-53), día ISO (1=lunes, 7=domingo), el rango lunes-domingo de esa semana y conteos relacionados (día del año, semanas del año).",
+  "metaDescription": "Calculadora gratis de semana ISO. Semana ISO 8601, día, rango, día del año, semanas del año. Formato estándar de semana del año.",
+  "keywords": ["número semana iso", "semana del año", "iso 8601 semana", "calculadora semana", "semana calendario"],
+  "input": { "date": "Fecha" },
+  "today": "Hoy",
+  "result": {
+    "iso": "Representación ISO 8601",
+    "weekNumber": "Número semana",
+    "weekday": "Día semana",
+    "weekStart": "Semana inicia (lunes)",
+    "weekEnd": "Semana termina (domingo)",
+    "dayOfYear": "Día del año",
+    "weeksInYear": "Semanas del año"
+  },
+  "empty": "Selecciona una fecha.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué es una semana ISO",
+        "paragraphs": [
+          "ISO 8601 define una semana de calendario empezando en lunes y terminando en domingo. La primera semana de cualquier año ISO es la que contiene el primer jueves de ese año — o equivalentemente, la semana que contiene el 4 de enero. Esto significa que un año puede tener 52 o 53 semanas ISO, y el año ISO no siempre coincide con el del calendario en finales de diciembre y principios de enero.",
+          "Formato: 'YYYY-Www-D'. Así '2026-W19-3' significa miércoles de la semana 19 de 2026. Día: 1=lunes, 7=domingo. Semana: 1-52 o 1-53."
+        ]
+      },
+      {
+        "heading": "Por qué las semanas ISO difieren del calendario",
+        "paragraphs": [
+          "Los calendarios EE.UU. típicamente cuentan domingo como primer día. ISO es lunes-primero. Esto significa: un domingo en tu calendario que está al final de la semana 30 es, ISO, fin de semana 30. Pero ese domingo podría caer en una semana ISO distinta si es el último domingo de un año y el primer lunes es de otro.",
+          "Además: los años ISO pueden estar 1 desfasados del calendario. 31 dic 2024 está en semana ISO 1 de 2025 (semana que contiene el primer jueves de 2025). 1 ene 2024 fue lunes — semana 1 de 2024 empieza el 1 ene. 1 ene 2025 es miércoles — semana 1 de 2025 empieza el 30 dic 2024."
+        ]
+      },
+      {
+        "heading": "Dónde se usan las semanas ISO",
+        "paragraphs": [
+          "Negocios: muchas empresas europeas facturan y envían por semana ISO. 'El pedido llega en W23' es inequívoco e independiente del idioma.",
+          "Software: muchos lenguajes tienen funciones ISO de semana. El Date de JavaScript no directamente, pero librerías como date-fns y dayjs lo añaden. Usado en programación, análisis de logs y reportes.",
+          "Epidemiología: los reportes semanales de incidencia usan semanas ISO. La OMS y CDC las usan en sus dashboards de gripe y COVID.",
+          "Deportes / juegos: muchas ligas programan por 'semana 1, semana 2, …' que suelen alinearse con ISO (especialmente ligas europeas)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige una fecha", "text": "Selector o botón 'Hoy'." },
+      { "name": "Lee la representación ISO", "text": "Formato: YYYY-Www-D, donde w es número y D es día." },
+      { "name": "Ve el rango de la semana", "text": "Lunes y domingo de esa semana, en el formato local." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Por qué no coincide con WEEKNUM de Excel?", "a": "WEEKNUM de Excel usa convenciones distintas. El default es estilo EE.UU. (domingo-primero). Para ISO en Excel usa ISOWEEKNUM o specify return_type=21 en WEEKNUM." },
+    { "q": "¿Un año puede tener 53 semanas?", "a": "Sí. Un año tiene 53 semanas ISO si el 1 ene es jueves O el 31 dic es jueves. Unos 71 cada 400 años." },
+    { "q": "¿Año ISO vs calendario?", "a": "La mayoría de días son iguales. Los casos límite de finales de diciembre y principios de enero difieren. 29 dic 2008 es semana ISO 1 de 2009 (calendario 2008, ISO 2009)." },
+    { "q": "¿La semana 1 siempre incluye el 1 ene?", "a": "No siempre. Semana ISO 1 contiene el primer jueves del año. Si 1 ene es viernes-domingo, ese día es parte de la última semana ISO del año anterior." },
+    { "q": "¿Diferencia entre W1 y Semana 1?", "a": "Lo mismo en contexto ISO. El prefijo W es la convención de formato. '2026-W01' significa semana ISO 1 de 2026." },
+    { "q": "¿Por qué lunes como inicio?", "a": "ISO 8601 lo estandarizó. La mayoría del mundo usa lunes-primero; solo Arabia Saudí, EE.UU., Canadá y unos pocos usan domingo-primero por costumbre." },
+    { "q": "¿Puedo exportar a calendario?", "a": "No directamente. Usa las fechas de inicio/fin y crea tu propio evento." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente; nada se envía a un servidor." }
+  ]
+}

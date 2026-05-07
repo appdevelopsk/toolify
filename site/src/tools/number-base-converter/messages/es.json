@@ -1,0 +1,50 @@
+{
+  "title": "Convertidor de bases (binario, octal, decimal, hex)",
+  "shortDescription": "Convierte números entre binario, octal, decimal y hexadecimal. Valida la entrada para la base elegida y muestra las cuatro representaciones.",
+  "description": "Elige la base de origen, escribe un valor y ve los equivalentes en binario, octal, decimal y hex. Útil para programación, redes y electrónica.",
+  "metaDescription": "Convertidor gratis de bases para binario, octal, decimal y hex. Valida entrada por base, muestra las cuatro representaciones lado a lado.",
+  "keywords": ["convertidor base", "binario a decimal", "decimal a hex", "hex a binario", "base 2 base 16"],
+  "input": { "value": "Valor", "from": "Desde base" },
+  "error": { "invalidForBase": "La entrada contiene caracteres no válidos para la base seleccionada." },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo funciona la notación posicional",
+        "paragraphs": [
+          "Cada base usa notación posicional: el dígito más a la derecha es base⁰ = 1, el siguiente base¹, luego base², etc. En decimal '255' significa 2×100 + 5×10 + 5×1. En binario '11111111' significa 1×128 + 1×64 + ... + 1×1 = 255. El mismo número, distintas bases.",
+          "Hexadecimal usa 0-9 y A-F para encajar 16 valores por dígito. 'FF' = 15×16 + 15×1 = 255. Octal usa 0-7 (3 bits por dígito), y binario solo 0 y 1. La conversión es mecánica — convertir a decimal y luego a la base destino — y la calculadora lo hace por ti para cualquier entero no negativo."
+        ]
+      },
+      {
+        "heading": "Cuándo usar cada base",
+        "paragraphs": [
+          "Binario (base 2): trabajo de bajo nivel — campos de bits, máscaras, firmware embebido. Leer layouts de registro, depurar a nivel hardware.",
+          "Octal (base 8): permisos Unix (chmod 755 = rwxr-xr-x), algunos formatos legacy. Menos común hoy.",
+          "Decimal (base 10): todo lo que cuentan los humanos. El default para aritmética normal.",
+          "Hexadecimal (base 16): el más común en software — colores (#FF6B35), direcciones de memoria (0x7fff...), MAC, representaciones de bytes, hashes."
+        ]
+      },
+      {
+        "heading": "Referencia rápida",
+        "paragraphs": [
+          "1 byte = 8 bits = 2 dígitos hex = 256 valores (0-255). 1 dígito hex = 4 bits = 16 valores. 1 dígito octal = 3 bits. Hex 'FF' = 255 decimal = 11111111 binario. Hex '100' = 256 decimal. Hex 'FFFF' = 65535 (max 16-bit unsigned). Hex 'FFFFFFFF' = 4294967295 (max 32-bit unsigned)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige la base origen", "text": "Binario, octal, decimal o hex." },
+      { "name": "Introduce tu valor", "text": "Solo dígitos válidos para esa base. Hex no distingue mayúsculas." },
+      { "name": "Lee las cuatro bases", "text": "La conversión a cada una de las otras tres aparece al lado." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Hex distingue mayúsculas?", "a": "Tanto 'ff' como 'FF' decodifican al mismo valor. Mostramos mayúsculas por convención." },
+    { "q": "¿Puedo introducir negativos?", "a": "Sí, prefija con '-'. La calculadora muestra la representación de cada base con el signo preservado (p.ej. -255 → -FF en hex)." },
+    { "q": "¿Valor máximo?", "a": "Limitado por el rango seguro de enteros de JavaScript (~2⁵³). Para valores mayores usa herramientas con BigInt." },
+    { "q": "¿Cómo leo el prefijo 0x o 0b?", "a": "Quita el prefijo antes de introducir. '0xFF' → solo 'FF' con hex. '0b1010' → '1010' con binario." },
+    { "q": "¿Por qué Unix chmod usa octal?", "a": "Los permisos tienen tres grupos (owner/group/other) de tres bits cada uno. Cada grupo de 3 bits mapea limpiamente a un dígito octal, así 755 = 111 101 101 = rwx r-x r-x." },
+    { "q": "¿Puedo convertir fracciones?", "a": "Aún no — solo enteros no negativos. Podríamos añadir soporte de punto fijo después." },
+    { "q": "¿Y si veo 'no válido para base'?", "a": "Escribiste un carácter no permitido en la base elegida. Hex permite 0-9 y A-F; binario solo 0 y 1; etc." },
+    { "q": "¿Los datos se envían a algún sitio?", "a": "No. La conversión corre localmente." }
+  ]
+}
