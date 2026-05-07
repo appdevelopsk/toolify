@@ -1,0 +1,56 @@
+{
+  "title": "Fraction Calculator (add, subtract, multiply, divide)",
+  "shortDescription": "Add, subtract, multiply, or divide two fractions. Returns simplified form, decimal equivalent, and mixed-number representation.",
+  "description": "Enter two fractions (numerator over denominator) and an operation. The calculator returns the result in lowest terms, plus its decimal value and mixed-number form when applicable. Uses BigInt for exact arbitrary-size results.",
+  "metaDescription": "Free fraction calculator. Add, subtract, multiply, divide fractions. Simplified result, decimal equivalent, mixed number. Exact BigInt arithmetic.",
+  "keywords": ["fraction calculator", "add fractions", "multiply fractions", "fraction simplifier", "mixed number"],
+  "empty": "Enter both fractions and an operation.",
+  "result": {
+    "simplified": "Result (simplified)",
+    "decimal": "Decimal",
+    "mixed": "Mixed number"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How fraction operations work",
+        "paragraphs": [
+          "Addition/subtraction: convert to a common denominator first. a/b ± c/d = (ad ± bc) / bd. Example: 1/2 + 1/3 = (1×3 + 1×2) / (2×3) = 5/6.",
+          "Multiplication: a/b × c/d = (ac) / (bd). Cross-cancellation simplifies before multiplying. Example: 2/3 × 9/10 = (2×9)/(3×10) = 18/30 = 3/5.",
+          "Division: invert the second fraction and multiply. a/b ÷ c/d = a/b × d/c = (ad) / (bc). Example: 1/2 ÷ 3/4 = (1×4)/(2×3) = 4/6 = 2/3."
+        ]
+      },
+      {
+        "heading": "Why simplify",
+        "paragraphs": [
+          "A fraction is in lowest terms when numerator and denominator share no common factors greater than 1. We use the Euclidean algorithm to find their GCD and divide both by it.",
+          "Example: 18/30 has GCD 6, so simplifies to 3/5. Mathematically equivalent but easier to read and work with.",
+          "We also normalize the sign: a positive numerator is conventional. So −3/−5 simplifies to 3/5; 3/−5 to −3/5."
+        ]
+      },
+      {
+        "heading": "Mixed numbers",
+        "paragraphs": [
+          "When the numerator's absolute value exceeds the denominator's, the fraction can be expressed as a whole number plus a proper fraction. Example: 7/3 = 2⅓ (since 7 = 2×3 + 1).",
+          "Mixed numbers are common in everyday measurements (recipes, lumber dimensions, music time signatures) but less common in math/science where improper fractions are simpler to manipulate. We show both representations."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter the first fraction", "text": "Numerator on top, denominator on bottom." },
+      { "name": "Pick an operation", "text": "+, −, ×, or ÷." },
+      { "name": "Enter the second fraction", "text": "Same format." },
+      { "name": "Read the result", "text": "Simplified form, decimal value, and mixed number when applicable." }
+    ]
+  },
+  "faq": [
+    { "q": "Can I enter negative fractions?", "a": "Yes. Use a minus sign on either numerator or denominator. The calculator normalizes to a single negative sign in the numerator." },
+    { "q": "Why is 1/2 + 1/3 = 5/6 and not 2/5?", "a": "You can't add fractions by adding numerators and denominators separately. You must first find a common denominator. 1/2 = 3/6, 1/3 = 2/6, so 1/2 + 1/3 = 3/6 + 2/6 = 5/6." },
+    { "q": "Does this support whole numbers as fractions?", "a": "Yes. Enter whole = whole/1. So 5 + 1/2 = 5/1 + 1/2 = 11/2 = 5½." },
+    { "q": "What's the largest fraction this handles?", "a": "We use BigInt internally, so arithmetic on numerators and denominators of essentially any size is exact. Display is limited to whatever your screen fits." },
+    { "q": "Why is the decimal sometimes not exact?", "a": "Some fractions don't have exact decimal representations (1/3 = 0.3333…). We display up to 8 decimal places. The fraction itself is exact; the decimal is an approximation." },
+    { "q": "Can I divide by zero?", "a": "No. Division by zero (or any fraction with a zero numerator as divisor) is undefined. The calculator returns no result for that case." },
+    { "q": "Where do mixed numbers come from?", "a": "Improper fractions (numerator ≥ denominator). 7/3 = 2 + 1/3 = 2⅓. Both forms are equivalent; choose based on context (math: improper, recipes: mixed)." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}

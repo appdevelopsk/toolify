@@ -1,0 +1,92 @@
+{
+  "title": "PC・デバイス情報チェッカー（ブラウザ・OS・ハードウェア）",
+  "shortDescription": "あなたのPC・デバイスのブラウザ、OS、画面、ハードウェア、GPU、ストレージ、ネットワーク、ダークモード設定を一覧表示。すべてブラウザ内で完結。",
+  "description": "デバイスが公開するすべてのWeb APIをブラウザ側で取得：UA、OS、ブラウザバージョン、画面サイズ、devicePixelRatio、CPUスレッド数、デバイスメモリ、WebGLでのGPU情報、ストレージ容量、ネットワークタイプと速度、言語、タイムゾーン、ダークモードと動きの抑制設定。",
+  "metaDescription": "無料のPC・デバイス情報チェッカー。ブラウザ、OS、CPUコア数、メモリ、GPU、画面、ネットワーク、言語、タイムゾーン — デバイスの全情報が1画面に。",
+  "keywords": ["PC 情報", "デバイス 情報", "ブラウザ 情報", "user agent 確認", "ハードウェア 情報"],
+  "loading": "検出中…",
+  "copyJson": "JSONをコピー",
+  "copied": "コピー済！",
+  "notAvailable": "（利用不可）",
+  "automation": "自動化検出",
+  "real": "実ブラウザ",
+  "section": {
+    "browser": "ブラウザ・OS",
+    "display": "ディスプレイ",
+    "hardware": "ハードウェア",
+    "network": "ネットワーク",
+    "userAgent": "User-Agent 文字列"
+  },
+  "field": {
+    "browser": "ブラウザ",
+    "os": "OS",
+    "platform": "プラットフォーム",
+    "language": "主要言語",
+    "languages": "全言語設定",
+    "timezone": "タイムゾーン",
+    "cookiesEnabled": "Cookie有効",
+    "online": "オンライン状態",
+    "doNotTrack": "Do Not Track",
+    "webdriver": "Webdriver",
+    "screenSize": "画面サイズ",
+    "availSize": "使用可能領域",
+    "windowSize": "ウィンドウサイズ",
+    "colorDepth": "色深度",
+    "pixelRatio": "devicePixelRatio",
+    "darkMode": "ダークモード優先",
+    "reducedMotion": "動きの抑制優先",
+    "cpuCores": "CPUスレッド数",
+    "deviceMemory": "デバイスメモリ",
+    "touchPoints": "タッチポイント",
+    "gpu": "GPU（WebGL）",
+    "storageQuota": "ストレージ容量",
+    "storageUsage": "ストレージ使用量",
+    "connectionType": "接続種別",
+    "downlink": "下り速度",
+    "rtt": "往復時間"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "取得される情報",
+        "paragraphs": [
+          "ブラウザ・OS: User-Agent、解析されたブラウザ/OS、言語、タイムゾーン、Cookie有効、オンライン状態。あなたが訪問する任意のウェブサイトが読み取れる情報と同じ。",
+          "ディスプレイ: 画面サイズ、ビューポートサイズ、色深度、devicePixelRatio（Retina/HiDPI）、prefers-color-scheme、prefers-reduced-motion。サイトはレスポンシブデザインとアクセシビリティに使用。",
+          "ハードウェア: CPUスレッド数（navigator.hardwareConcurrency）、デバイスメモリクラス（navigator.deviceMemory、GB単位、4以上は8に丸め）、最大タッチポイント、WebGLでのGPU情報、ストレージ容量と現在使用量。",
+          "ネットワーク: 接続実効種別（slow-2g/2g/3g/4g）、下り速度（Mbps）、往復時間（ms）。ブラウザがサポートしている場合に有効。アダプティブローディングに有用。"
+        ]
+      },
+      {
+        "heading": "プライバシー：サイトが見える/見えない情報",
+        "paragraphs": [
+          "ここに表示される情報すべては、あなたが訪問する任意のウェブサイトが標準JavaScript APIで取得できるものです。特別な権限は不要。すべてpublicなnavigatorとscreenオブジェクトに含まれます。本ツールは情報提示用で、新規取得用ではありません。",
+          "ウェブサイトが見られない情報（このツールも表示できないもの）: あなたのIPアドレス（サーバーサイドのみ）、ローカルファイルシステム、他のブラウザタブの内容、ブラウザサンドボックス外のもの。ブラウザフィンガープリンティングは表示可能なフィールドの組み合わせで一意のブラウザを識別 — Cookieなしでもプライバシー懸念として広く文書化されています。"
+        ]
+      },
+      {
+        "heading": "デバッグに有用",
+        "paragraphs": [
+          "モバイル vs デスクトップテスト: User-Agentでサイトが見ている内容がわかる。レスポンシブ問題はデバイスクラス誤検出が原因の場合あり。",
+          "GPU/WebGL: 「GPU（WebGL）」でグラフィックレンダラーを確認。複雑な3DやCanvas重いサイトのパフォーマンス問題でGPUがボトルネックの可能性。",
+          "ストレージ: ストレージ容量でlocalStorage/IndexedDB/Cacheでサイトが使える容量がわかる。デスクトップで通常数GB、モバイルでは少なめ。Webアプリで「容量超過」になる場合の根拠。"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "このページを開く", "text": "ページロード時に検出が自動実行されます。" },
+      { "name": "各セクションを確認", "text": "ブラウザ・OS、ディスプレイ、ハードウェア、ネットワーク、User-Agent。" },
+      { "name": "ウィンドウをリサイズ", "text": "ウィンドウサイズとdpi関連フィールドはライブ更新されます。" },
+      { "name": "任意：JSONとしてコピー", "text": "「JSONをコピー」でフルスナップショットをバグレポート用や比較用に取得。" }
+    ]
+  },
+  "faq": [
+    { "q": "データはどこかに送信される？", "a": "送信されません。すべてブラウザ内でローカルに検出・表示されます。ログ取りも送信もなし。" },
+    { "q": "一部フィールドが「（利用不可）」のはなぜ？", "a": "ブラウザによって公開するAPIが異なります。navigator.deviceMemoryはChrome/Edge専用、navigator.connectionは主にChrome、ストレージ容量はHTTPS必須。SafariとFirefoxのプライベートモードでは制限がさらに厳しくなります。" },
+    { "q": "画面サイズが期待解像度と違うのはなぜ？", "a": "ブラウザは「CSSピクセル」サイズを報告し、物理ピクセルサイズではありません。devicePixelRatioが乗数（Retina で2.0等）。物理解像度 = 画面サイズ × devicePixelRatio。" },
+    { "q": "「GPU（WebGL）」の表示は？", "a": "WebGLが報告するグラフィックレンダラー名。新しいブラウザはフィンガープリント保護で不明瞭にすることがあり — macOSでは「M2 Pro」ではなく「Apple GPU」と出る場合あり。" },
+    { "q": "User-Agentは信頼できる？", "a": "User-Agent文字列は拡張機能やブラウザ設定で偽装可能。ヒントであり保証ではありません。一部ブラウザ（Safari、プライベートモードのFirefox）はUA詳細を意図的に削減します。" },
+    { "q": "CPU 12コアなのに「CPUスレッド数」が8となっている？", "a": "navigator.hardwareConcurrencyはフィンガープリント対策で上限が設定されることがあります。一部ブラウザは高コアシステムでも8や16の最大値を報告。" },
+    { "q": "モバイルでタッチポイント0となるのは？", "a": "モバイルではmaxTouchPointsは通常1以上。0の場合、デスクトップビューモードの可能性。リフレッシュかブラウザ設定でモバイルビューに切り替えてみてください。" },
+    { "q": "iPhoneで動作する？", "a": "Safari iOSの制限内で動作。一部フィールド（deviceMemory、connection）は利用不可の場合あり。User-Agentと基本的なブラウザ/OS検出は常に機能します。" }
+  ]
+}

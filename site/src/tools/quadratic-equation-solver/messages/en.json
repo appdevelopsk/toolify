@@ -1,0 +1,61 @@
+{
+  "title": "Quadratic Equation Solver (ax² + bx + c = 0)",
+  "shortDescription": "Solve any quadratic equation. Returns real or complex roots, the discriminant, and the parabola's vertex coordinates.",
+  "description": "Enter coefficients a, b, c. The solver applies the quadratic formula x = (−b ± √(b²−4ac)) / 2a. Distinguishes two real roots, one repeated root, two complex conjugate roots, or degenerate cases.",
+  "metaDescription": "Free quadratic equation solver. Real or complex roots, discriminant, vertex coordinates. Handles all cases: degenerate, linear, two real, one real, complex.",
+  "keywords": ["quadratic equation solver", "quadratic formula", "discriminant", "complex roots", "parabola vertex"],
+  "empty": "Enter coefficients a, b, c.",
+  "result": {
+    "twoReal": "Two real roots",
+    "oneReal": "One repeated real root",
+    "complex": "Two complex conjugate roots",
+    "linear": "Linear equation (a = 0)",
+    "linearLabel": "a is 0; this is a linear equation:",
+    "all": "Every x is a solution (all coefficients zero).",
+    "none": "No solution (b = 0, c ≠ 0).",
+    "discriminant": "Discriminant (b² − 4ac)",
+    "vertex": "Parabola vertex"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "The quadratic formula",
+        "paragraphs": [
+          "For ax² + bx + c = 0 with a ≠ 0, the solutions are x = (−b ± √(b² − 4ac)) / (2a). The expression under the square root is the 'discriminant' (D = b² − 4ac), and its sign determines the type of roots.",
+          "D > 0: two distinct real roots. The parabola crosses the x-axis at two points.",
+          "D = 0: one repeated real root. The parabola touches the x-axis at the vertex (tangent).",
+          "D < 0: two complex conjugate roots. The parabola doesn't touch the x-axis at all."
+        ]
+      },
+      {
+        "heading": "Vertex and parabola shape",
+        "paragraphs": [
+          "Every quadratic graphs as a parabola. The vertex (turning point) is at x = −b / 2a, and substituting back gives the y-coordinate. We compute it as y = −D / 4a, which is equivalent.",
+          "If a > 0 the parabola opens upward and the vertex is the minimum. If a < 0, downward and the vertex is the maximum. The axis of symmetry passes through the vertex vertically."
+        ]
+      },
+      {
+        "heading": "Degenerate cases",
+        "paragraphs": [
+          "If a = 0, the equation isn't actually quadratic — it becomes linear: bx + c = 0, with solution x = −c/b (if b ≠ 0). We detect this and solve as linear.",
+          "If a = 0 AND b = 0: c must equal 0 for any solution to exist. If c = 0, every x is a solution; if c ≠ 0, no solution exists. We report both cases."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter coefficients", "text": "a, b, c. Use negative numbers as needed (e.g., −3 for the b coefficient)." },
+      { "name": "Read the equation", "text": "The display shows your current ax² + bx + c = 0." },
+      { "name": "Read the roots", "text": "Two real, one repeated, or two complex conjugate, plus the discriminant and vertex." }
+    ]
+  },
+  "faq": [
+    { "q": "Why is the discriminant useful?", "a": "It tells you the nature of the roots without solving: D > 0 means two real roots, D = 0 means one repeated, D < 0 means complex. Often that's all you need to know." },
+    { "q": "What's a 'repeated root'?", "a": "When D = 0, the formula gives x = −b/2a only. Algebraically, the equation factors as a(x − r)² = 0, so r appears twice as a root with 'multiplicity 2'." },
+    { "q": "Are complex roots real-world useful?", "a": "Yes. AC circuits, signal processing, quantum mechanics, and aerodynamics all use complex numbers. Even when the physical answer is real, complex intermediate steps are common." },
+    { "q": "Can I solve cubic or higher equations here?", "a": "Not in this tool. Cubics and quartics have closed-form solutions but they're more involved. For numerical solutions of high-degree polynomials, use NumPy or a CAS like Sage/Mathematica." },
+    { "q": "What if my coefficients are very large?", "a": "Floating-point precision degrades for D when b² and 4ac are nearly equal. For research-grade accuracy, use a library with arbitrary-precision arithmetic." },
+    { "q": "What does 'vertex' mean for a parabola?", "a": "The single 'turning point' where the parabola changes direction (from decreasing to increasing or vice versa). Located at x = −b/(2a). Useful for finding minima/maxima in optimization problems." },
+    { "q": "Why are roots called 'roots'?", "a": "Historical: 'root' translates the Latin radix, used metaphorically as the source/origin of the equation. The roots are where the polynomial equals zero." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}

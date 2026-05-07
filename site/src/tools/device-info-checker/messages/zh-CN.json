@@ -1,0 +1,92 @@
+{
+  "title": "PC 设备信息检查 (浏览器、OS、硬件、网络)",
+  "shortDescription": "一站查看你的 PC/设备的浏览器、OS、屏幕、硬件、GPU、存储、网络、深色模式偏好。所有检测在浏览器内完成。",
+  "description": "浏览器端读取设备公开的所有 Web API: User-Agent、OS、浏览器版本、屏幕尺寸、devicePixelRatio、CPU 线程数、设备内存、WebGL 的 GPU 信息、存储配额、网络类型与速度、语言、时区、深色模式和动效抑制偏好。",
+  "metaDescription": "免费 PC 设备信息检查器。浏览器、OS、CPU 核心、内存、GPU、屏幕、网络、语言、时区 — 你的设备全部信息一页呈现。",
+  "keywords": ["PC 信息", "设备 信息", "浏览器 信息", "user agent 查看", "硬件 信息"],
+  "loading": "检测中…",
+  "copyJson": "复制 JSON",
+  "copied": "已复制!",
+  "notAvailable": "(不可用)",
+  "automation": "检测到自动化",
+  "real": "真实浏览器",
+  "section": {
+    "browser": "浏览器与 OS",
+    "display": "显示",
+    "hardware": "硬件",
+    "network": "网络",
+    "userAgent": "User-Agent 字符串"
+  },
+  "field": {
+    "browser": "浏览器",
+    "os": "操作系统",
+    "platform": "平台",
+    "language": "主要语言",
+    "languages": "所有语言",
+    "timezone": "时区",
+    "cookiesEnabled": "Cookies 启用",
+    "online": "在线状态",
+    "doNotTrack": "Do Not Track",
+    "webdriver": "Webdriver",
+    "screenSize": "屏幕尺寸",
+    "availSize": "可用区域",
+    "windowSize": "窗口尺寸",
+    "colorDepth": "色深",
+    "pixelRatio": "devicePixelRatio",
+    "darkMode": "偏好深色模式",
+    "reducedMotion": "减少动效",
+    "cpuCores": "CPU 线程",
+    "deviceMemory": "设备内存",
+    "touchPoints": "触控点",
+    "gpu": "GPU (WebGL)",
+    "storageQuota": "存储配额",
+    "storageUsage": "存储已用",
+    "connectionType": "连接类型",
+    "downlink": "下行速度",
+    "rtt": "往返时间"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "收集的内容",
+        "paragraphs": [
+          "浏览器 & OS: User-Agent、解析的浏览器/OS、语言、时区、Cookie、在线状态。任何你访问的网站都能读取的相同信息。",
+          "显示: 屏幕尺寸、视口尺寸、色深、devicePixelRatio (Retina/HiDPI)、prefers-color-scheme、prefers-reduced-motion。网站用于响应式设计和无障碍。",
+          "硬件: CPU 线程数 (navigator.hardwareConcurrency)、设备内存等级 (navigator.deviceMemory, GB 单位, ≥4 截断到 8)、最大触控点、WebGL 的 GPU 信息、存储配额与当前使用量。",
+          "网络: 连接有效类型 (slow-2g/2g/3g/4g)、下行 (Mbps)、往返时间 (ms), 浏览器支持时。自适应加载有用。"
+        ]
+      },
+      {
+        "heading": "隐私: 网站能/不能看到什么",
+        "paragraphs": [
+          "这里显示的所有信息都是你访问的任何网站已能通过标准 JavaScript API 访问的。无需特殊权限; 一切在公开的 navigator 和 screen 对象。所以本工具是信息性, 不是抽取性。",
+          "网站不能看 (本工具也不能显示): 你的 IP 地址 (服务器侧)、本地文件系统、其他浏览器标签的内容, 或浏览器沙箱外的任何东西。浏览器指纹结合许多这些可见字段识别唯一浏览器, 即使没 Cookie — 是被广泛记录的隐私担忧。"
+        ]
+      },
+      {
+        "heading": "对调试有用",
+        "paragraphs": [
+          "移动 vs 桌面测试: User-Agent 揭示网站看到的。响应式问题有时来自设备类别误检。",
+          "GPU/WebGL: 「GPU (WebGL)」显示你的图形渲染器。复杂 3D 或 Canvas 重的网站性能差时, 你的 GPU 可能是瓶颈。",
+          "存储: 存储配额告诉你网站可用 localStorage/IndexedDB/缓存的多少。桌面默认通常数 GB, 移动较少。如果 Web 应用碰到「配额超出」, 这个数字是原因。"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "打开本页", "text": "页面加载时检测自动运行。" },
+      { "name": "阅读每节", "text": "浏览器 & OS、显示、硬件、网络、User-Agent。" },
+      { "name": "调整窗口大小", "text": "窗口尺寸和 dpi 相关字段实时更新。" },
+      { "name": "可选: 复制为 JSON", "text": "点「复制 JSON」捕获完整快照, 用于错误报告或比较。" }
+    ]
+  },
+  "faq": [
+    { "q": "数据会发送到任何地方?", "a": "不会。一切在你浏览器内本地检测和渲染。不记录, 不传输。" },
+    { "q": "为什么某些字段是「(不可用)」?", "a": "浏览器公开的 API 不同。navigator.deviceMemory 仅 Chrome/Edge; navigator.connection 主要 Chrome; 存储配额需 HTTPS。Safari 和 Firefox 在隐私模式下限制更严。" },
+    { "q": "为什么我的屏幕尺寸与预期分辨率不同?", "a": "浏览器报告「CSS 像素」尺寸, 不是物理像素尺寸。devicePixelRatio 显示倍数 (Retina 上 2.0)。物理分辨率 = 屏幕尺寸 × devicePixelRatio。" },
+    { "q": "「GPU (WebGL)」显示什么?", "a": "WebGL 报告的图形渲染器名。新浏览器可能为指纹保护模糊化 — macOS 上你可能看到「Apple GPU」而不是「M2 Pro」。" },
+    { "q": "可以信任 User-Agent?", "a": "User-Agent 字符串可以被扩展或浏览器设置伪造。是提示, 不是保证。一些浏览器 (Safari、隐私模式的 Firefox) 主动减少 UA 细节。" },
+    { "q": "为什么我的 CPU 12 核但「CPU 线程」显示 8?", "a": "navigator.hardwareConcurrency 可能为防指纹被限制。一些浏览器即使在更高核系统上也报告最大 8 或 16。" },
+    { "q": "移动设备显示 0 触控点?", "a": "移动上 maxTouchPoints 通常 ≥1。如果 0, 你可能在桌面视图模式。试刷新或在浏览器设置切到移动视图。" },
+    { "q": "iPhone 上有效?", "a": "是, 在 Safari iOS 限制内。某些字段 (deviceMemory、connection) 可能不可用。User-Agent 和基本浏览器/OS 检测始终工作。" }
+  ]
+}

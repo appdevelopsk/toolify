@@ -80,6 +80,12 @@ import mdToHtml from "@/tools/markdown-to-html";
 import htmlToMd from "@/tools/html-to-markdown";
 import colorPalette from "@/tools/color-palette-generator";
 import angle from "@/tools/angle-converter";
+import deviceInfo from "@/tools/device-info-checker";
+import primeChecker from "@/tools/prime-checker";
+import quadratic from "@/tools/quadratic-equation-solver";
+import fraction from "@/tools/fraction-calculator";
+import wpm from "@/tools/wpm-counter";
+import gcdLcm from "@/tools/gcd-lcm-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -166,6 +172,12 @@ export const TOOLS: ToolDefinition[] = [
   htmlToMd,
   colorPalette,
   angle,
+  deviceInfo,
+  primeChecker,
+  quadratic,
+  fraction,
+  wpm,
+  gcdLcm,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

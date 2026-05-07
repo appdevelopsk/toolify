@@ -1,0 +1,92 @@
+{
+  "title": "Device Info Checker (browser, OS, hardware, network)",
+  "shortDescription": "See your device's browser, OS, screen, hardware, GPU, storage, network, and dark-mode preferences in one place. All detected client-side.",
+  "description": "Browser-side dump of every public Web API the device exposes: user agent, OS, browser version, screen size, devicePixelRatio, hardware concurrency (CPU cores), device memory, GPU info via WebGL, storage quota, network type and speed, language, timezone, dark-mode and reduced-motion preferences.",
+  "metaDescription": "Free device info checker. Browser, OS, CPU cores, memory, GPU, screen, network, language, timezone — all your device info in a single page.",
+  "keywords": ["device info checker", "browser detection", "system info", "user agent", "hardware info"],
+  "loading": "Detecting…",
+  "copyJson": "Copy JSON",
+  "copied": "Copied!",
+  "notAvailable": "(not available)",
+  "automation": "Automation detected",
+  "real": "Real browser",
+  "section": {
+    "browser": "Browser & OS",
+    "display": "Display",
+    "hardware": "Hardware",
+    "network": "Network",
+    "userAgent": "User-Agent string"
+  },
+  "field": {
+    "browser": "Browser",
+    "os": "Operating system",
+    "platform": "Platform",
+    "language": "Primary language",
+    "languages": "All languages",
+    "timezone": "Timezone",
+    "cookiesEnabled": "Cookies enabled",
+    "online": "Online status",
+    "doNotTrack": "Do Not Track",
+    "webdriver": "Webdriver",
+    "screenSize": "Screen size",
+    "availSize": "Available area",
+    "windowSize": "Window size",
+    "colorDepth": "Color depth",
+    "pixelRatio": "devicePixelRatio",
+    "darkMode": "Prefers dark mode",
+    "reducedMotion": "Reduced motion",
+    "cpuCores": "CPU threads",
+    "deviceMemory": "Device memory",
+    "touchPoints": "Touch points",
+    "gpu": "GPU (WebGL)",
+    "storageQuota": "Storage quota",
+    "storageUsage": "Storage used",
+    "connectionType": "Connection type",
+    "downlink": "Downlink",
+    "rtt": "Round-trip time"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What's collected",
+        "paragraphs": [
+          "Browser & OS: user-agent, parsed browser/OS, language, timezone, cookies, online status. Same info any website you visit can read.",
+          "Display: screen size, viewport size, color depth, devicePixelRatio (Retina/HiDPI), prefers-color-scheme, prefers-reduced-motion. Used by sites for responsive design and accessibility.",
+          "Hardware: CPU thread count (navigator.hardwareConcurrency), device memory class (navigator.deviceMemory, in GB, ≥4 reports clipped to 8), max touch points, GPU info from WebGL, storage quota and current usage.",
+          "Network: connection effective type (slow-2g/2g/3g/4g), downlink (Mbps), and round-trip time (ms) when supported by the browser. Useful for adaptive loading."
+        ]
+      },
+      {
+        "heading": "Privacy: what websites see vs. don't",
+        "paragraphs": [
+          "Everything shown here is information any website you visit can already access via standard JavaScript APIs. There's no special permission needed; it's all in the public navigator and screen objects. So this tool is informational, not extractive.",
+          "What websites do NOT see (and this tool cannot show): your IP address (server-side only, this tool is fully client-side), your local file system, other browser tabs' content, or anything outside the browser sandbox. Browser fingerprinting combines many of these visible fields to identify a unique browser, even without cookies — a privacy concern documented widely."
+        ]
+      },
+      {
+        "heading": "Useful for debugging",
+        "paragraphs": [
+          "Mobile vs desktop testing: the user agent reveals what the site sees. Sometimes responsive issues come from misdetected device class.",
+          "GPU/WebGL: 'GPU (WebGL)' shows your graphics renderer. Useful when complex 3D or canvas-heavy sites perform poorly — your GPU may be the bottleneck.",
+          "Storage: storage quota tells you how much localStorage/IndexedDB/cache the site can use. Default is typically several GBs on desktop, less on mobile. If a web app is hitting 'quota exceeded', this number is why."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Open this page", "text": "Detection runs automatically when the page loads." },
+      { "name": "Read each section", "text": "Browser & OS, Display, Hardware, Network, User-Agent." },
+      { "name": "Resize your window", "text": "Window size and dpi-related fields update live." },
+      { "name": "Optional: copy as JSON", "text": "Click 'Copy JSON' to capture the full snapshot for bug reports or comparisons." }
+    ]
+  },
+  "faq": [
+    { "q": "Does this send my data anywhere?", "a": "No. Everything is detected and rendered locally in your browser. Nothing is logged or transmitted." },
+    { "q": "Why are some fields '(not available)'?", "a": "Browsers vary in what APIs they expose. navigator.deviceMemory is Chrome/Edge only; navigator.connection is mostly Chrome; storage quota requires HTTPS. Safari and Firefox restrict more in privacy mode." },
+    { "q": "Why does my screen size differ from the expected resolution?", "a": "Browsers report 'CSS pixel' size, not physical pixel size. devicePixelRatio shows the multiplier (e.g., 2.0 on Retina). Physical resolution = screen size × devicePixelRatio." },
+    { "q": "What does 'GPU (WebGL)' show?", "a": "Your graphics renderer name as reported by WebGL. Newer browsers may obscure this for fingerprinting protection — you might see 'Apple GPU' instead of 'M2 Pro' on macOS, for example." },
+    { "q": "Can I trust the user agent?", "a": "User agent strings can be spoofed by extensions or browser settings. They're a hint, not a guarantee. Some browsers actively reduce UA detail (Safari, Firefox in privacy mode)." },
+    { "q": "Why does 'CPU threads' show 8 even though my CPU has 12?", "a": "navigator.hardwareConcurrency may be capped to protect against fingerprinting. Some browsers report a maximum of 8 or 16 even on higher-core systems." },
+    { "q": "What if my mobile shows 0 touch points?", "a": "On mobile, maxTouchPoints is normally ≥1. If 0, you may be in a desktop view mode. Try refreshing or switch to mobile view in your browser settings." },
+    { "q": "Does this work on iPhone?", "a": "Yes, with Safari iOS limitations. Some fields (deviceMemory, connection) may not be available. The user-agent and basic browser/OS detection always work." }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "title": "GCD & LCM Calculator (with prime factorizations)",
+  "shortDescription": "Find the greatest common divisor (GCD) and least common multiple (LCM) of two or more integers, plus each number's prime factorization.",
+  "description": "Enter a list of integers. The calculator returns the GCD (Euclidean algorithm), LCM, and full prime factorization of each input. Handles arbitrary-size integers via BigInt.",
+  "metaDescription": "Free GCD and LCM calculator with prime factorizations. Multi-number input. Exact BigInt arithmetic for any size integer.",
+  "keywords": ["gcd calculator", "lcm calculator", "greatest common divisor", "least common multiple", "prime factorization"],
+  "input": {
+    "numbers": "Numbers",
+    "hint": "Comma, space, or newline separated. At least 2 numbers."
+  },
+  "result": {
+    "gcd": "GCD (greatest common divisor)",
+    "lcm": "LCM (least common multiple)",
+    "factorizations": "Prime factorizations"
+  },
+  "empty": "Enter at least 2 integers.",
+  "article": {
+    "sections": [
+      {
+        "heading": "GCD: the largest shared factor",
+        "paragraphs": [
+          "The GCD of two integers is the largest integer that divides both without remainder. GCD(12, 18) = 6 because 6 divides both and no larger number does. GCD(7, 13) = 1 because they share no factors (such pairs are 'coprime').",
+          "We use the Euclidean algorithm: gcd(a, b) = gcd(b, a mod b), recursively. It's been known for ~2300 years and remains the fastest standard method. For three or more numbers, gcd(a, b, c) = gcd(gcd(a, b), c)."
+        ]
+      },
+      {
+        "heading": "LCM: the smallest shared multiple",
+        "paragraphs": [
+          "The LCM is the smallest positive integer that's a multiple of both. LCM(4, 6) = 12 because 12 is the first number that 4 and 6 both divide.",
+          "Formula: lcm(a, b) = (a × b) / gcd(a, b). For 4 and 6: 24 / 2 = 12. For three numbers: lcm(a, b, c) = lcm(lcm(a, b), c).",
+          "If any number is 0, LCM is 0 (every number divides 0, but the 'smallest positive' is undefined). The calculator returns 0 for that case."
+        ]
+      },
+      {
+        "heading": "Why this matters",
+        "paragraphs": [
+          "Fractions: to add 1/4 + 1/6, find LCM(4, 6) = 12 as the common denominator. 1/4 = 3/12, 1/6 = 2/12, sum = 5/12.",
+          "Scheduling: if event A repeats every 4 days and event B every 6 days, they coincide every LCM(4, 6) = 12 days.",
+          "Cryptography: GCD-based algorithms (extended Euclidean) underpin RSA key generation and modular inverse calculations.",
+          "Music theory: rhythms with periods 3 and 4 sync up after 12 beats (LCM)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter integers", "text": "At least 2, separated by commas, spaces, or newlines." },
+      { "name": "Read the GCD and LCM", "text": "Both shown prominently in the result area." },
+      { "name": "Inspect factorizations", "text": "Each number's prime decomposition reveals why GCD/LCM came out as they did." }
+    ]
+  },
+  "faq": [
+    { "q": "What if my numbers are coprime?", "a": "GCD = 1 and LCM = product of all numbers. Coprime means no shared prime factors." },
+    { "q": "Can I include negative numbers?", "a": "Yes. We treat absolute values for GCD/LCM calculations. -12 and 18 give GCD 6 and LCM 36, same as 12 and 18." },
+    { "q": "What if I enter 0?", "a": "GCD(0, n) = |n| (since every integer divides 0, and n is the largest such for that pair). LCM with 0 is 0 by convention. With all zeros, GCD/LCM are undefined." },
+    { "q": "How big can my numbers be?", "a": "We use BigInt internally, so arithmetic on integers of any size is exact. Practical limit is your typing speed and screen space." },
+    { "q": "Why is the prime factorization useful?", "a": "GCD = product of common primes (taking the smaller exponent). LCM = product of all primes appearing in any number (taking the larger exponent). The factorizations make these relationships visible." },
+    { "q": "What's the relationship between GCD and LCM?", "a": "For two numbers: a × b = gcd(a, b) × lcm(a, b). So if you know any three of {a, b, gcd, lcm}, you can compute the fourth. Doesn't generalize cleanly to three or more numbers." },
+    { "q": "Can I use this for polynomial GCD?", "a": "Not in this tool — we handle integers only. For polynomials, you'd use a CAS like SymPy or Maxima." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "title": "Prime Number Checker (with factorization)",
+  "shortDescription": "Check whether a number is prime. If not, see its prime factorization. Plus the next and previous prime numbers.",
+  "description": "Enter a non-negative integer up to 10^18. The calculator tests primality with trial division (deterministic up to ~10^15 in reasonable time) and gives the prime factorization for composite numbers.",
+  "metaDescription": "Free prime number checker with factorization. Test primality, see prime factors, and find the next/previous prime. Handles numbers up to 10^18.",
+  "keywords": ["prime checker", "is prime", "prime factorization", "prime number test", "next prime"],
+  "input": { "value": "Number" },
+  "result": {
+    "isPrime": "is prime",
+    "notPrime": "is NOT prime",
+    "factors": "Prime factorization",
+    "prevPrime": "Previous prime",
+    "nextPrime": "Next prime"
+  },
+  "empty": "Enter a positive integer.",
+  "tooLarge": "Number too large for in-browser computation (max 10^18).",
+  "article": {
+    "sections": [
+      {
+        "heading": "What's a prime number",
+        "paragraphs": [
+          "A prime is a natural number greater than 1 that has no positive divisors other than 1 and itself. The first few primes: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37. They're the 'atoms' of integer arithmetic — every integer ≥ 2 can be uniquely written as a product of primes (Fundamental Theorem of Arithmetic).",
+          "1 is not prime by convention. 0 and negative numbers are not prime. 2 is the only even prime — every other even number is divisible by 2 and so composite."
+        ]
+      },
+      {
+        "heading": "How the test works",
+        "paragraphs": [
+          "We use trial division: check divisibility by 2, then 3, then 5, 7, 11, … up to √n. If none divides cleanly, n is prime. We use the 6k±1 optimization which checks only candidates of the form 6k+1 or 6k−1 (since all primes > 3 are of this form), reducing test count by 2/3.",
+          "Trial division is fast for n up to ~10^15 (sub-second). Beyond that, advanced tests like Miller-Rabin (probabilistic) or AKS (deterministic) are needed. We cap at 10^18 to prevent the browser from freezing on extreme inputs."
+        ]
+      },
+      {
+        "heading": "Why primes matter",
+        "paragraphs": [
+          "Cryptography: RSA encryption multiplies two ~1000-digit primes to produce a number that's hard to factor. The security relies on the difficulty of factorizing large numbers — a challenge that's been studied for thousands of years.",
+          "Math education: prime factorization is foundational. Concepts like GCD, LCM, modular arithmetic, fractions, and number theory all build on prime factor structure.",
+          "Computer science: hash table sizes, random number generators, and many algorithms use primes for their distinctive divisibility properties."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter a number", "text": "Positive integer up to 10^18." },
+      { "name": "Read the verdict", "text": "Green ✓ for prime, amber ✗ for composite." },
+      { "name": "See factorization", "text": "If composite, the unique prime factors are shown." },
+      { "name": "Navigate primes", "text": "Previous and next primes are listed for context." }
+    ]
+  },
+  "faq": [
+    { "q": "Is 1 prime?", "a": "No. 1 is a 'unit', not a prime. Primes have exactly two distinct positive divisors (1 and itself); 1 has only one." },
+    { "q": "Is 0 prime?", "a": "No. Primes are integers > 1." },
+    { "q": "Is 2 prime?", "a": "Yes — 2 is the only even prime. All other even numbers have 2 as a divisor besides 1 and itself." },
+    { "q": "How is the next prime found?", "a": "By incrementing from n+1 and testing primality at each step. There's always a prime within n × ln(n) of any number, so this terminates quickly even for large inputs." },
+    { "q": "Why is the maximum 10^18?", "a": "JavaScript BigInt handles larger, but trial division becomes slow. 10^18 is safe for sub-second checks of typical inputs. Beyond, use specialized tools like SymPy or Mathematica." },
+    { "q": "Can you check 1000-digit primes?", "a": "Not with this tool — trial division is too slow at that scale. Cryptography uses Miller-Rabin probabilistic tests for 1024-bit primes (~300 digits)." },
+    { "q": "What's a Mersenne prime?", "a": "A prime of the form 2^p − 1. As of 2025, only 51 are known. The largest known prime (M82589933) is a Mersenne prime with ~25 million digits." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}
