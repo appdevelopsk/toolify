@@ -1,0 +1,76 @@
+{
+  "title": "VAT / Sales Tax Calculator (international rates)",
+  "shortDescription": "Add or remove VAT/GST/sales tax. Quick presets for Japan, UK, EU countries, Australia, Canada, China.",
+  "description": "Two modes: 'Add VAT' computes gross from net + rate; 'Remove VAT' computes net from gross. Custom rate input plus one-click presets for major jurisdictions.",
+  "metaDescription": "Free VAT/GST calculator. Add or remove VAT from any amount. Presets for Japan, UK, EU, Australia, Canada, China rates.",
+  "keywords": ["vat calculator", "gst calculator", "sales tax calculator", "consumption tax", "vat removal"],
+  "empty": "Enter an amount and a VAT rate.",
+  "mode": {
+    "addVat": "Add VAT (net → gross)",
+    "removeVat": "Remove VAT (gross → net)"
+  },
+  "input": {
+    "netAmount": "Net amount (excl. VAT)",
+    "grossAmount": "Gross amount (incl. VAT)",
+    "ratePct": "VAT rate %"
+  },
+  "preset": {
+    "JP-std": "JP std",
+    "JP-reduced": "JP reduced",
+    "UK": "UK",
+    "DE": "Germany",
+    "FR": "France",
+    "AU": "Australia GST",
+    "CA": "Canada GST",
+    "CN": "China VAT"
+  },
+  "result": {
+    "gross": "Gross (incl. VAT)",
+    "net": "Net (excl. VAT)",
+    "vat": "VAT amount"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "VAT, GST, sales tax — same idea, different names",
+        "paragraphs": [
+          "VAT (Value Added Tax): Europe, UK, Japan (called 消費税). Charged at each step of production but ultimately paid by the consumer.",
+          "GST (Goods and Services Tax): Australia, Canada, India, Singapore. Mechanically similar to VAT, just a different name. Some countries (Canada) layer a federal GST and provincial taxes (HST, PST).",
+          "Sales tax: USA. Charged only at the point of final sale, varies by state, county, and city. Some states have none (e.g., Oregon, New Hampshire); others stack multiple jurisdictions for total rates over 10%."
+        ]
+      },
+      {
+        "heading": "Two-direction calculation",
+        "paragraphs": [
+          "Add VAT: when you have a net (pre-tax) price and need the gross (post-tax). Common when listing prices for B2B clients or quoting before tax. Formula: gross = net × (1 + rate/100).",
+          "Remove VAT: when you have a gross (post-tax) price and need to extract the net. Common for receipts, expense reports, or invoice line items. Formula: net = gross / (1 + rate/100).",
+          "Common error: subtracting the rate% from gross to get net (e.g., $110 − 10% = $99). That's wrong — the correct calc is $110 / 1.10 = $100. The 10% VAT is on the net, not on the gross."
+        ]
+      },
+      {
+        "heading": "When VAT is already included or not",
+        "paragraphs": [
+          "Most consumer prices in Europe, Japan, and Australia are tax-inclusive. The price tag is what you pay at the register; no extra at checkout. So a €10 product means €10 total.",
+          "Most US retail prices are tax-exclusive. A $10 sticker becomes $10.85 after California's 8.5% sales tax. Restaurants, online stores, and B2B invoices often vary.",
+          "B2B invoices typically show net + VAT separately for input-tax-credit purposes. Businesses can reclaim VAT they paid on inputs against VAT they collected from customers."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick mode", "text": "Add VAT (net → gross) or Remove VAT (gross → net)." },
+      { "name": "Enter amount", "text": "Either the net or gross amount, depending on mode." },
+      { "name": "Set the rate", "text": "Use a preset for major countries or type a custom rate." },
+      { "name": "Read all three values", "text": "Net, VAT, gross. Useful for invoice line items and price quoting." }
+    ]
+  },
+  "faq": [
+    { "q": "Is VAT and consumption tax (消費税) the same?", "a": "Yes — Japan's 消費税 is the local name for VAT. Same mechanism: charged at each production stage, paid ultimately by the consumer. Standard rate 10%, reduced 8% for food and newspapers." },
+    { "q": "Why does 'remove 10%' give a different answer than just dividing by 1.1?", "a": "Removing 10% is dividing by 1.10. Subtracting 10% (e.g., 110 − 10% = 99) is mathematically wrong because the 10% applied was on the net (100), not on the gross (110)." },
+    { "q": "Can I calculate multi-stage VAT?", "a": "Not in this tool — we handle single-rate scenarios. For B2B with reverse charge or zero-rated transactions, consult an accountant or specialized tax software." },
+    { "q": "What's the lowest VAT rate?", "a": "Some countries have 0% rates on essential goods (UK reduced rate on children's clothes, Japan 0% on rent and tuition). Use the actual applicable rate for your transaction." },
+    { "q": "What's the highest VAT?", "a": "Hungary at 27%. Most EU countries are 19-25%. Japan is comparatively low at 10%." },
+    { "q": "Does this work for US sales tax?", "a": "Yes — input the combined state + local rate. US sales tax behaves like single-stage VAT in calculator terms. Use 'add' mode for typical US listing → checkout flow." },
+    { "q": "What about VAT-exempt items?", "a": "Use 0% rate for fully exempt items. Note: 'exempt' and 'zero-rated' have legal differences in some jurisdictions but the same calculator outcome." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "title": "Fuel Cost Calculator (trip cost + per-person split)",
+  "shortDescription": "Calculate fuel cost for any trip from distance, fuel efficiency (MPG or km/L), and fuel price. Optional split between passengers.",
+  "description": "Pick metric or imperial units; enter distance, fuel efficiency, fuel price per gallon/liter, and number of passengers. Returns total cost, fuel used, cost per mile/km, and cost per person.",
+  "metaDescription": "Free fuel cost calculator. Trip cost from distance + MPG/km/L + price. Per-person split for carpools and road trips. Metric and imperial.",
+  "keywords": ["fuel cost calculator", "gas cost calculator", "trip fuel cost", "road trip calculator", "carpool cost"],
+  "empty": "Enter distance, efficiency, and fuel price.",
+  "unit": {
+    "metric": "Metric (km, L)",
+    "imperial": "Imperial (mi, gal)"
+  },
+  "input": {
+    "distance": "Distance",
+    "efficiency": "Fuel efficiency",
+    "pricePerUnit": "Price per liter / gallon",
+    "people": "People sharing"
+  },
+  "result": {
+    "totalCost": "Total fuel cost",
+    "fuelUsed": "Fuel used",
+    "perDistance": "Cost per {unit}",
+    "perPerson": "Cost per person"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How fuel cost is calculated",
+        "paragraphs": [
+          "Three numbers fully determine fuel cost: distance, fuel efficiency, and price per unit. Fuel used = distance / efficiency. Total cost = fuel used × price.",
+          "Metric: 100 km at 12 km/L = 8.33 L. At ¥175/L = ¥1458. Imperial: 100 mi at 30 MPG = 3.33 gal. At $3.50/gal = $11.67.",
+          "Cost per distance is the most useful comparison metric — what does each km/mile actually cost? It lets you compare different vehicles or routes on the same scale."
+        ]
+      },
+      {
+        "heading": "Why split costs (carpooling)",
+        "paragraphs": [
+          "Sharing a 200-mile road trip with 4 people: $25 fuel each, vs $100 driving alone. Carpooling is one of the highest-ROI cost-saving habits, with a typical urban commuter saving $1000-3000/year.",
+          "Splitting also reduces traffic and emissions. Many cities have carpool lanes (HOV, 高占有率車線) that bypass slower traffic — additional time savings.",
+          "Apps like Waze Carpool, BlaBlaCar, and Lyft Line / Uber Pool make ad-hoc carpooling easier. The math here works whether you split formally or just for a one-time trip with friends."
+        ]
+      },
+      {
+        "heading": "Beyond fuel: total trip cost",
+        "paragraphs": [
+          "Fuel is one part of trip cost. Add: tolls, parking, vehicle wear (~$0.10-0.20 per mile per IRS standard), maintenance proportional to distance.",
+          "IRS 2025 standard mileage rate: $0.67/mile (covers fuel, oil, maintenance, depreciation, insurance — comprehensive vehicle cost). For a more accurate trip cost, multiply distance by this rate instead of just fuel cost.",
+          "Electric vehicles flip the equation: a 30 kWh trip at $0.15/kWh = $4.50, often less than half the fuel cost. EVs also have ~$0.05/mile lower maintenance vs gasoline, especially over many miles."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick units", "text": "Metric (km, L) or imperial (mi, gal)." },
+      { "name": "Enter trip distance", "text": "Round-trip if you're planning a return; otherwise one-way." },
+      { "name": "Enter fuel efficiency", "text": "Your car's MPG or km/L. Real-world efficiency is usually 5-15% below the EPA rating." },
+      { "name": "Enter fuel price", "text": "Current local price per gallon or liter." },
+      { "name": "Optional: number of people", "text": "For carpool / road-trip cost splitting." }
+    ]
+  },
+  "faq": [
+    { "q": "What's typical fuel efficiency?", "a": "Modern compact car: 30-40 MPG / 13-17 km/L. Modern sedan: 25-35 MPG / 11-15 km/L. SUV/truck: 18-28 MPG / 8-12 km/L. Hybrid: 45-55 MPG / 19-23 km/L." },
+    { "q": "Should I use city, highway, or combined MPG?", "a": "If most of the trip is highway, use highway MPG. If urban, city MPG. For mixed, combined. Real-world results often beat EPA highway in light traffic, lag city in heavy traffic." },
+    { "q": "Can I use this for electric vehicles?", "a": "Set efficiency to miles/kWh (typically 3-4 mi/kWh) and price to $/kWh. The math works the same; just be aware of the unit difference." },
+    { "q": "Why is my real fuel cost higher than predicted?", "a": "Three common reasons: (1) real-world MPG is 5-15% below EPA, (2) traffic and acceleration patterns burn extra fuel, (3) cold weather reduces efficiency 10-20%. Round up the calculator's estimate by ~10% for safety." },
+    { "q": "How does this compare for a longer trip?", "a": "Linear: 200 miles costs 2x what 100 miles cost (same MPG and price). For multi-leg trips with different fuel-up locations, calculate each leg separately." },
+    { "q": "What about diesel vs gasoline?", "a": "Diesel cars have higher MPG (5-15% better) but diesel fuel often costs more. Net cost depends on local prices. Adjust efficiency and price; the math is the same." },
+    { "q": "Should I include the cost of an oil change for the trip?", "a": "Standard mileage method (IRS $0.67/mi) implicitly includes maintenance prorated by distance. For per-trip explicit fuel-only, no — but track maintenance separately." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}

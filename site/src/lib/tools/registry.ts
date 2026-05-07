@@ -92,6 +92,12 @@ import emergencyFund from "@/tools/emergency-fund-calculator";
 import isoWeek from "@/tools/iso-week-calculator";
 import triangle from "@/tools/triangle-calculator";
 import taxBracket from "@/tools/tax-bracket-calculator";
+import subnet from "@/tools/subnet-calculator";
+import ageDiff from "@/tools/age-difference-calculator";
+import vat from "@/tools/vat-calculator";
+import roi from "@/tools/roi-calculator";
+import sciNot from "@/tools/scientific-notation-converter";
+import fuelCost from "@/tools/fuel-cost-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -190,6 +196,12 @@ export const TOOLS: ToolDefinition[] = [
   isoWeek,
   triangle,
   taxBracket,
+  subnet,
+  ageDiff,
+  vat,
+  roi,
+  sciNot,
+  fuelCost,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

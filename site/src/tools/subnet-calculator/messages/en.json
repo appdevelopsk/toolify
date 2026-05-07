@@ -1,0 +1,70 @@
+{
+  "title": "IPv4 Subnet Calculator (CIDR, mask, hosts)",
+  "shortDescription": "Calculate network address, broadcast, host range, netmask, wildcard, total/usable hosts from any IPv4 + CIDR. Includes binary representation and class detection.",
+  "description": "Type an IPv4 address with optional CIDR (e.g., 192.168.1.10/24). Returns network address, broadcast, first/last usable host, total addresses, netmask, wildcard, IP class, public/private status, and binary representation.",
+  "metaDescription": "Free IPv4 subnet calculator. CIDR, netmask, wildcard, network/broadcast, host range, total/usable hosts, public/private detection. With binary view.",
+  "keywords": ["subnet calculator", "cidr calculator", "ipv4 subnet", "netmask calculator", "ip address calculator"],
+  "input": {
+    "cidr": "IP address / CIDR",
+    "hint": "Format: 192.168.1.10/24 (CIDR optional, defaults to /24)"
+  },
+  "result": {
+    "network": "Network",
+    "ip": "IP address",
+    "netmask": "Subnet mask",
+    "wildcard": "Wildcard mask",
+    "networkAddr": "Network address",
+    "broadcast": "Broadcast",
+    "hostMin": "First usable host",
+    "hostMax": "Last usable host",
+    "totalAddresses": "Total addresses",
+    "usableHosts": "Usable hosts",
+    "ipClass": "IP class",
+    "private": "RFC 1918 private",
+    "binary": "Binary"
+  },
+  "empty": "Enter an IPv4 address with optional /CIDR.",
+  "article": {
+    "sections": [
+      {
+        "heading": "What CIDR notation means",
+        "paragraphs": [
+          "CIDR (Classless Inter-Domain Routing) is the slash + number after an IP address — '192.168.1.10/24'. The number is how many bits at the start of the address belong to the network portion (vs the host portion). /24 means 24 bits of network = 8 bits of host = 256 total addresses, 254 usable.",
+          "Common CIDRs: /32 single host, /30 link (4 addresses, 2 usable), /29 small subnet (8/6), /24 LAN (256/254), /16 large network (65k), /8 ISP-scale block (16M). The smaller the CIDR number, the larger the network."
+        ]
+      },
+      {
+        "heading": "Network, broadcast, and usable hosts",
+        "paragraphs": [
+          "Network address: the first address in the subnet, with host bits all zero. Used to identify the subnet itself; not assignable to a device.",
+          "Broadcast address: the last address, with host bits all one. Used to send a packet to every host in the subnet; not assignable.",
+          "Usable hosts: total addresses minus network and broadcast = 2^(32−CIDR) − 2. Exception: /31 (point-to-point links) and /32 (single host) treat all addresses as usable per RFC 3021."
+        ]
+      },
+      {
+        "heading": "Public vs private addresses",
+        "paragraphs": [
+          "RFC 1918 reserves three address ranges for private internal networks: 10.0.0.0/8 (16M addresses), 172.16.0.0/12 (1M), 192.168.0.0/16 (65k). Most home and office routers use a slice of these (typically 192.168.1.0/24 or 192.168.0.0/24).",
+          "Public addresses are routable on the global internet and assigned by regional registries (ARIN, RIPE, APNIC, etc.). They cost money and are increasingly scarce — IPv4 exhaustion has driven CIDR adoption and IPv6 deployment.",
+          "The calculator detects whether an address falls in private ranges; useful for verifying network design or confirming that a leak isn't sending private addresses to the internet."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type an address", "text": "With or without /CIDR. If CIDR is omitted, /24 is assumed." },
+      { "name": "Read the network info", "text": "Network address, broadcast, host range, mask, wildcard." },
+      { "name": "Check the class and private status", "text": "Quick verification of address space type." },
+      { "name": "Use binary view for debugging", "text": "Helps when you need to reason about bit-level operations or align subnets." }
+    ]
+  },
+  "faq": [
+    { "q": "Why are usable hosts 2 less than total?", "a": "The first address (all host bits 0) is the network identifier and the last (all 1s) is the broadcast. Both are reserved and can't be assigned to a host." },
+    { "q": "Why does /31 have 2 usable hosts instead of 0?", "a": "RFC 3021 allows /31 networks for point-to-point links (e.g., between routers). Both addresses are usable; broadcast and network reservations don't apply." },
+    { "q": "What's the difference between netmask and wildcard?", "a": "Netmask has 1s in network bits, 0s in host bits (255.255.255.0). Wildcard is the inverse (0.0.0.255) — used in Cisco ACLs and OSPF area definitions." },
+    { "q": "How do I subnet a network?", "a": "Take a parent network and split it into smaller blocks by adding bits to the CIDR. /24 → /25 splits into 2 subnets, /24 → /26 into 4, etc. Useful for separating departments or isolating IoT/guest networks." },
+    { "q": "What's the smallest subnet I can have?", "a": "/32 — a single IP address. /31 is the smallest 'normal' subnet (2 addresses). /30 is common for router-to-router links (4/2 usable)." },
+    { "q": "Does this work for IPv6?", "a": "Not yet — only IPv4. IPv6 subnets are conceptually similar but use 128-bit addresses, hex notation, and different conventions. We may add IPv6 in a future version." },
+    { "q": "What's the largest single subnet possible?", "a": "/0 covers all 4.3 billion IPv4 addresses — the entire IPv4 address space. /1 splits into two halves. /8 is 16M and was historically a single 'class A' block (e.g., 10.0.0.0/8)." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "title": "Age Difference Calculator (between two people)",
+  "shortDescription": "Calculate the exact age difference between two people in years, months, days, plus totals in weeks, days, and hours.",
+  "description": "Enter two birth dates (and optionally names). The calculator computes the difference in years/months/days using calendar arithmetic and identifies who is elder/younger.",
+  "metaDescription": "Free age difference calculator. Compute the gap between two birthdays in years, months, days, weeks, hours. Identifies elder and younger.",
+  "keywords": ["age difference calculator", "age gap", "between two birthdays", "age comparison", "year month day difference"],
+  "input": {
+    "name1": "Name (optional)",
+    "birth1": "Birth date",
+    "name2": "Name (optional)",
+    "birth2": "Birth date"
+  },
+  "result": {
+    "elderYounger": "{elder} is older than {younger} by",
+    "y": "y",
+    "m": "mo",
+    "d": "d",
+    "totalDays": "Total days",
+    "totalWeeks": "Total weeks",
+    "totalMonths": "Total months",
+    "totalHours": "Total hours"
+  },
+  "empty": "Pick both birth dates.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Why a calendar-aware difference matters",
+        "paragraphs": [
+          "Age differences look obvious — '3 years' — but the actual gap depends on the days. Two people born 'in the same year' could be days or 364 days apart. The calculator computes the exact calendar difference: 3 years, 5 months, 12 days kind of detail.",
+          "Calendar arithmetic borrows from the next-larger unit when needed. If person B was born May 15 and person A May 23 of the same year, the difference is '0 years, 0 months, 8 days', not '0 years, 0 months, −8 days'."
+        ]
+      },
+      {
+        "heading": "Common use cases",
+        "paragraphs": [
+          "Family planning: how far apart are siblings? Useful for birthday/holiday planning, school grade alignment, gift selection.",
+          "Friends and partners: a casual 'how much older are you?' answered to the day.",
+          "Historical research: between two figures' birth dates, common in genealogy and biography work.",
+          "Sports/competition: athletes are often categorized by birth-year cutoffs; the calculator shows whether someone barely makes a category or is well within it."
+        ]
+      },
+      {
+        "heading": "Total units (weeks, hours, etc.)",
+        "paragraphs": [
+          "Each total unit gives a different perspective on the same gap. '3 years' = ~157 weeks = 1095 days = 26,280 hours. Useful for trivia, motivational counting (days lived), or just curiosity.",
+          "Hours are computed as days × 24. Adjust for leap years and timezone if higher precision matters; for typical 'lives apart' use cases, 24 hours/day is close enough."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick the first birth date", "text": "Use the date picker. Optional name." },
+      { "name": "Pick the second birth date", "text": "Order doesn't matter — the calculator identifies elder/younger." },
+      { "name": "Read the difference", "text": "Years/months/days plus totals." }
+    ]
+  },
+  "faq": [
+    { "q": "Does the order of dates matter?", "a": "No. The calculator detects who's older and labels them. The result is always the absolute (positive) difference." },
+    { "q": "Is the difference exact?", "a": "Yes — calendar arithmetic with month/day precision. Same precision as our age-calculator." },
+    { "q": "What if both people share a birthday?", "a": "If they share month and day in different years, you get whole years (no months or days remainder). Same exact birthday: 0 difference." },
+    { "q": "Does this account for leap years?", "a": "Yes. Total days count actual calendar days including February 29 when relevant." },
+    { "q": "Why is the 'total months' simple addition?", "a": "Total months = years × 12 + months. The remaining days aren't part of the months count, but our calendar-aware Y/M/D output already balances them correctly." },
+    { "q": "Can I compare birthdays across centuries?", "a": "Yes — JavaScript's Date supports many centuries (well beyond 1900-2100). Dates from 1700s genealogy work fine." },
+    { "q": "Why no 'who's older' for same-day births?", "a": "If birth times aren't recorded, same-day births are tied. We display 0 difference and don't designate elder/younger when the gap is zero." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation is local; nothing is sent to a server." }
+  ]
+}

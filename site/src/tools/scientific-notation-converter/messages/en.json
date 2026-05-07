@@ -1,0 +1,65 @@
+{
+  "title": "Scientific Notation Converter (decimal ↔ scientific)",
+  "shortDescription": "Convert decimal numbers to/from scientific (1.23 × 10^4) and engineering (1.23e3) notation. Bidirectional, with E-notation output.",
+  "description": "Two modes: decimal-to-scientific computes the coefficient and exponent for any number; scientific-to-decimal expands back. Engineering notation (multiples of 3 in the exponent) is also displayed.",
+  "metaDescription": "Free scientific notation converter. Decimal to scientific (×10^n) or back. E-notation, engineering notation. For physics, chemistry, very large/small numbers.",
+  "keywords": ["scientific notation converter", "e notation", "engineering notation", "decimal to scientific", "exponent calculator"],
+  "dir": {
+    "toSci": "Decimal → Scientific",
+    "toDec": "Scientific → Decimal"
+  },
+  "input": {
+    "decimal": "Decimal number",
+    "coefficient": "Coefficient",
+    "exponent": "Exponent (10^n)"
+  },
+  "result": {
+    "scientific": "Scientific notation",
+    "eNotation": "E-notation",
+    "engineering": "Engineering notation",
+    "decimal": "Decimal value"
+  },
+  "empty": "Enter a number to convert.",
+  "article": {
+    "sections": [
+      {
+        "heading": "What is scientific notation",
+        "paragraphs": [
+          "Scientific notation expresses numbers as coef × 10^exponent, where coef is between 1 and 10 (usually 1 ≤ coef < 10). It's used for very large or very small numbers that would be cumbersome in decimal form.",
+          "Examples: speed of light = 3 × 10⁸ m/s. Avogadro's number = 6.022 × 10²³. Electron mass = 9.109 × 10⁻³¹ kg. The exponent tells you how many places to shift the decimal: positive shifts right (multiply), negative shifts left (divide)."
+        ]
+      },
+      {
+        "heading": "E-notation in computers",
+        "paragraphs": [
+          "E-notation (1.23e4 = 1.23 × 10⁴) is the computer-friendly version. JavaScript, Python, Excel, and most calculators use this. The 'e' is just notation — there's no 'e' (Euler's number) involved.",
+          "Why computers use E-notation: keyboards typically don't have superscript or '×' as easily-typed characters. Plain ASCII E or e works in any text input.",
+          "Note: 'e' in regex programming or other contexts means different things. In numbers it's specifically '× 10 to the'."
+        ]
+      },
+      {
+        "heading": "Engineering notation",
+        "paragraphs": [
+          "Engineering notation is similar to scientific but the exponent is always a multiple of 3 (3, 6, 9, 12, …, or −3, −6, −9, …). This aligns with SI prefixes: kilo (10³), mega (10⁶), giga (10⁹), milli (10⁻³), micro (10⁻⁶), nano (10⁻⁹).",
+          "Example: 1.23 × 10⁴ in scientific is 12.3 × 10³ in engineering, which can be read as '12.3 kilo'. Useful in electronics, engineering, and any field that uses SI unit prefixes.",
+          "Tradeoff: scientific notation has a fixed-format coefficient (always 1 ≤ |coef| < 10); engineering allows wider coefficient range (1 ≤ |coef| < 1000) but cleaner SI prefix mapping."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick conversion direction", "text": "Decimal → scientific or scientific → decimal." },
+      { "name": "Type the number or coefficient + exponent", "text": "Each direction has its own input format." },
+      { "name": "Read the result", "text": "Includes E-notation and engineering notation as bonus." }
+    ]
+  },
+  "faq": [
+    { "q": "Why is the exponent useful?", "a": "It tells you the order of magnitude. 10⁹ is a billion; 10⁻⁹ is a nanometer-scale number. For comparing very different scales (atomic vs astronomical), exponents are the natural language." },
+    { "q": "Is 1.23e4 the same as 1.23 × 10⁴?", "a": "Yes — same number, different notation. 'e4' is a computer-friendly way to write '× 10⁴'. Most programming languages and calculators accept it as input." },
+    { "q": "What's the precision of this calculator?", "a": "Floating-point precision (about 15-17 significant digits). For higher precision (1000+ digits), use a CAS like SymPy or Mathematica." },
+    { "q": "Can I do math on scientific notation?", "a": "Multiply: multiply coefficients, add exponents. Divide: divide coefficients, subtract exponents. Add/subtract: bring to same exponent first, then add/subtract coefficients." },
+    { "q": "Why does my number show as 'Infinity'?", "a": "Exponent too large for IEEE 754 double precision (about 308). For larger numbers, use a CAS or BigInt-based libraries." },
+    { "q": "What's a 'mantissa'?", "a": "Older synonym for the coefficient — the part before the × 10^. Some textbooks still use it. Modern convention is 'coefficient' or 'significand'." },
+    { "q": "Can I use scientific notation for negative coefficients?", "a": "Yes. -3 × 10⁵ = -300,000. The minus sign goes on the coefficient, not the exponent." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}
