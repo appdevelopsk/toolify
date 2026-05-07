@@ -37,6 +37,13 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
             <li>広告のクリック率を不正に水増しする行為</li>
             <li>関連法令や公序良俗に反する目的での利用</li>
           </ul>
+          <h2>広告・アフィリエイト</h2>
+          <p>
+            本サービスは Google AdSense による広告配信および、各ツールページに「広告」ラベル付きで掲載する
+            アフィリエイトリンクにより運営されています。アフィリエイトリンクをクリックして提携先で成果が成立した
+            場合、当方が紹介料を受け取ることがあります。利用者の支払額は変わりません。詳細は
+            <a href="/disclosure">広告・アフィリエイトに関する開示</a>をご参照ください。
+          </p>
           <h2>知的財産</h2>
           <p>
             サイトのデザイン・テキスト・コードは {siteConfig.organization} に帰属します。各ツールの計算式・公式は一般
@@ -70,6 +77,13 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
             <li>Do not artificially inflate ad clicks or impressions.</li>
             <li>Do not use the Service for unlawful purposes.</li>
           </ul>
+          <h2>Advertising and affiliate links</h2>
+          <p>
+            The Service is supported by Google AdSense advertising and by affiliate links labelled
+            <em>&ldquo;Sponsored&rdquo;</em> on tool pages. If you click an affiliate link and complete a qualifying
+            action (sign-up, purchase) at the partner site, we may receive a commission. The price you pay is unchanged.
+            See our <a href="/disclosure">Advertising &amp; Affiliate Disclosure</a> for details.
+          </p>
           <h2>Intellectual property</h2>
           <p>
             Site design, text, and code belong to {siteConfig.organization}. Mathematical formulas referenced in tools

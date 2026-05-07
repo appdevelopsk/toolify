@@ -48,11 +48,19 @@ function PrivacyEn() {
         {" "}<a href="https://www.aboutads.info/">aboutads.info</a>. EEA/UK users are presented a Google-certified
         consent prompt; declining limits ads to non-personalized.
       </p>
+      <h2>Affiliate links</h2>
+      <p>
+        Some links on tool pages, labelled <em>&ldquo;Sponsored&rdquo;</em>, are affiliate links. If you click and
+        complete a qualifying action (sign-up, purchase) at the partner&apos;s site, we may earn a commission. The
+        price you pay is unchanged. We may use cookies set by the partner network for attribution. See our
+        {" "}<a href="/disclosure">Advertising &amp; Affiliate Disclosure</a> for details.
+      </p>
       <h2>Third-party services</h2>
       <ul>
         <li>Google AdSense (ads) — <a href="https://policies.google.com/technologies/ads">policy</a></li>
         <li>Google Analytics 4 (analytics) — <a href="https://policies.google.com/privacy">policy</a></li>
         <li>Cloudflare (hosting/CDN) — <a href="https://www.cloudflare.com/privacypolicy/">policy</a></li>
+        <li>Affiliate networks (Amazon Associates, A8.net, Moshimo, ValueCommerce, Rakuten Affiliate) — see partner policies</li>
       </ul>
       <h2>Your rights</h2>
       <p>
@@ -100,11 +108,19 @@ function PrivacyJa() {
         からパーソナライズ広告のオプトアウトが可能です。EEA/英国の利用者には Google認定の同意画面が表示され、
         拒否した場合は非パーソナライズ広告のみが配信されます。
       </p>
+      <h2>アフィリエイトリンク</h2>
+      <p>
+        各ツールページに「広告」ラベル付きで掲載されるアフィリエイトリンクをクリックし、提携先サイトで会員登録・
+        購入等の成果条件を満たした場合、当方が紹介料を受け取ることがあります。利用者の支払額は変わりません。
+        計測のために提携ネットワークが Cookie を設置することがあります。詳しくは
+        <a href="/disclosure">広告・アフィリエイトに関する開示</a> をご覧ください。
+      </p>
       <h2>第三者サービス</h2>
       <ul>
         <li>Google AdSense（広告配信）</li>
         <li>Google Analytics 4（アクセス解析）</li>
         <li>Cloudflare（ホスティング・CDN）</li>
+        <li>アフィリエイトASP（Amazonアソシエイト、A8.net、もしもアフィリエイト、バリューコマース、楽天アフィリエイト）</li>
       </ul>
       <h2>権利行使</h2>
       <p>

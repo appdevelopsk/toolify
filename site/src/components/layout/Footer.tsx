@@ -30,6 +30,9 @@ export function Footer() {
           <Link href="/terms" className="hover:underline">
             {t("nav.terms")}
           </Link>
+          <Link href="/disclosure" className="hover:underline">
+            {t("affiliate.footerLink")}
+          </Link>
         </nav>
         <div className="text-xs text-slate-500">
           <div>

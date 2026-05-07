@@ -3,6 +3,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { AdBanner, AdBelowResult, AdInArticle, AdSticky } from "@/components/ads/AdBanner";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import type { ToolMeta } from "@/lib/tools/types";
 
 interface Props {
@@ -65,6 +66,8 @@ export function ToolFrame({ meta, title, description, related, children, article
             </div>
           </section>
         )}
+
+        <RelatedServices category={meta.category} />
 
         {related.length > 0 && (
           <section className="mt-10">
