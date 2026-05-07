@@ -98,6 +98,12 @@ import vat from "@/tools/vat-calculator";
 import roi from "@/tools/roi-calculator";
 import sciNot from "@/tools/scientific-notation-converter";
 import fuelCost from "@/tools/fuel-cost-calculator";
+import pwStrength from "@/tools/password-strength-tester";
+import netWorth from "@/tools/net-worth-calculator";
+import factorial from "@/tools/factorial-calculator";
+import power from "@/tools/power-converter";
+import moonPhase from "@/tools/moon-phase-calculator";
+import whrCalc from "@/tools/waist-hip-ratio-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -202,6 +208,12 @@ export const TOOLS: ToolDefinition[] = [
   roi,
   sciNot,
   fuelCost,
+  pwStrength,
+  netWorth,
+  factorial,
+  power,
+  moonPhase,
+  whrCalc,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

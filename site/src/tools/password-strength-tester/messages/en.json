@@ -1,0 +1,92 @@
+{
+  "title": "Password Strength Tester (entropy + crack time)",
+  "shortDescription": "Test password strength with entropy bits, charset analysis, common-password check, and estimated crack time across attack scenarios.",
+  "description": "Type a password (browser-only, never transmitted). The tester computes entropy, charset coverage, dictionary-match risk, and shows estimated crack times for offline GPU attacks, online API limits, and slow online attacks.",
+  "metaDescription": "Free password strength tester. Entropy bits, crack time estimates, charset analysis, common-password and pattern detection. Browser-only.",
+  "keywords": ["password strength tester", "password entropy", "crack time calculator", "password security", "password test"],
+  "input": {
+    "password": "Password",
+    "privacyNote": "Tested entirely in your browser. Never sent or stored anywhere."
+  },
+  "show": "Show",
+  "hide": "Hide",
+  "result": {
+    "strength": "Strength",
+    "length": "Length",
+    "charsetSize": "Charset size",
+    "entropy": "Entropy",
+    "bits": "bits",
+    "lowercase": "Lowercase a-z",
+    "uppercase": "Uppercase A-Z",
+    "digits": "Digits 0-9",
+    "symbols": "Symbols",
+    "crackTime": "Estimated crack time",
+    "crackOffline": "Offline GPU (10⁹⁰/s)",
+    "crackOnlineFast": "Online fast (1k/s)",
+    "crackOnlineSlow": "Online slow (100/s)",
+    "warningsHeading": "Concerns"
+  },
+  "level": {
+    "veryWeak": "Very weak",
+    "weak": "Weak",
+    "fair": "Fair",
+    "strong": "Strong",
+    "veryStrong": "Very strong"
+  },
+  "warning": {
+    "isCommon": "This password appears in common-password lists. Don't use it.",
+    "tooShort": "Length under 8 — too short for any real security.",
+    "hasRepeated": "Repeated characters (e.g., 'aaa') reduce real-world entropy.",
+    "hasSequential": "Sequential patterns (1234, qwer, abcd) are easy to guess.",
+    "limitedCharset": "Single-charset passwords (only lowercase, only digits) are weak even when long."
+  },
+  "time": {
+    "instant": "instant",
+    "yrs": "yrs",
+    "eternity": "eternity"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What 'entropy' means for passwords",
+        "paragraphs": [
+          "Entropy measures unpredictability in bits. A password with 30 bits of entropy needs ~2³⁰ ≈ 1 billion guesses on average to crack. 70+ bits is generally considered strong; 80+ is excellent.",
+          "Formula: entropy = length × log₂(charset_size). 'abcdefgh' (8 chars, lowercase only) = 8 × log₂(26) ≈ 37.6 bits. 'aA1!aaaa' (8 chars, all charsets) = 8 × log₂(95) ≈ 52.6 bits — but the crack time is much worse than 52 bits would suggest because 'aaaa' is a common pattern."
+        ]
+      },
+      {
+        "heading": "Why crack times vary so much",
+        "paragraphs": [
+          "Offline GPU: a leaked password hash being attacked offline. Modern GPUs can guess 10⁹+ MD5 hashes per second; bcrypt hashes only 10⁴-10⁵/s. The estimate here uses GPU-fast hash assumption.",
+          "Online fast: an attacker hammering a login API directly. Most APIs have some rate limit; 1000 attempts/sec is a high-end estimate for a poorly-defended endpoint.",
+          "Online slow: a properly defended endpoint with strict rate limits, account lockouts, and CAPTCHA. 100 attempts/sec is generous; many systems allow only 5-10/min.",
+          "These estimates ignore real-world factors like dictionary attacks (which find common passwords much faster than brute force) and password reuse (cracking one site's leak helps crack others)."
+        ]
+      },
+      {
+        "heading": "What makes a strong password",
+        "paragraphs": [
+          "Length over complexity: a 16-char passphrase like 'correct horse battery staple' is stronger than a tortured 8-char like 'P@ssw0rd!'. The XKCD insight from 2011 still holds: 4 random words give ~44 bits of entropy.",
+          "Avoid patterns: dates, names, '123', 'qwer', repeated characters all reduce real entropy below the formula value. Attack tools include extensive 'rule-based' transformations (e.g., 'password' → 'P@ssw0rd!').",
+          "Use a password manager: humans pick patterns; managers don't. Bitwarden, 1Password, KeePass generate truly random passwords per site, with 16+ characters across all charsets. The only password you need to remember is the master password — and that one should be a long memorable passphrase."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type the password", "text": "It's tested entirely client-side. Use Show toggle if you can't see what you're typing." },
+      { "name": "Read the strength meter", "text": "Five segments. Aim for 4-5 (Strong/Very strong) on important accounts." },
+      { "name": "Check entropy and crack times", "text": "Higher entropy = longer crack time. Watch for warnings about common patterns." },
+      { "name": "Adjust as needed", "text": "Add length, mix charsets, avoid common words. Test variants until satisfied." }
+    ]
+  },
+  "faq": [
+    { "q": "Is my password sent anywhere?", "a": "No. Everything runs locally in your browser. We don't see, store, or transmit your password." },
+    { "q": "Why does my long password show low entropy?", "a": "Length isn't everything — repeating 'a' 50 times has very low real entropy. The calculator uses a simple formula but flags repeated/sequential patterns. For best results: long, varied, no patterns." },
+    { "q": "Are these crack times accurate?", "a": "They're estimates based on naive brute force. Real crackers use dictionaries, common patterns, and leaked-password databases first — so a 'common' password might crack in seconds despite high formula entropy." },
+    { "q": "Should I worry about quantum computers?", "a": "Eventually yes — Grover's algorithm halves the effective bits of symmetric encryption. A 128-bit-equivalent symmetric key needs 64+ bit equivalents post-quantum. For now, 80+ bits of entropy is comfortable; 128+ for very long-term secrets." },
+    { "q": "Why does the tool flag 'P@ssw0rd1' even though it has all charsets?", "a": "Because 'password' is in dictionaries and trivial substitutions (P → P, a → @) are part of every cracking tool's rule set. Use truly random or passphrase-style passwords, not common-word substitutions." },
+    { "q": "Is 'correct horse battery staple' really safe?", "a": "Reasonably. 4 random words from a 7000-word list = ~52 bits of entropy. Stronger than most 8-char complex passwords. But once it's famous (like this example), it's in dictionaries — pick your own random words." },
+    { "q": "What's the minimum password length I should use?", "a": "8 is the bare minimum (and only with all charsets). 12+ is recommended for most accounts. 16+ for important ones (email, banking, password manager master)." },
+    { "q": "Does case sensitivity matter?", "a": "Yes — adding uppercase doubles charset size from 26 to 52. Roughly +1 bit per character. Mixing cases meaningfully (not just first letter) is worth doing." }
+  ]
+}
