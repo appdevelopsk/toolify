@@ -1,0 +1,58 @@
+{
+  "title": "Contador de palabras (con tiempo de lectura y habla)",
+  "shortDescription": "Cuenta palabras, caracteres, frases, párrafos, más tiempo estimado de lectura y habla. Maneja CJK correctamente.",
+  "description": "Pega cualquier texto para ver palabras, caracteres (con y sin espacios), frases, párrafos y estimaciones de tiempo de lectura silenciosa y en voz alta.",
+  "metaDescription": "Contador online gratis de palabras con tiempo de lectura. Cuenta palabras, caracteres, frases y párrafos en tiempo real. Consciente de CJK (japonés, chino, coreano).",
+  "keywords": ["contador palabras", "contador caracteres", "tiempo lectura", "palabras ensayo", "contador letras"],
+  "placeholder": "Pega o escribe tu texto aquí…",
+  "stat": {
+    "words": "Palabras",
+    "characters": "Caracteres",
+    "charactersNoSpaces": "Sin espacios",
+    "sentences": "Frases",
+    "paragraphs": "Párrafos",
+    "readingTime": "Tiempo de lectura",
+    "speakingTime": "Tiempo de habla"
+  },
+  "unit": { "min": "min" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo se computa cada métrica",
+        "paragraphs": [
+          "Caracteres es la longitud bruta del texto, incluidos espacios, saltos y emoji. 'Sin espacios' descarta whitespace. Las palabras se separan por espacios en escrituras latinas; para japonés, chino, coreano y tailandés, cada ideograma cuenta como una palabra, ya que estos idiomas no separan palabras con espacios como el inglés.",
+          "Las frases se detectan por puntuación terminal (. ! ? en latín; 。！？ en CJK). Los párrafos son bloques separados por líneas en blanco. Reglas pragmáticas — texto con puntuación rara puede fallar por uno, pero para prosa normal son fiables."
+        ]
+      },
+      {
+        "heading": "Cómo se estima el tiempo de lectura",
+        "paragraphs": [
+          "Tiempo de lectura usa 200 palabras por minuto, mediana adulta para prosa. Tiempo de habla usa 130 wpm, el ritmo de un orador experimentado. Ambos se redondean al alza al minuto entero, así una frase de 50 palabras muestra '1 min'.",
+          "Son aproximaciones. Texto técnico denso se lee más lento (~150 wpm), ficción ligera más rápido (~250 wpm), y el ritmo de presentación varía mucho. Úsalo como sanity check, no cronómetro."
+        ]
+      },
+      {
+        "heading": "Usos comunes",
+        "paragraphs": [
+          "Bloggers y escritores usan el conteo para llegar a una longitud objetivo (la mayoría de longform apunta a 1500-2500 para SEO). Estudiantes para ensayos. Marketers usan caracteres con espacios para X (Twitter) y meta descriptions. Oradores usan tiempo de habla para calibrar guiones de 5 min vs 20 min.",
+          "Traductores y editores siguen las cuatro cuentas para facturar por palabra o carácter — la elección 'con espacios' vs 'sin' afecta tarifas un 10-20%."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pega tu texto", "text": "Escribe o pega en el área. Las cuentas se actualizan con cada tecla." },
+      { "name": "Lee las métricas", "text": "Las siete visibles a la vez — palabras, caracteres, frases, párrafos y tiempos." },
+      { "name": "Ajusta", "text": "Edita para llegar a un objetivo, luego copia la versión limpia." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Por qué CJK cuenta más palabras de las que esperaba?", "a": "Contamos cada ideograma (hanzi chino, kanji/kana japonés, hangul coreano) como una palabra. Las palabras latinas en el mismo texto siguen contándose por espacios." },
+    { "q": "¿Los emoji cuentan como caracteres?", "a": "Sí. Algunos son técnicamente varias unidades de código Unicode; el contador sigue la longitud de cadena de JavaScript, que cuenta cada unidad UTF-16." },
+    { "q": "¿Es preciso el tiempo de lectura?", "a": "Las 200 wpm coinciden con la velocidad mediana de lectura silenciosa adulta. Texto muy técnico va más lento; ficción ligera más rápido — trátalo como ±30%." },
+    { "q": "¿Por qué la cuenta de frases se ve mal?", "a": "Detección por puntuación terminal. Listas, encabezados sin puntuación o estilos raros pueden afectarla. La cuenta de palabras sigue siendo fiable." },
+    { "q": "¿Sale el texto del navegador?", "a": "No. Todo corre localmente; no tenemos endpoint que reciba la entrada." },
+    { "q": "¿Límite de longitud?", "a": "No hay límite. Los navegadores modernos manejan multi-megabytes sin problema, aunque el textarea puede ralentizarse pasados ~100,000 caracteres." },
+    { "q": "¿Cuento Tweets / posts X?", "a": "Sí — usa 'caracteres' (con espacios) ya que X cuenta whitespace. El límite de 280 también cuenta URLs como 23." },
+    { "q": "¿Soporta Markdown?", "a": "Cuenta el texto bruto incluyendo la sintaxis. Si quieres conteo del 'renderizado', pega solo la salida final." }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "title": "Generador de contraseñas (criptográficamente seguro)",
+  "shortDescription": "Genera contraseñas aleatorias fuertes con la API criptográfica del navegador. Longitud, charset y filtro de ambiguos configurables.",
+  "description": "Construye contraseñas con crypto.getRandomValues — la misma fuente que usan los bancos, no Math.random. Ajusta longitud y clases de caracteres; el medidor de entropía muestra cuán fuerte es realmente.",
+  "metaDescription": "Generador gratis de contraseñas. Aleatorias criptográficamente seguras con longitud y charset configurables. Medidor de entropía y filtro de ambiguos.",
+  "keywords": ["generador contraseñas", "contraseña segura", "contraseña aleatoria", "contraseña fuerte", "generador passphrase"],
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "regenerate": "Nueva contraseña",
+  "input": { "length": "Longitud" },
+  "opt": {
+    "upper": "Mayúsculas (A-Z)",
+    "lower": "Minúsculas (a-z)",
+    "numbers": "Números (0-9)",
+    "symbols": "Símbolos (!@#$...)",
+    "avoidAmbiguous": "Evitar ambiguos (0OoIl1)"
+  },
+  "strength": {
+    "weak": "Débil",
+    "medium": "Media",
+    "strong": "Fuerte",
+    "excellent": "Excelente"
+  },
+  "entropy": "{bits} bits de entropía",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por qué este generador es realmente seguro",
+        "paragraphs": [
+          "La mayoría de 'generadores' web usa Math.random(), que no es criptográficamente seguro — su salida puede predecirse. Este usa crypto.getRandomValues de la Web Crypto API, la misma primitiva que respalda HTTPS y los keychain del SO. Cada carácter se extrae de una distribución uniforme sobre el alfabeto seleccionado.",
+          "La generación ocurre enteramente en tu navegador. La contraseña nunca viaja por la red ni toca nuestros servidores. Aunque nuestro dominio se comprometiera, no habría nada que robar porque no se almacena nada."
+        ]
+      },
+      {
+        "heading": "Cómo funciona el medidor",
+        "paragraphs": [
+          "La etiqueta se computa desde la entropía: bits = log₂(tamaño_alfabeto) × longitud. 10 caracteres en minúsculas tiene log₂(26) × 10 ≈ 47 bits — vulnerable a un atacante offline determinado. 16 caracteres con las cuatro clases ~105 bits — fuerte para casi todo. Bandas: <50 débil, 50-80 media, 80-128 fuerte, ≥128 excelente.",
+          "Los umbrales corresponden a: débil = adivinable en días por atacante moderado; media = años para una botnet; fuerte = sin atacante realista hoy; excelente = margen cómodo contra futuros incluyendo cuántica."
+        ]
+      },
+      {
+        "heading": "La longitud manda",
+        "paragraphs": [
+          "La matemática es implacable: añadir un carácter dobla aproximadamente el espacio de búsqueda. Añadir una clase más solo lo amplía algo. Una contraseña de 20 caracteres en minúsculas tiene más entropía que una de 12 con mayúsculas-símbolos, y es más fácil de teclear. Si prefieres memorizar, elige 4 palabras al azar de una lista de 7000 — son 51 bits, similar a una de 8 caracteres mixtos fuerte.",
+          "La opción 'evitar ambiguos' excluye caracteres que se confunden con otros (0/O, I/l/1). La hace ligeramente menos fuerte pero más fácil de leer en voz alta o transcribir. Úsala cuando puedas necesitar teclearla desde una lista impresa."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige longitud", "text": "16 es buen default; 20+ para clave maestra del gestor." },
+      { "name": "Clases de caracteres", "text": "La mayoría de sitios aceptan las cuatro. Algunos legacy rechazan símbolos." },
+      { "name": "Genera y copia", "text": "Click 'Nueva contraseña' hasta que te guste, luego copia directo a tu gestor." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Es realmente seguro?", "a": "Sí. Usamos la fuente segura de la Web Crypto API, no Math.random(). La implementación del navegador es auditada e idéntica a la base de HTTPS." },
+    { "q": "¿La contraseña sale del navegador?", "a": "Nunca. Generación, entropía y copia al portapapeles, todo local. No tenemos endpoint que la reciba aunque quisiéramos." },
+    { "q": "¿16 caracteres bastan?", "a": "Para cuentas online, sí — casi siempre. Para clave maestra del gestor o claves de cifrado, ve a 24+ o usa una passphrase de 6 palabras." },
+    { "q": "¿Por qué el medidor no ama mi contraseña larga?", "a": "Solo conoce las clases que activaste. Si solo activaste minúsculas, el alfabeto es 26 — las largas siguen siendo fuertes pero crecen más lento." },
+    { "q": "¿Qué son 'bits de entropía'?", "a": "log₂ del número de contraseñas posibles con tu config. 80 bits ≈ 1.2 × 10²⁴ posibilidades — muy fuera del alcance del fuerza bruta hoy." },
+    { "q": "¿Incluir símbolos?", "a": "Sí cuando se permita. Cada símbolo añade aproximadamente la entropía de un número más una letra. Si un sitio antiguo los rechaza, aumenta longitud para compensar." },
+    { "q": "¿Vale 'evitar ambiguos'?", "a": "Solo si necesitas leerla o teclearla a mano. Para gestores déjalo apagado — el coste de legibilidad se desperdicia." },
+    { "q": "¿Puede repetirse la misma contraseña?", "a": "Teóricamente sí, pero con 50 bits la probabilidad por par es 1 en 2⁵⁰ ≈ 10¹⁵. Imposible en la práctica." }
+  ]
+}

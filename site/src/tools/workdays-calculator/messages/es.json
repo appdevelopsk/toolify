@@ -1,0 +1,64 @@
+{
+  "title": "Calculadora de días laborables (sin findes ni festivos)",
+  "shortDescription": "Cuenta días laborables entre dos fechas, excluyendo findes y festivos que listes. Personalizable: incluye sábado o domingo si lo necesitas.",
+  "description": "Elige fecha inicio y fin, opcionalmente incluye sábado o domingo como laborables, y añade fechas de festivos a excluir. Devuelve laborables, días de finde y festivos por separado.",
+  "metaDescription": "Calculadora gratis de días laborables. Cuenta entre dos fechas, salta findes y festivos personalizados. Útil para deadlines, contratos, planificación.",
+  "keywords": ["calculadora días laborables", "días hábiles", "días laborables entre fechas", "conteo días", "saltar findes festivos"],
+  "empty": "Selecciona fecha de inicio y fin.",
+  "input": {
+    "start": "Fecha inicio",
+    "end": "Fecha fin",
+    "includeSat": "Sábado es laborable",
+    "includeSun": "Domingo es laborable",
+    "holidays": "Festivos a excluir (uno por línea)",
+    "holidaysHint": "Formato ISO: 2026-01-01. Coma, espacio o salto."
+  },
+  "result": {
+    "workdays": "Días laborables",
+    "weekendDays": "Días de finde",
+    "holidayDays": "Festivos",
+    "total": "Días totales"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Por qué importa contar días laborables",
+        "paragraphs": [
+          "Plazos de proyecto, contratos, ciclos de nómina y planificación de bajas usan 'días laborables', no calendario. Una promesa de entrega de 30 días un viernes son en realidad 32 días de calendario porque el finde no cuenta. Confundirlo lleva a plazos perdidos y disputas contractuales.",
+          "Los días laborables también importan legalmente: en muchas jurisdicciones los plazos legales (p.ej. '14 días laborables para responder') excluyen findes y festivos. Comprueba siempre si 'días' significa calendario o laborable en cualquier acuerdo."
+        ]
+      },
+      {
+        "heading": "Por qué se personaliza el finde",
+        "paragraphs": [
+          "La mayoría de países usa sábado-domingo como finde, pero varía. Muchos países de Oriente Medio y algunos del norte de África observan viernes-sábado. Algunas industrias (retail, hostelería) consideran el finde como laborable.",
+          "Los toggles permiten marcar sábado o domingo como laborables individualmente. Configura: solo lun-vie (default), semana de 6 días (incluye sábado), o solo domingo de finde (desmarca domingo)."
+        ]
+      },
+      {
+        "heading": "Cómo usar el campo de festivos",
+        "paragraphs": [
+          "Pega una lista de fechas en formato YYYY-MM-DD (ISO 8601). Separadores: coma, espacio o salto. Cada fecha listada se excluye del conteo si caería en lo que sería un día laborable.",
+          "Para festivos federales US 2026, pega: 2026-01-01, 2026-01-19, 2026-02-16, 2026-05-25, 2026-06-19, 2026-07-03, 2026-09-07, 2026-10-12, 2026-11-11, 2026-11-26, 2026-12-25.",
+          "Listas similares disponibles para festivos de cualquier país. No los incluimos automáticamente porque (a) varían por país, región y año, y (b) algunos negocios observan días libres extra propios."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Configura inicio y fin", "text": "Inclusivos — ambas cuentan si son laborables." },
+      { "name": "Elige días de finde", "text": "Por defecto sábado y domingo. Activa como laborables si hace falta." },
+      { "name": "Añade festivos a excluir", "text": "Lista fechas ISO separadas por comas, espacios o saltos." },
+      { "name": "Lee el desglose", "text": "Laborables, días de finde, festivos y días totales." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Inicio y fin son inclusivos?", "a": "Sí. Si ambas son laborables, ambas se cuentan. Si tu contrato cuenta solo días intermedios (exclusivo), resta 2." },
+    { "q": "¿Por qué no incluyes festivos automáticamente?", "a": "Varían por país, región y año. Auto-incluirlos arriesga restar festivos que no aplican. Añadirlos a mano te mantiene en control." },
+    { "q": "¿Sirve para contratos internacionales?", "a": "Sí — pero asegúrate de que ambas partes acuerden qué festivos contar. Contratos multinacionales suelen especificar 'días hábiles según [ciudad] de [país]' para evitar ambigüedad." },
+    { "q": "¿Si un festivo cae en finde?", "a": "No se cuenta doble. Si 2026-01-01 es jueves festivo, cuenta como festivo. Si 2026-12-25 cae domingo, el algoritmo lo cuenta como un día (finde), no dos." },
+    { "q": "¿Semana de 6 días?", "a": "Activa 'Sábado es laborable'. Contará lun-sáb y solo excluirá domingos y festivos listados." },
+    { "q": "¿Rango máximo?", "a": "Cientos de años mínimo. El navegador maneja aritmética de fechas ±100 millones de días desde 1970." },
+    { "q": "¿Exportar la lista?", "a": "No como descarga, pero copia los números. Para lista por día, usa una hoja de cálculo." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Todo corre localmente; nada se envía a un servidor." }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "title": "Temporizador de cuenta atrás (días/horas/min/s en vivo)",
+  "shortDescription": "Cuenta atrás en vivo a cualquier fecha y hora futura. Actualiza cada segundo; sirve para eventos, plazos, lanzamientos, vacaciones.",
+  "description": "Elige fecha y hora objetivo y mira la cuenta atrás bajar al segundo. Añade un título opcional para etiquetar el evento. Tras pasar la fecha, el mismo display muestra tiempo transcurrido.",
+  "metaDescription": "Temporizador gratis en vivo a cualquier fecha. Días, horas, minutos, segundos — actualiza cada segundo. Añade título para tu evento o plazo.",
+  "keywords": ["temporizador cuenta atrás", "cuenta atrás fecha", "cuenta atrás vivo", "temporizador plazo", "cuenta atrás evento"],
+  "input": {
+    "target": "Fecha y hora objetivo",
+    "title": "Nombre del evento (opcional)",
+    "titlePlaceholder": "Plazo del proyecto"
+  },
+  "remaining": "Tiempo restante hasta",
+  "ended": "Tiempo transcurrido desde",
+  "empty": "Selecciona fecha y hora objetivo para iniciar.",
+  "unit": {
+    "days": "Días",
+    "hours": "Horas",
+    "minutes": "Minutos",
+    "seconds": "Segundos"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo funciona el temporizador",
+        "paragraphs": [
+          "La cuenta atrás avanza una vez por segundo con setInterval. Cada tick lee la hora local actual, la resta del objetivo y descompone la diferencia en días, horas, minutos y segundos. No hay round-trip al servidor, así que la cuenta sigue siendo precisa aunque caiga la red — solo necesitas que la página esté cargada.",
+          "Las zonas horarias son las que tu navegador considera 'locales'. Si fijas '12:00 hoy' y otra persona en otra zona visita la página, su cuenta será distinta — ambas correctas, pero para su 12:00 local."
+        ]
+      },
+      {
+        "heading": "Casos de uso comunes",
+        "paragraphs": [
+          "Plazos de proyecto (mostrar la cuenta atrás en una pantalla de sala), lanzamientos de producto, viajes (vacaciones, vuelo, tren), exámenes y certificaciones, bodas y aniversarios, eventos deportivos. El campo de título permite etiquetar el evento para que la página sea autoexplicativa.",
+          "Tras la fecha objetivo, el display cambia a 'tiempo transcurrido desde' y sigue subiendo. Útil cuando lo que realmente quieres es 'cuánto hace que pasó X' — p.ej. 'días desde el último incidente' en un dashboard SRE."
+        ]
+      },
+      {
+        "heading": "Por qué cuenta atrás en lugar de recordatorio",
+        "paragraphs": [
+          "Los recordatorios saltan una vez al llegar el evento. Una cuenta atrás en vivo da consciencia periférica constante — útil para metas que quieres tener presentes. Equipos deportivos las muestran, equipos de software las ponen en war rooms, y maratonianos las pegan a sus pantallas de entrenamiento.",
+          "Si quieres tenerla en un dashboard público, marca la URL tras fijar el objetivo. El estado vive en los inputs; recargar resetea (todavía no hay link compartido, pero los campos se conservan en la sesión)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige el objetivo", "text": "Fecha y hora a la que cuentas atrás. El selector usa tu zona local." },
+      { "name": "Añade un título (opcional)", "text": "Pon el nombre del evento para que el display sea claro de un vistazo." },
+      { "name": "Mira la cuenta atrás", "text": "Días, horas, minutos y segundos bajan cada segundo. Tras la fecha, cambia a tiempo transcurrido." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Es preciso al segundo?", "a": "Sí — el display se actualiza cada segundo y cada actualización recalcula desde el reloj actual, así que no hay drift acumulado." },
+    { "q": "¿Qué zona horaria usa?", "a": "La local de tu navegador. El objetivo se interpreta en tu zona, no UTC." },
+    { "q": "¿Funciona offline?", "a": "Sí, una vez cargada la página. No necesita red para seguir contando." },
+    { "q": "¿Puedo compartir la cuenta?", "a": "Aún no por URL. Estamos trabajando en URLs codificadas; por ahora pega un screenshot o graba la pantalla." },
+    { "q": "¿Qué pasa tras el objetivo?", "a": "Cambia a 'tiempo transcurrido desde' y sigue subiendo. Los números son positivos pero el label cambia." },
+    { "q": "¿Múltiples cuentas?", "a": "Abre varias pestañas — cada una es independiente. Modo multi-evento integrado está en el roadmap." },
+    { "q": "¿Sigue corriendo si cambio de pestaña?", "a": "Los navegadores throttle setInterval en background. La cuenta se pondrá al día al volver — recalcula desde reloj, no ticks acumulados." },
+    { "q": "¿Los datos se envían?", "a": "No. Todo queda en tu navegador." }
+  ]
+}
