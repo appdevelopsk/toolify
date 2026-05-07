@@ -1,0 +1,56 @@
+{
+  "title": "Cronómetro (precisión de milisegundo, vueltas)",
+  "shortDescription": "Cronómetro de alta precisión en navegador con start/pausa, registro de vueltas y tiempos parciales. Pantalla de milisegundos, reloj monotónico para precisión.",
+  "description": "Cronómetro basado en navegador usando performance.now() para timing sin jitter. Iniciar, pausar, reanudar, capturar vueltas y resetear. Cada vuelta muestra split (delta de la anterior) más tiempo acumulado.",
+  "metaDescription": "Cronómetro gratis en navegador con precisión de milisegundo y registro de vueltas. Timing monotónico, sin red. Útil para deportes, cocina y estudio.",
+  "keywords": ["cronómetro", "timer milisegundos", "lap timer", "cronómetro online", "split timer"],
+  "start": "Iniciar",
+  "pause": "Pausar",
+  "resume": "Reanudar",
+  "reset": "Resetear",
+  "lap": "Vuelta",
+  "laps": "Vueltas",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por qué este cronómetro es preciso",
+        "paragraphs": [
+          "La mayoría de cronómetros web usan Date.now() y setInterval, que pueden derivar decenas de milisegundos durante la sesión. Esta implementación usa performance.now() — un reloj monotónico que no salta hacia atrás cuando se ajusta la hora del sistema. Combinado con requestAnimationFrame para actualizar el display, la precisión se mantiene en ±1 ms.",
+          "Si cambias de pestaña, el tiempo mostrado puede congelarse brevemente porque los navegadores limitan trabajo en segundo plano. El reloj interno sigue corriendo correctamente — al volver, el display se pone al día con el tiempo real."
+        ]
+      },
+      {
+        "heading": "Vueltas y tiempos parciales",
+        "paragraphs": [
+          "Al pulsar Vuelta, se registra el tiempo acumulado actual. El split mostrado es el delta desde la vuelta anterior: en una carrera de 5×400m, cada split es el tiempo de un segmento de 400m, mientras el acumulado es el total desde el inicio.",
+          "Casi todos los usuarios miran los splits, no el acumulado. Mostramos ambos. El acumulado también facilita identificar el mejor segmento individual — útil para atletas que rastrean consistencia de intervalos."
+        ]
+      },
+      {
+        "heading": "Usos comunes",
+        "paragraphs": [
+          "Deportes: cronometra vueltas para correr, nadar, intervalos de ciclismo. Más bajo es mejor; consistencia entre splits indica buen ritmo.",
+          "Cocina: cronometra varios pasos a la vez usando vueltas como 'puntos de control' (mezcla añadida, masa empezó a reposar, etc.).",
+          "Estudio/trabajo: time-box sesiones de trabajo enfocadas. Combina con nuestro temporizador Pomodoro para descansos estructurados.",
+          "Cronometraje de procesos: mide la duración de cualquier tarea — builds de software, ingreso manual de datos, resolución de soporte. Usa la lista de vueltas para revisión posterior."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Click Iniciar", "text": "El timer empieza inmediatamente en 0." },
+      { "name": "Captura vueltas", "text": "Click Vuelta durante la ejecución. Cada vuelta queda registrada con split y tiempo acumulado." },
+      { "name": "Pausar / Reanudar", "text": "Click Pausar para mantener; Reanudar para continuar desde el mismo tiempo." },
+      { "name": "Resetear", "text": "Borra todas las vueltas y vuelve a 0." }
+    ]
+  },
+  "faq": [
+    { "q": "¿El timer sigue si cierro la pestaña?", "a": "No — cerrar limpia el estado en memoria. Para preservar una sesión larga, captura una pantalla del display corriendo o copia la lista de vueltas antes de cerrar." },
+    { "q": "¿Qué tan precisa es la precisión de milisegundo en la práctica?", "a": "La resolución de performance.now() depende del navegador: la mayoría limita a 1ms o 0.1ms por seguridad (mitigación de timing attacks). Es de sobra para timing humano — mucho más preciso que el tiempo de reacción humano (~250ms)." },
+    { "q": "¿Por qué el display se actualiza a 60fps pero muestra milisegundos?", "a": "El reloj interno es preciso; el display se renderiza ~60 veces por segundo para que veas un campo de milisegundos actualizándose suavemente. Cada frame computa el último valor desde performance.now()." },
+    { "q": "¿Puedo guardar una sesión de vueltas?", "a": "No directamente — copia la lista a mano. Guardar sesiones en local-storage está en el roadmap." },
+    { "q": "¿Diferencia con el cronómetro del móvil?", "a": "Basado en navegador, sin instalar app. Igualmente preciso para timing humano. El móvil sobrevive bloqueo de pantalla; la pestaña de navegador necesita seguir abierta (no requiere foco)." },
+    { "q": "¿Los datos se envían?", "a": "No. Todo corre localmente; ninguna vuelta o tiempo se transmite." },
+    { "q": "¿Por qué mi vuelta muestra 0 milisegundos?", "a": "Si pulsas Vuelta inmediatamente tras Iniciar, el tiempo puede redondear a 0 con la precisión del display. Deja al menos una fracción de segundo entre vueltas." },
+    { "q": "¿Puede medir eventos sub-segundo?", "a": "Sí, hasta ~1ms. Para timing en nanosegundos (benchmark de chips) necesitarías otra herramienta, pero para cualquier evento humanamente observable basta." }
+  ]
+}

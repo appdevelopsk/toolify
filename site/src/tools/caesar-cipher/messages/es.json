@@ -1,0 +1,58 @@
+{
+  "title": "Cifrado César Codificador / Decodificador (con ROT13)",
+  "shortDescription": "Codifica o decodifica texto con el clásico cifrado César. Desplazamiento ajustable de -25 a +25, presets de un clic para ROT13 y el histórico +3.",
+  "description": "Escribe texto y elige un desplazamiento. Las letras se rotan ese número de posiciones en el alfabeto (A-Z, a-z); otros caracteres pasan tal cual. Usa shift=13 para ROT13, shift=3 para el César original.",
+  "metaDescription": "Herramienta gratis de cifrado César. Codifica o decodifica con shift -25 a +25 incluyendo ROT13. Las letras se desplazan, puntuación y dígitos pasan.",
+  "keywords": ["cifrado césar", "ROT13", "césar shift", "cifrado letra", "cifrado clásico"],
+  "mode": {
+    "encode": "Codificar",
+    "decode": "Decodificar"
+  },
+  "input": {
+    "text": "Texto",
+    "shift": "Desplazamiento"
+  },
+  "output": "Salida",
+  "copy": "Copiar",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo funciona el cifrado César",
+        "paragraphs": [
+          "Cada letra de la entrada se sustituye por una letra un número fijo de posiciones más adelante en el alfabeto. Con shift +3, A pasa a D, B a E, …, X a A (envuelve). Los no-letras pasan sin cambios. Decodificar es el mismo proceso con signo opuesto.",
+          "Lleva el nombre de Julio César, que supuestamente usaba shift +3 para mensajes militares. El tamaño del shift es el único secreto. Con solo 26 shifts posibles, se rompe trivialmente probándolos todos — pero es un excelente ejemplo didáctico de cifrado por sustitución."
+        ]
+      },
+      {
+        "heading": "ROT13 — la variante más común",
+        "paragraphs": [
+          "ROT13 usa shift=13. Como 13 es la mitad de 26, aplicar ROT13 dos veces devuelve el texto original — codificar y decodificar usan exactamente la misma operación. Esto la hizo popular en Usenet y foros para ocultar spoilers y bromas ofensivas; los lectores podían decodificar con un botón 'mostrar' sin necesitar un decodificador aparte.",
+          "ROT13 no es cifrado en ningún sentido significativo. Es ofuscación — el equivalente de escribir 'spoiler oculto debajo' para que los que no quieran saber lo salten."
+        ]
+      },
+      {
+        "heading": "Por qué es divertido, no seguro",
+        "paragraphs": [
+          "Los atacantes modernos rompen un César en microsegundos por análisis de frecuencia (E es la letra más común en inglés; lo que mapee a una frecuente en el cifrado probablemente sea E). No lo uses para nada que te importe.",
+          "Úsalo para: ejemplos didácticos, juegos de puzzles, ARGs, ocultar texto a la vista, etiquetas de spoiler ROT13. No para: contraseñas, datos financieros, nada con consecuencias."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige modo", "text": "Codificar (aplica shift hacia adelante) o Decodificar (hacia atrás)." },
+      { "name": "Escribe o pega texto", "text": "Las letras se desplazan; puntuación, dígitos y espacios pasan." },
+      { "name": "Ajusta el shift", "text": "Slider va de -25 a +25. Usa presets para +3 (César), 13 (ROT13) o negativos." },
+      { "name": "Copia la salida", "text": "Copia al portapapeles con un clic." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Diferencia entre César +3 y ROT13?", "a": "Solo el desplazamiento. +3 es la elección original de César; 13 es exactamente la mitad del alfabeto (codificar y decodificar son la misma operación). Matemáticamente son la misma familia." },
+    { "q": "¿Por qué shift +26 devuelve el mismo texto?", "a": "26 letras en el alfabeto — desplazar exactamente 26 te lleva a la letra original. Lo mismo para cualquier múltiplo de 26." },
+    { "q": "¿Por qué ROT13 se usa para spoilers?", "a": "Porque aplicar ROT13 dos veces devuelve el original. Los lectores de foros y Usenet tenían botones 'rot13 este texto' integrados que funcionaban en ambas direcciones. Cómodo para ocultar y luego revelar." },
+    { "q": "¿Maneja alfabetos no latinos?", "a": "No — solo A-Z y a-z. Cirílico, griego, CJK y árabe pasan sin cambios. El cifrado César es intrínsecamente para alfabeto latino." },
+    { "q": "¿Sirve para seguridad real?", "a": "Absolutamente no. Con 25 shifts posibles (excluyendo 0 y 26), un ordenador lo rompe al instante. Usa AES, RSA o librerías criptográficas establecidas." },
+    { "q": "¿Y el cifrado Vigenère?", "a": "Un cifrado clásico más avanzado que usa una palabra clave para variar el shift por letra. Aún rompible a mano con suficiente texto, pero mucho más difícil que César. No incluido (todavía)." },
+    { "q": "¿Por qué incluir shifts negativos?", "a": "Comodidad. Codificar con +3 y decodificar con +3 está mal; necesitas -3. Los shifts negativos te dejan decodificar sin cambiar de modo (o el toggle lo hace por ti)." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Codificación y decodificación corren localmente; nada se envía a un servidor." }
+  ]
+}

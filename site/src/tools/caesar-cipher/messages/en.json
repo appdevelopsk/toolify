@@ -1,0 +1,58 @@
+{
+  "title": "Caesar Cipher Encoder / Decoder (with ROT13)",
+  "shortDescription": "Encode or decode text with the classic Caesar cipher. Adjustable shift from -25 to +25, with one-click presets for ROT13 and the historical +3 shift.",
+  "description": "Type text and pick a shift amount. Letters are rotated by that many positions in the alphabet (A-Z, a-z); other characters pass through unchanged. Use shift=13 for ROT13, shift=3 for the original Caesar.",
+  "metaDescription": "Free Caesar cipher tool. Encode or decode any text with shift -25 to +25 including ROT13. Letters shift, punctuation and digits pass through.",
+  "keywords": ["caesar cipher", "ROT13", "caesar shift", "letter cipher", "classical cipher"],
+  "mode": {
+    "encode": "Encode",
+    "decode": "Decode"
+  },
+  "input": {
+    "text": "Text",
+    "shift": "Shift"
+  },
+  "output": "Output",
+  "copy": "Copy",
+  "article": {
+    "sections": [
+      {
+        "heading": "How the Caesar cipher works",
+        "paragraphs": [
+          "Each letter in the input is replaced by a letter a fixed number of positions later in the alphabet. With shift +3, A becomes D, B becomes E, …, X becomes A (wrapping around). Non-letters pass through unchanged. Decoding is the same process with the opposite sign.",
+          "Named after Julius Caesar, who reportedly used a +3 shift for military messages. The shift size is the only secret. With only 26 possible shifts, it's trivially broken by trying them all — but it's an excellent teaching example for substitution ciphers."
+        ]
+      },
+      {
+        "heading": "ROT13 — the most common variant",
+        "paragraphs": [
+          "ROT13 uses shift=13. Because 13 is half of 26, applying ROT13 twice returns the original text — encoding and decoding use the exact same operation. This made it popular on Usenet and forums for hiding spoilers and offensive jokes; readers can decode by clicking a 'show' button without needing a separate decoder.",
+          "ROT13 is not encryption in any meaningful sense. It's obfuscation — the equivalent of writing 'spoiler hidden below' so people who don't want to know can skip it."
+        ]
+      },
+      {
+        "heading": "Why this is fun, not secure",
+        "paragraphs": [
+          "Modern attackers break a Caesar cipher in microseconds by frequency analysis (E is the most common letter in English; whatever maps to a frequent letter in the ciphertext is probably E). Don't use it for anything you care about.",
+          "Use it for: educational examples, puzzle games, ARGs (alternate reality games), hiding text in plain sight, ROT13 spoiler tags. Don't use it for: passwords, financial data, anything with consequences."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick mode", "text": "Encode (apply shift forward) or Decode (apply shift backward)." },
+      { "name": "Type or paste text", "text": "Letters are shifted; punctuation, digits, and whitespace pass through." },
+      { "name": "Adjust the shift", "text": "Slider goes -25 to +25. Use presets for +3 (Caesar), 13 (ROT13), or negatives." },
+      { "name": "Copy the output", "text": "One-click copy to clipboard." }
+    ]
+  },
+  "faq": [
+    { "q": "What's the difference between Caesar +3 and ROT13?", "a": "Just the shift amount. +3 is Caesar's original choice; 13 is exactly half the alphabet (so encoding and decoding are the same operation). Mathematically they're the same family of cipher." },
+    { "q": "Why does shift +26 give the same text back?", "a": "26 letters in the alphabet — shifting by exactly 26 lands you on the original letter. Same for any multiple of 26." },
+    { "q": "Why is ROT13 used for spoilers?", "a": "Because applying ROT13 twice returns the original. Forums and Usenet readers had built-in 'rot13 this text' buttons that worked for both directions. Convenient for hiding then revealing text." },
+    { "q": "Does this handle non-Latin alphabets?", "a": "No — only A-Z and a-z. Cyrillic, Greek, CJK, and Arabic pass through unchanged. The Caesar cipher is intrinsically Latin-alphabet-specific." },
+    { "q": "Can I use this for real security?", "a": "Absolutely not. With 25 possible shifts (excluding 0 and 26), a computer breaks it instantly. Use AES, RSA, or established cryptographic libraries for real security." },
+    { "q": "What about Vigenère cipher?", "a": "A more advanced classical cipher using a keyword to vary the shift per letter. Still breakable by hand with enough text, but much harder than Caesar. We don't include it (yet)." },
+    { "q": "Why include negative shifts?", "a": "Convenience. Encoding with +3 and decoding with +3 is wrong; you need -3 to decode. Negative shifts let you decode without switching modes (or the toggle does it for you)." },
+    { "q": "Does the data leave my browser?", "a": "No. Encoding and decoding run locally; nothing is sent to a server." }
+  ]
+}

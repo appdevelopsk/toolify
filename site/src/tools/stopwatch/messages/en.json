@@ -1,0 +1,56 @@
+{
+  "title": "Stopwatch (millisecond precision, lap times)",
+  "shortDescription": "High-precision in-browser stopwatch with start/pause, lap recording, and split-time calculation. Millisecond display, monotonic clock for accuracy.",
+  "description": "Browser-based stopwatch using performance.now() for jitter-free timing. Start, pause, resume, capture laps, and reset. Each lap shows split (delta from previous) plus cumulative time.",
+  "metaDescription": "Free browser stopwatch with millisecond precision and lap recording. Monotonic timing, no network needed. Useful for sports, cooking, and study sessions.",
+  "keywords": ["stopwatch", "timer milliseconds", "lap timer", "online stopwatch", "split timer"],
+  "start": "Start",
+  "pause": "Pause",
+  "resume": "Resume",
+  "reset": "Reset",
+  "lap": "Lap",
+  "laps": "Laps",
+  "article": {
+    "sections": [
+      {
+        "heading": "Why this stopwatch is accurate",
+        "paragraphs": [
+          "Most browser stopwatches use Date.now() and setInterval, which can drift by tens of milliseconds during a session. This implementation uses performance.now() — a monotonic clock that doesn't jump backward when the system clock is adjusted. Combined with requestAnimationFrame for display updates, accuracy stays within ±1 ms.",
+          "If you switch tabs, the displayed time may freeze briefly because browsers throttle background work. The internal clock keeps running correctly — when you switch back, the display catches up to the actual elapsed time."
+        ]
+      },
+      {
+        "heading": "Lap times and split times",
+        "paragraphs": [
+          "When you press Lap, the current cumulative time is recorded. The displayed split is the delta from the previous lap: in a 5×400m run, each split is one 400m segment time, while the cumulative is total elapsed since start.",
+          "Most lap-list users care about splits, not cumulative. We show both. Cumulative also makes it easy to identify the best individual segment — useful for athletes tracking interval consistency."
+        ]
+      },
+      {
+        "heading": "Common uses",
+        "paragraphs": [
+          "Sports: track lap times for running, swimming, cycling intervals. Smaller is better; consistency between splits is a sign of good pacing.",
+          "Cooking: time multiple steps simultaneously by using laps as 'check points' (mix added, dough resting started, etc.).",
+          "Study/work: timeboxing focused work sessions. Pair with our Pomodoro timer for structured breaks.",
+          "Process timing: measure duration of any task — software builds, manual data entry, customer support resolution. Use the export-friendly lap list for later review."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Click Start", "text": "Timer begins immediately at 0." },
+      { "name": "Capture laps", "text": "Click Lap during the run. Each lap is recorded with split and cumulative time." },
+      { "name": "Pause / Resume", "text": "Click Pause to hold; click Resume to continue from the same time." },
+      { "name": "Reset", "text": "Clears all laps and returns to 0." }
+    ]
+  },
+  "faq": [
+    { "q": "Will the timer keep running if I close the tab?", "a": "No — closing the tab clears the in-memory state. To preserve a long timing session, take a screenshot of the running display or copy the lap list before closing." },
+    { "q": "How accurate is millisecond precision in practice?", "a": "performance.now() resolution is browser-dependent: most browsers limit to 1ms or 0.1ms for security reasons (timing attack mitigation). This is plenty for human-scale timing — far more accurate than human reaction time (~250ms)." },
+    { "q": "Why does the display update at 60fps but show milliseconds?", "a": "The internal clock is precise; the display is rendered ~60 times per second so you see a smoothly updating millisecond field. Each frame computes the latest elapsed value from performance.now()." },
+    { "q": "Can I save a lap session?", "a": "Not directly — copy the lap list manually. Saving sessions to local storage is on the roadmap." },
+    { "q": "What's the difference between this and a phone stopwatch?", "a": "Browser-based, no app install needed. Equally accurate for human-scale timing. Phone stopwatch survives screen lock; browser tab needs to stay open (but doesn't need focus)." },
+    { "q": "Is the data sent anywhere?", "a": "No. Everything runs locally; no laps or times are transmitted." },
+    { "q": "Why does my lap show 0 milliseconds?", "a": "If you tap Lap immediately after Start, the elapsed time may round to 0 with display precision. Run for at least a fraction of a second between laps." },
+    { "q": "Can this measure sub-second events?", "a": "Yes, down to ~1ms. For nanosecond timing (chip benchmarking) you'd need different tooling, but for any human-observable event this is precise enough." }
+  ]
+}
