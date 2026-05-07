@@ -1,0 +1,72 @@
+{
+  "title": "Calculadora de ganancia de acciones (con dividendos + impuestos)",
+  "shortDescription": "Calcula ganancia de operaciones de acciones incluyendo comisiones, dividendos recibidos e impuesto sobre ganancias de capital. Devuelve ganancia neta tras impuestos y ROI.",
+  "description": "Introduce acciones, precios de compra/venta, comisiones, dividendos recibidos y tu tasa de impuesto sobre ganancias de capital. Devuelve ganancia total, impuesto y neto tras impuestos.",
+  "metaDescription": "Calculadora gratis de ganancia de acciones con soporte para dividendos e impuestos. Calcula ganancia de capital, ingreso por dividendos, impuestos y ROI tras impuestos.",
+  "keywords": ["calculadora ganancia acciones", "ganancia trading acciones", "calculadora ganancias capital", "ROI acciones", "ganancia tras impuestos"],
+  "empty": "Introduce acciones, precios de compra y venta, dividendos y tasa de impuestos.",
+  "input": {
+    "shares": "Acciones",
+    "buyPrice": "Precio de compra (por acción)",
+    "sellPrice": "Precio de venta (por acción)",
+    "buyCommission": "Comisión de compra",
+    "sellCommission": "Comisión de venta",
+    "dividends": "Dividendos recibidos",
+    "taxPct": "Impuesto ganancias capital %"
+  },
+  "result": {
+    "afterTax": "Ganancia tras impuestos",
+    "roi": "ROI (tras impuestos)",
+    "cost": "Coste total",
+    "gross": "Ingresos brutos",
+    "capitalGain": "Ganancia de capital",
+    "dividendsLabel": "Dividendos",
+    "totalGain": "Ganancia total (antes de impuestos)",
+    "totalTax": "Impuesto adeudado"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué entra en la ganancia de operaciones de acciones",
+        "paragraphs": [
+          "La ganancia de acciones tiene tres componentes principales: ganancia de capital (precio de venta menos compra, por acciones, menos comisiones), dividendos recibidos durante tu período de tenencia, y el impuesto sobre la ganancia combinada. La mayoría de calculadoras solo computa uno — nosotros calculamos los tres para un resultado preciso tras impuestos.",
+          "Comisiones: muchos brokers EE.UU. ofrecen operaciones de $0 ahora, pero ETFs, opciones, fondos mutuos y acciones internacionales pueden seguir cobrando. Brokers japoneses SBI/Rakuten cobran ~¥0-275 por operación. Verifica siempre el calendario de tarifas de tu broker."
+        ]
+      },
+      {
+        "heading": "Tasa de impuesto: largo vs corto plazo",
+        "paragraphs": [
+          "Estados Unidos: ganancias a corto plazo (mantenidas < 1 año) gravadas a tasa de renta ordinaria (10-37%). Ganancias a largo plazo (≥ 1 año) gravadas al 0%, 15% o 20% según ingresos. Dividendos calificados usan tasas a largo plazo; no calificados usan tasas de renta ordinaria.",
+          "Japón: típicamente 20.315% (15% impuesto sobre la renta + 5% local + 0.315% recargo de reconstrucción) tanto para ganancias de capital como dividendos en cuentas estándar. Cuentas NISA exentas hasta ciertos límites.",
+          "Las tasas UE y Reino Unido varían ampliamente (UK tiene asignación CGT, luego 10/20%; Alemania 25% plano). Consulta las reglas específicas de tu país — esta calculadora solo aplica la tasa que introduzcas."
+        ]
+      },
+      {
+        "heading": "Lo que esta calculadora no modela",
+        "paragraphs": [
+          "Costes de spread bid-ask: comprar al ask y vender al bid implica un coste implícito pequeño por operación. Para grandes capitalizaciones líquidas es despreciable (centavos sobre $100); para small-caps poco líquidas puede ser 0.5-2%. Usa precios de ejecución reales.",
+          "Conversión de divisa: si compraste acciones USD con EUR, tu rendimiento también se ve afectado por movimientos USD/EUR entre compra y venta. No calculamos FX — solo introduce los precios en tu moneda local en el momento de cada operación.",
+          "Reglas de wash sale (EE.UU.): si recompras esencialmente el mismo valor dentro de los 30 días tras una pérdida, la pérdida se rechaza para fines fiscales. Esta calculadora no rastrea wash sales — consulta a un CPA para situaciones complejas."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce acciones", "text": "Número de acciones compradas." },
+      { "name": "Introduce precios de compra y venta", "text": "Precios por acción en cada transacción." },
+      { "name": "Introduce comisiones", "text": "Tarifas por operación en compra y venta. Usa 0 si tu broker es sin comisiones." },
+      { "name": "Introduce dividendos recibidos", "text": "Dividendos totales pagados durante tu período de tenencia." },
+      { "name": "Introduce tasa de impuestos", "text": "Tu tasa aplicable de ganancias de capital. JP estándar: 20.315%. US largo plazo nivel alto: 20%." },
+      { "name": "Lee el desglose", "text": "Ganancia tras impuestos, ROI, ganancia de capital, ingreso por dividendos, impuesto total." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Funciona para ETFs y fondos mutuos?", "a": "Sí — misma matemática. Los fondos pueden distribuir dividendos y ganancias de capital; introduce ambos en el campo dividendos, o usa cálculo separado por fuente si las tasas difieren." },
+    { "q": "¿Y los dividendos reinvertidos (DRIP)?", "a": "Cada reinversión se trata como nuevo lote fiscal en la mayoría de jurisdicciones. Esta calculadora asume una sola compra/venta — para DRIP, ejecuta múltiples cálculos o usa los extractos fiscales del broker." },
+    { "q": "¿Por qué la calculadora aplica impuesto también a pérdidas?", "a": "No lo hace — solo aplicamos impuesto cuando la ganancia de capital o dividendos es positiva. Una pérdida reduce el impuesto total adeudado en muchos países, pero las reglas varían así que dejamos el manejo de pérdidas manual." },
+    { "q": "¿Qué es un 'subsidio de impuesto sobre ganancias de capital'?", "a": "Algunos países (UK, Francia, etc.) ofrecen un subsidio libre de impuestos por año antes de que se aplique el impuesto. Resta tu subsidio de la ganancia antes de aplicar la tasa, o modélalo como una tasa efectiva más baja." },
+    { "q": "¿Debo incluir tarifas de suscripción del broker?", "a": "Las tarifas de suscripción/cuenta normalmente son deducibles del rendimiento total pero no específicas a una operación. Resta de la ganancia tras impuestos si tu broker las cobra." },
+    { "q": "¿Cómo difiere de la calculadora cripto?", "a": "Las acciones pagan dividendos; cripto generalmente no. Cripto usa tarifa % (varía por tamaño de operación); las acciones suelen usar comisión plana. La matemática es similar pero las entradas difieren." },
+    { "q": "¿ROI puede ser negativo?", "a": "Sí. Si precio de venta + dividendos < precio de compra + comisiones + impuestos (caso raro donde el impuesto sobre dividendos excede el ingreso por dividendos), ROI es negativo." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo se ejecuta localmente; nada se envía a un servidor." }
+  ]
+}

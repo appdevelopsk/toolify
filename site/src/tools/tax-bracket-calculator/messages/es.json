@@ -1,0 +1,71 @@
+{
+  "title": "Calculadora de tramos de IRPF (JP / US)",
+  "shortDescription": "Calcula impuesto sobre la renta usando tramos progresivos. Japón, EE.UU. soltero y EE.UU. casados declaración conjunta. Devuelve impuesto total, tasa efectiva, tasa marginal y desglose por tramo.",
+  "description": "Elige país/estado civil e introduce renta imponible. La calculadora aplica los tramos oficiales y muestra total adeudado, tasa efectiva, tasa marginal y exactamente cuánto se grava en cada tramo.",
+  "metaDescription": "Calculadora gratis de tramos del impuesto sobre la renta. Japón y EE.UU. (soltero/casados). Ve impuesto total, tasa efectiva, marginal y desglose por tramo.",
+  "keywords": ["calculadora tramos impuesto", "calculadora renta", "tasa marginal", "tasa efectiva", "impuesto progresivo"],
+  "empty": "Elige un país e introduce tu renta imponible.",
+  "disclaimer": "Solo estimación educativa. El impuesto real depende de deducciones, créditos, recargos, impuestos estatales/locales y muchos detalles. Consulta a un profesional fiscal para declaración real.",
+  "input": {
+    "country": "País / estado civil",
+    "income": "Renta imponible"
+  },
+  "country": {
+    "JP": "Japón (impuesto sobre la renta nacional)",
+    "US-single": "EE.UU. — Soltero",
+    "US-married": "EE.UU. — Casados declaración conjunta"
+  },
+  "result": {
+    "tax": "Impuesto adeudado",
+    "effective": "Tasa efectiva",
+    "marginal": "Tasa marginal",
+    "byBracket": "Por tramo",
+    "bracket": "Tramo",
+    "rate": "Tasa",
+    "taxed": "Gravado a esta tasa",
+    "taxOwed": "Impuesto adeudado"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo funcionan los tramos progresivos",
+        "paragraphs": [
+          "La mayoría de sistemas usan tramos 'progresivos': solo la renta dentro de cada tramo se grava a la tasa de ese tramo. Subir de tramo no grava toda tu renta a la tasa más alta — solo la porción sobre el umbral.",
+          "Ejemplo: con tramos US 2025, un soltero ganando $80,000 paga 10% sobre los primeros $11,600, 12% sobre los siguientes $35,550 y 22% sobre los $32,850 restantes. Impuesto total ≈ $12,668 (15.84% efectivo). La 'tasa marginal' (tasa del próximo dólar) es 22%."
+        ]
+      },
+      {
+        "heading": "Tasa efectiva vs marginal",
+        "paragraphs": [
+          "Tasa efectiva: impuesto total / renta total. Refleja la carga fiscal promedio. Útil al comparar carga total entre niveles de renta o escenarios.",
+          "Tasa marginal: la tasa sobre el próximo dólar ganado. Decisivamente relevante para si aceptar horas extra, aceptar un aumento o aportar a cuentas de jubilación pre-impuesto (que ahorran a la tasa marginal).",
+          "Confusión común: subir un aumento al tramo siguiente no reduce el sueldo neto del nivel anterior. Solo significa que las nuevas ganancias se gravan a la tasa marginal más alta. No hay 'precipicio fiscal' en sistemas progresivos estándar."
+        ]
+      },
+      {
+        "heading": "Lo que esta calculadora no incluye",
+        "paragraphs": [
+          "Deducciones: deducción estándar (US: $14,600 soltero, $29,200 casados 2024), 給与所得控除 (Japón, escala con renta), 基礎控除 (Japón, ¥480k típico). Resta antes de usar esta calculadora.",
+          "Créditos: crédito tributario por hijos, EITC, etc. (US); 配偶者控除/扶養控除 (Japón). Reducen impuesto adeudado directamente, no la renta.",
+          "Impuestos estatales/locales: estatal US (0-13%), municipal (algunos), residente Japón (~10% plano), recargo reconstrucción Japón (2.1% del impuesto nacional).",
+          "Impuesto de autónomos: SE tax US añade 15.3%; pensión nacional y seguro de salud Japón por separado."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige país/estado civil", "text": "Japón (impuesto nacional), EE.UU. soltero, o EE.UU. casados conjunta." },
+      { "name": "Introduce renta imponible", "text": "Después de deducciones estándar. Japón: 課税所得. US: AGI menos deducciones." },
+      { "name": "Lee el desglose", "text": "Impuesto total, tasa efectiva, tasa marginal, más detalle por tramo." }
+    ]
+  },
+  "faq": [
+    { "q": "¿De dónde vienen estos tramos?", "a": "Japón: tramos de impuesto sobre la renta nacional según 国税庁 (NTA). US: tramos publicados por IRS para 2025/2026. No incluimos impuestos estatales/prefecturales/locales; consulta esos por separado." },
+    { "q": "¿Uso renta bruta o imponible?", "a": "Renta imponible (después de deducciones). Para Japón: 給与収入 menos 給与所得控除 menos 各種所得控除. Para US: AGI menos deducción estándar o detallada menos deducción QBI." },
+    { "q": "¿Se incluye el recargo de reconstrucción de Japón?", "a": "No — es un 2.1% adicional sobre el impuesto nacional, encima del cálculo de tramos. Aplica manualmente al total." },
+    { "q": "¿Y el impuesto de residente en Japón?", "a": "El impuesto de residente (住民税, ~10% plano) es separado, administrado por prefectura y ciudad. No incluido. Para carga total, añade ~10% de la renta imponible." },
+    { "q": "¿Por qué mi tasa efectiva es más baja de lo esperado?", "a": "Porque la renta más baja se grava a tasas de tramos más bajos. Aunque estés en el tramo 24%, solo la renta sobre $100,525 se grava al 24%; el resto al 10%, 12% y 22%." },
+    { "q": "¿Funciona para ganancias de capital?", "a": "No directamente — las ganancias de capital tienen tablas de tasas separadas. US: 0%, 15% o 20% según renta. Japón: típicamente 20.315% plano para acciones. Esta calculadora es solo para renta ordinaria." },
+    { "q": "¿Para qué sirve la 'tasa marginal'?", "a": "Conocer tu tasa marginal ayuda con: aportes 401(k)/iDeCo (ahorras a tasa marginal), decisiones Roth vs tradicional, decidir si las horas extra valen la pena tras impuestos, valor de deducciones por donaciones." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo se ejecuta localmente; nada se envía a un servidor." }
+  ]
+}

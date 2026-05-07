@@ -1,0 +1,63 @@
+{
+  "title": "Calculadora de ganancia cripto (con tarifas de exchange)",
+  "shortDescription": "Calcula ganancia de trading cripto, ROI e impacto de tarifas. Introduce cantidad, precio de compra, precio de venta y tarifa% — obtén ganancia neta tras tarifas de compra y venta.",
+  "description": "Calcula tu ganancia de trading cripto incluyendo tarifas del exchange en entrada y salida. Útil para backtest de operaciones, comparar tarifas entre exchanges y entender el arrastre de tarifas en operaciones pequeñas o frecuentes.",
+  "metaDescription": "Calculadora gratis de ganancia cripto. Ganancia neta tras tarifas, ROI%, impacto. Introduce cantidad, precios y tarifa. Funciona para BTC, ETH y cualquier token.",
+  "keywords": ["calculadora ganancia cripto", "ganancia trading cripto", "ganancia bitcoin", "ROI cripto", "impacto tarifa exchange"],
+  "empty": "Introduce cantidad, precio de compra, precio de venta y tarifa.",
+  "input": {
+    "amount": "Cantidad de coin",
+    "buyPrice": "Precio de compra (por coin)",
+    "sellPrice": "Precio de venta (por coin)",
+    "feePct": "Tarifa de exchange %"
+  },
+  "result": {
+    "netProfit": "Ganancia neta",
+    "roi": "ROI",
+    "cost": "Coste total",
+    "gross": "Ingresos brutos",
+    "totalFees": "Tarifas totales"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo las tarifas comen la ganancia",
+        "paragraphs": [
+          "Los exchanges cripto cobran tarifas en entrada y salida. Una tarifa maker/taker del 0.2% aplicada dos veces significa que el 0.4% de tu valor operado es tarifa — pequeño para grandes movimientos, devastador para los pequeños. Para empatar en estructura 0.2%/0.2%, el precio debe moverse al menos 0.4% a tu favor.",
+          "Las tarifas varían ampliamente: los principales exchanges centralizados cobran 0.1-0.4% por lado. Los exchanges descentralizados (Uniswap, etc.) cobran 0.3% de tarifa de pool más gas (que en Ethereum puede ser $5-50+ según condiciones de red). Algunos exchanges ofrecen 0% en ciertos pares como marketing — verifica si compensan con spreads más amplios."
+        ]
+      },
+      {
+        "heading": "Leer el ROI",
+        "paragraphs": [
+          "ROI (retorno sobre inversión) es ganancia neta dividida por capital total invertido (coste más tarifa de compra). Es la métrica de comparación más útil entre operaciones de distintos tamaños. Una operación de $100 que gana $20 (20% ROI) es matemáticamente el mismo resultado que $10,000 que ganan $2,000 — ambos 20% ROI.",
+          "Cuidado con la diferencia entre ROI y ganancia absoluta. Los day traders a menudo optimizan por muchas pequeñas victorias de ROI. Los holders a largo plazo se preocupan más por la ganancia absoluta. Ambas son válidas; solo no las confundas al comparar estrategias."
+        ]
+      },
+      {
+        "heading": "Implicaciones fiscales (general)",
+        "paragraphs": [
+          "La mayoría de jurisdicciones gravan las operaciones cripto como ganancias de capital. Comprar con una moneda y vender por otra es típicamente un evento gravable. Incluso swaps cripto-a-cripto suelen activar obligación fiscal en EE.UU., Reino Unido, Canadá y muchos países UE.",
+          "Lleva registro de cada operación con fecha, activo, cantidad, equivalente USD del momento y tarifas. Herramientas como CoinTracker, Koinly y TaxBit pueden ingerir CSV del exchange y producir informes fiscales. No somos asesores fiscales; consulta tus reglas locales."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce cantidad de coin", "text": "Cuánto compraste (p.ej. 0.5 BTC, 100 SOL)." },
+      { "name": "Introduce precio de compra por coin", "text": "Lo que pagaste por unidad al entrar." },
+      { "name": "Introduce precio de venta por coin", "text": "Lo que recibiste (o esperas recibir) por unidad." },
+      { "name": "Introduce tarifa del exchange %", "text": "Por lado. La mayoría de exchanges centralizados cobran 0.1-0.4%." },
+      { "name": "Lee el desglose", "text": "Ganancia neta, ROI%, tarifas totales, coste e ingresos brutos." }
+    ]
+  },
+  "faq": [
+    { "q": "¿La tarifa aplica a compra y venta?", "a": "Sí, en esta calculadora. Asumimos la misma tarifa en ambos lados. Si tus tarifas difieren (p.ej. 0.1% compra, 0.4% venta), usa el promedio o ejecuta dos cálculos." },
+    { "q": "¿Y el slippage?", "a": "El slippage es la diferencia entre precio esperado y de ejecución real, común en mercados de baja liquidez. Esta calculadora no lo modela — usa tus precios reales de ejecución." },
+    { "q": "¿Debo incluir tarifas de gas para operaciones DEX?", "a": "Convierte tus tarifas de gas en porcentaje del valor de la operación y añádelas al campo de tarifa. Para una operación de $1000 con $10 de gas, eso es 1% de tarifa adicional por lado." },
+    { "q": "¿Funciona para stablecoins?", "a": "Sí. Las operaciones stablecoin-a-stablecoin son normalmente de ganancia delgada (0.1-0.3%) y las tarifas pueden borrar las ganancias fácilmente. La calculadora las maneja correctamente." },
+    { "q": "¿Cómo incluyo un stop loss?", "a": "Usa la calculadora dos veces: una para la salida planeada de toma de ganancias, una para la salida con stop loss. Compara ambos resultados con tu tamaño de posición para dimensionar tu riesgo." },
+    { "q": "¿Qué tarifa % es buena para asumir?", "a": "0.1-0.2% para la mayoría de exchanges grandes (Binance, Coinbase Pro, Kraken). 0.4-1% para retail/no-pro. 0.3-1% para DEX más gas." },
+    { "q": "¿Por qué ROI es diferente de ganancia %?", "a": "ROI usa la base de coste como denominador (coste + tarifa de compra). 'Ganancia %' a menudo usa la inversión inicial sin tarifa de compra, lo que infla ligeramente el número." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo se ejecuta localmente; nada se envía a un servidor." }
+  ]
+}

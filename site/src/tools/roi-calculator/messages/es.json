@@ -1,0 +1,61 @@
+{
+  "title": "Calculadora de ROI (retorno + anualizado)",
+  "shortDescription": "Calcula retorno sobre inversión (ROI) % y retorno anualizado para cualquier período de tenencia. Funciona para cualquier inversión: acciones, inmuebles, negocios, side projects.",
+  "description": "Introduce inversión inicial, retornos totales y período de tenencia en años. Devuelve ROI%, anualizado (CAGR) % y beneficio absoluto. Funciona para cualquier horizonte temporal.",
+  "metaDescription": "Calculadora gratis de ROI con retorno anualizado (CAGR). Compara inversiones con distintos períodos de tenencia en la misma escala.",
+  "keywords": ["calculadora ROI", "retorno sobre inversión", "retorno anualizado", "calculadora CAGR", "rentabilidad inversión"],
+  "input": {
+    "investment": "Inversión inicial",
+    "returns": "Valor final (o retornos totales)",
+    "holdYears": "Período de tenencia (años)"
+  },
+  "result": {
+    "roi": "ROI",
+    "annualized": "Anualizado (CAGR)",
+    "profit": "Beneficio absoluto"
+  },
+  "empty": "Introduce inversión inicial y valor final.",
+  "article": {
+    "sections": [
+      {
+        "heading": "ROI vs retorno anualizado",
+        "paragraphs": [
+          "ROI (Retorno sobre Inversión) = (valor final − inicial) / inicial × 100%. Simple, útil al comparar inversiones mantenidas el mismo período. 50% ROI en 1 año es mucho mejor que 50% ROI en 10 años — pero el ROI solo no muestra eso.",
+          "Retorno anualizado (también llamado CAGR — Tasa de Crecimiento Anual Compuesta) normaliza el ROI a una cifra anual. 21% ROI en 2 años es 10% anualizado. 100% ROI en 7 años también es 10% anualizado. CAGR permite comparaciones equitativas."
+        ]
+      },
+      {
+        "heading": "Cuándo usar cada uno",
+        "paragraphs": [
+          "ROI: mejor al comparar inversiones en la misma fecha o con el mismo final. 'Compré la acción A y la B en enero, ¿cuáles son sus ROIs hoy?' es comparación justa.",
+          "CAGR: mejor al comparar inversiones mantenidas distinto tiempo. 'Mi inmueble dio 80% en 5 años; mis acciones dieron 30% en 2 años. ¿Cuál rindió mejor?' Calcula CAGR para ambos: inmueble = 12.5% anualizado, acciones = 14% anualizado — las acciones ganaron (por año).",
+          "Para inversiones donde reinvertiste o añadiste con el tiempo, ninguna métrica es suficiente — usa IRR (tasa interna de retorno) que tiene en cuenta flujos irregulares. Las hojas de cálculo tienen funciones IRR integradas."
+        ]
+      },
+      {
+        "heading": "Qué 'retornos' usar",
+        "paragraphs": [
+          "Usa el valor final o los retornos totales recibidos. Para acciones: incluye dividendos si los reinvertiste; o trata dividendos + precio final como los 'retornos' si los tomaste como efectivo.",
+          "Para inmuebles: incluye ingresos por alquiler (si es propiedad de alquiler) más precio de venta. Resta reparaciones, impuestos y tarifas del retorno total para ROI neto.",
+          "Para negocios / side projects: retornos = ingresos menos todos los gastos (no solo brutos). De lo contrario calculas ROI sobre un número inflado."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce inversión inicial", "text": "Lo que pusiste al principio." },
+      { "name": "Introduce valor final o retornos totales", "text": "Lo que sacaste (o podrías sacar hoy)." },
+      { "name": "Introduce período de tenencia en años", "text": "Usado para el cálculo anualizado. Usa decimales para años parciales (0.5 = 6 meses)." },
+      { "name": "Lee ambas métricas", "text": "ROI total y retorno anualizado. Compara con otras inversiones para contexto." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Qué es un 'buen' ROI?", "a": "El contexto importa. S&P 500 a largo plazo: ~10% CAGR nominal. Inmuebles: 8-10% CAGR combinado. Cualquier cosa por encima de la inflación (~3%) es crecimiento real. Por debajo: pierdes poder adquisitivo." },
+    { "q": "¿El ROI tiene en cuenta el riesgo?", "a": "No. Dos inversiones con el mismo ROI pueden tener muy distintos niveles de riesgo. Un bono al 5% y una startup que devolvió 5% no son equivalentes — la startup tenía ~50% de probabilidad de cero. Considera siempre rendimientos ajustados al riesgo (Sharpe, etc.)." },
+    { "q": "¿Por qué el anualizado es menor que el ROI total en plazos largos?", "a": "Capitalización. 100% total en 10 años es solo 7.18% anualizado — la mitad del tiempo requerido para duplicar tu dinero según la regla del 72 (72/10 = 7.2)." },
+    { "q": "¿Resto impuestos para un ROI preciso?", "a": "Para ROI tras impuestos, sí. Para comparar inversiones pre-impuestos, usa retornos brutos. Sé consistente — no compares un retorno de cuenta libre de impuestos con el bruto de una cuenta gravable." },
+    { "q": "¿Diferencia entre CAGR e IRR?", "a": "CAGR asume una inversión inicial y un valor final. IRR maneja flujos irregulares — múltiples depósitos, dividendos, retiros en el tiempo. CAGR ≈ IRR para buy-and-hold simple." },
+    { "q": "¿Puedo usarlo para venta de empresa?", "a": "Sí. 'Inversión' = base total de coste (precio de compra más mejoras de capital). 'Retornos' = ingresos por venta más cualquier beneficio acumulado distribuido durante la propiedad." },
+    { "q": "¿En qué se diferencia el ROI del margen de beneficio?", "a": "ROI es retorno dividido por capital invertido. Margen es beneficio dividido por ingresos. Miden cosas distintas: ROI = qué tan bien se usa el capital, margen = qué tan rentable es cada venta." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo se ejecuta localmente; nada se envía a un servidor." }
+  ]
+}
