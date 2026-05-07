@@ -1,0 +1,53 @@
+{
+  "title": "Generador UUID (v4 random, v7 ordenado por tiempo)",
+  "shortDescription": "Genera UUID v4 criptográficamente aleatorio o UUID v7 ordenado por tiempo. Genera hasta 100 a la vez con copia de un clic.",
+  "description": "Click para generar uno o muchos UUIDs. Usa v4 para IDs totalmente aleatorios y v7 para IDs sortables temporalmente — útiles para claves de base de datos.",
+  "metaDescription": "Generador UUID gratis v4 (random) y v7 (orden temporal). Criptográficamente seguro, hasta 100 a la vez, copia individual o total.",
+  "keywords": ["generador UUID", "UUID v4", "UUID v7", "generador GUID", "UUID random"],
+  "count": "Cantidad",
+  "regenerate": "Regenerar",
+  "copy": "Copiar",
+  "copyAll": "Copiar todo",
+  "copied": "Copiado",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cuándo v4 vs v7",
+        "paragraphs": [
+          "UUID v4 es puramente aleatorio — 122 bits aleatorios con dos bits de version/variant, ~5.3 × 10³⁶ valores posibles. Dos básicamente nunca colisionarán. Usa v4 donde no necesites orden, como IDs de petición API o identificadores anónimos de usuario.",
+          "UUID v7 (RFC 9562, publicado en 2024) empieza con timestamp Unix de 48 bits seguido de 74 bits aleatorios. Ordenan lexicográficamente por creación, lo que ayuda mucho al rendimiento de DB — claves primarias por tiempo hacen que los inserts vayan al final del B-tree, sin page splits aleatorios. Usa v7 para claves primarias nuevas."
+        ]
+      },
+      {
+        "heading": "Cómo funciona",
+        "paragraphs": [
+          "Tanto v4 como v7 usan crypto.getRandomValues — la fuente segura del navegador, igual que HTTPS y password managers. v4 llena 122 bits aleatorios. v7 divide 48 bits de timestamp + 74 bits aleatorios + marcadores de version/variant según RFC.",
+          "La generación es en tu navegador. Los UUIDs no se almacenan ni transmiten. Si generas 100 v4 la probabilidad de colisión entre ellos es astronómicamente pequeña — muy por debajo de rayos cósmicos volteando bits de tu CPU."
+        ]
+      },
+      {
+        "heading": "Trampas comunes",
+        "paragraphs": [
+          "v4 como clave primaria daña el rendimiento vs auto-incrementales porque los valores aleatorios causan page splits durante inserts. v7 lo arregla — úsalo si quieres beneficios UUID sin dolor de índice.",
+          "No expongas UUIDs donde la 'guessability' importe. v4 tienen 122 bits de entropía y son inadivinables. v7 filtran tiempo de creación, ok para casi todo pero malo si el tiempo es sensible.",
+          "UUIDs son 36 chars con guiones (32 hex + 4 guiones). 16 bytes binario o 36 bytes texto. Para columnas de muy alta cardinalidad considera BLOB / tipo UUID nativo en vez de VARCHAR(36)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige v4 o v7", "text": "v4 totalmente random, v7 ordenado por tiempo." },
+      { "name": "Cantidad", "text": "1 a 100. Default 5." },
+      { "name": "Copia lo que necesites", "text": "Click 'Copiar' junto a un UUID, o 'Copiar todo' para una lista separada por saltos." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Son criptográficamente seguros?", "a": "Sí. v4 y v7 usan crypto.getRandomValues. v4 tiene 122 bits de entropía; v7 tiene 74." },
+    { "q": "¿Por qué v7 mejor para BD?", "a": "Porque ordenan por creación, los inserts van al final del índice B-tree en vez de posiciones random. Evita page splits y mejora throughput de escritura dramáticamente." },
+    { "q": "¿Pueden colisionar dos UUIDs?", "a": "Teóricamente sí. Con v4 necesitarías generar ~10¹⁸ antes del 50% de colisión. Con v7 el componente temporal lo reduce a ~2⁷⁴ dentro del mismo milisegundo — aún prácticamente imposible." },
+    { "q": "¿UUID es lo mismo que GUID?", "a": "Sí. GUID es el nombre Microsoft. Mismo formato, mismas garantías." },
+    { "q": "¿Formato?", "a": "8-4-4-4-12 hex con guiones. 32 hex + 4 guiones = 36 chars. Minúsculas por convención RFC." },
+    { "q": "¿Mejor usar v1?", "a": "v1 incluye MAC address — fuga de privacidad. v7 sustituye a v1 para IDs ordenados sin exponer hardware." },
+    { "q": "¿Generar v4 en Base64 URL-safe?", "a": "No directamente aquí. Codifica los 16 bytes del UUID como URL-safe Base64 para 22 chars. Útil para URLs cortas." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Generación enteramente en tu navegador." }
+  ]
+}

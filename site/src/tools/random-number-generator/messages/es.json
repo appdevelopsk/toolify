@@ -1,0 +1,64 @@
+{
+  "title": "Generador de números aleatorios (seguro, modo único)",
+  "shortDescription": "Genera enteros aleatorios en cualquier rango con la API segura del navegador. Modo 'único' opcional para sorteos o muestreo sin reemplazo.",
+  "description": "Elige min, max y cantidad para generar enteros criptográficamente aleatorios. Activa 'único' para muestreo sin reemplazo (sorteos, lotería).",
+  "metaDescription": "Generador gratis de aleatorios criptográficamente seguro. Rango y cantidad, opción de únicos. Para lotería, sorteos, testing aleatorio y juegos.",
+  "keywords": ["generador aleatorios", "aleatorio seguro", "números lotería", "entero aleatorio", "RNG"],
+  "empty": "Configura un rango y haz clic en 'Regenerar' para obtener números aleatorios.",
+  "input": {
+    "min": "Mínimo",
+    "max": "Máximo",
+    "count": "Cuántos"
+  },
+  "unique": "Todos únicos (sin duplicados)",
+  "regenerate": "Regenerar",
+  "copyAll": "Copiar todo",
+  "copied": "Copiado",
+  "error": {
+    "invalidRange": "Min debe ser ≤ Max.",
+    "tooManyUnique": "No puedes elegir más únicos que el rango permite."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Por qué es realmente aleatorio",
+        "paragraphs": [
+          "Usamos crypto.getRandomValues — la fuente segura del navegador — en vez de Math.random(). La salida del CSPRNG no se puede predecir desde valores previos, lo que importa para lotería, apps adyacentes a apuestas, y cualquier uso donde 'aleatorio' es requisito real, no solo 'arbitrario'.",
+          "También usamos rejection sampling para que la distribución sea exactamente uniforme. Un naive 'random % range' introduce sesgo cuando el rango no divide igual a 2³². Rejection sampling descarta valores sesgados y reintenta, así cada número tiene exactamente la misma probabilidad."
+        ]
+      },
+      {
+        "heading": "Único vs con duplicados",
+        "paragraphs": [
+          "Modo default: cada número independiente — pueden ocurrir duplicados. Es lo que 'aleatorio' suele significar casualmente (dados, película, testing).",
+          "Modo único: muestreo sin reemplazo — una vez elegido, no se vuelve a elegir en el mismo lote. Útil para: lotería (p.ej. 6 números de 1-49), sorteos, asignación a equipos, situaciones 'elige N de M'. Requiere cantidad ≤ rango."
+        ]
+      },
+      {
+        "heading": "Casos de uso comunes",
+        "paragraphs": [
+          "Lotería / sorteo: 6 números únicos de 1-49, o lo que use tu rifa. Activa 'único'.",
+          "Tirada de dados: rango 1-6 (o 1-20 para D20). Deja 'único' apagado para que cada tirada sea independiente.",
+          "Muestreo aleatorio para testing: 10 IDs de usuario aleatorios de 1-10000 para revisar. Activa 'único' para evitar duplicados.",
+          "Simular monedas: rango 0-1, varios resultados. Cuenta caras/cruces para checks de equidad (cerca de 50/50 con muestras grandes)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Configura rango", "text": "Min y max — ambos inclusivos. Negativos permitidos." },
+      { "name": "Cantidad", "text": "1 a 100 por generación." },
+      { "name": "Activa 'único' si hace falta", "text": "On para sin reemplazo (sorteos, lotería)." },
+      { "name": "Click regenerar", "text": "Nuevo set cada vez. Copia todos de golpe si los necesitas." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Es justo para sorteos/lotería?", "a": "La aleatoriedad es criptográficamente segura y sin sesgo. Si es legalmente 'justo' para una lotería oficial depende de la jurisdicción — muchas exigen RNG hardware certificados." },
+    { "q": "¿Diferencia con Math.random()?", "a": "Math.random() usa un algoritmo cuya salida puede predecirse desde salidas previas por un atacante. crypto.getRandomValues usa RNG criptográfico OS-level que no se puede predecir. Para equidad real, usa este." },
+    { "q": "¿Negativos?", "a": "Sí. Pon min en valor negativo." },
+    { "q": "¿Rango máximo?", "a": "Limitado por entero seguro JS (~2⁵³), pero prácticamente puedes ir a miles de millones sin problema. Rejection sampling maneja cualquier rango." },
+    { "q": "¿Por qué 'único' falla con cantidad > rango?", "a": "Si pides 10 únicos de 1-5, cuatro no existen. La validación lo captura y pide ampliar rango o reducir cantidad." },
+    { "q": "¿Sirve para dados?", "a": "Sí — pon rango 1-6 (o lo que tu dado tenga) y desactiva 'único' para que cada tirada sea independiente." },
+    { "q": "¿Puedo guardar la seed?", "a": "No — el aleatorio seguro no tiene seed por diseño. Si necesitas reproducible, usa una librería PRNG con seed." },
+    { "q": "¿Los datos se envían?", "a": "No. La generación es enteramente local." }
+  ]
+}

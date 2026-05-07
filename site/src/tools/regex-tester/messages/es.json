@@ -1,0 +1,65 @@
+{
+  "title": "Tester de regex (matches en vivo, grupos, replace)",
+  "shortDescription": "Prueba expresiones regulares JavaScript de forma interactiva. Matches resaltados en vivo, grupos de captura y vista previa de replace.",
+  "description": "Escribe regex y texto — los matches se resaltan al teclear. Alterna flags (g/i/m/s/u), inspecciona grupos y previsualiza replace.",
+  "metaDescription": "Tester JS de regex gratis con resaltado en vivo, grupos, grupos nombrados y vista de replace. Solo navegador — patrones y texto no salen del dispositivo.",
+  "keywords": ["tester regex", "tester expresión regular", "regex JavaScript", "match regex", "replace regex"],
+  "input": {
+    "pattern": "Patrón",
+    "flags": "Flags",
+    "test": "Texto de prueba",
+    "replaceMode": "Mostrar vista previa de replace",
+    "replace": "Reemplazo"
+  },
+  "result": {
+    "matches": "Matches",
+    "replaced": "Salida reemplazada",
+    "groups": "Grupos de captura"
+  },
+  "hint": {
+    "replaceVars": "Usa $& para el match completo, $1, $2 para grupos, $<name> para nombrados."
+  },
+  "error": { "invalid": "Patrón no válido" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué hacen los flags",
+        "paragraphs": [
+          "g (global): encuentra todos los matches, no solo el primero. Necesario para replace-all. i (insensible a mayúsculas): /[a-z]/i matchea ambos casos. m (multilínea): ^ y $ matchean en saltos de línea. s (dotall): . matchea también newlines. u (unicode): manejo correcto de code points sobre 0xFFFF (emoji, CJK en pares surrogate).",
+          "La mayoría empieza con /g/i/m. /s/ es útil para texto multilínea. /u/ se recomienda cuando puedes encontrar emoji o no-BMP — sin él /./ no matchea un emoji de 4 bytes como un solo carácter."
+        ]
+      },
+      {
+        "heading": "Grupos de captura y replace",
+        "paragraphs": [
+          "Los paréntesis crean un grupo: /(\\d{4})-(\\d{2})/ sobre '2026-05' captura '2026' y '05' por separado. Referencia con $1, $2 en el reemplazo. Los nombrados usan (?<name>...) y se referencian con $<name>.",
+          "Trucos comunes: $& inserta el match completo. $1, $2 etc. insertan grupos. $$ inserta un $ literal. La vista previa aquí te deja comprobar antes de correr el patrón sobre datos reales — mucho más seguro que ejecutarlo sobre producción."
+        ]
+      },
+      {
+        "heading": "Trampas a vigilar",
+        "paragraphs": [
+          "Escapado de barra invertida. Para matchear un '.' literal, usa '\\.'. En código JS sería '\\\\.' pero aquí tecleas solo '\\.' porque es el regex source.",
+          "Backtracking catastrófico. Patrones como /(a+)+/ sobre 'aaaa…!' tardan eternidades. Si tu test parece congelado, puede que tengas cuantificadores anidados. Simplifica o usa diseño cuidadoso (no hay grupos atómicos en JS).",
+          "Greedy vs lazy. /<.+>/ sobre '<a><b>' matchea '<a><b>' (greedy). /<.+?>/ matchea '<a>' (lazy). Elige según tu caso."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escribe un patrón", "text": "Sintaxis JS regex (sin las barras envolventes)." },
+      { "name": "Configura flags", "text": "Click letras: g (global), i (insensible), m (multilínea), s (dotall), u (unicode)." },
+      { "name": "Pega texto", "text": "Los matches se resaltan en vivo." },
+      { "name": "Opcional: prueba replace", "text": "Activa 'vista previa de replace' para ver la salida modificada." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Qué flavor de regex usa?", "a": "ECMAScript JS (la del navegador). Difiere ligeramente de PCRE (PHP, .NET, Python)." },
+    { "q": "¿Por qué no funciona lookbehind?", "a": "Funciona en navegadores modernos — Chrome, Firefox, Safari, Edge soportan (?<=...) y (?<!...) desde 2021. Si no, tu navegador puede estar desactualizado." },
+    { "q": "¿Qué hace 'u'?", "a": "Activa manejo correcto de Unicode. Un emoji 🎉 (par surrogate en UTF-16) se trata como un carácter con /u/, dos sin él." },
+    { "q": "¿Cómo matcheo tab o newline?", "a": "\\t para tab, \\n para newline, \\r retorno de carro, \\s cualquier whitespace incluido todo lo anterior." },
+    { "q": "¿Por qué mi replace no funciona?", "a": "Lo más común: olvidaste 'g' — sin 'g' replace solo cambia el primer match. Activa 'g' para reemplazar todo." },
+    { "q": "¿Sirve para texto muy largo?", "a": "Sí, hasta unos pocos MB. Más allá el navegador se ralentiza. Evita patrones catastróficos en input largo." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Patrón y texto se procesan solo localmente." },
+    { "q": "¿Hay cheat sheet de regex?", "a": "Busca 'JavaScript regex cheat sheet'. La página RegExp de MDN es la referencia autoritativa." }
+  ]
+}
