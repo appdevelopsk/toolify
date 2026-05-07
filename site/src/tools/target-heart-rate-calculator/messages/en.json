@@ -1,0 +1,70 @@
+{
+  "title": "Target Heart Rate Calculator (5 training zones)",
+  "shortDescription": "Calculate your max heart rate and 5 training zones (recovery, fat burn, aerobic, threshold, max). Karvonen formula uses resting HR for accuracy.",
+  "description": "Enter your age and resting heart rate. The calculator returns max heart rate (220 − age), heart rate reserve, and the 5 standard training zones. Toggle Karvonen for personalized zones based on your fitness level.",
+  "metaDescription": "Free target heart rate calculator. 5 training zones (recovery, fat burn, aerobic, threshold, max) with Karvonen formula option for personalized accuracy.",
+  "keywords": ["target heart rate", "heart rate zones", "Karvonen formula", "max heart rate", "training zones"],
+  "empty": "Enter age and resting heart rate.",
+  "input": {
+    "age": "Age",
+    "restingHr": "Resting heart rate (bpm)",
+    "useKarvonen": "Use Karvonen formula (more accurate)"
+  },
+  "result": {
+    "mhr": "Max heart rate",
+    "hrr": "Heart rate reserve",
+    "zones": "Training zones"
+  },
+  "zone": {
+    "z1": { "name": "Zone 1: Recovery (50-60%)", "purpose": "Warm-up, cool-down, rest day light activity." },
+    "z2": { "name": "Zone 2: Fat burn (60-70%)", "purpose": "Long endurance, fat oxidation, base building." },
+    "z3": { "name": "Zone 3: Aerobic (70-80%)", "purpose": "Improves aerobic capacity, all-day workhorse." },
+    "z4": { "name": "Zone 4: Threshold (80-90%)", "purpose": "Lactate threshold work, race pace." },
+    "z5": { "name": "Zone 5: Max (90-100%)", "purpose": "VO₂max intervals, sprints, near maximum effort." }
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Two formulas, two levels of accuracy",
+        "paragraphs": [
+          "Simple percentage of MHR: zone = max_hr × percent. Easy to compute mentally; the standard '220 − age' max-HR estimate has a ±10-12 bpm error so zones derived from it are approximate.",
+          "Karvonen formula: zone = resting_hr + (max_hr − resting_hr) × percent. Accounts for your individual resting heart rate, a proxy for fitness level. A fit person with a 50 bpm resting HR will have lower-numbered zones than an unfit person at the same age and percentage. More accurate for personalized training; the default in our calculator."
+        ]
+      },
+      {
+        "heading": "What each zone is for",
+        "paragraphs": [
+          "Zone 1 (50-60%): Recovery. Active rest, easy walking. Heart rate returns toward baseline.",
+          "Zone 2 (60-70%): The 'fat burn' zone. Maximum reliance on fat as fuel. Long, steady-state cardio. The most popular zone for endurance athletes building a base.",
+          "Zone 3 (70-80%): Aerobic. Improves cardiovascular efficiency. Conversational pace; you can talk in short sentences but not in long ones.",
+          "Zone 4 (80-90%): Threshold. Pushing the lactate threshold. Race pace for 5K-10K runners. Hard but sustainable for 20-60 minutes.",
+          "Zone 5 (90-100%): Max effort. Used in interval training (e.g., 30 seconds hard, 90 seconds rest). Improves VO₂max and top-end speed."
+        ]
+      },
+      {
+        "heading": "How to actually measure heart rate",
+        "paragraphs": [
+          "Wrist-based monitors (Apple Watch, Garmin, Fitbit) are accurate within ±5 bpm for steady-state cardio. Less accurate for high-intensity intervals or wrist movement (rowing, weight training).",
+          "Chest straps (Polar H10, Wahoo TICKR) are gold standard — used in research, accurate to ±1-2 bpm. Worth the investment for serious training.",
+          "Manual count: take your pulse for 15 seconds and multiply by 4. Useful for spot-checking but impractical during high intensity. Use first thing in the morning before getting out of bed for resting HR."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter your age", "text": "Used to estimate max heart rate (220 − age)." },
+      { "name": "Measure resting heart rate", "text": "Best taken first thing in the morning while still in bed. Average over 3-7 days for accuracy." },
+      { "name": "Toggle Karvonen formula", "text": "Karvonen on (default) gives more personalized zones. Off uses simple % of max." },
+      { "name": "Read the 5 zones", "text": "Each zone shows the bpm range and its training purpose." }
+    ]
+  },
+  "faq": [
+    { "q": "Is '220 − age' accurate?", "a": "It's a population average with about ±10-12 bpm individual variation. For better accuracy, do a max-HR test (run a hard 5-minute hill, last minute all-out) or get a stress test under medical supervision." },
+    { "q": "What's a normal resting heart rate?", "a": "Adults: 60-100 bpm. Athletes often 40-60 bpm. Below 40 may indicate excellent conditioning OR a medical condition (bradycardia) — see a doctor if you have symptoms." },
+    { "q": "When should I be in zone 2?", "a": "Most aerobic base training. 80% of weekly cardio time at zone 2 is a common endurance training principle (the '80/20 rule'). Maximizes fat oxidation and cardiovascular adaptations." },
+    { "q": "Why does my watch say a different max HR?", "a": "Modern smartwatches estimate max HR by observing your highest readings. They learn from your real efforts, so they're typically more accurate than '220 − age'. Trust your watch's number if you've done max efforts." },
+    { "q": "Can I skip zones in training?", "a": "You can, but balanced training has all zones in some ratio. Pure zone 5 sprints with no zone 2 base leads to plateau and burnout. Pure zone 2 with no high intensity caps your top-end fitness." },
+    { "q": "What if my resting HR is unusually low?", "a": "Athletes often have 40-50 bpm resting HR. Karvonen handles this correctly — your zones will be lower in absolute bpm but the same percentage of HRR. If <40 bpm and you have dizziness/fainting, see a doctor." },
+    { "q": "Do these zones apply to swimming and cycling?", "a": "The percentages are the same, but max HR varies by mode: cycling typically 5-10 bpm lower than running, swimming 10-15 bpm lower. Test max in each mode for accurate sport-specific zones." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}

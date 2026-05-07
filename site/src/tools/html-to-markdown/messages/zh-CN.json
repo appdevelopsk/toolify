@@ -1,0 +1,53 @@
+{
+  "title": "HTML 转 Markdown 转换器",
+  "shortDescription": "在浏览器中把 HTML 转换为 Markdown。标题、列表、代码、链接、图片、引用、粗体/斜体/删除线。",
+  "description": "粘贴 HTML 得到干净 Markdown。适用于 CMS 迁移、抓取文章、把 WYSIWYG 输出转换为静态站点的纯 Markdown。",
+  "metaDescription": "免费 HTML 转 Markdown 转换器。标题、列表、代码块、链接、引用、粗体/斜体。输出是可贴到任何地方的纯 Markdown。",
+  "keywords": ["HTML 转 Markdown", "html to md", "Markdown 转换器", "HTML 剥离", "wysiwyg 转 markdown"],
+  "input": { "html": "HTML" },
+  "output": { "markdown": "Markdown 输出" },
+  "copy": "复制 Markdown",
+  "copied": "已复制!",
+  "article": {
+    "sections": [
+      {
+        "heading": "转换内容",
+        "paragraphs": [
+          "标题 (h1-h6) 变 # 到 ######。<strong>/<b> 变 **粗体**, <em>/<i> 变 *斜体*。<code> 变 `内联代码`, <pre><code> 变 ``` 围栏块。<ul>/<ol> 变 - 或 1. 列表。<a href> 变 [文本](url), <img src alt> 变 ![alt](url)。<blockquote> 变 >, <hr> 变 ---, <br> 变换行。",
+          "未识别的内容 (自定义 HTML 如 <details>、<table>、<video> 等) 标签被剥离但文本保留。复杂 HTML 含表格或媒体预期有损失。"
+        ]
+      },
+      {
+        "heading": "常见用例",
+        "paragraphs": [
+          "CMS 迁移: 从 WordPress、Wix 等复制 WYSIWYG HTML, 转换为静态站点生成器 (Hugo、Jekyll、Next.js、Astro) 的干净 Markdown。",
+          "文章归档: 把网络文章存为 Markdown 个人阅读。与付墙友好提取器 (阅读模式 HTML) 结合得到干净纯文本输出。",
+          "邮件到 Markdown: 粘贴 HTML 邮件内容获得 Markdown 版本以跨贴博客。"
+        ]
+      },
+      {
+        "heading": "限制",
+        "paragraphs": [
+          "表格: 不转换 (Markdown 表格是 GFM, 不是 CommonMark)。表格被剥离为纯文本。复杂表格请保留 HTML。",
+          "内联样式: 通过 <style> 或 style='' 属性的颜色、字体、布局会丢失。Markdown 故意极简。",
+          "嵌套列表: 简单单层列表可以; 深嵌套列表可能合并或丢失结构。复杂大纲请转换后手动编辑。"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "粘贴 HTML", "text": "从任何源 — WordPress 导出、复制的网络文章等。" },
+      { "name": "查看 Markdown 输出", "text": "编辑时实时更新。" },
+      { "name": "复制并粘到别处", "text": "输出是适合任何静态站点或 markdown 编辑器的纯 Markdown。" }
+    ]
+  },
+  "faq": [
+    { "q": "完全保留格式?", "a": "对 CommonMark 兼容元素: 是。对 HTML 独有功能 (自定义 CSS、复杂布局), 不 — Markdown 故意是子集。" },
+    { "q": "表格被转换?", "a": "暂不。表格变纯文本。可能在未来版本添加 GFM 表格转换。" },
+    { "q": "我的链接会保留?", "a": "会。<a href='url'>text</a> 变 [text](url)。href 属性保留。" },
+    { "q": "内联样式呢?", "a": "剥离。Markdown 不支持任意样式 — 这是故意的。" },
+    { "q": "如何反向转 HTML?", "a": "用我们的 Markdown 转 HTML 转换器 (在相关工具中链接)。" },
+    { "q": "输出粘到任何地方都安全?", "a": "是干净文本 — 无脚本、无 HTML — 适合任何 markdown 编辑器或文本字段。如果输入来自不信任源, 发布前验证。" },
+    { "q": "为什么部分内容缺失?", "a": "自定义或非标准 HTML 元素可能被剥离。粘贴 <details>、<video> 或框架特定标签的 HTML 片段验证。" },
+    { "q": "数据会上传吗?", "a": "不会。转换在本地; 你的 HTML 不发送到任何地方。" }
+  ]
+}

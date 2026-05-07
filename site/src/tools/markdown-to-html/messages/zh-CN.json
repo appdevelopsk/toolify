@@ -1,0 +1,54 @@
+{
+  "title": "Markdown 转 HTML 转换器 (CommonMark 子集)",
+  "shortDescription": "在浏览器中把 Markdown 转换为干净 HTML。支持标题、列表、代码块、链接、图片、引用、粗体/斜体/删除线。",
+  "description": "粘贴 Markdown 即时看到等价 HTML。适合博客、文档、README。输出是可贴入任何 CMS 或静态站点的干净语义 HTML。",
+  "metaDescription": "免费 Markdown 转 HTML 转换器。实时预览、干净语义 HTML, 支持 CommonMark 核心 (标题、列表、代码、链接、引用)。",
+  "keywords": ["Markdown 转 HTML", "md to html", "Markdown 转换器", "CommonMark 转换", "博客 Markdown"],
+  "input": { "markdown": "Markdown" },
+  "output": { "html": "HTML 输出" },
+  "preview": "显示渲染预览",
+  "copy": "复制 HTML",
+  "copied": "已复制!",
+  "article": {
+    "sections": [
+      {
+        "heading": "支持的语法",
+        "paragraphs": [
+          "标题: # H1 到 ###### H6。列表: - / * / + 无序, 1. 2. 3. 有序。引用: 行首 >。代码块: ``` 可选语言。内联: **粗体**、*斜体*、`代码`、~~删除~~、[链接](url)、![alt](图片url)。水平线: ---、***或 ___。",
+          "我们实现 CommonMark 核心。表格、脚注、任务列表 (-[ ]) 暂不包含; 那些需求请在你的构建流水线用完整 CommonMark 或 GFM 库。"
+        ]
+      },
+      {
+        "heading": "使用场景",
+        "paragraphs": [
+          "粘到 CMS 的快速转换。多数 CMS 接受 HTML; 如果你用 Markdown 写但编辑器不原生渲染, 先经本工具转换。",
+          "文档生成: 把 README.md 转 HTML 作项目落地页。输出干净到可在基本模板中包装。",
+          "邮件撰写: 许多邮件客户端渲染 HTML 但不渲染 Markdown。用 Markdown 写、转换、粘贴。"
+        ]
+      },
+      {
+        "heading": "浏览器端转换",
+        "paragraphs": [
+          "所有转换在你的浏览器运行。你的 Markdown — 可能含机密草稿、代码片段或笔记 — 绝不离开你的机器。无服务器日志, 无 AI 训练数据, 仅确定性正则变换。",
+          "如果你需要 GFM 功能 (表格、任务列表、脚注), 在构建中用更完整的库如 marked.js、markdown-it 或 remark。对多数简单到中等的 Markdown, 本工具输出足够。"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "粘贴 Markdown", "text": "或直接在输入区写。" },
+      { "name": "查看 HTML 输出", "text": "输入时实时更新。" },
+      { "name": "复制到剪贴板", "text": "点「复制 HTML」抓取输出。" },
+      { "name": "可选: 预览", "text": "点「显示渲染预览」看浏览器中的样式。" }
+    ]
+  },
+  "faq": [
+    { "q": "支持表格吗?", "a": "暂不支持。表格是 GFM 扩展, 不是纯 CommonMark。可能在未来版本添加。" },
+    { "q": "代码块会语法高亮吗?", "a": "我们给 <pre><code> 标签加 class='language-X' 以便 Prism 或 highlight.js 之类高亮器风格化。HTML 本身无样式 — 应用你自己的 CSS 或库。" },
+    { "q": "输出粘到任何地方都安全?", "a": "我们在代码块和内联代码中转义 <、>、& 和 \"。其他内容按原样转换。如果你粘用户生成的 Markdown, 在注入页面前清理输出。" },
+    { "q": "为什么我的强调显示怪?", "a": "Markdown 强调嵌套复杂。* vs _ 与相邻标点行为不同。CommonMark 规范精确; 如果我们的输出偏离, 粘规范示例检查。" },
+    { "q": "处理 Markdown 中的 HTML?", "a": "内联 HTML 透传 (这是 CommonMark 行为)。小心使用 — 不信任来源的恶意 HTML 会无变化通过。" },
+    { "q": "可以反向 HTML 转 Markdown?", "a": "可以 — 见我们的 HTML 转 Markdown 转换器 (在相关工具中链接)。" },
+    { "q": "脚注呢?", "a": "未实现 (GFM 扩展)。复杂文档用 remark-gfm 等服务端库。" },
+    { "q": "数据会上传吗?", "a": "不会。转换在本地; 你的 Markdown 不发送到任何地方。" }
+  ]
+}

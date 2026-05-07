@@ -1,0 +1,53 @@
+{
+  "title": "HTML → Markdown 変換ツール",
+  "shortDescription": "HTMLをブラウザでMarkdownに変換。見出し・リスト・コード・リンク・画像・引用・太字/斜体/打ち消しに対応。",
+  "description": "HTMLを貼り付けてクリーンなMarkdownを取得。CMS移行、記事スクレイピング、WYSIWYG出力を静的サイト用プレーンMarkdownへの変換に最適。",
+  "metaDescription": "無料のHTML→Markdown変換ツール。見出し・リスト・コードブロック・リンク・引用・太字/斜体に対応。出力はどこにでも貼れるプレーンMarkdown。",
+  "keywords": ["HTML Markdown 変換", "html to md", "Markdown コンバーター", "HTML 除去", "wysiwyg Markdown"],
+  "input": { "html": "HTML" },
+  "output": { "markdown": "Markdown出力" },
+  "copy": "Markdownをコピー",
+  "copied": "コピー済！",
+  "article": {
+    "sections": [
+      {
+        "heading": "変換対象",
+        "paragraphs": [
+          "見出し（h1-h6）は#から######に。<strong>/<b>は**太字**、<em>/<i>は*斜体*。<code>は`インラインコード`、<pre><code>はフェンス```ブロックに。<ul>/<ol>は - または 1. 形式に。<a href>は[テキスト](url)、<img src alt>は![alt](url)。<blockquote>は >、<hr>は ---、<br>は改行。",
+          "認識されない要素（<details>、<table>、<video>等のカスタムHTML）はタグ除去されますがテキスト内容は保持。表やメディアを含む複雑なHTMLでは一部損失あり。"
+        ]
+      },
+      {
+        "heading": "よくあるユースケース",
+        "paragraphs": [
+          "CMS移行: WordPress、Wixなどから WYSIWYG HTMLをコピー、静的サイトジェネレータ（Hugo、Jekyll、Next.js、Astro）用のクリーンなMarkdownへ。",
+          "記事アーカイブ: ウェブ記事をMarkdownとして個人で保存。リーダーモードHTML（ペイウォール対応抽出器）と組み合わせるとテキストのみのクリーン出力。",
+          "メール→Markdown: HTMLメール内容を貼り付け、ブログクロスポスト用Markdownバージョンを取得。"
+        ]
+      },
+      {
+        "heading": "制限事項",
+        "paragraphs": [
+          "表: 未対応（Markdown表はGFMでCommonMarkではない）。表はプレーンテキストに簡素化。複雑な表はHTMLのまま貼り付ける方が良い。",
+          "インラインスタイル: <style>やstyle=''属性での色・フォント・レイアウトは消失。Markdownは意図的にミニマル。",
+          "ネストリスト: 単層リストは動作、深くネストしたリストは構造が消失する場合あり。複雑な構造は変換後に手で編集。"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "HTMLを貼り付け", "text": "WordPress エクスポート、コピーしたWeb記事など、どんなソースからでも。" },
+      { "name": "Markdown出力を確認", "text": "編集すると即座更新。" },
+      { "name": "コピーして貼り付け", "text": "出力はどんな静的サイトやMarkdownエディタにも貼り付け可能なプレーンMarkdown。" }
+    ]
+  },
+  "faq": [
+    { "q": "書式は完全保持される？", "a": "CommonMark対応要素なら完全保持。HTML固有機能（カスタムCSS、複雑なレイアウト）は不可 — Markdownは意図的にサブセット。" },
+    { "q": "表は変換される？", "a": "現状は未対応。表はプレーンテキストになります。GFM表変換は今後対応予定。" },
+    { "q": "リンクは変換後も生きる？", "a": "生きます。<a href='url'>text</a>は[text](url)に。href属性は保持。" },
+    { "q": "インラインスタイルは？", "a": "削除されます。Markdownは任意のスタイリングをサポートしません — 意図的な仕様。" },
+    { "q": "HTMLに逆変換する方法は？", "a": "Markdown→HTML変換ツール（関連ツールにリンク）を使用。" },
+    { "q": "出力はどこに貼っても安全？", "a": "クリーンなテキスト — スクリプトもHTMLもなし — Markdownエディタやテキストフィールドに安全。信頼できないソースからの入力なら公開前に検証を。" },
+    { "q": "一部コンテンツが欠けるのは？", "a": "カスタムまたは非標準HTML要素は削除されることがあります。<details>、<video>、フレームワーク固有タグのHTMLスニペットを貼って確認を。" },
+    { "q": "データは送信されますか？", "a": "送信されません。変換はローカル、HTMLはどこにも送信されません。" }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "title": "HTML to Markdown Converter",
+  "shortDescription": "Convert HTML to Markdown in your browser. Headings, lists, code, links, images, blockquotes, bold/italic/strikethrough.",
+  "description": "Paste HTML and get clean Markdown. Useful for migrating CMS content, scraping articles, or converting WYSIWYG output to plain markdown for static sites.",
+  "metaDescription": "Free HTML to Markdown converter. Headings, lists, code blocks, links, blockquotes, bold/italic. Output is plain Markdown ready to paste anywhere.",
+  "keywords": ["html to markdown", "html to md", "markdown converter", "html stripper", "wysiwyg to markdown"],
+  "input": { "html": "HTML" },
+  "output": { "markdown": "Markdown output" },
+  "copy": "Copy Markdown",
+  "copied": "Copied!",
+  "article": {
+    "sections": [
+      {
+        "heading": "What gets converted",
+        "paragraphs": [
+          "Headings (h1-h6) become # to ######. <strong>/<b> become **bold**, <em>/<i> become *italic*. <code> becomes `inline code`, <pre><code> becomes a fenced ``` block. <ul>/<ol> become - or 1. lists. <a href> becomes [text](url), <img src alt> becomes ![alt](url). <blockquote> becomes >, <hr> becomes ---. <br> becomes a newline.",
+          "Anything not recognized (custom HTML like <details>, <table>, <video>, etc.) is stripped of tags but the text content is preserved. For complex HTML with tables or media, expect some loss."
+        ]
+      },
+      {
+        "heading": "Common use cases",
+        "paragraphs": [
+          "CMS migration: copy WYSIWYG HTML out of WordPress, Wix, etc., and convert to clean Markdown for use in static-site generators (Hugo, Jekyll, Next.js, Astro).",
+          "Article archiving: save web articles as Markdown for personal reading. Combine with a paywall-friendly extractor (Reader mode HTML) for clean text-only output.",
+          "Email-to-Markdown: paste HTML email content and get a Markdown version for cross-posting to your blog."
+        ]
+      },
+      {
+        "heading": "Limitations",
+        "paragraphs": [
+          "Tables: not converted (Markdown tables are GFM, not CommonMark). Tables are stripped to plain text. For complex tables, paste as HTML instead.",
+          "Inline styles: any color, font, or layout via <style> or style='' attributes is lost. Markdown is intentionally minimal.",
+          "Nested lists: simple single-level lists work; deeply nested lists may merge or lose structure. For complex outlines, hand-edit after conversion."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Paste HTML", "text": "From any source — WordPress export, copied web article, etc." },
+      { "name": "Read the Markdown output", "text": "Updated live as you edit." },
+      { "name": "Copy and paste elsewhere", "text": "Output is plain Markdown ready for any static-site or markdown editor." }
+    ]
+  },
+  "faq": [
+    { "q": "Does this preserve formatting perfectly?", "a": "For CommonMark-compatible elements: yes. For HTML-only features (custom CSS, complex layouts), no — Markdown is intentionally a subset." },
+    { "q": "Are tables converted?", "a": "Not yet. Tables become plain text. We may add GFM table conversion in a future version." },
+    { "q": "Will my links survive the conversion?", "a": "Yes. <a href='url'>text</a> becomes [text](url). The href attribute is preserved." },
+    { "q": "What about inline styles?", "a": "Stripped. Markdown doesn't support arbitrary styling — that's intentional." },
+    { "q": "How do I convert back to HTML?", "a": "Use our Markdown to HTML converter (linked under Related Tools)." },
+    { "q": "Is the output safe to paste anywhere?", "a": "It's clean text — no script, no HTML — so safe for any markdown editor or text field. Validate before publishing if input was from an untrusted source." },
+    { "q": "Why is some content missing?", "a": "Custom or non-standard HTML elements may be stripped. Paste an HTML snippet of <details>, <video>, or framework-specific tags to verify." },
+    { "q": "Does the data leave my browser?", "a": "No. Conversion runs locally; your HTML is never sent anywhere." }
+  ]
+}

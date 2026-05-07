@@ -74,6 +74,12 @@ import stockProfit from "@/tools/stock-profit-calculator";
 import inflation from "@/tools/inflation-calculator";
 import pressure from "@/tools/pressure-converter";
 import oneRepMax from "@/tools/one-rep-max-calculator";
+import targetHr from "@/tools/target-heart-rate-calculator";
+import weightLoss from "@/tools/weight-loss-calculator";
+import mdToHtml from "@/tools/markdown-to-html";
+import htmlToMd from "@/tools/html-to-markdown";
+import colorPalette from "@/tools/color-palette-generator";
+import angle from "@/tools/angle-converter";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -154,6 +160,12 @@ export const TOOLS: ToolDefinition[] = [
   inflation,
   pressure,
   oneRepMax,
+  targetHr,
+  weightLoss,
+  mdToHtml,
+  htmlToMd,
+  colorPalette,
+  angle,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

@@ -1,0 +1,69 @@
+{
+  "title": "Color Palette Generator (5 schemes from one base)",
+  "shortDescription": "Generate harmonious color palettes from a base color: complementary, analogous, triadic, tetradic, monochromatic. Click any swatch to copy hex.",
+  "description": "Pick a base color, choose a color-theory scheme, and get a coordinated palette. Click swatches to copy individual hex values, or copy all at once for use in design tools and CSS variables.",
+  "metaDescription": "Free color palette generator. 5 color theory schemes (complementary, analogous, triadic, tetradic, monochromatic) from any base color. Click to copy hex.",
+  "keywords": ["color palette generator", "color scheme", "complementary colors", "color harmony", "design color palette"],
+  "input": {
+    "baseColor": "Base color",
+    "scheme": "Color scheme"
+  },
+  "scheme": {
+    "complementary": "Complementary (opposite)",
+    "analogous": "Analogous (3 adjacent)",
+    "triadic": "Triadic (3 equidistant)",
+    "tetradic": "Tetradic (4 equidistant)",
+    "monochromatic": "Monochromatic (5 lightness)"
+  },
+  "result": { "palette": "Generated palette" },
+  "copy": "Copy",
+  "copyAll": "Copy all",
+  "copied": "Copied!",
+  "copyColor": "Copy color",
+  "article": {
+    "sections": [
+      {
+        "heading": "The five color theory schemes",
+        "paragraphs": [
+          "Complementary: two colors at opposite ends of the color wheel (180° apart). High contrast, vibrant. Used for accents, call-to-action buttons, and creating focal points.",
+          "Analogous: three colors adjacent on the wheel (30° apart). Harmonious and pleasing, low contrast. Common in nature; great for backgrounds and UI surfaces.",
+          "Triadic: three colors equally spaced (120° apart). Vibrant and balanced. Used in playful or energetic designs.",
+          "Tetradic (rectangle): four colors forming a rectangle (90° apart). Rich palette but harder to balance — typically use one as dominant and others as accents.",
+          "Monochromatic: tones, tints, and shades of a single hue. Sophisticated and unified. Common in minimalist designs and corporate branding."
+        ]
+      },
+      {
+        "heading": "Picking a starting color",
+        "paragraphs": [
+          "Brand colors: most projects start from an existing logo or brand color. Test it as the base across all 5 schemes to find the best fit for your design.",
+          "Inspiration: pick a color from photography, art, or nature. Vivid colors (high saturation, mid lightness) work best as the base; very pale or very dark colors produce washed-out palettes.",
+          "Accessibility: ensure your final palette has enough contrast for text. Use our contrast checker to verify foreground/background pairings meet WCAG AA (4.5:1 for normal text)."
+        ]
+      },
+      {
+        "heading": "Using the palette",
+        "paragraphs": [
+          "CSS variables: define the palette colors as :root variables (--color-primary, --color-accent, etc.) so you can swap themes by changing one location.",
+          "Design tools: paste hex values into Figma, Sketch, or Adobe XD's color libraries. Most tools accept hex directly; some accept HSL or named CSS colors as well.",
+          "Limit usage: even with 5 colors, real designs typically use 2-3 prominently and the rest sparingly. The 60-30-10 rule (60% dominant, 30% secondary, 10% accent) is a useful starting balance."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick a base color", "text": "Use the color picker or paste a hex code." },
+      { "name": "Choose a scheme", "text": "5 color-theory options: complementary, analogous, triadic, tetradic, monochromatic." },
+      { "name": "Click swatches to copy", "text": "Each swatch is a button — click to copy its hex." },
+      { "name": "Or copy all at once", "text": "The 'Copy all' button copies all hex values comma-separated." }
+    ]
+  },
+  "faq": [
+    { "q": "Which scheme should I use?", "a": "Analogous is the safest choice for most designs — three nearby colors create harmony without monotony. Complementary works well for emphasis (CTA buttons). Monochromatic is best for minimal/sophisticated brands. Triadic for playful/energetic feel." },
+    { "q": "Can I get more than 5 colors?", "a": "Not from this tool — we generate the canonical 2-5 color schemes. For larger palettes, use the analogous output and create monochromatic shades of each (combine schemes)." },
+    { "q": "Does the algorithm use perceptually uniform color space?", "a": "We use HSL math, which is fast and predictable. For perceptually uniform results (better for accessibility-tuned palettes), advanced tools use OKLCH or CIELAB. HSL is sufficient for most design work." },
+    { "q": "Will my palette be accessible?", "a": "Not automatically. Color theory schemes guarantee aesthetic harmony, not contrast for text. Always check text-on-background combinations with our contrast checker before shipping." },
+    { "q": "Can I save my favorite palettes?", "a": "Not yet — copy the hex codes to your design system or notes. Bookmarkable palette URLs are on the roadmap." },
+    { "q": "What about Material Design or Tailwind palettes?", "a": "Those are pre-curated systems. Generate a base scheme here, then look up similar Material/Tailwind colors. Some apps export hex codes directly compatible with these systems." },
+    { "q": "Why does my palette look 'flat'?", "a": "If your base color is very pale (high lightness) or very dark (low lightness), the generated palette has limited dynamic range. Pick a base with mid lightness (40-60%) and high saturation (70%+) for vivid results." },
+    { "q": "Does the data leave my browser?", "a": "No. All calculations run locally; nothing is sent to a server." }
+  ]
+}

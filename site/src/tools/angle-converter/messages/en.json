@@ -1,0 +1,70 @@
+{
+  "title": "Angle Converter (degrees, radians, gradians, turns)",
+  "shortDescription": "Convert angles between degrees, radians, gradians, turns, arcminutes, and arcseconds. All 6 units update simultaneously.",
+  "description": "Type an angle value, pick the source unit, and instantly see all 6 equivalent angle representations. Useful for math, physics, navigation, surveying, and CSS.",
+  "metaDescription": "Free angle converter. Switch between degrees, radians (π), gradians, turns, arcminutes, and arcseconds. Math/physics/CSS friendly.",
+  "keywords": ["angle converter", "degrees to radians", "radians to degrees", "gradians", "arcminutes arcseconds"],
+  "empty": "Enter a value and pick a unit.",
+  "input": {
+    "value": "Value",
+    "from": "Convert from"
+  },
+  "unit": {
+    "deg": "Degrees (°)",
+    "rad": "Radians (π)",
+    "grad": "Gradians (gon)",
+    "turn": "Turns (revolutions)",
+    "arcmin": "Arcminutes (')",
+    "arcsec": "Arcseconds (\")"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Six angle units explained",
+        "paragraphs": [
+          "Degrees (°): full circle = 360°. Most common everyday unit. Right angle = 90°, half-turn = 180°. Used in geometry, navigation, physics introductions, daily speech.",
+          "Radians (rad): full circle = 2π ≈ 6.283 rad. SI/scientific unit; defined as the arc length divided by radius for a unit circle. All math and physics formulas use radians (sin, cos, tan natively expect radians in most programming languages).",
+          "Gradians (gon, grad): full circle = 400 grad. Right angle = 100 grad — the appeal: decimal-friendly, used in surveying and some European engineering contexts.",
+          "Turns: full circle = 1 turn. Half-turn = 0.5. Used in physics for cyclic motion and in CSS (transform: rotate(0.25turn) = 90°).",
+          "Arcminutes ('): 1° = 60 arcmin. Used in navigation (1 nautical mile ≈ 1 arcmin of latitude) and astronomy.",
+          "Arcseconds (''): 1° = 3600 arcsec, 1 arcmin = 60 arcsec. Astronomy uses arcseconds extensively (parallax, telescope resolution)."
+        ]
+      },
+      {
+        "heading": "Common conversions to memorize",
+        "paragraphs": [
+          "180° = π rad ≈ 3.14159 rad. The single most useful conversion in math and physics. Most other conversions follow from this.",
+          "90° = π/2 rad ≈ 1.5708 rad (right angle).",
+          "60° = π/3 ≈ 1.047 rad. 45° = π/4 ≈ 0.785 rad. 30° = π/6 ≈ 0.524 rad. These three are the 'special angles' from trigonometry.",
+          "1° = 60 arcmin = 3600 arcsec. 1 arcmin = 60 arcsec.",
+          "1 turn = 360° = 2π rad = 400 grad."
+        ]
+      },
+      {
+        "heading": "Where each unit is preferred",
+        "paragraphs": [
+          "Programming and physics: radians. JavaScript's Math.sin, Math.cos, Math.tan all expect radians. Convert from degrees via × Math.PI / 180.",
+          "Education and everyday: degrees. Most students learn trigonometry in degrees. Construction, navigation, and casual measurement all use degrees.",
+          "Engineering surveys (Europe): gradians. A 100-gradian right angle simplifies decimal arithmetic in field calculations.",
+          "Astronomy: arcminutes and arcseconds for sky positions. Parallax distances are quoted in arcseconds.",
+          "CSS animations: degrees, radians, or turns. transform: rotate(45deg) and rotate(0.125turn) are equivalent — pick whichever reads more naturally."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type the value", "text": "Numeric input." },
+      { "name": "Pick the source unit", "text": "Select what unit your value is in." },
+      { "name": "Read all 6 equivalents", "text": "All units shown side by side. Source unit highlighted." }
+    ]
+  },
+  "faq": [
+    { "q": "How do I convert degrees to radians manually?", "a": "Multiply by π/180. So 180° × π/180 = π rad. Or remember: 180° = π, then scale: 90° = π/2, 45° = π/4, 60° = π/3." },
+    { "q": "Why are radians the SI unit?", "a": "Because they're the natural choice for circular motion math: arc length = radius × angle (in radians), but only if angle is in radians. All physics formulas are simpler in radians." },
+    { "q": "What's a gradian (or gon) used for?", "a": "Surveying and some European engineering. The decimal-friendly 100-gradian right angle simplifies field arithmetic. Mostly a niche unit today." },
+    { "q": "Why 360 degrees in a circle?", "a": "Historical, from Babylonian base-60 mathematics around 2000 BCE. 360 has many divisors (1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 20, etc.) which makes it convenient for fraction-based arithmetic without decimals." },
+    { "q": "How accurate is the calculator?", "a": "Floating-point precision (about 15-17 significant digits). Round-trip conversions (degrees → radians → degrees) preserve the input to that precision." },
+    { "q": "Can I convert negative angles?", "a": "Yes. -90° = -π/2 rad = -100 grad = -0.25 turn. The math is fully signed." },
+    { "q": "What about angles greater than a full turn?", "a": "Supported. 720° = 2 turns = 4π rad. The calculator doesn't normalize to [0, 360) — to do that, use modulo (e.g., x mod 360 for degrees)." },
+    { "q": "Does the data leave my browser?", "a": "No. Conversion runs locally; nothing is sent to a server." }
+  ]
+}
