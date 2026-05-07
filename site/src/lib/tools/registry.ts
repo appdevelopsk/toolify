@@ -62,6 +62,12 @@ import leapYear from "@/tools/leap-year-checker";
 import bmr from "@/tools/bmr-calculator";
 import ovulation from "@/tools/ovulation-calculator";
 import retirement from "@/tools/retirement-calculator";
+import simpleInterest from "@/tools/simple-interest-calculator";
+import carLoan from "@/tools/car-loan-calculator";
+import bodyFat from "@/tools/body-fat-calculator";
+import statistics from "@/tools/statistics-calculator";
+import workdays from "@/tools/workdays-calculator";
+import gradient from "@/tools/gradient-generator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -130,6 +136,12 @@ export const TOOLS: ToolDefinition[] = [
   bmr,
   ovulation,
   retirement,
+  simpleInterest,
+  carLoan,
+  bodyFat,
+  statistics,
+  workdays,
+  gradient,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

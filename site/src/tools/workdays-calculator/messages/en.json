@@ -1,0 +1,64 @@
+{
+  "title": "Workdays Calculator (skip weekends + holidays)",
+  "shortDescription": "Count business days between two dates, excluding weekends and any holidays you list. Customizable: include Saturday or Sunday as workdays if needed.",
+  "description": "Pick a start and end date, optionally include Saturday or Sunday as workdays, and add holiday dates to exclude. Returns workdays, weekend days, and holidays separately.",
+  "metaDescription": "Free workdays calculator. Count business days between two dates, skip weekends and custom holidays. Useful for project deadlines, contract terms, leave planning.",
+  "keywords": ["workdays calculator", "business days calculator", "working days between dates", "weekday count", "skip weekends holidays"],
+  "empty": "Pick a start and end date to count workdays.",
+  "input": {
+    "start": "Start date",
+    "end": "End date",
+    "includeSat": "Saturday is a workday",
+    "includeSun": "Sunday is a workday",
+    "holidays": "Holidays to exclude (one per line)",
+    "holidaysHint": "ISO format: 2026-01-01. Comma, space, or newline-separated."
+  },
+  "result": {
+    "workdays": "Workdays",
+    "weekendDays": "Weekend days",
+    "holidayDays": "Holidays",
+    "total": "Total days"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Why workday counting matters",
+        "paragraphs": [
+          "Project deadlines, contract terms, payroll cycles, and leave planning all use 'business days' rather than calendar days. A 30-day delivery promise made on a Friday is actually 32 calendar days because the weekend doesn't count. Mistaking the two leads to missed deadlines and contract disputes.",
+          "Workdays also matter for legal counting: in many jurisdictions, statutory time limits (e.g., '14 business days to respond') exclude weekends and public holidays. Always check whether 'days' means calendar or business in any agreement."
+        ]
+      },
+      {
+        "heading": "Why we let you customize weekends",
+        "paragraphs": [
+          "Most countries use Saturday-Sunday as the weekend, but it varies. Most Middle Eastern and some North African countries observe Friday-Saturday as the weekend. Some industries (retail, hospitality) consider weekends as workdays.",
+          "Our toggles let you mark Saturday or Sunday as workdays individually. So you can configure: Mon-Fri only (default), 6-day work week (include Saturday), or even Sunday-only weekend (uncheck Sunday)."
+        ]
+      },
+      {
+        "heading": "How to use the holidays input",
+        "paragraphs": [
+          "Paste a list of dates in YYYY-MM-DD format (ISO 8601). Separators can be commas, spaces, or newlines. Each date you list will be excluded from the workday count if it falls on what would otherwise be a workday.",
+          "For US federal holidays in 2026, paste: 2026-01-01, 2026-01-19, 2026-02-16, 2026-05-25, 2026-06-19, 2026-07-03, 2026-09-07, 2026-10-12, 2026-11-11, 2026-11-26, 2026-12-25.",
+          "For Japanese national holidays, similar lists are widely available. We don't include them automatically because (a) holidays vary by country, region, and year, and (b) some businesses observe additional company-specific days off."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Set start and end dates", "text": "Both inclusive — both dates count if they're workdays." },
+      { "name": "Pick weekend days", "text": "By default Saturday and Sunday are weekends. Toggle them as workdays if needed." },
+      { "name": "Add holidays to exclude", "text": "List ISO dates separated by commas, spaces, or newlines." },
+      { "name": "Read the breakdown", "text": "Workdays, weekend days, holidays, and total calendar days." }
+    ]
+  },
+  "faq": [
+    { "q": "Are start and end dates inclusive?", "a": "Yes. If both are workdays, both are counted. If your contract counts only the days between (exclusive), subtract 2 from the result." },
+    { "q": "Why don't you include holidays automatically?", "a": "Holidays vary widely by country, region, and year. Auto-including them risks subtracting holidays that don't apply to your jurisdiction. Adding them manually keeps you in control." },
+    { "q": "Can I use this for international contracts?", "a": "Yes — but make sure both parties agree on which holidays to count. Multinational contracts often specify 'business days as observed in the [city] of [country]' to avoid ambiguity." },
+    { "q": "What if a holiday falls on a weekend?", "a": "It's not double-counted. If 2026-01-01 is a Thursday holiday, it's counted as a holiday. If 2026-12-25 falls on a Sunday, the algorithm correctly counts it as one day (weekend), not two." },
+    { "q": "How does this work for a 6-day work week?", "a": "Check 'Saturday is a workday'. The calculator will count Mon-Sat as workdays and only exclude Sundays and listed holidays." },
+    { "q": "What's the maximum date range I can compute?", "a": "Hundreds of years at minimum. The browser handles date arithmetic up to ±100 million days from 1970." },
+    { "q": "Can I export the workday list?", "a": "Not as a download, but you can copy the displayed numbers. For a per-day list, a spreadsheet is more flexible." },
+    { "q": "Does the data leave my browser?", "a": "No. Everything runs locally; nothing is sent to a server." }
+  ]
+}

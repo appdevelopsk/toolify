@@ -1,0 +1,67 @@
+{
+  "title": "CSS Gradient Generator (linear, radial, conic)",
+  "shortDescription": "Build CSS gradients visually: linear, radial, and conic. Multiple color stops, angle control, presets. Copy ready-to-paste CSS.",
+  "description": "Pick a gradient type, set angle, add or remove color stops with positions. Live preview. Copy the CSS background declaration with one click.",
+  "metaDescription": "Free CSS gradient generator with live preview. Linear, radial, and conic gradients. Multi-stop, angle control, ready-to-copy CSS code.",
+  "keywords": ["CSS gradient generator", "linear gradient", "radial gradient", "conic gradient", "gradient maker"],
+  "preview": "Preview",
+  "input": {
+    "type": "Type",
+    "angle": "Angle",
+    "stops": "Color stops"
+  },
+  "type": {
+    "linear": "Linear",
+    "radial": "Radial",
+    "conic": "Conic"
+  },
+  "output": {
+    "css": "CSS code"
+  },
+  "addStop": "Add stop",
+  "removeStop": "Remove stop",
+  "copy": "Copy CSS",
+  "copied": "Copied!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Three gradient types in CSS",
+        "paragraphs": [
+          "Linear gradient: colors transition along a straight line at a given angle. 0° points up, 90° points right (default reading direction), 180° points down. Most common for backgrounds, buttons, hero sections.",
+          "Radial gradient: colors transition outward from a center point. Shape can be a circle (our default) or ellipse. Best for spotlight effects, sun-like elements, or attention-drawing centerpieces.",
+          "Conic gradient: colors rotate around a center point, like a color wheel. Less common but powerful for pie charts, clock faces, or decorative spinners. Supported in modern browsers since 2020."
+        ]
+      },
+      {
+        "heading": "Color stops and the percentage system",
+        "paragraphs": [
+          "Each color stop has a color and a position from 0% to 100%. 0% is the start of the gradient, 100% is the end. Two stops give a smooth two-color gradient. Adding a third stop in the middle creates a tri-color blend or a sharp band depending on positioning.",
+          "For sharp transitions (no blending), put two stops at the same position with different colors. For example, '#000 50%, #fff 50%' creates a sharp black-to-white split at the midpoint. This is how 'striped' backgrounds are made."
+        ]
+      },
+      {
+        "heading": "Performance and accessibility tips",
+        "paragraphs": [
+          "Gradients render natively without HTTP requests, unlike background images. They scale infinitely without quality loss. They're animation-friendly: transition the position via background-position or animate gradient stops with custom properties.",
+          "Accessibility: don't put text directly over a complex gradient if contrast varies across the gradient. Either use a flat color overlay, ensure the gradient's average lightness contrasts with the text, or test with our contrast checker. WCAG AA requires 4.5:1 for normal text, 3:1 for large text."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick a preset", "text": "Or build from scratch by choosing type, angle, and stops." },
+      { "name": "Set the angle", "text": "For linear and conic: 0-360°. Radial uses center as origin." },
+      { "name": "Add color stops", "text": "Two minimum, no practical maximum. Each has a color and a 0-100% position." },
+      { "name": "Copy the CSS", "text": "Click 'Copy CSS' — paste directly into your stylesheet's background property." }
+    ]
+  },
+  "faq": [
+    { "q": "Are gradients supported in old browsers?", "a": "Linear and radial gradients work in all modern browsers including Edge, Firefox, Chrome, Safari (since 2014). Conic gradients require Chrome 69+, Firefox 83+, Safari 12.1+ — for older browsers, fall back to linear." },
+    { "q": "Can I use these in React Native or mobile apps?", "a": "Web CSS gradients don't translate to React Native directly — use libraries like `react-native-linear-gradient`. The color stops translate, but the syntax differs. iOS and Android UIs use platform-specific APIs." },
+    { "q": "Can I use named colors?", "a": "Yes. Replace any hex code (e.g. #ff0000) with the CSS color name (red, dodgerblue, etc.) in the text input next to the color picker." },
+    { "q": "Why does my conic gradient look weird?", "a": "Conic gradients rotate clockwise from the angle you set. They look best with multiple stops covering the full 360° rotation. With only 2 stops they often look incomplete." },
+    { "q": "How do I create a 'glow' effect?", "a": "Use a radial gradient with a fully transparent end stop: e.g., 'radial-gradient(circle, rgba(255,200,0,0.6) 0%, transparent 70%)'." },
+    { "q": "Can I animate the gradient?", "a": "CSS doesn't animate gradient stops directly, but you can animate background-position for a moving effect, or use CSS custom properties (variables) and update them with JavaScript." },
+    { "q": "Why is the CSS so long?", "a": "Each stop adds a color and position. Long gradients with many stops produce verbose CSS. For simpler results, stick to 2-3 stops." },
+    { "q": "Does the data leave my browser?", "a": "No. Everything is computed locally; nothing is sent to a server." }
+  ]
+}

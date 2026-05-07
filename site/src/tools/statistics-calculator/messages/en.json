@@ -1,0 +1,71 @@
+{
+  "title": "Statistics Calculator (mean, median, std dev, quartiles)",
+  "shortDescription": "Compute mean, median, mode, standard deviation, variance, range, quartiles, and more from a list of numbers. Sample or population mode.",
+  "description": "Paste a list of numbers (comma, space, or newline separated). The calculator returns descriptive statistics including central tendency, dispersion, and quartiles in one view.",
+  "metaDescription": "Free statistics calculator. Paste numbers to get mean, median, mode, standard deviation, variance, range, and quartiles instantly. Sample/population modes.",
+  "keywords": ["statistics calculator", "mean median mode", "standard deviation calculator", "variance calculator", "quartile calculator"],
+  "empty": "Enter numbers separated by commas, spaces, or newlines.",
+  "placeholder": "12, 15, 18, 22, 25, 25, 30, 35, 40",
+  "input": {
+    "values": "Numbers",
+    "sampleMode": "Use sample standard deviation (n−1)"
+  },
+  "result": {
+    "count": "Count (n)",
+    "sum": "Sum",
+    "mean": "Mean (average)",
+    "median": "Median",
+    "mode": "Mode",
+    "none": "(no repeated values)",
+    "range": "Range",
+    "min": "Minimum",
+    "max": "Maximum",
+    "q1": "Q1 (25th percentile)",
+    "q3": "Q3 (75th percentile)",
+    "stdev": "Standard deviation",
+    "variance": "Variance"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What each statistic measures",
+        "paragraphs": [
+          "Mean (average): sum divided by count. Sensitive to outliers — a single huge value can pull the mean far from the typical value. Best when data is roughly symmetric.",
+          "Median: the middle value when sorted. Robust to outliers — a few extreme values don't move it. Better than mean for skewed data like income or house prices.",
+          "Mode: the most frequent value. Most useful for discrete data (survey responses, dice rolls). For continuous data, mode is often meaningless and we report 'none' if no value repeats.",
+          "Standard deviation: typical distance from the mean. Same units as your data. Two-thirds of values typically fall within ±1 standard deviation of the mean (for normal distributions)."
+        ]
+      },
+      {
+        "heading": "Sample vs population",
+        "paragraphs": [
+          "If your numbers are the entire population (every employee in your company, every day of a month), use population standard deviation: divide by n. We toggle this off when you uncheck 'Sample standard deviation'.",
+          "If your numbers are a sample drawn from a larger population (a survey of 100 from 10,000 customers), use sample standard deviation: divide by n−1 (Bessel's correction). This is the default and is what most statistics courses and software default to.",
+          "The difference shrinks as n grows. For n=100 the two differ by 0.5%; for n=10 they differ by 5%. For very small samples, the choice matters."
+        ]
+      },
+      {
+        "heading": "Quartiles and the IQR",
+        "paragraphs": [
+          "Q1 (first quartile, 25th percentile) is the median of the lower half. Q3 (third quartile, 75th percentile) is the median of the upper half. The interquartile range (IQR = Q3 − Q1) describes the middle 50% of your data and is robust to outliers.",
+          "Box plots use these: the box spans Q1 to Q3, with the median as a line inside. Whiskers extend to the most extreme values within 1.5 × IQR; anything beyond is plotted as outliers."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Paste your numbers", "text": "Separate by commas, spaces, tabs, or newlines. Mix-and-match works too." },
+      { "name": "Choose sample or population mode", "text": "Sample (n−1) is the default. Switch to population if your data is the whole population." },
+      { "name": "Read the results", "text": "All statistics update live as you type." }
+    ]
+  },
+  "faq": [
+    { "q": "How many numbers can I paste?", "a": "Up to about 100,000 reasonably. Beyond that the browser may slow. For massive datasets use a programming tool." },
+    { "q": "What if I have decimal numbers?", "a": "Use a period (.) as the decimal separator regardless of your locale: 3.14, not 3,14." },
+    { "q": "Why is the mode 'none'?", "a": "Because no value repeats. Mode is only meaningful when at least one value appears two or more times." },
+    { "q": "Should I use sample or population for my class data?", "a": "If you're treating your class as a sample of the school, use sample (n−1). If your class IS the population, use population (n)." },
+    { "q": "What's the difference between standard deviation and variance?", "a": "Variance is the average squared distance from the mean; standard deviation is its square root. Standard deviation is in the same units as your data, which is why we report both but standard deviation is usually more useful." },
+    { "q": "Why does Q1 differ from what my calculator gives?", "a": "Different methods exist (Method 1, Method 2, R-default, Excel-default). We use the median-of-lower-half method. Most introductory courses use this; spreadsheet QUARTILE() may differ slightly." },
+    { "q": "Can I use negative numbers?", "a": "Yes. Negative numbers are fully supported." },
+    { "q": "Does the data leave my browser?", "a": "No. All calculations run locally; nothing is sent to any server." }
+  ]
+}
