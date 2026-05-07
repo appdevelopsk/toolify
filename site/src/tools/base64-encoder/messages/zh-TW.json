@@ -1,0 +1,105 @@
+{
+  "title": "Base64 編碼/解碼 — UTF-8 與 URL Safe 雙支援",
+  "shortDescription": "UTF-8 文本與 Base64 雙向轉換。支援 JWT/OAuth 中使用的 URL Safe 變體。",
+  "description": "輸入文本或 Base64 字串即可雙向轉換。支援 UTF-8 (含表情符號、CJK), URL Safe 變體可切換。",
+  "metaDescription": "免費 Base64 編碼/解碼工具。UTF-8 與 URL Safe 雙支援, 瀏覽器內即時轉換。JWT、OAuth、資料嵌入皆可。",
+  "keywords": [
+    "Base64 編碼",
+    "Base64 解碼",
+    "URL Safe Base64",
+    "JWT 解碼",
+    "Base64 轉換"
+  ],
+  "input": {
+    "plain": "文本",
+    "encoded": "Base64 字串"
+  },
+  "output": {
+    "encoded": "編碼結果",
+    "plain": "解碼結果"
+  },
+  "mode": {
+    "encode": "編碼",
+    "decode": "解碼"
+  },
+  "urlSafe": "URL Safe (-、_, 無填充)",
+  "copy": "複製",
+  "copied": "已複製",
+  "invalidInput": "Base64 輸入無效。",
+  "article": {
+    "sections": [
+      {
+        "heading": "Base64 是什麼、用途為何",
+        "paragraphs": [
+          "Base64 用 64 個字元 (A-Z、a-z、0-9、+、/, 末尾 = 填充) 編碼任意位元組序列。是把影像位元組、加密 blob、簽名 token 等二進位制資料嵌入 JSON、HTML、郵件頭等純文本格式的標準方式。輸出比輸入大約 33%。",
+          "Base64 是編碼不是加密。任何人都可解碼回原位元組。需要保密時請用真正的加密(AES、RSA等)。"
+        ]
+      },
+      {
+        "heading": "URL Safe 與標準的差別",
+        "paragraphs": [
+          "標準 Base64 用「+」「/」, 它們在 URL 中有特殊含義需要 percent encoding。URL Safe Base64 (RFC 4648 §5) 把「+」替換為「-」, 「/」替換為「_」, 並去掉末尾「=」填充。JWT、OAuth token、許多 Web API 都用 URL Safe 形式。",
+          "手動解碼 JWT 或 token 時開啟 URL Safe。處理傳統郵件或 PDF 嵌入資料時關閉即可。URL Safe 模式下解碼也接受標準格式(因為標準字母表是超集減去那對特殊字元)。"
+        ]
+      },
+      {
+        "heading": "UTF-8 處理",
+        "paragraphs": [
+          "舊瀏覽器 btoa() 只能處理 ASCII。本工具用 TextEncoder 先把輸入轉為 UTF-8 位元組再 Base64 編碼。表情符號、CJK 字元、帶音標拉丁字元等所有 Unicode 都能正確編碼與往返。這與 JWT 庫和現代框架的方式一致。"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "選擇編碼或解碼",
+        "text": "頂部模式切換。"
+      },
+      {
+        "name": "需要時開啟 URL Safe",
+        "text": "JWT、OAuth token 開啟; 其他場景關閉。"
+      },
+      {
+        "name": "貼上輸入",
+        "text": "編碼用文本, 解碼用 Base64 字串。"
+      },
+      {
+        "name": "複製結果",
+        "text": "點選輸出旁邊的「複製」按鈕。"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Base64 是加密嗎?",
+      "a": "不是。是把二進位制編碼成 ASCII 文本。任何人都能解碼。需要保密用真正的加密(AES、RSA等)。"
+    },
+    {
+      "q": "為何 URL Safe 不同?",
+      "a": "標準 Base64 的「+」「/」在 URL 有特殊意義需要 percent-encode。URL Safe 替換為「-」「_」避免此問題。"
+    },
+    {
+      "q": "可以解碼 JWT 簽名?",
+      "a": "解碼簽名得到位元組序列, 用於驗證而非閱讀。解碼 JWT 的頭部與負載(前兩段)看資料。"
+    },
+    {
+      "q": "支援二進位制檔案嗎?",
+      "a": "本工具僅文本。檔案請用二進位制感知工具 (瀏覽器 DevTools 的 atob/btoa 適合小檔案)。"
+    },
+    {
+      "q": "解碼後亂碼怎麼辦?",
+      "a": "可能 Base64 無效, 或者編碼的是非 UTF-8 位元組(如 GBK 編碼文本)。先檢查原始編碼。"
+    },
+    {
+      "q": "資料會上傳嗎?",
+      "a": "不會。所有處理在瀏覽器內。"
+    },
+    {
+      "q": "大小開銷?",
+      "a": "約 33% 增大(每 3 輸入位元組 → 4 輸出字元)。URL Safe 無填充也是相同開銷。"
+    },
+    {
+      "q": "為何需要填充「=」?",
+      "a": "標準 Base64 用「=」把輸出長度補到 4 的倍數。URL Safe 版本常省略, 因為解碼不需要。"
+    }
+  ]
+}

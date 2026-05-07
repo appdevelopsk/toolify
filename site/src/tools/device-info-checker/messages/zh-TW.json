@@ -1,0 +1,134 @@
+{
+  "title": "PC 裝置資訊檢查 (瀏覽器、OS、硬體、網路)",
+  "shortDescription": "一站檢視你的 PC/裝置的瀏覽器、OS、螢幕、硬體、GPU、儲存、網路、深色模式偏好。所有檢測在瀏覽器內完成。",
+  "description": "瀏覽器端讀取裝置公開的所有 Web API: User-Agent、OS、瀏覽器版本、螢幕尺寸、devicePixelRatio、CPU 執行緒數、裝置記憶體、WebGL 的 GPU 資訊、儲存配額、網路型別與速度、語言、時區、深色模式和動效抑制偏好。",
+  "metaDescription": "免費 PC 裝置資訊檢查器。瀏覽器、OS、CPU 核心、記憶體、GPU、螢幕、網路、語言、時區 — 你的裝置全部資訊一頁呈現。",
+  "keywords": [
+    "PC 資訊",
+    "裝置 資訊",
+    "瀏覽器 資訊",
+    "user agent 檢視",
+    "硬體 資訊"
+  ],
+  "loading": "檢測中…",
+  "copyJson": "複製 JSON",
+  "copied": "已複製!",
+  "notAvailable": "(不可用)",
+  "automation": "檢測到自動化",
+  "real": "真實瀏覽器",
+  "section": {
+    "browser": "瀏覽器與 OS",
+    "display": "顯示",
+    "hardware": "硬體",
+    "network": "網路",
+    "userAgent": "User-Agent 字串"
+  },
+  "field": {
+    "browser": "瀏覽器",
+    "os": "作業系統",
+    "platform": "平臺",
+    "language": "主要語言",
+    "languages": "所有語言",
+    "timezone": "時區",
+    "cookiesEnabled": "Cookies 啟用",
+    "online": "線上狀態",
+    "doNotTrack": "Do Not Track",
+    "webdriver": "Webdriver",
+    "screenSize": "螢幕尺寸",
+    "availSize": "可用區域",
+    "windowSize": "視窗尺寸",
+    "colorDepth": "色深",
+    "pixelRatio": "devicePixelRatio",
+    "darkMode": "偏好深色模式",
+    "reducedMotion": "減少動效",
+    "cpuCores": "CPU 執行緒",
+    "deviceMemory": "裝置記憶體",
+    "touchPoints": "觸控點",
+    "gpu": "GPU (WebGL)",
+    "storageQuota": "儲存配額",
+    "storageUsage": "儲存已用",
+    "connectionType": "連線型別",
+    "downlink": "下行速度",
+    "rtt": "往返時間"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "收集的內容",
+        "paragraphs": [
+          "瀏覽器 & OS: User-Agent、解析的瀏覽器/OS、語言、時區、Cookie、線上狀態。任何你訪問的網站都能讀取的相同資訊。",
+          "顯示: 螢幕尺寸、視口尺寸、色深、devicePixelRatio (Retina/HiDPI)、prefers-color-scheme、prefers-reduced-motion。網站用於響應式設計和無障礙。",
+          "硬體: CPU 執行緒數 (navigator.hardwareConcurrency)、裝置記憶體等級 (navigator.deviceMemory, GB 單位, ≥4 截斷到 8)、最大觸控點、WebGL 的 GPU 資訊、儲存配額與當前使用量。",
+          "網路: 連線有效型別 (slow-2g/2g/3g/4g)、下行 (Mbps)、往返時間 (ms), 瀏覽器支援時。自適應載入有用。"
+        ]
+      },
+      {
+        "heading": "隱私: 網站能/不能看到什麼",
+        "paragraphs": [
+          "這裡顯示的所有資訊都是你訪問的任何網站已能透過標準 JavaScript API 訪問的。無需特殊許可權; 一切在公開的 navigator 和 screen 物件。所以本工具是資訊性, 不是抽取性。",
+          "網站不能看 (本工具也不能顯示): 你的 IP 地址 (伺服器側)、本地檔案系統、其他瀏覽器標籤的內容, 或瀏覽器沙箱外的任何東西。瀏覽器指紋結合許多這些可見欄位識別唯一瀏覽器, 即使沒 Cookie — 是被廣泛記錄的隱私擔憂。"
+        ]
+      },
+      {
+        "heading": "對除錯有用",
+        "paragraphs": [
+          "移動 vs 桌面測試: User-Agent 揭示網站看到的。響應式問題有時來自裝置類別誤檢。",
+          "GPU/WebGL: 「GPU (WebGL)」顯示你的圖形渲染器。複雜 3D 或 Canvas 重的網站效能差時, 你的 GPU 可能是瓶頸。",
+          "儲存: 儲存配額告訴你網站可用 localStorage/IndexedDB/快取的多少。桌面預設通常數 GB, 移動較少。如果 Web 應用碰到「配額超出」, 這個數字是原因。"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "開啟本頁",
+        "text": "頁面載入時檢測自動執行。"
+      },
+      {
+        "name": "閱讀每節",
+        "text": "瀏覽器 & OS、顯示、硬體、網路、User-Agent。"
+      },
+      {
+        "name": "調整視窗大小",
+        "text": "視窗尺寸和 dpi 相關欄位即時更新。"
+      },
+      {
+        "name": "可選: 複製為 JSON",
+        "text": "點「複製 JSON」捕獲完整快照, 用於錯誤報告或比較。"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "資料會傳送到任何地方?",
+      "a": "不會。一切在你瀏覽器內本地檢測和渲染。不記錄, 不傳輸。"
+    },
+    {
+      "q": "為什麼某些欄位是「(不可用)」?",
+      "a": "瀏覽器公開的 API 不同。navigator.deviceMemory 僅 Chrome/Edge; navigator.connection 主要 Chrome; 儲存配額需 HTTPS。Safari 和 Firefox 在隱私模式下限制更嚴。"
+    },
+    {
+      "q": "為什麼我的螢幕尺寸與預期解析度不同?",
+      "a": "瀏覽器報告「CSS 畫素」尺寸, 不是物理畫素尺寸。devicePixelRatio 顯示倍數 (Retina 上 2.0)。物理解析度 = 螢幕尺寸 × devicePixelRatio。"
+    },
+    {
+      "q": "「GPU (WebGL)」顯示什麼?",
+      "a": "WebGL 報告的圖形渲染器名。新瀏覽器可能為指紋保護模糊化 — macOS 上你可能看到「Apple GPU」而不是「M2 Pro」。"
+    },
+    {
+      "q": "可以信任 User-Agent?",
+      "a": "User-Agent 字串可以被擴充套件或瀏覽器設定偽造。是提示, 不是保證。一些瀏覽器 (Safari、隱私模式的 Firefox) 主動減少 UA 細節。"
+    },
+    {
+      "q": "為什麼我的 CPU 12 核但「CPU 執行緒」顯示 8?",
+      "a": "navigator.hardwareConcurrency 可能為防指紋被限制。一些瀏覽器即使在更高核系統上也報告最大 8 或 16。"
+    },
+    {
+      "q": "移動裝置顯示 0 觸控點?",
+      "a": "移動上 maxTouchPoints 通常 ≥1。如果 0, 你可能在桌面檢視模式。試重新整理或在瀏覽器設定切到移動檢視。"
+    },
+    {
+      "q": "iPhone 上有效?",
+      "a": "是, 在 Safari iOS 限制內。某些欄位 (deviceMemory、connection) 可能不可用。User-Agent 和基本瀏覽器/OS 檢測始終工作。"
+    }
+  ]
+}

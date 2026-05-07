@@ -1,0 +1,103 @@
+{
+  "title": "大小寫轉換 — camelCase 等10種風格",
+  "shortDescription": "10種風格同時顯示: UPPER、lower、Title、Sentence、camelCase、PascalCase、snake_case、kebab-case、CONSTANT、反轉。",
+  "description": "輸入文本, 同時生成10種常用大小寫風格, 每種帶一鍵複製。變數重新命名、檔名、URL slug 製作。",
+  "metaDescription": "免費大小寫轉換工具。同時生成 camelCase、snake_case、kebab-case、Title Case 等10種風格, 一鍵複製, 適合程式碼與內容。",
+  "keywords": [
+    "大小寫 轉換",
+    "camelCase",
+    "snake_case",
+    "kebab-case",
+    "駝峰 轉換"
+  ],
+  "input": {
+    "text": "源文本"
+  },
+  "copy": "複製",
+  "copied": "已複製",
+  "case": {
+    "lower": "全小寫",
+    "upper": "全大寫",
+    "title": "Title Case",
+    "sentence": "Sentence case",
+    "camel": "camelCase",
+    "pascal": "PascalCase",
+    "snake": "snake_case",
+    "kebab": "kebab-case",
+    "constant": "CONSTANT_CASE",
+    "invert": "InVeRtEd Case"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "各風格的使用場景",
+        "paragraphs": [
+          "camelCase: JavaScript/Java 識別符號 (myVariableName)。PascalCase: 類、React 元件 (UserProfile)。snake_case: Python/Ruby 變數 (user_profile)。kebab-case: URL/CSS 類 (user-profile)。CONSTANT_CASE: 環境變數、常量 (USER_PROFILE)。",
+          "Title Case: 書籍/文章標題、標頭。Sentence case: 現代 UI 標籤和標頭主流(長文比 Title Case 更易讀)。UPPERCASE: 強調、縮寫。lowercase: 標籤、不區分大小寫的檔名。"
+        ]
+      },
+      {
+        "heading": "本工具的分詞邏輯",
+        "paragraphs": [
+          "按空格、連字元、下劃線、斜槓、點分割, 同時在「小寫到大寫」邊界('helloWorld' → 'hello'/'World') 和「字母到數字」邊界處分割。日常程式碼、slug、檔案路徑幾乎都能正確處理。",
+          "邊界情況: 全大寫縮略詞('XMLHTTPRequest') 不易自動分詞, 我們把連續大寫視為一個詞塊。一般文章/標題/資料集列名能得到預期結果。"
+        ]
+      },
+      {
+        "heading": "程式碼審查與重構",
+        "paragraphs": [
+          "跨語言遷移時, 貼上識別符號列表後複製轉換結果。snake → camel 是 JavaScript ↔ Python 間最常見; HTML 屬性轉 JS 物件時 kebab → snake。",
+          "SEO slug 用 kebab-case 是標準 — Google 把連字元視為詞分隔符, 下劃線則不會。「product-name」比「product_name」對 SEO 更友好。"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "輸入或貼上文本",
+        "text": "句子、程式碼識別符號、檔名等。"
+      },
+      {
+        "name": "檢視10種結果",
+        "text": "每種風格獨立顯示。"
+      },
+      {
+        "name": "複製需要的風格",
+        "text": "點選對應區塊的「複製」按鈕。"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "「XML」之類的縮略詞如何處理?",
+      "a": "連續大寫視為一個詞塊。'XMLParser' 拆為 'XML' 和 'Parser'。多數程式碼場景適用, 邊界情況手動調整。"
+    },
+    {
+      "q": "為什麼 URL slug 用 kebab-case?",
+      "a": "Google 把連字元當詞邊界, 下劃線不會。kebab-case URL 對 SEO 更友好。"
+    },
+    {
+      "q": "Title Case 與 Sentence case 區別?",
+      "a": "Title Case 幾乎所有詞首字母大寫('The Quick Brown Fox'); Sentence case 僅句首和專有名詞大寫('The quick brown fox')。現代 UI 偏好 Sentence case。"
+    },
+    {
+      "q": "支援 Unicode?",
+      "a": "支援。JavaScript 的 toLowerCase/toUpperCase 是 Unicode 感知的, 重音符與非拉丁字元正確處理。"
+    },
+    {
+      "q": "可以反向轉換嗎?",
+      "a": "可以。把轉換後的文本再貼上並選不同風格。camelCase ↔ snake_case 來回無損。"
+    },
+    {
+      "q": "為什麼 camelCase 不保留縮略詞全大寫?",
+      "a": "現代規範中 camelCase 僅每個後續詞首字母大寫。'XmlHttpRequest' 優於 'XMLHTTPRequest'。"
+    },
+    {
+      "q": "資料會上傳嗎?",
+      "a": "不會。所有轉換在本地。"
+    },
+    {
+      "q": "可以批次轉換列表嗎?",
+      "a": "貼上整個列表即可。每行作為單獨輸入但用同一風格轉換。"
+    }
+  ]
+}

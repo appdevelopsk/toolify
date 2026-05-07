@@ -1,0 +1,111 @@
+{
+  "title": "URL slug 生成器 (SEO 友好 URL)",
+  "shortDescription": "把任何標題或句子轉換為 SEO 友好的 URL slug。可配置分隔符、長度上限、小寫、Unicode 支援。",
+  "description": "輸入或貼上標題; 生成器去標點、規範化重音、壓縮空白, 生成乾淨 slug。支援連字元、下劃線或點; 可配置最大長度; 可選 Unicode 保留用於非拉丁 URL。",
+  "metaDescription": "免費 URL slug 生成器。從任何標題生成 SEO 友好 slug。連字元/下劃線/點分隔符、最大長度、Unicode 支援、純 ASCII 模式。",
+  "keywords": [
+    "slug 生成器",
+    "url slug",
+    "seo url 生成",
+    "slugify",
+    "永久連結 生成"
+  ],
+  "input": {
+    "text": "標題或句子",
+    "separator": "分隔符",
+    "lowercase": "小寫",
+    "allowUnicode": "允許 Unicode (非 ASCII)",
+    "maxLen": "最大長度"
+  },
+  "sep": {
+    "hyphen": "連字元",
+    "underscore": "下劃線",
+    "dot": "點"
+  },
+  "result": {
+    "slug": "Slug",
+    "length": "長度"
+  },
+  "empty": "(空)",
+  "copy": "複製",
+  "copied": "已複製!",
+  "article": {
+    "sections": [
+      {
+        "heading": "什麼是 URL slug",
+        "paragraphs": [
+          "Slug 是 URL 中域名後人類可讀的部分 — 例如 '/blog/how-to-bake-bread' 中的 'how-to-bake-bread'。好的 slug 簡短、描述性、穩定。搜尋引擎和人類都把它讀作頁面身份的一部分。",
+          "標準規則: 僅小寫字母、數字、連字元。空格變連字元。去標點。停用詞 (the, a, is) 可省略求簡潔, 這是風格選擇。"
+        ]
+      },
+      {
+        "heading": "ASCII vs Unicode slug",
+        "paragraphs": [
+          "ASCII slug (預設): 僅拉丁字母和數字。普遍支援, 永不被 URL 編碼, 易分享。SEO 導向的英語/多語言部落格的標準選擇。",
+          "Unicode slug: 保留 URL 中的原始字元。瀏覽器可讀顯示 (現代中國/?lang=zh), 但複製貼上產生百分號編碼的 URL (%E7%8E%B0%E4%BB%A3...)。一些平臺限制 Unicode slug; 依賴前請檢查。",
+          "何時選 Unicode: 面向母語讀者的中文、日語或韓語部落格。IDN URL 對母語使用者看起來乾淨, Google 索引良好。缺點是在顯示原 URL 的平臺上分享。"
+        ]
+      },
+      {
+        "heading": "Slug 長度與 SEO",
+        "paragraphs": [
+          "Google 的 URL 顯示在 60-80 字元左右截斷。更長的 slug 被截短顯示, 看起來「垃圾」。我們預設最大長度滑塊 60 — 對多數列表足夠短。",
+          "然而, Google 的演算法不直接懲罰 slug 長度。長度對點選率重要 (人類跳過長 URL), 對保持 slug 可讀重要。slug 中的關鍵詞稍有助排名; 把關鍵詞塞入長 slug 弊大於利。",
+          "最佳實踐: 包含 2-3 個最重要關鍵詞, 刪除停用詞和冠詞, 保持 60 字元以下。"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "輸入或貼上標題",
+        "text": "文章標題、產品名或任何描述性文本。"
+      },
+      {
+        "name": "選分隔符",
+        "text": "連字元是標準。下劃線對一些遺留 CMS 有效。點不尋常但有效。"
+      },
+      {
+        "name": "配置選項",
+        "text": "小寫 (推薦)、Unicode (用於非拉丁 URL)、最大長度上限。"
+      },
+      {
+        "name": "複製 slug",
+        "text": "粘到你的 CMS、部落格文章或路由配置。"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "應該用連字元還是下劃線?",
+      "a": "連字元。Google 明確把 URL 中的連字元視為單詞分隔符; 下劃線被視為單詞的一部分。所以 'fast-cars' 是兩個關鍵詞, 'fast_cars' 是一個。SEO 上連字元勝出。"
+    },
+    {
+      "q": "應該包含「the」「a」等停用詞嗎?",
+      "a": "可選。跳過保持 slug 短。包含保持 slug 可讀。SEO 影響微不足道, 可讀性更重要。"
+    },
+    {
+      "q": "撇號 (it's, don't) 怎麼辦?",
+      "a": "我們刪除。'don't' 變 'dont'。一些生成器保留它們作單詞部分; 我們遵循更簡單的慣例。"
+    },
+    {
+      "q": "處理日語/中文?",
+      "a": "處理 — 切換「允許 Unicode」保留 CJK 字元在 slug 中。不開該標誌, CJK 字元被刪除 (因無 ASCII 等價)。"
+    },
+    {
+      "q": "為什麼韓語 slug 在 ASCII 模式下變空?",
+      "a": "韓語字元沒有直接 ASCII 等價。要麼啟用 Unicode 模式, 要麼貼上前手動音譯。"
+    },
+    {
+      "q": "保留表情嗎?",
+      "a": "Unicode 模式下保留。URL 編碼的表情有效但難看 — 多數平臺刪除它們。實用建議: 不在 slug 中用表情。"
+    },
+    {
+      "q": "應該用的最大 slug 長度?",
+      "a": "60 字元或更少是 SEO 和 CTR 的最佳點。某些 CMS 上限 200 字元。Google 索引支援更長的, 但很少對可讀性有益。"
+    },
+    {
+      "q": "資料會上傳嗎?",
+      "a": "不會。生成在本地; 不向伺服器傳送。"
+    }
+  ]
+}

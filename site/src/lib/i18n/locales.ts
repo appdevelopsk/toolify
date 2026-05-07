@@ -8,7 +8,7 @@ export const LOCALE_DEFS = [
   { code: "en", name: "English", native: "English", dir: "ltr", active: true },
   { code: "ja", name: "Japanese", native: "日本語", dir: "ltr", active: true },
   { code: "zh-CN", name: "Chinese (Simplified)", native: "简体中文", dir: "ltr", active: true },
-  { code: "zh-TW", name: "Chinese (Traditional)", native: "繁體中文", dir: "ltr", active: false },
+  { code: "zh-TW", name: "Chinese (Traditional)", native: "繁體中文", dir: "ltr", active: true },
   { code: "ko", name: "Korean", native: "한국어", dir: "ltr", active: true },
   { code: "es", name: "Spanish", native: "Español", dir: "ltr", active: true },
   { code: "pt-BR", name: "Portuguese (Brazil)", native: "Português", dir: "ltr", active: false },

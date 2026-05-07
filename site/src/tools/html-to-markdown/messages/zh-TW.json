@@ -1,0 +1,96 @@
+{
+  "title": "HTML 轉 Markdown 轉換器",
+  "shortDescription": "在瀏覽器中把 HTML 轉換為 Markdown。標題、列表、程式碼、連結、圖片、引用、粗體/斜體/刪除線。",
+  "description": "貼上 HTML 得到乾淨 Markdown。適用於 CMS 遷移、抓取文章、把 WYSIWYG 輸出轉換為靜態站點的純 Markdown。",
+  "metaDescription": "免費 HTML 轉 Markdown 轉換器。標題、列表、程式碼塊、連結、引用、粗體/斜體。輸出是可貼到任何地方的純 Markdown。",
+  "keywords": [
+    "HTML 轉 Markdown",
+    "html to md",
+    "Markdown 轉換器",
+    "HTML 剝離",
+    "wysiwyg 轉 markdown"
+  ],
+  "input": {
+    "html": "HTML"
+  },
+  "output": {
+    "markdown": "Markdown 輸出"
+  },
+  "copy": "複製 Markdown",
+  "copied": "已複製!",
+  "article": {
+    "sections": [
+      {
+        "heading": "轉換內容",
+        "paragraphs": [
+          "標題 (h1-h6) 變 # 到 ######。<strong>/<b> 變 **粗體**, <em>/<i> 變 *斜體*。<code> 變 `內聯程式碼`, <pre><code> 變 ``` 圍欄塊。<ul>/<ol> 變 - 或 1. 列表。<a href> 變 [文本](url), <img src alt> 變 ![alt](url)。<blockquote> 變 >, <hr> 變 ---, <br> 變換行。",
+          "未識別的內容 (自定義 HTML 如 <details>、<table>、<video> 等) 標籤被剝離但文本保留。複雜 HTML 含表格或媒體預期有損失。"
+        ]
+      },
+      {
+        "heading": "常見用例",
+        "paragraphs": [
+          "CMS 遷移: 從 WordPress、Wix 等複製 WYSIWYG HTML, 轉換為靜態站點生成器 (Hugo、Jekyll、Next.js、Astro) 的乾淨 Markdown。",
+          "文章歸檔: 把網路文章存為 Markdown 個人閱讀。與付牆友好提取器 (閱讀模式 HTML) 結合得到乾淨純文本輸出。",
+          "郵件到 Markdown: 貼上 HTML 郵件內容獲得 Markdown 版本以跨貼部落格。"
+        ]
+      },
+      {
+        "heading": "限制",
+        "paragraphs": [
+          "表格: 不轉換 (Markdown 表格是 GFM, 不是 CommonMark)。表格被剝離為純文本。複雜表格請保留 HTML。",
+          "內聯樣式: 透過 <style> 或 style='' 屬性的顏色、字型、佈局會丟失。Markdown 故意極簡。",
+          "巢狀列表: 簡單單層列表可以; 深巢狀列表可能合併或丟失結構。複雜大綱請轉換後手動編輯。"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "貼上 HTML",
+        "text": "從任何源 — WordPress 匯出、複製的網路文章等。"
+      },
+      {
+        "name": "檢視 Markdown 輸出",
+        "text": "編輯時即時更新。"
+      },
+      {
+        "name": "複製並粘到別處",
+        "text": "輸出是適合任何靜態站點或 markdown 編輯器的純 Markdown。"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "完全保留格式?",
+      "a": "對 CommonMark 相容元素: 是。對 HTML 獨有功能 (自定義 CSS、複雜佈局), 不 — Markdown 故意是子集。"
+    },
+    {
+      "q": "表格被轉換?",
+      "a": "暫不。表格變純文本。可能在未來版本新增 GFM 表格轉換。"
+    },
+    {
+      "q": "我的連結會保留?",
+      "a": "會。<a href='url'>text</a> 變 [text](url)。href 屬性保留。"
+    },
+    {
+      "q": "內聯樣式呢?",
+      "a": "剝離。Markdown 不支援任意樣式 — 這是故意的。"
+    },
+    {
+      "q": "如何反向轉 HTML?",
+      "a": "用我們的 Markdown 轉 HTML 轉換器 (在相關工具中連結)。"
+    },
+    {
+      "q": "輸出粘到任何地方都安全?",
+      "a": "是乾淨文本 — 無指令碼、無 HTML — 適合任何 markdown 編輯器或文本欄位。如果輸入來自不信任源, 釋出前驗證。"
+    },
+    {
+      "q": "為什麼部分內容缺失?",
+      "a": "自定義或非標準 HTML 元素可能被剝離。貼上 <details>、<video> 或框架特定標籤的 HTML 片段驗證。"
+    },
+    {
+      "q": "資料會上傳嗎?",
+      "a": "不會。轉換在本地; 你的 HTML 不傳送到任何地方。"
+    }
+  ]
+}

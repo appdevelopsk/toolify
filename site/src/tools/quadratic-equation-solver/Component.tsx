@@ -81,7 +81,7 @@ export default function QuadraticEquationSolver() {
         ) : (
           <div>
             <div className="rounded bg-emerald-50 p-3 dark:bg-emerald-900/20">
-              <div className="text-xs font-medium text-emerald-900 dark:text-emerald-200">{t(`result.${result.kind}`)}</div>
+              <div className="text-xs font-medium text-emerald-900 dark:text-emerald-200">{t(`result.${result.kind.replace(/-(.)/g, (_, c) => c.toUpperCase())}`)}</div>
               {result.kind === "two-real" && (
                 <div className="mt-1 grid gap-1 font-mono text-lg">
                   <div>x₁ = {fmt.format(result.x1)}</div>

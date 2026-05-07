@@ -1,0 +1,100 @@
+{
+  "title": "Markdown 轉 HTML 轉換器 (CommonMark 子集)",
+  "shortDescription": "在瀏覽器中把 Markdown 轉換為乾淨 HTML。支援標題、列表、程式碼塊、連結、圖片、引用、粗體/斜體/刪除線。",
+  "description": "貼上 Markdown 即時看到等價 HTML。適合部落格、文件、README。輸出是可貼入任何 CMS 或靜態站點的乾淨語義 HTML。",
+  "metaDescription": "免費 Markdown 轉 HTML 轉換器。即時預覽、乾淨語義 HTML, 支援 CommonMark 核心 (標題、列表、程式碼、連結、引用)。",
+  "keywords": [
+    "Markdown 轉 HTML",
+    "md to html",
+    "Markdown 轉換器",
+    "CommonMark 轉換",
+    "部落格 Markdown"
+  ],
+  "input": {
+    "markdown": "Markdown"
+  },
+  "output": {
+    "html": "HTML 輸出"
+  },
+  "preview": "顯示渲染預覽",
+  "copy": "複製 HTML",
+  "copied": "已複製!",
+  "article": {
+    "sections": [
+      {
+        "heading": "支援的語法",
+        "paragraphs": [
+          "標題: # H1 到 ###### H6。列表: - / * / + 無序, 1. 2. 3. 有序。引用: 行首 >。程式碼塊: ``` 可選語言。內聯: **粗體**、*斜體*、`程式碼`、~~刪除~~、[連結](url)、![alt](圖片url)。水平線: ---、***或 ___。",
+          "我們實現 CommonMark 核心。表格、腳註、任務列表 (-[ ]) 暫不包含; 那些需求請在你的構建流水線用完整 CommonMark 或 GFM 庫。"
+        ]
+      },
+      {
+        "heading": "使用場景",
+        "paragraphs": [
+          "粘到 CMS 的快速轉換。多數 CMS 接受 HTML; 如果你用 Markdown 寫但編輯器不原生渲染, 先經本工具轉換。",
+          "文件生成: 把 README.md 轉 HTML 作專案落地頁。輸出乾淨到可在基本模板中包裝。",
+          "郵件撰寫: 許多郵件客戶端渲染 HTML 但不渲染 Markdown。用 Markdown 寫、轉換、貼上。"
+        ]
+      },
+      {
+        "heading": "瀏覽器端轉換",
+        "paragraphs": [
+          "所有轉換在你的瀏覽器執行。你的 Markdown — 可能含機密草稿、程式碼片段或筆記 — 絕不離開你的機器。無伺服器日誌, 無 AI 訓練資料, 僅確定性正則變換。",
+          "如果你需要 GFM 功能 (表格、任務列表、腳註), 在構建中用更完整的庫如 marked.js、markdown-it 或 remark。對多數簡單到中等的 Markdown, 本工具輸出足夠。"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "貼上 Markdown",
+        "text": "或直接在輸入區寫。"
+      },
+      {
+        "name": "檢視 HTML 輸出",
+        "text": "輸入時即時更新。"
+      },
+      {
+        "name": "複製到剪貼簿",
+        "text": "點「複製 HTML」抓取輸出。"
+      },
+      {
+        "name": "可選: 預覽",
+        "text": "點「顯示渲染預覽」看瀏覽器中的樣式。"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "支援表格嗎?",
+      "a": "暫不支援。表格是 GFM 擴充套件, 不是純 CommonMark。可能在未來版本新增。"
+    },
+    {
+      "q": "程式碼塊會語法高亮嗎?",
+      "a": "我們給 <pre><code> 標籤加 class='language-X' 以便 Prism 或 highlight.js 之類高亮器風格化。HTML 本身無樣式 — 應用你自己的 CSS 或庫。"
+    },
+    {
+      "q": "輸出粘到任何地方都安全?",
+      "a": "我們在程式碼塊和內聯程式碼中轉義 <、>、& 和 \"。其他內容按原樣轉換。如果你粘使用者生成的 Markdown, 在注入頁面前清理輸出。"
+    },
+    {
+      "q": "為什麼我的強調顯示怪?",
+      "a": "Markdown 強調巢狀複雜。* vs _ 與相鄰標點行為不同。CommonMark 規範精確; 如果我們的輸出偏離, 粘規範示例檢查。"
+    },
+    {
+      "q": "處理 Markdown 中的 HTML?",
+      "a": "內聯 HTML 透傳 (這是 CommonMark 行為)。小心使用 — 不信任來源的惡意 HTML 會無變化透過。"
+    },
+    {
+      "q": "可以反向 HTML 轉 Markdown?",
+      "a": "可以 — 見我們的 HTML 轉 Markdown 轉換器 (在相關工具中連結)。"
+    },
+    {
+      "q": "腳註呢?",
+      "a": "未實現 (GFM 擴充套件)。複雜文件用 remark-gfm 等服務端庫。"
+    },
+    {
+      "q": "資料會上傳嗎?",
+      "a": "不會。轉換在本地; 你的 Markdown 不傳送到任何地方。"
+    }
+  ]
+}

@@ -44,6 +44,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     verification: {
       google: "ty7Dbj63wSnnx02l4aFJ4rQP5cEkqF04WChcVLckmXI",
+      ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+        ? { other: { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } }
+        : {}),
+      ...(process.env.NEXT_PUBLIC_YANDEX_SITE_VERIFICATION
+        ? { yandex: process.env.NEXT_PUBLIC_YANDEX_SITE_VERIFICATION }
+        : {}),
     },
   };
 }
