@@ -60,6 +60,8 @@ import pomodoro from "@/tools/pomodoro-timer";
 import dice from "@/tools/dice-roller";
 import leapYear from "@/tools/leap-year-checker";
 import bmr from "@/tools/bmr-calculator";
+import ovulation from "@/tools/ovulation-calculator";
+import retirement from "@/tools/retirement-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -126,6 +128,8 @@ export const TOOLS: ToolDefinition[] = [
   dice,
   leapYear,
   bmr,
+  ovulation,
+  retirement,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

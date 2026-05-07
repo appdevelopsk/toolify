@@ -1,0 +1,65 @@
+{
+  "title": "Retirement Calculator (compound projection + inflation-adjusted)",
+  "shortDescription": "Project your retirement savings with monthly contributions, expected return, and inflation. Shows nominal balance, today-dollar value, and 4%-rule monthly income.",
+  "description": "Enter your current age, target retirement age, current savings, monthly contribution, expected annual return, and inflation rate. The calculator projects compounded growth and applies the 4% rule for sustainable withdrawal.",
+  "metaDescription": "Free retirement calculator. Compound monthly contributions over decades, adjust for inflation to today's dollars, and apply the 4% rule for sustainable income.",
+  "keywords": ["retirement calculator", "retirement savings", "401k calculator", "FIRE calculator", "inflation adjusted retirement"],
+  "input": {
+    "currentAge": "Current age",
+    "retireAge": "Retirement age",
+    "currentSaved": "Current savings",
+    "monthly": "Monthly contribution",
+    "returnPct": "Annual return %",
+    "inflationPct": "Annual inflation %"
+  },
+  "result": {
+    "nominalBalance": "Projected balance",
+    "realBalance": "In today's dollars",
+    "contributed": "Total contributed",
+    "growth": "Investment growth",
+    "monthly4pct": "Monthly income (4% rule)",
+    "yearsLabel": "yrs"
+  },
+  "empty": "Fill in all fields to project retirement savings.",
+  "article": {
+    "sections": [
+      {
+        "heading": "How the projection works",
+        "paragraphs": [
+          "We compound your starting balance plus each monthly contribution at the annual return rate. The math is recursive: balance(month+1) = balance(month) × (1 + monthly_rate) + monthly_contribution. Over decades, even modest monthly amounts grow significantly because of compounding — the returns on prior returns compound on themselves.",
+          "We also project a 'today's dollar' value by deflating the nominal balance using your inflation rate. A million dollars in 30 years isn't worth a million today — at 2.5% inflation, $1M in 30 years has the purchasing power of about $475,000 today. The today-dollar figure is what you should compare to current cost of living."
+        ]
+      },
+      {
+        "heading": "What rate to assume",
+        "paragraphs": [
+          "S&P 500 historical average is about 10% nominal / 7% real (after inflation) over very long periods. For retirement projections starting from 25 years out, 6-8% nominal is reasonable. Going below 5% is overly conservative for long horizons; going above 9% is optimistic given current valuations.",
+          "The closer to retirement, the more conservative your portfolio typically becomes (more bonds, less equity). For a 5-10 year window before retirement, expected return drops to 4-6% as bond allocation rises. This calculator uses a single rate for the entire horizon — for more nuanced projections, run scenarios with different rates."
+        ]
+      },
+      {
+        "heading": "The 4% rule",
+        "paragraphs": [
+          "The 4% rule (Trinity Study, 1998) says you can safely withdraw 4% of your retirement savings in year 1, then adjust upward for inflation each year, with very high probability of not running out over 30 years. So $1M retirement savings supports $40,000/year (or about $3,333/month) of inflation-adjusted spending.",
+          "The rule has limitations — it's based on historical US stock/bond performance and may be optimistic for some future scenarios. Some experts now recommend 3-3.5% for safety. For early retirement (FIRE) with 50+ year horizons, 3% is more conservative. Use the 4% number as a rough sanity check, not a guarantee."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter current and retirement ages", "text": "The difference is your investment horizon." },
+      { "name": "Enter your starting balance and monthly contribution", "text": "401(k), IRA, taxable accounts — anything earmarked for retirement." },
+      { "name": "Set return and inflation rates", "text": "Reasonable defaults: 7% return (S&P long-term real), 2.5% inflation (Fed target)." },
+      { "name": "Read both projections", "text": "Nominal is the actual dollar amount; today's dollars is its real purchasing power." }
+    ]
+  },
+  "faq": [
+    { "q": "What return rate should I use?", "a": "For 25+ year horizons in a diversified stock-heavy portfolio: 6-7%. For shorter horizons or more conservative mix: 4-5%. Stock-only assumption: 7-8%. Use historical real returns (after inflation) — that's about 5-7% for stocks long-term." },
+    { "q": "Why does today's dollars matter?", "a": "$2M in 35 years sounds amazing but at 3% inflation it's worth about $700K today. The today-dollar figure tells you what your retirement savings will buy in current terms — useful for planning current vs future expenses." },
+    { "q": "Should I use pre-tax or after-tax contributions?", "a": "Depends on account type. 401(k) and traditional IRA are pre-tax (you'll pay tax on withdrawals). Roth IRA and Roth 401(k) are after-tax (tax-free withdrawals). For traditional accounts, your retirement balance is gross — you'll lose 15-30% to taxes during retirement." },
+    { "q": "What if I get raises and increase contributions?", "a": "Run the calculator multiple times for each phase, or use a constant contribution that approximates your average. Real-world contributions often grow with salary; the calculator uses a flat number." },
+    { "q": "Does this account for Social Security?", "a": "No. Social Security is a separate income stream. Project retirement savings here, then layer Social Security estimates on top for total retirement income planning." },
+    { "q": "What's the 'safe withdrawal rate'?", "a": "Traditionally 4% (Trinity Study). For long retirements (FIRE, 40+ years), 3-3.5% is safer. The calculator shows 4% by default; adjust your monthly target if you want a different rate." },
+    { "q": "How much do I need to retire?", "a": "Rule of thumb: 25× your annual spending needs (the inverse of the 4% rule). Spending $50K/year in today's dollars? Need $1.25M in today's dollars (or more nominal accounting for inflation by retirement)." },
+    { "q": "Does the data leave my browser?", "a": "No. All projection math runs locally; nothing is sent to any server." }
+  ]
+}
