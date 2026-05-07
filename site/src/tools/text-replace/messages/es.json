@@ -1,0 +1,56 @@
+{
+  "title": "Buscar y reemplazar (literal o regex, con opciones)",
+  "shortDescription": "Reemplaza texto con buscar/reemplazar literal o regex completo. Sensibilidad a mayúsculas y modo multilínea. Conteo de matches en vivo.",
+  "description": "Pega texto, configura buscar y reemplazar, opcionalmente activa regex / case-insensitive / multilínea, y ve el texto modificado más el conteo de matches al instante.",
+  "metaDescription": "Herramienta gratis de buscar y reemplazar. Modo literal o regex, opción case-insensitive, conteo en vivo. Solo navegador — el texto no sale del dispositivo.",
+  "keywords": ["buscar y reemplazar", "reemplazar texto", "regex replace", "buscar reemplazar", "edición masiva texto"],
+  "input": { "text": "Texto fuente", "find": "Buscar", "replace": "Reemplazar con" },
+  "opt": { "regex": "Regex", "caseSensitive": "Sensible a mayúsculas", "multiline": "Multilínea ^ / $" },
+  "output": { "result": "Resultado", "matches": "{n} matches" },
+  "error": "Error de regex",
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "article": {
+    "sections": [
+      {
+        "heading": "Dos modos — literal y regex",
+        "paragraphs": [
+          "Literal (regex off): la cadena de búsqueda se busca exactamente. Caracteres especiales como '.' y '*' se tratan como sí mismos. El default seguro para la mayoría de ediciones.",
+          "Regex (regex on): la búsqueda se interpreta como expresión regular JavaScript. Úsalo para patrones — p.ej. /\\b\\w+@\\w+\\.\\w+\\b/ para emails, o (^.+:) para etiquetas al inicio de línea. Con multilínea, ^ y $ matchean en saltos."
+        ]
+      },
+      {
+        "heading": "Sintaxis especial del reemplazo",
+        "paragraphs": [
+          "En modo regex, el reemplazo soporta backreferences: $1, $2 etc. para grupos; $& para todo el match; $$ para un dólar literal. Ejemplo: buscar /(\\d{3})-(\\d{3})-(\\d{4})/ reemplazar ($1) $2-$3 reformatea teléfonos US.",
+          "En modo literal, el reemplazo se toma tal cual — sin backreferences ni manejo especial. Lo que escribes es lo que se inserta."
+        ]
+      },
+      {
+        "heading": "Usos comunes",
+        "paragraphs": [
+          "Edición masiva: estandarizar ortografía ('color' → 'colour' UK), actualizar nombres de producto, corregir erratas en docs largos.",
+          "Refactor de código: renombrar variable a través de un pegado de código (case-sensitive). Para refactor real entre archivos, mejor un IDE.",
+          "Limpieza de datos: convertir tabs a comas en CSV, sustituir un delimitador, normalizar espacios.",
+          "Markdown a plano: quitar sintaxis con regex (p.ej. /\\*\\*([^*]+)\\*\\*/g → $1 para quitar negritas)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pega tu texto", "text": "O escríbelo." },
+      { "name": "Configura buscar y reemplazar", "text": "Qué buscar y con qué sustituir." },
+      { "name": "Activa opciones según necesites", "text": "Regex para patrones; case-insensitive para fuzzy; multilínea para anclas de línea." },
+      { "name": "Lee y copia", "text": "El conteo muestra cuántos reemplazos ocurrieron." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Diferencia con el regex tester?", "a": "Esta se centra en la operación de reemplazo. El tester se centra en inspeccionar matches y grupos. Usa la que encaje." },
+    { "q": "¿Puedo usar Unicode en buscar/reemplazar?", "a": "Sí. Ambos soportan UTF-8 incluyendo emoji y CJK." },
+    { "q": "¿Por qué mi reemplazo no funcionó?", "a": "Lo más común: sensibilidad a mayúsculas. 'Hello' no matchea 'hello' a menos que actives case-insensitive. O caracteres especiales mal interpretados en literal." },
+    { "q": "¿Preserva el formato?", "a": "Sí, excepto los matches. Tabs y saltos de línea se conservan." },
+    { "q": "¿Puedo deshacer?", "a": "El original sigue en el campo de entrada. Re-pega o usa el back de tu navegador. No tenemos undo integrado." },
+    { "q": "¿Cuán grande puede ser el texto?", "a": "Texto multi-megabyte funciona, aunque regex en inputs grandes puede ser lento si el patrón está mal escrito." },
+    { "q": "¿Buena forma de aprender regex?", "a": "Empieza en literal y pasa a regex cuando necesites patrones. Busca 'JavaScript regex cheat sheet' o consulta MDN." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Todo buscar/reemplazar corre local." }
+  ]
+}

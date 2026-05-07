@@ -1,0 +1,53 @@
+{
+  "title": "Conversor HTML a Markdown",
+  "shortDescription": "Convierte HTML a Markdown en tu navegador. Encabezados, listas, código, enlaces, imágenes, citas, negrita/cursiva/tachado.",
+  "description": "Pega HTML y obtén Markdown limpio. Útil para migrar contenido CMS, scrapear artículos o convertir salida WYSIWYG a markdown plano para sitios estáticos.",
+  "metaDescription": "Conversor gratis HTML a Markdown. Encabezados, listas, bloques código, enlaces, citas, negrita/cursiva. Markdown plano listo para pegar.",
+  "keywords": ["html a markdown", "html a md", "conversor markdown", "stripper html", "wysiwyg a markdown"],
+  "input": { "html": "HTML" },
+  "output": { "markdown": "Salida Markdown" },
+  "copy": "Copiar Markdown",
+  "copied": "¡Copiado!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué se convierte",
+        "paragraphs": [
+          "Encabezados (h1-h6) → # a ######. <strong>/<b> → **negrita**, <em>/<i> → *cursiva*. <code> → `inline`, <pre><code> → bloque ```. <ul>/<ol> → - o 1. listas. <a href> → [texto](url), <img src alt> → ![alt](url). <blockquote> → >, <hr> → ---. <br> → salto de línea.",
+          "Lo no reconocido (HTML custom como <details>, <table>, <video>, etc.) pierde tags pero conserva contenido textual. Para HTML complejo con tablas o media, espera pérdida."
+        ]
+      },
+      {
+        "heading": "Casos de uso comunes",
+        "paragraphs": [
+          "Migración CMS: copia HTML WYSIWYG de WordPress, Wix, etc. y conviértelo a Markdown para SSGs (Hugo, Jekyll, Next.js, Astro).",
+          "Archivado de artículos: guarda artículos web como Markdown para lectura personal. Combina con extractor reader-friendly para texto limpio.",
+          "Email a Markdown: pega contenido HTML de email y obtén versión Markdown para cross-posting al blog."
+        ]
+      },
+      {
+        "heading": "Limitaciones",
+        "paragraphs": [
+          "Tablas: no convertidas (tablas Markdown son GFM, no CommonMark). Las tablas se reducen a texto plano. Para tablas complejas, pega como HTML.",
+          "Estilos inline: cualquier color, fuente o layout vía <style> o style='' se pierde. Markdown es intencionalmente mínimo.",
+          "Listas anidadas: simples de un nivel funcionan; muy anidadas pueden fundirse o perder estructura. Para outlines complejos, edita a mano tras convertir."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pega HTML", "text": "De cualquier fuente — export WordPress, artículo web, etc." },
+      { "name": "Lee la salida", "text": "Actualizada en vivo al editar." },
+      { "name": "Copia y pega en otro lugar", "text": "Salida Markdown plano lista para cualquier SSG o editor." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Preserva el formato perfectamente?", "a": "Para elementos compatibles con CommonMark: sí. Para HTML-only (CSS custom, layouts complejos): no — Markdown es subconjunto intencional." },
+    { "q": "¿Convierte tablas?", "a": "Aún no. Las tablas se vuelven texto plano. Podríamos añadir conversión GFM en futura versión." },
+    { "q": "¿Mis enlaces sobrevivirán?", "a": "Sí. <a href='url'>texto</a> → [texto](url). El href se preserva." },
+    { "q": "¿Estilos inline?", "a": "Eliminados. Markdown no soporta estilo arbitrario — intencional." },
+    { "q": "¿Convertir de vuelta a HTML?", "a": "Usa nuestro conversor Markdown a HTML (en Related Tools)." },
+    { "q": "¿La salida es segura para pegar?", "a": "Es texto limpio — sin script ni HTML — seguro para cualquier editor markdown. Valida antes de publicar si la fuente no era confiable." },
+    { "q": "¿Por qué falta contenido?", "a": "Elementos HTML custom o no estándar pueden eliminarse. Pega snippets de <details>, <video> o tags framework-específicos para verificar." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Conversión local; tu HTML nunca se envía." }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "title": "Resolutor de ecuaciones cuadráticas (ax² + bx + c)",
+  "shortDescription": "Resuelve cualquier ecuación cuadrática. Devuelve raíces reales o complejas, el discriminante y las coordenadas del vértice.",
+  "description": "Introduce coeficientes a, b, c. El resolutor aplica la fórmula x = (−b ± √(b²−4ac)) / 2a. Distingue dos raíces reales, una repetida, dos complejas conjugadas o casos degenerados.",
+  "metaDescription": "Resolutor gratis de cuadráticas. Raíces reales o complejas, discriminante, vértice. Maneja todos los casos: degenerado, lineal, dos reales, una real, complejas.",
+  "keywords": ["resolutor cuadrática", "fórmula cuadrática", "discriminante", "raíces complejas", "vértice parábola"],
+  "empty": "Introduce coeficientes a, b, c.",
+  "result": {
+    "twoReal": "Dos raíces reales",
+    "oneReal": "Una raíz real repetida",
+    "complex": "Dos raíces complejas conjugadas",
+    "linear": "Ecuación lineal (a = 0)",
+    "linearLabel": "a es 0; esta es ecuación lineal:",
+    "all": "Toda x es solución (todos los coeficientes cero).",
+    "none": "Sin solución (b = 0, c ≠ 0).",
+    "discriminant": "Discriminante (b² − 4ac)",
+    "vertex": "Vértice de la parábola"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "La fórmula cuadrática",
+        "paragraphs": [
+          "Para ax² + bx + c = 0 con a ≠ 0, las soluciones son x = (−b ± √(b² − 4ac)) / (2a). La expresión bajo la raíz es el 'discriminante' (D = b² − 4ac), y su signo determina el tipo de raíces.",
+          "D > 0: dos raíces reales distintas. La parábola cruza el eje x en dos puntos.",
+          "D = 0: una raíz real repetida. La parábola toca el eje x en el vértice (tangente).",
+          "D < 0: dos raíces complejas conjugadas. La parábola no toca el eje x."
+        ]
+      },
+      {
+        "heading": "Vértice y forma de la parábola",
+        "paragraphs": [
+          "Toda cuadrática se grafica como parábola. El vértice (punto de giro) está en x = −b / 2a, y sustituyendo da la coordenada y. La calculamos como y = −D / 4a, equivalente.",
+          "Si a > 0 abre hacia arriba y el vértice es mínimo. Si a < 0, hacia abajo y es máximo. El eje de simetría pasa vertical por el vértice."
+        ]
+      },
+      {
+        "heading": "Casos degenerados",
+        "paragraphs": [
+          "Si a = 0, no es realmente cuadrática — se vuelve lineal: bx + c = 0, con solución x = −c/b (si b ≠ 0). Lo detectamos y resolvemos como lineal.",
+          "Si a = 0 Y b = 0: c debe ser 0 para que exista solución. Si c = 0, toda x es solución; si c ≠ 0, no hay solución. Reportamos ambos casos."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce coeficientes", "text": "a, b, c. Usa negativos cuando sea necesario (p.ej. −3 para b)." },
+      { "name": "Lee la ecuación", "text": "El display muestra tu ax² + bx + c = 0." },
+      { "name": "Lee las raíces", "text": "Dos reales, una repetida o dos complejas conjugadas, más discriminante y vértice." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Por qué es útil el discriminante?", "a": "Te dice la naturaleza de las raíces sin resolver: D > 0 dos reales, D = 0 una repetida, D < 0 complejas. A menudo eso basta." },
+    { "q": "¿Qué es 'raíz repetida'?", "a": "Cuando D = 0, la fórmula da x = −b/2a solamente. Algebraicamente la ecuación factoriza como a(x − r)² = 0, así r aparece dos veces como raíz con 'multiplicidad 2'." },
+    { "q": "¿Las raíces complejas son útiles en el mundo real?", "a": "Sí. Circuitos AC, procesamiento de señales, mecánica cuántica y aerodinámica usan números complejos. Aunque la respuesta física sea real, los pasos intermedios complejos son comunes." },
+    { "q": "¿Resolver cúbicas o más altas aquí?", "a": "No. Cúbicas y cuárticas tienen forma cerrada pero más complicada. Para soluciones numéricas de polinomios altos, usa NumPy o un CAS como Sage/Mathematica." },
+    { "q": "¿Y si los coeficientes son muy grandes?", "a": "La precisión de coma flotante se degrada para D cuando b² y 4ac son casi iguales. Para precisión investigadora, usa una librería con aritmética arbitraria." },
+    { "q": "¿Qué significa 'vértice' de una parábola?", "a": "El único 'punto de giro' donde la parábola cambia de dirección (de decreciente a creciente o al revés). Está en x = −b/(2a). Útil para encontrar mínimos/máximos en optimización." },
+    { "q": "¿Por qué se llaman 'raíces'?", "a": "Histórico: 'raíz' traduce el latín radix, usado metafóricamente como origen de la ecuación. Las raíces son donde el polinomio vale cero." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente; nada se envía a un servidor." }
+  ]
+}

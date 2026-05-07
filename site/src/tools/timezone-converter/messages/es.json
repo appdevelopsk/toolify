@@ -1,0 +1,54 @@
+{
+  "title": "Conversor de zona horaria (compara entre múltiples zonas)",
+  "shortDescription": "Convierte un instante a múltiples zonas a la vez. Añade o quita zonas; ideal para programar reuniones internacionales.",
+  "description": "Elige una zona origen y fecha/hora, luego añade tantas zonas destino como necesites. Cada destino muestra la hora local equivalente con abreviatura.",
+  "metaDescription": "Conversor gratis de zonas horarias. Ve un instante en muchas ciudades a la vez. Útil para reuniones, viajes, broadcasts entre zonas.",
+  "keywords": ["conversor zona horaria", "reloj mundial", "reunión entre zonas", "convertir UTC", "diferencia zona horaria"],
+  "empty": "Añade zonas para ver equivalentes.",
+  "input": { "sourceTz": "Zona origen", "dt": "Fecha y hora" },
+  "now": "Ahora",
+  "addTz": "Añadir zona",
+  "remove": "Quitar",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo funciona la conversión",
+        "paragraphs": [
+          "Cada instante es un único punto — martes 9am en Tokio es el mismo instante que lunes 5pm en San Francisco. La conversión solo reetiqueta ese instante con la hora local de cada zona. El horario de verano lo complica — entre marzo y noviembre en EE.UU. el este es UTC-4 (EDT); el resto del año UTC-5 (EST). Intl.DateTimeFormat del navegador lo maneja correctamente con un nombre IANA como 'America/New_York'.",
+          "Usamos nombres IANA (como 'Asia/Tokyo' o 'Europe/London') porque son inequívocos y siguen las reglas DST históricas de cada lugar. 'JST' o 'GMT' son abreviaturas que pueden chocar; los IANA no."
+        ]
+      },
+      {
+        "heading": "Trampas comunes al programar",
+        "paragraphs": [
+          "Transiciones DST: 'el martes que viene a las 9am EST' es ambiguo en marzo o noviembre porque las reglas cambian. Di 'hora de Nueva York' o envía invitación de calendario — Outlook, Google y Slack manejan la conversión correctamente cuando ambas partes especifican zona.",
+          "Offsets de media hora: India es UTC+5:30, Newfoundland UTC-3:30, partes de Australia UTC+9:30 o +10:30. Si calculas en 'horas enteras' te equivocarás 30 min en estas regiones.",
+          "Saltos de línea de fecha: Tokio a San Francisco es día siguiente vs mismo día según dirección. El calendario lo muestra bien, pero la suposición humana puede fallar."
+        ]
+      },
+      {
+        "heading": "Patrones útiles",
+        "paragraphs": [
+          "Stand-up internacional: elige zona origen (a menudo UTC) y las zonas del equipo. Establece la hora y verifica que nadie tiene que conectarse a las 3am.",
+          "Lanzamiento: elige la zona del lanzamiento y añade los mercados clave. Útil para que el email de marketing llegue a hora local sensata.",
+          "Planificación de viaje: elige zona de salida y añade destinos para encontrar la hora local de llegada sin matemática manual."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Configura la fuente", "text": "Elige zona origen (default tu zona del navegador) y fecha/hora a convertir." },
+      { "name": "Añade zonas destino", "text": "Usa el dropdown para añadir las que necesites." },
+      { "name": "Lee equivalentes", "text": "Cada destino muestra el mismo instante en su reloj local." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Maneja DST?", "a": "Sí — los datos IANA incluyen reglas DST por ubicación. La API Intl del navegador maneja transiciones pasadas, presentes y (donde se conocen) futuras." },
+    { "q": "¿Diferencia EST vs ET?", "a": "EST es fija a UTC-5. ET (Eastern Time) es EST en invierno y EDT en verano — sigue DST. Usamos IANA 'America/New_York' que automáticamente elige según fecha." },
+    { "q": "¿Convertir entre dos ciudades?", "a": "Sí. Una como fuente y la otra como destino. La hora mostrada es el instante fuente expresado en reloj local del destino." },
+    { "q": "¿Por qué algunas zonas tienen :30?", "a": "Decisiones históricas. India, Irán, Afganistán, Newfoundland, partes de Australia usan offsets de 30 o 45 min. La calculadora los maneja." },
+    { "q": "¿Funciona para fechas pasadas?", "a": "Sí, incluyendo límites DST que pudieron ser distintos. Los datos IANA cubren la mayoría de ubicaciones desde 1970." },
+    { "q": "¿Antártida o Hawái?", "a": "La lista IANA los incluye. Añade 'Pacific/Honolulu' o 'Antarctica/McMurdo' del dropdown si hace falta." },
+    { "q": "¿Los datos se envían?", "a": "No. Las APIs Intl del navegador lo manejan localmente." },
+    { "q": "¿Puedo guardar mi lista?", "a": "Aún no. Refrescar resetea la lista. Podríamos añadir persistencia local-storage después." }
+  ]
+}

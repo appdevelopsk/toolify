@@ -1,0 +1,54 @@
+{
+  "title": "Conversor Markdown a HTML (subset CommonMark)",
+  "shortDescription": "Convierte Markdown a HTML limpio en tu navegador. Soporta encabezados, listas, bloques de código, enlaces, imágenes, citas, negrita/cursiva/tachado.",
+  "description": "Pega Markdown e instantáneamente ve el HTML equivalente. Funciona para posts, documentación, README. La salida es HTML semántico y limpio que puedes pegar en cualquier CMS o sitio estático.",
+  "metaDescription": "Conversor gratis Markdown a HTML. Vista previa en vivo, HTML limpio, soporta CommonMark esencial: encabezados, listas, código, enlaces, citas.",
+  "keywords": ["markdown a html", "md a html", "conversor markdown", "commonmark a html", "blog markdown"],
+  "input": { "markdown": "Markdown" },
+  "output": { "html": "Salida HTML" },
+  "preview": "Mostrar vista renderizada",
+  "copy": "Copiar HTML",
+  "copied": "¡Copiado!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué se soporta",
+        "paragraphs": [
+          "Encabezados: # H1 a ###### H6. Listas: - / * / + para no ordenadas, 1. 2. 3. para ordenadas. Citas: > al inicio de línea. Bloques de código: ``` con lenguaje opcional. Inline: **negrita**, *cursiva*, `código`, ~~tachado~~, [link](url), ![alt](image-url). Línea horizontal: ---, ***, o ___.",
+          "Implementamos los esenciales de CommonMark. Tablas, footnotes y task lists (-[ ]) aún no; para esos, usa una librería CommonMark/GFM completa en tu pipeline."
+        ]
+      },
+      {
+        "heading": "Cuándo usar esta herramienta",
+        "paragraphs": [
+          "Conversión rápida para pegar en un CMS. La mayoría aceptan HTML; si escribes en Markdown pero el editor no lo renderiza, pasa por aquí primero.",
+          "Generación de documentación: convierte README.md a HTML para una landing. La salida es lo bastante limpia para envolver en plantilla básica.",
+          "Composición de email: muchos clientes renderizan HTML pero no Markdown. Escribe en Markdown, convierte, pega."
+        ]
+      },
+      {
+        "heading": "Conversión en navegador",
+        "paragraphs": [
+          "Toda la conversión corre en tu navegador. Tu Markdown — que puede tener borradores confidenciales, snippets de código o notas — nunca sale de tu máquina. Sin logs de servidor, sin datos para training de IA, solo regex determinista.",
+          "Si necesitas GFM (tablas, task lists, footnotes), usa una librería más completa como marked.js, markdown-it o remark en tu build. Para Markdown simple-a-moderado, esta salida es suficiente."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pega Markdown", "text": "O escribe directo en el área de entrada." },
+      { "name": "Lee la salida HTML", "text": "Actualizada en vivo al teclear." },
+      { "name": "Copia al portapapeles", "text": "Click 'Copiar HTML' para tomar la salida." },
+      { "name": "Opcional: vista previa", "text": "Click 'Mostrar vista renderizada' para ver cómo se verá en navegador." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Soporta tablas?", "a": "Aún no. Las tablas son extensión GFM, no CommonMark puro. Podríamos añadirlas en futura versión." },
+    { "q": "¿Mis bloques de código tendrán syntax highlighting?", "a": "Añadimos class='language-X' a <pre><code> para que highlighters como Prism o highlight.js los estilen. El HTML en sí no tiene estilos — aplica tu propio CSS o librería." },
+    { "q": "¿La salida es segura para pegar donde sea?", "a": "Escapamos <, >, &, \" en bloques de código e inline. Otro contenido se convierte tal cual. Si pegas Markdown user-generated, sanitiza la salida antes de inyectar." },
+    { "q": "¿Por qué mi énfasis sale raro?", "a": "El anidado de énfasis Markdown es complicado. * vs _ pueden comportarse distinto con puntuación adyacente. CommonMark es preciso; si difiere, pega el ejemplo del spec para revisar." },
+    { "q": "¿Maneja HTML dentro de Markdown?", "a": "El HTML inline se pasa (comportamiento CommonMark). Cuidado — HTML malicioso de fuentes no confiables pasará sin cambios." },
+    { "q": "¿Convertir HTML de vuelta a Markdown?", "a": "Sí — ve nuestro conversor HTML to Markdown (link en Related Tools)." },
+    { "q": "¿Y los footnotes?", "a": "No implementados (extensión GFM). Para documentos complejos, usa una librería server-side como remark-gfm." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. La conversión corre localmente; tu Markdown nunca se envía." }
+  ]
+}
