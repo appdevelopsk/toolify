@@ -1,0 +1,61 @@
+{
+  "title": "Calculadora de factorial / permutaciones / combinaciones",
+  "shortDescription": "Calcula n! (factorial), P(n,k) permutaciones y C(n,k) combinaciones. Maneja enteros grandes vía BigInt hasta n=5000.",
+  "description": "Introduce n y k. Devuelve n!, P(n,k) (selecciones ordenadas) y C(n,k) (selecciones no ordenadas). Útil para probabilidad, estadística y deberes de combinatoria.",
+  "metaDescription": "Calculadora gratis de factorial, permutaciones (nPr) y combinaciones (nCr). Soporte big-integer hasta n=5000. Lista para probabilidad y combinatoria.",
+  "keywords": ["calculadora factorial", "nCr nPr", "calculadora permutaciones", "calculadora combinaciones", "combinatoria"],
+  "input": {
+    "kHint": "(para permutaciones / combinaciones)"
+  },
+  "result": {
+    "permutationsLabel": "permutaciones",
+    "combinationsLabel": "combinaciones"
+  },
+  "error": {
+    "tooLargeOrNeg": "n debe ser un entero no negativo ≤ 5000.",
+    "invalid": "Requiere 0 ≤ k ≤ n."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Factorial",
+        "paragraphs": [
+          "n! (léase 'n factorial') es el producto de todos los enteros positivos de 1 a n. Así 5! = 1×2×3×4×5 = 120. Por convención, 0! = 1 (el producto vacío).",
+          "Los factoriales crecen muy rápido. 10! = 3.6M, 20! = 2.4×10¹⁸, 100! tiene 158 dígitos. La coma flotante se rompe en 21! (por límite de doble precisión); usamos BigInt para valores exactos hasta n=5000."
+        ]
+      },
+      {
+        "heading": "Permutaciones vs combinaciones",
+        "paragraphs": [
+          "Permutaciones P(n,k) = n! / (n−k)!: número de formas ordenadas de elegir k de n. P(5,2) = 20: elige el primero entre 5, el segundo entre 4 = 5×4 = 20.",
+          "Combinaciones C(n,k) = n! / (k!(n−k)!): formas no ordenadas. C(5,2) = 10: las mismas elecciones pero {primero, segundo} = {segundo, primero}, así que divides por 2!. La famosa 'n choose k'.",
+          "Usa permutaciones cuando importa el orden (podio, orden de contraseña). Usa combinaciones cuando solo importa el conjunto (números de lotería, comité). C(n,k) ≤ P(n,k) siempre; iguales con k=1."
+        ]
+      },
+      {
+        "heading": "Dónde aparecen",
+        "paragraphs": [
+          "Probabilidad: dados, cartas, monedas. P(3 caras en 5 lanzamientos) = C(5,3) × (1/2)⁵ = 10/32. Las combinaciones cuentan resultados favorables.",
+          "Estadística: la binomial usa C(n,k). Muestreo sin reemplazo usa combinaciones.",
+          "Computación: contar subconjuntos, análisis de complejidad (p.ej. k-clique enumeration es C(n,k)), algoritmos de grafos.",
+          "Mundo real: probabilidades de lotería (US Powerball: C(69,5) × 26 ≈ 292M combinaciones). Combos de menú: 'elige 3 de 8 acompañamientos' es C(8,3) = 56 formas."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce n", "text": "Total de items / entero no negativo." },
+      { "name": "Introduce k (opcional)", "text": "Cuántos elegir (para P y C). 0 ≤ k ≤ n." },
+      { "name": "Lee los tres", "text": "n!, P(n,k), C(n,k). Salidas truncadas para números muy grandes." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Por qué 0! = 1?", "a": "Por convención, el 'producto vacío' es 1 (igual que la suma vacía es 0). También hace que fórmulas como C(n,0) = 1 (una forma de no elegir nada) funcionen." },
+    { "q": "¿Cuál es el factorial máximo que calcula?", "a": "n=5000 da un número de 16,326 dígitos. Capamos en 5000 para evitar congelar el navegador. Para mayor, usa un CAS." },
+    { "q": "¿Diferencia permutaciones vs combinaciones?", "a": "El orden importa en permutaciones, no en combinaciones. {A,B} es la misma combinación que {B,A} pero dos permutaciones distintas: AB y BA." },
+    { "q": "¿Hay factoriales para números negativos?", "a": "No en el sentido estándar. La función gamma Γ(x) extiende factorial a todos los reales (y complejos), pero esta calculadora solo maneja enteros no negativos." },
+    { "q": "¿Fórmula de combinaciones?", "a": "C(n,k) = n! / (k! × (n-k)!). Léase 'n choose k'. Equivalente: P(n,k) / k! ya que el orden no importa." },
+    { "q": "¿Qué tan precisa es?", "a": "Exacta para todos los valores en el rango. Usamos aritmética BigInt, sin error de coma flotante." },
+    { "q": "¿Por qué 70! es tanto más grande que 60!?", "a": "Cada factorial multiplica por el siguiente entero. 70! es ~60! × 61 × 62 × … × 70 ≈ 60! × 1.4 × 10¹⁷. Crece más rápido que exponencial — ~n^n × e^-n × √(2πn) por Stirling." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente; nada se envía a un servidor." }
+  ]
+}

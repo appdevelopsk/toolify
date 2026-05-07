@@ -1,0 +1,60 @@
+{
+  "title": "Calculadora de MCD y MCM (con factorización prima)",
+  "shortDescription": "Encuentra el máximo común divisor (MCD) y mínimo común múltiplo (MCM) de dos o más enteros, más la factorización prima de cada número.",
+  "description": "Introduce una lista de enteros. La calculadora devuelve MCD (Euclides), MCM y la factorización prima completa de cada entrada. Maneja enteros de tamaño arbitrario vía BigInt.",
+  "metaDescription": "Calculadora gratis de MCD y MCM con factorización prima. Múltiples números. Aritmética BigInt exacta para cualquier tamaño.",
+  "keywords": ["calculadora MCD", "calculadora MCM", "máximo común divisor", "mínimo común múltiplo", "factorización prima"],
+  "input": {
+    "numbers": "Números",
+    "hint": "Separados por coma, espacio o salto de línea. Al menos 2."
+  },
+  "result": {
+    "gcd": "MCD (máximo común divisor)",
+    "lcm": "MCM (mínimo común múltiplo)",
+    "factorizations": "Factorizaciones primas"
+  },
+  "empty": "Introduce al menos 2 enteros.",
+  "article": {
+    "sections": [
+      {
+        "heading": "MCD: el mayor factor compartido",
+        "paragraphs": [
+          "El MCD de dos enteros es el mayor entero que divide a ambos sin resto. MCD(12, 18) = 6 porque 6 divide a ambos y ningún número mayor lo hace. MCD(7, 13) = 1 porque no comparten factores (esos pares son 'coprimos').",
+          "Usamos el algoritmo de Euclides: gcd(a, b) = gcd(b, a mod b), recursivo. Conocido hace ~2300 años y sigue siendo el método estándar más rápido. Para tres o más: gcd(a, b, c) = gcd(gcd(a, b), c)."
+        ]
+      },
+      {
+        "heading": "MCM: el menor múltiplo compartido",
+        "paragraphs": [
+          "El MCM es el menor entero positivo que es múltiplo de ambos. MCM(4, 6) = 12 porque 12 es el primer número que 4 y 6 dividen.",
+          "Fórmula: lcm(a, b) = (a × b) / gcd(a, b). Para 4 y 6: 24 / 2 = 12. Para tres números: lcm(a, b, c) = lcm(lcm(a, b), c).",
+          "Si algún número es 0, MCM es 0 (todo número divide a 0, pero 'menor positivo' es indefinido). La calculadora devuelve 0 en ese caso."
+        ]
+      },
+      {
+        "heading": "Por qué importa",
+        "paragraphs": [
+          "Fracciones: para sumar 1/4 + 1/6, halla MCM(4, 6) = 12 como denominador común. 1/4 = 3/12, 1/6 = 2/12, suma = 5/12.",
+          "Programación: si A se repite cada 4 días y B cada 6 días, coinciden cada MCM(4, 6) = 12 días.",
+          "Criptografía: algoritmos basados en MCD (Euclides extendido) sustentan generación de claves RSA y cálculos de inverso modular.",
+          "Música: ritmos con periodos 3 y 4 sincronizan tras 12 beats (MCM)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce enteros", "text": "Al menos 2, separados por comas, espacios o saltos." },
+      { "name": "Lee MCD y MCM", "text": "Ambos prominentes en el resultado." },
+      { "name": "Inspecciona factorizaciones", "text": "La descomposición prima revela por qué MCD/MCM salieron así." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Y si mis números son coprimos?", "a": "MCD = 1 y MCM = producto de todos los números. Coprimos = sin factores primos compartidos." },
+    { "q": "¿Puedo incluir negativos?", "a": "Sí. Usamos valores absolutos para MCD/MCM. -12 y 18 dan MCD 6 y MCM 36, igual que 12 y 18." },
+    { "q": "¿Y si introduzco 0?", "a": "MCD(0, n) = |n| (todo entero divide a 0, y n es el mayor para ese par). MCM con 0 es 0 por convención. Con todos ceros, MCD/MCM indefinidos." },
+    { "q": "¿Cómo de grandes pueden ser los números?", "a": "Usamos BigInt internamente, así la aritmética sobre enteros de cualquier tamaño es exacta. El límite práctico es tu velocidad de tecleo." },
+    { "q": "¿Por qué es útil la factorización prima?", "a": "MCD = producto de primos comunes (con el menor exponente). MCM = producto de todos los primos que aparezcan (con el mayor exponente). Las factorizaciones hacen visibles esas relaciones." },
+    { "q": "¿Relación entre MCD y MCM?", "a": "Para dos números: a × b = gcd(a, b) × lcm(a, b). Si conoces tres de {a, b, mcd, mcm} puedes calcular el cuarto. No generaliza limpiamente a tres o más." },
+    { "q": "¿Sirve para MCD de polinomios?", "a": "No en esta herramienta — solo enteros. Para polinomios usa un CAS como SymPy o Maxima." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente; nada se envía a un servidor." }
+  ]
+}

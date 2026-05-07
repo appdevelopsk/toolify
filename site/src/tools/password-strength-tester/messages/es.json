@@ -1,0 +1,92 @@
+{
+  "title": "Test de fuerza de contraseña (entropía + crack)",
+  "shortDescription": "Prueba la fuerza con bits de entropía, análisis de charset, comprobación de común y tiempo estimado de crack en distintos escenarios.",
+  "description": "Escribe una contraseña (solo navegador, nunca transmitida). El tester calcula entropía, cobertura de charset, riesgo de match en diccionario y tiempos estimados de crack para ataques offline GPU, online API y online lento.",
+  "metaDescription": "Test gratis de fuerza de contraseña. Bits de entropía, estimaciones de crack, análisis de charset, detección de común y patrones. Solo navegador.",
+  "keywords": ["test fuerza contraseña", "entropía contraseña", "calculadora crack", "seguridad contraseña", "test contraseña"],
+  "input": {
+    "password": "Contraseña",
+    "privacyNote": "Probada enteramente en tu navegador. Nunca enviada ni almacenada."
+  },
+  "show": "Mostrar",
+  "hide": "Ocultar",
+  "result": {
+    "strength": "Fuerza",
+    "length": "Longitud",
+    "charsetSize": "Tamaño del charset",
+    "entropy": "Entropía",
+    "bits": "bits",
+    "lowercase": "Minúsculas a-z",
+    "uppercase": "Mayúsculas A-Z",
+    "digits": "Dígitos 0-9",
+    "symbols": "Símbolos",
+    "crackTime": "Tiempo estimado de crack",
+    "crackOffline": "Offline GPU (10⁹⁰/s)",
+    "crackOnlineFast": "Online rápido (1k/s)",
+    "crackOnlineSlow": "Online lento (100/s)",
+    "warningsHeading": "Avisos"
+  },
+  "level": {
+    "veryWeak": "Muy débil",
+    "weak": "Débil",
+    "fair": "Aceptable",
+    "strong": "Fuerte",
+    "veryStrong": "Muy fuerte"
+  },
+  "warning": {
+    "isCommon": "Esta contraseña está en listas comunes. No la uses.",
+    "tooShort": "Longitud bajo 8 — demasiado corta para seguridad real.",
+    "hasRepeated": "Caracteres repetidos (p.ej. 'aaa') reducen entropía real.",
+    "hasSequential": "Patrones secuenciales (1234, qwer, abcd) son fáciles de adivinar.",
+    "limitedCharset": "Charset único (solo minúsculas, solo dígitos) es débil aunque larga."
+  },
+  "time": {
+    "instant": "instante",
+    "yrs": "años",
+    "eternity": "eternidad"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué significa 'entropía' para contraseñas",
+        "paragraphs": [
+          "La entropía mide impredecibilidad en bits. Una contraseña con 30 bits necesita ~2³⁰ ≈ mil millones de intentos para crack. 70+ bits se considera fuerte; 80+ excelente.",
+          "Fórmula: entropía = longitud × log₂(charset). 'abcdefgh' (8 chars, solo minúsculas) = 8 × log₂(26) ≈ 37.6 bits. 'aA1!aaaa' (8 chars, todos los charsets) = 8 × log₂(95) ≈ 52.6 bits — pero el tiempo real de crack es mucho peor de lo que sugieren 52 bits porque 'aaaa' es patrón común."
+        ]
+      },
+      {
+        "heading": "Por qué los tiempos varían tanto",
+        "paragraphs": [
+          "Offline GPU: hash filtrado atacado offline. GPUs modernas adivinan 10⁹+ hashes MD5/segundo; bcrypt solo 10⁴-10⁵/s. La estimación usa GPU rápida.",
+          "Online rápido: atacante golpeando una API directamente. La mayoría tiene rate limit; 1000 intentos/seg es estimación alta para endpoint mal defendido.",
+          "Online lento: endpoint bien defendido con rate limit estricto, bloqueo de cuenta y CAPTCHA. 100/seg es generoso; muchos sistemas permiten solo 5-10/min.",
+          "Estas estimaciones ignoran factores reales como ataques de diccionario (encuentran comunes mucho más rápido que fuerza bruta) y reutilización (crackear un sitio ayuda con otros)."
+        ]
+      },
+      {
+        "heading": "Qué hace fuerte a una contraseña",
+        "paragraphs": [
+          "Longitud sobre complejidad: una passphrase de 16 chars como 'correct horse battery staple' es más fuerte que un torturado de 8 'P@ssw0rd!'. La idea de XKCD de 2011 sigue: 4 palabras random = ~44 bits.",
+          "Evita patrones: fechas, nombres, '123', 'qwer', repeticiones reducen la entropía real bajo el valor de fórmula. Las herramientas de ataque incluyen extensos rule-sets ('password' → 'P@ssw0rd!').",
+          "Usa un gestor de contraseñas: los humanos eligen patrones; los gestores no. Bitwarden, 1Password, KeePass generan contraseñas verdaderamente aleatorias por sitio, 16+ chars todos los charsets. La única que recuerdas es la maestra — y esa debe ser una passphrase larga."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escribe la contraseña", "text": "Se prueba enteramente en cliente. Usa Mostrar si no ves lo que tecleas." },
+      { "name": "Lee el medidor", "text": "Cinco segmentos. Apunta a 4-5 (Fuerte/Muy fuerte) en cuentas importantes." },
+      { "name": "Comprueba entropía y crack", "text": "Más entropía = más crack. Atento a avisos de patrones comunes." },
+      { "name": "Ajusta", "text": "Añade longitud, mezcla charsets, evita palabras comunes. Prueba variantes." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Se envía mi contraseña a algún sitio?", "a": "No. Todo corre localmente en tu navegador. No vemos, almacenamos ni transmitimos tu contraseña." },
+    { "q": "¿Por qué mi contraseña larga muestra baja entropía?", "a": "La longitud no es todo — repetir 'a' 50 veces tiene muy poca entropía real. El calculador usa fórmula simple pero marca patrones repetidos/secuenciales. Mejor: larga, variada, sin patrones." },
+    { "q": "¿Estos tiempos son precisos?", "a": "Son estimaciones por fuerza bruta naïve. Los crackers reales usan diccionarios, patrones comunes y bases de filtraciones primero — así una 'común' puede caer en segundos pese a entropía alta de fórmula." },
+    { "q": "¿Debo preocuparme por cuánticos?", "a": "Eventualmente sí — Grover halvea bits efectivos del simétrico. Una clave de 128 bits equivalente necesita 64+ post-cuántico. Por ahora, 80+ bits es cómodo; 128+ para muy largo plazo." },
+    { "q": "¿Por qué marca 'P@ssw0rd1' aunque tenga todos los charsets?", "a": "Porque 'password' está en diccionarios y las sustituciones triviales (P → P, a → @) son parte del rule-set de toda herramienta. Usa truly aleatorias o passphrases, no sustituciones de palabras comunes." },
+    { "q": "¿'correct horse battery staple' es realmente segura?", "a": "Razonablemente. 4 palabras al azar de 7000 = ~52 bits. Más fuerte que la mayoría de 8 chars complejas. Pero al ser famosa entró en diccionarios — elige tus propias palabras." },
+    { "q": "¿Longitud mínima?", "a": "8 es lo mínimo (y solo con todos los charsets). 12+ recomendado para la mayoría. 16+ para importantes (email, banco, master del gestor)." },
+    { "q": "¿Importa la sensibilidad a mayúsculas?", "a": "Sí — añadir mayúsculas dobla el charset de 26 a 52. ~+1 bit por carácter. Mezclar significativamente (no solo la primera letra) merece la pena." }
+  ]
+}

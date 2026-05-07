@@ -1,0 +1,69 @@
+{
+  "title": "Calculadora de coste de combustible (viaje + por persona)",
+  "shortDescription": "Calcula coste de combustible para cualquier viaje desde distancia, eficiencia (MPG o km/L) y precio. División opcional entre pasajeros.",
+  "description": "Elige unidades métricas o imperiales; introduce distancia, eficiencia, precio por galón/litro y número de pasajeros. Devuelve coste total, combustible usado, coste por milla/km y por persona.",
+  "metaDescription": "Calculadora gratis de coste combustible. Coste de viaje desde distancia + MPG/km/L + precio. División por persona para carpools. Métrico e imperial.",
+  "keywords": ["calculadora combustible", "calculadora gasolina", "coste viaje combustible", "calculadora road trip", "coste carpool"],
+  "empty": "Introduce distancia, eficiencia y precio.",
+  "unit": {
+    "metric": "Métrico (km, L)",
+    "imperial": "Imperial (mi, gal)"
+  },
+  "input": {
+    "distance": "Distancia",
+    "efficiency": "Eficiencia combustible",
+    "pricePerUnit": "Precio por litro / galón",
+    "people": "Personas que comparten"
+  },
+  "result": {
+    "totalCost": "Coste total combustible",
+    "fuelUsed": "Combustible usado",
+    "perDistance": "Coste por {unit}",
+    "perPerson": "Coste por persona"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo se calcula el coste",
+        "paragraphs": [
+          "Tres números determinan el coste totalmente: distancia, eficiencia y precio. Combustible = distancia / eficiencia. Coste total = combustible × precio.",
+          "Métrico: 100 km a 12 km/L = 8.33 L. A €1.55/L = €12.91. Imperial: 100 mi a 30 MPG = 3.33 gal. A $3.50/gal = $11.67.",
+          "El coste por distancia es la métrica de comparación más útil — ¿cuánto cuesta cada km/milla? Permite comparar vehículos o rutas en la misma escala."
+        ]
+      },
+      {
+        "heading": "Por qué dividir costes (carpooling)",
+        "paragraphs": [
+          "Compartir un viaje de 200 millas con 4 personas: $25 cada uno vs $100 conduciendo solo. El carpooling es uno de los hábitos de ahorro con mayor ROI, con un commuter típico ahorrando $1000-3000/año.",
+          "Compartir también reduce tráfico y emisiones. Muchas ciudades tienen carriles HOV que evitan el tráfico — ahorro adicional de tiempo.",
+          "Apps como Waze Carpool, BlaBlaCar y Lyft Line / Uber Pool facilitan el carpooling ad-hoc. La matemática aquí funciona ya sea formal o un viaje único con amigos."
+        ]
+      },
+      {
+        "heading": "Más allá del combustible: coste total",
+        "paragraphs": [
+          "El combustible es una parte del coste. Suma: peajes, parking, desgaste (~$0.10-0.20 por milla según IRS), mantenimiento proporcional a la distancia.",
+          "Tasa estándar IRS 2025: $0.67/milla (cubre combustible, aceite, mantenimiento, depreciación, seguro — coste total del vehículo). Para coste más exacto, multiplica distancia por esta tasa en vez de solo combustible.",
+          "Los EVs invierten la ecuación: un viaje de 30 kWh a $0.15/kWh = $4.50, a menudo menos de la mitad del coste de combustible. Los EVs también tienen ~$0.05/milla menos de mantenimiento, especialmente en muchas millas."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige unidades", "text": "Métrico (km, L) o imperial (mi, gal)." },
+      { "name": "Introduce distancia", "text": "Ida y vuelta si planeas regresar; si no, solo ida." },
+      { "name": "Introduce eficiencia", "text": "MPG o km/L de tu coche. La real suele ser 5-15% peor que la EPA." },
+      { "name": "Introduce precio", "text": "Precio actual local por galón o litro." },
+      { "name": "Opcional: personas", "text": "Para dividir coste de carpool / road trip." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Eficiencia típica?", "a": "Compacto moderno: 30-40 MPG / 13-17 km/L. Sedán: 25-35 MPG / 11-15 km/L. SUV/camioneta: 18-28 MPG / 8-12 km/L. Híbrido: 45-55 MPG / 19-23 km/L." },
+    { "q": "¿Ciudad, carretera o combinado?", "a": "Si la mayoría es carretera, MPG carretera. Urbano, MPG ciudad. Mixto, combinado. Los resultados reales suelen superar EPA carretera con tráfico ligero, quedarse cortos en tráfico denso." },
+    { "q": "¿Sirve para vehículos eléctricos?", "a": "Pon eficiencia en millas/kWh (típico 3-4 mi/kWh) y precio en $/kWh. La matemática es la misma; ten en cuenta la diferencia de unidad." },
+    { "q": "¿Por qué mi coste real es mayor que el predicho?", "a": "Tres razones comunes: (1) MPG real 5-15% bajo EPA, (2) tráfico y aceleración consumen más, (3) frío reduce eficiencia 10-20%. Redondea hacia arriba ~10% por seguridad." },
+    { "q": "¿Cómo escala para viaje más largo?", "a": "Lineal: 200 millas cuestan 2x lo que 100 (mismos MPG y precio). Para viajes con varios repostajes, calcula cada tramo aparte." },
+    { "q": "¿Diésel vs gasolina?", "a": "Diésel tiene mayor MPG (5-15% mejor) pero el combustible suele costar más. Coste neto depende de precios locales. Ajusta eficiencia y precio; matemática igual." },
+    { "q": "¿Incluyo el coste de cambio de aceite?", "a": "El método estándar IRS lo incluye implícitamente prorrateado. Para 'solo combustible' por viaje, no — pero rastrea mantenimiento aparte." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente; nada se envía a un servidor." }
+  ]
+}
