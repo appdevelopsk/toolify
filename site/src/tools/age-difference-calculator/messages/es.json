@@ -1,0 +1,66 @@
+{
+  "title": "Calculadora de diferencia de edad (entre dos personas)",
+  "shortDescription": "Calcula la diferencia exacta de edad entre dos personas en años, meses, días, más totales en semanas, días y horas.",
+  "description": "Introduce dos fechas de nacimiento (y opcionalmente nombres). La calculadora computa la diferencia en años/meses/días con aritmética de calendario e identifica quién es mayor/menor.",
+  "metaDescription": "Calculadora gratis de diferencia de edad. Calcula el intervalo entre dos cumpleaños en años, meses, días, semanas, horas. Identifica mayor y menor.",
+  "keywords": ["calculadora diferencia edad", "diferencia edad", "entre dos cumpleaños", "comparación edad", "diferencia año mes día"],
+  "input": {
+    "name1": "Nombre (opcional)",
+    "birth1": "Fecha de nacimiento",
+    "name2": "Nombre (opcional)",
+    "birth2": "Fecha de nacimiento"
+  },
+  "result": {
+    "elderYounger": "{elder} es mayor que {younger} por",
+    "y": "a",
+    "m": "m",
+    "d": "d",
+    "totalDays": "Total días",
+    "totalWeeks": "Total semanas",
+    "totalMonths": "Total meses",
+    "totalHours": "Total horas"
+  },
+  "empty": "Selecciona ambas fechas de nacimiento.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por qué importa una diferencia consciente del calendario",
+        "paragraphs": [
+          "Las diferencias de edad parecen obvias — '3 años' — pero el intervalo real depende de los días. Dos personas nacidas 'en el mismo año' pueden estar separadas por días o 364 días. La calculadora computa la diferencia exacta de calendario: el detalle de 3 años, 5 meses, 12 días.",
+          "La aritmética de calendario toma prestado de la siguiente unidad mayor cuando es necesario. Si la persona B nació el 15 de mayo y la persona A el 23 de mayo del mismo año, la diferencia es '0 años, 0 meses, 8 días', no '0 años, 0 meses, −8 días'."
+        ]
+      },
+      {
+        "heading": "Casos de uso comunes",
+        "paragraphs": [
+          "Planificación familiar: ¿qué tan separados están los hermanos? Útil para planear cumpleaños/festivos, alineación de grado escolar, selección de regalos.",
+          "Amigos y parejas: un casual '¿cuánto mayor eres?' respondido al día.",
+          "Investigación histórica: entre las fechas de nacimiento de dos figuras, común en genealogía y trabajos biográficos.",
+          "Deportes/competición: los atletas a menudo se categorizan por cortes de año de nacimiento; la calculadora muestra si alguien apenas entra en una categoría o está bien dentro."
+        ]
+      },
+      {
+        "heading": "Unidades totales (semanas, horas, etc.)",
+        "paragraphs": [
+          "Cada unidad total ofrece una perspectiva distinta sobre el mismo intervalo. '3 años' = ~157 semanas = 1095 días = 26,280 horas. Útil para curiosidades, conteos motivacionales (días vividos) o simple curiosidad.",
+          "Las horas se calculan como días × 24. Ajusta por años bisiestos y zona horaria si necesitas mayor precisión; para casos típicos de 'tiempo separados', 24 horas/día es suficiente."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Selecciona la primera fecha de nacimiento", "text": "Usa el selector de fecha. Nombre opcional." },
+      { "name": "Selecciona la segunda fecha de nacimiento", "text": "El orden no importa — la calculadora identifica mayor/menor." },
+      { "name": "Lee la diferencia", "text": "Años/meses/días más totales." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Importa el orden de las fechas?", "a": "No. La calculadora detecta quién es mayor y los etiqueta. El resultado es siempre la diferencia absoluta (positiva)." },
+    { "q": "¿Es exacta la diferencia?", "a": "Sí — aritmética de calendario con precisión de mes/día. Misma precisión que nuestra age-calculator." },
+    { "q": "¿Y si ambas personas comparten cumpleaños?", "a": "Si comparten mes y día en años distintos, obtienes años enteros (sin resto de meses o días). Mismo cumpleaños exacto: 0 diferencia." },
+    { "q": "¿Tiene en cuenta los años bisiestos?", "a": "Sí. El conteo de días totales cuenta días reales del calendario incluido el 29 de febrero cuando es relevante." },
+    { "q": "¿Por qué el 'total de meses' es suma simple?", "a": "Total meses = años × 12 + meses. Los días restantes no son parte del conteo de meses, pero nuestra salida Y/M/D consciente del calendario ya los equilibra correctamente." },
+    { "q": "¿Puedo comparar cumpleaños entre siglos?", "a": "Sí — Date de JavaScript soporta muchos siglos (mucho más allá de 1900-2100). Fechas de genealogía de los 1700s funcionan bien." },
+    { "q": "¿Por qué no hay 'quién es mayor' para nacimientos del mismo día?", "a": "Si las horas de nacimiento no están registradas, los nacimientos del mismo día están empatados. Mostramos 0 diferencia y no designamos mayor/menor cuando el intervalo es cero." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Cálculo local; nada se envía a un servidor." }
+  ]
+}

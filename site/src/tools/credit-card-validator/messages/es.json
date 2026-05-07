@@ -1,0 +1,58 @@
+{
+  "title": "Validador de tarjeta de crédito (Luhn + marca)",
+  "shortDescription": "Valida el checksum de un número de tarjeta de crédito (algoritmo de Luhn) y detecta la marca emisora. Solo navegador — el número nunca sale de tu dispositivo.",
+  "description": "Escribe un número de tarjeta para verificar que pasa la comprobación Luhn y detectar la marca (Visa, Mastercard, Amex, Discover, JCB, Diners, UnionPay) por rango IIN/BIN.",
+  "metaDescription": "Validador gratis de tarjeta. Algoritmo Luhn + detección de marca (Visa, Mastercard, Amex). Todo el procesamiento en tu navegador; nada se transmite.",
+  "keywords": ["validador tarjeta crédito", "algoritmo Luhn", "comprobación número tarjeta", "comprobación BIN", "detección marca tarjeta"],
+  "warning": "⚠ Nunca introduzcas un número de tarjeta real en un sitio que no confíes. Esta herramienta corre completamente en tu navegador — pero lo mismo es imposible verificar en cualquier sitio desconocido.",
+  "input": { "cardNumber": "Número de tarjeta" },
+  "status": { "valid": "Sintaxis válida", "invalid": "No válida" },
+  "empty": "Escribe un número de tarjeta para validar.",
+  "breakdown": {
+    "brand": "Marca",
+    "length": "Longitud",
+    "luhn": "Comprobación Luhn",
+    "formatted": "Formateada",
+    "unknown": "Desconocida"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué comprueba este validador (y qué no)",
+        "paragraphs": [
+          "Tres comprobaciones: (1) el prefijo coincide con un rango IIN/BIN de emisor conocido, (2) la longitud es una de las longitudes válidas para esa marca, (3) el checksum de Luhn pasa. Si las tres son verdaderas, el número es sintácticamente válido como número de tarjeta.",
+          "Lo que NO comprueba: si la tarjeta realmente existe, si tiene fondos, si el titular te autorizó a usarla. Eso requiere pasar por un procesador de pagos real con autorización adecuada. Esta herramienta detecta erratas baratamente — como 1234 vs 1243 en un copy-paste — pero no puede verificar que la tarjeta pertenece a una cuenta real."
+        ]
+      },
+      {
+        "heading": "Cómo funciona el algoritmo Luhn",
+        "paragraphs": [
+          "Luhn (1954, por el científico de IBM Hans Peter Luhn) es un checksum simple: empezando por el dígito de la derecha, dobla cada segundo dígito. Si un dígito doblado supera 9, suma sus dos dígitos (o equivalentemente resta 9). Suma todos los dígitos resultantes. El total debe ser divisible por 10.",
+          "Luhn detecta errores de un solo dígito y la mayoría de transposiciones adyacentes — los dos errores más comunes cuando los humanos copian números largos. No es criptográfico; no puedes usarlo para detectar manipulación maliciosa. Procesadores reales de tarjetas usan Luhn como filtro de primera línea antes de comprobaciones backend más caras."
+        ]
+      },
+      {
+        "heading": "Detección de marca por IIN/BIN",
+        "paragraphs": [
+          "Los primeros 6-8 dígitos identifican al emisor (Issuer Identification Number / Bank Identification Number). Marcas principales tienen rangos de prefijo bien conocidos: Visa empieza por 4, Mastercard por 51-55 o 2221-2720, Amex por 34 o 37, etc. Detectamos la marca emparejando estos rangos.",
+          "Marca y país suelen poder inferirse del IIN. Búsquedas completas de IIN dan país, banco, tipo de tarjeta (débito/crédito) y programa — usado por comerciantes para puntuación de riesgo. No incluimos una base IIN completa; solo los patrones más comunes."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escribe el número", "text": "Espacios y guiones se ignoran automáticamente." },
+      { "name": "Lee el veredicto", "text": "Check verde = sintaxis válida (Luhn pasa + longitud coincide marca)." },
+      { "name": "Revisa el desglose", "text": "Marca, longitud, comprobación Luhn y número formateado." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Debo confiar mi número real aquí?", "a": "Aunque corremos solo en tu navegador, nunca pegues un número real en una herramienta que no confíes profundamente. Usa números de prueba estándar (p.ej. 4111 1111 1111 1111) para comprobaciones de sintaxis." },
+    { "q": "¿Por qué obtengo 'no válida' con un número real?", "a": "Lo más común es que falle el checksum Luhn — probablemente errata. Revisa los dígitos una vez más." },
+    { "q": "¿Validar Luhn prueba que la tarjeta existe?", "a": "No. Luhn solo detecta errores de transcripción. Muchos números nunca emitidos pasan Luhn; muchas tarjetas reales fallan Luhn si se escriben mal." },
+    { "q": "¿Qué es un 'BIN'?", "a": "Bank Identification Number — los primeros 6-8 dígitos identificando al emisor. Igual que IIN (Issuer Identification Number); términos intercambiables." },
+    { "q": "¿Puedo usar esto para generar números de prueba?", "a": "No directamente, pero los números estándar de prueba de Stripe/Visa/Mastercard están bien documentados (p.ej. 4242 4242 4242 4242). Pasan Luhn pero nunca cobran." },
+    { "q": "¿Por qué no detecta [alguna marca]?", "a": "Soportamos las marcas principales. Tarjetas regionales o co-marca pueden no coincidir. Consulta la documentación del emisor para los rangos IIN que usan." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. La validación corre enteramente en tu navegador sin llamadas de red." },
+    { "q": "¿Luhn se usa para algo más que tarjetas?", "a": "Sí — números IMEI, SIN canadiense, ISIN, NPI y muchos otros sistemas de ID usan Luhn. El algoritmo es el mismo; solo cambian los mapeos de prefijo." }
+  ]
+}

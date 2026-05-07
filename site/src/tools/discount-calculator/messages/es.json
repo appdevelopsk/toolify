@@ -1,0 +1,61 @@
+{
+  "title": "Calculadora de descuento (con IVA opcional)",
+  "shortDescription": "Calcula el precio final tras un descuento porcentual, más IVA opcional. Ve cuánto ahorraste de un vistazo.",
+  "description": "Introduce el precio original y el porcentaje de descuento para ver el precio final y cuánto ahorraste. Añade una tasa de impuesto si tu jurisdicción aplica impuesto tras el descuento.",
+  "metaDescription": "Calculadora gratis de descuento. Calcula el precio final tras un descuento porcentual con IVA opcional. Ve ahorro, precio tras descuento e impuesto al instante.",
+  "keywords": ["calculadora descuento", "porcentaje descuento", "calculadora precio rebaja", "descuento con impuesto", "calculadora ahorro"],
+  "empty": "Introduce un precio original y descuento para ver el resultado.",
+  "input": {
+    "original": "Precio original",
+    "discountPct": "Descuento %",
+    "taxPct": "IVA %"
+  },
+  "result": {
+    "finalPrice": "Precio final",
+    "saved": "Ahorras",
+    "afterDiscount": "Tras descuento",
+    "tax": "Impuesto"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo funciona la matemática del descuento",
+        "paragraphs": [
+          "Precio con descuento = original × (1 − descuento/100). Un 20% de descuento sobre $100 deja $80. El impuesto se aplica al monto descontado, no al original — así $80 × (1 + 8% impuesto/100) = $86.40 final.",
+          "El 'ahorras' es el descuento en moneda: original × descuento/100. Para nuestro ejemplo de $100 con 20% off, ahorras $20. Esto es lo que los compradores quieren ver naturalmente — no solo el porcentaje."
+        ]
+      },
+      {
+        "heading": "Apilar descuentos",
+        "paragraphs": [
+          "Dos descuentos no se suman. Un cupón '20% off' sobre una rebaja '20% off' es 36% off total, no 40% — porque el segundo descuento se aplica al precio ya reducido (0.8 × 0.8 = 0.64 = 36% del original).",
+          "Para apilar, ejecuta la calculadora dos veces: primero con el descuento mayor, luego mete el resultado como nuevo 'original' con el segundo descuento. O, si tienes múltiples cupones, multiplica (1 − d1/100) × (1 − d2/100) × ... y resta de 1 para obtener el descuento efectivo total."
+        ]
+      },
+      {
+        "heading": "El momento del impuesto varía por país",
+        "paragraphs": [
+          "Estados Unidos: el impuesto sobre ventas se añade en caja, tras los descuentos. Usa el campo de impuesto de esta calculadora directamente. Cada estado y ciudad tiene su tasa (NYC 8.875%, LA 9.5%, sin impuesto en Oregón).",
+          "UE/Reino Unido: el IVA típicamente ya está en el precio mostrado, no doble-cuentes. Pon impuesto a 0 si el precio que introdujiste incluye IVA. El impuesto al consumo de Japón también suele estar incluido en precios mostrados (総額表示).",
+          "A veces el envío es gravable, a veces no. Esta calculadora asume que el precio que introduces es el monto gravable. Para cálculo completo de carrito, totaliza tus artículos gravables por separado."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce el precio original", "text": "Usa el precio listado antes de cualquier descuento." },
+      { "name": "Introduce el descuento %", "text": "El porcentaje de descuento — 20 para '20% off'." },
+      { "name": "Opcional: introduce IVA %", "text": "Omite si el impuesto ya está incluido o no aplica." },
+      { "name": "Lee el desglose", "text": "Precio final, ahorro, tras descuento e impuesto aparecen juntos." }
+    ]
+  },
+  "faq": [
+    { "q": "¿El descuento se aplica antes o después del impuesto?", "a": "Casi siempre antes. El descuento reduce el monto gravable; luego el impuesto se añade al precio descontado." },
+    { "q": "¿Cómo apilo varios cupones?", "a": "Aplícalos secuencialmente: original × (1 − d1/100) × (1 − d2/100). Usa la calculadora dos veces o calcula manualmente." },
+    { "q": "¿Cuál es la fórmula de 'porcentaje de descuento'?", "a": "Final = original × (1 − descuento/100). Ahorro = original × descuento/100." },
+    { "q": "¿Funciona para 2x1 (BOGO)?", "a": "Aproximadamente — 2x1 a mitad de precio equivale a 25% de descuento sobre un paquete de dos. Para matemática exacta de BOGO, divide el precio del paquete por artículos primero." },
+    { "q": "¿Por qué vi un precio de 'comparación' que no era real?", "a": "Algunos minoristas inflan el 'original' para que los descuentos parezcan mayores. Compara con otras tiendas o precios históricos para conocer el descuento real." },
+    { "q": "¿Vale la pena apilar códigos 'misteriosos'?", "a": "Calcula ambas formas. A menudo un solo código grande gana a dos pequeños por el efecto multiplicativo." },
+    { "q": "¿Cómo encuentro el % de descuento desde dos precios?", "a": "% descuento = (original − rebaja) / original × 100. O usa el modo 'cambio porcentual' de nuestra percentage-calculator." },
+    { "q": "¿Los datos se envían a algún sitio?", "a": "No. El cálculo corre en tu navegador." }
+  ]
+}

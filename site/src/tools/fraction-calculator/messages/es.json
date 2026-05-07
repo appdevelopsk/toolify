@@ -1,0 +1,56 @@
+{
+  "title": "Calculadora de fracciones (sumar, restar, multiplicar, dividir)",
+  "shortDescription": "Suma, resta, multiplica o divide dos fracciones. Devuelve forma simplificada, equivalente decimal y representación como número mixto.",
+  "description": "Introduce dos fracciones (numerador sobre denominador) y una operación. La calculadora devuelve el resultado en su mínima expresión, más su valor decimal y forma mixta cuando aplica. Usa BigInt para resultados exactos de tamaño arbitrario.",
+  "metaDescription": "Calculadora gratis de fracciones. Suma, resta, multiplica, divide. Resultado simplificado, equivalente decimal, número mixto. Aritmética BigInt exacta.",
+  "keywords": ["calculadora fracciones", "sumar fracciones", "multiplicar fracciones", "simplificador fracciones", "número mixto"],
+  "empty": "Introduce ambas fracciones y una operación.",
+  "result": {
+    "simplified": "Resultado (simplificado)",
+    "decimal": "Decimal",
+    "mixed": "Número mixto"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo funcionan las operaciones con fracciones",
+        "paragraphs": [
+          "Suma/resta: convertir primero a denominador común. a/b ± c/d = (ad ± bc) / bd. Ejemplo: 1/2 + 1/3 = (1×3 + 1×2) / (2×3) = 5/6.",
+          "Multiplicación: a/b × c/d = (ac) / (bd). La cancelación cruzada simplifica antes de multiplicar. Ejemplo: 2/3 × 9/10 = (2×9)/(3×10) = 18/30 = 3/5.",
+          "División: invierte la segunda fracción y multiplica. a/b ÷ c/d = a/b × d/c = (ad) / (bc). Ejemplo: 1/2 ÷ 3/4 = (1×4)/(2×3) = 4/6 = 2/3."
+        ]
+      },
+      {
+        "heading": "Por qué simplificar",
+        "paragraphs": [
+          "Una fracción está en mínima expresión cuando numerador y denominador no comparten factores comunes mayores que 1. Usamos el algoritmo de Euclides para encontrar su MCD y dividimos ambos por él.",
+          "Ejemplo: 18/30 tiene MCD 6, así que se simplifica a 3/5. Matemáticamente equivalente pero más fácil de leer y trabajar.",
+          "También normalizamos el signo: un numerador positivo es lo convencional. Así −3/−5 se simplifica a 3/5; 3/−5 a −3/5."
+        ]
+      },
+      {
+        "heading": "Números mixtos",
+        "paragraphs": [
+          "Cuando el valor absoluto del numerador supera al del denominador, la fracción puede expresarse como un número entero más una fracción propia. Ejemplo: 7/3 = 2⅓ (ya que 7 = 2×3 + 1).",
+          "Los números mixtos son comunes en mediciones cotidianas (recetas, dimensiones de madera, signaturas de tiempo musicales) pero menos comunes en matemáticas/ciencia donde las fracciones impropias son más simples de manipular. Mostramos ambas representaciones."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce la primera fracción", "text": "Numerador arriba, denominador abajo." },
+      { "name": "Elige una operación", "text": "+, −, × o ÷." },
+      { "name": "Introduce la segunda fracción", "text": "Mismo formato." },
+      { "name": "Lee el resultado", "text": "Forma simplificada, valor decimal y número mixto cuando aplica." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Puedo introducir fracciones negativas?", "a": "Sí. Usa un signo menos en el numerador o el denominador. La calculadora normaliza a un único signo negativo en el numerador." },
+    { "q": "¿Por qué 1/2 + 1/3 = 5/6 y no 2/5?", "a": "No puedes sumar fracciones sumando numeradores y denominadores por separado. Primero debes encontrar un denominador común. 1/2 = 3/6, 1/3 = 2/6, así que 1/2 + 1/3 = 3/6 + 2/6 = 5/6." },
+    { "q": "¿Soporta números enteros como fracciones?", "a": "Sí. Introduce entero = entero/1. Así 5 + 1/2 = 5/1 + 1/2 = 11/2 = 5½." },
+    { "q": "¿Cuál es la fracción más grande que maneja?", "a": "Usamos BigInt internamente, así que la aritmética sobre numeradores y denominadores de prácticamente cualquier tamaño es exacta. La pantalla está limitada a lo que cabe." },
+    { "q": "¿Por qué a veces el decimal no es exacto?", "a": "Algunas fracciones no tienen representación decimal exacta (1/3 = 0.3333…). Mostramos hasta 8 decimales. La fracción en sí es exacta; el decimal es una aproximación." },
+    { "q": "¿Puedo dividir por cero?", "a": "No. La división por cero (o cualquier fracción con numerador cero como divisor) está indefinida. La calculadora no devuelve resultado en ese caso." },
+    { "q": "¿De dónde vienen los números mixtos?", "a": "Fracciones impropias (numerador ≥ denominador). 7/3 = 2 + 1/3 = 2⅓. Ambas formas son equivalentes; elige según el contexto (matemáticas: impropia, recetas: mixta)." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente; nada se envía a un servidor." }
+  ]
+}
