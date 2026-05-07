@@ -1,0 +1,69 @@
+{
+  "title": "Calculadora de interés compuesto (con aportes mensuales)",
+  "shortDescription": "Mira cómo crece una inversión con interés compuesto y aportes mensuales opcionales. Frecuencia de capitalización personalizable.",
+  "description": "Introduce saldo inicial, tasa de interés, horizonte temporal y aporte mensual opcional. Muestra el saldo final más desglose de aportes vs interés ganado.",
+  "metaDescription": "Calculadora de interés compuesto gratis con aportes mensuales. Saldo final, total aportado e interés total. Capitalización diaria, mensual, trimestral o anual.",
+  "keywords": ["calculadora interés compuesto", "crecimiento inversión", "calculadora ahorros", "calculadora interés", "valor futuro"],
+  "empty": "Rellena los campos para ver la proyección.",
+  "input": {
+    "principal": "Saldo inicial",
+    "ratePct": "Tasa de interés anual (%)",
+    "years": "Años",
+    "compoundsPerYear": "Frecuencia de capitalización",
+    "monthlyContribution": "Aporte mensual"
+  },
+  "compound": {
+    "annual": "Anual (1×/año)",
+    "semiannual": "Semestral (2×/año)",
+    "quarterly": "Trimestral (4×/año)",
+    "monthly": "Mensual (12×/año)",
+    "daily": "Diaria (365×/año)"
+  },
+  "result": {
+    "finalBalance": "Saldo final",
+    "totalContributed": "Total aportado",
+    "totalInterest": "Interés total"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo funciona el interés compuesto",
+        "paragraphs": [
+          "El interés compuesto es interés ganado sobre tu principal original Y sobre el interés ya ganado. La fórmula del principal es FV = P × (1 + r/n)^(n × t), donde P es principal, r es tasa anual decimal, n es periodos de capitalización por año y t es años. Con 5% capitalizado mensualmente por 30 años, $10,000 crecen a ~$44,677 — más de 4× el inicio, todo por capitalización.",
+          "Añadir un aporte mensual lo convierte en una anualidad. El valor futuro de aportes regulares es M × ((1 + r/12)^(12×t) − 1) / (r/12), donde M es el monto mensual. Esta calculadora combina ambas fórmulas, así puedes ver qué produce 'invertir un monto ahora y añadir un poco mensualmente'."
+        ]
+      },
+      {
+        "heading": "Por qué la frecuencia importa menos de lo que crees",
+        "paragraphs": [
+          "Pasar de anual a mensual sube la tasa efectiva ligeramente, pero la diferencia se reduce rápido. A 5% por 10 años sobre $10,000: anual $16,289; mensual $16,470; diaria $16,486. Pasada la mensual, las ganancias son mínimas. Capitalización continua (límite matemático) en el mismo ejemplo da $16,487 — esencialmente igual a diaria.",
+          "Lo que domina los retornos reales es tasa × tiempo, no frecuencia. Doblar el horizonte de inversión de 10 a 20 años aproximadamente cuadra tu multiplicador (a igual tasa). Doblar la tasa también lo cuadra. ¿Doblar la frecuencia? Añade quizás una fracción de porcentaje."
+        ]
+      },
+      {
+        "heading": "Suposiciones realistas",
+        "paragraphs": [
+          "Estas proyecciones asumen tasa constante, lo que no coincide con la realidad — los retornos de acciones varían, las tasas de bonos cambian y las tasas promocionales bancarias expiran. Para planificación a largo plazo, ejecuta con tres tasas: pesimista (3-4%), esperada (6-7%) y optimista (9-10%) para ver un rango de resultados.",
+          "La inflación se come retornos nominales. 7% nominal con 3% inflación es ~4% en poder adquisitivo 'real'. Si quieres saldo en términos reales, usa (tasa − inflación esperada) en vez de tasa nominal. Comisiones e impuestos típicamente reducen retornos reales 1-2% — réstalo también para mejor aproximación."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce saldo inicial", "text": "Cuánto tienes invertido hoy." },
+      { "name": "Introduce tasa y plazo", "text": "Tasa de interés anual como porcentaje y cuántos años planeas invertir." },
+      { "name": "Elige frecuencia", "text": "Mensual es buen default. Diaria diferencia poco; anual es conservador." },
+      { "name": "Añade aporte mensual (opcional)", "text": "Si planeas añadir dinero regularmente, introduce el monto mensual." },
+      { "name": "Lee el desglose", "text": "Saldo final, total aportado (principal + aportes) e interés total ganado." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Tasa realista a usar?", "a": "Promedios de bolsa estadounidense a largo plazo son ~7% real / 10% nominal. Bonos históricamente 2-4% real. Cuentas de ahorro 0.5-5% según tipo y época. Prueba 6-7% como base para cartera diversificada." },
+    { "q": "¿Por qué pequeñas diferencias de tasa importan tanto en el tiempo?", "a": "La capitalización multiplica. A 30 años, 6% triplica tu dinero ~2.86× más que 4%, aunque la brecha sea solo 2 puntos porcentuales." },
+    { "q": "¿Aportes al inicio o final del mes?", "a": "Usamos timing de fin de periodo (anualidad ordinaria). Inicio de periodo añadiría un periodo extra de capitalización, subiendo el resultado ~1 mes de interés. No importa para planificación." },
+    { "q": "¿Considera inflación?", "a": "No. Usa tasa 'real' (nominal menos inflación esperada) si quieres proyecciones en dólares de hoy. 7% retorno con 3% inflación es 4% real." },
+    { "q": "¿Y los impuestos y comisiones?", "a": "No modelados. Resta 1-2% de tu tasa como ajuste aproximado para impuestos (en cuentas gravables) y comisiones de fondos." },
+    { "q": "¿Por qué el resultado no coincide con la app de mi banco?", "a": "Los bancos pueden capitalizar en intervalos ligeramente distintos o usar interés simple en periodos cortos. Para proyecciones específicas del banco, usa la calculadora del banco." },
+    { "q": "¿Las tasas pueden ser negativas?", "a": "Sí, matemáticamente — la fórmula lo maneja. Tasas negativas aparecieron en bonos del gobierno europeo, raramente en productos minoristas." },
+    { "q": "¿Los datos se envían?", "a": "No. Toda la matemática corre en tu navegador." }
+  ]
+}

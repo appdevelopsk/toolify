@@ -1,0 +1,59 @@
+{
+  "title": "Calculadora de edad (años, meses, días, semanas, horas)",
+  "shortDescription": "Calcula la edad exacta en años, meses, días, semanas y horas desde cualquier fecha de nacimiento hasta cualquier fecha objetivo.",
+  "description": "Selecciona una fecha de nacimiento y una fecha objetivo para ver la diferencia desglosada en años, meses y días, además de totales en semanas, días y horas.",
+  "metaDescription": "Calculadora de edad en línea gratis. Encuentra edad exacta en años, meses, días, semanas y horas entre dos fechas. Maneja años bisiestos correctamente.",
+  "keywords": ["calculadora de edad", "diferencia de fechas", "qué edad tengo", "edad en días", "edad en semanas"],
+  "input": {
+    "birth": "Fecha de nacimiento",
+    "target": "Calcular edad a fecha de"
+  },
+  "result": {
+    "label": "Edad",
+    "ymd": "{years} años, {months} meses, {days} días",
+    "totalMonths": "Meses totales",
+    "totalWeeks": "Semanas totales",
+    "totalDays": "Días totales",
+    "totalHours": "Horas totales",
+    "empty": "Selecciona una fecha de nacimiento para ver el cálculo."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo se calcula la edad",
+        "paragraphs": [
+          "Esta calculadora usa el método estándar de 'edad calendario': cuenta años completos desde el nacimiento, luego meses completos pasado el último cumpleaños, después días restantes. Los meses se cuentan con el calendario real (28-31 días), así que 'un mes' puede ser 28, 29, 30 o 31 días.",
+          "Cuando el día del mes en la fecha objetivo es anterior al día de nacimiento, tomamos prestados días del mes previo para mantener correcto el resultado. Ejemplo: del 1990-05-31 al 2026-05-06 son 35 años, 11 meses, 5 días — no 35 años, 12 meses, -25 días."
+        ]
+      },
+      {
+        "heading": "Por qué el conteo de días incluye años bisiestos",
+        "paragraphs": [
+          "El campo 'días totales' cuenta cada día real entre las dos fechas, incluyendo el 29 de febrero en años bisiestos. Es más preciso que 365 × años para cálculos médicos, legales o científicos donde un día o dos importan.",
+          "Si necesitas 'días vividos al cumpleaños siguiente', introduce tu próximo cumpleaños como fecha objetivo y lee el campo de días totales."
+        ]
+      },
+      {
+        "heading": "Usos comunes",
+        "paragraphs": [
+          "Calcular dosificación de medicamentos en niños, ventanas de elegibilidad para inscripción escolar, planificación de jubilación, planificación de aniversarios e investigación histórica todos requieren cálculo preciso de edad. Esta herramienta da todo a la vez: el formato Y/M/D legible más totales en meses, semanas, días y horas."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce fecha de nacimiento", "text": "Usa el selector de fecha." },
+      { "name": "Elige fecha objetivo", "text": "Por defecto hoy, pero puedes elegir cualquier fecha para ver la edad 'a esa fecha'." },
+      { "name": "Lee el resultado", "text": "Edad como años, meses y días, más totales en meses, semanas, días y horas." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Considera años bisiestos?", "a": "Sí. El conteo y la lógica de meses usan el calendario real, así que el 29 de febrero se incluye cuando cae entre las dos fechas." },
+    { "q": "¿Por qué los meses no son siempre 30 días?", "a": "Porque los meses reales van de 28 a 31 días. Contar meses reales evita la deriva que '30 días por mes' causaría en una vida." },
+    { "q": "¿Puedo calcular la edad de alguien en una fecha futura?", "a": "Sí. Pon la fecha objetivo en un día futuro para ver qué edad tendrá esa persona." },
+    { "q": "¿Y si la fecha de nacimiento es posterior a la objetivo?", "a": "La calculadora no muestra resultado para evitar valores negativos. Intercambia las fechas si necesitas la diferencia." },
+    { "q": "¿La calculadora conoce mi zona horaria?", "a": "Usa la fecha local del navegador como 'hoy'. El cálculo en sí es independiente de zonas porque trabaja con días calendario completos." },
+    { "q": "¿Los datos se envían a un servidor?", "a": "No. Todo se calcula en el navegador." },
+    { "q": "¿Cómo se redondean las semanas totales?", "a": "Es la parte entera de días totales dividido por 7. Las semanas parciales no se cuentan." },
+    { "q": "¿Y la edad coreana o asiática?", "a": "Esta herramienta calcula la edad calendario occidental. Los sistemas asiáticos suman 1 al nacer y pueden sumar otro en año nuevo — usa una calculadora cultural específica." }
+  ]
+}
