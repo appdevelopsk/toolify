@@ -1,0 +1,59 @@
+{
+  "title": "Comprobador de número primo (con factorización)",
+  "shortDescription": "Comprueba si un número es primo. Si no, ve su factorización. Más el siguiente y el anterior primo.",
+  "description": "Introduce un entero no negativo hasta 10^18. La calculadora prueba primalidad por trial division (determinista hasta ~10^15 en tiempo razonable) y da la factorización para compuestos.",
+  "metaDescription": "Comprobador gratis de primos con factorización. Prueba primalidad, ve factores primos, encuentra siguiente/anterior. Hasta 10^18.",
+  "keywords": ["comprobador primo", "es primo", "factorización prima", "test primalidad", "siguiente primo"],
+  "input": { "value": "Número" },
+  "result": {
+    "isPrime": "es primo",
+    "notPrime": "NO es primo",
+    "factors": "Factorización prima",
+    "prevPrime": "Primo anterior",
+    "nextPrime": "Primo siguiente"
+  },
+  "empty": "Introduce un entero positivo.",
+  "tooLarge": "Número demasiado grande para cálculo en navegador (max 10^18).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué es un primo",
+        "paragraphs": [
+          "Un primo es un natural mayor que 1 sin divisores positivos aparte de 1 y sí mismo. Primeros primos: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37. Son los 'átomos' de la aritmética entera — todo entero ≥ 2 puede escribirse de forma única como producto de primos (Teorema Fundamental de la Aritmética).",
+          "1 no es primo por convención. 0 y los negativos no son primos. 2 es el único primo par — cualquier otro par es divisible entre 2 y por tanto compuesto."
+        ]
+      },
+      {
+        "heading": "Cómo funciona el test",
+        "paragraphs": [
+          "Usamos trial division: comprueba divisibilidad entre 2, luego 3, 5, 7, 11, … hasta √n. Si ninguno divide limpio, n es primo. Usamos la optimización 6k±1, que solo prueba candidatos de la forma 6k+1 o 6k−1 (todos los primos > 3 lo son), reduciendo tests en 2/3.",
+          "Trial division es rápida hasta ~10^15 (sub-segundo). Más allá, se necesitan tests avanzados como Miller-Rabin (probabilístico) o AKS (determinista). Capamos en 10^18 para evitar congelar el navegador con inputs extremos."
+        ]
+      },
+      {
+        "heading": "Por qué importan los primos",
+        "paragraphs": [
+          "Criptografía: el cifrado RSA multiplica dos primos de ~1000 dígitos para producir un número difícil de factorizar. La seguridad descansa en la dificultad de factorizar grandes — un reto estudiado milenios.",
+          "Educación matemática: la factorización es fundamental. Conceptos como MCD, MCM, aritmética modular, fracciones y teoría de números se construyen sobre la estructura de factores.",
+          "Computación: tamaños de hash table, RNGs y muchos algoritmos usan primos por sus propiedades de divisibilidad distintivas."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce un número", "text": "Entero positivo hasta 10^18." },
+      { "name": "Lee el veredicto", "text": "✓ verde para primo, ✗ ámbar para compuesto." },
+      { "name": "Ve la factorización", "text": "Si compuesto, los factores primos únicos se muestran." },
+      { "name": "Navega primos", "text": "Anterior y siguiente listados como contexto." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Es 1 primo?", "a": "No. 1 es 'unidad', no primo. Los primos tienen exactamente dos divisores positivos distintos (1 y sí mismo); 1 solo tiene uno." },
+    { "q": "¿Es 0 primo?", "a": "No. Los primos son enteros > 1." },
+    { "q": "¿Es 2 primo?", "a": "Sí — 2 es el único primo par. Cualquier otro par tiene 2 como divisor además de 1 y sí mismo." },
+    { "q": "¿Cómo se encuentra el siguiente primo?", "a": "Incrementando desde n+1 y probando primalidad. Siempre hay un primo dentro de n × ln(n) de cualquier número, así termina rápido incluso para inputs grandes." },
+    { "q": "¿Por qué máximo 10^18?", "a": "BigInt JS maneja más, pero trial division se vuelve lenta. 10^18 es seguro para chequeos sub-segundo de inputs típicos. Más allá, usa SymPy o Mathematica." },
+    { "q": "¿Comprueba primos de 1000 dígitos?", "a": "No con esta — trial division es muy lenta. La criptografía usa Miller-Rabin probabilístico para primos de 1024 bits (~300 dígitos)." },
+    { "q": "¿Qué es un primo de Mersenne?", "a": "Un primo de la forma 2^p − 1. A 2025 solo se conocen 51. El mayor conocido (M82589933) es Mersenne con ~25 millones de dígitos." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente; nada se envía a un servidor." }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "title": "Generador de slug URL (URLs SEO-friendly)",
+  "shortDescription": "Convierte cualquier título o frase en un slug URL SEO-friendly. Separador configurable, límite de longitud, minúsculas y soporte Unicode.",
+  "description": "Escribe o pega un título; el generador quita puntuación, normaliza acentos, colapsa espacios y produce un slug limpio. Soporta guiones, guiones bajos o puntos; longitud máxima configurable; preservación Unicode opcional para URLs no latinas.",
+  "metaDescription": "Generador gratis de slug URL. Slugs SEO desde cualquier título. Guion/guion bajo/punto, longitud máxima, soporte Unicode, modo ASCII.",
+  "keywords": ["generador slug", "url slug", "generador url seo", "slugify", "generador permalink"],
+  "input": {
+    "text": "Título o frase",
+    "separator": "Separador",
+    "lowercase": "Minúsculas",
+    "allowUnicode": "Permitir Unicode (no ASCII)",
+    "maxLen": "Longitud máxima"
+  },
+  "sep": {
+    "hyphen": "Guion",
+    "underscore": "Guion bajo",
+    "dot": "Punto"
+  },
+  "result": {
+    "slug": "Slug",
+    "length": "Longitud"
+  },
+  "empty": "(vacío)",
+  "copy": "Copiar",
+  "copied": "¡Copiado!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué es un slug URL",
+        "paragraphs": [
+          "Un slug es la parte legible de una URL tras el dominio — por ejemplo 'como-hacer-pan' en '/blog/como-hacer-pan'. Buenos slugs son cortos, descriptivos y estables. Buscadores y humanos los leen como parte de la identidad de la página.",
+          "Reglas estándar: solo letras minúsculas, dígitos y guiones. Los espacios se vuelven guiones. La puntuación se quita. Stop words (el, la, es) pueden omitirse para brevedad, aunque es elección estilística."
+        ]
+      },
+      {
+        "heading": "Slugs ASCII vs Unicode",
+        "paragraphs": [
+          "Slugs ASCII (default): solo letras latinas y dígitos. Soporte universal, nunca URL-encoded, friendly para compartir. Elección estándar para blogs SEO en inglés/multilingües.",
+          "Slugs Unicode: preservan caracteres originales. Los navegadores los muestran legibles (現代日本/?lang=ja), pero copiar produce URLs percent-encoded. Algunas plataformas restringen Unicode; comprueba antes.",
+          "Cuándo Unicode: blogs en japonés, chino o coreano apuntando a lectores nativos. Las URLs IDN se ven limpias para nativos y Google las indexa bien. Inconveniente: compartir en plataformas que muestran URL crudas."
+        ]
+      },
+      {
+        "heading": "Longitud y SEO",
+        "paragraphs": [
+          "Google muestra hasta ~60-80 caracteres de URL. Slugs más largos se truncan y parecen 'spam'. El máximo por defecto está en 60 — corto para la mayoría.",
+          "Sin embargo, los algoritmos de Google no penalizan directamente por longitud. La longitud importa para el CTR (humanos saltan URLs largas) y para mantener legibilidad. Las palabras clave en slug ayudan algo al ranking; meterlas a la fuerza en slugs largos perjudica más de lo que ayuda.",
+          "Mejores prácticas: incluye las 2-3 palabras clave más importantes, omite stop words y artículos, mantén bajo 60 caracteres."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escribe o pega un título", "text": "Título de artículo, nombre de producto o cualquier texto descriptivo." },
+      { "name": "Elige separador", "text": "Guion es estándar. Guion bajo va con CMS legacy. Puntos son raros pero válidos." },
+      { "name": "Configura opciones", "text": "Minúsculas (recomendado), Unicode (URLs no latinas), longitud máxima." },
+      { "name": "Copia el slug", "text": "Pega en tu CMS, blog o config de routing." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Guiones o guiones bajos?", "a": "Guiones. Google trata explícitamente los guiones como separadores de palabra; los guiones bajos como parte de la palabra. 'fast-cars' son dos keywords, 'fast_cars' una. Guiones ganan en SEO." },
+    { "q": "¿Incluyo stop words como 'el' o 'la'?", "a": "Opcional. Saltarlas mantiene slugs cortos. Incluirlas mantiene legibles. El impacto SEO es despreciable; importa más la legibilidad." },
+    { "q": "¿Y apóstrofes (it's, don't)?", "a": "Los quitamos. 'don't' se vuelve 'dont'. Algunos generadores los preservan; nosotros seguimos la convención más simple." },
+    { "q": "¿Maneja japonés / chino?", "a": "Sí — activa 'Permitir Unicode' para mantener CJK en el slug. Sin esa opción se quitan (no tienen equivalente ASCII)." },
+    { "q": "¿Por qué mi slug coreano queda vacío en ASCII?", "a": "Los caracteres coreanos no tienen equivalente ASCII directo. Activa modo Unicode, o transliterar manualmente antes." },
+    { "q": "¿Se preservan emojis?", "a": "Sí en modo Unicode. URL-encoded son válidos pero feos — la mayoría de plataformas los quitan. Práctico: no uses emoji en slugs." },
+    { "q": "¿Longitud máxima recomendada?", "a": "60 o menos es el sweet spot SEO/CTR. Algunos CMS llegan a 200. Google soporta más pero raramente ayuda a la legibilidad." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. La generación corre localmente; nada se envía a un servidor." }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Calculadora de IVA / impuesto (añadir o extraer)",
+  "shortDescription": "Añade impuesto a un importe pre-impuesto o extrae el impuesto de un total con impuesto incluido. Funciona para cualquier tasa (IVA, GST, sales tax).",
+  "description": "Alterna entre 'añadir' y 'extraer del total', introduce importe y tasa, ve el desglose en neto, impuesto y total.",
+  "metaDescription": "Calculadora gratis de IVA / impuesto. Añade tax a un importe pre-impuesto o extrae el tax de un total. Cualquier tasa, en tu navegador.",
+  "keywords": ["calculadora IVA", "calculadora impuesto", "calculadora GST", "extraer impuesto del total", "calculadora sales tax"],
+  "empty": "Introduce un importe para calcular el desglose.",
+  "mode": { "addTax": "Añadir impuesto al neto", "fromTotal": "Extraer impuesto del total" },
+  "input": { "amountNet": "Importe pre-impuesto", "amountGross": "Total con impuesto", "taxPct": "Tasa (%)" },
+  "result": { "net": "Pre-impuesto", "tax": "Impuesto", "gross": "Total" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Añadir vs extraer",
+        "paragraphs": [
+          "Añadir: tienes el precio antes de impuestos y quieres el final. Multiplica por (1 + tasa/100). Ejemplo: 100 € al 21% IVA = 121 €.",
+          "Extraer: tienes el total que pagó el cliente (o vio en el ticket) y necesitas saber cuánto fue impuesto. Divide el total entre (1 + tasa/100) para el pre-impuesto; la diferencia es el impuesto. Ejemplo: 121 € al 21% extrae a 100 € + 21 € de IVA. No multipliques 121 € × 21% — eso da 25.41 €, está mal."
+        ]
+      },
+      {
+        "heading": "Sales tax, IVA y GST",
+        "paragraphs": [
+          "Sales tax (US): se añade en el punto de venta, varía por estado y ciudad. NYC 8.875%, Oregón 0%, California 7.25-10.75% según ciudad. Muchos precios US se anuncian sin impuestos y se añaden al pagar.",
+          "IVA (UE, UK): suele ya estar incluido en el precio mostrado. España 21% estándar, UK 20%, Francia 20%, Alemania 19%. Usa 'extraer' para hallar el IVA en un precio cotizado.",
+          "GST (Australia, NZ, Canadá, India): tasa nacional única (Australia 10%, NZ 15%, Canadá GST + provinciales). India usa GST por categoría (5/12/18/28%)."
+        ]
+      },
+      {
+        "heading": "Trampas comunes",
+        "paragraphs": [
+          "No multipliques totales con impuesto incluido por la tasa. Para extraer 21% de 121 €, divide entre 1.21 primero. Multiplicar por 21% da el resultado equivocado porque 121 € ya incluye el 21% sobre los 100 € — estarías cobrando impuesto sobre impuesto.",
+          "Algunos productos están exentos o a tasa cero (alimentos en muchos países; libros UE a tasa reducida; etc.). Al anunciar precios con/sin impuesto, sigue las normas de tu jurisdicción."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige el modo", "text": "Añadir impuesto a pre-impuesto, o extraer del total con impuesto." },
+      { "name": "Introduce el importe", "text": "Pre-impuesto en modo 'añadir'; total en modo 'extraer'." },
+      { "name": "Introduce la tasa", "text": "Tasa como porcentaje (p.ej. 21 para España, 10 para Japón, 20 para UK)." },
+      { "name": "Lee el desglose", "text": "Neto (pre-impuesto), importe del impuesto y total se muestran." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Por qué extraer es ÷ (1 + tasa) y no × tasa?", "a": "Porque el total ya incluye el impuesto sobre el original. Multiplicar da el impuesto sobre el total inclusivo, demasiado. Dividir entre (1 + tasa/100) revierte la suma correctamente." },
+    { "q": "¿Qué tasa para EE.UU.?", "a": "Sales tax US varía por estado y ciudad. Comunes: NYC 8.875%, LA 9.5%, Chicago 10.25%, Texas 6.25%, Florida 6%. Añade ciudad/condado en muchos sitios." },
+    { "q": "¿Es solo 10% el consumo japonés?", "a": "Mayormente sí — 10% estándar. Comida y bebida (no alcohol/restauración) van a tasa reducida 8%." },
+    { "q": "¿Los impuestos coinciden con el precio mostrado?", "a": "Depende del país. UE/UK/Japón suelen anunciar con impuestos. EE.UU., Australia y Canadá a menudo sin. Usa 'extraer' para inclusivo, 'añadir' para pre-impuesto." },
+    { "q": "¿Maneja varias tasas?", "a": "No a la vez. Para tasas combinadas (estatal + local), súmalas y usa la combinada." },
+    { "q": "¿Y facturas con IVA incluido?", "a": "Misma matemática: 'extraer del total' para ver IVA y neto. La mayoría del software contable lo hace automático." },
+    { "q": "¿Moneda?", "a": "Se muestra EUR en páginas en español, USD en otros lugares. Las matemáticas son independientes — usa cualquier unidad consistente." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Toda la matemática corre localmente en tu navegador." }
+  ]
+}
