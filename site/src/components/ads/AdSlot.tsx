@@ -72,6 +72,9 @@ export function AdSlot({
   }, [slot, lazy]);
 
   if (!siteConfig.adsense.client || !slot) {
+    // In production with no slot configured, render nothing (clean look pre-AdSense approval).
+    // In dev, show a labeled placeholder so layout work is visible.
+    if (process.env.NODE_ENV === "production") return null;
     return (
       <div
         className={`flex min-h-[100px] items-center justify-center rounded border border-dashed border-slate-300 bg-slate-50 text-xs text-slate-400 ${className ?? ""}`}
