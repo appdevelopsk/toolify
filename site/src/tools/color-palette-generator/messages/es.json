@@ -1,0 +1,69 @@
+{
+  "title": "Generador de paleta de color (5 esquemas desde una base)",
+  "shortDescription": "Genera paletas armoniosas desde un color base: complementario, análogo, triádico, tetrádico, monocromático. Click en muestra para copiar hex.",
+  "description": "Elige un color base, escoge un esquema de teoría del color y obtén una paleta coordinada. Click en muestras para copiar hex individuales, o copiar todo de una vez para herramientas de diseño y variables CSS.",
+  "metaDescription": "Generador gratis de paletas. 5 esquemas (complementario, análogo, triádico, tetrádico, monocromático) desde cualquier base. Click para copiar hex.",
+  "keywords": ["generador paleta color", "esquema color", "colores complementarios", "armonía color", "paleta diseño"],
+  "input": {
+    "baseColor": "Color base",
+    "scheme": "Esquema"
+  },
+  "scheme": {
+    "complementary": "Complementario (opuesto)",
+    "analogous": "Análogo (3 adyacentes)",
+    "triadic": "Triádico (3 equidistantes)",
+    "tetradic": "Tetrádico (4 equidistantes)",
+    "monochromatic": "Monocromático (5 luminosidades)"
+  },
+  "result": { "palette": "Paleta generada" },
+  "copy": "Copiar",
+  "copyAll": "Copiar todo",
+  "copied": "¡Copiado!",
+  "copyColor": "Copiar color",
+  "article": {
+    "sections": [
+      {
+        "heading": "Los cinco esquemas de teoría del color",
+        "paragraphs": [
+          "Complementario: dos colores en extremos opuestos del círculo (180°). Alto contraste, vibrante. Para acentos, CTAs y crear focos.",
+          "Análogo: tres colores adyacentes (30°). Armoniosos, bajo contraste. Comunes en la naturaleza; ideales para fondos y superficies UI.",
+          "Triádico: tres colores equidistantes (120°). Vibrante y equilibrado. Para diseños lúdicos o energéticos.",
+          "Tetrádico (rectángulo): cuatro colores formando rectángulo (90°). Paleta rica pero más difícil de equilibrar — usa uno dominante y otros como acentos.",
+          "Monocromático: tonos, tintes y matices de un solo tono. Sofisticado y unificado. Común en diseños minimalistas y branding corporativo."
+        ]
+      },
+      {
+        "heading": "Elegir color de partida",
+        "paragraphs": [
+          "Colores de marca: la mayoría parte de un logo o color de marca existente. Pruébalo como base en los 5 esquemas para encontrar el mejor encaje.",
+          "Inspiración: toma un color de fotografía, arte o naturaleza. Colores vívidos (alta saturación, luminosidad media) funcionan mejor de base; muy pálidos o oscuros producen paletas deslavadas.",
+          "Accesibilidad: asegúrate de que tu paleta final tenga contraste suficiente para texto. Usa el contrast checker para verificar pares fondo/texto WCAG AA (4.5:1 normal)."
+        ]
+      },
+      {
+        "heading": "Usar la paleta",
+        "paragraphs": [
+          "Variables CSS: define los colores como variables :root (--color-primary, --color-accent, etc.) para cambiar tema en un solo lugar.",
+          "Herramientas de diseño: pega los hex en bibliotecas de Figma, Sketch o Adobe XD. La mayoría aceptan hex directamente; algunas también HSL o nombres CSS.",
+          "Uso limitado: incluso con 5 colores, los diseños reales suelen usar 2-3 prominentemente y el resto poco. La regla 60-30-10 (60% dominante, 30% secundario, 10% acento) es buen punto de partida."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige color base", "text": "Usa el picker o pega un código hex." },
+      { "name": "Elige esquema", "text": "5 opciones: complementario, análogo, triádico, tetrádico, monocromático." },
+      { "name": "Click muestras para copiar", "text": "Cada muestra es botón — click para copiar su hex." },
+      { "name": "O copia todo a la vez", "text": "El botón 'Copiar todo' copia todos los hex separados por comas." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Qué esquema usar?", "a": "Análogo es la opción más segura — tres colores cercanos crean armonía sin monotonía. Complementario va bien para énfasis (CTAs). Monocromático para marcas mínimas/sofisticadas. Triádico para sensación lúdica/energética." },
+    { "q": "¿Más de 5 colores?", "a": "No con esta herramienta — generamos los 2-5 canónicos. Para paletas mayores, usa la salida análoga y crea sombras monocromáticas de cada (combina esquemas)." },
+    { "q": "¿Usa espacio de color perceptual?", "a": "Usamos matemática HSL, rápida y predecible. Para resultados perceptualmente uniformes (mejor para tuning de accesibilidad), avanzados usan OKLCH o CIELAB. HSL basta para casi todo el diseño." },
+    { "q": "¿Mi paleta será accesible?", "a": "No automáticamente. Los esquemas garantizan armonía estética, no contraste para texto. Verifica siempre combinaciones texto-sobre-fondo con el contrast checker antes de lanzar." },
+    { "q": "¿Guardar paletas favoritas?", "a": "Aún no — copia los hex a tu design system o notas. URLs de paleta guardable en el roadmap." },
+    { "q": "¿Y Material Design o Tailwind?", "a": "Esos son sistemas pre-curados. Genera un esquema base aquí y luego busca colores Material/Tailwind similares. Algunas apps exportan hex compatibles directamente." },
+    { "q": "¿Por qué mi paleta luce 'plana'?", "a": "Si tu base es muy pálida (alta luminosidad) o muy oscura (baja luminosidad), la paleta tiene rango dinámico limitado. Elige base con luminosidad media (40-60%) y alta saturación (70%+) para resultados vívidos." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Todos los cálculos corren localmente; nada se envía a un servidor." }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "title": "Conversor de notación científica (decimal ↔ científica)",
+  "shortDescription": "Convierte decimales a/desde notación científica (1.23 × 10^4) y de ingeniería (1.23e3). Bidireccional, con E-notation.",
+  "description": "Dos modos: decimal a científica calcula coeficiente y exponente; científica a decimal expande de vuelta. También se muestra notación de ingeniería (exponentes múltiplos de 3).",
+  "metaDescription": "Conversor gratis de notación científica. Decimal a científica (×10^n) y vuelta. E-notation, ingeniería. Para física, química, números muy grandes/pequeños.",
+  "keywords": ["conversor notación científica", "e notación", "notación ingeniería", "decimal a científica", "calculadora exponente"],
+  "dir": {
+    "toSci": "Decimal → Científica",
+    "toDec": "Científica → Decimal"
+  },
+  "input": {
+    "decimal": "Número decimal",
+    "coefficient": "Coeficiente",
+    "exponent": "Exponente (10^n)"
+  },
+  "result": {
+    "scientific": "Notación científica",
+    "eNotation": "E-notation",
+    "engineering": "Notación ingeniería",
+    "decimal": "Valor decimal"
+  },
+  "empty": "Introduce un número.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué es la notación científica",
+        "paragraphs": [
+          "Expresa números como coef × 10^exponente, donde coef está entre 1 y 10 (normalmente 1 ≤ coef < 10). Se usa para números muy grandes o muy pequeños difíciles en decimal.",
+          "Ejemplos: velocidad de la luz = 3 × 10⁸ m/s. Avogadro = 6.022 × 10²³. Masa del electrón = 9.109 × 10⁻³¹ kg. El exponente indica cuántos lugares mover el decimal: positivo derecha (multiplicar), negativo izquierda (dividir)."
+        ]
+      },
+      {
+        "heading": "E-notation en computación",
+        "paragraphs": [
+          "E-notation (1.23e4 = 1.23 × 10⁴) es la versión amigable para ordenador. JavaScript, Python, Excel y la mayoría de calculadoras la usan. La 'e' es solo notación — no hay 'e' (de Euler).",
+          "Por qué los ordenadores la usan: los teclados no tienen superíndice ni '×' fáciles. ASCII E o e funciona en cualquier input.",
+          "Nota: 'e' en regex u otros contextos significa cosas distintas. En números es específicamente '× 10 elevado a'."
+        ]
+      },
+      {
+        "heading": "Notación de ingeniería",
+        "paragraphs": [
+          "Similar a científica pero el exponente es siempre múltiplo de 3 (3, 6, 9, 12, …, o −3, −6, −9, …). Alinea con prefijos SI: kilo (10³), mega (10⁶), giga (10⁹), mili (10⁻³), micro (10⁻⁶), nano (10⁻⁹).",
+          "Ejemplo: 1.23 × 10⁴ en científica es 12.3 × 10³ en ingeniería, '12.3 kilo'. Útil en electrónica e ingeniería con prefijos SI.",
+          "Compromiso: la científica tiene coeficiente fijo (1 ≤ |coef| < 10); ingeniería permite rango mayor (1 ≤ |coef| < 1000) pero mejor mapeo a prefijos SI."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige dirección", "text": "Decimal → científica o científica → decimal." },
+      { "name": "Teclea el número o coef + exp", "text": "Cada dirección tiene su formato." },
+      { "name": "Lee el resultado", "text": "Incluye E-notation e ingeniería como bonus." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Para qué sirve el exponente?", "a": "Indica el orden de magnitud. 10⁹ es mil millones; 10⁻⁹ es nanométrico. Para comparar escalas muy distintas (atómica vs astronómica), los exponentes son el lenguaje natural." },
+    { "q": "¿1.23e4 es lo mismo que 1.23 × 10⁴?", "a": "Sí — mismo número, distinta notación. 'e4' es la forma amigable para ordenador. La mayoría de lenguajes y calculadoras la aceptan." },
+    { "q": "¿Precisión?", "a": "Coma flotante (15-17 cifras significativas). Para mayor precisión (1000+ dígitos), usa un CAS como SymPy o Mathematica." },
+    { "q": "¿Operar en científica?", "a": "Multiplicar: multiplica coeficientes, suma exponentes. Dividir: divide coeficientes, resta exponentes. Sumar/restar: pasa al mismo exponente y luego suma/resta coeficientes." },
+    { "q": "¿Por qué sale 'Infinity'?", "a": "Exponente demasiado grande para IEEE 754 doble (~308). Para mayores, usa CAS o librerías BigInt." },
+    { "q": "¿Qué es 'mantisa'?", "a": "Sinónimo antiguo del coeficiente — la parte antes de × 10^. Algunos textos lo usan. La convención moderna es 'coeficiente' o 'significand'." },
+    { "q": "¿Coeficientes negativos?", "a": "Sí. -3 × 10⁵ = -300,000. El signo va en el coeficiente, no en el exponente." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente; nada se envía a un servidor." }
+  ]
+}

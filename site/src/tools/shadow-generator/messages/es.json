@@ -1,0 +1,73 @@
+{
+  "title": "Generador de box-shadow CSS (con vista en vivo)",
+  "shortDescription": "Construye box-shadow CSS visualmente. Ajusta offset, blur, spread, color, opacidad e inset. Vista en vivo, CSS copiable.",
+  "description": "Seis presets comunes (suave, card, elevado, glow, neumórfico, inset). Ajusta todos los parámetros con sliders, ve el resultado en vivo y copia CSS listo.",
+  "metaDescription": "Generador gratis de box-shadow CSS con vista en vivo. Offset, blur, spread, color, opacidad, inset. 6 presets incluyendo neumórfico.",
+  "keywords": ["generador box shadow", "css shadow", "shadow css", "generador neumórfico", "drop shadow generator"],
+  "preset": {
+    "soft": "Suave",
+    "card": "Card",
+    "lifted": "Elevado",
+    "glow": "Glow",
+    "neumorphic": "Neumórfico",
+    "inset": "Inset"
+  },
+  "input": {
+    "x": "Offset X",
+    "y": "Offset Y",
+    "blur": "Blur",
+    "spread": "Spread",
+    "color": "Color",
+    "opacity": "Opacidad",
+    "inset": "Inset (sombra interior)"
+  },
+  "output": { "css": "Código CSS" },
+  "copy": "Copiar CSS",
+  "copied": "¡Copiado!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Los cinco parámetros de la sombra",
+        "paragraphs": [
+          "Offset X: desplazamiento horizontal. Positivo mueve la sombra a la derecha, negativo izquierda. Para iluminación desde arriba-izquierda (típica UI), un X positivo pequeño simula esa luz.",
+          "Offset Y: desplazamiento vertical. Positivo mueve abajo, simulando luz superior. Casi todas las UI usan Y positivo.",
+          "Blur: cuán suave es el borde. 0 = borde nítido (raro). 8-30px típico para cards y botones. Valores altos crean sombras suaves y oníricas.",
+          "Spread: extiende o reduce uniformemente. Positivo agranda; negativo encoge. Spread negativo + offset crea efecto 'elevado'.",
+          "Color/opacidad: las sombras suelen ser negras con opacidad baja (10-30%). Sombras coloreadas son tendencia pero más difíciles. Combina con la luminosidad del fondo — sombras muy oscuras en UIs oscuras desaparecen, muy claras en UIs claras carecen de contraste."
+        ]
+      },
+      {
+        "heading": "Sombras inset",
+        "paragraphs": [
+          "Una inset se dibuja dentro del elemento. Usos: estados pulsados, inputs hundidos, efectos neumórficos '3D pulsado'.",
+          "Las inset respetan el border-radius e ignoran overflow. Útiles para añadir profundidad visual a elementos planos sin cambiar layout."
+        ]
+      },
+      {
+        "heading": "Neumorfismo y la 'soft UI'",
+        "paragraphs": [
+          "El neumorfismo (popular 2020-2022) usa dos sombras opuestas — una clara, una oscura — para que los elementos parezcan extruidos del mismo fondo. Nuestro preset 'Neumórfico' muestra una sombra oscura; para neumorfismo completo, combina con inset clara opuesta: 'inset -8px -8px 20px rgba(255,255,255,0.5), 8px 8px 20px rgba(0,0,0,0.12)'.",
+          "Nota: el neumorfismo puro tiene problemas de accesibilidad — la falta de contraste hace difícil distinguir elementos. Los diseños modernos lo usan con moderación, a menudo combinado con sombras tradicionales."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige un preset", "text": "O construye desde cero con los sliders." },
+      { "name": "Ajusta offset X/Y", "text": "Dirección de la sombra." },
+      { "name": "Ajusta blur y spread", "text": "Blur suaviza; spread agranda." },
+      { "name": "Configura color y opacidad", "text": "La mayoría de UI usa negro 10-30%." },
+      { "name": "Activa inset", "text": "Para sombras interiores (botón pulsado, input hundido)." },
+      { "name": "Copia CSS", "text": "Pega en la propiedad box-shadow del stylesheet." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Múltiples sombras?", "a": "CSS soporta sombras separadas por coma: 'box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)'. La herramienta genera una a la vez; combina manualmente." },
+    { "q": "¿Cómo neumórfico?", "a": "Combina sombra oscura abajo-derecha con clara arriba-izquierda, ambas inset o ambas outset. Ejemplo: '8px 8px 20px rgba(0,0,0,0.12), -8px -8px 20px rgba(255,255,255,0.7)'. Nuestro preset muestra la mitad oscura; añade la clara a mano." },
+    { "q": "¿Diferencia blur vs spread?", "a": "Blur suaviza el borde (transparencia gradiente). Spread cambia el tamaño total (más o menos que el elemento). Blur=20 spread=0 es glow suave del tamaño; blur=0 spread=20 es sombra dura 20px más grande." },
+    { "q": "¿Por qué mi sombra luce plana?", "a": "Probablemente opacidad baja, sin offset, o color muy cercano al fondo. Prueba Y=8, blur=24, opacidad=0.18 como punto de partida — visible en la mayoría de fondos claros." },
+    { "q": "¿Sirve para text-shadow?", "a": "Casi — text-shadow usa la misma sintaxis menos 'spread' e 'inset'. Ajusta a mano tras copiar: 'X Y blur color' (quita spread e inset)." },
+    { "q": "¿Rendimiento?", "a": "Box-shadow es GPU en navegadores modernos. Muchas sombras en muchos elementos pueden ralentizar el scroll. Una sombra en cards y botones: cero preocupación." },
+    { "q": "¿Sombras o bordes?", "a": "Ambos sirven. Los bordes son más nítidos y accesibles. Las sombras lucen más suaves/elevadas. UIs flat-ish modernas suelen usar ambos: borde fino + sombra suave." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Toda la vista previa y generación corren localmente." }
+  ]
+}

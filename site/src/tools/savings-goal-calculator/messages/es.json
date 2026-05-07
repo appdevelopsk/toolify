@@ -1,0 +1,65 @@
+{
+  "title": "Calculadora de meta de ahorro (tiempo a la meta)",
+  "shortDescription": "Cuánto tarda en alcanzar una meta de ahorro dado un saldo inicial, aporte mensual y rendimiento anual.",
+  "description": "Introduce meta, saldo actual, ahorro mensual y rendimiento esperado. La calculadora resuelve los meses hasta llegar a la meta.",
+  "metaDescription": "Calculadora gratis de meta de ahorro. Cuánto tarda alcanzar un importe con aportes mensuales y tasa de interés. Composición mensual.",
+  "keywords": ["calculadora meta ahorro", "tiempo ahorrar", "objetivo ahorro", "cuánto ahorrar", "calculadora ahorro"],
+  "empty": "Introduce la meta y un aporte mensual o tasa > 0.",
+  "input": {
+    "goal": "Meta",
+    "start": "Saldo inicial",
+    "monthly": "Aporte mensual",
+    "ratePct": "Rendimiento anual %"
+  },
+  "result": {
+    "timeToGoal": "Tiempo a la meta",
+    "years": "años",
+    "months": "meses",
+    "totalMonths": "Total meses",
+    "totalContrib": "Total aportado",
+    "interest": "Interés ganado"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo se calcula el tiempo",
+        "paragraphs": [
+          "La fórmula estándar de FV es FV = P × (1 + r)^n + M × ((1 + r)^n − 1) / r, donde P es saldo inicial, M aporte mensual, r tasa mensual (anual / 12) y n meses. Igualando FV = meta y despejando n: n = log((G × r + M) / (P × r + M)) / log(1 + r).",
+          "Si la tasa es cero, la fórmula se reduce a (G − P) / M meses. La calculadora elige automáticamente y redondea al alza al mes entero, ya que no se puede 'parcialmente' aportar un mes."
+        ]
+      },
+      {
+        "heading": "¿Qué pesa más: aporte o tasa?",
+        "paragraphs": [
+          "Para horizontes típicos (1-10 años), domina el aporte mensual. Pasar de $300 a $500/mes genera mucha más diferencia que pasar del 3% al 5%. Tiempo y aporte son lineales; la tasa es exponencial pero solo en horizontes muy largos.",
+          "Para metas de 20+ años (jubilación, universidad), la tasa manda. Los mismos $500/mes durante 30 años producen totales muy distintos al 4% vs 8%. Por eso ahorrar pronto en jubilación es exponencialmente más valioso que tarde."
+        ]
+      },
+      {
+        "heading": "Tasas realistas",
+        "paragraphs": [
+          "Cuentas alta remuneración: 4-5% en EE.UU. Money market: similar. CD: 4-5% bloqueado. Bonos: 4-5% pero con bloqueo más largo.",
+          "Índice diversificado (S&P 500 medio histórico): ~10% nominal / 7% real. Usa 6-7% para planeamiento conservador.",
+          "La inflación come 2-4% al año. Para metas en 'dinero de hoy', resta inflación esperada de la tasa nominal."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce tu meta", "text": "El importe a alcanzar." },
+      { "name": "Saldo inicial", "text": "Lo que tienes hoy; puede ser 0." },
+      { "name": "Aporte mensual", "text": "Lo que añadirás cada mes." },
+      { "name": "Rendimiento anual esperado", "text": "Conservador: 4%. Bolsa: 6-8%." },
+      { "name": "Lee el resultado", "text": "Años y meses a la meta, total aportado e interés ganado." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Por qué redondea al alza?", "a": "Porque no puedes hacer un aporte parcial de mes. Si la mate dice 32.4 meses, llegarás en el mes 33 (asumiendo aporte constante)." },
+    { "q": "¿Qué tasa usar?", "a": "Cuentas alta remuneración: 4-5%. S&P 500 a largo plazo: 6-8%. Ultra conservador: 0% para ver cuánto tarda solo ahorro." },
+    { "q": "¿Incluyo inflación?", "a": "Si la meta está en dinero de hoy, resta inflación de la tasa (p.ej. 7% nominal − 3% = 4% real). La calculadora dará una respuesta de 'poder adquisitivo real'." },
+    { "q": "¿Asume capitalización mensual?", "a": "Sí — el interés capitaliza en la misma cadencia mensual que los aportes. Para casi todos los productos coincide bien con la realidad." },
+    { "q": "¿Y si ahorro 0 con tasa 0?", "a": "Entonces no puedes alcanzar una meta superior al saldo inicial. La calculadora no devuelve resultado en ese caso." },
+    { "q": "¿El interés tributa?", "a": "En la mayoría de jurisdicciones sí (a menos que esté en cuenta con ventaja fiscal). Considera la tasa post-impuestos si tu meta es de poder adquisitivo neto." },
+    { "q": "¿Y si mi aporte cambia?", "a": "Ejecuta la calculadora por fases. Para aportes variables, una hoja de cálculo es más flexible." },
+    { "q": "¿Los datos salen del navegador?", "a": "No — los cálculos corren localmente." }
+  ]
+}

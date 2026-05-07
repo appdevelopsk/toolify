@@ -1,0 +1,67 @@
+{
+  "title": "Generador de gradiente CSS (linear, radial, conic)",
+  "shortDescription": "Construye gradientes CSS visualmente: linear, radial y conic. Múltiples paradas de color, control de ángulo, presets. Copia CSS listo.",
+  "description": "Elige tipo, ángulo, añade o quita paradas con posiciones. Vista previa en vivo. Copia el background CSS de un click.",
+  "metaDescription": "Generador gratis de gradientes CSS con vista en vivo. Linear, radial y conic. Multi-stop, control de ángulo, código CSS listo para copiar.",
+  "keywords": ["generador gradiente CSS", "linear gradient", "radial gradient", "conic gradient", "creador gradiente"],
+  "preview": "Vista previa",
+  "input": {
+    "type": "Tipo",
+    "angle": "Ángulo",
+    "stops": "Paradas"
+  },
+  "type": {
+    "linear": "Linear",
+    "radial": "Radial",
+    "conic": "Conic"
+  },
+  "output": {
+    "css": "Código CSS"
+  },
+  "addStop": "Añadir parada",
+  "removeStop": "Quitar parada",
+  "copy": "Copiar CSS",
+  "copied": "¡Copiado!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Tres tipos de gradiente en CSS",
+        "paragraphs": [
+          "Linear: los colores transicionan en línea recta a un ángulo. 0° apunta arriba, 90° derecha (lectura por defecto), 180° abajo. Lo más común para fondos, botones y heros.",
+          "Radial: los colores transicionan hacia fuera desde un punto central. Forma circular (default) o elíptica. Ideal para spotlights, soles, centros llamativos.",
+          "Conic: los colores rotan alrededor de un punto central, como una rueda de color. Menos común pero útil para gráficos circulares, esferas, spinners decorativos. Soportado en navegadores modernos desde 2020."
+        ]
+      },
+      {
+        "heading": "Paradas y sistema de porcentaje",
+        "paragraphs": [
+          "Cada parada tiene color y posición de 0% a 100%. 0% es el inicio del gradiente, 100% el fin. Dos paradas dan un gradiente suave de dos colores. Añadir una tercera en medio crea mezcla tricolor o banda nítida según posicionamiento.",
+          "Para transiciones nítidas (sin mezcla) coloca dos paradas en la misma posición con colores distintos. Por ejemplo, '#000 50%, #fff 50%' crea un corte negro-blanco en la mitad. Así se hacen fondos 'a rayas'."
+        ]
+      },
+      {
+        "heading": "Rendimiento y accesibilidad",
+        "paragraphs": [
+          "Los gradientes se renderizan nativamente sin requests HTTP, a diferencia de imágenes. Escalan infinitamente sin pérdida. Animables: transiciona background-position o anima paradas con custom properties.",
+          "Accesibilidad: no pongas texto sobre un gradiente complejo si el contraste varía. Usa overlay plano, asegura que la luminosidad media contraste con el texto, o testea con el contrast checker. WCAG AA exige 4.5:1 para texto normal, 3:1 para grande."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige preset", "text": "O construye desde cero eligiendo tipo, ángulo y paradas." },
+      { "name": "Configura ángulo", "text": "Para linear y conic: 0-360°. Radial usa el centro como origen." },
+      { "name": "Añade paradas de color", "text": "Mínimo dos, sin máximo práctico. Cada una con color y posición 0-100%." },
+      { "name": "Copia el CSS", "text": "Click 'Copiar CSS' — pega directamente en background." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Soporte en navegadores antiguos?", "a": "Linear y radial funcionan en todos los modernos: Edge, Firefox, Chrome, Safari (desde 2014). Conic requiere Chrome 69+, Firefox 83+, Safari 12.1+ — para antiguos, fallback a linear." },
+    { "q": "¿Sirve en React Native o apps móviles?", "a": "Los gradientes CSS web no se traducen directamente — usa librerías como `react-native-linear-gradient`. Las paradas se trasladan, la sintaxis difiere. UI iOS y Android usan APIs específicas." },
+    { "q": "¿Puedo usar nombres de color?", "a": "Sí. Sustituye cualquier hex (p.ej. #ff0000) por el nombre CSS (red, dodgerblue, etc.) en el campo de texto junto al picker." },
+    { "q": "¿Por qué mi conic se ve raro?", "a": "Conic rota en sentido horario desde el ángulo dado. Va mejor con varias paradas cubriendo los 360°. Con solo 2 paradas suele verse incompleto." },
+    { "q": "¿Cómo creo un efecto 'glow'?", "a": "Usa radial con la parada final transparente: p.ej. 'radial-gradient(circle, rgba(255,200,0,0.6) 0%, transparent 70%)'." },
+    { "q": "¿Puedo animar el gradiente?", "a": "CSS no anima paradas directamente, pero puedes animar background-position para movimiento, o usar custom properties con JS." },
+    { "q": "¿Por qué el CSS sale tan largo?", "a": "Cada parada añade color y posición. Muchas paradas → CSS verboso. Para resultados simples, quédate con 2-3 paradas." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Todo se computa localmente; nada se envía." }
+  ]
+}
