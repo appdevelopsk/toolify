@@ -1,0 +1,70 @@
+{
+  "title": "Calculadora de subred IPv4 (CIDR, máscara, hosts)",
+  "shortDescription": "Calcula dirección de red, broadcast, rango de host, netmask, wildcard, hosts totales/utilizables desde cualquier IPv4 + CIDR. Incluye binario y clase.",
+  "description": "Escribe una IPv4 con CIDR opcional (p.ej. 192.168.1.10/24). Devuelve red, broadcast, primer/último host, total, netmask, wildcard, clase IP, público/privado, binario.",
+  "metaDescription": "Calculadora gratis IPv4. CIDR, netmask, wildcard, red/broadcast, rango de host, hosts utilizables, público/privado. Vista binaria.",
+  "keywords": ["calculadora subred", "calculadora cidr", "subred ipv4", "calculadora netmask", "calculadora ip"],
+  "input": {
+    "cidr": "IP / CIDR",
+    "hint": "Formato: 192.168.1.10/24 (CIDR opcional, default /24)"
+  },
+  "result": {
+    "network": "Red",
+    "ip": "Dirección IP",
+    "netmask": "Máscara de subred",
+    "wildcard": "Wildcard",
+    "networkAddr": "Dirección de red",
+    "broadcast": "Broadcast",
+    "hostMin": "Primer host",
+    "hostMax": "Último host",
+    "totalAddresses": "Direcciones totales",
+    "usableHosts": "Hosts utilizables",
+    "ipClass": "Clase IP",
+    "private": "Privada RFC 1918",
+    "binary": "Binario"
+  },
+  "empty": "Introduce IPv4 con /CIDR opcional.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué significa la notación CIDR",
+        "paragraphs": [
+          "CIDR (Classless Inter-Domain Routing) es la barra + número tras la IP — '192.168.1.10/24'. Indica cuántos bits del comienzo son la red (vs el host). /24 = 24 bits red = 8 bits host = 256 direcciones, 254 utilizables.",
+          "CIDRs comunes: /32 host único, /30 enlace (4 dir, 2 utiliz), /29 subred pequeña (8/6), /24 LAN (256/254), /16 red grande (65k), /8 bloque ISP (16M). Cuanto menor el CIDR, mayor la red."
+        ]
+      },
+      {
+        "heading": "Red, broadcast y hosts utilizables",
+        "paragraphs": [
+          "Dirección de red: la primera, con bits de host a cero. Identifica la subred; no asignable a dispositivo.",
+          "Broadcast: la última, bits de host a uno. Para enviar a todo el mundo en la subred; no asignable.",
+          "Hosts utilizables: total menos red y broadcast = 2^(32−CIDR) − 2. Excepción: /31 (enlaces punto a punto) y /32 (un host) tratan todas como utilizables según RFC 3021."
+        ]
+      },
+      {
+        "heading": "Públicas vs privadas",
+        "paragraphs": [
+          "RFC 1918 reserva tres rangos para redes privadas: 10.0.0.0/8 (16M), 172.16.0.0/12 (1M), 192.168.0.0/16 (65k). Routers domésticos suelen usar 192.168.1.0/24 o 192.168.0.0/24.",
+          "Las públicas son enrutables en internet y las asignan registros regionales (ARIN, RIPE, APNIC, etc.). Cuestan dinero y escasean — el agotamiento IPv4 impulsó CIDR e IPv6.",
+          "La calculadora detecta si una IP es privada; útil para verificar diseño o confirmar que no se filtran privadas a internet."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escribe una dirección", "text": "Con o sin /CIDR. Si omites, /24 por defecto." },
+      { "name": "Lee la info de red", "text": "Red, broadcast, rango, máscara, wildcard." },
+      { "name": "Comprueba clase y privacidad", "text": "Verificación rápida de espacio." },
+      { "name": "Vista binaria para depurar", "text": "Útil cuando razonas a nivel de bit o alineas subredes." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Por qué hay 2 menos hosts utilizables?", "a": "La primera (todos host bits 0) es identificador de red y la última (todos 1) es broadcast. Ambas reservadas." },
+    { "q": "¿Por qué /31 tiene 2 utilizables y no 0?", "a": "RFC 3021 permite /31 para enlaces P2P (entre routers). Ambas son utilizables; las reservas no aplican." },
+    { "q": "¿Diferencia netmask vs wildcard?", "a": "Netmask tiene 1s en bits de red, 0s en host (255.255.255.0). Wildcard es el inverso (0.0.0.255) — usado en ACLs Cisco y OSPF." },
+    { "q": "¿Cómo subdividir una red?", "a": "Toma una red padre y divide añadiendo bits al CIDR. /24 → /25 hace 2 subredes, /24 → /26 hace 4. Útil para departamentos o aislar IoT/invitados." },
+    { "q": "¿Subred mínima?", "a": "/32 — una sola IP. /31 es la mínima 'normal' (2). /30 común para enlaces router-router (4/2)." },
+    { "q": "¿Sirve para IPv6?", "a": "Aún no — solo IPv4. IPv6 es similar pero con direcciones de 128 bits, hex y otras convenciones. Podríamos añadirlo más adelante." },
+    { "q": "¿Subred mayor?", "a": "/0 cubre los 4.300M de IPv4 — todo el espacio. /1 lo divide en mitades. /8 son 16M, históricamente un 'clase A' (p.ej. 10.0.0.0/8)." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente; nada se envía a un servidor." }
+  ]
+}

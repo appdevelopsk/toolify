@@ -1,0 +1,71 @@
+{
+  "title": "Calculadora de estadísticas (media, mediana, σ, cuartiles)",
+  "shortDescription": "Calcula media, mediana, moda, desviación estándar, varianza, rango y cuartiles desde una lista. Modo muestra o población.",
+  "description": "Pega una lista de números (separados por coma, espacio o salto). La calculadora devuelve estadísticas descriptivas: tendencia central, dispersión y cuartiles.",
+  "metaDescription": "Calculadora gratis de estadísticas. Pega números para media, mediana, moda, desviación estándar, varianza, rango y cuartiles. Muestra/población.",
+  "keywords": ["calculadora estadística", "media mediana moda", "desviación estándar", "calculadora varianza", "calculadora cuartiles"],
+  "empty": "Introduce números separados por comas, espacios o saltos.",
+  "placeholder": "12, 15, 18, 22, 25, 25, 30, 35, 40",
+  "input": {
+    "values": "Números",
+    "sampleMode": "Usar desviación muestral (n−1)"
+  },
+  "result": {
+    "count": "Cuenta (n)",
+    "sum": "Suma",
+    "mean": "Media",
+    "median": "Mediana",
+    "mode": "Moda",
+    "none": "(sin valores repetidos)",
+    "range": "Rango",
+    "min": "Mínimo",
+    "max": "Máximo",
+    "q1": "Q1 (percentil 25)",
+    "q3": "Q3 (percentil 75)",
+    "stdev": "Desviación estándar",
+    "variance": "Varianza"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué mide cada estadístico",
+        "paragraphs": [
+          "Media: suma dividida por cuenta. Sensible a outliers — un valor enorme tira de ella lejos del valor típico. Mejor cuando los datos son simétricos.",
+          "Mediana: el valor del medio al ordenar. Robusta a outliers. Mejor que la media para datos sesgados (ingresos, precios de vivienda).",
+          "Moda: el valor más frecuente. Más útil para datos discretos (encuestas, dados). En continuos a menudo no tiene sentido y reportamos 'ninguno' si no se repite valor.",
+          "Desviación estándar: distancia típica a la media, en las mismas unidades. Aproximadamente dos tercios de los valores caen dentro de ±1 σ (en distribuciones normales)."
+        ]
+      },
+      {
+        "heading": "Muestra vs población",
+        "paragraphs": [
+          "Si tus números son toda la población (cada empleado, cada día del mes), usa σ poblacional: divide entre n. Desactiva 'Desviación muestral'.",
+          "Si son una muestra de una población mayor (encuesta a 100 de 10,000 clientes), usa σ muestral: divide entre n−1 (corrección de Bessel). Es el default y lo que usan los cursos y el software.",
+          "La diferencia disminuye con n. Para n=100 difieren 0.5%; para n=10 difieren 5%. En muestras muy pequeñas, la elección importa."
+        ]
+      },
+      {
+        "heading": "Cuartiles e IQR",
+        "paragraphs": [
+          "Q1 (primer cuartil, percentil 25) es la mediana de la mitad inferior. Q3 (tercer cuartil, percentil 75) la de la superior. El rango intercuartílico (IQR = Q3 − Q1) describe el 50% central y es robusto a outliers.",
+          "Los box plots usan estos: la caja va de Q1 a Q3, con la mediana como línea interna. Los whiskers llegan a los extremos dentro de 1.5 × IQR; lo demás se grafica como outliers."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pega tus números", "text": "Separados por comas, espacios, tabs o saltos. Mezclas funcionan." },
+      { "name": "Muestra o población", "text": "Muestra (n−1) por defecto. Cambia si tus datos son toda la población." },
+      { "name": "Lee resultados", "text": "Todas las stats en vivo." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Cuántos números puedo pegar?", "a": "Hasta ~100,000 razonable. Más allá el navegador se ralentiza. Para datasets grandes usa una herramienta de programación." },
+    { "q": "¿Decimales?", "a": "Usa punto (.) como separador decimal sea cual sea tu locale: 3.14, no 3,14." },
+    { "q": "¿Por qué la moda es 'ninguno'?", "a": "Porque ningún valor se repite. La moda solo tiene sentido si al menos un valor aparece dos o más veces." },
+    { "q": "¿Muestra o población para datos de mi clase?", "a": "Si tratas la clase como muestra del colegio, muestra (n−1). Si la clase ES la población, población (n)." },
+    { "q": "¿Diferencia entre desviación y varianza?", "a": "Varianza es la distancia cuadrada media a la media; la desviación es su raíz. La desviación está en las mismas unidades de los datos, por eso es más útil." },
+    { "q": "¿Por qué Q1 difiere de mi calculadora?", "a": "Existen distintos métodos (Método 1, Método 2, R-default, Excel). Usamos el de mediana de mitad inferior. Cursos introductorios suelen usar este; QUARTILE() de hojas puede diferir un poco." },
+    { "q": "¿Negativos?", "a": "Sí, totalmente soportados." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Los cálculos corren localmente; nada se envía." }
+  ]
+}

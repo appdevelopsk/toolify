@@ -1,0 +1,72 @@
+{
+  "title": "Calculadora de triángulo (rectángulo, SSS, SAS)",
+  "shortDescription": "Calcula área, perímetro, lados y ángulos de un triángulo. Tres modos: rectángulo (Pitágoras), tres lados (SSS), dos lados + ángulo (SAS).",
+  "description": "Elige modo, introduce valores conocidos y obtén lados, ángulos, área y perímetro. Valida la desigualdad triangular en SSS.",
+  "metaDescription": "Calculadora gratis de triángulos. Rectángulo (Pitágoras), SSS o SAS. Devuelve lados, ángulos, área y perímetro. Útil para geometría y construcción.",
+  "keywords": ["calculadora triángulo", "teorema Pitágoras", "ley cosenos", "área triángulo", "resolver triángulo"],
+  "empty": "Introduce valores para el modo elegido.",
+  "invalid": "Triángulo no válido: desigualdad triangular (el lado mayor debe ser menor que la suma de los otros dos).",
+  "mode": {
+    "right": "Triángulo rectángulo",
+    "sss": "Tres lados (SSS)",
+    "sas": "Dos lados + ángulo (SAS)"
+  },
+  "input": {
+    "legA": "Cateto a",
+    "legB": "Cateto b",
+    "sideA": "Lado a",
+    "sideB": "Lado b",
+    "sideC": "Lado c",
+    "angleC": "Ángulo C (grados)"
+  },
+  "result": {
+    "area": "Área",
+    "perim": "Perímetro",
+    "sides": "Lados",
+    "angles": "Ángulos"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Tres modos para tres problemas",
+        "paragraphs": [
+          "Rectángulo (catetos a, b): el caso más común. Hipotenusa c = √(a² + b²) por Pitágoras. Ángulo A = arctan(a/b), B = arctan(b/a), C = 90°. Área = (a × b) / 2.",
+          "Tres lados (SSS): cuando conoces los tres. Valida con la desigualdad triangular (mayor < suma otros). Ángulos por ley de cosenos: cos A = (b² + c² − a²) / (2bc). Área por Herón: √(s(s−a)(s−b)(s−c)) con s = (a+b+c)/2.",
+          "Dos lados + ángulo entre ellos (SAS): tercer lado por ley de cosenos: c = √(a² + b² − 2ab cos C). Otros ángulos por ley de senos. Área = (1/2) × a × b × sin C."
+        ]
+      },
+      {
+        "heading": "Cuándo usar cada modo",
+        "paragraphs": [
+          "Rectángulo es lo más común — esquina de pared, pendiente de tejado, diagonal de TV desde ancho y alto. Pitágoras es de las fórmulas más usadas en construcción.",
+          "SSS aparece en topografía, navegación y cualquier caso donde mides tres lados directamente. Útil para verificar la forma desde medidas físicas.",
+          "SAS es para cuando tienes dos lados con un ángulo conocido entre ellos pero el tercero no se ha medido o es difícil de alcanzar. Común en clases de trigonometría."
+        ]
+      },
+      {
+        "heading": "Aplicaciones prácticas",
+        "paragraphs": [
+          "Construcción: pendiente de tejado desde rise y run (rectángulo). 'Regla del 3-4-5' del carpintero: un 3-4-5 da ángulo recto sin transportador.",
+          "Navegación: la triangulación usa SSS o SAS para localizar desde tres puntos conocidos. La misma matemática alimenta el GPS (con correcciones relativistas).",
+          "Gráficos: todo modelo 3D se descompone en triángulos. La fórmula del área aparece en shaders calculando iluminación.",
+          "Astronomía: las medidas de paralaje usan principios SSS. El ángulo Sol-Tierra-estrella da la distancia mediante trigonometría simple."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige modo", "text": "Rectángulo, SSS o SAS." },
+      { "name": "Introduce valores", "text": "Cada modo pide entradas distintas." },
+      { "name": "Lee las incógnitas", "text": "Lados, ángulos, área y perímetro." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Qué es la desigualdad triangular?", "a": "Para que tres longitudes formen triángulo, la suma de cualesquiera dos debe superar al tercero. 3, 4, 5 vale (3+4=7 > 5); 1, 2, 5 no (1+2=3 < 5). La calculadora lo detecta en SSS." },
+    { "q": "¿Precisión?", "a": "Coma flotante (~15-17 cifras). En entradas típicas el error es mucho menor que el de medición real." },
+    { "q": "¿Ángulos en radianes?", "a": "Aún no — usamos grados. Convierte con radianes × 180/π o usa el angle converter." },
+    { "q": "¿Y triángulos obtusos?", "a": "Todos los modos los manejan correctamente. En SAS asegúrate de que el ángulo entre los lados esté entre 0° y 180° excluyente." },
+    { "q": "¿Por qué no funciona para todo 'dos lados y un ángulo'?", "a": "Soportamos SAS (el ángulo ENTRE los dos lados). El caso ambiguo (SSA — ángulo y luego dos lados, uno opuesto al ángulo) puede tener 0, 1 o 2 triángulos. SSS y SAS son inequívocos." },
+    { "q": "¿3-4-5 obtuso?", "a": "3-4-5 es rectángulo. Para obtuso prueba 4-5-7 en SSS — el ángulo mayor pasa de 90°." },
+    { "q": "¿Sólo con ángulos?", "a": "No puedes — los ángulos solos determinan forma pero no tamaño. Necesitas al menos un lado. Dos ángulos + un lado bastan (el tercer ángulo es 180 menos la suma)." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente; nada se envía a un servidor." }
+  ]
+}
