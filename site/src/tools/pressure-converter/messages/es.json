@@ -1,0 +1,71 @@
+{
+  "title": "Conversor de presión (Pa, bar, psi, atm, mmHg)",
+  "shortDescription": "Convierte unidades de presión: Pascal, bar, psi, atmósfera, mmHg, Torr y más. Todas se actualizan al cambiar una.",
+  "description": "Escribe un valor, elige unidad y ve los equivalentes en 12 unidades a la vez. Incluye SI (Pa, kPa, MPa, hPa), industrial (bar, psi), atmosférica (atm, Torr, mmHg), y pies de columna de agua.",
+  "metaDescription": "Conversor gratis de presión. Pa, hPa, kPa, MPa, bar, psi, atm, mmHg, Torr, inHg y más. Todas las unidades lado a lado.",
+  "keywords": ["conversor presión", "pa a psi", "bar a psi", "atm a mmHg", "unidades presión"],
+  "empty": "Introduce un valor y elige una unidad.",
+  "input": {
+    "value": "Valor",
+    "from": "Convertir desde"
+  },
+  "unit": {
+    "Pa": "Pascal",
+    "hPa": "Hectopascal",
+    "kPa": "Kilopascal",
+    "MPa": "Megapascal",
+    "bar": "Bar",
+    "mbar": "Milibar",
+    "atm": "Atmósfera",
+    "psi": "PSI (libras por pulgada cuadrada)",
+    "mmHg": "mmHg",
+    "inHg": "inHg",
+    "Torr": "Torr",
+    "ft_H2O": "Pies de agua"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Unidades y dónde se usan",
+        "paragraphs": [
+          "Base SI: Pascal (Pa) es fuerza/área, 1 N/m². Es pequeño — la presión atmosférica son ~100,000 Pa — así se usan kPa, hPa, MPa. El hectopascal (100 Pa) coincide con el viejo 'milibar' por eso el tiempo usa hPa.",
+          "Industrial e ingeniería: bar (100,000 Pa, ≈ 1 atm) ampliamente usado en Europa para neumáticos e industria. PSI estándar US para neumáticos (32 PSI típico), neumática e hidráulica. 1 bar ≈ 14.5 psi.",
+          "Atmosférica y meteorología: 1 atm estándar = 101,325 Pa, presión media a nivel del mar. Unidades antiguas como mmHg y Torr siguen en medicina (tensión: 120/80 mmHg), vacío y aviación."
+        ]
+      },
+      {
+        "heading": "Conversiones de referencia",
+        "paragraphs": [
+          "1 atm = 101,325 Pa = 1.01325 bar = 14.696 psi = 760 mmHg = 760 Torr",
+          "1 bar = 100,000 Pa = 100 kPa = 0.987 atm = 14.504 psi",
+          "1 psi = 6,894.757 Pa = 6.895 kPa = 0.0689 bar = 51.715 mmHg",
+          "1 kPa = 7.501 mmHg ≈ 0.145 psi",
+          "Memorizarlas es útil en ingeniería y ciencia donde la confusión es común. La calculadora hace la mate, pero conocer el ballpark evita errores catastróficos."
+        ]
+      },
+      {
+        "heading": "Manométrica vs absoluta",
+        "paragraphs": [
+          "Manométrica (gauge) mide presión sobre la atmosférica. PSIG significa sobre atmósfera — un neumático a 32 psi tiene ~46.7 psi absoluta (32 gauge + 14.7 atm).",
+          "Absoluta se mide desde el vacío (0 psi). PSIA es lo que usan las fórmulas físicas. Aplicaciones industriales y de consumo suelen usar gauge; física y aviación absoluta.",
+          "Este conversor opera en valores absolutos — las presiones se convierten como si fuesen absolutas. Para gauge → absoluta, suma 1 atm (14.7 psi o 1.013 bar). Para absoluta → gauge, resta."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escribe el valor", "text": "Entrada numérica." },
+      { "name": "Elige unidad origen", "text": "Usa el dropdown para indicar en qué unidad está." },
+      { "name": "Lee las 12 conversiones", "text": "Todas se actualizan a la vez. La unidad origen se resalta." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Diferencia mbar vs hPa?", "a": "Numéricamente idénticos: 1 mbar = 1 hPa = 100 Pa. Meteorólogos prefieren hPa como SI; etiquetas antiguas suelen decir mbar." },
+    { "q": "¿Cuánto vale un 'bar'?", "a": "1 bar = 100,000 Pa = 100 kPa, ligeramente menos que 1 atmósfera estándar (1 atm = 1.01325 bar). Número redondo conveniente cerca de la presión atmosférica." },
+    { "q": "¿Por qué neumáticos en PSI en EE.UU. y bar en Europa?", "a": "Histórico: EE.UU. imperial, Europa métrico. Presiones de 30-35 psi en EE.UU. equivalen a ~2.07-2.41 bar. Las gasolineras modernas tienen ambos tipos." },
+    { "q": "¿Diferencia mmHg vs Torr?", "a": "Prácticamente idénticas: 1 Torr = 1 mmHg = 133.322 Pa. Torr deriva de la misma física; mmHg refiere a la columna de mercurio. Algunos contextos científicos prefieren uno u otro." },
+    { "q": "¿Sirve para vacío?", "a": "El vacío es solo presión muy baja. Atmosférica 760 Torr; vacío medio 0.1 Torr; alto 10⁻⁶ Torr. La calculadora maneja valores pequeños hasta precisión de coma flotante (~10⁻⁹ Pa)." },
+    { "q": "¿Soporta gauge y absoluta?", "a": "Implícitamente absoluta. Convierte gauge → absoluta sumando 1 atm antes de introducir, y vuelta tras." },
+    { "q": "¿Y los pies de agua?", "a": "Usados en fontanería e hidráulica. 1 ft de columna de agua = 2989 Pa ≈ 0.433 psi. Útil para presión de tanque de agua o lecturas de manómetro." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. La conversión corre localmente; nada se envía a un servidor." }
+  ]
+}

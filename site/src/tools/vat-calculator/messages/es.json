@@ -1,0 +1,76 @@
+{
+  "title": "Calculadora VAT / IVA (tasas internacionales)",
+  "shortDescription": "Añade o quita IVA/GST/sales tax. Presets rápidos para España, Japón, UK, países UE, Australia, Canadá, China.",
+  "description": "Dos modos: 'Añadir IVA' calcula bruto desde neto + tasa; 'Quitar IVA' calcula neto desde bruto. Tasa custom más presets de un clic para grandes jurisdicciones.",
+  "metaDescription": "Calculadora gratis de IVA/GST. Añade o quita IVA de cualquier importe. Presets para España, Japón, UK, UE, Australia, Canadá, China.",
+  "keywords": ["calculadora vat", "calculadora gst", "calculadora iva", "consumption tax", "quitar iva"],
+  "empty": "Introduce un importe y una tasa.",
+  "mode": {
+    "addVat": "Añadir IVA (neto → bruto)",
+    "removeVat": "Quitar IVA (bruto → neto)"
+  },
+  "input": {
+    "netAmount": "Importe neto (sin IVA)",
+    "grossAmount": "Importe bruto (con IVA)",
+    "ratePct": "Tasa IVA %"
+  },
+  "preset": {
+    "JP-std": "JP std",
+    "JP-reduced": "JP reducido",
+    "UK": "UK",
+    "DE": "Alemania",
+    "FR": "Francia",
+    "AU": "Australia GST",
+    "CA": "Canadá GST",
+    "CN": "China VAT"
+  },
+  "result": {
+    "gross": "Bruto (con IVA)",
+    "net": "Neto (sin IVA)",
+    "vat": "Importe IVA"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "VAT, GST, sales tax — misma idea, distintos nombres",
+        "paragraphs": [
+          "IVA/VAT: Europa, UK, Japón (消費税). Se cobra en cada etapa de producción pero finalmente lo paga el consumidor.",
+          "GST: Australia, Canadá, India, Singapur. Mecánicamente similar al IVA, distinto nombre. Algunos países (Canadá) capa GST federal con impuestos provinciales (HST, PST).",
+          "Sales tax: EE.UU. Se cobra solo en venta final, varía por estado, condado y ciudad. Algunos sin impuesto (Oregón, New Hampshire); otros apilan jurisdicciones con tasas totales >10%."
+        ]
+      },
+      {
+        "heading": "Cálculo bidireccional",
+        "paragraphs": [
+          "Añadir IVA: cuando tienes precio neto y necesitas el bruto. Común al listar para B2B o cotizar antes de impuestos. Fórmula: bruto = neto × (1 + tasa/100).",
+          "Quitar IVA: cuando tienes el bruto y necesitas extraer el neto. Común para tickets, gastos, facturas. Fórmula: neto = bruto / (1 + tasa/100).",
+          "Error común: restar la tasa% del bruto para obtener el neto (p.ej. $110 − 10% = $99). Está mal — el cálculo correcto es $110 / 1.10 = $100. El 10% IVA es sobre el neto, no sobre el bruto."
+        ]
+      },
+      {
+        "heading": "Cuándo el IVA está incluido o no",
+        "paragraphs": [
+          "La mayoría de precios al consumidor en Europa, Japón y Australia son con IVA incluido. La etiqueta es lo que pagas en caja. Así un producto de €10 son €10 totales.",
+          "La mayoría de precios retail US son sin impuesto. Una etiqueta de $10 se vuelve $10.85 con sales tax 8.5% de California. Restaurantes, online, B2B varían.",
+          "Las facturas B2B suelen mostrar neto + IVA por separado para fines de deducción. Los negocios pueden recuperar el IVA pagado en inputs contra el IVA que cobran a clientes."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige modo", "text": "Añadir IVA (neto → bruto) o Quitar IVA (bruto → neto)." },
+      { "name": "Introduce importe", "text": "Neto o bruto, según el modo." },
+      { "name": "Configura la tasa", "text": "Usa preset para grandes países o teclea tasa custom." },
+      { "name": "Lee los tres valores", "text": "Neto, IVA, bruto. Útil para líneas de factura y cotizaciones." }
+    ]
+  },
+  "faq": [
+    { "q": "¿IVA y consumption tax (消費税) son lo mismo?", "a": "Sí — el 消費税 japonés es el nombre local del IVA. Mismo mecanismo. Estándar 10%, reducido 8% para alimentos y periódicos." },
+    { "q": "¿Por qué 'quitar 10%' da diferente que dividir entre 1.1?", "a": "Quitar 10% es dividir entre 1.10. Restar 10% (p.ej. 110 − 10% = 99) está mal porque el 10% se aplicó sobre el neto (100), no sobre el bruto (110)." },
+    { "q": "¿Calcular IVA multi-etapa?", "a": "No — manejamos escenarios de tasa única. Para B2B con reverse charge o tasa cero, consulta a un contable o software fiscal." },
+    { "q": "¿Tasa de IVA más baja?", "a": "Algunos países tienen 0% en bienes esenciales (UK ropa infantil reducida, Japón 0% en alquiler y matrículas). Usa la tasa real aplicable a tu transacción." },
+    { "q": "¿IVA más alto?", "a": "Hungría 27%. Mayoría UE 19-25%. España 21%. Japón comparativamente bajo al 10%." },
+    { "q": "¿Sirve para sales tax US?", "a": "Sí — introduce la tasa combinada estado + local. Sales tax US se comporta como IVA de etapa única en términos de calculadora. Modo 'añadir' para flujo listado → checkout US." },
+    { "q": "¿Productos exentos?", "a": "Usa tasa 0% para totalmente exentos. Nota: 'exento' y 'tasa cero' tienen diferencias legales en algunas jurisdicciones pero mismo resultado de calculadora." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente; nada se envía a un servidor." }
+  ]
+}

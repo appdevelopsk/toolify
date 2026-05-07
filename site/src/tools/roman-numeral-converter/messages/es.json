@@ -1,0 +1,54 @@
+{
+  "title": "Conversor de números romanos (1 a 3999, ambas direcciones)",
+  "shortDescription": "Convierte números arábigos a romanos (y vuelta). Valida la forma canónica para que VIIII no se acepte silenciosamente como 9.",
+  "description": "Escribe un número 1-3999 para obtener el romano, o pega romanos para convertir de vuelta. Validación estricta rechaza formas no canónicas.",
+  "metaDescription": "Conversor gratis de romanos. Convierte números 1-3999 a romanos o decodifica romanos a arábigos. Valida forma canónica, rechaza 'IIII' y similares.",
+  "keywords": ["conversor números romanos", "arábigo a romano", "romano a número", "MMXXVI", "números romanos"],
+  "input": { "number": "Número (1 a 3999)", "roman": "Número romano" },
+  "result": { "roman": "Número romano", "number": "Número arábigo" },
+  "mode": { "toRoman": "Número → Romano", "fromRoman": "Romano → Número" },
+  "error": {
+    "invalidNumber": "Introduce un entero.",
+    "outOfRange": "Los romanos soportan 1 a 3999 solo.",
+    "invalidRoman": "No es un romano válido (forma canónica requerida)."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo funcionan los números romanos",
+        "paragraphs": [
+          "Los romanos usan siete letras: I=1, V=5, X=10, L=50, C=100, D=500, M=1000. Los números se forman por adición (II=2, XX=20) o por sustracción cuando una letra menor precede a una mayor (IV=4, IX=9, XL=40, XC=90, CD=400, CM=900). Cada letra puede repetirse máximo tres veces seguidas, por eso 4 es IV, no IIII.",
+          "La notación romana estándar soporta 1 a 3999. Los números ≥ 4000 requieren notación con barra superior (V̄ = 5000), difícil de teclear y rara hoy, así que este conversor cap a 3999."
+        ]
+      },
+      {
+        "heading": "Canónico vs informal",
+        "paragraphs": [
+          "La forma canónica estricta sigue las reglas de arriba. El romano 'informal' (a veces 'arcaico') permite cosas como IIII para 4 — lo verás en relojes, donde se prefiere la simetría. Este conversor exige forma canónica al introducir y produce canónica al salir. Así 'IIII' se rechaza; teclea 'IV'.",
+          "El decodificador valida re-codificando: parsea el romano, obtiene el número, codifica ese número y comprueba que coincide con la entrada. Cualquier cosa que no haga ida y vuelta se rechaza. Esto detecta 'VV' (incorrecto = 10), 'IIX' (incorrecto = 8) y otras formas no estándar."
+        ]
+      },
+      {
+        "heading": "Dónde aparecen hoy",
+        "paragraphs": [
+          "Fechas de copyright de películas (MCMXCIX = 1999), numeración de Super Bowl, secuencias de monarcas y papas (Enrique VIII, Juan XXIII), capítulos de libros, esferas de reloj y marcadores de año estilizados. Han caído del uso aritmético porque la aritmética arábiga es mucho más fácil — intenta multiplicar MCXLVII por IV y verás por qué."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige dirección", "text": "Número→Romano o Romano→Número." },
+      { "name": "Escribe tu entrada", "text": "Un entero 1-3999, o un romano." },
+      { "name": "Lee el resultado", "text": "Una entrada inválida muestra error específico para que arregles." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Por qué IIII no se acepta como 4?", "a": "El romano canónico escribe 4 como IV. IIII aparece en algunos relojes pero no es notación aritmética estándar. Usa IV." },
+    { "q": "¿Mayor romano?", "a": "Sin barras superiores, 3999 = MMMCMXCIX. Números mayores necesitan notación con barra que no soportamos." },
+    { "q": "¿Puedo cero?", "a": "Los romanos no tenían cero. La notación empieza en 1 (I)." },
+    { "q": "¿Qué significa CMXLIV?", "a": "CM=900, XL=40, IV=4. Total = 944. Pares sustractivos (CM, XL, IV) más sus componentes." },
+    { "q": "¿Cómo leo MMXXVI?", "a": "MM=2000, XX=20, VI=6. Total = 2026." },
+    { "q": "¿Por qué el 4 en relojes es a veces IIII?", "a": "Tradición. Los relojeros históricamente preferían IIII por simetría visual con VIII (ambos cuatro caracteres). No es 'correcto' canónicamente." },
+    { "q": "¿Los romanos son base 10?", "a": "Tienen letras agrupadas decimalmente (I/V para 1s, X/L para 10s, C/D para 100s, M para 1000s) pero usan adición y sustracción en vez de notación posicional. Influidos por decimal pero no posicionales." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. La conversión corre localmente." }
+  ]
+}
