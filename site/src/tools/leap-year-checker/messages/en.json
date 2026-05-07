@@ -1,0 +1,64 @@
+{
+  "title": "Leap Year Checker (with rule explanation)",
+  "shortDescription": "Check if a year is a leap year and see why. Shows February days, year days, and the previous and next leap years.",
+  "description": "Enter any year to see whether it's a leap year and the rule that decided. Plus February day count, total year days, and adjacent leap years.",
+  "metaDescription": "Free leap year checker. Verify any year, see the Gregorian rule that applies, and view previous/next leap years instantly.",
+  "keywords": ["leap year checker", "leap year calculator", "is 2024 a leap year", "Gregorian leap year", "366 days year"],
+  "input": { "year": "Year" },
+  "result": {
+    "isLeap": "is a leap year",
+    "notLeap": "is NOT a leap year",
+    "yearDays": "Days in year",
+    "febDays": "Days in February",
+    "prevLeap": "Previous leap year",
+    "nextLeap": "Next leap year"
+  },
+  "reason": {
+    "div400": "Divisible by 400 → leap year (special exception)",
+    "div100": "Divisible by 100 but not 400 → NOT a leap year",
+    "div4": "Divisible by 4 (and not 100) → leap year",
+    "notDiv4": "Not divisible by 4 → not a leap year"
+  },
+  "empty": "Enter a year to check.",
+  "article": {
+    "sections": [
+      {
+        "heading": "The Gregorian leap year rule",
+        "paragraphs": [
+          "A year is a leap year if it's divisible by 4 — except for centuries (divisible by 100), which are leap years only when also divisible by 400. So 1900 is NOT a leap year (divisible by 100, not 400), but 2000 IS (divisible by 400). 2024 is a leap year (divisible by 4); 2100 will not be.",
+          "This rule keeps the calendar in sync with Earth's actual orbit (~365.2425 days). A simple every-4-years rule would drift by about 3 days every 400 years; the century exception corrects most of that drift, leaving an error of only about 1 day in 3,300 years."
+        ]
+      },
+      {
+        "heading": "Why we need leap years at all",
+        "paragraphs": [
+          "Earth orbits the Sun in about 365.2422 days — not exactly 365. Without periodic correction, calendar dates would slowly drift relative to the seasons. After 100 years of plain 365-day years, the calendar would be ~24 days behind the equinoxes and seasons would appear to shift across the calendar.",
+          "The Julian calendar (45 BC) added a leap year every 4 years, which was close but slightly over-corrected. Pope Gregory XIII's reform in 1582 introduced the century rule, producing the modern Gregorian calendar still in use today."
+        ]
+      },
+      {
+        "heading": "Leap year quirks",
+        "paragraphs": [
+          "Feb 29 birthdays: people born on Feb 29 ('leaplings') celebrate every 4 years on the actual date, or on Feb 28 / Mar 1 in regular years. Legally, most jurisdictions treat them as Feb 28 birthdays for age-determined purposes.",
+          "Some software has historically treated all century years as non-leap (a bug introduced when implementing the simple every-4 rule). 2000 worked correctly because it's div by 400, but 2100 will reveal latent bugs in any system that hasn't tested ahead.",
+          "Astronomical leap year is slightly more complex: solar year is ~365.2422 days, lunar months are ~29.53 days. The Hebrew, Islamic, and Chinese calendars handle leap concepts differently, often by adding a whole leap month rather than a single day."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter a year", "text": "Any year, past or future." },
+      { "name": "Read the verdict", "text": "Plus the rule that decided and February's day count." },
+      { "name": "See adjacent leap years", "text": "Quick navigation forward or backward." }
+    ]
+  },
+  "faq": [
+    { "q": "Is 2024 a leap year?", "a": "Yes — 2024 is divisible by 4 and not by 100, so it's a leap year. February 2024 has 29 days." },
+    { "q": "Is 2100 a leap year?", "a": "No — 2100 is divisible by 100 but not by 400, so it's NOT a leap year. February 2100 will have 28 days." },
+    { "q": "Why is 2000 a leap year but 1900 isn't?", "a": "Both are divisible by 100. Only years divisible by 400 (the century exception) are leap years. 2000 / 400 = 5 (whole), so it's leap. 1900 / 400 = 4.75, so it's not." },
+    { "q": "When's the next leap year?", "a": "After 2024 comes 2028. The pattern continues: 2032, 2036, etc. — every 4 years until 2100, which is skipped." },
+    { "q": "How many days are in a leap year?", "a": "366 days. The extra day is February 29. Total weeks: 52 weeks + 2 days." },
+    { "q": "Is the year 0 a leap year?", "a": "There's no year 0 in the Gregorian (or Julian) calendar — years go directly from 1 BC to 1 AD. Astronomers do use a year 0 for math; that hypothetical year would be a leap year by the rule." },
+    { "q": "Why was the Gregorian reform needed?", "a": "The Julian calendar over-corrected slightly: every 4 years was too many leap years. By 1582 the calendar was 10 days off from the actual seasons. Pope Gregory XIII's reform skipped 10 days and introduced the century rule." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation is local." }
+  ]
+}

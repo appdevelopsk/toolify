@@ -58,6 +58,8 @@ import savings from "@/tools/savings-goal-calculator";
 import salary from "@/tools/salary-converter";
 import pomodoro from "@/tools/pomodoro-timer";
 import dice from "@/tools/dice-roller";
+import leapYear from "@/tools/leap-year-checker";
+import bmr from "@/tools/bmr-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -122,6 +124,8 @@ export const TOOLS: ToolDefinition[] = [
   salary,
   pomodoro,
   dice,
+  leapYear,
+  bmr,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));
