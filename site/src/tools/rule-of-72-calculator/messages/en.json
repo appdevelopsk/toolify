@@ -1,0 +1,64 @@
+{
+  "title": "Rule of 72 Calculator (doubling time / required rate)",
+  "shortDescription": "Estimate how long an investment takes to double using the Rule of 72, or solve for the rate needed to double in a given period. Compares against exact compound math.",
+  "description": "Two modes: from a rate, find years to double (72 / rate); from a target time, find the rate needed (72 / years). Each result is shown alongside the exact compound interest answer and the approximation error.",
+  "metaDescription": "Free Rule of 72 calculator. Doubling time from a return rate, or required rate from years. Compared against exact compound math.",
+  "keywords": ["rule of 72 calculator", "doubling time", "investment doubling", "compound rate", "rule of 72"],
+  "empty": "Enter a value to compute.",
+  "mode": {
+    "toYears": "Rate → Years to double",
+    "toRate": "Years → Rate needed"
+  },
+  "input": {
+    "ratePct": "Annual rate %",
+    "years": "Target years"
+  },
+  "result": {
+    "yearsToDouble": "Years to double (Rule of 72)",
+    "rateNeeded": "Rate needed",
+    "exact": "Exact (compound math)",
+    "approxError": "Approximation error",
+    "years": "yrs"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What the Rule of 72 says",
+        "paragraphs": [
+          "Years to double ≈ 72 / annual rate. So at 6% return, your money doubles in roughly 12 years; at 8%, in 9 years; at 12%, in 6 years. The same rule works in reverse: if you want to double in 10 years, you need ~7.2% annual return.",
+          "It's a mental-math shortcut, not a precise formula. The exact answer is ln(2) / ln(1 + r), which requires a calculator. The Rule of 72 was popularized in 15th-century European arithmetic textbooks because 72 has many divisors (2, 3, 4, 6, 8, 9, 12), making mental division easier."
+        ]
+      },
+      {
+        "heading": "How accurate is it?",
+        "paragraphs": [
+          "Within ~0.5% for rates between 4% and 12% — which covers most realistic investment returns. At very low rates (1-2%) or very high (15%+) the error grows. Some textbooks use the Rule of 70 or 69.3 for higher accuracy at low rates, but 72 is the practical sweet spot.",
+          "Use this calculator to see both the Rule of 72 estimate and the exact compound math side by side. The 'approximation error' shows how off the rule is for your specific rate or period."
+        ]
+      },
+      {
+        "heading": "Where it's used",
+        "paragraphs": [
+          "Investment planning: 'at my expected 7% return, money doubles every 10 years' — this is the Rule of 72 in action. Useful for back-of-envelope retirement projections.",
+          "Inflation analysis: at 3% inflation, prices double every 24 years. At 7%, every 10 years. Quick way to grasp purchasing-power erosion.",
+          "Population and growth modeling: any quantity growing at a constant percent rate (population, debt, technology adoption) doubles in 72/r years. Foundation of exponential thinking."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick the direction", "text": "Rate → Years if you know your return; Years → Rate if you have a target time." },
+      { "name": "Enter the value", "text": "Annual percent (e.g., 7) or target years (e.g., 10)." },
+      { "name": "Read both estimates", "text": "Rule of 72 shortcut and exact compound answer, plus the error between them." }
+    ]
+  },
+  "faq": [
+    { "q": "Why 72 and not 70 or 69?", "a": "All three are used. 72 has more whole-number divisors (mental math is easier). 69.3 is exact at instantaneous rates. 70 is a simple alternative. For 4-12% rates the differences are tiny; pick whichever you can divide quickest." },
+    { "q": "Does this work for negative rates?", "a": "Inversely — at -5% per year, money halves every 14.4 years (72 / 5). The formula handles negatives but the meaning shifts from 'doubling' to 'halving'." },
+    { "q": "What if my rate compounds monthly?", "a": "The Rule of 72 assumes annual compounding. For monthly compounding the effective annual rate is slightly higher, so doubling happens slightly sooner. Use the effective annual rate (APY) in the calculator." },
+    { "q": "Can I use this for simple interest?", "a": "No — Rule of 72 is for compound interest. Simple interest doubles linearly: 100% / rate. So 5% simple interest doubles in exactly 20 years, but 5% compound takes ~14.4." },
+    { "q": "Is 7% a realistic stock return?", "a": "Long-term US stock market averages ~7% real (after inflation), ~10% nominal. Use 7% for purchasing-power-adjusted projections, 10% for nominal account balances." },
+    { "q": "What's a 'realistic' time to double?", "a": "Stocks: ~10 years (7% real). Bonds: ~20 years (3-4%). High-yield savings: ~14-18 years (4-5%). CDs and similar: ~14-25 years depending on rate." },
+    { "q": "Does this account for taxes?", "a": "No — these are pre-tax doubling times. Account for taxes by using your after-tax effective return (~25-30% lower for taxable accounts)." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+  ]
+}

@@ -104,6 +104,7 @@ import factorial from "@/tools/factorial-calculator";
 import power from "@/tools/power-converter";
 import moonPhase from "@/tools/moon-phase-calculator";
 import whrCalc from "@/tools/waist-hip-ratio-calculator";
+import ruleOf72 from "@/tools/rule-of-72-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -214,6 +215,7 @@ export const TOOLS: ToolDefinition[] = [
   power,
   moonPhase,
   whrCalc,
+  ruleOf72,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));
