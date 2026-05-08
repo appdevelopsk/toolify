@@ -8,7 +8,22 @@ const ORIGIN = "https://tools.appdevelopsk.com";
 const LOCALES = ["en", "ja", "zh-CN", "zh-TW", "ko", "es"];
 
 const TOOLS_DIR = path.join(process.cwd(), "src/tools");
+const PROMPTS_DIR = path.join(process.cwd(), "src/prompts");
 const slugs = readdirSync(TOOLS_DIR).filter((s) => !s.startsWith("."));
+const promptSlugs = readdirSync(PROMPTS_DIR).filter((s) => !s.startsWith("."));
+
+// Categories actually present in prompts (for /prompts/category/[cat] URLs)
+const promptCats = new Set();
+for (const slug of promptSlugs) {
+  try {
+    const indexFile = path.join(PROMPTS_DIR, slug, "index.ts");
+    const txt = readdirSync(path.join(PROMPTS_DIR, slug)).includes("index.ts")
+      ? (await import("node:fs")).readFileSync(indexFile, "utf8")
+      : "";
+    const m = txt.match(/category:\s*"([^"]+)"/);
+    if (m) promptCats.add(m[1]);
+  } catch {}
+}
 
 const targets = [];
 // non-locale-specific
@@ -20,6 +35,7 @@ targets.push({ kind: "ads", url: `${ORIGIN}/ads.txt` });
 for (const L of LOCALES) {
   targets.push({ kind: "locale-home", url: `${ORIGIN}/${L}`, locale: L });
   targets.push({ kind: "locale-tools", url: `${ORIGIN}/${L}/tools`, locale: L });
+  targets.push({ kind: "locale-prompts", url: `${ORIGIN}/${L}/prompts`, locale: L });
   targets.push({ kind: "locale-privacy", url: `${ORIGIN}/${L}/privacy`, locale: L });
   targets.push({ kind: "locale-terms", url: `${ORIGIN}/${L}/terms`, locale: L });
   targets.push({ kind: "locale-about", url: `${ORIGIN}/${L}/about`, locale: L });
@@ -27,6 +43,12 @@ for (const L of LOCALES) {
   targets.push({ kind: "locale-disclosure", url: `${ORIGIN}/${L}/disclosure`, locale: L });
   for (const slug of slugs) {
     targets.push({ kind: "tool", url: `${ORIGIN}/${L}/tools/${slug}`, locale: L, slug });
+  }
+  for (const slug of promptSlugs) {
+    targets.push({ kind: "prompt", url: `${ORIGIN}/${L}/prompts/${slug}`, locale: L, slug });
+  }
+  for (const cat of promptCats) {
+    targets.push({ kind: "prompt-cat", url: `${ORIGIN}/${L}/prompts/category/${cat}`, locale: L });
   }
 }
 
@@ -74,6 +96,18 @@ async function checkOne(t) {
       }
       if (!html.includes('"@type":"FAQPage"')) {
         issues.push({ ...t, issue: "missing FAQPage JSON-LD" });
+      }
+    }
+    // For prompt pages, check Article + FAQPage + BreadcrumbList in JSON-LD
+    if (t.kind === "prompt") {
+      if (!html.includes('"@type":"Article"')) {
+        issues.push({ ...t, issue: "missing Article JSON-LD" });
+      }
+      if (!html.includes('"@type":"FAQPage"')) {
+        issues.push({ ...t, issue: "missing FAQPage JSON-LD" });
+      }
+      if (!html.includes('"@type":"BreadcrumbList"')) {
+        issues.push({ ...t, issue: "missing BreadcrumbList JSON-LD" });
       }
     }
   } catch (err) {
