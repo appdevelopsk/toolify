@@ -91,6 +91,27 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             ))}
         </div>
       </section>
+
+      {/* Full A-Z catalog: every tool reachable in one click from home — accelerates Google crawl
+          for newly-deployed pages because home is indexed before category pages are. */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold">{t("home.allTools")}</h2>
+        <ul className="mt-4 grid gap-x-4 gap-y-1 text-sm sm:grid-cols-2 lg:grid-cols-3">
+          {allTools
+            .slice()
+            .sort((a, b) => t(`tools.${a.slug}.title`).localeCompare(t(`tools.${b.slug}.title`), locale))
+            .map((m) => (
+              <li key={m.slug}>
+                <Link
+                  href={`/tools/${m.slug}`}
+                  className="text-slate-700 hover:text-brand-600 hover:underline dark:text-slate-300"
+                >
+                  {t(`tools.${m.slug}.title`)}
+                </Link>
+              </li>
+            ))}
+        </ul>
+      </section>
     </div>
   );
 }
