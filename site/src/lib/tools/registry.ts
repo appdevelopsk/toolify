@@ -116,6 +116,10 @@ import lifeInsurance from "@/tools/life-insurance-needs-calculator";
 import roas from "@/tools/roas-calculator";
 import creditUtil from "@/tools/credit-utilization-calculator";
 import annuity from "@/tools/annuity-payout-calculator";
+import mortgageRefi from "@/tools/mortgage-refinance-calculator";
+import leaseVsBuy from "@/tools/lease-vs-buy-calculator";
+import costOfLiving from "@/tools/cost-of-living-comparison";
+import investmentFee from "@/tools/investment-fee-impact-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -238,6 +242,10 @@ export const TOOLS: ToolDefinition[] = [
   roas,
   creditUtil,
   annuity,
+  mortgageRefi,
+  leaseVsBuy,
+  costOfLiving,
+  investmentFee,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));
