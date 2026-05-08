@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { getPrompt, getRelatedPrompts, listPrompts } from "@/lib/prompts/registry";
+import { RELATED_TOOLS } from "@/lib/prompts/related-tools";
+import { getTool } from "@/lib/tools/registry";
 import { PromptFrame } from "@/components/prompts/PromptFrame";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqJsonLd, breadcrumbJsonLd } from "@/lib/seo/structured-data";
@@ -49,6 +51,14 @@ export default async function PromptPage({
   const tt = await getTranslations(`prompts.${slug}`);
   const related = getRelatedPrompts(slug, 4);
   const url = `${siteConfig.url}/${locale}/prompts/${slug}`;
+
+  // Curated cross-link to calculators the same audience uses.
+  // Each tool's title is read from its own messages namespace via t.raw().
+  const relatedToolSlugs = (RELATED_TOOLS[p.meta.category] ?? []).filter((s) => Boolean(getTool(s)));
+  const relatedTools = relatedToolSlugs.map((s) => ({
+    slug: s,
+    title: t.raw(`tools.${s}.title`) as string,
+  }));
 
   // Use raw() everywhere — these strings contain {placeholders} that next-intl
   // would otherwise try to parse as ICU MessageFormat arguments and fail.
@@ -99,6 +109,7 @@ export default async function PromptPage({
         article={article}
         faq={faq}
         related={related}
+        relatedTools={relatedTools}
       />
       <JsonLd data={ld} />
     </>

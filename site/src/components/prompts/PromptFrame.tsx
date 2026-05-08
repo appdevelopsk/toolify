@@ -20,6 +20,8 @@ interface Props {
   article?: { sections: { heading: string; paragraphs: string[] }[] };
   faq: { q: string; a: string }[];
   related: PromptMeta[];
+  /** Tools the same audience plausibly uses — rendered as a 'Related calculators' card grid. */
+  relatedTools?: { slug: string; title: string }[];
 }
 
 export function PromptFrame({
@@ -34,6 +36,7 @@ export function PromptFrame({
   article,
   faq,
   related,
+  relatedTools,
 }: Props) {
   const t = useTranslations();
   const locale = useLocale();
@@ -161,6 +164,24 @@ export function PromptFrame({
         )}
 
         <RelatedServices category="ai" />
+
+        {relatedTools && relatedTools.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-2xl font-bold">{t("prompt.relatedCalculators")}</h2>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedTools.map((rt) => (
+                <li key={rt.slug}>
+                  <Link
+                    href={`/tools/${rt.slug}`}
+                    className="block rounded-lg border border-slate-200 p-4 hover:border-brand-500 hover:bg-brand-50 dark:border-slate-800 dark:hover:bg-slate-800"
+                  >
+                    <span className="font-medium">{rt.title}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {related.length > 0 && (
           <section className="mt-10">

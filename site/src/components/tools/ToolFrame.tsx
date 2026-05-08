@@ -90,6 +90,13 @@ export function ToolFrame({ meta, title, description, related, children, article
         <p className="mt-10 text-xs text-slate-500 dark:text-slate-400">
           {t("tool.lastUpdated")}: <time dateTime={meta.updatedAt}>{meta.updatedAt}</time>
         </p>
+
+        {/* Cross-link to /prompts — single line per page × 120 tools × 6 locales = ~720 inbound links into the prompts vertical. */}
+        <p className="mt-2 text-sm">
+          <Link href="/prompts" className="text-brand-600 hover:underline">
+            {t("tool.tryPrompts")}
+          </Link>
+        </p>
       </main>
       <aside className="hidden lg:block">
         <AdSticky />
