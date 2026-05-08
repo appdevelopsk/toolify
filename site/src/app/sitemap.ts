@@ -54,5 +54,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
+  // Prompt category pages — only emit for categories that actually have entries
+  // so we don't ship empty pages to Google.
+  const populatedCats = new Set(prompts.map((p) => p.category));
+  for (const cat of populatedCats) {
+    for (const locale of LOCALES) {
+      const path = `/prompts/category/${cat}`;
+      const alternates: Record<string, string> = {};
+      for (const l of LOCALES) alternates[l] = `${siteConfig.url}/${l}${path}`;
+      entries.push({
+        url: `${siteConfig.url}/${locale}${path}`,
+        changeFrequency: "weekly",
+        priority: 0.5,
+        alternates: { languages: alternates },
+      });
+    }
+  }
+
   return entries;
 }

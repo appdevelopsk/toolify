@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { Link } from "@/lib/i18n/navigation";
 import { listTools } from "@/lib/tools/registry";
+import { listPrompts } from "@/lib/prompts/registry";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -29,6 +30,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const t = await getTranslations();
   const allTools = listTools();
+  const allPrompts = listPrompts();
   const featured = allTools.slice(0, FEATURED_COUNT);
   const remainingCount = allTools.length - featured.length;
 
@@ -91,6 +93,31 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             ))}
         </div>
       </section>
+
+      {/* AI prompts section — separate vertical, different SEO surface */}
+      {allPrompts.length > 0 && (
+        <section className="mt-12">
+          <div className="flex items-baseline justify-between">
+            <h2 className="text-2xl font-bold">{t("nav.prompts")}</h2>
+            <Link href="/prompts" className="text-sm text-brand-600 hover:underline">
+              {t("home.browseAll")} →
+            </Link>
+          </div>
+          <ul className="mt-4 grid gap-x-4 gap-y-1 text-sm sm:grid-cols-2 lg:grid-cols-3">
+            {allPrompts.map((m) => (
+              <li key={m.slug}>
+                <Link
+                  href={`/prompts/${m.slug}`}
+                  className="text-slate-700 hover:text-brand-600 hover:underline dark:text-slate-300"
+                >
+                  {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                  {t.raw(`prompts.${m.slug}.title`) as string}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* Full A-Z catalog: every tool reachable in one click from home — accelerates Google crawl
           for newly-deployed pages because home is indexed before category pages are. */}

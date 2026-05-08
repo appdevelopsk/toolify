@@ -1,12 +1,16 @@
 import type { ToolCategory } from "@/lib/tools/types";
+import type { PromptCategory } from "@/lib/prompts/types";
 
 export type Market = "global" | "JP" | "US" | "CN";
+/** "ai" is a synthetic category used by /prompts pages for AI-tool offers
+ *  that are not specific to any single prompt category. */
+export type OfferCategory = ToolCategory | PromptCategory | "ai";
 
 export interface AffiliateOffer {
   /** Stable ID for analytics. */
   id: string;
-  /** Tool category this offer is shown under. */
-  category: ToolCategory;
+  /** Category this offer matches — broader than ToolCategory so /prompts can use it. */
+  category: OfferCategory;
   /** Markets where this offer is valid; if absent treated as "global". */
   markets?: Market[];
   /** Locales (BCP47) where this offer is shown; if absent shown to all. */

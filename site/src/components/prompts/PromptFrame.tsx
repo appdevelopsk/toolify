@@ -160,7 +160,7 @@ export function PromptFrame({
           </section>
         )}
 
-        <RelatedServices category="finance" />
+        <RelatedServices category="ai" />
 
         {related.length > 0 && (
           <section className="mt-10">

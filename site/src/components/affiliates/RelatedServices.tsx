@@ -1,10 +1,10 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { getOffersFor, POLICY } from "@/lib/affiliates/catalog";
-import type { ToolCategory } from "@/lib/tools/types";
+import type { OfferCategory } from "@/lib/affiliates/types";
 
 interface Props {
-  category: ToolCategory;
+  category: OfferCategory;
   /** Override visibility: `true` shows pending offers in disabled state for QA. */
   showPending?: boolean;
 }
