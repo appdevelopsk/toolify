@@ -1,0 +1,65 @@
+{
+  "title": "ROAS Calculator (Return on Ad Spend)",
+  "shortDescription": "Calculate ROAS from revenue and ad spend, plus the profit-adjusted ROAS using gross margin. See breakeven multiple instantly.",
+  "description": "Enter revenue attributed to a campaign, the ad spend, and your gross margin %. Returns ROAS as a multiple, ROAS as a percentage, profit-adjusted ROAS, net profit, and the breakeven ROAS multiple given your margin.",
+  "metaDescription": "Free ROAS calculator. Revenue / ad spend ratio, profit-adjusted ROAS, breakeven multiple from gross margin. For ecommerce and paid media.",
+  "keywords": ["ROAS calculator", "return on ad spend", "profitable ROAS", "breakeven ROAS", "ad performance"],
+  "empty": "Enter ad spend greater than zero.",
+  "input": {
+    "revenue": "Revenue from ads",
+    "adSpend": "Ad spend",
+    "grossMarginPct": "Gross margin %"
+  },
+  "result": {
+    "roas": "ROAS",
+    "grossProfit": "Gross profit",
+    "profitableRoas": "Profit-adjusted ROAS",
+    "netProfit": "Net profit (after ad spend)",
+    "breakeven": "Breakeven ROAS"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "ROAS vs. profitable ROAS",
+        "paragraphs": [
+          "Standard ROAS is revenue ÷ ad spend. A 5× ROAS means $5 revenue for every $1 spent. It's easy to compute and easy to compare, which is why every ad platform reports it. But it can be deeply misleading. A 5× ROAS sounds great until you realize a product with 20% gross margin lost money at that ratio: $5 revenue × 20% margin = $1 gross profit, exactly equal to the $1 ad spend. Net zero.",
+          "Profit-adjusted ROAS = (revenue × gross margin) ÷ ad spend. This is the number that actually tells you if the campaign made money. Above 1× = profitable. Below 1× = subsidizing growth. Many ecommerce founders track this as 'true ROAS' or 'POAS' (profit on ad spend)."
+        ]
+      },
+      {
+        "heading": "The breakeven multiple",
+        "paragraphs": [
+          "Breakeven ROAS = 1 ÷ gross margin. At 50% margin, you breakeven at 2× ROAS. At 30%, breakeven is 3.33×. At 20%, you need 5×. This is the ROAS floor below which every dollar of ad spend destroys gross profit.",
+          "Knowing the breakeven number changes how you read campaign reports. If your reports show 4× ROAS for a 25% margin product, the campaign is just barely above breakeven (4× × 25% = 1.0×). It's not 'crushing it' — it's barely breaking even at the gross level, before fixed costs, returns, and customer service.",
+          "For sustainable growth, target ROAS comfortably above breakeven: 1.5-2× breakeven covers fixed costs and provides margin for expansion. So at 30% gross margin, target 5-6× ROAS, not 3.33×."
+        ]
+      },
+      {
+        "heading": "What ROAS doesn't show",
+        "paragraphs": [
+          "Lifetime value. A breakeven ROAS on first purchase can be highly profitable if customers reorder. Subscription and consumables businesses often run at 1.5-2× first-order ROAS knowing the LTV/CAC ratio supports it. Look at 30/60/90-day repeat purchase data before judging.",
+          "Returns and refunds. Reported revenue typically includes orders that will be refunded. Industry-wide return rates run 5-30%. Adjust the input downward by your actual return rate for honest analysis.",
+          "Attribution decay. Platforms like Meta and Google use 1-7 day click attribution, which over-credits paid for purchases that would have happened anyway. Use marketing-mix modeling or incrementality testing for ground truth — ROAS alone overstates paid contribution.",
+          "Fixed overhead. ROAS doesn't account for warehouse rent, software, salaries. It's a campaign-level metric, not a P&L metric. Don't conflate the two."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter campaign revenue", "text": "Total revenue attributed to the ad spend (gross, before refunds)." },
+      { "name": "Enter ad spend", "text": "What you actually paid the platform for the same period." },
+      { "name": "Enter gross margin %", "text": "(Revenue − COGS) / Revenue. Don't include marketing costs here." },
+      { "name": "Read ROAS and POAS", "text": "ROAS = revenue/spend. Profit-adjusted ROAS = (revenue × margin)/spend. The second one is the truth." },
+      { "name": "Compare to breakeven", "text": "1 ÷ margin. If your ROAS is below this, you're losing money on every sale." }
+    ]
+  },
+  "faq": [
+    { "q": "What is a 'good' ROAS?", "a": "Depends entirely on margin. At 50% margin, 2× breakeven and 4× is healthy. At 20% margin, 5× is breakeven and you need 8-10× to be healthy. There is no industry-wide good ROAS." },
+    { "q": "Should I optimize ad campaigns to ROAS or to POAS?", "a": "POAS (profit-adjusted) for products with mixed margin. ROAS is fine if all SKUs have similar margin. Many advertisers feed gross profit into ad platforms via custom conversion values to bid on POAS directly." },
+    { "q": "How does ROAS relate to ROI?", "a": "ROI = (revenue − cost) / cost. ROAS = revenue / cost. So ROI = ROAS − 1, expressed as a percentage. 5× ROAS = 400% ROI. They measure the same thing on different scales." },
+    { "q": "Why does my Google Ads ROAS differ from Shopify?", "a": "Google reports purchases attributed within their click window (often 30 days). Shopify reports actual orders. Differences come from cross-device attribution, declined transactions, and refunds processed after the click window closed." },
+    { "q": "Should I include shipping in revenue?", "a": "Use the same definition consistently. Most platforms report revenue inclusive of shipping income. If shipping is a profit center for you, leave it in. If you charge cost, subtract shipping fees from revenue for cleaner margin math." },
+    { "q": "What about MER (marketing efficiency ratio)?", "a": "MER = total revenue / total marketing spend, including organic. A high-level metric that smooths over per-channel attribution differences. Useful as a sanity check on platform-reported ROAS, which is usually inflated." },
+    { "q": "Is ROAS the same as CAC payback?", "a": "No. ROAS is a same-period revenue ratio. CAC payback is months until cumulative gross profit per customer = acquisition cost. CAC payback uses LTV; ROAS doesn't." },
+    { "q": "Does the calculation leave my browser?", "a": "No. Pure browser math, no analytics on the inputs." }
+  ]
+}

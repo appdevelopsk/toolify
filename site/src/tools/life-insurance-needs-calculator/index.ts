@@ -1,0 +1,18 @@
+import type { ToolDefinition } from "@/lib/tools/types";
+import Component from "./Component";
+
+const def: ToolDefinition = {
+  meta: {
+    slug: "life-insurance-needs-calculator",
+    category: "finance",
+    applicationCategory: "FinanceApplication",
+    updatedAt: "2026-05-08",
+    related: ["retirement-calculator", "net-worth-calculator", "savings-goal-calculator"],
+    primaryKeyword: { en: "life insurance needs calculator", ja: "生命保険 必要保障額" },
+    hasHowTo: true,
+    hasFaq: true,
+  },
+  Component,
+};
+
+export default def;

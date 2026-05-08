@@ -73,6 +73,8 @@ export default async function LocaleLayout({
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+        <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} — Latest tools`} href={`${siteConfig.url}/feed.xml`} />
+        <link rel="alternate" type="application/json" title={`${siteConfig.name} — Tool directory`} href={`${siteConfig.url}/tools.json`} />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>

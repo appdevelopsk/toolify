@@ -111,6 +111,11 @@ import caesar from "@/tools/caesar-cipher";
 import jwtDec from "@/tools/jwt-decoder";
 import csvJson from "@/tools/csv-json-converter";
 import amortization from "@/tools/loan-amortization-schedule";
+import dti from "@/tools/debt-to-income-ratio-calculator";
+import lifeInsurance from "@/tools/life-insurance-needs-calculator";
+import roas from "@/tools/roas-calculator";
+import creditUtil from "@/tools/credit-utilization-calculator";
+import annuity from "@/tools/annuity-payout-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -228,6 +233,11 @@ export const TOOLS: ToolDefinition[] = [
   jwtDec,
   csvJson,
   amortization,
+  dti,
+  lifeInsurance,
+  roas,
+  creditUtil,
+  annuity,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

@@ -1,0 +1,79 @@
+{
+  "title": "Calculadora de DTI (ratio deuda-ingresos) — Regla 28/36",
+  "shortDescription": "Calcula tu ratio deuda-ingresos front-end y back-end a partir de ingreso mensual y pagos de deuda. Cómo te clasifican los prestamistas.",
+  "description": "Introduce ingreso bruto mensual y pagos recurrentes (vivienda, auto, tarjetas, estudiantil, otros). Devuelve DTI front-end (solo vivienda) y back-end (deuda total) más una categoría — excelente, bueno, regular o pobre — usando los mismos umbrales que la mayoría de prestamistas estadounidenses.",
+  "metaDescription": "Calculadora DTI gratis. Ratios deuda-ingresos front-end y back-end. Cómo califican los prestamistas tu carga de deuda (regla 28/36). Sin servidor.",
+  "keywords": ["calculadora DTI", "ratio deuda ingresos", "DTI front-end", "DTI back-end", "regla 28/36"],
+  "empty": "Introduce un ingreso mensual mayor que cero.",
+  "input": {
+    "grossIncome": "Ingreso bruto mensual (antes de impuestos)",
+    "debtsHeading": "Pagos mensuales de deuda",
+    "housing": "Vivienda (alquiler o capital+interés+impuestos+seguro)",
+    "carLoan": "Préstamo de auto",
+    "creditCards": "Tarjetas de crédito (mínimo)",
+    "studentLoans": "Préstamos estudiantiles",
+    "otherDebt": "Otras deudas recurrentes"
+  },
+  "result": {
+    "frontEnd": "DTI front-end (solo vivienda)",
+    "backEnd": "DTI back-end (total)",
+    "totalDebt": "Deuda mensual total",
+    "categoryLabel": "Clasificación del prestamista"
+  },
+  "category": {
+    "excellent": "Excelente (≤20%)",
+    "good": "Bueno (21-36%)",
+    "fair": "Regular (37-43%)",
+    "poor": "Pobre (>43%)"
+  },
+  "categoryNote": {
+    "excellent": "Bajo riesgo. Calificas a las mejores tasas en hipotecas, préstamos de auto y crédito personal.",
+    "good": "Dentro de la regla 28/36. Hipotecas convencionales, préstamos conformes y la mayoría de productos accesibles.",
+    "fair": "Por encima del 36% pero bajo el límite de 43% del préstamo cualificado. FHA y algunos prestamistas no-QM aún aprueban, pero las tasas suben.",
+    "poor": ">43%. Muchos prestamistas rechazan crédito nuevo. Reduce deuda de alto interés o aumenta ingresos antes de solicitar."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué mide DTI realmente",
+        "paragraphs": [
+          "El ratio deuda-ingresos es el porcentaje de tu ingreso bruto mensual que va a pagos obligatorios de deuda. Es el factor más importante en la aprobación hipotecaria estadounidense, después del puntaje crediticio. Dos tipos: front-end (solo vivienda) y back-end (vivienda + toda otra deuda). Los prestamistas miran ambos, pero back-end pesa más.",
+          "La regla 28/36 es la heurística estándar: front-end ≤28%, back-end ≤36%. Las hipotecas convencionales permiten back-end hasta 43% (límite de 'préstamo cualificado' del CFPB). Los préstamos FHA llegan al 50% en algunos casos. Cuanto menor el DTI, mayor la probabilidad de aprobación y mejor la tasa."
+        ]
+      },
+      {
+        "heading": "Por qué importan ambos ratios",
+        "paragraphs": [
+          "Front-end aísla el riesgo de vivienda. Un DTI front-end alto significa que serás 'pobre por vivienda' — la mayoría del salario sostiene el techo. Cualquier interrupción de ingreso no deja margen para la hipoteca.",
+          "Back-end captura la obligación financiera total. Dos solicitantes con DTI front-end idéntico pueden tener cargas muy diferentes una vez sumados préstamos estudiantiles, auto y tarjetas. Back-end es lo que el suscriptor decide.",
+          "Usa ambos para planificar capacidad antes de buscar casa. Si tu back-end ya es 30%, una hipoteca de $2000 sobre $6000 (front 33%) empuja back-end a 63% — rechazo casi seguro."
+        ]
+      },
+      {
+        "heading": "Qué pagos cuentan",
+        "paragraphs": [
+          "Incluye toda deuda en el reporte crediticio con pago mínimo obligatorio: hipoteca P+I+T+S, alquiler, préstamos de auto, mínimo de estudiantil (los planes IDR usan el monto IDR real, no el estándar), mínimos de tarjetas, préstamos personales, manutención, pensión.",
+          "No incluye gastos no-deuda: comida, servicios, gasolina, seguros no-vivienda, contribuciones de retiro, impuestos retenidos. Afectan tu presupuesto pero DTI aísla solo el servicio de deuda.",
+          "Usa el pago mínimo requerido para crédito rotativo, no lo que realmente pagas. Los prestamistas calculan capacidad worst-case. Si el mínimo de tu tarjeta es $40 pero pagas $400, la entrada de DTI es $40."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce ingreso mensual", "text": "Salario antes de impuestos más cualquier ingreso suplementario confiable (comisiones promediadas a 2 años, autónomo documentado, etc.)." },
+      { "name": "Introduce pago de vivienda", "text": "Alquiler, o hipoteca capital+interés+impuestos+seguro+HOA. Usa el nuevo pago si solicitas hipoteca." },
+      { "name": "Añade otras deudas mensuales", "text": "Auto, mínimos de tarjetas, estudiantil, cualquier otra recurrente." },
+      { "name": "Lee tus dos ratios", "text": "Front-end (vivienda/ingreso) y back-end (total/ingreso). Los prestamistas se enfocan en back-end." },
+      { "name": "Compara con umbrales", "text": "≤36% favorable convencional; 36-43% territorio FHA; >43% difícil." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Diferencia entre front-end y back-end DTI?", "a": "Front-end es pago de vivienda / ingreso. Back-end es deuda total / ingreso (vivienda + cada otro pago mínimo). Ambos importan, back-end más." },
+    { "q": "¿Pagar una tarjeta cambia el DTI?", "a": "Pagar el saldo a cero no cambia DTI por sí mismo — DTI usa el pago mínimo, no el saldo. Cerrar la tarjeta elimina el mínimo. Para reducir DTI realmente, elimina el ítem de pago mínimo." },
+    { "q": "¿Los servicios cuentan en DTI?", "a": "No. DTI es solo deuda. Servicios, seguros, comida y otros gastos necesarios no aparecen, aunque afecten tu presupuesto." },
+    { "q": "¿Qué DTI aceptan los prestamistas hipotecarios?", "a": "Convencional: 36% back-end ideal, 45% a veces con buen crédito/reservas. FHA: hasta 50% con factores compensatorios. VA: flexible, suscripción manual desde 41%." },
+    { "q": "¿Cuenta el ingreso/deuda del cónyuge?", "a": "Solo si son co-solicitantes. Si no están en la solicitud, ni ingreso ni deuda cuentan. Se usa estratégicamente cuando un cónyuge tiene peor crédito." },
+    { "q": "¿Cómo bajar DTI rápido?", "a": "Tres opciones: pagar deudas pequeñas para eliminar mínimos (más rápido), aumentar ingresos (lento pero duradero), refinanciar deudas largas a plazo más largo (mínimo más bajo pero más interés total)." },
+    { "q": "¿Estudiantil en pago basado en ingreso cuenta el monto IDR?", "a": "Sí en suscripción convencional y FHA desde 2021 — usan el pago IDR real. Algunos aún usan 1% del balance como respaldo. Pregunta al oficial de préstamos." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. Todo se procesa localmente; nada se envía a ningún servidor." }
+  ]
+}

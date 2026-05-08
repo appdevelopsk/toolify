@@ -1,0 +1,69 @@
+{
+  "title": "Annuity Payout Calculator (fixed-period)",
+  "shortDescription": "Calculate the regular payout from an annuity given principal, interest rate, and payout period. Supports monthly or annual distributions.",
+  "description": "Enter principal, annual interest rate, and number of years. Returns the periodic payout (monthly or annual), total amount paid out, total interest earned, and number of payments. Uses the standard fixed-period annuity formula.",
+  "metaDescription": "Free annuity payout calculator. Monthly or annual fixed-period distributions. See total payout, interest earned, and payment count. Browser-based.",
+  "keywords": ["annuity payout calculator", "fixed period annuity", "annuity withdrawal", "retirement income calculator", "systematic withdrawal"],
+  "empty": "Enter principal and term greater than zero.",
+  "input": {
+    "principal": "Principal (lump sum)",
+    "ratePct": "Annual interest rate %",
+    "years": "Payout period (years)",
+    "frequency": "Payout frequency"
+  },
+  "freq": {
+    "monthly": "Monthly",
+    "annual": "Annual"
+  },
+  "result": {
+    "monthlyPayout": "Monthly payout",
+    "annualPayout": "Annual payout",
+    "totalPayout": "Total amount paid out",
+    "totalInterest": "Total interest earned",
+    "periods": "Number of payments"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Fixed-period annuity math",
+        "paragraphs": [
+          "A fixed-period annuity converts a lump sum into a series of equal payments over a chosen number of years. The formula is the loan-amortization formula in reverse: the principal is the bank's perspective, and the payment is the depositor's perspective. Standard form: payment = P × r / (1 − (1+r)⁻ⁿ), where P is principal, r is the periodic interest rate, n is the number of periods.",
+          "If you contribute $500,000 at 4% annual for 25 years monthly, the formula gives ≈$2,640/month. Total paid out: $791,000+. Total interest earned: $291,000+. The annuity pays itself down to zero over the period, which is why this is called 'period certain' — guaranteed for the term, no longer."
+        ]
+      },
+      {
+        "heading": "Why this is different from interest-only or 4% rule",
+        "paragraphs": [
+          "Interest-only withdrawal pays you only the interest each period (P × r). At 4% on $500K, that's $20K/year — and the principal stays intact for heirs or final distribution. The fixed-period annuity is higher annual income because it consumes principal: at 25 years it pays $31K+ annually, but ends with $0.",
+          "The 4% rule is a stochastic-return model from Trinity Study, designed for stock/bond portfolios over 30 years. It assumes variable returns averaging ~6-7% real and survives most historical sequences. The annuity formula here assumes a fixed return, which is why it's used for actual fixed annuity contracts and not portfolio withdrawals.",
+          "Use this tool when modeling a guaranteed product: a CD ladder, fixed annuity contract, or a structured settlement. Use a Monte Carlo or 4% rule calculator for a market-invested portfolio."
+        ]
+      },
+      {
+        "heading": "Tax and inflation caveats",
+        "paragraphs": [
+          "The payment is nominal (today's dollars). Real purchasing power decays with inflation: at 3% inflation over 25 years, a $2,640 payment is worth ~$1,260 in today's dollars by year 25. For inflation-protected income, look at TIPS ladders or COLA-adjusted annuities — both have lower starting payouts.",
+          "Taxes depend on the source. A non-qualified annuity from after-tax money is taxed only on the gain portion of each payment (exclusion ratio). Qualified annuities (from IRA/401k) are fully taxable. CDs pay interest as ordinary income. This calculator shows pre-tax figures.",
+          "The interest rate input should be the credited rate net of any annuity contract fees. Insurance products often quote a gross rate but charge 1-2% in fees, leaving the holder with a lower net rate. Use the net for honest projection."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter principal", "text": "The lump sum being annuitized. For an existing annuity contract, use the accumulated value at the time payouts begin." },
+      { "name": "Enter annual rate", "text": "The credited rate net of fees. For 4%, enter 4. For most fixed annuities, this is between 3-6%." },
+      { "name": "Choose period", "text": "Years over which the principal will be exhausted. Common: 10, 15, 20, 25, 30 years." },
+      { "name": "Pick frequency", "text": "Monthly is most common for retirement income; annual is simpler for projections." },
+      { "name": "Read the payout", "text": "Per-period income, total over the full period, and total interest earned." }
+    ]
+  },
+  "faq": [
+    { "q": "What's the difference between this and a lifetime annuity?", "a": "This is period-certain: pays for a fixed number of years, then stops. Lifetime annuities pay until death (or joint death). Lifetime payouts are usually lower per period because the insurance company assumes mortality risk." },
+    { "q": "Does the annuity continue if I outlive the period?", "a": "No. A 25-year fixed-period annuity stops paying in year 26. If you live to 100 and the term ended at 90, you have nothing. This is why pure period-certain is uncommon — most are bundled with life-contingent options." },
+    { "q": "What rate should I use?", "a": "For a real fixed annuity contract, use the contractually credited rate net of fees. For a CD ladder simulation, use the average CD yield. For an investment-based withdrawal, this calculator overestimates safety because it assumes constant returns — use a Monte Carlo tool instead." },
+    { "q": "Why is the monthly payout × 12 different from the annual payout calculation?", "a": "The monthly version compounds monthly (more frequent compounding = slightly different payment). At 4% annual, monthly compounding gives a slightly higher effective rate, so monthly × 12 ≈ annual but not exactly equal." },
+    { "q": "Can I add to the principal partway through?", "a": "Most fixed annuity contracts don't allow contributions after annuitization. This tool models a single-premium scenario. If you want flexible additions, model that separately and recompute." },
+    { "q": "How does inflation affect the 'real' value?", "a": "At 3% inflation, year-25 dollars are worth about 48% of year-1 dollars. To preserve purchasing power, add a 2-3% COLA rider (lower starting payout) or use TIPS ladders/inflation-adjusted bonds." },
+    { "q": "What happens to leftover principal at the end?", "a": "Nothing — the formula is designed to exactly exhaust the principal over the period. Final balance is zero by construction. Compare this to interest-only or RMD-based withdrawals where principal is preserved." },
+    { "q": "Does the calculation share data?", "a": "No. Pure browser computation; nothing is sent to any server." }
+  ]
+}

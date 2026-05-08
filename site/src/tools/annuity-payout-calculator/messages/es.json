@@ -1,0 +1,69 @@
+{
+  "title": "Calculadora de pagos de anualidad (período fijo)",
+  "shortDescription": "Calcula el pago regular de una anualidad dado principal, tasa de interés y período. Soporta distribuciones mensuales o anuales.",
+  "description": "Introduce principal, tasa anual y años. Devuelve el pago periódico (mensual o anual), monto total pagado, intereses totales y número de pagos. Usa la fórmula estándar de anualidad de período fijo.",
+  "metaDescription": "Calculadora gratis de pagos de anualidad. Distribuciones mensuales o anuales por período fijo. Total, intereses y conteo de pagos. En navegador.",
+  "keywords": ["calculadora anualidad", "anualidad período fijo", "retiro anualidad", "ingreso jubilación", "retiro sistemático"],
+  "empty": "Introduce principal y plazo mayores que cero.",
+  "input": {
+    "principal": "Principal (suma)",
+    "ratePct": "Tasa anual %",
+    "years": "Período de pagos (años)",
+    "frequency": "Frecuencia"
+  },
+  "freq": {
+    "monthly": "Mensual",
+    "annual": "Anual"
+  },
+  "result": {
+    "monthlyPayout": "Pago mensual",
+    "annualPayout": "Pago anual",
+    "totalPayout": "Total pagado",
+    "totalInterest": "Intereses ganados",
+    "periods": "Número de pagos"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Matemática de la anualidad de período fijo",
+        "paragraphs": [
+          "Una anualidad de período fijo convierte una suma en serie de pagos iguales sobre años elegidos. La fórmula es la de amortización de préstamo invertida: el principal desde la perspectiva del banco, el pago desde la del depositante. Forma estándar: pago = P × r / (1 − (1+r)⁻ⁿ), donde P es principal, r tasa periódica, n número de períodos.",
+          "Si aportas $500,000 al 4% anual por 25 años mensual, da ≈$2,640/mes. Total pagado: $791,000+. Intereses: $291,000+. La anualidad se amortiza a cero en el período, por eso es 'período cierto' — garantizado durante el plazo, no más."
+        ]
+      },
+      {
+        "heading": "Diferencias con retiro de solo interés o regla 4%",
+        "paragraphs": [
+          "El retiro de solo interés paga solo el interés cada período (P × r). 4% sobre $500K son $20K/año — y el principal queda intacto para herederos. La anualidad de período fijo paga más anualmente porque consume principal: a 25 años paga $31K+, pero termina en $0.",
+          "La regla 4% es un modelo de retornos estocásticos del estudio Trinity, diseñado para portafolios acción/bono sobre 30 años. Asume rendimientos variables ~6-7% real y sobrevive la mayoría de secuencias históricas. Aquí asumimos retorno fijo, por eso se usa para anualidades fijas reales y no para retiros de portafolio.",
+          "Usa esta herramienta al modelar producto garantizado: escalera CD, contrato de anualidad fija, acuerdo estructurado. Para portafolio invertido en mercado, usa Monte Carlo o calculadora de regla 4%."
+        ]
+      },
+      {
+        "heading": "Salvedades de impuestos e inflación",
+        "paragraphs": [
+          "El pago es nominal (dólares de hoy). Poder adquisitivo real decae con inflación: a 3% por 25 años, un pago de $2,640 vale ~$1,260 de hoy. Para ingreso protegido contra inflación, mira escaleras TIPS o anualidades con COLA — ambas tienen pagos iniciales más bajos.",
+          "Impuestos dependen de la fuente. Anualidad no calificada de dinero post-impuestos solo grava la porción de ganancia (ratio de exclusión). Calificada (de IRA/401k) totalmente gravable. CDs como ingreso ordinario. Esta calculadora muestra cifras antes de impuestos.",
+          "La tasa debe ser la acreditada neta de cargos del contrato. Productos de seguros suelen citar tasa bruta pero cobran 1-2%, dejando al titular con tasa neta menor. Usa la neta para proyección honesta."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Introduce principal", "text": "Suma siendo anuitizada. En contrato existente, usa el valor acumulado al inicio de pagos." },
+      { "name": "Introduce tasa anual", "text": "Tasa neta de cargos. Para 4%, escribe 4. La mayoría de anualidades fijas entre 3-6%." },
+      { "name": "Elige período", "text": "Años en que el principal se agotará. Comunes: 10, 15, 20, 25, 30." },
+      { "name": "Elige frecuencia", "text": "Mensual es más común para ingreso de jubilación; anual es más simple para proyección." },
+      { "name": "Lee el pago", "text": "Ingreso por período, total durante el período completo e intereses ganados." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Diferencia con anualidad vitalicia?", "a": "Esta es período cierto: paga número fijo de años, luego para. La vitalicia paga hasta muerte (o muerte conjunta). Vitalicias suelen pagar menos por período porque la aseguradora asume riesgo de mortalidad." },
+    { "q": "¿La anualidad continúa si vivo más que el período?", "a": "No. Una anualidad de 25 años cierto deja de pagar en año 26. Si vives a 100 y el plazo terminó a los 90, no tienes nada. Por eso el período cierto puro es poco común — usualmente bundleado con opciones vitalicias." },
+    { "q": "¿Qué tasa uso?", "a": "Para contrato real de anualidad fija, tasa contractual neta de cargos. Para escalera CD, rendimiento promedio CD. Para retiro basado en inversión, esta calculadora sobrestima seguridad porque asume retornos constantes — usa Monte Carlo." },
+    { "q": "¿Por qué pago mensual × 12 difiere del cálculo anual?", "a": "La versión mensual capitaliza mensualmente (capitalización más frecuente = pago ligeramente diferente). A 4% anual, capitalización mensual da tasa efectiva ligeramente mayor, así mensual × 12 ≈ anual pero no exactamente igual." },
+    { "q": "¿Puedo añadir al principal a mitad de camino?", "a": "Mayoría de contratos de anualidad fija no permiten contribuciones tras anuitización. Esta herramienta modela escenario de prima única. Para añadidos flexibles, modela aparte." },
+    { "q": "¿Cómo afecta la inflación al valor real?", "a": "Al 3%, dólares del año 25 valen ~48% de los del año 1. Para preservar poder adquisitivo, añade rider COLA 2-3% (pago inicial menor) o usa escaleras TIPS/bonos ajustados por inflación." },
+    { "q": "¿Qué pasa con principal sobrante al final?", "a": "Nada — la fórmula está diseñada para agotar exactamente el principal en el período. Saldo final es cero por construcción. Compara con solo interés o retiros basados en RMD donde se preserva principal." },
+    { "q": "¿La calculación comparte datos?", "a": "No. Cómputo puramente en navegador; no se envía nada a ningún servidor." }
+  ]
+}
