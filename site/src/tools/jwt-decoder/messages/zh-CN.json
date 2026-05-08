@@ -1,0 +1,67 @@
+{
+  "title": "JWT 解码器 (头部、载荷、签名、过期)",
+  "shortDescription": "将任意 JWT (JSON Web Token) 拆解为头部、载荷、签名三部分。高亮过期 token。浏览器内完成 — token 不离开本机。",
+  "description": "粘贴 JWT 即时将头部和载荷解码为 JSON。识别标准声明 (iat、exp、nbf) 并将 Unix 时间戳转换为 ISO 8601。标记已过期或未生效的 token。",
+  "metaDescription": "免费 JWT 解码器。查看头部、载荷、签名是否存在以及有效期。标准声明自动格式化。完全本地运行,token 不上传。",
+  "keywords": ["JWT 解码器", "JSON Web Token", "解码 JWT", "JWT 调试", "JWT 检查"],
+  "input": {
+    "token": "JWT 令牌",
+    "privacyNote": "在浏览器内完成解码,token 不会通过网络传输。"
+  },
+  "result": {
+    "header": "头部",
+    "payload": "载荷",
+    "signaturePresent": "存在签名",
+    "issuedAt": "签发时间 (iat)",
+    "expiresAt": "过期时间 (exp)",
+    "notBefore": "生效时间 (nbf)"
+  },
+  "warning": {
+    "expired": "⚠ 此 token 已过期。遵守 exp 的服务器会拒绝。",
+    "notYetValid": "⚠ 尚未生效 (nbf 在未来)。服务器在此前会拒绝。"
+  },
+  "error": { "label": "解码错误" },
+  "copy": "复制",
+  "article": {
+    "sections": [
+      {
+        "heading": "JWT 的结构",
+        "paragraphs": [
+          "JWT 是用点号连接的三段 Base64url 编码: header.payload.signature。每段是为 URL 安全传输而编码的 JSON。头部声明签名算法,载荷携带声明 (主体、过期、自定义数据),签名让接收方在持有密钥时验证完整性。",
+          "本解码器只读前两段。签名是第三段,但验证需要密钥/公钥——这是单独操作,本工具不执行。"
+        ]
+      },
+      {
+        "heading": "值得了解的标准声明",
+        "paragraphs": [
+          "iss (issuer): 签发者。iat (issued at): 签发时间,Unix 时间戳。exp (expiry): 失效时间,Unix。nbf (not before): 最早可被接受的时间。sub (subject): token 代表的实体,通常用户 ID。aud (audience): token 面向的服务,通常服务 URL。",
+          "并非全部必需,最小 JWT 常仅包含 sub + iat + exp。自定义声明是其他任意键,与标准声明并列在载荷中。"
+        ]
+      },
+      {
+        "heading": "解码 ≠ 验证",
+        "paragraphs": [
+          "任何人都能解码 JWT —— 头部和载荷只是 Base64 编码的 JSON。所以「不要把秘密放在载荷」: 等同公开信息。",
+          "验证意味着用密钥 (HMAC) 或公钥 (RSA/ECDSA) 校验签名。未经验证,载荷中任何声明都不可信 —— 攻击者可伪造任意载荷。",
+          "用本工具调试时检查 token,生产环境务必用服务器端 JWT 库验证。"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "粘贴 JWT", "text": "三段以点号连接。" },
+      { "name": "查看解码结果", "text": "头部 (算法)、载荷 (声明)、签名存在标志。" },
+      { "name": "检查过期", "text": "标准声明 iat/exp/nbf 自动格式化为 ISO 日期,过期或未生效会突出显示。" },
+      { "name": "按需复制", "text": "每节有 JSON 输出复制按钮。" }
+    ]
+  },
+  "faq": [
+    { "q": "可以验证签名吗?", "a": "不能 —— 验证需要密钥或公钥,这些不应离开可信环境。请使用服务器端 JWT 库 (Node 的 jsonwebtoken、Python 的 PyJWT 等)。" },
+    { "q": "Token 会上传吗?", "a": "永不。解码本地完成,我们没有接收 token 的服务器端口。" },
+    { "q": "为何 token 「无效」?", "a": "常见原因: 复制粘贴混入/丢失空白、不足三段、某段为非法 Base64url。修剪后重试。" },
+    { "q": "Base64url 和 Base64 的区别?", "a": "Base64url 把 '+' 换 '-'、'/' 换 '_',去掉末尾 '=',让编码字符串在 URL 和 HTTP 头中安全传输。JWT 始终用 Base64url。" },
+    { "q": "为何 Unicode 载荷显示乱码?", "a": "本工具按 UTF-8 解码 (标准做法)。如载荷用其他编码,JSON.parse 会失败。大多数 JWT 签发者正确使用 UTF-8。" },
+    { "q": "HS256 安全吗?", "a": "若密钥足够长 (≥256 位) 且保密,则安全。常见 HS256 漏洞是弱密钥和接受 alg='none'。使用 ≥32 字符随机密钥,显式拒绝 'none'。" },
+    { "q": "为何用 RS256 优于 HS256?", "a": "RS256 (非对称 RSA) 可发布验证用公钥同时保密签名密钥。HS256 (对称 HMAC) 需与每个验证者共享密钥。多服务架构下 RS256 更安全。" },
+    { "q": "可以解码巨大 token 吗?", "a": "实际上限约 10 MB,超过浏览器会变慢。JWT 通常小于 4 KB。如更大,考虑是否在声明里塞了过多内容。" }
+  ]
+}

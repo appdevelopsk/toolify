@@ -1,0 +1,71 @@
+{
+  "title": "Conversor CSV ↔ JSON (compatible RFC 4180)",
+  "shortDescription": "Convierte CSV a JSON o JSON a CSV. Delimitador configurable (coma/punto y coma/tab/pipe), toggle de fila de cabecera, manejo RFC 4180 de campos entre comillas.",
+  "description": "Pega CSV o JSON. El conversor parsea CSV compatible con RFC 4180 (maneja campos entre comillas con comas, comillas escapadas, valores multi-línea). Para JSON-a-CSV acepta tanto array-de-objetos (usa claves como cabecera) como array-de-arrays.",
+  "metaDescription": "Conversor gratis CSV ↔ JSON. Compatible RFC 4180, delimitador configurable, toggle de cabecera. Solo navegador — los datos no salen del dispositivo.",
+  "keywords": ["CSV a JSON", "JSON a CSV", "conversor CSV", "conversor JSON", "RFC 4180"],
+  "direction": {
+    "csvToJson": "CSV → JSON",
+    "jsonToCsv": "JSON → CSV"
+  },
+  "input": {
+    "csv": "Entrada CSV",
+    "json": "Entrada JSON",
+    "delimiter": "Delimitador",
+    "headerRow": "Primera fila es cabecera"
+  },
+  "delim": {
+    "comma": "Coma (,)",
+    "semicolon": "Punto y coma (;)",
+    "tab": "Tab",
+    "pipe": "Pipe (|)"
+  },
+  "output": "Salida",
+  "empty": "Introduce datos para ver la conversión.",
+  "error": { "label": "Error de conversión" },
+  "copy": "Copiar",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por qué importa RFC 4180",
+        "paragraphs": [
+          "CSV parece simple pero tiene casos límite: un campo con coma debe ir entre comillas; un campo con comilla debe escaparla doblándola; un campo puede contener saltos de línea si va entre comillas. Los parsers ingenuos basados en split-por-coma se rompen con datos reales. Este conversor implementa la gramática RFC 4180 exactamente.",
+          "Los parsers ingenuos también se rompen con exports Excel que usan punto y coma (común en locales europeos donde ',' es decimal) o tabs (TSV). El dropdown de delimitador maneja las cuatro variantes comunes."
+        ]
+      },
+      {
+        "heading": "Formas JSON para la salida",
+        "paragraphs": [
+          "Array de objetos (default con cabecera): cada fila se vuelve {columna: valor}. La forma JSON más común, fácil de consumir en cualquier lenguaje.",
+          "Array de arrays (cabecera off): cada fila se vuelve [v1, v2, ...]. Útil cuando las columnas no están nombradas o quieres estructura posicional.",
+          "De JSON a CSV, el conversor detecta qué forma tienes. Objetos: extrae claves únicas a través de filas como cabeceras. Arrays: escribe filas tal cual."
+        ]
+      },
+      {
+        "heading": "Trampas comunes",
+        "paragraphs": [
+          "Locale Excel: en algunas instalaciones europeas el delimitador default es ';' no ','. Si tu CSV se ve como una columna gigante al importar, cambia a ; en el dropdown.",
+          "BOM (Byte Order Mark): algunos exports Excel prefijan U+FEFF al archivo. Lo pasamos tal cual; si tu parser downstream falla, quita los primeros 3 bytes.",
+          "Salto de línea final: un CSV terminando en '\\n' añade fila vacía en algunos parsers; filtramos filas vacías automáticamente.",
+          "Números como strings: CSV no tiene tipos — '42' se vuelve string \"42\" en JSON. Si necesitas valores tipados, ejecuta un post-procesamiento que convierta columnas numéricas conocidas."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige dirección", "text": "CSV → JSON o JSON → CSV." },
+      { "name": "Configura delimitador", "text": "Coma (default), punto y coma, tab o pipe." },
+      { "name": "Toggle de cabecera", "text": "On para JSON tipo objeto, off para array-de-arrays." },
+      { "name": "Pega tus datos", "text": "Salida actualiza en vivo. Click 'Copiar' para copiar resultado." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Maneja campos con comillas y comas?", "a": "Sí — el quoting RFC 4180 está completamente soportado. \"Doe, John\" se parsea como un solo campo." },
+    { "q": "¿Cómo se manejan las comillas escapadas?", "a": "Por RFC 4180, una '\"' literal dentro de un campo entre comillas se escribe como '\"\"' (doble comilla). El parser lo maneja correctamente." },
+    { "q": "¿Pueden los campos contener saltos de línea?", "a": "Sí, entre comillas. \"line 1\\nline 2\" entre comillas se trata como un campo con salto incrustado." },
+    { "q": "¿Soporta BOM (UTF-8)?", "a": "El BOM pasa tal cual. Si tu consumidor downstream no lo tolera, quita los primeros 3 bytes (EF BB BF) del CSV." },
+    { "q": "¿Y los archivos enormes?", "a": "El navegador maneja unos pocos MB sin problema. Para CSVs muy grandes (100MB+) usa un parser de streaming como Papa Parse con worker, o herramienta CLI." },
+    { "q": "¿Los números se preservan como números?", "a": "CSV → JSON: todos los valores se vuelven strings (CSV es sin tipos). JSON → CSV: los números se vuelven celdas CSV sin comillas. Para JSON tipado, post-procesa columnas que sabes son numéricas." },
+    { "q": "¿Por qué mi JSON muestra strings vacíos en vez de null?", "a": "CSV representa valores faltantes como celdas vacías. Las mapeamos a strings vacíos. Para tener null en JSON, post-procesa la salida." },
+    { "q": "¿Los datos salen del navegador?", "a": "No. La conversión corre localmente; nada se envía a un servidor." }
+  ]
+}

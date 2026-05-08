@@ -1,0 +1,67 @@
+{
+  "title": "Decodificador JWT (header, payload, firma, expiración)",
+  "shortDescription": "Decodifica cualquier JWT (JSON Web Token) en sus partes header, payload, firma. Resalta tokens expirados. Solo navegador — el token nunca sale del dispositivo.",
+  "description": "Pega un JWT para decodificar al instante header y payload como JSON. Reconoce claims estándar (iat, exp, nbf) y convierte timestamps Unix a ISO 8601. Marca tokens expirados o aún no válidos.",
+  "metaDescription": "Decodificador gratis de JWT. Inspecciona header, payload, presencia de firma, expiración. Claims estándar auto-formateados. Solo navegador — token nunca transmitido.",
+  "keywords": ["decodificador JWT", "JSON Web Token", "decodificar JWT", "inspector JWT", "debugger JWT"],
+  "input": {
+    "token": "Token JWT",
+    "privacyNote": "Decodificado enteramente en tu navegador. El token no viaja por la red."
+  },
+  "result": {
+    "header": "Header",
+    "payload": "Payload",
+    "signaturePresent": "Firma presente",
+    "issuedAt": "Emitido en (iat)",
+    "expiresAt": "Expira en (exp)",
+    "notBefore": "No válido antes (nbf)"
+  },
+  "warning": {
+    "expired": "⚠ Este token ha expirado. Servidores que respeten exp lo rechazarán.",
+    "notYetValid": "⚠ Aún no válido (nbf en el futuro). Los servidores lo rechazarán hasta entonces."
+  },
+  "error": { "label": "Error de decodificación" },
+  "copy": "Copiar",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo se ve un JWT",
+        "paragraphs": [
+          "Un JWT son tres segmentos codificados en Base64url unidos por puntos: header.payload.signature. Cada segmento es un objeto JSON codificado para transmisión URL-safe. El header declara el algoritmo de firma, el payload lleva claims (sujeto, expiración, datos custom), y la firma permite al receptor verificar integridad si tiene la clave.",
+          "Este decodificador lee solo los dos primeros segmentos. La firma es el tercero pero verificarla requiere la clave secreta/pública — operación separada que no hacemos aquí."
+        ]
+      },
+      {
+        "heading": "Claims estándar a conocer",
+        "paragraphs": [
+          "iss (issuer): quién creó el token. iat (issued at): cuándo, como timestamp Unix. exp (expiry): cuándo deja de ser válido, también Unix. nbf (not before): el momento más temprano en que debe respetarse. sub (subject): la entidad que representa, a menudo un user ID. aud (audience): a quién va dirigido, normalmente una URL de servicio.",
+          "No todos son obligatorios; los JWTs mínimos suelen tener solo sub + iat + exp. Los claims custom son cualquier otra cosa — viven junto a los estándar en el payload."
+        ]
+      },
+      {
+        "heading": "Por qué decodificar ≠ verificar",
+        "paragraphs": [
+          "Cualquiera puede decodificar un JWT — header y payload son solo JSON Base64. Por eso decimos 'nunca pongas secretos en el payload': son efectivamente públicos.",
+          "Verificar significa comprobar la firma contra la clave secreta (HMAC) o pública (RSA/ECDSA). Sin verificación no puedes confiar en ningún claim del payload — un atacante puede falsificar cualquier payload.",
+          "Usa esta herramienta para inspeccionar tokens al depurar. Usa una librería JWT en tu servidor para verificarlos en producción."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pega el JWT", "text": "Tres segmentos unidos por puntos." },
+      { "name": "Lee las partes decodificadas", "text": "Header (algoritmo), payload (claims), bandera de presencia de firma." },
+      { "name": "Comprueba expiración", "text": "Los claims iat/exp/nbf se auto-formatean como fechas ISO y se marcan si expirados o aún no válidos." },
+      { "name": "Copia según necesites", "text": "Cada sección tiene un botón de copia para la salida JSON." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Puedo verificar la firma aquí?", "a": "No — la verificación necesita la clave secreta o pública, que nunca debe salir de un entorno confiable. Usa una librería JWT en servidor (jsonwebtoken para Node, PyJWT para Python, etc.)." },
+    { "q": "¿El token sale del navegador?", "a": "Nunca. La decodificación corre localmente; no tenemos endpoint de servidor que lo reciba." },
+    { "q": "¿Por qué mi token es 'inválido'?", "a": "Comunes: el copy-paste añadió/quitó whitespace, falta uno de los tres segmentos, o un segmento es Base64url malformado. Recórtalo y reintenta." },
+    { "q": "¿Base64url vs Base64?", "a": "Base64url sustituye '+' por '-', '/' por '_', y elimina el padding '=' para que el string codificado sea seguro en URLs y headers HTTP. Los JWTs siempre usan Base64url." },
+    { "q": "¿Por qué mi payload Unicode aparece confuso?", "a": "Decodificamos UTF-8 (estándar). Si el payload se codificó distinto, JSON.parse falla. La mayoría de emisores JWT codifican UTF-8 correctamente." },
+    { "q": "¿HS256 es seguro?", "a": "Si el secreto es suficientemente largo (≥256 bits) y se mantiene secreto, sí. Vulnerabilidades comunes de HS256: secretos débiles y aceptar tokens con alg='none'. Usa secretos aleatorios ≥32 chars y rechaza 'none' explícitamente." },
+    { "q": "¿Por qué preferir RS256 sobre HS256?", "a": "RS256 (RSA asimétrico) te deja publicar una clave pública para verificar mientras mantienes la privada en secreto. HS256 (HMAC simétrico) requiere compartir el secreto con cada verificador. Para arquitecturas multi-servicio, RS256 es más seguro." },
+    { "q": "¿Puedo decodificar tokens enormes?", "a": "Límite práctico ~10 MB; más allá el navegador se ralentiza. Los JWT suelen ser <4 KB; si el tuyo es mayor, considera si guardas demasiado en claims." }
+  ]
+}

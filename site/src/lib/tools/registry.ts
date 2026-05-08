@@ -108,6 +108,9 @@ import ruleOf72 from "@/tools/rule-of-72-calculator";
 import cagr from "@/tools/cagr-calculator";
 import stopwatch from "@/tools/stopwatch";
 import caesar from "@/tools/caesar-cipher";
+import jwtDec from "@/tools/jwt-decoder";
+import csvJson from "@/tools/csv-json-converter";
+import amortization from "@/tools/loan-amortization-schedule";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -222,6 +225,9 @@ export const TOOLS: ToolDefinition[] = [
   cagr,
   stopwatch,
   caesar,
+  jwtDec,
+  csvJson,
+  amortization,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));

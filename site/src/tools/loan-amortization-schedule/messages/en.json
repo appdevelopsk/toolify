@@ -1,0 +1,77 @@
+{
+  "title": "Loan Amortization Schedule (full or yearly)",
+  "shortDescription": "Generate a full month-by-month amortization schedule for any fixed-rate loan. Shows principal/interest split per payment, ending balance, and a CSV export.",
+  "description": "Enter principal, annual rate, and term in years. Returns the monthly payment, total interest, total payments, and a row-per-month schedule showing how each payment splits between principal and interest. Toggle full vs yearly summary; download CSV.",
+  "metaDescription": "Free loan amortization schedule. Monthly principal/interest breakdown, total interest, ending balance per period. CSV export. Browser-based.",
+  "keywords": ["loan amortization schedule", "amortization table", "monthly principal interest", "loan schedule calculator", "mortgage amortization"],
+  "input": {
+    "principal": "Loan amount",
+    "ratePct": "Annual rate %",
+    "years": "Term (years)"
+  },
+  "result": {
+    "monthly": "Monthly payment",
+    "totalInterest": "Total interest paid",
+    "totalPayments": "Total of payments",
+    "months": "Total months"
+  },
+  "schedule": {
+    "heading": "Schedule",
+    "showAll": "Show all months",
+    "condense": "Condense to yearly",
+    "downloadCsv": "Download CSV",
+    "condensedNote": "Condensed view: showing first month, every 12th month, and final month. Click 'Show all months' for full detail.",
+    "col": {
+      "month": "Month",
+      "payment": "Payment",
+      "principal": "Principal",
+      "interest": "Interest",
+      "balance": "Balance"
+    }
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How amortization works",
+        "paragraphs": [
+          "Each fixed monthly payment is split between interest (charged on the current balance) and principal (the actual loan repayment). At the start of the loan, the balance is high, so most of your payment is interest. As the balance shrinks, interest charges drop and more of each payment goes to principal — until the final payments are almost entirely principal.",
+          "Standard fixed-rate amortization formula: monthly payment = P × r / (1 − (1+r)⁻ⁿ), where P is principal, r is monthly rate (annual / 12), n is months. The same monthly payment is used throughout, but its principal/interest split shifts every month as the balance changes."
+        ]
+      },
+      {
+        "heading": "Why the schedule matters",
+        "paragraphs": [
+          "It tells you exactly when you 'cross over' from paying mostly interest to mostly principal. For a typical 30-year mortgage at 6%, that crossover happens around year 13 — meaning the first 13 years of payments are mostly interest, not equity.",
+          "It also shows the cost of staying in a long loan. Compared to a 15-year term at the same rate, a 30-year loan can pay 2-3× total interest over the life of the loan. The schedule makes this concrete: hover the final balance row and total-interest figure to see the long-run cost.",
+          "Extra principal payments early in the loan save dramatically more interest than late payments. The schedule helps you see this — paying an extra $100/month for the first 5 years saves more than paying $100/month for years 26-30."
+        ]
+      },
+      {
+        "heading": "Limitations",
+        "paragraphs": [
+          "Fixed rate only. ARMs (adjustable-rate mortgages) require recomputing the schedule each rate change.",
+          "No taxes, insurance, PMI, or escrow. The 'monthly payment' here is principal + interest only. For total housing payment, add T&I/HOA/etc. separately.",
+          "No prepayment scenarios. If you make extra payments, the schedule beyond that point is no longer accurate. For prepayment analysis, recompute with the new balance.",
+          "Compounding: assumes monthly compounding (standard for US mortgages). Some loan products use daily or simple interest — for those, the schedule is approximate."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter loan amount", "text": "The amount borrowed (principal)." },
+      { "name": "Enter rate", "text": "Annual percentage rate. For 6.5%, enter 6.5." },
+      { "name": "Enter term", "text": "In years. Most US mortgages are 15 or 30." },
+      { "name": "Read summary + schedule", "text": "Monthly payment, total interest, every-month breakdown of where each dollar goes." },
+      { "name": "Download CSV", "text": "Export the full schedule for spreadsheet analysis." }
+    ]
+  },
+  "faq": [
+    { "q": "Why does my mortgage statement show different numbers?", "a": "Real lenders include taxes, insurance, PMI, and escrow in the monthly payment. This calculator shows pure P&I (principal + interest). Subtract those add-ons to compare." },
+    { "q": "How is interest calculated each month?", "a": "monthly interest = current balance × monthly rate. Then principal = monthly payment − interest. The new balance = old balance − principal. Repeat for n months." },
+    { "q": "Why do early payments seem so 'wasted' on interest?", "a": "They aren't wasted — they're paying for the loan's existence at a high outstanding balance. The math is honest: high balance × rate = high interest. As balance drops, interest drops too." },
+    { "q": "What's the impact of a 1-point rate change?", "a": "Roughly 12% increase in monthly payment, and 25-35% increase in total interest over a 30-year mortgage. Lock in low rates if possible." },
+    { "q": "Should I pay extra principal each month?", "a": "If your loan has no prepayment penalty (most US mortgages don't), yes. Even an extra $100/month early in the loan saves thousands in interest. The schedule shows the impact." },
+    { "q": "What's a balloon loan?", "a": "A loan where regular payments don't fully amortize, leaving a large 'balloon' final payment. Common in commercial real estate; rare in residential. This calculator doesn't model balloons." },
+    { "q": "Why is total interest for 30-year so much more than 15-year?", "a": "Compounding works against you. At 6%, a 30-year loan has roughly 2× the total interest of a 15-year loan despite the rate being the same. The shorter term means the high-balance period is shorter." },
+    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; CSV download is generated in-browser too." }
+  ]
+}

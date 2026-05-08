@@ -1,0 +1,71 @@
+{
+  "title": "CSV ↔ JSON Converter (RFC 4180 compliant)",
+  "shortDescription": "Convert CSV to JSON or JSON to CSV. Configurable delimiter (comma/semicolon/tab/pipe), header-row toggle, RFC 4180 quoted-field handling.",
+  "description": "Paste CSV or JSON. The converter parses RFC 4180-compliant CSV (handles quoted fields with commas, escaped quotes, multi-line values). For JSON-to-CSV, accepts both array-of-objects (uses keys as headers) and array-of-arrays.",
+  "metaDescription": "Free CSV ↔ JSON converter. RFC 4180 compliant, configurable delimiter, header row toggle. Browser-only — your data never leaves your device.",
+  "keywords": ["CSV to JSON", "JSON to CSV", "CSV converter", "JSON converter", "RFC 4180"],
+  "direction": {
+    "csvToJson": "CSV → JSON",
+    "jsonToCsv": "JSON → CSV"
+  },
+  "input": {
+    "csv": "CSV input",
+    "json": "JSON input",
+    "delimiter": "Delimiter",
+    "headerRow": "First row is header"
+  },
+  "delim": {
+    "comma": "Comma (,)",
+    "semicolon": "Semicolon (;)",
+    "tab": "Tab",
+    "pipe": "Pipe (|)"
+  },
+  "output": "Output",
+  "empty": "Enter input to see the converted output.",
+  "error": { "label": "Conversion error" },
+  "copy": "Copy",
+  "article": {
+    "sections": [
+      {
+        "heading": "Why RFC 4180 matters",
+        "paragraphs": [
+          "CSV looks simple but has edge cases: a field containing a comma must be quoted; a field containing a quote must escape it as a doubled quote; a field can contain newlines if quoted. Naive split-on-comma parsers break on real-world data. This converter implements the RFC 4180 grammar exactly.",
+          "Naive parsers also break on Excel exports that use semicolons (common in European locales where ',' is decimal separator) or tabs (TSV). The delimiter dropdown handles all four common variants."
+        ]
+      },
+      {
+        "heading": "JSON shapes for output",
+        "paragraphs": [
+          "Array of objects (default with header row): each row becomes {column: value}. The most common JSON shape, easy to consume in any language.",
+          "Array of arrays (header row off): each row becomes [v1, v2, ...]. Useful when columns aren't named or you want a positional structure.",
+          "Going JSON to CSV, the converter detects which shape you have. Objects: extracts unique keys across all rows for headers. Arrays: writes rows as-is."
+        ]
+      },
+      {
+        "heading": "Common pitfalls",
+        "paragraphs": [
+          "Excel locale: in some European Excel installs, the default delimiter is ';' not ','. If your CSV looks like one giant column when imported, switch to ; in the delimiter dropdown.",
+          "BOM (Byte Order Mark): some Excel exports prefix the file with U+FEFF. We pass it through; if your downstream parser fails, strip the first 3 bytes.",
+          "Trailing newline: a CSV ending in '\\n' adds an empty last row in some parsers; we filter empty rows automatically.",
+          "Numbers as strings: CSV has no types — '42' becomes the string \"42\" in JSON. If you need typed values, run a post-processing step that coerces known number columns."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick direction", "text": "CSV → JSON or JSON → CSV." },
+      { "name": "Set delimiter", "text": "Comma (default), semicolon, tab, or pipe." },
+      { "name": "Toggle header row", "text": "On for object-shaped JSON, off for array-of-arrays." },
+      { "name": "Paste your data", "text": "Output updates live. Click 'Copy' to copy result to clipboard." }
+    ]
+  },
+  "faq": [
+    { "q": "Does this handle quoted fields with commas?", "a": "Yes — RFC 4180 quoting is fully supported. \"Doe, John\" is parsed as a single field." },
+    { "q": "How are escaped quotes handled?", "a": "Per RFC 4180, a literal '\"' inside a quoted field is written as '\"\"' (two quotes). The parser handles this correctly." },
+    { "q": "Can fields contain newlines?", "a": "Yes, when quoted. \"line 1\\nline 2\" inside quotes is treated as one field with embedded newline." },
+    { "q": "Does this support BOM (UTF-8)?", "a": "BOM passes through. If your downstream consumer doesn't tolerate it, strip the first 3 bytes (EF BB BF) from the CSV." },
+    { "q": "What about huge files?", "a": "Browser handles a few MB without issue. For very large CSVs (100MB+), use a streaming parser like Papa Parse with a worker, or a CLI tool." },
+    { "q": "Are numbers preserved as numbers?", "a": "CSV → JSON: all values become strings (CSV is untyped). JSON → CSV: numbers become unquoted CSV cells. To get typed JSON, post-process columns you know are numeric." },
+    { "q": "Why does my JSON show empty strings instead of null?", "a": "CSV represents missing values as empty cells. We map them to empty strings. To get null in JSON, post-process the output." },
+    { "q": "Does the data leave my browser?", "a": "No. Conversion runs locally; nothing is sent to a server." }
+  ]
+}

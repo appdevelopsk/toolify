@@ -1,0 +1,111 @@
+{
+  "title": "JWT 解碼器 (頭部、載荷、簽名、過期)",
+  "shortDescription": "將任意 JWT (JSON Web Token) 拆解為頭部、載荷、簽名三部分。高亮過期 token。瀏覽器內完成 — token 不離開本機。",
+  "description": "貼上 JWT 即時將頭部和載荷解碼為 JSON。識別標準宣告 (iat、exp、nbf) 並將 Unix 時間戳轉換為 ISO 8601。標記已過期或未生效的 token。",
+  "metaDescription": "免費 JWT 解碼器。檢視頭部、載荷、簽名是否存在以及有效期。標準宣告自動格式化。完全本地執行,token 不上傳。",
+  "keywords": [
+    "JWT 解碼器",
+    "JSON Web Token",
+    "解碼 JWT",
+    "JWT 除錯",
+    "JWT 檢查"
+  ],
+  "input": {
+    "token": "JWT 令牌",
+    "privacyNote": "在瀏覽器內完成解碼,token 不會透過網路傳輸。"
+  },
+  "result": {
+    "header": "頭部",
+    "payload": "載荷",
+    "signaturePresent": "存在簽名",
+    "issuedAt": "簽發時間 (iat)",
+    "expiresAt": "過期時間 (exp)",
+    "notBefore": "生效時間 (nbf)"
+  },
+  "warning": {
+    "expired": "⚠ 此 token 已過期。遵守 exp 的伺服器會拒絕。",
+    "notYetValid": "⚠ 尚未生效 (nbf 在未來)。伺服器在此前會拒絕。"
+  },
+  "error": {
+    "label": "解碼錯誤"
+  },
+  "copy": "複製",
+  "article": {
+    "sections": [
+      {
+        "heading": "JWT 的結構",
+        "paragraphs": [
+          "JWT 是用點號連線的三段 Base64url 編碼: header.payload.signature。每段是為 URL 安全傳輸而編碼的 JSON。頭部宣告簽名演算法,載荷攜帶宣告 (主體、過期、自定義資料),簽名讓接收方在持有金鑰時驗證完整性。",
+          "本解碼器只讀前兩段。簽名是第三段,但驗證需要金鑰/公鑰——這是單獨操作,本工具不執行。"
+        ]
+      },
+      {
+        "heading": "值得了解的標準宣告",
+        "paragraphs": [
+          "iss (issuer): 簽發者。iat (issued at): 簽發時間,Unix 時間戳。exp (expiry): 失效時間,Unix。nbf (not before): 最早可被接受的時間。sub (subject): token 代表的實體,通常使用者 ID。aud (audience): token 面向的服務,通常服務 URL。",
+          "並非全部必需,最小 JWT 常僅包含 sub + iat + exp。自定義宣告是其他任意鍵,與標準宣告並列在載荷中。"
+        ]
+      },
+      {
+        "heading": "解碼 ≠ 驗證",
+        "paragraphs": [
+          "任何人都能解碼 JWT —— 頭部和載荷只是 Base64 編碼的 JSON。所以「不要把秘密放在載荷」: 等同公開資訊。",
+          "驗證意味著用金鑰 (HMAC) 或公鑰 (RSA/ECDSA) 校驗簽名。未經驗證,載荷中任何宣告都不可信 —— 攻擊者可偽造任意載荷。",
+          "用本工具除錯時檢查 token,生產環境務必用伺服器端 JWT 庫驗證。"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "貼上 JWT",
+        "text": "三段以點號連線。"
+      },
+      {
+        "name": "檢視解碼結果",
+        "text": "頭部 (演算法)、載荷 (宣告)、簽名存在標誌。"
+      },
+      {
+        "name": "檢查過期",
+        "text": "標準宣告 iat/exp/nbf 自動格式化為 ISO 日期,過期或未生效會突出顯示。"
+      },
+      {
+        "name": "按需複製",
+        "text": "每節有 JSON 輸出複製按鈕。"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "可以驗證簽名嗎?",
+      "a": "不能 —— 驗證需要金鑰或公鑰,這些不應離開可信環境。請使用伺服器端 JWT 庫 (Node 的 jsonwebtoken、Python 的 PyJWT 等)。"
+    },
+    {
+      "q": "Token 會上傳嗎?",
+      "a": "永不。解碼本地完成,我們沒有接收 token 的伺服器埠。"
+    },
+    {
+      "q": "為何 token 「無效」?",
+      "a": "常見原因: 複製貼上混入/丟失空白、不足三段、某段為非法 Base64url。修剪後重試。"
+    },
+    {
+      "q": "Base64url 和 Base64 的區別?",
+      "a": "Base64url 把 '+' 換 '-'、'/' 換 '_',去掉末尾 '=',讓編碼字串在 URL 和 HTTP 頭中安全傳輸。JWT 始終用 Base64url。"
+    },
+    {
+      "q": "為何 Unicode 載荷顯示亂碼?",
+      "a": "本工具按 UTF-8 解碼 (標準做法)。如載荷用其他編碼,JSON.parse 會失敗。大多數 JWT 簽發者正確使用 UTF-8。"
+    },
+    {
+      "q": "HS256 安全嗎?",
+      "a": "若金鑰足夠長 (≥256 位) 且保密,則安全。常見 HS256 漏洞是弱金鑰和接受 alg='none'。使用 ≥32 字元隨機金鑰,顯式拒絕 'none'。"
+    },
+    {
+      "q": "為何用 RS256 優於 HS256?",
+      "a": "RS256 (非對稱 RSA) 可釋出驗證用公鑰同時保密簽名金鑰。HS256 (對稱 HMAC) 需與每個驗證者共享金鑰。多服務架構下 RS256 更安全。"
+    },
+    {
+      "q": "可以解碼巨大 token 嗎?",
+      "a": "實際上限約 10 MB,超過瀏覽器會變慢。JWT 通常小於 4 KB。如更大,考慮是否在宣告裡塞了過多內容。"
+    }
+  ]
+}
