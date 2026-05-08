@@ -1,0 +1,67 @@
+{
+  "title": "Prompt de entrevista a usuarios — comportamiento pasado, sin guiar",
+  "shortDescription": "Genera un guion de entrevista de usuario de 30 minutos con preguntas abiertas, follow-ups por pregunta, y reglas estrictas de no-guiado. Basado en The Mom Test.",
+  "description": "La mayoría de guiones AI son preguntas guiadas disfrazadas: '¿cómo te ayudaría nuestra función?' en lugar de 'caminemos por la última vez que enfrentaste esto'. Este prompt fuerza el encuadre en comportamiento pasado, prohíbe hipotéticas, y trae tácticas explícitas de seguimiento.",
+  "metaDescription": "Prompt gratis de entrevista a usuarios para Claude/ChatGPT. Preguntas de comportamiento pasado, sin guiar, con follow-ups. Basado en The Mom Test. Plantilla de 30 min.",
+  "keywords": ["prompt entrevista usuario", "Mom Test prompt", "guion investigación usuarios", "entrevista de descubrimiento", "entrevista cliente"],
+  "promptText": "Genera un guion de entrevista a usuario de 30 minutos.\n\nObjetivo de la entrevista: {qué quieres aprender — sé específico}\nSegmento: {a quién hablas — rol, contexto, comportamiento actual}\nHipótesis de trabajo (opcional): {qué crees actualmente que es verdad}\n\nDevuelve un guion con esta estructura:\n\n1. Calentamiento (3 min): dos preguntas abiertas sobre su rutina actual, sin mencionar producto.\n2. Sección de comportamiento pasado (15 min): 5-7 preguntas, cada una anclada a la última vez que hicieron la acción relevante. Formato: 'Caminemos por la última vez que...'.\n   Para cada pregunta, lista 2-3 follow-ups que el entrevistador deba tener listos.\n3. Sección de restricción (8 min): 3-4 preguntas sobre qué intentaron, qué pagaron, qué falló. Saca a la luz demanda real vs. cortesía.\n4. Cierre (4 min): una pregunta abierta '¿qué no te pregunté?' + agradecimiento.\n\nReglas duras (Mom Test):\n1. NINGUNA pregunta puede empezar con '¿harías...?' o '¿crees que...?' — ambas invitan mentiras de cortesía.\n2. NINGUNA pregunta puede mencionar tu producto o solución hipotética.\n3. Cada pregunta debe sacar un hecho (qué hicieron) o un pago (dinero/tiempo gastado), no una opinión.\n4. Si una pregunta no se puede responder sin imaginar el futuro, reescríbela sobre el pasado.\n5. Los follow-ups deben profundizar en específicos: 'qué tan a menudo', 'quién pagó', 'qué intentaste de verdad'.\n\nDevuelve solo el guion. Marca cada follow-up como [follow-up: ...]. Termina con un párrafo 'banderas rojas durante la entrevista' listando qué invalidaría la data (e.g., participante implica que no hace esto realmente).",
+  "useCase": {
+    "headline": "Cuándo usar esto",
+    "items": [
+      "Antes de construir nada — 5-10 de estas entrevistas reemplazan meses de adivinanza.",
+      "Cuando las métricas están planas y no sabes por qué — preguntas de comportamiento pasado revelan el árbol de decisión real.",
+      "Validar una asunción de pricing — la sección de restricción ('qué pagaste') es más honesta que '¿cuánto pagarías?'."
+    ]
+  },
+  "modelTips": {
+    "claude": "Mejor evitando preguntas guiadas. Reescribirá una hipotética en pregunta de comportamiento pasado al pedírselo.",
+    "chatgpt": "Tiende a meter '¿harías?'. La regla 'NO harías' es la más importante de hacer cumplir.",
+    "any": "Si una pregunta se siente cómoda de hacer, probablemente es guiada. El guion debería sentirse ligeramente invasivo — así sacas data real."
+  },
+  "exampleHeading": "Ejemplo: entrevista de descubrimiento para herramienta de finanzas personales",
+  "exampleOutput": "Objetivo: entender cómo empleados SaaS de mediana edad realmente trackean finanzas personales.\n\nCalentamiento (3 min)\n  - Cuéntame de tu trabajo — ¿qué haces día a día?\n  - ¿Cómo es un lunes típico antes de empezar el trabajo?\n\nComportamiento pasado (15 min)\n  Q1: Caminemos por la última vez que te sentaste a ver tu cuenta bancaria. ¿Cuándo fue, qué la disparó?\n    [follow-up: ¿planeado o reactivo?]\n    [follow-up: ¿cuánto duró?]\n  Q2: La última decisión financiera de más de $500 — comprar, esperar, cambiar de banco — caminemos por eso.\n    [follow-up: ¿qué chequeaste antes de decidir?]\n    [follow-up: ¿con quién más consultaste?]\n  ... [5 más]\n\nRestricciones (8 min)\n  Q8: ¿Cuál es la última herramienta de dinero que pagaste, aunque sean $5? ¿Qué te hizo parar o seguir pagando?\n  ... [3 más]\n\nCierre: ¿Qué no pregunté que ojalá hubiera preguntado?\n\nBanderas rojas durante la entrevista:\n- Participante dice 'haría' — no hace esto realmente. Profundiza en última instancia real; si no hay, el segmento puede no tener el problema.\n- Vago en números/fechas ('lo chequeo a veces'). Vago = comportamiento imaginado. Pregunta '¿cuándo fue exactamente la última vez?' para aterrizar.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por qué la mayoría de guiones AI de entrevista son inútiles",
+        "paragraphs": [
+          "El output LLM default para 'escríbeme un guion de entrevista' produce preguntas guiadas: '¿cómo te ayudaría la función X?'. The Mom Test (Rob Fitzpatrick, 2014) mostró hace dos décadas que las preguntas hipotéticas obtienen cortesía, no data. Los usuarios reales dicen lo que creen que quieres oír. El guion arriba fuerza el anclaje en comportamiento pasado, lo cual llega a hechos.",
+          "Los follow-ups son igual de importantes. Una pregunta como 'caminemos por la última vez que enfrentaste esto' por default obtiene 30 segundos de respuesta. Las sondas ('qué chequeaste primero', 'quién pagó', 'cuánto') convierten esos 30 segundos en 5 minutos de detalle útil."
+        ]
+      },
+      {
+        "heading": "Cómo actuar con el output",
+        "paragraphs": [
+          "Corre 5 entrevistas antes de cambiar el guion. Los patrones emergen para la entrevista 3-4. Para la 5 puedes saber qué preguntas dan buena data y cuáles dan relleno cortés — drop las cortés y agrega follow-ups específicos a las buenas.",
+          "Después de 5-7 entrevistas, pásalas por el prompt de research-summary para extraer claims y contradicciones. La combinación (guion → resumen estructurado → mapeo de claims) es mucho más rápida que leer transcripciones e intentar recordar patrones."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Por qué no preguntas '¿harías?'?",
+      "a": "Porque todos dicen sí a una función que les describes a la cara. Las hipotéticas invitan cortesía; el comportamiento pasado invita hechos. La mayor mejora a la calidad de entrevista es quitar todo '¿harías?' del guion."
+    },
+    {
+      "q": "¿Y si mi producto aún no existe?",
+      "a": "Mejor — no tienes con qué sesgarlos. Cada pregunta se vuelve sobre el dolor existente y soluciones actuales. Eso es exactamente para lo que sirven las entrevistas de descubrimiento."
+    },
+    {
+      "q": "¿Cuántas entrevistas necesito?",
+      "a": "5-12 por segmento es típico. Para la 5 has oído los patrones. Más refina los patrones en lugar de descubrir nuevos — rendimientos decrecientes pasadas ~10 a menos que investigues un segmento nuevo."
+    },
+    {
+      "q": "¿Y si el participante se va por la tangente?",
+      "a": "A menudo es oro. Los dolores reales descarrilan conversaciones; las respuestas cómodas no. Déjalo ir 2-3 min, toma notas, luego puentea: 'cuéntame más de X — ¿fue al mismo tiempo que también hiciste Y?'"
+    },
+    {
+      "q": "¿Debo compartir la hipótesis de antemano?",
+      "a": "No. Diles el objetivo en términos vagos ('estoy investigando cómo la gente maneja X'). Compartir una hipótesis específica sesga sus respuestas."
+    },
+    {
+      "q": "¿Puedo usarlo para tests de usabilidad?",
+      "a": "Diferente objetivo — los tests de usabilidad necesitan un guion de tarea, no de descubrimiento. Hay overlap (no guiar, observar comportamiento) pero el formato difiere. Publicaremos un prompt de usabilidad por separado."
+    }
+  ]
+}

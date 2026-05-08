@@ -1,0 +1,67 @@
+{
+  "title": "User interview script prompt — past behavior, no leading questions",
+  "shortDescription": "Generate a 30-minute user interview script with open questions, follow-ups for each, and strict no-leading rules. Modeled on Mom Test principles.",
+  "description": "Most AI interview scripts are leading questions in disguise: 'how would our feature help you?' rather than 'walk me through the last time you ran into this'. This prompt forces past-behavior framing, no hypotheticals, and explicit follow-up tactics.",
+  "metaDescription": "Free user interview prompt for Claude/ChatGPT. Past-behavior questions, no leading, with follow-ups. Based on The Mom Test. 30-min script template.",
+  "keywords": ["user interview prompt", "Mom Test prompt", "user research script", "discovery interview prompt", "customer interview"],
+  "promptText": "Generate a 30-minute user interview script.\n\nGoal of the interview: {what you want to learn — be specific}\nSegment: {who you're talking to — role, context, current behavior}\nWorking hypothesis (optional): {what you currently believe is true}\n\nOutput a script with this structure:\n\n1. Warm-up (3 min): two open questions about their current routine, no product mention.\n2. Past behavior section (15 min): 5-7 questions, each anchored in the last time they did the relevant action. Format: 'Walk me through the last time you...'.\n   For each question, list 2-3 follow-up probes the interviewer should keep ready.\n3. Constraint section (8 min): 3-4 questions about what they tried, what they paid for, what failed. Surfaces real demand vs. politeness.\n4. Wrap-up (4 min): one open 'what didn't I ask' question + thanks.\n\nHard rules (Mom Test):\n1. NO question may start with 'would you...' or 'do you think...' — both invite politeness lies.\n2. NO question may mention your product or hypothesized solution.\n3. Each question must surface a fact (what they did) or a payment (money/time spent), not an opinion.\n4. If a question can't be answered without imagining the future, rewrite it to be about the past.\n5. Follow-ups must dig into specifics: 'how often', 'who paid', 'what did you actually try'.\n\nReturn only the script. Mark each follow-up as [follow-up: ...]. End with a one-paragraph 'red flags during the interview' section listing what would invalidate the data.",
+  "useCase": {
+    "headline": "When to use this",
+    "items": [
+      "Before building anything — 5-10 of these interviews replace months of guessing.",
+      "When metrics are flat and you don't know why — past-behavior questions surface the actual decision tree.",
+      "Validating a pricing assumption — the constraint section ('what did you pay') is more honest than 'how much would you pay'."
+    ]
+  },
+  "modelTips": {
+    "claude": "Best at avoiding leading questions. Will rewrite a hypothetical into a past-behavior question on request.",
+    "chatgpt": "Tends to slip in 'would you' phrasing. The 'NO would you' rule is the most important to enforce.",
+    "any": "If a question feels comfortable to ask, it's probably leading. The script should feel slightly invasive — that's how you get real data."
+  },
+  "exampleHeading": "Example: discovery interview for a personal finance tool",
+  "exampleOutput": "Goal: understand how mid-30s SaaS employees actually track personal finances.\n\nWarm-up (3 min)\n  - Tell me about your work — what do you do day-to-day?\n  - What does a typical Monday morning look like, before work?\n\nPast behavior (15 min)\n  Q1: Walk me through the last time you sat down and looked at your bank account. When was it, what triggered it?\n    [follow-up: planned or reactive?]\n    [follow-up: how long did it take?]\n  Q2: The last time you made a financial decision over $500 — buying, waiting, switching banks — walk me through that.\n    [follow-up: what did you check before deciding?]\n    [follow-up: who else did you consult?]\n  ... [5 more]\n\nConstraints (8 min)\n  Q8: What's the last money tool you actually paid for, even $5? What made you stop or keep paying?\n  ... [3 more]\n\nWrap-up: What didn't I ask that you wish I had?\n\nRed flags during interview:\n- Participant says 'I would' — they don't actually do this. Probe for the last real instance; if none, segment may not have the problem.\n- Vague on numbers/dates ('I check sometimes'). Vague = imagined behavior. Ask 'when was the last time exactly?' to ground it.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Why most AI interview scripts are useless",
+        "paragraphs": [
+          "Default LLM output for 'write me an interview script' produces leading questions: 'how would feature X help you?'. The Mom Test (Rob Fitzpatrick, 2014) showed two decades ago that hypothetical questions get politeness, not data. Real users say what they think you want to hear. The script above forces past-behavior anchoring, which gets to facts.",
+          "The follow-up probes are equally important. A question like 'walk me through the last time you ran into this' will get you a 30-second answer by default. The probes ('what did you check first', 'who paid', 'how long') turn that 30 seconds into 5 minutes of useful detail."
+        ]
+      },
+      {
+        "heading": "How to act on the output",
+        "paragraphs": [
+          "Run 5 interviews before changing the script. Patterns emerge by interview 3-4. By interview 5 you can tell which questions are getting good data and which are getting polite filler — drop the polite-filler questions and add specific follow-ups for the good ones.",
+          "After 5-7 interviews, run them through the research-summary prompt to extract claims and contradictions. The combo (interview script → structured summary → claim mapping) is far faster than reading transcripts and trying to remember patterns."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Why no 'would you' questions?",
+      "a": "Because everyone says yes to a feature you describe to their face. Hypotheticals invite politeness; past behavior invites facts. The single biggest improvement to interview quality is removing every 'would you' from the script."
+    },
+    {
+      "q": "What if my product doesn't exist yet?",
+      "a": "Even better — you have nothing to bias them with. Every question becomes about the existing pain and current solutions. That's exactly what discovery interviews are for."
+    },
+    {
+      "q": "How many interviews do I need?",
+      "a": "5-12 per segment is typical. By 5 you've heard the patterns. Adding more refines them rather than discovers new ones — diminishing returns past ~10 unless you're researching a new segment."
+    },
+    {
+      "q": "What if the participant goes off-topic?",
+      "a": "Often that's gold. Real pains derail conversations; comfortable answers don't. Let them go for 2-3 min, take notes, then bridge back: 'tell me more about X — was that the same time you also did Y?'"
+    },
+    {
+      "q": "Should I share the hypothesis upfront?",
+      "a": "No. Tell them the goal in vague terms ('I'm researching how people handle X'). Sharing a specific hypothesis biases their answers."
+    },
+    {
+      "q": "Can I use this for usability tests?",
+      "a": "Different goal — usability tests need a task script, not a discovery script. There's overlap (don't lead, observe behavior) but the format differs. We'll publish a usability prompt separately."
+    }
+  ]
+}
