@@ -1,0 +1,83 @@
+{
+  "title": "Email rewriter prompt — clear, concise, tone-controlled",
+  "shortDescription": "Rewrite any email draft to be clearer and shorter without losing the message. Pick a tone (warm / neutral / firm) and a length target.",
+  "description": "The default 'rewrite this email' request from ChatGPT/Claude tends to inflate length and add corporate filler. This prompt does the opposite: enforces a target length, keeps your factual content intact, and lets you dial tone explicitly.",
+  "metaDescription": "Free email-rewriter prompt for ChatGPT and Claude. Target length, tone control (warm/neutral/firm), keeps your facts intact. With usage examples.",
+  "keywords": ["email rewriter prompt", "rewrite email AI", "ChatGPT email", "professional email prompt", "tone-controlled email"],
+  "promptText": "Rewrite the email below.\n\nTarget:\n- Length: roughly {N} words (default 80; pick 50-150).\n- Tone: {warm / neutral / firm} (default neutral).\n- Audience: {who they are — e.g., my manager, a vendor, a customer who is upset}.\n\nHard rules:\n1. Preserve every concrete fact, deadline, number, and name. Do not invent details or soften commitments I made.\n2. Remove corporate filler (\"I hope this email finds you well\", \"please don't hesitate\", \"as per my last email\", etc.).\n3. One ask per email. If the draft contains multiple asks, split them into a numbered list at the bottom.\n4. Never start with the word \"I\" twice in a row across consecutive sentences.\n5. Keep my signature line and any explicit attachments mentioned.\n\nReturn only the rewritten email body. No explanation.\n\nDraft:\n\n[paste your draft here]",
+  "useCase": {
+    "headline": "When to use this",
+    "items": [
+      "After writing an angry-feeling email — switch tone to neutral, shorter length, and the AI will defang it without losing your point.",
+      "When replying to a customer complaint — set tone to warm, target 70 words, and the result is empathetic without being saccharine.",
+      "Negotiation or pushback emails — tone firm + length 100, lets you stay direct but professional."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude is unusually good at preserving facts and not adding fluff. Best default for important emails.",
+    "chatgpt": "GPT-5 / GPT-4o tend to add 'professional' filler back in. The 'remove corporate filler' rule above is especially important for ChatGPT.",
+    "any": "All major models work. The pattern (target length + tone + audience + facts-preserved) is what makes this reliable."
+  },
+  "exampleHeading": "Example: an angry draft → neutral 70-word version",
+  "exampleOutput": "Draft (220 words, irritated):\n  \"Hi Sarah, I'm following up AGAIN about the missing invoice from October. I've now emailed three times. This is unacceptable from a billing system that we pay $1200/month for. I need this resolved by Friday or I'll have to escalate to your CTO. The invoice should cover the period 10/1–10/31, total $4,820, and we never received it…\"\n\nRewritten (neutral, 68 words, target met):\n  \"Hi Sarah,\n\n  Following up on the October invoice for $4,820 (period 10/1–10/31). I've emailed three times since November and haven't seen it land. We need this resolved by Friday so we can close out our books. If there's a system issue blocking it, please let me know what to send to support to unblock.\n\n  Thanks,\n  [Name]\"",
+  "article": {
+    "sections": [
+      {
+        "heading": "Why default email-rewriter prompts make things worse",
+        "paragraphs": [
+          "If you ask 'rewrite this email to be more professional', the model defaults to adding length: more pleasantries, hedging language, recap sentences. The output is longer than your draft, and what was a 20-second read is now a 90-second one. Recipients delete or skim long emails, so your message gets lost in the politeness padding.",
+          "The prompt above flips this. By forcing a target length and a 'remove corporate filler' rule, the rewrite is shorter than the input on most drafts. The tone control lets you keep emotional accuracy (firm complaint, warm apology) without losing focus."
+        ]
+      },
+      {
+        "heading": "Tone selection — which to pick when",
+        "paragraphs": [
+          "Warm: customer-facing apology, thanking someone for help, building rapport with a new contact. Adds light pleasantries (one sentence max).",
+          "Neutral: peer-to-peer work emails, status updates, factual replies. The default. Strips all pleasantries.",
+          "Firm: pushback, escalation, late-payment chase, scope-creep refusal. Keeps short sentences and direct language. Doesn't soften your asks."
+        ]
+      },
+      {
+        "heading": "Why one-ask-per-email matters",
+        "paragraphs": [
+          "Emails with multiple asks ('also please send me X, and oh by the way, can you forward Y') get partial responses or get ignored entirely. The recipient mentally batches the response and never sends it. The rule above forces multi-ask drafts to surface their structure as a numbered list, which prompts a fully-numbered reply.",
+          "If your draft has two genuinely independent asks, send two emails. The model won't enforce that for you — but it will surface the structure clearly enough that you'll usually decide to split before hitting send."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Will it change my facts or numbers?",
+      "a": "No — the 'preserve every concrete fact, deadline, number, and name' rule is explicit. If the model misreads a number, it's a model error, not a prompt failure. Always re-read the rewrite to confirm before sending."
+    },
+    {
+      "q": "Why a target length instead of 'be brief'?",
+      "a": "'Be brief' is interpreted as 'remove maybe 10%'. A target word count forces the model to make actual deletions. 80 words is roughly 4-5 short sentences — enough for one ask plus context."
+    },
+    {
+      "q": "Can I add my company's voice/style?",
+      "a": "Yes — add a 'Style notes:' line above the draft. Example: 'Style notes: Plain English, no exclamation points, sign-off is just my first name'. The model will follow these closely."
+    },
+    {
+      "q": "What if the draft is already short?",
+      "a": "Use a slightly higher target (100-120 words) to signal 'don't aggressively cut'. Or use the prompt with a clarity-only rule: replace 'Length: ~N words' with 'Keep length similar; only fix unclear sentences'."
+    },
+    {
+      "q": "Does it work for languages other than English?",
+      "a": "Yes — Claude and GPT-5 handle Japanese, Chinese, Korean, Spanish business emails well. The corporate-filler rule needs translation: in Japanese, the 'お世話になっております' opening is the closest filler equivalent and gets removed at neutral tone."
+    },
+    {
+      "q": "How is this different from Grammarly?",
+      "a": "Grammarly fixes mechanics (typos, comma splices). This prompt restructures content (removes filler sentences, splits multi-ask emails, dials tone). They complement each other — run Grammarly first, then this for restructure."
+    },
+    {
+      "q": "Can I save this in ChatGPT as a custom GPT?",
+      "a": "Yes — paste the prompt body as the GPT's instructions. You'll need to type only the draft each time. Same approach works in Claude Projects."
+    },
+    {
+      "q": "Why not start with 'I' twice in a row?",
+      "a": "Repeated 'I-' sentence openings make an email feel self-centered, even when the content is fine. Forcing variety (start one sentence with the recipient or with a fact) is a small lever that makes emails read warmer without changing meaning."
+    }
+  ]
+}

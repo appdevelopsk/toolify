@@ -1,0 +1,82 @@
+{
+  "title": "Meeting prep prompt — agenda, decisions, async-or-meeting check",
+  "shortDescription": "Generate a sharp meeting agenda from rough notes, including time budget, decisions to be made, and a 'should this be async' check at the top.",
+  "description": "Most AI-generated meeting agendas are bland templates that won't actually drive a productive meeting. This prompt forces the model to label decisions vs discussions, allocate time per item, and challenge whether the meeting needs to happen at all.",
+  "metaDescription": "Free meeting prep prompt. Builds an agenda with time budget, named decisions, and async-vs-meeting check. Works with Claude, ChatGPT.",
+  "keywords": ["meeting prep prompt", "AI agenda generator", "meeting agenda prompt", "decision meeting prompt", "stand up agenda"],
+  "promptText": "Build a meeting agenda from the rough notes below.\n\nMeeting context:\n- Duration: {N minutes}\n- Attendees: {names + roles}\n- Decision-makers in the room: {who can actually approve outcomes}\n- Existing async channels available: {Slack / Linear / Notion / etc.}\n\nFor each item I list, output:\n  - Item: <crisp restatement>\n  - Type: DECISION | DISCUSSION | INFO_SHARE\n  - Time: <minutes>\n  - Decision needed (if DECISION): <exact yes/no question or option set to choose between>\n  - Pre-read: <link or doc name attendees should have read first>\n  - Owner: <who drives this item>\n\nThen at the top of the agenda, add a SHOULD THIS BE A MEETING? section that:\n  1. Lists items that could be handled async (any pure INFO_SHARE).\n  2. Identifies missing decision-makers — if no one in the room can approve a DECISION item, flag it.\n  3. Recommends agenda changes: 'remove items 2-3 (async); reschedule with [missing person] for item 4'.\n\nHard rules:\n- Total time across items must fit within meeting duration, with 5 minutes reserved for buffer.\n- Every DECISION item must have an explicit yes/no or option-pick. 'Discuss the roadmap' is not a decision; 'Approve Q2 roadmap or send back for revision' is.\n- INFO_SHARE items get max 5 minutes each — anything more is a discussion in disguise.\n- If half or more items are INFO_SHARE, recommend cancelling the meeting and sending a written update.\n\nRough notes:\n\n[paste your bullet points or thoughts here]",
+  "useCase": {
+    "headline": "When to use this",
+    "items": [
+      "Before any recurring meeting — paste the standing agenda and recent dropped/added items, get back a tighter version.",
+      "When a meeting was scheduled by someone else and you want to fix it — generate the better version, share it back.",
+      "Quarterly planning sessions — the decisions-vs-discussions split prevents the meeting from becoming a 90-minute monologue."
+    ]
+  },
+  "modelTips": {
+    "claude": "Strong at the 'should this be async' challenge. Will recommend cancelling meetings when warranted, which other models hesitate to do.",
+    "chatgpt": "Works but tends to keep all items on the agenda. Add 'be willing to recommend cancelling the meeting if appropriate' to be explicit.",
+    "any": "The 'decision needed' rule is the leverage. If you can't fill it for an item, the item probably isn't ready for the meeting yet."
+  },
+  "exampleHeading": "Example: 30-min team sync from rough notes",
+  "exampleOutput": "SHOULD THIS BE A MEETING?\n  - Items 3 & 5 (status updates) should move to written update; saves 12 min.\n  - Item 4 (Q2 budget approval) needs the CFO present — they're not on the invite. Either reschedule or split: handle items 1-2 today, 4 with CFO next week.\n  - Recommendation: shorten to 15 min, agenda below.\n\nAGENDA (15 min, buffer 5 min)\n\n1. Approve hiring backfill for Sarah's role (5 min) — DECISION\n   Decision needed: Approve external posting now, or wait 2 weeks for internal candidate Q?\n   Owner: Engineering Manager. Pre-read: backfill spec doc (linked).\n\n2. Resolve API ownership between platform and growth (8 min) — DISCUSSION\n   Owner: VP Eng. Pre-read: ownership matrix v3.\n   Note: this needs both managers in the room; both confirmed.\n\n3. (removed — see top) Q1 metrics review → moved to written update.\n4. (rescheduled — see top) Q2 budget approval → reschedule with CFO.\n5. (removed — see top) Tooling vendor demo → async video, watch on own time.\n\nBuffer: 2 min for parking-lot or running over.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Why most agendas don't help meetings be productive",
+        "paragraphs": [
+          "Default agendas list topics without commitment. 'Discuss roadmap' invites unbounded discussion; 'roadmap status update' invites monologue; neither produces decisions. The result: meetings end with the same questions they started with, and the next meeting gets scheduled to address them.",
+          "The DECISION/DISCUSSION/INFO_SHARE labeling is doing most of the work in this prompt. Once you mark an item as DECISION, you must articulate the yes/no or option-pick. If you can't, the item isn't ready and should be removed (return to the discussion phase async first)."
+        ]
+      },
+      {
+        "heading": "The cancel-the-meeting check is the highest-leverage line",
+        "paragraphs": [
+          "AI tools rarely tell you to cancel the meeting they were asked to plan. This prompt explicitly asks the model to recommend cancellation when warranted, which lets you offload an awkward conversation. 'I ran the agenda through this prompt and it suggests we cancel — here's the async update instead' is a much easier message than 'I think we should cancel'.",
+          "Use it on recurring meetings every 2-3 months. Calendars accumulate cruft; this prompt is a structured cleanup."
+        ]
+      },
+      {
+        "heading": "Pre-reads make decision meetings 3x faster",
+        "paragraphs": [
+          "Half of every decision meeting is people getting up to speed on the context. If a one-page pre-read goes out 24 hours ahead and people actually read it, the meeting itself can be 10 minutes — long enough to surface concerns and decide, short enough that nobody zones out.",
+          "The 'pre-read' field in this prompt forces you to identify what context attendees need. If you can't name a doc, the meeting probably isn't ready: either you haven't written down what you're proposing, or there's no clear thing to react to."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Does it work for stand-ups / daily syncs?",
+      "a": "Marginally — stand-ups are mostly INFO_SHARE by design. The prompt would recommend cancelling them, which isn't always what you want. Use this for 30+ minute meetings."
+    },
+    {
+      "q": "What if the rough notes are messy and contradictory?",
+      "a": "The model will try to crisp them up. If it produces an item that doesn't match your intent, reply with 'item 3 is actually about X, not Y'. After one correction it usually keeps the rest aligned."
+    },
+    {
+      "q": "How do I share the output back to attendees?",
+      "a": "Copy-paste the agenda section (skip the 'should this be a meeting?' analysis if attendees might find it presumptuous). Or share the whole thing as a transparent 'here's how I trimmed the agenda' message."
+    },
+    {
+      "q": "Can I use this for 1-on-1s?",
+      "a": "Yes, with a tweak — change DECISION/DISCUSSION/INFO_SHARE to TOPIC/FEEDBACK/CHECK_IN. The time-budget and pre-read structure still helps."
+    },
+    {
+      "q": "What about the parking-lot for things that come up live?",
+      "a": "The 5-min buffer plays this role. If discussions consistently overflow, the prompt is also a diagnostic — either time estimates are too aggressive, or the items are larger than you scoped."
+    },
+    {
+      "q": "Why limit INFO_SHARE to 5 minutes?",
+      "a": "Because anything longer is either a discussion (someone has questions) or a presentation (which can be a recorded video). The 5-min cap forces you to either remove the item or label it correctly."
+    },
+    {
+      "q": "Does it integrate with calendar tools?",
+      "a": "Not directly. Output is plain markdown; paste into your calendar invite description, Notion, Linear, or wherever your team logs meeting notes. Some teams use Granola/Krisp for live transcription, which pairs well."
+    },
+    {
+      "q": "What about brainstorming meetings?",
+      "a": "Mark them as DISCUSSION-only with a note 'no decisions today, decisions in next meeting'. The 'should this be async' check might recommend a Miro / Figjam board instead — often better for divergent thinking."
+    }
+  ]
+}

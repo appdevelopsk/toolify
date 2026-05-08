@@ -10,7 +10,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = path.resolve(__dirname, "..");
-const TOOLS = path.join(ROOT, "src/tools");
+const SCAN_DIRS = [path.join(ROOT, "src/tools"), path.join(ROOT, "src/prompts")];
 
 interface ToolMsg {
   title?: string;
@@ -56,15 +56,19 @@ function audit(file: string, filename: string): string[] {
 
 function main() {
   let totalIssues = 0;
-  for (const slug of fs.readdirSync(TOOLS)) {
-    const dir = path.join(TOOLS, slug, "messages");
-    if (!fs.existsSync(dir)) continue;
-    for (const f of fs.readdirSync(dir).filter((n) => n.endsWith(".json"))) {
-      const errs = audit(path.join(dir, f), f);
-      if (errs.length > 0) {
-        totalIssues += errs.length;
-        console.error(`\n[${slug}/${f}]`);
-        errs.forEach((e) => console.error(`  - ${e}`));
+  for (const root of SCAN_DIRS) {
+    if (!fs.existsSync(root)) continue;
+    const label = path.basename(root);
+    for (const slug of fs.readdirSync(root)) {
+      const dir = path.join(root, slug, "messages");
+      if (!fs.existsSync(dir)) continue;
+      for (const f of fs.readdirSync(dir).filter((n) => n.endsWith(".json"))) {
+        const errs = audit(path.join(dir, f), f);
+        if (errs.length > 0) {
+          totalIssues += errs.length;
+          console.error(`\n[${label}/${slug}/${f}]`);
+          errs.forEach((e) => console.error(`  - ${e}`));
+        }
       }
     }
   }

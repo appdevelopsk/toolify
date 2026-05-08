@@ -1,0 +1,88 @@
+{
+  "title": "高階工程師程式碼審查 提示詞 — 找Bug、效能問題、邊緣情形",
+  "shortDescription": "讓 Claude/ChatGPT/Cursor 化身為高階工程師審查者的可複用提示詞,聚焦正確性、效能、邊緣情形,而不是命名細節。",
+  "description": "預設的AI程式碼審查會被風格細節淹沒,真正的Bug反而埋在一堆建議裡。這個提示詞強制按嚴重度分級、只報告能透過嚴格技術Lead審查的問題、並要求引用確切行號,讓你秒速驗證每條發現。",
+  "metaDescription": "免費高階工程師程式碼審查提示詞,適用於 Claude、ChatGPT、Cursor。按嚴重度分級,聚焦真Bug和效能問題,忽略風格細節,含使用示例。",
+  "keywords": [
+    "程式碼審查 提示詞",
+    "Claude 程式碼審查",
+    "ChatGPT 程式碼審查",
+    "AI 程式碼審查",
+    "Cursor 提示詞"
+  ],
+  "promptText": "你是一位高階Staff工程師,審查下面的diff。目標是捕捉那些能在嚴格技術Lead審查中存活下來的問題 — 不是Lint噪音。\n\n審查規則:\n1. 將每條發現分級為: BLOCKER / MAJOR / MINOR / NIT 之一。\n2. 預設只輸出 BLOCKER 和 MAJOR;除非我明確要求,否則抑制 MINOR 和 NIT。\n3. 每條發現需引用確切的檔案路徑 + 行號範圍,然後說明: (a) 哪裡有問題, (b) 在生產中的失敗模式, (c) 建議的修復。\n4. 若你對某條發現的把握度低於80%,標記為 [low-confidence] 並說明需要哪些額外資訊才能驗證。\n5. 末尾給出一段總評: ship-it / ship-with-followups / do-not-ship。\n\n不要評論以下內容:\n- 命名偏好(除非確實容易誤讀)。\n- 已有格式化器時的格式或空白。\n- 無法掛鉤到已測量熱路徑的假設性最佳化。\n- 程式碼庫其他地方已使用的模式(這是風格一致性,不是Bug)。\n\n待審查 diff:\n\n[在此貼上 unified diff 或檔案內容]",
+  "useCase": {
+    "headline": "什麼時候用",
+    "items": [
+      "合併非平凡 PR 之前 — 讓本提示詞掃一下 diff,把你想再看一眼的問題暴露出來。",
+      "自審自己的程式碼 — 在請人審之前過一遍,能消滅那些尷尬的低階錯誤。",
+      "進入陌生程式碼庫時 — 貼上一個函式加這個提示詞,改動前先理解風險。"
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude (Sonnet 4.6 或 Opus 4.7) 通常給出最穩妥的分級。diff 用程式碼塊貼上即可,長上下文也能處理整 PR 審查。",
+    "chatgpt": "GPT-5 / GPT-4o 傾向於更激進地標記風格;以上「抑制 MINOR/NIT」規則能讓它回到正軌。",
+    "cursor": "在 Cursor 中可儲存為 .cursorrules 條目,或直接貼上到 composer 中,搭配 @file 引用使用。"
+  },
+  "exampleHeading": "輸出示例",
+  "exampleOutput": "BLOCKER: src/auth/session.ts:42-58\n  - what: 會話令牌比較使用 ===,不是常數時間比較。\n  - failure mode: 遠端登入可能被時間側通道攻擊。\n  - fix: 改用 crypto.timingSafeEqual() 比較 buffer 對。\n\nMAJOR: src/auth/session.ts:73 [low-confidence]\n  - what: 重新整理令牌寫入 localStorage。\n  - failure mode: 任何未淨化的使用者內容到達頁面就可能被 XSS 提取。\n  - fix: 若前端不讀取此令牌,改為 httpOnly cookie。(low-confidence: 看不出前端如何使用此令牌。)\n\nSummary: ship-with-followups。常數時間比較修復在合併前必做;儲存位置問題作為 follow-up issue 記錄,本 PR 之外也值得跟進。",
+  "article": {
+    "sections": [
+      {
+        "heading": "為什麼大多數 AI 程式碼審查毫無用處",
+        "paragraphs": [
+          "預設情況下,語言模型在程式碼審查任務中會陷入「熱心的初級工程師」人格 — 對命名指點過多、對沒問題的程式碼建議「整潔化」改寫、把唯一的真Bug埋在一堆建議中,需要你忽略掉一大堆才能看到。訊雜比奇差,大多數團隊一週內就放棄了。",
+          "上面這個提示詞翻轉了三件事: 要求按嚴重度分級以顯式抑制瑣碎問題、要求行號讓每條發現可秒級驗證、強制信心標記讓你不用讀完整檔案就能判斷哪條值得信。"
+        ]
+      },
+      {
+        "heading": "和 CI 的搭配方式",
+        "paragraphs": [
+          "把它當作 PR 流程中的「第二意見」步驟 — 不是阻塞門禁。模型仍然會幻覺,尤其在跨檔案不變數、依賴未貼上框架約定的程式碼上。把輸出當作「需要驗證的清單」,不是「機械修復的清單」。",
+          "若想接入 CI,把提示詞改成輸出 JSON(在提示詞中加: 「以包含 severity, path, lineStart, lineEnd, what, fix, confidence 欄位的 JSON 陣列返回」),然後只把 BLOCKER/MAJOR 作為單條評論發到 PR 上,標題明確寫「AI 助手 — 行動前請驗證」。"
+        ]
+      },
+      {
+        "heading": "為團隊定製",
+        "paragraphs": [
+          "在 diff 上方加一段「Codebase context」: 5-10 行寫明你的技術棧、測試約定、非顯然的不變數(如「所有 DB 寫都過 src/db/withTx,停用裸 client」)。否則模型會漏掉程式碼庫特有的約定。",
+          "若團隊有已知薄弱點(某 job runner 中的競態、某服務的 N+1 查詢),加一行「Watch especially for: …」。模型會對這些 Bug 類別加權,在場時更可能被標記。"
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "可以用在閉原始碼上嗎?",
+      "a": "可以,但請先確認僱主的政策。提示詞本身是無害的,關鍵是你能否把程式碼貼上到所用模型中。Claude 和 ChatGPT 的企業版通常不會用你的輸入訓練,消費者版需要自行確認。"
+    },
+    {
+      "q": "為什麼要抑制 MINOR 和 NIT?",
+      "a": "因為實踐中它們會造成審查疲勞。看到第三條「考慮提取為函式」時你就不再繼續讀了。抑制後 BLOCKER/MAJOR 訊號保持銳利。需要深度審查時再用「show all findings including MINOR and NIT」開啟即可。"
+    },
+    {
+      "q": "diff 可以多長?",
+      "a": "Claude Sonnet/Opus 與 GPT-5 都能輕鬆處理 5 萬 token 以上 diff。超大 PR 建議按目錄分塊審(先 src/auth,再 src/billing),讓模型對每個子系統獨立思考,精度更高。"
+    },
+    {
+      "q": "安全專項審查怎麼辦?",
+      "a": "本提示詞能捕捉明顯的加密、儲存、SSRF 類問題,但不能替代認證、支付路徑的安全審查。這些路徑請同時使用本提示詞和專門的安全審查提示詞(後續單獨釋出)。"
+    },
+    {
+      "q": "能跨多個檔案審查嗎?",
+      "a": "可以 — 把包含全部檔案的 diff 一次貼上。單次貼上內的跨檔案不變數處理得不錯。涉及多個 PR 的問題(如「這是否與他處的特性開關門控一致?」)請把那些檔案的代表性片段一併附上。"
+    },
+    {
+      "q": "[low-confidence] 的發現可信嗎?",
+      "a": "當作「行動前需調查」處理。約一半的低信心發現是真的、模型只是無法驗證;另一半是誤讀。這個標記是誠實訊號,不是忽略的理由。"
+    },
+    {
+      "q": "為什麼要讓它寫出失敗模式?",
+      "a": "因為「這裡錯了」對你沒用,「unicode 輸入會崩潰」才有用。失敗模式那一行告訴你優先順序 — 防止百萬分之一邊緣情形的修復,跟防止每日生產事故的修復,完全是兩件事。"
+    },
+    {
+      "q": "在 Cursor 裡具體怎麼用?",
+      "a": "儲存到程式碼庫根目錄的 .cursorrules,或直接貼上到 composer 並配合 @file 引用。Cursor 會在該專案中持續應用這些規則。"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "title": "Midjourney 人物プロンプト — 顔・光・レンズ・ムードを制御",
+  "shortDescription": "被写体・構図・光・レンズ・ムード・スタイルを明示制御するMidjourneyの人物用モジュラープロンプトテンプレート。汎用「AI顔」感を回避。",
+  "description": "デフォルトのMidjourney人物画は、判で押したような不気味の谷的滑らかさ、ドラマチックなキーライト、過彩色のボケが共通する。本テンプレートはレンズ(焦点距離が重要)・光の方向・「過剰レンダリングしない肌」節でデフォルトを破り、リアルなテクスチャを強制する。",
+  "metaDescription": "Midjourney人物用無料モジュラープロンプト。レンズ・光・構図・ムードを明示制御。汎用AI顔感を回避。v6/v7例付き。",
+  "keywords": ["Midjourney 人物 プロンプト", "Midjourney プロンプト テンプレート", "AI 人物 プロンプト", "Midjourney ライティング", "リアル AI 人物画"],
+  "promptText": "[被写体 — 具体的に: 年齢、体型、髪、表情、服装]\n+ [構図: バストアップ / ウエスト上 / 全身]、[アングル: アイレベル / ロー / 3/4]\n+ shot on [レンズ: 35mm / 50mm / 85mm / 105mm]、[絞り: f/1.4 / f/2 / f/2.8]\n+ [光: 左から自然な窓光 / ゴールデンアワー逆光 / 柔らかな北窓光 / 曇天屋外]\n+ [ムード: 思索的 / さりげない喜び / 静かな緊張 / 疲労 — 1つ具体的に]\n+ [環境/背景: 5-8語、奥行きの手がかり付き]\n+ realistic skin texture with visible pores and natural asymmetry, no plastic smoothing\n+ [スタイル参照: editorial / documentary / film still / Renaissance painting / 1970s magazine cover]\n--ar 4:5 --style raw --v 7\n\nビルド例 (括弧部分を置き換え):\n\n  middle-aged woman in her late 50s, silver hair pulled back, soft smile lines, wearing a charcoal cashmere sweater, headshot, eye-level, shot on 85mm f/1.8, natural north-window light from screen left, contemplative mood, sparse home library blurred behind her with one warm lamp, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style --ar 4:5 --style raw --v 7\n\nバリエーション戦略:\n- 同プロンプトでレンズだけ変える(35mm → 85mm → 135mm)で3つの異なる構図。\n- 同プロンプトでライティングだけ変える(窓 → ゴールデンアワー → 曇天)でムード研究。\n- 気に入った顔ができたら --seed <n> でロックして繰り返し再現。",
+  "useCase": {
+    "headline": "使うべきタイミング",
+    "items": [
+      "キャラクター性を狙うエディトリアル風人物画(グラマーショットではなく)。",
+      "著者写真やLinkedInヘッドショット — レンズと光仕様で過剰グロスのAIっぽさを抑える。",
+      "フィクションキャラクターのコンセプトアート — 多数画像で顔参照を一貫させたい時(--seed使用)。"
+    ]
+  },
+  "modelTips": {
+    "midjourney": "v6.1とv7でテスト済み。--style rawでMidjourneyのデフォルトのシネマティックブーストを抑え、リアリズムを保持。--ar 4:5はエディトリアル人物クロップ;ドキュメンタリー感は --ar 3:2に切替。"
+  },
+  "exampleHeading": "同骨格からの3バリエーション",
+  "exampleOutput": "バリエーションA (親密):\n  35-year-old man with weathered hands, salt-and-pepper beard, looking down at a worn leather notebook, headshot tilted slightly down, shot on 50mm f/1.4, single candle as only light source from the right, quiet intensity, dim wooden table with handwritten pages, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, film still style, --ar 4:5 --style raw --v 7\n\nバリエーションB (エネルギッシュ):\n  young Black woman in her early 20s, joyful caught laugh mid-conversation, twist-out curls catching backlight, waist-up, three-quarter angle, shot on 85mm f/2, golden hour backlight from her left + soft fill from camera right, candid joy, blurred park bench and autumn leaves behind, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style, --ar 3:2 --style raw --v 7\n\nバリエーションC (フォーマル):\n  East Asian businesswoman in her 40s, sharp tailored navy blazer, neutral confident expression, three-quarter framing, low angle, shot on 35mm f/2.8, soft overcast outdoor light, quiet authority, modernist office building lobby blurred behind her, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, editorial style, --ar 4:5 --style raw --v 7",
+  "article": {
+    "sections": [
+      {
+        "heading": "デフォルトのMidjourney人物画が皆同じ顔になる理由",
+        "paragraphs": [
+          "Midjourneyの訓練データとデフォルトスタイルは、シネマ品質のドラマチック照明、美容修正肌、85mm f/1.4のボケを強く好む。レンズ・光・肌テクスチャを明示制御しないと、すべての人物画がこの「AI Instagramフィルター」美学に収束する。編集者やリクルーターは即座に見抜くようになっている。",
+          "上記テンプレートは3点で収束を破る: レンズ(焦点距離変更で顔の幾何が変わる)、光の方向と硬さ、デフォルトの美顔処理を抑制する明示的「リアルな肌テクスチャ」節。最初の2つは純粋な写真術、3つ目はMidjourney特有のアンチパターン対策。"
+        ]
+      },
+      {
+        "heading": "レンズで顔が変わる",
+        "paragraphs": [
+          "広角(35mm)は顎を強調し鼻を誇張する;親密、時にやや喜劇的に感じる。50mmは「標準」で最も自然。85mmと105mmは特徴を圧縮し、多くの顔を引き立て、クラシックなエディトリアル・ルックを生む。プロンプトでレンズだけ切り替えると、同一キャラクターの3つの異なる人物画が得られる。",
+          "同一の架空キャラクターを多数撮るときに使う。シードを固定し、レンズだけ変える。視覚的文脈は変わるが同一性は維持される — プロンプト単独では難しい機能。"
+        ]
+      },
+      {
+        "heading": "光の方向はムードを駆動する — 明示的に書け",
+        "paragraphs": [
+          "「自然光」は無指示。モデルがデフォルトでドラマチックなものを選ぶ。「画面左側からの柔らかい北窓光」は精確に実行できる指示。テンプレートは方向(左/右/後/前)、品質(柔らか/硬い)、光源(窓/ゴールデンアワー/ろうそく/曇天)を要求する。",
+          "ムードのクイック対応3例: 逆光+暖色 = ロマンティック/ノスタルジック。単一ハードサイドライト = ドラマチック/詰問的。曇天+正面ソフト = ドキュメンタリー/誠実。意識的に選ぶことが「人物画」と「意図したことを伝える人物画」の差。"
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Midjourney v5でも動く?",
+      "a": "はい、ただし--style raw(v5.2追加)とv7参照は外す。レンズ+光節は依然有効。新しいバージョン(v6.1+、v7)はリアル肌節をより正確に守る。"
+    },
+    {
+      "q": "全身ショットにも使える?",
+      "a": "可能 — 構図を全身に変更、レンズを35mmまたは50mmに(85mmは体には引き立てすぎ)、姿勢説明を追加。肌テクスチャ節は全身では効きが弱いが残しておく価値あり。"
+    },
+    {
+      "q": "Midjourneyは実カメラじゃないのに絞りを指定する理由は?",
+      "a": "モデルが理解する省略表記。f/1.4は「極端な背景ボケ、浅い焦点面、親密」を意味。f/8は「ほとんどシャープ、環境的人物画」。絞り指定はMidjourneyが確実に解釈する形でボケを制御する。"
+    },
+    {
+      "q": "複数画像で同じ顔を保つには?",
+      "a": "気に入った1枚を生成、その画像のシードを取得して--seed <n>を追加。同シード+類似プロンプトで似た顔が出る。v6+の--cref(キャラクター参照)と組み合わせれば一貫キャラクターが得られる。"
+    },
+    {
+      "q": "どんなスタイル参照が効く?",
+      "a": "写真家名は時に効くが不安定。より信頼できるのは「documentary editorial style」「film still style」「Renaissance oil painting style」「1970s magazine cover」「medium-format film」。具体的時代+媒体が、具体的写真家名より勝る。"
+    },
+    {
+      "q": "民族・年齢を数値で指定する理由は?",
+      "a": "テンプレートはそうしている、そしてそれが重要。Midjourneyには、被写体未指定時に表面化する既知のバイアスがある。狭い人口統計プロファイルにデフォルトしないよう、被写体は常に明示。"
+    },
+    {
+      "q": "これらのプロンプトは商用利用可?",
+      "a": "Midjourneyの商用利用は契約プラン次第(Standard以上で可)。プロンプト自体はそれを変えない。クライアント仕事には現行のMidjourney ToSを再確認 — 変わるので。"
+    },
+    {
+      "q": "まだ「AIっぽい」結果なら?",
+      "a": "スタイル参照に「medium format film」または「shot on Portra 400」を追加、最後に「film grain, slight imperfection, candid」を追加。これでクリーンなデジタルシャープネスから写真的不完全さへモデルを押し出せる。"
+    }
+  ]
+}

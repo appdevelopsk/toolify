@@ -1,0 +1,82 @@
+{
+  "title": "Research summary prompt — extract claims, evidence, and contradictions",
+  "shortDescription": "Turn long PDFs, papers, or reports into a structured summary that distinguishes claims from evidence, surfaces contradictions, and quotes source pages so you can verify.",
+  "description": "Default 'summarize this' produces lossy paragraph-style summaries that lose the point of every nuanced study. This prompt extracts a structured object — claims, evidence type, source location, and any contradictions across documents — that you can scan in 60 seconds.",
+  "metaDescription": "Free research summary prompt for Claude, Perplexity, ChatGPT. Extract claims with evidence and source pages. Surface contradictions across documents.",
+  "keywords": ["research summary prompt", "academic paper summary", "Claude research prompt", "Perplexity research", "literature review prompt"],
+  "promptText": "You will summarize the document(s) below. Output as a structured table, not prose.\n\nFor each major claim in the source(s), extract:\n  - Claim: <single sentence>\n  - Evidence type: <empirical study / theoretical argument / expert opinion / anecdote / unsupported>\n  - Source: <document name + page or section>\n  - Strength: <strong / moderate / weak — based on evidence type and sample size>\n  - Caveats: <limits the source itself acknowledges>\n\nAfter the table, add three sections:\n\n1. CONTRADICTIONS: list places where the documents disagree or where one document's claim conflicts with another's data.\n\n2. CONFIDENCE MAP: rate the overall reliability of each major claim — high (multiple strong sources agree), medium (one strong source or multiple weak sources), low (single weak source or unsupported assertion).\n\n3. WHAT'S MISSING: 3-5 questions a careful reader would still have after reading these documents. Mark each as either 'addressable from these documents with more reading' or 'requires external sources'.\n\nHard rules:\n- Quote page numbers or section identifiers for every claim. If you can't, mark [page unknown].\n- Do not synthesize beyond what the documents say. If two documents touch a topic but don't directly compare, say so — don't invent a comparison.\n- Distinguish 'the document claims X' from 'X is true'. The summary reports what was claimed, not what's correct.\n\nDocument(s):\n\n[paste full text or upload PDFs]",
+  "useCase": {
+    "headline": "When to use this",
+    "items": [
+      "Reading 5-10 papers for a literature review — run each through this prompt, then compare confidence maps to find consensus and gaps.",
+      "Evaluating an industry report you got from a vendor — the strength column exposes where the report is data-driven vs marketing.",
+      "Cross-checking a news article — feed the article + the underlying study; contradictions surface immediately."
+    ]
+  },
+  "modelTips": {
+    "claude": "Best at distinguishing claim from evidence type. The 'do not synthesize' rule is most respected by Claude (Sonnet 4.6+).",
+    "perplexity": "Strong when the document is on the open web — Perplexity adds source verification automatically. Less useful for private PDFs.",
+    "chatgpt": "Works but tends to soften the 'unsupported' verdict to 'mentioned'. Be explicit: 'use \"unsupported\" when the document presents a claim without citing data, even if it sounds reasonable.'"
+  },
+  "exampleHeading": "Example: 3-paper summary on remote work productivity",
+  "exampleOutput": "| Claim | Evidence | Source | Strength | Caveats |\n|---|---|---|---|---|\n| Remote workers self-report 13% higher productivity | survey, n=2400 | Bloom 2024 p.7 | moderate | self-report bias acknowledged |\n| Remote work reduces team innovation | qualitative interview, n=42 managers | Smith 2023 p.14 | weak | sample skewed to managers, not ICs |\n| Hybrid (3-day) outperforms full-remote on retention | A/B test at one company | Chen 2025 p.22 | moderate | single firm, may not generalize |\n\nCONTRADICTIONS:\n- Bloom 2024 reports productivity gain; Smith 2023 implies productivity decline (via 'reduced innovation'). The two use different productivity definitions — Bloom = output per hour, Smith = strategic output. Not directly comparable.\n\nCONFIDENCE MAP:\n- 'Remote work changes productivity' → high (clear effect, direction debated)\n- 'Remote work reduces innovation' → medium (one study, qualitative)\n- 'Hybrid is optimal' → low (one A/B at one firm)\n\nWHAT'S MISSING:\n1. Effect on junior employees specifically [requires external sources]\n2. Industry-by-industry breakdown [addressable: Bloom 2024 has appendix data]\n3. Effect on knowledge transfer / mentorship [requires external sources]",
+  "article": {
+    "sections": [
+      {
+        "heading": "Why prose summaries fail for research",
+        "paragraphs": [
+          "A paragraph summary blends every claim into the same authority level. The reader can't tell whether 'studies show that…' is backed by one underpowered survey or a meta-analysis of forty trials. The default LLM summary inherits this flaw and amplifies it — strong and weak claims get the same prose weight.",
+          "Structured extraction (table + confidence map) preserves the differential authority of claims. You can scan and immediately see that the headline finding rests on solid evidence while the secondary claim is essentially an editorial. This is the difference between informed and falsely confident."
+        ]
+      },
+      {
+        "heading": "The hardest rule: distinguishing claim from truth",
+        "paragraphs": [
+          "Default summarizers slip from 'document X says Y' to 'Y is true' without flagging the transition. The 'distinguish claim from truth' rule is explicit because models default-fail at it. When the rule holds, you read the summary and know exactly which assertions are the document's, not the model's editorializing.",
+          "If the model violates this rule (states X as fact when the document only claimed it), reply 'rephrase to attribute every claim to its source'. After one correction Claude tends to maintain attribution for the rest of the document."
+        ]
+      },
+      {
+        "heading": "Cross-document workflows",
+        "paragraphs": [
+          "For literature reviews, run each paper individually first — model context limits and quality both benefit from one-doc-at-a-time. Then in a second pass, paste only the resulting tables and ask: 'Identify points of consensus, points of disagreement, and the strongest single claim.' This is much faster than feeding all papers in one shot.",
+          "Build a 'confidence-decay' rule: any claim that appears in only one source automatically gets downgraded by one level when integrated into a multi-source summary. This forces the integrated review to weight replicated findings higher than novel-but-isolated ones, which matches good academic practice."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Does it work for very long PDFs?",
+      "a": "Claude handles 200K-token PDFs in one shot; ChatGPT/GPT-5 handle 128K. For longer, split by chapter and summarize each, then summarize the summaries. The structured format keeps quality consistent across passes."
+    },
+    {
+      "q": "Can it cite specific quotes?",
+      "a": "Yes — add 'For each claim, include a 5-15 word quoted snippet of the original phrasing' to the prompt. Useful when the wording matters (legal documents, technical specs)."
+    },
+    {
+      "q": "What if the document has no clear page numbers (web article)?",
+      "a": "Use section headings or paragraph numbers instead. The prompt's 'page or section' allows this. For web articles, paragraph index ('para 5') works fine."
+    },
+    {
+      "q": "How does this compare to using NotebookLM?",
+      "a": "NotebookLM auto-handles document upload and citations but produces narrative summaries by default. This prompt produces structured-extract output that's better for systematic comparison. Use both: NotebookLM for chat-style exploration, this prompt for write-once-skim-many summaries."
+    },
+    {
+      "q": "Why force the 'what's missing' section?",
+      "a": "Because every research summary should leave you with explicit follow-ups, not the false impression of completeness. The 'what's missing' section also reveals when the document fundamentally can't answer your question — useful before you spend more time reading it."
+    },
+    {
+      "q": "Does it work in non-English research?",
+      "a": "Yes — Claude and GPT-5 handle Japanese / Chinese / German / French academic prose well. The structured output remains in your prompt language; the source language can differ."
+    },
+    {
+      "q": "How do I avoid hallucinated page numbers?",
+      "a": "If the model gives a page number, spot-check one or two. If they're wrong, add 'If you cannot verify a page number, mark it [page unknown] — never guess.' to the prompt."
+    },
+    {
+      "q": "Can I use this for podcast transcripts?",
+      "a": "Yes — replace 'page' with 'timestamp' and the rest works. The structured-claim extraction is even more useful for podcasts, where claims float around longer prose without clear markers."
+    }
+  ]
+}

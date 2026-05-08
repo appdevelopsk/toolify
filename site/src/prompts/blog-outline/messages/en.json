@@ -1,0 +1,82 @@
+{
+  "title": "Blog post outline prompt — H2/H3 structure with intent and word counts",
+  "shortDescription": "Generate a tight, search-friendly outline for a blog post: H2/H3 hierarchy, intent per section, target word counts, and the questions each section answers.",
+  "description": "Most AI-generated outlines are bland templates. This prompt forces the model to think about search intent, give each section a measurable target, and surface the specific questions readers will have — the structure that ranks and the structure that humans actually finish reading.",
+  "metaDescription": "Free blog outline prompt. Generates H2/H3 structure with intent, word counts, and reader questions per section. Works with Claude, ChatGPT, Gemini.",
+  "keywords": ["blog outline prompt", "AI blog structure", "SEO outline prompt", "content brief prompt", "blog post planner"],
+  "promptText": "Build a blog post outline.\n\nTopic: {your topic}\nTarget reader: {who they are — beginners / experienced practitioners / decision makers}\nPrimary keyword: {the phrase you're trying to rank for}\nSearch intent: {informational / commercial / navigational / transactional}\nWord count target: {N — typical range 1500-3500}\n\nReturn an outline with this exact structure:\n\nH1: <title — must include primary keyword naturally, max 60 chars>\n\nIntro (~{N*0.05} words)\n  - Hook: <one sentence about why the reader cares right now>\n  - Promise: <what they'll know after reading>\n  - Skip-ahead: <if their answer is in section X, point them there>\n\nH2: <section heading>\n  Intent: <what reader question this answers>\n  Word count: <N>\n  Questions to address:\n    - <Q1>\n    - <Q2>\n  H3: <subsection> (only if needed; max 3 H3 per H2)\n\n... (3-6 H2 sections total; depth chosen by topic, not template)\n\nConclusion (~{N*0.05} words)\n  - One-line takeaway\n  - Single CTA (no list of CTAs)\n\nHard constraints:\n1. Every H2 must answer a different searcher question — no two sections covering the same intent.\n2. Skip the 'introduction is important' filler section many AI outlines add. Real readers skim past it.\n3. If you'd suggest a section that's purely 'background context', mark it [optional] — most readers want the answer first.\n4. Total word counts must sum to within 10% of the target.\n5. Do not invent statistics or sources. If a section needs data, mark it [needs data: <what kind>].",
+  "useCase": {
+    "headline": "When to use this",
+    "items": [
+      "Before writing any post over 1000 words — saves hours of mid-draft restructuring.",
+      "Briefing a freelance writer — copy the outline output as the brief; word counts and intent prevent meandering drafts.",
+      "Auditing existing posts — paste your current H2 list and ask the model to apply this structure as a critique."
+    ]
+  },
+  "modelTips": {
+    "claude": "Best at picking up subtle intent differences. Will refuse to add filler sections if they don't earn their word count.",
+    "chatgpt": "Works well; tends to add one extra section for completeness. Trim afterward if it overshoots word count.",
+    "any": "The 'questions to address' field is the leverage. Make sure the model fills it concretely (not 'discusses key benefits' but 'answers: how does X compare to Y on price?')."
+  },
+  "exampleHeading": "Example output for 'How to choose a freelance accountant'",
+  "exampleOutput": "H1: How to Choose a Freelance Accountant (2026 Guide)\n\nIntro (~150 words)\n  - Hook: Tax season is 8 weeks away and your previous accountant ghosted you.\n  - Promise: A 4-question filter that surfaces the right accountant in under an hour.\n  - Skip-ahead: If you only need rates, jump to §3.\n\nH2: The 4-question filter (450 words)\n  Intent: 'how do I quickly evaluate accountants?'\n  Questions:\n    - What 4 questions surface a competent vs incompetent freelancer in 10 min?\n    - What's a non-negotiable answer vs a flexible one?\n  H3: Question 1 — current client mix\n  H3: Question 2 — software stack\n\nH2: How to verify credentials (350 words)\n  Intent: 'how do I confirm they're legit?'\n  Questions:\n    - Where to verify CPA license?\n    - What does PII access look like with a real accountant?\n\nH2: Pricing models (500 words)\n  Intent: 'what should I expect to pay?'\n  Questions:\n    - Hourly vs fixed vs retainer — which is cheapest for someone with 1 W-2 + 2 1099s?\n    - What's the typical range in 2026?\n  [needs data: 2026 freelance accountant rate survey]\n\nH2: Red flags during onboarding (300 words)\n  Intent: 'when should I walk away?'\n  Questions:\n    - 5 red flags in the first call\n\nH2: First-90-days checklist (250 words)\n  Intent: 'what do I actually do once I've hired one?'\n\nConclusion (~150 words)\n  CTA: Single link to a downloadable interview question PDF.\n\nTotal: ~2150 words (target was 2200; within 10%).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Why most AI-generated outlines underperform",
+        "paragraphs": [
+          "If you ask 'outline a post about X', the model returns a generic skeleton: introduction, history, key concepts, examples, conclusion. The structure is template-driven, not topic-driven, and the resulting post reads like every other listicle on page two of search results. Readers and Google both notice this — bounce rate climbs, engagement drops, ranking erodes.",
+          "The prompt above forces topic-driven structure by demanding intent and reader-questions per section. A section that can't articulate the specific question it answers gets cut. A section without word-count budget can't dilute the rest. The output is a brief that survives contact with the actual writing."
+        ]
+      },
+      {
+        "heading": "Word counts as a planning lever",
+        "paragraphs": [
+          "Most posts fail not because they cover the wrong topics but because the wrong topics get the wrong amount of space. The most important section gets 200 words and a tangential one gets 600. Specifying word counts up front forces priority decisions during outlining, when they're cheap, instead of during editing, when cutting hurts.",
+          "Sum-to-target enforcement (within 10%) catches a common AI failure: the outline keeps adding sections until the total is 1.5x your target. Trim or merge before writing — much faster than during a second draft."
+        ]
+      },
+      {
+        "heading": "Adapting the prompt for content audits",
+        "paragraphs": [
+          "Reuse the structure to audit underperforming posts. Paste the current H2 list and ask: 'Apply the blog-outline framework. Which sections lack a clear searcher question? Which sections overlap intent? Where do word-count allocations not match importance?' The model becomes a structural editor instead of a copy editor.",
+          "Pair this with a quick keyword-gap check: include 'List 5 reader questions this outline does NOT answer that competing top-3 results do answer.' This surfaces missing sections without you reading every competitor article."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "How long should each H2 typically be?",
+      "a": "Depends on the post target, but a reasonable default is 250-500 words per H2. Below 200 words it's not worth a section header; above 600 it usually wants to split into H3s or become its own post."
+    },
+    {
+      "q": "What does 'intent' mean for a section?",
+      "a": "The specific reader question the section answers. 'Discusses pricing' is not intent. 'Answers: should I pay hourly or by retainer for my situation?' is intent. The more specific, the better the section writes."
+    },
+    {
+      "q": "Why mark sections [optional]?",
+      "a": "Because the prompt is honest about which sections actually earn their place. A 'history of X' section may interest 5% of readers; flagging it lets you decide whether to write it, demote it to a footnote, or skip entirely."
+    },
+    {
+      "q": "Can I use this for video scripts or YouTube outlines?",
+      "a": "Yes, but change 'word count' to 'screen time' (in seconds), and change 'questions to address' to 'visual moments'. The same intent-driven structure applies — viewers leave videos for the same reason readers leave posts: sections that don't earn their time."
+    },
+    {
+      "q": "Does it work without a primary keyword?",
+      "a": "Yes — but the H1 won't be SEO-optimized. If you're writing for a newsletter or internal blog, drop the primary keyword field; the rest still works."
+    },
+    {
+      "q": "How do I prevent the model from inventing data?",
+      "a": "Rule 5 ([needs data: ...]) is the explicit anti-hallucination guard. The model marks unverified claims for you to fill in. If it ever produces stats without the marker, ask 'Source for that figure?' and it'll either provide one or admit it can't."
+    },
+    {
+      "q": "Should I add competing-post analysis?",
+      "a": "Optional but powerful. Add a section: 'Top 3 ranking results for the primary keyword: <paste titles + URLs>. Identify their structural weaknesses (sections they skip, questions they don't answer).' The outline will explicitly differentiate."
+    },
+    {
+      "q": "Why does the prompt skip the 'introduction is important' section?",
+      "a": "Because most AI outlines add it as a 200-word section that just restates the H1. Modern readers and search engines both penalize this padding. The Hook + Promise + Skip-ahead microstructure does the same job in 50 words."
+    }
+  ]
+}

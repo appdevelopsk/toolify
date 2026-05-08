@@ -1,6 +1,7 @@
 import type { Locale } from "./locales";
 import { DEFAULT_LOCALE } from "./locales";
 import { listTools } from "@/lib/tools/registry";
+import { listPrompts } from "@/lib/prompts/registry";
 
 type Messages = Record<string, unknown>;
 
@@ -31,7 +32,30 @@ async function loadToolMessages(locale: string): Promise<Messages> {
   return out;
 }
 
+async function loadPromptMessages(locale: string): Promise<Messages> {
+  const prompts = listPrompts();
+  const out: Messages = {};
+  for (const prompt of prompts) {
+    try {
+      const mod = await import(`@/prompts/${prompt.slug}/messages/${locale}.json`);
+      out[prompt.slug] = mod.default;
+    } catch {
+      try {
+        const fallback = await import(`@/prompts/${prompt.slug}/messages/${DEFAULT_LOCALE}.json`);
+        out[prompt.slug] = fallback.default;
+      } catch {
+        out[prompt.slug] = {};
+      }
+    }
+  }
+  return out;
+}
+
 export async function loadMessages(locale: Locale | string): Promise<Messages> {
-  const [common, tools] = await Promise.all([loadCommon(locale), loadToolMessages(locale)]);
-  return { ...common, tools };
+  const [common, tools, prompts] = await Promise.all([
+    loadCommon(locale),
+    loadToolMessages(locale),
+    loadPromptMessages(locale),
+  ]);
+  return { ...common, tools, prompts };
 }

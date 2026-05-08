@@ -1,0 +1,82 @@
+{
+  "title": "Prompt de esquema de blog — H2/H3 con intención y conteo",
+  "shortDescription": "Genera un esquema apretado y SEO-friendly: jerarquía H2/H3, intención por sección, conteo de palabras objetivo y preguntas que cada sección responde.",
+  "description": "La mayoría de esquemas hechos por IA son plantillas blandas. Este prompt fuerza al modelo a pensar en intención de búsqueda, dar a cada sección un objetivo medible y traer las preguntas concretas que tendrán los lectores — la estructura que rankea y que la gente realmente termina.",
+  "metaDescription": "Prompt gratis de esquema de blog. Genera estructura H2/H3 con intención, conteo y preguntas por sección. Funciona con Claude, ChatGPT, Gemini.",
+  "keywords": ["prompt esquema blog", "estructura blog AI", "prompt esquema SEO", "prompt brief contenido", "planificador post"],
+  "promptText": "Construye un esquema de post.\n\nTema: {tu tema}\nLector objetivo: {quién es — principiantes / experimentados / decisores}\nKeyword principal: {la frase para la que quieres rankear}\nIntención de búsqueda: {informational / commercial / navigational / transactional}\nObjetivo de palabras: {N — típicamente 1500-3500}\n\nDevuelve un esquema con esta estructura exacta:\n\nH1: <título — debe incluir la keyword naturalmente, máx 60 chars>\n\nIntro (~{N*0.05} palabras)\n  - Hook: <una oración sobre por qué le importa al lector ahora>\n  - Promesa: <qué sabrá después de leer>\n  - Salto: <si su respuesta está en la sección X, mándalo allá>\n\nH2: <encabezado de sección>\n  Intención: <qué pregunta del lector responde>\n  Palabras: <N>\n  Preguntas a responder:\n    - <Q1>\n    - <Q2>\n  H3: <subsección> (solo si hace falta; máx 3 H3 por H2)\n\n... (3-6 H2 en total; profundidad por tema, no plantilla)\n\nConclusión (~{N*0.05} palabras)\n  - Conclusión de una línea\n  - CTA único (no lista de CTAs)\n\nReglas duras:\n1. Cada H2 debe responder una pregunta de buscador distinta — sin dos secciones cubriendo la misma intención.\n2. Salta la sección 'la introducción es importante' que muchos esquemas de IA agregan. Lectores reales la pasan.\n3. Si sugieres una sección puramente de 'contexto histórico', márcala [optional] — la mayoría quiere la respuesta primero.\n4. Los conteos totales deben sumar dentro del 10% del objetivo.\n5. No inventes estadísticas o fuentes. Si una sección necesita datos, marca [needs data: <qué tipo>].",
+  "useCase": {
+    "headline": "Cuándo usar esto",
+    "items": [
+      "Antes de escribir cualquier post sobre 1000 palabras — ahorra horas de reestructuración a mitad de borrador.",
+      "Briefing a un escritor freelance — copia el esquema como brief; conteos e intención previenen borradores divagantes.",
+      "Auditando posts existentes — pega tu lista actual de H2 y pide aplicar esta estructura como crítica."
+    ]
+  },
+  "modelTips": {
+    "claude": "Mejor capturando diferencias sutiles de intención. Se niega a agregar secciones de relleno si no ganan su conteo.",
+    "chatgpt": "Funciona; tiende a agregar una sección extra por completitud. Recorta después si excede conteo.",
+    "any": "El campo 'preguntas a responder' es la palanca. Asegúrate que el modelo lo llene concreto (no 'discute beneficios clave' sino 'responde: ¿cómo se compara X con Y en precio?')."
+  },
+  "exampleHeading": "Ejemplo: 'Cómo elegir contador freelance'",
+  "exampleOutput": "H1: Cómo Elegir un Contador Freelance (Guía 2026)\n\nIntro (~150 palabras)\n  - Hook: Temporada de impuestos a 8 semanas y tu contador anterior desapareció.\n  - Promesa: Un filtro de 4 preguntas que saca al contador correcto en menos de una hora.\n  - Salto: Si solo necesitas tarifas, salta a §3.\n\nH2: El filtro de 4 preguntas (450 palabras)\n  Intención: '¿cómo evalúo contadores rápido?'\n  Preguntas:\n    - ¿Qué 4 preguntas distinguen competente vs incompetente en 10 min?\n    - ¿Cuál respuesta es no negociable vs flexible?\n  H3: Pregunta 1 — mix de clientes actuales\n  H3: Pregunta 2 — stack de software\n\nH2: Cómo verificar credenciales (350 palabras)\n  Intención: '¿cómo confirmo que es legítimo?'\n  Preguntas:\n    - ¿Dónde verificar licencia CPA?\n    - ¿Cómo se ve el acceso a PII con un contador real?\n\nH2: Modelos de precios (500 palabras)\n  Intención: '¿qué debo esperar pagar?'\n  Preguntas:\n    - Por hora vs fijo vs retainer — ¿cuál es más barato para alguien con 1 W-2 + 2 1099s?\n    - ¿Rango típico en 2026?\n  [needs data: encuesta de tarifas de contador freelance 2026]\n\nH2: Banderas rojas durante onboarding (300 palabras)\n  Intención: '¿cuándo debo retirarme?'\n  Preguntas:\n    - 5 banderas rojas en la primera llamada\n\nH2: Checklist de los primeros 90 días (250 palabras)\n  Intención: '¿qué hago una vez contratado?'\n\nConclusión (~150 palabras)\n  CTA: Link único a PDF descargable de preguntas de entrevista.\n\nTotal: ~2150 palabras (objetivo era 2200; dentro del 10%).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por qué los esquemas generados por IA rinden mal",
+        "paragraphs": [
+          "Si pides 'esquematiza un post sobre X', el modelo devuelve un esqueleto genérico: introducción, historia, conceptos clave, ejemplos, conclusión. La estructura es plantilla-driven, no tema-driven, y el post resultante se lee como cualquier otro listicle de la página dos. Lectores y Google lo notan — la tasa de rebote sube, el engagement baja, el ranking erosiona.",
+          "El prompt arriba fuerza estructura tema-driven al exigir intención y preguntas-de-lector por sección. Una sección que no puede articular la pregunta específica que responde se corta. Una sección sin presupuesto de palabras no puede diluir el resto. La salida es un brief que sobrevive el contacto con la escritura real."
+        ]
+      },
+      {
+        "heading": "El conteo de palabras como palanca de planeación",
+        "paragraphs": [
+          "La mayoría de posts fallan no porque cubran los temas equivocados sino porque los temas correctos reciben la cantidad equivocada de espacio. La sección más importante recibe 200 palabras y una tangencial recibe 600. Especificar conteos al frente fuerza decisiones de prioridad durante el esquema, cuando son baratas, en lugar de durante la edición, cuando cortar duele.",
+          "Hacer cumplir el objetivo total (dentro del 10%) atrapa una falla común de la IA: el esquema sigue agregando secciones hasta que el total es 1.5x tu objetivo. Recortar o fusionar antes de escribir — mucho más rápido que durante un segundo borrador."
+        ]
+      },
+      {
+        "heading": "Adaptando el prompt para auditorías de contenido",
+        "paragraphs": [
+          "Reusa la estructura para auditar posts de bajo rendimiento. Pega la lista actual de H2 y pregunta: 'Aplica el framework de esquema de blog. ¿Qué secciones carecen de pregunta clara de buscador? ¿Qué secciones solapan intención? ¿Dónde la asignación de palabras no coincide con la importancia?' El modelo se vuelve editor estructural en lugar de editor de copy.",
+          "Combínalo con un check rápido de gap de keywords: incluye 'Lista 5 preguntas de lector que este esquema NO responde y que las top-3 competidoras sí responden'. Esto saca secciones faltantes sin que tengas que leer cada artículo competidor."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Cuánto debe medir cada H2 típicamente?",
+      "a": "Depende del objetivo del post, pero un default razonable es 250-500 palabras por H2. Bajo 200 no vale el header de sección; sobre 600 normalmente quiere dividirse en H3s o volverse su propio post."
+    },
+    {
+      "q": "¿Qué significa 'intención' para una sección?",
+      "a": "La pregunta específica del lector que la sección responde. 'Discute precios' no es intención. 'Responde: ¿debo pagar por hora o por retainer en mi situación?' es intención. Más específico, mejor escribe la sección."
+    },
+    {
+      "q": "¿Por qué marcar secciones [optional]?",
+      "a": "Porque el prompt es honesto sobre qué secciones realmente se ganan su lugar. 'Historia de X' puede interesar al 5% de lectores; flagearla te deja decidir si escribirla, demoverla a nota al pie, o saltarla."
+    },
+    {
+      "q": "¿Puedo usarlo para guiones de video o esquemas de YouTube?",
+      "a": "Sí, pero cambia 'palabras' por 'tiempo en pantalla' (en segundos), y 'preguntas a responder' por 'momentos visuales'. La misma estructura intención-driven aplica — los espectadores dejan videos por la misma razón que lectores dejan posts: secciones que no ganan su tiempo."
+    },
+    {
+      "q": "¿Funciona sin keyword principal?",
+      "a": "Sí — pero el H1 no se optimizará para SEO. Si escribes para newsletter o blog interno, omite el campo de keyword principal; el resto sigue funcionando."
+    },
+    {
+      "q": "¿Cómo evito que el modelo invente datos?",
+      "a": "La regla 5 ([needs data: ...]) es la guarda explícita anti-alucinación. El modelo marca afirmaciones no verificadas para que las llenes. Si alguna vez produce stats sin el marcador, pregunta '¿Fuente para ese número?' y dará una o admitirá que no puede."
+    },
+    {
+      "q": "¿Debería agregar análisis de posts competidores?",
+      "a": "Opcional pero potente. Agrega: 'Top 3 resultados que rankean para la keyword principal: <pega títulos + URLs>. Identifica sus debilidades estructurales (secciones que omiten, preguntas que no responden)'. El esquema diferenciará explícitamente."
+    },
+    {
+      "q": "¿Por qué el prompt salta la sección 'la introducción es importante'?",
+      "a": "Porque la mayoría de esquemas de IA la agregan como sección de 200 palabras que solo replantea el H1. Lectores modernos y motores de búsqueda penalizan este padding. La microestructura Hook + Promesa + Salto hace el mismo trabajo en 50 palabras."
+    }
+  ]
+}

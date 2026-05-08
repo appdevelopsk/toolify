@@ -68,11 +68,14 @@ function main() {
   console.log(`Active locales: ${locales.join(", ")}`);
   let totalIssues = 0;
   totalIssues += auditFolder(path.join(SRC, "messages"), "common", locales);
-  const toolsDir = path.join(SRC, "tools");
-  for (const slug of fs.readdirSync(toolsDir)) {
-    const folder = path.join(toolsDir, slug, "messages");
-    if (fs.existsSync(folder)) {
-      totalIssues += auditFolder(folder, `tools/${slug}`, locales);
+  for (const top of ["tools", "prompts"] as const) {
+    const dir = path.join(SRC, top);
+    if (!fs.existsSync(dir)) continue;
+    for (const slug of fs.readdirSync(dir)) {
+      const folder = path.join(dir, slug, "messages");
+      if (fs.existsSync(folder)) {
+        totalIssues += auditFolder(folder, `${top}/${slug}`, locales);
+      }
     }
   }
   if (totalIssues > 0) {

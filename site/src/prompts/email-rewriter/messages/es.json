@@ -1,0 +1,83 @@
+{
+  "title": "Prompt para reescribir emails — claros, breves, con tono ajustable",
+  "shortDescription": "Reescribe tu borrador para que sea más claro y corto sin perder el mensaje. Elige tono (cálido / neutral / firme) y largo objetivo.",
+  "description": "El típico 'reescribe este email' tiende a inflar largo y agregar relleno corporativo. Este prompt hace lo opuesto: fuerza largo objetivo, conserva tus hechos, y permite controlar el tono explícitamente.",
+  "metaDescription": "Prompt gratis para reescribir emails con ChatGPT y Claude. Largo objetivo, control de tono (cálido/neutral/firme), conserva los hechos. Con ejemplos.",
+  "keywords": ["prompt reescribir email", "reescribir email AI", "ChatGPT email", "prompt email profesional", "tono email"],
+  "promptText": "Reescribe el email abajo.\n\nObjetivo:\n- Largo: aproximadamente {N} palabras (default 80; entre 50-150).\n- Tono: {cálido / neutral / firme} (default neutral).\n- Audiencia: {quién es — mi jefe, un proveedor, un cliente molesto}.\n\nReglas duras:\n1. Conserva todo hecho concreto, fecha límite, número y nombre. No inventes detalles ni suavices compromisos que asumí.\n2. Quita relleno corporativo (\"Espero te encuentres bien\", \"no dudes en\", \"como mencioné en mi email anterior\", etc.).\n3. Una pregunta por email. Si el borrador tiene varias, sepáralas en lista numerada al final.\n4. No empieces dos oraciones consecutivas con \"Yo\" o \"Me\".\n5. Mantén mi firma y cualquier adjunto explícito mencionado.\n\nDevuelve solo el cuerpo reescrito. Sin explicación.\n\nBorrador:\n\n[pega tu borrador aquí]",
+  "useCase": {
+    "headline": "Cuándo usar esto",
+    "items": [
+      "Después de escribir un email con tono molesto — cambia a neutral, más corto, y la AI lo desactivará sin perder tu punto.",
+      "Cuando respondes a una queja de cliente — tono cálido, 70 palabras, resultado empático sin ser empalagoso.",
+      "Emails de negociación o pushback — tono firme + 100 palabras, te deja directo pero profesional."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude es inusualmente bueno preservando hechos y no agregando relleno. Mejor default para emails importantes.",
+    "chatgpt": "GPT-5 / GPT-4o tienden a agregar relleno 'profesional' de vuelta. La regla 'quita relleno corporativo' arriba es especialmente importante con ChatGPT.",
+    "any": "Todos los modelos principales funcionan. El patrón (largo objetivo + tono + audiencia + hechos preservados) es lo que lo hace confiable."
+  },
+  "exampleHeading": "Ejemplo: borrador irritado → neutral 70 palabras",
+  "exampleOutput": "Borrador (220 palabras, irritado):\n  \"Hola Sarah, sigo OTRA VEZ con la factura faltante de octubre. Ya envié email tres veces. Esto es inaceptable de un sistema de billing por el que pagamos $1200/mes. Necesito esto resuelto antes del viernes o tendré que escalar a tu CTO. La factura debería cubrir 10/1–10/31, total $4,820, y nunca la recibimos…\"\n\nReescrito (neutral, 68 palabras, objetivo cumplido):\n  \"Hola Sarah,\n\n  Siguiendo con la factura de octubre por $4,820 (período 10/1–10/31). He escrito tres veces desde noviembre sin recibirla. Necesitamos resolver esto el viernes para cerrar nuestros libros. Si hay un issue de sistema bloqueándolo, dime qué enviar a soporte para destrabar.\n\n  Gracias,\n  [Nombre]\"",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por qué los prompts default de reescribir emails empeoran las cosas",
+        "paragraphs": [
+          "Si pides 'reescríbelo más profesional', el modelo va por default a agregar largo: más cortesías, lenguaje hedging, oraciones de resumen. La salida queda más larga que el borrador, y lo que era un email de 20 segundos pasa a 90 segundos. Los receptores borran o leen rápido los emails largos, así que tu mensaje se pierde en el padding de cortesía.",
+          "El prompt arriba voltea esto. Forzando un largo objetivo y la regla 'quita relleno corporativo', la reescritura es más corta que la entrada en la mayoría de borradores. El control de tono te deja preservar precisión emocional (queja firme, disculpa cálida) sin perder foco."
+        ]
+      },
+      {
+        "heading": "Selección de tono — cuál usar y cuándo",
+        "paragraphs": [
+          "Cálido: disculpa al cliente, agradecer ayuda, construir rapport con un nuevo contacto. Permite cortesías ligeras (máximo una oración).",
+          "Neutral: emails entre pares de trabajo, updates de status, respuestas factuales. Default. Quita todas las cortesías.",
+          "Firme: pushback, escalación, cobro de pago atrasado, rechazo de scope creep. Mantiene oraciones cortas y lenguaje directo. No suaviza tus pedidos."
+        ]
+      },
+      {
+        "heading": "Por qué importa una pregunta por email",
+        "paragraphs": [
+          "Emails con múltiples pedidos ('también mándame X, y por cierto, ¿podrías reenviar Y?') reciben respuestas parciales o son ignorados completamente. El receptor agrupa mentalmente la respuesta y nunca la envía. La regla arriba fuerza a borradores multi-pedido a mostrar su estructura como lista numerada, lo cual provoca una respuesta totalmente numerada.",
+          "Si tu borrador tiene dos pedidos genuinamente independientes, manda dos emails. El modelo no lo forzará por ti — pero mostrará la estructura claro suficiente para que decidas dividir antes de enviar."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Cambiará mis hechos o números?",
+      "a": "No — la regla 'conserva todo hecho concreto, fecha límite, número y nombre' es explícita. Si el modelo lee mal un número, es error del modelo, no falla del prompt. Siempre relee la reescritura para confirmar antes de enviar."
+    },
+    {
+      "q": "¿Por qué un largo objetivo en vez de 'sé breve'?",
+      "a": "'Sé breve' se interpreta como 'quita ~10%'. Un conteo de palabras objetivo fuerza al modelo a hacer borrados reales. 80 palabras son ~4-5 oraciones cortas — suficiente para un pedido más contexto."
+    },
+    {
+      "q": "¿Puedo añadir el tono/estilo de mi empresa?",
+      "a": "Sí — agrega una línea 'Style notes:' arriba del borrador. Ejemplo: 'Style notes: Español llano, sin signos de exclamación, firma con primer nombre solo'. El modelo seguirá esto de cerca."
+    },
+    {
+      "q": "¿Qué si el borrador ya es corto?",
+      "a": "Usa un objetivo un poco más alto (100-120 palabras) para señalar 'no recortes agresivamente'. O usa el prompt con regla solo de claridad: cambia 'Largo: ~N palabras' por 'Mantén largo similar; solo arregla oraciones poco claras'."
+    },
+    {
+      "q": "¿Funciona para idiomas distintos al inglés?",
+      "a": "Sí — Claude y GPT-5 manejan emails de negocios en japonés, chino, coreano, español. La regla del relleno corporativo necesita traducción: en español, 'Espero te encuentres bien' es el equivalente más cercano y se quita en tono neutral."
+    },
+    {
+      "q": "¿En qué difiere de Grammarly?",
+      "a": "Grammarly arregla mecánica (errores de tipeo, comma splices). Este prompt reestructura contenido (quita oraciones de relleno, divide emails multi-pedido, ajusta tono). Se complementan — corre Grammarly primero, luego este para reestructurar."
+    },
+    {
+      "q": "¿Puedo guardarlo en ChatGPT como Custom GPT?",
+      "a": "Sí — pega el cuerpo del prompt como instrucciones del GPT. Solo necesitarás tipear el borrador cada vez. El mismo enfoque funciona en Claude Projects."
+    },
+    {
+      "q": "¿Por qué no empezar con 'Yo' dos veces seguidas?",
+      "a": "Aperturas repetidas con 'Yo-' hacen que el email se sienta egocéntrico, aunque el contenido esté bien. Forzar variedad (empezar una oración con el receptor o con un hecho) es una palanca pequeña que hace los emails leer más cálidos sin cambiar el significado."
+    }
+  ]
+}

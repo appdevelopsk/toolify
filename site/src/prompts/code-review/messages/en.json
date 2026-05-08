@@ -1,0 +1,82 @@
+{
+  "title": "Senior code reviewer prompt — finds bugs, perf issues, edge cases",
+  "shortDescription": "A reusable prompt for Claude/ChatGPT/Cursor that turns the model into a senior reviewer focused on correctness, performance, and edge cases — not nitpicks.",
+  "description": "Most LLM code reviews drown you in style nits and miss the actual bugs. This prompt forces the model to triage by severity, only flag the things that would survive a strict tech-lead review, and quote the exact line numbers it's worried about so you can verify each finding fast.",
+  "metaDescription": "Free senior code-review prompt for Claude, ChatGPT, and Cursor. Triages by severity, finds real bugs and perf issues, ignores style nitpicks. With usage examples.",
+  "keywords": ["code review prompt", "claude code review", "chatgpt code review", "ai code review", "senior code reviewer prompt"],
+  "promptText": "You are a senior staff engineer reviewing the diff below. Your goal is to catch what would actually survive a strict tech-lead review — not lint noise.\n\nReview rules:\n1. Triage every finding into one of: BLOCKER, MAJOR, MINOR, NIT.\n2. Only emit BLOCKER and MAJOR by default. Suppress MINOR and NIT unless I explicitly ask for them.\n3. For each finding, quote the exact file path + line number range. Then explain (a) what's wrong, (b) the failure mode in production, (c) the suggested fix.\n4. If you're under 80% confident the issue is real, mark the finding [low-confidence] and explain what additional context would let you verify.\n5. End with a one-paragraph overall summary: ship-it / ship-with-followups / do-not-ship.\n\nDo NOT comment on:\n- Naming preferences unless they actively mislead.\n- Formatting/whitespace if a formatter is in use.\n- Hypothetical optimizations you can't tie to a measured hot path.\n- Patterns the codebase already uses elsewhere (it's a stylistic consistency, not a bug).\n\nDiff to review:\n\n[paste your unified diff or file contents here]",
+  "useCase": {
+    "headline": "When to use this",
+    "items": [
+      "Before merging a non-trivial PR — run the diff through this prompt to surface anything you'd want a second pair of eyes on.",
+      "Self-review of your own work — useful before requesting human review, catches the embarrassing stuff.",
+      "Onboarding to an unfamiliar codebase — paste a function plus the prompt to understand its risks before you change it."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude (Sonnet 4.6 or Opus 4.7) usually gives the most thoughtful triage. Paste the diff in a code block; long contexts handle whole-PR reviews well.",
+    "chatgpt": "GPT-5 / GPT-4o tend to be more aggressive about flagging style. The 'suppress MINOR and NIT' rule above keeps it on track.",
+    "cursor": "In Cursor, save this as a .cursorrules entry or paste it into the composer. It pairs well with @file references."
+  },
+  "exampleHeading": "Example output",
+  "exampleOutput": "BLOCKER: src/auth/session.ts:42-58\n  - what: Session token comparison uses ===, not constant-time compare.\n  - failure mode: Timing-attack-leakable on remote login.\n  - fix: Switch to crypto.timingSafeEqual() over the buffer pair.\n\nMAJOR: src/auth/session.ts:73 [low-confidence]\n  - what: Refresh token written to localStorage.\n  - failure mode: XSS exfiltration risk if any unsanitized user content reaches the page.\n  - fix: Move to httpOnly cookie if the client doesn't need to read it. (low-confidence: I don't see how the front-end consumes this token.)\n\nSummary: ship-with-followups. The constant-time fix is required pre-merge; the storage location is a follow-up issue worth opening regardless of this PR.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Why most AI code reviews are useless",
+        "paragraphs": [
+          "By default, language models default to a 'helpful junior' persona on code-review tasks. That means they over-comment on naming, suggest 'clean code' rewrites for code that's fine, and bury the one actual bug in a wall of suggestions you have to ignore. The signal-to-noise ratio kills the workflow — most teams stop using AI for review within a week.",
+          "The prompt above flips three things: it asks for severity triage so trivial issues are explicitly suppressed, it requires line numbers so each finding is verifiable in seconds, and it forces a confidence flag so you know which findings to trust without reading the full file."
+        ]
+      },
+      {
+        "heading": "Pairing this with your CI",
+        "paragraphs": [
+          "Run this prompt as a 'second opinion' step in your PR workflow — not a gating check. Models still hallucinate, especially on cross-file invariants and on code that depends on framework conventions you didn't paste in. Use the output as a list of things to verify, not as a list of issues to mechanically fix.",
+          "If you do want it in CI, output the findings as JSON (modify the prompt: 'return a JSON array with fields severity, path, lineStart, lineEnd, what, fix, confidence'). Then post the BLOCKER/MAJOR ones to the PR as a single comment with a clear 'AI assist — verify before acting' header."
+        ]
+      },
+      {
+        "heading": "Adapting the prompt for your team",
+        "paragraphs": [
+          "Add a 'Codebase context' section above the diff — paste 5-10 lines describing your stack, your test conventions, and any non-obvious invariants (e.g., 'all DB writes go through src/db/withTx, never raw client'). Models miss codebase-specific conventions otherwise.",
+          "If your team has known weak points (race conditions in a job runner, N+1 queries in a specific service), add a 'Watch especially for: …' line. The model will weight those classes of bugs higher and is more likely to flag them when present."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Can I use this on closed-source code?",
+      "a": "Yes, but check your employer's policy first. The prompt itself is harmless; what matters is whether you're allowed to paste your code into the model you're using. Claude and ChatGPT enterprise plans typically don't train on your inputs; consumer plans may."
+    },
+    {
+      "q": "Why suppress MINOR and NIT findings?",
+      "a": "Because in practice they create review fatigue. After the third 'consider extracting this into a function' note, you stop reading. Suppressing them keeps the BLOCKER/MAJOR signal sharp. Toggle them back on with 'show all findings including MINOR and NIT' when you want a deep review."
+    },
+    {
+      "q": "How long can the diff be?",
+      "a": "Claude Sonnet/Opus and GPT-5 handle 50K+ tokens of diff comfortably. For very large PRs, split the review by directory (review src/auth first, then src/billing) so the model can think about each subsystem in isolation."
+    },
+    {
+      "q": "What about security-specific reviews?",
+      "a": "This prompt catches obvious crypto/storage/SSRF issues but isn't a substitute for a security review on auth or payment code. For those paths, run this prompt and a dedicated security-review prompt (we'll publish one separately)."
+    },
+    {
+      "q": "Can it review across multiple files?",
+      "a": "Yes — paste the diff that includes all files. It handles cross-file invariants reasonably well within one paste; for issues that span multiple PRs (e.g., 'is this consistent with how feature flags are gated elsewhere?'), include a few representative excerpts from those other files."
+    },
+    {
+      "q": "Should I trust the [low-confidence] findings?",
+      "a": "Treat them as 'investigate before acting'. About half of low-confidence findings are real but the model couldn't verify; the other half are misreadings. The flag is honest signal, not a reason to ignore the finding."
+    },
+    {
+      "q": "Why does it want me to specify the failure mode?",
+      "a": "Because 'this is wrong' is useless without 'this would crash on unicode input'. The failure-mode line tells you the priority: a fix that prevents a 1-in-a-million edge case is different from one that prevents a daily prod incident."
+    },
+    {
+      "q": "How do I use this in Cursor specifically?",
+      "a": "Save the prompt body to .cursorrules at your repo root, or paste it into the composer with @file references for the files under review. Cursor will keep the rules active for that project."
+    }
+  ]
+}

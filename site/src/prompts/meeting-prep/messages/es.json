@@ -1,0 +1,82 @@
+{
+  "title": "Prompt de preparación de reunión — agenda, decisiones, ¿async o no?",
+  "shortDescription": "Genera una agenda nítida desde notas crudas: presupuesto de tiempo, decisiones a tomar, y un check '¿esto debería ser async?' arriba.",
+  "description": "La mayoría de agendas generadas por IA son plantillas blandas que no impulsan reuniones productivas. Este prompt fuerza al modelo a etiquetar decisiones vs discusiones, asignar tiempo por ítem, y desafiar si la reunión necesita pasar.",
+  "metaDescription": "Prompt gratis de prep de reunión. Construye agenda con presupuesto de tiempo, decisiones nombradas, check async-vs-reunión. Funciona con Claude, ChatGPT.",
+  "keywords": ["prompt prep reunión", "generador agenda AI", "prompt agenda reunión", "prompt reunión decisión", "agenda standup"],
+  "promptText": "Construye una agenda de reunión desde las notas crudas abajo.\n\nContexto de reunión:\n- Duración: {N minutos}\n- Asistentes: {nombres + roles}\n- Decisores en la sala: {quién puede aprobar resultados}\n- Canales async disponibles: {Slack / Linear / Notion / etc.}\n\nPara cada ítem que liste, salida:\n  - Ítem: <reformulación crisp>\n  - Tipo: DECISIÓN | DISCUSIÓN | INFO_SHARE\n  - Tiempo: <minutos>\n  - Decisión necesaria (si DECISIÓN): <pregunta yes/no o set de opciones a elegir>\n  - Pre-lectura: <link o nombre de doc que asistentes deberían haber leído>\n  - Owner: <quién maneja este ítem>\n\nLuego al inicio de la agenda, agrega una sección ¿DEBERÍA SER UNA REUNIÓN? que:\n  1. Lista ítems que pueden manejarse async (cualquier INFO_SHARE puro).\n  2. Identifica decisores faltantes — si nadie en la sala puede aprobar un ítem DECISIÓN, marca.\n  3. Recomienda cambios: 'remover ítems 2-3 (async); reagendar con [persona faltante] para ítem 4'.\n\nReglas duras:\n- Tiempo total entre ítems debe caber en duración de reunión, con 5 minutos de buffer.\n- Cada ítem DECISIÓN debe tener yes/no explícito o pick de opciones. 'Discutir el roadmap' no es decisión; 'Aprobar roadmap Q2 o devolver para revisión' sí.\n- Ítems INFO_SHARE máx 5 minutos cada uno — más es discusión disfrazada.\n- Si la mitad o más son INFO_SHARE, recomienda cancelar la reunión y enviar update escrito.\n\nNotas crudas:\n\n[pega tus bullets o pensamientos aquí]",
+  "useCase": {
+    "headline": "Cuándo usar esto",
+    "items": [
+      "Antes de cualquier reunión recurrente — pega la agenda standing y los ítems recientes agregados/quitados, recibe versión más apretada.",
+      "Cuando alguien más agendó una reunión y quieres arreglarla — genera la mejor versión, comparte de vuelta.",
+      "Sesiones de planeación trimestral — el split decisiones-vs-discusiones previene que la reunión se vuelva monólogo de 90 minutos."
+    ]
+  },
+  "modelTips": {
+    "claude": "Fuerte en el desafío '¿esto debería ser async?'. Recomendará cancelar reuniones cuando lo amerite, lo cual otros modelos dudan en hacer.",
+    "chatgpt": "Funciona pero tiende a mantener todos los ítems en agenda. Agrega 'está bien recomendar cancelar la reunión si es apropiado' para ser explícito.",
+    "any": "La regla 'decisión necesaria' es la palanca. Si no puedes llenarla para un ítem, el ítem probablemente no está listo para la reunión todavía."
+  },
+  "exampleHeading": "Ejemplo: sync de equipo de 30 min desde notas crudas",
+  "exampleOutput": "¿DEBERÍA SER UNA REUNIÓN?\n  - Ítems 3 & 5 (status updates) deberían moverse a update escrito; ahorra 12 min.\n  - Ítem 4 (aprobación de presupuesto Q2) necesita CFO presente — no está en la invitación. Re-agenda o split: maneja ítems 1-2 hoy, 4 con CFO la próxima semana.\n  - Recomendación: acortar a 15 min, agenda abajo.\n\nAGENDA (15 min, buffer 5 min)\n\n1. Aprobar backfill de la posición de Sarah (5 min) — DECISIÓN\n   Decisión necesaria: ¿Aprobar publicación externa ahora, o esperar 2 semanas al candidato interno Q?\n   Owner: Engineering Manager. Pre-lectura: doc de spec de backfill (linked).\n\n2. Resolver ownership de API entre platform y growth (8 min) — DISCUSIÓN\n   Owner: VP Eng. Pre-lectura: matriz de ownership v3.\n   Nota: necesita ambos managers en la sala; ambos confirmaron.\n\n3. (removido — ver arriba) Revisión de métricas Q1 → movido a update escrito.\n4. (reagendado — ver arriba) Aprobación presupuesto Q2 → reagendar con CFO.\n5. (removido — ver arriba) Demo de vendor de tooling → video async, ver por cuenta propia.\n\nBuffer: 2 min para parking-lot o si se pasa.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por qué la mayoría de agendas no ayudan a que las reuniones sean productivas",
+        "paragraphs": [
+          "Las agendas default listan tópicos sin compromiso. 'Discutir roadmap' invita discusión sin límites; 'update de status del roadmap' invita monólogo; ninguno produce decisiones. El resultado: las reuniones terminan con las mismas preguntas con que empezaron, y la próxima reunión se agenda para abordarlas.",
+          "El etiquetado DECISIÓN/DISCUSIÓN/INFO_SHARE hace la mayor parte del trabajo en este prompt. Una vez que marcas un ítem como DECISIÓN, debes articular el yes/no o el pick de opciones. Si no puedes, el ítem no está listo y debería removerse (volver a fase de discusión async primero)."
+        ]
+      },
+      {
+        "heading": "El check de cancelar-la-reunión es la línea de mayor palanca",
+        "paragraphs": [
+          "Las herramientas AI raramente te dicen que canceles la reunión que les pidieron planear. Este prompt explícitamente le pide al modelo que recomiende cancelación cuando aplique, lo cual te permite delegar una conversación incómoda. 'Pasé la agenda por este prompt y sugiere cancelar — aquí está el update async en su lugar' es un mensaje mucho más fácil que 'creo que deberíamos cancelar'.",
+          "Úsalo en reuniones recurrentes cada 2-3 meses. Los calendarios acumulan basura; este prompt es una limpieza estructurada."
+        ]
+      },
+      {
+        "heading": "Las pre-lecturas hacen reuniones de decisión 3x más rápidas",
+        "paragraphs": [
+          "La mitad de cada reunión de decisión es gente poniéndose al día con el contexto. Si una pre-lectura de una página sale 24 horas antes y la gente realmente la lee, la reunión misma puede ser 10 minutos — suficiente largo para sacar preocupaciones y decidir, suficiente corto para que nadie se desconecte.",
+          "El campo 'pre-lectura' en este prompt te fuerza a identificar qué contexto necesitan los asistentes. Si no puedes nombrar un doc, la reunión probablemente no está lista: o no has escrito lo que estás proponiendo, o no hay algo claro a lo que reaccionar."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Funciona para stand-ups / syncs diarios?",
+      "a": "Marginalmente — los stand-ups son mayormente INFO_SHARE por diseño. El prompt recomendaría cancelarlos, lo cual no siempre es lo que quieres. Usa esto para reuniones de 30+ minutos."
+    },
+    {
+      "q": "¿Qué si las notas crudas son desordenadas y contradictorias?",
+      "a": "El modelo intentará crispearlas. Si produce un ítem que no coincide con tu intención, responde 'el ítem 3 es realmente sobre X, no Y'. Después de una corrección usualmente mantiene el resto alineado."
+    },
+    {
+      "q": "¿Cómo comparto el output de vuelta a los asistentes?",
+      "a": "Copia-pega la sección de agenda (omite el análisis '¿debería ser una reunión?' si los asistentes podrían encontrarlo presuntuoso). O comparte el todo como un mensaje transparente 'aquí está cómo recorté la agenda'."
+    },
+    {
+      "q": "¿Puedo usarlo para 1-on-1s?",
+      "a": "Sí, con un ajuste — cambia DECISIÓN/DISCUSIÓN/INFO_SHARE por TÓPICO/FEEDBACK/CHECK_IN. La estructura de presupuesto de tiempo y pre-lectura sigue ayudando."
+    },
+    {
+      "q": "¿Y el parking-lot para cosas que surgen en vivo?",
+      "a": "El buffer de 5 min juega este rol. Si las discusiones consistentemente se desbordan, el prompt también es diagnóstico — o las estimaciones de tiempo son muy agresivas, o los ítems son más grandes que lo que dimensionaste."
+    },
+    {
+      "q": "¿Por qué limitar INFO_SHARE a 5 minutos?",
+      "a": "Porque cualquier cosa más larga es o discusión (alguien tiene preguntas) o presentación (la cual puede ser un video grabado). El cap de 5-min te fuerza a o remover el ítem o etiquetarlo correctamente."
+    },
+    {
+      "q": "¿Se integra con herramientas de calendario?",
+      "a": "No directamente. La salida es markdown plano; pega en la descripción de invitación de calendario, Notion, Linear, o donde tu equipo loguea notas de reunión. Algunos equipos usan Granola/Krisp para transcripción en vivo, lo cual combina bien."
+    },
+    {
+      "q": "¿Y reuniones de brainstorming?",
+      "a": "Márcalas como solo-DISCUSIÓN con nota 'sin decisiones hoy, decisiones en próxima reunión'. El check '¿debería ser async?' podría recomendar un board Miro / Figjam — a menudo mejor para pensamiento divergente."
+    }
+  ]
+}

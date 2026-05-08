@@ -1,0 +1,82 @@
+{
+  "title": "高级工程师代码审查 提示词 — 找Bug、性能问题、边缘情形",
+  "shortDescription": "让 Claude/ChatGPT/Cursor 化身为高级工程师审查者的可复用提示词,聚焦正确性、性能、边缘情形,而不是命名细节。",
+  "description": "默认的AI代码审查会被风格细节淹没,真正的Bug反而埋在一堆建议里。这个提示词强制按严重度分级、只报告能通过严格技术Lead审查的问题、并要求引用确切行号,让你秒速验证每条发现。",
+  "metaDescription": "免费高级工程师代码审查提示词,适用于 Claude、ChatGPT、Cursor。按严重度分级,聚焦真Bug和性能问题,忽略风格细节,含使用示例。",
+  "keywords": ["代码审查 提示词", "Claude 代码审查", "ChatGPT 代码审查", "AI 代码审查", "Cursor 提示词"],
+  "promptText": "你是一位高级Staff工程师,审查下面的diff。目标是捕捉那些能在严格技术Lead审查中存活下来的问题 — 不是Lint噪音。\n\n审查规则:\n1. 将每条发现分级为: BLOCKER / MAJOR / MINOR / NIT 之一。\n2. 默认只输出 BLOCKER 和 MAJOR;除非我明确要求,否则抑制 MINOR 和 NIT。\n3. 每条发现需引用确切的文件路径 + 行号范围,然后说明: (a) 哪里有问题, (b) 在生产中的失败模式, (c) 建议的修复。\n4. 若你对某条发现的把握度低于80%,标记为 [low-confidence] 并说明需要哪些额外信息才能验证。\n5. 末尾给出一段总评: ship-it / ship-with-followups / do-not-ship。\n\n不要评论以下内容:\n- 命名偏好(除非确实容易误读)。\n- 已有格式化器时的格式或空白。\n- 无法挂钩到已测量热路径的假设性优化。\n- 代码库其他地方已使用的模式(这是风格一致性,不是Bug)。\n\n待审查 diff:\n\n[在此粘贴 unified diff 或文件内容]",
+  "useCase": {
+    "headline": "什么时候用",
+    "items": [
+      "合并非平凡 PR 之前 — 让本提示词扫一下 diff,把你想再看一眼的问题暴露出来。",
+      "自审自己的代码 — 在请人审之前过一遍,能消灭那些尴尬的低级错误。",
+      "进入陌生代码库时 — 粘贴一个函数加这个提示词,改动前先理解风险。"
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude (Sonnet 4.6 或 Opus 4.7) 通常给出最稳妥的分级。diff 用代码块粘贴即可,长上下文也能处理整 PR 审查。",
+    "chatgpt": "GPT-5 / GPT-4o 倾向于更激进地标记风格;以上「抑制 MINOR/NIT」规则能让它回到正轨。",
+    "cursor": "在 Cursor 中可保存为 .cursorrules 条目,或直接粘贴到 composer 中,搭配 @file 引用使用。"
+  },
+  "exampleHeading": "输出示例",
+  "exampleOutput": "BLOCKER: src/auth/session.ts:42-58\n  - what: 会话令牌比较使用 ===,不是常数时间比较。\n  - failure mode: 远程登录可能被时间侧信道攻击。\n  - fix: 改用 crypto.timingSafeEqual() 比较 buffer 对。\n\nMAJOR: src/auth/session.ts:73 [low-confidence]\n  - what: 刷新令牌写入 localStorage。\n  - failure mode: 任何未净化的用户内容到达页面就可能被 XSS 提取。\n  - fix: 若前端不读取此令牌,改为 httpOnly cookie。(low-confidence: 看不出前端如何使用此令牌。)\n\nSummary: ship-with-followups。常数时间比较修复在合并前必做;存储位置问题作为 follow-up issue 记录,本 PR 之外也值得跟进。",
+  "article": {
+    "sections": [
+      {
+        "heading": "为什么大多数 AI 代码审查毫无用处",
+        "paragraphs": [
+          "默认情况下,语言模型在代码审查任务中会陷入「热心的初级工程师」人格 — 对命名指点过多、对没问题的代码建议「整洁化」改写、把唯一的真Bug埋在一堆建议中,需要你忽略掉一大堆才能看到。信噪比奇差,大多数团队一周内就放弃了。",
+          "上面这个提示词翻转了三件事: 要求按严重度分级以显式抑制琐碎问题、要求行号让每条发现可秒级验证、强制信心标记让你不用读完整文件就能判断哪条值得信。"
+        ]
+      },
+      {
+        "heading": "和 CI 的搭配方式",
+        "paragraphs": [
+          "把它当作 PR 流程中的「第二意见」步骤 — 不是阻塞门禁。模型仍然会幻觉,尤其在跨文件不变量、依赖未粘贴框架约定的代码上。把输出当作「需要验证的清单」,不是「机械修复的清单」。",
+          "若想接入 CI,把提示词改成输出 JSON(在提示词中加: 「以包含 severity, path, lineStart, lineEnd, what, fix, confidence 字段的 JSON 数组返回」),然后只把 BLOCKER/MAJOR 作为单条评论发到 PR 上,标题明确写「AI 助手 — 行动前请验证」。"
+        ]
+      },
+      {
+        "heading": "为团队定制",
+        "paragraphs": [
+          "在 diff 上方加一段「Codebase context」: 5-10 行写明你的技术栈、测试约定、非显然的不变量(如「所有 DB 写都过 src/db/withTx,禁用裸 client」)。否则模型会漏掉代码库特有的约定。",
+          "若团队有已知薄弱点(某 job runner 中的竞态、某服务的 N+1 查询),加一行「Watch especially for: …」。模型会对这些 Bug 类别加权,在场时更可能被标记。"
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "可以用在闭源代码上吗?",
+      "a": "可以,但请先确认雇主的政策。提示词本身是无害的,关键是你能否把代码粘贴到所用模型中。Claude 和 ChatGPT 的企业版通常不会用你的输入训练,消费者版需要自行确认。"
+    },
+    {
+      "q": "为什么要抑制 MINOR 和 NIT?",
+      "a": "因为实践中它们会造成审查疲劳。看到第三条「考虑提取为函数」时你就不再继续读了。抑制后 BLOCKER/MAJOR 信号保持锐利。需要深度审查时再用「show all findings including MINOR and NIT」打开即可。"
+    },
+    {
+      "q": "diff 可以多长?",
+      "a": "Claude Sonnet/Opus 与 GPT-5 都能轻松处理 5 万 token 以上 diff。超大 PR 建议按目录分块审(先 src/auth,再 src/billing),让模型对每个子系统独立思考,精度更高。"
+    },
+    {
+      "q": "安全专项审查怎么办?",
+      "a": "本提示词能捕捉明显的加密、存储、SSRF 类问题,但不能替代认证、支付路径的安全审查。这些路径请同时使用本提示词和专门的安全审查提示词(后续单独发布)。"
+    },
+    {
+      "q": "能跨多个文件审查吗?",
+      "a": "可以 — 把包含全部文件的 diff 一次粘贴。单次粘贴内的跨文件不变量处理得不错。涉及多个 PR 的问题(如「这是否与他处的特性开关门控一致?」)请把那些文件的代表性片段一并附上。"
+    },
+    {
+      "q": "[low-confidence] 的发现可信吗?",
+      "a": "当作「行动前需调查」处理。约一半的低信心发现是真的、模型只是无法验证;另一半是误读。这个标记是诚实信号,不是忽略的理由。"
+    },
+    {
+      "q": "为什么要让它写出失败模式?",
+      "a": "因为「这里错了」对你没用,「unicode 输入会崩溃」才有用。失败模式那一行告诉你优先级 — 防止百万分之一边缘情形的修复,跟防止每日生产事故的修复,完全是两件事。"
+    },
+    {
+      "q": "在 Cursor 里具体怎么用?",
+      "a": "保存到代码库根目录的 .cursorrules,或直接粘贴到 composer 并配合 @file 引用。Cursor 会在该项目中持续应用这些规则。"
+    }
+  ]
+}

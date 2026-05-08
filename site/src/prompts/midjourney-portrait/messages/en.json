@@ -1,0 +1,80 @@
+{
+  "title": "Midjourney portrait prompt — controllable face, lighting, lens, mood",
+  "shortDescription": "A modular Midjourney prompt template for portraits with explicit control over subject, framing, lighting, lens, mood, and style. Avoids the generic 'AI portrait' look.",
+  "description": "Default Midjourney portraits all share the same uncanny-valley smoothness, dramatic key light, and overly-saturated bokeh. This prompt template breaks the defaults by specifying lens (focal length matters), light direction, and a 'no over-rendered skin' clause that forces realistic texture.",
+  "metaDescription": "Free modular Midjourney portrait prompt. Lens, lighting, framing, mood — explicit control. Avoids the generic AI face look. With v6/v7 examples.",
+  "keywords": ["Midjourney portrait prompt", "Midjourney prompt template", "AI portrait prompt", "Midjourney lighting prompt", "realistic AI portrait"],
+  "promptText": "[subject — be specific: age, build, hair, expression, clothing]\n+ [framing: headshot / waist-up / full-body], [angle: eye-level / low / 3-quarter]\n+ shot on [lens: 35mm / 50mm / 85mm / 105mm], [aperture: f/1.4 / f/2 / f/2.8]\n+ [lighting: natural window light from left / golden hour backlight / soft north-window light / overcast outdoor]\n+ [mood: contemplative / candid joy / quiet intensity / weariness — pick one specific mood]\n+ [environment / background: 5-8 word description with depth cues]\n+ realistic skin texture with visible pores and natural asymmetry, no plastic smoothing\n+ [style reference: editorial / documentary / film still / Renaissance painting / 1970s magazine cover]\n--ar 4:5 --style raw --v 7\n\nExample build (replace bracketed parts):\n\n  middle-aged woman in her late 50s, silver hair pulled back, soft smile lines, wearing a charcoal cashmere sweater, headshot, eye-level, shot on 85mm f/1.8, natural north-window light from screen left, contemplative mood, sparse home library blurred behind her with one warm lamp, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style --ar 4:5 --style raw --v 7\n\nVariation tactics:\n- Same prompt, swap only the lens (35mm → 85mm → 135mm) for 3 distinct compositions.\n- Same prompt, swap lighting (window → golden hour → overcast) for mood study.\n- Add --seed <n> to lock the face across iterations once you find one you like.",
+  "useCase": {
+    "headline": "When to use this",
+    "items": [
+      "Editorial-style portraits where the goal is character, not a glamour shot.",
+      "Author photos or LinkedIn headshots — the lens + light specs prevent the over-glossy AI giveaway.",
+      "Concept art for fiction characters where you need consistent face references across many images (use --seed)."
+    ]
+  },
+  "modelTips": {
+    "midjourney": "Tested on v6.1 and v7. Use --style raw to suppress Midjourney's default cinematic boost; this preserves realism. --ar 4:5 is the editorial portrait crop; switch to --ar 3:2 for documentary feel."
+  },
+  "exampleHeading": "Three variations from the same skeleton",
+  "exampleOutput": "Variation A (intimate):\n  35-year-old man with weathered hands, salt-and-pepper beard, looking down at a worn leather notebook, headshot tilted slightly down, shot on 50mm f/1.4, single candle as only light source from the right, quiet intensity, dim wooden table with handwritten pages, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, film still style, --ar 4:5 --style raw --v 7\n\nVariation B (energetic):\n  young Black woman in her early 20s, joyful caught laugh mid-conversation, twist-out curls catching backlight, waist-up, three-quarter angle, shot on 85mm f/2, golden hour backlight from her left + soft fill from camera right, candid joy, blurred park bench and autumn leaves behind, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style, --ar 3:2 --style raw --v 7\n\nVariation C (formal):\n  East Asian businesswoman in her 40s, sharp tailored navy blazer, neutral confident expression, three-quarter framing, low angle, shot on 35mm f/2.8, soft overcast outdoor light, quiet authority, modernist office building lobby blurred behind her, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, editorial style, --ar 4:5 --style raw --v 7",
+  "article": {
+    "sections": [
+      {
+        "heading": "Why default Midjourney portraits all look the same",
+        "paragraphs": [
+          "Midjourney's training data and default style heavily favor cinema-grade dramatic lighting, beauty-retouched skin, and 85mm-f/1.4 bokeh. Without explicit lens, light, and skin-texture control, every portrait converges on this 'AI Instagram filter' aesthetic. Editors and recruiters now recognize it instantly.",
+          "The prompt template above breaks the convergence in three places: lens (varying focal length changes face geometry), lighting direction and softness, and an explicit 'realistic skin texture' clause that suppresses the default beauty smoothing. The first two are pure photography; the third is a Midjourney-specific anti-pattern."
+        ]
+      },
+      {
+        "heading": "Lens choice changes the face",
+        "paragraphs": [
+          "Wide lenses (35mm) flatter chins and exaggerate the nose; portraits feel intimate and sometimes slightly comic. 50mm is the 'normal' lens — most natural. 85mm and 105mm compress features, flatter most faces, and produce the classic editorial look. Switching only the lens in the prompt produces three distinctly different portraits of the same character.",
+          "Use this when generating multiple shots of the same fictional character. Lock the seed, vary only the lens. You get a consistent identity in different visual contexts — a feature that's hard to get from prompt-only methods."
+        ]
+      },
+      {
+        "heading": "Light direction drives mood — say it explicitly",
+        "paragraphs": [
+          "'Natural light' is a non-instruction; the model picks something dramatic by default. 'Soft north-window light from screen left' is an instruction the model can execute precisely. The prompt template demands a direction (left/right/back/front), a quality (soft/hard), and a source (window/golden hour/candle/overcast).",
+          "Three quick mood mappings: backlight + warm tone = romantic / nostalgic. Single hard side light = dramatic / interrogative. Overcast + frontal soft light = documentary / honest. Picking one consciously is the difference between 'a portrait' and 'a portrait that conveys what you wanted'."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Does this work in Midjourney v5?",
+      "a": "Yes, but drop --style raw (added in v5.2) and the v7 reference. The lens + lighting clauses still help. Newer versions (v6.1+, v7) honor the realistic-skin clause better."
+    },
+    {
+      "q": "Can I use this for full body shots?",
+      "a": "Yes — change framing to full-body, switch lens to 35mm or 50mm (not 85mm — too flattering for body), and add a posture description. The skin-texture clause is less impactful at full body but still worth keeping."
+    },
+    {
+      "q": "Why specify aperture if Midjourney isn't a real camera?",
+      "a": "It's a shorthand the model understands. f/1.4 means 'extreme background blur, shallow plane of focus, intimate'. f/8 means 'most things sharp, environmental portrait'. Specifying aperture controls bokeh in a way Midjourney reliably interprets."
+    },
+    {
+      "q": "How do I keep the same face across multiple images?",
+      "a": "Generate one image you like, then add --seed <n> with the seed from that image. Subsequent generations using the same seed and a similar prompt will produce a similar face. Combined with --cref (character reference) in v6+, you get consistent characters."
+    },
+    {
+      "q": "What style references work well?",
+      "a": "Photographer names sometimes work but are unreliable. More reliable: 'documentary editorial style', 'film still style', 'Renaissance oil painting style', '1970s magazine cover', 'medium-format film'. Specific era + medium beats specific photographer name."
+    },
+    {
+      "q": "Why not specify ethnicity / age numerically?",
+      "a": "The template does — and it's important. Midjourney has known biases that surface when subject is unspecified. Always state the subject explicitly to avoid defaulting to a narrow demographic profile."
+    },
+    {
+      "q": "Are these prompts safe for commercial use?",
+      "a": "Midjourney commercial use depends on your subscription tier (Standard+ allows it). The prompts themselves don't change that. For client work, double-check Midjourney's current ToS — it changes."
+    },
+    {
+      "q": "What if the result still looks too 'AI-y'?",
+      "a": "Add 'medium format film' or 'shot on Portra 400' to the style reference, and add 'film grain, slight imperfection, candid' near the end. This pushes the model away from clean digital sharpness toward photographic imperfection."
+    }
+  ]
+}

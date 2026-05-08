@@ -1,0 +1,82 @@
+{
+  "title": "Prompt de revisor sénior — encuentra bugs, perf, edge cases",
+  "shortDescription": "Prompt reutilizable para Claude/ChatGPT/Cursor que convierte al modelo en revisor sénior centrado en correctitud, rendimiento y edge cases — no nitpicks de estilo.",
+  "description": "Las revisiones de código por LLM, por defecto, te ahogan en notas de estilo y entierran el bug real. Este prompt fuerza triaje por severidad, solo reporta lo que sobreviviría a un tech lead estricto, y exige citar línea exacta para verificar cada hallazgo en segundos.",
+  "metaDescription": "Prompt gratis de revisor sénior para Claude, ChatGPT y Cursor. Triaje por severidad, encuentra bugs reales y problemas de rendimiento, ignora nitpicks. Con ejemplos.",
+  "keywords": ["prompt revisión código", "revisión código Claude", "revisión código ChatGPT", "AI code review", "prompt Cursor"],
+  "promptText": "Eres un Staff Engineer sénior revisando el diff abajo. El objetivo es capturar lo que sobreviviría a la revisión de un tech lead estricto — no ruido de lint.\n\nReglas de revisión:\n1. Clasifica cada hallazgo en BLOCKER / MAJOR / MINOR / NIT.\n2. Por defecto, emite solo BLOCKER y MAJOR. Suprime MINOR y NIT salvo que pida explícitamente.\n3. Para cada hallazgo, cita la ruta de archivo + rango de líneas. Luego explica (a) qué está mal, (b) modo de fallo en producción, (c) corrección sugerida.\n4. Si tu confianza está bajo el 80%, marca [low-confidence] y di qué contexto adicional permitiría verificarlo.\n5. Termina con un párrafo de resumen: ship-it / ship-with-followups / do-not-ship.\n\nNO comentes:\n- Preferencias de naming salvo que confundan activamente.\n- Formato/whitespace si hay un formateador.\n- Optimizaciones hipotéticas que no puedas ligar a un hot path medido.\n- Patrones que el codebase ya usa en otros lados (es consistencia, no bug).\n\nDiff a revisar:\n\n[pega tu diff unificado o el contenido del archivo aquí]",
+  "useCase": {
+    "headline": "Cuándo usarlo",
+    "items": [
+      "Antes de mergear un PR no trivial — pasa el diff por este prompt para sacar a la luz lo que querrías que un segundo par de ojos viera.",
+      "Self-review de tu propio trabajo — útil antes de pedir review humano, captura las cosas vergonzosas.",
+      "Onboarding a un codebase desconocido — pega una función + el prompt para entender riesgos antes de tocarla."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude (Sonnet 4.6 u Opus 4.7) suele dar el triaje más cuidadoso. Pega el diff en un bloque de código; los contextos largos manejan revisiones de PR completas.",
+    "chatgpt": "GPT-5 / GPT-4o tienden a ser más agresivos marcando estilo. La regla 'suprime MINOR y NIT' lo mantiene en cauce.",
+    "cursor": "En Cursor, guárdalo como entrada de .cursorrules o pégalo en el composer. Combina bien con referencias @file."
+  },
+  "exampleHeading": "Ejemplo de salida",
+  "exampleOutput": "BLOCKER: src/auth/session.ts:42-58\n  - what: Comparación de session token usa ===, no constant-time compare.\n  - failure mode: Filtrable por timing attack en login remoto.\n  - fix: Cambiar a crypto.timingSafeEqual() sobre el par de buffers.\n\nMAJOR: src/auth/session.ts:73 [low-confidence]\n  - what: Refresh token escrito en localStorage.\n  - failure mode: Riesgo de exfiltración por XSS si contenido de usuario no sanitizado llega a la página.\n  - fix: Mover a httpOnly cookie si el cliente no necesita leerlo. (low-confidence: no veo cómo el front-end consume este token.)\n\nSummary: ship-with-followups. La fix de constant-time es obligatoria pre-merge; el storage es un follow-up issue digno fuera de este PR.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por qué la mayoría de revisiones AI son inútiles",
+        "paragraphs": [
+          "Por defecto, los modelos caen en la persona de 'junior servicial' en tareas de revisión: comentan demasiado naming, sugieren reescrituras 'clean code' a código que está bien, y entierran el único bug real bajo un muro de sugerencias que tienes que ignorar. La relación señal/ruido mata el flujo — la mayoría de equipos abandona la AI para revisar dentro de una semana.",
+          "El prompt arriba voltea tres cosas: pide triaje por severidad para suprimir explícitamente lo trivial, exige números de línea para que cada hallazgo sea verificable en segundos, y fuerza un flag de confianza para saber qué hallazgos creer sin leer el archivo entero."
+        ]
+      },
+      {
+        "heading": "Combinándolo con tu CI",
+        "paragraphs": [
+          "Úsalo como paso de 'segunda opinión' en tu workflow de PR — no como check de bloqueo. Los modelos siguen alucinando, especialmente con invariantes cruzados de archivo y código que depende de convenciones de framework que no pegaste. Trata la salida como lista de cosas a verificar, no como lista de issues a corregir mecánicamente.",
+          "Si lo quieres en CI, cambia a salida JSON (modifica el prompt: 'devuelve un array JSON con campos severity, path, lineStart, lineEnd, what, fix, confidence'). Luego postea solo BLOCKER/MAJOR como un comentario único en el PR con cabecera clara 'AI assist — verifica antes de actuar'."
+        ]
+      },
+      {
+        "heading": "Adaptándolo a tu equipo",
+        "paragraphs": [
+          "Añade una sección 'Codebase context' arriba del diff — pega 5-10 líneas describiendo tu stack, convenciones de tests e invariantes no obvios (e.g., 'todas las escrituras DB pasan por src/db/withTx, nunca client crudo'). Sin esto, el modelo se pierde convenciones específicas del codebase.",
+          "Si tu equipo tiene puntos débiles conocidos (race conditions en un job runner, N+1 en un servicio específico), añade una línea 'Watch especially for: …'. El modelo dará más peso a esas clases de bugs y los marcará con más probabilidad cuando estén presentes."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Puedo usarlo en código cerrado?",
+      "a": "Sí, pero verifica primero la política de tu empresa. El prompt en sí es inofensivo; lo que importa es si tienes permitido pegar tu código en el modelo que uses. Los planes enterprise de Claude y ChatGPT suelen no entrenar con tus inputs; consumer puede variar."
+    },
+    {
+      "q": "¿Por qué suprimir MINOR y NIT?",
+      "a": "Porque en la práctica generan fatiga de revisión. Después de la tercera nota 'considera extraer esto a una función', dejas de leer. Suprimirlas mantiene afilada la señal BLOCKER/MAJOR. Vuélvelas a activar con 'show all findings including MINOR and NIT' cuando quieras revisión profunda."
+    },
+    {
+      "q": "¿Qué tan largo puede ser el diff?",
+      "a": "Claude Sonnet/Opus y GPT-5 manejan 50K+ tokens de diff cómodamente. Para PRs muy grandes, divide la revisión por directorio (revisa src/auth primero, luego src/billing) para que el modelo piense cada subsistema aislado."
+    },
+    {
+      "q": "¿Y revisiones de seguridad específicas?",
+      "a": "Este prompt captura issues obvios de cripto/storage/SSRF pero no sustituye una revisión de seguridad sobre código de auth o pagos. Para esos paths, corre este prompt + un prompt dedicado de revisión de seguridad (publicaremos uno aparte)."
+    },
+    {
+      "q": "¿Puede revisar a través de múltiples archivos?",
+      "a": "Sí — pega el diff que incluya todos los archivos. Maneja invariantes cross-file razonablemente bien dentro de un solo paste; para issues que cruzan múltiples PRs (e.g., '¿es consistente con cómo se gatean feature flags en otros lados?'), incluye extractos representativos de esos otros archivos."
+    },
+    {
+      "q": "¿Debería confiar en hallazgos [low-confidence]?",
+      "a": "Trátalos como 'investiga antes de actuar'. Aproximadamente la mitad de los low-confidence son reales pero el modelo no pudo verificar; la otra mitad son malas lecturas. El flag es señal honesta, no razón para ignorar el hallazgo."
+    },
+    {
+      "q": "¿Por qué pedir el modo de fallo?",
+      "a": "Porque 'esto está mal' es inútil sin 'esto crashearía con input unicode'. La línea de modo de fallo te dice la prioridad: una fix que previene un edge case 1-en-millón es distinta a una que previene un incidente diario en prod."
+    },
+    {
+      "q": "¿Cómo lo uso en Cursor específicamente?",
+      "a": "Guarda el cuerpo del prompt en .cursorrules en la raíz del repo, o pégalo en el composer con referencias @file a los archivos en revisión. Cursor mantendrá las reglas activas para ese proyecto."
+    }
+  ]
+}

@@ -2,10 +2,12 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/config";
 import { LOCALES } from "@/lib/i18n/locales";
 import { listTools } from "@/lib/tools/registry";
+import { listPrompts } from "@/lib/prompts/registry";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPaths = ["", "/tools", "/about", "/privacy", "/terms", "/contact"];
+  const staticPaths = ["", "/tools", "/prompts", "/about", "/privacy", "/terms", "/contact"];
   const tools = listTools();
+  const prompts = listPrompts();
   const entries: MetadataRoute.Sitemap = [];
 
   for (const path of staticPaths) {
@@ -32,6 +34,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: tool.updatedAt,
         changeFrequency: "monthly",
         priority: 0.8,
+        alternates: { languages: alternates },
+      });
+    }
+  }
+
+  for (const prompt of prompts) {
+    for (const locale of LOCALES) {
+      const path = `/prompts/${prompt.slug}`;
+      const alternates: Record<string, string> = {};
+      for (const l of LOCALES) alternates[l] = `${siteConfig.url}/${l}${path}`;
+      entries.push({
+        url: `${siteConfig.url}/${locale}${path}`,
+        lastModified: prompt.updatedAt,
+        changeFrequency: "monthly",
+        priority: 0.7,
         alternates: { languages: alternates },
       });
     }

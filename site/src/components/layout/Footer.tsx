@@ -16,6 +16,9 @@ export function Footer() {
           <Link href="/tools" className="hover:underline">
             {t("nav.tools")}
           </Link>
+          <Link href="/prompts" className="hover:underline">
+            {t("nav.prompts")}
+          </Link>
           <Link href="/about" className="hover:underline">
             {t("nav.about")}
           </Link>

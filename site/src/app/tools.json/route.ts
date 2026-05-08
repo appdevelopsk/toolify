@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { siteConfig } from "@/lib/config";
 import { LOCALES } from "@/lib/i18n/locales";
 import { listTools } from "@/lib/tools/registry";
+import { listPrompts } from "@/lib/prompts/registry";
 
 export const dynamic = "force-static";
 
@@ -10,8 +11,9 @@ export const dynamic = "force-static";
 // without scraping HTML. Stable endpoint at /tools.json.
 export function GET() {
   const tools = listTools();
+  const prompts = listPrompts();
   const data = {
-    version: 1,
+    version: 2,
     generatedAt: new Date().toISOString(),
     site: {
       name: siteConfig.name,
@@ -19,7 +21,7 @@ export function GET() {
       contact: siteConfig.contactEmail,
     },
     locales: LOCALES,
-    count: tools.length,
+    counts: { tools: tools.length, prompts: prompts.length },
     tools: tools.map((t) => ({
       slug: t.slug,
       category: t.category,
@@ -29,6 +31,16 @@ export function GET() {
       urls: Object.fromEntries(LOCALES.map((l) => [l, `${siteConfig.url}/${l}/tools/${t.slug}`])),
       primaryKeyword: t.primaryKeyword,
       related: t.related,
+    })),
+    prompts: prompts.map((p) => ({
+      slug: p.slug,
+      category: p.category,
+      recommendedFor: p.recommendedFor,
+      updatedAt: p.updatedAt,
+      url: `${siteConfig.url}/en/prompts/${p.slug}`,
+      urls: Object.fromEntries(LOCALES.map((l) => [l, `${siteConfig.url}/${l}/prompts/${p.slug}`])),
+      primaryKeyword: p.primaryKeyword,
+      related: p.related,
     })),
   };
   return NextResponse.json(data, {

@@ -1,0 +1,82 @@
+{
+  "title": "Prompt resumen de investigación — claims, evidencia, contradicciones",
+  "shortDescription": "Convierte PDFs largos, papers o reportes en un resumen estructurado que distingue afirmaciones de evidencia, expone contradicciones y cita páginas fuente para verificar.",
+  "description": "El default 'resume esto' produce resúmenes en prosa que pierden el punto de cada estudio matizado. Este prompt extrae un objeto estructurado — claims, tipo de evidencia, ubicación de fuente y contradicciones entre documentos — que puedes escanear en 60 segundos.",
+  "metaDescription": "Prompt gratis de resumen de investigación para Claude, Perplexity, ChatGPT. Extrae claims con evidencia y páginas. Expone contradicciones entre documentos.",
+  "keywords": ["prompt resumen investigación", "resumen paper académico", "prompt investigación Claude", "investigación Perplexity", "prompt revisión literatura"],
+  "promptText": "Resumirás los documentos abajo. Salida como tabla estructurada, no prosa.\n\nPara cada claim importante en las fuentes, extrae:\n  - Claim: <una oración>\n  - Tipo de evidencia: <estudio empírico / argumento teórico / opinión experta / anécdota / sin soporte>\n  - Fuente: <nombre del documento + página o sección>\n  - Fortaleza: <fuerte / moderada / débil — basado en tipo de evidencia y tamaño de muestra>\n  - Caveats: <límites que la fuente misma reconoce>\n\nDespués de la tabla, agrega tres secciones:\n\n1. CONTRADICCIONES: lista lugares donde los documentos discrepan o donde el claim de un documento entra en conflicto con datos de otro.\n\n2. MAPA DE CONFIANZA: califica la confiabilidad general de cada claim mayor — alta (múltiples fuentes fuertes coinciden), media (una fuente fuerte o varias débiles), baja (una sola fuente débil o aserción sin soporte).\n\n3. QUÉ FALTA: 3-5 preguntas que un lector cuidadoso aún tendría tras leer estos documentos. Marca cada una como 'abordable desde estos documentos con más lectura' o 'requiere fuentes externas'.\n\nReglas duras:\n- Cita página o sección para cada claim. Si no puedes, marca [page unknown].\n- No sintetices más allá de lo que los documentos dicen. Si dos tocan un tema pero no se comparan directamente, dilo — no inventes la comparación.\n- Distingue 'el documento afirma X' de 'X es verdad'. El resumen reporta qué se afirmó, no qué es correcto.\n\nDocumento(s):\n\n[pega el texto completo o sube PDFs]",
+  "useCase": {
+    "headline": "Cuándo usar esto",
+    "items": [
+      "Leyendo 5-10 papers para revisión de literatura — pasa cada uno por este prompt, luego compara mapas de confianza para encontrar consenso y gaps.",
+      "Evaluando un reporte de industria recibido de un vendor — la columna de fortaleza expone dónde el reporte es data-driven vs marketing.",
+      "Verificando un artículo de noticias — alimenta el artículo + el estudio subyacente; las contradicciones aparecen al instante."
+    ]
+  },
+  "modelTips": {
+    "claude": "Mejor distinguiendo claim de tipo de evidencia. La regla 'no sintetices' es la más respetada por Claude (Sonnet 4.6+).",
+    "perplexity": "Fuerte cuando el documento está en la web abierta — Perplexity agrega verificación de fuente automáticamente. Menos útil para PDFs privados.",
+    "chatgpt": "Funciona pero tiende a ablandar el veredicto 'sin soporte' a 'mencionado'. Sé explícito: 'usa \"sin soporte\" cuando el documento presente un claim sin citar datos, aunque suene razonable.'"
+  },
+  "exampleHeading": "Ejemplo: 3 papers sobre productividad en remoto",
+  "exampleOutput": "| Claim | Evidencia | Fuente | Fortaleza | Caveats |\n|---|---|---|---|---|\n| Trabajadores remotos auto-reportan 13% más productividad | encuesta, n=2400 | Bloom 2024 p.7 | moderada | sesgo de auto-reporte reconocido |\n| Trabajo remoto reduce innovación de equipo | entrevista cualitativa, n=42 managers | Smith 2023 p.14 | débil | muestra sesgada a managers, no ICs |\n| Híbrido (3-días) supera a remoto total en retención | A/B test en una empresa | Chen 2025 p.22 | moderada | una sola firma, puede no generalizar |\n\nCONTRADICCIONES:\n- Bloom 2024 reporta ganancia de productividad; Smith 2023 implica baja (vía 'innovación reducida'). Los dos usan definiciones diferentes — Bloom = output por hora, Smith = output estratégico. No directamente comparables.\n\nMAPA DE CONFIANZA:\n- 'Trabajo remoto cambia productividad' → alta (efecto claro, dirección debatida)\n- 'Trabajo remoto reduce innovación' → media (un estudio, cualitativo)\n- 'Híbrido es óptimo' → baja (un A/B en una firma)\n\nQUÉ FALTA:\n1. Efecto en empleados junior específicamente [requiere fuentes externas]\n2. Desglose por industria [abordable: Bloom 2024 tiene datos en apéndice]\n3. Efecto en transferencia de conocimiento / mentoría [requiere fuentes externas]",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por qué los resúmenes en prosa fallan para investigación",
+        "paragraphs": [
+          "Un resumen de párrafo mezcla cada claim al mismo nivel de autoridad. El lector no puede distinguir si 'los estudios muestran que…' está respaldado por una encuesta de baja potencia o un metaanálisis de cuarenta ensayos. El resumen LLM default hereda este defecto y lo amplifica — claims fuertes y débiles obtienen el mismo peso de prosa.",
+          "La extracción estructurada (tabla + mapa de confianza) preserva la autoridad diferencial de los claims. Puedes escanear y ver inmediatamente que el hallazgo titular descansa en evidencia sólida mientras el claim secundario es esencialmente editorial. Esta es la diferencia entre informado y falsamente confiado."
+        ]
+      },
+      {
+        "heading": "La regla más difícil: distinguir claim de verdad",
+        "paragraphs": [
+          "Los resumidores default se deslizan de 'el documento X dice Y' a 'Y es verdad' sin marcar la transición. La regla 'distingue claim de verdad' es explícita porque los modelos fallan por default en ello. Cuando la regla se mantiene, lees el resumen y sabes exactamente qué aserciones son del documento, no editorialización del modelo.",
+          "Si el modelo viola la regla (afirma X como hecho cuando el documento solo lo afirmó), responde 'reformula para atribuir cada claim a su fuente'. Después de una corrección, Claude tiende a mantener la atribución en el resto del documento."
+        ]
+      },
+      {
+        "heading": "Workflows multi-documento",
+        "paragraphs": [
+          "Para revisiones de literatura, corre cada paper individualmente primero — el contexto del modelo y la calidad ambos se benefician de un-doc-a-la-vez. Luego en una segunda pasada, pega solo las tablas resultantes y pregunta: 'Identifica puntos de consenso, puntos de desacuerdo, y el claim individual más fuerte.' Esto es mucho más rápido que alimentar todos los papers en un solo shot.",
+          "Construye una regla de 'decaimiento de confianza': cualquier claim que aparezca en una sola fuente automáticamente baja un nivel cuando se integra a un resumen multi-fuente. Esto fuerza a la revisión integrada a pesar más los hallazgos replicados que los novedosos-pero-aislados, lo cual coincide con buena práctica académica."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Funciona para PDFs muy largos?",
+      "a": "Claude maneja PDFs de 200K tokens en un shot; ChatGPT/GPT-5 manejan 128K. Para más, divide por capítulo y resume cada uno, luego resume los resúmenes. El formato estructurado mantiene la calidad consistente entre pasadas."
+    },
+    {
+      "q": "¿Puede citar quotes específicos?",
+      "a": "Sí — agrega 'Para cada claim, incluye un snippet citado de 5-15 palabras de la frase original' al prompt. Útil cuando la redacción importa (documentos legales, specs técnicas)."
+    },
+    {
+      "q": "¿Qué si el documento no tiene números de página claros (artículo web)?",
+      "a": "Usa headings de sección o números de párrafo en su lugar. El 'página o sección' del prompt permite esto. Para artículos web, índice de párrafo ('párrafo 5') funciona bien."
+    },
+    {
+      "q": "¿Cómo se compara con usar NotebookLM?",
+      "a": "NotebookLM auto-maneja upload de documentos y citaciones pero produce resúmenes narrativos por default. Este prompt produce salida de extracción estructurada que es mejor para comparación sistemática. Usa ambos: NotebookLM para exploración chat-style, este prompt para resúmenes write-once-skim-many."
+    },
+    {
+      "q": "¿Por qué forzar la sección 'qué falta'?",
+      "a": "Porque cada resumen de investigación debería dejarte con follow-ups explícitos, no la falsa impresión de completitud. La sección 'qué falta' también revela cuándo el documento fundamentalmente no puede responder tu pregunta — útil antes de gastar más tiempo leyéndolo."
+    },
+    {
+      "q": "¿Funciona en investigación que no esté en inglés?",
+      "a": "Sí — Claude y GPT-5 manejan prosa académica japonesa / china / alemana / francesa bien. La salida estructurada permanece en el idioma de tu prompt; el idioma de la fuente puede ser distinto."
+    },
+    {
+      "q": "¿Cómo evito números de página alucinados?",
+      "a": "Si el modelo da un número de página, spot-check uno o dos. Si están mal, agrega 'Si no puedes verificar un número de página, marca [page unknown] — nunca adivines.' al prompt."
+    },
+    {
+      "q": "¿Puedo usarlo para transcripciones de podcast?",
+      "a": "Sí — reemplaza 'página' por 'timestamp' y el resto funciona. La extracción estructurada de claims es aún más útil para podcasts, donde los claims flotan alrededor de prosa más larga sin marcadores claros."
+    }
+  ]
+}

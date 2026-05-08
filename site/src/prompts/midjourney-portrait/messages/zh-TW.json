@@ -1,0 +1,86 @@
+{
+  "title": "Midjourney 人像 提示詞 — 控制臉、光線、鏡頭、情緒",
+  "shortDescription": "Midjourney 人像用模組化提示詞模板,顯式控制主體、構圖、光線、鏡頭、情緒、風格。避免通用「AI 人像」感。",
+  "description": "Midjourney 預設人像都共享同一種詭異谷的光滑感、戲劇性主光、過飽和散景。本模板透過指定鏡頭(焦距重要)、光線方向以及「不要過度渲染肌膚」條款打破預設,迫使產生真實質感。",
+  "metaDescription": "Midjourney 人像用免費模組化提示詞。鏡頭、光線、構圖、情緒顯式控制。避免通用 AI 臉。含 v6/v7 示例。",
+  "keywords": [
+    "Midjourney 人像 提示詞",
+    "Midjourney 提示詞 模板",
+    "AI 人像 提示詞",
+    "Midjourney 光線 提示詞",
+    "真實 AI 人像"
+  ],
+  "promptText": "[主體 — 具體說明: 年齡、體型、髮型、表情、服裝]\n+ [構圖: 頭像 / 半身 / 全身]、[角度: 平視 / 低角度 / 3/4]\n+ shot on [鏡頭: 35mm / 50mm / 85mm / 105mm]、[光圈: f/1.4 / f/2 / f/2.8]\n+ [光線: 左側自然窗光 / 黃昏逆光 / 柔和北窗光 / 陰天戶外]\n+ [情緒: 沉思 / 自然喜悅 / 靜默張力 / 疲倦 — 選一個具體]\n+ [環境/背景: 5-8 詞描述,帶景深線索]\n+ realistic skin texture with visible pores and natural asymmetry, no plastic smoothing\n+ [風格參照: editorial / documentary / film still / Renaissance painting / 1970s magazine cover]\n--ar 4:5 --style raw --v 7\n\n構造示例 (替換括號部分):\n\n  middle-aged woman in her late 50s, silver hair pulled back, soft smile lines, wearing a charcoal cashmere sweater, headshot, eye-level, shot on 85mm f/1.8, natural north-window light from screen left, contemplative mood, sparse home library blurred behind her with one warm lamp, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style --ar 4:5 --style raw --v 7\n\n變體策略:\n- 同一提示詞,只換鏡頭(35mm → 85mm → 135mm)得 3 種構圖。\n- 同一提示詞,只換光線(窗 → 黃昏 → 陰天)做情緒研究。\n- 找到喜歡的面孔後,加 --seed <n> 鎖定迭代。",
+  "useCase": {
+    "headline": "什麼時候用",
+    "items": [
+      "目標是性格而非美圖的編輯型人像。",
+      "作者照、LinkedIn 頭像 — 鏡頭與光線規範防止 AI 過度光澤感。",
+      "虛構角色概念圖,需要在多張圖裡保持臉的一致 (用 --seed)。"
+    ]
+  },
+  "modelTips": {
+    "midjourney": "在 v6.1 和 v7 測試。--style raw 抑制 Midjourney 預設的電影感增強,保留真實感。--ar 4:5 是編輯人像裁剪;紀錄感切換到 --ar 3:2。"
+  },
+  "exampleHeading": "同骨架的三種變體",
+  "exampleOutput": "變體 A (親密):\n  35-year-old man with weathered hands, salt-and-pepper beard, looking down at a worn leather notebook, headshot tilted slightly down, shot on 50mm f/1.4, single candle as only light source from the right, quiet intensity, dim wooden table with handwritten pages, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, film still style, --ar 4:5 --style raw --v 7\n\n變體 B (有活力):\n  young Black woman in her early 20s, joyful caught laugh mid-conversation, twist-out curls catching backlight, waist-up, three-quarter angle, shot on 85mm f/2, golden hour backlight from her left + soft fill from camera right, candid joy, blurred park bench and autumn leaves behind, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style, --ar 3:2 --style raw --v 7\n\n變體 C (正式):\n  East Asian businesswoman in her 40s, sharp tailored navy blazer, neutral confident expression, three-quarter framing, low angle, shot on 35mm f/2.8, soft overcast outdoor light, quiet authority, modernist office building lobby blurred behind her, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, editorial style, --ar 4:5 --style raw --v 7",
+  "article": {
+    "sections": [
+      {
+        "heading": "為什麼 Midjourney 預設人像看起來都一樣",
+        "paragraphs": [
+          "Midjourney 訓練資料與預設風格強烈偏好電影級戲劇光、修圖後的肌膚、85mm-f/1.4 散景。不顯式控制鏡頭、光、肌膚質感,每張人像都向「AI Instagram 濾鏡」美學收斂。編輯和招聘者一眼就認。",
+          "上面模板在三處打破收斂: 鏡頭(改焦距改變臉的幾何)、光線方向與硬度,以及顯式「真實肌膚質感」條款抑制預設美顏。前兩個是純攝影,第三個是 Midjourney 特有的反模式。"
+        ]
+      },
+      {
+        "heading": "鏡頭改變臉",
+        "paragraphs": [
+          "廣角 (35mm) 凸顯下巴、誇張鼻子;人像感覺親密、有時略帶喜劇。50mm 是「標準」鏡頭 — 最自然。85mm 與 105mm 壓縮五官、襯托大多數臉,產出經典編輯感。僅切換提示詞中的鏡頭,就能為同一角色得到三種截然不同的人像。",
+          "適合為同一虛構角色拍多張。鎖種子,只改鏡頭。視覺上下文不同但身份保持一致 — 單純靠提示詞難以做到的特性。"
+        ]
+      },
+      {
+        "heading": "光線方向驅動情緒 — 顯式說",
+        "paragraphs": [
+          "「自然光」是非指令;模型預設挑戲劇性的。「畫面左側的柔和北窗光」是模型可精確執行的指令。模板要求方向 (左/右/後/前)、質感 (柔/硬)、來源 (窗/黃昏/燭光/陰天)。",
+          "三種快速情緒對映: 逆光+暖色 = 浪漫/懷舊。單一硬側光 = 戲劇/審視。陰天+正面柔光 = 紀錄/真實。有意識地選,這就是「一張人像」與「傳達你想要東西的人像」的區別。"
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Midjourney v5 能用嗎?",
+      "a": "可以,但去掉 --style raw (v5.2 加入) 和 v7 引用。鏡頭+光線條款仍有用。新版 (v6.1+、v7) 對真實肌膚條款執行更好。"
+    },
+    {
+      "q": "全身鏡頭能用嗎?",
+      "a": "可以 — 把構圖改全身,鏡頭切到 35mm 或 50mm (85mm 對身體太美化),並加姿態描述。肌膚質感條款全身效果較弱但仍值得保留。"
+    },
+    {
+      "q": "Midjourney 不是真相機為什麼指定光圈?",
+      "a": "這是模型理解的簡寫。f/1.4 = 「極端背景虛化、淺景深、親密」。f/8 = 「大部分清晰、環境人像」。指定光圈能以 Midjourney 可靠解讀的方式控制散景。"
+    },
+    {
+      "q": "怎麼在多張圖裡保持同一張臉?",
+      "a": "生成一張滿意的圖,記下種子,加 --seed <n>。同種子+相似提示詞會產生相似的臉。配合 v6+ 的 --cref (角色參考) 能得到一致的角色。"
+    },
+    {
+      "q": "什麼風格參照管用?",
+      "a": "攝影師名有時管用但不穩定。更可靠: 「documentary editorial style」、「film still style」、「Renaissance oil painting style」、「1970s magazine cover」、「medium-format film」。具體年代+介質勝過具體攝影師名。"
+    },
+    {
+      "q": "為什麼要數字化指定族裔/年齡?",
+      "a": "模板這樣做了 — 這很重要。Midjourney 在主體未指定時存在已知偏見。永遠顯式說明主體,避免預設到狹窄人口畫像。"
+    },
+    {
+      "q": "這些提示詞商用安全嗎?",
+      "a": "Midjourney 商用取決於訂閱級別 (Standard 以上允許)。提示詞本身不影響這個。客戶工作請反覆確認 Midjourney 當前 ToS — 它會變。"
+    },
+    {
+      "q": "結果還是很「AI 感」怎麼辦?",
+      "a": "在風格參照里加「medium format film」或「shot on Portra 400」,末尾加「film grain, slight imperfection, candid」。這把模型從乾淨的數字銳度推向攝影上的不完美感。"
+    }
+  ]
+}
