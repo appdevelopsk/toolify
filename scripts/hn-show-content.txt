@@ -1,0 +1,32 @@
+TITLE: Show HN: Toolify – 120 free calculators in 6 languages (en/ja/zh/ko/es)
+URL: https://tools.appdevelopsk.com
+---
+Hi HN — Toolify is a multilingual calculator and converter site. BMI, mortgage refi, lease-vs-buy, fractions, base64, ROI, that kind of thing. 120 tools today, all single-purpose, all client-side, all multilingual.
+
+Source: https://github.com/appdevelopsk/toolify
+
+Why I built it: I was curious whether the "long-tail tools site" model still works in 2026 against (a) Google's snippet-answers eating top-of-funnel, (b) the Helpful Content Update penalizing thin pages, and (c) calculator.net's 15-year head start. The bet: 120 tools × 6 locales = ~720 long-tail entry points might beat one viral tool. Open question whether it works.
+
+Interesting decisions:
+
+- 6 locales, mostly hand-translated. en, ja, zh-CN, zh-TW, ko, es. zh-TW is the only auto-converted one (cn → twp via opencc-js, with Taiwan idiom mapping not just glyphs — handles 数据→資料, 服务器→伺服器 properly). Each tool ships its own messages/{locale}.json with title, description, 8 FAQ entries, 3 article sections, HowTo schema.
+
+- Static export, no runtime. Next.js 15 SSG over (locale × slug) → 770 plain-HTML pages, served behind nginx on a small VPS. No server runtime, no cold starts.
+
+- HCU paranoia. Each tool has 8 FAQ + 3 article sections written before launch (not afterthoughts). Lighthouse 100/100/100/79 — the -21 on Best Practices is unavoidable AdSense JS.
+
+- No telemetry, no signup. All math runs in the browser. AdSense only when slots are configured (currently in review).
+
+- Heavy AI collaboration. Full disclosure: I'm using Claude Code as the main collaborator on copy, message files, and HCU-compliant articles. The tool calculations, i18n architecture, and SSG plumbing are hand-written. Curious whether HN finds the line between "AI-generated content site" and "AI-assisted, hand-curated content site" meaningful in practice.
+
+Things I'm least sure about:
+
+- mortgage-refinance-calculator, cost-of-living-comparison, investment-fee-impact-calculator each combine multiple inputs into a "should I do X" answer. Easy to make confusing — UX feedback specifically on those would be golden.
+- /tools index has 120 cards in 7 categories. Wondering if an instant-search box would beat another sort dimension.
+- Whether ko/es could have been bootstrapped from a base + auto-conversion the way zh-TW was. (opencc nailed cn→twp; haven't found anything similar for the others.)
+
+Known broken:
+- Bing IndexNow returns 403 — Webmaster Tools registration is still propagating (24h in).
+- A few category icons are emoji placeholders.
+
+Take it apart, tell me what's wrong.
