@@ -1,0 +1,75 @@
+{
+  "title": "Ad copy variants prompt — 6 angles, 3 lengths, no filler",
+  "shortDescription": "Generate 6 distinct ad copy variants for the same offer — different persuasive angles (problem, outcome, identity, social proof, scarcity, comparison), each in three ad-platform-ready lengths.",
+  "description": "Most AI ad copy is six rewrites of the same headline. This prompt forces real angle diversity by labeling each variant with its persuasive angle, then producing each in three lengths (40-char headline, 90-char one-liner, 50-word body). One paste = 18 testable A/B candidates.",
+  "metaDescription": "Free ad copy prompt for ChatGPT and Claude. 6 distinct persuasive angles × 3 ad-platform lengths each = 18 testable variants per offer. With A/B testing notes.",
+  "keywords": ["ad copy prompt", "ChatGPT ad copy", "Facebook ad prompt", "Google Ads prompt", "ad variant generator"],
+  "promptText": "Generate 6 ad copy variants for the offer below.\n\nOffer: {what you sell}\nAudience: {be specific about the niche, not 'small businesses'}\nPrimary benefit: {the single thing that matters most}\nPlatform: {Meta / Google / TikTok / LinkedIn / etc.}\n\nFor each of these 6 angles, produce three lengths:\n  - PROBLEM: name the specific pain the audience feels right now\n  - OUTCOME: paint the specific after-state they'll have\n  - IDENTITY: speak to who they want to become / be seen as\n  - SOCIAL_PROOF: cite a number, customer type, or result\n  - SCARCITY: real time/inventory limit (only if true — don't invent)\n  - COMPARISON: vs the obvious alternative they're considering\n\nFor each angle, output:\n  - <ANGLE NAME>\n    headline: <under 40 chars>\n    one-liner: <under 90 chars>\n    50-word: <50-60 word body for an image ad>\n    CTA: <2-3 word action>\n\nHard rules:\n1. Do not reuse the same opening phrase across angles.\n2. Numbers must be plausible — say 'roughly X' if you don't know exact figures.\n3. SCARCITY: skip the angle if there's no real scarcity. Don't fake it.\n4. Avoid 'unlock', 'leverage', 'game-changer', and similar LinkedIn filler.\n5. Each angle's three lengths must say genuinely different things, not three rewrites of one sentence.",
+  "useCase": {
+    "headline": "When to use this",
+    "items": [
+      "Launching a new offer with no copy history — gives you 18 candidates to A/B from day one.",
+      "Auditing a stagnant ad set — paste the current top performer plus this prompt, ask 'which angle am I missing?'.",
+      "Briefing a freelance copywriter — the structured output is a clearer brief than 'write some ads for X'."
+    ]
+  },
+  "modelTips": {
+    "claude": "Best at avoiding generic-AI phrasing. Will refuse to fake scarcity if instructed.",
+    "chatgpt": "Tends to add filler words ('truly', 'simply', 'just'). Add 'no filler adverbs' to suppress.",
+    "any": "The angle labels are the leverage. Without them, every model defaults to OUTCOME and skips the diversity."
+  },
+  "exampleHeading": "Example for a freelance accounting service",
+  "exampleOutput": "PROBLEM\n  headline: Tax season again. Already?\n  one-liner: Your books from last year still aren't reconciled — and now it's March.\n  50-word: If your QuickBooks has 'uncategorized' transactions piling up, your tax filing is going to be expensive in time, errors, or both. We sort 12 months in two weeks, flat fee, with the receipts already attached. April 15 doesn't have to mean a weekend lost.\n  CTA: Book free intake\n\nOUTCOME\n  headline: Closed books by Friday.\n  one-liner: Hand off your shoebox of receipts on Monday, get audit-ready books by Friday.\n  50-word: 5-day turnaround on annual reconciliation: every transaction categorized, every receipt attached, every quarter's tax payment verified. You'll know your real margin by the next quarterly meeting. Most clients save 10+ hours a quarter on bookkeeping after onboarding.\n  CTA: Start this week\n\n[remaining 4 angles continue with the same structure]",
+  "article": {
+    "sections": [
+      {
+        "heading": "Why default ad-copy prompts produce six near-identical headlines",
+        "paragraphs": [
+          "Ask any chatbot for 'six ad headlines for X' and you get six rewrites of the same idea: the outcome angle, mildly remixed. The model has no reason to switch angle unless you force it. The result is six candidates that all win or lose together — a wasted A/B test.",
+          "Labeling angles up front is a small change with outsized effect. Each label primes the model to find the actual difference between, say, problem-led copy and identity-led copy. The output gives you six distinct hypotheses to test, not six rewrites of one."
+        ]
+      },
+      {
+        "heading": "Why three lengths per angle",
+        "paragraphs": [
+          "Modern ad platforms care about different formats: a 40-char Google Ads headline, a 90-char Meta primary text, a 50-word body for image ads. Producing them from one angle in one pass keeps the message coherent across formats — much easier than writing each format separately and trying to align them after.",
+          "If you only need two formats, drop the third in the prompt. The structure stays the same. What you don't want is 'short and long' — too vague to be useful, the model just chooses arbitrary character counts."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Why explicitly forbid 'unlock' and 'leverage'?",
+      "a": "Because they're tells of AI-generated copy and add no specific information. Every reader has seen 'unlock your potential' a thousand times. Concrete verbs ('finish', 'cut', 'avoid') consistently outperform abstract ones."
+    },
+    {
+      "q": "What if I don't have real numbers for SOCIAL_PROOF?",
+      "a": "The prompt allows 'roughly X' for plausible estimates. If you have no quantitative proof at all, drop the SOCIAL_PROOF angle and replace it with a second OUTCOME variant pushing on a different outcome. Faking a number is worse than skipping the angle."
+    },
+    {
+      "q": "How is this different from 6 rewrites with 'be more creative'?",
+      "a": "'Creative' is a non-instruction; the model interprets it as 'add more adjectives'. Naming the persuasive angle (PROBLEM, IDENTITY, etc.) is a directive the model can act on. You'll see the difference immediately."
+    },
+    {
+      "q": "Does this work for B2B ads?",
+      "a": "Yes — but rewrite the audience field carefully. 'CTOs at 50-200 person SaaS companies' will produce sharper copy than 'B2B decision makers'. The audience description is the single biggest input quality lever."
+    },
+    {
+      "q": "Can I use it for landing-page copy?",
+      "a": "Adapt by changing 'ad' to 'hero section', 'subheadline', and 'first-fold body'. The angle labels still apply. Landing pages let you use 2-3 angles in one piece (e.g., problem in headline, outcome in subhead, social proof above the fold)."
+    },
+    {
+      "q": "What about brand-voice consistency?",
+      "a": "Add a 'Brand voice notes:' section above the offer. Example: 'Brand voice: plainspoken, no superlatives, sentences under 12 words on average'. The model will follow these closely."
+    },
+    {
+      "q": "Is it OK if it suggests an angle that doesn't fit my offer?",
+      "a": "Yes — that's signal. If the SCARCITY angle comes back as 'we don't have meaningful scarcity', you've learned that's not your strong angle. Don't force it."
+    },
+    {
+      "q": "How do I take this output to A/B testing?",
+      "a": "Pick 3 strongest angles (often PROBLEM, OUTCOME, and one of IDENTITY/SOCIAL_PROOF). Ship one variant per angle in one campaign with each angle in its own ad set. After 7-14 days you'll see angle effect, not headline noise."
+    }
+  ]
+}

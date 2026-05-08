@@ -6,6 +6,7 @@ import blogOutline from "@/prompts/blog-outline";
 import midjourneyPortrait from "@/prompts/midjourney-portrait";
 import researchSummary from "@/prompts/research-summary";
 import meetingPrep from "@/prompts/meeting-prep";
+import adCopyVariants from "@/prompts/ad-copy-variants";
 
 const PROMPTS: PromptDefinition[] = [
   codeReview,
@@ -14,6 +15,7 @@ const PROMPTS: PromptDefinition[] = [
   midjourneyPortrait,
   researchSummary,
   meetingPrep,
+  adCopyVariants,
 ];
 
 const SLUG_INDEX = new Map(PROMPTS.map((p) => [p.meta.slug, p]));

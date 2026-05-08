@@ -1,0 +1,75 @@
+{
+  "title": "Prompt para variantes de copy publicitario — 6 ángulos, 3 largos",
+  "shortDescription": "Genera 6 variantes distintas de copy para la misma oferta — diferentes ángulos persuasivos (problema, resultado, identidad, prueba social, escasez, comparación), cada una en tres largos listos para plataformas de ads.",
+  "description": "La mayoría del copy AI son seis reescrituras del mismo titular. Este prompt fuerza diversidad de ángulos real: etiqueta cada variante con su ángulo persuasivo, luego produce cada una en tres largos (40 chars, 90 chars, 50 palabras). Una pegada = 18 candidatos para A/B.",
+  "metaDescription": "Prompt gratis de copy publicitario para ChatGPT y Claude. 6 ángulos persuasivos × 3 largos de plataforma = 18 variantes testables por oferta. Con notas de A/B testing.",
+  "keywords": ["prompt copy publicitario", "ChatGPT ads", "prompt Facebook ads", "prompt Google Ads", "generador variantes ads"],
+  "promptText": "Genera 6 variantes de copy para la oferta abajo.\n\nOferta: {qué vendes}\nAudiencia: {sé específico sobre el nicho, no 'pequeñas empresas'}\nBeneficio principal: {la única cosa que más importa}\nPlataforma: {Meta / Google / TikTok / LinkedIn / etc.}\n\nPara cada uno de estos 6 ángulos, produce tres largos:\n  - PROBLEMA: nombra el dolor específico que la audiencia siente ahora\n  - RESULTADO: pinta el estado-después específico que tendrán\n  - IDENTIDAD: habla a quién quieren convertirse / ser vistos\n  - PRUEBA_SOCIAL: cita un número, tipo de cliente o resultado\n  - ESCASEZ: límite real de tiempo/inventario (solo si es real — no inventes)\n  - COMPARACIÓN: vs la alternativa obvia que están considerando\n\nPara cada ángulo, salida:\n  - <NOMBRE ÁNGULO>\n    titular: <bajo 40 chars>\n    una-línea: <bajo 90 chars>\n    50-palabras: <50-60 palabras de body para ad con imagen>\n    CTA: <2-3 palabras de acción>\n\nReglas duras:\n1. No reuses la misma frase de apertura entre ángulos.\n2. Los números deben ser plausibles — di 'aproximadamente X' si no sabes cifras exactas.\n3. ESCASEZ: salta el ángulo si no hay escasez real. No la falsifiques.\n4. Evita 'desbloquear', 'aprovechar', 'revolucionar' y relleno LinkedIn similar.\n5. Los tres largos de cada ángulo deben decir cosas genuinamente diferentes, no tres reescrituras de una oración.",
+  "useCase": {
+    "headline": "Cuándo usar esto",
+    "items": [
+      "Lanzando una nueva oferta sin historial de copy — te da 18 candidatos para A/B desde el día uno.",
+      "Auditando un set de ads estancado — pega el actual top performer + este prompt, pregunta '¿qué ángulo me falta?'.",
+      "Briefing a un copywriter freelance — la salida estructurada es un brief más claro que 'escribe algunos ads para X'."
+    ]
+  },
+  "modelTips": {
+    "claude": "Mejor evitando frases AI genéricas. Se niega a falsificar escasez si se le indica.",
+    "chatgpt": "Tiende a agregar palabras de relleno ('verdaderamente', 'simplemente', 'solo'). Agrega 'sin adverbios de relleno' para suprimir.",
+    "any": "Las etiquetas de ángulo son la palanca. Sin ellas, todo modelo cae en RESULTADO y omite la diversidad."
+  },
+  "exampleHeading": "Ejemplo para servicio de contador freelance",
+  "exampleOutput": "PROBLEMA\n  titular: ¿Otra vez temporada de impuestos? ¿Ya?\n  una-línea: Tu contabilidad del año pasado todavía sin reconciliar — y ya es marzo.\n  50-palabras: Si tu QuickBooks tiene transacciones 'sin categorizar' apilándose, tu declaración va a costar caro en tiempo, errores o ambos. Ordenamos 12 meses en dos semanas, tarifa fija, con los recibos ya adjuntados. 15 de abril no tiene que significar un fin de semana perdido.\n  CTA: Reservar diagnóstico\n\nRESULTADO\n  titular: Libros cerrados para el viernes.\n  una-línea: Entrega tu caja de zapatos de recibos el lunes, recibe libros listos para auditoría el viernes.\n  50-palabras: Reconciliación anual entregada en 5 días: cada transacción categorizada, cada recibo adjuntado, cada pago trimestral verificado. Sabrás tu margen real para la próxima reunión trimestral. La mayoría de clientes ahorra 10+ horas trimestrales en bookkeeping tras el onboarding.\n  CTA: Empezar esta semana\n\n[los 4 ángulos restantes continúan con la misma estructura]",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por qué los prompts default de copy publicitario producen seis titulares casi idénticos",
+        "paragraphs": [
+          "Pídele a cualquier chatbot 'seis titulares para X' y obtienes seis reescrituras de la misma idea: el ángulo de resultado, ligeramente remixed. El modelo no tiene razón para cambiar de ángulo a menos que lo fuerces. El resultado son seis candidatos que ganan o pierden todos juntos — un A/B test desperdiciado.",
+          "Etiquetar ángulos por adelantado es un cambio pequeño con efecto desproporcionado. Cada etiqueta condiciona al modelo a encontrar la diferencia real entre, digamos, copy guiado por problema y copy guiado por identidad. La salida te da seis hipótesis distintas para testar, no seis reescrituras de una."
+        ]
+      },
+      {
+        "heading": "Por qué tres largos por ángulo",
+        "paragraphs": [
+          "Las plataformas de ads modernas se preocupan por formatos diferentes: titular Google Ads de 40 chars, texto principal Meta de 90 chars, body de 50 palabras para image ads. Producirlos desde un ángulo en una pasada mantiene el mensaje coherente entre formatos — mucho más fácil que escribir cada formato por separado e intentar alinearlos después.",
+          "Si solo necesitas dos formatos, drop el tercero en el prompt. La estructura permanece. Lo que no quieres es 'corto y largo' — demasiado vago para ser útil, el modelo elige conteos arbitrarios."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Por qué prohibir explícitamente 'desbloquear' y 'aprovechar'?",
+      "a": "Porque son señales de copy generado por AI y no agregan información específica. Cada lector ha visto 'desbloquea tu potencial' mil veces. Verbos concretos ('terminar', 'cortar', 'evitar') consistentemente superan a los abstractos."
+    },
+    {
+      "q": "¿Qué si no tengo números reales para PRUEBA_SOCIAL?",
+      "a": "El prompt permite 'aproximadamente X' para estimaciones plausibles. Si no tienes ninguna prueba cuantitativa, drop el ángulo PRUEBA_SOCIAL y reemplázalo con una segunda variante de RESULTADO empujando otro outcome. Falsificar un número es peor que omitir el ángulo."
+    },
+    {
+      "q": "¿En qué se diferencia de 6 reescrituras con 'sé más creativo'?",
+      "a": "'Creativo' es una no-instrucción; el modelo la interpreta como 'agrega más adjetivos'. Nombrar el ángulo persuasivo (PROBLEMA, IDENTIDAD, etc.) es una directiva sobre la que el modelo puede actuar. Verás la diferencia inmediatamente."
+    },
+    {
+      "q": "¿Funciona para ads B2B?",
+      "a": "Sí — pero reescribe el campo de audiencia con cuidado. 'CTOs de SaaS de 50-200 personas' producirá copy más afilado que 'tomadores de decisiones B2B'. La descripción de audiencia es la palanca de calidad de input más grande."
+    },
+    {
+      "q": "¿Puedo usarlo para copy de landing page?",
+      "a": "Adapta cambiando 'ad' por 'sección hero', 'subtítulo' y 'body de primer fold'. Las etiquetas de ángulo siguen aplicando. Las landing pages te dejan usar 2-3 ángulos en una pieza (e.g., problema en titular, resultado en subtítulo, prueba social sobre el fold)."
+    },
+    {
+      "q": "¿Qué hay de la consistencia de voz de marca?",
+      "a": "Agrega una sección 'Notas de voz de marca:' arriba de la oferta. Ejemplo: 'Voz de marca: español llano, sin superlativos, oraciones bajo 12 palabras en promedio'. El modelo seguirá esto de cerca después de una pegada."
+    },
+    {
+      "q": "¿Está bien si sugiere un ángulo que no encaja en mi oferta?",
+      "a": "Sí — eso es señal. Si el ángulo ESCASEZ vuelve como 'no tenemos escasez significativa', has aprendido que ese no es tu ángulo fuerte. No lo fuerces."
+    },
+    {
+      "q": "¿Cómo llevo esta salida a A/B testing?",
+      "a": "Elige 3 ángulos más fuertes (a menudo PROBLEMA, RESULTADO, y uno de IDENTIDAD/PRUEBA_SOCIAL). Lanza una variante por ángulo en una campaña con cada ángulo en su propio ad set. Después de 7-14 días verás efecto de ángulo, no ruido de titular."
+    }
+  ]
+}
