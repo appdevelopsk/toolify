@@ -73,33 +73,65 @@ await ctx.addInitScript(() => {
 const page = ctx.pages()[0] ?? (await ctx.newPage());
 
 // ──────────────────────────────────────────────────────────────────────────
-// Step 1: ensure logged in (open /submit and check for the title field)
-// If not logged in, HN redirects to /login.
+// Step 1: ensure logged in.
+// HN behaviour: visiting /submit while logged out redirects to /login.
+// After /login post, HN redirects to /news (not back to /submit), so we
+// detect login by polling for a logout link in the navbar, then force-nav
+// to /submit ourselves. We also emit periodic status updates so the user
+// sees what's happening.
 // ──────────────────────────────────────────────────────────────────────────
 console.log("[hn] Opening submit page (will redirect to login if needed)…");
 await page.goto("https://news.ycombinator.com/submit", { waitUntil: "domcontentloaded" });
 
-let loggedIn = (await page.$('input[name="title"]')) !== null;
-if (!loggedIn) {
-  console.log("[hn] Not logged in. Sign in with your HN account in the browser window.");
-  console.log("[hn] (Polling for login completion — up to 10 minutes…)");
-  // Wait until the title input on /submit becomes available
-  await page.waitForFunction(
-    () => {
-      // Either we made it to submit, or we're elsewhere — keep going to /submit afresh
-      return document.querySelector('input[name="title"]') !== null;
-    },
-    { timeout: 600_000 },
-  ).catch(() => {});
+async function isLoggedIn() {
+  // The HN navbar shows a "logout" link when authenticated. This works on
+  // any HN page, so we don't need to be on /submit to detect login.
+  return (await page.$('a[href^="logout?"]')) !== null;
+}
 
-  // After login, HN tends to land on /news. Force-navigate back to /submit.
-  await page.goto("https://news.ycombinator.com/submit", { waitUntil: "domcontentloaded" });
-  loggedIn = (await page.$('input[name="title"]')) !== null;
-  if (!loggedIn) {
-    console.error("[hn] Still not on submit page. Aborting.");
+if (!(await isLoggedIn())) {
+  console.log("[hn] Not logged in. Sign in with your HN account in the browser window.");
+  console.log("[hn] (I'll auto-detect login and navigate to /submit. Up to 10 minutes…)");
+
+  const deadline = Date.now() + 600_000;
+  let lastUrl = "";
+  let detected = false;
+  while (Date.now() < deadline) {
+    if (page.isClosed()) {
+      console.error("[hn] Browser window was closed before login completed. Re-run when ready.");
+      process.exit(2);
+    }
+    try {
+      if (await isLoggedIn()) {
+        detected = true;
+        break;
+      }
+      const u = page.url();
+      if (u !== lastUrl) {
+        lastUrl = u;
+        console.log(`[hn]   currently on: ${u}`);
+      }
+    } catch {
+      /* navigations race with our DOM probe — fine, retry */
+    }
+    await page.waitForTimeout(1500).catch(() => {});
+  }
+
+  if (!detected) {
+    console.error("[hn] Login not detected within 10 minutes. Aborting.");
     await ctx.close();
     process.exit(2);
   }
+  console.log("[hn] ✓ Login detected — navigating to /submit");
+  await page.goto("https://news.ycombinator.com/submit", { waitUntil: "domcontentloaded" });
+}
+
+if ((await page.$('input[name="title"]')) === null) {
+  console.error(`[hn] /submit didn't render the form (current url: ${page.url()}).`);
+  console.error("[hn] Possible: HN flagged the session, or you don't have submit privileges yet.");
+  console.error("[hn] (HN requires a small amount of karma — typically just having an account works,");
+  console.error("[hn]  but very new accounts occasionally get a delay.)");
+  process.exit(2);
 }
 console.log("[hn] ✓ Authenticated, on /submit");
 
