@@ -5,19 +5,22 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 export function Header() {
   const t = useTranslations();
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-900/80">
+    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/90">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-        <Link href="/" className="text-lg font-bold tracking-tight">
+        <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-base leading-none text-white">
+            🔧
+          </span>
           {t("site.name")}
         </Link>
-        <nav className="flex items-center gap-4 text-sm">
-          <Link href="/tools" className="hover:underline">
+        <nav className="flex items-center gap-5 text-sm font-medium">
+          <Link href="/tools" className="text-slate-600 hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-500">
             {t("nav.tools")}
           </Link>
-          <Link href="/prompts" className="hover:underline">
+          <Link href="/prompts" className="text-slate-600 hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-500">
             {t("nav.prompts")}
           </Link>
-          <Link href="/about" className="hover:underline">
+          <Link href="/about" className="hidden text-slate-600 hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-500 sm:inline">
             {t("nav.about")}
           </Link>
           <LanguageSwitcher />

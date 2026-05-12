@@ -4,7 +4,9 @@ import { listPrompts } from "@/lib/prompts/registry";
 import { PromptCard } from "@/components/prompts/PromptCard";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
+import { PROMPT_CATEGORY_CONFIG } from "@/lib/prompts/categories";
 import type { Locale } from "@/lib/i18n/locales";
+import type { PromptCategory } from "@/lib/prompts/types";
 
 export async function generateMetadata({
   params,
@@ -58,21 +60,35 @@ export default async function PromptsIndex({ params }: { params: Promise<{ local
       <h1 className="text-3xl font-bold">{t("nav.prompts")}</h1>
       <p className="mt-2 text-slate-600 dark:text-slate-400">{t("site.description")}</p>
 
-      {[...byCategory.entries()].map(([cat, list]) => (
-        <section key={cat} className="mt-10">
-          <h2 className="text-xl font-semibold capitalize">{cat}</h2>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {list.map((m) => (
-              <PromptCard
-                key={m.slug}
-                meta={m}
-                title={titleOf(m.slug)}
-                description={descOf(m.slug)}
-              />
-            ))}
-          </div>
-        </section>
-      ))}
+      {[...byCategory.entries()].map(([cat, list]) => {
+        const cfg = PROMPT_CATEGORY_CONFIG[cat as PromptCategory];
+        return (
+          <section key={cat} id={cat} className="mt-10 scroll-mt-20">
+            <div className="flex items-center gap-3 border-b border-slate-200 pb-3 dark:border-slate-800">
+              <span
+                className={`flex h-9 w-9 items-center justify-center rounded-lg text-lg ${cfg.iconBg}`}
+                aria-hidden
+              >
+                {cfg.emoji}
+              </span>
+              <h2 className="text-xl font-bold">{cfg.label}</h2>
+              <span className="ml-auto rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+                {list.length}
+              </span>
+            </div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {list.map((m) => (
+                <PromptCard
+                  key={m.slug}
+                  meta={m}
+                  title={titleOf(m.slug)}
+                  description={descOf(m.slug)}
+                />
+              ))}
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 }
