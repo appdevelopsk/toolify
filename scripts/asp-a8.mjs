@@ -1,6 +1,11 @@
 /**
- * A8.net — 正しいURLを探してログイン + プログラム検索・申請
+ * A8.net — 新メディア登録 + プログラム申請
  * node scripts/asp-a8.mjs
+ *
+ * 1. www.a8.net でログイン (login/passwd/login_as_btn)
+ * 2. サイト情報ページ確認 → tools.appdevelopsk.com を追加
+ * 3. プログラム検索・申請
+ *    ターゲット: 楽天証券, SBI証券, マイプロテイン, iHerb, あすけん, ConoHa WING, 三井住友カード
  */
 
 import { chromium } from "playwright";
@@ -20,8 +25,8 @@ const CREDS = loadCreds("a8");
 
 const TARGETS = [
   "楽天証券",
-  "楽天カード",
   "SBI証券",
+  "楽天カード",
   "マイプロテイン",
   "iHerb",
   "あすけん",
@@ -34,105 +39,178 @@ const ctx = await chromium.launchPersistentContext(userDataDir, {
   viewport: { width: 1280, height: 900 },
   userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
   ignoreDefaultArgs: ["--enable-automation"],
-  args: ["--disable-blink-features=AutomationControlled", "--no-first-run"],
+  args: [
+    "--disable-blink-features=AutomationControlled",
+    "--no-first-run",
+    "--disable-infobars",
+    "--disable-extensions",
+  ],
 });
+
 await ctx.addInitScript(() => {
   Object.defineProperty(navigator, "webdriver", { get: () => undefined });
+  Object.defineProperty(navigator, "languages", { get: () => ["ja-JP", "ja", "en-US"] });
+  window.chrome = { runtime: {} };
 });
 
 const page = ctx.pages()[0] ?? (await ctx.newPage());
 
-// ── A8.net ホームページを確認 ──
-console.log("1. A8.net ホームページを確認...");
-await page.goto("https://www.a8.net/", { waitUntil: "domcontentloaded", timeout: 30000 });
+// ── ログイン (www.a8.net) ──
+console.log("🔑 A8.net ログイン中...");
+await page.goto("https://www.a8.net/", {
+  waitUntil: "domcontentloaded",
+  timeout: 30000,
+});
 await page.waitForTimeout(2000);
 console.log("  URL:", page.url());
-const homeText = await page.evaluate(() => document.body.innerText.slice(0, 300));
-console.log("  テキスト:", homeText.replace(/\n/g, " ").slice(0, 200));
 
-// ログインリンクを探す
-const loginLinks = await page.evaluate(() =>
-  Array.from(document.querySelectorAll("a")).filter(a =>
-    a.textContent?.includes("ログイン") || a.href?.includes("login")
-  ).map(a => ({ text: a.textContent?.trim(), href: a.href }))
-);
-console.log("  ログインリンク:", JSON.stringify(loginLinks.slice(0, 5)));
-
-// ── パブリッシャーログインページ ──
-console.log("\n2. パブリッシャーログイン...");
-// 新しい可能性のあるURL
-const loginUrls = [
-  "https://pub.a8.net/login",
-  "https://www.a8.net/affiliate/login/publisher/",
-  "https://pub.a8.net/",
-];
-
-let loggedIn = false;
-for (const url of loginUrls) {
-  console.log(`  試行: ${url}`);
-  try {
-    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 15000 });
-    await page.waitForTimeout(1500);
-    const currentUrl = page.url();
-    const pageText = await page.evaluate(() => document.body.innerText.slice(0, 200));
-    console.log(`    → ${currentUrl}`);
-    console.log(`    テキスト: ${pageText.replace(/\n/g, " ").slice(0, 150)}`);
-
-    // ログインフォームがあれば入力
-    const loginId = page.locator('input[name="login_id"], input[name="id"], input[name="email"], input[type="email"], input[type="text"]').first();
-    if (await loginId.count() > 0) {
-      console.log("  ✓ ログインフォーム発見");
-      await loginId.fill(CREDS.username);
-      const pw = page.locator('input[name="password"], input[type="password"]').first();
-      await pw.fill(CREDS.password);
-      const submit = page.locator('input[type="submit"], button[type="submit"]').first();
-      if (await submit.count() > 0) {
-        await submit.click();
-        await page.waitForNavigation({ waitUntil: "domcontentloaded", timeout: 15000 }).catch(() => {});
-        console.log("  ログイン後 URL:", page.url());
-        loggedIn = true;
-        break;
-      }
-    }
-  } catch (e) {
-    console.log(`    エラー: ${e.message.slice(0, 80)}`);
-  }
+const loginInput = page.locator('input[name="login"]').first();
+if (await loginInput.count() > 0) {
+  await loginInput.fill(CREDS.username);
+  await page.locator('input[name="passwd"]').first().fill(CREDS.password);
+  await page.locator('input[name="login_as_btn"]').first().click();
+  await page.waitForNavigation({ waitUntil: "domcontentloaded", timeout: 20000 }).catch(() => {});
+  await page.waitForTimeout(2000);
+  console.log("  ログイン後 URL:", page.url());
+} else {
+  console.log("  フォームなし (セッション残存?) URL:", page.url());
 }
 
-// マイページを確認
-const mypageUrls = [
-  "https://pub.a8.net/",
-  "https://pub.a8.net/top",
-  "https://www.a8.net/affiliate/publisher/",
-];
+const loggedInText = await page.evaluate(() => document.body.innerText.slice(0, 200));
+console.log("  ページ:", loggedInText.replace(/\n/g, " ").slice(0, 150));
 
-for (const url of mypageUrls) {
-  try {
-    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 15000 });
-    await page.waitForTimeout(1500);
-    const currentUrl = page.url();
-    if (!currentUrl.includes("login") && !currentUrl.includes("error")) {
-      console.log("✓ マイページ:", currentUrl);
-      const text = await page.evaluate(() => document.body.innerText.slice(0, 300));
-      console.log("  テキスト:", text.replace(/\n/g, " ").slice(0, 200));
+// ── サイト情報確認 ──
+console.log("\n📋 サイト情報ページ確認...");
+await page.goto("https://pub.a8.net/a8v2/media/siteAction.do", {
+  waitUntil: "domcontentloaded",
+  timeout: 20000,
+});
+await page.waitForTimeout(2000);
+console.log("  URL:", page.url());
+
+const siteText = await page.evaluate(() => document.body.innerText.slice(0, 1500));
+console.log("  テキスト:", siteText.replace(/\n/g, " ").slice(0, 600));
+writeFileSync(path.join(outDir, "a8-site-info.txt"), siteText, "utf-8");
+
+// サイト追加ボタン/リンクを探す
+const addSiteLinks = await page.evaluate(() =>
+  Array.from(document.querySelectorAll("a, button, input[type=submit]")).map(el => ({
+    text: (el.textContent?.trim() || el.value || "").slice(0, 60),
+    href: el.href || el.getAttribute("onclick") || "",
+  })).filter(l => l.text.includes("追加") || l.text.includes("新規") || l.text.includes("登録"))
+);
+console.log("  追加リンク:", JSON.stringify(addSiteLinks.slice(0, 10), null, 2));
+
+// サイト一覧のHTML保存
+const siteHtml = await page.content();
+writeFileSync(path.join(outDir, "a8-site-info.html"), siteHtml, "utf-8");
+
+// ── プログラム検索 ──
+console.log("\n🔍 プログラム検索...");
+const searchResults = {};
+
+for (const keyword of TARGETS) {
+  console.log(`\n━━ 「${keyword}」 ━━`);
+
+  await page.goto("https://pub.a8.net/a8v2/media/searchAction.do", {
+    waitUntil: "domcontentloaded",
+    timeout: 20000,
+  });
+  await page.waitForTimeout(2000);
+
+  // 検索フォームの要素確認
+  const formEls = await page.evaluate(() =>
+    Array.from(document.querySelectorAll("input:not([type=hidden]):not([type=submit]), select")).map(el => ({
+      type: el.getAttribute("type") || el.tagName.toLowerCase(),
+      name: el.getAttribute("name") || "",
+      id: el.getAttribute("id") || "",
+      placeholder: el.getAttribute("placeholder") || "",
+    }))
+  );
+  if (formEls.length > 0) {
+    console.log("  フォーム:", JSON.stringify(formEls.slice(0, 5), null, 2));
+  }
+
+  // キーワード入力を試みる
+  const kwSelectors = [
+    "input[name=keyword]",
+    "input[name=word]",
+    "input[name=programName]",
+    "input[name=searchWord]",
+    "input[name=q]",
+    "input[placeholder*='キーワード']",
+    "input[placeholder*='検索']",
+    "input[type=text]:first-of-type",
+  ];
+
+  let searched = false;
+  for (const sel of kwSelectors) {
+    const input = page.locator(sel).first();
+    if (await input.count() > 0) {
+      await input.fill(keyword);
+      const submitBtn = page.locator('input[type="submit"], button[type="submit"]').first();
+      if (await submitBtn.count() > 0) await submitBtn.click();
+      else await input.press("Enter");
+      await page.waitForNavigation({ waitUntil: "domcontentloaded", timeout: 15000 }).catch(() => {});
+      await page.waitForTimeout(2000);
+      console.log(`  セレクタ: ${sel} → URL: ${page.url()}`);
+      searched = true;
       break;
     }
-  } catch (e) {
-    console.log(`  エラー (${url}): ${e.message.slice(0, 50)}`);
   }
+
+  if (!searched) {
+    // URLパラメータで試みる
+    const kwUrl = `https://pub.a8.net/a8v2/media/searchAction/keyword.do?action=search&viewType=1&keyword=${encodeURIComponent(keyword)}`;
+    await page.goto(kwUrl, { waitUntil: "domcontentloaded", timeout: 20000 });
+    await page.waitForTimeout(2000);
+    console.log(`  URLパラメータ → URL: ${page.url()}`);
+  }
+
+  // 検索結果を収集
+  const result = await page.evaluate(() => {
+    const text = document.body.innerText;
+    const links = Array.from(document.querySelectorAll("a[href]")).map(a => ({
+      text: a.textContent?.trim().replace(/\s+/g, " ").slice(0, 80),
+      href: a.href,
+    })).filter(l => l.text && l.text.length > 3 && l.href.includes("a8.net"));
+
+    // 申請リンクを探す
+    const applyLinks = links.filter(l =>
+      l.href.includes("apply") || l.href.includes("programDetail") ||
+      l.text.includes("参加") || l.text.includes("申請") || l.text.includes("詳細")
+    );
+
+    // プログラム名のリスト
+    const programNames = Array.from(document.querySelectorAll("h2, h3, .programName, .program-name, td"))
+      .map(el => el.textContent?.trim().replace(/\s+/g, " ").slice(0, 60))
+      .filter(t => t && t.length > 3)
+      .slice(0, 10);
+
+    return { textSnippet: text.slice(0, 800), links: links.slice(0, 20), applyLinks, programNames };
+  });
+
+  console.log(`  テキスト: ${result.textSnippet.replace(/\n/g, " ").slice(0, 300)}`);
+  console.log(`  プログラム名: ${JSON.stringify(result.programNames.slice(0, 5))}`);
+  if (result.applyLinks.length > 0) {
+    console.log(`  申請リンク: ${JSON.stringify(result.applyLinks.slice(0, 3), null, 2)}`);
+  }
+
+  searchResults[keyword] = result;
+
+  // ページHTML保存
+  const resultHtml = await page.content();
+  writeFileSync(
+    path.join(outDir, `a8-search-${keyword.replace(/[^\w぀-鿿]/g, "_")}.html`),
+    resultHtml, "utf-8"
+  );
 }
 
-// 全ページのリンクを確認
-const allLinks = await page.evaluate(() =>
-  Array.from(document.querySelectorAll("a")).map(a => ({
-    text: a.textContent?.trim().replace(/\s+/g, " ").slice(0, 60),
-    href: a.href,
-  })).filter(l => l.text && l.href?.includes("a8.net"))
+writeFileSync(
+  path.join(outDir, "a8-search-results.json"),
+  JSON.stringify(searchResults, null, 2),
+  "utf-8"
 );
-console.log("\n  ページ内のA8リンク:");
-allLinks.slice(0, 20).forEach(l => console.log(`    "${l.text}" → ${l.href.replace("https://", "").slice(0, 70)}`));
-
-writeFileSync(path.join(outDir, "a8-page-links.json"), JSON.stringify(allLinks, null, 2), "utf-8");
-
-console.log("\n終了するには Ctrl+C (ブラウザを確認してください)");
+console.log("\n✅ 完了: asp-output/a8-search-results.json");
+console.log("終了するには Ctrl+C");
 await new Promise(() => {});
