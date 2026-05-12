@@ -26,6 +26,6 @@ export function loadCreds(section) {
       result[key.trim()] = val.join("=").trim();
     }
   }
-  if (!result.username) throw new Error(`セクション [${section}] が見つかりません`);
+  if (Object.keys(result).length === 0) throw new Error(`セクション [${section}] が見つかりません`);
   return result;
 }
