@@ -215,18 +215,16 @@ export const CATALOG: AffiliateOffer[] = [
 
   // ───────── Health / 健康 ─────────
   {
+    // A8.net link → myprotein.jp (Japanese LP, JP shipping only)
     id: "myprotein-jp",
     category: "health",
-    markets: ["JP", "global"],
-    name: {
-      ja: "マイプロテイン",
-      en: "MyProtein",
-    },
+    markets: ["JP"],
+    locales: ["ja"],
+    name: { ja: "マイプロテイン" },
     description: {
       ja: "ヨーロッパNo.1のフィットネスブランド。プロテイン・サプリ・スポーツウェアが直送。",
-      en: "Europe's #1 fitness brand. Protein, supplements, and sportswear shipped worldwide.",
     },
-    cta: { ja: "公式サイトを見る", en: "Visit site" },
+    cta: { ja: "公式サイトを見る" },
     url: { default: "https://px.a8.net/svt/ejp?a8mat=4B3OR1+9IXP82+45DI+5ZU29" },
     network: "a8",
     badge: "💪",
@@ -360,35 +358,31 @@ export const CATALOG: AffiliateOffer[] = [
     badge: "🔖",
   },
   {
-    id: "nordvpn-global",
+    // A8.net link → NordVPN Japanese LP. International users should use NordVPN's direct affiliate program.
+    id: "nordvpn-jp",
     category: "text",
-    markets: ["global", "JP", "US"],
-    name: {
-      en: "NordVPN",
-      ja: "NordVPN",
-    },
+    markets: ["JP"],
+    locales: ["ja"],
+    name: { ja: "NordVPN" },
     description: {
-      en: "Industry-leading VPN with strict no-logs policy, 6000+ servers, multi-device, secure streaming.",
       ja: "厳格なノーログポリシーと6000台以上のサーバーで、安全かつ高速なネット接続を提供するVPN。",
     },
-    cta: { en: "Get NordVPN", ja: "詳細を見る" },
+    cta: { ja: "詳細を見る" },
     url: { default: "https://px.a8.net/svt/ejp?a8mat=4B3OQX+CY6FG2+3YFI+61Z81" },
     network: "a8",
     badge: "🛡️",
   },
   {
-    id: "surfshark-antivirus-global",
+    // A8.net link → Surfshark Japanese LP.
+    id: "surfshark-antivirus-jp",
     category: "text",
-    markets: ["global", "JP", "US"],
-    name: {
-      en: "Surfshark Antivirus",
-      ja: "Surfshark Antivirus",
-    },
+    markets: ["JP"],
+    locales: ["ja"],
+    name: { ja: "Surfshark Antivirus" },
     description: {
-      en: "Real-time malware protection with VPN integration. Lightweight, multi-device, 24/7 scanning.",
       ja: "マルウェア等の脅威からデバイスを保護。VPN統合・軽量・複数デバイス対応の総合セキュリティ。",
     },
-    cta: { en: "Try Surfshark", ja: "詳細を見る" },
+    cta: { ja: "詳細を見る" },
     url: { default: "https://px.a8.net/svt/ejp?a8mat=4B3OQX+C210S2+4LSW+BYLJL" },
     network: "a8",
     badge: "🔰",
