@@ -1,0 +1,40 @@
+name: Fix toolify365.com nginx port
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Fix proxy_pass port 3000 → 8500
+        run: |
+          ssh -i ~/.ssh/key "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" '
+            set -e
+            CONF=/etc/nginx/sites-available/toolify365.com
+            sudo sed -i "s|proxy_pass http://127.0.0.1:3000;|proxy_pass http://127.0.0.1:8500;|g" "$CONF"
+            echo "Updated config:"
+            grep proxy_pass "$CONF"
+            sudo nginx -t
+            sudo systemctl reload nginx
+            echo "nginx reloaded"
+          '
+
+      - name: Smoke test
+        run: |
+          sleep 3
+          STATUS=$(curl -sSo /dev/null -w "%{http_code}" --max-time 15 https://toolify365.com/en || echo "000")
+          echo "HTTP status: $STATUS"
+          [ "$STATUS" = "200" ] && echo "✓ toolify365.com OK" || echo "✗ Got $STATUS"
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/key
