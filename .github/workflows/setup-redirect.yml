@@ -1,0 +1,61 @@
+name: Setup 301 redirect tools.appdevelopsk.com → toolify365.com
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  redirect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Add 301 redirect config
+        run: |
+          ssh -i ~/.ssh/key "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" 'bash -s' << 'ENDSSH'
+            set -e
+
+            # Find existing tools.appdevelopsk.com config
+            CONF=$(grep -rl "tools\.appdevelopsk\.com" /etc/nginx/ 2>/dev/null | head -1)
+            echo "Found config: $CONF"
+
+            # Backup and replace with 301 redirect
+            sudo cp "$CONF" "${CONF}.bak"
+            sudo tee "$CONF" > /dev/null << 'EOF'
+          server {
+              listen 80;
+              server_name tools.appdevelopsk.com;
+              return 301 https://toolify365.com$request_uri;
+          }
+
+          server {
+              listen 443 ssl;
+              server_name tools.appdevelopsk.com;
+              ssl_certificate /etc/letsencrypt/live/tools.appdevelopsk.com/fullchain.pem;
+              ssl_certificate_key /etc/letsencrypt/live/tools.appdevelopsk.com/privkey.pem;
+              return 301 https://toolify365.com$request_uri;
+          }
+          EOF
+
+            sudo nginx -t
+            sudo systemctl reload nginx
+            echo "Redirect configured"
+          ENDSSH
+
+      - name: Verify redirect
+        run: |
+          sleep 3
+          LOCATION=$(curl -sI https://tools.appdevelopsk.com/en/tools/bmi-calculator | grep -i "^location:" | tr -d '\r')
+          STATUS=$(curl -sI https://tools.appdevelopsk.com/en/tools/bmi-calculator | grep "^HTTP" | awk '{print $2}')
+          echo "Status: $STATUS"
+          echo "Location: $LOCATION"
+          [ "$STATUS" = "301" ] && echo "✓ 301 redirect OK" || echo "✗ Expected 301, got $STATUS"
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/key
