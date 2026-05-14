@@ -1,0 +1,24 @@
+name: Diagnose VPS
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: SSH diagnose
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/key "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" '
+            echo "=== PM2 processes ==="
+            pm2 list
+            echo ""
+            echo "=== nginx proxy_pass for tools.appdevelopsk.com ==="
+            grep -r "proxy_pass\|server_name\|listen" /etc/nginx/sites-enabled/ /etc/nginx/conf.d/ 2>/dev/null
+          '
+          rm -f ~/.ssh/key
