@@ -1,0 +1,90 @@
+{
+  "title": "Chuyển đổi màu sắc (HEX, RGB, HSL — tức thì)",
+  "shortDescription": "Chuyển đổi màu sắc giữa HEX, RGB và HSL với bản xem trước trực tiếp. Chỉnh sửa bất kỳ trường nào; các trường còn lại cập nhật.",
+  "description": "Gõ mã hex, bộ ba RGB hoặc giá trị HSL — các định dạng khác cập nhật tức thì với bản xem trước màu hiển thị. Hữu ích cho nhà thiết kế, nhà phát triển web và bất kỳ ai cần khớp màu sắc giữa các công cụ.",
+  "metaDescription": "Công cụ chuyển đổi màu HEX, RGB, HSL miễn phí với xem trước trực tiếp. Chỉnh sửa bất kỳ định dạng nào và các định dạng khác cập nhật tức thì.",
+  "keywords": [
+    "chuyển đổi màu sắc",
+    "hex sang rgb",
+    "rgb sang hsl",
+    "bảng chọn màu",
+    "chuyển đổi mã hex"
+  ],
+  "hex": "HEX",
+  "rgb": "RGB",
+  "hsl": "HSL",
+  "article": {
+    "sections": [
+      {
+        "heading": "Ba cách mô tả cùng một màu",
+        "paragraphs": [
+          "HEX, RGB và HSL là ba ký hiệu cho màu sRGB. HEX là viết tắt của RGB: #FF6B35 có nghĩa là đỏ=255, lục=107, lam=53. RGB mô tả màu sắc bằng cách trộn bao nhiêu ánh sáng đỏ, lục và lam (0-255 mỗi loại). HSL mã hóa lại cùng màu RGB theo hue (màu nào), saturation (độ sặc sỡ) và lightness (độ sáng).",
+          "Tất cả ba đều tương đương — bạn có thể chuyển đổi khứ hồi mà không mất dữ liệu. Nhà thiết kế ưa HSL để điều chỉnh tông màu (tăng lightness giữ nguyên hue ổn định), trong khi nhà phát triển thường dán HEX từ công cụ thiết kế thẳng vào CSS. RGB xuất hiện phổ biến nhất khi làm việc với API xử lý ảnh hoặc canvas."
+        ]
+      },
+      {
+        "heading": "Khi nào dùng mỗi định dạng",
+        "paragraphs": [
+          "HEX: sao chép-dán từ thiết kế, xuất Figma, hướng dẫn thương hiệu, giá trị màu CSS. Ngắn gọn nhưng khó đọc.",
+          "RGB: làm việc màu sắc lập trình (canvas, xử lý ảnh), kiểm tra khả năng tiếp cận (tính toán độ tương phản hoạt động trong linear RGB) và khi bạn muốn các giá trị số nguyên chính xác để điều chỉnh.",
+          "HSL: tinh chỉnh màu sắc theo cảm giác — tạo 'phiên bản đậm màu hơn một chút', 'biến thể tối hơn cho trạng thái hover' hoặc tạo bảng màu bằng cách bước qua hue. Dễ suy nghĩ hơn nhiều so với HEX cho những tác vụ đó."
+        ]
+      },
+      {
+        "heading": "Những gì công cụ này không có",
+        "paragraphs": [
+          "Chúng tôi bỏ qua kênh alpha (độ trong suốt) hiện tại — nhưng #RRGGBBAA hoạt động trong tất cả trình duyệt hiện đại nếu bạn thêm hai chữ số hex cho độ mờ (00 = trong suốt, FF = mờ đục).",
+          "Chúng tôi cũng không bao gồm gamut màu rộng hơn (P3, Rec.2020, OKLCH). Với hầu hết công việc web, HEX/RGB/HSL dựa trên sRGB là lựa chọn phù hợp. Nếu bạn nhắm đến màn hình HDR hoặc gamut rộng, hãy tìm hiểu cú pháp CSS Color Module Level 4."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Chỉnh sửa bất kỳ trường nào",
+        "text": "Gõ mã HEX, bộ ba RGB hoặc giá trị HSL."
+      },
+      {
+        "name": "Xem các trường còn lại cập nhật",
+        "text": "Cả ba định dạng luôn đồng bộ; ô xem trước hiển thị kết quả."
+      },
+      {
+        "name": "Sao chép những gì bạn cần",
+        "text": "Khối văn bản ở cuối có cả ba định dạng sẵn sàng để sao chép vào CSS."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Tôi có thể chuyển đổi khứ hồi từ HSL sang HEX mà không mất độ chính xác không?",
+      "a": "Hầu hết có. HSL được lưu trữ dưới dạng độ và phần trăm nguyên, nên 360 × 101 × 101 = 3,7M giá trị HSL ánh xạ lên 16,7M tổ hợp RGB. Có thể xảy ra làm tròn nhỏ ở các góc. Dùng HEX làm định dạng chuẩn để lưu trữ chính xác."
+    },
+    {
+      "q": "Công cụ này có hỗ trợ mã HEX 3 chữ số không?",
+      "a": "Có. #f60 được coi là #ff6600. Cả hai mở rộng thành cùng một bộ ba RGB."
+    },
+    {
+      "q": "Tại sao HSL saturation/lightness không đến 360?",
+      "a": "Hue tính bằng độ (0-360 quanh bánh xe màu). Saturation và lightness là phần trăm (0-100)."
+    },
+    {
+      "q": "HSL có giống HSB hay HSV không?",
+      "a": "Không. HSV (và HSB) thay thế 'lightness' bằng 'value', một mô hình độ sáng khác. L=50% của HSL là màu đầy đủ; V=100% của HSV là màu đầy đủ. Chúng tôi dùng HSL vì nó khớp với CSS."
+    },
+    {
+      "q": "Công cụ này có hỗ trợ độ trong suốt không?",
+      "a": "Chưa. Hiện tại, thêm hai chữ số alpha vào HEX (ví dụ: #00000080 cho đen 50%)."
+    },
+    {
+      "q": "Tại sao RGB không hiển thị số thực 0-1?",
+      "a": "Vì hầu hết ngữ cảnh (CSS, công cụ thiết kế) dùng số nguyên 0-255. Đối với công việc shader, chia cho 255 để lấy số thực 0-1."
+    },
+    {
+      "q": "Nhà thiết kế lấy màu đúng ở đâu?",
+      "a": "Hướng dẫn thương hiệu, design token hoặc trình tạo bảng màu. Công cụ kiểm tra độ tương phản có thể xác minh một cặp nền/tiền cảnh đáp ứng WCAG AA/AAA."
+    },
+    {
+      "q": "Máy tính có chính xác không?",
+      "a": "Có. Nó dùng toán học chuyển đổi sRGB chuẩn. Sự khác biệt chuyển đổi khứ hồi chỉ đến từ việc HSL được lượng tử hóa số nguyên."
+    }
+  ]
+}

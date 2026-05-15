@@ -1,0 +1,67 @@
+{
+  "title": "Gerador de Gradiente CSS (linear, radial, cônico)",
+  "shortDescription": "Crie gradientes CSS visualmente: linear, radial e cônico. Múltiplas paradas de cor, controle de ângulo, presets. Copie o CSS pronto para usar.",
+  "description": "Escolha o tipo de gradiente, defina o ângulo, adicione ou remova paradas de cor com posições. Pré-visualização ao vivo. Copie a declaração CSS de fundo com um clique.",
+  "metaDescription": "Gerador de gradiente CSS gratuito com pré-visualização ao vivo. Gradientes linear, radial e cônico. Multi-parada, controle de ângulo, código CSS pronto para copiar.",
+  "keywords": ["gerador de gradiente CSS", "gradiente linear", "gradiente radial", "gradiente cônico", "criador de gradiente"],
+  "preview": "Pré-visualização",
+  "input": {
+    "type": "Tipo",
+    "angle": "Ângulo",
+    "stops": "Paradas de cor"
+  },
+  "type": {
+    "linear": "Linear",
+    "radial": "Radial",
+    "conic": "Cônico"
+  },
+  "output": {
+    "css": "Código CSS"
+  },
+  "addStop": "Adicionar parada",
+  "removeStop": "Remover parada",
+  "copy": "Copiar CSS",
+  "copied": "Copiado!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Três tipos de gradiente em CSS",
+        "paragraphs": [
+          "Gradiente linear: as cores fazem transição ao longo de uma linha reta em um ângulo definido. 0° aponta para cima, 90° para a direita (direção padrão de leitura), 180° para baixo. É o mais comum para fundos, botões e seções hero.",
+          "Gradiente radial: as cores fazem transição para fora a partir de um ponto central. A forma pode ser círculo (padrão aqui) ou elipse. Ideal para efeitos de holofote, elementos tipo sol ou pontos focais que chamam atenção.",
+          "Gradiente cônico: as cores giram em torno de um ponto central, como uma roda de cores. Menos comum, mas poderoso para gráficos de pizza, relógios ou spinners decorativos. Suportado nos navegadores modernos desde 2020."
+        ]
+      },
+      {
+        "heading": "Paradas de cor e o sistema de porcentagem",
+        "paragraphs": [
+          "Cada parada de cor tem uma cor e uma posição de 0% a 100%. 0% é o início do gradiente, 100% é o fim. Duas paradas criam um gradiente suave de duas cores. Adicionar uma terceira no meio cria uma mistura de três cores ou uma faixa nítida, dependendo do posicionamento.",
+          "Para transições nítidas (sem mistura), coloque duas paradas na mesma posição com cores diferentes. Por exemplo, '#000 50%, #fff 50%' cria uma divisão nítida entre preto e branco no meio. É assim que se fazem fundos 'listrados'."
+        ]
+      },
+      {
+        "heading": "Dicas de performance e acessibilidade",
+        "paragraphs": [
+          "Gradientes são renderizados nativamente sem requisições HTTP, ao contrário de imagens de fundo. Escalam infinitamente sem perda de qualidade. São amigáveis a animações: faça a transição da posição via background-position ou anime as paradas com propriedades personalizadas (CSS custom properties).",
+          "Acessibilidade: não coloque texto diretamente sobre um gradiente complexo se o contraste variar. Use uma camada de cor plana, garanta que a luminosidade média do gradiente contraste com o texto ou teste com o verificador de contraste. WCAG AA exige 4,5:1 para texto normal e 3:1 para texto grande."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escolha um preset", "text": "Ou construa do zero escolhendo tipo, ângulo e paradas." },
+      { "name": "Defina o ângulo", "text": "Para linear e cônico: 0-360°. O radial usa o centro como origem." },
+      { "name": "Adicione paradas de cor", "text": "Mínimo de duas, sem máximo prático. Cada uma tem uma cor e uma posição de 0-100%." },
+      { "name": "Copie o CSS", "text": "Clique em 'Copiar CSS' — cole diretamente na propriedade background da sua folha de estilos." }
+    ]
+  },
+  "faq": [
+    { "q": "Os gradientes funcionam em navegadores antigos?", "a": "Gradientes linear e radial funcionam em todos os navegadores modernos, incluindo Edge, Firefox, Chrome e Safari (desde 2014). Gradientes cônicos precisam do Chrome 69+, Firefox 83+, Safari 12.1+; para navegadores mais antigos, use linear como fallback." },
+    { "q": "Posso usar em React Native ou apps mobile?", "a": "Gradientes CSS web não se traduzem diretamente para React Native — use bibliotecas como `react-native-linear-gradient`. As paradas de cor se aproveitam, mas a sintaxe é diferente. iOS e Android usam APIs específicas de cada plataforma." },
+    { "q": "Posso usar cores nomeadas?", "a": "Sim. Substitua qualquer código hex (ex.: #ff0000) pelo nome da cor CSS (red, dodgerblue etc.) na entrada de texto ao lado do seletor de cor." },
+    { "q": "Por que meu gradiente cônico está estranho?", "a": "Gradientes cônicos giram no sentido horário a partir do ângulo definido. Ficam melhores com várias paradas cobrindo a rotação completa de 360°. Com apenas 2 paradas, geralmente parecem incompletos." },
+    { "q": "Como criar um efeito de 'brilho' (glow)?", "a": "Use um gradiente radial com uma parada final totalmente transparente: ex., 'radial-gradient(circle, rgba(255,200,0,0.6) 0%, transparent 70%)'." },
+    { "q": "Posso animar o gradiente?", "a": "O CSS não anima as paradas diretamente, mas você pode animar background-position para um efeito de movimento, ou usar CSS custom properties (variáveis) e atualizá-las com JavaScript." },
+    { "q": "Por que o CSS gerado é tão longo?", "a": "Cada parada adiciona uma cor e uma posição. Gradientes com muitas paradas produzem CSS verboso. Para resultados mais simples, use 2-3 paradas." },
+    { "q": "Os dados saem do meu navegador?", "a": "Não. Tudo é calculado localmente; nada é enviado a um servidor." }
+  ]
+}

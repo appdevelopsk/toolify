@@ -1,0 +1,61 @@
+{
+  "title": "Calculateur de factorielle / Permutations / Combinaisons",
+  "shortDescription": "Calcule n! (factorielle), P(n,k) permutations et C(n,k) combinaisons. Gère les grands entiers via BigInt jusqu'à n=5000.",
+  "description": "Entre n et k. Retourne n!, P(n,k) (sélections ordonnées) et C(n,k) (sélections non ordonnées). Utile pour les probabilités, les statistiques et les devoirs de combinatoire.",
+  "metaDescription": "Calculateur gratuit de factorielle, permutations (nPr) et combinaisons (nCr). Support des grands entiers jusqu'à n=5000. Prêt pour les probabilités et la combinatoire.",
+  "keywords": ["calculateur factorielle", "nCr nPr", "calculateur permutations", "calculateur combinaisons", "combinatoire"],
+  "input": {
+    "kHint": "(pour permutations / combinaisons)"
+  },
+  "result": {
+    "permutationsLabel": "permutations",
+    "combinationsLabel": "combinaisons"
+  },
+  "error": {
+    "tooLargeOrNeg": "n doit être un entier non négatif ≤ 5000.",
+    "invalid": "Requiert 0 ≤ k ≤ n."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Factorielle",
+        "paragraphs": [
+          "n! (se lit 'factorielle n') est le produit de tous les entiers positifs de 1 à n. Donc 5! = 1×2×3×4×5 = 120. Par convention, 0! = 1 (le produit vide).",
+          "Les factorielles croissent extrêmement vite. 10! = 3,6M, 20! = 2,4×10¹⁸, 100! a 158 chiffres. La virgule flottante casse à 21! (à cause de la limite de précision double) ; nous utilisons BigInt pour des valeurs exactes jusqu'à n=5000."
+        ]
+      },
+      {
+        "heading": "Permutations vs combinaisons",
+        "paragraphs": [
+          "Permutations P(n,k) = n! / (n−k)! : nombre de façons ordonnées de choisir k éléments parmi n. P(5,2) = 20 : choisir le premier parmi 5, le deuxième parmi les 4 restants = 5×4 = 20.",
+          "Combinaisons C(n,k) = n! / (k!(n−k)!) : nombre de façons non ordonnées. C(5,2) = 10 : mêmes choix mais {premier, second} = {second, premier} donc on divise par 2!. Le célèbre 'k parmi n'.",
+          "Utilise les permutations quand l'ordre compte (podium d'une course, ordre d'un mot de passe). Utilise les combinaisons quand seul l'ensemble choisi compte (numéros de loterie, sélection d'un comité). C(n,k) ≤ P(n,k) toujours ; égaux quand k=1."
+        ]
+      },
+      {
+        "heading": "Où ces notions apparaissent",
+        "paragraphs": [
+          "Probabilités : dés, cartes, pièces. P(3 faces sur 5 lancers) = C(5,3) × (1/2)⁵ = 10/32. Les combinaisons permettent de compter les résultats favorables.",
+          "Statistiques : la distribution binomiale utilise C(n,k). L'échantillonnage sans remise utilise les combinaisons.",
+          "Informatique : comptage de sous-ensembles, analyse de complexité (ex. l'énumération des k-cliques est C(n,k)), algorithmes de graphes.",
+          "Vie courante : probabilités à la loterie (EuroMillions : C(50,5) × C(12,2) ≈ 139 millions de combinaisons). Menus de restaurant : 'choisir 3 accompagnements parmi 8' est C(8,3) = 56 façons."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Entre n", "text": "Total d'éléments / entier non négatif." },
+      { "name": "Entre k (facultatif)", "text": "Combien en choisir (pour les calculs P et C). Doit être 0 ≤ k ≤ n." },
+      { "name": "Lis les trois résultats", "text": "n!, P(n,k), C(n,k). Sorties tronquées pour les très grands nombres." }
+    ]
+  },
+  "faq": [
+    { "q": "Pourquoi 0! = 1 ?", "a": "Par convention, le 'produit vide' vaut 1 (tout comme la somme vide vaut 0). Cela permet aussi aux formules comme C(n,0) = 1 (une façon de ne choisir rien) de fonctionner de façon cohérente." },
+    { "q": "Quelle est la plus grande factorielle que ça peut calculer ?", "a": "n=5000 donne un nombre de 16 326 chiffres. Nous plafonons à 5000 pour empêcher le navigateur de geler sur de très grandes entrées. Pour des valeurs plus grandes, utilise un système de calcul formel." },
+    { "q": "Quelle est la différence entre permutations et combinaisons ?", "a": "L'ordre compte dans les permutations, pas dans les combinaisons. {A,B} est la même combinaison que {B,A} mais deux permutations différentes : AB et BA." },
+    { "q": "Les factorielles sont-elles définies pour les nombres négatifs ?", "a": "Pas au sens standard. La fonction gamma Γ(x) étend la factorielle à tous les réels (et complexes), mais notre calculateur ne gère que les entiers non négatifs." },
+    { "q": "Quelle est la formule des combinaisons ?", "a": "C(n,k) = n! / (k! × (n-k)!). Se lit 'k parmi n'. Équivalent à P(n,k) / k! puisque l'ordre ne compte pas." },
+    { "q": "Quelle est la précision ?", "a": "Exacte pour toutes les valeurs dans la plage. Nous utilisons l'arithmétique BigInt, qui n'a pas d'erreur en virgule flottante." },
+    { "q": "Pourquoi 70! est-il tellement plus grand que 60! ?", "a": "Chaque factorielle multiplie par l'entier suivant. 70! est environ 60! × 61 × 62 × … × 70 ≈ 60! × 1,4 × 10¹⁷. Les factorielles croissent plus vite qu'une exponentielle — elles sont approximativement n^n × e^-n × √(2πn) selon l'approximation de Stirling." },
+    { "q": "Les données quittent-elles mon navigateur ?", "a": "Non. Le calcul s'effectue localement ; rien n'est envoyé à un serveur." }
+  ]
+}

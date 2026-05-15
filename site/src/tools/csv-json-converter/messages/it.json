@@ -1,0 +1,71 @@
+{
+  "title": "Convertitore CSV ↔ JSON (conforme RFC 4180)",
+  "shortDescription": "Converti CSV in JSON o JSON in CSV. Delimitatore configurabile (virgola/punto e virgola/tab/barra verticale), attivazione/disattivazione riga intestazione, gestione campi citati RFC 4180.",
+  "description": "Incolla CSV o JSON. Il convertitore analizza CSV conforme a RFC 4180 (gestisce campi citati con virgole, virgolette di escape, valori su più righe). Per la conversione JSON in CSV, accetta sia array-di-oggetti (usa le chiavi come intestazioni) che array-di-array.",
+  "metaDescription": "Convertitore CSV ↔ JSON gratuito. Conforme RFC 4180, delimitatore configurabile, toggle riga intestazione. Solo browser — i tuoi dati non lasciano mai il tuo dispositivo.",
+  "keywords": ["CSV in JSON", "JSON in CSV", "convertitore CSV", "convertitore JSON", "RFC 4180"],
+  "direction": {
+    "csvToJson": "CSV → JSON",
+    "jsonToCsv": "JSON → CSV"
+  },
+  "input": {
+    "csv": "Input CSV",
+    "json": "Input JSON",
+    "delimiter": "Delimitatore",
+    "headerRow": "La prima riga è l'intestazione"
+  },
+  "delim": {
+    "comma": "Virgola (,)",
+    "semicolon": "Punto e virgola (;)",
+    "tab": "Tab",
+    "pipe": "Barra verticale (|)"
+  },
+  "output": "Output",
+  "empty": "Inserisci l'input per vedere l'output convertito.",
+  "error": { "label": "Errore di conversione" },
+  "copy": "Copia",
+  "article": {
+    "sections": [
+      {
+        "heading": "Perché RFC 4180 è importante",
+        "paragraphs": [
+          "Il CSV sembra semplice ma ha casi limite: un campo contenente una virgola deve essere citato; un campo contenente una virgoletta deve fare l'escape raddoppiando la virgoletta; un campo può contenere newline se citato. I parser naivi che dividono sulle virgole si rompono sui dati del mondo reale. Questo convertitore implementa la grammatica RFC 4180 esattamente.",
+          "I parser naivi si rompono anche sulle esportazioni di Excel che usano punti e virgola (comune nelle impostazioni europee dove ',' è il separatore decimale) o tab (TSV). Il menu a tendina del delimitatore gestisce tutte e quattro le varianti comuni."
+        ]
+      },
+      {
+        "heading": "Forme JSON per l'output",
+        "paragraphs": [
+          "Array di oggetti (predefinito con riga intestazione): ogni riga diventa {colonna: valore}. La forma JSON più comune, facile da consumare in qualsiasi linguaggio.",
+          "Array di array (riga intestazione disattivata): ogni riga diventa [v1, v2, ...]. Utile quando le colonne non sono nominate o vuoi una struttura posizionale.",
+          "Per la conversione JSON in CSV, il convertitore rileva quale forma hai. Oggetti: estrae le chiavi univoche in tutte le righe come intestazioni. Array: scrive le righe così come sono."
+        ]
+      },
+      {
+        "heading": "Problemi comuni",
+        "paragraphs": [
+          "Locale Excel: in alcune installazioni europee di Excel, il delimitatore predefinito è ';' non ','. Se il tuo CSV sembra una colonna gigante quando importato, passa a ; nel menu del delimitatore.",
+          "BOM (Byte Order Mark): alcune esportazioni di Excel prefissano il file con U+FEFF. Lo lasciamo passare; se il tuo parser downstream fallisce, rimuovi i primi 3 byte.",
+          "Newline finale: un CSV che termina con '\\n' aggiunge un'ultima riga vuota in alcuni parser; filtriamo automaticamente le righe vuote.",
+          "Numeri come stringhe: il CSV non ha tipi — '42' diventa la stringa \"42\" in JSON. Se hai bisogno di valori tipizzati, esegui un passo di post-elaborazione che coercisce le colonne numeriche note."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Scegli la direzione", "text": "CSV → JSON o JSON → CSV." },
+      { "name": "Imposta il delimitatore", "text": "Virgola (predefinito), punto e virgola, tab o barra verticale." },
+      { "name": "Attiva/disattiva la riga intestazione", "text": "Attivo per JSON a forma di oggetto, disattivato per array-di-array." },
+      { "name": "Incolla i tuoi dati", "text": "L'output si aggiorna in tempo reale. Clicca 'Copia' per copiare il risultato negli appunti." }
+    ]
+  },
+  "faq": [
+    { "q": "Gestisce i campi citati con le virgole?", "a": "Sì — il quoting RFC 4180 è completamente supportato. \"Rossi, Mario\" viene analizzato come un singolo campo." },
+    { "q": "Come vengono gestite le virgolette di escape?", "a": "Per RFC 4180, una '\"' letterale all'interno di un campo citato è scritta come '\"\"' (due virgolette). Il parser lo gestisce correttamente." },
+    { "q": "I campi possono contenere newline?", "a": "Sì, quando citati. \"riga 1\\nriga 2\" all'interno delle virgolette viene trattato come un campo con newline incorporata." },
+    { "q": "Supporta BOM (UTF-8)?", "a": "Il BOM passa. Se il tuo consumer downstream non lo tollera, rimuovi i primi 3 byte (EF BB BF) dal CSV." },
+    { "q": "E per i file enormi?", "a": "Il browser gestisce qualche MB senza problemi. Per CSV molto grandi (100 MB+), usa un parser in streaming come Papa Parse con un worker, o uno strumento CLI." },
+    { "q": "I numeri vengono preservati come numeri?", "a": "CSV → JSON: tutti i valori diventano stringhe (il CSV non ha tipi). JSON → CSV: i numeri diventano celle CSV senza virgolette. Per ottenere JSON tipizzato, post-elabora le colonne che sai essere numeriche." },
+    { "q": "Perché il mio JSON mostra stringhe vuote invece di null?", "a": "Il CSV rappresenta i valori mancanti come celle vuote. Li mappiamo a stringhe vuote. Per ottenere null in JSON, post-elabora l'output." },
+    { "q": "I dati lasciano il mio browser?", "a": "No. La conversione viene eseguita localmente; nulla viene inviato a un server." }
+  ]
+}

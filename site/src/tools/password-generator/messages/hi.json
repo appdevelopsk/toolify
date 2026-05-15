@@ -1,0 +1,65 @@
+{
+  "title": "पासवर्ड जनरेटर (क्रिप्टोग्राफिक रूप से सुरक्षित, strength मीटर के साथ)",
+  "shortDescription": "अपने browser के secure crypto API का उपयोग करके मजबूत random पासवर्ड बनाएँ। configurable length, character sets, और ambiguity फ़िल्टर।",
+  "description": "crypto.getRandomValues का उपयोग करके पासवर्ड बनाता है — वही source जो banks उपयोग करते हैं, Math.random नहीं। length और character classes adjust करें; entropy मीटर दिखाता है कि result कितना strong है।",
+  "metaDescription": "मुफ्त पासवर्ड जनरेटर। configurable length और character sets के साथ cryptographically secure random पासवर्ड। built-in entropy मीटर और ambiguous-character फ़िल्टर।",
+  "keywords": ["पासवर्ड जनरेटर", "secure पासवर्ड", "random पासवर्ड", "strong पासवर्ड", "passphrase जनरेटर"],
+  "copy": "कॉपी करें",
+  "copied": "कॉपी हो गया",
+  "regenerate": "नया पासवर्ड",
+  "input": { "length": "लंबाई" },
+  "opt": {
+    "upper": "Uppercase (A-Z)",
+    "lower": "Lowercase (a-z)",
+    "numbers": "अंक (0-9)",
+    "symbols": "Symbols (!@#$...)",
+    "avoidAmbiguous": "Ambiguous से बचें (0OoIl1)"
+  },
+  "strength": {
+    "weak": "कमज़ोर",
+    "medium": "मध्यम",
+    "strong": "मजबूत",
+    "excellent": "उत्कृष्ट"
+  },
+  "entropy": "{bits} bits entropy",
+  "article": {
+    "sections": [
+      {
+        "heading": "यह जनरेटर वास्तव में secure क्यों है",
+        "paragraphs": [
+          "Web पर अधिकांश 'पासवर्ड जनरेटर' Math.random() उपयोग करते हैं, जो cryptographically secure नहीं है — इसका output एक attacker द्वारा predict किया जा सकता है जो कुछ prior values देखे। यह जनरेटर Web Crypto API का crypto.getRandomValues उपयोग करता है, वही primitive जो HTTPS sessions और OS-level keychains को back करती है। प्रत्येक character selected alphabet पर uniform distribution से drawn है।",
+          "Generation पूरी तरह आपके browser में होती है। पासवर्ड कभी network पर नहीं जाता और हमारे servers को कभी नहीं छूता। यहाँ तक कि यदि हमारा domain compromise हो जाए, तो attacker के पास steal करने के लिए कुछ नहीं होगा क्योंकि कुछ भी store नहीं होता।"
+        ]
+      },
+      {
+        "heading": "Strength मीटर कैसे काम करता है",
+        "paragraphs": [
+          "Strength label entropy से compute होती है: bits = log₂(alphabet_size) × length। एक 10-character lowercase-only पासवर्ड में log₂(26) × 10 ≈ 47 bits हैं — एक determined offline attacker के लिए vulnerable। सभी चार character classes उपयोग करने वाले 16-character पासवर्ड में लगभग 105 bits हैं — अधिकांश uses के लिए strong। Bands हैं: <50 कमज़ोर, 50-80 मध्यम, 80-128 strong, ≥128 उत्कृष्ट।",
+          "ये thresholds roughly correspond करते हैं: कमज़ोर = moderate attacker द्वारा days में guessable; मध्यम = एक botnet को years लगते हैं; strong = आज कोई realistic attacker नहीं; उत्कृष्ट = quantum considerations सहित future attackers के विरुद्ध comfortable margin।"
+        ]
+      },
+      {
+        "heading": "Length complexity को beat करती है",
+        "paragraphs": [
+          "Math यहाँ unforgiving है: अपने पासवर्ड में एक character जोड़ने से search space roughly double होता है (alphabet पर निर्भर)। एक और character class जोड़ने से यह केवल थोड़ा बड़ा होता है। एक 20-character lowercase पासवर्ड में 12-character mixed-case-symbols पासवर्ड से अधिक entropy है, और type करना आसान है। यदि आप याद करना prefer करते हैं, 7000-word list से चार random words चुनें — यह 51 bits है, एक strong 8-character mixed पासवर्ड के समान।",
+          "'Avoid ambiguous' option ऐसे characters को exclude करता है जो कई fonts में अन्य characters जैसे दिखते हैं (0/O, I/l/1)। इससे पासवर्ड थोड़ा कमज़ोर होता है लेकिन पढ़ना या transcribe करना आसान होता है। इसका उपयोग तब करें जब आपको printed list से पासवर्ड type करना पड़ सकता है।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "एक length चुनें", "text": "Accounts के लिए 16 एक अच्छा default है; पासवर्ड manager master keys के लिए 20+।" },
+      { "name": "Character classes चुनें", "text": "अधिकांश sites सभी चार accept करती हैं — uppercase, lowercase, numbers, symbols। कुछ legacy sites symbols reject करती हैं।" },
+      { "name": "Generate करें और copy करें", "text": "जब तक आपको पसंद न आए 'नया पासवर्ड' click करें, फिर इसे directly अपने पासवर्ड manager में copy करें।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या यह जनरेटर वास्तव में secure है?", "a": "हाँ। हम Web Crypto API का secure random source उपयोग करते हैं, Math.random() नहीं। Browser-vendor-supplied implementation audited है और वही है जो HTTPS को underlie करती है।" },
+    { "q": "क्या पासवर्ड मेरे browser से बाहर जाता है?", "a": "कभी नहीं। Generation, entropy calculation, और copy-to-clipboard सब locally होते हैं। हमारे पास कोई server endpoint भी नहीं है जो इसे receive करे।" },
+    { "q": "क्या 16 characters पर्याप्त हैं?", "a": "Online accounts के लिए, हाँ — लगभग हमेशा। पासवर्ड manager master passwords या encryption keys के लिए, 24+ characters या 6-word passphrase उपयोग करें।" },
+    { "q": "Strength मीटर मेरे long पासवर्ड को पसंद क्यों नहीं करता?", "a": "यह केवल जानता है कि आपने कौन से character classes enable किए। यदि आपने केवल lowercase enable किया, alphabet सिर्फ 26 है — long पासवर्ड फिर भी strong हैं लेकिन उतनी तेज़ी से नहीं बढ़ते।" },
+    { "q": "'Bits of entropy' का क्या मतलब है?", "a": "यह उन possible passwords की संख्या का log₂ है जो आपकी settings produce कर सकती हैं। 80 bits ≈ 1.2 × 10²⁴ possibilities — आज brute-force से far beyond।" },
+    { "q": "क्या मुझे symbols शामिल करने चाहिए?", "a": "जब allowed हो तो हाँ। प्रत्येक symbol roughly एक number plus एक letter combined की entropy जोड़ता है। कुछ पुरानी sites उन्हें reject करती हैं; यदि ऐसा है, compensate करने के लिए length बढ़ाएँ।" },
+    { "q": "क्या 'avoid ambiguous' उपयोग करने योग्य है?", "a": "इसका उपयोग केवल तब करें जब आपको पासवर्ड manually पढ़ना या type करना हो। पासवर्ड managers के लिए इसे बंद रखें — वहाँ readability cost व्यर्थ है।" },
+    { "q": "क्या एक ही पासवर्ड दो बार generate हो सकता है?", "a": "सैद्धांतिक रूप से हाँ, लेकिन 50 bits entropy के साथ भी प्रति pair of generations chance 1 in 2⁵⁰ ≈ 10¹⁵ है। व्यावहारिक रूप से असंभव।" }
+  ]
+}

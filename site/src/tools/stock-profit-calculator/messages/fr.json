@@ -1,0 +1,120 @@
+{
+  "title": "Calculateur de Profit Boursier (avec dividendes + impôts)",
+  "shortDescription": "Calcule le profit d'une transaction boursière incluant les commissions d'achat/vente, les dividendes reçus et l'impôt sur les plus-values. Retourne le profit net après impôt et le ROI.",
+  "description": "Saisis le nombre d'actions, les prix d'achat/vente, les commissions, les dividendes reçus et ton taux d'imposition sur les plus-values. Le calculateur retourne le gain total, l'impôt dû et le net après impôt.",
+  "metaDescription": "Calculateur de profit boursier gratuit avec support dividendes et impôts. Calcule la plus-value, les revenus de dividendes, les impôts dus et le ROI après impôt pour",
+  "keywords": [
+    "calculateur profit boursier",
+    "profit transaction boursière",
+    "calculateur plus-value",
+    "ROI actions",
+    "profit après impôt"
+  ],
+  "empty": "Saisis les actions, prix d'achat et de vente, dividendes et taux d'imposition.",
+  "input": {
+    "shares": "Actions",
+    "buyPrice": "Prix d'achat (par action)",
+    "sellPrice": "Prix de vente (par action)",
+    "buyCommission": "Commission d'achat",
+    "sellCommission": "Commission de vente",
+    "dividends": "Dividendes reçus",
+    "taxPct": "Impôt sur les plus-values %"
+  },
+  "result": {
+    "afterTax": "Profit après impôt",
+    "roi": "ROI (après impôt)",
+    "cost": "Coût total",
+    "gross": "Produit brut de cession",
+    "capitalGain": "Plus-value",
+    "dividendsLabel": "Dividendes",
+    "totalGain": "Gain total (avant impôt)",
+    "totalTax": "Impôt dû"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ce qui compose le profit d'une transaction boursière",
+        "paragraphs": [
+          "Le profit boursier a trois composantes principales : la plus-value (prix de vente moins prix d'achat, fois le nombre d'actions, moins les commissions), les dividendes reçus pendant la période de détention, et l'impôt dû sur le gain combiné. La plupart des calculateurs ne calculent qu'une de ces composantes — on calcule les trois pour un résultat après impôt exact.",
+          "Commissions : de nombreux courtiers en ligne français (Degiro, Trade Republic, Boursorama) proposent des transactions à 0 ou très faibles frais pour les actions. Les ETF, options et actions étrangères peuvent encore avoir des frais. Vérifie toujours le barème tarifaire de ton courtier."
+        ]
+      },
+      {
+        "heading": "Taux d'imposition : PFU et autres régimes",
+        "paragraphs": [
+          "France : le Prélèvement Forfaitaire Unique (PFU ou 'flat tax') est de 30 % (12,8 % d'impôt sur le revenu + 17,2 % de prélèvements sociaux) sur les plus-values et dividendes des comptes ordinaires. Le barème progressif peut être plus favorable selon ton revenu ; il s'applique à l'option si tu la coches.",
+          "PEA (Plan d'Épargne en Actions) : exonéré d'impôt sur le revenu après 5 ans (mais prélèvements sociaux de 17,2 % restent). Avant 5 ans, 12,8 % d'IR. Idéal pour l'investissement à long terme en actions européennes.",
+          "Les taux varient selon les pays de l'UE (Allemagne 25 % de taxe forfaitaire, Belgique pas d'impôt sur les plus-values pour particuliers). Ce calculateur applique simplement le taux que tu saisis."
+        ]
+      },
+      {
+        "heading": "Ce que ce calculateur ne modélise pas",
+        "paragraphs": [
+          "Le coût du spread bid-ask : acheter au prix vendeur et vendre au prix acheteur implique un coût implicite par transaction. Pour les grandes capitalisations liquides, c'est négligeable (quelques centimes) ; pour les petites capitalisations peu liquides, ça peut être 0,5-2 %. Utilise des prix d'exécution réalistes.",
+          "La conversion de devises : si tu as acheté des actions en USD avec des euros, ton rendement est aussi affecté par les mouvements EUR/USD entre achat et vente. Ce calculateur ne tient pas compte du forex — saisis simplement les prix dans ta devise de référence au moment de chaque transaction.",
+          "La compensation des moins-values : en France, tu peux imputer les moins-values sur les plus-values de la même année ou des 10 années suivantes. Ce calculateur ne suit pas ces reports — consulte un conseiller fiscal pour les situations complexes."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Saisis les actions",
+        "text": "Nombre d'actions achetées."
+      },
+      {
+        "name": "Saisis les prix d'achat et de vente",
+        "text": "Prix par action à chaque transaction."
+      },
+      {
+        "name": "Saisis les commissions",
+        "text": "Frais par transaction à l'achat et à la vente. Utilise 0 si ton courtier est sans commission."
+      },
+      {
+        "name": "Saisis les dividendes reçus",
+        "text": "Total des dividendes versés pendant ta période de détention."
+      },
+      {
+        "name": "Saisis le taux d'imposition",
+        "text": "Ton taux applicable sur les plus-values. France standard (PFU) : 30 %. PEA après 5 ans : 17,2 %."
+      },
+      {
+        "name": "Lis la décomposition",
+        "text": "Profit après impôt, ROI, plus-value, revenus de dividendes, impôt total."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Ça fonctionne pour les ETF et fonds communs de placement ?",
+      "a": "Oui — même calcul. Les fonds peuvent distribuer des dividendes et des plus-values ; saisis les deux montants dans le champ dividendes, ou utilise un calcul séparé par source si les taux diffèrent."
+    },
+    {
+      "q": "Qu'en est-il des dividendes réinvestis ?",
+      "a": "Chaque réinvestissement est traité comme un nouveau lot fiscal dans la plupart des juridictions. Ce calculateur suppose un seul achat/vente — pour les dividendes réinvestis, effectue plusieurs calculs ou utilise les relevés fiscaux de ton courtier."
+    },
+    {
+      "q": "Pourquoi le calculateur applique-t-il l'impôt aux pertes aussi ?",
+      "a": "Ce n'est pas le cas — on n'applique l'impôt que quand la plus-value ou les dividendes sont positifs. Une perte réduit l'impôt total dû dans de nombreux pays, mais les règles varient, donc on laisse le traitement des pertes à la gestion manuelle."
+    },
+    {
+      "q": "Qu'est-ce que l'abattement pour durée de détention ?",
+      "a": "En France, un abattement de 50 % ou 65 % peut s'appliquer pour les titres détenus plus de 2 ou 8 ans, en optant pour le barème progressif plutôt que le PFU. Soustrait l'abattement du gain avant d'appliquer le taux d'imposition, ou modélise-le comme un taux effectif plus bas."
+    },
+    {
+      "q": "Dois-je inclure les frais de gestion de compte ?",
+      "a": "Les frais d'abonnement/de compte sont généralement déductibles du rendement total mais ne sont pas spécifiques à une transaction. Soustrait-les du profit après impôt si ton courtier les facture."
+    },
+    {
+      "q": "En quoi est-ce différent du calculateur crypto ?",
+      "a": "Les actions versent des dividendes ; les crypto généralement non. La crypto utilise des frais en % (qui varient selon la taille de la transaction) ; les actions utilisent généralement une commission fixe. Le calcul est similaire mais les entrées diffèrent."
+    },
+    {
+      "q": "Le ROI peut-il être négatif ?",
+      "a": "Oui. Si prix de vente + dividendes < prix d'achat + commissions + impôt (le cas rare où l'impôt sur les dividendes dépasse les revenus de dividendes), le ROI est négatif."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Le calcul s'exécute localement ; rien n'est envoyé à un serveur."
+    }
+  ]
+}

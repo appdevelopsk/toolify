@@ -1,0 +1,59 @@
+{
+  "title": "Prime Number Checker (factorization के साथ)",
+  "shortDescription": "Check करें कि कोई संख्या prime है या नहीं। यदि नहीं, तो उसका prime factorization देखें। Plus अगला और पिछला prime number।",
+  "description": "10^18 तक non-negative integer दर्ज करें। Calculator trial division से primality test करता है और composite numbers के लिए prime factorization देता है।",
+  "metaDescription": "Factorization के साथ मुफ्त prime number checker। Primality test करें, prime factors देखें, और next/previous prime खोजें। 10^18 तक handle करता है।",
+  "keywords": ["prime checker", "is prime", "prime factorization", "prime number test", "next prime"],
+  "input": { "value": "संख्या" },
+  "result": {
+    "isPrime": "prime है",
+    "notPrime": "prime नहीं है",
+    "factors": "Prime factorization",
+    "prevPrime": "पिछला prime",
+    "nextPrime": "अगला prime"
+  },
+  "empty": "एक positive integer दर्ज करें।",
+  "tooLarge": "Browser computation के लिए संख्या बहुत बड़ी है (max 10^18)।",
+  "article": {
+    "sections": [
+      {
+        "heading": "Prime number क्या है",
+        "paragraphs": [
+          "Prime एक natural number है जो 1 से बड़ा है और जिसके 1 और स्वयं के अलावा कोई positive divisor नहीं है। पहले कुछ primes: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37। ये integer arithmetic के 'atoms' हैं — हर integer ≥ 2 को primes के product के रूप में uniquely लिखा जा सकता है (Fundamental Theorem of Arithmetic)।",
+          "1 convention के अनुसार prime नहीं है। 0 और negative numbers prime नहीं हैं। 2 एकमात्र even prime है — हर दूसरा even number 2 से divisible है इसलिए composite।"
+        ]
+      },
+      {
+        "heading": "Test कैसे काम करता है",
+        "paragraphs": [
+          "हम trial division उपयोग करते हैं: 2 से divisibility check करें, फिर 3, फिर 5, 7, 11, … √n तक। यदि कोई cleanly divide नहीं करता, n prime है। हम 6k±1 optimization उपयोग करते हैं जो केवल 6k+1 या 6k−1 के form के candidates check करता है (क्योंकि 3 से बड़े सभी primes इस form के हैं), test count को 2/3 कम करता है।",
+          "Trial division n तक ~10^15 के लिए fast है (sub-second)। उससे ऊपर, advanced tests जैसे Miller-Rabin (probabilistic) या AKS (deterministic) चाहिए। हम browser को extreme inputs पर freeze होने से रोकने के लिए 10^18 पर cap करते हैं।"
+        ]
+      },
+      {
+        "heading": "Primes क्यों मायने रखते हैं",
+        "paragraphs": [
+          "Cryptography: RSA encryption दो ~1000-digit primes multiply करता है एक ऐसी संख्या produce करने के लिए जिसे factor करना कठिन है। Security बड़ी संख्याओं को factorize करने की कठिनाई पर rely करती है।",
+          "Math education: prime factorization foundational है। GCD, LCM, modular arithmetic, fractions, और number theory जैसे concepts सब prime factor structure पर build होते हैं।",
+          "Computer science: hash table sizes, random number generators, और कई algorithms prime numbers के उनके distinctive divisibility properties के लिए उपयोग करते हैं।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "एक संख्या दर्ज करें", "text": "10^18 तक positive integer।" },
+      { "name": "Verdict पढ़ें", "text": "Prime के लिए green ✓, composite के लिए amber ✗।" },
+      { "name": "Factorization देखें", "text": "यदि composite, unique prime factors दिखाए जाते हैं।" },
+      { "name": "Primes navigate करें", "text": "Context के लिए previous और next primes listed हैं।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या 1 prime है?", "a": "नहीं। 1 एक 'unit' है, prime नहीं। Primes में exactly दो distinct positive divisors होते हैं (1 और स्वयं); 1 में केवल एक है।" },
+    { "q": "क्या 0 prime है?", "a": "नहीं। Primes integers > 1 होते हैं।" },
+    { "q": "क्या 2 prime है?", "a": "हाँ — 2 एकमात्र even prime है। अन्य सभी even numbers के 1 और स्वयं के अलावा divisor के रूप में 2 है।" },
+    { "q": "अगला prime कैसे खोजा जाता है?", "a": "n+1 से increment करके और प्रत्येक step पर primality test करके। Prime हमेशा किसी भी number के n × ln(n) के भीतर होता है, इसलिए यह large inputs के लिए भी quickly terminate होता है।" },
+    { "q": "Maximum 10^18 क्यों है?", "a": "JavaScript BigInt बड़ा handle करता है, लेकिन trial division slow हो जाती है। 10^18 typical inputs के लिए sub-second checks के लिए safe है।" },
+    { "q": "क्या आप 1000-digit primes check कर सकते हैं?", "a": "इस tool से नहीं — trial division उस scale पर बहुत slow है। Cryptography 1024-bit primes (~300 digits) के लिए Miller-Rabin probabilistic tests उपयोग करती है।" },
+    { "q": "Mersenne prime क्या है?", "a": "2^p − 1 form का prime। 2025 तक, केवल 51 known हैं। सबसे बड़ा known prime (M82589933) ~25 million digits वाला Mersenne prime है।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Calculation locally चलती है; कुछ भी server को नहीं भेजा जाता।" }
+  ]
+}

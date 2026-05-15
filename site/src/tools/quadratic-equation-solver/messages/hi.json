@@ -1,0 +1,61 @@
+{
+  "title": "Quadratic Equation Solver (ax² + bx + c = 0)",
+  "shortDescription": "कोई भी quadratic equation solve करें। Real या complex roots, discriminant, और parabola का vertex coordinates return करता है।",
+  "description": "Coefficients a, b, c दर्ज करें। Solver quadratic formula x = (−b ± √(b²−4ac)) / 2a apply करता है। दो real roots, एक repeated root, दो complex conjugate roots, या degenerate cases distinguish करता है।",
+  "metaDescription": "मुफ्त quadratic equation solver। Real या complex roots, discriminant, vertex coordinates। सभी cases handle करता है: degenerate, linear, two real, one real, complex।",
+  "keywords": ["quadratic equation solver", "quadratic formula", "discriminant", "complex roots", "parabola vertex"],
+  "empty": "Coefficients a, b, c दर्ज करें।",
+  "result": {
+    "twoReal": "दो real roots",
+    "oneReal": "एक repeated real root",
+    "complex": "दो complex conjugate roots",
+    "linear": "Linear equation (a = 0)",
+    "linearLabel": "a 0 है; यह एक linear equation है:",
+    "all": "हर x एक solution है (सभी coefficients zero)।",
+    "none": "कोई solution नहीं (b = 0, c ≠ 0)।",
+    "discriminant": "Discriminant (b² − 4ac)",
+    "vertex": "Parabola vertex"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Quadratic formula",
+        "paragraphs": [
+          "a ≠ 0 के साथ ax² + bx + c = 0 के लिए, solutions हैं x = (−b ± √(b² − 4ac)) / (2a)। Square root के नीचे expression 'discriminant' है (D = b² − 4ac), और इसका sign roots के type को determine करता है।",
+          "D > 0: दो distinct real roots। Parabola x-axis को दो points पर cross करता है।",
+          "D = 0: एक repeated real root। Parabola vertex पर x-axis को touch करता है (tangent)।",
+          "D < 0: दो complex conjugate roots। Parabola x-axis को बिल्कुल touch नहीं करता।"
+        ]
+      },
+      {
+        "heading": "Vertex और parabola shape",
+        "paragraphs": [
+          "हर quadratic एक parabola के रूप में graph होता है। Vertex (turning point) x = −b / 2a पर है, और back substituting y-coordinate देता है। हम इसे y = −D / 4a के रूप में compute करते हैं, जो equivalent है।",
+          "यदि a > 0 तो parabola upward open करता है और vertex minimum है। यदि a < 0, downward और vertex maximum है। Symmetry की axis vertex से vertically pass करती है।"
+        ]
+      },
+      {
+        "heading": "Degenerate cases",
+        "paragraphs": [
+          "यदि a = 0, equation actually quadratic नहीं है — यह linear हो जाती है: bx + c = 0, solution x = −c/b (यदि b ≠ 0)। हम इसे detect करते हैं और linear के रूप में solve करते हैं।",
+          "यदि a = 0 AND b = 0: कोई भी solution exist करने के लिए c 0 के equal होना चाहिए। यदि c = 0, हर x एक solution है; यदि c ≠ 0, कोई solution नहीं। हम दोनों cases report करते हैं।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Coefficients दर्ज करें", "text": "a, b, c। आवश्यकतानुसार negative numbers उपयोग करें (जैसे b coefficient के लिए −3)।" },
+      { "name": "Equation पढ़ें", "text": "Display आपका current ax² + bx + c = 0 दिखाता है।" },
+      { "name": "Roots पढ़ें", "text": "दो real, एक repeated, या दो complex conjugate, plus discriminant और vertex।" }
+    ]
+  },
+  "faq": [
+    { "q": "Discriminant useful क्यों है?", "a": "यह बिना solve किए roots की nature बताता है: D > 0 का मतलब दो real roots, D = 0 का मतलब एक repeated, D < 0 का मतलब complex। अक्सर बस यही जानना होता है।" },
+    { "q": "'Repeated root' क्या है?", "a": "जब D = 0, formula केवल x = −b/2a देता है। Algebraically, equation a(x − r)² = 0 factor होती है, इसलिए r 'multiplicity 2' के साथ दो बार root के रूप में appear होता है।" },
+    { "q": "क्या complex roots real-world useful हैं?", "a": "हाँ। AC circuits, signal processing, quantum mechanics, और aerodynamics सब complex numbers उपयोग करते हैं। यहाँ तक कि जब physical answer real हो, complex intermediate steps common हैं।" },
+    { "q": "क्या मैं यहाँ cubic या higher equations solve कर सकता हूँ?", "a": "इस tool में नहीं। Cubics और quartics के closed-form solutions हैं लेकिन वे अधिक involved हैं। High-degree polynomials के numerical solutions के लिए NumPy या Sage/Mathematica जैसा CAS उपयोग करें।" },
+    { "q": "यदि मेरे coefficients बहुत बड़े हों?", "a": "जब b² और 4ac nearly equal हों तो D के लिए floating-point precision degrade होती है। Research-grade accuracy के लिए, arbitrary-precision arithmetic वाली library उपयोग करें।" },
+    { "q": "Parabola के लिए 'vertex' का क्या मतलब है?", "a": "Single 'turning point' जहाँ parabola direction बदलता है (decreasing से increasing या vice versa)। x = −b/(2a) पर located। Optimization problems में minima/maxima खोजने के लिए useful।" },
+    { "q": "Roots को 'roots' क्यों कहते हैं?", "a": "Historical: 'root' Latin radix translate करता है, metaphorically equation के source/origin के रूप में उपयोग। Roots वहाँ हैं जहाँ polynomial zero equals करती है।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Calculation locally चलती है; कुछ भी server को नहीं भेजा जाता।" }
+  ]
+}

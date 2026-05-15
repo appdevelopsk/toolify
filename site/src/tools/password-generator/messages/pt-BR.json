@@ -1,0 +1,106 @@
+{
+  "title": "Gerador de Senha (criptograficamente seguro, com medidor de força)",
+  "shortDescription": "Gere senhas aleatórias fortes usando a API de cripto segura do seu navegador. Comprimento, conjuntos de caracteres e filtro de ambiguidade configuráveis.",
+  "description": "Cria senhas usando crypto.getRandomValues — a mesma fonte que os bancos usam, não Math.random(). Ajuste o comprimento e as classes de caracteres; o medidor de entropia mostra quão forte o resultado realmente é.",
+  "metaDescription": "Gerador de senha gratuito. Senhas aleatórias criptograficamente seguras com comprimento e conjuntos de caracteres configuráveis.",
+  "keywords": [
+    "gerador de senha",
+    "senha segura",
+    "senha aleatória",
+    "senha forte",
+    "gerador de passphrase"
+  ],
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "regenerate": "Nova senha",
+  "input": {
+    "length": "Comprimento"
+  },
+  "opt": {
+    "upper": "Maiúsculas (A-Z)",
+    "lower": "Minúsculas (a-z)",
+    "numbers": "Números (0-9)",
+    "symbols": "Símbolos (!@#$...)",
+    "avoidAmbiguous": "Evitar ambíguos (0OoIl1)"
+  },
+  "strength": {
+    "weak": "Fraca",
+    "medium": "Média",
+    "strong": "Forte",
+    "excellent": "Excelente"
+  },
+  "entropy": "{bits} bits de entropia",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por que este gerador é realmente seguro",
+        "paragraphs": [
+          "A maioria dos 'geradores de senha' na web usa Math.random(), que não é criptograficamente seguro — sua saída pode ser prevista por um atacante que vê alguns valores anteriores. Este gerador usa crypto.getRandomValues da Web Crypto API, o mesmo primitivo que suporta sessões HTTPS e chaveiros em nível de sistema operacional. Cada caractere é retirado de uma distribuição uniforme sobre o alfabeto selecionado.",
+          "A geração acontece inteiramente no seu navegador. A senha nunca trafega pela rede e nunca toca nossos servidores. Mesmo que nosso domínio fosse comprometido, um atacante não teria nada a roubar porque nada é armazenado."
+        ]
+      },
+      {
+        "heading": "Como o medidor de força funciona",
+        "paragraphs": [
+          "O rótulo de força é calculado a partir da entropia: bits = log₂(tamanho_do_alfabeto) × comprimento. Uma senha de 10 caracteres somente minúsculas tem log₂(26) × 10 ≈ 47 bits — vulnerável a um atacante determinado offline. Uma senha de 16 caracteres usando todas as quatro classes de caracteres tem cerca de 105 bits — forte o suficiente para a maioria dos usos. As faixas são: <50 fraca, 50-80 média, 80-128 forte, ≥128 excelente.",
+          "Esses limites correspondem aproximadamente a: fraca = adivinhável em dias por um atacante moderado; média = leva anos para uma botnet; forte = nenhum atacante realista hoje; excelente = margem confortável contra atacantes futuros, incluindo considerações quânticas."
+        ]
+      },
+      {
+        "heading": "Comprimento supera complexidade",
+        "paragraphs": [
+          "A matemática é implacável: adicionar um caractere à sua senha aproximadamente dobra o espaço de busca (dependendo do alfabeto). Adicionar mais uma classe de caracteres só o amplia ligeiramente. Uma senha de 20 caracteres em minúsculas tem mais entropia do que uma senha mista de 12 caracteres com símbolos, e é mais fácil de digitar. Se preferir memorizar, escolha quatro palavras aleatórias de uma lista de 7.000 palavras — isso dá 51 bits, semelhante a uma senha mista forte de 8 caracteres.",
+          "A opção 'evitar ambíguos' exclui caracteres que se parecem com outros caracteres em muitas fontes (0/O, I/l/1). Isso torna a senha ligeiramente mais fraca, mas mais fácil de ler em voz alta ou transcrever. Use quando precisar digitar a senha de uma lista impressa."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolha um comprimento",
+        "text": "16 é um bom padrão para contas; 20+ para senhas mestras de gerenciadores de senha."
+      },
+      {
+        "name": "Escolha as classes de caracteres",
+        "text": "A maioria dos sites aceita todas as quatro — maiúsculas, minúsculas, números, símbolos. Alguns sites legados rejeitam símbolos."
+      },
+      {
+        "name": "Gere e copie",
+        "text": "Clique em 'Nova senha' até obter uma que goste, depois copie diretamente para o seu gerenciador de senhas."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Este gerador é realmente seguro?",
+      "a": "Sim. Usamos a fonte aleatória segura da Web Crypto API, não Math.random(). A implementação fornecida pelo fabricante do navegador é auditada e idêntica ao que suporta o HTTPS."
+    },
+    {
+      "q": "A senha sai do meu navegador?",
+      "a": "Nunca. A geração, o cálculo de entropia e a cópia para a área de transferência acontecem localmente. Não temos um endpoint de servidor para recebê-la."
+    },
+    {
+      "q": "16 caracteres são suficientes?",
+      "a": "Para contas online, sim — quase sempre. Para senhas mestras de gerenciadores de senha ou chaves de criptografia, use 24+ caracteres ou uma passphrase de 6 palavras."
+    },
+    {
+      "q": "Por que o medidor de força não ama minha senha longa?",
+      "a": "Ele só sabe quais classes de caracteres você ativou. Se ativou apenas minúsculas, o alfabeto tem apenas 26 — senhas longas ainda são fortes, mas crescem mais devagar."
+    },
+    {
+      "q": "O que significa 'bits de entropia'?",
+      "a": "É o log₂ do número de senhas possíveis que suas configurações poderiam produzir. 80 bits ≈ 1,2 × 10²⁴ possibilidades — muito além do alcance da força bruta hoje."
+    },
+    {
+      "q": "Devo incluir símbolos?",
+      "a": "Sim, quando permitido. Cada símbolo adiciona aproximadamente a entropia de um número mais uma letra combinados. Alguns sites antigos os rejeitam; nesse caso, aumente o comprimento para compensar."
+    },
+    {
+      "q": "Vale usar 'evitar ambíguos'?",
+      "a": "Use apenas quando precisar ler ou digitar a senha manualmente. Mantenha desativado para gerenciadores de senha — o custo de legibilidade é desperdiçado lá."
+    },
+    {
+      "q": "A mesma senha pode ser gerada duas vezes?",
+      "a": "Teoricamente sim, mas com mesmo 50 bits de entropia, a chance por par de gerações é 1 em 2⁵⁰ ≈ 10¹⁵. Praticamente impossível."
+    }
+  ]
+}

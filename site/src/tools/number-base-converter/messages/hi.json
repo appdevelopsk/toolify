@@ -1,0 +1,50 @@
+{
+  "title": "संख्या आधार कनवर्टर (binary, octal, decimal, hex)",
+  "shortDescription": "binary, octal, decimal, और hexadecimal के बीच संख्याएँ कनवर्ट करें। चुने गए आधार के लिए इनपुट मान्य करता है और चारों प्रतिनिधित्व दिखाता है।",
+  "description": "एक स्रोत आधार चुनें, एक मान टाइप करें, और binary, octal, decimal, और hex में समतुल्य देखें। programming, networking, और electronics के लिए उपयोगी।",
+  "metaDescription": "binary, octal, decimal, और hex के लिए मुफ्त संख्या आधार कनवर्टर। प्रति-आधार इनपुट मान्य करता है, सभी चार प्रतिनिधित्व साथ-साथ दिखाता है।",
+  "keywords": ["संख्या आधार कनवर्टर", "binary से decimal", "decimal से hex", "hex से binary", "base 2 base 16"],
+  "input": { "value": "मान", "from": "From base" },
+  "error": { "invalidForBase": "इनपुट में ऐसे अक्षर हैं जो चुने गए आधार के लिए valid नहीं हैं।" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Positional number bases कैसे काम करते हैं",
+        "paragraphs": [
+          "हर आधार positional notation उपयोग करता है: सबसे दाएँ digit base⁰ = 1 है, अगला base¹ है, फिर base², और इसी तरह। Decimal में, '255' का मतलब 2×100 + 5×10 + 5×1 है। Binary में, '11111111' का मतलब 1×128 + 1×64 + ... + 1×1 = 255 है।",
+          "Hexadecimal प्रति digit 16 values fit करने के लिए 0-9 और A-F उपयोग करता है। 'FF' = 15×16 + 15×1 = 255। Octal 0-7 उपयोग करता है (प्रति digit 3 bits), और binary केवल 0 और 1।"
+        ]
+      },
+      {
+        "heading": "प्रत्येक base का उपयोग कब करें",
+        "paragraphs": [
+          "Binary (base 2): low-level computer work — bit fields, masks, embedded firmware।",
+          "Octal (base 8): Unix file permissions (chmod 755 = rwxr-xr-x)।",
+          "Decimal (base 10): सब कुछ जो मनुष्य गिनते हैं।",
+          "Hexadecimal (base 16): software में सबसे आम — colors (#FF6B35), memory addresses (0x7fff...), MAC addresses।"
+        ]
+      },
+      {
+        "heading": "Quick reference",
+        "paragraphs": [
+          "1 byte = 8 bits = 2 hex digits = 256 values (0-255)। 1 hex digit = 4 bits = 16 values। Hex 'FF' = decimal 255 = binary 11111111। Hex 'FFFF' = decimal 65535 (16-bit unsigned max)।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Source base चुनें", "text": "Binary, octal, decimal, या hex चुनें।" },
+      { "name": "अपना मान दर्ज करें", "text": "केवल उस base के लिए valid digits उपयोग करें। Hex case-insensitive है।" },
+      { "name": "चारों base पढ़ें", "text": "अन्य तीन में से प्रत्येक में रूपांतरण साथ दिखाई देता है।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या hex case-sensitive है?", "a": "'ff' और 'FF' दोनों एक ही value decode करते हैं। हम convention के अनुसार uppercase display करते हैं।" },
+    { "q": "क्या मैं negative numbers दर्ज कर सकता हूँ?", "a": "हाँ, '-' prefix करें।" },
+    { "q": "Maximum value क्या है?", "a": "JavaScript के safe integer range (लगभग 2⁵³) द्वारा सीमित।" },
+    { "q": "0x prefix या 0b prefix कैसे पढ़ें?", "a": "दर्ज करने से पहले prefix हटाएँ। '0xFF' → केवल 'FF' hex selected के साथ।" },
+    { "q": "Unix chmod octal क्यों उपयोग करता है?", "a": "Permissions में तीन groups (owner/group/other) के तीन-तीन bits हैं। प्रत्येक group के 3 bits एक octal digit से cleanly map होते हैं।" },
+    { "q": "क्या मैं fractional values कनवर्ट कर सकता हूँ?", "a": "अभी नहीं — केवल non-negative integers समर्थित हैं।" },
+    { "q": "'invalid for base' दिखे तो?", "a": "आपने ऐसा character टाइप किया जो चुने गए base में allowed नहीं है।" },
+    { "q": "क्या डेटा कहीं भेजा जाता है?", "a": "नहीं। रूपांतरण locally चलता है।" }
+  ]
+}

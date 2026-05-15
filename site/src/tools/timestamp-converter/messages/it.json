@@ -1,0 +1,123 @@
+{
+  "title": "Convertitore Timestamp Unix (sec, ms, ISO, locale)",
+  "shortDescription": "Converti tra timestamp Unix (secondi o millisecondi) e date leggibili dall'utente. Mostra ISO 8601, ora locale e tempo relativo.",
+  "description": "Digita un timestamp Unix per vedere la data in più formati, oppure scegli una data per ottenere il suo valore Unix. Timestamp corrente visualizzato in tempo reale come riferimento.",
+  "metaDescription": "Convertitore gratuito di timestamp Unix. Converti secondi o millisecondi in date ISO/locali e viceversa.",
+  "keywords": [
+    "timestamp Unix",
+    "convertitore epoch",
+    "timestamp in data",
+    "data in timestamp",
+    "ISO 8601"
+  ],
+  "empty": "Inserisci un timestamp o una data da convertire.",
+  "input": {
+    "timestamp": "Timestamp Unix",
+    "date": "Data e ora"
+  },
+  "now": "Adesso",
+  "currentTimestamp": "Corrente",
+  "mode": {
+    "fromTimestamp": "Timestamp → Data",
+    "fromDate": "Data → Timestamp"
+  },
+  "unit": {
+    "seconds": "Secondi",
+    "milliseconds": "Millisecondi"
+  },
+  "result": {
+    "timestampSec": "Timestamp (sec)",
+    "timestampMs": "Timestamp (ms)",
+    "iso": "ISO 8601 (UTC)",
+    "local": "Ora locale",
+    "locale": "Localizzato",
+    "relative": "Relativo"
+  },
+  "relative": {
+    "justNow": "tra un momento",
+    "justPast": "pochi istanti fa",
+    "minutesFromNow": "tra {n} min",
+    "minutesAgo": "{n} min fa",
+    "hoursFromNow": "tra {n} h",
+    "hoursAgo": "{n} h fa",
+    "daysFromNow": "tra {n} giorni",
+    "daysAgo": "{n} giorni fa"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cos'è un timestamp Unix",
+        "paragraphs": [
+          "Un timestamp Unix è il numero di secondi (o millisecondi, in JavaScript) dall'epoca Unix — mezzanotte UTC del 1° gennaio 1970. È un singolo numero che codifica un momento nel tempo senza ambiguità. API, database e file di log lo usano ovunque perché confrontare i timestamp è semplice aritmetica intera.",
+          "JavaScript, Python e molti altri sistemi usano i millisecondi (Date.now() restituisce ms in JS). C, Go e le shell Unix usano i secondi (date +%s). Quando converti, controlla sempre in quale unità è il tuo timestamp — un valore di 1,7 trilioni è in millisecondi; 1,7 miliardi è in secondi."
+        ]
+      },
+      {
+        "heading": "ISO 8601 vs formati locali",
+        "paragraphs": [
+          "ISO 8601 (es. 2026-05-06T14:30:00Z) è il formato di scambio universale. Il fuso orario è esplicito ('Z' = UTC, oppure +01:00 ecc.), e si ordina correttamente come testo. Usalo sempre per la memorizzazione e le API.",
+          "I formati locali (es. '6 maggio 2026, 14:30:00') sono per la visualizzazione. Dipendono dalla lingua e dalla regione dell'utente. Il calcolatore mostra entrambi — copia ISO per il codice, copia il formato locale per e-mail o report."
+        ]
+      },
+      {
+        "heading": "Il problema dell'anno 2038",
+        "paragraphs": [
+          "I timestamp Unix con interi con segno a 32 bit vanno in overflow a 2³¹ − 1 secondi = 2.147.483.647 = 03:14:07 UTC del 19 gennaio 2038. I sistemi che usano int32 si azzereranno a valori negativi, rompendo l'aritmetica delle date. I sistemi moderni usano timestamp a 64 bit che sono sicuri per ~292 miliardi di anni.",
+          "Se lavori con sistemi embedded, vecchi schemi di database o codice C legacy, verifica la dimensione di time_t. La migrazione a interi a 64 bit è la soluzione; memorizzare i timestamp come stringhe (ISO) evita completamente il problema."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Scegli la direzione",
+        "text": "Timestamp → Data o Data → Timestamp."
+      },
+      {
+        "name": "Scegli l'unità",
+        "text": "Secondi (standard Unix) o millisecondi (JavaScript)."
+      },
+      {
+        "name": "Digita o scegli",
+        "text": "Digita un numero, o usa il pulsante 'Adesso' per il momento corrente."
+      },
+      {
+        "name": "Leggi tutti i formati",
+        "text": "Sec, ms, ISO, locale e relativo mostrati tutti insieme."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Perché i timestamp a volte hanno 13 cifre?",
+      "a": "Sono millisecondi. JavaScript e molte API web usano i ms. Dividi per 1000 per ottenere i secondi."
+    },
+    {
+      "q": "In quale fuso orario è un timestamp Unix?",
+      "a": "Nessuno — sono secondi UTC dall'epoca. Convertilo in una data locale usando il fuso orario della tua applicazione o dell'utente."
+    },
+    {
+      "q": "La conversione è precisa?",
+      "a": "Sì. Usiamo l'API Date del browser, che usa l'orologio di sistema. La precisione è al millisecondo."
+    },
+    {
+      "q": "Cos'è ISO 8601?",
+      "a": "Uno standard internazionale di formato data-ora: AAAA-MM-GGTOO:MM:SS+FZ. Ordinabile come testo, non ambiguo riguardo al fuso orario."
+    },
+    {
+      "q": "Perché 'ora locale' non corrisponde all'orologio del mio sistema?",
+      "a": "Usa il fuso orario segnalato dal tuo browser. Se l'orologio di sistema è sbagliato o il fuso del browser è diverso, i risultati differiscono."
+    },
+    {
+      "q": "I timestamp negativi sono validi?",
+      "a": "Sì — rappresentano date prima del 1970. La maggior parte dei linguaggi li gestisce; fai attenzione alla compatibilità con il database."
+    },
+    {
+      "q": "Posso fare conversioni in batch?",
+      "a": "Non ancora. Per conversioni singole questo strumento va bene; per migliaia di valori, usa uno script."
+    },
+    {
+      "q": "I dati escono dal mio browser?",
+      "a": "No. La conversione viene eseguita localmente."
+    }
+  ]
+}

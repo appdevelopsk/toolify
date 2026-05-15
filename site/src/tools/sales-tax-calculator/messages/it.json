@@ -1,0 +1,51 @@
+{
+  "title": "Calcolatore IVA / Tassa (aggiungi tassa o estrai dal totale)",
+  "shortDescription": "Aggiungi l'IVA a un importo al netto o estrai la tassa da un totale IVA inclusa. Funziona per qualsiasi aliquota (IVA, GST, sales tax).",
+  "description": "Passa tra le modalità 'aggiungi tassa' e 'estrai dal totale', inserisci l'importo e l'aliquota e vedi il dettaglio in netto, tassa e lordo.",
+  "metaDescription": "Calcolatore IVA gratuito. Aggiungi l'IVA a un importo al netto o estrai la tassa da un totale IVA inclusa. Funziona con qualsiasi aliquota, nel tuo browser.",
+  "keywords": ["calcolatore IVA", "calcolo IVA", "scorporo IVA", "calcolo tasse", "IVA inclusa esclusa"],
+  "empty": "Inserisci un importo per calcolare il dettaglio fiscale.",
+  "mode": { "addTax": "Aggiungi IVA al netto", "fromTotal": "Estrai IVA dal totale" },
+  "input": { "amountNet": "Importo al netto", "amountGross": "Totale IVA inclusa", "taxPct": "Aliquota (%)" },
+  "result": { "net": "Imponibile", "tax": "IVA", "gross": "Totale" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Aggiungere IVA vs scorporare IVA",
+        "paragraphs": [
+          "Aggiungere IVA: hai il prezzo al netto e vuoi il prezzo finale IVA inclusa. Moltiplica per (1 + aliquota/100). Esempio: 100 € con IVA al 22% = 122 €.",
+          "Scorporare IVA: hai il totale pagato dal cliente (o indicato in fattura) e devi ricavare quanto era IVA. Dividi il totale per (1 + aliquota/100) per ottenere l'importo imponibile; la differenza è l'IVA. Esempio: 122 € con IVA al 22% scorporano in 100 € + 22 € di IVA. Non moltiplicare 122 € per il 22% — darebbe 26,84 €, che è sbagliato."
+        ]
+      },
+      {
+        "heading": "IVA in Italia e in Europa",
+        "paragraphs": [
+          "IVA italiana: aliquota ordinaria 22% (beni e servizi generali). Aliquote ridotte: 10% (alberghi, ristoranti, prodotti alimentari trasformati, alcune costruzioni), 5% (alcuni prodotti agroalimentari) e 4% (beni di prima necessità: pane, latte, libri, quotidiani). Quando non sei sicuro dell'aliquota, verifica sul sito dell'Agenzia delle Entrate.",
+          "IVA europea: ogni paese UE ha la propria aliquota ordinaria (Germania 19%, Francia 20%, Spagna 21%, Svezia 25%). Per gli acquisti online B2C, a partire dal 2021 si applica l'IVA del paese del consumatore. Per le fatture B2B intracomunitarie il reverse charge esclude l'IVA (indicare la P.IVA del cliente)."
+        ]
+      },
+      {
+        "heading": "Errori comuni",
+        "paragraphs": [
+          "Non moltiplicare i totali IVA inclusa per l'aliquota. Per scorporare l'IVA da 122 € al 22%, dividi prima per 1,22. Moltiplicare per il 22% dà la risposta sbagliata perché i 122 € includono già il 22% sul 100 € originale — taggeresti la tassa sulla tassa.",
+          "Alcuni prodotti sono esenti o hanno aliquota zero (certi servizi finanziari, operazioni sanitarie, prestazioni formative). In caso di dubbi sulla categoria fiscale del tuo prodotto o servizio, consulta un commercialista."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Scegli la modalità", "text": "Aggiungi IVA a un importo netto, o scorpora l'IVA da un totale IVA inclusa." },
+      { "name": "Inserisci l'importo", "text": "Il netto in modalità 'aggiungi'; il totale in modalità 'estrai'." },
+      { "name": "Inserisci l'aliquota", "text": "Aliquota in percentuale (es. 22 per IVA ordinaria italiana, 10 per aliquota ridotta)." },
+      { "name": "Leggi il dettaglio", "text": "Imponibile (netto), importo IVA e totale sono tutti visualizzati." }
+    ]
+  },
+  "faq": [
+    { "q": "Perché lo scorporo è ÷ (1 + aliquota) invece di × aliquota?", "a": "Perché il totale include già la tassa sull'importo originale. Moltiplicare dà la tassa sul totale inclusivo, che è troppo. Dividere per (1 + aliquota/100) inverte correttamente l'addizione." },
+    { "q": "Quali aliquote IVA si usano in Italia?", "a": "Ordinaria: 22%. Ridotte: 10% (alberghi, ristoranti, molti prodotti alimentari), 5% (alcuni prodotti agroalimentari), 4% (beni di prima necessità: pane, latte, libri, giornali). Esente: sanità, istruzione, certi servizi finanziari." },
+    { "q": "Come funziona per le fatture a clienti UE?", "a": "Per cessioni B2B intracomunitarie, si applica il reverse charge: fattura senza IVA indicando il numero di P.IVA comunitario del cliente. Usa la modalità 'netto' e inserisci l'aliquota zero, oppure emetti la fattura con dicitura 'operazione non imponibile art. 41 DL 331/93'." },
+    { "q": "Posso gestire più aliquote?", "a": "Non contemporaneamente. Per aliquote combinate, sommale prima e usa l'aliquota combinata. Per documenti con righe a IVA diversa, calcola ciascuna riga separatamente." },
+    { "q": "E le fatture con IVA per le imprese?", "a": "Stessa matematica: usa 'estrai dal totale' per vedere IVA e imponibile. La maggior parte dei software di contabilità (Fatture in Cloud, Zucchetti, ecc.) lo fa automaticamente." },
+    { "q": "In che valuta?", "a": "Il calcolo è indipendente dalla valuta — usa qualsiasi unità in modo coerente. Per uso italiano si assume €." },
+    { "q": "I dati vengono inviati da qualche parte?", "a": "No. Tutti i calcoli vengono eseguiti localmente nel tuo browser." }
+  ]
+}

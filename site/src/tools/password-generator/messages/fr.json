@@ -1,0 +1,106 @@
+{
+  "title": "Générateur de Mot de Passe (cryptographiquement sécurisé, avec",
+  "shortDescription": "Génère des mots de passe aléatoires robustes en utilisant l'API crypto sécurisée de ton navigateur. Longueur, jeux de caractères et filtre d'ambiguïté configurables.",
+  "description": "Construit des mots de passe en utilisant crypto.getRandomValues — la même source que les banques, pas Math.random. Ajuste la longueur et les classes de caractères ; le compteur d'entropie montre la vraie robustesse du résultat.",
+  "metaDescription": "Générateur de mot de passe gratuit. Mots de passe aléatoires cryptographiquement sécurisés avec longueur et jeux de caractères configurables.",
+  "keywords": [
+    "générateur mot de passe",
+    "mot de passe sécurisé",
+    "mot de passe aléatoire",
+    "mot de passe robuste",
+    "générateur passphrase"
+  ],
+  "copy": "Copier",
+  "copied": "Copié",
+  "regenerate": "Nouveau mot de passe",
+  "input": {
+    "length": "Longueur"
+  },
+  "opt": {
+    "upper": "Majuscules (A-Z)",
+    "lower": "Minuscules (a-z)",
+    "numbers": "Chiffres (0-9)",
+    "symbols": "Symboles (!@#$...)",
+    "avoidAmbiguous": "Éviter les ambigus (0OoIl1)"
+  },
+  "strength": {
+    "weak": "Faible",
+    "medium": "Moyen",
+    "strong": "Fort",
+    "excellent": "Excellent"
+  },
+  "entropy": "{bits} bits d'entropie",
+  "article": {
+    "sections": [
+      {
+        "heading": "Pourquoi ce générateur est vraiment sécurisé",
+        "paragraphs": [
+          "La plupart des « générateurs de mots de passe » sur le web utilisent Math.random(), qui n'est pas cryptographiquement sécurisé — sa sortie peut être prédite par un attaquant qui voit quelques valeurs précédentes. Ce générateur utilise crypto.getRandomValues de l'API Web Crypto, le même primitif qui sous-tend les sessions HTTPS et les trousseaux de clés au niveau du système d'exploitation. Chaque caractère est tiré d'une distribution uniforme sur l'alphabet sélectionné.",
+          "La génération se passe entièrement dans ton navigateur. Le mot de passe ne transite jamais sur le réseau et ne touche jamais nos serveurs. Même si notre domaine était compromis, un attaquant n'aurait rien à voler car rien n'est stocké."
+        ]
+      },
+      {
+        "heading": "Comment fonctionne l'indicateur de force",
+        "paragraphs": [
+          "Le label de force est calculé à partir de l'entropie : bits = log₂(taille_alphabet) × longueur. Un mot de passe de 10 caractères en minuscules seulement a log₂(26) × 10 ≈ 47 bits — vulnérable à un attaquant déterminé hors ligne. Un mot de passe de 16 caractères utilisant les quatre classes de caractères a environ 105 bits — suffisamment fort pour la plupart des usages. Les seuils sont : <50 faible, 50-80 moyen, 80-128 fort, ≥128 excellent.",
+          "Ces seuils correspondent approximativement à : faible = devinable en jours par un attaquant modéré ; moyen = des années pour un botnet ; fort = aucun attaquant réaliste aujourd'hui ; excellent = marge confortable face aux attaquants futurs, y compris les considérations quantiques."
+        ]
+      },
+      {
+        "heading": "La longueur surpasse la complexité",
+        "paragraphs": [
+          "Les mathématiques sont impitoyables ici : ajouter un caractère à ton mot de passe double approximativement l'espace de recherche (selon l'alphabet). Ajouter une classe de caractères supplémentaire ne l'agrandit que légèrement. Un mot de passe de 20 caractères en minuscules a plus d'entropie qu'un mot de passe de 12 caractères mixte avec symboles, et est plus facile à taper. Si tu préfères mémoriser, choisis quatre mots aléatoires d'une liste de 7 000 mots — c'est 51 bits, similaire à un mot de passe mixte robuste de 8 caractères.",
+          "L'option « éviter les ambigus » exclut les caractères qui ressemblent à d'autres caractères dans de nombreuses polices (0/O, I/l/1). Cela rend le mot de passe légèrement moins robuste mais plus facile à lire à voix haute ou à transcrire. Utilise-la quand tu devras peut-être taper le mot de passe à partir d'une liste imprimée."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis une longueur",
+        "text": "16 est une bonne valeur par défaut pour les comptes ; 20+ pour les mots de passe maîtres des gestionnaires."
+      },
+      {
+        "name": "Choisis les classes de caractères",
+        "text": "La plupart des sites acceptent les quatre — majuscules, minuscules, chiffres, symboles. Certains anciens sites rejettent les symboles."
+      },
+      {
+        "name": "Génère et copie",
+        "text": "Clique sur « Nouveau mot de passe » jusqu'à en obtenir un qui te convient, puis copie-le directement dans ton gestionnaire de mots de passe."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Ce générateur est-il vraiment sécurisé ?",
+      "a": "Oui. Nous utilisons la source aléatoire sécurisée de l'API Web Crypto, pas Math.random(). L'implémentation fournie par le navigateur est auditée et identique à ce qui sous-tend HTTPS."
+    },
+    {
+      "q": "Le mot de passe quitte-t-il mon navigateur ?",
+      "a": "Jamais. La génération, le calcul d'entropie et la copie dans le presse-papier se passent tous localement. Nous n'avons pas d'endpoint serveur pour le recevoir même si nous le voulions."
+    },
+    {
+      "q": "16 caractères suffisent-ils ?",
+      "a": "Pour les comptes en ligne, oui — presque toujours. Pour les mots de passe maîtres de gestionnaire de mots de passe ou les clés de chiffrement, opte pour 24+ caractères ou utilise une phrase de 6 mots."
+    },
+    {
+      "q": "Pourquoi l'indicateur de force n'apprécie-t-il pas mon long mot de passe ?",
+      "a": "Il sait seulement quelles classes de caractères tu as activées. Si tu n'as activé que les minuscules, l'alphabet est juste 26 — les longs mots de passe sont quand même robustes mais ne grandissent pas aussi vite."
+    },
+    {
+      "q": "Que signifie « bits d'entropie » ?",
+      "a": "C'est le log₂ du nombre de mots de passe possibles que tes paramètres pourraient produire. 80 bits ≈ 1,2 × 10²⁴ possibilités — bien au-delà de la portée de la force brute aujourd'hui."
+    },
+    {
+      "q": "Devrais-je inclure des symboles ?",
+      "a": "Oui quand c'est autorisé. Chaque symbole ajoute approximativement l'entropie d'un chiffre plus une lettre combinés. Certains anciens sites les rejettent ; dans ce cas, augmente la longueur pour compenser."
+    },
+    {
+      "q": "Vaut-il la peine d'utiliser « éviter les ambigus » ?",
+      "a": "Utilise-le uniquement quand tu dois lire ou taper le mot de passe manuellement. Garde-le désactivé pour les gestionnaires de mots de passe — le coût de lisibilité est gaspillé là."
+    },
+    {
+      "q": "Le même mot de passe peut-il être généré deux fois ?",
+      "a": "Théoriquement oui, mais avec même 50 bits d'entropie la probabilité par paire de générations est 1 sur 2⁵⁰ ≈ 10¹⁵. Pratiquement impossible."
+    }
+  ]
+}

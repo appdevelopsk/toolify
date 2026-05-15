@@ -1,0 +1,60 @@
+{
+  "title": "OBEB & OKEK Hesaplayıcı (asal çarpanlarıyla birlikte)",
+  "shortDescription": "İki veya daha fazla tam sayının en büyük ortak bölenini (OBEB) ve en küçük ortak katını (OKEK) artı her sayının asal çarpanlarını bulun.",
+  "description": "Bir tam sayı listesi girin. Hesaplayıcı OBEB'i (Öklid algoritması), OKEK'i ve her girişin tam asal çarpanlarını döndürür. BigInt aracılığıyla isteğe bağlı büyüklükte tam sayıları destekler.",
+  "metaDescription": "Ücretsiz OBEB ve OKEK hesaplayıcı, asal çarpanlarıyla birlikte. Çoklu sayı girişi. Herhangi bir büyüklükteki tam sayı için tam BigInt aritmetiği.",
+  "keywords": ["OBEB hesaplayıcı", "OKEK hesaplayıcı", "en büyük ortak bölen", "en küçük ortak kat", "asal çarpanlara ayırma"],
+  "input": {
+    "numbers": "Sayılar",
+    "hint": "Virgül, boşluk veya yeni satırla ayırın. En az 2 sayı."
+  },
+  "result": {
+    "gcd": "GCD (en büyük ortak bölen)",
+    "lcm": "LCM (en küçük ortak kat)",
+    "factorizations": "Asal çarpanlar"
+  },
+  "empty": "En az 2 tam sayı girin.",
+  "article": {
+    "sections": [
+      {
+        "heading": "GCD: en büyük ortak çarpan",
+        "paragraphs": [
+          "İki tam sayının GCD'si, her ikisini de kalansız bölen en büyük tam sayıdır. GCD(12, 18) = 6 çünkü 6 her ikisini de böler ve daha büyük hiçbir sayı bölmez. GCD(7, 13) = 1 çünkü ortak çarpan paylaşmazlar (bu tür çiftlere 'aralarında asal' denir).",
+          "Öklid algoritmasını kullanıyoruz: gcd(a, b) = gcd(b, a mod b), özyinelemeli olarak. ~2300 yıldır bilinmekte ve en hızlı standart yöntem olmaya devam etmektedir. Üç veya daha fazla sayı için: gcd(a, b, c) = gcd(gcd(a, b), c)."
+        ]
+      },
+      {
+        "heading": "LCM: en küçük ortak çarpan",
+        "paragraphs": [
+          "LCM, her ikisinin de katı olan en küçük pozitif tam sayıdır. LCM(4, 6) = 12 çünkü 12, 4 ve 6'nın her ikisini de bölen ilk sayıdır.",
+          "Formül: lcm(a, b) = (a × b) / gcd(a, b). 4 ve 6 için: 24 / 2 = 12. Üç sayı için: lcm(a, b, c) = lcm(lcm(a, b), c).",
+          "Herhangi bir sayı 0 ise LCM 0'dır (her sayı 0'ı böler, ancak 'en küçük pozitif' tanımsızdır). Hesaplayıcı bu durumda 0 döndürür."
+        ]
+      },
+      {
+        "heading": "Neden önemlidir",
+        "paragraphs": [
+          "Kesirler: 1/4 + 1/6 toplamı için LCM(4, 6) = 12 ortak paydayı bulun. 1/4 = 3/12, 1/6 = 2/12, toplam = 5/12.",
+          "Zamanlama: A olayı her 4 günde, B olayı her 6 günde bir tekrarlanıyorsa her LCM(4, 6) = 12 günde bir çakışır.",
+          "Kriptografi: GCD tabanlı algoritmalar (genişletilmiş Öklid) RSA anahtar üretimini ve modüler ters hesaplamalarını destekler.",
+          "Müzik teorisi: 3 ve 4 periyotlu ritimler 12 vuruştan sonra senkronize olur (LCM)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Tam sayıları girin", "text": "En az 2 sayı, virgül, boşluk veya yeni satırlarla ayrılmış." },
+      { "name": "GCD ve LCM'yi okuyun", "text": "Her ikisi sonuç alanında belirgin şekilde gösterilir." },
+      { "name": "Asal çarpanları inceleyin", "text": "Her sayının asal ayrışımı, GCD/LCM'nin neden öyle çıktığını ortaya koyar." }
+    ]
+  },
+  "faq": [
+    { "q": "Sayılarım aralarında asalsa ne olur?", "a": "GCD = 1 ve LCM = tüm sayıların çarpımı. Aralarında asal, ortak asal çarpan paylaşmamak demektir." },
+    { "q": "Negatif sayılar girebilir miyim?", "a": "Evet. GCD/LCM hesaplamaları için mutlak değerleri kullanırız. -12 ve 18, 12 ve 18 ile aynı sonucu verir: GCD 6, LCM 36." },
+    { "q": "0 girersem ne olur?", "a": "GCD(0, n) = |n| (her tam sayı 0'ı böldüğünden, o çift için n en büyük bölendir). Sıfırla LCM kurala göre 0'dır. Tüm sıfırlarla GCD/LCM tanımsızdır." },
+    { "q": "Sayılarım ne kadar büyük olabilir?", "a": "İçeride BigInt kullandığımızdan, herhangi bir büyüklükteki tam sayılar üzerinde aritmetik kesindir. Pratik sınır yazma hızınız ve ekran alanınızdır." },
+    { "q": "Asal çarpanlar neden kullanışlı?", "a": "GCD = ortak asalların çarpımı (küçük üs alınır). LCM = herhangi bir sayıda görünen tüm asalların çarpımı (büyük üs alınır). Asal çarpanlar bu ilişkileri görünür kılar." },
+    { "q": "GCD ile LCM arasındaki ilişki nedir?", "a": "İki sayı için: a × b = gcd(a, b) × lcm(a, b). Dolayısıyla {a, b, gcd, lcm} üçlüsünü biliyorsanız dördüncüyü hesaplayabilirsiniz. Üç veya daha fazla sayıya temiz biçimde genellenmez." },
+    { "q": "Bunu polinom GCD için kullanabilir miyim?", "a": "Bu araçta değil — yalnızca tam sayıları işliyoruz. Polinomlar için SymPy veya Maxima gibi bir CAS kullanın." },
+    { "q": "Veriler tarayıcımdan çıkıyor mu?", "a": "Hayır. Hesaplama yerel olarak çalışır; hiçbir şey sunucuya gönderilmez." }
+  ]
+}

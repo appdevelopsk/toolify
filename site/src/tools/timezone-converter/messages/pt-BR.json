@@ -1,0 +1,54 @@
+{
+  "title": "Conversor de Fuso Horário (compare horários em vários fusos)",
+  "shortDescription": "Converta um momento no tempo para múltiplos fusos horários de uma vez. Adicione ou remova fusos; ótimo para agendar reuniões internacionais.",
+  "description": "Escolha um fuso horário de origem e data/hora, depois adicione quantos fusos alvo precisar. Cada alvo mostra o horário local equivalente com a abreviação do fuso.",
+  "metaDescription": "Conversor gratuito de fuso horário. Veja um momento em várias cidades ao mesmo tempo. Útil para agendar reuniões, viagens e transmissões em múltiplos fusos.",
+  "keywords": ["conversor de fuso horário", "relógio mundial", "horário de reunião em fusos", "converter UTC", "diferença de fuso"],
+  "empty": "Adicione fusos horários para ver os equivalentes.",
+  "input": { "sourceTz": "Fuso horário de origem", "dt": "Data e hora" },
+  "now": "Agora",
+  "addTz": "Adicionar fuso horário",
+  "remove": "Remover",
+  "article": {
+    "sections": [
+      {
+        "heading": "Como funciona a conversão de fuso horário",
+        "paragraphs": [
+          "Todo momento no tempo é um único ponto — terça-feira às 9h em Tóquio é o mesmo momento que segunda-feira às 17h em São Paulo (no fuso BRT, UTC-3). A conversão de fuso horário apenas renomeia esse único momento com o horário local de cada fuso. O horário de verão complica isso — o Brasil suspendeu o horário de verão em 2020, mas outros países ainda o adotam. A API Intl.DateTimeFormat do navegador lida com isso corretamente ao passar um nome de fuso IANA como 'America/Sao_Paulo'.",
+          "Usamos nomes IANA (como 'America/Sao_Paulo' ou 'Europe/London') porque são inequívocos e seguem as regras de horário de verão históricas de cada local. 'BRT' ou 'GMT' são abreviações que podem colidir; nomes IANA não."
+        ]
+      },
+      {
+        "heading": "Armadilhas comuns no agendamento",
+        "paragraphs": [
+          "Transições de horário de verão: 'próxima terça às 9h EST' é ambíguo em março ou novembro nos EUA porque as regras mudam. Sempre diga 'horário de Nova York' ou envie um convite de calendário — Outlook, Google Calendar e Slack lidam com a conversão corretamente quando ambos os lados especificam seu fuso.",
+          "Offsets de meia hora: a Índia é UTC+5:30, partes da Austrália são UTC+9:30 ou +10:30. Se o seu cálculo de reunião for em 'horas inteiras', você estará 30 minutos errado para essas regiões.",
+          "Saltos de linha de data: Tóquio para São Paulo pode ser dia seguinte vs mesmo dia dependendo da direção. O calendário mostra corretamente, mas a suposição humana pode estar errada."
+        ]
+      },
+      {
+        "heading": "Padrões úteis",
+        "paragraphs": [
+          "Standup internacional: escolha um fuso de origem (frequentemente UTC) e os fusos dos membros da equipe. Defina o horário da reunião e verifique se ninguém é solicitado a participar às 3h da manhã.",
+          "Lançamento de produto: escolha o fuso de lançamento e adicione os principais mercados. Útil para verificar se o e-mail de marketing chega a um horário local razoável.",
+          "Planejamento de viagem: escolha o fuso de partida e adicione o(s) fuso(s) de destino para encontrar o horário de chegada local sem fazer cálculos manuais."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Defina a origem", "text": "Escolha o fuso horário de origem (padrão para o fuso do seu navegador) e a data/hora que deseja converter." },
+      { "name": "Adicione fusos alvo", "text": "Use o menu suspenso para adicionar quantos precisar." },
+      { "name": "Leia os equivalentes", "text": "Cada alvo mostra o mesmo momento no seu horário local." }
+    ]
+  },
+  "faq": [
+    { "q": "Ele lida com horário de verão?", "a": "Sim — os dados de fuso IANA incluem regras de horário de verão para cada local. A API Intl do navegador lida com transições passadas, presentes e (onde conhecidas) futuras." },
+    { "q": "Qual a diferença entre EST e ET?", "a": "EST é fixo em UTC-5. ET (Eastern Time) é EST no inverno e EDT no verão — acompanha o horário de verão. Usamos nomes IANA como 'America/New_York' que automaticamente escolhem EST ou EDT baseado na data." },
+    { "q": "Posso converter entre duas cidades específicas?", "a": "Sim. Defina uma como origem e adicione a outra como alvo. O horário exibido é o momento da origem expresso no horário local do alvo." },
+    { "q": "Por que alguns fusos têm offsets de :30?", "a": "Decisões históricas. Índia, Irã, Afeganistão, Terra Nova, partes da Austrália usam offsets de 30 ou 45 minutos do UTC. A calculadora lida com isso corretamente." },
+    { "q": "Funciona para datas passadas?", "a": "Sim, incluindo fronteiras de horário de verão que podem ter sido diferentes historicamente. Os dados IANA cobrem a maioria das histórias de localização desde 1970." },
+    { "q": "E para São Paulo, Brasília ou Manaus?", "a": "A lista IANA os inclui. Adicione 'America/Sao_Paulo', 'America/Fortaleza' ou 'America/Manaus' no menu suspenso conforme necessário." },
+    { "q": "Os dados são enviados para algum lugar?", "a": "Não. As APIs Intl do navegador lidam com tudo localmente." },
+    { "q": "Posso salvar minha lista de fusos?", "a": "Ainda não. Atualizar a página redefine a lista. Podemos adicionar persistência no armazenamento local no futuro." }
+  ]
+}

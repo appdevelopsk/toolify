@@ -1,0 +1,56 @@
+{
+  "title": "Stopwatch (presisi milidetik, waktu putaran)",
+  "shortDescription": "Stopwatch di browser dengan presisi tinggi dan pencatatan putaran, penghitungan waktu split. Tampilan milidetik, jam monoton untuk akurasi.",
+  "description": "Stopwatch berbasis browser menggunakan performance.now() untuk penghitungan tanpa jitter. Mulai, jeda, lanjutkan, catat putaran, dan reset. Setiap putaran menampilkan split (delta dari sebelumnya) ditambah waktu kumulatif.",
+  "metaDescription": "Stopwatch browser gratis dengan presisi milidetik dan pencatatan putaran. Penghitungan monoton, tidak perlu internet. Berguna untuk olahraga, memasak, dan sesi belajar.",
+  "keywords": ["stopwatch", "timer milidetik", "timer putaran", "stopwatch online", "timer split"],
+  "start": "Mulai",
+  "pause": "Jeda",
+  "resume": "Lanjutkan",
+  "reset": "Reset",
+  "lap": "Putaran",
+  "laps": "Putaran",
+  "article": {
+    "sections": [
+      {
+        "heading": "Mengapa stopwatch ini akurat",
+        "paragraphs": [
+          "Sebagian besar stopwatch browser menggunakan Date.now() dan setInterval, yang dapat menyimpang beberapa puluh milidetik selama sesi. Implementasi ini menggunakan performance.now() — jam monoton yang tidak melompat mundur ketika jam sistem disesuaikan. Dikombinasikan dengan requestAnimationFrame untuk pembaruan tampilan, akurasi tetap dalam ±1 ms.",
+          "Jika Anda berpindah tab, waktu yang ditampilkan mungkin membeku sebentar karena browser membatasi pekerjaan di latar belakang. Jam internal terus berjalan dengan benar — ketika Anda kembali, tampilan mengejar waktu yang sebenarnya telah berlalu."
+        ]
+      },
+      {
+        "heading": "Waktu putaran dan waktu split",
+        "paragraphs": [
+          "Ketika Anda menekan Putaran, waktu kumulatif saat ini dicatat. Split yang ditampilkan adalah delta dari putaran sebelumnya: dalam lari 5×400m, setiap split adalah waktu satu segmen 400m, sementara kumulatif adalah total yang telah berlalu sejak start.",
+          "Sebagian besar pengguna daftar putaran peduli dengan split, bukan kumulatif. Kami menampilkan keduanya. Kumulatif juga memudahkan mengidentifikasi segmen individu terbaik — berguna untuk atlet yang melacak konsistensi interval."
+        ]
+      },
+      {
+        "heading": "Kegunaan umum",
+        "paragraphs": [
+          "Olahraga: lacak waktu putaran untuk lari, renang, interval bersepeda. Lebih kecil lebih baik; konsistensi antara split adalah tanda pengaturan langkah yang baik.",
+          "Memasak: waktu beberapa langkah secara bersamaan dengan menggunakan putaran sebagai 'titik periksa' (adonan ditambahkan, istirahat dimulai, dll.).",
+          "Belajar/kerja: kotak waktu sesi kerja terfokus. Pasangkan dengan timer Pomodoro kami untuk istirahat terstruktur.",
+          "Pengaturan waktu proses: ukur durasi tugas apapun — proses build software, entri data manual, resolusi dukungan pelanggan. Gunakan daftar putaran yang ramah ekspor untuk tinjauan nanti."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Klik Mulai", "text": "Timer mulai segera dari 0." },
+      { "name": "Catat putaran", "text": "Klik Putaran selama berjalan. Setiap putaran dicatat dengan waktu split dan kumulatif." },
+      { "name": "Jeda / Lanjutkan", "text": "Klik Jeda untuk menahan; klik Lanjutkan untuk melanjutkan dari waktu yang sama." },
+      { "name": "Reset", "text": "Menghapus semua putaran dan kembali ke 0." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah timer akan terus berjalan jika saya menutup tab?", "a": "Tidak — menutup tab menghapus state dalam memori. Untuk menyimpan sesi penghitungan panjang, ambil tangkapan layar tampilan yang sedang berjalan atau salin daftar putaran sebelum menutup." },
+    { "q": "Seberapa akurat presisi milidetik dalam praktik?", "a": "Resolusi performance.now() bergantung pada browser: sebagian besar browser membatasi ke 1ms atau 0,1ms karena alasan keamanan (mitigasi serangan penghitungan waktu). Ini lebih dari cukup untuk penghitungan skala manusia — jauh lebih akurat dari waktu reaksi manusia (~250ms)." },
+    { "q": "Mengapa tampilan diperbarui pada 60fps tetapi menampilkan milidetik?", "a": "Jam internal tepat; tampilan dirender ~60 kali per detik sehingga Anda melihat kolom milidetik yang diperbarui dengan mulus. Setiap frame menghitung nilai yang telah berlalu terbaru dari performance.now()." },
+    { "q": "Bisakah saya menyimpan sesi putaran?", "a": "Tidak secara langsung — salin daftar putaran secara manual. Penyimpanan sesi ke penyimpanan lokal ada dalam rencana pengembangan." },
+    { "q": "Apa perbedaannya dengan stopwatch di ponsel?", "a": "Berbasis browser, tidak perlu instalasi aplikasi. Sama akuratnya untuk penghitungan skala manusia. Stopwatch ponsel bertahan saat layar terkunci; tab browser perlu tetap terbuka (tetapi tidak perlu fokus)." },
+    { "q": "Apakah data dikirim ke mana saja?", "a": "Tidak. Semuanya berjalan secara lokal; tidak ada putaran atau waktu yang ditransmisikan." },
+    { "q": "Mengapa putaran saya menampilkan 0 milidetik?", "a": "Jika Anda mengetuk Putaran segera setelah Mulai, waktu yang telah berlalu mungkin dibulatkan ke 0 dengan presisi tampilan. Jalankan setidaknya beberapa detik antara putaran." },
+    { "q": "Bisakah ini mengukur peristiwa sub-detik?", "a": "Ya, hingga ~1ms. Untuk penghitungan nanodetik (benchmarking chip) Anda memerlukan alat yang berbeda, tetapi untuk peristiwa yang dapat diamati manusia ini cukup presisi." }
+  ]
+}

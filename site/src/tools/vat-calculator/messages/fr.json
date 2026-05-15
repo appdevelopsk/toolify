@@ -1,0 +1,76 @@
+{
+  "title": "Calculateur TVA (taux internationaux)",
+  "shortDescription": "Ajoute ou enlève la TVA/GST/taxe de vente. Préréglages rapides pour la France, le Japon, le Royaume-Uni, les pays UE, l'Australie, le Canada, la Chine.",
+  "description": "Deux modes : 'Ajouter TVA' calcule le TTC depuis le HT + taux ; 'Enlever TVA' calcule le HT depuis le TTC. Saisie de taux personnalisé plus préréglages en un clic pour les principales juridictions.",
+  "metaDescription": "Calculateur TVA/GST gratuit. Ajoute ou enlève la TVA de tout montant. Préréglages pour les taux France, Japon, Royaume-Uni, UE, Australie, Canada, Chine.",
+  "keywords": ["calculateur TVA", "calculateur GST", "calculateur taxe vente", "taxe à la consommation", "déduction TVA"],
+  "empty": "Saisis un montant et un taux de TVA.",
+  "mode": {
+    "addVat": "Ajouter TVA (HT → TTC)",
+    "removeVat": "Enlever TVA (TTC → HT)"
+  },
+  "input": {
+    "netAmount": "Montant HT (hors TVA)",
+    "grossAmount": "Montant TTC (TVA incluse)",
+    "ratePct": "Taux TVA %"
+  },
+  "preset": {
+    "JP-std": "JP standard",
+    "JP-reduced": "JP réduit",
+    "UK": "Royaume-Uni",
+    "DE": "Allemagne",
+    "FR": "France",
+    "AU": "Australie GST",
+    "CA": "Canada TPS",
+    "CN": "Chine TVA"
+  },
+  "result": {
+    "gross": "TTC (TVA incluse)",
+    "net": "HT (hors TVA)",
+    "vat": "Montant TVA"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "TVA, GST, taxe de vente — même idée, noms différents",
+        "paragraphs": [
+          "TVA (Taxe sur la Valeur Ajoutée) : Europe, Royaume-Uni, Japon (appelée 消費税). Facturée à chaque étape de la production mais finalement payée par le consommateur. En France, le taux standard est 20 %, le taux intermédiaire 10 % (restauration, hôtellerie) et le taux réduit 5,5 % (alimentation, livres).",
+          "GST (Goods and Services Tax) : Australie, Canada, Inde, Singapour. Mécaniquement similaire à la TVA, juste un nom différent. Certains pays (Canada) superposent une TPS fédérale et des taxes provinciales (TVH, TVP).",
+          "Taxe de vente : États-Unis. Facturée uniquement au point de vente final, varie par État, comté et ville. Certains États n'en ont pas (ex. Oregon, New Hampshire) ; d'autres cumulent plusieurs juridictions pour des taux totaux dépassant 10 %."
+        ]
+      },
+      {
+        "heading": "Calcul dans les deux sens",
+        "paragraphs": [
+          "Ajouter TVA : quand tu as un prix HT et que tu as besoin du TTC. Courant pour établir les tarifs pour les clients B2B ou les devis avant taxe. Formule : TTC = HT × (1 + taux/100).",
+          "Enlever TVA : quand tu as un prix TTC et que tu dois extraire le HT. Courant pour les reçus, les notes de frais ou les lignes de facture. Formule : HT = TTC / (1 + taux/100).",
+          "Erreur courante : soustraire le taux% du TTC pour obtenir le HT (ex. 110 € − 10 % = 99 €). C'est faux — le calcul correct est 110 € / 1,10 = 100 €. La TVA de 10 % est calculée sur le HT, pas sur le TTC."
+        ]
+      },
+      {
+        "heading": "Quand la TVA est incluse ou non",
+        "paragraphs": [
+          "La plupart des prix à la consommation en Europe, au Japon et en Australie sont TTC. Le prix affiché est ce que tu paies en caisse ; rien de plus au passage en caisse. Donc un produit à 10 € signifie 10 € au total.",
+          "La plupart des prix de détail américains sont HT. Une étiquette à 10 $ devient 10,85 $ après la taxe de vente de 8,5 % de Californie. Les restaurants, boutiques en ligne et factures B2B varient souvent.",
+          "Les factures B2B affichent typiquement le HT + TVA séparément pour les besoins de déduction de TVA. Les entreprises peuvent récupérer la TVA payée sur leurs achats contre la TVA collectée auprès de leurs clients."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choisis le mode", "text": "Ajouter TVA (HT → TTC) ou Enlever TVA (TTC → HT)." },
+      { "name": "Saisis le montant", "text": "Le montant HT ou TTC, selon le mode." },
+      { "name": "Définis le taux", "text": "Utilise un préréglage pour les principaux pays ou tape un taux personnalisé." },
+      { "name": "Lis les trois valeurs", "text": "HT, TVA, TTC. Utile pour les lignes de facture et les devis." }
+    ]
+  },
+  "faq": [
+    { "q": "La TVA et la taxe à la consommation japonaise (消費税) sont-elles la même chose ?", "a": "Oui — la 消費税 japonaise est le nom local de la TVA. Même mécanisme : facturée à chaque étape de production, payée finalement par le consommateur. Taux standard 10 %, réduit 8 % pour l'alimentation et les journaux." },
+    { "q": "Pourquoi 'enlever 10 %' donne un résultat différent de simplement diviser par 1,1 ?", "a": "Enlever 10 % c'est bien diviser par 1,10. Soustraire 10 % (ex. 110 − 10 % = 99) est mathématiquement faux car les 10 % ont été appliqués sur le HT (100), pas sur le TTC (110)." },
+    { "q": "Puis-je calculer la TVA multi-étapes ?", "a": "Pas avec cet outil — on gère les scénarios à taux unique. Pour le B2B avec autoliquidation ou transactions à taux zéro, consulte un comptable ou un logiciel fiscal spécialisé." },
+    { "q": "Quel est le taux de TVA le plus bas ?", "a": "Certains pays ont des taux à 0 % sur les biens essentiels (taux super-réduit 2,1 % en France pour les médicaments remboursés et la presse). Utilise le taux applicable réel pour ta transaction." },
+    { "q": "Quel est le taux de TVA le plus élevé ?", "a": "La Hongrie à 27 %. La plupart des pays de l'UE sont à 19-25 %. Le Japon est comparativement bas à 10 %." },
+    { "q": "Est-ce que ça fonctionne pour la taxe de vente américaine ?", "a": "Oui — saisis le taux combiné État + local. La taxe de vente américaine se comporte comme une TVA à étape unique du point de vue du calculateur. Utilise le mode 'ajouter' pour le flux typique américain prix affiché → caisse." },
+    { "q": "Qu'en est-il des articles exonérés de TVA ?", "a": "Utilise un taux de 0 % pour les articles entièrement exonérés. Note : 'exonéré' et 'taux zéro' ont des différences juridiques dans certaines juridictions mais le même résultat dans le calculateur." },
+    { "q": "Les données quittent-elles mon navigateur ?", "a": "Non. Le calcul s'exécute localement ; rien n'est envoyé à un serveur." }
+  ]
+}

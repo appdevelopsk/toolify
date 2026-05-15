@@ -1,0 +1,111 @@
+{
+  "title": "Décodeur JWT (en-tête, charge utile, signature, expiration)",
+  "shortDescription": "Décode n'importe quel JWT (JSON Web Token) en parties en-tête, charge utile et signature. Met en évidence les tokens expirés. Navigateur uniquement — ton token ne quitte jamais ton appareil.",
+  "description": "Colle un JWT pour décoder instantanément l'en-tête et la charge utile en JSON. Reconnaît les claims standard (iat, exp, nbf) et convertit les timestamps Unix en ISO 8601. Signale les tokens expirés ou pas encore valides.",
+  "metaDescription": "Décodeur JWT gratuit. Inspecte l'en-tête, la charge utile, la présence de signature, l'expiration. Claims standard (iat/exp/nbf) auto-formatés.",
+  "keywords": [
+    "décodeur JWT",
+    "JSON Web Token",
+    "décoder JWT",
+    "inspecteur JWT",
+    "débogueur JWT"
+  ],
+  "input": {
+    "token": "Token JWT",
+    "privacyNote": "Décodé entièrement dans ton navigateur. Le token ne transite jamais sur le réseau."
+  },
+  "result": {
+    "header": "En-tête",
+    "payload": "Charge utile",
+    "signaturePresent": "Signature présente",
+    "issuedAt": "Émis le (iat)",
+    "expiresAt": "Expire le (exp)",
+    "notBefore": "Non valide avant (nbf)"
+  },
+  "warning": {
+    "expired": "⚠ Ce token a expiré. Les serveurs respectant exp le rejetteront.",
+    "notYetValid": "⚠ Pas encore valide (nbf est dans le futur). Les serveurs le rejetteront jusqu'à cette date."
+  },
+  "error": {
+    "label": "Erreur de décodage"
+  },
+  "copy": "Copier",
+  "article": {
+    "sections": [
+      {
+        "heading": "À quoi ressemble un JWT",
+        "paragraphs": [
+          "Un JWT est composé de trois segments encodés en Base64url joints par des points : en-tête.charge-utile.signature. Chaque segment est un objet JSON encodé pour une transmission sécurisée dans les URL. L'en-tête déclare l'algorithme de signature, la charge utile porte les claims (sujet, expiration, données personnalisées), et la signature permet au destinataire de vérifier l'intégrité s'il possède la clé.",
+          "Ce décodeur lit uniquement les deux premiers segments. La signature est le troisième segment, mais la vérifier nécessite la clé secrète/publique — c'est une opération séparée que nous n'effectuons pas ici."
+        ]
+      },
+      {
+        "heading": "Claims standard à connaître",
+        "paragraphs": [
+          "iss (issuer/émetteur) : qui a créé le token. iat (issued at/émis le) : quand, sous forme de timestamp Unix. exp (expiry/expiration) : quand il cesse d'être valide, aussi Unix. nbf (not before/pas avant) : le moment le plus tôt où il doit être honoré. sub (subject/sujet) : l'entité qu'il représente, souvent un identifiant utilisateur. aud (audience) : pour qui le token est destiné, généralement une URL de service.",
+          "Ils ne sont pas tous obligatoires ; les JWT minimaux ont souvent juste sub + iat + exp. Les claims personnalisés sont tout le reste — ils coexistent avec les claims standard dans la charge utile."
+        ]
+      },
+      {
+        "heading": "Pourquoi décoder ≠ vérifier",
+        "paragraphs": [
+          "N'importe qui peut décoder un JWT — l'en-tête et la charge utile sont simplement du JSON encodé en Base64. C'est pourquoi on dit « ne jamais mettre de secrets dans la charge utile » : ils sont effectivement publics.",
+          "La vérification consiste à contrôler la signature par rapport à la clé secrète (HMAC) ou à la clé publique (RSA/ECDSA). Sans vérification, tu ne peux faire confiance à aucun claim dans la charge utile — un attaquant peut créer n'importe quelle charge utile qu'il veut.",
+          "Utilise cet outil pour inspecter les tokens pendant le débogage. Utilise une bibliothèque JWT sur ton serveur pour les vérifier en production."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Colle le JWT",
+        "text": "Trois segments joints par des points."
+      },
+      {
+        "name": "Lis les parties décodées",
+        "text": "En-tête (algorithme), charge utile (claims), indicateur de présence de signature."
+      },
+      {
+        "name": "Vérifie l'expiration",
+        "text": "Les claims standard iat/exp/nbf sont auto-formatés en dates ISO et signalés s'ils sont expirés ou pas encore valides."
+      },
+      {
+        "name": "Copie si nécessaire",
+        "text": "Chaque section a un bouton de copie pour la sortie JSON."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Puis-je vérifier la signature ici ?",
+      "a": "Non — la vérification nécessite la clé secrète ou publique, qui ne devrait jamais quitter un environnement de confiance. Utilise une bibliothèque JWT côté serveur (jsonwebtoken pour Node, PyJWT pour Python, etc.)."
+    },
+    {
+      "q": "Le token quitte-t-il mon navigateur ?",
+      "a": "Jamais. Le décodage s'exécute localement ; nous n'avons pas d'endpoint serveur pour le recevoir."
+    },
+    {
+      "q": "Pourquoi mon token est-il « invalide » ?",
+      "a": "Courant : le copier-coller a ajouté/supprimé des espaces, l'un des trois segments est manquant, ou un segment est du Base64url malformé. Supprime les espaces et réessaie."
+    },
+    {
+      "q": "Qu'est-ce que Base64url vs Base64 ?",
+      "a": "Base64url remplace '+' par '-', '/' par '_', et omet le rembourrage '=' pour que la chaîne encodée soit sûre dans les URL et les en-têtes HTTP. Les JWT utilisent toujours Base64url."
+    },
+    {
+      "q": "Pourquoi ma charge utile Unicode affiche-t-elle du texte illisible ?",
+      "a": "Nous décodons en UTF-8, qui est le standard. Si la charge utile a été encodée différemment, le JSON.parse peut échouer. La plupart des émetteurs JWT encodent correctement en UTF-8."
+    },
+    {
+      "q": "HS256 est-il sécurisé ?",
+      "a": "Si le secret est suffisamment long (≥256 bits) et gardé secret, oui. Les vulnérabilités HS256 courantes sont les secrets faibles et l'acceptation de tokens avec alg='none'. Utilise des secrets aléatoires d'au moins 32 caractères et rejette 'none' explicitement."
+    },
+    {
+      "q": "Pourquoi préférer RS256 à HS256 ?",
+      "a": "RS256 (RSA asymétrique) te permet de publier une clé publique pour la vérification tout en gardant la clé de signature privée. HS256 (HMAC symétrique) nécessite de partager le secret avec chaque vérificateur. Pour les architectures multi-services, RS256 est plus sûr."
+    },
+    {
+      "q": "Puis-je décoder des tokens très volumineux ?",
+      "a": "La limite pratique est ~10 Mo d'entrée ; au-delà, le navigateur peut ralentir. Les JWT font généralement moins de 4 Ko ; si le tien est plus grand, demande-toi si tu stockes trop de données dans les claims."
+    }
+  ]
+}

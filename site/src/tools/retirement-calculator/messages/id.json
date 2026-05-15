@@ -1,0 +1,65 @@
+{
+  "title": "Kalkulator Pensiun (proyeksi majemuk + disesuaikan inflasi)",
+  "shortDescription": "Proyeksikan tabungan pensiun Anda dengan kontribusi bulanan, perkiraan imbal hasil, dan inflasi. Menampilkan saldo nominal, nilai dalam rupiah saat ini, dan pendapatan bulanan aturan 4%.",
+  "description": "Masukkan usia Anda saat ini, usia pensiun target, tabungan saat ini, kontribusi bulanan, imbal hasil tahunan yang diharapkan, dan tingkat inflasi. Kalkulator memproyeksikan pertumbuhan majemuk dan menerapkan aturan 4% untuk penarikan yang berkelanjutan.",
+  "metaDescription": "Kalkulator pensiun gratis. Kontribusi bulanan majemuk selama beberapa dekade, sesuaikan inflasi ke rupiah saat ini, dan terapkan aturan 4% untuk pendapatan berkelanjutan.",
+  "keywords": ["kalkulator pensiun", "tabungan pensiun", "kalkulator DPLK", "kalkulator FIRE", "pensiun disesuaikan inflasi"],
+  "input": {
+    "currentAge": "Usia saat ini",
+    "retireAge": "Usia pensiun",
+    "currentSaved": "Tabungan saat ini",
+    "monthly": "Kontribusi bulanan",
+    "returnPct": "Imbal hasil tahunan %",
+    "inflationPct": "Inflasi tahunan %"
+  },
+  "result": {
+    "nominalBalance": "Saldo yang diproyeksikan",
+    "realBalance": "Dalam rupiah saat ini",
+    "contributed": "Total yang dikontribusikan",
+    "growth": "Pertumbuhan investasi",
+    "monthly4pct": "Pendapatan bulanan (aturan 4%)",
+    "yearsLabel": "thn"
+  },
+  "empty": "Isi semua kolom untuk memproyeksikan tabungan pensiun.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara proyeksi bekerja",
+        "paragraphs": [
+          "Kami memajemukkan saldo awal Anda ditambah setiap kontribusi bulanan pada tingkat imbal hasil tahunan. Matematikanya rekursif: saldo(bulan+1) = saldo(bulan) × (1 + tingkat_bulanan) + kontribusi_bulanan. Selama beberapa dekade, bahkan jumlah bulanan yang sederhana tumbuh secara signifikan karena pemajemukan — imbal hasil atas imbal hasil sebelumnya terus berbunga.",
+          "Kami juga memproyeksikan nilai 'rupiah saat ini' dengan mendeflasikan saldo nominal menggunakan tingkat inflasi Anda. Rp1 miliar dalam 30 tahun tidak sebanding Rp1 miliar hari ini — pada inflasi 3%, Rp1 miliar dalam 30 tahun memiliki daya beli sekitar Rp411 juta hari ini. Angka rupiah saat ini adalah yang harus Anda bandingkan dengan biaya hidup saat ini."
+        ]
+      },
+      {
+        "heading": "Tingkat imbal hasil yang harus diasumsikan",
+        "paragraphs": [
+          "Rata-rata historis reksa dana saham Indonesia (IHSG) adalah sekitar 8-12% nominal atau 5-8% riil (setelah inflasi) selama periode sangat panjang. Untuk proyeksi pensiun mulai dari 25 tahun ke depan, 6-8% nominal adalah angka yang wajar. Di bawah 5% terlalu konservatif untuk jangka panjang; di atas 9% optimistis mengingat kondisi pasar.",
+          "Semakin dekat ke pensiun, portofolio biasanya semakin konservatif (lebih banyak obligasi, lebih sedikit saham). Untuk jendela 5-10 tahun sebelum pensiun, imbal hasil yang diharapkan turun menjadi 4-6% seiring alokasi obligasi meningkat. Kalkulator ini menggunakan satu tingkat untuk seluruh horizon — untuk proyeksi yang lebih nuansa, jalankan skenario dengan tingkat berbeda."
+        ]
+      },
+      {
+        "heading": "Aturan 4%",
+        "paragraphs": [
+          "Aturan 4% (Studi Trinity, 1998) menyatakan bahwa Anda dapat menarik 4% tabungan pensiun Anda secara aman di tahun pertama, kemudian menyesuaikan ke atas untuk inflasi setiap tahun, dengan probabilitas sangat tinggi tidak kehabisan selama 30 tahun. Jadi tabungan pensiun Rp1 miliar mendukung Rp40 juta/tahun (atau sekitar Rp3,3 juta/bulan) pengeluaran yang disesuaikan inflasi.",
+          "Aturan ini memiliki keterbatasan — didasarkan pada kinerja historis saham/obligasi AS dan mungkin terlalu optimistis untuk beberapa skenario masa depan. Beberapa ahli kini merekomendasikan 3-3,5% untuk keamanan. Untuk pensiun dini (FIRE) dengan horizon 50+ tahun, 3% lebih konservatif. Gunakan angka 4% sebagai pemeriksaan kasar, bukan jaminan."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Masukkan usia saat ini dan pensiun", "text": "Perbedaannya adalah horizon investasi Anda." },
+      { "name": "Masukkan saldo awal dan kontribusi bulanan", "text": "DPLK, reksa dana, atau tabungan lain yang disisihkan untuk pensiun." },
+      { "name": "Atur tingkat imbal hasil dan inflasi", "text": "Default yang wajar: 7% imbal hasil (jangka panjang saham), 3% inflasi (target BI)." },
+      { "name": "Baca kedua proyeksi", "text": "Nominal adalah jumlah rupiah aktual; rupiah saat ini adalah daya beli riilnya." }
+    ]
+  },
+  "faq": [
+    { "q": "Tingkat imbal hasil berapa yang harus saya gunakan?", "a": "Untuk horizon 25+ tahun dalam portofolio berbobot saham yang terdiversifikasi: 6-7%. Untuk horizon lebih pendek atau campuran lebih konservatif: 4-5%. Asumsi hanya saham: 7-8%. Gunakan imbal hasil riil historis (setelah inflasi) — sekitar 5-7% untuk saham jangka panjang." },
+    { "q": "Mengapa rupiah saat ini penting?", "a": "Rp2 miliar dalam 35 tahun terdengar luar biasa tetapi pada inflasi 3% nilainya sekitar Rp700 juta hari ini. Angka rupiah saat ini memberi tahu Anda apa yang akan dibeli tabungan pensiun Anda dalam nilai saat ini — berguna untuk merencanakan pengeluaran saat ini vs masa depan." },
+    { "q": "Haruskah saya menggunakan kontribusi sebelum atau sesudah pajak?", "a": "Tergantung jenis akun. DPLK/iuran pra-pajak (Anda akan membayar pajak saat penarikan). Untuk akun tradisional, saldo pensiun Anda adalah kotor — Anda akan kehilangan sebagian untuk pajak selama pensiun." },
+    { "q": "Bagaimana jika saya mendapat kenaikan gaji dan meningkatkan kontribusi?", "a": "Jalankan kalkulator beberapa kali untuk setiap fase, atau gunakan kontribusi konstan yang mendekati rata-rata Anda. Kontribusi di dunia nyata sering tumbuh seiring gaji; kalkulator menggunakan angka tetap." },
+    { "q": "Apakah ini memperhitungkan dana pensiun BPJS?", "a": "Tidak. BPJS Ketenagakerjaan (JHT, JP) adalah aliran pendapatan terpisah. Proyeksikan tabungan pensiun pribadi di sini, lalu tambahkan estimasi BPJS untuk perencanaan pendapatan pensiun total." },
+    { "q": "Apa itu 'tingkat penarikan aman'?", "a": "Secara tradisional 4% (Studi Trinity). Untuk pensiun panjang (FIRE, 40+ tahun), 3-3,5% lebih aman. Kalkulator menampilkan 4% secara default; sesuaikan target bulanan Anda jika Anda menginginkan tingkat berbeda." },
+    { "q": "Berapa banyak yang saya butuhkan untuk pensiun?", "a": "Aturan praktis: 25× kebutuhan pengeluaran tahunan Anda (kebalikan dari aturan 4%). Menghabiskan Rp50 juta/tahun dalam rupiah saat ini? Butuh Rp1,25 miliar dalam rupiah saat ini." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Semua matematika proyeksi berjalan secara lokal; tidak ada yang dikirim ke server mana pun." }
+  ]
+}

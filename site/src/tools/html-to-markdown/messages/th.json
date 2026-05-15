@@ -1,0 +1,96 @@
+{
+  "title": "ตัวแปลง HTML เป็น Markdown",
+  "shortDescription": "แปลง HTML เป็น Markdown ในเบราว์เซอร์ หัวเรื่อง รายการ โค้ด ลิงก์ รูปภาพ blockquote ตัวหนา/เอียง/ขีดทับ",
+  "description": "วาง HTML แล้วได้ Markdown สะอาด มีประโยชน์สำหรับการย้าย CMS content การ scrape บทความ หรือแปลง WYSIWYG output เป็น Markdown ธรรมดาสำหรับ static site",
+  "metaDescription": "ตัวแปลง HTML เป็น Markdown ฟรี หัวเรื่อง รายการ code block ลิงก์ blockquote ตัวหนา/เอียง Output",
+  "keywords": [
+    "html เป็น markdown",
+    "html เป็น md",
+    "ตัวแปลง markdown",
+    "ลบ tag html",
+    "wysiwyg เป็น markdown"
+  ],
+  "input": {
+    "html": "HTML"
+  },
+  "output": {
+    "markdown": "Markdown output"
+  },
+  "copy": "คัดลอก Markdown",
+  "copied": "คัดลอกแล้ว!",
+  "article": {
+    "sections": [
+      {
+        "heading": "สิ่งที่ถูกแปลง",
+        "paragraphs": [
+          "หัวเรื่อง (h1-h6) กลายเป็น # ถึง ###### <strong>/<b> กลายเป็น **ตัวหนา** <em>/<i> กลายเป็น *ตัวเอียง* <code> กลายเป็น `inline code`, <pre><code> กลายเป็น fenced ``` block <ul>/<ol> กลายเป็นรายการ - หรือ 1. <a href> กลายเป็น [ข้อความ](url), <img src alt> กลายเป็น ![alt](url) <blockquote> กลายเป็น >, <hr> กลายเป็น --- <br> กลายเป็นบรรทัดใหม่",
+          "สิ่งที่ไม่รู้จัก (HTML กำหนดเอง เช่น <details>, <table>, <video> ฯลฯ) จะถูกลบ tag แต่เนื้อหาข้อความถูกเก็บไว้ สำหรับ HTML ซับซ้อนที่มีตาราง หรือสื่อ คาดว่าจะสูญเสียบางส่วน"
+        ]
+      },
+      {
+        "heading": "กรณีการใช้งานทั่วไป",
+        "paragraphs": [
+          "การย้าย CMS: คัดลอก HTML จาก WYSIWYG ออกจาก WordPress, Wix ฯลฯ และแปลงเป็น Markdown สะอาดสำหรับใช้ใน static-site generator (Hugo, Jekyll, Next.js, Astro)",
+          "การเก็บบทความ: บันทึกบทความเว็บเป็น Markdown สำหรับการอ่านส่วนตัว รวมกับ extractor ที่รองรับ paywall (HTML ใน Reader mode) สำหรับ output ข้อความเท่านั้นที่สะอาด",
+          "อีเมลเป็น Markdown: วาง HTML email content แล้วได้เวอร์ชัน Markdown สำหรับ cross-posting ไปยัง blog"
+        ]
+      },
+      {
+        "heading": "ข้อจำกัด",
+        "paragraphs": [
+          "ตาราง: ไม่แปลง (ตาราง Markdown เป็น GFM ไม่ใช่ CommonMark) ตารางถูกแปลงเป็นข้อความธรรมดา สำหรับตารางซับซ้อน วางเป็น HTML แทน",
+          "Inline style: สี ฟอนต์ หรือ layout ผ่าน <style> หรือ attribute style='' สูญหาย Markdown มีความตั้งใจให้ minimal",
+          "รายการซ้อน: รายการระดับเดียวง่าย ๆ ทำงานได้ รายการที่ซ้อนลึกอาจรวมหรือสูญเสียโครงสร้าง สำหรับ outline ซับซ้อน แก้ไขด้วยตนเองหลังแปลง"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "วาง HTML",
+        "text": "จากแหล่งใด ๆ — WordPress export, บทความเว็บที่คัดลอก ฯลฯ"
+      },
+      {
+        "name": "อ่าน Markdown output",
+        "text": "อัปเดตแบบ live ขณะแก้ไข"
+      },
+      {
+        "name": "คัดลอกและวางที่อื่น",
+        "text": "Output เป็น Markdown ธรรมดาพร้อมสำหรับ static site หรือ markdown editor ใด ๆ"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "รักษาการจัดรูปแบบอย่างสมบูรณ์หรือไม่?",
+      "a": "สำหรับองค์ประกอบที่เข้ากันได้กับ CommonMark: ใช่ สำหรับฟีเจอร์เฉพาะ HTML (CSS กำหนดเอง layout ซับซ้อน): ไม่ Markdown มีความตั้งใจให้เป็น subset"
+    },
+    {
+      "q": "ตารางถูกแปลงหรือไม่?",
+      "a": "ยังไม่ได้ ตารางกลายเป็นข้อความธรรมดา เราอาจเพิ่มการแปลงตาราง GFM ในเวอร์ชันอนาคต"
+    },
+    {
+      "q": "ลิงก์ของฉันจะรอดการแปลงหรือไม่?",
+      "a": "ใช่ <a href='url'>ข้อความ</a> กลายเป็น [ข้อความ](url) attribute href ถูกเก็บไว้"
+    },
+    {
+      "q": "แล้ว inline style ล่ะ?",
+      "a": "ถูกลบออก Markdown ไม่รองรับการจัดรูปแบบตามอำเภอใจ — นั่นเป็นความตั้งใจ"
+    },
+    {
+      "q": "จะแปลงกลับเป็น HTML ได้อย่างไร?",
+      "a": "ใช้ตัวแปลง Markdown เป็น HTML ของเรา (ลิงก์ใต้ Related Tools)"
+    },
+    {
+      "q": "Output ปลอดภัยที่จะวางที่ไหนก็ได้หรือไม่?",
+      "a": "เป็นข้อความสะอาด — ไม่มี script ไม่มี HTML — ดังนั้นปลอดภัยสำหรับ markdown editor หรือช่องข้อความใด ๆ ตรวจสอบก่อนเผยแพร่ถ้า input มาจากแหล่งที่ไม่น่าเชื่อถือ"
+    },
+    {
+      "q": "ทำไมเนื้อหาบางส่วนถึงหายไป?",
+      "a": "HTML element กำหนดเองหรือไม่ได้มาตรฐานอาจถูกลบ วาง HTML snippet ของ <details>, <video> หรือ tag เฉพาะ framework เพื่อยืนยัน"
+    },
+    {
+      "q": "ข้อมูลออกจากเบราว์เซอร์หรือไม่?",
+      "a": "ไม่ การแปลงทำงานในเครื่อง HTML ของคุณไม่เคยถูกส่งไปที่ไหน"
+    }
+  ]
+}

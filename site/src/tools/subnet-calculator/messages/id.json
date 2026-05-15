@@ -1,0 +1,70 @@
+{
+  "title": "Kalkulator Subnet IPv4 (CIDR, mask, host)",
+  "shortDescription": "Hitung alamat jaringan, broadcast, rentang host, netmask, wildcard, total/host yang dapat digunakan dari IPv4 + CIDR apapun. Termasuk representasi biner dan deteksi kelas.",
+  "description": "Ketik alamat IPv4 dengan CIDR opsional (misalnya, 192.168.1.10/24). Mengembalikan alamat jaringan, broadcast, host pertama/terakhir yang dapat digunakan, total alamat, netmask, wildcard, kelas IP, status publik/privat, dan representasi biner.",
+  "metaDescription": "Kalkulator subnet IPv4 gratis. CIDR, netmask, wildcard, jaringan/broadcast, rentang host, total/host yang dapat digunakan, deteksi publik/privat. Dengan tampilan biner.",
+  "keywords": ["kalkulator subnet", "kalkulator cidr", "subnet ipv4", "kalkulator netmask", "kalkulator alamat ip"],
+  "input": {
+    "cidr": "Alamat IP / CIDR",
+    "hint": "Format: 192.168.1.10/24 (CIDR opsional, default ke /24)"
+  },
+  "result": {
+    "network": "Jaringan",
+    "ip": "Alamat IP",
+    "netmask": "Subnet mask",
+    "wildcard": "Wildcard mask",
+    "networkAddr": "Alamat jaringan",
+    "broadcast": "Broadcast",
+    "hostMin": "Host pertama yang dapat digunakan",
+    "hostMax": "Host terakhir yang dapat digunakan",
+    "totalAddresses": "Total alamat",
+    "usableHosts": "Host yang dapat digunakan",
+    "ipClass": "Kelas IP",
+    "private": "Privat RFC 1918",
+    "binary": "Biner"
+  },
+  "empty": "Masukkan alamat IPv4 dengan /CIDR opsional.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa arti notasi CIDR",
+        "paragraphs": [
+          "CIDR (Classless Inter-Domain Routing) adalah garis miring + angka setelah alamat IP — '192.168.1.10/24'. Angkanya adalah berapa banyak bit di awal alamat yang termasuk bagian jaringan (vs bagian host). /24 berarti 24 bit jaringan = 8 bit host = 256 total alamat, 254 yang dapat digunakan.",
+          "CIDR umum: /32 host tunggal, /30 tautan (4 alamat, 2 yang dapat digunakan), /29 subnet kecil (8/6), /24 LAN (256/254), /16 jaringan besar (65rb), /8 blok skala ISP (16 juta). Semakin kecil angka CIDR, semakin besar jaringannya."
+        ]
+      },
+      {
+        "heading": "Jaringan, broadcast, dan host yang dapat digunakan",
+        "paragraphs": [
+          "Alamat jaringan: alamat pertama dalam subnet, dengan semua bit host nol. Digunakan untuk mengidentifikasi subnet itu sendiri; tidak dapat ditetapkan ke perangkat.",
+          "Alamat broadcast: alamat terakhir, dengan semua bit host satu. Digunakan untuk mengirim paket ke setiap host dalam subnet; tidak dapat ditetapkan.",
+          "Host yang dapat digunakan: total alamat dikurangi jaringan dan broadcast = 2^(32−CIDR) − 2. Pengecualian: /31 (tautan point-to-point) dan /32 (host tunggal) memperlakukan semua alamat sebagai yang dapat digunakan sesuai RFC 3021."
+        ]
+      },
+      {
+        "heading": "Alamat publik vs privat",
+        "paragraphs": [
+          "RFC 1918 menyisihkan tiga rentang alamat untuk jaringan internal privat: 10.0.0.0/8 (16 juta alamat), 172.16.0.0/12 (1 juta), 192.168.0.0/16 (65rb). Sebagian besar router rumah dan kantor menggunakan sebagian dari ini (biasanya 192.168.1.0/24 atau 192.168.0.0/24).",
+          "Alamat publik dapat dirutekan di internet global dan ditetapkan oleh registri regional (ARIN, RIPE, APNIC, APJII untuk Indonesia, dll.). Semakin langka seiring kelelahan IPv4 — ini mendorong adopsi CIDR dan deployment IPv6.",
+          "Kalkulator mendeteksi apakah suatu alamat jatuh dalam rentang privat; berguna untuk memverifikasi desain jaringan atau mengonfirmasi bahwa kebocoran tidak mengirimkan alamat privat ke internet."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Ketik alamat", "text": "Dengan atau tanpa /CIDR. Jika CIDR dihilangkan, /24 diasumsikan." },
+      { "name": "Baca info jaringan", "text": "Alamat jaringan, broadcast, rentang host, mask, wildcard." },
+      { "name": "Periksa kelas dan status privat", "text": "Verifikasi cepat jenis ruang alamat." },
+      { "name": "Gunakan tampilan biner untuk debugging", "text": "Membantu saat Anda perlu bernalar tentang operasi tingkat bit atau menyelaraskan subnet." }
+    ]
+  },
+  "faq": [
+    { "q": "Mengapa host yang dapat digunakan 2 lebih sedikit dari total?", "a": "Alamat pertama (semua bit host 0) adalah pengidentifikasi jaringan dan yang terakhir (semua 1) adalah broadcast. Keduanya disiapkan dan tidak dapat ditetapkan ke host." },
+    { "q": "Mengapa /31 memiliki 2 host yang dapat digunakan alih-alih 0?", "a": "RFC 3021 mengizinkan jaringan /31 untuk tautan point-to-point (misalnya, antara router). Kedua alamat dapat digunakan; reservasi broadcast dan jaringan tidak berlaku." },
+    { "q": "Apa perbedaan antara netmask dan wildcard?", "a": "Netmask memiliki 1 di bit jaringan, 0 di bit host (255.255.255.0). Wildcard adalah kebalikannya (0.0.0.255) — digunakan dalam ACL Cisco dan definisi area OSPF." },
+    { "q": "Bagaimana cara men-subnet jaringan?", "a": "Ambil jaringan induk dan bagi menjadi blok lebih kecil dengan menambahkan bit ke CIDR. /24 → /25 dibagi menjadi 2 subnet, /24 → /26 menjadi 4, dll. Berguna untuk memisahkan departemen atau mengisolasi jaringan IoT/tamu." },
+    { "q": "Apa subnet terkecil yang bisa saya miliki?", "a": "/32 — satu alamat IP tunggal. /31 adalah subnet 'normal' terkecil (2 alamat). /30 umum untuk tautan router-ke-router (4/2 yang dapat digunakan)." },
+    { "q": "Apakah ini bekerja untuk IPv6?", "a": "Belum — hanya IPv4. Subnet IPv6 secara konseptual serupa tetapi menggunakan alamat 128-bit, notasi heks, dan konvensi berbeda. Kami mungkin menambahkan IPv6 di versi mendatang." },
+    { "q": "Apa subnet tunggal terbesar yang mungkin?", "a": "/0 mencakup semua 4,3 miliar alamat IPv4 — seluruh ruang alamat IPv4. /1 dibagi menjadi dua setengah. /8 adalah 16 juta dan secara historis merupakan satu blok 'kelas A' (misalnya, 10.0.0.0/8)." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

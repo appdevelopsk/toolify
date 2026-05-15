@@ -1,0 +1,61 @@
+{
+  "title": "Kalkulator ROI (Return on Investment + Disetahunkan)",
+  "shortDescription": "Hitung persentase return on investment (ROI) dan imbal hasil disetahunkan untuk periode kepemilikan apapun. Cocok untuk investasi apapun: saham, properti, bisnis, proyek sampingan.",
+  "description": "Masukkan investasi awal, total imbal hasil, dan periode kepemilikan dalam tahun. Mengembalikan ROI%, imbal hasil disetahunkan (CAGR)%, dan laba absolut. Cocok untuk horizon waktu apapun.",
+  "metaDescription": "Kalkulator ROI gratis dengan imbal hasil disetahunkan (CAGR). Bandingkan investasi di berbagai periode kepemilikan pada skala yang sama.",
+  "keywords": ["kalkulator ROI", "return on investment", "imbal hasil disetahunkan", "kalkulator CAGR", "imbal hasil investasi"],
+  "input": {
+    "investment": "Investasi awal",
+    "returns": "Nilai akhir (atau total imbal hasil)",
+    "holdYears": "Periode kepemilikan (tahun)"
+  },
+  "result": {
+    "roi": "ROI",
+    "annualized": "Disetahunkan (CAGR)",
+    "profit": "Laba absolut"
+  },
+  "empty": "Masukkan investasi awal dan nilai akhir.",
+  "article": {
+    "sections": [
+      {
+        "heading": "ROI vs imbal hasil disetahunkan",
+        "paragraphs": [
+          "ROI (Return on Investment) = (nilai akhir − awal) / awal × 100%. Sederhana, berguna saat membandingkan investasi yang dipegang untuk periode yang sama. ROI 50% dalam 1 tahun jauh lebih baik dari ROI 50% dalam 10 tahun — tetapi ROI saja tidak menunjukkan itu.",
+          "Imbal hasil disetahunkan (juga disebut CAGR — Compound Annual Growth Rate) menormalisasi ROI ke angka tahunan. ROI 21% selama 2 tahun adalah imbal hasil disetahunkan 10%. ROI 100% selama 7 tahun juga merupakan imbal hasil disetahunkan 10%. CAGR memungkinkan perbandingan apple-to-apple."
+        ]
+      },
+      {
+        "heading": "Kapan menggunakan masing-masing",
+        "paragraphs": [
+          "ROI: terbaik saat membandingkan investasi pada tanggal yang sama atau dengan akhir yang sama. 'Saya membeli saham A dan saham B di Januari, berapa ROI mereka hari ini?' adalah perbandingan yang adil.",
+          "CAGR: terbaik saat membandingkan investasi yang dipegang untuk durasi berbeda. 'Properti saya memberikan 80% dalam 5 tahun; saham saya memberikan 30% dalam 2 tahun. Mana yang berkinerja lebih baik?' Hitung CAGR keduanya: properti = 12,5% disetahunkan, saham = 14% disetahunkan — saham menang (per tahun).",
+          "Untuk investasi di mana Anda menginvestasikan kembali atau menambahkan dari waktu ke waktu, tidak ada metrik yang cukup — gunakan IRR (internal rate of return) yang memperhitungkan arus kas tidak teratur. Spreadsheet memiliki fungsi IRR bawaan."
+        ]
+      },
+      {
+        "heading": "Apa 'imbal hasil' yang harus digunakan",
+        "paragraphs": [
+          "Gunakan nilai akhir atau total imbal hasil yang diterima. Untuk saham: sertakan dividen jika Anda menginvestasikannya kembali; atau perlakukan dividen + harga akhir sebagai 'imbal hasil' jika Anda mengambilnya sebagai tunai.",
+          "Untuk properti: sertakan pendapatan sewa (jika properti sewaan) ditambah harga jual. Kurangi perbaikan, pajak, biaya dari total imbal hasil untuk ROI bersih.",
+          "Untuk bisnis / proyek sampingan: imbal hasil = pendapatan dikurangi semua pengeluaran (bukan hanya kotor). Jika tidak, Anda menghitung ROI pada angka yang meningkat."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Masukkan investasi awal", "text": "Apa yang Anda masukkan di awal." },
+      { "name": "Masukkan nilai akhir atau total imbal hasil", "text": "Apa yang Anda dapatkan (atau bisa dapatkan hari ini)." },
+      { "name": "Masukkan periode kepemilikan dalam tahun", "text": "Digunakan untuk perhitungan disetahunkan. Gunakan desimal untuk tahun parsial (0,5 = 6 bulan)." },
+      { "name": "Baca kedua metrik", "text": "Total ROI dan imbal hasil disetahunkan. Bandingkan dengan investasi lain untuk konteks." }
+    ]
+  },
+  "faq": [
+    { "q": "Apa ROI yang 'baik'?", "a": "Konteks penting. IHSG jangka panjang: ~8-12% CAGR nominal. Properti: 8-10% CAGR gabungan. Apapun di atas inflasi (~3%) adalah pertumbuhan riil. Di bawah itu: Anda kehilangan daya beli." },
+    { "q": "Apakah ROI memperhitungkan risiko?", "a": "Tidak. Dua investasi dengan ROI yang sama dapat memiliki tingkat risiko yang sangat berbeda. Obligasi yang menghasilkan 5% dan startup yang memberikan 5% tidak setara — startup memiliki ~50% kemungkinan nol. Selalu pertimbangkan imbal hasil yang disesuaikan risiko (Sharpe ratio, dll.)." },
+    { "q": "Mengapa imbal hasil disetahunkan lebih rendah dari total ROI untuk kepemilikan panjang?", "a": "Pemajemukan. Total 100% selama 10 tahun hanya 7,18% disetahunkan — separuh waktu yang diperlukan untuk menggandakan uang Anda melalui aturan 72 (72/10 = 7,2)." },
+    { "q": "Haruskah saya mengurangi pajak untuk ROI yang akurat?", "a": "Untuk ROI setelah pajak, ya. Untuk membandingkan investasi sebelum pajak, gunakan imbal hasil kotor. Konsistenlah — jangan membandingkan imbal hasil akun bebas pajak dengan imbal hasil kotor akun kena pajak." },
+    { "q": "Apa perbedaan antara CAGR dan IRR?", "a": "CAGR mengasumsikan satu investasi awal dan satu nilai akhir. IRR menangani arus kas tidak teratur — beberapa setoran, dividen, penarikan dari waktu ke waktu. CAGR ≈ IRR untuk beli-dan-tahan sederhana." },
+    { "q": "Bisakah saya menggunakan ini untuk penjualan bisnis?", "a": "Ya. 'Investasi' = total dasar biaya (harga beli ditambah perbaikan modal). 'Imbal hasil' = hasil penjualan ditambah laba kumulatif yang didistribusikan selama kepemilikan." },
+    { "q": "Bagaimana ROI berbeda dari margin laba?", "a": "ROI adalah imbal hasil dibagi modal yang diinvestasikan. Margin laba adalah laba dibagi pendapatan. Mereka mengukur hal yang berbeda: ROI = seberapa baik penggunaan modal, margin = seberapa menguntungkan setiap penjualan." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

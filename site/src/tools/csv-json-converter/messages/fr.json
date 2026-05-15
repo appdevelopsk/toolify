@@ -1,0 +1,115 @@
+{
+  "title": "Convertisseur CSV ↔ JSON (conforme RFC 4180)",
+  "shortDescription": "Convertit CSV en JSON ou JSON en CSV. Délimiteur configurable (virgule/point-virgule/tabulation/pipe), activation des en-têtes, gestion des champs entre guillemets RFC 4180.",
+  "description": "Colle du CSV ou du JSON. Le convertisseur analyse le CSV conforme RFC 4180 (gère les champs entre guillemets avec des virgules, les guillemets échappés, les valeurs multiligne). Pour JSON vers CSV, accepte à la fois les tableaux d'objets (utilise les clés comme en-têtes) et les tableaux de tableaux.",
+  "metaDescription": "Convertisseur CSV ↔ JSON gratuit. Conforme RFC 4180, délimiteur configurable, activation des en-têtes. Tout dans le navigateur — tes données ne quittent jamais ton",
+  "keywords": [
+    "CSV vers JSON",
+    "JSON vers CSV",
+    "convertisseur CSV",
+    "convertisseur JSON",
+    "RFC 4180"
+  ],
+  "direction": {
+    "csvToJson": "CSV → JSON",
+    "jsonToCsv": "JSON → CSV"
+  },
+  "input": {
+    "csv": "Entrée CSV",
+    "json": "Entrée JSON",
+    "delimiter": "Délimiteur",
+    "headerRow": "La première ligne est un en-tête"
+  },
+  "delim": {
+    "comma": "Virgule (,)",
+    "semicolon": "Point-virgule (;)",
+    "tab": "Tabulation",
+    "pipe": "Pipe (|)"
+  },
+  "output": "Sortie",
+  "empty": "Entre une entrée pour voir la sortie convertie.",
+  "error": {
+    "label": "Erreur de conversion"
+  },
+  "copy": "Copier",
+  "article": {
+    "sections": [
+      {
+        "heading": "Pourquoi RFC 4180 est important",
+        "paragraphs": [
+          "Le CSV semble simple mais a des cas limites : un champ contenant une virgule doit être entre guillemets ; un champ contenant des guillemets doit les échapper en les doublant ; un champ peut contenir des sauts de ligne s'il est entre guillemets. Les analyseurs naïfs qui divisent sur les virgules cassent sur des données du monde réel. Ce convertisseur implémente exactement la grammaire RFC 4180.",
+          "Les analyseurs naïfs cassent aussi sur les exports Excel qui utilisent des points-virgules (courant dans les paramètres régionaux européens où ',' est le séparateur décimal) ou des tabulations (TSV). Le menu déroulant des délimiteurs gère les quatre variantes courantes."
+        ]
+      },
+      {
+        "heading": "Formes JSON pour la sortie",
+        "paragraphs": [
+          "Tableau d'objets (par défaut avec ligne d'en-tête) : chaque ligne devient {colonne: valeur}. La forme JSON la plus courante, facile à consommer dans n'importe quel langage.",
+          "Tableau de tableaux (ligne d'en-tête désactivée) : chaque ligne devient [v1, v2, ...]. Utile quand les colonnes ne sont pas nommées ou que tu veux une structure positionnelle.",
+          "En allant de JSON à CSV, le convertisseur détecte quelle forme tu as. Objets : extrait les clés uniques de toutes les lignes pour les en-têtes. Tableaux : écrit les lignes telles quelles."
+        ]
+      },
+      {
+        "heading": "Pièges courants",
+        "paragraphs": [
+          "Paramètres régionaux Excel : dans certaines installations Excel européennes, le délimiteur par défaut est ';' pas ','. Si ton CSV ressemble à une seule colonne géante lors de l'importation, passe à ; dans le menu déroulant des délimiteurs.",
+          "BOM (Byte Order Mark) : certains exports Excel préfixent le fichier avec U+FEFF. Nous le transmettons tel quel ; si ton analyseur en aval échoue, supprime les 3 premiers octets.",
+          "Saut de ligne final : un CSV se terminant par '\\n' ajoute une dernière ligne vide dans certains analyseurs ; nous filtrons automatiquement les lignes vides.",
+          "Nombres comme chaînes : CSV n'a pas de types — '42' devient la chaîne \"42\" en JSON. Si tu as besoin de valeurs typées, effectue une étape de post-traitement qui convertit les colonnes numériques connues."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis la direction",
+        "text": "CSV → JSON ou JSON → CSV."
+      },
+      {
+        "name": "Définis le délimiteur",
+        "text": "Virgule (défaut), point-virgule, tabulation ou pipe."
+      },
+      {
+        "name": "Active/désactive la ligne d'en-tête",
+        "text": "Activé pour un JSON en forme d'objet, désactivé pour un tableau de tableaux."
+      },
+      {
+        "name": "Colle tes données",
+        "text": "La sortie se met à jour en direct. Clique sur 'Copier' pour copier le résultat dans le presse-papiers."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Gère-t-il les champs entre guillemets avec des virgules ?",
+      "a": "Oui — les guillemets RFC 4180 sont entièrement pris en charge. \"Dupont, Jean\" est analysé comme un seul champ."
+    },
+    {
+      "q": "Comment les guillemets échappés sont-ils gérés ?",
+      "a": "Selon RFC 4180, un '\"' littéral dans un champ entre guillemets s'écrit '\"\"' (deux guillemets). L'analyseur gère cela correctement."
+    },
+    {
+      "q": "Les champs peuvent-ils contenir des sauts de ligne ?",
+      "a": "Oui, lorsqu'ils sont entre guillemets. \"ligne 1\\nligne 2\" entre guillemets est traité comme un seul champ avec saut de ligne intégré."
+    },
+    {
+      "q": "Prend-il en charge le BOM (UTF-8) ?",
+      "a": "Le BOM est transmis tel quel. Si ton consommateur en aval ne le tolère pas, supprime les 3 premiers octets (EF BB BF) du CSV."
+    },
+    {
+      "q": "Qu'en est-il des fichiers volumineux ?",
+      "a": "Le navigateur gère quelques Mo sans problème. Pour les très grands CSV (100 Mo+), utilise un analyseur en streaming comme Papa Parse avec un worker, ou un outil CLI."
+    },
+    {
+      "q": "Les nombres sont-ils préservés comme nombres ?",
+      "a": "CSV → JSON : toutes les valeurs deviennent des chaînes (CSV n'a pas de types). JSON → CSV : les nombres deviennent des cellules CSV non entre guillemets. Pour obtenir un JSON typé, post-traite les colonnes que tu sais être numériques."
+    },
+    {
+      "q": "Pourquoi mon JSON affiche-t-il des chaînes vides au lieu de null ?",
+      "a": "CSV représente les valeurs manquantes sous forme de cellules vides. Nous les mappons en chaînes vides. Pour obtenir null en JSON, post-traite la sortie."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. La conversion s'effectue localement ; rien n'est envoyé à un serveur."
+    }
+  ]
+}

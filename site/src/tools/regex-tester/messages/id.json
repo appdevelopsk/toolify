@@ -1,0 +1,109 @@
+{
+  "title": "Penguji Regex (pencocokan langsung, grup, penggantian)",
+  "shortDescription": "Uji ekspresi reguler JavaScript secara interaktif. Lihat pencocokan yang disorot secara langsung, grup penangkapan, dan pratinjau penggantian.",
+  "description": "Ketik regex dan teks uji — pencocokan disorot secara langsung saat Anda mengetik. Aktifkan flag (g/i/m/s/u), periksa grup penangkapan, dan pratinjau penggantian.",
+  "metaDescription": "Penguji regex JavaScript gratis dengan penyorotan langsung, grup penangkapan, grup bernama, dan pratinjau penggantian.",
+  "keywords": [
+    "penguji regex",
+    "penguji ekspresi reguler",
+    "regex JavaScript",
+    "pencocokan regex",
+    "penggantian regex"
+  ],
+  "input": {
+    "pattern": "Pola",
+    "flags": "Flag",
+    "test": "Teks uji",
+    "replaceMode": "Tampilkan pratinjau penggantian",
+    "replace": "Penggantian"
+  },
+  "result": {
+    "matches": "Pencocokan",
+    "replaced": "Output yang diganti",
+    "groups": "Grup penangkapan"
+  },
+  "hint": {
+    "replaceVars": "Gunakan $& untuk pencocokan penuh, $1, $2 untuk grup, $<nama> untuk grup bernama."
+  },
+  "error": {
+    "invalid": "Pola tidak valid"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa yang dilakukan flag",
+        "paragraphs": [
+          "g (global): temukan semua pencocokan, bukan hanya yang pertama. Diperlukan untuk perilaku ganti-semua. i (case-insensitive): /[a-z]/i mencocokkan kedua kasus. m (multiline): ^ dan $ mencocokkan pada batas baris, bukan hanya awal/akhir string. s (dotall): . juga mencocokkan baris baru. u (unicode): penanganan yang tepat untuk code point di atas 0xFFFF (emoji, karakter CJK dalam pasangan surrogate).",
+          "Kebanyakan orang memulai dengan /g/i/m. /s/ berguna untuk pencocokan teks multi-baris. /u/ direkomendasikan setiap kali Anda mungkin menemukan emoji atau karakter non-BMP — tanpanya, /./ tidak akan mencocokkan emoji 4-byte sebagai satu karakter."
+        ]
+      },
+      {
+        "heading": "Grup penangkapan dan penggantian",
+        "paragraphs": [
+          "Tanda kurung membuat grup penangkapan: /(\\d{4})-(\\d{2})/ pada '2026-05' menangkap '2026' dan '05' secara terpisah. Referensikan sebagai $1, $2 dalam penggantian. Grup bernama menggunakan (?<nama>...) dan referensi $<nama> dalam ganti.",
+          "Trik ganti umum: $& menyisipkan pencocokan penuh. $1, $2 dll. menyisipkan grup penangkapan. $$ menyisipkan tanda $ literal. Pratinjau penggantian di sini memungkinkan Anda memeriksa sebelum menjalankan pola yang sama pada teks nyata — jauh lebih aman daripada langsung menjalankannya pada data produksi."
+        ]
+      },
+      {
+        "heading": "Jebakan yang perlu diperhatikan",
+        "paragraphs": [
+          "Escape backslash. Untuk mencocokkan titik literal '.', gunakan '\\.'. Dalam string sumber JavaScript ini menjadi '\\\\.' tetapi dalam alat ini Anda cukup ketik '\\.' karena ini adalah sumber regex.",
+          "Backtracking katastrofik. Pola seperti /(a+)+/ pada 'aaaa…!' bisa memakan waktu lama. Jika uji Anda tampak membeku, regex Anda mungkin memiliki kuantifier bersarang. Sederhanakan atau gunakan grup possessive/atomic (tidak tersedia di JS regex; gunakan desain hati-hati).",
+          "Greedy vs lazy. /<.+>/ pada '<a><b>' mencocokkan '<a><b>' (greedy). /<.+?>/ mencocokkan '<a>' (lazy). Pilih yang tepat untuk kasus penggunaan Anda."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Ketik pola",
+        "text": "Gunakan sintaks regex JavaScript (tanpa garis miring di sekitarnya)."
+      },
+      {
+        "name": "Atur flag",
+        "text": "Klik huruf untuk mengaktifkan/menonaktifkan: g (global), i (case-insensitive), m (multiline), s (dotall), u (unicode)."
+      },
+      {
+        "name": "Tempel teks uji",
+        "text": "Pencocokan disorot secara real-time."
+      },
+      {
+        "name": "Opsional: coba penggantian",
+        "text": "Aktifkan 'pratinjau penggantian' untuk melihat output yang dimodifikasi."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Varian regex mana yang digunakan ini?",
+      "a": "Regex ECMAScript JavaScript (yang diimplementasikan browser Anda). Sedikit berbeda dari PCRE yang digunakan di PHP, .NET, atau Python."
+    },
+    {
+      "q": "Mengapa lookbehind tidak bekerja?",
+      "a": "Di browser modern memang bisa — Chrome, Firefox, Safari, Edge semuanya mendukung (?<=...) dan (?<!...) sejak 2021. Jika milik Anda tidak, browser Anda mungkin sudah usang."
+    },
+    {
+      "q": "Apa yang dilakukan flag 'u'?",
+      "a": "Mengaktifkan penanganan Unicode yang tepat. Emoji seperti 🎉 (yang merupakan pasangan surrogate dalam UTF-16) diperlakukan sebagai satu karakter dengan /u/ tetapi dua dalam mode default."
+    },
+    {
+      "q": "Bagaimana cara mencocokkan tab atau baris baru?",
+      "a": "\\t untuk tab, \\n untuk baris baru, \\r untuk carriage return, \\s untuk spasi apapun termasuk semua ini."
+    },
+    {
+      "q": "Mengapa penggantian saya tidak bekerja?",
+      "a": "Paling sering, Anda lupa flag 'g' — penggantian tanpa 'g' hanya menggantikan pencocokan pertama. Aktifkan 'g' untuk menggantikan semua."
+    },
+    {
+      "q": "Bisakah saya menggunakan ini untuk teks yang sangat panjang?",
+      "a": "Ya, hingga beberapa MB. Lebih dari itu, browser mungkin melambat. Hindari pola katastrofik (kuantifier bersarang) pada input panjang."
+    },
+    {
+      "q": "Apakah data meninggalkan browser saya?",
+      "a": "Tidak. Pola dan teks diproses secara lokal saja."
+    },
+    {
+      "q": "Apakah ada cheat sheet regex?",
+      "a": "Cari 'JavaScript regex cheat sheet'. Halaman RegExp MDN adalah referensi otoritatif."
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "title": "Générateur de Nombres Aléatoires (cryptographiquement sécurisé, mode",
+  "shortDescription": "Génère des entiers aléatoires dans n'importe quelle plage en utilisant l'API aléatoire sécurisée de ton navigateur. Impose optionnellement l'unicité pour les loteries, tombolas ou échantillonnages sans remise.",
+  "description": "Choisis un min, un max et un nombre pour générer des entiers aléatoires cryptographiquement sécurisés. Active « unique » pour un échantillonnage sans remise (tombolas, loteries).",
+  "metaDescription": "Générateur de nombres aléatoires cryptographiquement sécurisé gratuit. Définis la plage et le nombre, optionnellement unique.",
+  "keywords": [
+    "générateur nombres aléatoires",
+    "aléatoire sécurisé",
+    "numéros loterie",
+    "entier aléatoire",
+    "RNG"
+  ],
+  "empty": "Définis une plage et clique sur « Regénérer » pour obtenir des nombres aléatoires.",
+  "input": {
+    "min": "Minimum",
+    "max": "Maximum",
+    "count": "Combien"
+  },
+  "unique": "Tous uniques (sans doublons)",
+  "regenerate": "Regénérer",
+  "copyAll": "Copier tout",
+  "copied": "Copié",
+  "error": {
+    "invalidRange": "Le min doit être inférieur ou égal au max.",
+    "tooManyUnique": "Impossible de choisir plus de nombres uniques que la plage ne le permet."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Pourquoi c'est vraiment aléatoire",
+        "paragraphs": [
+          "Nous utilisons crypto.getRandomValues — la source aléatoire cryptographiquement sécurisée du navigateur — au lieu de Math.random(). La sortie du CSPRNG ne peut pas être prédite à partir des valeurs précédentes, ce qui compte pour les tirages de loterie, les applications proches du jeu, et tout usage où « aléatoire » est une vraie exigence, pas juste « arbitraire ».",
+          "Nous utilisons aussi l'échantillonnage par rejet pour rendre la distribution exactement uniforme sur la plage choisie. Le naïf « aléatoire % plage » introduit un biais quand la plage ne divise pas exactement 2³². L'échantillonnage par rejet élimine les valeurs qui causeraient un biais et réessaie, donc chaque nombre dans ta plage a exactement la même probabilité."
+        ]
+      },
+      {
+        "heading": "Unique vs doublons autorisés",
+        "paragraphs": [
+          "Mode par défaut : chaque nombre est indépendant — les doublons peuvent se produire. C'est ce que « aléatoire » signifie généralement en usage courant (lancer des dés, choisir un film, test aléatoire).",
+          "Mode unique : échantillonnage sans remise — une fois qu'un nombre est choisi, il ne peut pas être rechoisie dans le même lot. Utile pour : tirages de loterie (ex. 6 numéros de 1 à 49), tombolas (tirer des gagnants), affectations d'équipes, et toute situation de « choisir N parmi M ». Nécessite que le nombre ≤ plage."
+        ]
+      },
+      {
+        "heading": "Cas d'utilisation courants",
+        "paragraphs": [
+          "Loterie / tombola : 6 numéros uniques de 1 à 49, ou selon les règles de ton tirage. Active « unique ».",
+          "Lancer de dés : plage 1-6 (ou 1-20 pour D20). Laisse « unique » désactivé pour que chaque lancer soit indépendant.",
+          "Échantillonnage aléatoire pour les tests : tire 10 identifiants d'utilisateurs aléatoires de 1 à 10 000 pour une vérification ponctuelle. Utilise « unique » pour éviter les doublons.",
+          "Simuler des lancers de pièce : plage 0-1, plusieurs résultats. Compte les piles/faces pour des vérifications d'équité (tu verras ~50/50 sur de grands échantillons)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Définis la plage",
+        "text": "Min et max — les deux inclus. Les nombres négatifs sont autorisés."
+      },
+      {
+        "name": "Définis le nombre",
+        "text": "1 à 100 nombres par génération."
+      },
+      {
+        "name": "Active « unique » si nécessaire",
+        "text": "Activé pour l'échantillonnage sans remise (tombolas, loteries)."
+      },
+      {
+        "name": "Clique sur Regénérer",
+        "text": "Un nouveau lot est tiré à chaque fois. Copie tout en une seule fois si tu en as besoin."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "C'est équitable pour les tombolas ou les loteries ?",
+      "a": "L'aléatoire est cryptographiquement sécurisé et non biaisé. Qu'il soit légalement « équitable » pour une loterie officielle dépend des règles de ta juridiction — beaucoup exigent des générateurs matériels certifiés."
+    },
+    {
+      "q": "Quelle est la différence avec Math.random() ?",
+      "a": "Math.random() utilise un algorithme dont la sortie peut être prédite à partir des sorties précédentes par un attaquant. crypto.getRandomValues utilise un RNG cryptographique au niveau du système d'exploitation qui ne peut pas être prédit. Pour une vraie équité, utilise ceci."
+    },
+    {
+      "q": "Puis-je obtenir des nombres négatifs ?",
+      "a": "Oui. Règle min à une valeur négative."
+    },
+    {
+      "q": "Quelle est la plage maximale ?",
+      "a": "Limitée par la plage des entiers sûrs de JavaScript (~2⁵³), mais en pratique tu peux aller jusqu'à des milliards sans problème. La technique d'échantillonnage par rejet gère correctement n'importe quelle plage."
+    },
+    {
+      "q": "Pourquoi « unique » échoue quand le nombre > plage ?",
+      "a": "Si tu choisis 10 nombres uniques de 1 à 5, quatre n'existent pas. La validation détecte cela et te demande d'élargir la plage ou de réduire le nombre."
+    },
+    {
+      "q": "Cela fonctionne-t-il pour les lancers de dés ?",
+      "a": "Oui — règle la plage à 1-6 (ou ce que sont tes dés) et désactive « unique » pour que chaque lancer soit indépendant."
+    },
+    {
+      "q": "Puis-je sauvegarder la graine et reproduire ?",
+      "a": "Non — l'aléatoire sécurisé est conçu sans graine. Si tu as besoin d'« aléatoire » reproductible pour les tests, utilise une bibliothèque PRNG avec graine."
+    },
+    {
+      "q": "Les données sont-elles envoyées quelque part ?",
+      "a": "Non. La génération est entièrement locale."
+    }
+  ]
+}

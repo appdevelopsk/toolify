@@ -1,0 +1,100 @@
+{
+  "title": "Timer Conto alla Rovescia (live, giorni/ore/minuti/secondi)",
+  "shortDescription": "Conto alla rovescia live verso qualsiasi data e ora futura. Si aggiorna ogni secondo; funziona per eventi, scadenze, lanci, vacanze.",
+  "description": "Scegli una data e un'ora target e guarda il conto alla rovescia scorrere secondo per secondo. Aggiungi un titolo facoltativo per etichettare l'evento. Dopo il raggiungimento del target, lo stesso display mostra il tempo trascorso.",
+  "metaDescription": "Timer conto alla rovescia gratuito live verso qualsiasi data. Giorni, ore, minuti, secondi — si aggiorna ogni secondo.",
+  "keywords": [
+    "timer conto alla rovescia",
+    "countdown a data",
+    "countdown live",
+    "timer scadenza",
+    "countdown evento"
+  ],
+  "input": {
+    "target": "Data e ora target",
+    "title": "Nome dell'evento (facoltativo)",
+    "titlePlaceholder": "Scadenza del progetto"
+  },
+  "remaining": "Tempo rimanente fino a",
+  "ended": "Tempo trascorso da",
+  "empty": "Scegli una data e un'ora target per avviare il conto alla rovescia.",
+  "unit": {
+    "days": "Giorni",
+    "hours": "Ore",
+    "minutes": "Minuti",
+    "seconds": "Secondi"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Come funziona il timer",
+        "paragraphs": [
+          "Il conto alla rovescia scatta una volta al secondo usando setInterval. Ogni tick legge l'ora locale corrente, la sottrae dal tuo target e suddivide la differenza in giorni, ore, minuti e secondi. Non c'è nessun round-trip al server, quindi il conto alla rovescia rimane preciso anche se la tua rete cade — serve solo che la pagina sia stata caricata.",
+          "I fusi orari usano quello che il tuo browser ritiene essere 'locale'. Se imposti il target su '12:00 di oggi' e un'altra persona in un fuso orario diverso visita la pagina, il conto alla rovescia sarà diverso — entrambi corretti, ma per le rispettive 12:00 locali."
+        ]
+      },
+      {
+        "heading": "Casi d'uso comuni",
+        "paragraphs": [
+          "Scadenze di progetto (mostra il conto alla rovescia su uno schermo in sala riunioni), lanci di prodotti (conta alla rovescia verso una release pubblica), viaggi (vacanza, volo, treno), esami e certificazioni, matrimoni e anniversari, eventi sportivi. Il campo titolo facoltativo ti permette di etichettare l'evento così la pagina è autoesplicativa.",
+          "Dopo che il target passa, lo stesso display si inverte in 'tempo trascorso da' e continua a contare. Questo è utile quando 'da quanto è successa X cosa' è quello che vuoi realmente — es. 'giorni dall'ultimo incidente' per un dashboard SRE."
+        ]
+      },
+      {
+        "heading": "Perché un conto alla rovescia piuttosto che un promemoria del calendario",
+        "paragraphs": [
+          "I promemoria del calendario appaiono una volta al momento dell'evento. Un conto alla rovescia live ti dà una consapevolezza costante in background — utile per obiettivi che vuoi tenere a mente. Le squadre sportive li mostrano, i team software li visualizzano nelle war room, e i maratoneti li fissano sulle loro schermate di allenamento.",
+          "Se vuoi che questo viva su un dashboard pubblico, aggiungi la pagina ai preferiti dopo aver impostato il target. Lo stato rimane negli input; ricaricare la pagina lo reimposta (nessun link condivisibile ancora, ma i campi di input sono preservati all'interno di una sessione)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Scegli il target",
+        "text": "Scegli la data e l'ora verso cui stai facendo il conto alla rovescia. Il selettore usa il tuo fuso orario locale."
+      },
+      {
+        "name": "Aggiungi un titolo (facoltativo)",
+        "text": "Digita il nome dell'evento così il display è significativo a colpo d'occhio."
+      },
+      {
+        "name": "Guarda il conto alla rovescia",
+        "text": "Giorni, ore, minuti e secondi scorrono una volta al secondo. Dopo il target, lo stesso display passa al tempo trascorso."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Il conto alla rovescia è preciso al secondo?",
+      "a": "Sì — il display si aggiorna una volta al secondo, e ogni aggiornamento ricalcola dall'orologio corrente, quindi non può accumularsi deriva."
+    },
+    {
+      "q": "Quale fuso orario usa?",
+      "a": "Il fuso orario locale del tuo browser. Il target che scegli viene interpretato nel tuo fuso locale, non in UTC."
+    },
+    {
+      "q": "Il conto alla rovescia funziona offline?",
+      "a": "Sì, una volta caricata la pagina. Non è necessaria nessuna connessione di rete perché il timer continui a scorrere."
+    },
+    {
+      "q": "Posso condividere un conto alla rovescia con qualcun altro?",
+      "a": "Non ancora tramite URL. Stiamo lavorando a URL con stato codificato affinché un link possa portare il target e il titolo; per ora puoi incollare uno screenshot o fare una registrazione dello schermo."
+    },
+    {
+      "q": "Cosa succede dopo che il target passa?",
+      "a": "Il display passa a 'tempo trascorso da' e continua a contare. I numeri sono positivi ma l'etichetta cambia."
+    },
+    {
+      "q": "Posso avere più conti alla rovescia?",
+      "a": "Apri più schede — ognuna è indipendente. Una modalità multi-evento integrata è in roadmap."
+    },
+    {
+      "q": "Il timer continuerà a girare se cambio scheda?",
+      "a": "I browser rallentano setInterval nelle schede in background. Il conto alla rovescia raggiungerà il passo corretto quando torni — il ricalcolo è dall'orologio, non dai tick accumulati."
+    },
+    {
+      "q": "I dati di input vengono inviati da qualche parte?",
+      "a": "No. Tutto rimane nel tuo browser."
+    }
+  ]
+}

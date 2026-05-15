@@ -1,0 +1,65 @@
+{
+  "title": "Rentenrechner (Zinseszins-Projektion + inflationsbereinigt)",
+  "shortDescription": "Projiziere deine Altersvorsorge mit monatlichen Beiträgen, erwarteter Rendite und Inflation. Zeigt Nominalwert, heutigen Kaufkraftwert und monatliches Einkommen nach der 4-%-Regel.",
+  "description": "Gib dein aktuelles Alter, Ziel-Rentenalter, aktuelle Ersparnisse, monatlichen Beitrag, erwartete Jahresrendite und Inflationsrate ein. Der Rechner projiziert Zinseszins-Wachstum und wendet die 4-%-Regel für nachhaltige Entnahmen an.",
+  "metaDescription": "Kostenloser Rentenrechner. Monatliche Beiträge über Jahrzehnte verzinsen, für Inflation auf heutige Euros anpassen und die 4-%-Regel für nachhaltiges Einkommen anwenden.",
+  "keywords": ["Rentenrechner", "Altersvorsorge berechnen", "Rente Rechner", "FIRE Rechner", "inflationsbereinigter Rentenrechner"],
+  "input": {
+    "currentAge": "Aktuelles Alter",
+    "retireAge": "Rentenalter",
+    "currentSaved": "Aktuelle Ersparnisse",
+    "monthly": "Monatlicher Beitrag",
+    "returnPct": "Jahresrendite %",
+    "inflationPct": "Jährliche Inflation %"
+  },
+  "result": {
+    "nominalBalance": "Projizierter Kontostand",
+    "realBalance": "In heutigen Euro",
+    "contributed": "Gesamte Einzahlungen",
+    "growth": "Investmentwachstum",
+    "monthly4pct": "Monatliches Einkommen (4-%-Regel)",
+    "yearsLabel": "J."
+  },
+  "empty": "Fülle alle Felder aus, um die Altersvorsorge zu projizieren.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie die Projektion funktioniert",
+        "paragraphs": [
+          "Wir verzinsen deinen Anfangssaldo plus jeden monatlichen Beitrag mit dem Jahresrenditesatz. Die Mathematik ist rekursiv: Kontostand(Monat+1) = Kontostand(Monat) × (1 + monatlicher Zinssatz) + monatlicher Beitrag. Über Jahrzehnte wachsen selbst bescheidene monatliche Beträge erheblich aufgrund des Zinseszinseffekts – die Renditen auf frühere Renditen verzinsen sich selbst.",
+          "Wir projizieren auch einen ‚heutigen Euro'-Wert, indem wir den Nominalwert mit deiner Inflationsrate deflationieren. Eine Million Euro in 30 Jahren ist nicht eine Million Euro heute wert – bei 2,5 % Inflation hat 1 Mio. € in 30 Jahren die Kaufkraft von heute etwa 475.000 €. Die heutige-Euro-Zahl ist das, was du mit den aktuellen Lebenshaltungskosten vergleichen solltest."
+        ]
+      },
+      {
+        "heading": "Welchen Zinssatz annehmen",
+        "paragraphs": [
+          "Der historische Durchschnitt des MSCI World beträgt etwa 7–8 % nominal / 5–6 % real (nach Inflation) über sehr lange Zeiträume. Für Altersvorsorge-Projektionen ab 25 Jahren ist 5–7 % nominal angemessen. Unter 4 % ist zu konservativ für lange Horizonte; über 8 % ist optimistisch angesichts aktueller Bewertungen.",
+          "Je näher an der Rente, desto konservativer wird das Portfolio typischerweise (mehr Anleihen, weniger Aktien). Für ein 5–10-Jahres-Fenster vor der Rente sinkt die erwartete Rendite auf 3–5 %, da der Anleiheanteil steigt. Dieser Rechner verwendet einen einzigen Satz für den gesamten Horizont – für nuanciertere Projektionen verschiedene Szenarien durchrechnen."
+        ]
+      },
+      {
+        "heading": "Die 4-%-Regel",
+        "paragraphs": [
+          "Die 4-%-Regel (Trinity-Studie, 1998) besagt, dass du im ersten Rentenjahr 4 % deiner Altersvorsorge sicher entnehmen kannst, dann jährlich um die Inflation erhöhst, mit sehr hoher Wahrscheinlichkeit über 30 Jahre nicht aufzubrauchen. 500.000 € Altersvorsorge unterstützt also 20.000 €/Jahr (oder etwa 1.667 €/Monat) inflationsangepasste Ausgaben.",
+          "Die Regel hat Grenzen – sie basiert auf historischer US-Aktien-/Anleiheperformance und könnte für manche zukünftigen Szenarien zu optimistisch sein. Manche Experten empfehlen nun 3–3,5 % zur Sicherheit. Für Frühverrentung (FIRE) mit 50+-Jahres-Horizonten ist 3 % konservativer. Die 4-%-Zahl als grobe Überprüfung verwenden, nicht als Garantie."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Aktuelles und Rentenalter eingeben", "text": "Die Differenz ist dein Anlagehorizont." },
+      { "name": "Anfangssaldo und monatlichen Beitrag eingeben", "text": "Betriebliche Altersvorsorge, Riester, Depot – alles für die Rente zweckbestimmte Mittel." },
+      { "name": "Rendite und Inflationsraten setzen", "text": "Vernünftige Standardwerte: 5–6 % Rendite (reale Langfristrendite), 2,5 % Inflation (EZB-Ziel)." },
+      { "name": "Beide Projektionen lesen", "text": "Nominal ist der tatsächliche Eurobetrag; heutige Euro ist seine reale Kaufkraft." }
+    ]
+  },
+  "faq": [
+    { "q": "Welchen Renditesatz soll ich verwenden?", "a": "Für 25+-Jahres-Horizonte in einem diversifizierten aktienreichen Portfolio: 5–6 %. Für kürzere Horizonte oder konservativere Mischung: 3–4 %. Nur-Aktien-Annahme: 6–7 %. Historische Realrenditen (nach Inflation) verwenden – das sind etwa 4–6 % für Aktien langfristig." },
+    { "q": "Warum sind heutige Euros wichtig?", "a": "2 Mio. € in 35 Jahren klingt toll, aber bei 3 % Inflation hat das heute etwa 700.000 € Kaufkraft. Die heutige-Euro-Zahl zeigt, was deine Altersvorsorge in heutigen Begriffen kaufen wird – nützlich zum Planen aktueller vs. zukünftiger Ausgaben." },
+    { "q": "Soll ich Brutto- oder Netto-Beiträge verwenden?", "a": "Abhängig vom Kontotyp. Betriebliche Altersvorsorge und Riester sind Brutto (du zahlst Steuern bei Entnahme). Aktien-Depot nach Steuern ist Netto (Kapitalertragsteuer wurde schon abgezogen). Für bAV: Kontostand ist brutto – du verlierst 20–30 % an Steuern bei der Rente." },
+    { "q": "Was, wenn ich Gehaltserhöhungen bekomme und Beiträge steigere?", "a": "Den Rechner mehrmals für jede Phase ausführen oder einen konstanten Beitrag verwenden, der deinen Durchschnitt annähert. Reale Beiträge wachsen oft mit dem Gehalt; der Rechner verwendet eine feste Zahl." },
+    { "q": "Berücksichtigt das die gesetzliche Rente?", "a": "Nein. Die gesetzliche Rente ist ein separater Einkommensstrom. Hier die private/betriebliche Altersvorsorge projizieren, dann die gesetzlichen Rentenansprüche für die Gesamtplanung addieren." },
+    { "q": "Was ist die ‚sichere Entnahmerate'?", "a": "Traditionell 4 % (Trinity-Studie). Für lange Renten (FIRE, 40+ Jahre) sind 3–3,5 % sicherer. Der Rechner zeigt 4 % als Standard; das monatliche Ziel anpassen, wenn eine andere Rate gewünscht wird." },
+    { "q": "Wie viel brauche ich für die Rente?", "a": "Faustformel: 25× deine jährlichen Ausgaben (Kehrwert der 4-%-Regel). 40.000 €/Jahr in heutigen Euro ausgeben? Brauche 1 Mio. € in heutigen Euro (oder mehr nominal, um die Inflation bis zur Rente zu berücksichtigen)." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Die gesamte Projektions-Mathematik läuft lokal; nichts wird an einen Server gesendet." }
+  ]
+}

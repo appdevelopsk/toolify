@@ -1,0 +1,56 @@
+{
+  "title": "Máy tính phân số (cộng, trừ, nhân, chia)",
+  "shortDescription": "Cộng, trừ, nhân hoặc chia hai phân số. Trả về dạng rút gọn, giá trị thập phân và dạng hỗn số.",
+  "description": "Nhập hai phân số (tử số trên mẫu số) và một phép tính. Máy tính trả về kết quả ở dạng tối giản, cùng giá trị thập phân và dạng hỗn số khi áp dụng. Dùng BigInt để có kết quả chính xác với số tùy ý.",
+  "metaDescription": "Máy tính phân số miễn phí. Cộng, trừ, nhân, chia phân số. Kết quả rút gọn, giá trị thập phân, hỗn số. Số học BigInt chính xác.",
+  "keywords": ["máy tính phân số", "cộng phân số", "nhân phân số", "rút gọn phân số", "hỗn số"],
+  "empty": "Nhập cả hai phân số và một phép tính.",
+  "result": {
+    "simplified": "Kết quả (rút gọn)",
+    "decimal": "Thập phân",
+    "mixed": "Hỗn số"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cách thực hiện các phép tính phân số",
+        "paragraphs": [
+          "Cộng/trừ: trước tiên quy về mẫu số chung. a/b ± c/d = (ad ± bc) / bd. Ví dụ: 1/2 + 1/3 = (1×3 + 1×2) / (2×3) = 5/6.",
+          "Nhân: a/b × c/d = (ac) / (bd). Rút gọn chéo trước khi nhân đơn giản hóa phép tính. Ví dụ: 2/3 × 9/10 = (2×9)/(3×10) = 18/30 = 3/5.",
+          "Chia: đảo ngược phân số thứ hai rồi nhân. a/b ÷ c/d = a/b × d/c = (ad) / (bc). Ví dụ: 1/2 ÷ 3/4 = (1×4)/(2×3) = 4/6 = 2/3."
+        ]
+      },
+      {
+        "heading": "Tại sao cần rút gọn",
+        "paragraphs": [
+          "Phân số ở dạng tối giản khi tử số và mẫu số không có ước chung nào lớn hơn 1. Chúng tôi dùng thuật toán Euclid để tìm GCD rồi chia cả hai cho nó.",
+          "Ví dụ: 18/30 có GCD là 6, nên rút gọn thành 3/5. Về mặt toán học tương đương nhưng dễ đọc và làm việc hơn.",
+          "Chúng tôi cũng chuẩn hóa dấu: tử số dương là quy ước thông thường. Vậy −3/−5 rút gọn thành 3/5; 3/−5 thành −3/5."
+        ]
+      },
+      {
+        "heading": "Hỗn số",
+        "paragraphs": [
+          "Khi giá trị tuyệt đối của tử số vượt quá mẫu số, phân số có thể được biểu diễn dưới dạng số nguyên cộng phân số thực sự. Ví dụ: 7/3 = 2⅓ (vì 7 = 2×3 + 1).",
+          "Hỗn số phổ biến trong đo lường hàng ngày (công thức nấu ăn, kích thước vật liệu, ký hiệu nhịp nhạc) nhưng ít phổ biến hơn trong toán học/khoa học nơi phân số không đúng dễ thao tác hơn. Chúng tôi hiển thị cả hai dạng."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Nhập phân số đầu tiên", "text": "Tử số ở trên, mẫu số ở dưới." },
+      { "name": "Chọn phép tính", "text": "+, −, ×, hoặc ÷." },
+      { "name": "Nhập phân số thứ hai", "text": "Cùng định dạng." },
+      { "name": "Đọc kết quả", "text": "Dạng rút gọn, giá trị thập phân và hỗn số khi áp dụng." }
+    ]
+  },
+  "faq": [
+    { "q": "Tôi có thể nhập phân số âm không?", "a": "Có. Dùng dấu trừ ở tử số hoặc mẫu số. Máy tính chuẩn hóa thành một dấu âm duy nhất ở tử số." },
+    { "q": "Tại sao 1/2 + 1/3 = 5/6 chứ không phải 2/5?", "a": "Không thể cộng phân số bằng cách cộng riêng tử số và mẫu số. Phải tìm mẫu số chung trước. 1/2 = 3/6, 1/3 = 2/6, nên 1/2 + 1/3 = 3/6 + 2/6 = 5/6." },
+    { "q": "Công cụ này có hỗ trợ số nguyên dưới dạng phân số không?", "a": "Có. Nhập số nguyên = số nguyên/1. Vậy 5 + 1/2 = 5/1 + 1/2 = 11/2 = 5½." },
+    { "q": "Phân số lớn nhất công cụ này xử lý được là bao nhiêu?", "a": "Chúng tôi dùng BigInt nội bộ, nên phép tính với tử số và mẫu số có kích thước bất kỳ là chính xác. Hiển thị bị giới hạn bởi kích thước màn hình." },
+    { "q": "Tại sao số thập phân đôi khi không chính xác?", "a": "Một số phân số không có biểu diễn thập phân chính xác (1/3 = 0,3333…). Chúng tôi hiển thị tối đa 8 chữ số thập phân. Bản thân phân số là chính xác; số thập phân là xấp xỉ." },
+    { "q": "Tôi có thể chia cho không không?", "a": "Không. Chia cho không (hoặc bất kỳ phân số nào có mẫu số bằng không) là không xác định. Máy tính không trả về kết quả trong trường hợp đó." },
+    { "q": "Hỗn số đến từ đâu?", "a": "Từ phân số không đúng (tử số ≥ mẫu số). 7/3 = 2 + 1/3 = 2⅓. Cả hai dạng đều tương đương; chọn dựa trên ngữ cảnh (toán học: phân số không đúng, công thức nấu ăn: hỗn số)." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Tính toán chạy cục bộ; không có gì được gửi đến server." }
+  ]
+}

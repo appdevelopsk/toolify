@@ -1,0 +1,56 @@
+{
+  "title": "Pelempar Dadu (d4 hingga d100, dengan modifier dan riwayat)",
+  "shortDescription": "Lempar dadu apa pun dengan jumlah sisi apa pun. Acak secara kriptografis, dengan modifier (+N), total berjalan, dan riwayat lemparan.",
+  "description": "Pilih jumlah, sisi (4, 6, 8, 10, 12, 20, 100, atau kustom hingga 1000), dan modifier. Setiap lemparan menggunakan crypto.getRandomValues untuk distribusi seragam yang tidak bias.",
+  "metaDescription": "Pelempar dadu gratis untuk D&D dan TTRPG apa pun. d4/d6/d8/d10/d12/d20/d100 + kustom, modifier, riwayat. Lemparan acak yang aman secara kriptografis di browser Anda.",
+  "keywords": ["pelempar dadu", "dadu online", "lemparan d20", "dadu TTRPG", "d6 d10 d100"],
+  "input": { "count": "Berapa banyak", "sides": "Sisi", "modifier": "Modifier (±)" },
+  "roll": "Lempar {count}d{sides}{modifier}",
+  "result": {
+    "total": "Total",
+    "history": "Lemparan terbaru"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara lemparan dihasilkan",
+        "paragraphs": [
+          "Setiap dadu menggunakan crypto.getRandomValues — API acak aman secara kriptografis browser, primitif yang sama yang mendukung sesi HTTPS. Kami juga menerapkan rejection sampling untuk memastikan setiap sisi memiliki probabilitas yang persis sama, terlepas dari ukuran dadu. Naive `random % sides` memperkenalkan bias ketika sisi tidak membagi dengan bersih menjadi 2³².",
+          "Ini berarti d100 tidak sedikit bias menuju 1-36 (yang akan terjadi dengan modulo yang diimplementasikan dengan buruk), dan d3 tidak mengutamakan 1 atas 2 atau 3. Matematikanya identik dengan dadu fisik dengan presisi tak terbatas."
+        ]
+      },
+      {
+        "heading": "Notasi TTRPG (Tabletop RPG)",
+        "paragraphs": [
+          "Notasi umum: 'NdS+M' di mana N adalah jumlah dadu, S adalah sisi, M adalah modifier. '2d6+3' berarti lempar 2 dadu enam sisi dan tambahkan 3. '1d20+5' adalah lemparan serangan D&D khas dengan modifier +5 dari bonus karakter Anda.",
+          "Set dadu standar: d4 (piramida), d6 (kubus), d8 (oktahedron), d10 (trapezoid pentagonal), d12 (dodekahedral), d20 (ikosahedron). d100 biasanya dilempar sebagai 2d10 (satu untuk puluhan, satu untuk satuan). Gunakan preset d100 untuk melewati konversi manual."
+        ]
+      },
+      {
+        "heading": "Kasus penggunaan umum",
+        "paragraphs": [
+          "D&D / Pathfinder / TTRPG: d20+5 untuk serangan, 1d8+3 untuk kerusakan, 4d6 drop terendah untuk pembuatan karakter.",
+          "Pemilihan acak: pilih pemenang dari N orang dengan melempar dN. Untuk 7 orang, atur sisi=7. Keacakan kriptografis memastikan keadilan.",
+          "Pelajaran probabilitas: lempar banyak dadu dan amati distribusinya. Jumlah beberapa dadu mendekati distribusi normal (teorema batas pusat).",
+          "Pengambilan keputusan: 'haruskah saya melakukan X' dengan 50/50? Lempar d2 (2 sisi). Ingin keputusan berbobot? Gunakan d10 dan tentukan ambang batas (1-7 = ya, 8-10 = tidak untuk 70/30)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih preset dadu", "text": "Atau ketik jumlah sisi kustom dari 2 hingga 1000." },
+      { "name": "Atur jumlah", "text": "Berapa banyak dadu yang dilempar sekaligus. Hingga 50." },
+      { "name": "Tambahkan modifier", "text": "Angka flat opsional yang ditambahkan ke jumlah." },
+      { "name": "Lempar", "text": "Total, lemparan individual, dan riwayat terbaru semuanya ditampilkan." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah lemparannya benar-benar adil?", "a": "Ya. Kami menggunakan crypto.getRandomValues (RNG yang aman) ditambah rejection sampling sehingga setiap sisi memiliki probabilitas yang persis sama — tidak ada bias tepi dari operasi modulo." },
+    { "q": "Berapa jumlah dadu maksimum?", "a": "50 per lemparan. Untuk lebih banyak, cukup lempar beberapa kali — masing-masing independen." },
+    { "q": "Berapa sisi maksimum?", "a": "1000. Melampaui itu matematikanya masih bekerja tetapi kasus penggunaannya menjadi tidak biasa." },
+    { "q": "Bisakah saya menyimpan kombinasi dadu favorit saya?", "a": "Belum. Kami mungkin menambahkan preset yang disimpan nanti untuk lemparan tempur umum Anda." },
+    { "q": "Mengapa d20 terkenal?", "a": "Dungeons & Dragons mempopulerkannya untuk pemeriksaan keahlian dan lemparan serangan. Setiap sisi memiliki probabilitas 5% — granularitas yang baik untuk perbedaan keahlian tanpa pembukuan persentil (d100)." },
+    { "q": "Mengapa riwayat hanya menampilkan 10 lemparan?", "a": "Untuk menjaga halaman tetap rapi. Untuk log yang lebih panjang, tempel setiap hasil ke file catatan atau lembar karakter RPG." },
+    { "q": "Apakah ini akan menggantikan dadu fisik saya?", "a": "Secara fungsional ya, terutama untuk permainan online. Dadu fisik dicintai karena sentuhan dan ritualnya — tetapi secara matematis lemparan digital dengan crypto RNG setidaknya seadil d20 fisik." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Setiap lemparan terjadi secara lokal." }
+  ]
+}

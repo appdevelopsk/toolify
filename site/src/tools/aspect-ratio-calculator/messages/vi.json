@@ -1,0 +1,63 @@
+{
+  "title": "Máy tính tỷ lệ khung hình (giữ tỷ lệ khi thay đổi kích thước)",
+  "shortDescription": "Tính chiều rộng hoặc chiều cao để giữ tỷ lệ khung hình mục tiêu. Bao gồm các tỷ lệ phổ biến (16:9, 9:16, 1:1, 4:3, 21:9) một chạm.",
+  "description": "Đặt tỷ lệ mục tiêu và một chiều; chiều kia tự động điền. Chiều ngược lại cũng hoạt động tương tự. Hữu ích cho video, cắt ảnh và bố cục web đáp ứng.",
+  "metaDescription": "Máy tính tỷ lệ khung hình miễn phí. Giữ tỷ lệ như 16:9, 9:16, 1:1, 4:3 khi thay đổi kích thước. Tính chiều rộng hoặc chiều cao còn thiếu tức thì.",
+  "keywords": ["máy tính tỷ lệ khung hình", "thay đổi kích thước giữ tỷ lệ", "máy tính 16:9", "tỷ lệ ảnh", "tỷ lệ video"],
+  "input": {
+    "ratioW": "Tỷ lệ W",
+    "ratioH": "Tỷ lệ H",
+    "width": "Chiều rộng",
+    "height": "Chiều cao"
+  },
+  "result": {
+    "ratio": "Tỷ lệ khung hình",
+    "decimal": "Thập phân",
+    "dimensions": "Kích thước",
+    "simplified": "Đã rút gọn"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Tỷ lệ khung hình là gì",
+        "paragraphs": [
+          "Tỷ lệ khung hình mô tả chiều rộng so với chiều cao: 16:9 nghĩa là rộng 16 đơn vị cho mỗi 9 đơn vị cao. Cùng tỷ lệ hoạt động ở bất kỳ kích thước nào — 1920×1080 và 800×450 đều là 16:9. Giữ tỷ lệ khung hình khi thay đổi kích thước giúp tránh ảnh bị kéo dài hoặc bẹp dẹp và là nền tảng của thiết kế đáp ứng.",
+          "Công cụ chấp nhận số nguyên (16:9) hoặc số thập phân (1,78:1) cho tỷ lệ, và bất kỳ kích thước nào cho chiều rộng/chiều cao. Chỉnh sửa bất kỳ trường nào — các trường còn lại cập nhật để duy trì tỷ lệ. Tỷ lệ thập phân (chiều rộng / chiều cao) được hiển thị để dùng trong biểu thức CSS calc() hoặc công cụ chỉnh sửa video."
+        ]
+      },
+      {
+        "heading": "Các tỷ lệ phổ biến và ứng dụng",
+        "paragraphs": [
+          "16:9 — TV HD hiện đại, màn hình máy tính, YouTube, hầu hết phim từ 2009. Mặc định cho hầu hết mọi thứ bạn làm ngày nay.",
+          "9:16 — video dọc cho Instagram Stories, TikTok, YouTube Shorts. Mặt lật của 16:9 cho nội dung ưu tiên điện thoại.",
+          "1:1 — hình vuông. Mặc định feed Instagram cho đến 2021. Bìa album, ảnh đại diện.",
+          "4:3 — TV cũ và màn hình máy tính trước HD. Vẫn được dùng cho một số nội dung theo phong cách cổ điển.",
+          "3:2 — mặc định máy ảnh DSLR. Phim 35mm. In ảnh khổ lớn.",
+          "21:9 — màn hình rộng điện ảnh. Phim quay theo kiểu anamorphic. Một số màn hình PC và TV."
+        ]
+      },
+      {
+        "heading": "Tại sao CSS aspect-ratio quan trọng",
+        "paragraphs": [
+          "CSS hiện đại có thuộc tính aspect-ratio: 16/9; — đặt tỷ lệ và để trình duyệt tính chiều cao từ chiều rộng (hoặc ngược lại). Tránh được thủ thuật padding-bottom cũ và cần thiết để nhúng đáp ứng và giữ chỗ ảnh nhằm ngăn dịch chuyển bố cục.",
+          "Cumulative Layout Shift (CLS) là chỉ số Core Web Vital quan trọng. Video nhúng, ảnh không có kích thước và quảng cáo đều có thể gây CLS — sửa bằng cách đặt chiều rộng/chiều cao rõ ràng (trình duyệt dùng để tính tỷ lệ) hoặc dùng CSS aspect-ratio."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn tỷ lệ", "text": "Nhấn vào tỷ lệ có sẵn hoặc nhập giá trị W:H tùy chỉnh." },
+      { "name": "Nhập chiều đã biết", "text": "Chiều rộng hoặc chiều cao — chiều còn lại tự động điền." },
+      { "name": "Chỉnh sửa bất kỳ trường nào", "text": "Các cập nhật lan truyền để duy trì tỷ lệ." }
+    ]
+  },
+  "faq": [
+    { "q": "Sự khác biệt giữa 16:9 và 1,78:1 là gì?", "a": "Cùng tỷ lệ, ký hiệu khác nhau. 16/9 = 1,778. Dạng dấu hai chấm thông dụng trong TV/web; dạng thập phân thông dụng trong điện ảnh." },
+    { "q": "Làm thế nào để giữ tỷ lệ khung hình trong CSS?", "a": "Dùng thuộc tính aspect-ratio: img { aspect-ratio: 16/9; width: 100%; height: auto; }. Ảnh lấp đầy chiều rộng container và chiều cao điều chỉnh để giữ tỷ lệ." },
+    { "q": "Tại sao video của tôi trông sai trên TV 4:3?", "a": "Hầu hết video hiện đại là 16:9. Trên màn hình 4:3, chúng có thể hiển thị với thanh đen (letterbox), thanh dọc (pillar-box), hoặc bị kéo dài. Cài đặt TV kiểm soát điều này." },
+    { "q": "Tôi có thể dùng tỷ lệ không phải số nguyên không?", "a": "Có — gõ 1,5 hoặc 2,39. Công cụ xử lý chúng như số thập phân; đầu ra tỷ lệ rút gọn chỉ hiển thị cho tỷ lệ số nguyên." },
+    { "q": "'Tỷ lệ pixel' là gì?", "a": "Đây là khái niệm riêng: hình dạng của từng pixel riêng lẻ. Màn hình hiện đại dùng pixel vuông (1:1). Một số định dạng video SD cũ dùng pixel không vuông (ví dụ 1,0667 cho NTSC widescreen). Công cụ này xử lý tỷ lệ khung hình hiển thị, không phải tỷ lệ pixel." },
+    { "q": "'Trông điện ảnh' là gì?", "a": "21:9 (chính xác hơn là 2,39:1 hoặc 2,40:1) — rộng hơn HDTV. Phổ biến trong các bom tấn hiện đại. Các dịch vụ phát trực tuyến thường phục vụ phim theo tỷ lệ này." },
+    { "q": "Tại sao Instagram Reel/TikTok dùng 9:16?", "a": "Vì điện thoại thường được cầm dọc. 9:16 lấp đầy toàn bộ màn hình điện thoại bằng nội dung; 16:9 để lại băng đen ở trên và dưới trên điện thoại dọc." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt của tôi không?", "a": "Không. Tính toán chạy cục bộ." }
+  ]
+}

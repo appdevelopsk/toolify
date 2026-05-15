@@ -1,0 +1,61 @@
+{
+  "title": "Máy tính số tuần ISO (tuần trong năm)",
+  "shortDescription": "Tìm số tuần ISO 8601, ngày trong tuần ISO và phạm vi ngày trong tuần cho bất kỳ ngày lịch nào. Bao gồm ngày trong năm và số tuần trong năm.",
+  "description": "Chọn bất kỳ ngày nào và xem số tuần ISO 8601 (1-53), ngày trong tuần ISO (1=Thứ hai, 7=Chủ nhật), phạm vi Thứ hai-Chủ nhật của tuần đó và các đếm liên quan hữu ích (ngày trong năm, số tuần trong năm).",
+  "metaDescription": "Máy tính số tuần ISO miễn phí. Tuần ISO 8601, ngày trong tuần, phạm vi ngày trong tuần, ngày trong năm, số tuần trong năm. Định dạng tuần trong năm tiêu chuẩn.",
+  "keywords": ["số tuần iso", "tuần trong năm", "tuần iso 8601", "máy tính tuần", "tuần lịch"],
+  "input": { "date": "Ngày" },
+  "today": "Hôm nay",
+  "result": {
+    "iso": "Biểu diễn ISO 8601",
+    "weekNumber": "Số tuần",
+    "weekday": "Ngày trong tuần",
+    "weekStart": "Tuần bắt đầu (Thứ hai)",
+    "weekEnd": "Tuần kết thúc (Chủ nhật)",
+    "dayOfYear": "Ngày trong năm",
+    "weeksInYear": "Số tuần trong năm"
+  },
+  "empty": "Chọn một ngày.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Tuần ISO là gì",
+        "paragraphs": [
+          "ISO 8601 định nghĩa tuần lịch bắt đầu từ Thứ hai và kết thúc vào Chủ nhật. Tuần đầu tiên của bất kỳ năm ISO nào là tuần chứa Thứ năm đầu tiên của năm đó — hay tương đương là tuần chứa ngày 4 tháng 1. Điều này có nghĩa là một năm có thể có 52 hoặc 53 tuần ISO, và năm ISO không phải lúc nào cũng khớp với năm lịch cho các ngày cuối tháng 12 và đầu tháng 1.",
+          "Định dạng: 'YYYY-Www-D'. Vì vậy '2026-W19-3' có nghĩa là Thứ tư của tuần 19 năm 2026. Số ngày trong tuần: 1=Thứ hai, 7=Chủ nhật. Số tuần: 1-52 hoặc 1-53."
+        ]
+      },
+      {
+        "heading": "Tại sao tuần ISO khác với tuần lịch",
+        "paragraphs": [
+          "Lịch Mỹ thường coi Chủ nhật là ngày đầu tiên. ISO là Thứ hai đầu tiên. Điều này có nghĩa: Chủ nhật trong lịch địa phương ở cuối tuần 30 là, theo ISO, cuối tuần 30. Nhưng Chủ nhật bạn nhập có thể rơi vào tuần ISO khác nếu nó là Chủ nhật cuối của một năm.",
+          "Ngoài ra: năm ISO có thể khác một với năm lịch. Ngày 31/12/2024 thuộc tuần ISO 1 của năm 2025 (tuần chứa Thứ năm đầu tiên của 2025). Ngày 1/1/2024 là Thứ hai — tuần 1 của 2024 bắt đầu từ 1/1. Ngày 1/1/2025 là Thứ tư — tuần 1 của 2025 bắt đầu từ 30/12/2024."
+        ]
+      },
+      {
+        "heading": "Tuần ISO được dùng ở đâu",
+        "paragraphs": [
+          "Kinh doanh: nhiều công ty châu Âu lập hóa đơn và giao hàng theo tuần ISO. 'Đơn hàng sẽ đến trong W23' là rõ ràng và độc lập với ngôn ngữ.",
+          "Phần mềm: nhiều ngôn ngữ lập trình có hàm tuần ISO. JavaScript Date không có trực tiếp, nên các thư viện như date-fns và dayjs thêm vào. Dùng trong lập lịch, phân tích log và báo cáo.",
+          "Dịch tễ học y tế: các báo cáo tỷ lệ mắc bệnh hàng tuần dùng tuần ISO. WHO và CDC dùng chúng trong bảng điều khiển cúm và COVID.",
+          "Thể thao / trò chơi: nhiều giải đấu lên lịch theo 'tuần 1, tuần 2, …' thường căn chỉnh với tuần ISO (đặc biệt các giải châu Âu)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn ngày", "text": "Bộ chọn ngày hoặc nút 'Hôm nay'." },
+      { "name": "Đọc biểu diễn ISO", "text": "Định dạng: YYYY-Www-D, trong đó w là số tuần và D là ngày trong tuần." },
+      { "name": "Xem phạm vi tuần", "text": "Thứ hai và Chủ nhật của tuần đó, theo định dạng ngày của ngôn ngữ của bạn." }
+    ]
+  },
+  "faq": [
+    { "q": "Tại sao cái này không khớp với hàm WEEKNUM của Excel?", "a": "WEEKNUM của Excel dùng các quy ước khác. Mặc định là kiểu Mỹ (Chủ nhật đầu tiên). Để có tuần ISO trong Excel, dùng ISOWEEKNUM hoặc chỉ định return_type=21 trong WEEKNUM." },
+    { "q": "Một năm có thể có 53 tuần không?", "a": "Có. Một năm có 53 tuần ISO nếu ngày 1/1 là Thứ năm HOẶC ngày 31/12 là Thứ năm. Khoảng 71 trong mỗi 400 năm." },
+    { "q": "Năm ISO so với năm lịch là gì?", "a": "Hầu hết các ngày chúng giống nhau. Các trường hợp ngoại lệ cuối tháng 12 và đầu tháng 1 khác nhau. Ngày 29/12/2008 là tuần ISO 1 của năm 2009 (năm lịch 2008, năm ISO 2009)." },
+    { "q": "Tuần 1 có phải luôn là tuần của ngày 1/1 không?", "a": "Không phải luôn luôn. Tuần ISO 1 chứa Thứ năm đầu tiên của năm. Vậy nếu 1/1 là Thứ sáu-Chủ nhật, ngày đó là một phần của tuần ISO cuối của năm trước." },
+    { "q": "Sự khác biệt giữa W1 và Tuần 1 là gì?", "a": "Cùng một thứ trong ngữ cảnh ISO. Tiền tố W là quy ước định dạng ISO. '2026-W01' có nghĩa là tuần ISO 1 của 2026." },
+    { "q": "Tại sao Thứ hai là ngày bắt đầu tuần?", "a": "ISO 8601 chuẩn hóa điều này. Hầu hết thế giới dùng Thứ hai đầu tiên; chỉ Saudi Arabia, Mỹ, Canada và một số quốc gia khác thường dùng Chủ nhật đầu tiên." },
+    { "q": "Tôi có thể xuất sang lịch không?", "a": "Không trực tiếp từ công cụ này. Dùng ngày bắt đầu/kết thúc tuần và tạo sự kiện lịch của riêng bạn." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Tính toán chạy cục bộ; không có gì được gửi đến server." }
+  ]
+}

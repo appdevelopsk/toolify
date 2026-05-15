@@ -1,0 +1,98 @@
+{
+  "title": "Cronometro (precisione al millisecondo, tempi parziali)",
+  "shortDescription": "Cronometro nel browser ad alta precisione con avvio/pausa, registrazione dei tempi parziali e calcolo del tempo split. Display al millisecondo, orologio monotono per precisione.",
+  "description": "Cronometro basato su browser che usa performance.now() per una misurazione senza jitter. Avvia, metti in pausa, riprendi, registra giri e resetta. Ogni giro mostra il tempo split (delta dal precedente) più il tempo cumulativo.",
+  "metaDescription": "Cronometro gratuito nel browser con precisione al millisecondo e registrazione dei tempi parziali. Temporizzazione monotona, nessuna connessione necessaria.",
+  "keywords": [
+    "cronometro",
+    "timer millisecondi",
+    "cronometro giri",
+    "cronometro online",
+    "timer split"
+  ],
+  "start": "Avvia",
+  "pause": "Pausa",
+  "resume": "Riprendi",
+  "reset": "Resetta",
+  "lap": "Giro",
+  "laps": "Giri",
+  "article": {
+    "sections": [
+      {
+        "heading": "Perché questo cronometro è preciso",
+        "paragraphs": [
+          "La maggior parte dei cronometri nel browser usa Date.now() e setInterval, che possono derivare di decine di millisecondi durante una sessione. Questa implementazione usa performance.now() — un orologio monotono che non torna indietro quando l'orologio di sistema viene regolato. Combinato con requestAnimationFrame per gli aggiornamenti del display, la precisione rimane entro ±1 ms.",
+          "Se cambi scheda, il tempo visualizzato potrebbe bloccarsi brevemente perché i browser limitano le operazioni in background. L'orologio interno continua a funzionare correttamente — quando torni, il display si aggiorna al tempo effettivo trascorso."
+        ]
+      },
+      {
+        "heading": "Tempi parziali e tempi split",
+        "paragraphs": [
+          "Quando premi Giro, viene registrato il tempo cumulativo corrente. Il tempo split visualizzato è il delta dal giro precedente: in una corsa 5×400m, ogni split è il tempo di un singolo segmento di 400m, mentre il cumulativo è il totale trascorso dall'inizio.",
+          "La maggior parte degli utenti si preoccupa degli split, non del cumulativo. Mostriamo entrambi. Il cumulativo rende anche più facile identificare il segmento individuale migliore — utile per gli atleti che tracciano la consistenza degli intervalli."
+        ]
+      },
+      {
+        "heading": "Usi comuni",
+        "paragraphs": [
+          "Sport: traccia i tempi dei giri per corsa, nuoto, intervalli in bicicletta. Meno è meglio; la consistenza tra gli split è un segno di buon ritmo.",
+          "Cucina: cronometra più passaggi simultaneamente usando i giri come 'punti di controllo' (aggiunto il lievito, iniziato il riposo dell'impasto, ecc.).",
+          "Studio/lavoro: definisci il tempo per le sessioni di lavoro focalizzato. Abbinalo al nostro timer Pomodoro per pause strutturate.",
+          "Misurazione dei processi: misura la durata di qualsiasi attività — compilazioni software, inserimento manuale dati, risoluzione del supporto clienti. Usa l'elenco dei giri per una revisione successiva."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Clicca Avvia",
+        "text": "Il timer inizia immediatamente da 0."
+      },
+      {
+        "name": "Registra i giri",
+        "text": "Clicca Giro durante la corsa. Ogni giro viene registrato con il tempo split e quello cumulativo."
+      },
+      {
+        "name": "Pausa / Riprendi",
+        "text": "Clicca Pausa per fermare; clicca Riprendi per continuare dallo stesso punto."
+      },
+      {
+        "name": "Resetta",
+        "text": "Cancella tutti i giri e torna a 0."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Il timer continuerà a funzionare se chiudo la scheda?",
+      "a": "No — chiudere la scheda cancella lo stato in memoria. Per preservare una lunga sessione di cronometraggio, fai uno screenshot del display in esecuzione o copia l'elenco dei giri prima di chiudere."
+    },
+    {
+      "q": "Quanto è precisa la precisione al millisecondo in pratica?",
+      "a": "La risoluzione di performance.now() dipende dal browser: la maggior parte dei browser limita a 1ms o 0,1ms per motivi di sicurezza (mitigazione degli attacchi di temporizzazione). È più che sufficiente per la misurazione in scala umana — molto più precisa del tempo di reazione umano (~250ms)."
+    },
+    {
+      "q": "Perché il display si aggiorna a 60fps ma mostra i millisecondi?",
+      "a": "L'orologio interno è preciso; il display viene renderizzato ~60 volte al secondo così vedi un campo di millisecondi aggiornato fluidamente. Ogni fotogramma calcola l'ultimo valore trascorso da performance.now()."
+    },
+    {
+      "q": "Posso salvare una sessione di giri?",
+      "a": "Non direttamente — copia l'elenco dei giri manualmente. Il salvataggio delle sessioni nel local storage è in sviluppo."
+    },
+    {
+      "q": "Qual è la differenza tra questo e il cronometro del telefono?",
+      "a": "Basato su browser, nessuna app da installare. Ugualmente preciso per la misurazione in scala umana. Il cronometro del telefono sopravvive al blocco dello schermo; la scheda del browser deve rimanere aperta (ma non necessita di essere in primo piano)."
+    },
+    {
+      "q": "I dati vengono inviati da qualche parte?",
+      "a": "No. Tutto funziona localmente; nessun giro o tempo viene trasmesso."
+    },
+    {
+      "q": "Perché il mio giro mostra 0 millisecondi?",
+      "a": "Se premi Giro immediatamente dopo Avvia, il tempo trascorso può essere arrotondato a 0 con la precisione del display. Lascia trascorrere almeno una frazione di secondo tra i giri."
+    },
+    {
+      "q": "Può misurare eventi sotto il secondo?",
+      "a": "Sì, fino a ~1ms. Per la temporizzazione in nanosecondi (benchmark di chip) avresti bisogno di strumenti diversi, ma per qualsiasi evento osservabile dall'occhio umano è sufficientemente preciso."
+    }
+  ]
+}

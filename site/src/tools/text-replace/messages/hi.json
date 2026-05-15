@@ -1,0 +1,56 @@
+{
+  "title": "Find and Replace Text (literal या regex, options के साथ)",
+  "shortDescription": "Literal find/replace या full regex के साथ text replace करें। Case sensitivity और multi-line mode toggle करें। Match count live दिखाया जाता है।",
+  "description": "Text paste करें, find और replace strings set करें, optionally regex / case-insensitive / multi-line enable करें, और instantly modified text plus match count देखें।",
+  "metaDescription": "Text के लिए मुफ्त find-and-replace tool। Literal या regex mode, case-insensitive option, live match count। Browser-only — आपका text आपके device से नहीं जाता।",
+  "keywords": ["find and replace", "text replace", "regex replace", "search replace", "bulk text edit"],
+  "input": { "text": "Source text", "find": "Find", "replace": "Replace with" },
+  "opt": { "regex": "Regex", "caseSensitive": "Case sensitive", "multiline": "Multi-line ^ / $" },
+  "output": { "result": "Result", "matches": "{n} matches" },
+  "error": "Regex error",
+  "copy": "Copy",
+  "copied": "Copy हो गया",
+  "article": {
+    "sections": [
+      {
+        "heading": "दो modes — literal और regex",
+        "paragraphs": [
+          "Literal (regex off): find string exactly match होती है। '.' और '*' जैसे special characters खुद ही treated होते हैं। अधिकांश everyday text edits के लिए safe default है।",
+          "Regex (regex on): find string को JavaScript regular expression के रूप में interpret किया जाता है। इसे patterns के लिए उपयोग करें — उदाहरण के लिए /\\b\\w+@\\w+\\.\\w+\\b/ emails खोजने के लिए। Multi-line mode के साथ, ^ और $ line breaks पर match करते हैं।"
+        ]
+      },
+      {
+        "heading": "Replace string special syntax",
+        "paragraphs": [
+          "Regex mode में, replace string backreferences support करती है: capture groups के लिए $1, $2 आदि; entire match के लिए $&; literal dollar sign के लिए $$। Example: /(\\d{3})-(\\d{3})-(\\d{4})/ find करें, replace ($1) $2-$3 phone numbers reformat करता है।",
+          "Literal mode में, replace string as-is ली जाती है — कोई backreferences, कोई special handling नहीं।"
+        ]
+      },
+      {
+        "heading": "Common uses",
+        "paragraphs": [
+          "Bulk edit: spelling standardize करें, product names update करें, long documents में typos fix करें।",
+          "Code refactoring: paste of code में variable rename करें (case-sensitive उपयोग करें)। कई files के real refactoring के लिए, IDE better है।",
+          "Data cleanup: CSV में tabs को commas में convert करें, एक delimiter को दूसरे से replace करें, whitespace normalize करें।",
+          "Markdown to plain: regex से Markdown syntax strip करें।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Text paste करें", "text": "या directly type करें।" },
+      { "name": "Find और replace दर्ज करें", "text": "Find में क्या खोजना है, replace में क्या substitute करना है।" },
+      { "name": "आवश्यकतानुसार options toggle करें", "text": "Patterns के लिए regex; fuzzy matches के लिए case-insensitive; line-anchor patterns के लिए multi-line।" },
+      { "name": "Result पढ़ें और copy करें", "text": "Match count दिखाता है कि कितने replacements हुए।" }
+    ]
+  },
+  "faq": [
+    { "q": "यह regex tester से कैसे different है?", "a": "यह replace operation पर focus करता है। Regex tester matches और capture groups inspect करने पर focus करता है।" },
+    { "q": "क्या मैं find/replace में Unicode उपयोग कर सकता हूँ?", "a": "हाँ। Find और replace दोनों strings emoji और Devanagari सहित full UTF-8 support करती हैं।" },
+    { "q": "मेरा find/replace काम क्यों नहीं किया?", "a": "Most common: case sensitivity। 'Hello' 'hello' match नहीं करेगा जब तक आप case-insensitive toggle न करें। या literal mode में regex characters misunderstood हों।" },
+    { "q": "क्या यह formatting preserve करता है?", "a": "Matches को छोड़कर text exactly preserve करता है। Tabs या specific newlines preserved हैं।" },
+    { "q": "क्या मैं replacement undo कर सकता हूँ?", "a": "Original input field में है। वहाँ से re-paste करें। हमारे पास built-in undo नहीं है।" },
+    { "q": "मेरा text कितना बड़ा हो सकता है?", "a": "Multi-megabyte text काम करता है, हालाँकि huge inputs पर poorly written pattern से regex slow हो सकती है।" },
+    { "q": "Regex सीखने का अच्छा तरीका क्या है?", "a": "Literal mode से शुरू करें और जब patterns चाहिए तब regex पर switch करें। 'JavaScript regex cheat sheet' search करें।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। सभी find/replace locally चलता है।" }
+  ]
+}

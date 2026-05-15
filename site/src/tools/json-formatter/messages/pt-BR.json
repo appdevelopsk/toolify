@@ -1,0 +1,99 @@
+{
+  "title": "Formatador e Minificador de JSON (valida e formata)",
+  "shortDescription": "Formate ou minifique JSON. Valida a entrada e mostra um erro claro com linha e coluna em caso de falha.",
+  "description": "Cole qualquer JSON para formatar com 2/4/8 espaços de indentação, ou minifique para uma única linha. JSON inválido exibe um erro de parse para que você encontre o problema rapidamente.",
+  "metaDescription": "Formatador e minificador de JSON gratuito. Valida a entrada, formata com a indentação escolhida ou minifica em uma linha.",
+  "keywords": [
+    "formatador JSON",
+    "minificador JSON",
+    "validador JSON",
+    "pretty print JSON",
+    "formatar JSON"
+  ],
+  "input": "Entrada JSON",
+  "output": "Saída formatada",
+  "mode": {
+    "format": "Formatar",
+    "minify": "Minificar"
+  },
+  "indent": "Indentação",
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "error": "Erro de parse",
+  "stats": "Entrada: {input} bytes · Saída: {output} bytes",
+  "article": {
+    "sections": [
+      {
+        "heading": "O que esta ferramenta faz",
+        "paragraphs": [
+          "JSON é um formato estrito — cada aspas, vírgula e colchete precisa estar no lugar certo. Navegadores e APIs retornam mensagens crípticas de 'token inesperado' quando algo está errado, e o problema muitas vezes é invisível a olho nu. Este formatador faz o parse da entrada com o parser JSON nativo do navegador e depois a re-serializa de forma formatada (com indentação) ou minificada (sem espaços em branco).",
+          "Se o parse falhar, você recebe o erro diretamente — geralmente com a posição do caractere inválido. A partir daí, você pode localizar rapidamente a vírgula faltando, a aspas não escapada ou a vírgula final."
+        ]
+      },
+      {
+        "heading": "Formatar vs minificar",
+        "paragraphs": [
+          "Formatar com indentação: o jeito padrão de ler JSON. 2 espaços é convencional no contexto JavaScript; 4 espaços é comum em Python e Java. Escolha o que seu projeto usa.",
+          "Minificar: colapsar em uma única linha sem espaços. Útil ao incorporar JSON em URLs, variáveis de ambiente ou em qualquer lugar onde espaços em branco importam. A diferença de tamanho é significativa: um arquivo de configuração típico formatado encolhe 20-40% quando minificado."
+        ]
+      },
+      {
+        "heading": "Armadilhas comuns do JSON",
+        "paragraphs": [
+          "Vírgulas finais. Permitidas em JavaScript, não em JSON. {a:1, b:2,} faz parse no seu editor de código, mas falha quando enviado pela rede.",
+          "Aspas simples. JSON exige aspas duplas tanto para chaves quanto para valores de string. {'a': 1} é JSON inválido. {\"a\": 1} está correto.",
+          "Comentários. JSON não tem comentários. // ou /* */ dentro do JSON quebra o parse. JSONC (usado nas configurações do VS Code) suporta comentários, mas não é JSON padrão.",
+          "Números. JSON não suporta NaN ou Infinity. Use null, ou envolva em uma string, dependendo do consumidor downstream."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Cole seu JSON",
+        "text": "De alguns bytes até algumas centenas de KB funciona sem lentidão."
+      },
+      {
+        "name": "Escolha formatar ou minificar",
+        "text": "Mais um nível de indentação para o modo de formatação."
+      },
+      {
+        "name": "Leia ou copie o resultado",
+        "text": "Em caso de erro, a mensagem do parser aponta para o problema."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Isso suporta JSONC (JSON com comentários)?",
+      "a": "Ainda não. Remova os comentários primeiro ou use uma ferramenta que suporte JSONC."
+    },
+    {
+      "q": "Qual é o limite de tamanho?",
+      "a": "Navegadores modernos lidam com JSON de vários megabytes, embora a área de texto possa ficar lenta acima de ~1 MB. Para arquivos grandes, use uma ferramenta de desktop."
+    },
+    {
+      "q": "Por que meu JSON é inválido?",
+      "a": "Com mais frequência: uma vírgula final, aspas simples ou uma aspas não escapada dentro de uma string. O erro do parser aponta para a coluna onde o problema é detectado."
+    },
+    {
+      "q": "Posso ordenar as chaves alfabeticamente?",
+      "a": "Não nesta versão. Colar em uma ferramenta com suporte a ordenação (como jq com --sort-keys) é o caminho mais limpo; podemos adicionar essa opção depois."
+    },
+    {
+      "q": "Funciona com JSON muito aninhado?",
+      "a": "Sim. O parser JSON do navegador lida com qualquer profundidade prática."
+    },
+    {
+      "q": "Por que a minificação não reduz um arquivo de 1 MB para 1 byte?",
+      "a": "A minificação só remove espaços em branco. Os dados reais ainda estão lá. Para redução de tamanho real, use gzip ou um formato binário como MessagePack."
+    },
+    {
+      "q": "Os dados são enviados para algum lugar?",
+      "a": "Não. Todo o parse e formatação acontece no seu navegador."
+    },
+    {
+      "q": "E a validação de JSON Schema?",
+      "a": "Esta ferramenta valida apenas a sintaxe. Para validação de schema, use um validador de JSON Schema com seu arquivo de schema."
+    }
+  ]
+}

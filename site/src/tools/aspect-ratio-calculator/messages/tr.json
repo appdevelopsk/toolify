@@ -1,0 +1,63 @@
+{
+  "title": "En-Boy Oranı Hesaplayıcı (yeniden boyutlandırmada oran koruma)",
+  "shortDescription": "Hedef en-boy oranını korumak için genişlik veya yüksekliği hesapla. 16:9, 9:16, 1:1, 4:3, 21:9 gibi yaygın oranlar için tek tıkla ön ayarlar.",
+  "description": "Hedef oranı ve bir boyutu ayarla; diğeri otomatik doldurulur. Ters yönde de aynı şekilde çalışır. Video, fotoğraf kırpma ve duyarlı web düzeni için kullanışlıdır.",
+  "metaDescription": "Ücretsiz en-boy oranı hesaplayıcı. Yeniden boyutlandırırken 16:9, 9:16, 1:1, 4:3 gibi oranları koru. Eksik genişlik veya yüksekliği anında hesapla.",
+  "keywords": ["en-boy oranı hesaplayıcı", "oran yeniden boyutlandırma", "16:9 hesaplayıcı", "görsel en-boy oranı", "video en-boy oranı"],
+  "input": {
+    "ratioW": "Oran G",
+    "ratioH": "Oran Y",
+    "width": "Genişlik",
+    "height": "Yükseklik"
+  },
+  "result": {
+    "ratio": "En-boy oranı",
+    "decimal": "Ondalık",
+    "dimensions": "Boyutlar",
+    "simplified": "Sadeleştirilmiş"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "En-boy oranı nedir?",
+        "paragraphs": [
+          "En-boy oranı, genişliği yüksekliğe göre tanımlar: 16:9, her 9 birim yükseklik için 16 birim genişlik anlamına gelir. Aynı oran her boyutta geçerlidir — 1920×1080 ve 800×450 her ikisi de 16:9'dur. Yeniden boyutlandırırken en-boy oranını korumak, görüntülerin uzayıp sıkışmasını önler ve duyarlı tasarımın temelidir.",
+          "Oran için tam sayı (16:9) veya ondalık (1,78:1) kabul edilir; genişlik/yükseklik için herhangi bir boyut girilebilir. Herhangi bir alanı düzenle — oranı korumak için diğerleri güncellenir. Genişlik / yükseklik olarak ondalık oran, CSS calc() ifadelerinde veya video düzenleme araçlarında kullanılmak üzere gösterilir."
+        ]
+      },
+      {
+        "heading": "Yaygın oranlar ve kullanım alanları",
+        "paragraphs": [
+          "16:9 — modern HDTV, bilgisayar monitörleri, YouTube, 2009'dan itibaren çoğu film. Günümüzde neredeyse her şeyin varsayılanı.",
+          "9:16 — Instagram Hikayeler, TikTok, YouTube Shorts için dikey video. Telefon öncelikli içerik için 16:9'un ters çevrilmiş hali.",
+          "1:1 — kare. 2021'e kadar Instagram akışı varsayılanı. Albüm kapakları, profil fotoğrafları.",
+          "4:3 — HD öncesi eski TV'ler ve bilgisayar monitörleri. Hâlâ bazı klasik tarz içerikler için kullanılır.",
+          "3:2 — DSLR fotoğraf makinesi varsayılanı. 35mm film. Büyük baskılar.",
+          "21:9 — ultra geniş sinematik. Anamorfik çekim yapılan filmler. Bazı PC monitörleri ve geniş ekran TV'ler."
+        ]
+      },
+      {
+        "heading": "CSS aspect-ratio neden önemlidir?",
+        "paragraphs": [
+          "Modern CSS'de aspect-ratio: 16/9; özelliği vardır — oranı ayarla, tarayıcı genişlikten yüksekliği (veya tersi) hesaplasın. Eski padding-bottom hack'inin yerini almış ve duyarlı gömülü içerikler ile görüntü yer tutucuları için düzen kaymasını önlemede vazgeçilmezdir.",
+          "Kümülatif Düzen Kayması (CLS) bir Core Web Vitals metriğidir. Gömülü videolar, boyutsuz görseller ve reklamlar CLS'ye neden olabilir — boyutları açıkça belirleyerek (tarayıcı bunu en-boy oranını hesaplamak için kullanır) veya CSS aspect-ratio ile düzeltebilirsin."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Bir oran seç", "text": "Ön ayara dokun veya özel G:Y değerleri gir." },
+      { "name": "Bilinen boyutu gir", "text": "Genişlik veya yükseklik — diğeri otomatik doldurulur." },
+      { "name": "Herhangi bir alanı düzenle", "text": "Güncellemeler oranı korumak için yayılır." }
+    ]
+  },
+  "faq": [
+    { "q": "16:9 ile 1,78:1 arasındaki fark nedir?", "a": "Aynı oran, farklı gösterim. 16/9 = 1,778. İki nokta üst üste biçimi TV/web'de alışılageldik; ondalık biçim sinemada alışılageldiktir." },
+    { "q": "CSS'de en-boy oranını nasıl koruyabilirim?", "a": "aspect-ratio özelliğini kullan: img { aspect-ratio: 16/9; width: 100%; height: auto; }. Görüntü kapsayıcı genişliğini doldurur ve yükseklik oranı korumak için otomatik ayarlanır." },
+    { "q": "4:3 TV'de videoum neden bozuk görünüyor?", "a": "Modern videoların çoğu 16:9'dur. 4:3 ekranda ya letter-box (siyah şeritler), ya pillar-box ya da yayılmış görünür. TV ayarları hangisinin olacağını belirler." },
+    { "q": "Tam sayı olmayan oranlar kullanabilir miyim?", "a": "Evet — 1,5 veya 2,39 yazabilirsin. Hesaplayıcı bunları ondalık olarak işler; sadeleştirilmiş oran çıktısı yalnızca tam sayı oranları için gösterilir." },
+    { "q": "'Piksel en-boy oranı' nedir?", "a": "Ayrı bir kavram: tek bir pikselin şekli. Modern ekranlar kare piksel kullanır (1:1). Bazı eski SD video formatları kare olmayan piksel kullandı. Bu hesaplayıcı ekran en-boy oranını işler, piksel en-boy oranını değil." },
+    { "q": "'Sinematik' görünüm nedir?", "a": "21:9 (daha kesin: 2,39:1 veya 2,40:1) — HDTV'den daha geniş. Modern gişe filmlerinde yaygın. Yayın hizmetleri bu oranda film sunar." },
+    { "q": "Instagram Reels/TikTok neden 9:16 kullanıyor?", "a": "Çünkü telefonlar genellikle dikey tutulur. 9:16, dikey telefon ekranını içerikle tamamen doldurur; 16:9, dikey telefonda üst ve altta boşluk bırakır." },
+    { "q": "Veriler tarayıcımı terk ediyor mu?", "a": "Hayır. Hesaplama yerel olarak çalışır." }
+  ]
+}

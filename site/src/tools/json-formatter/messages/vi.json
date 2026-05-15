@@ -1,0 +1,99 @@
+{
+  "title": "Định dạng & Nén JSON (xác thực và hiển thị đẹp)",
+  "shortDescription": "Hiển thị đẹp hoặc nén JSON. Xác thực đầu vào và hiển thị lỗi rõ ràng với dòng và cột khi thất bại.",
+  "description": "Dán bất kỳ JSON nào để định dạng với thụt đầu dòng 2/4/8 dấu cách, hoặc nén thành một dòng. JSON không hợp lệ hiển thị lỗi phân tích để bạn có thể nhanh chóng tìm ra vấn đề.",
+  "metaDescription": "Định dạng và nén JSON miễn phí. Xác thực đầu vào, hiển thị đẹp với thụt đầu dòng tùy chọn hoặc nén về một dòng.",
+  "keywords": [
+    "định dạng JSON",
+    "nén JSON",
+    "kiểm tra JSON",
+    "hiển thị đẹp JSON",
+    "format JSON"
+  ],
+  "input": "Đầu vào JSON",
+  "output": "Đầu ra đã định dạng",
+  "mode": {
+    "format": "Định dạng",
+    "minify": "Nén"
+  },
+  "indent": "Thụt đầu dòng",
+  "copy": "Sao chép",
+  "copied": "Đã sao chép",
+  "error": "Lỗi phân tích",
+  "stats": "Đầu vào: {input} bytes · Đầu ra: {output} bytes",
+  "article": {
+    "sections": [
+      {
+        "heading": "Công cụ này làm gì",
+        "paragraphs": [
+          "JSON là định dạng nghiêm ngặt — mọi dấu nháy, dấu phẩy và ngoặc đều phải ở đúng vị trí. Trình duyệt và API trả về thông báo 'Unexpected token' khó hiểu khi có gì đó sai, và vấn đề thường không thể nhìn thấy ngay. Công cụ định dạng này phân tích đầu vào với trình phân tích JSON gốc của trình duyệt, sau đó tuần tự hóa lại theo dạng đẹp (có thụt đầu dòng) hoặc nén (không có khoảng trắng).",
+          "Nếu phân tích thất bại, bạn nhận được lỗi cơ bản trực tiếp — thường với vị trí của ký tự xấu. Từ đó, bạn có thể nhanh chóng tìm dấu phẩy còn thiếu, dấu nháy chưa thoát hoặc dấu phẩy thừa ở cuối."
+        ]
+      },
+      {
+        "heading": "Định dạng so với nén",
+        "paragraphs": [
+          "Định dạng với thụt đầu dòng: cách tiêu chuẩn để đọc JSON. 2 dấu cách là quy ước trong thế giới JavaScript; 4 dấu cách phổ biến trong ngữ cảnh Python và Java. Chọn bất kỳ tùy chọn nào dự án của bạn sử dụng.",
+          "Nén: thu gọn thành một dòng không có khoảng trắng. Hữu ích khi nhúng JSON vào URL, biến môi trường hoặc bất kỳ nơi nào khoảng trắng quan trọng. Sự khác biệt về kích thước là đáng kể: một file cấu hình được hiển thị đẹp điển hình nhỏ lại 20-40% khi nén."
+        ]
+      },
+      {
+        "heading": "Các lỗi JSON phổ biến",
+        "paragraphs": [
+          "Dấu phẩy thừa ở cuối. Được phép trong JavaScript, không phải trong JSON. {a:1, b:2,} phân tích được trong trình soạn thảo nhưng thất bại khi gửi qua mạng.",
+          "Dấu nháy đơn. JSON yêu cầu dấu nháy kép cho cả khóa và giá trị chuỗi. {'a': 1} là JSON không hợp lệ. {\"a\": 1} là đúng.",
+          "Bình luận. JSON không có bình luận. // hoặc /* */ bên trong JSON làm hỏng phân tích. JSONC (dùng bởi cấu hình VS Code) hỗ trợ bình luận nhưng không phải JSON tiêu chuẩn.",
+          "Số. JSON không hỗ trợ NaN hoặc Infinity. Dùng null hoặc gói trong chuỗi, tùy thuộc vào người tiêu thụ phía sau."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Dán JSON của bạn",
+        "text": "Từ vài byte đến vài trăm KB hoạt động mà không bị chậm."
+      },
+      {
+        "name": "Chọn định dạng hoặc nén",
+        "text": "Cộng với mức thụt đầu dòng cho chế độ định dạng."
+      },
+      {
+        "name": "Đọc hoặc sao chép kết quả",
+        "text": "Khi có lỗi, thông báo lỗi trình phân tích chỉ ra vấn đề."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Cái này có hỗ trợ JSONC (JSON có bình luận) không?",
+      "a": "Chưa. Hãy xóa bình luận trước hoặc dùng công cụ hỗ trợ JSONC."
+    },
+    {
+      "q": "Giới hạn kích thước là bao nhiêu?",
+      "a": "Trình duyệt hiện đại xử lý JSON nhiều megabyte, mặc dù textarea có thể chậm lại sau ~1 MB. Với file lớn, hãy dùng công cụ trên máy tính."
+    },
+    {
+      "q": "Tại sao JSON của tôi không hợp lệ?",
+      "a": "Thường gặp nhất: dấu phẩy thừa ở cuối, dấu nháy đơn hoặc dấu nháy chưa thoát bên trong chuỗi. Lỗi trình phân tích chỉ ra cột nơi vấn đề được phát hiện."
+    },
+    {
+      "q": "Tôi có thể sắp xếp khóa theo thứ tự bảng chữ cái không?",
+      "a": "Không có trong phiên bản này. Dán vào công cụ nhận biết sắp xếp (như jq với --sort-keys) là cách sạch nhất; chúng tôi có thể thêm tùy chọn này sau."
+    },
+    {
+      "q": "Nó có xử lý JSON lồng sâu không?",
+      "a": "Có. Trình phân tích JSON của trình duyệt xử lý bất kỳ độ sâu thực tế nào."
+    },
+    {
+      "q": "Tại sao nén không làm file 1 MB thành 1 byte?",
+      "a": "Nén chỉ xóa khoảng trắng. Dữ liệu thực tế vẫn còn đó. Để giảm kích thước thực sự, hãy dùng gzip hoặc định dạng nhị phân như MessagePack."
+    },
+    {
+      "q": "Dữ liệu có được gửi đi đâu không?",
+      "a": "Không. Tất cả phân tích và định dạng xảy ra trong trình duyệt của bạn."
+    },
+    {
+      "q": "Còn xác thực JSON Schema thì sao?",
+      "a": "Công cụ này chỉ xác thực cú pháp. Để xác thực schema, hãy dùng trình xác thực JSON Schema với file schema của bạn."
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "title": "Localizar e Substituir Texto (literal ou regex, com opções)",
+  "shortDescription": "Substitua texto com localizar/substituir literal ou regex completo. Alterne sensibilidade a maiúsculas e modo multilinha. Contagem de correspondências exibida ao vivo.",
+  "description": "Cole o texto, defina as strings de localizar e substituir, opcionalmente ative regex / insensível a maiúsculas / multilinha, e veja o texto modificado mais a contagem de correspondências instantaneamente.",
+  "metaDescription": "Ferramenta gratuita de localizar e substituir texto. Modo literal ou regex, opção insensível a maiúsculas, contagem ao vivo.",
+  "keywords": [
+    "localizar e substituir",
+    "substituir texto",
+    "regex replace",
+    "buscar e substituir",
+    "edição de texto em massa"
+  ],
+  "input": {
+    "text": "Texto fonte",
+    "find": "Localizar",
+    "replace": "Substituir por"
+  },
+  "opt": {
+    "regex": "Regex",
+    "caseSensitive": "Sensível a maiúsculas",
+    "multiline": "Multilinha ^ / $"
+  },
+  "output": {
+    "result": "Resultado",
+    "matches": "{n} correspondências"
+  },
+  "error": "Erro de regex",
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "article": {
+    "sections": [
+      {
+        "heading": "Dois modos — literal e regex",
+        "paragraphs": [
+          "Literal (regex desativado): a string de localização é correspondida exatamente. Caracteres especiais como '.' e '*' são tratados como eles mesmos. Este é o padrão seguro para a maioria das edições de texto do dia a dia.",
+          "Regex (regex ativado): a string de localização é interpretada como uma expressão regular JavaScript. Use para padrões — por exemplo /\\b\\w+@\\w+\\.\\w+\\b/ para encontrar emails, ou (^.+:) para corresponder rótulos no início de uma linha. No modo multilinha, ^ e $ correspondem nas quebras de linha."
+        ]
+      },
+      {
+        "heading": "Sintaxe especial na string de substituição",
+        "paragraphs": [
+          "No modo regex, a string de substituição suporta retrorreferências: $1, $2 etc. para grupos de captura; $& para a correspondência inteira; $$ para um cifrão literal. Exemplo: localizar /(\\d{2})\\.(\\d{2})\\.(\\d{4})/ substituir $3-$2-$1 reformata datas do formato BR (DD.MM.AAAA) para ISO.",
+          "No modo literal, a string de substituição é usada como está — sem retrorreferências, sem tratamento especial. O que você digita é o que é inserido."
+        ]
+      },
+      {
+        "heading": "Usos comuns",
+        "paragraphs": [
+          "Edição em massa: padronizar grafia ('color' → 'colour' para estilo britânico), atualizar nomes de produtos, corrigir erros de digitação em documentos longos.",
+          "Refatoração de código: renomear uma variável em um trecho de código colado (use modo sensível a maiúsculas). Para refatoração real em muitos arquivos, uma IDE é melhor.",
+          "Limpeza de dados: converter tabulações para vírgulas em CSV, substituir um delimitador por outro, normalizar espaços em branco.",
+          "Markdown para texto simples: remova a sintaxe Markdown com regex (ex.: /\\*\\*([^*]+)\\*\\*/g → $1 para remover marcadores de negrito)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Cole seu texto",
+        "text": "Ou digite diretamente."
+      },
+      {
+        "name": "Insira localizar e substituir",
+        "text": "Localizar o que procurar, substituir pelo que inserir."
+      },
+      {
+        "name": "Alterne as opções conforme necessário",
+        "text": "Regex para padrões; insensível a maiúsculas para correspondências flexíveis; multilinha para padrões com âncoras de linha."
+      },
+      {
+        "name": "Leia o resultado e copie",
+        "text": "A contagem de correspondências mostra quantas substituições foram feitas."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Como isso difere do testador de regex?",
+      "a": "Este se concentra na operação de substituição. O testador de regex se concentra em inspecionar correspondências e grupos de captura. Use o que melhor se encaixa na tarefa."
+    },
+    {
+      "q": "Posso usar Unicode no localizar/substituir?",
+      "a": "Sim. As strings de localizar e substituir suportam UTF-8 completo incluindo emoji e caracteres CJK."
+    },
+    {
+      "q": "Por que meu localizar/substituir não funcionou?",
+      "a": "Mais comum: sensibilidade a maiúsculas. 'Olá' não vai corresponder a 'olá' a menos que você ative insensível a maiúsculas. Ou caracteres especiais de regex no modo literal sendo mal interpretados."
+    },
+    {
+      "q": "Isso preserva a formatação?",
+      "a": "Preserva o texto exatamente exceto pelas correspondências. Se o seu texto tem tabulações ou quebras de linha específicas, elas são preservadas."
+    },
+    {
+      "q": "Posso desfazer uma substituição?",
+      "a": "O original está no campo de entrada. Recoloque-o ou use o comportamento de desfazer do navegador. Não temos um desfazer integrado."
+    },
+    {
+      "q": "Qual o tamanho máximo do meu texto?",
+      "a": "Textos de múltiplos megabytes funcionam, embora regex em entradas enormes possa ser lento se o padrão for mal escrito."
+    },
+    {
+      "q": "Como é uma boa maneira de aprender regex?",
+      "a": "Comece com o modo literal e mude para regex quando precisar de padrões. Pesquise 'JavaScript regex cheat sheet' ou consulte os docs RegExp do MDN."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. Todo o localizar/substituir é feito localmente."
+    }
+  ]
+}

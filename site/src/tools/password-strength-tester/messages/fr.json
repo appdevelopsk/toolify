@@ -1,0 +1,134 @@
+{
+  "title": "Testeur de Force de Mot de Passe (entropie + temps de craquage)",
+  "shortDescription": "Teste la force du mot de passe avec les bits d'entropie, l'analyse du jeu de caractères, la vérification des mots de passe courants et le temps de craquage estimé selon différents scénarios d'attaque.",
+  "description": "Tape un mot de passe (navigateur uniquement, jamais transmis). Le testeur calcule l'entropie, la couverture du jeu de caractères, le risque de correspondance avec un dictionnaire, et affiche les temps de craquage estimés pour les attaques GPU hors ligne, les limites d'API en ligne et les attaques en ligne lentes.",
+  "metaDescription": "Testeur de force de mot de passe gratuit. Bits d'entropie, estimations de temps de craquage, analyse du jeu de caractères, détection de mots de passe courants et de",
+  "keywords": [
+    "testeur force mot de passe",
+    "entropie mot de passe",
+    "calculateur temps craquage",
+    "sécurité mot de passe",
+    "test mot de passe"
+  ],
+  "input": {
+    "password": "Mot de passe",
+    "privacyNote": "Testé entièrement dans ton navigateur. Jamais envoyé ni stocké nulle part."
+  },
+  "show": "Afficher",
+  "hide": "Masquer",
+  "result": {
+    "strength": "Force",
+    "length": "Longueur",
+    "charsetSize": "Taille du jeu de caractères",
+    "entropy": "Entropie",
+    "bits": "bits",
+    "lowercase": "Minuscules a-z",
+    "uppercase": "Majuscules A-Z",
+    "digits": "Chiffres 0-9",
+    "symbols": "Symboles",
+    "crackTime": "Temps de craquage estimé",
+    "crackOffline": "GPU hors ligne (10⁹⁰/s)",
+    "crackOnlineFast": "En ligne rapide (1 000/s)",
+    "crackOnlineSlow": "En ligne lent (100/s)",
+    "warningsHeading": "Points d'attention"
+  },
+  "level": {
+    "veryWeak": "Très faible",
+    "weak": "Faible",
+    "fair": "Passable",
+    "strong": "Fort",
+    "veryStrong": "Très fort"
+  },
+  "warning": {
+    "isCommon": "Ce mot de passe apparaît dans des listes de mots de passe courants. Ne l'utilise pas.",
+    "tooShort": "Longueur inférieure à 8 — trop court pour une vraie sécurité.",
+    "hasRepeated": "Les caractères répétés (ex. « aaa ») réduisent l'entropie réelle.",
+    "hasSequential": "Les patterns séquentiels (1234, azerty, abcd) sont faciles à deviner.",
+    "limitedCharset": "Les mots de passe à jeu de caractères unique (minuscules seules, chiffres seuls) sont faibles même longs."
+  },
+  "time": {
+    "instant": "instantané",
+    "yrs": "ans",
+    "eternity": "éternité"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ce que signifie « entropie » pour les mots de passe",
+        "paragraphs": [
+          "L'entropie mesure l'imprévisibilité en bits. Un mot de passe avec 30 bits d'entropie nécessite en moyenne ~2³⁰ ≈ 1 milliard de tentatives pour être craqué. 70+ bits est généralement considéré comme fort ; 80+ est excellent.",
+          "Formule : entropie = longueur × log₂(taille_jeu_caractères). « abcdefgh » (8 chars, minuscules seulement) = 8 × log₂(26) ≈ 37,6 bits. « aA1!aaaa » (8 chars, tous les jeux) = 8 × log₂(95) ≈ 52,6 bits — mais le temps de craquage est bien pire que 52 bits ne le suggèrerait car « aaaa » est un pattern courant."
+        ]
+      },
+      {
+        "heading": "Pourquoi les temps de craquage varient tant",
+        "paragraphs": [
+          "GPU hors ligne : un hash de mot de passe divulgué attaqué hors ligne. Les GPU modernes peuvent deviner 10⁹+ hashes MD5 par seconde ; les hashes bcrypt seulement 10⁴-10⁵/s. L'estimation ici utilise l'hypothèse de hash rapide GPU.",
+          "En ligne rapide : un attaquant martelant directement une API de connexion. La plupart des API ont une limitation de débit ; 1 000 tentatives/sec est une estimation haute pour un endpoint mal défendu.",
+          "En ligne lent : un endpoint correctement défendu avec des limitations de débit strictes, des verrouillages de compte et des CAPTCHA. 100 tentatives/sec est généreux ; beaucoup de systèmes n'autorisent que 5-10/min.",
+          "Ces estimations ignorent les facteurs réels comme les attaques par dictionnaire (qui trouvent les mots de passe courants bien plus vite que la force brute) et la réutilisation des mots de passe (craquer la fuite d'un site aide à craquer les autres)."
+        ]
+      },
+      {
+        "heading": "Ce qui fait un mot de passe fort",
+        "paragraphs": [
+          "La longueur prime sur la complexité : une phrase de 16 caractères comme « correct cheval pile batteries » est plus forte qu'un torturé de 8 caractères comme « P@ssw0rd! ». La longueur > complexité : 4 mots aléatoires donnent ~44 bits d'entropie.",
+          "Évite les patterns : les dates, les prénoms, « 123 », « azerty », les caractères répétés réduisent tous l'entropie réelle en dessous de la valeur de la formule. Les outils d'attaque incluent de nombreuses transformations « basées sur des règles » (ex. « password » → « P@ssw0rd! »).",
+          "Utilise un gestionnaire de mots de passe : les humains choisissent des patterns ; les gestionnaires non. Bitwarden, 1Password, KeePass génèrent de vrais mots de passe aléatoires par site, avec 16+ caractères dans tous les jeux. Le seul mot de passe dont tu dois te souvenir est le mot de passe maître — et celui-là devrait être une longue phrase mémorable."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Tape le mot de passe",
+        "text": "Testé entièrement côté client. Utilise le bouton Afficher si tu ne peux pas voir ce que tu tapes."
+      },
+      {
+        "name": "Lis l'indicateur de force",
+        "text": "Cinq segments. Vise 4-5 (Fort/Très fort) pour les comptes importants."
+      },
+      {
+        "name": "Vérifie l'entropie et les temps de craquage",
+        "text": "Plus l'entropie est élevée, plus le temps de craquage est long. Surveille les avertissements sur les patterns courants."
+      },
+      {
+        "name": "Ajuste si nécessaire",
+        "text": "Augmente la longueur, mélange les jeux de caractères, évite les mots courants. Teste des variantes jusqu'à satisfaction."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Mon mot de passe est-il envoyé quelque part ?",
+      "a": "Non. Tout s'exécute localement dans ton navigateur. Nous ne voyons pas, ne stockons pas et ne transmettons pas ton mot de passe."
+    },
+    {
+      "q": "Pourquoi mon long mot de passe montre-t-il une faible entropie ?",
+      "a": "La longueur n'est pas tout — répéter « a » 50 fois a une très faible entropie réelle. Le calculateur utilise une formule simple mais signale les patterns répétés/séquentiels. Pour de meilleurs résultats : long, varié, sans patterns."
+    },
+    {
+      "q": "Ces temps de craquage sont-ils précis ?",
+      "a": "Ce sont des estimations basées sur la force brute naïve. Les vrais crackers utilisent d'abord les dictionnaires, les patterns courants et les bases de données de mots de passe divulgués — donc un mot de passe « courant » pourrait se craquer en secondes malgré une entropie formulaire élevée."
+    },
+    {
+      "q": "Devrais-je m'inquiéter des ordinateurs quantiques ?",
+      "a": "Éventuellement oui — l'algorithme de Grover divise par deux les bits effectifs du chiffrement symétrique. Pour l'instant, 80+ bits d'entropie est confortable ; 128+ pour les secrets très long terme."
+    },
+    {
+      "q": "Pourquoi l'outil signale-t-il « P@ssw0rd1 » même s'il a tous les jeux de caractères ?",
+      "a": "Parce que « password » est dans les dictionnaires et les substitutions triviales (p → P, a → @) font partie de l'ensemble de règles de chaque outil de craquage. Utilise des mots de passe vraiment aléatoires ou en style phrase, pas des substitutions de mots courants."
+    },
+    {
+      "q": "« correct cheval pile batteries » est-il vraiment sûr ?",
+      "a": "Raisonnablement. 4 mots aléatoires d'une liste de 7 000 mots = ~52 bits d'entropie. Plus fort que la plupart des mots de passe complexes de 8 caractères. Mais une fois qu'il est célèbre (comme cet exemple), il est dans les dictionnaires — choisis tes propres mots aléatoires."
+    },
+    {
+      "q": "Quelle est la longueur minimale de mot de passe à utiliser ?",
+      "a": "8 est le strict minimum (et seulement avec tous les jeux de caractères). 12+ est recommandé pour la plupart des comptes. 16+ pour les importants (email, banque, maître du gestionnaire)."
+    },
+    {
+      "q": "La sensibilité à la casse est-elle importante ?",
+      "a": "Oui — ajouter des majuscules double la taille du jeu de caractères de 26 à 52. Environ +1 bit par caractère. Mélanger significativement les casses (pas juste la première lettre) vaut la peine."
+    }
+  ]
+}

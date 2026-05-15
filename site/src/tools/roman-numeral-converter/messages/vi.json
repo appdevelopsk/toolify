@@ -1,0 +1,54 @@
+{
+  "title": "Chuyển đổi số La Mã (1 đến 3999, cả hai chiều)",
+  "shortDescription": "Chuyển đổi số Ả Rập sang số La Mã (và ngược lại). Xác thực dạng chuẩn để VIIII không bị chấp nhận lặng lẽ là 9.",
+  "description": "Nhập số 1-3999 để được số La Mã, hoặc dán số La Mã để chuyển ngược. Xác thực nghiêm ngặt từ chối các dạng không chuẩn.",
+  "metaDescription": "Công cụ chuyển đổi số La Mã miễn phí. Chuyển số 1-3999 sang số La Mã hoặc giải mã La Mã sang số Ả Rập. Xác thực dạng chuẩn, từ chối 'IIII' và tương tự.",
+  "keywords": ["chuyển đổi số La Mã", "số Ả Rập sang La Mã", "số La Mã sang số", "MMXXVI", "số La Mã"],
+  "input": { "number": "Số (1 đến 3999)", "roman": "Số La Mã" },
+  "result": { "roman": "Số La Mã", "number": "Số Ả Rập" },
+  "mode": { "toRoman": "Số → La Mã", "fromRoman": "La Mã → Số" },
+  "error": {
+    "invalidNumber": "Nhập số nguyên.",
+    "outOfRange": "Số La Mã chỉ hỗ trợ từ 1 đến 3999.",
+    "invalidRoman": "Không phải số La Mã hợp lệ (yêu cầu dạng chuẩn)."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cách số La Mã hoạt động",
+        "paragraphs": [
+          "Số La Mã dùng bảy chữ cái: I=1, V=5, X=10, L=50, C=100, D=500, M=1000. Các số được tạo bằng phép cộng (II=2, XX=20) hoặc phép trừ khi một chữ cái nhỏ hơn đứng trước một chữ cái lớn hơn (IV=4, IX=9, XL=40, XC=90, CD=400, CM=900). Mỗi chữ cái chỉ được lặp tối đa ba lần liên tiếp, đó là lý do tại sao 4 là IV, không phải IIII.",
+          "Ký hiệu La Mã chuẩn hỗ trợ từ 1 đến 3999. Các số ≥ 4000 yêu cầu ký hiệu gạch ngang trên (V̄ = 5000) khó gõ và hiếm khi cần ngày nay, nên công cụ chuyển đổi này giới hạn ở 3999."
+        ]
+      },
+      {
+        "heading": "Dạng chuẩn so với La Mã không chính thức",
+        "paragraphs": [
+          "Dạng chuẩn nghiêm ngặt tuân theo các quy tắc trên. La Mã 'không chính thức' (đôi khi gọi là 'cổ xưa') cho phép những thứ như IIII cho 4 — bạn sẽ thấy điều này trên mặt đồng hồ, nơi tính đối xứng được ưa thích. Công cụ chuyển đổi này yêu cầu dạng chuẩn cho đầu vào và tạo dạng chuẩn ở đầu ra. Vì vậy 'IIII' bị từ chối; hãy nhập 'IV' thay thế.",
+          "Bộ giải mã xác thực bằng cách tái mã hóa: phân tích số La Mã, lấy số, mã hóa số đó và kiểm tra xem nó có khớp với đầu vào không. Bất cứ điều gì không qua được vòng kiểm tra sẽ bị từ chối. Điều này bắt 'VV' (không đúng = 10), 'IIX' (không đúng = 8) và các dạng không chuẩn khác."
+        ]
+      },
+      {
+        "heading": "Số La Mã xuất hiện ở đâu ngày nay",
+        "paragraphs": [
+          "Ngày bản quyền phim (MCMXCIX = 1999), đánh số Super Bowl, chuỗi quốc vương và giáo hoàng (Henry VIII, John XXIII), chương sách và đề mục, mặt đồng hồ và dấu năm cách điệu. Chúng phần lớn đã không còn được dùng trong số học vì số học số Ả Rập dễ hơn nhiều — hãy thử nhân MCXLVII với IV và bạn sẽ hiểu tại sao."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn chiều", "text": "Số→La Mã hoặc La Mã→Số." },
+      { "name": "Nhập đầu vào", "text": "Số nguyên 1-3999, hoặc số La Mã." },
+      { "name": "Đọc kết quả", "text": "Đầu vào không hợp lệ hiển thị lỗi cụ thể để bạn có thể sửa." }
+    ]
+  },
+  "faq": [
+    { "q": "Tại sao IIII không được chấp nhận là 4?", "a": "La Mã chuẩn viết 4 là IV. IIII xuất hiện trên một số mặt đồng hồ nhưng không phải ký hiệu số học tiêu chuẩn. Dùng IV." },
+    { "q": "Số La Mã lớn nhất là bao nhiêu?", "a": "Không có gạch ngang, 3999 = MMMCMXCIX. Các số trên đó cần ký hiệu gạch ngang chúng tôi không hỗ trợ." },
+    { "q": "Tôi có thể có số không không?", "a": "Người La Mã không có số không. Ký hiệu bắt đầu từ 1 (I)." },
+    { "q": "CMXLIV có nghĩa là gì?", "a": "CM=900, XL=40, IV=4. Tổng = 944. Cặp trừ (CM, XL, IV) cộng các thành phần của chúng." },
+    { "q": "Tôi đọc MMXXVI như thế nào?", "a": "MM=2000, XX=20, VI=6. Tổng = 2026." },
+    { "q": "Tại sao số 4 trên mặt đồng hồ đôi khi là IIII?", "a": "Truyền thống. Các thợ làm đồng hồ lịch sử ưa IIII vì tính đối xứng về hình ảnh với VIII (cả hai đều bốn ký tự). Nó không 'đúng' về mặt chuẩn." },
+    { "q": "Số La Mã có phải cơ số 10 không?", "a": "Chúng có chữ cái nhóm thập phân (I/V cho hàng đơn vị, X/L cho hàng chục, C/D cho hàng trăm, M cho hàng nghìn) nhưng dùng phép cộng và trừ thay vì ký hiệu vị trí. Vậy chúng bị ảnh hưởng bởi hệ thập phân nhưng không phải là hệ vị trí." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Chuyển đổi chạy cục bộ." }
+  ]
+}

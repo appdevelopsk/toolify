@@ -1,0 +1,53 @@
+{
+  "title": "Konverter HTML ke Markdown",
+  "shortDescription": "Konversi HTML ke Markdown di browser Anda. Heading, daftar, kode, tautan, gambar, blockquote, tebal/miring/coret.",
+  "description": "Tempel HTML dan dapatkan Markdown yang bersih. Berguna untuk migrasi konten CMS, scraping artikel, atau mengonversi output WYSIWYG ke markdown biasa untuk situs statis.",
+  "metaDescription": "Konverter HTML ke Markdown gratis. Heading, daftar, blok kode, tautan, blockquote, tebal/miring. Output adalah Markdown biasa siap tempel di mana saja.",
+  "keywords": ["html ke markdown", "html to md", "konverter markdown", "hapus html", "wysiwyg ke markdown", "konversi html indonesia"],
+  "input": { "html": "HTML" },
+  "output": { "markdown": "Output Markdown" },
+  "copy": "Salin Markdown",
+  "copied": "Tersalin!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa yang dikonversi",
+        "paragraphs": [
+          "Heading (h1-h6) menjadi # hingga ######. <strong>/<b> menjadi **tebal**, <em>/<i> menjadi *miring*. <code> menjadi `kode inline`, <pre><code> menjadi blok ``` berpagar. <ul>/<ol> menjadi - atau daftar 1. <a href> menjadi [teks](url), <img src alt> menjadi ![alt](url). <blockquote> menjadi >, <hr> menjadi ---. <br> menjadi baris baru.",
+          "Apapun yang tidak dikenali (HTML kustom seperti <details>, <table>, <video>, dll.) dihapus tag-nya tetapi konten teksnya dipertahankan. Untuk HTML kompleks dengan tabel atau media, perlu menerima beberapa kehilangan."
+        ]
+      },
+      {
+        "heading": "Kasus penggunaan umum",
+        "paragraphs": [
+          "Migrasi CMS: salin HTML WYSIWYG dari WordPress, Wix, dll., dan konversi ke Markdown bersih untuk digunakan di generator situs statis (Hugo, Jekyll, Next.js, Astro).",
+          "Pengarsipan artikel: simpan artikel web sebagai Markdown untuk bacaan pribadi. Gabungkan dengan ekstraktor ramah-paywall (HTML mode Reader) untuk output hanya teks yang bersih.",
+          "Email-ke-Markdown: tempel konten email HTML dan dapatkan versi Markdown untuk diposting silang ke blog Anda."
+        ]
+      },
+      {
+        "heading": "Keterbatasan",
+        "paragraphs": [
+          "Tabel: tidak dikonversi (tabel Markdown adalah GFM, bukan CommonMark). Tabel diubah menjadi teks biasa. Untuk tabel kompleks, tempel sebagai HTML sebagai gantinya.",
+          "Gaya inline: warna, font, atau tata letak apapun melalui <style> atau atribut style='' akan hilang. Markdown secara sengaja minimal.",
+          "Daftar bersarang: daftar satu tingkat sederhana berfungsi; daftar yang sangat bersarang mungkin bergabung atau kehilangan struktur. Untuk outline kompleks, edit secara manual setelah konversi."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Tempel HTML", "text": "Dari sumber apapun — ekspor WordPress, artikel web yang disalin, dll." },
+      { "name": "Baca output Markdown", "text": "Diperbarui langsung saat Anda mengedit." },
+      { "name": "Salin dan tempel di tempat lain", "text": "Output adalah Markdown biasa siap untuk situs statis atau editor markdown apapun." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah ini mempertahankan format dengan sempurna?", "a": "Untuk elemen yang kompatibel dengan CommonMark: ya. Untuk fitur hanya-HTML (CSS kustom, tata letak kompleks), tidak — Markdown secara sengaja adalah subset." },
+    { "q": "Apakah tabel dikonversi?", "a": "Belum. Tabel menjadi teks biasa. Kami mungkin menambahkan konversi tabel GFM di versi mendatang." },
+    { "q": "Apakah tautan saya akan bertahan setelah konversi?", "a": "Ya. <a href='url'>teks</a> menjadi [teks](url). Atribut href dipertahankan." },
+    { "q": "Bagaimana dengan gaya inline?", "a": "Dihapus. Markdown tidak mendukung gaya sembarang — itu disengaja." },
+    { "q": "Bagaimana cara mengonversi kembali ke HTML?", "a": "Gunakan konverter Markdown ke HTML kami (tertaut di bawah Alat Terkait)." },
+    { "q": "Apakah output aman untuk ditempel di mana saja?", "a": "Ini adalah teks bersih — tidak ada script, tidak ada HTML — sehingga aman untuk editor markdown atau bidang teks apapun. Validasi sebelum mempublikasikan jika input berasal dari sumber yang tidak tepercaya." },
+    { "q": "Mengapa beberapa konten hilang?", "a": "Elemen HTML kustom atau non-standar mungkin dihapus. Tempel cuplikan HTML dari <details>, <video>, atau tag khusus framework untuk memverifikasi." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Konversi berjalan secara lokal; HTML Anda tidak pernah dikirim ke mana saja." }
+  ]
+}

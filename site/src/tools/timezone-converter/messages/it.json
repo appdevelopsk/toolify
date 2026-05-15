@@ -1,0 +1,54 @@
+{
+  "title": "Convertitore Fusi Orari (confronta l'ora in più zone)",
+  "shortDescription": "Converti un momento nel tempo attraverso più fusi orari contemporaneamente. Aggiungi o rimuovi zone; ottimo per pianificare riunioni internazionali.",
+  "description": "Scegli un fuso orario sorgente e data/ora, poi aggiungi tutti i fusi orari target di cui hai bisogno. Ogni target mostra l'ora locale equivalente con l'abbreviazione del fuso orario.",
+  "metaDescription": "Convertitore gratuito di fusi orari. Vedi un momento in molte città contemporaneamente. Utile per pianificare riunioni, viaggi e trasmissioni in più fusi orari.",
+  "keywords": ["convertitore fuso orario", "orologio mondiale", "orario riunione internazionale", "convertire UTC", "differenza fuso orario"],
+  "empty": "Aggiungi fusi orari per vedere gli equivalenti.",
+  "input": { "sourceTz": "Fuso orario sorgente", "dt": "Data e ora" },
+  "now": "Adesso",
+  "addTz": "Aggiungi fuso orario",
+  "remove": "Rimuovi",
+  "article": {
+    "sections": [
+      {
+        "heading": "Come funziona la conversione dei fusi orari",
+        "paragraphs": [
+          "Ogni momento nel tempo è un singolo punto — martedì alle 9:00 a Tokyo è lo stesso momento di lunedì alle 17:00 a San Francisco. La conversione del fuso orario semplicemente reintitola quel singolo momento con l'ora locale di ciascuna zona. L'ora legale complica questo — tra marzo e ottobre in Europa, l'ora italiana è UTC+2 (CEST); il resto dell'anno è UTC+1 (CET). L'API Intl.DateTimeFormat del browser gestisce tutto questo correttamente quando si passa un nome di fuso orario IANA come 'Europe/Rome'.",
+          "Usiamo i nomi IANA (come 'Europe/Rome' o 'America/New_York') perché sono non ambigui e seguono le regole DST di ciascun luogo storicamente. 'CET' o 'GMT' sono abbreviazioni che possono collidere; i nomi IANA no."
+        ]
+      },
+      {
+        "heading": "Insidie comuni nella pianificazione",
+        "paragraphs": [
+          "Transizioni dell'ora legale: 'martedì prossimo alle 9:00 CET' è ambiguo a marzo o ottobre perché le regole cambiano. Di' sempre 'ora di Roma' o invia un invito del calendario — Outlook, Google Calendar e Teams gestiscono tutti la conversione correttamente quando entrambi i lati specificano la loro zona.",
+          "Offset di mezza ora: l'India è UTC+5:30, Terranova è UTC-3:30, parti dell'Australia sono UTC+9:30 o +10:30. Se il calcolo dell'orario della riunione è in 'ore intere', avrai 30 minuti di errore per queste regioni.",
+          "Salti oltre la linea del cambio data: Tokyo a San Francisco è il giorno successivo rispetto allo stesso giorno a seconda della direzione. Il calendario lo mostra correttamente, ma l'assunzione umana può essere sbagliata."
+        ]
+      },
+      {
+        "heading": "Pattern utili",
+        "paragraphs": [
+          "Standup internazionale: scegli una zona sorgente (spesso UTC) e i fusi orari del team. Imposta l'orario della riunione e verifica che nessuno sia chiamato a partecipare alle 3 di mattina.",
+          "Lancio di prodotto: scegli la zona di lancio e aggiungi i principali mercati. Utile per verificare che l'email di marketing arrivi a un'ora locale sensata.",
+          "Pianificazione del viaggio: scegli la zona di partenza e aggiungi la/le zona/e di destinazione per trovare l'ora locale di arrivo senza calcoli manuali."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Imposta la sorgente", "text": "Scegli il tuo fuso orario sorgente (predefinito sulla zona del tuo browser) e la data/ora che vuoi convertire." },
+      { "name": "Aggiungi fusi orari target", "text": "Usa il menu a tendina per aggiungerne quanti ne hai bisogno." },
+      { "name": "Leggi gli equivalenti", "text": "Ogni target mostra lo stesso momento nel suo orologio locale." }
+    ]
+  },
+  "faq": [
+    { "q": "Gestisce l'ora legale?", "a": "Sì — i dati del fuso orario IANA includono le regole dell'ora legale per ciascun luogo. L'API Intl del browser gestisce le transizioni passate, presenti e (dove note) future." },
+    { "q": "Qual è la differenza tra CET e CEST?", "a": "CET è fisso a UTC+1 (ora invernale). CEST è UTC+2 (ora legale estiva). L'Italia usa CEST da fine marzo a fine ottobre. Usiamo nomi IANA come 'Europe/Rome' che scelgono automaticamente CET o CEST in base alla data." },
+    { "q": "Posso convertire tra due città specifiche?", "a": "Sì. Imposta una come sorgente e aggiungi l'altra come target. L'ora visualizzata è il momento sorgente espresso nell'orologio locale del target." },
+    { "q": "Perché alcune zone hanno offset di :30?", "a": "Decisioni storiche. India, Iran, Afghanistan, Terranova, parti dell'Australia usano offset di 30 o 45 minuti dall'UTC. Il calcolatore li gestisce correttamente." },
+    { "q": "Funziona per le date passate?", "a": "Sì, inclusi i confini dell'ora legale che potrebbero essere stati diversi storicamente. I dati IANA coprono la maggior parte delle storie dei luoghi dal 1970 in poi." },
+    { "q": "E le Hawaii o le zone remote?", "a": "L'elenco IANA le include. Aggiungi 'Pacific/Honolulu' o altri fusi remoti dal menu a tendina se necessario." },
+    { "q": "I dati vengono inviati da qualche parte?", "a": "No. Le API Intl del browser gestiscono tutto localmente." },
+    { "q": "Posso salvare il mio elenco di fusi orari?", "a": "Non ancora. Aggiornare la pagina azzera l'elenco. Potremmo aggiungere la persistenza nel local storage in seguito." }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "title": "Convertisseur de taille de données (B, Ko, Mo, Go, To — SI et IEC)",
+  "shortDescription": "Convertit les tailles de stockage numérique entre octets, kilooctets, mégaoctets, gigaoctets, téraoctets et pétaoctets. Bascule entre SI (1000) et binaire IEC (1024).",
+  "description": "Choisis SI (décimal, 1 Ko = 1000 o) ou IEC (binaire, 1 Kio = 1024 o), entre une valeur et vois la conversion vers toutes les autres unités. Lève la confusion « combien fait un mégaoctet ».",
+  "metaDescription": "Convertisseur de taille de données gratuit pour octets, Ko, Mo, Go, To, Po. Bascule entre les préfixes SI (1000) et IEC (1024) binaires — clarifie 'combien fait un",
+  "keywords": [
+    "convertisseur taille données",
+    "octets en Mo",
+    "Go en To",
+    "préfixe binaire",
+    "SI vs IEC"
+  ],
+  "input": {
+    "value": "Valeur",
+    "from": "Unité de départ"
+  },
+  "mode": {
+    "si": "SI (base 1000)",
+    "iec": "IEC (base 1024)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "SI vs IEC : l'ambiguïté du mégaoctet",
+        "paragraphs": [
+          "Les disques durs et les vitesses réseau sont annoncés en unités SI : 1 Go = 1 000 000 000 octets (10⁹). Les systèmes d'exploitation et la RAM utilisent des unités binaires : 1 Gio = 1 073 741 824 octets (2³⁰). Les deux diffèrent d'environ 7 % à l'échelle Go, et d'environ 10 % à l'échelle To, ce qui explique pourquoi ton disque « 1 To » s'affiche comme 931 Gio dans ton gestionnaire de fichiers.",
+          "L'IEC a introduit Kio, Mio, Gio, Tio en 1998 pour lever l'ambiguïté des formes binaires. Ils s'imposent lentement, mais la plupart du marketing grand public utilise encore Mo/Go sans préciser lequel. Ce calculateur te permet de choisir explicitement — bascule l'option pour convertir correctement."
+        ]
+      },
+      {
+        "heading": "Lequel veux-tu ?",
+        "paragraphs": [
+          "SI (base 1000) quand : tu lis le marketing des disques, tu compares des disques durs ou SSD, tu vérifiques les quotas de bande passante de ton FAI, les vitesses réseau. Pratiquement tout le marketing de stockage utilise SI.",
+          "IEC (base 1024) quand : tu regardes les tailles de fichiers dans le gestionnaire de fichiers de ton OS (Windows, macOS, Linux), tu lis les spécifications RAM, tu travailles avec des spécifications techniques. La plupart des contextes d'ingénierie et de logiciel utilisent des préfixes binaires."
+        ]
+      },
+      {
+        "heading": "Points de référence utiles",
+        "paragraphs": [
+          "1 Mo ≈ un MP3 de 5 minutes (qualité correcte), ou un JPEG de 5 mégapixels. 1 Go ≈ 7 heures d'audio MP3, ou 30 minutes de vidéo HD, ou environ 350 000 emails de longueur moyenne. 1 To ≈ 250 films HD, ou 17 000 heures de MP3, ou environ 10 ans de photos quotidiennes pour un utilisateur de smartphone moyen.",
+          "Réseau : 100 Mbps ≈ 12,5 Mo/s ≈ 750 Mo/min. Un fichier de 1 Go à 100 Mbps prend environ 80 secondes. La vidéo 4K en streaming utilise 15-25 Mbps ; la 1080p utilise 5-8 Mbps."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis SI ou IEC",
+        "text": "SI pour les tailles de disque et les vitesses réseau. IEC pour les tailles de fichiers et la RAM."
+      },
+      {
+        "name": "Entre la valeur",
+        "text": "Tape la valeur de taille."
+      },
+      {
+        "name": "Choisis l'unité",
+        "text": "Sélectionne dans quelle unité est ta valeur (o, Ko, Mo, etc., ou o, Kio, Mio, etc.)."
+      },
+      {
+        "name": "Vois toutes les unités",
+        "text": "Les conversions apparaissent instantanément."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Pourquoi j'obtiens moins de stockage que ce qui est annoncé ?",
+      "a": "Les fabricants de disques utilisent SI (1 To = 10¹² octets). Les systèmes d'exploitation utilisent le binaire (1 Tio = 2⁴⁰ octets), environ 10 % plus grand. Donc un disque 1 To s'affiche comme ~931 Gio. Le disque ne te « vole » pas — c'est une incompatibilité de système d'unités."
+    },
+    {
+      "q": "Ko et Kio sont-ils identiques ?",
+      "a": "Strictement non : Ko = 1 000 octets, Kio = 1 024 octets. Couramment, 'Ko' signifie souvent 'Kio' dans les contextes logiciels. Cet outil lève l'ambiguïté explicitement."
+    },
+    {
+      "q": "Quelles unités Windows utilise-t-il dans le gestionnaire de fichiers ?",
+      "a": "Windows affiche des tailles binaires (Kio, Mio, Gio) mais les étiquette Ko, Mo, Go. Le Finder de macOS et Linux affichent généralement SI par défaut. Utilise le mode IEC dans cet outil pour correspondre à ce que Windows signifie réellement."
+    },
+    {
+      "q": "Qu'est-ce qui vient après Po ?",
+      "a": "Eo (exaoctet), Zo (zettaoctet), Yo (yottaoctet). La plupart des cas d'usage grand public s'arrêtent à To ou quelques Po ; les grands entrepôts de données sont à multi-Po ou Eo."
+    },
+    {
+      "q": "Vitesse réseau vs taille de fichier ?",
+      "a": "Les vitesses réseau utilisent des bits par seconde ; les tailles de fichiers utilisent des octets. 1 octet = 8 bits, donc 100 Mbps = 12,5 Mo/s. Nous pourrions ajouter un calculateur bits/octets séparé."
+    },
+    {
+      "q": "La conversion est-elle exacte ?",
+      "a": "Oui. Les deux modes utilisent des facteurs entiers exacts (puissances de 10 pour SI, puissances de 2 pour IEC)."
+    },
+    {
+      "q": "Pourquoi SI 1 Go n'est-il pas exactement identique à IEC 1 Gio ?",
+      "a": "Parce que ce sont des unités différentes. 1 Go = 10⁹ octets ; 1 Gio = 2³⁰ octets ≈ 1,0737 × 10⁹ octets. Spécifie toujours lequel tu veux dire."
+    },
+    {
+      "q": "Puis-je convertir la bande passante ou le temps de transfert ?",
+      "a": "Cet outil convertit uniquement la taille. Pour 'combien de temps X prend à la vitesse Y', divise les octets par les octets par seconde."
+    }
+  ]
+}

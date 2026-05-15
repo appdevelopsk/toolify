@@ -1,0 +1,64 @@
+{
+  "title": "Random Number Generator (cryptographically secure, unique mode)",
+  "shortDescription": "अपने browser के secure random API का उपयोग करके किसी भी range में random integers generate करें। Lottery, raffle, या sample-without-replacement use cases के लिए uniqueness enforce करें।",
+  "description": "Cryptographically secure random integers generate करने के लिए min, max, और count चुनें। 'Unique' toggle करें sample-without-replacement के लिए (raffles, lotteries)।",
+  "metaDescription": "मुफ्त cryptographically secure random number generator। Range और count set करें, optionally unique। Lottery, raffles, randomized testing, और games के लिए बना।",
+  "keywords": ["random number generator", "secure random", "lottery numbers", "random integer", "RNG"],
+  "empty": "Range set करें और random numbers पाने के लिए 'Regenerate' click करें।",
+  "input": {
+    "min": "Minimum",
+    "max": "Maximum",
+    "count": "कितने"
+  },
+  "unique": "सभी unique (कोई duplicates नहीं)",
+  "regenerate": "Regenerate करें",
+  "copyAll": "सब copy करें",
+  "copied": "Copy हो गया",
+  "error": {
+    "invalidRange": "Min, Max से कम या equal होना चाहिए।",
+    "tooManyUnique": "Range जितनी allow करती है उससे अधिक unique numbers नहीं चुन सकते।"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "यह actually random क्यों है",
+        "paragraphs": [
+          "हम Math.random() के बजाय crypto.getRandomValues — browser का cryptographically secure random source — उपयोग करते हैं। CSPRNG output prior values से predict नहीं किया जा सकता, जो lottery picks, gambling-adjacent applications, और किसी भी use के लिए मायने रखता है जहाँ 'random' एक real requirement है।",
+          "हम uniform distribution को exactly chosen range के across ensure करने के लिए rejection sampling भी उपयोग करते हैं। Naive 'random % range' bias introduce करता है जब range 2³² में evenly divide नहीं होती। Rejection sampling उन values को discard करता है जो bias cause करेंगे और retry करता है, इसलिए आपकी range में हर number की exactly same probability है।"
+        ]
+      },
+      {
+        "heading": "Unique बनाम duplicate-allowed",
+        "paragraphs": [
+          "Default mode: प्रत्येक number independent है — duplicates हो सकते हैं। यही casual use में 'random' का मतलब है (dice rolling, movie picking, randomized testing)।",
+          "Unique mode: replacement के बिना sample — एक बार number pick होने के बाद, यह same batch में फिर pick नहीं हो सकता। उपयोगी: lottery picks (जैसे 1-49 से 6 numbers), raffles (winners draw करना), team assignments, और कोई भी 'pick N from M' situation। Count ≤ range की आवश्यकता है।"
+        ]
+      },
+      {
+        "heading": "Common use cases",
+        "paragraphs": [
+          "Lottery / raffle: 1-49 से 6 unique numbers, या आपका draw जो भी उपयोग करे। 'Unique' on toggle करें।",
+          "Dice rolls: range 1-6 (या D20 के लिए 1-20)। 'Unique' off छोड़ें ताकि प्रत्येक roll independent हो।",
+          "Testing के लिए random sampling: spot-check करने के लिए 1-10000 से 10 random user IDs pick करें। Duplicates avoid करने के लिए 'Unique' उपयोग करें।",
+          "Coin flips simulate करना: range 0-1, multiple results। Fairness checks के लिए heads/tails tally करें (बड़े samples पर ~50/50 देखेंगे)।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Range set करें", "text": "Min और max — दोनों inclusive। Negative numbers allowed हैं।" },
+      { "name": "कितने set करें", "text": "प्रति generation 1 से 100 numbers।" },
+      { "name": "आवश्यक होने पर 'unique' toggle करें", "text": "Sample-without-replacement (raffles, lotteries) के लिए on।" },
+      { "name": "Regenerate click करें", "text": "हर बार एक नया set draw होता है। यदि सब चाहिए तो एक बार में सब copy करें।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या यह raffles या lotteries के लिए fair है?", "a": "Randomness cryptographically secure और unbiased है। क्या यह officially 'fair' है यह आपके jurisdiction के rules पर निर्भर करता है — कई certified hardware RNGs require करते हैं।" },
+    { "q": "Math.random() से क्या अंतर है?", "a": "Math.random() एक ऐसा algorithm उपयोग करता है जिसका output attacker prior outputs से predict कर सकता है। crypto.getRandomValues OS-level cryptographic RNG उपयोग करता है जो predict नहीं किया जा सकता।" },
+    { "q": "क्या मैं negative numbers पा सकता हूँ?", "a": "हाँ। Min को negative value पर set करें।" },
+    { "q": "Maximum range क्या है?", "a": "JavaScript के safe integer range (~2⁵³) द्वारा limited, लेकिन practically आप बिना trouble के billions तक जा सकते हैं।" },
+    { "q": "जब count > range हो तो 'unique' fail क्यों होता है?", "a": "यदि आप 1-5 से 10 unique numbers pick करते हैं, चार exist नहीं करते। Validation यह catch करती है और range wide करने या count reduce करने के लिए कहती है।" },
+    { "q": "क्या यह dice rolls के लिए काम करता है?", "a": "हाँ — range 1-6 (या आपके dice जो भी हों) set करें और 'unique' off करें ताकि प्रत्येक roll independent हो।" },
+    { "q": "क्या मैं seed save करके reproduce कर सकता हूँ?", "a": "नहीं — design से secure random में seed नहीं होता। यदि testing के लिए reproducible 'random' चाहिए, seeded PRNG library उपयोग करें।" },
+    { "q": "क्या data कहीं भेजा जाता है?", "a": "नहीं। Generation पूरी तरह local है।" }
+  ]
+}

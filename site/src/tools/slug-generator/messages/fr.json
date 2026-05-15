@@ -1,0 +1,69 @@
+{
+  "title": "Générateur de Slug URL (URLs optimisées SEO)",
+  "shortDescription": "Convertit n'importe quel titre ou phrase en un slug URL optimisé SEO. Séparateur configurable, limite de longueur, minuscules et support Unicode.",
+  "description": "Tape ou colle un titre ; le générateur supprime la ponctuation, normalise les accents, consolide les espaces et produit un slug propre. Supporte les tirets, underscores ou points ; longueur max configurable ; préservation Unicode optionnelle pour les URLs non latines.",
+  "metaDescription": "Générateur de slug URL gratuit. Slugs optimisés SEO depuis n'importe quel titre. Séparateurs tiret/underscore/point, longueur max, support Unicode, mode ASCII uniquement.",
+  "keywords": ["générateur slug", "slug url", "générateur url seo", "slugify", "générateur permalink"],
+  "input": {
+    "text": "Titre ou phrase",
+    "separator": "Séparateur",
+    "lowercase": "Minuscules",
+    "allowUnicode": "Autoriser Unicode (non-ASCII)",
+    "maxLen": "Longueur max"
+  },
+  "sep": {
+    "hyphen": "Tiret",
+    "underscore": "Underscore",
+    "dot": "Point"
+  },
+  "result": {
+    "slug": "Slug",
+    "length": "Longueur"
+  },
+  "empty": "(vide)",
+  "copy": "Copier",
+  "copied": "Copié !",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qu'est-ce qu'un slug URL",
+        "paragraphs": [
+          "Un slug est la partie lisible par l'humain d'une URL après le domaine — par exemple 'comment-faire-du-pain' dans '/blog/comment-faire-du-pain'. Les bons slugs sont courts, descriptifs et stables. Les moteurs de recherche et les humains les lisent comme faisant partie de l'identité de la page.",
+          "Règles standard : lettres minuscules, chiffres et tirets uniquement. Les espaces deviennent des tirets. La ponctuation est supprimée. Les mots vides (le, la, un, une) peuvent être omis pour la brièveté, bien que ce soit un choix stylistique."
+        ]
+      },
+      {
+        "heading": "Slugs ASCII vs Unicode",
+        "paragraphs": [
+          "Slugs ASCII (par défaut) : lettres latines et chiffres uniquement. Universellement supportés, jamais encodés en URL, faciles à partager. Le choix standard pour les blogs SEO en français ou multilingues.",
+          "Slugs Unicode : préservent les caractères originaux dans les URLs. Les navigateurs les affichent de façon lisible (情報/新聞), mais le copier-coller produit des URLs avec encodage pourcent (%E6%83%85%E5%A0%B1...). Certaines plateformes restreignent les slugs Unicode ; vérifie avant de les utiliser.",
+          "Quand choisir Unicode : blog japonais, chinois ou coréen ciblant des lecteurs natifs. L'URL IDN apparaît propre pour les utilisateurs natifs et Google les indexe bien. L'inconvénient est le partage sur des plateformes qui affichent les URLs brutes."
+        ]
+      },
+      {
+        "heading": "Longueur du slug et SEO",
+        "paragraphs": [
+          "L'affichage des URLs par Google se limite à environ 60-80 caractères. Les slugs plus longs sont tronqués et semblent 'spam'. On règle le curseur de longueur max à 60 par défaut — assez court pour la plupart des listings.",
+          "Cependant, les algorithmes de Google ne pénalisent pas directement la longueur du slug. La longueur compte pour les taux de clics (les humains sautent les URLs longues) et pour garder le slug lisible. Les mots-clés dans le slug aident légèrement le classement ; bourrer de mots-clés dans de longs slugs nuit plus qu'il n'aide.",
+          "Bonne pratique : inclut les 2-3 mots-clés les plus importants, supprime les mots vides et articles, reste sous 60 caractères."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Tape ou colle un titre", "text": "Titre d'article, nom de produit ou tout texte descriptif." },
+      { "name": "Choisis un séparateur", "text": "Le tiret est standard. L'underscore fonctionne pour certains CMS hérités. Les points sont inhabituels mais valides." },
+      { "name": "Configure les options", "text": "Minuscules (recommandé), Unicode (pour les URLs non latines), limite de longueur max." },
+      { "name": "Copie le slug", "text": "Colle dans ton CMS, article de blog ou configuration de routage." }
+    ]
+  },
+  "faq": [
+    { "q": "Dois-je utiliser des tirets ou des underscores ?", "a": "Des tirets. Google traite explicitement les tirets comme des séparateurs de mots dans les URLs ; les underscores sont traités comme faisant partie du mot. Donc 'voiture-rapide' sont deux mots-clés, 'voiture_rapide' est un seul. Les tirets gagnent pour le SEO." },
+    { "q": "Dois-je inclure les mots vides comme 'le' ou 'un' ?", "a": "Optionnel. Les omettre garde les slugs courts. Les inclure garde les slugs lisibles. L'impact SEO est négligeable dans les deux cas ; la lisibilité compte davantage." },
+    { "q": "Qu'en est-il des apostrophes (c'est, n'est) ?", "a": "On les supprime. 'n'est' devient 'nest'. Certains générateurs les préservent comme parties des mots ; on suit la convention plus simple." },
+    { "q": "Est-ce que ça gère les accents français (é, è, ê, ç) ?", "a": "Oui — en mode ASCII, les accents sont normalisés vers leurs équivalents sans accent (é→e, ç→c, etc.). En mode Unicode, les caractères accentués sont préservés." },
+    { "q": "Pourquoi mon slug coréen devient-il vide en mode ASCII ?", "a": "Les caractères coréens n'ont pas d'équivalent ASCII direct. Active le mode Unicode, ou translittère manuellement avant de coller." },
+    { "q": "Les emoji sont-ils préservés ?", "a": "Oui en mode Unicode. Les emoji encodés en URL sont valides mais laids — la plupart des plateformes les suppriment. Conseil pratique : n'utilise pas d'emoji dans les slugs." },
+    { "q": "Quelle longueur maximale de slug utiliser ?", "a": "60 caractères ou moins est l'idéal pour le SEO et le CTR. Certains systèmes CMS se limitent à 200 caractères. L'index de Google supporte beaucoup plus long mais bénéficie rarement de la lisibilité." },
+    { "q": "Les données quittent-elles mon navigateur ?", "a": "Non. La génération s'exécute localement ; rien n'est envoyé à un serveur." }
+  ]
+}

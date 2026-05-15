@@ -1,0 +1,92 @@
+{
+  "title": "पासवर्ड Strength टेस्टर (entropy + crack time)",
+  "shortDescription": "Entropy bits, charset analysis, common-password check, और attack scenarios में अनुमानित crack time के साथ पासवर्ड strength test करें।",
+  "description": "एक पासवर्ड type करें (browser-only, कभी transmit नहीं)। Tester entropy, charset coverage, dictionary-match risk compute करता है, और offline GPU attacks, online API limits, और slow online attacks के लिए अनुमानित crack times दिखाता है।",
+  "metaDescription": "मुफ्त पासवर्ड strength tester। Entropy bits, crack time estimates, charset analysis, common-password और pattern detection। Browser-only।",
+  "keywords": ["पासवर्ड strength tester", "पासवर्ड entropy", "crack time कैलकुलेटर", "पासवर्ड security", "पासवर्ड test"],
+  "input": {
+    "password": "पासवर्ड",
+    "privacyNote": "पूरी तरह आपके browser में test होता है। कहीं भी send या store नहीं होता।"
+  },
+  "show": "दिखाएँ",
+  "hide": "छुपाएँ",
+  "result": {
+    "strength": "Strength",
+    "length": "लंबाई",
+    "charsetSize": "Charset size",
+    "entropy": "Entropy",
+    "bits": "bits",
+    "lowercase": "Lowercase a-z",
+    "uppercase": "Uppercase A-Z",
+    "digits": "अंक 0-9",
+    "symbols": "Symbols",
+    "crackTime": "अनुमानित crack time",
+    "crackOffline": "Offline GPU (10⁹⁰/s)",
+    "crackOnlineFast": "Online fast (1k/s)",
+    "crackOnlineSlow": "Online slow (100/s)",
+    "warningsHeading": "चिंताएँ"
+  },
+  "level": {
+    "veryWeak": "बहुत कमज़ोर",
+    "weak": "कमज़ोर",
+    "fair": "ठीक-ठाक",
+    "strong": "मजबूत",
+    "veryStrong": "बहुत मजबूत"
+  },
+  "warning": {
+    "isCommon": "यह पासवर्ड common-password lists में दिखता है। इसे उपयोग न करें।",
+    "tooShort": "लंबाई 8 से कम — किसी भी real security के लिए बहुत छोटा।",
+    "hasRepeated": "Repeated characters (जैसे 'aaa') real-world entropy कम करते हैं।",
+    "hasSequential": "Sequential patterns (1234, qwer, abcd) आसानी से guess होते हैं।",
+    "limitedCharset": "Single-charset पासवर्ड (केवल lowercase, केवल digits) लंबे होने पर भी कमज़ोर हैं।"
+  },
+  "time": {
+    "instant": "तुरंत",
+    "yrs": "वर्ष",
+    "eternity": "अनंत काल"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "पासवर्ड के लिए 'entropy' का क्या मतलब है",
+        "paragraphs": [
+          "Entropy bits में unpredictability measure करती है। 30 bits of entropy वाले पासवर्ड को crack करने के लिए average ~2³⁰ ≈ 1 billion guesses चाहिए। 70+ bits generally strong माना जाता है; 80+ excellent।",
+          "Formula: entropy = length × log₂(charset_size)। 'abcdefgh' (8 chars, lowercase only) = 8 × log₂(26) ≈ 37.6 bits। 'aA1!aaaa' (8 chars, all charsets) = 8 × log₂(95) ≈ 52.6 bits — लेकिन crack time 52 bits से suggest से बहुत worse है क्योंकि 'aaaa' एक common pattern है।"
+        ]
+      },
+      {
+        "heading": "Crack times इतनी अधिक vary क्यों करती हैं",
+        "paragraphs": [
+          "Offline GPU: offline attack हो रहा leaked पासवर्ड hash। Modern GPUs प्रति second 10⁹+ MD5 hashes guess कर सकते हैं; bcrypt hashes केवल 10⁴-10⁵/s। यहाँ estimate GPU-fast hash assumption उपयोग करती है।",
+          "Online fast: एक attacker directly login API hammer कर रहा। अधिकांश APIs में कुछ rate limit होती है; 1000 attempts/sec एक poorly-defended endpoint के लिए high-end estimate है।",
+          "Online slow: strict rate limits, account lockouts, और CAPTCHA के साथ properly defended endpoint। 100 attempts/sec generous है; कई systems केवल 5-10/min allow करते हैं।",
+          "ये estimates dictionary attacks (जो common passwords को brute force से बहुत तेज़ find करते हैं) और password reuse (एक site का leak crack करने से दूसरों को crack करने में मदद मिलती है) जैसे real-world factors ignore करती हैं।"
+        ]
+      },
+      {
+        "heading": "एक strong पासवर्ड क्या बनाता है",
+        "paragraphs": [
+          "Complexity पर length: 'correct horse battery staple' जैसा 16-char passphrase 'P@ssw0rd!' जैसे tortured 8-char से stronger है। 2011 का XKCD insight अभी भी valid है: 4 random words ~44 bits of entropy देते हैं।",
+          "Patterns से बचें: dates, names, '123', 'qwer', repeated characters सब formula value से below real entropy कम करते हैं। Attack tools में extensive 'rule-based' transformations शामिल हैं (जैसे 'password' → 'P@ssw0rd!')।",
+          "पासवर्ड manager उपयोग करें: humans patterns pick करते हैं; managers नहीं। Bitwarden, 1Password, KeePass प्रति site truly random passwords generate करते हैं, 16+ characters across all charsets। आपको केवल master password याद रखना है — और वह एक long memorable passphrase होनी चाहिए।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "पासवर्ड type करें", "text": "यह पूरी तरह client-side test होता है। यदि आप देख नहीं पा रहे कि क्या type कर रहे हैं तो Show toggle उपयोग करें।" },
+      { "name": "Strength मीटर पढ़ें", "text": "पाँच segments। महत्वपूर्ण accounts पर 4-5 (Strong/Very strong) के लिए aim करें।" },
+      { "name": "Entropy और crack times check करें", "text": "Higher entropy = लंबा crack time। Common patterns के बारे में warnings देखें।" },
+      { "name": "आवश्यकतानुसार adjust करें", "text": "Length बढ़ाएँ, charsets mix करें, common words से बचें। संतुष्ट होने तक variants test करें।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या मेरा पासवर्ड कहीं भेजा जाता है?", "a": "नहीं। सब कुछ आपके browser में locally चलता है। हम आपका पासवर्ड देखते, store, या transmit नहीं करते।" },
+    { "q": "मेरा long पासवर्ड low entropy क्यों दिखाता है?", "a": "Length सब कुछ नहीं है — 'a' को 50 बार repeat करने में बहुत कम real entropy है। Calculator simple formula उपयोग करता है लेकिन repeated/sequential patterns flag करता है। सर्वोत्तम परिणामों के लिए: long, varied, no patterns।" },
+    { "q": "क्या ये crack times accurate हैं?", "a": "ये naive brute force पर based estimates हैं। Real crackers पहले dictionaries, common patterns, और leaked-password databases उपयोग करते हैं — इसलिए एक 'common' पासवर्ड high formula entropy के बावजूद seconds में crack हो सकता है।" },
+    { "q": "क्या मुझे quantum computers की चिंता करनी चाहिए?", "a": "Eventually हाँ — Grover's algorithm symmetric encryption के effective bits को half करता है। अभी के लिए, 80+ bits of entropy comfortable है; बहुत long-term secrets के लिए 128+।" },
+    { "q": "'P@ssw0rd1' में सभी charsets होने के बावजूद tool इसे flag क्यों करता है?", "a": "क्योंकि 'password' dictionaries में है और trivial substitutions (a → @) हर cracking tool के rule set का हिस्सा हैं। Truly random या passphrase-style passwords उपयोग करें, common-word substitutions नहीं।" },
+    { "q": "क्या 'correct horse battery staple' वास्तव में safe है?", "a": "Reasonably। 7000-word list से 4 random words = ~52 bits of entropy। अधिकांश 8-char complex passwords से stronger। लेकिन एक बार यह famous हो जाए (जैसे यह example), यह dictionaries में है — अपने खुद के random words चुनें।" },
+    { "q": "मुझे minimum कितनी पासवर्ड length उपयोग करनी चाहिए?", "a": "8 bare minimum है (और केवल सभी charsets के साथ)। अधिकांश accounts के लिए 12+ recommended। महत्वपूर्ण accounts के लिए 16+ (email, banking, पासवर्ड manager master)।" },
+    { "q": "क्या case sensitivity मायने रखती है?", "a": "हाँ — uppercase जोड़ने से charset size 26 से 52 double होती है। Roughly प्रति character +1 bit। Meaningfully cases mix करना (केवल first letter नहीं) करने योग्य है।" }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "title": "Generator Gradien CSS (linear, radial, konik)",
+  "shortDescription": "Buat gradien CSS secara visual: linear, radial, dan konik. Beberapa color stop, kontrol sudut, preset. Salin CSS siap tempel.",
+  "description": "Pilih jenis gradien, atur sudut, tambah atau hapus color stop dengan posisinya. Pratinjau langsung. Salin deklarasi CSS background dengan satu klik.",
+  "metaDescription": "Generator gradien CSS gratis dengan pratinjau langsung. Gradien linear, radial, dan konik. Multi-stop, kontrol sudut, kode CSS siap disalin.",
+  "keywords": ["generator gradien css", "linear gradient", "radial gradient", "conic gradient", "pembuat gradien", "gradient css indonesia"],
+  "preview": "Pratinjau",
+  "input": {
+    "type": "Jenis",
+    "angle": "Sudut",
+    "stops": "Color stop"
+  },
+  "type": {
+    "linear": "Linear",
+    "radial": "Radial",
+    "conic": "Konik"
+  },
+  "output": {
+    "css": "Kode CSS"
+  },
+  "addStop": "Tambah stop",
+  "removeStop": "Hapus stop",
+  "copy": "Salin CSS",
+  "copied": "Tersalin!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Tiga jenis gradien dalam CSS",
+        "paragraphs": [
+          "Gradien linear: warna bertransisi sepanjang garis lurus pada sudut tertentu. 0° mengarah ke atas, 90° mengarah ke kanan (arah membaca default), 180° mengarah ke bawah. Paling umum untuk latar belakang, tombol, bagian hero.",
+          "Gradien radial: warna bertransisi keluar dari titik pusat. Bentuknya bisa lingkaran (default kami) atau elips. Terbaik untuk efek sorotan, elemen seperti matahari, atau titik perhatian.",
+          "Gradien konik: warna berputar di sekitar titik pusat, seperti roda warna. Kurang umum tetapi kuat untuk diagram lingkaran, tampilan jam, atau spinner dekoratif. Didukung di browser modern sejak 2020."
+        ]
+      },
+      {
+        "heading": "Color stop dan sistem persentase",
+        "paragraphs": [
+          "Setiap color stop memiliki warna dan posisi dari 0% hingga 100%. 0% adalah awal gradien, 100% adalah akhir. Dua stop memberikan gradien dua warna yang halus. Menambahkan stop ketiga di tengah menciptakan perpaduan tiga warna atau pita tajam tergantung posisi.",
+          "Untuk transisi tajam (tanpa perpaduan), tempatkan dua stop pada posisi yang sama dengan warna berbeda. Misalnya, '#000 50%, #fff 50%' menciptakan pemisahan hitam-putih tajam di titik tengah. Begitulah cara latar belakang 'bergaris' dibuat."
+        ]
+      },
+      {
+        "heading": "Tips performa dan aksesibilitas",
+        "paragraphs": [
+          "Gradien dirender secara native tanpa permintaan HTTP, tidak seperti gambar latar belakang. Skala tanpa batas tanpa kehilangan kualitas. Ramah animasi: transisikan posisi via background-position atau animasikan color stop dengan custom properties.",
+          "Aksesibilitas: jangan tempatkan teks langsung di atas gradien kompleks jika kontras bervariasi di seluruh gradien. Gunakan overlay warna datar, pastikan kecerahan rata-rata gradien kontras dengan teks, atau uji dengan pemeriksa kontras kami. WCAG AA memerlukan 4,5:1 untuk teks normal, 3:1 untuk teks besar."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih preset", "text": "Atau bangun dari awal dengan memilih jenis, sudut, dan stop." },
+      { "name": "Atur sudut", "text": "Untuk linear dan konik: 0-360°. Radial menggunakan pusat sebagai titik asal." },
+      { "name": "Tambahkan color stop", "text": "Minimal dua, tidak ada batas praktis maksimum. Setiap stop memiliki warna dan posisi 0-100%." },
+      { "name": "Salin CSS", "text": "Klik 'Salin CSS' — tempel langsung ke properti background stylesheet Anda." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah gradien didukung di browser lama?", "a": "Gradien linear dan radial berfungsi di semua browser modern termasuk Edge, Firefox, Chrome, Safari (sejak 2014). Gradien konik memerlukan Chrome 69+, Firefox 83+, Safari 12.1+ — untuk browser lama, gunakan linear sebagai fallback." },
+    { "q": "Bisakah saya menggunakannya di React Native atau aplikasi mobile?", "a": "Gradien CSS web tidak langsung berlaku di React Native — gunakan library seperti `react-native-linear-gradient`. Color stop dapat ditransfer, tetapi sintaksnya berbeda. UI iOS dan Android menggunakan API khusus platform." },
+    { "q": "Bisakah saya menggunakan nama warna?", "a": "Ya. Ganti kode hex (misalnya #ff0000) dengan nama warna CSS (red, dodgerblue, dll.) di input teks di sebelah color picker." },
+    { "q": "Mengapa gradien konik saya terlihat aneh?", "a": "Gradien konik berputar searah jarum jam dari sudut yang Anda atur. Terlihat paling baik dengan beberapa stop yang mencakup rotasi penuh 360°. Dengan hanya 2 stop, seringkali terlihat tidak lengkap." },
+    { "q": "Bagaimana cara membuat efek 'glow'?", "a": "Gunakan gradien radial dengan stop akhir sepenuhnya transparan: misalnya, 'radial-gradient(circle, rgba(255,200,0,0.6) 0%, transparent 70%)'." },
+    { "q": "Bisakah saya menganimasikan gradien?", "a": "CSS tidak menganimasikan color stop secara langsung, tetapi Anda dapat menganimasikan background-position untuk efek bergerak, atau menggunakan CSS custom properties (variabel) dan memperbaruinya dengan JavaScript." },
+    { "q": "Mengapa CSS-nya sangat panjang?", "a": "Setiap stop menambahkan warna dan posisi. Gradien panjang dengan banyak stop menghasilkan CSS yang panjang. Untuk hasil lebih sederhana, gunakan 2-3 stop saja." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Semuanya dihitung secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

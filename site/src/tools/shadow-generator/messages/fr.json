@@ -1,0 +1,73 @@
+{
+  "title": "Générateur d'Ombre CSS (avec aperçu en direct)",
+  "shortDescription": "Crée des valeurs CSS box-shadow visuellement. Ajuste le décalage, le flou, l'étalement, la couleur, l'opacité et l'inset. Aperçu en direct, CSS à copier-coller.",
+  "description": "Six préréglages d'ombre courants (doux, carte, surélevé, lueur, neumorphique, inset). Affine tous les paramètres avec des curseurs, vois le résultat en direct et copie le CSS prêt à l'emploi.",
+  "metaDescription": "Générateur de box-shadow CSS gratuit avec aperçu en direct. Décalage, flou, étalement, couleur, opacité, support inset. Inclut 6 préréglages dont neumorphique.",
+  "keywords": ["générateur box shadow", "ombre css", "shadow css", "générateur neumorphique", "générateur drop shadow"],
+  "preset": {
+    "soft": "Doux",
+    "card": "Carte",
+    "lifted": "Surélevé",
+    "glow": "Lueur",
+    "neumorphic": "Neumorphique",
+    "inset": "Inset"
+  },
+  "input": {
+    "x": "Décalage X",
+    "y": "Décalage Y",
+    "blur": "Flou",
+    "spread": "Étalement",
+    "color": "Couleur",
+    "opacity": "Opacité",
+    "inset": "Inset (ombre intérieure)"
+  },
+  "output": { "css": "Code CSS" },
+  "copy": "Copier le CSS",
+  "copied": "Copié !",
+  "article": {
+    "sections": [
+      {
+        "heading": "Les cinq paramètres de l'ombre",
+        "paragraphs": [
+          "Décalage X : déplacement horizontal. Une valeur positive décale l'ombre vers la droite, négative vers la gauche. Pour un éclairage depuis le coin supérieur gauche (hypothèse UI typique), un X légèrement positif simule une lumière venant du haut gauche.",
+          "Décalage Y : déplacement vertical. Une valeur positive décale l'ombre vers le bas, simulant une source lumineuse au-dessus. Presque toutes les ombres UI utilisent un Y positif.",
+          "Rayon de flou : à quel point le bord de l'ombre est adouci. 0 = bord net (rare). 8-30px est typique pour les cartes et boutons. Des valeurs élevées créent des ombres douces et aérées.",
+          "Étalement : étend ou rétrécit l'ombre uniformément. Des valeurs positives rendent l'ombre plus grande que l'élément ; des valeurs négatives la rétrécissent. Un étalement négatif combiné avec un décalage crée un effet 'surélevé'.",
+          "Couleur/opacité : les ombres sont généralement noires avec une faible opacité (10-30 %). Les ombres colorées sont tendance mais plus difficiles à bien utiliser. Adapte la gamme de valeurs à ton fond — des ombres trop sombres sur des interfaces sombres disparaissent, trop claires sur des interfaces claires manquent de contraste."
+        ]
+      },
+      {
+        "heading": "Ombres inset",
+        "paragraphs": [
+          "Une ombre inset est dessinée à l'intérieur de l'élément plutôt qu'à l'extérieur. Utilisée pour : états de bouton pressé, champs de saisie en creux, effets neumorphiques '3D enfoncé'.",
+          "Les ombres inset respectent le border-radius de l'élément et ignorent l'overflow. Elles sont utiles pour ajouter de la profondeur visuelle aux éléments d'interface plats sans modifier la disposition réelle."
+        ]
+      },
+      {
+        "heading": "Le neumorphisme et la tendance 'soft UI'",
+        "paragraphs": [
+          "Le neumorphisme (populaire 2020-2022) utilise deux ombres opposées — une claire, une sombre — pour donner l'impression que les éléments sont extrudés d'un fond de même couleur. Notre préréglage 'Neumorphique' montre une seule ombre sombre ; pour un neumorphisme complet, combine avec une ombre claire inset du côté opposé : 'inset -8px -8px 20px rgba(255,255,255,0.5), 8px 8px 20px rgba(0,0,0,0.12)'.",
+          "Note : le neumorphisme pur a des problèmes d'accessibilité — le manque de contraste rend les éléments difficiles à distinguer. Les designs modernes l'utilisent avec parcimonie, souvent combiné avec des ombres traditionnelles."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choisis un préréglage", "text": "Ou construis depuis zéro avec les curseurs." },
+      { "name": "Ajuste le décalage X/Y", "text": "Direction de l'ombre." },
+      { "name": "Règle le flou et l'étalement", "text": "Le flou adoucit ; l'étalement agrandit." },
+      { "name": "Définis la couleur et l'opacité", "text": "La plupart des ombres UI utilisent du noir avec 10-30 % d'opacité." },
+      { "name": "Active l'inset", "text": "Pour les ombres intérieures (bouton pressé, saisie en creux)." },
+      { "name": "Copie le CSS", "text": "Colle dans la propriété box-shadow de ta feuille de styles." }
+    ]
+  },
+  "faq": [
+    { "q": "Puis-je ajouter plusieurs ombres ?", "a": "CSS supporte les ombres multiples séparées par des virgules : 'box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)'. Notre outil génère une ombre à la fois ; combines-en plusieurs à la main." },
+    { "q": "Comment créer un effet neumorphique ?", "a": "Combine une ombre sombre en bas à droite avec une ombre claire en haut à gauche, toutes deux inset ou toutes deux outset. Exemple : '8px 8px 20px rgba(0,0,0,0.12), -8px -8px 20px rgba(255,255,255,0.7)'. Notre préréglage montre la moitié sombre ; ajoute l'ombre claire manuellement." },
+    { "q": "Quelle est la différence entre flou et étalement ?", "a": "Le flou adoucit le bord de l'ombre (transparence en gradient). L'étalement change la taille globale de l'ombre (plus grande ou plus petite que l'élément). Flou=20 étalement=0 est une lueur douce à la taille de l'élément ; flou=0 étalement=20 est une ombre nette 20px plus grande." },
+    { "q": "Pourquoi mon ombre semble-t-elle plate ?", "a": "Probablement une opacité trop faible, aucun décalage, ou une couleur d'ombre trop proche du fond. Essaie Y=8, flou=24, opacité=0,18 comme point de départ — ces valeurs sont visibles sur la plupart des fonds clairs." },
+    { "q": "Puis-je l'utiliser pour text-shadow ?", "a": "Presque — text-shadow utilise la même syntaxe moins 'spread' et 'inset'. Ajuste manuellement après avoir copié : prends 'X Y blur color' (supprime spread et inset)." },
+    { "q": "Les ombres sont-elles performantes ?", "a": "Box-shadow est accéléré par GPU dans les navigateurs modernes. Beaucoup d'ombres sur beaucoup d'éléments peut ralentir le défilement. Une seule ombre sur des cartes et boutons : aucun souci." },
+    { "q": "Dois-je utiliser des ombres ou des bordures ?", "a": "Les deux ont leur utilité. Les bordures sont plus nettes et plus accessibles. Les ombres semblent plus douces et plus élevées. Les interfaces plates modernes utilisent souvent les deux : une bordure fine pour la netteté + une ombre douce pour l'élévation." },
+    { "q": "Les données quittent-elles mon navigateur ?", "a": "Non. Tout l'aperçu et la génération CSS s'exécutent localement ; rien n'est envoyé à un serveur." }
+  ]
+}

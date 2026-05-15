@@ -1,0 +1,64 @@
+{
+  "title": "Trình tạo số ngẫu nhiên (an toàn mật mã, chế độ duy nhất)",
+  "shortDescription": "Tạo số nguyên ngẫu nhiên trong bất kỳ phạm vi nào bằng API ngẫu nhiên an toàn của trình duyệt. Tùy chọn bắt buộc không trùng lặp cho xổ số, rút thăm hoặc lấy mẫu không lặp lại.",
+  "description": "Chọn min, max và số lượng để tạo số nguyên ngẫu nhiên an toàn mật mã. Bật 'duy nhất' để lấy mẫu không lặp lại (bốc thăm, xổ số).",
+  "metaDescription": "Trình tạo số ngẫu nhiên an toàn mật mã miễn phí. Đặt phạm vi và số lượng, tùy chọn duy nhất. Được xây dựng cho xổ số, bốc thăm, kiểm thử ngẫu nhiên và trò chơi.",
+  "keywords": ["trình tạo số ngẫu nhiên", "ngẫu nhiên an toàn", "số xổ số", "số nguyên ngẫu nhiên", "RNG"],
+  "empty": "Đặt phạm vi và nhấp 'Tạo lại' để có số ngẫu nhiên.",
+  "input": {
+    "min": "Tối thiểu",
+    "max": "Tối đa",
+    "count": "Bao nhiêu số"
+  },
+  "unique": "Tất cả duy nhất (không trùng lặp)",
+  "regenerate": "Tạo lại",
+  "copyAll": "Sao chép tất cả",
+  "copied": "Đã sao chép",
+  "error": {
+    "invalidRange": "Min phải nhỏ hơn hoặc bằng Max.",
+    "tooManyUnique": "Không thể chọn nhiều số duy nhất hơn phạm vi cho phép."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Tại sao đây thực sự là ngẫu nhiên",
+        "paragraphs": [
+          "Chúng tôi dùng crypto.getRandomValues — nguồn ngẫu nhiên an toàn mật mã của trình duyệt — thay vì Math.random(). Đầu ra CSPRNG không thể dự đoán từ các giá trị trước, điều này quan trọng với bốc thăm xổ số, ứng dụng cờ bạc và bất kỳ trường hợp nào 'ngẫu nhiên' là yêu cầu thực sự, không chỉ là 'tùy ý'.",
+          "Chúng tôi cũng dùng lấy mẫu từ chối để phân phối chính xác đều trên phạm vi đã chọn. 'random % range' đơn giản gây thiên vị khi phạm vi không chia đều cho 2³². Lấy mẫu từ chối loại bỏ các giá trị gây thiên vị và thử lại, nên mỗi số trong phạm vi của bạn có đúng cùng xác suất."
+        ]
+      },
+      {
+        "heading": "Duy nhất so với cho phép trùng lặp",
+        "paragraphs": [
+          "Chế độ mặc định: mỗi số độc lập — có thể xảy ra trùng lặp. Đây là ý nghĩa thông thường của 'ngẫu nhiên' (lăn xúc xắc, chọn phim, kiểm thử ngẫu nhiên).",
+          "Chế độ duy nhất: lấy mẫu không hoàn lại — một khi số đã được chọn, nó không thể được chọn lại trong cùng đợt. Hữu ích cho: bốc số xổ số (ví dụ 6 số từ 1-45 như Vietlott 6/45), rút thăm trúng thưởng, phân công nhóm và bất kỳ tình huống 'chọn N từ M' nào. Yêu cầu số lượng ≤ phạm vi."
+        ]
+      },
+      {
+        "heading": "Các trường hợp sử dụng phổ biến",
+        "paragraphs": [
+          "Xổ số / bốc thăm: 6 số duy nhất từ 1-45 (Vietlott 6/45) hoặc bất kỳ hình thức rút thăm nào. Bật 'duy nhất'.",
+          "Lăn xúc xắc: phạm vi 1-6 (hoặc 1-20 cho D20). Tắt 'duy nhất' để mỗi lần lăn độc lập.",
+          "Lấy mẫu ngẫu nhiên cho kiểm thử: chọn 10 ID người dùng ngẫu nhiên từ 1-10000 để kiểm tra nhanh. Dùng 'duy nhất' để tránh trùng lặp.",
+          "Mô phỏng tung đồng xu: phạm vi 0-1, nhiều kết quả. Đếm đầu/ngửa để kiểm tra tính công bằng (bạn sẽ thấy ~50/50 với mẫu lớn)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Đặt phạm vi", "text": "Min và max — cả hai đều tính. Số âm được phép." },
+      { "name": "Đặt số lượng", "text": "1 đến 100 số mỗi lần tạo." },
+      { "name": "Bật 'duy nhất' nếu cần", "text": "Bật cho lấy mẫu không hoàn lại (bốc thăm, xổ số)." },
+      { "name": "Nhấp tạo lại", "text": "Mỗi lần rút ra một tập mới. Sao chép tất cả một lần nếu cần." }
+    ]
+  },
+  "faq": [
+    { "q": "Cái này có công bằng cho bốc thăm hay xổ số không?", "a": "Tính ngẫu nhiên an toàn mật mã và không thiên vị. Liệu nó có 'công bằng' về mặt pháp lý cho xổ số chính thức hay không phụ thuộc vào quy định của địa phương bạn — nhiều nơi yêu cầu RNG phần cứng được chứng nhận." },
+    { "q": "Sự khác biệt với Math.random() là gì?", "a": "Math.random() dùng thuật toán có đầu ra có thể bị kẻ tấn công dự đoán từ các đầu ra trước. crypto.getRandomValues dùng RNG mật mã cấp hệ điều hành không thể dự đoán. Để thực sự công bằng, dùng cái này." },
+    { "q": "Tôi có thể nhận số âm không?", "a": "Có. Đặt min thành giá trị âm." },
+    { "q": "Phạm vi tối đa là bao nhiêu?", "a": "Bị giới hạn bởi phạm vi số nguyên an toàn của JavaScript (~2⁵³), nhưng thực tế bạn có thể đến hàng tỷ mà không gặp vấn đề. Kỹ thuật lấy mẫu từ chối xử lý bất kỳ phạm vi nào chính xác." },
+    { "q": "Tại sao 'duy nhất' thất bại khi số lượng > phạm vi?", "a": "Nếu bạn chọn 10 số duy nhất từ 1-5, bốn số không tồn tại. Xác thực phát hiện điều này và yêu cầu bạn mở rộng phạm vi hoặc giảm số lượng." },
+    { "q": "Cái này có hoạt động cho lăn xúc xắc không?", "a": "Có — đặt phạm vi 1-6 (hoặc bất kỳ xúc xắc nào) và tắt 'duy nhất' để mỗi lần lăn độc lập." },
+    { "q": "Tôi có thể lưu seed và tái tạo không?", "a": "Không — ngẫu nhiên an toàn theo thiết kế không có seed. Nếu bạn cần 'ngẫu nhiên' có thể tái tạo để kiểm thử, dùng thư viện PRNG có seed." },
+    { "q": "Dữ liệu có được gửi đi đâu không?", "a": "Không. Tạo số hoàn toàn cục bộ." }
+  ]
+}

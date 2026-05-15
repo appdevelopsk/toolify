@@ -1,0 +1,69 @@
+{
+  "title": "Rentenrechner (Zeitrente)",
+  "shortDescription": "Berechne die regelmäßige Auszahlung einer Rente aus Kapital, Zinssatz und Auszahlungszeitraum. Unterstützt monatliche oder jährliche Auszahlungen.",
+  "description": "Gib Kapital, jährlichen Zinssatz und Laufzeit in Jahren ein. Gibt die periodische Auszahlung (monatlich oder jährlich), den Gesamtauszahlungsbetrag, die verdienten Zinsen und die Anzahl der Zahlungen zurück. Verwendet die Standardformel für Zeitrenten.",
+  "metaDescription": "Kostenloser Rentenrechner. Monatliche oder jährliche Zeitrentenauszahlungen. Gesamtauszahlung, Zinserträge und Zahlungsanzahl auf einen Blick. Browserbasiert.",
+  "keywords": ["Rentenrechner", "Zeitrente", "Rentenentnahme", "Alterseinkommensrechner", "systematische Entnahme"],
+  "empty": "Gib Kapital und Laufzeit größer als null ein.",
+  "input": {
+    "principal": "Kapital (Einmalbetrag)",
+    "ratePct": "Jährlicher Zinssatz %",
+    "years": "Auszahlungszeitraum (Jahre)",
+    "frequency": "Auszahlungsfrequenz"
+  },
+  "freq": {
+    "monthly": "Monatlich",
+    "annual": "Jährlich"
+  },
+  "result": {
+    "monthlyPayout": "Monatliche Auszahlung",
+    "annualPayout": "Jährliche Auszahlung",
+    "totalPayout": "Gesamtauszahlung",
+    "totalInterest": "Gesamtzinsertrag",
+    "periods": "Anzahl der Zahlungen"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Die Mathematik der Zeitrente",
+        "paragraphs": [
+          "Eine Zeitrente wandelt einen Einmalbetrag in eine Reihe gleicher Zahlungen über eine festgelegte Anzahl von Jahren um. Die Formel ist die umgekehrte Darlehenstilgungsformel: Das Kapital ist die Perspektive der Bank, die Zahlung die des Anlegers. Standardform: Zahlung = P × r / (1 − (1+r)⁻ⁿ), wobei P das Kapital, r der periodische Zinssatz und n die Anzahl der Perioden ist.",
+          "Wenn du 500.000 € bei 4 % jährlichem Zinssatz für 25 Jahre monatlich anlegst, ergibt die Formel ca. 2.640 €/Monat. Gesamtauszahlung: über 791.000 €. Gesamtzinsertrag: über 291.000 €. Die Rente zahlt sich über den Zeitraum auf null ab – deshalb heißt dies „Zeitrente“ – garantiert für die Laufzeit, danach nicht mehr."
+        ]
+      },
+      {
+        "heading": "Unterschied zu reiner Zinsentnahme oder der 4-%-Regel",
+        "paragraphs": [
+          "Eine reine Zinsentnahme zahlt nur die Zinsen jeder Periode aus (P × r). Bei 4 % auf 500.000 € sind das 20.000 €/Jahr – das Kapital bleibt für Erben oder Endausschüttung erhalten. Die Zeitrente bietet höhere Jahreseinnahmen, weil sie das Kapital verbraucht: Bei 25 Jahren zahlt sie über 31.000 € jährlich, endet aber bei 0 €.",
+          "Die 4-%-Regel ist ein stochastisches Renditenmodell aus der Trinity Study, das für Aktien-/Anleihenportfolios über 30 Jahre konzipiert ist. Es setzt variable Renditen von durchschnittlich ~6–7 % real voraus und hält die meisten historischen Szenarien stand. Die Rentenformel hier setzt eine feste Rendite voraus, weshalb sie für tatsächliche Rentenverträge und nicht für Portfolioentnahmen verwendet wird.",
+          "Nutze dieses Tool zur Modellierung garantierter Produkte: eine Festgeldleiter, einen Rentenvertrag oder eine strukturierte Entnahme. Für ein am Markt investiertes Portfolio verwende stattdessen einen Monte-Carlo- oder 4-%-Regel-Rechner."
+        ]
+      },
+      {
+        "heading": "Steuern und Inflationshinweise",
+        "paragraphs": [
+          "Die Zahlung ist nominal (in heutigen Euro). Die reale Kaufkraft sinkt durch Inflation: Bei 3 % Inflation über 25 Jahre ist eine Zahlung von 2.640 € in Jahr 25 nur noch ca. 1.260 € in heutigen Euro wert. Für inflationsgeschütztes Einkommen solltest du inflationsindexierte Anleihen oder COLA-angepasste Renten betrachten – beide haben niedrigere Anfangsauszahlungen.",
+          "Die Steuern hängen von der Quelle ab. Eine nicht qualifizierte Rente aus versteuerten Beiträgen wird nur auf den Ertragsanteil jeder Zahlung besteuert. Qualifizierte Renten (aus Altersvorsorgekonten) sind vollständig steuerpflichtig. Festgelder zahlen Zinsen als ordentliches Einkommen. Dieser Rechner zeigt Werte vor Steuern.",
+          "Der eingegebene Zinssatz sollte der gutgeschriebene Nettosatz nach Vertragsgebühren sein. Versicherungsprodukte nennen oft einen Bruttosatz, berechnen aber 1–2 % an Gebühren, sodass dem Inhaber ein niedrigerer Nettosatz verbleibt. Verwende den Nettosatz für eine ehrliche Projektion."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Kapital eingeben", "text": "Der zu verrentende Einmalbetrag. Bei einem bestehenden Rentenvertrag verwende den angesammelten Wert zum Beginn der Auszahlungen." },
+      { "name": "Jährlichen Zinssatz eingeben", "text": "Der gutgeschriebene Nettosatz nach Gebühren. Für 4 % gib 4 ein. Bei den meisten Festrentenverträgen liegt dieser zwischen 3–6 %." },
+      { "name": "Laufzeit wählen", "text": "Jahre, über die das Kapital vollständig aufgezehrt wird. Üblich: 10, 15, 20, 25, 30 Jahre." },
+      { "name": "Frequenz wählen", "text": "Monatlich ist für Renteneinkommen am gebräuchlichsten; jährlich ist für Projektionen übersichtlicher." },
+      { "name": "Auszahlung ablesen", "text": "Einnahmen pro Periode, Gesamtauszahlung über die gesamte Laufzeit und Gesamtzinsertrag." }
+    ]
+  },
+  "faq": [
+    { "q": "Was ist der Unterschied zu einer lebenslangen Rente?", "a": "Dies ist eine Zeitrente: Sie zahlt für eine festgelegte Anzahl von Jahren und endet dann. Lebenslange Renten zahlen bis zum Tod (oder gemeinsamen Tod). Lebenslange Auszahlungen sind pro Periode meist niedriger, da das Versicherungsunternehmen das Sterblichkeitsrisiko trägt." },
+    { "q": "Wird die Rente weiter ausgezahlt, wenn ich den Zeitraum überlebe?", "a": "Nein. Eine 25-jährige Zeitrente stellt die Zahlung im 26. Jahr ein. Wenn du bis 100 lebst und die Laufzeit mit 90 endete, hast du nichts mehr. Deshalb sind reine Zeitrenten unüblich – die meisten werden mit lebenslangen Optionen kombiniert." },
+    { "q": "Welchen Zinssatz soll ich verwenden?", "a": "Für einen echten Rentenvertrag verwende den vertraglich festgelegten Nettosatz nach Gebühren. Für eine Festgeldleiter verwende den durchschnittlichen Festgeldzinssatz. Für eine anlagebasierte Entnahme überschätzt dieser Rechner die Sicherheit, da er konstante Renditen voraussetzt – verwende stattdessen ein Monte-Carlo-Tool." },
+    { "q": "Warum unterscheidet sich die monatliche Auszahlung × 12 von der jährlichen Berechnung?", "a": "Die monatliche Variante zieht monatlich an (häufigere Aufzinsung = leicht abweichende Zahlung). Bei 4 % jährlich ergibt monatliche Aufzinsung einen leicht höheren Effektivzinssatz, sodass monatlich × 12 ≈ jährlich, aber nicht genau gleich ist." },
+    { "q": "Kann ich das Kapital zwischendurch aufstocken?", "a": "Die meisten Festrentenverträge erlauben nach Beginn der Verrentung keine weiteren Einzahlungen. Dieses Tool modelliert ein Einmalprämien-Szenario. Wenn du flexible Zuzahlungen möchtest, modelliere dies separat und berechne neu." },
+    { "q": "Wie beeinflusst Inflation den 'realen' Wert?", "a": "Bei 3 % Inflation ist der Euro im 25. Jahr nur noch ca. 48 % des Euro im 1. Jahr wert. Um die Kaufkraft zu erhalten, füge einen COLA-Zuschlag von 2–3 % hinzu (niedrigere Anfangsauszahlung) oder nutze inflationsindexierte Anleihen." },
+    { "q": "Was passiert mit dem verbleibenden Kapital am Ende?", "a": "Nichts – die Formel ist so konzipiert, dass das Kapital über den Zeitraum genau aufgezehrt wird. Der Endbestand beträgt konstruktionsbedingt null. Vergleiche dies mit reinen Zins- oder RMD-basierten Entnahmen, bei denen das Kapital erhalten bleibt." },
+    { "q": "Werden die Berechnungsdaten geteilt?", "a": "Nein. Reine Browserberechnung; nichts wird an einen Server gesendet." }
+  ]
+}

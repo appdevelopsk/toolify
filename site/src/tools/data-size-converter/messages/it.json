@@ -1,0 +1,50 @@
+{
+  "title": "Convertitore di Dimensioni Dati (B, KB, MB, GB, TB — SI e IEC)",
+  "shortDescription": "Converti dimensioni di archiviazione digitale tra byte, kilobyte, megabyte, gigabyte, terabyte e petabyte. Passa tra SI (1000) e IEC binario (1024).",
+  "description": "Scegli SI (decimale, 1 KB = 1000 B) o IEC (binario, 1 KiB = 1024 B), inserisci un valore e vedi la conversione in tutte le altre unità. Chiarisce la confusione su 'quanto è grande un megabyte'.",
+  "metaDescription": "Convertitore di dimensioni dati gratuito per byte, KB, MB, GB, TB, PB. Passa tra prefissi SI (1000) e IEC (1024) binari — chiarisce 'quanto è grande un megabyte'.",
+  "keywords": ["convertitore dimensioni dati", "byte in MB", "GB in TB", "prefisso binario", "SI vs IEC"],
+  "input": { "value": "Valore", "from": "Unità di partenza" },
+  "mode": { "si": "SI (base 1000)", "iec": "IEC (base 1024)" },
+  "article": {
+    "sections": [
+      {
+        "heading": "SI vs IEC: l'ambiguità del megabyte",
+        "paragraphs": [
+          "I dischi rigidi e le velocità di rete sono pubblicizzati in unità SI: 1 GB = 1.000.000.000 byte (10⁹). I sistemi operativi e la RAM usano unità binarie: 1 GiB = 1.073.741.824 byte (2³⁰). I due differiscono di circa il 7% alla scala GB, crescendo a quasi il 10% alla scala TB, ecco perché il tuo disco da '1 TB' appare come 931 GiB nel tuo gestore file.",
+          "L'IEC ha introdotto KiB, MiB, GiB, TiB nel 1998 per disambiguare le forme binarie. Si sono diffuse lentamente, ma la maggior parte del marketing consumer usa ancora MB/GB senza specificare quale intende. Questo calcolatore ti permette di scegliere esplicitamente — cambia il toggle per convertire correttamente."
+        ]
+      },
+      {
+        "heading": "Quale vuoi?",
+        "paragraphs": [
+          "SI (base 1000) quando: leggi il marketing dei dischi, confronti hard drive o SSD, controlli le quote di banda ISP, velocità di rete. Quasi tutto il marketing di archiviazione usa SI.",
+          "IEC (base 1024) quando: guardi le dimensioni dei file nel gestore file del tuo OS (Windows, macOS, Linux), leggi le specifiche della RAM, lavori con specifiche tecniche. La maggior parte dei contesti ingegneristici e software usa prefissi binari."
+        ]
+      },
+      {
+        "heading": "Punti di riferimento utili",
+        "paragraphs": [
+          "1 MB ≈ un MP3 di 5 minuti (qualità discreta), o un JPEG da 5 megapixel. 1 GB ≈ 7 ore di audio MP3, o 30 minuti di video HD, o circa 350.000 email di lunghezza media. 1 TB ≈ 250 film HD, o 17.000 ore di MP3, o circa 10 anni di foto quotidiane per un utente smartphone medio.",
+          "Rete: 100 Mbps ≈ 12,5 MB/s ≈ 750 MB/min. Un file da 1 GB a 100 Mbps richiede ~80 secondi. Lo streaming video 4K usa 15-25 Mbps; 1080p usa 5-8 Mbps."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Scegli SI o IEC", "text": "SI per dimensioni di dischi e velocità di rete. IEC per dimensioni di file e RAM." },
+      { "name": "Inserisci il valore", "text": "Digita il valore della dimensione." },
+      { "name": "Scegli l'unità", "text": "Seleziona in quale unità è espresso il tuo valore (B, KB, MB, ecc., o B, KiB, MiB, ecc.)." },
+      { "name": "Vedi tutte le unità", "text": "Le conversioni appaiono istantaneamente." }
+    ]
+  },
+  "faq": [
+    { "q": "Perché ottengo meno spazio di archiviazione di quanto pubblicizzato?", "a": "I produttori di dischi usano SI (1 TB = 10¹² byte). I sistemi operativi usano il binario (1 TiB = 2⁴⁰ byte), che è ~10% più grande. Quindi un disco da 1 TB appare come ~931 GiB. Il disco non ti 'deruba' — è un'incongruenza di sistema di unità." },
+    { "q": "KB e KiB sono la stessa cosa?", "a": "Strettamente no: KB = 1.000 byte, KiB = 1.024 byte. Informalmente, 'KB' spesso significa 'KiB' nei contesti software. Questo strumento disambigua esplicitamente." },
+    { "q": "Quali unità usa Windows nel gestore file?", "a": "Windows mostra dimensioni binarie (KiB, MiB, GiB) ma le etichetta KB, MB, GB. macOS Finder e Linux di solito mostrano SI per impostazione predefinita. Usa la modalità IEC in questo strumento per corrispondere a ciò che Windows intende effettivamente." },
+    { "q": "Cosa viene dopo il PB?", "a": "EB (exabyte), ZB (zettabyte), YB (yottabyte). La maggior parte dei casi d'uso consumer si ferma a TB o pochi PB; i data warehouse su larga scala sono a multi-PB fino a EB." },
+    { "q": "Velocità di rete vs dimensione del file?", "a": "Le velocità di rete usano bit al secondo; le dimensioni dei file usano byte. 1 byte = 8 bit, quindi 100 Mbps = 12,5 MB/s. Potremmo aggiungere un calcolatore separato bit/byte." },
+    { "q": "La conversione è esatta?", "a": "Sì. Entrambe le modalità usano fattori interi esatti (potenze di 10 per SI, potenze di 2 per IEC)." },
+    { "q": "Perché SI 1 GB non è uguale a IEC 1 GiB?", "a": "Perché sono unità diverse. 1 GB = 10⁹ byte; 1 GiB = 2³⁰ byte ≈ 1,0737 × 10⁹ byte. Specifica sempre quale intendi." },
+    { "q": "Posso convertire la larghezza di banda o il tempo di trasferimento?", "a": "Questo strumento converte solo dimensioni. Per 'quanto ci vuole a trasferire X alla velocità Y', dividi i byte per i byte al secondo." }
+  ]
+}

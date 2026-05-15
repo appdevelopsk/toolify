@@ -1,0 +1,56 @@
+{
+  "title": "Kronometre (milisaniye hassasiyeti, tur süreleri)",
+  "shortDescription": "Başlat/duraklat, tur kaydı ve bölme süresi hesaplama özellikli yüksek hassasiyetli tarayıcı kronometresi. Milisaniye gösterimi, doğruluk için monoton saat.",
+  "description": "Titreşimsiz zamanlama için performance.now() kullanan tarayıcı tabanlı kronometre. Başlatın, duraklatın, devam ettirin, turları kaydedin ve sıfırlayın. Her tur, önceki turdan fark (delta) ve toplam geçen süreyi gösterir.",
+  "metaDescription": "Milisaniye hassasiyeti ve tur kaydıyla ücretsiz tarayıcı kronometresi. Monoton zamanlama, ağ gerekmiyor. Spor, pişirme ve çalışma oturumları için kullanışlı.",
+  "keywords": ["kronometre", "milisaniye zamanlayıcı", "tur zamanlayıcı", "çevrimiçi kronometre", "bölme zamanlayıcı"],
+  "start": "Başla",
+  "pause": "Duraklat",
+  "resume": "Devam",
+  "reset": "Sıfırla",
+  "lap": "Tur",
+  "laps": "Turlar",
+  "article": {
+    "sections": [
+      {
+        "heading": "Bu kronometre neden doğru",
+        "paragraphs": [
+          "Çoğu tarayıcı kronometresi, bir oturum boyunca onlarca milisaniye kayabilen Date.now() ve setInterval kullanır. Bu uygulama performance.now() kullanır — sistem saati ayarlandığında geriye atlayan monoton bir saat. Görüntü güncellemeleri için requestAnimationFrame ile birleştirildiğinde doğruluk ±1 ms içinde kalır.",
+          "Sekme değiştirirseniz, tarayıcılar arka planda çalışmayı kısıtladığından görüntülenen süre kısa süre donabilir. İç saat doğru çalışmaya devam eder — geri döndüğünüzde görüntü gerçek geçen süreye yetişir."
+        ]
+      },
+      {
+        "heading": "Tur süreleri ve bölme süreleri",
+        "paragraphs": [
+          "Tur'a bastığınızda geçerli toplam süre kaydedilir. Gösterilen bölme, önceki turdan deltadır: 5×400m koşusunda her bölme bir 400m segmentin süresidir, toplam ise başlangıçtan itibaren geçen toplam süredir.",
+          "Çoğu tur listesi kullanıcısı toplam değil bölmelerle ilgilenir. Her ikisini de gösteriyoruz. Toplam aynı zamanda en iyi bireysel segmenti belirlemeyi kolaylaştırır — interval tutarlılığını takip eden sporcular için kullanışlıdır."
+        ]
+      },
+      {
+        "heading": "Yaygın kullanımlar",
+        "paragraphs": [
+          "Spor: koşu, yüzme, bisiklet intervalleri için tur sürelerini takip edin. Daha küçük iyidir; bölmeler arasındaki tutarlılık iyi tempo tuttuğunun işaretidir.",
+          "Pişirme: turları 'kontrol noktaları' (karışım eklendi, hamur istirahate bırakıldı vb.) olarak kullanarak birden fazla adımı aynı anda zamanlayın.",
+          "Çalışma/ders: odaklanmış çalışma oturumlarını zaman kutulara ayırın. Yapılandırılmış molalar için Pomodoro zamanlayıcımızla birleştirin.",
+          "Süreç zamanlaması: herhangi bir görevin süresini ölçün — yazılım derlemeleri, manuel veri girişi, müşteri destek çözümü. Daha sonra incelemek için dışa aktarma dostu tur listesini kullanın."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Başla'ya tıklayın", "text": "Zamanlayıcı hemen 0'dan başlar." },
+      { "name": "Turları kaydedin", "text": "Koşu sırasında Tur'a tıklayın. Her tur bölme ve toplam süresiyle kaydedilir." },
+      { "name": "Duraklat / Devam", "text": "Durdurmak için Duraklat'a tıklayın; aynı süreden devam etmek için Devam'a tıklayın." },
+      { "name": "Sıfırla", "text": "Tüm turları temizler ve 0'a döner." }
+    ]
+  },
+  "faq": [
+    { "q": "Sekmeyi kapatsam zamanlayıcı çalışmaya devam eder mi?", "a": "Hayır — sekmeyi kapatmak bellek içi durumu temizler. Uzun bir zamanlama oturumunu korumak için kapatmadan önce çalışan ekranın ekran görüntüsünü alın veya tur listesini kopyalayın." },
+    { "q": "Milisaniye hassasiyeti pratikte ne kadar doğrudur?", "a": "performance.now() çözünürlüğü tarayıcıya bağlıdır: çoğu tarayıcı güvenlik nedeniyle (zamanlama saldırısı önleme) 1ms veya 0,1ms ile sınırlandırır. Bu, insan ölçeğinde zamanlama için yeterlidir — insan tepki süresinden (~250ms) çok daha doğru." },
+    { "q": "Görüntü 60fps'de güncellendiği halde neden milisaniyeler gösteriliyor?", "a": "İç saat hassastır; görüntü saniyede ~60 kez işlenir, dolayısıyla düzgün güncelleyen milisaniye alanı görürsünüz. Her kare, performance.now()'dan en son geçen değeri hesaplar." },
+    { "q": "Tur oturumunu kaydedebilir miyim?", "a": "Doğrudan değil — tur listesini manuel kopyalayın. Yerel depolama oturumlarını kaydetme yol haritasındadır." },
+    { "q": "Bu telefon kronometresiyle arasındaki fark nedir?", "a": "Tarayıcı tabanlı, uygulama yüklemesi gerekmiyor. İnsan ölçeğinde zamanlama için eşit derecede doğru. Telefon kronometresi ekran kilitlemesinden kurtulur; tarayıcı sekmesinin açık kalması gerekir (ancak odaklanması gerekmez)." },
+    { "q": "Veriler bir yere gönderiliyor mu?", "a": "Hayır. Her şey yerel olarak çalışır; tur veya süre iletilmez." },
+    { "q": "Turum neden 0 milisaniye gösteriyor?", "a": "Başlat'tan hemen sonra Tur'a basarsanız geçen süre görüntü hassasiyetiyle 0'a yuvarlanabilir. Turlar arasında en az saniyenin bir bölümü kadar çalıştırın." },
+    { "q": "Bu saniyenin altındaki olayları ölçebilir mi?", "a": "Evet, ~1ms'ye kadar. Nanosaniye zamanlaması için farklı araçlar gerekir, ancak insan tarafından gözlemlenebilir herhangi bir olay için bu yeterince hassastır." }
+  ]
+}

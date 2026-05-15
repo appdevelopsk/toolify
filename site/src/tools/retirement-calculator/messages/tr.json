@@ -1,0 +1,107 @@
+{
+  "title": "Emeklilik Hesaplayıcı (bileşik projeksiyon + enflasyona göre",
+  "shortDescription": "Aylık katkılar, beklenen getiri ve enflasyon ile emeklilik birikimlerinizi projelendirin. Nominal bakiye, bugünkü dolar değeri ve %4 kuralı aylık geliri gösterir.",
+  "description": "Mevcut yaşınızı, hedef emeklilik yaşını, mevcut birikimlerinizi, aylık katkınızı, beklenen yıllık getiriyi ve enflasyon oranını girin. Hesaplayıcı bileşik büyümeyi projelendirip sürdürülebilir çekim için %4 kuralını uygular.",
+  "metaDescription": "Ücretsiz emeklilik hesaplayıcısı. Onlarca yıl boyunca aylık katkıları bileşik yöntemle büyütün, bugünkü TL değerine enflasyonla göre ayarlayın ve sürdürülebilir gelir",
+  "keywords": [
+    "emeklilik hesaplayıcı",
+    "emeklilik birikimi",
+    "BES hesaplayıcı",
+    "bireysel emeklilik hesaplayıcı",
+    "enflasyona göre düzeltilmiş emeklilik"
+  ],
+  "input": {
+    "currentAge": "Mevcut yaş",
+    "retireAge": "Emeklilik yaşı",
+    "currentSaved": "Mevcut birikim",
+    "monthly": "Aylık katkı",
+    "returnPct": "Yıllık getiri %",
+    "inflationPct": "Yıllık enflasyon %"
+  },
+  "result": {
+    "nominalBalance": "Öngörülen bakiye",
+    "realBalance": "Bugünkü TL değeriyle",
+    "contributed": "Toplam katkı",
+    "growth": "Yatırım büyümesi",
+    "monthly4pct": "Aylık gelir (%4 kuralı)",
+    "yearsLabel": "yıl"
+  },
+  "empty": "Emeklilik birikimini projelendirmek için tüm alanları doldurun.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Projeksiyon nasıl çalışır",
+        "paragraphs": [
+          "Başlangıç bakiyenizi ve her aylık katkıyı yıllık getiri oranında bileşik yöntemle büyütüyoruz. Matematik özyinelemeli: bakiye(ay+1) = bakiye(ay) × (1 + aylık_oran) + aylık_katkı. On yıllar içinde bileşik faiz nedeniyle mütevazı aylık tutarlar bile önemli ölçüde büyür — önceki getirilerin getirileri kendileri üzerinde bileşimlenir.",
+          "Enflasyon oranınızı kullanarak nominal bakiyeyi deflate ederek 'bugünkü TL değeri' de projelendiriyoruz. 30 yıl sonraki bir milyon lira bugün bir milyon lira değerinde değildir — %25 yıllık enflasyonla 30 yıl sonraki 1 milyon ₺ bugün yaklaşık 200.000 ₺ satın alma gücüne sahiptir. Mevcut geçim maliyetiyle karşılaştırmanız gereken değer budur."
+        ]
+      },
+      {
+        "heading": "Hangi oranı varsaymak gerekir",
+        "paragraphs": [
+          "Türkiye hisse senetleri (BİST) tarihsel nominal ortalama çok yüksek olsa da gerçek (enflasyona göre düzeltilmiş) getiri uzun vadede daha mütevazıdır. Çeşitlendirilmiş küresel portföy için uzun vadeli nominal %6-8 makuldür. 5 yılın altına gitmek uzun vadeler için aşırı muhafazakârdır; %9'un üzerine çıkmak iyimserdir.",
+          "Emekliliğe yaklaştıkça portföyünüz tipik olarak daha muhafazakâr hale gelir (daha fazla tahvil, daha az hisse senedi). Emeklilikten 5-10 yıl önce, tahvil payı arttıkça beklenen getiri %4-6'ya düşer. Bu hesaplayıcı tüm ufuk için tek bir oran kullanır — daha nüanslı projeksiyonlar için farklı oranlarla senaryolar çalıştırın."
+        ]
+      },
+      {
+        "heading": "%4 kuralı",
+        "paragraphs": [
+          "%4 kuralı (Trinity Çalışması, 1998) 1. yılda emeklilik birikimlerinizin %4'ünü, ardından her yıl enflasyona göre artırarak çekebileceğinizi ve 30 yıl boyunca paranın bitmemesi için çok yüksek olasılık olduğunu söyler. Yani 1 milyon ₺ emeklilik birikimi yılda 40.000 ₺ (veya ayda yaklaşık 3.333 ₺) enflasyona göre düzeltilmiş harcamayı destekler.",
+          "Kuralın sınırlamaları vardır — ABD hisse/tahvil tarihi performansına dayanır ve bazı gelecek senaryolar için iyimser olabilir. Bazı uzmanlar güvenlik için %3-3,5 öneriyor. Erken emeklilik (FIRE) ile 50+ yıllık ufuklar için %3 daha muhafazakârdır. %4 rakamını kaba bir akıl yürütme testi olarak kullanın, garanti olarak değil."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Mevcut ve emeklilik yaşlarını girin",
+        "text": "Fark yatırım ufkunuzdur."
+      },
+      {
+        "name": "Başlangıç bakiyesi ve aylık katkınızı girin",
+        "text": "BES, bireysel emeklilik, mevduat hesapları — emeklilik için ayrılan her şey."
+      },
+      {
+        "name": "Getiri ve enflasyon oranlarını belirleyin",
+        "text": "Makul varsayılanlar: %7 getiri (uzun vadeli gerçek), %25 enflasyon (TÜİK hedef)."
+      },
+      {
+        "name": "Her iki projeksiyonu da okuyun",
+        "text": "Nominal gerçek lira miktarıdır; bugünkü TL değeri gerçek satın alma gücüdür."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Hangi getiri oranını kullanmalıyım?",
+      "a": "Çeşitlendirilmiş hisse ağırlıklı portföyde 25+ yıllık ufuklar için: %6-7. Daha kısa ufuklar veya daha muhafazakâr karışım için: %4-5. Uzun vadeli hisse gerçek getirisi (enflasyon sonrası) yaklaşık %5-7'dir."
+    },
+    {
+      "q": "Bugünkü TL değeri neden önemli?",
+      "a": "35 yıl sonraki 5 milyon ₺ kulağa iyi gelir ama %20 enflasyonla bugün yaklaşık 450.000 ₺ değerindedir. Bugünkü TL değeri emeklilik birikimlerinizin mevcut değerlerle ne satın alacağını söyler — mevcut ve gelecekteki giderleri planlamak için kullanışlıdır."
+    },
+    {
+      "q": "Vergi öncesi mi yoksa sonrası katkı mı kullanmalıyım?",
+      "a": "Hesap türüne bağlıdır. Bireysel emeklilik ve BES vergi avantajlı olabilir (çekimde vergi veya stopaj uygulanabilir). Hesabınızın vergi yapısını danışmanınızla konfirme edin."
+    },
+    {
+      "q": "Zam alırsam ve katkıları artırırsam ne olur?",
+      "a": "Hesaplayıcıyı her aşama için birden fazla kez çalıştırın veya ortalamanızı yaklaşık gösteren sabit bir katkı kullanın. Gerçek dünyadaki katkılar genellikle maaşla büyür; hesaplayıcı sabit bir sayı kullanır."
+    },
+    {
+      "q": "Bu SGK'yı hesaba katıyor mu?",
+      "a": "Hayır. SGK/devlet emekliliği ayrı bir gelir akışıdır. Emeklilik birikimlerinizi burada projelendirin, ardından toplam emeklilik gelir planlaması için SGK tahminlerini ekleyin."
+    },
+    {
+      "q": "'Güvenli çekim oranı' nedir?",
+      "a": "Geleneksel olarak %4 (Trinity Çalışması). Uzun emeklilikler (FIRE, 40+ yıl) için %3-3,5 daha güvenlidir. Hesaplayıcı varsayılan olarak %4 gösterir; farklı bir oran istiyorsanız aylık hedefi ayarlayın."
+    },
+    {
+      "q": "Emekli olmak için ne kadar lazım?",
+      "a": "Temel kural: yıllık harcama ihtiyacınızın 25 katı (%4 kuralının tersi). Bugünkü değerlerle yılda 100.000 ₺ harcıyorsanız bugünkü değerlerle 2,5 milyon ₺ gerekir (emekliliğe kadar enflasyonu daha fazla nominal ile hesaba katın)."
+    },
+    {
+      "q": "Veriler tarayıcımdan çıkıyor mu?",
+      "a": "Hayır. Tüm projeksiyon matematiği yerel olarak çalışır; hiçbir şey sunucuya gönderilmez."
+    }
+  ]
+}

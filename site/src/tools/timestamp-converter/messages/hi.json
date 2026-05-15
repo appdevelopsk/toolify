@@ -1,0 +1,72 @@
+{
+  "title": "Unix Timestamp Converter (sec, ms, ISO, local)",
+  "shortDescription": "Unix timestamps (seconds या milliseconds) और human-readable dates के बीच convert करें। ISO 8601, local time, और relative time दिखाता है।",
+  "description": "Multiple formats में date देखने के लिए Unix timestamp type करें, या Unix value पाने के लिए date pick करें। Reference के लिए live current timestamp displayed है।",
+  "metaDescription": "मुफ्त Unix timestamp converter। Seconds या milliseconds को ISO/local dates में और वापस convert करें। Live current timestamp, relative-time display included।",
+  "keywords": ["Unix timestamp", "epoch converter", "timestamp to date", "date to timestamp", "ISO 8601"],
+  "empty": "Convert करने के लिए timestamp या date दर्ज करें।",
+  "input": { "timestamp": "Unix timestamp", "date": "Date & time" },
+  "now": "अभी",
+  "currentTimestamp": "Current",
+  "mode": { "fromTimestamp": "Timestamp → Date", "fromDate": "Date → Timestamp" },
+  "unit": { "seconds": "Seconds", "milliseconds": "Milliseconds" },
+  "result": {
+    "timestampSec": "Timestamp (sec)",
+    "timestampMs": "Timestamp (ms)",
+    "iso": "ISO 8601 (UTC)",
+    "local": "Local time",
+    "locale": "Localized",
+    "relative": "Relative"
+  },
+  "relative": {
+    "justNow": "अभी",
+    "justPast": "कुछ देर पहले",
+    "minutesFromNow": "{n} min में",
+    "minutesAgo": "{n} min पहले",
+    "hoursFromNow": "{n} h में",
+    "hoursAgo": "{n} h पहले",
+    "daysFromNow": "{n} दिन में",
+    "daysAgo": "{n} दिन पहले"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Unix timestamp क्या है",
+        "paragraphs": [
+          "Unix timestamp Unix epoch से seconds (या JavaScript में milliseconds) की संख्या है — 1 January 1970 UTC पर midnight। यह एक single number है जो बिना ambiguity के time में एक moment encode करता है। APIs, databases, और log files everywhere इसे उपयोग करते हैं क्योंकि timestamps compare करना बस integer arithmetic है।",
+          "JavaScript, Python, और कई अन्य systems milliseconds उपयोग करते हैं (JS में Date.now() ms return करता है)। C, Go, और Unix shells seconds उपयोग करते हैं। Convert करते समय, हमेशा check करें कि आपका timestamp किस unit में है — 1.7 trillion value milliseconds है; 1.7 billion seconds है।"
+        ]
+      },
+      {
+        "heading": "ISO 8601 बनाम locale formats",
+        "paragraphs": [
+          "ISO 8601 (जैसे 2026-05-06T14:30:00Z) universal interchange format है। Time zone explicit है ('Z' = UTC), और यह text के रूप में correctly sort होता है। Storage और APIs के लिए इसे हमेशा उपयोग करें।",
+          "Locale formats (जैसे '6 मई 2026, 2:30:00 PM IST') display के लिए हैं। वे user language और region पर depend करते हैं। Calculator दोनों दिखाता है — code के लिए ISO copy करें, emails या reports के लिए locale।"
+        ]
+      },
+      {
+        "heading": "Year 2038 problem",
+        "paragraphs": [
+          "32-bit signed integer Unix timestamps 2³¹ − 1 seconds = 2,147,483,647 = 19 January 2038 UTC पर 03:14:07 पर overflow होते हैं। int32 उपयोग करने वाले systems negative values पर roll over होंगे, date arithmetic break करते हुए। Modern systems 64-bit timestamps उपयोग करते हैं जो ~292 billion years के लिए safe हैं।",
+          "यदि आप embedded systems, old database schemas, या legacy C code के साथ काम कर रहे हैं, time_t size के लिए audit करें। 64-bit integers पर migrate करना fix है; timestamps को strings (ISO) के रूप में store करना issue से बचाता है।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Direction pick करें", "text": "Timestamp → Date या Date → Timestamp।" },
+      { "name": "Unit choose करें", "text": "Seconds (Unix standard) या milliseconds (JavaScript)।" },
+      { "name": "Type या pick करें", "text": "Number type करें, या current moment के लिए 'अभी' button उपयोग करें।" },
+      { "name": "सभी formats पढ़ें", "text": "Sec, ms, ISO, local, और relative सब साथ दिखाए जाते हैं।" }
+    ]
+  },
+  "faq": [
+    { "q": "Timestamps कभी-कभी 13 digits क्यों होते हैं?", "a": "वे milliseconds हैं। JavaScript और कई web APIs ms उपयोग करते हैं। Seconds पाने के लिए 1000 से divide करें।" },
+    { "q": "Unix timestamp किस time zone में है?", "a": "किसी में नहीं — यह epoch से UTC seconds है। अपने application या user के timezone का उपयोग करके इसे local date में convert करें।" },
+    { "q": "क्या conversion accurate है?", "a": "हाँ। हम browser का Date API उपयोग करते हैं, जो system clock उपयोग करता है। Precision millisecond तक है।" },
+    { "q": "ISO 8601 क्या है?", "a": "International standard date-time format: YYYY-MM-DDTHH:MM:SS+TZ। Text के रूप में sortable, time zone के बारे में unambiguous।" },
+    { "q": "'Local time' मेरे system clock से match क्यों नहीं करता?", "a": "यह आपके browser की reported time zone उपयोग करता है। IST (UTC+5:30) के लिए, India में यह सही होना चाहिए।" },
+    { "q": "क्या negative timestamps valid हैं?", "a": "हाँ — वे 1970 से पहले की dates represent करते हैं।" },
+    { "q": "क्या मैं batch convert कर सकता हूँ?", "a": "अभी नहीं। One-off conversions के लिए यह tool ठीक है; thousands of values के लिए script उपयोग करें।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Conversion locally चलता है।" }
+  ]
+}

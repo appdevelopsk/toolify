@@ -1,0 +1,77 @@
+{
+  "title": "Jadwal Amortisasi Pinjaman (lengkap atau tahunan)",
+  "shortDescription": "Buat jadwal amortisasi bulan per bulan untuk pinjaman dengan suku bunga tetap. Menampilkan pembagian pokok/bunga per pembayaran, saldo akhir, dan ekspor CSV.",
+  "description": "Masukkan pokok, suku bunga tahunan, dan jangka waktu dalam tahun. Mengembalikan cicilan bulanan, total bunga, total pembayaran, dan jadwal baris per bulan yang menunjukkan bagaimana setiap pembayaran dibagi antara pokok dan bunga. Beralih antara tampilan lengkap vs ringkasan tahunan; unduh CSV.",
+  "metaDescription": "Jadwal amortisasi pinjaman gratis. Rincian pokok/bunga bulanan, total bunga, saldo akhir per periode. Ekspor CSV. Berbasis browser.",
+  "keywords": ["jadwal amortisasi pinjaman", "tabel amortisasi", "pokok bunga bulanan", "kalkulator jadwal pinjaman", "amortisasi kpr"],
+  "input": {
+    "principal": "Jumlah pinjaman",
+    "ratePct": "Suku bunga tahunan %",
+    "years": "Jangka waktu (tahun)"
+  },
+  "result": {
+    "monthly": "Cicilan bulanan",
+    "totalInterest": "Total bunga yang dibayar",
+    "totalPayments": "Total pembayaran",
+    "months": "Total bulan"
+  },
+  "schedule": {
+    "heading": "Jadwal",
+    "showAll": "Tampilkan semua bulan",
+    "condense": "Ringkas ke tahunan",
+    "downloadCsv": "Unduh CSV",
+    "condensedNote": "Tampilan ringkas: menampilkan bulan pertama, setiap bulan ke-12, dan bulan terakhir. Klik 'Tampilkan semua bulan' untuk detail lengkap.",
+    "col": {
+      "month": "Bulan",
+      "payment": "Pembayaran",
+      "principal": "Pokok",
+      "interest": "Bunga",
+      "balance": "Saldo"
+    }
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara amortisasi bekerja",
+        "paragraphs": [
+          "Setiap cicilan bulanan tetap dibagi antara bunga (dikenakan pada saldo saat ini) dan pokok (pembayaran pinjaman sebenarnya). Di awal pinjaman, saldo tinggi, sehingga sebagian besar cicilan Anda adalah bunga. Seiring saldo mengecil, biaya bunga turun dan lebih banyak dari setiap cicilan pergi ke pokok — hingga cicilan terakhir hampir seluruhnya adalah pokok.",
+          "Formula amortisasi suku bunga tetap standar: cicilan bulanan = P × r / (1 − (1+r)⁻ⁿ), di mana P adalah pokok, r adalah suku bunga bulanan (tahunan / 12), n adalah bulan. Cicilan bulanan yang sama digunakan sepanjang waktu, tetapi pembagian pokok/bunganya berubah setiap bulan seiring saldo berubah."
+        ]
+      },
+      {
+        "heading": "Mengapa jadwal itu penting",
+        "paragraphs": [
+          "Ini menunjukkan persis kapan Anda 'beralih' dari membayar sebagian besar bunga ke sebagian besar pokok. Untuk KPR 30 tahun yang khas pada 9%, pergeseran itu terjadi sekitar tahun ke-13 — artinya 13 tahun pertama pembayaran sebagian besar adalah bunga, bukan ekuitas.",
+          "Ini juga menunjukkan biaya tetap berada dalam pinjaman yang lama. Dibandingkan dengan jangka waktu 15 tahun pada suku bunga yang sama, pinjaman 30 tahun dapat membayar 2-3× total bunga selama masa pinjaman. Jadwal membuat ini konkret.",
+          "Pembayaran pokok ekstra di awal pinjaman menghemat jauh lebih banyak bunga daripada pembayaran akhir. Jadwal membantu Anda melihat ini — membayar ekstra Rp500.000/bulan di 5 tahun pertama menghemat lebih banyak daripada membayar Rp500.000/bulan di tahun ke-26 hingga 30."
+        ]
+      },
+      {
+        "heading": "Keterbatasan",
+        "paragraphs": [
+          "Hanya suku bunga tetap. KPR suku bunga mengambang memerlukan perhitungan ulang jadwal setiap kali suku bunga berubah.",
+          "Tidak ada pajak, asuransi, atau biaya lainnya. 'Cicilan bulanan' di sini hanya pokok + bunga. Untuk total pembayaran perumahan, tambahkan pajak/asuransi/dll. secara terpisah.",
+          "Tidak ada skenario pelunasan dipercepat. Jika Anda melakukan pembayaran ekstra, jadwal setelah titik tersebut tidak lagi akurat. Untuk analisis pelunasan dipercepat, hitung ulang dengan saldo baru.",
+          "Pemajemukan: mengasumsikan pemajemukan bulanan (standar untuk KPR di Indonesia). Beberapa produk pinjaman menggunakan bunga harian atau sederhana — untuk itu, jadwal ini adalah perkiraan."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Masukkan jumlah pinjaman", "text": "Jumlah yang dipinjam (pokok)." },
+      { "name": "Masukkan suku bunga", "text": "Suku bunga tahunan. Untuk 9,5%, masukkan 9,5." },
+      { "name": "Masukkan jangka waktu", "text": "Dalam tahun. Sebagian besar KPR di Indonesia adalah 10, 15, atau 20 tahun." },
+      { "name": "Baca ringkasan + jadwal", "text": "Cicilan bulanan, total bunga, rincian setiap bulan dari setiap rupiah pergi ke mana." },
+      { "name": "Unduh CSV", "text": "Ekspor jadwal lengkap untuk analisis spreadsheet." }
+    ]
+  },
+  "faq": [
+    { "q": "Mengapa laporan KPR saya menampilkan angka yang berbeda?", "a": "Pemberi pinjaman nyata menyertakan pajak, asuransi, dan biaya lainnya dalam cicilan bulanan. Kalkulator ini menampilkan murni P&I (pokok + bunga). Kurangi tambahan tersebut untuk membandingkan." },
+    { "q": "Bagaimana bunga dihitung setiap bulan?", "a": "bunga bulanan = saldo saat ini × suku bunga bulanan. Kemudian pokok = cicilan bulanan − bunga. Saldo baru = saldo lama − pokok. Ulangi untuk n bulan." },
+    { "q": "Mengapa pembayaran awal tampak begitu 'terbuang' untuk bunga?", "a": "Tidak terbuang — mereka membayar untuk keberadaan pinjaman pada saldo yang tinggi. Matematikanya jujur: saldo tinggi × suku bunga = bunga tinggi. Seiring saldo turun, bunga juga turun." },
+    { "q": "Apa dampak perubahan suku bunga 1 poin?", "a": "Kira-kira 10-12% peningkatan cicilan bulanan, dan 25-35% peningkatan total bunga selama KPR 20 tahun. Kunci suku bunga rendah jika memungkinkan." },
+    { "q": "Haruskah saya membayar pokok ekstra setiap bulan?", "a": "Jika pinjaman Anda tidak memiliki penalti pelunasan dipercepat, ya. Bahkan ekstra Rp500.000/bulan di awal pinjaman menghemat jutaan bunga. Jadwal menampilkan dampaknya." },
+    { "q": "Apa itu pinjaman balon?", "a": "Pinjaman di mana cicilan reguler tidak sepenuhnya diamortisasi, menyisakan 'balon' pembayaran akhir yang besar. Umum di properti komersial; jarang di perumahan. Kalkulator ini tidak memodelkan balon." },
+    { "q": "Mengapa total bunga untuk 30 tahun jauh lebih banyak daripada 15 tahun?", "a": "Pemajemukan bekerja melawan Anda. Pada 9%, pinjaman 30 tahun memiliki total bunga sekitar 2× dari pinjaman 15 tahun meskipun suku bunganya sama. Jangka waktu yang lebih pendek berarti periode saldo tinggi lebih singkat." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Perhitungan berjalan secara lokal; unduhan CSV juga dibuat di browser." }
+  ]
+}

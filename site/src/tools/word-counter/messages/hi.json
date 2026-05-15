@@ -1,0 +1,58 @@
+{
+  "title": "Word Counter (reading और speaking time के साथ)",
+  "shortDescription": "Words, characters, sentences, paragraphs count करें, plus estimated reading और speaking time। Hindi, Devanagari और CJK languages correctly handle करता है।",
+  "description": "Word count, character count (spaces के साथ और बिना), sentence count, paragraph count, और silently और aloud पढ़ने के time estimates देखने के लिए कोई भी text paste करें।",
+  "metaDescription": "Reading time के साथ मुफ्त online word counter। Real-time में words, characters, sentences, और paragraphs count करता है। Hindi/Devanagari और CJK text के लिए aware।",
+  "keywords": ["word counter", "character count", "reading time", "essay word count", "letter counter"],
+  "placeholder": "यहाँ text paste या type करें…",
+  "stat": {
+    "words": "Words",
+    "characters": "Characters",
+    "charactersNoSpaces": "Without spaces",
+    "sentences": "Sentences",
+    "paragraphs": "Paragraphs",
+    "readingTime": "Reading time",
+    "speakingTime": "Speaking time"
+  },
+  "unit": { "min": "min" },
+  "article": {
+    "sections": [
+      {
+        "heading": "हर metric कैसे compute होती है",
+        "paragraphs": [
+          "Characters text की raw length है, spaces, line breaks, और emoji सहित। 'Without spaces' count करने से पहले whitespace strip करता है। Words Latin-script languages के लिए whitespace से split होते हैं; Japanese, Chinese, Korean, और Thai के लिए, प्रत्येक ideograph एक word count होता है क्योंकि ये languages English की तरह word-spacing use नहीं करतीं। Hindi/Devanagari के लिए whitespace-based word counting use होती है।",
+          "Sentences terminal punctuation से detect होते हैं (। ! ? Latin scripts में; 。！？ CJK में)। Paragraphs blank lines से separated blocks हैं। ये rules pragmatic हैं — quirky punctuation वाले text के counts थोड़े off हो सकते हैं, लेकिन normal prose के लिए reliable हैं।"
+        ]
+      },
+      {
+        "heading": "Reading time estimate कैसे होती है",
+        "paragraphs": [
+          "Reading time 200 words per minute use करती है, prose पढ़ने वाले adults के लिए median। Speaking time 130 words per minute use करती है, experienced public speaker की rate। दोनों nearest whole minute तक round up होते हैं, तो 50-word sentence '1 min' दिखाता है।",
+          "ये numbers approximations हैं। Heavy technical text slower reads (150 wpm के करीब), light fiction faster (250 wpm के करीब), और presentation pacing style और audience के साथ wildly vary करती है। इस figure को sanity check के रूप में use करें, stopwatch नहीं।"
+        ]
+      },
+      {
+        "heading": "Common uses",
+        "paragraphs": [
+          "Bloggers और writers target length hit करने के लिए word counts use करते हैं (अधिकांश longform articles SEO के लिए 1500-2500 words target करते हैं)। Students essay assignments के लिए use करते हैं। Marketers X (Twitter) post limits और meta description tag lengths के लिए character-with-spaces use करते हैं। Public speakers 5-minute lightning talk बनाम 20-minute keynote के लिए scripts calibrate करने के लिए speaking-time figure use करते हैं।",
+          "Translators और editors per word या per character invoicing करते समय सभी four counts track करते हैं — 'with spaces' और 'without' के बीच choice rates को 10-20% affect करती है।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Text paste करें", "text": "Text area में type या paste करें। Counts हर keystroke के साथ update होते हैं।" },
+      { "name": "Metrics पढ़ें", "text": "सभी सात metrics एक साथ visible हैं — words, characters, sentences, paragraphs, और time estimates।" },
+      { "name": "जरूरत के अनुसार adjust करें", "text": "Word count को target पर लाने के लिए text directly edit करें, फिर cleaned version copy करें।" }
+    ]
+  },
+  "faq": [
+    { "q": "मेरा CJK word count expected से ज़्यादा क्यों है?", "a": "हम प्रत्येक ideograph (Chinese hanzi, Japanese kanji/kana, Korean hangul) को एक word count करते हैं। Same text में Latin words अभी भी whitespace से count होते हैं।" },
+    { "q": "क्या emoji characters के रूप में count होते हैं?", "a": "हाँ। कुछ emoji technically multiple Unicode code units हैं; counter JavaScript string length follow करता है।" },
+    { "q": "क्या reading time accurate है?", "a": "200 wpm figure prose के लिए median adult silent reading speed से match करती है। Highly technical text slower reads, easy fiction faster — इसे ±30% estimate treat करें।" },
+    { "q": "Sentence count off क्यों लगता है?", "a": "Detection terminal punctuation पर based है। Lists, punctuation के बिना headings, या unusual prose styles इसे throw off कर सकते हैं। Word count reliable रहता है।" },
+    { "q": "क्या text browser से बाहर जाता है?", "a": "नहीं। सब कुछ locally चलता है; कोई server endpoint नहीं है जो input receive करे।" },
+    { "q": "Text length की limit क्या है?", "a": "कोई enforced limit नहीं है। Modern browsers multi-megabyte text handle करते हैं बिना issue के, हालाँकि ~100,000 characters से ज़्यादा पर textarea slow हो सकता है।" },
+    { "q": "क्या मैं X posts count कर सकता हूँ?", "a": "हाँ — 'characters' (with spaces) use करें क्योंकि X whitespace count करता है। 280-character limit URLs को 23 characters के रूप में भी include करती है।" },
+    { "q": "क्या यह Markdown support करता है?", "a": "यह Markdown syntax सहित raw text count करता है। 'Rendered' word count चाहते हैं तो केवल rendered output paste करें।" }
+  ]
+}

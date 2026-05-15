@@ -1,0 +1,120 @@
+{
+  "title": "Kalkulator Keuntungan Saham (dengan dividen + pajak)",
+  "shortDescription": "Hitung keuntungan perdagangan saham termasuk komisi beli/jual, dividen yang diterima, dan pajak capital gain. Mengembalikan keuntungan bersih setelah pajak dan ROI.",
+  "description": "Masukkan saham, harga beli/jual, komisi, dividen yang diterima, dan tarif pajak capital gain Anda. Kalkulator mengembalikan total keuntungan, pajak yang terutang, dan bersih setelah pajak.",
+  "metaDescription": "Kalkulator keuntungan saham gratis dengan dukungan dividen dan pajak. Hitung capital gain, pendapatan dividen, pajak terutang, dan ROI setelah pajak untuk perdagangan",
+  "keywords": [
+    "kalkulator keuntungan saham",
+    "keuntungan perdagangan saham",
+    "kalkulator capital gain",
+    "ROI saham",
+    "keuntungan setelah pajak"
+  ],
+  "empty": "Masukkan saham, harga beli dan jual, dividen, dan tarif pajak.",
+  "input": {
+    "shares": "Jumlah saham",
+    "buyPrice": "Harga beli (per saham)",
+    "sellPrice": "Harga jual (per saham)",
+    "buyCommission": "Komisi beli",
+    "sellCommission": "Komisi jual",
+    "dividends": "Dividen yang diterima",
+    "taxPct": "Pajak capital gain %"
+  },
+  "result": {
+    "afterTax": "Keuntungan setelah pajak",
+    "roi": "ROI (setelah pajak)",
+    "cost": "Total biaya",
+    "gross": "Hasil kotor",
+    "capitalGain": "Capital gain",
+    "dividendsLabel": "Dividen",
+    "totalGain": "Total keuntungan (sebelum pajak)",
+    "totalTax": "Pajak terutang"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa yang masuk dalam keuntungan perdagangan saham",
+        "paragraphs": [
+          "Keuntungan saham memiliki tiga komponen utama: capital gain (harga jual dikurangi harga beli, dikali saham, dikurangi komisi), dividen yang diterima selama periode kepemilikan Anda, dan pajak yang terutang atas keuntungan gabungan. Sebagian besar kalkulator hanya menghitung salah satunya — kami menghitung ketiganya untuk hasil setelah pajak yang akurat.",
+          "Komisi: sebagian besar sekuritas Indonesia (Mirae, Indo Premier, BNI Sekuritas, dll.) mengenakan komisi beli 0,15-0,20% dan jual 0,25-0,30% dari nilai transaksi. Selalu periksa jadwal biaya broker Anda."
+        ]
+      },
+      {
+        "heading": "Tarif pajak di Indonesia",
+        "paragraphs": [
+          "Indonesia: pajak capital gain saham publik dikenakan sebagai PPh Final 0,1% dari nilai transaksi penjualan (bukan dari keuntungan), dipotong langsung oleh broker. Ini berbeda dari pajak berbasis keuntungan di banyak negara lain.",
+          "Dividen: sejak 2021, dividen dari perusahaan publik Indonesia dikenai PPh Final 10% untuk wajib pajak orang pribadi. Masukkan 10 sebagai tarif pajak untuk dividen, atau gunakan tarif efektif gabungan untuk perdagangan Anda.",
+          "Saham luar negeri yang dimiliki melalui broker Indonesia: keuntungan modal dari saham asing bisa dikenai PPh sebesar 20-30% dari keuntungan bersih tergantung perjanjian pajak. Konsultasikan dengan konsultan pajak untuk situasi kompleks."
+        ]
+      },
+      {
+        "heading": "Apa yang tidak dimodelkan kalkulator ini",
+        "paragraphs": [
+          "Biaya bid-ask spread: membeli pada harga ask dan menjual pada harga bid berarti biaya implisit kecil per perdagangan. Untuk saham blue chip yang likuid, ini dapat diabaikan (beberapa sen per lembar); untuk saham tidak likuid bisa 0,5-2%.",
+          "Konversi mata uang: jika Anda membeli saham USD dengan Rupiah, imbal hasil Anda juga dipengaruhi pergerakan USD/Rupiah antara beli dan jual. Kami tidak menghitung kurs — masukkan harga dalam mata uang Anda pada waktu setiap transaksi.",
+          "Biaya pajak minimum: beberapa broker memiliki biaya minimum per transaksi. Ini tidak dimodelkan — masukkan biaya sebenarnya Anda."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Masukkan jumlah saham",
+        "text": "Jumlah lembar saham yang dibeli."
+      },
+      {
+        "name": "Masukkan harga beli dan jual",
+        "text": "Harga per saham pada setiap transaksi."
+      },
+      {
+        "name": "Masukkan komisi",
+        "text": "Biaya per transaksi pada beli dan jual. Gunakan 0 jika broker Anda bebas komisi."
+      },
+      {
+        "name": "Masukkan dividen yang diterima",
+        "text": "Total dividen yang dibayarkan selama periode kepemilikan Anda."
+      },
+      {
+        "name": "Masukkan tarif pajak",
+        "text": "Tarif capital gain yang berlaku. Indonesia saham publik: 0,1% dari nilai jual (PPh Final). Dividen: 10%."
+      },
+      {
+        "name": "Baca rinciannya",
+        "text": "Keuntungan setelah pajak, ROI, capital gain, pendapatan dividen, total pajak."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apakah ini bekerja untuk reksa dana saham?",
+      "a": "Ya — matematika yang sama. Reksa dana dapat mendistribusikan dividen dan capital gain; masukkan kedua jumlah di kolom dividen, atau gunakan perhitungan terpisah per sumber jika tarifnya berbeda."
+    },
+    {
+      "q": "Bagaimana dengan dividen yang diinvestasikan kembali?",
+      "a": "Setiap reinvestasi diperlakukan sebagai lot pajak baru di sebagian besar yurisdiksi. Kalkulator ini mengasumsikan satu pembelian/penjualan — untuk reinvestasi dividen, jalankan beberapa perhitungan atau gunakan laporan pajak broker."
+    },
+    {
+      "q": "Mengapa kalkulator juga menerapkan pajak pada kerugian?",
+      "a": "Tidak — kami hanya menerapkan pajak ketika capital gain atau dividen positif. Kerugian mengurangi total pajak terutang di banyak negara, tetapi aturannya bervariasi sehingga kami menyerahkan penanganan kerugian pada pengguna."
+    },
+    {
+      "q": "Apa itu 'tunjangan bebas pajak capital gain'?",
+      "a": "Beberapa negara menawarkan tunjangan bebas pajak per tahun sebelum pajak capital gain berlaku. Di Indonesia, PPh Final 0,1% diterapkan pada nilai transaksi, bukan keuntungan, jadi tidak ada ambang batas bebas pajak untuk saham publik."
+    },
+    {
+      "q": "Haruskah saya menyertakan biaya langganan broker?",
+      "a": "Biaya langganan/akun biasanya dapat dikurangkan dari total imbal hasil tetapi tidak spesifik untuk perdagangan. Kurangi dari keuntungan setelah pajak jika broker Anda mengenakan biaya tersebut."
+    },
+    {
+      "q": "Bagaimana ini berbeda dari kalkulator kripto?",
+      "a": "Saham membayar dividen; kripto umumnya tidak. Kripto menggunakan biaya % (bervariasi per ukuran perdagangan); saham biasanya menggunakan komisi tetap. Matematikanya serupa tetapi input berbeda."
+    },
+    {
+      "q": "Bisakah ROI negatif?",
+      "a": "Ya. Jika harga jual + dividen < harga beli + komisi + pajak, ROI adalah negatif."
+    },
+    {
+      "q": "Apakah data meninggalkan browser saya?",
+      "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server."
+    }
+  ]
+}

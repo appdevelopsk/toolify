@@ -1,0 +1,102 @@
+{
+  "title": "Lanceur de dés (d4 à d100, avec modificateur et historique)",
+  "shortDescription": "Lance n'importe quel nombre de dés avec n'importe quel nombre de faces. Aléatoire cryptographiquement sécurisé, avec modificateur (+N), total cumulé et historique des lancers.",
+  "description": "Choisis le nombre, les faces (4, 6, 8, 10, 12, 20, 100, ou personnalisé jusqu'à 1000) et le modificateur. Chaque lancer utilise crypto.getRandomValues pour une distribution uniforme sans biais.",
+  "metaDescription": "Lanceur de dés gratuit pour D&D et tout TTRPG. d4/d6/d8/d10/d12/d20/d100 + personnalisé, modificateur, historique.",
+  "keywords": [
+    "lanceur de dés",
+    "dés en ligne",
+    "lancer d20",
+    "dés TTRPG",
+    "d6 d10 d100"
+  ],
+  "input": {
+    "count": "Combien",
+    "sides": "Faces",
+    "modifier": "Modificateur (±)"
+  },
+  "roll": "Lancer {count}d{sides}{modifier}",
+  "result": {
+    "total": "Total",
+    "history": "Lancers récents"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment les lancers sont générés",
+        "paragraphs": [
+          "Chaque dé utilise crypto.getRandomValues — l'API aléatoire cryptographiquement sécurisée du navigateur, la même primitive qui soutient les sessions HTTPS. Nous appliquons également un échantillonnage par rejet pour garantir que chaque face a exactement une probabilité égale, quelle que soit la taille du dé. Le simple `random % faces` introduit un biais quand les faces ne divisent pas proprement 2³².",
+          "Cela signifie qu'un d100 n'est pas légèrement biaisé vers 1-36 (ce qui se produirait avec un modulo mal implémenté), et qu'un d3 ne favorise pas 1 par rapport à 2 ou 3. Les mathématiques sont identiques à des dés physiques avec une précision infinie."
+        ]
+      },
+      {
+        "heading": "Notation TTRPG (Jeux de rôle sur table)",
+        "paragraphs": [
+          "Notation courante : 'NdS+M' où N est le nombre de dés, S est les faces, M est le modificateur. '2d6+3' signifie lancer 2 dés à six faces et ajouter 3. '1d20+5' est un jet d'attaque D&D typique avec un modificateur de +5 de ton bonus de personnage.",
+          "Ensembles de dés standard : d4 (pyramide), d6 (cube), d8 (octaèdre), d10 (trapézoèdre pentagonal), d12 (dodécaèdre), d20 (icosaèdre). Le d100 est habituellement lancé comme 2d10 (un pour les dizaines, un pour les unités). Utilise le préréglage d100 pour éviter la conversion manuelle."
+        ]
+      },
+      {
+        "heading": "Cas d'usage courants",
+        "paragraphs": [
+          "D&D / Pathfinder / TTRPGs : d20+5 pour les attaques, 1d8+3 pour les dégâts, 4d6 garder les trois meilleurs pour la génération de personnage.",
+          "Sélection aléatoire : choisis un gagnant parmi N personnes en lançant un dN. Pour 7 personnes, règle faces=7. Le caractère aléatoire cryptographique garantit l'équité.",
+          "Leçons de probabilité : lance de nombreux dés et observe la distribution. La somme de plusieurs dés s'approche d'une distribution normale (théorème central limite).",
+          "Prise de décision : 'dois-je faire X' avec un 50/50 ? Lance un d2 (2 faces). Tu veux une décision pondérée ? Utilise un d10 et décide des seuils (1-7 = oui, 8-10 = non pour 70/30)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis un dé préréglé",
+        "text": "Ou tape un nombre de faces personnalisé de 2 à 1000."
+      },
+      {
+        "name": "Règle le nombre",
+        "text": "Combien de dés lancer en même temps. Jusqu'à 50."
+      },
+      {
+        "name": "Ajoute un modificateur",
+        "text": "Nombre plat optionnel ajouté à la somme."
+      },
+      {
+        "name": "Lance",
+        "text": "Total, lancers individuels et historique récent tous affichés."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Les lancers sont-ils vraiment équitables ?",
+      "a": "Oui. Nous utilisons crypto.getRandomValues (le RNG sécurisé) plus l'échantillonnage par rejet pour que chaque face ait exactement une probabilité égale — pas de biais de bord dû à l'opération modulo."
+    },
+    {
+      "q": "Quel est le nombre maximum de dés ?",
+      "a": "50 par lancer. Pour plus, fais simplement plusieurs lancers — chacun est indépendant."
+    },
+    {
+      "q": "Quel est le maximum de faces ?",
+      "a": "1000. Au-delà, les maths fonctionnent encore mais le cas d'usage devient artificiel."
+    },
+    {
+      "q": "Puis-je sauvegarder mes combinaisons de dés favorites ?",
+      "a": "Pas encore. Nous pourrions ajouter des préréglages sauvegardés plus tard pour tes lancers de combat courants."
+    },
+    {
+      "q": "Pourquoi le d20 est-il célèbre ?",
+      "a": "Donjons & Dragons l'a popularisé pour les jets de compétence et les jets d'attaque. Chaque face a une probabilité de 5 % — une granularité fine pour les différences de compétences sans la comptabilité d'un percentile (d100)."
+    },
+    {
+      "q": "Pourquoi l'historique n'affiche-t-il que 10 lancers ?",
+      "a": "Pour garder la page ordonnée. Pour des journaux plus longs, colle chaque résultat dans un fichier de notes ou une fiche de personnage de JDR."
+    },
+    {
+      "q": "Est-ce que ça remplacera mes dés physiques ?",
+      "a": "Fonctionnellement oui, surtout pour les jeux en ligne. Les dés physiques sont aimés pour leur tactilité et leur rituel — mais mathématiquement un lancer numérique avec crypto RNG est au moins aussi équitable qu'un d20 physique."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Chaque lancer se produit localement."
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "title": "Encodeur / Décodeur Chiffre de César (avec ROT13)",
+  "shortDescription": "Encode ou décode du texte avec le chiffre de César classique. Décalage réglable de -25 à +25, avec préréglages en un clic pour ROT13 et le décalage historique +3.",
+  "description": "Tape du texte et choisis un décalage. Les lettres sont décalées de ce nombre de positions dans l'alphabet (A-Z, a-z) ; les autres caractères passent sans modification. Utilise décalage=13 pour ROT13, décalage=3 pour le César original.",
+  "metaDescription": "Outil chiffre de César gratuit. Encode ou décode n'importe quel texte avec un décalage de -25 à +25, ROT13 inclus.",
+  "keywords": [
+    "chiffre de César",
+    "ROT13",
+    "décalage César",
+    "chiffrement de lettres",
+    "chiffre classique"
+  ],
+  "mode": {
+    "encode": "Encoder",
+    "decode": "Décoder"
+  },
+  "input": {
+    "text": "Texte",
+    "shift": "Décalage"
+  },
+  "output": "Résultat",
+  "copy": "Copier",
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionne le chiffre de César",
+        "paragraphs": [
+          "Chaque lettre de l'entrée est remplacée par une lettre située un nombre fixe de positions plus loin dans l'alphabet. Avec un décalage +3, A devient D, B devient E, …, X devient A (en bouclant). Les non-lettres passent sans modification. Le décodage est le même procédé avec le signe opposé.",
+          "Nommé d'après Jules César, qui utilisait paraît-il un décalage de +3 pour ses messages militaires. La taille du décalage est le seul secret. Avec seulement 26 décalages possibles, le chiffre se casse trivialement en les essayant tous — mais c'est un excellent exemple pédagogique pour les chiffrements par substitution."
+        ]
+      },
+      {
+        "heading": "ROT13 — la variante la plus courante",
+        "paragraphs": [
+          "ROT13 utilise un décalage=13. Comme 13 est la moitié de 26, appliquer ROT13 deux fois retourne le texte d'origine — l'encodage et le décodage utilisent exactement la même opération. Cela l'a rendu populaire sur Usenet et les forums pour masquer les spoilers et les blagues ; les lecteurs peuvent décoder en cliquant sur un bouton « afficher » sans avoir besoin d'un décodeur séparé.",
+          "ROT13 n'est pas un chiffrement au sens propre. C'est de l'obfuscation — l'équivalent d'écrire « spoiler masqué ci-dessous » pour que les personnes qui ne veulent pas savoir puissent passer."
+        ]
+      },
+      {
+        "heading": "Pourquoi c'est amusant, pas sécurisé",
+        "paragraphs": [
+          "Un attaquant moderne casse un chiffre de César en quelques microsecondes par analyse de fréquence (E est la lettre la plus commune en français ; ce qui correspond à une lettre fréquente dans le texte chiffré est probablement E). Ne l'utilise pas pour quoi que ce soit d'important.",
+          "Utilise-le pour : exemples éducatifs, jeux de puzzles, ARG (jeux en réalité alternée), masquage de texte visible, balises spoiler ROT13. Ne l'utilise pas pour : mots de passe, données financières, quoi que ce soit ayant des conséquences."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis le mode",
+        "text": "Encoder (appliquer le décalage vers l'avant) ou Décoder (appliquer le décalage vers l'arrière)."
+      },
+      {
+        "name": "Tape ou colle du texte",
+        "text": "Les lettres sont décalées ; la ponctuation, les chiffres et les espaces passent tels quels."
+      },
+      {
+        "name": "Règle le décalage",
+        "text": "Le curseur va de -25 à +25. Utilise les préréglages pour +3 (César), 13 (ROT13) ou les négatifs."
+      },
+      {
+        "name": "Copie la sortie",
+        "text": "Copie en un clic dans le presse-papiers."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quelle est la différence entre César +3 et ROT13 ?",
+      "a": "Juste le décalage. +3 est le choix original de César ; 13 est exactement la moitié de l'alphabet (donc encoder et décoder sont la même opération). Mathématiquement, ce sont deux déclinaisons de la même famille de chiffrement."
+    },
+    {
+      "q": "Pourquoi le décalage +26 donne-t-il le même texte ?",
+      "a": "26 lettres dans l'alphabet — décaler exactement de 26 revient à la lettre originale. Idem pour tout multiple de 26."
+    },
+    {
+      "q": "Pourquoi ROT13 est-il utilisé pour les spoilers ?",
+      "a": "Parce qu'appliquer ROT13 deux fois retourne l'original. Les forums et les lecteurs Usenet avaient des boutons intégrés « rot13 ce texte » qui fonctionnaient dans les deux sens. Pratique pour masquer puis révéler du texte."
+    },
+    {
+      "q": "Gère-t-il les alphabets non latins ?",
+      "a": "Non — seulement A-Z et a-z. Le cyrillique, le grec, le CJK et l'arabe passent sans modification. Le chiffre de César est intrinsèquement spécifique à l'alphabet latin."
+    },
+    {
+      "q": "Puis-je l'utiliser pour une vraie sécurité ?",
+      "a": "Absolument pas. Avec 25 décalages possibles (hors 0 et 26), un ordinateur le casse instantanément. Utilise AES, RSA ou des bibliothèques cryptographiques établies pour une vraie sécurité."
+    },
+    {
+      "q": "Et le chiffrement de Vigenère ?",
+      "a": "Un chiffrement classique plus avancé qui utilise un mot-clé pour varier le décalage par lettre. Encore cassable à la main avec suffisamment de texte, mais bien plus difficile que César."
+    },
+    {
+      "q": "Pourquoi inclure les décalages négatifs ?",
+      "a": "Par commodité. Encoder avec +3 et décoder avec +3 est incorrect ; tu as besoin de -3 pour décoder. Les décalages négatifs permettent de décoder sans changer de mode (ou la bascule le fait pour toi)."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. L'encodage et le décodage s'effectuent localement ; rien n'est envoyé à un serveur."
+    }
+  ]
+}

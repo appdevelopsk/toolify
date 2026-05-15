@@ -1,0 +1,102 @@
+{
+  "title": "Roman Numeral Converter (1 से 3999, दोनों directions)",
+  "shortDescription": "Arabic numbers को Roman numerals में convert करें (और वापस)। Canonical form validate करता है ताकि VIIII को silently 9 के रूप में accept न किया जाए।",
+  "description": "Roman numeral पाने के लिए 1-3999 number type करें, या वापस convert करने के लिए Roman numerals paste करें। Strict validation non-canonical forms reject करता है।",
+  "metaDescription": "मुफ्त Roman numeral converter। 1-3999 संख्याओं को Roman numerals में convert करें या Roman को Arabic में decode करें। Canonical form validate करता है, 'IIII' और similar",
+  "keywords": [
+    "Roman numeral converter",
+    "Arabic to Roman",
+    "Roman to number",
+    "MMXXVI",
+    "Roman numerals"
+  ],
+  "input": {
+    "number": "संख्या (1 से 3999)",
+    "roman": "Roman numeral"
+  },
+  "result": {
+    "roman": "Roman numeral",
+    "number": "Arabic number"
+  },
+  "mode": {
+    "toRoman": "Number → Roman",
+    "fromRoman": "Roman → Number"
+  },
+  "error": {
+    "invalidNumber": "एक integer दर्ज करें।",
+    "outOfRange": "Roman numerals केवल 1 से 3999 support करते हैं।",
+    "invalidRoman": "Valid Roman numeral नहीं है (canonical form required)।"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Roman numerals कैसे काम करते हैं",
+        "paragraphs": [
+          "Roman numerals सात letters उपयोग करते हैं: I=1, V=5, X=10, L=50, C=100, D=500, M=1000। Numbers addition (II=2, XX=20) या subtraction द्वारा formed होते हैं जब smaller letter बड़े से पहले आता है (IV=4, IX=9, XL=40, XC=90, CD=400, CM=900)। प्रत्येक letter row में अधिकतम तीन बार repeat हो सकता है, इसीलिए 4, IIII नहीं बल्कि IV है।",
+          "Standard Roman notation 1 से 3999 support करता है। ≥ 4000 numbers के लिए overline notation (V̄ = 5000) चाहिए जो type करना कठिन है और आज rarely needed है, इसलिए यह converter 3999 पर cap करता है।"
+        ]
+      },
+      {
+        "heading": "Canonical बनाम informal Roman",
+        "paragraphs": [
+          "Strict canonical form ऊपर के rules follow करता है। 'Informal' Roman (कभी-कभी 'archaic' कहा जाता है) 4 के लिए IIII जैसी चीज़ें allow करता है — आप इसे clock faces पर देखेंगे जहाँ symmetry preferred है। यह converter input के लिए canonical form require करता है और output पर canonical form produce करता है। तो 'IIII' rejected है; इसके बजाय 'IV' type करें।",
+          "Decoder re-encoding द्वारा validate करता है: Roman parse करें, number पाएँ, वह number encode करें, और check करें कि यह input से match करता है। जो round-trip नहीं होता वह rejected है।"
+        ]
+      },
+      {
+        "heading": "आज Roman numerals कहाँ appear होते हैं",
+        "paragraphs": [
+          "Movie copyright dates (MCMXCIX = 1999), Super Bowl numbering, monarch और pope sequences (Henry VIII, John XXIII), book chapters और outlines, clock faces, और stylized year markers। वे largely arithmetic use से बाहर हो गए हैं क्योंकि Arabic-numeral arithmetic far easier है — MCXLVII को IV से multiply करने की कोशिश करें और आप देखेंगे क्यों।"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Direction चुनें",
+        "text": "Number→Roman या Roman→Number।"
+      },
+      {
+        "name": "Input type करें",
+        "text": "Integer 1-3999, या Roman numeral।"
+      },
+      {
+        "name": "Result पढ़ें",
+        "text": "Invalid input specific error दिखाता है ताकि आप fix कर सकें।"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "IIII को 4 के रूप में क्यों accept नहीं किया जाता?",
+      "a": "Canonical Roman 4 को IV लिखता है। IIII कुछ clock faces पर appear होता है लेकिन standard arithmetic notation नहीं है। IV उपयोग करें।"
+    },
+    {
+      "q": "सबसे बड़ा Roman numeral क्या है?",
+      "a": "Overlines के बिना, 3999 = MMMCMXCIX। उससे ऊपर numbers के लिए overline notation चाहिए जो हम support नहीं करते।"
+    },
+    {
+      "q": "क्या मेरे पास zero हो सकता है?",
+      "a": "Romans के पास zero नहीं था। Notation 1 (I) से शुरू होती है।"
+    },
+    {
+      "q": "CMXLIV का क्या मतलब है?",
+      "a": "CM=900, XL=40, IV=4। Total = 944। Subtractive pairs (CM, XL, IV) plus उनके components।"
+    },
+    {
+      "q": "MMXXVI कैसे पढ़ें?",
+      "a": "MM=2000, XX=20, VI=6। Total = 2026।"
+    },
+    {
+      "q": "Clock 4s कभी-कभी IIII क्यों होते हैं?",
+      "a": "Tradition। Watchmakers historically visual symmetry के लिए IIII prefer करते थे VIII के साथ (दोनों चार characters)। यह canonically 'correct' नहीं है।"
+    },
+    {
+      "q": "क्या Roman numerals base-10 हैं?",
+      "a": "उनके पास decimal-grouped letters हैं (1s के लिए I/V, 10s के लिए X/L, 100s के लिए C/D, 1000s के लिए M) लेकिन positional notation के बजाय addition और subtraction उपयोग करते हैं।"
+    },
+    {
+      "q": "क्या data मेरे browser से बाहर जाता है?",
+      "a": "नहीं। Conversion locally चलता है।"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Konverter Warna (HEX, RGB, HSL — instan)",
+  "shortDescription": "Konversi warna antara HEX, RGB, dan HSL dengan preview swatch langsung. Edit bidang mana pun; yang lain diperbarui.",
+  "description": "Ketik kode hex, triplet RGB, atau nilai HSL — format lainnya diperbarui secara instan dengan preview swatch yang terlihat. Berguna untuk desainer, developer web, dan siapa pun yang mencocokkan warna di berbagai alat.",
+  "metaDescription": "Konverter warna HEX, RGB, HSL gratis dengan preview langsung. Edit format mana pun dan yang lain diperbarui secara instan. Sempurna untuk desain web dan pekerjaan CSS.",
+  "keywords": ["konverter warna", "hex ke rgb", "rgb ke hsl", "pemilih warna", "konverter kode hex"],
+  "hex": "HEX",
+  "rgb": "RGB",
+  "hsl": "HSL",
+  "article": {
+    "sections": [
+      {
+        "heading": "Tiga cara mendeskripsikan warna yang sama",
+        "paragraphs": [
+          "HEX, RGB, dan HSL adalah tiga notasi untuk warna sRGB. HEX adalah singkatan dari RGB: #FF6B35 berarti merah=255, hijau=107, biru=53. RGB mendeskripsikan warna berdasarkan seberapa banyak cahaya merah, hijau, dan biru yang dicampur (masing-masing 0-255). HSL mengkodekan ulang warna RGB yang sama dalam hal hue (warna apa), saturation (seberapa hidup), dan lightness (seberapa terang).",
+          "Ketiganya setara — Anda dapat bolak-balik tanpa kehilangan data. Desainer lebih suka HSL untuk menyesuaikan nada (meningkatkan lightness menjaga hue stabil), sementara developer biasanya langsung menempel HEX dari alat desain ke CSS. RGB paling sering muncul saat bekerja dengan pemrosesan gambar atau API canvas."
+        ]
+      },
+      {
+        "heading": "Kapan menggunakan masing-masing",
+        "paragraphs": [
+          "HEX: salin-tempel dari desain, ekspor Figma, panduan merek, literal warna CSS. Ringkas tetapi kurang mudah dibaca.",
+          "RGB: pekerjaan warna terprogram (canvas, manipulasi gambar), pemeriksaan aksesibilitas (komputasi kontras bekerja dalam RGB linear), dan saat Anda menginginkan nilai integer tepat untuk disetel.",
+          "HSL: menyesuaikan warna berdasarkan rasa — membuat 'versi yang sedikit lebih jenuh', 'varian yang lebih gelap untuk status hover', atau menghasilkan palet dengan melangkah hue. Jauh lebih mudah untuk alasan tentang tugas-tugas tersebut daripada HEX."
+        ]
+      },
+      {
+        "heading": "Yang tidak Anda lihat dalam alat ini",
+        "paragraphs": [
+          "Kami menghilangkan saluran alpha (transparansi) untuk saat ini — tetapi #RRGGBBAA berfungsi di semua browser modern jika Anda menambahkan dua digit hex untuk opasitas (00 = transparan, FF = buram).",
+          "Kami juga tidak mencakup gamut warna yang lebih luas (P3, Rec.2020, OKLCH). Untuk sebagian besar pekerjaan web, HEX/RGB/HSL berbasis sRGB adalah pilihan yang tepat. Jika Anda menargetkan tampilan HDR atau gamut luas, lihat sintaks CSS Color Module Level 4."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Edit bidang mana pun", "text": "Ketik kode HEX, triplet RGB, atau nilai HSL." },
+      { "name": "Lihat yang lain diperbarui", "text": "Ketiga format tetap sinkron; preview swatch menunjukkan hasilnya." },
+      { "name": "Salin yang Anda butuhkan", "text": "Blok teks di bagian bawah memiliki ketiga format siap untuk disalin ke CSS." }
+    ]
+  },
+  "faq": [
+    { "q": "Bisakah saya bolak-balik dari HSL ke HEX tanpa kehilangan presisi?", "a": "Sebagian besar. HSL disimpan sebagai derajat dan persen integer, sehingga 360 × 101 × 101 = 3,7 juta nilai HSL memetakan ke 16,7 juta kombinasi RGB. Beberapa pembulatan kecil dapat terjadi di sudut. Gunakan HEX sebagai kanonik untuk penyimpanan tepat." },
+    { "q": "Apakah ini mendukung kode HEX 3 digit?", "a": "Ya. #f60 diperlakukan sebagai #ff6600. Keduanya berkembang menjadi triplet RGB yang sama." },
+    { "q": "Mengapa HSL tidak mencapai 360 dalam saturation/lightness?", "a": "Hue dalam derajat (0-360 mengelilingi roda warna). Saturation dan lightness adalah persentase (0-100)." },
+    { "q": "Apakah HSL sama dengan HSB atau HSV?", "a": "Tidak. HSV (dan HSB) mengganti 'lightness' dengan 'value', model kecerahan yang berbeda. L=50% HSL adalah warna penuh; V=100% HSV adalah warna penuh. Kami menggunakan HSL karena cocok dengan CSS." },
+    { "q": "Apakah ini mendukung transparansi?", "a": "Belum. Untuk saat ini, tambahkan dua digit alpha ke HEX (mis., #00000080 untuk hitam 50%)." },
+    { "q": "Mengapa RGB tidak menampilkan float 0-1?", "a": "Karena sebagian besar konteks (CSS, alat desain) menggunakan integer 0-255. Untuk pekerjaan shader, bagi dengan 255 untuk mendapatkan float 0-1." },
+    { "q": "Di mana desainer mendapatkan warna yang tepat?", "a": "Panduan merek, token desain, atau generator palet. Alat contrast checker dapat memverifikasi pasangan foreground/background memenuhi WCAG AA/AAA." },
+    { "q": "Apakah kalkulator ini akurat?", "a": "Ya. Menggunakan matematika konversi sRGB standar. Perbedaan round-trip hanya berasal dari HSL yang dikuantisasi integer." }
+  ]
+}

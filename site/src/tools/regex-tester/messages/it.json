@@ -1,0 +1,109 @@
+{
+  "title": "Tester Regex (corrispondenze in tempo reale, gruppi, sostituzione)",
+  "shortDescription": "Testa le espressioni regolari JavaScript in modo interattivo. Visualizza le corrispondenze evidenziate in tempo reale, i gruppi di acquisizione e un'anteprima della sostituzione.",
+  "description": "Digita un'espressione regolare e il testo di test — le corrispondenze si evidenziano in tempo reale mentre digiti. Attiva/disattiva i flag (g/i/m/s/u), ispeziona i gruppi di acquisizione e visualizza in anteprima le sostituzioni.",
+  "metaDescription": "Tester regex JavaScript gratuito con evidenziazione in tempo reale, gruppi di acquisizione, gruppi nominati e anteprima della sostituzione.",
+  "keywords": [
+    "tester regex",
+    "tester espressioni regolari",
+    "regex JavaScript",
+    "corrispondenza regex",
+    "sostituzione regex"
+  ],
+  "input": {
+    "pattern": "Pattern",
+    "flags": "Flag",
+    "test": "Testo di test",
+    "replaceMode": "Mostra anteprima sostituzione",
+    "replace": "Sostituzione"
+  },
+  "result": {
+    "matches": "Corrispondenze",
+    "replaced": "Output sostituito",
+    "groups": "Gruppi di acquisizione"
+  },
+  "hint": {
+    "replaceVars": "Usa $& per la corrispondenza completa, $1, $2 per i gruppi, $<nome> per i gruppi nominati."
+  },
+  "error": {
+    "invalid": "Pattern non valido"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cosa fanno i flag",
+        "paragraphs": [
+          "g (globale): trova tutte le corrispondenze, non solo la prima. Richiesto per il comportamento sostituisci-tutto. i (insensibile alle maiuscole): /[a-z]/i corrisponde a entrambi i casi. m (multiriga): ^ e $ corrispondono agli a capo invece che solo all'inizio/fine della stringa. s (dotall): . corrisponde anche alle nuove righe. u (unicode): gestione corretta dei punti di codice sopra 0xFFFF (emoji, CJK nelle coppie surrogate).",
+          "La maggior parte delle persone inizia con /g/i/m. /s/ diventa utile per la corrispondenza di testo multiriga. /u/ è raccomandato ogni volta che potresti incontrare emoji o caratteri non-BMP — senza di esso, /./ non corrisponderà a un emoji da 4 byte come un singolo carattere."
+        ]
+      },
+      {
+        "heading": "Gruppi di acquisizione e sostituzione",
+        "paragraphs": [
+          "Le parentesi creano un gruppo di acquisizione: /(\\d{4})-(\\d{2})/ su '2026-05' acquisisce '2026' e '05' separatamente. Riferisciti ad essi come $1, $2 nella sostituzione. I gruppi nominati usano (?<nome>...) e fanno riferimento a $<nome> nella sostituzione.",
+          "Trucchi comuni di sostituzione: $& inserisce la corrispondenza completa. $1, $2 ecc. inseriscono i gruppi di acquisizione. $$ inserisce un $ letterale. L'anteprima della sostituzione qui ti permette di verificare prima di eseguire lo stesso pattern su un testo reale — molto più sicuro che eseguirlo direttamente su dati di produzione."
+        ]
+      },
+      {
+        "heading": "Insidie da osservare",
+        "paragraphs": [
+          "Escape del backslash. Per corrispondere a un '.' letterale, usa '\\.'. In una stringa sorgente JavaScript diventa '\\\\.' ma in questo strumento digiti solo '\\.' poiché è il sorgente regex.",
+          "Backtracking catastrofico. Pattern come /(a+)+/ su 'aaaa…!' possono richiedere un tempo infinito. Se il test sembra bloccato, la tua regex potrebbe avere quantificatori annidati. Semplifica o usa gruppi possessivi/atomici (non disponibili in JS regex; usa invece un design attento).",
+          "Greedy vs lazy. /<.+>/ su '<a><b>' corrisponde a '<a><b>' (greedy). /<.+?>/ corrisponde a '<a>' (lazy). Scegli quello giusto per il tuo caso d'uso."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Digita un pattern",
+        "text": "Usa la sintassi regex JavaScript (senza le barre di delimitazione)."
+      },
+      {
+        "name": "Imposta i flag",
+        "text": "Clicca le lettere per attivare/disattivare: g (globale), i (insensibile), m (multiriga), s (dotall), u (unicode)."
+      },
+      {
+        "name": "Incolla il testo di test",
+        "text": "Le corrispondenze si evidenziano in tempo reale."
+      },
+      {
+        "name": "Facoltativo: prova la sostituzione",
+        "text": "Attiva 'anteprima sostituzione' per vedere l'output modificato."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quale variante di regex usa?",
+      "a": "JavaScript ECMAScript regex (quella implementata dal tuo browser). Differisce leggermente da PCRE usato in PHP, .NET o Python."
+    },
+    {
+      "q": "Perché il lookbehind non funziona?",
+      "a": "Funziona nei browser moderni — Chrome, Firefox, Safari, Edge supportano tutti (?<=...) e (?<!...) dal 2021. Se il tuo non lo fa, il tuo browser potrebbe essere obsoleto."
+    },
+    {
+      "q": "Cosa fa il flag 'u'?",
+      "a": "Abilita la gestione Unicode corretta. Emoji come 🎉 (che è una coppia surrogata in UTF-16) è trattata come un carattere con /u/ ma come due con la modalità predefinita."
+    },
+    {
+      "q": "Come corrispondo a una tabulazione o una nuova riga?",
+      "a": "\\t per la tabulazione, \\n per la nuova riga, \\r per il ritorno a capo, \\s per qualsiasi spazio bianco inclusi tutti questi."
+    },
+    {
+      "q": "Perché la mia sostituzione non funziona?",
+      "a": "Molto spesso hai dimenticato il flag 'g' — la sostituzione senza 'g' sostituisce solo la prima corrispondenza. Attiva 'g' per sostituire tutte."
+    },
+    {
+      "q": "Posso usarlo per testi molto lunghi?",
+      "a": "Sì, fino a qualche MB. Oltre, il browser può rallentare. Evita pattern catastrofici (quantificatori annidati) su input lunghi."
+    },
+    {
+      "q": "I dati escono dal mio browser?",
+      "a": "No. Pattern e testo vengono elaborati solo localmente."
+    },
+    {
+      "q": "C'è un cheat sheet di regex?",
+      "a": "Cerca 'JavaScript regex cheat sheet'. La pagina RegExp di MDN è il riferimento autorevole."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "title": "Mã hóa / Giải mã Caesar Cipher (kèm ROT13)",
+  "shortDescription": "Mã hóa hoặc giải mã văn bản bằng mật mã Caesar cổ điển. Dịch chuyển có thể điều chỉnh từ -25 đến +25, với phím tắt cho ROT13 và dịch chuyển +3 lịch sử.",
+  "description": "Gõ văn bản và chọn lượng dịch chuyển. Chữ cái được xoay theo số vị trí đó trong bảng chữ cái (A-Z, a-z); các ký tự khác đi qua không thay đổi. Dùng shift=13 cho ROT13, shift=3 cho Caesar gốc.",
+  "metaDescription": "Công cụ Caesar cipher miễn phí. Mã hóa hoặc giải mã bất kỳ văn bản nào với dịch chuyển -25 đến +25 bao gồm ROT13. Chữ cái được dịch, dấu câu và chữ số đi qua.",
+  "keywords": ["caesar cipher", "ROT13", "mã hóa caesar", "mật mã chữ cái", "mật mã cổ điển"],
+  "mode": {
+    "encode": "Mã hóa",
+    "decode": "Giải mã"
+  },
+  "input": {
+    "text": "Văn bản",
+    "shift": "Dịch chuyển"
+  },
+  "output": "Kết quả",
+  "copy": "Sao chép",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cách hoạt động của Caesar cipher",
+        "paragraphs": [
+          "Mỗi chữ cái trong đầu vào được thay thế bằng một chữ cái cách đó một số vị trí trong bảng chữ cái. Với dịch chuyển +3, A thành D, B thành E, …, X thành A (quay vòng). Ký tự không phải chữ cái đi qua không thay đổi. Giải mã là cùng quá trình với dấu ngược lại.",
+          "Đặt theo tên Julius Caesar, người được cho là đã dùng dịch chuyển +3 cho các tin nhắn quân sự. Số lượng dịch chuyển là bí mật duy nhất. Chỉ với 26 dịch chuyển có thể có, nó bị phá vỡ dễ dàng bằng cách thử tất cả — nhưng đây là ví dụ dạy học tuyệt vời về mật mã thay thế."
+        ]
+      },
+      {
+        "heading": "ROT13 — biến thể phổ biến nhất",
+        "paragraphs": [
+          "ROT13 dùng shift=13. Vì 13 là một nửa của 26, áp dụng ROT13 hai lần trả về văn bản gốc — mã hóa và giải mã dùng cùng một thao tác. Điều này làm cho nó phổ biến trên Usenet và diễn đàn để ẩn spoiler và trò đùa nhạy cảm; người đọc có thể giải mã bằng cách nhấp nút 'hiển thị' mà không cần bộ giải mã riêng.",
+          "ROT13 không phải là mã hóa theo bất kỳ nghĩa có ý nghĩa nào. Đây là làm mờ — tương đương với việc viết 'spoiler ẩn bên dưới' để người không muốn biết có thể bỏ qua."
+        ]
+      },
+      {
+        "heading": "Tại sao đây là trò vui, không phải bảo mật",
+        "paragraphs": [
+          "Kẻ tấn công hiện đại phá vỡ Caesar cipher trong vài micro giây bằng phân tích tần suất (E là chữ cái phổ biến nhất trong tiếng Anh; bất cứ thứ gì ánh xạ đến chữ cái thường xuyên trong bản mã hóa có thể là E). Đừng dùng nó cho bất cứ điều gì quan trọng.",
+          "Dùng cho: ví dụ giáo dục, trò chơi câu đố, ARG (trò chơi thực tế thay thế), ẩn văn bản ngay trước mắt, thẻ spoiler ROT13. Đừng dùng cho: mật khẩu, dữ liệu tài chính, bất cứ điều gì có hậu quả."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn chế độ", "text": "Mã hóa (áp dụng dịch chuyển về phía trước) hoặc Giải mã (áp dụng dịch chuyển về phía sau)." },
+      { "name": "Gõ hoặc dán văn bản", "text": "Chữ cái được dịch chuyển; dấu câu, chữ số và khoảng trắng đi qua." },
+      { "name": "Điều chỉnh dịch chuyển", "text": "Thanh trượt từ -25 đến +25. Dùng phím tắt cho +3 (Caesar), 13 (ROT13) hoặc số âm." },
+      { "name": "Sao chép kết quả", "text": "Sao chép vào clipboard một chạm." }
+    ]
+  },
+  "faq": [
+    { "q": "Sự khác biệt giữa Caesar +3 và ROT13 là gì?", "a": "Chỉ là lượng dịch chuyển. +3 là lựa chọn ban đầu của Caesar; 13 là chính xác một nửa bảng chữ cái (nên mã hóa và giải mã là cùng một thao tác). Về mặt toán học chúng cùng thuộc một họ mật mã." },
+    { "q": "Tại sao dịch chuyển +26 lại cho cùng văn bản?", "a": "26 chữ cái trong bảng chữ cái — dịch chuyển đúng 26 vị trí đưa bạn về chữ cái ban đầu. Tương tự với bội số nào của 26." },
+    { "q": "Tại sao ROT13 được dùng cho spoiler?", "a": "Vì áp dụng ROT13 hai lần trả về bản gốc. Diễn đàn và người đọc Usenet có nút 'rot13 văn bản này' tích hợp sẵn hoạt động cho cả hai hướng. Tiện lợi để ẩn rồi hiện văn bản." },
+    { "q": "Công cụ này có xử lý bảng chữ cái không phải Latin không?", "a": "Không — chỉ A-Z và a-z. Ký tự Cyrillic, Hy Lạp, CJK và Ả Rập đi qua không thay đổi. Caesar cipher về bản chất chỉ dành cho bảng chữ cái Latin." },
+    { "q": "Tôi có thể dùng điều này để bảo mật thực sự không?", "a": "Tuyệt đối không. Với 25 dịch chuyển có thể có (loại trừ 0 và 26), máy tính phá vỡ ngay lập tức. Dùng AES, RSA hoặc các thư viện mã hóa đã được thiết lập để bảo mật thực sự." },
+    { "q": "Còn mật mã Vigenère thì sao?", "a": "Một mật mã cổ điển nâng cao hơn dùng từ khóa để thay đổi dịch chuyển theo từng chữ cái. Vẫn có thể phá vỡ thủ công với đủ văn bản, nhưng khó hơn nhiều so với Caesar. Chúng tôi chưa có nó." },
+    { "q": "Tại sao có dịch chuyển âm?", "a": "Tiện lợi. Mã hóa với +3 và giải mã với +3 là sai; bạn cần -3 để giải mã. Dịch chuyển âm cho phép giải mã mà không cần chuyển chế độ (hoặc nút chuyển đổi làm điều đó cho bạn)." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Mã hóa và giải mã chạy cục bộ; không có gì được gửi lên máy chủ." }
+  ]
+}

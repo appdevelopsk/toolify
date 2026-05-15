@@ -1,0 +1,70 @@
+{
+  "title": "IPv4 Subnet Calculator (CIDR, mask, hosts)",
+  "shortDescription": "किसी भी IPv4 + CIDR से network address, broadcast, host range, netmask, wildcard, total/usable hosts calculate करें। Binary representation और class detection शामिल।",
+  "description": "Optional CIDR के साथ IPv4 address type करें (जैसे 192.168.1.10/24)। Network address, broadcast, first/last usable host, total addresses, netmask, wildcard, IP class, public/private status, और binary representation return करता है।",
+  "metaDescription": "मुफ्त IPv4 subnet calculator। CIDR, netmask, wildcard, network/broadcast, host range, total/usable hosts, public/private detection। Binary view के साथ।",
+  "keywords": ["subnet calculator", "cidr calculator", "ipv4 subnet", "netmask calculator", "ip address calculator"],
+  "input": {
+    "cidr": "IP address / CIDR",
+    "hint": "Format: 192.168.1.10/24 (CIDR optional, defaults to /24)"
+  },
+  "result": {
+    "network": "Network",
+    "ip": "IP address",
+    "netmask": "Subnet mask",
+    "wildcard": "Wildcard mask",
+    "networkAddr": "Network address",
+    "broadcast": "Broadcast",
+    "hostMin": "First usable host",
+    "hostMax": "Last usable host",
+    "totalAddresses": "Total addresses",
+    "usableHosts": "Usable hosts",
+    "ipClass": "IP class",
+    "private": "RFC 1918 private",
+    "binary": "Binary"
+  },
+  "empty": "Optional /CIDR के साथ IPv4 address दर्ज करें।",
+  "article": {
+    "sections": [
+      {
+        "heading": "CIDR notation का क्या मतलब है",
+        "paragraphs": [
+          "CIDR (Classless Inter-Domain Routing) IP address के बाद slash + number है — '192.168.1.10/24'। Number यह है कि address की शुरुआत में कितने bits network portion से belong करते हैं। /24 का मतलब 24 bits of network = 8 bits of host = 256 total addresses, 254 usable।",
+          "Common CIDRs: /32 single host, /30 link (4 addresses, 2 usable), /29 small subnet (8/6), /24 LAN (256/254), /16 large network (65k), /8 ISP-scale block (16M)। Smaller CIDR number = larger network।"
+        ]
+      },
+      {
+        "heading": "Network, broadcast, और usable hosts",
+        "paragraphs": [
+          "Network address: subnet में पहला address, सभी host bits zero के साथ। Subnet को identify करने के लिए उपयोग; device को assignable नहीं।",
+          "Broadcast address: आखिरी address, सभी host bits one के साथ। Subnet के हर host को packet send करने के लिए उपयोग; assignable नहीं।",
+          "Usable hosts: total addresses minus network और broadcast = 2^(32−CIDR) − 2। Exception: /31 (point-to-point links) और /32 (single host) RFC 3021 के per सभी addresses usable treat करते हैं।"
+        ]
+      },
+      {
+        "heading": "Public बनाम private addresses",
+        "paragraphs": [
+          "RFC 1918 private internal networks के लिए तीन address ranges reserve करता है: 10.0.0.0/8 (16M addresses), 172.16.0.0/12 (1M), 192.168.0.0/16 (65k)। अधिकांश home और office routers इनका slice उपयोग करते हैं (typically 192.168.1.0/24 या 192.168.0.0/24)।",
+          "Public addresses global internet पर routable हैं और regional registries (ARIN, RIPE, APNIC, etc.) द्वारा assigned हैं। IPv4 exhaustion ने CIDR adoption और IPv6 deployment drive किया है।",
+          "Calculator detect करता है कि कोई address private ranges में fall करता है; network design verify करने या यह confirm करने के लिए useful कि कोई leak private addresses internet को नहीं भेज रहा।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Address type करें", "text": "/CIDR के साथ या बिना। CIDR omit होने पर /24 assume होता है।" },
+      { "name": "Network info पढ़ें", "text": "Network address, broadcast, host range, mask, wildcard।" },
+      { "name": "Class और private status check करें", "text": "Address space type का quick verification।" },
+      { "name": "Debugging के लिए binary view उपयोग करें", "text": "जब bit-level operations पर reason करना हो या subnets align करना हो तब helps।" }
+    ]
+  },
+  "faq": [
+    { "q": "Usable hosts total से 2 less क्यों हैं?", "a": "पहला address (सभी host bits 0) network identifier है और आखिरी (सभी 1s) broadcast है। दोनों reserved हैं और host को assign नहीं किए जा सकते।" },
+    { "q": "/31 में 0 के बजाय 2 usable hosts क्यों हैं?", "a": "RFC 3021 /31 networks को point-to-point links के लिए allow करता है। दोनों addresses usable हैं; broadcast और network reservations apply नहीं होती।" },
+    { "q": "Netmask और wildcard में क्या अंतर है?", "a": "Netmask में network bits में 1s, host bits में 0s हैं (255.255.255.0)। Wildcard inverse है (0.0.0.255) — Cisco ACLs और OSPF area definitions में उपयोग होता है।" },
+    { "q": "Network को subnet कैसे करें?", "a": "Parent network लें और CIDR में bits add करके smaller blocks में split करें। /24 → /25 2 subnets में split, /24 → /26 4 में।" },
+    { "q": "Smallest subnet क्या हो सकता है?", "a": "/32 — single IP address। /31 smallest 'normal' subnet है (2 addresses)। /30 router-to-router links के लिए common है (4/2 usable)।" },
+    { "q": "क्या यह IPv6 के लिए काम करता है?", "a": "अभी नहीं — केवल IPv4। IPv6 subnets conceptually similar हैं लेकिन 128-bit addresses, hex notation, और different conventions उपयोग करते हैं।" },
+    { "q": "Possible largest single subnet क्या है?", "a": "/0 सभी 4.3 billion IPv4 addresses cover करता है — पूरा IPv4 address space। /8 16M है।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Calculation locally चलती है; कुछ भी server को नहीं भेजा जाता।" }
+  ]
+}

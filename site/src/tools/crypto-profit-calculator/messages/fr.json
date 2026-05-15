@@ -1,0 +1,108 @@
+{
+  "title": "Calculateur de profit crypto (avec frais d'échange)",
+  "shortDescription": "Calcule le profit de trading crypto, le ROI et l'impact des frais. Entre le montant détenu, le prix d'achat, le prix de vente et le % de frais — obtiens le profit net après les frais d'achat et de vente.",
+  "description": "Calcule ton profit de trade crypto en incluant les frais d'échange à l'entrée et à la sortie. Utile pour tester des stratégies, comparer les frais entre exchanges et comprendre l'impact des frais sur les trades petits ou fréquents.",
+  "metaDescription": "Calculateur de profit crypto gratuit. Profit net après frais, ROI%, et impact des frais. Entre le montant, les prix d'achat/vente et les frais d'échange.",
+  "keywords": [
+    "calculateur profit crypto",
+    "profit trade crypto",
+    "profit bitcoin",
+    "ROI crypto",
+    "impact frais échange"
+  ],
+  "empty": "Entre le montant, le prix d'achat, le prix de vente et les frais.",
+  "input": {
+    "amount": "Quantité de crypto",
+    "buyPrice": "Prix d'achat (par unité)",
+    "sellPrice": "Prix de vente (par unité)",
+    "feePct": "Frais d'échange %"
+  },
+  "result": {
+    "netProfit": "Profit net",
+    "roi": "ROI",
+    "cost": "Coût total",
+    "gross": "Produit brut",
+    "totalFees": "Frais totaux"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment les frais grignotent le profit",
+        "paragraphs": [
+          "Les exchanges crypto prélèvent des frais à l'entrée et à la sortie. Un frais maker/taker de 0,2 % appliqué deux fois signifie 0,4 % de ta valeur tradée en frais — minime pour les grandes variations, dévastateur pour les petites. Pour atteindre le seuil de rentabilité sur une structure de frais 0,2%/0,2 %, le prix doit bouger d'au moins 0,4 % en ta faveur.",
+          "Les frais varient beaucoup : les principaux exchanges centralisés prélèvent 0,1 à 0,4 % par côté. Les exchanges décentralisés (Uniswap etc.) prélèvent 0,3 % de frais de pool plus le gas (qui sur Ethereum peut coûter 5 à 50€+ selon les conditions du réseau). Certains exchanges offrent 0 % de frais sur certaines paires pour le marketing — vérifie s'ils ne se rattrapent pas via des spreads plus larges."
+        ]
+      },
+      {
+        "heading": "Lire le ROI",
+        "paragraphs": [
+          "Le ROI (retour sur investissement) est le profit net divisé par le capital total investi (coût plus frais d'achat). C'est la métrique de comparaison la plus utile entre des trades de tailles différentes. Un trade de 100 € faisant 20 € (20 % de ROI) est mathématiquement le même résultat que 10 000 € faisant 2 000 € — les deux à 20 % de ROI.",
+          "Fais attention à la différence entre ROI et profit absolu. Les day traders optimisent souvent pour de nombreux petits gains de ROI. Les détenteurs à long terme se soucient davantage du profit absolu. Les deux sont valides ; ne les confonds pas quand tu compares des stratégies."
+        ]
+      },
+      {
+        "heading": "Implications fiscales (général)",
+        "paragraphs": [
+          "En France, les cessions de cryptoactifs sont soumises à la flat tax de 30 % (ou au barème progressif sur option). Chaque vente de crypto contre de la monnaie fiat est un événement taxable. Même les échanges crypto-contre-crypto déclenchent généralement une obligation fiscale.",
+          "Garde trace de chaque trade avec la date, l'actif, la quantité, la valeur en euros au moment du trade et les frais. Des outils comme CoinTracker, Koinly et Waltio peuvent ingérer les CSV des exchanges et produire des rapports fiscaux. Nous ne sommes pas des conseillers fiscaux ; consulte un expert-comptable ou les règles de ton pays."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Entre la quantité de crypto",
+        "text": "Combien tu as acheté (ex. 0,5 BTC, 100 ETH)."
+      },
+      {
+        "name": "Entre le prix d'achat par unité",
+        "text": "Ce que tu as payé par unité à l'entrée."
+      },
+      {
+        "name": "Entre le prix de vente par unité",
+        "text": "Ce que tu as reçu (ou prévois de recevoir) par unité."
+      },
+      {
+        "name": "Entre les frais d'échange %",
+        "text": "Par côté. La plupart des exchanges centralisés prélèvent 0,1 à 0,4 %."
+      },
+      {
+        "name": "Lis la décomposition",
+        "text": "Profit net, ROI%, frais totaux, coût et produit brut."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Les frais s'appliquent-ils à l'achat et à la vente ?",
+      "a": "Oui, dans ce calculateur. Nous supposons les mêmes frais des deux côtés. Si tes frais diffèrent (ex. 0,1 % à l'achat, 0,4 % à la vente), utilise la moyenne ou effectue deux calculs."
+    },
+    {
+      "q": "Qu'en est-il du slippage ?",
+      "a": "Le slippage est la différence entre le prix d'exécution prévu et réel, courant sur les marchés à faible liquidité. Ce calculateur ne modélise pas le slippage — utilise tes prix de remplissage réels."
+    },
+    {
+      "q": "Devrais-je inclure les frais de gas pour les trades DEX ?",
+      "a": "Convertis tes frais de gas en pourcentage de la valeur du trade et ajoute-les au champ des frais. Pour un trade de 1 000 € avec 10 € de gas, c'est 1 % de frais supplémentaires par côté."
+    },
+    {
+      "q": "Ça fonctionne pour les stablecoins ?",
+      "a": "Oui. Les trades stablecoin-contre-stablecoin ont généralement un profit faible (0,1 à 0,3 %) et les frais peuvent facilement effacer les gains. Le calculateur les gère correctement."
+    },
+    {
+      "q": "Comment inclure un stop loss ?",
+      "a": "Utilise le calculateur deux fois : une fois pour la sortie de prise de profit prévue, une fois pour la sortie en stop loss. Compare les deux résultats avec la taille de ta position pour dimensionner ton risque."
+    },
+    {
+      "q": "Quel % de frais supposer ?",
+      "a": "0,1 à 0,2 % pour la plupart des exchanges majeurs. 0,4 à 1 % pour les niveaux retail. 0,3 à 1 % pour les DEX plus le gas."
+    },
+    {
+      "q": "Pourquoi le ROI est-il différent du % de profit ?",
+      "a": "Le ROI utilise la base de coût comme dénominateur (coût + frais d'achat). Le '% de profit' utilise souvent l'investissement initial sans frais d'achat, ce qui gonfle légèrement le chiffre."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Le calcul s'effectue localement ; rien n'est envoyé à un serveur."
+    }
+  ]
+}

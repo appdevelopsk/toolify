@@ -1,0 +1,58 @@
+{
+  "title": "Sezar Şifresi Kodlayıcı / Çözücü (ROT13 dahil)",
+  "shortDescription": "Klasik Sezar şifresiyle metin kodla veya çöz. -25 ile +25 arasında ayarlanabilir kaydırma; ROT13 ve tarihi +3 kaydırma için tek tıkla ön ayarlar.",
+  "description": "Metin yaz ve bir kaydırma miktarı seç. Harfler alfabede o kadar pozisyon döndürülür (A-Z, a-z); diğer karakterler değişmeden geçer. ROT13 için kaydırma=13, orijinal Sezar için kaydırma=3 kullan.",
+  "metaDescription": "Ücretsiz Sezar şifresi aracı. -25 ile +25 arası kaydırmayla (ROT13 dahil) herhangi bir metni kodla veya çöz. Harfler kayar, noktalama ve rakamlar değişmeden geçer.",
+  "keywords": ["sezar şifresi", "ROT13", "sezar kaydırma", "harf şifresi", "klasik şifreleme"],
+  "mode": {
+    "encode": "Kodla",
+    "decode": "Çöz"
+  },
+  "input": {
+    "text": "Metin",
+    "shift": "Kaydırma"
+  },
+  "output": "Çıktı",
+  "copy": "Kopyala",
+  "article": {
+    "sections": [
+      {
+        "heading": "Sezar şifresi nasıl çalışır?",
+        "paragraphs": [
+          "Girişteki her harf, alfabede belirli sayıda pozisyon ilerideki bir harfle değiştirilir. +3 kaydırmayla A, D olur; B, E olur; … X, A olur (alfabe döngüsel devam eder). Harf olmayan karakterler değişmeden geçer. Çözme, ters işaretle aynı işlemdir.",
+          "Adını Jül Sezar'dan almaktadır; tarihe göre Sezar askeri mesajlar için +3 kaydırma kullanmıştır. Kaydırma boyutu tek sırdır. Yalnızca 26 olası kaydırma olduğundan hepsini deneyerek kolaylıkla kırılır — ama ikame şifrelerini öğretmek için mükemmel bir örnektir."
+        ]
+      },
+      {
+        "heading": "ROT13 — en yaygın varyant",
+        "paragraphs": [
+          "ROT13, kaydırma=13 kullanır. 13, 26'nın yarısı olduğundan ROT13'ü iki kez uygulamak orijinal metni geri verir — kodlama ve çözme tamamen aynı işlemi kullanır. Bu, onu spoiler ve rahatsız edici fıkraları gizlemek için Usenet ve forumlarda popüler kıldı; okuyucular ayrı bir çözücüye gerek kalmadan 'göster' düğmesine tıklayarak çözebiliyordu.",
+          "ROT13, anlamlı herhangi bir anlamda şifreleme değildir. Belirsizleştirmedir — insanların atlayabilmesi için 'spoiler aşağıda gizli' yazmaya eşdeğerdir."
+        ]
+      },
+      {
+        "heading": "Bu neden eğlencelidir, güvenli değildir",
+        "paragraphs": [
+          "Modern saldırganlar bir Sezar şifresini frekans analiziyle mikrosaniyeler içinde kırar (E İngilizce'deki en yaygın harftir; şifreli metinde sık bir harfe eşlenen harf muhtemelen E'dir). Önem verdiğin hiçbir şey için kullanma.",
+          "Kullanım alanları: eğitim örnekleri, bulmaca oyunları, ARG'ler (alternatif gerçeklik oyunları), metni açıkta gizleme, ROT13 spoiler etiketleri. Kullanma: şifreler, finansal veriler, sonuçları olan her şey."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Modu seç", "text": "Kodla (kaydırmayı ileri uygula) veya Çöz (kaydırmayı geri uygula)." },
+      { "name": "Metin yaz veya yapıştır", "text": "Harfler kaydırılır; noktalama, rakamlar ve boşluklar değişmeden geçer." },
+      { "name": "Kaydırmayı ayarla", "text": "Kaydırıcı -25 ile +25 arasındadır. +3 (Sezar), 13 (ROT13) veya negatifler için ön ayarları kullan." },
+      { "name": "Çıktıyı kopyala", "text": "Tek tıkla panoya kopyala." }
+    ]
+  },
+  "faq": [
+    { "q": "Sezar +3 ile ROT13 arasındaki fark nedir?", "a": "Yalnızca kaydırma miktarı. +3 Sezar'ın orijinal seçimidir; 13 alfabenin tam yarısıdır (dolayısıyla kodlama ve çözme aynı işlemdir). Matematiksel olarak aynı şifre ailesindedir." },
+    { "q": "+26 kaydırma neden aynı metni geri verir?", "a": "Alfabede 26 harf var — tam 26 kaydırmak seni orijinal harfe götürür. 26'nın her katı için de aynı geçerlidir." },
+    { "q": "ROT13 neden spoiler için kullanılır?", "a": "ROT13'ü iki kez uygulamak orijinali geri verir. Forum ve Usenet okuyucularında her iki yönde de çalışan yerleşik 'bu metni rot13'le' düğmeleri vardı. Metni gizlemek ve göstermek için kullanışlıdır." },
+    { "q": "Latin olmayan alfabeleri destekliyor mu?", "a": "Hayır — yalnızca A-Z ve a-z. Kiril, Yunan, CJK ve Arapça değişmeden geçer. Sezar şifresi doğası gereği Latin alfabesine özgüdür." },
+    { "q": "Gerçek güvenlik için kullanabilir miyim?", "a": "Kesinlikle hayır. 25 olası kaydırmayla (0 ve 26 hariç) bilgisayar anında kırar. Gerçek güvenlik için AES, RSA veya yerleşik kriptografi kütüphaneleri kullan." },
+    { "q": "Vigenère şifresi hakkında ne söyleyebilirsiniz?", "a": "Kaydırmayı harf başına değiştirmek için bir anahtar sözcük kullanan daha gelişmiş klasik bir şifre. Yeterli metinle elle de kırılabilir ama Sezar'dan çok daha zordur." },
+    { "q": "Negatif kaydırmalar neden dahil edildi?", "a": "Kolaylık için. +3 ile kodlamak ve +3 ile çözmek yanlıştır; çözmek için -3 gerekir. Negatif kaydırmalar, modları değiştirmeden çözmeye olanak tanır." },
+    { "q": "Veriler tarayıcımı terk ediyor mu?", "a": "Hayır. Kodlama ve çözme yerel olarak çalışır; sunucuya hiçbir şey gönderilmez." }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "title": "Chronomètre (précision milliseconde, temps par tour)",
+  "shortDescription": "Chronomètre de haute précision dans le navigateur avec démarrage/pause, enregistrement des tours et calcul des temps intermédiaires. Affichage en millisecondes, horloge monotone pour la précision.",
+  "description": "Chronomètre basé sur performance.now() pour un chronométrage sans à-coups. Démarrage, pause, reprise, enregistrement des tours, réinitialisation. Chaque tour affiche le temps intermédiaire (delta depuis le précédent) plus le temps cumulé.",
+  "metaDescription": "Chronomètre gratuit avec précision milliseconde et enregistrement des tours. Chronométrage monotone, aucun réseau nécessaire.",
+  "keywords": [
+    "chronomètre",
+    "minuteur millisecondes",
+    "chrono tours",
+    "chronomètre en ligne",
+    "timer split"
+  ],
+  "start": "Démarrer",
+  "pause": "Pause",
+  "resume": "Reprendre",
+  "reset": "Réinitialiser",
+  "lap": "Tour",
+  "laps": "Tours",
+  "article": {
+    "sections": [
+      {
+        "heading": "Pourquoi ce chronomètre est précis",
+        "paragraphs": [
+          "La plupart des chronomètres dans les navigateurs utilisent Date.now() et setInterval, qui peuvent dériver de dizaines de millisecondes pendant une session. Cette implémentation utilise performance.now() — une horloge monotone qui ne saute pas en arrière quand l'horloge système est ajustée. Combiné avec requestAnimationFrame pour les mises à jour d'affichage, la précision reste dans ±1 ms.",
+          "Si tu changes d'onglet, l'affichage peut se figer brièvement car les navigateurs limitent le travail en arrière-plan. L'horloge interne continue de fonctionner correctement — quand tu reviens à l'onglet, l'affichage rattrape le temps réel écoulé."
+        ]
+      },
+      {
+        "heading": "Temps par tour et temps intermédiaires",
+        "paragraphs": [
+          "Quand tu appuies sur Tour, le temps cumulé actuel est enregistré. Le temps intermédiaire affiché est le delta depuis le tour précédent : dans un 5×400m, chaque intermédiaire est le temps d'un segment de 400m, tandis que le cumulatif est le total écoulé depuis le départ.",
+          "La plupart des utilisateurs de liste de tours se soucient des intermédiaires, pas du cumulatif. On affiche les deux. Le cumulatif facilite aussi l'identification du meilleur segment individuel — utile pour les athlètes qui suivent la régularité des intervalles."
+        ]
+      },
+      {
+        "heading": "Utilisations courantes",
+        "paragraphs": [
+          "Sport : suivi des temps de tour pour la course à pied, la natation, les intervalles de cyclisme. Plus petit est mieux ; la régularité entre les tours est signe d'un bon rythme.",
+          "Cuisine : chronométrage de plusieurs étapes simultanément en utilisant les tours comme 'points de contrôle' (levain ajouté, pâte au repos démarrée, etc.).",
+          "Étude/travail : délimitation de sessions de travail concentré. Associe à notre minuteur Pomodoro pour des pauses structurées.",
+          "Chronométrage de processus : mesure la durée de n'importe quelle tâche — compilations de logiciels, saisie de données manuelle, résolution d'assistance client. Utilise la liste de tours pour une revue ultérieure."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Clique sur Démarrer",
+        "text": "Le chronomètre commence immédiatement à 0."
+      },
+      {
+        "name": "Enregistre les tours",
+        "text": "Clique sur Tour pendant la course. Chaque tour est enregistré avec le temps intermédiaire et le temps cumulé."
+      },
+      {
+        "name": "Pause / Reprendre",
+        "text": "Clique sur Pause pour maintenir ; clique sur Reprendre pour continuer depuis le même temps."
+      },
+      {
+        "name": "Réinitialiser",
+        "text": "Efface tous les tours et revient à 0."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Le chronomètre continuera-t-il à tourner si je ferme l'onglet ?",
+      "a": "Non — fermer l'onglet efface l'état en mémoire. Pour conserver une session de chronométrage longue, fais une capture d'écran de l'affichage en cours ou copie la liste des tours avant de fermer."
+    },
+    {
+      "q": "Quelle est la précision réelle à la milliseconde ?",
+      "a": "La résolution de performance.now() dépend du navigateur : la plupart limitent à 1ms ou 0,1ms pour des raisons de sécurité (atténuation des attaques de timing). C'est largement suffisant pour le chronométrage à l'échelle humaine — bien plus précis que le temps de réaction humain (~250ms)."
+    },
+    {
+      "q": "Pourquoi l'affichage se met-il à jour à 60 ips mais montre des millisecondes ?",
+      "a": "L'horloge interne est précise ; l'affichage est rendu ~60 fois par seconde pour avoir un champ milliseconde qui se met à jour fluidement. Chaque image calcule la valeur écoulée la plus récente depuis performance.now()."
+    },
+    {
+      "q": "Puis-je sauvegarder une session de tours ?",
+      "a": "Pas directement — copie la liste des tours manuellement. La sauvegarde dans le stockage local est prévue."
+    },
+    {
+      "q": "Quelle est la différence avec le chronomètre d'un téléphone ?",
+      "a": "Basé sur le navigateur, pas besoin d'installation. Aussi précis pour le chronométrage à l'échelle humaine. Le chronomètre du téléphone survit au verrouillage de l'écran ; l'onglet du navigateur doit rester ouvert (mais n'a pas besoin d'être au premier plan)."
+    },
+    {
+      "q": "Les données sont-elles envoyées quelque part ?",
+      "a": "Non. Tout s'exécute localement ; aucun tour ni temps n'est transmis."
+    },
+    {
+      "q": "Pourquoi mon tour affiche-t-il 0 milliseconde ?",
+      "a": "Si tu appuies sur Tour immédiatement après Démarrer, le temps écoulé peut arrondir à 0 avec la précision d'affichage. Laisse passer au moins une fraction de seconde entre les tours."
+    },
+    {
+      "q": "Peut-on mesurer des événements sous la seconde ?",
+      "a": "Oui, jusqu'à ~1ms. Pour le chronométrage en nanosecondes (benchmarking de puces), tu aurais besoin d'autres outils, mais pour tout événement observable par l'humain, c'est suffisamment précis."
+    }
+  ]
+}

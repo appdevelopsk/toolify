@@ -1,0 +1,65 @@
+{
+  "title": "Regex Tester (live matches, groups, replace)",
+  "shortDescription": "JavaScript regular expressions interactively test करें। Live highlighted matches, capture groups, और replace preview देखें।",
+  "description": "Regex और test text type करें — type करते समय matches live highlight होते हैं। Flags (g/i/m/s/u) toggle करें, capture groups inspect करें, और replacements preview करें।",
+  "metaDescription": "Live highlighting, capture groups, named groups, और replace preview के साथ मुफ्त JavaScript regex tester। Browser-only — patterns और text कभी आपके device से नहीं जाते।",
+  "keywords": ["regex tester", "regular expression tester", "JavaScript regex", "regex match", "regex replace"],
+  "input": {
+    "pattern": "Pattern",
+    "flags": "Flags",
+    "test": "Test text",
+    "replaceMode": "Replace preview दिखाएँ",
+    "replace": "Replacement"
+  },
+  "result": {
+    "matches": "Matches",
+    "replaced": "Replaced output",
+    "groups": "Capture groups"
+  },
+  "hint": {
+    "replaceVars": "Full match के लिए $&, groups के लिए $1, $2, named groups के लिए $<name> उपयोग करें।"
+  },
+  "error": { "invalid": "Invalid pattern" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Flags क्या करते हैं",
+        "paragraphs": [
+          "g (global): केवल पहले नहीं, सभी matches खोजें। Replace-all behavior के लिए required। i (case-insensitive): /[a-z]/i दोनों cases match करता है। m (multiline): ^ और $ केवल string start/end पर नहीं बल्कि line breaks पर match करते हैं। s (dotall): . newlines भी match करता है। u (unicode): 0xFFFF से ऊपर के code points (emoji, surrogate pairs में CJK) का proper handling।",
+          "अधिकांश लोग /g/i/m से शुरू करते हैं। /s/ multi-line text matching के लिए useful हो जाता है। /u/ recommend है जब आपको emoji या non-BMP characters encounter हो सकते हैं — इसके बिना, /./ 4-byte emoji को single character के रूप में match नहीं करेगा।"
+        ]
+      },
+      {
+        "heading": "Capture groups और replace",
+        "paragraphs": [
+          "Parentheses एक capture group बनाते हैं: '2026-05' पर /(\\d{4})-(\\d{2})/ '2026' और '05' separately capture करता है। Replacement में उन्हें $1, $2 के रूप में reference करें। Named groups (?<name>...) उपयोग करते हैं और replace में $<name> reference करते हैं।",
+          "Common replace tricks: $& full match insert करता है। $1, $2 आदि capture groups insert करते हैं। $$ literal $ insert करता है। यहाँ replace preview आपको real text पर same pattern run करने से पहले check करने देता है — production data पर directly run करने से बहुत safer।"
+        ]
+      },
+      {
+        "heading": "Watch करने योग्य pitfalls",
+        "paragraphs": [
+          "Backslash escaping। Literal '.' match करने के लिए, '\\.' उपयोग करें। इस tool में आप simply '\\.' type करते हैं क्योंकि यह regex source है।",
+          "Catastrophic backtracking। /(a+)+/ जैसे patterns 'aaaa…!' पर हमेशा के लिए ले सकते हैं। यदि आपका test frozen लगे, आपके regex में nested quantifiers हो सकते हैं। Simplify करें।",
+          "Greedy बनाम lazy। '<a><b>' पर /<.+>/ '<a><b>' match करता है (greedy)। /<.+?>/ '<a>' match करता है (lazy)। अपने use case के लिए सही चुनें।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "एक pattern type करें", "text": "JavaScript regex syntax उपयोग करें (surrounding slashes के बिना)।" },
+      { "name": "Flags set करें", "text": "Toggle करने के लिए letters click करें: g (global), i (case-insensitive), m (multiline), s (dotall), u (unicode)।" },
+      { "name": "Test text paste करें", "text": "Matches real time में highlight होते हैं।" },
+      { "name": "Optional: replace try करें", "text": "Modified output देखने के लिए 'replace preview' toggle करें।" }
+    ]
+  },
+  "faq": [
+    { "q": "यह कौन सा regex flavor उपयोग करता है?", "a": "JavaScript ECMAScript regex (वह जो आपका browser implement करता है)। यह PHP, .NET, या Python में उपयोग होने वाले PCRE से slightly differ करता है।" },
+    { "q": "Lookbehind क्यों काम नहीं करता?", "a": "Modern browsers में करता है — Chrome, Firefox, Safari, Edge सभी 2021 से (?<=...) और (?<!...) support करते हैं। यदि आपका नहीं करता, तो शायद browser outdated है।" },
+    { "q": "'u' flag क्या करता है?", "a": "Proper Unicode handling enable करता है। 🎉 जैसे Emoji (जो UTF-16 में surrogate pair है) /u/ के साथ एक character treat होता है।" },
+    { "q": "Tab या newline कैसे match करें?", "a": "Tab के लिए \\t, newline के लिए \\n, carriage return के लिए \\r, इन सभी सहित किसी भी whitespace के लिए \\s।" },
+    { "q": "मेरा replace क्यों काम नहीं कर रहा?", "a": "अक्सर, आपने 'g' flag भूल गए — 'g' के बिना replace केवल पहला match replace करता है। सब replace करने के लिए 'g' toggle करें।" },
+    { "q": "क्या मैं इसे बहुत long text के लिए उपयोग कर सकता हूँ?", "a": "हाँ, कुछ MB तक। उससे आगे, browser slow हो सकता है। Long input पर catastrophic patterns (nested quantifiers) से बचें।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Pattern और text केवल locally process होते हैं।" },
+    { "q": "क्या कोई regex cheat sheet है?", "a": "'JavaScript regex cheat sheet' search करें। MDN का RegExp page authoritative reference है।" }
+  ]
+}

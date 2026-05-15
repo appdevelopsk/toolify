@@ -1,0 +1,99 @@
+{
+  "title": "Text-Diff-Tool (zeilenweiser Vergleich, farbkodiert)",
+  "shortDescription": "Vergleiche zwei Textblöcke zeilenweise. Hinzugefügte, entfernte und unveränderte Zeilen sind farbkodiert mit Zeilennummern.",
+  "description": "Original und überarbeitete Version einfügen, um einen zeilenweisen Diff nebeneinander zu sehen. Nützlich für Dokumente, Konfigurationsdateien, Code-Review und Textbearbeitung.",
+  "metaDescription": "Kostenloses Online-Text-Diff-Tool. Zeilenweiser Vergleich mit farbkodierten hinzugefügten, entfernten und unveränderten Zeilen.",
+  "keywords": [
+    "Text Diff",
+    "Texte vergleichen",
+    "Diff-Tool",
+    "Zeilendiff",
+    "Unterschiede finden"
+  ],
+  "input": {
+    "left": "Original (links)",
+    "right": "Überarbeitet (rechts)"
+  },
+  "stats": {
+    "added": "hinzugefügt",
+    "removed": "entfernt",
+    "unchanged": "unverändert"
+  },
+  "empty": "Beide Versionen einfügen, um den Diff zu sehen.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie der Diff berechnet wird",
+        "paragraphs": [
+          "Wir verwenden den Longest-Common-Subsequence-Algorithmus (LCS), um zu finden, welche Zeilen in beiden Versionen übereinstimmen. Zeilen, die in beiden vorkommen, sind ‚unverändert'. Zeilen nur im Original sind ‚entfernt'. Zeilen nur in der überarbeiteten Version sind ‚hinzugefügt'. Das Ergebnis ist ein klarer annotierter Vergleich mit erhaltenen Zeilennummern auf beiden Seiten.",
+          "LCS ist der von git und den meisten Diff-Tools verwendete Standardansatz. Er findet die längste mögliche übereinstimmende Sequenz, die typischerweise dem entspricht, was ein Mensch ‚denselben Absatz' nennen würde. Bei sehr großen Eingaben (10.000+ Zeilen) wächst die Laufzeit quadratisch; für den Vergleich großer Logs ein Streaming-Diff-Tool verwenden."
+        ]
+      },
+      {
+        "heading": "Wofür dieses Tool gut ist",
+        "paragraphs": [
+          "Dokumentrevisionen: Genau sehen, was sich zwischen Entwürfen geändert hat. Nützlich für rechtliche Verträge, Nutzungsbedingungen und beliebige Texte, bei denen ‚Was hat sich geändert?' wichtig ist.",
+          "Konfigurationsdateien: Zwei .env- oder YAML-Dateien vergleichen, um eine Fehlkonfiguration zu erkennen. Oder zwei Versionen eines Deploy-Skripts.",
+          "Textbearbeitung: Autoren können die Überarbeitungen des Lektors im Kontext sehen, besonders wenn sich nur wenige Zeilen geändert haben.",
+          "Code-Review (einfache Nutzung): Für kleine Ausschnitte. Für echte Code-Reviews ein syntaxbewusstes Tool verwenden — git diff mit semantischen Flags oder ein spezielles Review-Tool liefert bessere Ergebnisse."
+        ]
+      },
+      {
+        "heading": "Einschränkungen",
+        "paragraphs": [
+          "Der Diff erfolgt auf Zeilenebene. Wenn ‚Katze' in ‚Katzen' geändert wird, wird die ganze Zeile als entfernt-und-hinzugefügt angezeigt; das eingefügte ‚n' wird nicht hervorgehoben. Wort- und zeichenbasierte Diffs sind dafür nützlich, aber schwerer zu lesen bei langen Zeilen.",
+          "Leerzeichen am Zeilenende sind relevant — ‚foo' und ‚foo ' (mit Leerzeichen dahinter) gelten als unterschiedliche Zeilen. Für einen leerzeichenunempfindlichen Vergleich den Text vor dem Einfügen normalisieren.",
+          "Reihenfolge ist wichtig. Zwei Absätze an unterschiedlichen Positionen werden als sowohl entfernt als auch hinzugefügt gezählt. Der Diff versucht nicht, ‚verschobene' Blöcke zu erkennen."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Original einfügen",
+        "text": "Auf der linken Seite."
+      },
+      {
+        "name": "Überarbeitete Version einfügen",
+        "text": "Auf der rechten Seite."
+      },
+      {
+        "name": "Diff ablesen",
+        "text": "Zeilen aktualisieren sich beim Tippen. Grün = hinzugefügt, Rot = entfernt, Normal = unverändert."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Unterstützt das wortbasierte Diffs?",
+      "a": "Noch nicht — nur zeilenbasiert. Zeichen- oder Wortgranularität könnte später für kurze Vergleiche hinzugefügt werden."
+    },
+    {
+      "q": "Wie groß kann mein Text sein?",
+      "a": "Praktisch bis zu einigen tausend Zeilen pro Seite. Quadratische Komplexität bedeutet, dass sehr große Eingaben den Browser-Tab kurz einfrieren können."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Der Diff läuft vollständig lokal."
+    },
+    {
+      "q": "Sind Leerzeichen am Zeilenende relevant?",
+      "a": "Ja. Zwei Zeilen, die sich nur durch nachfolgende Leerzeichen unterscheiden, gelten als verschieden. Leerzeichen normalisieren, bevor eingefügt wird, wenn leerzeichenunempfindlicher Abgleich gewünscht ist."
+    },
+    {
+      "q": "Kann ich den Diff speichern?",
+      "a": "Nicht als Datei. Derzeit den gerenderten Text kopieren oder einen Screenshot machen."
+    },
+    {
+      "q": "Ist das derselbe Algorithmus wie git diff?",
+      "a": "Konzeptionell ja — wir verwenden LCS, eine der Optionen von git. Git verwendet standardmäßig einen ähnlichen, aber ausgefeilteren Algorithmus (Myers-Diff mit Patience als optionale Variante). Für kurze Eingaben ist die Ausgabe im Wesentlichen identisch."
+    },
+    {
+      "q": "Warum sind ganze Zeilen markiert, wenn sich nur ein Wort geändert hat?",
+      "a": "Weil wir auf Zeilenebene arbeiten. Ein zeichenbasierter Diff würde das geänderte Wort hervorheben, ist aber bei langen Zeilen schwerer zu lesen."
+    },
+    {
+      "q": "Kann ich mehr als zwei Versionen vergleichen?",
+      "a": "Nicht mit diesem Tool. Für mehrfache Zusammenführungen ein spezielles 3-Wege-Diff-Tool verwenden."
+    }
+  ]
+}

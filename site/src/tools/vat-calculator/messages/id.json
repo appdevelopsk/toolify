@@ -1,0 +1,76 @@
+{
+  "title": "Kalkulator PPN / Pajak Penjualan (tarif internasional)",
+  "shortDescription": "Tambah atau hapus PPN/GST/pajak penjualan. Preset cepat untuk Jepang, Inggris, negara-negara EU, Australia, Kanada, Cina.",
+  "description": "Dua mode: 'Tambah PPN' menghitung harga kotor dari harga bersih + tarif; 'Hapus PPN' menghitung harga bersih dari harga kotor. Input tarif kustom plus preset satu klik untuk yurisdiksi utama.",
+  "metaDescription": "Kalkulator PPN/GST gratis. Tambah atau hapus PPN dari jumlah apapun. Preset untuk tarif Jepang, Inggris, EU, Australia, Kanada, Cina, serta PPN Indonesia 11%.",
+  "keywords": ["kalkulator PPN", "kalkulator GST", "kalkulator pajak penjualan", "pajak konsumsi", "hitung PPN"],
+  "empty": "Masukkan jumlah dan tarif PPN.",
+  "mode": {
+    "addVat": "Tambah PPN (harga bersih → kotor)",
+    "removeVat": "Hapus PPN (harga kotor → bersih)"
+  },
+  "input": {
+    "netAmount": "Harga bersih (belum termasuk PPN)",
+    "grossAmount": "Harga kotor (sudah termasuk PPN)",
+    "ratePct": "Tarif PPN %"
+  },
+  "preset": {
+    "JP-std": "Jepang standar",
+    "JP-reduced": "Jepang diskon",
+    "UK": "Inggris",
+    "DE": "Jerman",
+    "FR": "Prancis",
+    "AU": "Australia GST",
+    "CA": "Kanada GST",
+    "CN": "Cina VAT"
+  },
+  "result": {
+    "gross": "Harga kotor (termasuk PPN)",
+    "net": "Harga bersih (belum PPN)",
+    "vat": "Jumlah PPN"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "PPN, GST, pajak penjualan — konsep sama, nama berbeda",
+        "paragraphs": [
+          "PPN (Pajak Pertambahan Nilai): Indonesia, Eropa, Inggris, Jepang (disebut 消費税). Dipungut di setiap tahap produksi tetapi pada akhirnya dibayar oleh konsumen. Di Indonesia, tarif standar PPN adalah 11% (berlaku sejak April 2022), dengan tarif PPnBM untuk barang mewah yang bervariasi dari 10% hingga 200%.",
+          "GST (Goods and Services Tax): Australia, Kanada, India, Singapura. Secara mekanisme mirip dengan PPN, hanya namanya berbeda. Beberapa negara (Kanada) menerapkan GST federal dan pajak provinsi (HST, PST) secara berlapis.",
+          "Pajak penjualan: Amerika Serikat. Dipungut hanya pada titik penjualan akhir, bervariasi berdasarkan negara bagian, kabupaten, dan kota. Beberapa negara bagian tidak memilikinya (Oregon, New Hampshire); negara bagian lain menumpuk beberapa yurisdiksi hingga total tarif lebih dari 10%."
+        ]
+      },
+      {
+        "heading": "Perhitungan dua arah",
+        "paragraphs": [
+          "Tambah PPN: ketika Anda memiliki harga bersih (sebelum pajak) dan perlu harga kotor (sesudah pajak). Umum saat mencantumkan harga untuk klien B2B atau penawaran sebelum pajak. Rumus: harga kotor = harga bersih × (1 + tarif/100).",
+          "Hapus PPN: ketika Anda memiliki harga kotor (sesudah pajak) dan perlu mengekstrak harga bersih. Umum untuk struk, laporan biaya, atau item baris faktur. Rumus: harga bersih = harga kotor / (1 + tarif/100).",
+          "Kesalahan umum: mengurangi tarif% dari harga kotor untuk mendapatkan harga bersih (mis., Rp110.000 − 10% = Rp99.000). Itu salah — perhitungan yang benar adalah Rp110.000 / 1,10 = Rp100.000. PPN 10% dihitung dari harga bersih, bukan dari harga kotor."
+        ]
+      },
+      {
+        "heading": "Kapan PPN sudah termasuk atau belum",
+        "paragraphs": [
+          "Sebagian besar harga konsumen di Eropa, Jepang, dan Australia sudah termasuk pajak. Harga yang tertera adalah yang Anda bayar di kasir; tidak ada tambahan saat checkout. Jadi produk seharga €10 berarti total €10.",
+          "Di Indonesia, harga konsumen biasanya sudah termasuk PPN 11%. Namun untuk transaksi B2B, faktur pajak PPN sering ditampilkan terpisah sebagai Faktur Pajak Masukan/Keluaran untuk keperluan pengkreditan pajak.",
+          "Faktur B2B umumnya menampilkan harga bersih + PPN secara terpisah untuk keperluan kredit pajak masukan. Pengusaha Kena Pajak (PKP) dapat mengkreditkan PPN yang dibayar atas pembelian terhadap PPN yang dipungut dari pelanggan."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih mode", "text": "Tambah PPN (harga bersih → kotor) atau Hapus PPN (harga kotor → bersih)." },
+      { "name": "Masukkan jumlah", "text": "Harga bersih atau harga kotor, tergantung mode yang dipilih." },
+      { "name": "Atur tarifnya", "text": "Gunakan preset untuk negara-negara utama atau ketik tarif kustom (mis., 11% untuk PPN Indonesia)." },
+      { "name": "Baca ketiga nilai", "text": "Harga bersih, PPN, harga kotor. Berguna untuk item baris faktur dan penawaran harga." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah PPN Indonesia sama dengan VAT?", "a": "Ya — PPN (Pajak Pertambahan Nilai) adalah nama lokal untuk VAT. Mekanisme sama: dipungut di setiap tahap produksi, dibayar oleh konsumen. Tarif standar 11% sejak April 2022, naik dari 10% sebelumnya." },
+    { "q": "Mengapa 'hapus 10%' memberikan hasil berbeda dari sekadar membagi dengan 1,1?", "a": "Menghapus 10% memang berarti membagi dengan 1,10. Mengurangi 10% (mis., 110 − 10% = 99) secara matematis salah karena 10% tersebut diterapkan pada harga bersih (100), bukan pada harga kotor (110)." },
+    { "q": "Bisakah saya menghitung PPN multi-tahap?", "a": "Tidak di alat ini — kami menangani skenario satu tarif. Untuk transaksi B2B dengan reverse charge atau transaksi yang dibebaskan PPN, konsultasikan dengan konsultan pajak atau perangkat lunak pajak khusus." },
+    { "q": "Apa tarif PPN terendah?", "a": "Beberapa negara memiliki tarif 0% untuk barang kebutuhan pokok (Inggris untuk pakaian anak-anak, Indonesia 0% untuk bahan makanan pokok, obat-obatan esensial, dan jasa pendidikan tertentu). Gunakan tarif yang berlaku untuk transaksi Anda." },
+    { "q": "Apa tarif PPN tertinggi?", "a": "Hungaria dengan 27%. Sebagian besar negara EU berada di 19-25%. Jepang relatif rendah di 10%. Indonesia 11%, sementara PPnBM untuk barang mewah tertentu bisa mencapai 200%." },
+    { "q": "Apakah ini berfungsi untuk pajak penjualan AS?", "a": "Ya — masukkan tarif gabungan negara bagian + lokal. Pajak penjualan AS berperilaku seperti PPN satu tahap dalam konteks kalkulator. Gunakan mode 'tambah' untuk alur pencantuman harga → checkout di AS." },
+    { "q": "Bagaimana dengan barang yang dikecualikan dari PPN?", "a": "Gunakan tarif 0% untuk barang yang dikecualikan sepenuhnya. Di Indonesia, barang kebutuhan pokok, jasa pendidikan, dan jasa kesehatan termasuk dalam kategori ini. Catatan: 'dikecualikan' dan 'dibebaskan' memiliki perbedaan hukum di beberapa yurisdiksi." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

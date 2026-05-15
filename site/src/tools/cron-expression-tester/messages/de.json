@@ -1,0 +1,101 @@
+{
+  "title": "Cron-Ausdruck-Tester (Vorschau der nächsten 5 Ausführungen)",
+  "shortDescription": "Teste Cron-Ausdrücke und sieh die nächsten 5 geplanten Ausführungen in deiner lokalen Zeitzone. Validiert Felder, unterstützt Bereiche, Listen und Schritte.",
+  "description": "Gib einen 5-Felder-Cron-Ausdruck ein (Min, Stunde, Tag-des-Monats, Monat, Wochentag) und sieh die nächsten 5 Auslösezeiten. Häufige Voreinstellungen enthalten.",
+  "metaDescription": "Kostenloser Cron-Ausdruck-Tester. Syntax validieren und die nächsten 5 Auslösezeiten in deiner lokalen Zeitzone voranzeigen.",
+  "keywords": [
+    "Cron Tester",
+    "crontab Tester",
+    "Cron nächste Ausführung",
+    "Zeitplanvorschau",
+    "Cron Syntax"
+  ],
+  "input": {
+    "expr": "Cron-Ausdruck",
+    "format": "Format"
+  },
+  "result": {
+    "next5": "Nächste 5 Ausführungen"
+  },
+  "error": {
+    "label": "Fehler",
+    "fieldCount": "Ausdruck muss genau 5 Felder haben"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cron-Syntax in fünf Feldern",
+        "paragraphs": [
+          "Standard-Cron hat 5 leerzeichen-getrennte Felder: Minute (0–59), Stunde (0–23), Tag des Monats (1–31), Monat (1–12), Wochentag (0–6, 0=Sonntag). Jedes Feld akzeptiert: einen einzelnen Wert (5), einen Bereich (1–5), eine Liste (1,3,5), einen Schritt (*/15 bedeutet alle 15) oder Platzhalter (*). Kombinationen funktionieren: 1-5,10/2 bedeutet 1–5 und dann alle 2 ab 10.",
+          "Dieser Tester verwendet den strengen POSIX/Linux-crontab-Dialekt. Einige Systeme erweitern Cron mit benannten Monaten (JAN–DEZ) oder Wochentagen (SO–SA) – diese werden hier nicht unterstützt. Verwende numerische Werte für vollständige Kompatibilität."
+        ]
+      },
+      {
+        "heading": "Häufige Muster",
+        "paragraphs": [
+          "*/5 * * * * — alle 5 Minuten. Nützlich für Cache-Aktualisierungen und kurze Abfragen.",
+          "0 9 * * 1-5 — 9 Uhr morgens jeden Werktag. Berichte während der Arbeitszeit.",
+          "0 0 1 * * — Mitternacht am 1. jedes Monats. Monatliche Abrechnung oder Statistik-Zusammenfassungen.",
+          "0 */6 * * * — alle 6 Stunden (00:00, 06:00, 12:00, 18:00). Lange Abfrageintervalle.",
+          "0 0 * * 0 — Mitternacht jeden Sonntag. Wöchentliche Berichte.",
+          "*/15 9-17 * * 1-5 — alle 15 Minuten während der Geschäftszeiten, Werktage. Abfragen in aktiven Stunden."
+        ]
+      },
+      {
+        "heading": "Tag-des-Monats vs. Wochentag",
+        "paragraphs": [
+          "Beide Felder akzeptieren Werte, aber Achtung: Im Standarddialekt, wenn beide Felder gesetzt sind (nicht '*'), läuft der Cron, wenn EINE DIESER Bedingungen zutrifft, nicht beide. Also feuert `0 0 1 * MON` (1. des Monats ODER Montag) häufiger als man denkt.",
+          "Um auf 'ersten Montag des Monats' einzuschränken, kann Cron das nicht direkt – du musst entweder täglich ein Skript ausführen und den Tag-des-Monats <= 7 intern prüfen, oder einen Scheduler (Airflow, GitHub Actions-Zeitplan + Prüfung) verwenden, der ausdrucksstärkere Zeitplanung unterstützt."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Cron-Ausdruck eingeben",
+        "text": "5 Felder: Minute, Stunde, Tag-des-Monats, Monat, Wochentag."
+      },
+      {
+        "name": "Oder eine Voreinstellung wählen",
+        "text": "Häufige Muster per Ein-Klick laden."
+      },
+      {
+        "name": "Nächste 5 Ausführungen ablesen",
+        "text": "Zeiten in deiner lokalen Browser-Zeitzone. Nützlich, um einen Zeitplan vor der Bereitstellung zu überprüfen."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Warum sehe ich 5 Ausführungen in meiner lokalen Zeitzone?",
+      "a": "Cron ist immer in der lokalen Zeitzone des Hosts. Die Zeitzone deines Browsers wird hier angezeigt. Echte Cron-Daemons respektieren die TZ des Servers; überprüfe deinen Host."
+    },
+    {
+      "q": "Kann ich benannte Monate/Wochentage verwenden?",
+      "a": "Noch nicht – nur numerische Werte. Wir werden möglicherweise später JAN/MON-Aliase hinzufügen."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen * und ?",
+      "a": "Im Standard-Cron sind sie identisch. Einige Quartz-Dialekte verwenden ?, um 'unspezifiziert' für die Felder Tag-des-Monats vs. Wochentag zu unterscheiden. Standard-Cron behandelt sie gleich."
+    },
+    {
+      "q": "Warum funktioniert Tag-des-Monats + Wochentag nicht wie erwartet?",
+      "a": "Wenn beide Felder nicht '*' sind, verwendet Standard-Cron OR (trifft entweder zu). Für AND ('erster Montag des Monats') benötigst du ein Wrapper-Skript oder einen ausdrucksstärkeren Scheduler."
+    },
+    {
+      "q": "Werden Sekunden unterstützt?",
+      "a": "Standard-Cron hat Minuten-Genauigkeit. Einige Systeme fügen ein sechstes Feld für Sekunden hinzu; wir unterstützen das nicht. Wenn du Sekunden-Genauigkeit benötigst, verwende setInterval oder einen anderen Scheduler."
+    },
+    {
+      "q": "Was ist die Granularitätsgrenze?",
+      "a": "Minuten-Ebene. Zeitpläne feiner als 1 Minute sind in Cron nicht ausdrückbar."
+    },
+    {
+      "q": "Kann ich Cron-Ausdrücke für vergangene Jahre testen?",
+      "a": "Wir berechnen vorwärts ab 'jetzt'. Für historische Analyse verwende eine Cron-Bibliothek in einer Programmiersprache."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Parsing und Berechnung sind vollständig lokal."
+    }
+  ]
+}

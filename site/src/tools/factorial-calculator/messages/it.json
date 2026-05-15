@@ -1,0 +1,61 @@
+{
+  "title": "Calcolatore di Fattoriale / Permutazioni / Combinazioni",
+  "shortDescription": "Calcola n! (fattoriale), P(n,k) permutazioni e C(n,k) combinazioni. Gestisce interi grandi tramite BigInt fino a n=5000.",
+  "description": "Inserisci n e k. Restituisce n!, P(n,k) (selezioni ordinate) e C(n,k) (selezioni non ordinate). Utile per probabilità, statistiche e compiti di combinatoria.",
+  "metaDescription": "Calcolatore gratuito di fattoriale, permutazioni (nPr) e combinazioni (nCr). Supporto big-integer fino a n=5000. Adatto a probabilità e combinatoria.",
+  "keywords": ["calcolatore fattoriale", "nCr nPr", "calcolatore permutazioni", "calcolatore combinazioni", "combinatoria"],
+  "input": {
+    "kHint": "(per permutazioni / combinazioni)"
+  },
+  "result": {
+    "permutationsLabel": "permutazioni",
+    "combinationsLabel": "combinazioni"
+  },
+  "error": {
+    "tooLargeOrNeg": "n deve essere un intero non negativo ≤ 5000.",
+    "invalid": "Richiede 0 ≤ k ≤ n."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Fattoriale",
+        "paragraphs": [
+          "n! (si legge 'n fattoriale') è il prodotto di tutti gli interi positivi da 1 a n. Quindi 5! = 1×2×3×4×5 = 120. Per convenzione, 0! = 1 (il prodotto vuoto).",
+          "I fattoriali crescono estremamente veloce. 10! = 3,6 milioni, 20! = 2,4×10¹⁸, 100! ha 158 cifre. La virgola mobile si rompe a 21! (a causa del limite della doppia precisione); usiamo BigInt per valori esatti fino a n=5000."
+        ]
+      },
+      {
+        "heading": "Permutazioni vs combinazioni",
+        "paragraphs": [
+          "Permutazioni P(n,k) = n! / (n−k)!: numero di modi ordinati per scegliere k elementi da n. P(5,2) = 20: scegli il primo posto da 5, il secondo dai restanti 4 = 5×4 = 20.",
+          "Combinazioni C(n,k) = n! / (k!(n−k)!): numero di modi non ordinati. C(5,2) = 10: stesse scelte ma {primo, secondo} = {secondo, primo} quindi dividi per 2!. Il famoso 'n su k'.",
+          "Usa le permutazioni quando l'ordine è importante (podio di una gara, ordine della password). Usa le combinazioni quando conta solo l'insieme scelto (numeri del lotto, selezione di un comitato). C(n,k) ≤ P(n,k) sempre; uguale quando k=1."
+        ]
+      },
+      {
+        "heading": "Dove si presentano",
+        "paragraphs": [
+          "Probabilità: dadi, carte, lanci di moneta. P(3 teste in 5 lanci) = C(5,3) × (1/2)⁵ = 10/32. Le combinazioni ti permettono di contare i risultati favorevoli.",
+          "Statistica: la distribuzione binomiale usa C(n,k). Il campionamento senza sostituzione usa le combinazioni.",
+          "Informatica: conteggio dei sottoinsiemi, analisi della complessità, algoritmi su grafi.",
+          "Vita reale: probabilità del lotto (SuperEnalotto: C(90,6) ≈ 623 milioni di combinazioni). Combinazioni di menu al ristorante: 'scegli 3 contorni da 8' è C(8,3) = 56 modi."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Inserisci n", "text": "Elementi totali / intero non negativo." },
+      { "name": "Inserisci k (facoltativo)", "text": "Quanti ne scegliere (per i calcoli di P e C). Deve essere 0 ≤ k ≤ n." },
+      { "name": "Leggi tutti e tre", "text": "n!, P(n,k), C(n,k). Output troncati per numeri molto grandi." }
+    ]
+  },
+  "faq": [
+    { "q": "Perché 0! = 1?", "a": "Per convenzione, il 'prodotto vuoto' è 1 (proprio come la somma vuota è 0). Fa anche funzionare in modo coerente formule come C(n,0) = 1 (un modo per scegliere niente)." },
+    { "q": "Qual è il fattoriale più grande che può calcolare?", "a": "n=5000 dà un numero di 16.326 cifre. Limitiamo a 5000 per evitare che il browser si blocchi su input enormi. Per valori più grandi, usa un CAS." },
+    { "q": "Qual è la differenza tra permutazioni e combinazioni?", "a": "L'ordine è importante nelle permutazioni, non lo è nelle combinazioni. {A,B} è la stessa combinazione di {B,A} ma due permutazioni diverse: AB e BA." },
+    { "q": "I fattoriali sono definiti per i numeri negativi?", "a": "Non nel senso standard. La funzione gamma Γ(x) estende il fattoriale a tutti i numeri reali (e complessi), ma il nostro calcolatore gestisce solo gli interi non negativi." },
+    { "q": "Qual è la formula per le combinazioni?", "a": "C(n,k) = n! / (k! × (n-k)!). Si legge 'n su k'. Equivalentemente: P(n,k) / k! poiché l'ordine non conta." },
+    { "q": "Quanto è accurato?", "a": "Esatto per tutti i valori nell'intervallo. Usiamo l'aritmetica BigInt, che non ha errore in virgola mobile." },
+    { "q": "Perché 70! è molto più grande di 60!?", "a": "Ogni fattoriale moltiplica per il prossimo intero. 70! è approssimativamente 60! × 61 × 62 × … × 70 ≈ 60! × 1,4 × 10¹⁷. I fattoriali crescono più velocemente dell'esponenziale — sono approssimativamente n^n × e^-n × √(2πn) per l'approssimazione di Stirling." },
+    { "q": "I dati lasciano il mio browser?", "a": "No. Il calcolo viene eseguito localmente; nulla viene inviato a un server." }
+  ]
+}

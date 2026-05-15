@@ -1,0 +1,70 @@
+{
+  "title": "Calcolatore Subnet IPv4 (CIDR, maschera, host)",
+  "shortDescription": "Calcola indirizzo di rete, broadcast, intervallo host, netmask, wildcard, host totali/utilizzabili da qualsiasi IPv4 + CIDR. Include rappresentazione binaria e rilevamento della classe.",
+  "description": "Digita un indirizzo IPv4 con CIDR opzionale (es. 192.168.1.10/24). Restituisce indirizzo di rete, broadcast, primo/ultimo host utilizzabile, indirizzi totali, netmask, wildcard, classe IP, stato pubblico/privato e rappresentazione binaria.",
+  "metaDescription": "Calcolatore subnet IPv4 gratuito. CIDR, netmask, wildcard, rete/broadcast, intervallo host, host totali/utilizzabili, rilevamento pubblico/privato. Con vista binaria.",
+  "keywords": ["calcolatore subnet", "calcolatore cidr", "subnet ipv4", "calcolatore netmask", "calcolatore indirizzo ip"],
+  "input": {
+    "cidr": "Indirizzo IP / CIDR",
+    "hint": "Formato: 192.168.1.10/24 (CIDR opzionale, predefinito /24)"
+  },
+  "result": {
+    "network": "Rete",
+    "ip": "Indirizzo IP",
+    "netmask": "Maschera di sottorete",
+    "wildcard": "Wildcard mask",
+    "networkAddr": "Indirizzo di rete",
+    "broadcast": "Broadcast",
+    "hostMin": "Primo host utilizzabile",
+    "hostMax": "Ultimo host utilizzabile",
+    "totalAddresses": "Indirizzi totali",
+    "usableHosts": "Host utilizzabili",
+    "ipClass": "Classe IP",
+    "private": "Privato RFC 1918",
+    "binary": "Binario"
+  },
+  "empty": "Inserisci un indirizzo IPv4 con /CIDR opzionale.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cosa significa la notazione CIDR",
+        "paragraphs": [
+          "CIDR (Classless Inter-Domain Routing) è la barra + numero dopo un indirizzo IP — '192.168.1.10/24'. Il numero indica quanti bit all'inizio dell'indirizzo appartengono alla parte di rete (rispetto alla parte host). /24 significa 24 bit di rete = 8 bit di host = 256 indirizzi totali, 254 utilizzabili.",
+          "CIDR comuni: /32 host singolo, /30 link (4 indirizzi, 2 utilizzabili), /29 piccola sottorete (8/6), /24 LAN (256/254), /16 rete grande (65k), /8 blocco ISP (16M). Più piccolo è il numero CIDR, più grande è la rete."
+        ]
+      },
+      {
+        "heading": "Rete, broadcast e host utilizzabili",
+        "paragraphs": [
+          "Indirizzo di rete: il primo indirizzo nella sottorete, con tutti i bit host a zero. Usato per identificare la sottorete stessa; non assegnabile a un dispositivo.",
+          "Indirizzo broadcast: l'ultimo indirizzo, con tutti i bit host a uno. Usato per inviare un pacchetto a tutti gli host nella sottorete; non assegnabile.",
+          "Host utilizzabili: indirizzi totali meno rete e broadcast = 2^(32−CIDR) − 2. Eccezione: /31 (link punto-a-punto) e /32 (host singolo) trattano tutti gli indirizzi come utilizzabili secondo RFC 3021."
+        ]
+      },
+      {
+        "heading": "Indirizzi pubblici vs privati",
+        "paragraphs": [
+          "RFC 1918 riserva tre intervalli di indirizzi per reti interne private: 10.0.0.0/8 (16M indirizzi), 172.16.0.0/12 (1M), 192.168.0.0/16 (65k). La maggior parte dei router domestici e d'ufficio usa una parte di questi (tipicamente 192.168.1.0/24 o 192.168.0.0/24).",
+          "Gli indirizzi pubblici sono instradabili sulla rete internet globale e assegnati dai registri regionali (RIPE per l'Europa, ARIN per il Nord America, ecc.). Costano denaro e sono sempre più scarsi — l'esaurimento degli IPv4 ha guidato l'adozione del CIDR e il deployment di IPv6.",
+          "Il calcolatore rileva se un indirizzo rientra negli intervalli privati; utile per verificare la progettazione della rete o confermare che un leak non stia inviando indirizzi privati su internet."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Digita un indirizzo", "text": "Con o senza /CIDR. Se il CIDR viene omesso, si assume /24." },
+      { "name": "Leggi le informazioni di rete", "text": "Indirizzo di rete, broadcast, intervallo host, maschera, wildcard." },
+      { "name": "Controlla la classe e lo stato privato", "text": "Verifica rapida del tipo di spazio degli indirizzi." },
+      { "name": "Usa la vista binaria per il debug", "text": "Aiuta quando devi ragionare sulle operazioni a livello di bit o allineare le sottoreti." }
+    ]
+  },
+  "faq": [
+    { "q": "Perché gli host utilizzabili sono 2 in meno del totale?", "a": "Il primo indirizzo (tutti i bit host a 0) è l'identificatore di rete e l'ultimo (tutti 1) è il broadcast. Entrambi sono riservati e non possono essere assegnati a un host." },
+    { "q": "Perché /31 ha 2 host utilizzabili invece di 0?", "a": "RFC 3021 consente le reti /31 per i link punto-a-punto (es. tra router). Entrambi gli indirizzi sono utilizzabili; le riserve per rete e broadcast non si applicano." },
+    { "q": "Qual è la differenza tra netmask e wildcard?", "a": "La netmask ha 1 nei bit di rete, 0 nei bit di host (255.255.255.0). La wildcard è l'inverso (0.0.0.255) — usata nelle ACL Cisco e nelle definizioni di area OSPF." },
+    { "q": "Come suddivido una rete in sottoreti?", "a": "Prendi una rete padre e dividila in blocchi più piccoli aggiungendo bit al CIDR. /24 → /25 crea 2 sottoreti, /24 → /26 ne crea 4, ecc. Utile per separare reparti o isolare reti IoT/ospiti." },
+    { "q": "Qual è la sottorete più piccola possibile?", "a": "/32 — un singolo indirizzo IP. /31 è la sottorete 'normale' più piccola (2 indirizzi). /30 è comune per i link router-a-router (4/2 utilizzabili)." },
+    { "q": "Funziona per IPv6?", "a": "Non ancora — solo IPv4. Le sottoreti IPv6 sono concettualmente simili ma usano indirizzi a 128 bit, notazione esadecimale e convenzioni diverse. Potremmo aggiungere IPv6 in una versione futura." },
+    { "q": "Qual è la sottorete singola più grande possibile?", "a": "/0 copre tutti i 4,3 miliardi di indirizzi IPv4 — l'intero spazio di indirizzi IPv4. /1 si divide in due metà. /8 corrisponde a 16M e storicamente era un singolo blocco 'classe A' (es. 10.0.0.0/8)." },
+    { "q": "I dati escono dal mio browser?", "a": "No. Il calcolo viene eseguito localmente; nulla viene inviato a un server." }
+  ]
+}

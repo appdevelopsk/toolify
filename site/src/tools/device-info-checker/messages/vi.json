@@ -1,0 +1,92 @@
+{
+  "title": "Kiểm tra thông tin thiết bị (trình duyệt, HĐH, phần cứng, mạng)",
+  "shortDescription": "Xem thông tin trình duyệt, HĐH, màn hình, phần cứng, GPU, lưu trữ, mạng và cài đặt chế độ tối của thiết bị ở một nơi. Tất cả được phát hiện phía client.",
+  "description": "Kết xuất phía trình duyệt mọi Web API công khai mà thiết bị cung cấp: user agent, HĐH, phiên bản trình duyệt, kích thước màn hình, devicePixelRatio, đồng thời phần cứng (lõi CPU), bộ nhớ thiết bị, thông tin GPU qua WebGL, dung lượng lưu trữ, loại mạng và tốc độ, ngôn ngữ, múi giờ, cài đặt chế độ tối và chuyển động giảm.",
+  "metaDescription": "Công cụ kiểm tra thông tin thiết bị miễn phí. Trình duyệt, HĐH, lõi CPU, bộ nhớ, GPU, màn hình, mạng, ngôn ngữ, múi giờ — tất cả thông tin thiết bị trong một trang.",
+  "keywords": ["kiểm tra thông tin thiết bị", "phát hiện trình duyệt", "thông tin hệ thống", "user agent", "thông tin phần cứng"],
+  "loading": "Đang phát hiện…",
+  "copyJson": "Sao chép JSON",
+  "copied": "Đã sao chép!",
+  "notAvailable": "(không khả dụng)",
+  "automation": "Phát hiện tự động hóa",
+  "real": "Trình duyệt thực",
+  "section": {
+    "browser": "Trình duyệt & HĐH",
+    "display": "Màn hình",
+    "hardware": "Phần cứng",
+    "network": "Mạng",
+    "userAgent": "Chuỗi User-Agent"
+  },
+  "field": {
+    "browser": "Trình duyệt",
+    "os": "Hệ điều hành",
+    "platform": "Nền tảng",
+    "language": "Ngôn ngữ chính",
+    "languages": "Tất cả ngôn ngữ",
+    "timezone": "Múi giờ",
+    "cookiesEnabled": "Cookie được bật",
+    "online": "Trạng thái online",
+    "doNotTrack": "Do Not Track",
+    "webdriver": "Webdriver",
+    "screenSize": "Kích thước màn hình",
+    "availSize": "Vùng khả dụng",
+    "windowSize": "Kích thước cửa sổ",
+    "colorDepth": "Độ sâu màu",
+    "pixelRatio": "devicePixelRatio",
+    "darkMode": "Ưu tiên chế độ tối",
+    "reducedMotion": "Giảm chuyển động",
+    "cpuCores": "Luồng CPU",
+    "deviceMemory": "Bộ nhớ thiết bị",
+    "touchPoints": "Điểm chạm",
+    "gpu": "GPU (WebGL)",
+    "storageQuota": "Dung lượng lưu trữ",
+    "storageUsage": "Lưu trữ đã dùng",
+    "connectionType": "Loại kết nối",
+    "downlink": "Tốc độ tải xuống",
+    "rtt": "Thời gian khứ hồi"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Những gì được thu thập",
+        "paragraphs": [
+          "Trình duyệt & HĐH: user-agent, trình duyệt/HĐH được phân tích, ngôn ngữ, múi giờ, cookie, trạng thái online. Cùng thông tin bất kỳ trang web nào bạn truy cập có thể đọc.",
+          "Màn hình: kích thước màn hình, kích thước viewport, độ sâu màu, devicePixelRatio (Retina/HiDPI), prefers-color-scheme, prefers-reduced-motion. Được trang web dùng cho thiết kế đáp ứng và khả năng tiếp cận.",
+          "Phần cứng: số luồng CPU (navigator.hardwareConcurrency), lớp bộ nhớ thiết bị (navigator.deviceMemory, tính bằng GB, ≥4 được báo cáo cắt gọn đến 8), điểm chạm tối đa, thông tin GPU từ WebGL, dung lượng lưu trữ và mức sử dụng hiện tại.",
+          "Mạng: loại kết nối hiệu quả (slow-2g/2g/3g/4g), tốc độ tải xuống (Mbps) và thời gian khứ hồi (ms) khi được trình duyệt hỗ trợ. Hữu ích cho tải thích nghi."
+        ]
+      },
+      {
+        "heading": "Quyền riêng tư: những gì trang web thấy và không thấy",
+        "paragraphs": [
+          "Mọi thứ hiển thị ở đây là thông tin mà bất kỳ trang web nào bạn truy cập đã có thể truy cập qua các API JavaScript chuẩn. Không cần quyền đặc biệt; tất cả đều có trong các đối tượng navigator và screen công khai. Vì vậy công cụ này mang tính thông tin, không phải thu thập.",
+          "Những gì trang web KHÔNG thấy (và công cụ này không thể hiển thị): địa chỉ IP của bạn (chỉ phía máy chủ, công cụ này hoàn toàn phía client), hệ thống tệp cục bộ, nội dung các tab trình duyệt khác, hoặc bất cứ điều gì ngoài hộp cát trình duyệt. Dấu vân tay trình duyệt kết hợp nhiều trường hiển thị này để xác định trình duyệt duy nhất, ngay cả không cần cookie — mối lo ngại về quyền riêng tư được ghi chép rộng rãi."
+        ]
+      },
+      {
+        "heading": "Hữu ích để gỡ lỗi",
+        "paragraphs": [
+          "Kiểm tra mobile so với desktop: user agent tiết lộ những gì trang web thấy. Đôi khi vấn đề đáp ứng đến từ lớp thiết bị bị phát hiện sai.",
+          "GPU/WebGL: 'GPU (WebGL)' hiển thị trình kết xuất đồ họa của bạn. Hữu ích khi các trang 3D phức tạp hoặc nặng canvas hoạt động kém — GPU của bạn có thể là điểm thắt cổ chai.",
+          "Lưu trữ: dung lượng lưu trữ cho biết localStorage/IndexedDB/cache trang web có thể sử dụng bao nhiêu. Mặc định thường là vài GB trên desktop, ít hơn trên mobile. Nếu ứng dụng web gặp 'quota exceeded', con số này là lý do."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Mở trang này", "text": "Phát hiện chạy tự động khi trang tải." },
+      { "name": "Đọc từng phần", "text": "Trình duyệt & HĐH, Màn hình, Phần cứng, Mạng, User-Agent." },
+      { "name": "Thay đổi kích thước cửa sổ", "text": "Kích thước cửa sổ và các trường liên quan dpi cập nhật trực tiếp." },
+      { "name": "Tùy chọn: sao chép dưới dạng JSON", "text": "Nhấp 'Sao chép JSON' để chụp toàn bộ ảnh chụp nhanh cho báo cáo lỗi hoặc so sánh." }
+    ]
+  },
+  "faq": [
+    { "q": "Công cụ này có gửi dữ liệu của tôi đi đâu không?", "a": "Không. Mọi thứ đều được phát hiện và hiển thị cục bộ trong trình duyệt của bạn. Không có gì được ghi lại hoặc truyền đi." },
+    { "q": "Tại sao một số trường hiển thị '(không khả dụng)'?", "a": "Trình duyệt khác nhau về các API chúng cung cấp. navigator.deviceMemory chỉ dành cho Chrome/Edge; navigator.connection chủ yếu là Chrome; dung lượng lưu trữ yêu cầu HTTPS. Safari và Firefox hạn chế nhiều hơn trong chế độ riêng tư." },
+    { "q": "Tại sao kích thước màn hình của tôi khác với độ phân giải mong đợi?", "a": "Trình duyệt báo cáo kích thước 'pixel CSS', không phải kích thước pixel vật lý. devicePixelRatio hiển thị hệ số nhân (ví dụ: 2,0 trên Retina). Độ phân giải vật lý = kích thước màn hình × devicePixelRatio." },
+    { "q": "'GPU (WebGL)' hiển thị gì?", "a": "Tên trình kết xuất đồ họa của bạn được WebGL báo cáo. Các trình duyệt mới hơn có thể che khuất điều này để bảo vệ chống dấu vân tay — ví dụ bạn có thể thấy 'Apple GPU' thay vì 'M2 Pro' trên macOS." },
+    { "q": "Tôi có thể tin vào user agent không?", "a": "Chuỗi user agent có thể bị giả mạo bởi các tiện ích mở rộng hoặc cài đặt trình duyệt. Chúng là gợi ý, không phải đảm bảo. Một số trình duyệt chủ động giảm chi tiết UA (Safari, Firefox trong chế độ riêng tư)." },
+    { "q": "Tại sao 'Luồng CPU' hiển thị 8 mặc dù CPU của tôi có 12?", "a": "navigator.hardwareConcurrency có thể bị giới hạn để bảo vệ chống dấu vân tay. Một số trình duyệt báo cáo tối đa 8 hoặc 16 ngay cả trên hệ thống nhiều lõi hơn." },
+    { "q": "Nếu mobile của tôi hiển thị 0 điểm chạm thì sao?", "a": "Trên mobile, maxTouchPoints thường ≥1. Nếu là 0, bạn có thể đang ở chế độ xem desktop. Hãy thử làm mới hoặc chuyển sang chế độ mobile trong cài đặt trình duyệt." },
+    { "q": "Công cụ này có hoạt động trên iPhone không?", "a": "Có, với các hạn chế của Safari iOS. Một số trường (deviceMemory, connection) có thể không khả dụng. User-agent và phát hiện trình duyệt/HĐH cơ bản luôn hoạt động." }
+  ]
+}

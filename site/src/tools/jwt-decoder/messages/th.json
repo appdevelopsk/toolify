@@ -1,0 +1,111 @@
+{
+  "title": "JWT Decoder (header, payload",
+  "shortDescription": "Decode JWT (JSON Web Token) ใด ๆ เป็นส่วน header, payload และ signature เน้น token ที่หมดอายุ เฉพาะเบราว์เซอร์ — token ไม่ออกจากอุปกรณ์",
+  "description": "วาง JWT เพื่อ decode header และ payload เป็น JSON ทันที รู้จัก standard claim (iat, exp, nbf) และแปลง Unix timestamp เป็น ISO 8601 แจ้งเตือน token ที่หมดอายุหรือยังไม่ถึงเวลาใช้งาน",
+  "metaDescription": "JWT decoder ฟรี ตรวจสอบ header payload การมี signature และวันหมดอายุ Standard claim (iat/exp/nbf)",
+  "keywords": [
+    "JWT decoder",
+    "JSON Web Token",
+    "decode JWT",
+    "JWT inspector",
+    "JWT debugger"
+  ],
+  "input": {
+    "token": "JWT token",
+    "privacyNote": "Decode ทั้งหมดในเบราว์เซอร์ของคุณ Token ไม่เดินทางผ่านเครือข่าย"
+  },
+  "result": {
+    "header": "Header",
+    "payload": "Payload",
+    "signaturePresent": "มี Signature",
+    "issuedAt": "ออกเมื่อ (iat)",
+    "expiresAt": "หมดอายุเมื่อ (exp)",
+    "notBefore": "ยังไม่ถูกต้องก่อน (nbf)"
+  },
+  "warning": {
+    "expired": "⚠ Token นี้หมดอายุแล้ว เซิร์ฟเวอร์ที่ยอมรับ exp จะปฏิเสธมัน",
+    "notYetValid": "⚠ ยังไม่ถูกต้อง (nbf อยู่ในอนาคต) เซิร์ฟเวอร์จะปฏิเสธจนกว่าจะถึงเวลานั้น"
+  },
+  "error": {
+    "label": "ข้อผิดพลาด Decode"
+  },
+  "copy": "คัดลอก",
+  "article": {
+    "sections": [
+      {
+        "heading": "JWT หน้าตาเป็นอย่างไร",
+        "paragraphs": [
+          "JWT คือสามส่วนที่เข้ารหัส Base64url เชื่อมด้วยจุด: header.payload.signature แต่ละส่วนเป็น JSON object ที่เข้ารหัสสำหรับการส่งที่ปลอดภัยกับ URL Header ประกาศอัลกอริทึมการลงนาม payload พกข้อมูล claim (subject, วันหมดอายุ ข้อมูลกำหนดเอง) และ signature ให้ผู้รับยืนยันความสมบูรณ์ถ้ามีคีย์",
+          "Decoder นี้อ่านเฉพาะสองส่วนแรก Signature คือส่วนที่สาม แต่การยืนยันต้องใช้ secret/public key — นั่นเป็นการดำเนินการแยกต่างหากที่เราไม่ทำที่นี่"
+        ]
+      },
+      {
+        "heading": "Standard claim ที่ควรรู้",
+        "paragraphs": [
+          "iss (issuer): ผู้สร้าง token iat (issued at): เมื่อใด เป็น Unix timestamp exp (expiry): เมื่อหยุดใช้งาน เป็น Unix เช่นกัน nbf (not before): เวลาที่เร็วที่สุดที่ควร honor sub (subject): entity ที่แสดง มักเป็น user ID aud (audience): token มีไว้สำหรับใคร มักเป็น service URL",
+          "ไม่ทั้งหมดจำเป็น JWT ที่ minimal มักมีแค่ sub + iat + exp Custom claim คืออะไรก็ตามอื่น ๆ — อยู่ร่วมกับ standard claim ใน payload"
+        ]
+      },
+      {
+        "heading": "ทำไม decoding ≠ verifying",
+        "paragraphs": [
+          "ใครก็ decode JWT ได้ — header และ payload เป็นแค่ JSON ที่เข้ารหัส Base64 นั่นคือเหตุผลที่เราพูดว่า 'อย่าใส่ secret ใน payload': พวกมันเป็นสาธารณะโดยพื้นฐาน",
+          "Verification หมายถึงการตรวจสอบ signature ต่อต้าน secret key (HMAC) หรือ public key (RSA/ECDSA) โดยไม่มี verification คุณไม่สามารถเชื่อถือ claim ใด ๆ ใน payload ได้ — ผู้โจมตีสามารถสร้าง payload ใด ๆ ที่พวกเขาต้องการ",
+          "ใช้เครื่องมือนี้เพื่อตรวจสอบ token ระหว่าง debug ใช้ JWT library บนเซิร์ฟเวอร์เพื่อยืนยันใน production"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "วาง JWT",
+        "text": "สามส่วนเชื่อมด้วยจุด"
+      },
+      {
+        "name": "อ่านส่วนที่ decode แล้ว",
+        "text": "Header (อัลกอริทึม) payload (claim) flag การมี signature"
+      },
+      {
+        "name": "ตรวจสอบวันหมดอายุ",
+        "text": "Standard claim iat/exp/nbf จัดรูปแบบอัตโนมัติเป็นวันที่ ISO และแจ้งเตือนถ้าหมดอายุหรือยังไม่ถูกต้อง"
+      },
+      {
+        "name": "คัดลอกตามต้องการ",
+        "text": "แต่ละส่วนมีปุ่มคัดลอกสำหรับ JSON output"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "ยืนยัน signature ที่นี่ได้ไหม?",
+      "a": "ไม่ — verification ต้องการ secret หรือ public key ซึ่งไม่ควรออกจากสภาพแวดล้อมที่เชื่อถือได้ ใช้ JWT library ฝั่งเซิร์ฟเวอร์ (jsonwebtoken สำหรับ Node, PyJWT สำหรับ Python ฯลฯ)"
+    },
+    {
+      "q": "Token ออกจากเบราว์เซอร์ไหม?",
+      "a": "ไม่เลย Decoding ทำงานในเครื่อง เราไม่มี server endpoint เพื่อรับมัน"
+    },
+    {
+      "q": "ทำไม token ของฉัน 'ไม่ถูกต้อง'?",
+      "a": "พบบ่อย: copy-paste เพิ่ม/ลบช่องว่าง หายไปหนึ่งในสามส่วน หรือส่วนหนึ่งเป็น Base64url ที่ไม่ดี ตัดแต่งและลองใหม่"
+    },
+    {
+      "q": "Base64url เทียบกับ Base64 ต่างกันอย่างไร?",
+      "a": "Base64url แทนที่ '+' ด้วย '-', '/' ด้วย '_' และลบ padding '=' เพื่อให้ string ที่เข้ารหัสปลอดภัยใน URL และ HTTP header JWT ใช้ Base64url เสมอ"
+    },
+    {
+      "q": "ทำไม Unicode payload ของฉันถึงแสดงข้อความผิด?",
+      "a": "เรา decode UTF-8 ซึ่งเป็นมาตรฐาน ถ้า payload ถูกเข้ารหัสต่างกัน JSON.parse อาจล้มเหลว ผู้ออก JWT ส่วนใหญ่ encode UTF-8 ถูกต้อง"
+    },
+    {
+      "q": "HS256 ปลอดภัยหรือไม่?",
+      "a": "ถ้า secret ยาวพอ (≥256 bit) และเก็บเป็นความลับ ใช่ ช่องโหว่ HS256 ที่พบบ่อยคือ secret ที่อ่อนแอและการยอมรับ token ที่มี alg='none' ใช้ secret สุ่ม ≥32 ตัวอักษรและปฏิเสธ 'none' อย่างชัดเจน"
+    },
+    {
+      "q": "ทำไมชอบ RS256 มากกว่า HS256?",
+      "a": "RS256 (RSA แบบ asymmetric) ให้คุณเผยแพร่ public key สำหรับการยืนยันในขณะที่เก็บ signing key ไว้เป็นส่วนตัว HS256 (HMAC แบบ symmetric) ต้องแชร์ secret กับทุก verifier สำหรับสถาปัตยกรรมหลายบริการ RS256 ปลอดภัยกว่า"
+    },
+    {
+      "q": "Decode token ขนาดใหญ่ได้ไหม?",
+      "a": "ขีดจำกัดในทางปฏิบัติคือ ~10 MB ของ input เกินจากนั้นเบราว์เซอร์อาจช้า JWT มักต่ำกว่า 4 KB ถ้าของคุณใหญ่กว่า พิจารณาว่าคุณเก็บข้อมูลมากเกินไปใน claim หรือไม่"
+    }
+  ]
+}

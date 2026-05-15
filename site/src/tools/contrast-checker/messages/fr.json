@@ -1,0 +1,62 @@
+{
+  "title": "Vérificateur de contraste (niveaux WCAG AA / AAA)",
+  "shortDescription": "Vérifie le ratio de contraste des couleurs entre le texte et l'arrière-plan. Affiche un aperçu en direct et des badges de réussite/échec WCAG AA et AAA pour les tailles de texte normales et grandes.",
+  "description": "Choisis une couleur de premier plan et d'arrière-plan pour calculer le ratio de contraste WCAG. L'aperçu de texte en direct et les quatre badges de niveau (AA normal, AA grand, AAA normal, AAA grand) se mettent à jour en temps réel.",
+  "metaDescription": "Vérificateur de contraste WCAG gratuit. Compare n'importe quelle couleur texte/fond et vois les badges de réussite/échec AA et AAA avec un aperçu de texte en direct.",
+  "keywords": ["vérificateur de contraste", "contraste WCAG", "couleur AA AAA", "couleur accessibilité", "ratio de couleur"],
+  "input": { "fg": "Premier plan (texte)", "bg": "Arrière-plan" },
+  "result": { "label": "Ratio de contraste" },
+  "preview": {
+    "large": "Exemple de grand titre (24px+ ou 18,66px+ gras)",
+    "normal": "Exemple de texte de corps normal pour les paragraphes courants.",
+    "small": "Texte plus petit utilisé pour les légendes, notes de bas de page et étiquettes."
+  },
+  "badge": {
+    "aaNormal": "WCAG AA — Texte normal",
+    "aaLarge": "WCAG AA — Grand texte",
+    "aaaNormal": "WCAG AAA — Texte normal",
+    "aaaLarge": "WCAG AAA — Grand texte"
+  },
+  "empty": "Entre deux couleurs valides (HEX) pour voir le ratio de contraste.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionne le ratio de contraste",
+        "paragraphs": [
+          "WCAG (Règles pour l'accessibilité des contenus Web) définit le contraste comme le rapport entre la luminance relative de deux couleurs. La formule linéarise chaque canal sRGB, les pondère selon la sensibilité de l'œil humain (R 0,2126, G 0,7152, B 0,0722), puis calcule (plus clair + 0,05) / (plus sombre + 0,05). Le résultat va de 1:1 (identique) à 21:1 (noir sur blanc).",
+          "Nous calculons cela dans ton navigateur en utilisant la formule officielle WCAG 2.x. Les quatre badges de niveau vérifient par rapport aux seuils AA de 4,5:1 (normal) et 3:1 (grand), et aux seuils AAA de 7:1 (normal) et 4,5:1 (grand). Le « grand texte » correspond à 24px/18pt ou plus, ou 18,66px/14pt et gras."
+        ]
+      },
+      {
+        "heading": "Pourquoi passer le niveau AA au minimum",
+        "paragraphs": [
+          "Le niveau AA est juridiquement contraignant dans de nombreux pays (loi française sur le numérique pour les services publics, directive européenne sur l'accessibilité web, EN 301 549). Échouer au niveau AA pour le texte principal est le problème d'accessibilité le plus fréquent et le plus facile à corriger pendant la conception plutôt qu'après le lancement.",
+          "Le niveau AAA est recommandé pour la lecture longue durée, les services gouvernementaux et les interfaces à enjeux élevés. Il est strict — le premier instinct d'un designer avec du gris pâle sur blanc échoue souvent facilement au niveau AAA. Si ton site sert principalement du contenu consulté rapidement, vise AA ; si tu publies des articles, des livres ou des informations critiques, vise AAA."
+        ]
+      },
+      {
+        "heading": "Erreurs courantes",
+        "paragraphs": [
+          "« Ça a l'air bien sur mon écran. » Les écrans calibrés, l'éclairage fluorescent de bureau et l'utilisation d'un smartphone en extérieur changent tous le contraste perçu. Utilise le ratio, pas ton œil.",
+          "Concevoir le mode sombre en inversant les codes hex. L'inversion change la teinte et casse le contraste. Re-teste chaque paire de couleurs après avoir changé de thème.",
+          "Faire confiance aux chartes graphiques. Beaucoup de palettes de marque ont été choisies avant la prise de conscience WCAG. Si le rose de marque sur blanc échoue, propose un rose légèrement plus foncé pour le texte de corps et réserve l'original pour un usage décoratif."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choisis le premier plan", "text": "La couleur du texte." },
+      { "name": "Choisis l'arrière-plan", "text": "La couleur derrière le texte." },
+      { "name": "Lis le ratio et les badges", "text": "Le nombre est le ratio WCAG. Les quatre badges montrent la réussite/l'échec pour AA et AAA aux tailles de texte normales et grandes." }
+    ]
+  },
+  "faq": [
+    { "q": "Quelle est la différence entre AA et AAA ?", "a": "AA exige 4,5:1 pour le texte normal et 3:1 pour le grand texte. AAA durcit à 7:1 et 4,5:1. AAA est recommandé mais pas toujours atteignable." },
+    { "q": "Qu'est-ce que le « grand texte » ?", "a": "WCAG le définit comme 18pt (24px) ou plus, ou 14pt (18,66px) et gras." },
+    { "q": "Cet outil prend-il en charge la transparence ?", "a": "Pas encore. Choisis la couleur réelle que l'utilisateur voit (premier plan composité sur l'arrière-plan). La prise en charge de la transparence pourrait venir ultérieurement." },
+    { "q": "Pourquoi ma marque ne passe-t-elle pas ?", "a": "Beaucoup de palettes de marque ont été choisies pour des raisons esthétiques, pas d'accessibilité. Corrections courantes : assombrir les couleurs d'accent utilisées comme texte, réserver les variantes claires pour les arrière-plans ou les éléments décoratifs." },
+    { "q": "Le ratio est-il identique au « contraste perçu » ?", "a": "Non — WCAG 2.x utilise une formule simplifiée basée sur la luminance. WCAG 3 (en développement) utilise APCA, qui prédit mieux le contraste perçu mais n'est pas encore normalisé." },
+    { "q": "Quel ratio pour les icônes ou les contrôles d'interface ?", "a": "WCAG 2.1 a ajouté un minimum de 3:1 pour le contraste non textuel (icônes, contrôles de formulaires, indicateurs de focus). Utilise le même vérificateur — atteins ou dépasse 3:1." },
+    { "q": "Ça fonctionne pour les graphiques ?", "a": "Le même seuil s'applique entre les couleurs adjacentes qui transmettent une signification. Pour la visualisation de données, 3:1 entre les couleurs adjacentes est le minimum WCAG 1.4.11." },
+    { "q": "Les données sont-elles envoyées quelque part ?", "a": "Non. Le calcul s'effectue localement dans ton navigateur." }
+  ]
+}

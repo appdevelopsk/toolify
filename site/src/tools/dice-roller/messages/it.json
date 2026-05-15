@@ -1,0 +1,102 @@
+{
+  "title": "Tira Dadi (d4 fino a d100, con modificatore e cronologia)",
+  "shortDescription": "Lancia qualsiasi numero di dadi con qualsiasi numero di facce. Casuale crittograficamente, con modificatore (+N), totale progressivo e cronologia dei lanci.",
+  "description": "Scegli il numero, le facce (4, 6, 8, 10, 12, 20, 100, o personalizzato fino a 1000) e il modificatore. Ogni lancio usa crypto.getRandomValues per una distribuzione uniforme imparziale.",
+  "metaDescription": "Tira dadi gratuito per D&D e qualsiasi GdR. d4/d6/d8/d10/d12/d20/d100 + personalizzato, modificatore, cronologia.",
+  "keywords": [
+    "tira dadi",
+    "dadi online",
+    "lancio d20",
+    "dadi GdR",
+    "d6 d10 d100"
+  ],
+  "input": {
+    "count": "Quanti",
+    "sides": "Facce",
+    "modifier": "Modificatore (±)"
+  },
+  "roll": "Lancia {count}d{sides}{modifier}",
+  "result": {
+    "total": "Totale",
+    "history": "Lanci recenti"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Come vengono generati i lanci",
+        "paragraphs": [
+          "Ogni dado usa crypto.getRandomValues — l'API casuale crittograficamente sicura del browser, la stessa primitiva che supporta le sessioni HTTPS. Applichiamo anche il rejection sampling per garantire che ogni faccia abbia esattamente la stessa probabilità, indipendentemente dalla dimensione del dado. Il semplice `random % facce` introduce bias quando le facce non si dividono uniformemente in 2³².",
+          "Questo significa che un d100 non è leggermente distorto verso 1-36 (cosa che accadrebbe con un modulo implementato male), e un d3 non favorisce 1 rispetto a 2 o 3. La matematica è identica a quella dei dadi fisici con precisione infinita."
+        ]
+      },
+      {
+        "heading": "Notazione GdR (giochi di ruolo da tavolo)",
+        "paragraphs": [
+          "Notazione comune: 'NdS+M' dove N è il numero di dadi, S è le facce, M è il modificatore. '2d6+3' significa lanciare 2 dadi a sei facce e aggiungere 3. '1d20+5' è un tipico lancio di attacco di D&D con un modificatore di +5 dal bonus del personaggio.",
+          "Set di dadi standard: d4 (piramide), d6 (cubo), d8 (ottaedro), d10 (trapezio pentagonale), d12 (dodecaedro), d20 (icosaedro). Il d100 di solito si lancia come 2d10 (uno per le decine, uno per le unità). Usa il preset d100 per saltare la conversione manuale."
+        ]
+      },
+      {
+        "heading": "Casi d'uso comuni",
+        "paragraphs": [
+          "D&D / Pathfinder / GdR: d20+5 per gli attacchi, 1d8+3 per i danni, 4d6 scarta il più basso per la creazione del personaggio.",
+          "Selezione casuale: scegli un vincitore tra N persone lanciando un dN. Per 7 persone, imposta facce=7. La casualità crittografica garantisce l'equità.",
+          "Lezioni di probabilità: lancia molti dadi e osserva la distribuzione. La somma di più dadi si avvicina a una distribuzione normale (teorema del limite centrale).",
+          "Processo decisionale: 'devo fare X' con un 50/50? Lancia un d2 (2 facce). Vuoi una decisione ponderata? Usa un d10 e decidi le soglie (1-7 = sì, 8-10 = no per 70/30)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Scegli un preset di dado",
+        "text": "Oppure digita un numero personalizzato di facce da 2 a 1000."
+      },
+      {
+        "name": "Imposta il conteggio",
+        "text": "Quanti dadi lanciare contemporaneamente. Fino a 50."
+      },
+      {
+        "name": "Aggiungi un modificatore",
+        "text": "Numero fisso facoltativo aggiunto alla somma."
+      },
+      {
+        "name": "Lancia",
+        "text": "Totale, lanci individuali e cronologia recente tutti visualizzati."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "I lanci sono davvero equi?",
+      "a": "Sì. Usiamo crypto.getRandomValues (il generatore casuale sicuro) più il rejection sampling in modo che ogni faccia abbia esattamente la stessa probabilità — nessun bias dai bordi dall'operazione modulo."
+    },
+    {
+      "q": "Qual è il numero massimo di dadi?",
+      "a": "50 per lancio. Per di più, lancia semplicemente più volte — ogni lancio è indipendente."
+    },
+    {
+      "q": "Qual è il numero massimo di facce?",
+      "a": "1000. Oltre ciò la matematica funziona ancora ma il caso d'uso diventa artificioso."
+    },
+    {
+      "q": "Posso salvare le mie combinazioni di dadi preferite?",
+      "a": "Non ancora. Potremmo aggiungere preset salvati in seguito per i tuoi lanci di combattimento comuni."
+    },
+    {
+      "q": "Perché il d20 è famoso?",
+      "a": "Dungeons & Dragons lo ha reso popolare per i controlli di abilità e i lanci di attacco. Ogni faccia ha il 5% di probabilità — granularità fine per le differenze di abilità senza la contabilità di un percentile (d100)."
+    },
+    {
+      "q": "Perché la cronologia mostra solo 10 lanci?",
+      "a": "Per mantenere la pagina ordinata. Per registri più lunghi, incolla ogni risultato in un file di note o nella scheda del personaggio del GdR."
+    },
+    {
+      "q": "Sostituirà i miei dadi fisici?",
+      "a": "Funzionalmente sì, specialmente per i giochi online. I dadi fisici sono amati per la tatticità e il rituale — ma matematicamente un lancio digitale con RNG crittografico è almeno altrettanto equo di un d20 fisico."
+    },
+    {
+      "q": "I dati lasciano il mio browser?",
+      "a": "No. Ogni lancio avviene localmente."
+    }
+  ]
+}

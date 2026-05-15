@@ -1,0 +1,109 @@
+{
+  "title": "Chercher et Remplacer (littéral ou regex, avec options)",
+  "shortDescription": "Remplace du texte avec une recherche/remplacement littéral ou regex complet. Active/désactive la sensibilité à la casse et le mode multiligne. Nombre de correspondances affiché en direct.",
+  "description": "Colle du texte, définis les chaînes de recherche et de remplacement, active optionnellement le regex / insensibilité à la casse / multiligne, et vois le texte modifié plus le nombre de correspondances instantanément.",
+  "metaDescription": "Outil chercher-remplacer gratuit pour le texte. Mode littéral ou regex, option insensible à la casse, nombre de correspondances en direct.",
+  "keywords": [
+    "chercher et remplacer",
+    "remplacement texte",
+    "remplacement regex",
+    "recherche remplacement",
+    "édition texte en masse"
+  ],
+  "input": {
+    "text": "Texte source",
+    "find": "Chercher",
+    "replace": "Remplacer par"
+  },
+  "opt": {
+    "regex": "Regex",
+    "caseSensitive": "Sensible à la casse",
+    "multiline": "Multiligne ^ / $"
+  },
+  "output": {
+    "result": "Résultat",
+    "matches": "{n} correspondances"
+  },
+  "error": "Erreur regex",
+  "copy": "Copier",
+  "copied": "Copié",
+  "article": {
+    "sections": [
+      {
+        "heading": "Deux modes — littéral et regex",
+        "paragraphs": [
+          "Littéral (regex désactivé) : la chaîne de recherche est mise en correspondance exactement. Les caractères spéciaux comme '.' et '*' sont traités comme eux-mêmes. C'est la valeur par défaut sûre pour la plupart des éditions de texte quotidiennes.",
+          "Regex (regex activé) : la chaîne de recherche est interprétée comme une expression régulière JavaScript. Utilise cela pour les motifs — par exemple /\\b[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}\\b/ pour trouver des e-mails, ou (^.+:) pour correspondre aux étiquettes en début de ligne. En mode multiligne, ^ et $ correspondent aux sauts de ligne."
+        ]
+      },
+      {
+        "heading": "Syntaxe spéciale de la chaîne de remplacement",
+        "paragraphs": [
+          "En mode regex, la chaîne de remplacement supporte les rétro-références : $1, $2 etc. pour les groupes de capture ; $& pour toute la correspondance ; $$ pour un signe dollar littéral. Exemple : cherche /(\\+33|0)(\\d{9})/ remplace ($1)$2 pour reformater des numéros de téléphone français.",
+          "En mode littéral, la chaîne de remplacement est prise telle quelle — pas de rétro-références, pas de traitement spécial. Ce que tu tapes est ce qui est inséré."
+        ]
+      },
+      {
+        "heading": "Utilisations courantes",
+        "paragraphs": [
+          "Édition en masse : standardiser l'orthographe ('couleur' → 'color' pour un style international), mettre à jour les noms de produits, corriger les fautes de frappe dans de longs documents.",
+          "Refactorisation de code : renommer une variable dans un extrait de code collé (utilise la sensibilité à la casse). Pour une vraie refactorisation sur de nombreux fichiers, un IDE est préférable.",
+          "Nettoyage de données : convertir les tabulations en virgules dans un CSV, remplacer un délimiteur par un autre, normaliser les espaces.",
+          "Markdown vers texte brut : supprimer la syntaxe Markdown avec regex (ex. /\\*\\*([^*]+)\\*\\*/g → $1 pour supprimer les marqueurs de gras)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Colle ton texte",
+        "text": "Ou tape-le directement."
+      },
+      {
+        "name": "Saisis chercher et remplacer",
+        "text": "Chercher : ce qu'il faut trouver. Remplacer par : ce par quoi le substituer."
+      },
+      {
+        "name": "Active les options si nécessaire",
+        "text": "Regex pour les motifs ; insensible à la casse pour les correspondances flexibles ; multiligne pour les motifs d'ancre de ligne."
+      },
+      {
+        "name": "Lis le résultat et copie",
+        "text": "Le nombre de correspondances indique combien de remplacements ont été effectués."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "En quoi est-ce différent du testeur regex ?",
+      "a": "Cet outil est axé sur l'opération de remplacement. Le testeur regex se concentre sur l'inspection des correspondances et des groupes de capture. Utilise celui qui convient à la tâche."
+    },
+    {
+      "q": "Puis-je utiliser Unicode dans chercher/remplacer ?",
+      "a": "Oui. Les chaînes de recherche et de remplacement supportent l'UTF-8 complet incluant les emoji et les caractères CJK."
+    },
+    {
+      "q": "Pourquoi mon chercher/remplacer n'a-t-il pas fonctionné ?",
+      "a": "Le plus souvent : sensibilité à la casse. 'Bonjour' ne correspondra pas à 'bonjour' sauf si tu actives l'insensibilité à la casse. Ou des caractères regex spéciaux en mode littéral mal interprétés."
+    },
+    {
+      "q": "Est-ce que ça préserve la mise en forme ?",
+      "a": "Ça préserve le texte exactement sauf pour les correspondances. Si ton texte a des tabulations ou des sauts de ligne spécifiques, ils sont préservés."
+    },
+    {
+      "q": "Puis-je annuler un remplacement ?",
+      "a": "L'original est dans le champ de saisie. Re-colle depuis là ou utilise le comportement d'annulation de texte de ton navigateur. On n'a pas d'annulation intégrée."
+    },
+    {
+      "q": "Quelle taille peut avoir mon texte ?",
+      "a": "Les textes de plusieurs mégaoctets fonctionnent, bien que le regex sur des entrées énormes puisse être lent si le motif est mal écrit."
+    },
+    {
+      "q": "Quelle est la meilleure façon d'apprendre le regex ?",
+      "a": "Commence par le mode littéral et passe au regex quand tu as besoin de motifs. Cherche 'JavaScript regex aide-mémoire' ou réfère-toi à la documentation RegExp de MDN."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Tout le chercher/remplacer s'exécute localement."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "title": "Zufallszahlengenerator (kryptografisch sicher, Eindeutigkeitsmodus)",
+  "shortDescription": "Generiere zufällige ganze Zahlen in beliebigen Bereichen mit der sicheren Zufalls-API deines Browsers. Optional Eindeutigkeit für Lotterie-, Gewinnspiel- oder Stichproben-Anwendungsfälle.",
+  "description": "Wähle Minimum, Maximum und Anzahl, um kryptografisch sichere zufällige ganze Zahlen zu generieren. ‚Eindeutig' aktivieren für Stichproben ohne Zurücklegen (Gewinnspiele, Lotterien).",
+  "metaDescription": "Kostenloser kryptografisch sicherer Zufallszahlengenerator. Bereich und Anzahl setzen, optional eindeutig. Für Lotterie, Gewinnspiele, randomisiertes Testen und Spiele.",
+  "keywords": ["Zufallszahlengenerator", "sichere Zufallszahl", "Lottozahlen generieren", "Zufallszahl", "Zufallsgenerator"],
+  "empty": "Bereich festlegen und auf ‚Neu generieren' klicken, um Zufallszahlen zu erhalten.",
+  "input": {
+    "min": "Minimum",
+    "max": "Maximum",
+    "count": "Wie viele"
+  },
+  "unique": "Alle eindeutig (keine Duplikate)",
+  "regenerate": "Neu generieren",
+  "copyAll": "Alle kopieren",
+  "copied": "Kopiert",
+  "error": {
+    "invalidRange": "Minimum muss kleiner oder gleich Maximum sein.",
+    "tooManyUnique": "Kann nicht mehr eindeutige Zahlen wählen als der Bereich erlaubt."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Warum das wirklich zufällig ist",
+        "paragraphs": [
+          "Wir verwenden crypto.getRandomValues – die kryptografisch sichere Zufallsquelle des Browsers – statt Math.random(). Die CSPRNG-Ausgabe kann nicht aus vorherigen Werten vorhergesagt werden, was bei Lotterieziehungen, glücksspielnahen Anwendungen und jedem Verwendungszweck wichtig ist, bei dem ‚zufällig' eine echte Anforderung ist, nicht nur ‚beliebig'.",
+          "Wir verwenden auch Rejection Sampling, um die Verteilung über den gewählten Bereich exakt gleichmäßig zu machen. Naives ‚Zufall % Bereich' führt zu Verzerrung, wenn der Bereich 2³² nicht gleichmäßig teilt. Rejection Sampling verwirft Werte, die Verzerrung verursachen würden, und versucht es erneut, sodass jede Zahl in deinem Bereich exakt dieselbe Wahrscheinlichkeit hat."
+        ]
+      },
+      {
+        "heading": "Eindeutig vs. Duplikate erlaubt",
+        "paragraphs": [
+          "Standardmodus: jede Zahl ist unabhängig – Duplikate können auftreten. Das ist was ‚zufällig' im alltäglichen Gebrauch bedeutet (Würfeln, Film auswählen, randomisiertes Testen).",
+          "Eindeutig-Modus: Stichprobe ohne Zurücklegen – sobald eine Zahl gewählt ist, kann sie in derselben Runde nicht erneut gewählt werden. Nützlich für: Lotterie (z. B. 6 Zahlen aus 1–49), Gewinnspiele (Gewinner ziehen), Teamzuweisungen und jede ‚Wähle N aus M'-Situation. Erfordert Anzahl ≤ Bereich."
+        ]
+      },
+      {
+        "heading": "Häufige Anwendungsfälle",
+        "paragraphs": [
+          "Lotterie / Gewinnspiel: 6 eindeutige Zahlen aus 1–49, oder was deine Ziehung verwendet. ‚Eindeutig' aktivieren.",
+          "Würfelwürfe: Bereich 1–6 (oder 1–20 für W20). ‚Eindeutig' deaktiviert lassen, sodass jeder Wurf unabhängig ist.",
+          "Zufallsstichproben zum Testen: 10 zufällige Benutzer-IDs aus 1–10.000 für Stichprobenprüfungen. ‚Eindeutig' verwenden, um Duplikate zu vermeiden.",
+          "Münzwurf simulieren: Bereich 0–1, mehrere Ergebnisse. Kopf/Zahl für Fairness-Prüfungen auszählen (bei großen Stichproben ~50/50)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Bereich festlegen", "text": "Minimum und Maximum – beide inklusive. Negative Zahlen erlaubt." },
+      { "name": "Anzahl festlegen", "text": "1 bis 100 Zahlen pro Generierung." },
+      { "name": "‚Eindeutig' bei Bedarf aktivieren", "text": "Ein für Stichproben ohne Zurücklegen (Gewinnspiele, Lotterien)." },
+      { "name": "Neu generieren klicken", "text": "Jedes Mal wird ein neues Set gezogen. Bei Bedarf alle auf einmal kopieren." }
+    ]
+  },
+  "faq": [
+    { "q": "Ist das fair für Gewinnspiele oder Lotterien?", "a": "Die Zufälligkeit ist kryptografisch sicher und unverzerrt. Ob es für eine offizielle Lotterie rechtlich ‚fair' ist, hängt von den Regeln deiner Jurisdiktion ab – viele verlangen zertifizierte Hardware-RNGs." },
+    { "q": "Was ist der Unterschied zu Math.random()?", "a": "Math.random() verwendet einen Algorithmus, dessen Ausgabe von einem Angreifer aus vorherigen Ausgaben vorhergesagt werden kann. crypto.getRandomValues verwendet einen OS-Level-kryptografischen RNG, der nicht vorhergesagt werden kann. Für echte Fairness dieses verwenden." },
+    { "q": "Kann ich negative Zahlen erhalten?", "a": "Ja. Minimum auf einen negativen Wert setzen." },
+    { "q": "Was ist der maximale Bereich?", "a": "Begrenzt durch JavaScripts sicheren ganzzahligen Bereich (~2⁵³), aber praktisch kannst du ohne Probleme in den Milliardenbereich gehen. Das Rejection-Sampling verarbeitet jeden Bereich korrekt." },
+    { "q": "Warum schlägt ‚Eindeutig' fehl, wenn Anzahl > Bereich?", "a": "Wenn du 10 eindeutige Zahlen aus 1–5 wählst, gibt es vier nicht. Die Validierung erkennt das und bittet dich, den Bereich zu erweitern oder die Anzahl zu reduzieren." },
+    { "q": "Funktioniert das für Würfelwürfe?", "a": "Ja – Bereich auf 1–6 (oder welche Würfel du auch hast) setzen und ‚Eindeutig' deaktivieren, damit jeder Wurf unabhängig ist." },
+    { "q": "Kann ich den Seed speichern und reproduzieren?", "a": "Nein – sicheres Zufällig ist designbedingt ohne Seed. Wenn du reproduzierbare ‚Zufälligkeiten' zum Testen benötigst, eine seeded PRNG-Bibliothek verwenden." },
+    { "q": "Werden die Daten irgendwohin gesendet?", "a": "Nein. Die Generierung ist vollständig lokal." }
+  ]
+}

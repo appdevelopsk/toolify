@@ -1,0 +1,109 @@
+{
+  "title": "Tìm và Thay thế Văn bản (thường hoặc regex, có tùy chọn)",
+  "shortDescription": "Thay thế văn bản bằng tìm kiếm thường hoặc regex đầy đủ. Bật/tắt phân biệt chữ hoa/thường và chế độ nhiều dòng. Hiển thị số lượng khớp trực tiếp.",
+  "description": "Dán văn bản, đặt chuỗi tìm và thay thế, tùy chọn bật regex / không phân biệt hoa/thường / nhiều dòng và xem văn bản đã sửa cùng số lượng khớp ngay lập tức.",
+  "metaDescription": "Công cụ tìm và thay thế văn bản miễn phí. Chế độ thường hoặc regex, tùy chọn không phân biệt hoa/thường, đếm khớp trực tiếp.",
+  "keywords": [
+    "tìm và thay thế",
+    "thay thế văn bản",
+    "thay thế regex",
+    "tìm kiếm thay thế",
+    "chỉnh sửa văn bản hàng loạt"
+  ],
+  "input": {
+    "text": "Văn bản nguồn",
+    "find": "Tìm",
+    "replace": "Thay thế bằng"
+  },
+  "opt": {
+    "regex": "Regex",
+    "caseSensitive": "Phân biệt hoa/thường",
+    "multiline": "Nhiều dòng ^ / $"
+  },
+  "output": {
+    "result": "Kết quả",
+    "matches": "{n} khớp"
+  },
+  "error": "Lỗi regex",
+  "copy": "Sao chép",
+  "copied": "Đã sao chép",
+  "article": {
+    "sections": [
+      {
+        "heading": "Hai chế độ — thường và regex",
+        "paragraphs": [
+          "Thường (regex tắt): chuỗi tìm được khớp chính xác. Các ký tự đặc biệt như '.' và '*' được coi là chính chúng. Đây là mặc định an toàn cho hầu hết các chỉnh sửa văn bản hàng ngày.",
+          "Regex (regex bật): chuỗi tìm được diễn giải là biểu thức chính quy JavaScript. Dùng cho các mẫu — ví dụ /\\b\\w+@\\w+\\.\\w+\\b/ để tìm email, hoặc (^.+:) để khớp nhãn đầu dòng. Với chế độ nhiều dòng, ^ và $ khớp tại các dấu ngắt dòng."
+        ]
+      },
+      {
+        "heading": "Cú pháp đặc biệt chuỗi thay thế",
+        "paragraphs": [
+          "Khi ở chế độ regex, chuỗi thay thế hỗ trợ tham chiếu ngược: $1, $2... cho các nhóm bắt; $& cho toàn bộ khớp; $$ cho ký hiệu đô la thường. Ví dụ: tìm /(\\d{3})-(\\d{3})-(\\d{4})/ thay thế ($1) $2-$3 định dạng lại số điện thoại.",
+          "Ở chế độ thường, chuỗi thay thế được lấy nguyên vẹn — không có tham chiếu ngược, không xử lý đặc biệt. Những gì bạn nhập sẽ được chèn vào."
+        ]
+      },
+      {
+        "heading": "Các ứng dụng phổ biến",
+        "paragraphs": [
+          "Chỉnh sửa hàng loạt: chuẩn hóa chính tả, cập nhật tên sản phẩm, sửa lỗi đánh máy trong tài liệu dài.",
+          "Tái cấu trúc code: đổi tên biến trong đoạn code được dán (dùng phân biệt hoa/thường). Với tái cấu trúc thực sự trên nhiều file, IDE sẽ tốt hơn.",
+          "Làm sạch dữ liệu: chuyển tab thành dấu phẩy trong CSV, thay thế dấu phân cách, chuẩn hóa khoảng trắng.",
+          "Markdown sang thuần văn bản: loại bỏ cú pháp Markdown bằng regex (ví dụ /\\*\\*([^*]+)\\*\\*/g → $1 để xóa ký hiệu in đậm)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Dán văn bản",
+        "text": "Hoặc gõ trực tiếp."
+      },
+      {
+        "name": "Nhập tìm và thay thế",
+        "text": "Tìm là gì, thay thế bằng gì."
+      },
+      {
+        "name": "Bật tùy chọn nếu cần",
+        "text": "Regex cho mẫu; không phân biệt hoa/thường cho khớp linh hoạt; nhiều dòng cho mẫu neo đầu dòng."
+      },
+      {
+        "name": "Đọc kết quả và sao chép",
+        "text": "Số lượng khớp hiển thị bao nhiêu lần thay thế đã xảy ra."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Cái này khác công cụ regex tester như thế nào?",
+      "a": "Cái này tập trung vào thao tác thay thế. Công cụ regex tester tập trung vào kiểm tra các khớp và nhóm bắt. Dùng cái phù hợp với tác vụ."
+    },
+    {
+      "q": "Tôi có thể dùng Unicode trong tìm/thay thế không?",
+      "a": "Có. Cả chuỗi tìm và thay thế đều hỗ trợ UTF-8 đầy đủ bao gồm emoji và ký tự CJK."
+    },
+    {
+      "q": "Tại sao tìm/thay thế của tôi không hoạt động?",
+      "a": "Thường gặp nhất: phân biệt hoa/thường. 'Hello' không khớp 'hello' trừ khi bật không phân biệt hoa/thường. Hoặc các ký tự regex đặc biệt ở chế độ thường bị hiểu sai."
+    },
+    {
+      "q": "Cái này có giữ nguyên định dạng không?",
+      "a": "Có, giữ nguyên văn bản ngoại trừ các khớp. Nếu văn bản có tab hoặc ký tự xuống dòng cụ thể, chúng được giữ nguyên."
+    },
+    {
+      "q": "Tôi có thể hoàn tác thay thế không?",
+      "a": "Bản gốc nằm trong trường nhập liệu. Dán lại từ đó hoặc dùng thao tác lùi văn bản của trình duyệt. Chúng tôi không có hoàn tác tích hợp."
+    },
+    {
+      "q": "Văn bản có thể lớn đến đâu?",
+      "a": "Văn bản nhiều megabyte hoạt động được, mặc dù regex trên đầu vào rất lớn có thể chậm nếu mẫu được viết kém."
+    },
+    {
+      "q": "Cách học regex tốt là gì?",
+      "a": "Bắt đầu với chế độ thường và chuyển sang regex khi cần mẫu. Tìm kiếm 'JavaScript regex cheat sheet' hoặc tham khảo tài liệu RegExp của MDN."
+    },
+    {
+      "q": "Dữ liệu có rời khỏi trình duyệt không?",
+      "a": "Không. Tất cả tìm/thay thế chạy cục bộ."
+    }
+  ]
+}

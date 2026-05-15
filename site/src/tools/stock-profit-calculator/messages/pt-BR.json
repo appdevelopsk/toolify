@@ -1,0 +1,120 @@
+{
+  "title": "Calculadora de Lucro em Ações (com dividendos + impostos)",
+  "shortDescription": "Calcule o lucro de uma operação em ações incluindo corretagem de compra/venda, dividendos recebidos e imposto sobre ganho de capital. Retorna o lucro líquido após impostos e o ROI.",
+  "description": "Insira ações, preços de compra/venda, corretagens, dividendos recebidos e sua alíquota de imposto sobre ganho de capital. A calculadora retorna o ganho total, o imposto devido e o resultado líquido.",
+  "metaDescription": "Calculadora gratuita de lucro em ações com suporte a dividendos e impostos. Calcule o ganho de capital, renda de dividendos, impostos devidos e ROI pós-IR para qualquer",
+  "keywords": [
+    "calculadora de lucro em ações",
+    "lucro em ações",
+    "calculadora de ganho de capital",
+    "ROI de ações",
+    "lucro após imposto"
+  ],
+  "empty": "Insira ações, preços de compra e venda, dividendos e alíquota de imposto.",
+  "input": {
+    "shares": "Quantidade de ações",
+    "buyPrice": "Preço de compra (por ação)",
+    "sellPrice": "Preço de venda (por ação)",
+    "buyCommission": "Corretagem na compra",
+    "sellCommission": "Corretagem na venda",
+    "dividends": "Dividendos recebidos",
+    "taxPct": "Alíquota de IR sobre ganho de capital %"
+  },
+  "result": {
+    "afterTax": "Lucro líquido (após IR)",
+    "roi": "ROI (após IR)",
+    "cost": "Custo total",
+    "gross": "Receita bruta",
+    "capitalGain": "Ganho de capital",
+    "dividendsLabel": "Dividendos",
+    "totalGain": "Ganho total (antes do IR)",
+    "totalTax": "IR devido"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "O que compõe o lucro em ações",
+        "paragraphs": [
+          "O lucro em ações tem três componentes principais: ganho de capital (preço de venda menos preço de compra, vezes a quantidade, menos corretagens), dividendos recebidos durante o período de custódia e o imposto devido sobre o ganho combinado. A maioria das calculadoras calcula apenas um desses — calculamos os três para um resultado preciso após o IR.",
+          "Corretagens: muitas corretoras oferecem operações sem taxa de corretagem, mas ETFs, opções, FIIs e ações internacionais podem ainda ter custos. Verifique sempre a tabela de taxas da sua corretora. Além da corretagem, considere emolumentos e liquidação (cerca de 0,0325% na B3)."
+        ]
+      },
+      {
+        "heading": "Alíquota de IR: swing trade vs day trade",
+        "paragraphs": [
+          "Brasil: operações de renda variável em bolsa são tributadas em 15% sobre o ganho de capital para operações comuns (swing trade) e 20% para day trade. Há isenção de IR para vendas totais no mês inferiores a R$ 20.000 em ações (não se aplica a FIIs). Dividendos de ações nacionais são isentos de IR para pessoa física.",
+          "Prejuízos podem ser compensados com lucros futuros do mesmo tipo de ativo (operações comuns compensam com operações comuns; day trade com day trade). A compensação não tem prazo de validade.",
+          "ETFs e FIIs têm regras diferentes: ETFs de renda variável são tributados a 15% sem isenção de R$ 20.000; FIIs a 20% sobre o ganho de capital. Consulte seu contador para situações complexas."
+        ]
+      },
+      {
+        "heading": "O que esta calculadora não modela",
+        "paragraphs": [
+          "Custo de spread bid-ask: comprar no ask e vender no bid representa um custo implícito por operação. Para ações líquidas de grande porte é desprezível; para small caps menos líquidas pode ser 0,5-2%. Use preços de execução realistas.",
+          "Conversão de moeda: se você comprou ações em dólar com reais, seu retorno também é afetado pela variação do câmbio USD/BRL entre a compra e a venda. Não calculamos FX — insira os preços na sua moeda doméstica no momento de cada operação.",
+          "Compensação de prejuízos: esta calculadora não rastreia prejuízos acumulados para compensação. Consulte seu contador para situações com múltiplas operações e compensações de meses anteriores."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Insira a quantidade de ações",
+        "text": "Número de ações compradas."
+      },
+      {
+        "name": "Insira os preços de compra e venda",
+        "text": "Preços por ação em cada transação."
+      },
+      {
+        "name": "Insira as corretagens",
+        "text": "Taxas por operação na compra e na venda. Use 0 se sua corretora não cobra."
+      },
+      {
+        "name": "Insira os dividendos recebidos",
+        "text": "Total de dividendos, JCP e proventos pagos durante o período de custódia."
+      },
+      {
+        "name": "Insira a alíquota de IR",
+        "text": "Sua alíquota aplicável. Swing trade: 15%. Day trade: 20%."
+      },
+      {
+        "name": "Leia o detalhamento",
+        "text": "Lucro líquido após IR, ROI, ganho de capital, renda de dividendos, imposto total."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Funciona para ETFs e FIIs?",
+      "a": "Sim — a matemática é a mesma. Fundos podem distribuir dividendos e rendimentos; insira o total no campo de dividendos, ou use cálculos separados por fonte se as alíquotas forem diferentes."
+    },
+    {
+      "q": "E os dividendos reinvestidos?",
+      "a": "Cada reinvestimento é tratado como um novo lote em um custo médio ponderado. Esta calculadora assume uma única compra/venda — para múltiplos aportes, execute cálculos separados ou use o informe de rendimentos da corretora."
+    },
+    {
+      "q": "Por que a calculadora não aplica imposto sobre prejuízos?",
+      "a": "Corretamente — só aplicamos imposto quando o ganho de capital ou dividendos são positivos. Um prejuízo pode ser compensado com lucros futuros no Brasil, mas as regras variam e deixamos o tratamento de prejuízo para manipulação manual."
+    },
+    {
+      "q": "Existe isenção de IR para pessoa física?",
+      "a": "Sim. Vendas de ações (não ETFs, não FIIs) cujo total no mês seja inferior a R$ 20.000 são isentas de IR. Dividendos de empresas brasileiras são isentos. Modele isso usando alíquota 0% nesses casos."
+    },
+    {
+      "q": "Devo incluir emolumentos e liquidação B3?",
+      "a": "São custos pequenos (~0,0325% por operação, incluídos na nota de corretagem). Some-os à corretagem nos campos de comissão para um custo total mais preciso."
+    },
+    {
+      "q": "Como isso difere da calculadora de cripto?",
+      "a": "Ações pagam dividendos; cripto geralmente não. Cripto usa taxa percentual (varia por volume); ações geralmente usam corretagem fixa. A matemática é similar, mas as entradas diferem."
+    },
+    {
+      "q": "O ROI pode ser negativo?",
+      "a": "Sim. Se preço de venda + dividendos < preço de compra + corretagens, o ROI é negativo."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. O cálculo é feito localmente; nada é enviado para um servidor."
+    }
+  ]
+}

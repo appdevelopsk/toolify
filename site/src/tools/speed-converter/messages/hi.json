@@ -1,0 +1,57 @@
+{
+  "title": "Speed Converter (km/h, mph, m/s, knot, Mach)",
+  "shortDescription": "Common speed units के बीच convert करें: km/h, mph, m/s, ft/s, knots, और Mach। Vehicles, weather, aviation, और physics के लिए उपयोग।",
+  "description": "Speed type करें और source unit चुनें; सभी अन्य speed units एक साथ update होते हैं। Aviation context के लिए Mach (sea-level standard atmosphere) शामिल है।",
+  "metaDescription": "km/h, mph, m/s, ft/s, knots, और Mach के लिए मुफ्त speed converter। Exact conversion factors के साथ vehicle, aviation, और physics-friendly।",
+  "keywords": ["speed converter", "kmh से mph", "mph से kmh", "knot से kmh", "mach से kmh"],
+  "input": { "value": "मान", "from": "From unit" },
+  "unit": {
+    "mps": "Meters per second (m/s)",
+    "kmh": "Kilometers per hour (km/h)",
+    "mph": "Miles per hour (mph)",
+    "fps": "Feet per second (ft/s)",
+    "knot": "Knot (kn)",
+    "mach": "Mach (sea level, 20°C)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Speed conversion कैसे काम करता है",
+        "paragraphs": [
+          "सभी units internally meters per second के through pivot होती हैं। 1 km/h = 1/3.6 m/s, 1 mph = 0.44704 m/s (exactly), 1 knot = 1852/3600 m/s। ये factors exact length और time definitions से derived हैं, इसलिए conversion numerically exact है।",
+          "Mach special है: यह local speed of sound का ratio है, जो temperature और altitude पर depend करती है। हम conversion के लिए 343 m/s (sea level, 20°C) उपयोग करते हैं। Actual aviation में cruise altitudes ठंडी होने की वजह से Mach numbers slightly differ करते हैं।"
+        ]
+      },
+      {
+        "heading": "प्रत्येक unit कहाँ appear होती है",
+        "paragraphs": [
+          "Vehicles: दुनिया के अधिकांश भाग में km/h, US और UK में mph। Speed limits, speedometers, और vehicle specs इन्हें उपयोग करते हैं। भारत में km/h standard है।",
+          "Aviation: ground speed और indicated airspeed के लिए knots (1 nautical mile per hour ≈ 1.852 km/h)। High altitude पर jets के लिए Mach।",
+          "Marine: ship और boat speed के लिए knots।",
+          "Physics और engineering: m/s SI base unit के रूप में। Meteorology में wind speed scientific contexts में m/s उपयोग करती है।"
+        ]
+      },
+      {
+        "heading": "Useful reference points",
+        "paragraphs": [
+          "Walking: ~5 km/h ≈ 3 mph ≈ 1.4 m/s। Running: 10 km/h ≈ 6 mph moderate jog के लिए। Highway driving: 100 km/h ≈ 62 mph ≈ 28 m/s। Cruising airliner: 850 km/h ≈ 530 mph ≈ Mach 0.78। Speed of sound: 343 m/s ≈ 1235 km/h ≈ Mach 1.0।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Speed दर्ज करें", "text": "Value type करें।" },
+      { "name": "Source unit चुनें", "text": "Vehicle, aviation, marine, या physics।" },
+      { "name": "सभी units पढ़ें", "text": "हर दूसरी unit में conversion नीचे appear होता है।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या Mach value real life में altitude-dependent है?", "a": "हाँ। Sound ठंडी, thinner air में slower travel करती है। हम 343 m/s (sea level, 20°C) उपयोग करते हैं। 35,000 ft cruise altitude पर, 1 Mach ≈ 295 m/s है।" },
+    { "q": "Knot exactly क्या है?", "a": "1 knot = 1 nautical mile per hour = 1852/3600 m/s ≈ 0.5144 m/s ≈ 1.852 km/h ≈ 1.151 mph। 1929 से internationally standardized।" },
+    { "q": "Aviation और marine knots क्यों उपयोग करते हैं?", "a": "Nautical miles Earth की geometry के साथ align करते हैं (1 minute of latitude)। Navigation calculations simpler होती हैं जब speed और distance same system share करते हैं।" },
+    { "q": "क्या ये conversions exact हैं?", "a": "Mach को छोड़कर सभी। Non-Mach units exact integer ratios से linked हैं। Mach local temperature पर depend करता है।" },
+    { "q": "km/h में light की speed क्या है?", "a": "299,792,458 m/s × 3.6 = 1,079,252,848.8 km/h।" },
+    { "q": "मेरी running pace कैसे खोजें?", "a": "Pace time per distance है, speed नहीं। 5 min/km pace के लिए, यह 12 km/h या 7.46 mph है। km/h पाने के लिए 60 को pace minutes से divide करें।" },
+    { "q": "क्या यह aviation के लिए accurate enough है?", "a": "Learning और quick conversions के लिए, हाँ। Flight planning के लिए, certified avionics उपयोग करें।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। सभी math locally चलती है।" }
+  ]
+}

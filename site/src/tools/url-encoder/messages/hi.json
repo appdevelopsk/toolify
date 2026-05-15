@@ -1,0 +1,54 @@
+{
+  "title": "URL Encoder / Decoder (percent-encoding, UTF-8 safe)",
+  "shortDescription": "किसी भी text को URL percent-encoding में encode करें या encoded string को वापस decode करें। UTF-8 safe — emoji और Devanagari characters correctly handle करता है।",
+  "description": "URLs, query parameters, या form data में text safely embed करने के लिए use करें। Spaces, special characters, और Unicode (Devanagari और emoji सहित) correctly handle करता है।",
+  "metaDescription": "मुफ्त URL encoder और decoder। Text को percent-encoding में convert करें या encoded strings को plain text में decode करें। UTF-8 safe, सभी Unicode handle करता है।",
+  "keywords": ["URL encoder", "URL decoder", "percent encoding", "URI encode", "decodeURIComponent"],
+  "input": { "plain": "Plain text", "encoded": "Encoded URL string" },
+  "output": { "encoded": "Encoded result", "plain": "Decoded result" },
+  "mode": { "encode": "Encode", "decode": "Decode" },
+  "copy": "Copy",
+  "copied": "Copy हो गया",
+  "error": "Decode error",
+  "article": {
+    "sections": [
+      {
+        "heading": "URL encoding क्या है",
+        "paragraphs": [
+          "URLs ASCII characters के small set तक restricted हैं। कुछ और include करने के लिए — spaces, accents, Devanagari characters, emoji, special symbols — प्रत्येक unsafe byte को %XX से replace करते हैं जहाँ XX उसका hexadecimal byte value है। Space %20 बनता है, slash %2F, और Devanagari 'क' %E0%A4%95 बनता है (इसके UTF-8 bytes percent-encoded)।",
+          "यह calculator browser का built-in encodeURIComponent और decodeURIComponent उपयोग करता है। यह सब कुछ encode करता है जो unreserved character नहीं है (letters, digits, -._~), जो query parameters और form data के लिए सही behavior है।"
+        ]
+      },
+      {
+        "heading": "encodeURI बनाम encodeURIComponent",
+        "paragraphs": [
+          "JavaScript में दो encoders हैं। encodeURI URL structure characters (/ ? & # = + आदि) को alone छोड़ता है — full URL पर use करें। encodeURIComponent उन सब को escape करता है — query parameter के अंदर value पर use करें।",
+          "यह tool encodeURIComponent उपयोग करता है, URL में arbitrary text embed करने के लिए safer choice। यदि आपके पास preserve करने वाला structure वाला full URL है, केवल उन parts को encode करें जिन्हें इसकी जरूरत है।"
+        ]
+      },
+      {
+        "heading": "Common gotchas",
+        "paragraphs": [
+          "Plus sign URLs में। कुछ servers '+' को space treat करते हैं (form encoding की legacy)। encodeURIComponent '+' को alone छोड़ता है, लेकिन server इसे space में decode कर सकता है। Safe रहने के लिए, '+' को %2B से replace करें यदि इसे data के रूप में send कर रहे हैं।",
+          "Double encoding। Already-encoded string encode करने से another layer add होती है (% %25 बनता है, तो '%20' %2520 बनता है)। Encode run करने से पहले हमेशा check करें कि input already encoded है या नहीं।",
+          "Length increase। UTF-8 multi-byte characters 3-4 percent-codes में expand होते हैं। 100-character Hindi string easily 900+ character URL बन सकती है।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Mode pick करें", "text": "Plain text को URL-safe form में encode करें, या URL-encoded string को plain में decode करें।" },
+      { "name": "Input paste करें", "text": "Encoding के लिए plain text, decoding के लिए percent-encoded string।" },
+      { "name": "Result copy करें", "text": "Output below appear होता है; use करने के लिए 'Copy' click करें।" }
+    ]
+  },
+  "faq": [
+    { "q": "मेरा space '%20' decode क्यों नहीं हो रहा?", "a": "होना चाहिए — लेकिन यदि URL में '+' है तो वह भी space represent कर सकता है (legacy form encoding)। जरूरत हो तो पहले + को space से replace करें।" },
+    { "q": "क्या यह emoji handle करता है?", "a": "हाँ। Emoji उनके UTF-8 byte sequences के रूप में encode होते हैं (typically 4 bytes / 4 percent-codes per emoji)।" },
+    { "q": "URL encoding और HTML encoding में क्या अंतर है?", "a": "URL encoding URL contexts के लिए % notation उपयोग करता है। HTML encoding HTML के लिए &lt; &gt; आदि उपयोग करता है। Different contexts, different rules।" },
+    { "q": "कब encode करें और कब नहीं?", "a": "URL query parameter, user input वाले path segment, या form data में जाने वाली किसी भी value को encode करें। Already-built URL को encode न करें — वह double-encode होता है।" },
+    { "q": "मेरे decoded text में '%' error क्यों cause करता है?", "a": "Valid hex नहीं होने वाले '+' के बाद bare '%' invalid percent-encoding है। URL में include करने से पहले '%' को '%25' में encode करें।" },
+    { "q": "क्या browser automatically यह करता है?", "a": "हाँ — URL या URLSearchParams APIs से URLs build करते समय। यह tool ad-hoc use के लिए same logic expose करता है।" },
+    { "q": "कौन से characters 'safe' हैं और encoding की जरूरत नहीं?", "a": "Letters (A-Z, a-z), digits (0-9), और ये: - . _ ~ । बाकी सब encodeURIComponent से percent-encoded होते हैं।" },
+    { "q": "क्या data browser से बाहर जाता है?", "a": "नहीं। Encoding और decoding दोनों locally चलते हैं।" }
+  ]
+}

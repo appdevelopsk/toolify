@@ -1,0 +1,103 @@
+{
+  "title": "Asal Sayı Denetleyicisi (çarpanlara ayırma ile)",
+  "shortDescription": "Bir sayının asal olup olmadığını kontrol edin. Değilse, asal çarpanlarını görün. Ayrıca bir önceki ve bir sonraki asal sayılar.",
+  "description": "10^18'e kadar negatif olmayan bir tam sayı girin. Hesaplayıcı deneme bölmesiyle asallığı test eder (makul sürede ~10^15'e kadar belirleyici) ve bileşik sayılar için asal çarpanları verir.",
+  "metaDescription": "Çarpanlara ayırma özellikli ücretsiz asal sayı denetleyicisi. Asallığı test edin, asal çarpanları görün ve bir önceki/sonraki asal sayıyı bulun.",
+  "keywords": [
+    "asal denetleyici",
+    "asal mı",
+    "asal çarpanlara ayırma",
+    "asal sayı testi",
+    "sonraki asal"
+  ],
+  "input": {
+    "value": "Sayı"
+  },
+  "result": {
+    "isPrime": "asal sayıdır",
+    "notPrime": "asal sayı DEĞİLDİR",
+    "factors": "Asal çarpanlar",
+    "prevPrime": "Önceki asal",
+    "nextPrime": "Sonraki asal"
+  },
+  "empty": "Pozitif bir tam sayı girin.",
+  "tooLarge": "Sayı tarayıcı içi hesaplama için çok büyük (maksimum 10^18).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Asal sayı nedir",
+        "paragraphs": [
+          "Asal sayı, 1 ve kendisinden başka pozitif böleni olmayan 1'den büyük doğal bir sayıdır. İlk birkaç asal sayı: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37. Bunlar tam sayı aritmetiğinin 'atomları'dır — 2'ye eşit veya büyük her tam sayı benzersiz biçimde asal sayıların çarpımı olarak yazılabilir (Aritmetiğin Temel Teoremi).",
+          "1 uzlaşı gereği asal değildir. 0 ve negatif sayılar asal değildir. 2 tek çift asal sayıdır — diğer tüm çift sayılar 2 ile bölünebilir ve dolayısıyla bileşiktir."
+        ]
+      },
+      {
+        "heading": "Test nasıl çalışır",
+        "paragraphs": [
+          "Deneme bölmesi kullanıyoruz: √n'e kadar 2, ardından 3, ardından 5, 7, 11... ile bölünebilirliği kontrol edin. Hiçbiri temiz bölmüyorsa n asaldır. 3'ten büyük tüm asal sayılar 6k+1 veya 6k-1 biçiminde olduğundan yalnızca bu formattaki adayları kontrol eden 6k±1 optimizasyonunu kullanıyoruz; bu test sayısını 2/3 oranında azaltır.",
+          "Deneme bölmesi ~10^15'e kadar n için hızlıdır (saniyenin altında). Bunun ötesinde Miller-Rabin (olasılıksal) veya AKS (belirleyici) gibi gelişmiş testler gereklidir. Aşırı girdilerde tarayıcının donmasını önlemek için 10^18'de sınırlandırıyoruz."
+        ]
+      },
+      {
+        "heading": "Asal sayılar neden önemlidir",
+        "paragraphs": [
+          "Kriptografi: RSA şifrelemesi çarpanları büyük oluşturmak güç olan bir sayı üretmek için yaklaşık 1000 basamaklı iki asal sayıyı çarpar. Güvenlik, büyük sayıları çarpanlara ayırmanın güçlüğüne dayanır — binlerce yıldır incelenen bir zorluk.",
+          "Matematik eğitimi: asal çarpanlara ayırma temeldir. GCD, LCM, modüler aritmetik, kesirler ve sayı teorisi gibi kavramlar asal çarpan yapısı üzerine inşa edilir.",
+          "Bilgisayar bilimi: hash tablo boyutları, rastgele sayı üreteçleri ve birçok algoritma asal sayıların kendine özgü bölünebilirlik özelliklerini kullanır."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Bir sayı girin",
+        "text": "10^18'e kadar pozitif tam sayı."
+      },
+      {
+        "name": "Kararı okuyun",
+        "text": "Asal için yeşil ✓, bileşik için sarı ✗."
+      },
+      {
+        "name": "Çarpanlara ayırmayı görün",
+        "text": "Bileşikse benzersiz asal çarpanlar gösterilir."
+      },
+      {
+        "name": "Asallarda gezinin",
+        "text": "Bağlam için önceki ve sonraki asallar listelenir."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "1 asal mı?",
+      "a": "Hayır. 1 bir 'birim'dir, asal değil. Asalların tam olarak iki farklı pozitif böleni vardır (1 ve kendisi); 1'in yalnızca biri vardır."
+    },
+    {
+      "q": "0 asal mı?",
+      "a": "Hayır. Asal sayılar 1'den büyük tam sayılardır."
+    },
+    {
+      "q": "2 asal mı?",
+      "a": "Evet — 2 tek çift asal sayıdır. Diğer tüm çift sayılar 1 ve kendisi dışında 2 ile de bölünebilir."
+    },
+    {
+      "q": "Sonraki asal nasıl bulunur?",
+      "a": "n+1'den başlayarak her adımda asallık test edilerek artırılır. Herhangi bir sayıya n × ln(n) uzaklığında her zaman bir asal vardır, dolayısıyla büyük girdilerde bile hızlıca sonuçlanır."
+    },
+    {
+      "q": "Maksimum neden 10^18?",
+      "a": "JavaScript BigInt daha büyükleri işleyebilir, ancak deneme bölmesi yavaşlar. 10^18 tipik girdiler için saniyenin altında kontrol için güvenlidir. Bunun ötesi için SymPy veya Mathematica gibi özel araçlar kullanın."
+    },
+    {
+      "q": "1000 basamaklı asalları kontrol edebilir misiniz?",
+      "a": "Bu araçla hayır — o ölçekte deneme bölmesi çok yavaştır. Kriptografi 1024 bitlik asallar (~300 basamak) için Miller-Rabin olasılıksal testleri kullanır."
+    },
+    {
+      "q": "Mersenne asal sayısı nedir?",
+      "a": "2^p − 1 biçimindeki asal sayı. 2025 itibarıyla yalnızca 51 tanesi bilinmektedir. Bilinen en büyük asal (M82589933) yaklaşık 25 milyon basamaklı bir Mersenne asalıdır."
+    },
+    {
+      "q": "Veriler tarayıcımdan çıkıyor mu?",
+      "a": "Hayır. Hesaplama yerel olarak çalışır; hiçbir şey sunucuya gönderilmez."
+    }
+  ]
+}

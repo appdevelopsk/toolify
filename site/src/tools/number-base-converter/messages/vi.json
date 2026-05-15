@@ -1,0 +1,50 @@
+{
+  "title": "Chuyển đổi hệ số (nhị phân, bát phân, thập phân, hex)",
+  "shortDescription": "Chuyển đổi số giữa nhị phân, bát phân, thập phân và thập lục phân. Xác thực đầu vào cho cơ số được chọn và hiển thị cả bốn biểu diễn.",
+  "description": "Chọn cơ số nguồn, nhập giá trị và xem các tương đương trong nhị phân, bát phân, thập phân và hex. Hữu ích cho lập trình, mạng máy tính và điện tử.",
+  "metaDescription": "Chuyển đổi hệ số miễn phí cho nhị phân, bát phân, thập phân và hex. Xác thực đầu vào theo cơ số, hiển thị cả bốn biểu diễn cạnh nhau.",
+  "keywords": ["chuyển đổi hệ số", "nhị phân sang thập phân", "thập phân sang hex", "hex sang nhị phân", "cơ số 2 cơ số 16"],
+  "input": { "value": "Giá trị", "from": "Từ cơ số" },
+  "error": { "invalidForBase": "Đầu vào chứa các ký tự không hợp lệ cho cơ số được chọn." },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cách hệ số vị trí hoạt động",
+        "paragraphs": [
+          "Mỗi cơ số sử dụng ký hiệu vị trí: chữ số ngoài cùng bên phải là cơ số⁰ = 1, tiếp theo là cơ số¹, rồi cơ số², v.v. Trong thập phân, '255' có nghĩa là 2×100 + 5×10 + 5×1. Trong nhị phân, '11111111' có nghĩa là 1×128 + 1×64 + ... + 1×1 = 255. Cùng một số, các cơ số khác nhau.",
+          "Thập lục phân dùng 0-9 và A-F để chứa 16 giá trị mỗi chữ số. 'FF' = 15×16 + 15×1 = 255. Bát phân dùng 0-7 (3 bit mỗi chữ số) và nhị phân chỉ dùng 0 và 1. Chuyển đổi là cơ học — chuyển sang thập phân rồi ngược lại sang cơ số đích — và máy tính thực hiện điều này cho bất kỳ số nguyên không âm nào."
+        ]
+      },
+      {
+        "heading": "Khi nào bạn sẽ sử dụng từng cơ số",
+        "paragraphs": [
+          "Nhị phân (cơ số 2): công việc máy tính cấp thấp — bit fields, mask, firmware nhúng. Đọc bố cục thanh ghi, debug ở cấp phần cứng.",
+          "Bát phân (cơ số 8): phân quyền file Unix (chmod 755 = rwxr-xr-x), một số định dạng file cũ. Ít phổ biến hơn ngày nay.",
+          "Thập phân (cơ số 10): mọi thứ con người đếm. Mặc định cho số học thông thường.",
+          "Thập lục phân (cơ số 16): phổ biến nhất trong phần mềm — màu sắc (#FF6B35), địa chỉ bộ nhớ (0x7fff...), địa chỉ MAC, biểu diễn byte của dữ liệu nhị phân, hash được mã hóa."
+        ]
+      },
+      {
+        "heading": "Bảng tham chiếu nhanh",
+        "paragraphs": [
+          "1 byte = 8 bit = 2 chữ số hex = 256 giá trị (0-255). 1 chữ số hex = 4 bit = 16 giá trị. 1 chữ số bát phân = 3 bit. Hex 'FF' = thập phân 255 = nhị phân 11111111. Hex '100' = thập phân 256. Hex 'FFFF' = thập phân 65535 (tối đa cho 16-bit không dấu). Hex 'FFFFFFFF' = thập phân 4294967295 (tối đa cho 32-bit không dấu)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn cơ số nguồn", "text": "Chọn nhị phân, bát phân, thập phân hoặc hex." },
+      { "name": "Nhập giá trị của bạn", "text": "Chỉ sử dụng các chữ số hợp lệ cho cơ số đó. Hex không phân biệt chữ hoa thường." },
+      { "name": "Đọc cả bốn cơ số", "text": "Chuyển đổi sang mỗi cơ số còn lại xuất hiện bên cạnh." }
+    ]
+  },
+  "faq": [
+    { "q": "Hex có phân biệt chữ hoa thường không?", "a": "Cả 'ff' và 'FF' đều giải mã thành cùng giá trị. Chúng tôi hiển thị chữ hoa theo quy ước." },
+    { "q": "Tôi có thể nhập số âm không?", "a": "Có, tiền tố với '-'. Máy tính hiển thị biểu diễn của mỗi cơ số với dấu được giữ lại (ví dụ -255 → -FF trong hex)." },
+    { "q": "Giá trị tối đa là bao nhiêu?", "a": "Giới hạn bởi phạm vi số nguyên an toàn của JavaScript (khoảng 2⁵³). Với giá trị lớn hơn, hãy sử dụng công cụ nhận biết BigInt." },
+    { "q": "Làm thế nào để đọc tiền tố 0x hoặc 0b?", "a": "Loại bỏ tiền tố trước khi nhập. '0xFF' → chỉ nhập 'FF' với hex được chọn. '0b1010' → '1010' với nhị phân được chọn." },
+    { "q": "Tại sao Unix chmod dùng bát phân?", "a": "Phân quyền có ba nhóm (chủ sở hữu/nhóm/khác) mỗi nhóm ba bit. Ba bit của mỗi nhóm ánh xạ rõ ràng vào một chữ số bát phân, vì vậy 755 = 111 101 101 = rwx r-x r-x." },
+    { "q": "Tôi có thể chuyển đổi giá trị phân số không?", "a": "Chưa — chỉ hỗ trợ số nguyên không âm. Chúng tôi có thể thêm hỗ trợ dấu phẩy cố định sau." },
+    { "q": "Nếu tôi thấy 'không hợp lệ cho cơ số' thì sao?", "a": "Bạn đã nhập ký tự không được phép trong cơ số được chọn. Hex cho phép 0-9 và A-F; nhị phân chỉ 0 và 1; v.v." },
+    { "q": "Dữ liệu có được gửi đi đâu không?", "a": "Không. Chuyển đổi chạy cục bộ." }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "title": "Triangle Calculator (right angle, SSS, SAS)",
+  "shortDescription": "Triangle का area, perimeter, sides, और angles compute करें। तीन modes: right triangle (Pythagorean), three sides (SSS), या two sides + included angle (SAS)।",
+  "description": "Mode pick करें, known values enter करें, और सभी sides, तीनों angles, area, और perimeter पाएँ। SSS mode में triangle inequality validate करता है।",
+  "metaDescription": "मुफ्त triangle calculator। Right angle (Pythagorean), SSS, या SAS modes। Sides, angles, area, perimeter return करता है। Geometry homework और construction के लिए useful।",
+  "keywords": ["triangle calculator", "pythagorean theorem", "law of cosines", "triangle area", "triangle solver"],
+  "empty": "Selected mode के लिए known values enter करें।",
+  "invalid": "Invalid triangle: triangle inequality violate होती है (सबसे लंबी side बाकी दोनों के sum से छोटी होनी चाहिए)।",
+  "mode": {
+    "right": "Right triangle",
+    "sss": "Three sides (SSS)",
+    "sas": "Two sides + angle (SAS)"
+  },
+  "input": {
+    "legA": "Leg a",
+    "legB": "Leg b",
+    "sideA": "Side a",
+    "sideB": "Side b",
+    "sideC": "Side c",
+    "angleC": "Angle C (deg)"
+  },
+  "result": {
+    "area": "Area",
+    "perim": "Perimeter",
+    "sides": "Sides",
+    "angles": "Angles"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "तीन problems के लिए तीन modes",
+        "paragraphs": [
+          "Right triangle (legs a, b): सबसे common case। Hypotenuse c = √(a² + b²) Pythagorean theorem से। Angle A = arctan(a/b), B = arctan(b/a), C = 90°। Area = (a × b) / 2।",
+          "Three sides (SSS — Side-Side-Side): जब तीनों side lengths पता हों। Triangle inequality validate करें (longest side < अन्य दो का sum)। Angles law of cosines से: cos A = (b² + c² − a²) / (2bc)। Area Heron's formula से: √(s(s−a)(s−b)(s−c)) जहाँ s = (a+b+c)/2।",
+          "Two sides + included angle (SAS — Side-Angle-Side): जब दो sides और उनके बीच का angle पता हो। Third side law of cosines से: c = √(a² + b² − 2ab cos C)। अन्य angles law of sines से। Area = (1/2) × a × b × sin C।"
+        ]
+      },
+      {
+        "heading": "हर mode कब use करें",
+        "paragraphs": [
+          "Right triangle everyday geometry में सबसे common है — दीवार का corner बनाना, roof की pitch calculate करना, TV का diagonal width और height से निकालना। Pythagorean theorem construction और design में सबसे ज़्यादा use होने वाले formulas में से है।",
+          "SSS surveying, navigation, और किसी भी case में आता है जहाँ तीनों sides directly measure करते हैं। Physical measurement से triangle की shape verify करने के लिए useful।",
+          "SAS उन cases के लिए है जहाँ known angle पर दो sides मिलती हों लेकिन third side unmeasured या hard to reach हो। Trigonometry classes और problem sets में common।"
+        ]
+      },
+      {
+        "heading": "Practical applications",
+        "paragraphs": [
+          "Construction: rise और run से roof pitch (right triangle)। Carpenter का '3-4-5 rule': 3-4-5 triangle perfect right angle देता है, protractor की जरूरत नहीं। India में building construction में यह widely use होता है।",
+          "Navigation: triangulation SSS या SAS use करके तीन known landmarks से position खोजती है। यही math GPS को power करता है (relativistic corrections के साथ)।",
+          "Computer graphics: हर 3D model triangles में decompose होता है। Triangle area formula shader code में surface lighting compute करते समय appear होता है।",
+          "Astronomy: parallax distance measurements SSS principles use करती हैं। Sun-Earth-star angle simple trig से star का distance देता है।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Mode pick करें", "text": "Right triangle, SSS (three sides), या SAS (two sides + angle)।" },
+      { "name": "Known values enter करें", "text": "प्रत्येक mode के लिए अलग inputs required हैं।" },
+      { "name": "सभी unknowns पढ़ें", "text": "Sides, angles, area, और perimeter सब compute होते हैं।" }
+    ]
+  },
+  "faq": [
+    { "q": "Triangle inequality क्या है?", "a": "तीन lengths से triangle बनने के लिए, किन्हीं भी दो का sum तीसरे से ज़्यादा होना चाहिए। तो 3, 4, 5 valid है (3+4=7 > 5); 1, 2, 5 नहीं (1+2=3 < 5)। Calculator SSS mode में यह catch करता है।" },
+    { "q": "यह कितना accurate है?", "a": "Floating-point precision (~15-17 significant digits)। Typical inputs के लिए error real-world measurement error से बहुत छोटी है।" },
+    { "q": "क्या angles radians में हो सकते हैं?", "a": "अभी नहीं — हम throughout degrees use करते हैं। radians × 180/π से convert करें, या angle converter use करें।" },
+    { "q": "Obtuse angle वाले triangle का क्या?", "a": "सभी modes obtuse triangles correctly handle करते हैं। SAS के लिए ensure करें कि included angle 0° और 180° के बीच exclusive हो।" },
+    { "q": "'Two sides and an angle' सब cases क्यों work नहीं करते?", "a": "हम SAS support करते हैं (angle दोनों sides के BETWEEN)। Ambiguous case (SSA — angle, फिर दो sides जहाँ एक opposite है) में कभी-कभी 0, 1, या 2 valid triangles होते हैं। SSS और SAS unambiguous हैं।" },
+    { "q": "3-4-5 triangle में right angle क्यों होता है?", "a": "क्योंकि 3² + 4² = 9 + 16 = 25 = 5²। Pythagorean theorem satisfy होता है। Construction में perfect right angle check करने का quick तरीका है।" },
+    { "q": "केवल angles से side कैसे निकालें?", "a": "नहीं निकाल सकते — angles shape determine करते हैं, size नहीं। Least एक side चाहिए। Two angles + one side काफी है (third angle = 180 − दोनों का sum)।" },
+    { "q": "क्या data browser से बाहर जाता है?", "a": "नहीं। Calculation locally चलता है; कुछ server को नहीं भेजा जाता।" }
+  ]
+}

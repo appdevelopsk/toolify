@@ -1,0 +1,60 @@
+{
+  "title": "Phân tích tần suất ký tự (chữ cái, tất cả ký tự hoặc từ)",
+  "shortDescription": "Đếm tần suất xuất hiện của từng ký tự hoặc từ trong văn bản. Có thể sắp xếp, kèm phần trăm và tùy chọn phân biệt chữ hoa/thường.",
+  "description": "Dán bất kỳ văn bản nào để lấy bảng tần suất được sắp xếp. Ba chế độ: tất cả ký tự, chỉ chữ cái/chữ số hoặc toàn bộ từ. Hữu ích cho phân tích mật mã, phân tích văn bản và làm sạch tập dữ liệu.",
+  "metaDescription": "Công cụ phân tích tần suất ký tự miễn phí. Đếm chữ cái, tất cả ký tự hoặc từ. Bảng có thể sắp xếp với phần trăm. Nhận biết UTF-8 bao gồm CJK và emoji.",
+  "keywords": ["tần suất ký tự", "tần suất chữ cái", "tần suất từ", "phân tích tần suất", "thống kê văn bản"],
+  "input": { "text": "Văn bản" },
+  "mode": { "all": "Tất cả ký tự", "letters": "Chữ cái và chữ số", "words": "Từ" },
+  "caseSensitive": "Phân biệt chữ hoa/thường",
+  "stats": {
+    "unique": "{n} duy nhất",
+    "total": "{n} tổng",
+    "showingTop": "hiển thị top {n}",
+    "remainingCount": "+{n} mục nữa không hiển thị"
+  },
+  "col": { "item": "Mục", "count": "Số lần" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Dùng để làm gì",
+        "paragraphs": [
+          "Phân tích mật mã: các mật mã cổ điển (Caesar, thay thế) bảo toàn tần suất chữ cái. Văn bản tiếng Anh luôn có E là chữ cái phổ biến nhất, rồi đến T, A, O, I, N. Nếu bạn thấy phân phối đó trong văn bản mã hóa, bạn đang xử lý mật mã thay thế. Các ngôn ngữ CJK có phân phối rất khác nhưng vẫn có thể nhận ra.",
+          "Phân tích văn bản: phát hiện từ dùng quá nhiều là một trong những cách nhanh nhất để cải thiện bản thảo. Nếu 'thực ra' hoặc 'rất' xuất hiện 50 lần trong bài luận 1.000 từ, bạn đã tìm thấy lỗi cần sửa.",
+          "Làm sạch tập dữ liệu: quét cột CSV bằng công cụ này tiết lộ các ký tự lạ, lỗi mã hóa và cách viết hoa bất ngờ. Hữu ích trước khi nhập dữ liệu vào hệ thống nghiêm ngặt hơn."
+        ]
+      },
+      {
+        "heading": "Ba chế độ",
+        "paragraphs": [
+          "Tất cả ký tự: bao gồm khoảng trắng, dấu câu, ngắt dòng, emoji. Tốt nhất để phân tích văn bản thô. Hữu ích khi bạn nghi ngờ có ký tự ẩn (khoảng trắng độ rộng bằng không, BOM) làm hỏng file.",
+          "Chữ cái và chữ số: lọc để chỉ lấy chữ cái và số Unicode. Tốt nhất để phân tích tần suất chữ cái truyền thống (phân tích mật mã, nhận dạng ngôn ngữ).",
+          "Từ: tách theo khoảng trắng và đếm toàn bộ từ. Tốt nhất để phân tích văn bản và kiểm tra phong cách."
+        ]
+      },
+      {
+        "heading": "'Phân biệt chữ hoa/thường' làm gì",
+        "paragraphs": [
+          "Tắt (mặc định): 'A' và 'a' đếm cùng nhau. Tốt nhất để phân tích tần suất chữ cái trong văn bản tự nhiên nơi chữ hoa/thường là ngẫu nhiên.",
+          "Bật: 'A' và 'a' đếm riêng biệt. Hữu ích khi chữ hoa/thường có ý nghĩa — định danh lập trình, thuật ngữ thương hiệu, hoặc phân tích mẫu viết hoa. Lưu ý: gấp không phân biệt chữ hoa/thường dùng các quy tắc chữ thường của locale; với hầu hết ngôn ngữ đây là gấp chữ Unicode thông thường."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Dán văn bản", "text": "Bất cứ thứ gì từ một câu đến file nhiều MB." },
+      { "name": "Chọn chế độ", "text": "Tất cả ký tự, chữ cái/chữ số hoặc từ." },
+      { "name": "Chuyển đổi phân biệt chữ hoa/thường", "text": "Tắt cho văn bản tự nhiên; bật khi chữ hoa/thường có ý nghĩa." },
+      { "name": "Đọc bảng", "text": "Sắp xếp theo tần suất. Hiển thị top 50; phần đuôi còn lại được tóm tắt bên dưới." }
+    ]
+  },
+  "faq": [
+    { "q": "Công cụ có hoạt động với tiếng Nhật, Trung, Hàn không?", "a": "Có. Chế độ chữ cái coi mỗi chữ tượng hình là một 'chữ cái', nên bạn nhận được tần suất hanzi/kanji. Chế độ từ tách theo khoảng trắng, nghĩa là văn bản CJK không có dấu cách hiển thị như một từ khổng lồ — dùng chế độ chữ cái cho những ngôn ngữ đó." },
+    { "q": "Chữ cái tiếng Anh phổ biến nhất là gì?", "a": "'E' (khoảng 12,7%), rồi T (9,1%), A (8,2%), O (7,5%), I (7,0%), N (6,7%). Biết điều này là nền tảng để phá vỡ các mật mã thay thế đơn giản." },
+    { "q": "Emoji có được đếm không?", "a": "Có trong chế độ 'tất cả ký tự'. Chế độ chữ cái lọc chúng ra (chúng không phải là chữ cái theo phân loại Unicode)." },
+    { "q": "Tại sao emoji đôi khi được tách thành nhiều ký tự?", "a": "Một số emoji là nhiều điểm mã Unicode (ví dụ: cờ = hai chữ cái chỉ thị vùng). Bộ đếm theo vòng lặp chuỗi JavaScript tôn trọng điểm mã nhưng không phải tất cả cụm grapheme. Với hầu hết phân tích điều này là tốt." },
+    { "q": "Tôi có thể xuất bảng không?", "a": "Chưa — sao chép-dán bảng đã render tạm thời. Xuất CSV đang trong kế hoạch phát triển." },
+    { "q": "Hiển thị bao nhiêu mục?", "a": "Top 50 trong bảng. Số lượng phần đuôi được tóm tắt ở cuối." },
+    { "q": "Tại sao kết quả không phân biệt chữ hoa/thường tiếng Hy Lạp/Thổ Nhĩ Kỳ không khớp với kỳ vọng của tôi?", "a": "Một số ngôn ngữ có quy tắc chữ hoa/thường bất thường (chữ I có/không dấu chấm của tiếng Thổ Nhĩ Kỳ; ß ↔ SS của tiếng Đức). Chúng tôi dùng toLowerCase() của JavaScript theo gấp chữ Unicode mặc định — thường ổn nhưng có thể gây bất ngờ trong các trường hợp đặc biệt." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Tất cả đếm chạy cục bộ." }
+  ]
+}

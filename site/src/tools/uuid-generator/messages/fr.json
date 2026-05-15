@@ -1,0 +1,53 @@
+{
+  "title": "Générateur UUID (v4 aléatoire, v7 ordonné par temps)",
+  "shortDescription": "Génère des UUID v4 cryptographiquement aléatoires ou des UUID v7 ordonnés par temps. Génération en lot jusqu'à 100 à la fois avec copie en un clic.",
+  "description": "Clique pour générer un ou plusieurs UUID. Utilise v4 pour des identifiants entièrement aléatoires et v7 pour des identifiants triables par temps qui s'ordonnent naturellement par heure de création — utile pour les clés de base de données.",
+  "metaDescription": "Générateur UUID gratuit pour v4 (aléatoire) et v7 (ordonné par temps). Cryptographiquement sécurisé, génération en lot jusqu'à 100, copie individuelle ou en lot.",
+  "keywords": ["générateur UUID", "UUID v4", "UUID v7", "générateur GUID", "UUID aléatoire"],
+  "count": "Nombre",
+  "regenerate": "Regénérer",
+  "copy": "Copier",
+  "copyAll": "Tout copier",
+  "copied": "Copié",
+  "article": {
+    "sections": [
+      {
+        "heading": "Quand utiliser v4 vs v7",
+        "paragraphs": [
+          "UUID v4 est purement aléatoire — 122 bits aléatoires avec deux bits de version/variante, donnant environ 5,3 × 10³⁶ valeurs possibles. Deux UUID v4 sont pratiquement garantis de ne jamais entrer en collision. Utilise v4 partout où tu n'as pas besoin d'ordre, comme les identifiants de requête API ou les identifiants d'utilisateurs anonymes.",
+          "UUID v7 (RFC 9562, publié en 2024) commence par un timestamp Unix en millisecondes de 48 bits suivi de 74 bits aléatoires. Ils se trient lexicographiquement dans l'ordre de création, ce qui est énorme pour la performance des bases de données — des clés primaires triées par temps signifient que les insertions vont toujours à la fin du B-tree, sans divisions de pages aléatoires. Utilise v7 pour les nouvelles clés primaires de base de données."
+        ]
+      },
+      {
+        "heading": "Comment fonctionne ce générateur",
+        "paragraphs": [
+          "v4 et v7 utilisent tous deux crypto.getRandomValues — la source aléatoire sécurisée du navigateur, la même primitive utilisée par HTTPS et les gestionnaires de mots de passe. v4 remplit 122 bits aléatoirement. v7 divise 48 bits de timestamp + 74 bits aléatoires plus les marqueurs de version/variante selon la RFC.",
+          "La génération se produit dans ton navigateur. Les UUID ne sont pas stockés ni transmis. Si tu génères 100 UUID v4, la chance de collision entre eux est astronomiquement faible — bien en dessous de la chance que des rayons cosmiques invertissent des bits dans ton CPU."
+        ]
+      },
+      {
+        "heading": "Pièges courants avec les UUID",
+        "paragraphs": [
+          "Les UUID v4 comme clés primaires de base de données nuisent à la performance par rapport aux entiers auto-incrémentés car les valeurs aléatoires causent des divisions de pages B-tree lors des insertions. v7 résout cela — utilise v7 si tu veux les avantages des UUID sans la douleur d'index.",
+          "N'expose pas les UUID aux utilisateurs là où la devinabilité compte. Les UUID v4 ont 122 bits d'entropie et sont impossibles à deviner. Les UUID v7 révèlent l'heure de création, ce qui convient à la plupart des usages mais est mauvais si l'heure de création est sensible.",
+          "Les UUID font 36 caractères avec les tirets (32 hex + 4 tirets). Ils occupent 16 octets en binaire ou 36 octets en texte. Pour les colonnes à très haute cardinalité, envisage de les stocker en binaire BLOB / type UUID natif plutôt qu'en VARCHAR(36)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choisis v4 ou v7", "text": "v4 pour entièrement aléatoire, v7 pour ordonné par temps." },
+      { "name": "Définis le nombre", "text": "1 à 100. Par défaut 5." },
+      { "name": "Copie ce dont tu as besoin", "text": "Clique sur 'Copier' à côté d'un UUID, ou 'Tout copier' pour récupérer chaque UUID sous forme de liste séparée par des sauts de ligne." }
+    ]
+  },
+  "faq": [
+    { "q": "Sont-ils cryptographiquement sécurisés ?", "a": "Oui. v4 et v7 utilisent tous deux crypto.getRandomValues, l'API aléatoire sécurisée. v4 a 122 bits d'entropie ; v7 en a 74." },
+    { "q": "Pourquoi v7 est-il meilleur pour les clés de base de données ?", "a": "Parce que les UUID v7 se trient par heure de création, les insertions vont toujours à la fin de l'index B-tree plutôt qu'à des positions aléatoires. Cela évite les divisions de pages et améliore considérablement le débit d'écriture." },
+    { "q": "Deux UUID peuvent-ils entrer en collision ?", "a": "Théoriquement oui. Avec v4, tu devrais générer ~10¹⁸ avant un risque de collision de 50 %. Avec v7, le composant temps réduit cela à environ 2⁷⁴ dans la même milliseconde — toujours pratiquement impossible." },
+    { "q": "Les UUID sont-ils la même chose que les GUID ?", "a": "Oui. GUID est le nom Microsoft pour UUID. Même format, mêmes garanties d'unicité." },
+    { "q": "Quel est le format ?", "a": "8-4-4-4-12 chiffres hexadécimaux avec des tirets. 32 caractères hex au total + 4 tirets = 36 caractères. Minuscules par convention RFC." },
+    { "q": "Devrais-je utiliser v1 à la place ?", "a": "v1 inclut l'adresse MAC, ce qui est une fuite de vie privée. v7 remplace v1 pour les identifiants ordonnés par temps sans exposer les identifiants matériels." },
+    { "q": "Puis-je générer des v4 en Base64 sûr pour URL ?", "a": "Pas directement ici. Encode les 16 octets du UUID en Base64 sûr pour URL pour obtenir un identifiant de 22 caractères. Utile pour les URLs plus courtes." },
+    { "q": "Les données quittent-elles mon navigateur ?", "a": "Non. La génération se produit entièrement dans ton navigateur." }
+  ]
+}

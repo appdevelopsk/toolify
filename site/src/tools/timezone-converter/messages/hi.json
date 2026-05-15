@@ -1,0 +1,54 @@
+{
+  "title": "Timezone Converter (multiple zones में time compare करें)",
+  "shortDescription": "एक moment को एक साथ multiple timezones में convert करें। Zones add या remove करें; international meetings schedule करने के लिए great।",
+  "description": "Source timezone और date/time pick करें, फिर जितने target timezones चाहिए add करें। प्रत्येक target timezone abbreviation के साथ equivalent local time दिखाता है।",
+  "metaDescription": "मुफ्त timezone converter। एक moment को एक साथ कई cities में देखें। Multiple time zones में meetings, travel, broadcasts schedule करने के लिए useful।",
+  "keywords": ["timezone converter", "world clock", "meeting time across zones", "convert UTC", "timezone difference"],
+  "empty": "Equivalents देखने के लिए timezones add करें।",
+  "input": { "sourceTz": "Source timezone", "dt": "Date & time" },
+  "now": "अभी",
+  "addTz": "Timezone add करें",
+  "remove": "Remove",
+  "article": {
+    "sections": [
+      {
+        "heading": "Timezone conversion कैसे काम करती है",
+        "paragraphs": [
+          "Time में हर moment single point है — Tokyo में Tuesday 9am और San Francisco में Monday 5pm same moment है। Timezone conversion बस उस single moment को प्रत्येक zone की local clock-face time से relabel करती है। Daylight saving time इसे complicate करती है — US में March और November के बीच Eastern time UTC-4 है (EDT); बाकी साल UTC-5 (EST)। Browser का Intl.DateTimeFormat इसे correctly handle करता है।",
+          "हम IANA names (जैसे 'Asia/Kolkata' या 'Asia/Tokyo') उपयोग करते हैं क्योंकि वे unambiguous हैं और प्रत्येक location के DST rules historically follow करते हैं।"
+        ]
+      },
+      {
+        "heading": "Common scheduling pitfalls",
+        "paragraphs": [
+          "DST transitions: 'next Tuesday at 9am EST' March या November में ambiguous है। हमेशा 'New York time' कहें या calendar invite send करें।",
+          "Half-hour offsets: India UTC+5:30 है, Newfoundland UTC-3:30 है, Australia के कुछ parts UTC+9:30 या +10:30। यदि आपका meeting math 'whole hours' में है, इन regions के लिए 30 minutes off होंगे।",
+          "Cross-date-line jumps: Tokyo से San Francisco direction के अनुसार next-day बनाम same-day है। Calendar correctly दिखाता है, लेकिन human assumption गलत हो सकता है।"
+        ]
+      },
+      {
+        "heading": "Useful patterns",
+        "paragraphs": [
+          "International standup: source zone (often UTC) और team के home timezones pick करें। Meeting time set करें और verify करें कि कोई 3am पर attend करने को नहीं कह रहा।",
+          "Product launch: launch zone pick करें और major markets add करें। Verify करने के लिए useful कि marketing email sensible local hour पर arrive करे।",
+          "Travel planning: departure zone pick करें और destination zone(s) add करें manual math के बिना local arrival time खोजने के लिए।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Source set करें", "text": "अपना source timezone (browser के zone पर default) और convert करने का date/time चुनें।" },
+      { "name": "Target timezones add करें", "text": "जितने चाहिए उतने add करने के लिए dropdown उपयोग करें।" },
+      { "name": "Equivalents पढ़ें", "text": "प्रत्येक target उसकी local clock में same moment दिखाता है।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या यह DST handle करता है?", "a": "हाँ — IANA timezone data प्रत्येक location के DST rules include करता है। Browser का Intl API past, present, और (जहाँ known हो) future transitions handle करता है।" },
+    { "q": "EST और ET में क्या अंतर है?", "a": "EST fixed UTC-5 पर है। ET (Eastern Time) winter में EST और summer में EDT है — यह DST track करता है। हम IANA names जैसे 'America/New_York' उपयोग करते हैं जो date के basis पर automatically EST या EDT pick करते हैं।" },
+    { "q": "क्या मैं दो specific cities के बीच convert कर सकता हूँ?", "a": "हाँ। एक को source set करें और दूसरे को target के रूप में add करें।" },
+    { "q": "कुछ zones में :30 offsets क्यों हैं?", "a": "Historical decisions। India, Iran, Afghanistan, Newfoundland, Australia के parts सभी UTC से 30-minute या 45-minute offsets उपयोग करते हैं।" },
+    { "q": "क्या यह past dates के लिए काम करता है?", "a": "हाँ, historically different DST boundaries सहित। IANA data अधिकांश location histories को 1970 से cover करता है।" },
+    { "q": "India का timezone क्या है?", "a": "India IST (Indian Standard Time) = UTC+5:30 पर है। DST नहीं observe करता। IANA name: 'Asia/Kolkata'।" },
+    { "q": "क्या data कहीं भेजा जाता है?", "a": "नहीं। Browser का Intl APIs सब कुछ locally handle करता है।" },
+    { "q": "क्या मैं अपनी timezone list save कर सकता हूँ?", "a": "अभी नहीं। Page refresh करने से list reset होती है।" }
+  ]
+}

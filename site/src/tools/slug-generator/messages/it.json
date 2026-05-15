@@ -1,0 +1,69 @@
+{
+  "title": "Generatore Slug URL (URL SEO-friendly)",
+  "shortDescription": "Converti qualsiasi titolo o frase in uno slug URL SEO-friendly. Separatore configurabile, limite di lunghezza, minuscolo e supporto Unicode.",
+  "description": "Digita o incolla un titolo; il generatore rimuove la punteggiatura, normalizza gli accenti, riduce gli spazi e produce uno slug pulito. Supporta trattini, underscore o punti; lunghezza massima configurabile; preservazione Unicode opzionale per URL non latini.",
+  "metaDescription": "Generatore gratuito di slug URL. Slug SEO-friendly da qualsiasi titolo. Separatori trattino/underscore/punto, lunghezza massima, supporto Unicode, modalità solo ASCII.",
+  "keywords": ["generatore slug", "url slug", "generatore url seo", "slugify", "generatore permalink"],
+  "input": {
+    "text": "Titolo o frase",
+    "separator": "Separatore",
+    "lowercase": "Minuscolo",
+    "allowUnicode": "Consenti Unicode (non-ASCII)",
+    "maxLen": "Lunghezza massima"
+  },
+  "sep": {
+    "hyphen": "Trattino",
+    "underscore": "Underscore",
+    "dot": "Punto"
+  },
+  "result": {
+    "slug": "Slug",
+    "length": "Lunghezza"
+  },
+  "empty": "(vuoto)",
+  "copy": "Copia",
+  "copied": "Copiato!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cos'è uno slug URL",
+        "paragraphs": [
+          "Uno slug è la parte leggibile di un URL dopo il dominio — ad esempio 'come-fare-il-pane' in '/blog/come-fare-il-pane'. Gli slug buoni sono brevi, descrittivi e stabili. I motori di ricerca e gli utenti li leggono entrambi come parte dell'identità della pagina.",
+          "Regole standard: solo lettere minuscole, cifre e trattini. Gli spazi diventano trattini. La punteggiatura viene rimossa. Le parole di servizio (il, la, un, è) possono essere omesse per brevità, anche se è una scelta stilistica."
+        ]
+      },
+      {
+        "heading": "Slug ASCII vs Unicode",
+        "paragraphs": [
+          "Slug ASCII (predefinito): solo lettere latine e cifre. Universalmente supportati, mai codificati con URL encoding, facili da condividere. La scelta standard per blog SEO-oriented in italiano/multilingua.",
+          "Slug Unicode: preservano i caratteri originali negli URL. I browser li visualizzano in modo leggibile, ma il copia-incolla produce URL con codifica percentuale. Alcune piattaforme limitano gli slug Unicode; verifica prima di dipenderne.",
+          "Quando scegliere Unicode: blog in giapponese, cinese o coreano rivolti a lettori nativi. L'URL IDN appare pulito agli utenti nativi e Google li indicizza bene. Lo svantaggio è la condivisione su piattaforme che mostrano URL non elaborati."
+        ]
+      },
+      {
+        "heading": "Lunghezza dello slug e SEO",
+        "paragraphs": [
+          "La visualizzazione degli URL di Google ha un limite di circa 60-80 caratteri. Gli slug più lunghi vengono troncati e sembrano 'spam'. Impostiamo la lunghezza massima predefinita a 60 — abbastanza corta per la maggior parte dei risultati.",
+          "Tuttavia, gli algoritmi di Google non penalizzano direttamente la lunghezza dello slug. La lunghezza conta per i tassi di clic (gli utenti saltano gli URL lunghi) e per mantenere lo slug leggibile. Le parole chiave nello slug aiutano leggermente il posizionamento; riempire lo slug di parole chiave fa più danni che benefici.",
+          "Best practice: includi le 2-3 parole chiave più importanti, elimina le parole di servizio e gli articoli, mantieni sotto i 60 caratteri."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Digita o incolla un titolo", "text": "Titolo dell'articolo, nome del prodotto o qualsiasi testo descrittivo." },
+      { "name": "Scegli un separatore", "text": "Il trattino è standard. L'underscore funziona per alcuni CMS legacy. I punti sono insoliti ma validi." },
+      { "name": "Configura le opzioni", "text": "Minuscolo (consigliato), Unicode (per URL non latini), limite di lunghezza massima." },
+      { "name": "Copia lo slug", "text": "Incolla nel tuo CMS, post del blog o configurazione di routing." }
+    ]
+  },
+  "faq": [
+    { "q": "Devo usare trattini o underscore?", "a": "Trattini. Google tratta esplicitamente i trattini come separatori di parole negli URL; gli underscore sono trattati come parte della parola. Quindi 'auto-veloci' sono due parole chiave, 'auto_veloci' è una. I trattini vincono per il SEO." },
+    { "q": "Devo includere le parole di servizio come 'il' o 'un'?", "a": "Facoltativo. Ometterle mantiene gli slug brevi. Includerle li rende più leggibili. L'impatto SEO è trascurabile in entrambi i casi; la leggibilità conta di più." },
+    { "q": "E gli apostrofi (dell', all')?", "a": "Li rimuoviamo. 'dell'auto' diventa 'dellauto'. Alcuni generatori li preservano come parte delle parole; seguiamo la convenzione più semplice." },
+    { "q": "Gestisce il giapponese / cinese?", "a": "Sì — attiva 'Consenti Unicode' per mantenere i caratteri CJK nello slug. Senza quel flag, i caratteri CJK vengono rimossi (poiché non hanno equivalenti ASCII)." },
+    { "q": "Perché il mio slug in caratteri non latini diventa vuoto in modalità ASCII?", "a": "I caratteri non latini non hanno equivalenti ASCII diretti. Abilita la modalità Unicode o translittera manualmente prima di incollare." },
+    { "q": "Le emoji vengono preservate?", "a": "Sì in modalità Unicode. Le emoji con codifica URL sono valide ma brutte — la maggior parte delle piattaforme le elimina. Consiglio pratico: non usare emoji negli slug." },
+    { "q": "Qual è la lunghezza massima dello slug che dovrei usare?", "a": "60 caratteri o meno è il punto ottimale per SEO e CTR. Alcuni sistemi CMS hanno un limite di 200 caratteri. L'indice di Google supporta URL molto più lunghi ma raramente migliora la leggibilità." },
+    { "q": "I dati escono dal mio browser?", "a": "No. La generazione viene eseguita localmente; nulla viene inviato a un server." }
+  ]
+}

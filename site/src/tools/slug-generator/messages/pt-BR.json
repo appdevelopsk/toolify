@@ -1,0 +1,111 @@
+{
+  "title": "Gerador de Slug de URL (URLs amigáveis para SEO)",
+  "shortDescription": "Converta qualquer título ou frase em um slug de URL amigável para SEO. Separador configurável, limite de comprimento, minúsculas e suporte a Unicode.",
+  "description": "Digite ou cole um título; o gerador remove pontuação, normaliza acentos, colapsa espaços e produz um slug limpo. Suporta hífens, underscores ou pontos; comprimento máximo configurável; modo Unicode opcional para URLs não latinas.",
+  "metaDescription": "Gerador gratuito de slug de URL. Slugs amigáveis para SEO a partir de qualquer título. Separadores hífen/underscore/ponto, comprimento máximo, suporte Unicode, modo",
+  "keywords": [
+    "gerador de slug",
+    "slug de url",
+    "gerador de url seo",
+    "slugify",
+    "gerador de permalink"
+  ],
+  "input": {
+    "text": "Título ou frase",
+    "separator": "Separador",
+    "lowercase": "Minúsculas",
+    "allowUnicode": "Permitir Unicode (não-ASCII)",
+    "maxLen": "Comprimento máximo"
+  },
+  "sep": {
+    "hyphen": "Hífen",
+    "underscore": "Underscore",
+    "dot": "Ponto"
+  },
+  "result": {
+    "slug": "Slug",
+    "length": "Comprimento"
+  },
+  "empty": "(vazio)",
+  "copy": "Copiar",
+  "copied": "Copiado!",
+  "article": {
+    "sections": [
+      {
+        "heading": "O que é um slug de URL",
+        "paragraphs": [
+          "Um slug é a parte legível de uma URL após o domínio — por exemplo 'como-fazer-pao' em '/blog/como-fazer-pao'. Bons slugs são curtos, descritivos e estáveis. Os mecanismos de busca e os humanos os leem como parte da identidade da página.",
+          "Regras padrão: apenas letras minúsculas, dígitos e hífens. Espaços viram hífens. Pontuação é removida. Palavras de parada (o, a, é, um, de) podem ser omitidas por brevidade, embora seja uma escolha estilística."
+        ]
+      },
+      {
+        "heading": "Slugs ASCII vs Unicode",
+        "paragraphs": [
+          "Slugs ASCII (padrão): apenas letras latinas e dígitos. Universalmente suportados, nunca codificados por URL, fáceis de compartilhar. A escolha padrão para blogs focados em SEO.",
+          "Slugs Unicode: preservam os caracteres originais nas URLs. Os navegadores os exibem de forma legível (artigo-sobre-ação), mas copiar e colar produz URLs codificadas em percentual (%C3%A7%C3%A3o...). Algumas plataformas restringem slugs Unicode; verifique antes de depender deles.",
+          "Quando escolher Unicode: blogs em japonês, chinês ou coreano focados em leitores nativos. A URL IDN parece limpa para usuários nativos e o Google a indexa bem. A desvantagem é o compartilhamento em plataformas que exibem URLs brutas."
+        ]
+      },
+      {
+        "heading": "Comprimento do slug e SEO",
+        "paragraphs": [
+          "A exibição de URL do Google é cortada em torno de 60-80 caracteres. Slugs mais longos ficam truncados e parecem 'spam'. O slider de comprimento máximo padrão é 60 — curto o suficiente para a maioria das listagens.",
+          "No entanto, os algoritmos do Google não penalizam o comprimento do slug diretamente. O comprimento importa para as taxas de clique (humanos pulam URLs longas) e para manter o slug legível. Palavras-chave no slug ajudam ligeiramente no ranking; encher de palavras-chave em slugs longos prejudica mais do que ajuda.",
+          "Boa prática: inclua as 2-3 palavras-chave mais importantes, elimine palavras de parada e artigos, mantenha abaixo de 60 caracteres."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Digite ou cole um título",
+        "text": "Título de artigo, nome de produto ou qualquer texto descritivo."
+      },
+      {
+        "name": "Escolha um separador",
+        "text": "Hífen é o padrão. Underscore funciona para alguns CMS legados. Pontos são incomuns, mas válidos."
+      },
+      {
+        "name": "Configure as opções",
+        "text": "Minúsculas (recomendado), Unicode (para URLs não latinas), limite de comprimento máximo."
+      },
+      {
+        "name": "Copie o slug",
+        "text": "Cole no seu CMS, post do blog ou configuração de roteamento."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Devo usar hífens ou underscores?",
+      "a": "Hífens. O Google trata explicitamente hífens como separadores de palavras em URLs; underscores são tratados como parte da palavra. Então 'carros-rapidos' são duas palavras-chave, 'carros_rapidos' é uma. Hífens ganham para SEO."
+    },
+    {
+      "q": "Devo incluir palavras de parada como 'o', 'a', 'de'?",
+      "a": "Opcional. Omiti-las mantém os slugs curtos. Incluí-las mantém os slugs legíveis. O impacto no SEO é desprezível de qualquer forma; a legibilidade importa mais."
+    },
+    {
+      "q": "E os acentos e cedilhas (ação, você)?",
+      "a": "Em modo ASCII eles são normalizados e removidos: 'ação' vira 'acao', 'você' vira 'voce'. Em modo Unicode eles são preservados como-são."
+    },
+    {
+      "q": "Isso lida com japonês / chinês?",
+      "a": "Sim — ative 'Permitir Unicode' para manter caracteres CJK no slug. Sem essa opção, os caracteres CJK são removidos (pois não têm equivalente ASCII)."
+    },
+    {
+      "q": "Por que meu slug coreano fica vazio no modo ASCII?",
+      "a": "Caracteres coreanos não têm equivalentes ASCII diretos. Ative o modo Unicode ou translitere manualmente antes de colar."
+    },
+    {
+      "q": "Emoji são preservados?",
+      "a": "Sim no modo Unicode. Emoji codificados por URL são válidos, mas feios — a maioria das plataformas os remove. Conselho prático: não use emoji em slugs."
+    },
+    {
+      "q": "Qual é o comprimento máximo de slug que devo usar?",
+      "a": "60 caracteres ou menos é o ponto ideal para SEO e taxa de clique. Alguns sistemas de CMS limitam a 200 caracteres. O índice do Google suporta muito mais, mas raramente beneficia a legibilidade."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. A geração é feita localmente; nada é enviado para um servidor."
+    }
+  ]
+}

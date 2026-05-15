@@ -1,0 +1,70 @@
+{
+  "title": "IPv4-Subnetz-Rechner (CIDR, Maske, Hosts)",
+  "shortDescription": "Netzwerkadresse, Broadcast, Host-Bereich, Netzmaske, Wildcard, Gesamt-/nutzbare Hosts aus beliebiger IPv4 + CIDR berechnen. Mit Binärdarstellung und Klassenerkennung.",
+  "description": "Eine IPv4-Adresse mit optionalem CIDR eingeben (z. B. 192.168.1.10/24). Gibt Netzwerkadresse, Broadcast, ersten/letzten nutzbaren Host, Gesamtadressen, Netzmaske, Wildcard, IP-Klasse, öffentlich/privat-Status und Binärdarstellung zurück.",
+  "metaDescription": "Kostenloser IPv4-Subnetz-Rechner. CIDR, Netzmaske, Wildcard, Netzwerk/Broadcast, Host-Bereich, Gesamt-/nutzbare Hosts, öffentlich/privat-Erkennung. Mit Binäransicht.",
+  "keywords": ["Subnetz Rechner", "CIDR Rechner", "IPv4 Subnetz", "Netzmaske Rechner", "IP-Adresse Rechner"],
+  "input": {
+    "cidr": "IP-Adresse / CIDR",
+    "hint": "Format: 192.168.1.10/24 (CIDR optional, Standard: /24)"
+  },
+  "result": {
+    "network": "Netzwerk",
+    "ip": "IP-Adresse",
+    "netmask": "Subnetzmaske",
+    "wildcard": "Wildcard-Maske",
+    "networkAddr": "Netzwerkadresse",
+    "broadcast": "Broadcast",
+    "hostMin": "Erster nutzbarer Host",
+    "hostMax": "Letzter nutzbarer Host",
+    "totalAddresses": "Gesamtadressen",
+    "usableHosts": "Nutzbare Hosts",
+    "ipClass": "IP-Klasse",
+    "private": "RFC 1918 privat",
+    "binary": "Binär"
+  },
+  "empty": "Eine IPv4-Adresse mit optionalem /CIDR eingeben.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Was CIDR-Notation bedeutet",
+        "paragraphs": [
+          "CIDR (Classless Inter-Domain Routing) ist der Schrägstrich + Zahl nach einer IP-Adresse — ‚192.168.1.10/24'. Die Zahl gibt an, wie viele Bits am Anfang der Adresse zum Netzwerkanteil gehören (vs. Hostanteil). /24 bedeutet 24 Bits Netzwerk = 8 Bits Host = 256 Gesamtadressen, 254 nutzbar.",
+          "Häufige CIDRs: /32 einzelner Host, /30 Link (4 Adressen, 2 nutzbar), /29 kleines Subnetz (8/6), /24 LAN (256/254), /16 großes Netzwerk (65k), /8 ISP-großer Block (16 Mio.). Je kleiner die CIDR-Zahl, desto größer das Netzwerk."
+        ]
+      },
+      {
+        "heading": "Netzwerk, Broadcast und nutzbare Hosts",
+        "paragraphs": [
+          "Netzwerkadresse: Die erste Adresse im Subnetz, mit allen Host-Bits gleich null. Dient zur Identifizierung des Subnetzes selbst; kann keinem Gerät zugewiesen werden.",
+          "Broadcast-Adresse: Die letzte Adresse, mit allen Host-Bits gleich eins. Wird verwendet, um ein Paket an alle Hosts im Subnetz zu senden; kann nicht zugewiesen werden.",
+          "Nutzbare Hosts: Gesamtadressen minus Netzwerk und Broadcast = 2^(32−CIDR) − 2. Ausnahme: /31 (Punkt-zu-Punkt-Links) und /32 (einzelner Host) behandeln alle Adressen als nutzbar gemäß RFC 3021."
+        ]
+      },
+      {
+        "heading": "Öffentliche vs. private Adressen",
+        "paragraphs": [
+          "RFC 1918 reserviert drei Adressbereiche für private interne Netzwerke: 10.0.0.0/8 (16 Mio. Adressen), 172.16.0.0/12 (1 Mio.), 192.168.0.0/16 (65k). Die meisten Heim- und Büro-Router verwenden einen Teil davon (typischerweise 192.168.1.0/24 oder 192.168.0.0/24).",
+          "Öffentliche Adressen sind im globalen Internet routebar und werden von regionalen Registries (RIPE NCC für Europa, ARIN, APNIC usw.) zugewiesen. Sie sind knapp — IPv4-Erschöpfung hat CIDR-Nutzung und IPv6-Einführung vorangetrieben.",
+          "Der Rechner erkennt, ob eine Adresse in privaten Bereichen liegt; nützlich zur Überprüfung von Netzwerkdesign oder zur Bestätigung, dass kein Leck private Adressen ins Internet sendet."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Adresse eingeben", "text": "Mit oder ohne /CIDR. Wenn CIDR weggelassen wird, wird /24 angenommen." },
+      { "name": "Netzwerkinformationen lesen", "text": "Netzwerkadresse, Broadcast, Host-Bereich, Maske, Wildcard." },
+      { "name": "Klasse und privaten Status prüfen", "text": "Schnelle Überprüfung des Adressraumtyps." },
+      { "name": "Binäransicht zum Debuggen verwenden", "text": "Hilft bei Bit-Level-Operationen oder der Ausrichtung von Subnetzen." }
+    ]
+  },
+  "faq": [
+    { "q": "Warum sind nutzbare Hosts 2 weniger als die Gesamtanzahl?", "a": "Die erste Adresse (alle Host-Bits 0) ist die Netzwerkkennung und die letzte (alle 1en) ist der Broadcast. Beide sind reserviert und können keinem Host zugewiesen werden." },
+    { "q": "Warum hat /31 2 nutzbare Hosts statt 0?", "a": "RFC 3021 erlaubt /31-Netzwerke für Punkt-zu-Punkt-Links (z. B. zwischen Routern). Beide Adressen sind nutzbar; Broadcast- und Netzwerkreservierungen gelten nicht." },
+    { "q": "Was ist der Unterschied zwischen Netzmaske und Wildcard?", "a": "Die Netzmaske hat Einsen in Netzwerkbits, Nullen in Hostbits (255.255.255.0). Wildcard ist das Gegenteil (0.0.0.255) — verwendet in Cisco ACLs und OSPF-Bereichsdefinitionen." },
+    { "q": "Wie unterteile ich ein Netzwerk?", "a": "Ein übergeordnetes Netzwerk nehmen und durch Hinzufügen von Bits zur CIDR in kleinere Blöcke aufteilen. /24 → /25 teilt in 2 Subnetze, /24 → /26 in 4 usw. Nützlich zur Trennung von Abteilungen oder Isolierung von IoT-/Gastnetzwerken." },
+    { "q": "Was ist das kleinste mögliche Subnetz?", "a": "/32 — eine einzelne IP-Adresse. /31 ist das kleinste ‚normale' Subnetz (2 Adressen). /30 ist üblich für Router-zu-Router-Links (4/2 nutzbar)." },
+    { "q": "Funktioniert das auch für IPv6?", "a": "Noch nicht — nur IPv4. IPv6-Subnetze sind konzeptionell ähnlich, verwenden aber 128-Bit-Adressen, Hex-Notation und andere Konventionen. IPv6-Unterstützung könnte in einer künftigen Version hinzugefügt werden." },
+    { "q": "Was ist das größte mögliche Einzelsubnetz?", "a": "/0 umfasst alle 4,3 Milliarden IPv4-Adressen — den gesamten IPv4-Adressraum. /1 teilt in zwei Hälften. /8 sind 16 Mio. und waren historisch ein einzelner ‚Klasse-A'-Block (z. B. 10.0.0.0/8)." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Die Berechnung läuft lokal; nichts wird an einen Server gesendet." }
+  ]
+}

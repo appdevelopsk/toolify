@@ -1,0 +1,111 @@
+{
+  "title": "Analisador de Frequência de Caracteres (letras, todos os chars ou",
+  "shortDescription": "Conte com que frequência cada caractere ou palavra aparece no seu texto. Classificável, com porcentagens e sensibilidade a maiúsculas/minúsculas opcional.",
+  "description": "Cole qualquer texto para obter uma tabela de frequência ordenada. Três modos: todos os caracteres, apenas letras/dígitos ou palavras inteiras. Útil para criptoanálise, análise de escrita e limpeza de conjuntos de dados.",
+  "metaDescription": "Analisador de frequência de caracteres gratuito. Conte letras, todos os caracteres ou palavras. Tabela classificável com porcentagens.",
+  "keywords": [
+    "frequência de caracteres",
+    "frequência de letras",
+    "frequência de palavras",
+    "análise de frequência",
+    "estatísticas de texto"
+  ],
+  "input": {
+    "text": "Texto"
+  },
+  "mode": {
+    "all": "Todos os caracteres",
+    "letters": "Letras e dígitos",
+    "words": "Palavras"
+  },
+  "caseSensitive": "Sensível a maiúsculas/minúsculas",
+  "stats": {
+    "unique": "{n} únicos",
+    "total": "{n} total",
+    "showingTop": "mostrando os {n} primeiros",
+    "remainingCount": "+{n} outros não exibidos"
+  },
+  "col": {
+    "item": "Item",
+    "count": "Contagem"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Para que serve",
+        "paragraphs": [
+          "Criptoanálise: cifras clássicas (César, substituição) preservam as frequências de letras. Texto em português sempre tem E como a letra mais comum, depois A, O, S, R. Se você vê aproximadamente essa distribuição em texto cifrado, provavelmente é uma cifra de substituição. Línguas CJK têm distribuições muito diferentes, mas ainda reconhecíveis.",
+          "Análise de escrita: identificar palavras usadas em excesso é uma das formas mais rápidas de melhorar rascunhos. Se 'apenas' ou 'realmente' aparece 50 vezes em um texto de 1.000 palavras, você encontrou um tique a corrigir.",
+          "Limpeza de conjuntos de dados: escanear uma coluna CSV com esta ferramenta revela caracteres estranhos, erros de codificação e capitalização inesperada. Útil antes de importar dados para um sistema mais rigoroso."
+        ]
+      },
+      {
+        "heading": "Três modos",
+        "paragraphs": [
+          "Todos os caracteres: inclui espaços, pontuação, quebras de linha, emoji. Melhor para análise de texto bruto. Útil quando você suspeita de caracteres ocultos (espaço de largura zero, BOM) corrompendo um arquivo.",
+          "Letras e dígitos: filtra apenas letras Unicode e números. Melhor para análise de frequência de letras tradicional (criptoanálise, identificação de idioma).",
+          "Palavras: divide por espaços em branco e conta palavras inteiras. Melhor para análise de escrita e verificação de estilo."
+        ]
+      },
+      {
+        "heading": "O que 'sensível a maiúsculas/minúsculas' faz",
+        "paragraphs": [
+          "Desativado (padrão): 'A' e 'a' contam juntos. Melhor para frequência de letras em texto natural onde a capitalização é incidental.",
+          "Ativado: 'A' e 'a' contam separadamente. Útil quando a capitalização é significativa — identificadores de programação, termos de marca ou análise de padrões de capitalização. Nota: a redução de maiúsculas/minúsculas usa as regras de minúsculas do locale; para a maioria dos idiomas é o Unicode case folding convencional."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Cole o texto",
+        "text": "Qualquer coisa, de uma frase a um arquivo de vários megabytes."
+      },
+      {
+        "name": "Escolha o modo",
+        "text": "Todos os caracteres, letras/dígitos ou palavras."
+      },
+      {
+        "name": "Alterne a sensibilidade a maiúsculas/minúsculas",
+        "text": "Desativado para texto natural; ativado quando a capitalização é significativa."
+      },
+      {
+        "name": "Leia a tabela",
+        "text": "Ordenada por frequência. Os 50 primeiros são mostrados; o restante é resumido abaixo."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Funciona para texto em japonês, chinês ou coreano?",
+      "a": "Sim. O modo de letras trata cada ideograma como uma 'letra', então você obtém a frequência de hanzi/kanji. O modo de palavras divide por espaços, o que significa que texto CJK sem espaços aparece como uma palavra gigante — use o modo de letras para esses idiomas."
+    },
+    {
+      "q": "Qual é a letra mais comum em português?",
+      "a": "'A' (cerca de 14,6%), depois E (12,6%), O (10,7%), S (7,8%), R (6,5%). Saber isso é a base para quebrar cifras de substituição simples em textos em português."
+    },
+    {
+      "q": "Emoji são contados?",
+      "a": "Sim no modo 'todos os caracteres'. O modo de letras os filtra (não são letras de acordo com a classificação Unicode)."
+    },
+    {
+      "q": "Por que emoji às vezes são divididos em múltiplos caracteres?",
+      "a": "Alguns emoji são múltiplos code points Unicode (ex.: bandeiras = dois caracteres indicadores regionais). O contador segue a iteração de string do JavaScript, que respeita code points mas não todos os clusters de grafema. Para a maioria das análises, isso está correto."
+    },
+    {
+      "q": "Posso exportar a tabela?",
+      "a": "Ainda não — copie e cole a tabela renderizada por enquanto. A exportação em CSV está no roteiro."
+    },
+    {
+      "q": "Quantas entradas são mostradas?",
+      "a": "As 50 primeiras na tabela. A contagem do restante é resumida na parte inferior."
+    },
+    {
+      "q": "Por que resultados sem distinção de maiúsculas em grego/turco não correspondem ao esperado?",
+      "a": "Alguns idiomas têm regras de capitalização incomuns (I com/sem ponto turco; ß ↔ SS alemão). Usamos toLowerCase() do JavaScript, que segue o Unicode case folding padrão — geralmente correto, mas pode surpreender em casos extremos."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. Toda a contagem é feita localmente."
+    }
+  ]
+}

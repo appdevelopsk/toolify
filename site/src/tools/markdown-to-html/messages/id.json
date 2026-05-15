@@ -1,0 +1,54 @@
+{
+  "title": "Konverter Markdown ke HTML (subset CommonMark)",
+  "shortDescription": "Konversi Markdown ke HTML bersih di browser Anda. Mendukung heading, daftar, blok kode, tautan, gambar, blockquote, tebal/miring/coret.",
+  "description": "Tempel Markdown dan langsung lihat HTML yang setara. Cocok untuk posting blog, dokumentasi, file README. Output adalah HTML semantik bersih yang bisa ditempel ke CMS atau situs statis manapun.",
+  "metaDescription": "Konverter Markdown ke HTML gratis. Pratinjau langsung, HTML semantik bersih, mendukung elemen penting CommonMark termasuk heading, daftar, kode, tautan, blockquote.",
+  "keywords": ["markdown ke html", "md ke html", "konverter markdown", "commonmark ke html", "markdown blog", "konversi markdown indonesia"],
+  "input": { "markdown": "Markdown" },
+  "output": { "html": "Output HTML" },
+  "preview": "Tampilkan pratinjau yang dirender",
+  "copy": "Salin HTML",
+  "copied": "Tersalin!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa yang didukung",
+        "paragraphs": [
+          "Heading: # H1 hingga ###### H6. Daftar: - / * / + untuk tidak berurutan, 1. 2. 3. untuk berurutan. Blockquote: > awal baris. Blok kode: ``` dengan bahasa opsional. Inline: **tebal**, *miring*, `kode`, ~~coret~~, [tautan](url), ![alt](url-gambar). Garis horizontal: ---, ***, atau ___.",
+          "Kami mengimplementasikan elemen penting CommonMark. Tabel, catatan kaki, dan daftar tugas (-[ ]) belum termasuk; untuk itu, gunakan library CommonMark atau GFM lengkap di pipeline build Anda."
+        ]
+      },
+      {
+        "heading": "Kapan menggunakan alat ini",
+        "paragraphs": [
+          "Konversi cepat untuk ditempel ke CMS. Sebagian besar CMS menerima HTML; jika Anda menulis dalam Markdown tetapi editor tidak merendernya secara native, jalankan melalui alat ini terlebih dahulu.",
+          "Pembuatan dokumentasi: konversi README.md ke HTML untuk halaman landing proyek. Outputnya cukup bersih untuk dibungkus dalam template dasar.",
+          "Komposisi email: banyak klien email merender HTML tetapi tidak Markdown. Tulis dalam Markdown, konversi, tempel."
+        ]
+      },
+      {
+        "heading": "Konversi di sisi browser",
+        "paragraphs": [
+          "Semua konversi berjalan di browser Anda. Markdown Anda — yang mungkin berisi draf rahasia, cuplikan kode, atau catatan — tidak pernah meninggalkan mesin Anda. Tidak ada log server, tidak ada data pelatihan AI, hanya transformasi regex yang deterministik.",
+          "Jika Anda memerlukan fitur GFM (tabel, daftar tugas, catatan kaki), gunakan library yang lebih lengkap seperti marked.js, markdown-it, atau remark di build Anda. Untuk sebagian besar Markdown sederhana hingga menengah, output alat ini sudah cukup."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Tempel Markdown", "text": "Atau tulis langsung di area input." },
+      { "name": "Baca output HTML", "text": "Diperbarui langsung saat Anda mengetik." },
+      { "name": "Salin ke clipboard", "text": "Klik 'Salin HTML' untuk mengambil outputnya." },
+      { "name": "Opsional: pratinjau", "text": "Klik 'Tampilkan pratinjau yang dirender' untuk melihat bagaimana tampilan di browser." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah ini mendukung tabel?", "a": "Belum. Tabel adalah ekstensi GFM, bukan CommonMark murni. Kami mungkin menambahkannya di versi mendatang." },
+    { "q": "Apakah blok kode saya akan di-highlight sintaks?", "a": "Kami menambahkan class='language-X' ke tag <pre><code> sehingga highlighter seperti Prism atau highlight.js dapat menata gayanya. HTML itu sendiri tidak bergaya — terapkan CSS atau library Anda sendiri." },
+    { "q": "Apakah output aman untuk ditempel di mana saja?", "a": "Kami meng-escape <, >, &, dan \" dalam blok kode dan kode inline. Konten lainnya dikonversi apa adanya. Jika Anda menempel Markdown yang dibuat pengguna, sanitasi outputnya sebelum menyuntikkan ke halaman." },
+    { "q": "Mengapa penekanan saya terlihat aneh?", "a": "Pembuatan penekanan Markdown yang bersarang bisa rumit. * vs _ mungkin berperilaku berbeda dengan tanda baca yang berdekatan. Spesifikasi CommonMark tepat; jika output kami berbeda, tempel contoh spesifikasi untuk pemeriksaan." },
+    { "q": "Apakah ini menangani HTML di dalam Markdown?", "a": "HTML inline dilewatkan (yang merupakan perilaku CommonMark). Gunakan dengan hati-hati — HTML berbahaya dari sumber yang tidak tepercaya akan dilewatkan tanpa perubahan." },
+    { "q": "Bisakah saya mengonversi HTML kembali ke Markdown?", "a": "Ya — lihat konverter HTML ke Markdown kami (tertaut di bawah Alat Terkait)." },
+    { "q": "Bagaimana dengan catatan kaki?", "a": "Belum diimplementasikan (ekstensi GFM). Untuk dokumen kompleks, gunakan library sisi server seperti remark-gfm." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Konversi berjalan secara lokal; Markdown Anda tidak pernah dikirim ke mana saja." }
+  ]
+}

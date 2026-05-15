@@ -1,0 +1,54 @@
+{
+  "title": "Codificatore / Decodificatore Base64 (UTF-8 e URL-safe)",
+  "shortDescription": "Codifica qualsiasi testo UTF-8 in Base64 o decodificalo. Attiva la codifica URL-safe per l'uso negli URL e nei JWT.",
+  "description": "Digita del testo o incolla una stringa Base64 per convertire in entrambe le direzioni. Gestisce UTF-8 (incluse emoji e caratteri CJK) e supporta la variante URL-safe usata in JWT e OAuth.",
+  "metaDescription": "Codificatore e decodificatore Base64 gratuito con supporto UTF-8 e URL-safe. Converti testo in Base64 o decodifica stringhe JWT nel tuo browser.",
+  "keywords": ["codificatore base64", "decodificatore base64", "base64 url safe", "base64 utf8", "codifica testo"],
+  "input": { "plain": "Testo normale", "encoded": "Stringa Base64" },
+  "output": { "encoded": "Risultato codificato", "plain": "Risultato decodificato" },
+  "mode": { "encode": "Codifica", "decode": "Decodifica" },
+  "urlSafe": "URL-safe (-, _, senza padding)",
+  "copy": "Copia",
+  "copied": "Copiato",
+  "invalidInput": "Input Base64 non valido.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cosa è e cosa non è Base64",
+        "paragraphs": [
+          "Base64 codifica byte arbitrari usando un alfabeto di 64 caratteri (A-Z, a-z, 0-9, +, /, con il padding =). È il modo standard per incorporare dati binari — byte di immagini, blob cifrati, token firmati — in formati solo testo come JSON, HTML o intestazioni email. L'output è circa il 33% più grande dell'input.",
+          "Base64 è codifica, non cifratura. Chiunque può decodificare una stringa Base64 per ottenere i byte originali. Non usarla per nascondere segreti — usa un vero algoritmo di cifratura se hai bisogno di riservatezza."
+        ]
+      },
+      {
+        "heading": "URL-safe vs standard",
+        "paragraphs": [
+          "Il Base64 standard include '+' e '/', che hanno significati speciali negli URL e devono essere codificati in percentuale. Il Base64 URL-safe (RFC 4648 §5) sostituisce '+' con '-', '/' con '_', e omette il padding finale '='. JWT, token OAuth e molte API web usano la forma URL-safe.",
+          "Se stai decodificando manualmente un JWT o un token, attiva URL-safe. Se lavori con email classica o dati incorporati in PDF, lasciala disattivata. Il decodificatore accetta entrambe le forme quando URL-safe è attivo."
+        ]
+      },
+      {
+        "heading": "Gestione di UTF-8",
+        "paragraphs": [
+          "Il vecchio btoa() del browser gestisce solo ASCII. Questo strumento usa TextEncoder per convertire prima il tuo input in byte UTF-8, poi li codifica in Base64. Questo significa che emoji, caratteri CJK, caratteri latini accentati e qualsiasi altro Unicode si codificano e si decodificano correttamente. L'approccio bytes-poi-base64 è lo stesso usato dalle librerie JWT e dalla maggior parte dei framework moderni."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Scegli codifica o decodifica", "text": "Attiva la modalità in alto." },
+      { "name": "Imposta URL-safe se necessario", "text": "Attivo per JWT e token OAuth; disattivato per tutto il resto." },
+      { "name": "Incolla il tuo input", "text": "Testo normale per la codifica, stringa Base64 per la decodifica." },
+      { "name": "Copia il risultato", "text": "Clicca 'Copia' accanto all'output." }
+    ]
+  },
+  "faq": [
+    { "q": "Base64 è cifratura?", "a": "No. È un modo per codificare dati binari come testo ASCII. Chiunque può decodificarlo. Usa una vera cifratura (AES, RSA, ecc.) per la riservatezza." },
+    { "q": "Perché il formato URL-safe è diverso?", "a": "Il Base64 standard usa '+' e '/' che hanno un significato speciale negli URL e richiedono la codifica percentuale. Il Base64 URL-safe sostituisce '-' e '_' per evitare questo problema." },
+    { "q": "Posso decodificare la firma di un JWT?", "a": "Decodificare la firma dà i byte grezzi della firma, ma questi sono pensati per la verifica, non per la lettura umana. Decodifica l'header e il payload del JWT (i primi due segmenti) per vedere i dati." },
+    { "q": "Funziona per file binari?", "a": "Non direttamente — incolla solo testo. Per i file, usa uno strumento che gestisce il binario. (La maggior parte dei browser ha una coppia atob/btoa integrata che puoi usare in DevTools per file piccoli.)" },
+    { "q": "Perché il mio testo decodificato è incomprensibile?", "a": "L'input non era Base64 valido, oppure codificava byte non UTF-8 (ad es. un file Latin-1). Verifica la codifica originale. Gli strumenti che decodificano 'come testo' assumono UTF-8." },
+    { "q": "I dati vengono inviati da qualche parte?", "a": "No. Codifica e decodifica vengono eseguite interamente nel tuo browser." },
+    { "q": "Qual è l'overhead di dimensione?", "a": "Circa il 33% in più rispetto ai byte sorgente (ogni 3 byte di input diventano 4 caratteri di output). L'URL-safe senza padding ha lo stesso overhead." },
+    { "q": "Perché il padding è importante?", "a": "Il Base64 standard aggiunge '=' alla fine in modo che la lunghezza sia un multiplo di 4. Le versioni URL-safe spesso lo omettono poiché non è necessario per la decodifica." }
+  ]
+}

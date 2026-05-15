@@ -1,0 +1,60 @@
+{
+  "title": "Kalkulator GCD & LCM (dengan faktorisasi prima)",
+  "shortDescription": "Temukan pembagi persekutuan terbesar (GCD) dan kelipatan persekutuan terkecil (LCM) dari dua bilangan atau lebih, beserta faktorisasi prima setiap bilangan.",
+  "description": "Masukkan daftar bilangan bulat. Kalkulator mengembalikan GCD (algoritma Euclid), LCM, dan faktorisasi prima lengkap setiap input. Mendukung bilangan bulat ukuran sembarang via BigInt.",
+  "metaDescription": "Kalkulator GCD dan LCM gratis dengan faktorisasi prima. Input multi-bilangan. Aritmetika BigInt tepat untuk bilangan bulat berukuran apapun.",
+  "keywords": ["kalkulator gcd", "kalkulator lcm", "pembagi persekutuan terbesar", "fpb", "kelipatan persekutuan terkecil", "kpk", "faktorisasi prima"],
+  "input": {
+    "numbers": "Bilangan",
+    "hint": "Dipisahkan oleh koma, spasi, atau baris baru. Minimal 2 bilangan."
+  },
+  "result": {
+    "gcd": "GCD / FPB (pembagi persekutuan terbesar)",
+    "lcm": "LCM / KPK (kelipatan persekutuan terkecil)",
+    "factorizations": "Faktorisasi prima"
+  },
+  "empty": "Masukkan minimal 2 bilangan bulat.",
+  "article": {
+    "sections": [
+      {
+        "heading": "GCD: faktor persekutuan terbesar",
+        "paragraphs": [
+          "GCD dari dua bilangan bulat adalah bilangan bulat terbesar yang membagi keduanya tanpa sisa. GCD(12, 18) = 6 karena 6 membagi keduanya dan tidak ada bilangan yang lebih besar. GCD(7, 13) = 1 karena keduanya tidak memiliki faktor persekutuan (pasangan seperti ini disebut 'koprima').",
+          "Kita menggunakan algoritma Euclid: gcd(a, b) = gcd(b, a mod b), secara rekursif. Telah dikenal selama ~2300 tahun dan tetap menjadi metode standar tercepat. Untuk tiga bilangan atau lebih, gcd(a, b, c) = gcd(gcd(a, b), c)."
+        ]
+      },
+      {
+        "heading": "LCM: kelipatan persekutuan terkecil",
+        "paragraphs": [
+          "LCM adalah bilangan bulat positif terkecil yang merupakan kelipatan dari keduanya. LCM(4, 6) = 12 karena 12 adalah bilangan pertama yang habis dibagi 4 dan 6.",
+          "Rumus: lcm(a, b) = (a × b) / gcd(a, b). Untuk 4 dan 6: 24 / 2 = 12. Untuk tiga bilangan: lcm(a, b, c) = lcm(lcm(a, b), c).",
+          "Jika ada bilangan 0, LCM adalah 0 (setiap bilangan membagi 0, tetapi 'positif terkecil' tidak terdefinisi). Kalkulator mengembalikan 0 untuk kasus tersebut."
+        ]
+      },
+      {
+        "heading": "Mengapa ini penting",
+        "paragraphs": [
+          "Pecahan: untuk menambahkan 1/4 + 1/6, cari LCM(4, 6) = 12 sebagai penyebut persekutuan. 1/4 = 3/12, 1/6 = 2/12, jumlah = 5/12.",
+          "Penjadwalan: jika acara A berulang setiap 4 hari dan acara B setiap 6 hari, keduanya bertepatan setiap LCM(4, 6) = 12 hari.",
+          "Kriptografi: algoritma berbasis GCD (Euclid diperluas) mendasari pembuatan kunci RSA dan perhitungan invers modular.",
+          "Teori musik: ritme dengan periode 3 dan 4 sinkron setelah 12 ketukan (LCM)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Masukkan bilangan bulat", "text": "Minimal 2, dipisahkan oleh koma, spasi, atau baris baru." },
+      { "name": "Baca GCD dan LCM", "text": "Keduanya ditampilkan dengan jelas di area hasil." },
+      { "name": "Periksa faktorisasi", "text": "Dekomposisi prima setiap bilangan menunjukkan mengapa GCD/LCM menghasilkan nilai tersebut." }
+    ]
+  },
+  "faq": [
+    { "q": "Bagaimana jika bilangan-bilangan saya koprima?", "a": "GCD = 1 dan LCM = hasil kali semua bilangan. Koprima berarti tidak ada faktor prima yang sama." },
+    { "q": "Bisakah saya memasukkan bilangan negatif?", "a": "Ya. Kami menggunakan nilai absolut untuk perhitungan GCD/LCM. -12 dan 18 menghasilkan GCD 6 dan LCM 36, sama seperti 12 dan 18." },
+    { "q": "Bagaimana jika saya memasukkan 0?", "a": "GCD(0, n) = |n| (karena setiap bilangan bulat membagi 0, dan n adalah yang terbesar untuk pasangan itu). LCM dengan 0 adalah 0 berdasarkan konvensi. Dengan semua nol, GCD/LCM tidak terdefinisi." },
+    { "q": "Seberapa besar bilangan yang bisa saya gunakan?", "a": "Kami menggunakan BigInt secara internal, sehingga aritmetika pada bilangan bulat berukuran apapun adalah tepat. Batas praktisnya adalah kecepatan mengetik dan ruang layar Anda." },
+    { "q": "Mengapa faktorisasi prima berguna?", "a": "GCD = hasil kali prima persekutuan (mengambil eksponen lebih kecil). LCM = hasil kali semua prima yang muncul dalam bilangan apapun (mengambil eksponen lebih besar). Faktorisasi membuat hubungan ini terlihat jelas." },
+    { "q": "Apa hubungan antara GCD dan LCM?", "a": "Untuk dua bilangan: a × b = gcd(a, b) × lcm(a, b). Jadi jika Anda mengetahui tiga dari {a, b, gcd, lcm}, Anda dapat menghitung yang keempat. Tidak berlaku secara umum untuk tiga bilangan atau lebih." },
+    { "q": "Bisakah saya menggunakan ini untuk GCD polinomial?", "a": "Tidak dalam alat ini — kami hanya menangani bilangan bulat. Untuk polinomial, Anda perlu menggunakan CAS seperti SymPy atau Maxima." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

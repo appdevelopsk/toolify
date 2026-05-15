@@ -1,0 +1,100 @@
+{
+  "title": "Geri Sayım Zamanlayıcısı (canlı, gün/saat/dakika/saniye)",
+  "shortDescription": "Herhangi bir gelecek tarih ve saate canlı geri sayım. Her saniye güncellenir; etkinlikler, son tarihler, lansmanlar ve tatiller için çalışır.",
+  "description": "Hedef tarih ve saati seç ve geri sayımın saniye saniye azaldığını izle. Etkinliği etiketlemek için isteğe bağlı başlık ekle. Hedef geçtikten sonra aynı ekran geçen süreyi gösterir.",
+  "metaDescription": "Herhangi bir tarihe ücretsiz canlı geri sayım zamanlayıcısı. Gün, saat, dakika, saniye — her saniye güncellenir.",
+  "keywords": [
+    "geri sayım zamanlayıcı",
+    "tarihe geri sayım",
+    "canlı geri sayım",
+    "son tarih zamanlayıcı",
+    "etkinlik geri sayım"
+  ],
+  "input": {
+    "target": "Hedef tarih ve saat",
+    "title": "Etkinlik adı (isteğe bağlı)",
+    "titlePlaceholder": "Proje son tarihi"
+  },
+  "remaining": "Kalan süre:",
+  "ended": "Geçen süre:",
+  "empty": "Geri sayımı başlatmak için hedef tarih ve saat seç.",
+  "unit": {
+    "days": "Gün",
+    "hours": "Saat",
+    "minutes": "Dakika",
+    "seconds": "Saniye"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Zamanlayıcı nasıl çalışır?",
+        "paragraphs": [
+          "Geri sayım, setInterval kullanarak saniyede bir tıklar. Her tik mevcut yerel saati okur, hedeften çıkarır ve farkı gün, saat, dakika ve saniyeye böler. Sunucu gidiş-dönüşü yoktur, dolayısıyla ağın kesilse bile geri sayım doğru kalır — yalnızca sayfanın yüklenmesi gerekir.",
+          "Saat dilimleri, tarayıcının 'yerel' olarak düşündüğü şeyi kullanır. Hedefi 'bugün 12:00' olarak ayarlarsan ve farklı saat dilimindeki başka biri sayfayı ziyaret ederse, geri sayım farklı olur — her ikisi de kendi yerel 12:00'si için doğrudur."
+        ]
+      },
+      {
+        "heading": "Yaygın kullanım alanları",
+        "paragraphs": [
+          "Proje son tarihleri (toplantı odasının ekranında geri sayımı göster), ürün lansmanları (halka açık yayın için geri say), seyahat (tatil, uçuş, tren), sınavlar ve sertifikasyonlar, düğünler ve yıldönümleri, spor etkinlikleri. İsteğe bağlı başlık alanı, sayfanın kendi kendini açıklaması için etkinliği etiketlemeni sağlar.",
+          "Hedef geçtikten sonra aynı ekran 'geçen süre' olarak çevirir ve saymaya devam eder. Bu, 'X ne kadar önce oldu?' sorusunun cevabını istediğinde kullanışlıdır — örneğin bir SRE panosu için 'son olaydan bu yana geçen gün sayısı'."
+        ]
+      },
+      {
+        "heading": "Takvim hatırlatıcısı yerine neden geri sayım?",
+        "paragraphs": [
+          "Takvim hatırlatıcıları etkinlik zamanında bir kez açılır. Canlı geri sayım, sürekli bir çevre farkındalığı sunar — akılda tutmak istediğin hedefler için kullanışlıdır. Spor takımları bunları gösterir, yazılım ekipleri savaş odalarında gösterir ve maratoncular antrenman ekranlarına sabitler.",
+          "Bunun bir genel panoda yaşamasını istiyorsan, hedefi ayarladıktan sonra URL'ye yer işareti koy. Durum girişlerde kalır; sayfayı yenilemek sıfırlar (henüz paylaşılabilir bağlantı yok, ancak giriş alanları oturum içinde korunur)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Hedefi seç",
+        "text": "Geri saymak istediğin tarih ve saati seç. Seçici yerel saat dilimini kullanır."
+      },
+      {
+        "name": "Başlık ekle (isteğe bağlı)",
+        "text": "Ekranın bir bakışta anlamlı olması için etkinlik adını yaz."
+      },
+      {
+        "name": "Geri sayımı izle",
+        "text": "Gün, saat, dakika ve saniye saniyede bir azalır. Hedef sonrasında aynı ekran geçen süreye geçer."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Geri sayım saniye doğrulukta mı?",
+      "a": "Evet — ekran saniyede bir güncellenir ve her güncelleme mevcut saati kullanarak yeniden hesaplar; bu nedenle birikmiş sapma oluşamaz."
+    },
+    {
+      "q": "Hangi saat dilimini kullanıyor?",
+      "a": "Tarayıcının yerel saat dilimi. Seçtiğin hedef yerel diliminde yorumlanır, UTC'de değil."
+    },
+    {
+      "q": "Geri sayım çevrimdışı çalışıyor mu?",
+      "a": "Evet, sayfa yüklendikten sonra. Zamanlayıcının tıklamaya devam etmesi için ağ bağlantısına gerek yoktur."
+    },
+    {
+      "q": "Bir geri sayımı başkasıyla paylaşabilir miyim?",
+      "a": "Henüz URL ile değil. Hedef ve başlığı taşıyan kodlanmış durum URL'leri üzerinde çalışıyoruz; şimdilik ekran görüntüsü veya ekran kaydı yapabilirsin."
+    },
+    {
+      "q": "Hedef geçtikten sonra ne olur?",
+      "a": "Ekran 'geçen süre' olarak geçer ve saymaya devam eder. Sayılar pozitif ama etiket değişir."
+    },
+    {
+      "q": "Birden fazla geri sayımım olabilir mi?",
+      "a": "Birden fazla sekme aç — her biri bağımsızdır. Yerleşik çok etkinlik modu yol haritasında var."
+    },
+    {
+      "q": "Sekmeleri değiştirirsem zamanlayıcı çalışmaya devam eder mi?",
+      "a": "Tarayıcılar arka plan sekmelerinde setInterval'ı kısıtlar. Döndüğünde geri sayım doğru şekilde yetişir — yeniden hesaplama birikmiş tiklerden değil, saatten yapılır."
+    },
+    {
+      "q": "Giriş verisi bir yere gönderiliyor mu?",
+      "a": "Hayır. Her şey tarayıcında kalır."
+    }
+  ]
+}

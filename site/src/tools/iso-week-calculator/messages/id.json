@@ -1,0 +1,61 @@
+{
+  "title": "Kalkulator Nomor Minggu ISO (minggu dalam tahun)",
+  "shortDescription": "Temukan nomor minggu ISO 8601, hari kerja ISO, dan rentang tanggal minggu untuk tanggal kalender apapun. Termasuk hari dalam setahun dan jumlah minggu dalam tahun.",
+  "description": "Pilih tanggal apapun dan lihat nomor minggu ISO 8601 (1-53), hari kerja ISO (1=Senin, 7=Minggu), rentang Senin-Minggu dari minggu tersebut, dan hitungan terkait yang berguna (hari dalam setahun, minggu dalam tahun).",
+  "metaDescription": "Kalkulator nomor minggu ISO gratis. Minggu ISO 8601, hari kerja, rentang tanggal minggu, hari dalam setahun, minggu dalam tahun. Format minggu-dalam-tahun standar.",
+  "keywords": ["nomor minggu iso", "minggu dalam tahun", "minggu iso 8601", "kalkulator minggu", "kalender minggu", "iso week number indonesia"],
+  "input": { "date": "Tanggal" },
+  "today": "Hari ini",
+  "result": {
+    "iso": "Representasi ISO 8601",
+    "weekNumber": "Nomor minggu",
+    "weekday": "Hari kerja",
+    "weekStart": "Minggu dimulai (Senin)",
+    "weekEnd": "Minggu berakhir (Minggu)",
+    "dayOfYear": "Hari dalam setahun",
+    "weeksInYear": "Minggu dalam setahun"
+  },
+  "empty": "Pilih tanggal.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa itu minggu ISO",
+        "paragraphs": [
+          "ISO 8601 mendefinisikan minggu kalender dimulai Senin dan berakhir Minggu. Minggu pertama dari tahun ISO manapun adalah yang mengandung Kamis pertama tahun tersebut — atau setara, minggu yang mengandung 4 Januari. Ini berarti suatu tahun dapat memiliki 52 atau 53 minggu ISO, dan tahun ISO tidak selalu cocok dengan tahun kalender untuk tanggal akhir Desember dan awal Januari.",
+          "Format: 'YYYY-Www-D'. Jadi '2026-W19-3' berarti Rabu dari minggu 19 tahun 2026. Nomor hari kerja: 1=Senin, 7=Minggu. Nomor minggu: 1-52 atau 1-53."
+        ]
+      },
+      {
+        "heading": "Mengapa minggu ISO berbeda dari minggu kalender",
+        "paragraphs": [
+          "Kalender AS biasanya menghitung Minggu sebagai hari pertama. ISO adalah Senin-pertama. Ini berarti: Minggu di kalender lokal Anda yang berada di akhir minggu ke-30, dalam ISO juga akhir minggu ke-30. Tetapi Minggu yang Anda ketik mungkin jatuh pada minggu ISO yang berbeda jika itu adalah Minggu terakhir satu tahun dan Senin pertama tahun lain.",
+          "Juga: tahun ISO bisa berbeda satu dari tahun kalender. 31 Des 2024 berada di minggu ISO 1 tahun 2025 (minggu yang mengandung Kamis pertama 2025). 1 Jan 2024 adalah Senin — minggu 1 tahun 2024 dimulai 1 Jan. 1 Jan 2025 adalah Rabu — minggu 1 tahun 2025 dimulai 30 Des 2024."
+        ]
+      },
+      {
+        "heading": "Di mana minggu ISO digunakan",
+        "paragraphs": [
+          "Bisnis: banyak perusahaan Eropa menginvoice dan mengirim berdasarkan minggu ISO. 'Pesanan tiba di W23' tidak ambigu dan independen bahasa.",
+          "Perangkat lunak: banyak bahasa pemrograman memiliki fungsi minggu ISO. JavaScript Date tidak langsung, sehingga library seperti date-fns dan dayjs menambahkannya. Digunakan dalam penjadwalan, analisis log, dan pelaporan.",
+          "Epidemiologi kesehatan: laporan insiden penyakit mingguan menggunakan minggu ISO. WHO dan CDC menggunakannya dalam dashboard flu dan COVID mereka.",
+          "Olahraga / gaming: banyak liga menjadwalkan berdasarkan 'minggu 1, minggu 2, ...' yang seringkali selaras dengan minggu ISO (terutama liga Eropa)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih tanggal", "text": "Pemilih tanggal atau tombol 'hari ini'." },
+      { "name": "Baca representasi ISO", "text": "Format: YYYY-Www-D, di mana w adalah nomor minggu dan D adalah hari kerja." },
+      { "name": "Lihat rentang minggu", "text": "Senin dan Minggu dari minggu tersebut, dalam format tanggal lokal Anda." }
+    ]
+  },
+  "faq": [
+    { "q": "Mengapa ini tidak cocok dengan fungsi WEEKNUM Excel?", "a": "WEEKNUM Excel menggunakan konvensi berbeda. Default-nya adalah gaya AS (Minggu-pertama). Untuk minggu ISO di Excel, gunakan ISOWEEKNUM atau tentukan return_type=21 di WEEKNUM." },
+    { "q": "Bisakah suatu tahun memiliki 53 minggu?", "a": "Ya. Suatu tahun memiliki 53 minggu ISO jika 1 Jan adalah Kamis ATAU 31 Des adalah Kamis. Sekitar 71 dalam setiap 400 tahun." },
+    { "q": "Apa itu tahun ISO vs tahun kalender?", "a": "Sebagian besar hari sama. Kasus tepi akhir Desember dan awal Januari berbeda. 29 Des 2008 adalah minggu ISO 1 tahun 2009 (tahun kalender 2008, tahun ISO 2009)." },
+    { "q": "Apakah minggu 1 selalu minggu 1 Jan?", "a": "Tidak selalu. Minggu ISO 1 mengandung Kamis pertama tahun tersebut. Jadi jika 1 Jan adalah Jumat-Minggu, hari itu adalah bagian dari minggu ISO terakhir tahun sebelumnya." },
+    { "q": "Apa perbedaan antara W1 dan Minggu 1?", "a": "Sama dalam konteks ISO. Prefiks W adalah konvensi format ISO. '2026-W01' berarti minggu ISO 1 tahun 2026." },
+    { "q": "Mengapa Senin sebagai awal minggu?", "a": "ISO 8601 menstandarkan ini. Sebagian besar dunia menggunakan Senin-pertama; hanya Arab Saudi, AS, Kanada, dan beberapa negara lain yang secara kebiasaan menggunakan Minggu-pertama." },
+    { "q": "Bisakah saya mengekspornya ke kalender?", "a": "Tidak langsung dari alat ini. Gunakan tanggal mulai/akhir minggu dan buat acara kalender Anda sendiri." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

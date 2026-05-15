@@ -1,0 +1,77 @@
+{
+  "title": "Tableau d'Amortissement de Prêt (complet ou annuel)",
+  "shortDescription": "Génère un tableau d'amortissement mensuel complet pour n'importe quel prêt à taux fixe. Affiche la répartition capital/intérêts par échéance, le capital restant dû, et un export CSV.",
+  "description": "Saisis le capital, le taux annuel et la durée en années. Retourne la mensualité, le total des intérêts, le total des remboursements, et un tableau ligne par mois montrant comment chaque paiement se divise entre capital et intérêts. Bascule entre vue complète et résumé annuel ; télécharge en CSV.",
+  "metaDescription": "Tableau d'amortissement de prêt gratuit. Répartition mensuelle capital/intérêts, intérêts totaux, capital restant dû par période. Export CSV. Navigateur uniquement.",
+  "keywords": ["tableau amortissement prêt", "tableau amortissement crédit", "capital intérêts mensuel", "calculateur échéances prêt", "amortissement prêt immobilier"],
+  "input": {
+    "principal": "Montant du prêt",
+    "ratePct": "Taux annuel %",
+    "years": "Durée (années)"
+  },
+  "result": {
+    "monthly": "Mensualité",
+    "totalInterest": "Total des intérêts payés",
+    "totalPayments": "Total des remboursements",
+    "months": "Nombre total de mois"
+  },
+  "schedule": {
+    "heading": "Tableau",
+    "showAll": "Afficher tous les mois",
+    "condense": "Résumer par année",
+    "downloadCsv": "Télécharger CSV",
+    "condensedNote": "Vue condensée : affiche le premier mois, chaque 12e mois, et le dernier mois. Clique sur « Afficher tous les mois » pour le détail complet.",
+    "col": {
+      "month": "Mois",
+      "payment": "Échéance",
+      "principal": "Capital",
+      "interest": "Intérêts",
+      "balance": "Capital restant"
+    }
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionne l'amortissement",
+        "paragraphs": [
+          "Chaque mensualité fixe est divisée entre les intérêts (calculés sur le capital restant) et le remboursement du capital (le remboursement réel du prêt). Au début du prêt, le capital est élevé, donc la majeure partie de ta mensualité correspond aux intérêts. Au fur et à mesure que le capital diminue, les intérêts baissent et une plus grande part de chaque mensualité va au capital — jusqu'à ce que les dernières échéances soient presque entièrement du capital.",
+          "Formule d'amortissement à taux fixe standard : mensualité = P × r / (1 − (1+r)⁻ⁿ), où P est le capital, r est le taux mensuel (annuel / 12), n est le nombre de mois. La même mensualité est utilisée tout au long, mais sa répartition capital/intérêts change chaque mois à mesure que le solde change."
+        ]
+      },
+      {
+        "heading": "Pourquoi le tableau est important",
+        "paragraphs": [
+          "Il te dit exactement quand tu « bascules » du paiement majoritairement d'intérêts à celui majoritairement de capital. Pour un prêt immobilier classique sur 25 ans à 4 %, ce basculement survient vers la 13e année — ce qui signifie que les 13 premières années de remboursements sont majoritairement des intérêts, pas des remboursements de capital.",
+          "Il montre aussi le coût de rester dans un prêt long. Comparé à une durée de 15 ans au même taux, un prêt sur 25 ans peut payer 2 à 3 fois plus d'intérêts sur la durée du prêt. Le tableau rend cela concret.",
+          "Les remboursements anticipés en capital en début de prêt économisent bien plus d'intérêts que les remboursements tardifs. Le tableau t'aide à visualiser cela — rembourser 100 €/mois en extra pendant les 5 premières années économise plus que de rembourser 100 €/mois lors des années 21-25."
+        ]
+      },
+      {
+        "heading": "Limitations",
+        "paragraphs": [
+          "Taux fixe uniquement. Les prêts à taux variable nécessitent de recalculer le tableau à chaque changement de taux.",
+          "Pas de taxes, d'assurance, de garantie hypothécaire ni de séquestre. La « mensualité » ici correspond uniquement au capital + intérêts. Pour le paiement logement total, ajoute les taxes foncières, l'assurance emprunteur, etc. séparément.",
+          "Pas de scénarios de remboursement anticipé. Si tu effectues des paiements supplémentaires, le tableau au-delà de ce point n'est plus exact. Pour l'analyse du remboursement anticipé, recalcule avec le nouveau solde.",
+          "Composition : suppose une capitalisation mensuelle (standard pour les prêts immobiliers français). Certains produits de prêt utilisent des intérêts journaliers ou simples — pour ceux-là, le tableau est approximatif."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Saisis le montant du prêt", "text": "Le montant emprunté (capital)." },
+      { "name": "Saisis le taux", "text": "Taux annuel en pourcentage. Pour 4,5 %, saisis 4,5." },
+      { "name": "Saisis la durée", "text": "En années. Les prêts immobiliers français sont généralement sur 15, 20 ou 25 ans." },
+      { "name": "Lis le résumé + tableau", "text": "Mensualité, total des intérêts, répartition mois par mois de chaque euro." },
+      { "name": "Télécharge le CSV", "text": "Exporte le tableau complet pour une analyse dans un tableur." }
+    ]
+  },
+  "faq": [
+    { "q": "Pourquoi mon relevé de prêt affiche-t-il des chiffres différents ?", "a": "Les prêteurs réels incluent l'assurance emprunteur, la garantie et parfois les taxes foncières dans la mensualité. Ce calculateur affiche le capital + intérêts purs. Soustrait ces compléments pour comparer." },
+    { "q": "Comment les intérêts sont-ils calculés chaque mois ?", "a": "Intérêts mensuels = capital restant × taux mensuel. Puis capital = mensualité − intérêts. Le nouveau solde = ancien solde − capital. Répète pour n mois." },
+    { "q": "Pourquoi les premières échéances semblent-elles si « gaspillées » en intérêts ?", "a": "Elles ne sont pas gaspillées — elles paient pour l'existence du prêt avec un capital restant élevé. Les maths sont honnêtes : capital élevé × taux = intérêts élevés. À mesure que le capital baisse, les intérêts baissent aussi." },
+    { "q": "Quel est l'impact d'un changement de taux d'1 point ?", "a": "Environ 12 % d'augmentation de la mensualité, et 25-35 % d'augmentation du total des intérêts sur un prêt immobilier sur 25 ans. Verrouille un taux bas si possible." },
+    { "q": "Devrais-je faire des remboursements anticipés chaque mois ?", "a": "Si ton prêt n'a pas de pénalité de remboursement anticipé (la plupart des prêts immobiliers français en ont de 3 % max), oui. Même 100 €/mois supplémentaires en début de prêt économisent des milliers d'euros d'intérêts. Le tableau montre l'impact." },
+    { "q": "Qu'est-ce qu'un prêt in fine ?", "a": "Un prêt où les remboursements réguliers ne couvrent que les intérêts, laissant un remboursement final du capital total. Courant en investissement locatif ; rare en résidence principale. Ce calculateur ne modélise pas les prêts in fine." },
+    { "q": "Pourquoi le total des intérêts sur 25 ans est-il si plus élevé que sur 15 ans ?", "a": "La capitalisation joue contre toi. À 4 %, un prêt sur 25 ans a environ 2× le total des intérêts d'un prêt sur 15 ans, malgré le même taux. La durée plus courte signifie que la période de capital élevé est plus courte." },
+    { "q": "Les données quittent-elles mon navigateur ?", "a": "Non. Le calcul s'exécute localement ; le téléchargement CSV est aussi généré dans le navigateur." }
+  ]
+}

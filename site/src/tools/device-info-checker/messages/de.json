@@ -1,0 +1,92 @@
+{
+  "title": "Geräteinformations-Checker (Browser, OS, Hardware, Netzwerk)",
+  "shortDescription": "Sieh Browser, OS, Bildschirm, Hardware, GPU, Speicher, Netzwerk und Dunkelmodus-Einstellungen deines Geräts auf einen Blick. Alles clientseitig erkannt.",
+  "description": "Clientseitige Ausgabe jeder öffentlichen Web-API, die das Gerät bereitstellt: User Agent, OS, Browserversion, Bildschirmgröße, devicePixelRatio, Hardware-Parallelität (CPU-Kerne), Gerätespeicher, GPU-Info via WebGL, Speicherkontingent, Netzwerktyp und -geschwindigkeit, Sprache, Zeitzone, Dunkelmodus- und Bewegungsreduzierungseinstellungen.",
+  "metaDescription": "Kostenloser Geräteinformations-Checker. Browser, OS, CPU-Kerne, Speicher, GPU, Bildschirm, Netzwerk, Sprache, Zeitzone – alle Geräteinformationen auf einer Seite.",
+  "keywords": ["Geräteinformationen Checker", "Browser Erkennung", "Systeminformationen", "User Agent", "Hardware Info"],
+  "loading": "Erkenne…",
+  "copyJson": "JSON kopieren",
+  "copied": "Kopiert!",
+  "notAvailable": "(nicht verfügbar)",
+  "automation": "Automatisierung erkannt",
+  "real": "Echter Browser",
+  "section": {
+    "browser": "Browser & OS",
+    "display": "Anzeige",
+    "hardware": "Hardware",
+    "network": "Netzwerk",
+    "userAgent": "User-Agent-Zeichenkette"
+  },
+  "field": {
+    "browser": "Browser",
+    "os": "Betriebssystem",
+    "platform": "Plattform",
+    "language": "Primärsprache",
+    "languages": "Alle Sprachen",
+    "timezone": "Zeitzone",
+    "cookiesEnabled": "Cookies aktiviert",
+    "online": "Online-Status",
+    "doNotTrack": "Nicht verfolgen",
+    "webdriver": "Webdriver",
+    "screenSize": "Bildschirmgröße",
+    "availSize": "Verfügbarer Bereich",
+    "windowSize": "Fenstergröße",
+    "colorDepth": "Farbtiefe",
+    "pixelRatio": "devicePixelRatio",
+    "darkMode": "Bevorzugt Dunkelmodus",
+    "reducedMotion": "Bewegung reduziert",
+    "cpuCores": "CPU-Threads",
+    "deviceMemory": "Gerätespeicher",
+    "touchPoints": "Touch-Punkte",
+    "gpu": "GPU (WebGL)",
+    "storageQuota": "Speicherkontingent",
+    "storageUsage": "Speicherverwendung",
+    "connectionType": "Verbindungstyp",
+    "downlink": "Downlink",
+    "rtt": "Umlaufzeit"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Was erfasst wird",
+        "paragraphs": [
+          "Browser & OS: User Agent, geparster Browser/OS, Sprache, Zeitzone, Cookies, Online-Status. Dieselben Informationen, die jede Website, die du besuchst, lesen kann.",
+          "Anzeige: Bildschirmgröße, Viewport-Größe, Farbtiefe, devicePixelRatio (Retina/HiDPI), prefers-color-scheme, prefers-reduced-motion. Von Websites für responsives Design und Barrierefreiheit genutzt.",
+          "Hardware: CPU-Thread-Anzahl (navigator.hardwareConcurrency), Gerätespeicherklasse (navigator.deviceMemory, in GB, ≥4 wird auf 8 begrenzt), maximale Touch-Punkte, GPU-Info aus WebGL, Speicherkontingent und aktuelle Nutzung.",
+          "Netzwerk: Verbindungseffektivtyp (slow-2g/2g/3g/4g), Downlink (Mbit/s) und Umlaufzeit (ms), wenn vom Browser unterstützt. Nützlich für adaptives Laden."
+        ]
+      },
+      {
+        "heading": "Datenschutz: Was Websites sehen und was nicht",
+        "paragraphs": [
+          "Alles, was hier gezeigt wird, sind Informationen, auf die jede Website, die du besuchst, über Standard-JavaScript-APIs bereits zugreifen kann. Es sind keine besonderen Berechtigungen erforderlich; alles ist in den öffentlichen navigator- und screen-Objekten. Daher ist dieses Tool informativ, nicht extraktiv.",
+          "Was Websites NICHT sehen (und dieses Tool nicht anzeigen kann): deine IP-Adresse (nur serverseitig, dieses Tool ist vollständig clientseitig), dein lokales Dateisystem, Inhalte anderer Browser-Tabs oder alles außerhalb der Browser-Sandbox. Browser-Fingerprinting kombiniert viele dieser sichtbaren Felder, um einen eindeutigen Browser zu identifizieren, selbst ohne Cookies – ein weit dokumentiertes Datenschutzproblem."
+        ]
+      },
+      {
+        "heading": "Nützlich zur Fehlersuche",
+        "paragraphs": [
+          "Mobil vs. Desktop-Tests: Der User Agent zeigt, was die Website sieht. Manchmal entstehen responsive Probleme durch falsch erkannte Geräteklassen.",
+          "GPU/WebGL: 'GPU (WebGL)' zeigt deinen Grafik-Renderer. Nützlich, wenn komplexe 3D- oder Canvas-intensive Sites schlecht performen – deine GPU könnte der Flaschenhals sein.",
+          "Speicher: Das Speicherkontingent zeigt, wie viel localStorage/IndexedDB/Cache die Site nutzen kann. Standard ist typischerweise mehrere GByte auf Desktop, weniger auf Mobilgeräten. Wenn eine Web-App 'Kontingent überschritten' meldet, liegt es an dieser Zahl."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Diese Seite öffnen", "text": "Erkennung läuft automatisch, wenn die Seite geladen wird." },
+      { "name": "Jeden Abschnitt lesen", "text": "Browser & OS, Anzeige, Hardware, Netzwerk, User Agent." },
+      { "name": "Fenstergröße anpassen", "text": "Fenstergröße und DPI-bezogene Felder aktualisieren sich live." },
+      { "name": "Optional: als JSON kopieren", "text": "Klicke 'JSON kopieren', um den vollständigen Snapshot für Fehlerberichte oder Vergleiche zu erfassen." }
+    ]
+  },
+  "faq": [
+    { "q": "Werden meine Daten irgendwohin gesendet?", "a": "Nein. Alles wird lokal in deinem Browser erkannt und angezeigt. Nichts wird protokolliert oder übertragen." },
+    { "q": "Warum sind einige Felder '(nicht verfügbar)'?", "a": "Browser unterscheiden sich darin, welche APIs sie bereitstellen. navigator.deviceMemory ist nur Chrome/Edge; navigator.connection ist überwiegend Chrome; Speicherkontingent erfordert HTTPS. Safari und Firefox schränken im Datenschutzmodus mehr ein." },
+    { "q": "Warum unterscheidet sich meine Bildschirmgröße von der erwarteten Auflösung?", "a": "Browser melden 'CSS-Pixel'-Größe, nicht physische Pixelgröße. devicePixelRatio zeigt den Multiplikator (z. B. 2,0 auf Retina). Physische Auflösung = Bildschirmgröße × devicePixelRatio." },
+    { "q": "Was zeigt 'GPU (WebGL)'?", "a": "Den von WebGL gemeldeten Grafik-Renderer-Namen. Neuere Browser können das für den Fingerprinting-Schutz verschleiern – du könntest z. B. auf macOS 'Apple GPU' statt 'M2 Pro' sehen." },
+    { "q": "Kann ich dem User Agent vertrauen?", "a": "User-Agent-Zeichenketten können durch Erweiterungen oder Browsereinstellungen gefälscht werden. Sie sind ein Hinweis, keine Garantie. Einige Browser reduzieren aktiv UA-Details (Safari, Firefox im Datenschutzmodus)." },
+    { "q": "Warum zeigt 'CPU-Threads' 8, obwohl mein CPU 12 hat?", "a": "navigator.hardwareConcurrency kann zum Fingerprinting-Schutz begrenzt sein. Einige Browser melden maximal 8 oder 16, auch auf Systemen mit mehr Kernen." },
+    { "q": "Was, wenn mein Mobilgerät 0 Touch-Punkte anzeigt?", "a": "Auf Mobilgeräten ist maxTouchPoints normalerweise ≥1. Bei 0 könntest du im Desktop-Ansichtsmodus sein. Versuche zu aktualisieren oder in den Mobilansichtsmodus in deinen Browsereinstellungen zu wechseln." },
+    { "q": "Funktioniert das auf dem iPhone?", "a": "Ja, mit Safari-iOS-Einschränkungen. Einige Felder (deviceMemory, Verbindung) sind möglicherweise nicht verfügbar. User Agent und grundlegende Browser-/OS-Erkennung funktionieren immer." }
+  ]
+}

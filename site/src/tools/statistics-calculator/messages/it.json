@@ -1,0 +1,110 @@
+{
+  "title": "Calcolatore Statistico (media, mediana, dev. standard, quartili)",
+  "shortDescription": "Calcola media, mediana, moda, deviazione standard, varianza, campo di variazione, quartili e altro da un elenco di numeri. Modalità campione o popolazione.",
+  "description": "Incolla un elenco di numeri (separati da virgola, spazio o a capo). Il calcolatore restituisce statistiche descrittive incluse tendenza centrale, dispersione e quartili in un'unica vista.",
+  "metaDescription": "Calcolatore statistico gratuito. Incolla i numeri per ottenere istantaneamente media, mediana, moda, deviazione standard, varianza, campo di variazione e quartili.",
+  "keywords": [
+    "calcolatore statistiche",
+    "media mediana moda",
+    "calcolatore deviazione standard",
+    "calcolatore varianza",
+    "calcolatore quartili"
+  ],
+  "empty": "Inserisci i numeri separati da virgole, spazi o a capo.",
+  "placeholder": "12, 15, 18, 22, 25, 25, 30, 35, 40",
+  "input": {
+    "values": "Numeri",
+    "sampleMode": "Usa deviazione standard campionaria (n−1)"
+  },
+  "result": {
+    "count": "Conteggio (n)",
+    "sum": "Somma",
+    "mean": "Media",
+    "median": "Mediana",
+    "mode": "Moda",
+    "none": "(nessun valore ripetuto)",
+    "range": "Campo di variazione",
+    "min": "Minimo",
+    "max": "Massimo",
+    "q1": "Q1 (25° percentile)",
+    "q3": "Q3 (75° percentile)",
+    "stdev": "Deviazione standard",
+    "variance": "Varianza"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cosa misura ciascuna statistica",
+        "paragraphs": [
+          "Media: somma divisa per il conteggio. Sensibile ai valori anomali — un singolo valore enorme può trascinare la media lontano dal valore tipico. Meglio quando i dati sono approssimativamente simmetrici.",
+          "Mediana: il valore centrale quando i dati sono ordinati. Robusta ai valori anomali — pochi valori estremi non la spostano. Migliore della media per dati asimmetrici come il reddito o i prezzi degli immobili.",
+          "Moda: il valore più frequente. Più utile per dati discreti (risposte a sondaggi, lanci di dadi). Per dati continui, la moda è spesso priva di significato e riportiamo 'nessun valore ripetuto' se nessun valore si ripete.",
+          "Deviazione standard: distanza tipica dalla media. Stesse unità dei tuoi dati. Due terzi dei valori ricadono tipicamente entro ±1 deviazione standard dalla media (per distribuzioni normali)."
+        ]
+      },
+      {
+        "heading": "Campione vs popolazione",
+        "paragraphs": [
+          "Se i tuoi numeri sono l'intera popolazione (tutti i dipendenti della tua azienda, tutti i giorni di un mese), usa la deviazione standard della popolazione: dividi per n. Deseleziona 'Deviazione standard campionaria' per questa modalità.",
+          "Se i tuoi numeri sono un campione estratto da una popolazione più ampia (un sondaggio di 100 su 10.000 clienti), usa la deviazione standard campionaria: dividi per n−1 (correzione di Bessel). Questa è la modalità predefinita ed è quella che la maggior parte dei corsi di statistica e software usa per default.",
+          "La differenza si riduce all'aumentare di n. Per n=100 i due differiscono dello 0,5%; per n=10 differiscono del 5%. Per campioni molto piccoli, la scelta è importante."
+        ]
+      },
+      {
+        "heading": "Quartili e l'IQR",
+        "paragraphs": [
+          "Q1 (primo quartile, 25° percentile) è la mediana della metà inferiore. Q3 (terzo quartile, 75° percentile) è la mediana della metà superiore. L'intervallo interquartile (IQR = Q3 − Q1) descrive il 50% centrale dei tuoi dati ed è robusto ai valori anomali.",
+          "I box plot usano questi valori: il box si estende da Q1 a Q3, con la mediana come linea all'interno. I baffi si estendono ai valori più estremi entro 1,5 × IQR; qualsiasi valore oltre viene tracciato come anomalia."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Incolla i tuoi numeri",
+        "text": "Separa con virgole, spazi, tabulazioni o a capo. La combinazione funziona."
+      },
+      {
+        "name": "Scegli la modalità campione o popolazione",
+        "text": "Campione (n−1) è la predefinita. Passa a popolazione se i tuoi dati sono l'intera popolazione."
+      },
+      {
+        "name": "Leggi i risultati",
+        "text": "Tutte le statistiche si aggiornano in tempo reale mentre digiti."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quanti numeri posso incollare?",
+      "a": "Fino a circa 100.000 ragionevolmente. Oltre, il browser potrebbe rallentare. Per dataset enormi usa uno strumento di programmazione come Python/NumPy."
+    },
+    {
+      "q": "E se ho numeri decimali?",
+      "a": "Usa il punto (.) come separatore decimale indipendentemente dalla tua lingua: 3.14, non 3,14."
+    },
+    {
+      "q": "Perché la moda è 'nessun valore ripetuto'?",
+      "a": "Perché nessun valore si ripete. La moda ha significato solo quando almeno un valore appare due o più volte."
+    },
+    {
+      "q": "Devo usare campione o popolazione per i dati della mia classe?",
+      "a": "Se tratti la tua classe come un campione della scuola, usa campione (n−1). Se la tua classe È la popolazione, usa popolazione (n)."
+    },
+    {
+      "q": "Qual è la differenza tra deviazione standard e varianza?",
+      "a": "La varianza è la distanza quadratica media dalla media; la deviazione standard è la sua radice quadrata. La deviazione standard è nelle stesse unità dei tuoi dati, ecco perché riportiamo entrambe ma la deviazione standard è di solito più utile."
+    },
+    {
+      "q": "Perché Q1 differisce da quello della mia calcolatrice?",
+      "a": "Esistono metodi diversi (Metodo 1, Metodo 2, predefinito R, predefinito Excel). Usiamo il metodo della mediana della metà inferiore. La maggior parte dei corsi introduttivi usa questo; QUARTILE() del foglio di calcolo può differire leggermente."
+    },
+    {
+      "q": "Posso usare numeri negativi?",
+      "a": "Sì. I numeri negativi sono completamente supportati."
+    },
+    {
+      "q": "I dati escono dal mio browser?",
+      "a": "No. Tutti i calcoli vengono eseguiti localmente; nulla viene inviato a nessun server."
+    }
+  ]
+}

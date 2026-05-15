@@ -1,0 +1,53 @@
+{
+  "title": "GST / Sales Tax Calculator (tax add करें या total से extract करें)",
+  "shortDescription": "Pre-tax amount में sales tax जोड़ें या tax-inclusive total से tax extract करें। किसी भी tax rate (sales tax, VAT, GST) के लिए काम करता है।",
+  "description": "'Add tax' और 'extract from total' modes के बीच toggle करें, amount और rate दर्ज करें, और net, tax, और gross में breakdown देखें।",
+  "metaDescription": "मुफ्त GST / sales tax / VAT calculator। Pre-tax amount में tax जोड़ें या tax-inclusive total से tax extract करें। किसी भी rate के साथ, आपके browser में।",
+  "keywords": ["GST calculator", "sales tax calculator", "VAT calculator", "tax calculator", "total से tax निकालें"],
+  "empty": "Tax breakdown compute करने के लिए एक amount दर्ज करें।",
+  "mode": { "addTax": "Net में tax जोड़ें", "fromTotal": "Total से tax extract करें" },
+  "input": { "amountNet": "Pre-tax amount", "amountGross": "Tax-inclusive total", "taxPct": "Tax rate (%)" },
+  "result": { "net": "Pre-tax", "tax": "Tax", "gross": "Total" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Tax जोड़ें बनाम tax extract करें",
+        "paragraphs": [
+          "Tax जोड़ना: आपके पास tax से पहले price है और final price चाहिए। (1 + rate/100) से multiply करें। Example: ₹1000 पर 18% GST = ₹1180।",
+          "Tax extract करना: आपके पास customer ने जो total pay किया है और reverse-engineer करना है कि कितना tax था। Pre-tax amount पाने के लिए total को (1 + rate/100) से divide करें; difference tax है। Example: ₹1180 पर 18% निकालें: ₹1180 / 1.18 = ₹1000 + ₹180 tax। ₹1180 को 18% से multiply न करें — वह ₹212.40 देगा, जो गलत है।"
+        ]
+      },
+      {
+        "heading": "Sales tax, VAT, और GST",
+        "paragraphs": [
+          "GST (India): tiered rates — 5% (essential goods), 12% (standard goods), 18% (most services और goods), 28% (luxury items)। India में, GST सभी displayed prices में generally included होता है।",
+          "VAT (EU, UK): typically displayed price में already included। UK standard rate 20% है, France 20%, Germany 19%। Quoted price में tax खोजने के लिए 'extract from total' उपयोग करें।",
+          "Sales tax (US): point of sale पर add होता है, state और city द्वारा vary करता है। NYC 8.875%, Oregon कोई नहीं, California 7.25-10.75%। Many US prices pre-tax advertise होती हैं।"
+        ]
+      },
+      {
+        "heading": "Common pitfalls",
+        "paragraphs": [
+          "Tax-inclusive totals को rate से multiply न करें। ₹1180 से 18% GST extract करने के लिए, पहले 1.18 से divide करें। Rate से multiply करने पर गलत answer आता है क्योंकि ₹1180 में already original ₹1000 पर 18% included है।",
+          "कुछ products exempt या zero-rated हैं (कई जगह groceries; EU में books reduced rate पर)। Tax-inclusive/exclusive prices advertise करते समय अपने jurisdiction के rules follow करें।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Mode चुनें", "text": "Pre-tax amount में tax जोड़ें, या tax-inclusive total से tax extract करें।" },
+      { "name": "Amount दर्ज करें", "text": "'Add' mode में pre-tax; 'extract' mode में total।" },
+      { "name": "Rate दर्ज करें", "text": "Tax rate as a percent (जैसे India GST के लिए 18, UK VAT के लिए 20)।" },
+      { "name": "Breakdown पढ़ें", "text": "Net (pre-tax), tax amount, और total सभी displayed हैं।" }
+    ]
+  },
+  "faq": [
+    { "q": "Extract-from-total × rate के बजाय ÷ (1 + rate) क्यों है?", "a": "क्योंकि total में already original पर tax included है। Multiply करने पर inclusive total पर tax मिलता है, जो too much है। (1 + rate/100) से divide करना addition को correctly reverse करता है।" },
+    { "q": "India में GST rates क्या हैं?", "a": "India tiered GST system उपयोग करता है: 5% (essential goods जैसे basic foods, medicines), 12% (standard goods), 18% (most services और manufactured goods), 28% (luxury items, cars, tobacco)।" },
+    { "q": "क्या Japan का consumption tax सिर्फ 10% है?", "a": "ज्यादातर हाँ — 10% standard है। Alcohol/dining को छोड़कर food और beverages reduced 8% rate पर हैं।" },
+    { "q": "क्या prices displayed price में taxes हैं?", "a": "Country पर निर्भर। India में, most prices tax-inclusive display होती हैं। US और कुछ अन्य countries pre-tax price दिखाती हैं। Inclusive prices के लिए 'extract' mode उपयोग करें।" },
+    { "q": "क्या यह multiple tax rates handle कर सकता है?", "a": "एक साथ नहीं। Combined rates के लिए (जैसे GST + cess), पहले उन्हें add करें और combined rate उपयोग करें।" },
+    { "q": "VAT-included business invoices के बारे में क्या?", "a": "Same math: VAT और pre-VAT net देखने के लिए 'extract from total'। अधिकांश accounting software यह automatically करता है।" },
+    { "q": "Currency?", "a": "Math currency-independent है — किसी भी unit consistently उपयोग करें।" },
+    { "q": "क्या data कहीं भेजा जाता है?", "a": "नहीं। सभी math आपके browser में locally चलती है।" }
+  ]
+}

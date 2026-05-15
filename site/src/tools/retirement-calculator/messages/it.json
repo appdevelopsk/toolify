@@ -1,0 +1,107 @@
+{
+  "title": "Calcolatore Pensione (proiezione con interesse composto + adeguamento",
+  "shortDescription": "Proietta il tuo risparmio pensionistico con contributi mensili, rendimento atteso e inflazione. Mostra il saldo nominale, il valore in euro di oggi e il reddito mensile con la regola del 4%.",
+  "description": "Inserisci l'età attuale, l'età di pensionamento, il risparmio attuale, il contributo mensile, il rendimento annuo atteso e il tasso di inflazione. Il calcolatore proietta la crescita composta e applica la regola del 4% per il prelievo sostenibile.",
+  "metaDescription": "Calcolatore pensione gratuito. Capitalizza i contributi mensili per decenni, adegua per l'inflazione in euro di oggi e applica la regola del 4% per un reddito",
+  "keywords": [
+    "calcolatore pensione",
+    "risparmio pensionistico",
+    "pensione integrativa",
+    "FIRE calculator",
+    "pensione adeguata inflazione"
+  ],
+  "input": {
+    "currentAge": "Età attuale",
+    "retireAge": "Età di pensionamento",
+    "currentSaved": "Risparmio attuale",
+    "monthly": "Contributo mensile",
+    "returnPct": "Rendimento annuo %",
+    "inflationPct": "Inflazione annua %"
+  },
+  "result": {
+    "nominalBalance": "Saldo proiettato",
+    "realBalance": "In euro di oggi",
+    "contributed": "Totale versato",
+    "growth": "Crescita degli investimenti",
+    "monthly4pct": "Reddito mensile (regola del 4%)",
+    "yearsLabel": "anni"
+  },
+  "empty": "Compila tutti i campi per proiettare il risparmio pensionistico.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Come funziona la proiezione",
+        "paragraphs": [
+          "Capitalizziamo il saldo iniziale più ogni contributo mensile al tasso di rendimento annuo. Il calcolo è ricorsivo: saldo(mese+1) = saldo(mese) × (1 + tasso_mensile) + contributo_mensile. Nel corso dei decenni, anche importi mensili modesti crescono significativamente grazie alla capitalizzazione composta — i rendimenti sui rendimenti precedenti si capitalizzano a loro volta.",
+          "Proiettiamo anche un valore 'in euro di oggi' deflazionando il saldo nominale con il tasso di inflazione. Un milione di euro tra 30 anni non vale un milione oggi — con un'inflazione del 2,5%, 1 milione di € tra 30 anni ha il potere d'acquisto di circa 475.000 € oggi. Il valore in euro di oggi è quello che dovresti confrontare con il costo della vita attuale."
+        ]
+      },
+      {
+        "heading": "Quale tasso di rendimento assumere",
+        "paragraphs": [
+          "La media storica del mercato azionario europeo è circa 8-9% nominale / 6-7% reale (dopo l'inflazione) su periodi molto lunghi. Per proiezioni pensionistiche con orizzonte di 25+ anni, il 5-7% nominale è ragionevole. Scendere sotto il 4% è eccessivamente conservativo per orizzonti lunghi; superare l'8% è ottimistico.",
+          "Più ci si avvicina alla pensione, più il portafoglio diventa tipicamente conservativo (più obbligazioni, meno azioni). Per una finestra di 5-10 anni prima della pensione, il rendimento atteso scende al 3-5% man mano che aumenta la quota obbligazionaria. Questo calcolatore usa un tasso unico per tutto l'orizzonte — per proiezioni più articolate, esegui scenari con tassi diversi."
+        ]
+      },
+      {
+        "heading": "La regola del 4%",
+        "paragraphs": [
+          "La regola del 4% (Trinity Study, 1998) afferma che puoi prelevare in sicurezza il 4% del tuo risparmio pensionistico nel primo anno, poi adeguare al rialzo per l'inflazione ogni anno, con una probabilità molto alta di non esaurire i fondi in 30 anni. Quindi 1 milione di € di risparmio pensionistico sostiene 40.000 €/anno (o circa 3.333 €/mese) di spesa adeguata all'inflazione.",
+          "La regola ha dei limiti — si basa sulle performance storiche dei mercati USA e potrebbe essere ottimistica per alcuni scenari futuri. Alcuni esperti raccomandano ora il 3-3,5% per sicurezza. Per il pensionamento anticipato (FIRE) con orizzonti di 50+ anni, il 3% è più conservativo. Usa il 4% come controllo approssimativo, non come garanzia."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Inserisci l'età attuale e quella di pensionamento",
+        "text": "La differenza è il tuo orizzonte di investimento."
+      },
+      {
+        "name": "Inserisci il saldo iniziale e il contributo mensile",
+        "text": "Fondi pensione, PAC, conti titoli — tutto destinato alla pensione."
+      },
+      {
+        "name": "Imposta i tassi di rendimento e inflazione",
+        "text": "Valori ragionevoli: 6% rendimento (reale azionario di lungo periodo), 2,5% inflazione (obiettivo BCE)."
+      },
+      {
+        "name": "Leggi entrambe le proiezioni",
+        "text": "Il nominale è l'importo effettivo in euro; il valore in euro di oggi è il suo potere d'acquisto reale."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quale tasso di rendimento devo usare?",
+      "a": "Per orizzonti di 25+ anni con un portafoglio diversificato ad alta componente azionaria: 5-7%. Per orizzonti più brevi o mix più conservativo: 3-5%. Solo azioni: 6-8%. Usa i rendimenti reali storici (dopo inflazione) — circa 5-7% per le azioni nel lungo periodo."
+    },
+    {
+      "q": "Perché conta il valore in euro di oggi?",
+      "a": "2 milioni di € tra 35 anni sembrano fantastici, ma con un'inflazione del 3% equivalgono a circa 700.000 € oggi. Il valore in euro di oggi ti dice quanto potrà acquistare il tuo risparmio pensionistico in termini attuali — utile per pianificare le spese presenti rispetto a quelle future."
+    },
+    {
+      "q": "Devo usare contributi al lordo o al netto delle tasse?",
+      "a": "Dipende dal tipo di conto. Il fondo pensione integrativo è al lordo (pagherai le tasse al momento del riscatto). Il Piano Individuale di Risparmio (PIR) è esente da imposte sui rendimenti se detenuto 5 anni. Per i fondi pensione tradizionali, il saldo alla pensione è lordo — perderai il 15-9% in tasse (l'aliquota scende con gli anni di partecipazione)."
+    },
+    {
+      "q": "E se ottengo aumenti e incremento i contributi?",
+      "a": "Esegui il calcolatore più volte per ogni fase, oppure usa un contributo costante che approssimi la tua media. Nella pratica i contributi crescono con lo stipendio; il calcolatore usa un valore fisso."
+    },
+    {
+      "q": "Il calcolatore tiene conto della pensione INPS?",
+      "a": "No. La pensione INPS è un flusso di reddito separato. Proietta qui il risparmio pensionistico, poi aggiungi la stima INPS per la pianificazione totale del reddito pensionistico."
+    },
+    {
+      "q": "Cos'è il 'tasso di prelievo sicuro'?",
+      "a": "Tradizionalmente il 4% (Trinity Study). Per pensionamenti lunghi (FIRE, 40+ anni), il 3-3,5% è più sicuro. Il calcolatore mostra il 4% come predefinito; adegua il tuo obiettivo mensile se desideri un tasso diverso."
+    },
+    {
+      "q": "Quanto mi serve per andare in pensione?",
+      "a": "Regola empirica: 25× le tue spese annue (l'inverso della regola del 4%). Spendi 30.000 €/anno in euro di oggi? Hai bisogno di 750.000 € in euro di oggi (o più in termini nominali tenendo conto dell'inflazione fino alla pensione)."
+    },
+    {
+      "q": "I dati escono dal mio browser?",
+      "a": "No. Tutti i calcoli di proiezione vengono eseguiti localmente; nulla viene inviato a nessun server."
+    }
+  ]
+}

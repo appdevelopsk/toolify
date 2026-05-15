@@ -1,0 +1,65 @@
+{
+  "title": "Trình tạo mật khẩu (an toàn mật mã, kèm đồng hồ đo độ mạnh)",
+  "shortDescription": "Tạo mật khẩu ngẫu nhiên mạnh bằng API crypto an toàn của trình duyệt. Có thể cấu hình độ dài, bộ ký tự và bộ lọc ký tự dễ nhầm lẫn.",
+  "description": "Tạo mật khẩu bằng crypto.getRandomValues — nguồn bảo mật tương tự mà các ngân hàng sử dụng, không phải Math.random. Điều chỉnh độ dài và lớp ký tự; đồng hồ đo entropy hiển thị độ mạnh thực tế của kết quả.",
+  "metaDescription": "Trình tạo mật khẩu miễn phí. Mật khẩu ngẫu nhiên an toàn mật mã với độ dài và bộ ký tự cấu hình được. Đồng hồ đo entropy và bộ lọc ký tự dễ nhầm lẫn tích hợp.",
+  "keywords": ["trình tạo mật khẩu", "mật khẩu an toàn", "mật khẩu ngẫu nhiên", "mật khẩu mạnh", "trình tạo cụm mật khẩu"],
+  "copy": "Sao chép",
+  "copied": "Đã sao chép",
+  "regenerate": "Mật khẩu mới",
+  "input": { "length": "Độ dài" },
+  "opt": {
+    "upper": "Chữ hoa (A-Z)",
+    "lower": "Chữ thường (a-z)",
+    "numbers": "Số (0-9)",
+    "symbols": "Ký tự đặc biệt (!@#$...)",
+    "avoidAmbiguous": "Tránh ký tự dễ nhầm (0OoIl1)"
+  },
+  "strength": {
+    "weak": "Yếu",
+    "medium": "Trung bình",
+    "strong": "Mạnh",
+    "excellent": "Xuất sắc"
+  },
+  "entropy": "{bits} bit entropy",
+  "article": {
+    "sections": [
+      {
+        "heading": "Tại sao trình tạo này thực sự an toàn",
+        "paragraphs": [
+          "Hầu hết các 'trình tạo mật khẩu' trên web dùng Math.random(), không an toàn về mật mã — kết quả có thể bị kẻ tấn công dự đoán nếu xem một vài giá trị trước đó. Trình tạo này sử dụng crypto.getRandomValues từ Web Crypto API, nguyên hàm cơ bản tương tự hỗ trợ các phiên HTTPS và chuỗi khóa cấp hệ điều hành. Mỗi ký tự được lấy từ phân phối đều trên bảng chữ cái được chọn.",
+          "Quá trình tạo diễn ra hoàn toàn trong trình duyệt của bạn. Mật khẩu không bao giờ truyền qua mạng và không bao giờ chạm đến server của chúng tôi. Ngay cả nếu tên miền của chúng tôi bị xâm phạm, kẻ tấn công cũng không có gì để đánh cắp vì không có gì được lưu trữ."
+        ]
+      },
+      {
+        "heading": "Đồng hồ đo độ mạnh hoạt động như thế nào",
+        "paragraphs": [
+          "Nhãn độ mạnh được tính từ entropy: bit = log₂(kích_thước_bảng_chữ_cái) × độ_dài. Mật khẩu 10 ký tự chữ thường có log₂(26) × 10 ≈ 47 bit — dễ bị kẻ tấn công ngoại tuyến quyết tâm phá vỡ. Mật khẩu 16 ký tự dùng cả bốn lớp ký tự có khoảng 105 bit — đủ mạnh cho hầu hết mục đích. Dải phân loại: <50 yếu, 50-80 trung bình, 80-128 mạnh, ≥128 xuất sắc.",
+          "Các ngưỡng này tương ứng với: yếu = có thể đoán trong vài ngày bởi kẻ tấn công trung bình; trung bình = mất một mạng botnet nhiều năm; mạnh = không có kẻ tấn công thực tế nào làm được ngày nay; xuất sắc = biên an toàn thoải mái trước các kẻ tấn công tương lai kể cả các xem xét lượng tử."
+        ]
+      },
+      {
+        "heading": "Độ dài quan trọng hơn độ phức tạp",
+        "paragraphs": [
+          "Toán học ở đây không khoan nhượng: thêm một ký tự vào mật khẩu gần như nhân đôi không gian tìm kiếm (tùy thuộc vào bảng chữ cái). Thêm một lớp ký tự nữa chỉ mở rộng nó một chút. Mật khẩu 20 ký tự chữ thường có entropy nhiều hơn mật khẩu 12 ký tự hỗn hợp chữ hoa-ký tự đặc biệt, và dễ gõ hơn. Nếu bạn muốn ghi nhớ, hãy chọn bốn từ ngẫu nhiên từ danh sách 7.000 từ — đó là khoảng 51 bit, tương tự mật khẩu 8 ký tự hỗn hợp mạnh.",
+          "Tùy chọn 'tránh ký tự dễ nhầm' loại trừ các ký tự trông giống nhau trong nhiều font chữ (0/O, I/l/1). Điều này làm mật khẩu yếu hơn một chút nhưng dễ đọc hoặc sao chép hơn. Dùng khi bạn có thể cần nhập mật khẩu từ danh sách in ra."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn độ dài", "text": "16 là mặc định tốt cho tài khoản; 20+ cho mật khẩu chính của trình quản lý mật khẩu." },
+      { "name": "Chọn lớp ký tự", "text": "Hầu hết các trang chấp nhận cả bốn — chữ hoa, chữ thường, số, ký tự đặc biệt. Một số trang cũ từ chối ký tự đặc biệt." },
+      { "name": "Tạo và sao chép", "text": "Nhấp 'Mật khẩu mới' cho đến khi có mật khẩu bạn thích, sau đó sao chép trực tiếp vào trình quản lý mật khẩu." }
+    ]
+  },
+  "faq": [
+    { "q": "Trình tạo này có thực sự an toàn không?", "a": "Có. Chúng tôi dùng nguồn ngẫu nhiên an toàn của Web Crypto API, không phải Math.random(). Triển khai do nhà cung cấp trình duyệt cung cấp đã được kiểm toán và giống hệt cái hỗ trợ HTTPS." },
+    { "q": "Mật khẩu có rời khỏi trình duyệt không?", "a": "Không bao giờ. Tạo mật khẩu, tính toán entropy và sao chép vào clipboard đều diễn ra cục bộ. Chúng tôi không có endpoint server để nhận nó ngay cả nếu muốn." },
+    { "q": "16 ký tự có đủ không?", "a": "Với tài khoản trực tuyến, có — hầu như luôn luôn. Với mật khẩu chính của trình quản lý mật khẩu hoặc khóa mã hóa, hãy dùng 24+ ký tự hoặc cụm 6 từ." },
+    { "q": "Tại sao đồng hồ độ mạnh không đánh giá cao mật khẩu dài của tôi?", "a": "Nó chỉ biết lớp ký tự bạn đã bật. Nếu bạn chỉ bật chữ thường, bảng chữ cái chỉ có 26 — mật khẩu dài vẫn mạnh nhưng tăng trưởng không nhanh bằng." },
+    { "q": "'Bit entropy' có nghĩa gì?", "a": "Đó là log₂ của số mật khẩu có thể mà cài đặt của bạn có thể tạo ra. 80 bit ≈ 1,2 × 10²⁴ khả năng — vượt xa khả năng brute-force ngày nay." },
+    { "q": "Có nên thêm ký tự đặc biệt không?", "a": "Có khi được cho phép. Mỗi ký tự đặc biệt thêm entropy xấp xỉ bằng một số cộng một chữ cái. Một số trang cũ từ chối chúng; nếu vậy, tăng độ dài để bù." },
+    { "q": "'Tránh ký tự dễ nhầm' có đáng dùng không?", "a": "Chỉ dùng khi bạn cần đọc hoặc gõ mật khẩu thủ công. Tắt nó đi với trình quản lý mật khẩu — chi phí về khả năng đọc là lãng phí ở đó." },
+    { "q": "Có thể tạo ra cùng một mật khẩu hai lần không?", "a": "Về mặt lý thuyết có, nhưng với 50 bit entropy, xác suất trên mỗi cặp lần tạo là 1 trong 2⁵⁰ ≈ 10¹⁵. Thực tế là không thể." }
+  ]
+}

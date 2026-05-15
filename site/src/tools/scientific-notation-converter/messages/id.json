@@ -1,0 +1,65 @@
+{
+  "title": "Konverter Notasi Ilmiah (desimal ↔ ilmiah)",
+  "shortDescription": "Konversi bilangan desimal ke/dari notasi ilmiah (1,23 × 10^4) dan notasi teknik (1,23e3). Dua arah, dengan output E-notation.",
+  "description": "Dua mode: desimal-ke-ilmiah menghitung koefisien dan eksponen untuk bilangan apapun; ilmiah-ke-desimal memperluasnya kembali. Notasi teknik (kelipatan 3 dalam eksponen) juga ditampilkan.",
+  "metaDescription": "Konverter notasi ilmiah gratis. Desimal ke ilmiah (×10^n) atau sebaliknya. E-notation, notasi teknik. Untuk fisika, kimia, bilangan sangat besar/kecil.",
+  "keywords": ["konverter notasi ilmiah", "e notation", "notasi teknik", "desimal ke ilmiah", "kalkulator eksponen"],
+  "dir": {
+    "toSci": "Desimal → Ilmiah",
+    "toDec": "Ilmiah → Desimal"
+  },
+  "input": {
+    "decimal": "Bilangan desimal",
+    "coefficient": "Koefisien",
+    "exponent": "Eksponen (10^n)"
+  },
+  "result": {
+    "scientific": "Notasi ilmiah",
+    "eNotation": "E-notation",
+    "engineering": "Notasi teknik",
+    "decimal": "Nilai desimal"
+  },
+  "empty": "Masukkan bilangan untuk dikonversi.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa itu notasi ilmiah",
+        "paragraphs": [
+          "Notasi ilmiah mengekspresikan bilangan sebagai koef × 10^eksponen, di mana koef berada antara 1 dan 10 (biasanya 1 ≤ koef < 10). Digunakan untuk bilangan sangat besar atau sangat kecil yang akan rumit dalam bentuk desimal.",
+          "Contoh: kecepatan cahaya = 3 × 10⁸ m/s. Bilangan Avogadro = 6,022 × 10²³. Massa elektron = 9,109 × 10⁻³¹ kg. Eksponen memberi tahu Anda berapa banyak tempat untuk menggeser koma: positif bergeser ke kanan (kali), negatif bergeser ke kiri (bagi)."
+        ]
+      },
+      {
+        "heading": "E-notation dalam komputer",
+        "paragraphs": [
+          "E-notation (1,23e4 = 1,23 × 10⁴) adalah versi yang ramah komputer. JavaScript, Python, Excel, dan sebagian besar kalkulator menggunakannya. 'e' hanyalah notasi — tidak ada bilangan 'e' (bilangan Euler) yang terlibat.",
+          "Mengapa komputer menggunakan E-notation: keyboard biasanya tidak memiliki superscript atau '×' sebagai karakter yang mudah diketik. ASCII biasa E atau e bekerja di input teks apapun.",
+          "Catatan: 'e' dalam pemrograman regex atau konteks lain memiliki arti berbeda. Dalam bilangan, ini secara khusus berarti '× 10 pangkat'."
+        ]
+      },
+      {
+        "heading": "Notasi teknik",
+        "paragraphs": [
+          "Notasi teknik mirip dengan ilmiah tetapi eksponennya selalu kelipatan 3 (3, 6, 9, 12, …, atau −3, −6, −9, …). Ini selaras dengan awalan SI: kilo (10³), mega (10⁶), giga (10⁹), mili (10⁻³), mikro (10⁻⁶), nano (10⁻⁹).",
+          "Contoh: 1,23 × 10⁴ dalam ilmiah adalah 12,3 × 10³ dalam teknik, yang dapat dibaca sebagai '12,3 kilo'. Berguna dalam elektronika, rekayasa, dan bidang apapun yang menggunakan awalan satuan SI.",
+          "Pertukaran: notasi ilmiah memiliki koefisien format tetap (selalu 1 ≤ |koef| < 10); teknik memungkinkan rentang koefisien lebih lebar (1 ≤ |koef| < 1000) tetapi pemetaan awalan SI lebih bersih."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih arah konversi", "text": "Desimal → ilmiah atau ilmiah → desimal." },
+      { "name": "Ketik bilangan atau koefisien + eksponen", "text": "Setiap arah memiliki format input sendiri." },
+      { "name": "Baca hasilnya", "text": "Termasuk E-notation dan notasi teknik sebagai bonus." }
+    ]
+  },
+  "faq": [
+    { "q": "Mengapa eksponen berguna?", "a": "Eksponen memberi tahu Anda orde besarnya. 10⁹ adalah satu miliar; 10⁻⁹ adalah bilangan skala nanometer. Untuk membandingkan skala yang sangat berbeda (atom vs astronomi), eksponen adalah bahasa alami." },
+    { "q": "Apakah 1,23e4 sama dengan 1,23 × 10⁴?", "a": "Ya — bilangan yang sama, notasi berbeda. 'e4' adalah cara ramah komputer untuk menulis '× 10⁴'. Sebagian besar bahasa pemrograman dan kalkulator menerimanya sebagai input." },
+    { "q": "Berapa presisi kalkulator ini?", "a": "Presisi titik mengambang (sekitar 15-17 digit signifikan). Untuk presisi lebih tinggi (1000+ digit), gunakan CAS seperti SymPy atau Mathematica." },
+    { "q": "Bisakah saya melakukan matematika pada notasi ilmiah?", "a": "Kali: kalikan koefisien, tambahkan eksponen. Bagi: bagi koefisien, kurangi eksponen. Tambah/kurang: bawa ke eksponen yang sama terlebih dahulu, lalu tambah/kurangi koefisien." },
+    { "q": "Mengapa bilangan saya menampilkan 'Infinity'?", "a": "Eksponen terlalu besar untuk presisi ganda IEEE 754 (sekitar 308). Untuk bilangan yang lebih besar, gunakan CAS atau pustaka berbasis BigInt." },
+    { "q": "Apa itu 'mantisa'?", "a": "Sinonim lama untuk koefisien — bagian sebelum × 10^. Beberapa buku teks masih menggunakannya. Konvensi modern adalah 'koefisien' atau 'signifikan'." },
+    { "q": "Bisakah saya menggunakan notasi ilmiah untuk koefisien negatif?", "a": "Ya. -3 × 10⁵ = -300.000. Tanda minus ada di koefisien, bukan eksponen." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

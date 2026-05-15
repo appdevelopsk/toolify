@@ -1,0 +1,60 @@
+{
+  "title": "Penganalisis Frekuensi Karakter (huruf, semua karakter, atau kata)",
+  "shortDescription": "Hitung seberapa sering setiap karakter atau kata muncul dalam teks Anda. Dapat diurutkan, dengan persentase, dan sensitivitas huruf besar-kecil opsional.",
+  "description": "Tempel teks apa pun untuk mendapatkan tabel frekuensi yang diurutkan. Tiga mode: semua karakter, huruf/angka saja, atau seluruh kata. Berguna untuk kriptanalisis, analisis tulisan, dan pembersihan dataset.",
+  "metaDescription": "Penganalisis frekuensi karakter gratis. Hitung huruf, semua karakter, atau kata. Tabel yang dapat diurutkan dengan persentase. Mendukung UTF-8 termasuk CJK dan emoji.",
+  "keywords": ["frekuensi karakter", "frekuensi huruf", "frekuensi kata", "analisis frekuensi", "statistik teks"],
+  "input": { "text": "Teks" },
+  "mode": { "all": "Semua karakter", "letters": "Huruf dan angka", "words": "Kata" },
+  "caseSensitive": "Peka huruf besar-kecil",
+  "stats": {
+    "unique": "{n} unik",
+    "total": "{n} total",
+    "showingTop": "menampilkan {n} teratas",
+    "remainingCount": "+{n} lainnya di ekor tidak ditampilkan"
+  },
+  "col": { "item": "Item", "count": "Jumlah" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Kegunaannya",
+        "paragraphs": [
+          "Kriptanalisis: sandi klasik (Caesar, substitusi) mempertahankan frekuensi huruf. Teks bahasa Indonesia memiliki frekuensi karakter yang khas. Jika Anda melihat distribusi tertentu dalam teks sandi, Anda memiliki substitusi. Bahasa CJK memiliki distribusi yang sangat berbeda tetapi masih dapat dikenali.",
+          "Analisis tulisan: menemukan kata yang terlalu sering digunakan adalah salah satu cara tercepat untuk memperbaiki draf. Jika 'sangat' atau 'sangat sekali' muncul 50 kali dalam esai 1.000 kata, Anda telah menemukan kebiasaan yang perlu diperbaiki.",
+          "Pembersihan dataset: memindai kolom CSV dengan alat ini mengungkapkan karakter liar, kesalahan encoding, dan kapitalisasi yang tidak terduga. Berguna sebelum mengimpor data ke sistem yang lebih ketat."
+        ]
+      },
+      {
+        "heading": "Tiga mode",
+        "paragraphs": [
+          "Semua karakter: mencakup spasi, tanda baca, jeda baris, emoji. Terbaik untuk analisis teks mentah. Berguna saat Anda menduga karakter tersembunyi (zero-width space, BOM) merusak file.",
+          "Huruf dan angka: memfilter hanya huruf dan angka Unicode. Terbaik untuk analisis frekuensi huruf tradisional (kriptanalisis, identifikasi bahasa).",
+          "Kata: membagi berdasarkan spasi dan menghitung seluruh kata. Terbaik untuk analisis tulisan dan pemeriksaan gaya."
+        ]
+      },
+      {
+        "heading": "Apa yang dilakukan 'peka huruf besar-kecil'",
+        "paragraphs": [
+          "Nonaktif (default): 'A' dan 'a' dihitung bersama. Terbaik untuk frekuensi huruf pada teks alami di mana case tidak relevan.",
+          "Aktif: 'A' dan 'a' dihitung secara terpisah. Berguna saat case bermakna — identifier pemrograman, istilah bermerek, atau menganalisis pola kapitalisasi. Catatan: pelipatan case-insensitive menggunakan aturan huruf kecil lokal; untuk sebagian besar bahasa ini adalah pelipatan case Unicode konvensional."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Tempel teks", "text": "Apa saja dari kalimat hingga file multi-megabyte." },
+      { "name": "Pilih mode", "text": "Semua karakter, huruf/angka, atau kata." },
+      { "name": "Aktifkan sensitivitas huruf besar-kecil", "text": "Nonaktif untuk teks alami; aktif saat case bermakna." },
+      { "name": "Baca tabelnya", "text": "Diurutkan berdasarkan frekuensi. 50 teratas ditampilkan; ekor yang tersisa dirangkum di bawah." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah ini bekerja untuk teks Jepang, Cina, Korea?", "a": "Ya. Mode huruf memperlakukan setiap ideograf sebagai satu 'huruf', sehingga Anda mendapatkan frekuensi hanzi/kanji. Mode kata membagi berdasarkan spasi, yang berarti teks CJK tanpa spasi muncul sebagai satu kata besar — gunakan mode huruf untuk teks tersebut." },
+    { "q": "Apa huruf bahasa Inggris yang paling umum?", "a": "'E' (sekitar 12,7%), kemudian T (9,1%), A (8,2%), O (7,5%), I (7,0%), N (6,7%). Mengetahui ini adalah dasar memecahkan sandi substitusi sederhana." },
+    { "q": "Apakah emoji dihitung?", "a": "Ya dalam mode 'semua karakter'. Mode huruf memfilternya (mereka bukan huruf menurut klasifikasi Unicode)." },
+    { "q": "Mengapa emoji terkadang terbagi menjadi beberapa karakter?", "a": "Beberapa emoji adalah beberapa code point Unicode (mis., bendera = dua huruf indikator regional). Penghitung mengikuti iterasi string JavaScript yang menghormati code point tetapi tidak semua kluster grafem. Untuk sebagian besar analisis ini tidak masalah." },
+    { "q": "Bisakah saya mengekspor tabelnya?", "a": "Belum — salin-tempel tabel yang dirender untuk saat ini. Ekspor CSV ada dalam roadmap." },
+    { "q": "Berapa banyak entri yang ditampilkan?", "a": "50 teratas dalam tabel. Jumlah ekor dirangkum di bagian bawah." },
+    { "q": "Mengapa hasil case-insensitive Yunani/Turki tidak sesuai harapan saya?", "a": "Beberapa bahasa memiliki aturan case yang tidak biasa (I bertitik/tidak bertitik Turki; ß ↔ SS Jerman). Kami menggunakan toLowerCase() JavaScript yang mengikuti pelipatan case Unicode default — biasanya baik-baik saja tetapi bisa mengejutkan pada kasus tepi." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Semua penghitungan berjalan secara lokal." }
+  ]
+}

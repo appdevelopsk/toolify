@@ -1,0 +1,101 @@
+{
+  "title": "Trình kiểm tra biểu thức Cron (xem trước 5 lần chạy tiếp theo)",
+  "shortDescription": "Kiểm tra biểu thức cron và xem 5 lần chạy theo lịch tiếp theo theo múi giờ địa phương. Xác thực các trường, hỗ trợ phạm vi, danh sách và bước.",
+  "description": "Gõ biểu thức cron 5 trường (phút, giờ, ngày-trong-tháng, tháng, ngày-trong-tuần) và xem 5 thời điểm kích hoạt tiếp theo. Bao gồm các mẫu phổ biến.",
+  "metaDescription": "Trình kiểm tra biểu thức cron miễn phí. Xác thực cú pháp và xem trước 5 thời điểm kích hoạt tiếp theo theo múi giờ địa phương.",
+  "keywords": [
+    "kiểm tra cron",
+    "kiểm tra crontab",
+    "lần chạy tiếp theo cron",
+    "xem trước lịch",
+    "cú pháp cron"
+  ],
+  "input": {
+    "expr": "Biểu thức Cron",
+    "format": "Định dạng"
+  },
+  "result": {
+    "next5": "5 lần chạy tiếp theo"
+  },
+  "error": {
+    "label": "Lỗi",
+    "fieldCount": "biểu thức phải có đúng 5 trường"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cú pháp cron trong năm trường",
+        "paragraphs": [
+          "Cron chuẩn có 5 trường phân tách bằng dấu cách: phút (0-59), giờ (0-23), ngày trong tháng (1-31), tháng (1-12), ngày trong tuần (0-6, 0=Chủ nhật). Mỗi trường chấp nhận: giá trị đơn (5), phạm vi (1-5), danh sách (1,3,5), bước (*/15 có nghĩa là mỗi 15), hoặc ký tự đại diện (*). Kết hợp được: 1-5,10/2 có nghĩa là 1-5 rồi mỗi 2 bắt đầu từ 10.",
+          "Trình kiểm tra này sử dụng phương ngữ POSIX/Linux crontab nghiêm ngặt. Một số hệ thống mở rộng cron với tên tháng (JAN-DEC) hoặc ngày trong tuần (SUN-SAT) — những điều đó không được hỗ trợ ở đây. Dùng giá trị số để tương thích đầy đủ."
+        ]
+      },
+      {
+        "heading": "Các mẫu phổ biến",
+        "paragraphs": [
+          "*/5 * * * * — mỗi 5 phút. Hữu ích cho làm mới cache và polls ngắn.",
+          "0 9 * * 1-5 — 9 giờ sáng mỗi ngày làm việc. Báo cáo giờ làm việc.",
+          "0 0 1 * * — nửa đêm vào ngày 1 mỗi tháng. Thanh toán hàng tháng hoặc tổng kết thống kê.",
+          "0 */6 * * * — mỗi 6 giờ (00:00, 06:00, 12:00, 18:00). Polls dài.",
+          "0 0 * * 0 — nửa đêm mỗi Chủ nhật. Báo cáo hàng tuần.",
+          "*/15 9-17 * * 1-5 — mỗi 15 phút trong giờ làm việc, ngày làm việc. Polls giờ hoạt động."
+        ]
+      },
+      {
+        "heading": "Ngày-trong-tháng so với ngày-trong-tuần",
+        "paragraphs": [
+          "Cả hai trường đều chấp nhận giá trị, nhưng hãy chú ý: trong phương ngữ chuẩn, khi cả hai trường được đặt (không phải '*'), cron chạy khi MỘT TRONG HAI điều kiện khớp, không phải cả hai. Vì vậy `0 0 1 * MON` (ngày 1 của tháng, HOẶC Thứ Hai) kích hoạt thường xuyên hơn bạn nghĩ.",
+          "Để hạn chế 'Thứ Hai đầu tiên trong tháng', cron đơn thuần không thể làm trực tiếp — bạn cần chạy script hàng ngày và kiểm tra ngày-trong-tháng <= 7 bên trong, hoặc dùng bộ lập lịch (Airflow, GitHub Actions schedule + kiểm tra) hỗ trợ lập lịch biểu đạt hơn."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Gõ biểu thức cron",
+        "text": "5 trường: phút, giờ, ngày-trong-tháng, tháng, ngày-trong-tuần."
+      },
+      {
+        "name": "Hoặc chọn mẫu có sẵn",
+        "text": "Các mẫu phổ biến tải một chạm."
+      },
+      {
+        "name": "Đọc 5 lần chạy tiếp theo",
+        "text": "Thời gian theo múi giờ trình duyệt địa phương của bạn. Hữu ích để xác minh lịch trước khi triển khai."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Tại sao tôi thấy 5 lần chạy theo múi giờ địa phương?",
+      "a": "Cron luôn ở múi giờ địa phương của máy chủ. Múi giờ trình duyệt của bạn là những gì được hiển thị ở đây. Cron daemon thực tôn trọng TZ của máy chủ; kiểm tra máy chủ của bạn."
+    },
+    {
+      "q": "Tôi có thể dùng tên tháng/ngày trong tuần không?",
+      "a": "Chưa — chỉ có giá trị số. Chúng tôi có thể thêm bí danh kiểu JAN/MON sau."
+    },
+    {
+      "q": "Sự khác biệt giữa * và ? là gì?",
+      "a": "Trong cron chuẩn chúng giống hệt nhau. Một số phương ngữ Quartz dùng ? để phân biệt 'không xác định' cho các trường ngày-trong-tháng so với ngày-trong-tuần. Cron chuẩn coi chúng như nhau."
+    },
+    {
+      "q": "Tại sao ngày-trong-tháng + ngày-trong-tuần không hoạt động như tôi mong đợi?",
+      "a": "Khi cả hai trường không phải là '*', cron chuẩn dùng OR (khớp với bất kỳ cái nào). Để có AND ('Thứ Hai đầu tiên trong tháng'), bạn cần script bao bọc hoặc bộ lập lịch biểu đạt hơn."
+    },
+    {
+      "q": "Công cụ này có hỗ trợ giây không?",
+      "a": "Cron chuẩn là chính xác đến phút. Một số hệ thống thêm trường thứ sáu cho giây; chúng tôi không hỗ trợ điều đó. Nếu bạn cần chính xác đến giây, dùng setInterval hoặc bộ lập lịch khác."
+    },
+    {
+      "q": "Giới hạn độ chi tiết là gì?",
+      "a": "Cấp độ phút. Lịch trình mịn hơn 1 phút không thể biểu đạt trong cron."
+    },
+    {
+      "q": "Tôi có thể kiểm tra biểu thức cron cho các năm trong quá khứ không?",
+      "a": "Chúng tôi tính về phía trước từ 'bây giờ'. Để phân tích lịch sử, dùng thư viện cron của ngôn ngữ lập trình."
+    },
+    {
+      "q": "Dữ liệu có rời khỏi trình duyệt không?",
+      "a": "Không. Phân tích và tính toán đều là cục bộ."
+    }
+  ]
+}

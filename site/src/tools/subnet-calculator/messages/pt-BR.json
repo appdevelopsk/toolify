@@ -1,0 +1,70 @@
+{
+  "title": "Calculadora de Sub-rede IPv4 (CIDR, máscara, hosts)",
+  "shortDescription": "Calcule endereço de rede, broadcast, faixa de hosts, máscara de rede, wildcard, total/hosts utilizáveis a partir de qualquer IPv4 + CIDR. Inclui representação binária e detecção de classe.",
+  "description": "Digite um endereço IPv4 com CIDR opcional (ex.: 192.168.1.10/24). Retorna endereço de rede, broadcast, primeiro/último host utilizável, total de endereços, máscara de rede, wildcard, classe IP, status público/privado e representação binária.",
+  "metaDescription": "Calculadora gratuita de sub-rede IPv4. CIDR, máscara, wildcard, rede/broadcast, faixa de hosts, total/utilizáveis, detecção público/privado. Com visualização binária.",
+  "keywords": ["calculadora de sub-rede", "calculadora cidr", "sub-rede ipv4", "calculadora de máscara de rede", "calculadora de endereço ip"],
+  "input": {
+    "cidr": "Endereço IP / CIDR",
+    "hint": "Formato: 192.168.1.10/24 (CIDR opcional, padrão /24)"
+  },
+  "result": {
+    "network": "Rede",
+    "ip": "Endereço IP",
+    "netmask": "Máscara de sub-rede",
+    "wildcard": "Máscara wildcard",
+    "networkAddr": "Endereço de rede",
+    "broadcast": "Broadcast",
+    "hostMin": "Primeiro host utilizável",
+    "hostMax": "Último host utilizável",
+    "totalAddresses": "Total de endereços",
+    "usableHosts": "Hosts utilizáveis",
+    "ipClass": "Classe IP",
+    "private": "Privado RFC 1918",
+    "binary": "Binário"
+  },
+  "empty": "Insira um endereço IPv4 com /CIDR opcional.",
+  "article": {
+    "sections": [
+      {
+        "heading": "O que significa a notação CIDR",
+        "paragraphs": [
+          "CIDR (Classless Inter-Domain Routing) é a barra + número após um endereço IP — '192.168.1.10/24'. O número é quantos bits no início do endereço pertencem à parte de rede (vs a parte de host). /24 significa 24 bits de rede = 8 bits de host = 256 endereços totais, 254 utilizáveis.",
+          "CIDRs comuns: /32 host único, /30 link ponto a ponto (4 endereços, 2 utilizáveis), /29 sub-rede pequena (8/6), /24 LAN (256/254), /16 rede grande (65k), /8 bloco de escala ISP (16M). Quanto menor o número CIDR, maior a rede."
+        ]
+      },
+      {
+        "heading": "Rede, broadcast e hosts utilizáveis",
+        "paragraphs": [
+          "Endereço de rede: o primeiro endereço na sub-rede, com todos os bits de host em zero. Usado para identificar a própria sub-rede; não pode ser atribuído a um dispositivo.",
+          "Endereço de broadcast: o último endereço, com todos os bits de host em um. Usado para enviar um pacote a todos os hosts da sub-rede; não pode ser atribuído.",
+          "Hosts utilizáveis: total de endereços menos rede e broadcast = 2^(32−CIDR) − 2. Exceção: /31 (links ponto a ponto) e /32 (host único) tratam todos os endereços como utilizáveis conforme RFC 3021."
+        ]
+      },
+      {
+        "heading": "Endereços públicos vs privados",
+        "paragraphs": [
+          "A RFC 1918 reserva três faixas de endereços para redes internas privadas: 10.0.0.0/8 (16M endereços), 172.16.0.0/12 (1M), 192.168.0.0/16 (65k). A maioria dos roteadores domésticos e corporativos usa uma fatia dessas faixas (tipicamente 192.168.1.0/24 ou 192.168.0.0/24).",
+          "Endereços públicos são roteáveis na internet global e atribuídos por registros regionais (ARIN, RIPE, LACNIC para a América Latina, etc.). São escassos e custam dinheiro — o esgotamento do IPv4 impulsionou a adoção do CIDR e o deploy do IPv6.",
+          "A calculadora detecta se um endereço cai nas faixas privadas; útil para verificar o design de rede ou confirmar que um vazamento não está enviando endereços privados para a internet."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Digite um endereço", "text": "Com ou sem /CIDR. Se o CIDR for omitido, /24 é assumido." },
+      { "name": "Leia as informações de rede", "text": "Endereço de rede, broadcast, faixa de hosts, máscara, wildcard." },
+      { "name": "Verifique a classe e o status privado", "text": "Verificação rápida do tipo de espaço de endereço." },
+      { "name": "Use a visualização binária para depuração", "text": "Ajuda quando você precisa raciocinar sobre operações em nível de bit ou alinhar sub-redes." }
+    ]
+  },
+  "faq": [
+    { "q": "Por que os hosts utilizáveis são 2 a menos que o total?", "a": "O primeiro endereço (todos os bits de host em 0) é o identificador de rede e o último (todos em 1) é o broadcast. Ambos são reservados e não podem ser atribuídos a um host." },
+    { "q": "Por que /31 tem 2 hosts utilizáveis em vez de 0?", "a": "A RFC 3021 permite redes /31 para links ponto a ponto (ex.: entre roteadores). Ambos os endereços são utilizáveis; as reservas de broadcast e rede não se aplicam." },
+    { "q": "Qual é a diferença entre máscara de rede e wildcard?", "a": "A máscara de rede tem 1s nos bits de rede, 0s nos bits de host (255.255.255.0). O wildcard é o inverso (0.0.0.255) — usado em ACLs de roteadores Cisco e definições de área OSPF." },
+    { "q": "Como faço o sub-roteamento de uma rede?", "a": "Pegue uma rede pai e divida em blocos menores adicionando bits ao CIDR. /24 → /25 divide em 2 sub-redes, /24 → /26 em 4, etc. Útil para separar departamentos ou isolar redes IoT/convidados." },
+    { "q": "Qual é a menor sub-rede possível?", "a": "/32 — um único endereço IP. /31 é a menor sub-rede 'normal' (2 endereços). /30 é comum para links roteador-a-roteador (4/2 utilizáveis)." },
+    { "q": "Isso funciona para IPv6?", "a": "Ainda não — somente IPv4. Sub-redes IPv6 são conceitualmente similares, mas usam endereços de 128 bits, notação hexadecimal e convenções diferentes. Podemos adicionar IPv6 em versão futura." },
+    { "q": "Qual é a maior sub-rede única possível?", "a": "/0 abrange todos os 4,3 bilhões de endereços IPv4 — todo o espaço de endereçamento IPv4. /1 divide ao meio. /8 é 16M e era historicamente um bloco 'classe A' (ex.: 10.0.0.0/8)." },
+    { "q": "Os dados saem do meu navegador?", "a": "Não. O cálculo é feito localmente; nada é enviado para um servidor." }
+  ]
+}

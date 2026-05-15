@@ -1,0 +1,104 @@
+{
+  "title": "Convertisseur de Notation Scientifique (décimal ↔ scientifique)",
+  "shortDescription": "Convertit les nombres décimaux vers/depuis la notation scientifique (1,23 × 10^4) et ingénierie (1,23e3). Bidirectionnel, avec sortie en notation E.",
+  "description": "Deux modes : décimal-vers-scientifique calcule le coefficient et l'exposant pour tout nombre ; scientifique-vers-décimal développe en sens inverse. La notation ingénierie (multiples de 3 en exposant) est aussi affichée.",
+  "metaDescription": "Convertisseur de notation scientifique gratuit. Décimal vers scientifique (×10^n) ou inversement. Notation E, notation ingénierie.",
+  "keywords": [
+    "convertisseur notation scientifique",
+    "notation e",
+    "notation ingénierie",
+    "décimal en scientifique",
+    "calculateur exposant"
+  ],
+  "dir": {
+    "toSci": "Décimal → Scientifique",
+    "toDec": "Scientifique → Décimal"
+  },
+  "input": {
+    "decimal": "Nombre décimal",
+    "coefficient": "Coefficient",
+    "exponent": "Exposant (10^n)"
+  },
+  "result": {
+    "scientific": "Notation scientifique",
+    "eNotation": "Notation E",
+    "engineering": "Notation ingénierie",
+    "decimal": "Valeur décimale"
+  },
+  "empty": "Saisis un nombre à convertir.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qu'est-ce que la notation scientifique",
+        "paragraphs": [
+          "La notation scientifique exprime les nombres sous la forme coef × 10^exposant, où coef est compris entre 1 et 10 (généralement 1 ≤ coef < 10). Elle est utilisée pour les très grands ou très petits nombres qui seraient encombrants en forme décimale.",
+          "Exemples : vitesse de la lumière = 3 × 10⁸ m/s. Nombre d'Avogadro = 6,022 × 10²³. Masse de l'électron = 9,109 × 10⁻³¹ kg. L'exposant indique de combien de positions déplacer la virgule : positif déplace vers la droite (multiplier), négatif vers la gauche (diviser)."
+        ]
+      },
+      {
+        "heading": "La notation E dans les ordinateurs",
+        "paragraphs": [
+          "La notation E (1,23e4 = 1,23 × 10⁴) est la version adaptée aux ordinateurs. JavaScript, Python, Excel et la plupart des calculatrices l'utilisent. Le 'e' n'est qu'une notation — il n'y a pas d'e (nombre d'Euler) impliqué.",
+          "Pourquoi les ordinateurs utilisent la notation E : les claviers n'ont généralement pas de caractères en exposant ni de '×' facilement accessibles. Un E ou e ASCII simple fonctionne dans n'importe quelle saisie de texte.",
+          "Note : 'e' dans la programmation regex ou d'autres contextes a des significations différentes. Dans les nombres, c'est spécifiquement '× 10 à la puissance'."
+        ]
+      },
+      {
+        "heading": "Notation ingénierie",
+        "paragraphs": [
+          "La notation ingénierie est similaire à la scientifique mais l'exposant est toujours un multiple de 3 (3, 6, 9, 12, …, ou −3, −6, −9, …). Cela correspond aux préfixes SI : kilo (10³), méga (10⁶), giga (10⁹), milli (10⁻³), micro (10⁻⁶), nano (10⁻⁹).",
+          "Exemple : 1,23 × 10⁴ en notation scientifique est 12,3 × 10³ en notation ingénierie, ce qui peut se lire comme '12,3 kilo'. Utile en électronique, en ingénierie et dans tout domaine qui utilise les préfixes SI.",
+          "Compromis : la notation scientifique a un coefficient de format fixe (toujours 1 ≤ |coef| < 10) ; l'ingénierie permet une plage de coefficient plus large (1 ≤ |coef| < 1000) mais un mappage des préfixes SI plus propre."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis la direction de conversion",
+        "text": "Décimal → scientifique ou scientifique → décimal."
+      },
+      {
+        "name": "Tape le nombre ou le coefficient + exposant",
+        "text": "Chaque direction a son propre format de saisie."
+      },
+      {
+        "name": "Lis le résultat",
+        "text": "Inclut la notation E et la notation ingénierie en bonus."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Pourquoi l'exposant est-il utile ?",
+      "a": "Il indique l'ordre de grandeur. 10⁹ est un milliard ; 10⁻⁹ est un nombre à l'échelle nanométrique. Pour comparer des échelles très différentes (atomique vs astronomique), les exposants sont le langage naturel."
+    },
+    {
+      "q": "1,23e4 est-il la même chose que 1,23 × 10⁴ ?",
+      "a": "Oui — même nombre, notation différente. 'e4' est une façon adaptée aux ordinateurs d'écrire '× 10⁴'. La plupart des langages de programmation et calculatrices l'acceptent en entrée."
+    },
+    {
+      "q": "Quelle est la précision de ce calculateur ?",
+      "a": "Précision en virgule flottante (environ 15-17 chiffres significatifs). Pour une plus grande précision (1000+ chiffres), utilise un CAS comme SymPy ou Mathematica."
+    },
+    {
+      "q": "Puis-je faire des calculs en notation scientifique ?",
+      "a": "Multiplier : multiplie les coefficients, additionne les exposants. Diviser : divise les coefficients, soustrait les exposants. Additionner/soustraire : ramène au même exposant d'abord, puis additionne/soustrait les coefficients."
+    },
+    {
+      "q": "Pourquoi mon nombre s'affiche-t-il comme 'Infinity' ?",
+      "a": "L'exposant est trop grand pour la double précision IEEE 754 (environ 308). Pour des nombres plus grands, utilise un CAS ou des bibliothèques basées sur BigInt."
+    },
+    {
+      "q": "Qu'est-ce qu'une 'mantisse' ?",
+      "a": "Synonyme ancien du coefficient — la partie avant le × 10^. Certains manuels l'utilisent encore. La convention moderne est 'coefficient' ou 'significande'."
+    },
+    {
+      "q": "Puis-je utiliser la notation scientifique pour des coefficients négatifs ?",
+      "a": "Oui. -3 × 10⁵ = -300 000. Le signe moins va sur le coefficient, pas sur l'exposant."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Le calcul s'exécute localement ; rien n'est envoyé à un serveur."
+    }
+  ]
+}

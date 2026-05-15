@@ -1,0 +1,54 @@
+{
+  "title": "Markdown से HTML कनवर्टर (CommonMark subset)",
+  "shortDescription": "अपने ब्राउज़र में Markdown को clean HTML में कनवर्ट करें। Headings, lists, code blocks, links, images, blockquotes, bold/italic/strikethrough समर्थन करता है।",
+  "description": "Markdown पेस्ट करें और तुरंत equivalent HTML देखें। Blog posts, documentation, README files के लिए काम करता है। आउटपुट clean, semantic HTML है।",
+  "metaDescription": "मुफ्त Markdown से HTML कनवर्टर। Live preview, clean semantic HTML, headings, lists, code, links, blockquotes सहित CommonMark essentials समर्थन करता है।",
+  "keywords": ["markdown से html", "md to html", "markdown कनवर्टर", "commonmark to html", "blog markdown"],
+  "input": { "markdown": "Markdown" },
+  "output": { "html": "HTML आउटपुट" },
+  "preview": "Rendered preview दिखाएँ",
+  "copy": "HTML कॉपी करें",
+  "copied": "कॉपी हो गया!",
+  "article": {
+    "sections": [
+      {
+        "heading": "क्या समर्थित है",
+        "paragraphs": [
+          "Headings: # H1 से ###### H6 तक। Lists: - / * / + unordered के लिए, 1. 2. 3. ordered के लिए। Blockquotes: > लाइन की शुरुआत। Code blocks: ``` optional language के साथ। Inline: **bold**, *italic*, `code`, ~~strike~~, [link](url), ![alt](image-url)।",
+          "हम CommonMark essentials implement करते हैं। Tables, footnotes, और task lists (-[ ]) अभी शामिल नहीं हैं।"
+        ]
+      },
+      {
+        "heading": "इस टूल का उपयोग कब करें",
+        "paragraphs": [
+          "CMS में paste करने के लिए quick conversion। अधिकांश CMSes HTML accept करते हैं।",
+          "Documentation generation: README.md को project landing page के लिए HTML में कनवर्ट करें।",
+          "Email composition: कई email clients HTML render करते हैं लेकिन Markdown नहीं। Markdown में लिखें, कनवर्ट करें, paste करें।"
+        ]
+      },
+      {
+        "heading": "Browser-side conversion",
+        "paragraphs": [
+          "सभी conversion आपके ब्राउज़र में चलता है। आपका Markdown — जिसमें confidential drafts, code snippets, या notes हो सकते हैं — आपकी machine कभी नहीं छोड़ता।",
+          "यदि आपको GFM features (tables, task lists, footnotes) चाहिए, तो अपने build में marked.js, markdown-it, या remark जैसी fuller library उपयोग करें।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Markdown paste करें", "text": "या input area में directly लिखें।" },
+      { "name": "HTML आउटपुट पढ़ें", "text": "आपके type करते ही live update।" },
+      { "name": "Clipboard में कॉपी करें", "text": "आउटपुट grab करने के लिए 'HTML कॉपी करें' क्लिक करें।" },
+      { "name": "वैकल्पिक: preview", "text": "Browser में कैसा दिखेगा देखने के लिए 'Rendered preview दिखाएँ' क्लिक करें।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या यह tables समर्थन करता है?", "a": "अभी नहीं। Tables GFM extension हैं, pure CommonMark नहीं।" },
+    { "q": "क्या मेरे code blocks syntax-highlighted होंगे?", "a": "हम <pre><code> tags पर class='language-X' जोड़ते हैं ताकि Prism या highlight.js उन्हें style कर सकें।" },
+    { "q": "क्या आउटपुट कहीं भी paste करना सुरक्षित है?", "a": "Code blocks और inline code में <, >, &, और \" escape करते हैं। यदि user-generated Markdown paste कर रहे हैं, तो page में inject करने से पहले आउटपुट sanitize करें।" },
+    { "q": "मेरा emphasis अजीब क्यों है?", "a": "Markdown emphasis nesting tricky हो सकता है। * बनाम _ adjacent punctuation के साथ अलग व्यवहार कर सकते हैं।" },
+    { "q": "क्या यह Markdown के अंदर HTML handle करता है?", "a": "Inline HTML pass through होता है (CommonMark behavior)। Untrusted sources से malicious HTML unchanged pass होगा — सावधानी से उपयोग करें।" },
+    { "q": "क्या मैं HTML को Markdown में वापस कनवर्ट कर सकता हूँ?", "a": "हाँ — हमारा HTML से Markdown कनवर्टर देखें।" },
+    { "q": "Footnotes के बारे में क्या?", "a": "Implement नहीं (GFM extension)। Complex documents के लिए, server-side library जैसे remark-gfm उपयोग करें।" },
+    { "q": "क्या डेटा मेरे ब्राउज़र से बाहर जाता है?", "a": "नहीं। Conversion locally चलता है; आपका Markdown कहीं नहीं भेजा जाता।" }
+  ]
+}

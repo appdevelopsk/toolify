@@ -1,0 +1,50 @@
+{
+  "title": "Konverter Ukuran Data (B, KB, MB, GB, TB — SI dan IEC)",
+  "shortDescription": "Konversi ukuran penyimpanan digital antara byte, kilobyte, megabyte, gigabyte, terabyte, dan petabyte. Beralih antara SI (1000) dan IEC biner (1024).",
+  "description": "Pilih SI (desimal, 1 KB = 1000 B) atau IEC (biner, 1 KiB = 1024 B), masukkan nilai, dan lihat konversi ke setiap satuan lainnya. Menghilangkan kebingungan 'seberapa besar satu megabyte'.",
+  "metaDescription": "Konverter ukuran data gratis untuk byte, KB, MB, GB, TB, PB. Beralih antara prefiks SI (1000) dan IEC (1024) biner — memperjelas 'seberapa besar satu megabyte'.",
+  "keywords": ["konverter ukuran data", "byte ke MB", "GB ke TB", "prefiks biner", "SI vs IEC"],
+  "input": { "value": "Nilai", "from": "Dari satuan" },
+  "mode": { "si": "SI (berbasis 1000)", "iec": "IEC (berbasis 1024)" },
+  "article": {
+    "sections": [
+      {
+        "heading": "SI vs IEC: ambiguitas megabyte",
+        "paragraphs": [
+          "Hard drive dan kecepatan jaringan diiklankan dalam satuan SI: 1 GB = 1.000.000.000 byte (10⁹). Sistem operasi dan RAM menggunakan satuan biner: 1 GiB = 1.073.741.824 byte (2³⁰). Keduanya berbeda sekitar 7% pada skala GB, tumbuh menjadi hampir 10% pada skala TB, itulah mengapa drive '1 TB' Anda muncul sebagai 931 GiB di pengelola file.",
+          "IEC memperkenalkan KiB, MiB, GiB, TiB pada tahun 1998 untuk menghilangkan ambiguitas bentuk biner. Mereka perlahan diterima, tetapi sebagian besar pemasaran konsumen masih menggunakan MB/GB tanpa menentukan mana yang dimaksud. Kalkulator ini memungkinkan Anda memilih secara eksplisit — alihkan toggle untuk mengonversi dengan benar."
+        ]
+      },
+      {
+        "heading": "Mana yang Anda butuhkan?",
+        "paragraphs": [
+          "SI (berbasis 1000) ketika: membaca pemasaran drive, membandingkan hard drive atau SSD, memeriksa kuota bandwidth ISP, kecepatan jaringan. Hampir semua pemasaran penyimpanan menggunakan SI.",
+          "IEC (berbasis 1024) ketika: melihat ukuran file di pengelola file OS (Windows, macOS, Linux), membaca spesifikasi RAM, bekerja dengan spesifikasi teknis. Sebagian besar konteks rekayasa dan perangkat lunak menggunakan prefiks biner."
+        ]
+      },
+      {
+        "heading": "Titik referensi yang berguna",
+        "paragraphs": [
+          "1 MB ≈ MP3 5 menit (kualitas baik), atau JPEG 5 megapiksel. 1 GB ≈ audio MP3 7 jam, atau video HD 30 menit, atau sekitar 350.000 email panjang rata-rata. 1 TB ≈ 250 film HD, atau MP3 17.000 jam, atau kira-kira 10 tahun foto harian untuk pengguna smartphone rata-rata.",
+          "Jaringan: 100 Mbps ≈ 12,5 MB/s ≈ 750 MB/menit. File 1 GB pada 100 Mbps membutuhkan ~80 detik. Streaming video 4K menggunakan 15-25 Mbps; 1080p menggunakan 5-8 Mbps."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih SI atau IEC", "text": "SI untuk ukuran drive dan kecepatan jaringan. IEC untuk ukuran file dan RAM." },
+      { "name": "Masukkan nilainya", "text": "Ketik nilai ukuran." },
+      { "name": "Pilih satuannya", "text": "Pilih satuan nilai Anda (B, KB, MB, dll., atau B, KiB, MiB, dll.)." },
+      { "name": "Lihat semua satuan", "text": "Konversi muncul secara instan." }
+    ]
+  },
+  "faq": [
+    { "q": "Mengapa saya mendapat penyimpanan lebih sedikit dari yang diiklankan?", "a": "Produsen drive menggunakan SI (1 TB = 10¹² byte). Sistem operasi menggunakan biner (1 TiB = 2⁴⁰ byte), yang ~10% lebih besar. Jadi drive 1 TB muncul sebagai ~931 GiB. Drive tidak 'mengurangi' Anda — ini adalah ketidakcocokan sistem satuan." },
+    { "q": "Apakah KB dan KiB sama?", "a": "Secara ketat tidak: KB = 1.000 byte, KiB = 1.024 byte. Secara kasual, 'KB' sering berarti 'KiB' dalam konteks perangkat lunak. Alat ini menghilangkan ambiguitas secara eksplisit." },
+    { "q": "Satuan mana yang digunakan Windows di pengelola file?", "a": "Windows menampilkan ukuran biner (KiB, MiB, GiB) tetapi memberinya label KB, MB, GB. macOS Finder dan Linux biasanya menampilkan SI secara default. Gunakan mode IEC dalam alat ini untuk mencocokkan apa yang sebenarnya dimaksud Windows." },
+    { "q": "Apa yang ada setelah PB?", "a": "EB (exabyte), ZB (zettabyte), YB (yottabyte). Sebagian besar kasus penggunaan konsumen berhenti di TB atau PB rendah; gudang data skala besar berada di multi-PB hingga EB." },
+    { "q": "Kecepatan jaringan vs ukuran file?", "a": "Kecepatan jaringan menggunakan bit per detik; ukuran file menggunakan byte. 1 byte = 8 bit, sehingga 100 Mbps = 12,5 MB/s." },
+    { "q": "Apakah konversinya tepat?", "a": "Ya. Kedua mode menggunakan faktor integer tepat (pangkat 10 untuk SI, pangkat 2 untuk IEC)." },
+    { "q": "Mengapa 1 GB SI tidak sama persis dengan 1 GiB IEC?", "a": "Karena mereka adalah satuan yang berbeda. 1 GB = 10⁹ byte; 1 GiB = 2³⁰ byte ≈ 1,0737 × 10⁹ byte. Selalu tentukan mana yang Anda maksud." },
+    { "q": "Bisakah saya mengonversi bandwidth atau waktu transfer?", "a": "Alat ini hanya mengonversi ukuran. Untuk 'berapa lama transfer X pada kecepatan Y', bagi byte dengan byte-per-detik." }
+  ]
+}

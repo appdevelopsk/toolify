@@ -1,0 +1,110 @@
+{
+  "title": "Calculateur de Tranche d'Imposition (France / JP / US)",
+  "shortDescription": "Calcule l'impôt sur le revenu dû en utilisant les tranches progressives. France, Japon et États-Unis (célibataire et marié). Retourne l'impôt total, le taux effectif, le taux marginal et la décomposition par tranche.",
+  "description": "Choisis un pays/statut fiscal et saisis le revenu imposable. Le calculateur applique les tranches d'imposition officielles et indique le total dû, le taux effectif, le taux marginal et exactement combien est imposé à chaque tranche.",
+  "metaDescription": "Calculateur de tranche d'imposition gratuit. France, Japon et États-Unis (célibataire/marié). Vois l'impôt total, le taux effectif, le taux marginal et la décomposition",
+  "keywords": [
+    "calculateur tranche imposition",
+    "calculateur impôt revenu",
+    "taux marginal imposition",
+    "taux effectif imposition",
+    "impôt progressif"
+  ],
+  "empty": "Choisis un pays et saisis ton revenu imposable.",
+  "disclaimer": "Estimation éducative uniquement. L'impôt réel dépend des déductions, crédits, surtaxes, taxes locales et de nombreuses spécificités. Consulte un professionnel fiscal pour ta déclaration.",
+  "input": {
+    "country": "Pays / statut fiscal",
+    "income": "Revenu imposable"
+  },
+  "country": {
+    "JP": "Japon (impôt national sur le revenu)",
+    "US-single": "États-Unis — Célibataire",
+    "US-married": "États-Unis — Marié déclarant conjointement"
+  },
+  "result": {
+    "tax": "Impôt dû",
+    "effective": "Taux effectif",
+    "marginal": "Taux marginal",
+    "byBracket": "Par tranche",
+    "bracket": "Tranche",
+    "rate": "Taux",
+    "taxed": "Imposé à ce taux",
+    "taxOwed": "Impôt dû"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionnent les tranches d'imposition progressives",
+        "paragraphs": [
+          "La plupart des systèmes d'imposition sur le revenu utilisent des tranches 'progressives' : seul le revenu dans chaque tranche est imposé au taux de cette tranche. Entrer dans une tranche supérieure n'impose pas tout ton revenu au taux supérieur — seulement la partie au-dessus du seuil.",
+          "Exemple : en France (barème 2025), un contribuable gagnant 50 000 € de revenu imposable paie 0 % sur les premiers 11 294 €, 11 % sur la tranche suivante jusqu'à 28 797 €, et 30 % sur les 21 203 € restants. Impôt total ≈ 8 367 € (16,7 % effectif). Le 'taux marginal' (taux sur le prochain euro) est 30 %."
+        ]
+      },
+      {
+        "heading": "Taux effectif vs taux marginal",
+        "paragraphs": [
+          "Taux effectif : impôt total / revenu total. Reflète la charge fiscale moyenne. Utile pour comparer la charge fiscale totale entre niveaux de revenu ou scénarios.",
+          "Taux marginal : le taux sur le prochain euro gagné. Pertinent pour décider de prendre des heures supplémentaires, accepter une augmentation, ou contribuer à des comptes retraite défiscalisés (qui économisent au taux marginal).",
+          "Confusion courante : obtenir une augmentation qui te fait entrer dans une tranche supérieure ne réduit pas le revenu net de ton niveau précédent. Cela signifie simplement que les nouveaux revenus sont imposés au taux marginal supérieur. Il n'y a pas de 'falaise fiscale' dans les systèmes progressifs standard."
+        ]
+      },
+      {
+        "heading": "Ce que ce calculateur n'inclut pas",
+        "paragraphs": [
+          "Abattements et déductions : abattement de 10 % sur les salaires en France (plafonné à 12 829 €), déduction standard US (14 600 $ célibataire, 29 200 $ marié pour 2024), 給与所得控除 japonais. Soustrait ces montants du revenu brut avant d'utiliser ce calculateur.",
+          "Crédits d'impôt : crédit d'impôt pour enfants à charge, crédit emploi à domicile (France) ; child tax credit, EITC (États-Unis). Ils réduisent directement l'impôt dû, pas le revenu.",
+          "Taxes locales et complémentaires : CSG/CRDS en France (environ 9,7 % sur les revenus d'activité) ; taxe de résidence japonaise (~10 % forfaitaire) ; impôt sur le revenu des États américains (0-13 %).",
+          "Cotisations sociales : différentes des impôts sur le revenu et non incluses dans ce calculateur."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis le pays / statut fiscal",
+        "text": "France, Japon (impôt national), États-Unis célibataire ou marié déclarant conjointement."
+      },
+      {
+        "name": "Saisis le revenu imposable",
+        "text": "Après déductions standard. France : revenu net imposable. Japon : 課税所得. États-Unis : AGI moins déductions."
+      },
+      {
+        "name": "Lis la décomposition",
+        "text": "Impôt total, taux effectif, taux marginal, plus le détail par tranche."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "D'où viennent ces tranches ?",
+      "a": "France : tranches de l'impôt sur le revenu de la DGFiP (Direction générale des Finances publiques). Japon : tranches d'impôt national de l'Agence nationale des impôts (国税庁). États-Unis : tranches IRS pour 2025/2026. Les taxes locales/préfectorales ne sont pas incluses ; consulte-les séparément."
+    },
+    {
+      "q": "Dois-je utiliser le revenu brut ou imposable ?",
+      "a": "Le revenu imposable (après déductions). En France : salaire brut moins abattement de 10 % moins autres déductions. Au Japon : 給与収入 moins 給与所得控除 moins各種所得控除. Aux États-Unis : AGI moins déduction standard ou détaillée."
+    },
+    {
+      "q": "La surtaxe de reconstruction japonaise est-elle incluse ?",
+      "a": "Non — c'est un supplément de 2,1 % de l'impôt national sur le revenu, en plus du calcul par tranche. Applique-la manuellement au total."
+    },
+    {
+      "q": "La CSG/CRDS française est-elle incluse ?",
+      "a": "Non. La CSG (9,2 %) et la CRDS (0,5 %) sont des prélèvements sociaux séparés, non inclus dans ce calculateur. Pour la charge fiscale totale, ajoute environ 9,7 % du revenu d'activité."
+    },
+    {
+      "q": "Pourquoi mon taux effectif est-il inférieur à ce que j'attendais ?",
+      "a": "Parce que les revenus inférieurs sont imposés à des taux de tranche plus bas. Même dans la tranche à 30 %, seul le revenu au-dessus du seuil est imposé à 30 % ; le reste est imposé à 0 %, 11 % et 30 % selon les tranches."
+    },
+    {
+      "q": "Est-ce que ça fonctionne pour les plus-values ?",
+      "a": "Pas directement — les plus-values ont des barèmes de taux séparés. France : PFU 30 % (flat tax) ou option barème progressif. Japon : généralement 20,315 % forfaitaire pour les actions. Utilise ce calculateur pour les revenus ordinaires uniquement."
+    },
+    {
+      "q": "À quoi sert la connaissance du taux marginal ?",
+      "a": "Connaître ton taux marginal aide pour : les versements PER/iDeCo (économise au taux marginal), les décisions Roth vs traditionnel, savoir si les heures supplémentaires valent le coup après impôt, la valeur des dons aux associations."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Le calcul s'exécute localement ; rien n'est envoyé à un serveur."
+    }
+  ]
+}

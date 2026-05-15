@@ -1,0 +1,98 @@
+{
+  "title": "Calcolatore di Frazioni (addizione, sottrazione, moltiplicazione",
+  "shortDescription": "Somma, sottrai, moltiplica o dividi due frazioni. Restituisce la forma semplificata, l'equivalente decimale e la rappresentazione come numero misto.",
+  "description": "Inserisci due frazioni (numeratore sul denominatore) e un'operazione. Il calcolatore restituisce il risultato ai minimi termini, più il suo valore decimale e la forma di numero misto quando applicabile. Usa BigInt per risultati esatti di dimensione arbitraria.",
+  "metaDescription": "Calcolatore di frazioni gratuito. Somma, sottrai, moltiplica, dividi frazioni. Risultato semplificato, equivalente decimale, numero misto. Aritmetica esatta BigInt.",
+  "keywords": [
+    "calcolatore frazioni",
+    "sommare frazioni",
+    "moltiplicare frazioni",
+    "semplificatore frazioni",
+    "numero misto"
+  ],
+  "empty": "Inserisci entrambe le frazioni e un'operazione.",
+  "result": {
+    "simplified": "Risultato (semplificato)",
+    "decimal": "Decimale",
+    "mixed": "Numero misto"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Come funzionano le operazioni con le frazioni",
+        "paragraphs": [
+          "Addizione/sottrazione: converti prima a denominatore comune. a/b ± c/d = (ad ± bc) / bd. Esempio: 1/2 + 1/3 = (1×3 + 1×2) / (2×3) = 5/6.",
+          "Moltiplicazione: a/b × c/d = (ac) / (bd). La semplificazione incrociata semplifica prima di moltiplicare. Esempio: 2/3 × 9/10 = (2×9)/(3×10) = 18/30 = 3/5.",
+          "Divisione: inverti la seconda frazione e moltiplica. a/b ÷ c/d = a/b × d/c = (ad) / (bc). Esempio: 1/2 ÷ 3/4 = (1×4)/(2×3) = 4/6 = 2/3."
+        ]
+      },
+      {
+        "heading": "Perché semplificare",
+        "paragraphs": [
+          "Una frazione è ai minimi termini quando numeratore e denominatore non hanno fattori comuni maggiori di 1. Usiamo l'algoritmo di Euclide per trovare il loro MCD e dividere entrambi per esso.",
+          "Esempio: 18/30 ha MCD 6, quindi si semplifica a 3/5. Matematicamente equivalente ma più facile da leggere e usare.",
+          "Normalizziamo anche il segno: un numeratore positivo è convenzionale. Quindi −3/−5 si semplifica a 3/5; 3/−5 a −3/5."
+        ]
+      },
+      {
+        "heading": "Numeri misti",
+        "paragraphs": [
+          "Quando il valore assoluto del numeratore supera quello del denominatore, la frazione può essere espressa come un numero intero più una frazione propria. Esempio: 7/3 = 2⅓ (poiché 7 = 2×3 + 1).",
+          "I numeri misti sono comuni nelle misurazioni quotidiane (ricette, dimensioni del legname, indicazioni dei tempi musicali) ma meno comuni in matematica/scienza dove le frazioni improprie sono più semplici da manipolare. Mostriamo entrambe le rappresentazioni."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Inserisci la prima frazione",
+        "text": "Numeratore in alto, denominatore in basso."
+      },
+      {
+        "name": "Scegli un'operazione",
+        "text": "+, −, ×, o ÷."
+      },
+      {
+        "name": "Inserisci la seconda frazione",
+        "text": "Stesso formato."
+      },
+      {
+        "name": "Leggi il risultato",
+        "text": "Forma semplificata, valore decimale e numero misto quando applicabile."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Posso inserire frazioni negative?",
+      "a": "Sì. Usa un segno meno sul numeratore o sul denominatore. Il calcolatore normalizza a un unico segno negativo nel numeratore."
+    },
+    {
+      "q": "Perché 1/2 + 1/3 = 5/6 e non 2/5?",
+      "a": "Non puoi sommare frazioni sommando numeratori e denominatori separatamente. Devi prima trovare un denominatore comune. 1/2 = 3/6, 1/3 = 2/6, quindi 1/2 + 1/3 = 3/6 + 2/6 = 5/6."
+    },
+    {
+      "q": "Supporta i numeri interi come frazioni?",
+      "a": "Sì. Inserisci intero = intero/1. Quindi 5 + 1/2 = 5/1 + 1/2 = 11/2 = 5½."
+    },
+    {
+      "q": "Qual è la frazione più grande che gestisce?",
+      "a": "Usiamo BigInt internamente, quindi l'aritmetica su numeratori e denominatori di qualsiasi dimensione è esatta. La visualizzazione è limitata a quello che si adatta allo schermo."
+    },
+    {
+      "q": "Perché il decimale a volte non è esatto?",
+      "a": "Alcune frazioni non hanno rappresentazioni decimali esatte (1/3 = 0,3333…). Mostriamo fino a 8 cifre decimali. La frazione stessa è esatta; il decimale è un'approssimazione."
+    },
+    {
+      "q": "Posso dividere per zero?",
+      "a": "No. La divisione per zero (o qualsiasi frazione con un numeratore zero come divisore) è indefinita. Il calcolatore non restituisce alcun risultato in quel caso."
+    },
+    {
+      "q": "Da dove vengono i numeri misti?",
+      "a": "Dalle frazioni improprie (numeratore ≥ denominatore). 7/3 = 2 + 1/3 = 2⅓. Entrambe le forme sono equivalenti; scegli in base al contesto (matematica: impropria, ricette: mista)."
+    },
+    {
+      "q": "I dati lasciano il mio browser?",
+      "a": "No. Il calcolo viene eseguito localmente; nulla viene inviato a un server."
+    }
+  ]
+}

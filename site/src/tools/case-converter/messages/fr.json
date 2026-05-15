@@ -1,0 +1,103 @@
+{
+  "title": "Convertisseur de casse (camel, snake, kebab, Title, etc.)",
+  "shortDescription": "Convertit du texte en 10 styles de casse : MAJUSCULES, minuscules, Title, Phrase, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE et inversé.",
+  "description": "Tape n'importe quel texte et vois dix transformations de casse courantes côte à côte, chacune avec un bouton de copie. Utile pour renommer des variables, des fichiers, des titres, des slugs et le nettoyage de données.",
+  "metaDescription": "Convertisseur de casse gratuit pour camelCase, snake_case, kebab-case, PascalCase, Title Case et plus. Dix casses simultanément avec copie en un clic.",
+  "keywords": [
+    "convertisseur de casse",
+    "camel case",
+    "snake case",
+    "kebab case",
+    "title case"
+  ],
+  "input": {
+    "text": "Texte source"
+  },
+  "copy": "Copier",
+  "copied": "Copié",
+  "case": {
+    "lower": "minuscules",
+    "upper": "MAJUSCULES",
+    "title": "Title Case",
+    "sentence": "Casse de phrase",
+    "camel": "camelCase",
+    "pascal": "PascalCase",
+    "snake": "snake_case",
+    "kebab": "kebab-case",
+    "constant": "CONSTANT_CASE",
+    "invert": "CaSSe InVeRsÉe"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Où chaque style est utilisé",
+        "paragraphs": [
+          "camelCase : identifiants JavaScript et Java (nomDeVariable). PascalCase : classes et composants React (ProfilUtilisateur). snake_case : variables Python et Ruby (profil_utilisateur). kebab-case : URLs et classes CSS (profil-utilisateur). CONSTANT_CASE : variables d'environnement et constantes (PROFIL_UTILISATEUR).",
+          "Title Case : titres de livres et d'articles, en-têtes. Casse de phrase : la plupart des étiquettes et titres d'interface modernes — plus facile à lire que Title Case pour les longues chaînes. MAJUSCULES : emphase, abréviations. minuscules : balises, étiquettes, noms de fichiers devant être insensibles à la casse."
+        ]
+      },
+      {
+        "heading": "Comment le convertisseur analyse les mots",
+        "paragraphs": [
+          "Nous découpons sur les espaces, traits d'union, underscores, barres obliques et points. Nous découpons aussi à la frontière entre une lettre minuscule et une majuscule (donc 'helloWorld' se découpe en ['hello', 'World']) et entre une lettre et un chiffre. Cela gère la plupart des cas courants, y compris le code collé, les slugs et les chemins de fichiers.",
+          "Cas limites : les acronymes entièrement en majuscules ('XMLHTTPRequest') ne se découpent pas proprement sans contexte, donc nous traitons les lettres majuscules consécutives comme un bloc de mot unique et laissons l'utilisateur ajuster si besoin. Pour la plupart des textes courants — phrases, titres, noms de colonnes de jeux de données — l'analyseur produit le résultat attendu."
+        ]
+      },
+      {
+        "heading": "Conseils pour la révision de code et le refactoring",
+        "paragraphs": [
+          "Lors de la migration entre langages, colle une liste d'identifiants et copie la version convertie. snake-to-camel est la frontière JavaScript/Python la plus courante ; kebab-to-snake est courant lors du refactoring d'attributs HTML en objets JS.",
+          "Pour les slugs SEO, le kebab-case est la norme — lisible dans les URLs et Google traite les tirets comme des séparateurs de mots (pas les underscores). 'nom-produit' est préférable à 'nom_produit' pour tout chemin URL visible par l'utilisateur."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Tape ou colle du texte",
+        "text": "N'importe quoi — phrases, identifiants de code, noms de fichiers."
+      },
+      {
+        "name": "Lis les 10 conversions",
+        "text": "Chaque casse apparaît dans son propre bloc étiqueté."
+      },
+      {
+        "name": "Copie celle dont tu as besoin",
+        "text": "Clique sur « Copier » à côté de n'importe quel bloc."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Et si mon entrée contient des acronymes comme « XML » ?",
+      "a": "Les lettres majuscules consécutives sont traitées comme un bloc unique. « XMLParser » se découpe en « XML » et « Parser ». Ça fonctionne pour la plupart du code ; révise et ajuste manuellement pour les cas limites."
+    },
+    {
+      "q": "Pourquoi les slugs URL sont-ils toujours en kebab-case ?",
+      "a": "Les tirets sont traités comme des séparateurs de mots par l'analyseur d'URLs de Google ; pas les underscores. Les URLs en kebab-case s'indexent plus fiablement pour le SEO."
+    },
+    {
+      "q": "Quelle est la différence entre Title Case et Casse de phrase ?",
+      "a": "Title Case met en majuscule la plupart des mots (« Le Renard Brun Rapide »). Casse de phrase ne met en majuscule que le premier mot et les noms propres (« Le renard brun rapide »). Les interfaces modernes préfèrent généralement la casse de phrase."
+    },
+    {
+      "q": "Prend-il en charge l'Unicode ?",
+      "a": "Oui — toLowerCase/toUpperCase de JavaScript sont compatibles Unicode. Les caractères accentués et les scripts non latins passent correctement."
+    },
+    {
+      "q": "Puis-je convertir en sens inverse ?",
+      "a": "Oui — colle n'importe quelle sortie convertie en casse et utilise une conversion différente. Les allers-retours camelCase ↔ snake_case sont sans perte."
+    },
+    {
+      "q": "Pourquoi camelCase ne préserve-t-il pas les acronymes en majuscules ?",
+      "a": "Conventionnellement, camelCase ne met en majuscule que la première lettre de chaque mot suivant. « XmlHttpRequest » est préféré à « XMLHTTPRequest » dans les guides de style modernes."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Toutes les transformations s'effectuent localement."
+    },
+    {
+      "q": "Existe-t-il un moyen de convertir une liste en masse ?",
+      "a": "Colle toute ta liste d'un coup. Chaque ligne est traitée comme une entrée séparée dans le même style de casse — convertis, puis divise les lignes selon les besoins."
+    }
+  ]
+}

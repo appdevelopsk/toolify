@@ -1,0 +1,60 @@
+{
+  "title": "Validator Email (sintaks + deteksi kesalahan ketik umum)",
+  "shortDescription": "Validasi sintaks alamat email terhadap RFC 5322 dan deteksi kesalahan ketik umum pada penyedia populer (gmail, yahoo, hotmail, dll).",
+  "description": "Ketik email untuk memeriksa apakah sintaksnya valid dan menemukan kesalahan ketik domain seperti 'gmial.com' → 'gmail.com'. Menampilkan bagian lokal, domain, TLD, dan memperingatkan pelanggaran batas RFC.",
+  "metaDescription": "Validator email gratis. Memeriksa sintaks RFC 5322 dan menangkap kesalahan ketik umum seperti gmial.com atau yaho.com. Menampilkan rincian bagian lokal, domain, TLD.",
+  "keywords": ["validator email", "cek sintaks email", "cek format email", "verifikasi email", "kesalahan ketik email"],
+  "input": { "email": "Alamat email" },
+  "status": { "valid": "Sintaks valid", "invalid": "Sintaks tidak valid" },
+  "suggestion": "Maksud Anda: {suggestion}?",
+  "empty": "Ketik alamat email untuk divalidasi.",
+  "breakdown": {
+    "localPart": "Bagian lokal",
+    "domain": "Domain",
+    "tld": "TLD",
+    "hasPlus": "Tag plus (+)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Yang dilakukan validator ini (dan yang tidak bisa)",
+        "paragraphs": [
+          "Validasi sintaks email memeriksa apakah 'nama@domain.tld' mengikuti aturan struktural dalam RFC 5322. Kami menggunakan regex pragmatis yang menangkap hampir semua kesalahan ketik dunia nyata sambil tetap cukup fleksibel untuk alamat yang sah dengan tag plus, titik, dan TLD yang tidak biasa.",
+          "Yang TIDAK bisa dilakukan ini: mengkonfirmasi alamat benar-benar menerima email. Itu memerlukan pengiriman email nyata atau pemeriksaan SMTP, keduanya memerlukan kode sisi server dan berisiko positif palsu. Validasi sintaks menangkap kesalahan ketik dengan murah; pemeriksaan keterkiriman memerlukan pendekatan yang berbeda."
+        ]
+      },
+      {
+        "heading": "Deteksi kesalahan ketik umum",
+        "paragraphs": [
+          "Kami memantau kesalahan ketik pada penyedia email gratis utama — 'gmial.com' alih-alih 'gmail.com', 'yaho.com' alih-alih 'yahoo.com', dll. Sekitar 95% kesalahan ketik pendaftaran email adalah kesalahan ketik domain pada beberapa penyedia ini. Menangkapnya di sisi klien menghemat email sambutan yang terpantul dan tindak lanjut 'tolong periksa alamat Anda' yang tidak nyaman.",
+          "Jika Anda membuat formulir pendaftaran, jalankan logika yang sama sebelum mengirimkan. Tampilkan saran 'Maksud Anda…?' dan biarkan pengguna menerima atau mengabaikan. Aliran pendaftaran yang matang melakukan ini secara rutin; ini secara nyata meningkatkan keterkiriman email."
+        ]
+      },
+      {
+        "heading": "Aturan bagian lokal",
+        "paragraphs": [
+          "Tag plus ('user+filter@gmail.com'): didukung secara luas oleh penyedia besar. Gunakan untuk membuat alamat unik untuk pendaftaran berbeda sambil mempertahankan satu kotak masuk.",
+          "Titik ('user.name@gmail.com'): diperlakukan sebagai alamat yang sama oleh Gmail (titik diabaikan), tetapi penyedia lain mungkin memperlakukannya sebagai alamat berbeda. Jangan bergantung pada kesetaraan titik di luar Gmail.",
+          "Panjang: RFC 5321 membatasi bagian lokal hingga 64 karakter dan alamat lengkap hingga 254 karakter. Kami memperingatkan saat ini dilampaui — sebagian besar server menolak alamat yang lebih panjang.",
+          "Sensitivitas huruf: per RFC, bagian lokal peka huruf besar-kecil tetapi sebagian besar penyedia memperlakukannya sebagai tidak peka. Domain selalu tidak peka huruf besar-kecil."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Ketik emailnya", "text": "Atau tempel dari formulir / daftar." },
+      { "name": "Baca hasilnya", "text": "Tanda centang hijau = sintaks valid; tanda X merah = tidak valid." },
+      { "name": "Perhatikan saran", "text": "Kesalahan ketik umum pada penyedia populer ditandai dengan saran." },
+      { "name": "Tinjau rinciannya", "text": "Bagian lokal, domain, TLD, dan catatan peringatan ditampilkan di bawah." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah ini mengkonfirmasi email ada?", "a": "Tidak — hanya sintaks. Mengkonfirmasi kotak masuk ada memerlukan pemeriksaan SMTP sisi server atau mengirimkan email verifikasi. Alat ini menangkap kesalahan ketik dengan murah." },
+    { "q": "Mengapa menerima 'a@b.co'?", "a": "Karena itu secara teknis merupakan sintaks yang valid. TLD '.co' adalah nyata (Kolombia). Validasi berdasarkan sintaks tidak dapat memfilter TLD nyata-tetapi-langka." },
+    { "q": "Bagaimana dengan email dengan unicode (mis., pengguna@contoh.id)?", "a": "Alamat email yang diinternasionalisasi valid per RFC 6531 tetapi regex yang digunakan di sini tidak menerimanya. Sebagian besar backend formulir juga belum mendukungnya. Untuk validasi ramah unicode, gunakan library khusus." },
+    { "q": "Apa itu tag plus?", "a": "Apa pun antara + dan @ diperlakukan oleh Gmail dan banyak penyedia sebagai bagian dari perutean. user+toolify@gmail.com pergi ke user@gmail.com tetapi Anda dapat memfilter berdasarkan akhiran +toolify." },
+    { "q": "Mengapa Gmail mengabaikan titik?", "a": "Kebijakan Gmail historis. user.name@gmail.com dan username@gmail.com dikirim ke kotak masuk yang sama. Penyedia lain (Yahoo, Outlook) memperlakukannya sebagai alamat yang berbeda." },
+    { "q": "Berapa panjang email yang valid?", "a": "254 karakter total per RFC 5321. Bagian lokal ≤ 64. Sebagian besar server menolak yang lebih panjang." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Validasi berjalan secara lokal; tidak ada yang dikirim ke server mana pun." },
+    { "q": "Bisakah saya memvalidasi secara massal?", "a": "Tidak dalam alat ini — tempel satu alamat sekaligus. Untuk daftar, gunakan skrip atau layanan validasi massal khusus." }
+  ]
+}

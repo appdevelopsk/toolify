@@ -1,0 +1,53 @@
+{
+  "title": "Chuyển đổi HTML sang Markdown",
+  "shortDescription": "Chuyển đổi HTML sang Markdown trong trình duyệt. Tiêu đề, danh sách, code, liên kết, hình ảnh, blockquote, đậm/nghiêng/gạch ngang.",
+  "description": "Dán HTML và nhận Markdown sạch. Hữu ích khi di chuyển nội dung CMS, thu thập bài viết hoặc chuyển đổi đầu ra WYSIWYG sang markdown đơn giản cho các trang tĩnh.",
+  "metaDescription": "Chuyển đổi HTML sang Markdown miễn phí. Tiêu đề, danh sách, khối code, liên kết, blockquote, đậm/nghiêng. Đầu ra là Markdown thuần túy sẵn để dán bất cứ đâu.",
+  "keywords": ["html sang markdown", "chuyển html sang md", "chuyển đổi markdown", "loại bỏ html", "wysiwyg sang markdown"],
+  "input": { "html": "HTML" },
+  "output": { "markdown": "Đầu ra Markdown" },
+  "copy": "Sao chép Markdown",
+  "copied": "Đã sao chép!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Những gì được chuyển đổi",
+        "paragraphs": [
+          "Tiêu đề (h1-h6) trở thành # đến ######. <strong>/<b> trở thành **đậm**, <em>/<i> trở thành *nghiêng*. <code> trở thành `code nội tuyến`, <pre><code> trở thành khối ``` được đóng khung. <ul>/<ol> trở thành danh sách - hoặc 1. <a href> trở thành [văn bản](url), <img src alt> trở thành ![alt](url). <blockquote> trở thành >, <hr> trở thành ---. <br> trở thành xuống dòng.",
+          "Bất kỳ thứ gì không được nhận ra (HTML tùy chỉnh như <details>, <table>, <video>, v.v.) bị xóa thẻ nhưng nội dung văn bản được giữ lại. Với HTML phức tạp có bảng hoặc media, hãy mong đợi mất một số thông tin."
+        ]
+      },
+      {
+        "heading": "Các trường hợp sử dụng phổ biến",
+        "paragraphs": [
+          "Di chuyển CMS: sao chép HTML WYSIWYG từ WordPress, Wix, v.v. và chuyển đổi sang Markdown sạch để dùng trong các trình tạo trang tĩnh (Hugo, Jekyll, Next.js, Astro).",
+          "Lưu trữ bài viết: lưu bài viết web dưới dạng Markdown để đọc cá nhân. Kết hợp với công cụ trích xuất thân thiện paywall (HTML chế độ Reader) để có đầu ra văn bản thuần túy sạch.",
+          "Email-sang-Markdown: dán nội dung email HTML và nhận phiên bản Markdown để đăng chéo lên blog của bạn."
+        ]
+      },
+      {
+        "heading": "Hạn chế",
+        "paragraphs": [
+          "Bảng: không được chuyển đổi (bảng Markdown là GFM, không phải CommonMark). Bảng bị rút xuống thành văn bản thuần túy. Với bảng phức tạp, hãy dán dưới dạng HTML thay vào đó.",
+          "Style nội tuyến: bất kỳ màu, font hoặc layout nào qua thẻ <style> hoặc thuộc tính style='' đều bị mất. Markdown có chủ đích tối giản.",
+          "Danh sách lồng nhau: danh sách đơn một cấp hoạt động; danh sách lồng sâu có thể hợp nhất hoặc mất cấu trúc. Với các dàn ý phức tạp, hãy chỉnh tay sau khi chuyển đổi."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Dán HTML", "text": "Từ bất kỳ nguồn nào — xuất WordPress, bài viết web đã sao chép, v.v." },
+      { "name": "Đọc đầu ra Markdown", "text": "Cập nhật trực tiếp khi bạn chỉnh sửa." },
+      { "name": "Sao chép và dán ở nơi khác", "text": "Đầu ra là Markdown thuần túy sẵn cho bất kỳ trang tĩnh hoặc trình soạn thảo markdown nào." }
+    ]
+  },
+  "faq": [
+    { "q": "Cái này có giữ nguyên định dạng hoàn toàn không?", "a": "Với các phần tử tương thích CommonMark: có. Với các tính năng chỉ có HTML (CSS tùy chỉnh, layout phức tạp): không — Markdown có chủ đích là tập con." },
+    { "q": "Bảng có được chuyển đổi không?", "a": "Chưa. Bảng trở thành văn bản thuần túy. Chúng tôi có thể thêm chuyển đổi bảng GFM trong phiên bản tương lai." },
+    { "q": "Liên kết của tôi có được giữ lại không?", "a": "Có. <a href='url'>văn bản</a> trở thành [văn bản](url). Thuộc tính href được giữ lại." },
+    { "q": "Còn style nội tuyến thì sao?", "a": "Bị xóa. Markdown không hỗ trợ định dạng tùy ý — đó là có chủ đích." },
+    { "q": "Làm thế nào để chuyển đổi ngược lại HTML?", "a": "Dùng công cụ Markdown sang HTML của chúng tôi (có liên kết trong phần Công cụ liên quan)." },
+    { "q": "Đầu ra có an toàn để dán bất cứ đâu không?", "a": "Đây là văn bản sạch — không có script, không có HTML — nên an toàn cho bất kỳ trình soạn thảo markdown hoặc trường văn bản nào. Xác thực trước khi xuất bản nếu đầu vào từ nguồn không đáng tin cậy." },
+    { "q": "Tại sao một số nội dung bị thiếu?", "a": "Các phần tử HTML tùy chỉnh hoặc không chuẩn có thể bị xóa. Dán đoạn HTML có <details>, <video> hoặc thẻ dành riêng cho framework để kiểm tra." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Chuyển đổi chạy cục bộ; HTML của bạn không bao giờ được gửi đi đâu cả." }
+  ]
+}

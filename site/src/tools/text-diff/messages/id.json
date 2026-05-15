@@ -1,0 +1,99 @@
+{
+  "title": "Alat Perbandingan Teks (perbandingan per baris, berkode warna)",
+  "shortDescription": "Bandingkan dua blok teks baris per baris. Baris yang ditambahkan, dihapus, dan tidak berubah diberi kode warna dengan nomor baris.",
+  "description": "Tempel versi asli dan yang direvisi untuk melihat perbedaan per baris secara berdampingan. Berguna untuk dokumen, konfigurasi, tinjauan kode, dan pengeditan prosa.",
+  "metaDescription": "Alat pembanding teks online gratis. Perbandingan baris per baris dengan baris yang ditambahkan, dihapus, dan tidak berubah berkode warna.",
+  "keywords": [
+    "pembanding teks",
+    "bandingkan teks",
+    "alat diff",
+    "diff baris",
+    "temukan perbedaan"
+  ],
+  "input": {
+    "left": "Asli (kiri)",
+    "right": "Direvisi (kanan)"
+  },
+  "stats": {
+    "added": "ditambahkan",
+    "removed": "dihapus",
+    "unchanged": "tidak berubah"
+  },
+  "empty": "Tempel kedua versi untuk melihat perbedaan.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara perbedaan dihitung",
+        "paragraphs": [
+          "Kami menggunakan algoritma Longest Common Subsequence (LCS) untuk menemukan baris mana yang dibagi antara dua versi. Baris yang muncul di keduanya adalah 'tidak berubah'. Baris hanya di asli adalah 'dihapus'. Baris hanya di versi yang direvisi adalah 'ditambahkan'. Hasilnya adalah perbandingan beranotasi yang jelas dengan nomor baris dipertahankan di kedua sisi.",
+          "LCS adalah pendekatan standar yang digunakan oleh git dan sebagian besar alat diff. Ini memilih urutan pencocokan terpanjang yang mungkin, yang biasanya cocok dengan apa yang disebut manusia sebagai 'paragraf yang sama'. Untuk input yang sangat besar (10.000+ baris) runtime tumbuh kuadratik; jika perlu membandingkan log besar, gunakan alat diff streaming."
+        ]
+      },
+      {
+        "heading": "Untuk apa ini cocok",
+        "paragraphs": [
+          "Revisi dokumen: lihat dengan tepat apa yang berubah antara draf. Berguna untuk kontrak hukum, syarat layanan, dan teks apapun di mana 'apa yang berubah?' penting.",
+          "File konfigurasi: bandingkan dua file .env atau YAML untuk menemukan konfigurasi yang salah. Atau dua versi skrip deploy.",
+          "Pengeditan prosa: penulis dapat melihat revisi editor dalam konteks, terutama ketika hanya beberapa baris yang berubah.",
+          "Tinjauan kode (penggunaan ringan): untuk cuplikan kecil. Untuk tinjauan kode nyata, gunakan alat yang memahami sintaks — git diff dengan flag semantik atau alat tinjauan khusus akan memberikan hasil lebih baik."
+        ]
+      },
+      {
+        "heading": "Keterbatasan",
+        "paragraphs": [
+          "Kami membedakan pada granularitas baris. Jika Anda mengubah 'cat' menjadi 'cats' di sebuah baris, seluruh baris ditampilkan sebagai dihapus-dan-ditambahkan; kami tidak menyorot 's' yang disisipkan. Diff tingkat kata dan karakter berguna untuk itu, tetapi lebih sulit dibaca pada baris panjang.",
+          "Spasi di akhir baris signifikan — 'foo' dan 'foo ' (spasi di akhir) dihitung sebagai baris berbeda. Jika ingin perbandingan yang tidak sensitif spasi, normalkan teks sebelum menempel.",
+          "Urutan penting. Dua paragraf di posisi berbeda dihitung sebagai keduanya dihapus dan ditambahkan. Diff tidak mencoba mendeteksi blok yang 'dipindahkan'."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Tempel yang asli",
+        "text": "Di sebelah kiri."
+      },
+      {
+        "name": "Tempel yang direvisi",
+        "text": "Di sebelah kanan."
+      },
+      {
+        "name": "Baca perbedaannya",
+        "text": "Baris diperbarui saat Anda mengetik. Hijau = ditambahkan, merah = dihapus, biasa = tidak berubah."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apakah ini mendukung diff tingkat kata?",
+      "a": "Belum — hanya tingkat baris. Kami mungkin menambahkan granularitas karakter atau kata nanti untuk perbandingan pendek."
+    },
+    {
+      "q": "Seberapa besar teks saya bisa?",
+      "a": "Secara praktis hingga beberapa ribu baris per sisi. Kompleksitas kuadratik berarti input yang sangat besar mungkin membekukan tab browser sebentar."
+    },
+    {
+      "q": "Apakah data meninggalkan browser saya?",
+      "a": "Tidak. Proses diff berjalan sepenuhnya secara lokal."
+    },
+    {
+      "q": "Apakah spasi di akhir baris signifikan?",
+      "a": "Ya. Dua baris yang berbeda hanya oleh spasi di akhir dihitung sebagai berbeda. Normalkan spasi sebelum menempel jika Anda menginginkan pencocokan yang tidak sensitif spasi."
+    },
+    {
+      "q": "Bisakah saya menyimpan diff?",
+      "a": "Tidak sebagai file yang disimpan. Salin-tempel teks yang dirender atau ambil tangkapan layar untuk saat ini."
+    },
+    {
+      "q": "Apakah ini algoritma yang sama dengan git diff?",
+      "a": "Secara konseptual ya — kami menggunakan LCS, yang merupakan salah satu opsi git. Git default ke algoritma yang serupa tetapi lebih canggih (Myers diff dengan Patience sebagai pilihan). Output untuk input pendek pada dasarnya identik."
+    },
+    {
+      "q": "Mengapa seluruh baris ditandai ketika hanya satu kata yang berubah?",
+      "a": "Karena kami bekerja pada granularitas baris. Diff tingkat karakter akan menyorot kata yang berubah, tetapi lebih sulit dibaca pada baris panjang."
+    },
+    {
+      "q": "Bisakah saya membandingkan lebih dari dua versi?",
+      "a": "Tidak dalam alat ini. Untuk penggabungan multi-arah, gunakan alat diff 3 arah yang khusus."
+    }
+  ]
+}

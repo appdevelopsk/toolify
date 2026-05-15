@@ -1,0 +1,61 @@
+{
+  "title": "Calculadora de Fatorial / Permutações / Combinações",
+  "shortDescription": "Calcule n! (fatorial), P(n,k) permutações e C(n,k) combinações. Suporta inteiros grandes via BigInt até n=5000.",
+  "description": "Insira n e k. Retorna n!, P(n,k) (seleções ordenadas) e C(n,k) (seleções não ordenadas). Útil para probabilidade, estatística e exercícios de combinatória.",
+  "metaDescription": "Calculadora gratuita de fatorial, permutações (nPr) e combinações (nCr). Suporte a inteiros grandes até n=5000. Pronta para probabilidade e combinatória.",
+  "keywords": ["calculadora de fatorial", "nCr nPr", "calculadora de permutações", "calculadora de combinações", "combinatória"],
+  "input": {
+    "kHint": "(para permutações / combinações)"
+  },
+  "result": {
+    "permutationsLabel": "permutações",
+    "combinationsLabel": "combinações"
+  },
+  "error": {
+    "tooLargeOrNeg": "n deve ser um inteiro não negativo ≤ 5000.",
+    "invalid": "Requer 0 ≤ k ≤ n."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Fatorial",
+        "paragraphs": [
+          "n! (lê-se 'n fatorial') é o produto de todos os inteiros positivos de 1 até n. Assim, 5! = 1×2×3×4×5 = 120. Por convenção, 0! = 1 (o produto vazio).",
+          "Fatoriais crescem extremamente rápido. 10! = 3,6M, 20! = 2,4×10¹⁸, 100! tem 158 dígitos. O ponto flutuante quebra em 21! (por causa do limite de precisão dupla); usamos BigInt para valores exatos até n=5000."
+        ]
+      },
+      {
+        "heading": "Permutações vs combinações",
+        "paragraphs": [
+          "Permutações P(n,k) = n! / (n−k)!: número de maneiras ordenadas de escolher k itens de n. P(5,2) = 20: escolha o primeiro lugar entre 5, o segundo entre os 4 restantes = 5×4 = 20.",
+          "Combinações C(n,k) = n! / (k!(n−k)!): número de maneiras não ordenadas. C(5,2) = 10: as mesmas escolhas, mas {primeiro, segundo} = {segundo, primeiro}, então divida por 2!. O famoso 'n choose k'.",
+          "Use permutações quando a ordem importa (pódio de corrida, ordem de senha). Use combinações quando apenas o conjunto escolhido importa (números de loteria, seleção de comissão). C(n,k) ≤ P(n,k) sempre; iguais quando k=1."
+        ]
+      },
+      {
+        "heading": "Onde esses conceitos aparecem",
+        "paragraphs": [
+          "Probabilidade: dados, cartas, lançamento de moedas. P(3 caras em 5 lançamentos) = C(5,3) × (1/2)⁵ = 10/32. As combinações permitem contar resultados favoráveis.",
+          "Estatística: a distribuição binomial usa C(n,k). A amostragem sem reposição usa combinações.",
+          "Ciência da computação: contagem de subconjuntos, análise de complexidade (ex.: enumeração de k-clique é C(n,k)), algoritmos de grafos.",
+          "Mundo real: odds de loteria (Mega-Sena: C(60,6) ≈ 50 milhões de combinações para acertar a sena). Combinações de cardápio: 'escolha 3 acompanhamentos de 8' são C(8,3) = 56 maneiras."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Insira n", "text": "Total de itens / inteiro não negativo." },
+      { "name": "Insira k (opcional)", "text": "Quantos selecionar (para cálculos de P e C). Deve ser 0 ≤ k ≤ n." },
+      { "name": "Leia todos os três", "text": "n!, P(n,k), C(n,k). Saídas truncadas para números muito grandes." }
+    ]
+  },
+  "faq": [
+    { "q": "Por que 0! = 1?", "a": "Por convenção, o 'produto vazio' é 1 (assim como a soma vazia é 0). Também faz fórmulas como C(n,0) = 1 (uma maneira de não escolher nada) funcionarem consistentemente." },
+    { "q": "Qual é o maior fatorial que pode calcular?", "a": "n=5000 dá um número de 16.326 dígitos. Limitamos em 5000 para evitar que o navegador congele em entradas enormes. Para maior, use um CAS." },
+    { "q": "Qual é a diferença entre permutações e combinações?", "a": "A ordem importa nas permutações, não nas combinações. {A,B} é a mesma combinação que {B,A}, mas duas permutações diferentes: AB e BA." },
+    { "q": "Os fatoriais são definidos para números negativos?", "a": "Não no sentido padrão. A função gama Γ(x) estende o fatorial a todos os números reais (e complexos), mas nossa calculadora lida apenas com inteiros não negativos." },
+    { "q": "Qual é a fórmula para combinações?", "a": "C(n,k) = n! / (k! × (n-k)!). Lida como 'n escolha k'. Equivalentemente: P(n,k) / k!, pois a ordem não importa." },
+    { "q": "Qual é a precisão?", "a": "Exata para todos os valores dentro do intervalo. Usamos aritmética BigInt, que não tem erro de ponto flutuante." },
+    { "q": "Por que 70! é tão muito maior que 60!?", "a": "Cada fatorial multiplica pelo próximo inteiro. 70! é aproximadamente 60! × 61 × 62 × … × 70 ≈ 60! × 1,4 × 10¹⁷. Fatoriais crescem mais rápido que exponenciais — são aproximadamente n^n × e^-n × √(2πn) pela aproximação de Stirling." },
+    { "q": "Os dados saem do meu navegador?", "a": "Não. O cálculo roda localmente; nada é enviado a um servidor." }
+  ]
+}

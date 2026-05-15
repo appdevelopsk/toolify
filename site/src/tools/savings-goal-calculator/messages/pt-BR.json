@@ -1,0 +1,110 @@
+{
+  "title": "Calculadora de Meta de Poupança (tempo para atingir o objetivo)",
+  "shortDescription": "Descubra quanto tempo leva para atingir uma meta de poupança dado um saldo inicial, aporte mensal e retorno anual.",
+  "description": "Insira sua meta, saldo atual, poupança mensal e retorno anual esperado. A calculadora resolve o número de meses até você atingir a meta.",
+  "metaDescription": "Calculadora gratuita de meta de poupança. Veja quanto tempo leva para atingir um valor alvo com aportes mensais e taxa de juros.",
+  "keywords": [
+    "calculadora de meta de poupança",
+    "tempo para poupar",
+    "meta de poupança",
+    "quanto tempo para poupar",
+    "calculadora de poupança"
+  ],
+  "empty": "Insira a meta e um aporte mensal ou taxa acima de zero.",
+  "input": {
+    "goal": "Valor da meta",
+    "start": "Saldo inicial",
+    "monthly": "Aporte mensal",
+    "ratePct": "Retorno anual %"
+  },
+  "result": {
+    "timeToGoal": "Tempo para atingir a meta",
+    "years": "anos",
+    "months": "meses",
+    "totalMonths": "Total de meses",
+    "totalContrib": "Total aportado",
+    "interest": "Juros ganhos"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Como o tempo até a meta é calculado",
+        "paragraphs": [
+          "A fórmula padrão de valor futuro é VF = P × (1 + r)^n + M × ((1 + r)^n − 1) / r, onde P é o saldo inicial, M é o aporte mensal, r é a taxa mensal (anual / 12) e n é o número de meses. Definindo VF = sua meta e resolvendo para n: n = log((G × r + M) / (P × r + M)) / log(1 + r).",
+          "Quando a taxa é zero, a fórmula se reduz a (G − P) / M meses. A calculadora escolhe o caminho certo automaticamente e arredonda para cima para o mês inteiro mais próximo, pois não é possível fazer um aporte mensal parcial."
+        ]
+      },
+      {
+        "heading": "O que importa mais: aporte mensal ou taxa?",
+        "paragraphs": [
+          "Para horizontes de poupança típicos (1-10 anos), o aporte mensal domina. Passar de R$ 300 para R$ 500 por mês faz uma diferença muito maior do que passar de 3% para 5% de retorno. O tempo e o aporte são lineares; a taxa é exponencial, mas só ao longo de horizontes muito longos.",
+          "Para metas de 20+ anos (aposentadoria, educação dos filhos), a taxa se torna decisiva. Os mesmos R$ 500/mês por 30 anos produz totais vastamente diferentes a 4% vs 8%. É por isso que começar a poupar para a aposentadoria cedo é exponencialmente mais valioso do que começar tarde."
+        ]
+      },
+      {
+        "heading": "Taxas realistas",
+        "paragraphs": [
+          "Poupança tradicional: ~6-7% ao ano. CDB/LCI/LCA de bom rendimento: 100-120% do CDI (~10-12% com CDI próximo a 10,5%). Tesouro Selic: próximo ao CDI (~10-11% atualmente).",
+          "Índice de ações diversificado (Ibovespa histórico): cerca de 10-12% nominal / 6-8% real. Use 6-8% para planejamento conservador.",
+          "A inflação corrói 4-6% ao ano no Brasil. Para metas em 'reais de hoje', subtraia a inflação esperada da sua taxa nominal."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Insira sua meta",
+        "text": "O valor que você quer atingir."
+      },
+      {
+        "name": "Insira o saldo inicial",
+        "text": "O que você tem hoje; pode ser 0."
+      },
+      {
+        "name": "Insira o aporte mensal",
+        "text": "O que você vai adicionar todo mês."
+      },
+      {
+        "name": "Insira o retorno anual esperado",
+        "text": "Conservador: 6%. Mercado de ações: 8-10%."
+      },
+      {
+        "name": "Leia o resultado",
+        "text": "Anos e meses até a meta, mais total aportado e juros ganhos."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Por que a resposta é arredondada para meses inteiros?",
+      "a": "Porque não é possível fazer um aporte mensal parcial. Se a matemática disser 32,4 meses, você atingirá a meta no mês 33 (assumindo aporte consistente)."
+    },
+    {
+      "q": "Qual taxa devo usar?",
+      "a": "Para poupança de alta liquidez: 6-7%. Para CDB longo prazo: 10-12%. Para Ibovespa de longo prazo: 8-10%. Para ultraconservador: use 0% para ver quanto tempo a poupança pura leva."
+    },
+    {
+      "q": "Devo considerar a inflação?",
+      "a": "Se sua meta está em reais de hoje, subtraia a inflação esperada da sua taxa (ex.: 10% nominal − 5% de inflação = 5% real). Assim a calculadora dá uma resposta de poder de compra real."
+    },
+    {
+      "q": "Isso assume capitalização mensal?",
+      "a": "Sim — os juros capitalizam na mesma frequência mensal dos seus aportes. Para a maioria dos produtos de poupança isso corresponde à realidade de perto."
+    },
+    {
+      "q": "E se eu poupar R$ 0 por mês com taxa 0%?",
+      "a": "Então você não pode atingir uma meta acima do seu saldo inicial. A calculadora não retorna resultado nesse caso."
+    },
+    {
+      "q": "Os juros são tributáveis?",
+      "a": "Na maioria das aplicações no Brasil, sim — alíquota regressiva de IR de 22,5% (até 180 dias) a 15% (acima de 720 dias) sobre os rendimentos. LCI/LCA são isentos de IR para pessoa física. Considere a taxa líquida se sua meta é o poder de compra pós-IR."
+    },
+    {
+      "q": "E se meu aporte mudar?",
+      "a": "Execute a calculadora várias vezes para cada fase. Para aportes variáveis, uma planilha de planejamento financeiro é mais flexível."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não — os cálculos são feitos localmente."
+    }
+  ]
+}

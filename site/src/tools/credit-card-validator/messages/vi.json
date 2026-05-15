@@ -1,0 +1,102 @@
+{
+  "title": "Xác thực thẻ tín dụng (kiểm tra Luhn + nhận diện thương hiệu)",
+  "shortDescription": "Xác thực checksum số thẻ tín dụng (thuật toán Luhn) và nhận diện thương hiệu phát hành. Chỉ chạy trên trình duyệt — số thẻ của bạn không bao giờ rời khỏi thiết bị.",
+  "description": "Gõ số thẻ để xác minh nó vượt qua kiểm tra Luhn và nhận diện thương hiệu (Visa, Mastercard, Amex, Discover, JCB, Diners, UnionPay) theo phạm vi IIN/BIN.",
+  "metaDescription": "Công cụ xác thực thẻ tín dụng miễn phí. Kiểm tra thuật toán Luhn + nhận diện thương hiệu (Visa, Mastercard, Amex, v.v.).",
+  "keywords": [
+    "xác thực thẻ tín dụng",
+    "thuật toán Luhn",
+    "kiểm tra số thẻ",
+    "kiểm tra BIN",
+    "nhận diện thương hiệu thẻ"
+  ],
+  "warning": "⚠ Đừng bao giờ nhập số thẻ thật trên một trang web bạn không tin tưởng. Công cụ này chạy hoàn toàn trong trình duyệt của bạn — nhưng điều tương tự là không thể xác minh trên bất kỳ trang web nào bạn không biết.",
+  "input": {
+    "cardNumber": "Số thẻ"
+  },
+  "status": {
+    "valid": "Cú pháp hợp lệ",
+    "invalid": "Không hợp lệ"
+  },
+  "empty": "Gõ số thẻ để xác thực.",
+  "breakdown": {
+    "brand": "Thương hiệu",
+    "length": "Độ dài",
+    "luhn": "Kiểm tra Luhn",
+    "formatted": "Đã định dạng",
+    "unknown": "Không xác định"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Công cụ này kiểm tra gì (và không kiểm tra gì)",
+        "paragraphs": [
+          "Ba kiểm tra: (1) tiền tố khớp với phạm vi IIN/BIN của nhà phát hành đã biết, (2) độ dài là một trong những độ dài hợp lệ cho thương hiệu đó, (3) checksum Luhn vượt qua. Nếu cả ba đều đúng, số này có cú pháp hợp lệ như số thẻ.",
+          "Điều này KHÔNG kiểm tra: thẻ có thực sự tồn tại không, có tiền không, chủ thẻ có ủy quyền bạn sử dụng nó không. Điều đó yêu cầu phải qua một nhà xử lý thanh toán thực sự với ủy quyền đúng cách. Công cụ này phát hiện lỗi đánh máy một cách rẻ — như 1234 vs 1243 trong một lần dán — nhưng không thể xác minh thẻ thuộc về tài khoản thực."
+        ]
+      },
+      {
+        "heading": "Thuật toán Luhn hoạt động như thế nào",
+        "paragraphs": [
+          "Luhn (1954, bởi nhà khoa học IBM Hans Peter Luhn) là checksum đơn giản: bắt đầu từ chữ số bên phải nhất, nhân đôi mỗi chữ số thứ hai. Nếu chữ số nhân đôi lớn hơn 9, cộng hai chữ số của nó (hoặc tương đương trừ 9). Cộng tất cả các chữ số kết quả. Tổng phải chia hết cho 10.",
+          "Luhn phát hiện lỗi đơn chữ số và hầu hết các hoán vị liền kề — hai loại lỗi đánh máy phổ biến nhất khi con người sao chép số dài. Nó không phải là mật mã; bạn không thể dùng nó để phát hiện giả mạo ác ý. Các nhà xử lý thẻ thực tế dùng Luhn như bộ lọc đầu tiên trước các kiểm tra backend tốn kém hơn."
+        ]
+      },
+      {
+        "heading": "Nhận diện thương hiệu theo IIN/BIN",
+        "paragraphs": [
+          "6-8 chữ số đầu tiên của số thẻ xác định nhà phát hành (Số Nhận dạng Nhà phát hành / Số Nhận dạng Ngân hàng). Các thương hiệu lớn có phạm vi tiền tố nổi tiếng: Visa bắt đầu bằng 4, Mastercard bằng 51-55 hoặc 2221-2720, Amex bằng 34 hoặc 37, v.v. Chúng tôi nhận diện thương hiệu bằng cách khớp các phạm vi này.",
+          "Thương hiệu và quốc gia thường có thể được suy ra từ IIN. Tra cứu cơ sở dữ liệu IIN đầy đủ cung cấp quốc gia, ngân hàng, loại thẻ (ghi nợ/tín dụng) và chương trình — được thương nhân dùng để chấm điểm rủi ro. Chúng tôi không bao gồm cơ sở dữ liệu IIN đầy đủ; chỉ có các mẫu thương hiệu phổ biến nhất."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Gõ số thẻ",
+        "text": "Dấu cách và gạch ngang được tự động bỏ qua."
+      },
+      {
+        "name": "Đọc kết quả",
+        "text": "Dấu kiểm xanh = cú pháp hợp lệ (Luhn vượt qua + độ dài khớp thương hiệu)."
+      },
+      {
+        "name": "Xem chi tiết",
+        "text": "Thương hiệu, độ dài, kiểm tra Luhn và số thẻ được định dạng đúng."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Tôi có nên tin tưởng công cụ này với số thẻ thật của mình không?",
+      "a": "Ngay cả khi chúng tôi chỉ chạy trong trình duyệt của bạn, bạn không bao giờ nên dán số thẻ thật vào công cụ bạn không tin tưởng sâu sắc. Dùng một trong các số thẻ thử nghiệm chuẩn (ví dụ: 4111 1111 1111 1111) để kiểm tra cú pháp."
+    },
+    {
+      "q": "Tại sao tôi nhận được 'không hợp lệ' cho số trông hợp lệ?",
+      "a": "Thường thì checksum Luhn không thành công — có thể do lỗi đánh máy. Kiểm tra lại các chữ số một lần nữa."
+    },
+    {
+      "q": "Xác thực Luhn có chứng minh thẻ tồn tại không?",
+      "a": "Không. Luhn chỉ phát hiện lỗi sao chép. Nhiều số chưa từng được phát hành vượt qua Luhn; nhiều thẻ thật không vượt qua Luhn nếu gõ sai."
+    },
+    {
+      "q": "'BIN' là gì?",
+      "a": "Số Nhận dạng Ngân hàng — 6-8 chữ số đầu tiên xác định nhà phát hành. Tương tự IIN (Số Nhận dạng Nhà phát hành); hai thuật ngữ có thể hoán đổi cho nhau."
+    },
+    {
+      "q": "Tôi có thể dùng công cụ này để tạo số thẻ thử nghiệm không?",
+      "a": "Không trực tiếp, nhưng các số thẻ thử nghiệm chuẩn Stripe/Visa/Mastercard được ghi chép tốt (ví dụ: 4242 4242 4242 4242). Chúng vượt qua Luhn nhưng không bao giờ bị tính tiền."
+    },
+    {
+      "q": "Tại sao [thương hiệu nào đó] không được nhận diện?",
+      "a": "Chúng tôi hỗ trợ các thương hiệu lớn. Thẻ khu vực hoặc co-branded có thể không khớp. Kiểm tra tài liệu của nhà phát hành cho các phạm vi IIN họ sử dụng."
+    },
+    {
+      "q": "Dữ liệu có rời khỏi trình duyệt không?",
+      "a": "Không. Xác thực chạy hoàn toàn trong trình duyệt của bạn mà không có lệnh gọi mạng."
+    },
+    {
+      "q": "Luhn có được dùng cho những thứ khác ngoài thẻ tín dụng không?",
+      "a": "Có — số IMEI, SIN Canada, ISIN, NPI và nhiều hệ thống ID khác dùng Luhn. Thuật toán giống nhau; chỉ có ánh xạ tiền tố là khác nhau."
+    }
+  ]
+}

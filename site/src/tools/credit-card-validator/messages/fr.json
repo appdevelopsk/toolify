@@ -1,0 +1,102 @@
+{
+  "title": "Validateur de numéro de carte bancaire (vérification Luhn + détection",
+  "shortDescription": "Valide le checksum d'un numéro de carte bancaire (algorithme de Luhn) et détecte le réseau émetteur. Tout dans le navigateur — ton numéro de carte ne quitte jamais ton appareil.",
+  "description": "Tape un numéro de carte pour vérifier qu'il passe le contrôle de Luhn et détecter le réseau (Visa, Mastercard, Amex, Discover, JCB, Diners, UnionPay) par plage IIN/BIN.",
+  "metaDescription": "Validateur de carte bancaire gratuit. Vérification algorithme de Luhn + détection du réseau (Visa, Mastercard, Amex, etc).",
+  "keywords": [
+    "validateur carte bancaire",
+    "algorithme de Luhn",
+    "vérification numéro de carte",
+    "vérification BIN",
+    "détection réseau carte"
+  ],
+  "warning": "⚠ N'entre jamais un vrai numéro de carte sur un site auquel tu ne fais pas entièrement confiance. Cet outil fonctionne entièrement dans ton navigateur — mais cela est impossible à vérifier sur tout site inconnu.",
+  "input": {
+    "cardNumber": "Numéro de carte"
+  },
+  "status": {
+    "valid": "Syntaxe valide",
+    "invalid": "Invalide"
+  },
+  "empty": "Tape un numéro de carte pour valider.",
+  "breakdown": {
+    "brand": "Réseau",
+    "length": "Longueur",
+    "luhn": "Vérification Luhn",
+    "formatted": "Formaté",
+    "unknown": "Inconnu"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ce que ce validateur vérifie (et ne vérifie pas)",
+        "paragraphs": [
+          "Trois vérifications : (1) le préfixe correspond à une plage IIN/BIN d'un émetteur connu, (2) la longueur est l'une des longueurs valides pour ce réseau, (3) le checksum de Luhn est valide. Si les trois sont vrais, le numéro est syntaxiquement valide comme numéro de carte.",
+          "Ce que cela NE vérifie PAS : si la carte existe réellement, si elle a des fonds, si le titulaire t'a autorisé à l'utiliser. Cela nécessite de passer par un vrai processeur de paiement avec autorisation appropriée. Cet outil détecte les fautes de frappe à moindre coût — comme 1234 vs 1243 lors d'un copier-coller — mais ne peut pas vérifier que la carte appartient à un compte réel."
+        ]
+      },
+      {
+        "heading": "Comment fonctionne l'algorithme de Luhn",
+        "paragraphs": [
+          "Luhn (1954, par le scientifique IBM Hans Peter Luhn) est un checksum simple : en partant du chiffre le plus à droite, double chaque deuxième chiffre. Si un chiffre doublé dépasse 9, additionne ses deux chiffres (ou de façon équivalente soustrait 9). Additionne tous les chiffres résultants. Le total doit être divisible par 10.",
+          "Luhn détecte les erreurs de chiffre unique et la plupart des transpositions adjacentes — les deux fautes de frappe les plus courantes quand les humains copient de longs numéros. Ce n'est pas cryptographique ; tu ne peux pas l'utiliser pour détecter une falsification malveillante. Les vrais processeurs de cartes utilisent Luhn comme filtre de première ligne avant les vérifications backend plus coûteuses."
+        ]
+      },
+      {
+        "heading": "Détection du réseau par IIN/BIN",
+        "paragraphs": [
+          "Les 6 à 8 premiers chiffres d'un numéro de carte identifient l'émetteur (Numéro d'Identification de l'Émetteur / Bank Identification Number). Les grands réseaux ont des plages de préfixes bien connues : Visa commence par 4, Mastercard par 51-55 ou 2221-2720, Amex par 34 ou 37, etc. Nous détectons le réseau en faisant correspondre ces plages.",
+          "Le réseau et le pays peuvent généralement être déduits de l'IIN. Les recherches complètes dans les bases de données IIN donnent le pays, la banque, le type de carte (débit/crédit) et le programme — utilisé par les marchands pour l'évaluation des risques. Nous n'incluons pas une base de données IIN complète ; seulement les modèles des principaux réseaux."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Tape le numéro de carte",
+        "text": "Les espaces et tirets sont ignorés automatiquement."
+      },
+      {
+        "name": "Lis le verdict",
+        "text": "Coche verte = syntaxe valide (Luhn valide + longueur correspond au réseau)."
+      },
+      {
+        "name": "Examine la décomposition",
+        "text": "Réseau, longueur, vérification Luhn et numéro de carte correctement formaté."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Puis-je faire confiance à cet outil avec mon vrai numéro de carte ?",
+      "a": "Même si nous fonctionnons uniquement dans ton navigateur, tu ne devrais jamais coller un vrai numéro de carte dans un outil en qui tu n'as pas entièrement confiance. Utilise l'un des numéros de carte de test standard (ex. 4111 1111 1111 1111) pour les vérifications de syntaxe."
+    },
+    {
+      "q": "Pourquoi j'obtiens « invalide » pour un numéro qui semble réel ?",
+      "a": "Le plus souvent, le checksum de Luhn échoue — probablement une faute de frappe. Vérifie les chiffres une fois de plus."
+    },
+    {
+      "q": "La validation Luhn prouve-t-elle que la carte existe ?",
+      "a": "Non. Luhn ne détecte que les erreurs de transcription. Beaucoup de numéros jamais émis passent Luhn ; beaucoup de vraies cartes échouent à Luhn si mal tapées."
+    },
+    {
+      "q": "Qu'est-ce qu'un 'BIN' ?",
+      "a": "Bank Identification Number — les 6 à 8 premiers chiffres identifiant l'émetteur. Identique à IIN (Issuer Identification Number) ; les termes sont interchangeables."
+    },
+    {
+      "q": "Puis-je l'utiliser pour générer des numéros de carte de test ?",
+      "a": "Pas directement, mais les numéros de carte de test standard Stripe/Visa/Mastercard sont bien documentés (ex. 4242 4242 4242 4242). Ils passent Luhn mais ne débitent jamais."
+    },
+    {
+      "q": "Pourquoi [un certain réseau] n'est-il pas détecté ?",
+      "a": "Nous prenons en charge les principaux réseaux. Les cartes régionales ou co-brandées peuvent ne pas correspondre. Consulte la documentation de l'émetteur pour les plages IIN qu'il utilise."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. La validation s'effectue entièrement dans ton navigateur sans appels réseau."
+    },
+    {
+      "q": "Luhn est-il utilisé pour autre chose que les cartes bancaires ?",
+      "a": "Oui — les numéros IMEI, le NAS canadien, l'ISIN, le NPI et de nombreux autres systèmes d'identification utilisent Luhn. L'algorithme est le même ; seuls les mappings de préfixes diffèrent."
+    }
+  ]
+}

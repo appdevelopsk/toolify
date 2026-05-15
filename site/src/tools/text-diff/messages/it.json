@@ -1,0 +1,99 @@
+{
+  "title": "Strumento di Confronto Testo (diff per righe, codice colore)",
+  "shortDescription": "Confronta due blocchi di testo riga per riga. Le righe aggiunte, rimosse e invariate sono codificate per colore con numeri di riga.",
+  "description": "Incolla una versione originale e una rivista per vedere un diff riga per riga affiancato. Utile per documenti, configurazioni, revisione del codice e editing di testi.",
+  "metaDescription": "Strumento diff di testo gratuito online. Confronto riga per riga con righe aggiunte, rimosse e invariate codificate per colore.",
+  "keywords": [
+    "diff testo",
+    "confronta testo",
+    "strumento diff",
+    "diff righe",
+    "trova differenze"
+  ],
+  "input": {
+    "left": "Originale (sinistra)",
+    "right": "Rivisto (destra)"
+  },
+  "stats": {
+    "added": "aggiunte",
+    "removed": "rimosse",
+    "unchanged": "invariate"
+  },
+  "empty": "Incolla entrambe le versioni per vedere il diff.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Come viene calcolato il diff",
+        "paragraphs": [
+          "Usiamo l'algoritmo LCS (Longest Common Subsequence — Sottosequenza Comune Più Lunga) per trovare quali righe sono condivise tra le due versioni. Le righe che appaiono in entrambe sono 'invariate'. Le righe solo nell'originale sono 'rimosse'. Le righe solo nella versione rivista sono 'aggiunte'. Il risultato è un confronto annotato chiaro con i numeri di riga preservati su entrambi i lati.",
+          "LCS è l'approccio standard usato da git e dalla maggior parte degli strumenti diff. Sceglie la sequenza di corrispondenza più lunga possibile, che di solito corrisponde a ciò che un umano chiamerebbe 'lo stesso paragrafo'. Per input molto grandi (10.000+ righe) il tempo di esecuzione cresce quadraticamente; se devi confrontare log di grandi dimensioni, usa uno strumento diff in streaming."
+        ]
+      },
+      {
+        "heading": "A cosa serve",
+        "paragraphs": [
+          "Revisioni di documenti: vedi esattamente cosa è cambiato tra le bozze. Utile per contratti legali, condizioni di servizio e qualsiasi testo in cui 'cosa è cambiato?' è importante.",
+          "File di configurazione: confronta due file .env o YAML per individuare una configurazione errata. O due versioni di uno script di deploy.",
+          "Editing di testi: gli scrittori possono vedere le revisioni del redattore nel contesto, specialmente quando sono cambiate solo poche righe.",
+          "Revisione del codice (uso leggero): per piccoli frammenti. Per la vera revisione del codice, usa uno strumento che comprende la sintassi — git diff con flag semantici o uno strumento di revisione dedicato darà risultati migliori."
+        ]
+      },
+      {
+        "heading": "Limitazioni",
+        "paragraphs": [
+          "Il diff è a granularità di riga. Se cambi 'gato' in 'gatos' su una riga, l'intera riga appare come rimossa-e-aggiunta; non evidenziamo la 's' inserita. Il diff a livello di parola e carattere è utile per questo, ma più difficile da leggere su righe lunghe.",
+          "Gli spazi finali sono significativi — 'ciao' e 'ciao ' (spazio finale) contano come righe diverse. Se vuoi un confronto insensibile agli spazi, normalizza il testo prima di incollarlo.",
+          "L'ordine è importante. Due paragrafi in posizioni diverse contano sia come rimossi che come aggiunti. Il diff non tenta di rilevare i blocchi 'spostati'."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Incolla l'originale",
+        "text": "Sul lato sinistro."
+      },
+      {
+        "name": "Incolla il testo rivisto",
+        "text": "Sul lato destro."
+      },
+      {
+        "name": "Leggi il diff",
+        "text": "Le righe si aggiornano mentre digiti. Verde = aggiunto, rosso = rimosso, normale = invariato."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Supporta il diff a livello di parola?",
+      "a": "Non ancora — solo a livello di riga. Potremmo aggiungere la granularità a carattere o parola in seguito per confronti brevi."
+    },
+    {
+      "q": "Quanto grande può essere il mio testo?",
+      "a": "Praticamente fino a qualche migliaio di righe per lato. La complessità quadratica significa che input molto grandi potrebbero bloccare brevemente la scheda del browser."
+    },
+    {
+      "q": "I dati escono dal mio browser?",
+      "a": "No. Il diff viene eseguito interamente in locale."
+    },
+    {
+      "q": "Gli spazi finali sono significativi?",
+      "a": "Sì. Due righe che differiscono solo per gli spazi finali sono conteggiate come diverse. Normalizza gli spazi prima di incollare se vuoi una corrispondenza insensibile agli spazi."
+    },
+    {
+      "q": "Posso salvare il diff?",
+      "a": "Non come file salvato. Per ora, copia e incolla il testo renderizzato o fai uno screenshot."
+    },
+    {
+      "q": "È lo stesso algoritmo di git diff?",
+      "a": "Concettualmente sì — usiamo LCS, che è una delle opzioni di git. Git usa per default un algoritmo simile ma più sofisticato (Myers diff con Patience come opzione). L'output per input brevi è essenzialmente identico."
+    },
+    {
+      "q": "Perché intere righe sono segnate quando è cambiata solo una parola?",
+      "a": "Perché lavoriamo a granularità di riga. Un diff a livello di carattere evidenzierebbe la parola modificata, ma è più difficile da leggere su righe lunghe."
+    },
+    {
+      "q": "Posso confrontare più di due versioni?",
+      "a": "Non con questo strumento. Per il merge multi-versione, usa uno strumento diff a 3 vie dedicato."
+    }
+  ]
+}

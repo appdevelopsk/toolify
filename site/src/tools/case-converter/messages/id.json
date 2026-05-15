@@ -1,0 +1,103 @@
+{
+  "title": "Konverter Case (camel, snake, kebab, Title, dll.)",
+  "shortDescription": "Konversi teks ke 10 gaya case: UPPER, lower, Title, Sentence, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, dan terbalik.",
+  "description": "Ketik teks apa pun dan lihat sepuluh transformasi case umum secara berdampingan, masing-masing dengan tombol salin. Berguna untuk mengganti nama variabel, nama file, judul, slug, dan pembersihan dataset.",
+  "metaDescription": "Konverter case gratis untuk camelCase, snake_case, kebab-case, PascalCase, Title Case, dan lainnya. Sepuluh case sekaligus dengan salin satu klik.",
+  "keywords": [
+    "konverter case",
+    "camel case",
+    "snake case",
+    "kebab case",
+    "title case"
+  ],
+  "input": {
+    "text": "Teks sumber"
+  },
+  "copy": "Salin",
+  "copied": "Tersalin",
+  "case": {
+    "lower": "lowercase",
+    "upper": "UPPERCASE",
+    "title": "Title Case",
+    "sentence": "Sentence case",
+    "camel": "camelCase",
+    "pascal": "PascalCase",
+    "snake": "snake_case",
+    "kebab": "kebab-case",
+    "constant": "CONSTANT_CASE",
+    "invert": "CaSe TeRbAlIk"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Di mana setiap gaya digunakan",
+        "paragraphs": [
+          "camelCase: identifier JavaScript dan Java (myVariableName). PascalCase: kelas dan komponen React (UserProfile). snake_case: variabel Python dan Ruby (user_profile). kebab-case: URL dan kelas CSS (user-profile). CONSTANT_CASE: variabel lingkungan dan konstanta (USER_PROFILE).",
+          "Title Case: judul buku dan artikel, heading. Sentence case: sebagian besar label dan heading UI modern — lebih mudah dibaca daripada Title Case untuk string panjang. UPPERCASE: penekanan, singkatan. lowercase: tag, label, nama file yang perlu tidak peka huruf besar-kecil."
+        ]
+      },
+      {
+        "heading": "Cara konverter mengurai kata",
+        "paragraphs": [
+          "Kami membagi berdasarkan spasi, tanda hubung, garis bawah, garis miring, dan titik. Kami juga membagi pada batas antara huruf kecil dan huruf besar (sehingga 'helloWorld' dibagi menjadi ['hello', 'World']) dan antara huruf dan angka. Ini menangani sebagian besar kasus sehari-hari termasuk kode yang ditempel, slug, dan jalur file.",
+          "Kasus tepi: akronim semua-huruf-besar ('XMLHTTPRequest') tidak terbagi dengan bersih tanpa konteks, jadi kami memperlakukan huruf besar berturut-turut sebagai satu blok kata dan mengandalkan pengguna untuk membersihkan jika diperlukan. Untuk sebagian besar teks sehari-hari — kalimat, judul, nama kolom dataset — parser menghasilkan hasil yang Anda harapkan."
+        ]
+      },
+      {
+        "heading": "Tips untuk code review dan refactoring",
+        "paragraphs": [
+          "Saat bermigrasi antar bahasa, tempel daftar nama identifier dan salin versi yang dikonversi. snake-ke-camel adalah batas JavaScript-ke-Python paling umum; kebab-ke-snake umum saat refactoring atribut HTML ke objek JS.",
+          "Untuk slug SEO, kebab-case adalah standar — mudah dibaca dalam URL dan Google memperlakukan tanda hubung sebagai pemisah kata (garis bawah tidak). 'nama-produk' lebih baik dari 'nama_produk' untuk jalur URL yang menghadap pengguna."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Ketik atau tempel teks",
+        "text": "Apa saja — kalimat, identifier kode, nama file."
+      },
+      {
+        "name": "Baca semua 10 konversi",
+        "text": "Setiap case muncul dalam blok berlabelnya sendiri."
+      },
+      {
+        "name": "Salin yang Anda butuhkan",
+        "text": "Klik 'Salin' di samping blok mana pun."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Bagaimana jika input saya memiliki akronim seperti 'XML'?",
+      "a": "Huruf besar berturut-turut diperlakukan sebagai satu blok. 'XMLParser' dibagi menjadi 'XML' dan 'Parser'. Ini bekerja untuk sebagian besar kode; tinjau dan sesuaikan secara manual untuk kasus tepi."
+    },
+    {
+      "q": "Mengapa slug URL selalu kebab-case?",
+      "a": "Tanda hubung diperlakukan sebagai batas kata oleh parser URL Google; garis bawah tidak. URL kebab-case diindeks lebih andal untuk SEO."
+    },
+    {
+      "q": "Apa perbedaan antara Title dan Sentence case?",
+      "a": "Title Case mengkapitalisasi sebagian besar kata ('The Quick Brown Fox'). Sentence case hanya mengkapitalisasi kata pertama dan nama diri ('The quick brown fox'). UI modern cenderung lebih memilih sentence case."
+    },
+    {
+      "q": "Apakah ini mendukung Unicode?",
+      "a": "Ya — toLowerCase/toUpperCase JavaScript mendukung Unicode. Diakritik dan skrip non-Latin melewati dengan benar."
+    },
+    {
+      "q": "Bisakah saya mengonversi kembali?",
+      "a": "Ya — tempel output yang sudah dikonversi kembali dan gunakan konversi berbeda. Round-trip camelCase ↔ snake_case tidak ada kehilangan data."
+    },
+    {
+      "q": "Mengapa camelCase tidak mempertahankan akronim dalam huruf besar?",
+      "a": "Secara konvensional, camelCase hanya mengkapitalisasi huruf pertama dari setiap kata berikutnya. 'XmlHttpRequest' lebih disukai daripada 'XMLHTTPRequest' dalam panduan gaya modern."
+    },
+    {
+      "q": "Apakah data meninggalkan browser saya?",
+      "a": "Tidak. Semua transformasi berjalan secara lokal."
+    },
+    {
+      "q": "Apakah ada cara untuk mengonversi daftar secara massal?",
+      "a": "Tempel seluruh daftar sekaligus. Setiap baris diperlakukan sebagai input terpisah dalam gaya case yang sama — konversi, lalu pisahkan baris sesuai kebutuhan."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "title": "Scientific Notation Converter (decimal ↔ scientific)",
+  "shortDescription": "Decimal numbers को scientific (1.23 × 10^4) और engineering (1.23e3) notation में convert करें और वापस। Bidirectional, E-notation output के साथ।",
+  "description": "दो modes: decimal-to-scientific किसी भी number के लिए coefficient और exponent compute करता है; scientific-to-decimal वापस expand करता है। Engineering notation (exponent में 3 के multiples) भी displayed है।",
+  "metaDescription": "मुफ्त scientific notation converter। Decimal को scientific (×10^n) में या वापस। E-notation, engineering notation। Physics, chemistry, बहुत बड़े/छोटे numbers के लिए।",
+  "keywords": ["scientific notation converter", "e notation", "engineering notation", "decimal to scientific", "exponent calculator"],
+  "dir": {
+    "toSci": "Decimal → Scientific",
+    "toDec": "Scientific → Decimal"
+  },
+  "input": {
+    "decimal": "Decimal number",
+    "coefficient": "Coefficient",
+    "exponent": "Exponent (10^n)"
+  },
+  "result": {
+    "scientific": "Scientific notation",
+    "eNotation": "E-notation",
+    "engineering": "Engineering notation",
+    "decimal": "Decimal value"
+  },
+  "empty": "Convert करने के लिए एक number दर्ज करें।",
+  "article": {
+    "sections": [
+      {
+        "heading": "Scientific notation क्या है",
+        "paragraphs": [
+          "Scientific notation numbers को coef × 10^exponent के रूप में express करता है, जहाँ coef 1 और 10 के बीच होता है (usually 1 ≤ coef < 10)। इसका उपयोग बहुत बड़े या बहुत छोटे numbers के लिए होता है जो decimal form में cumbersome होंगे।",
+          "Examples: प्रकाश की गति = 3 × 10⁸ m/s। Avogadro's number = 6.022 × 10²³। Electron mass = 9.109 × 10⁻³¹ kg। Exponent बताता है decimal कितने places shift करना है: positive right shift करता है (multiply), negative left shift करता है (divide)।"
+        ]
+      },
+      {
+        "heading": "Computers में E-notation",
+        "paragraphs": [
+          "E-notation (1.23e4 = 1.23 × 10⁴) computer-friendly version है। JavaScript, Python, Excel, और अधिकांश calculators इसे उपयोग करते हैं। 'e' केवल notation है — इसमें कोई 'e' (Euler's number) involved नहीं है।",
+          "Computers E-notation क्यों उपयोग करते हैं: keyboards में typically superscript या '×' easily-typed characters नहीं होते। Plain ASCII E या e किसी भी text input में काम करता है।"
+        ]
+      },
+      {
+        "heading": "Engineering notation",
+        "paragraphs": [
+          "Engineering notation scientific जैसी है लेकिन exponent हमेशा 3 का multiple होता है (3, 6, 9, 12, …, या −3, −6, −9, …)। यह SI prefixes के साथ align करता है: kilo (10³), mega (10⁶), giga (10⁹), milli (10⁻³), micro (10⁻⁶), nano (10⁻⁹)।",
+          "Example: scientific में 1.23 × 10⁴ engineering में 12.3 × 10³ है, जो '12.3 kilo' के रूप में read हो सकता है। Electronics, engineering, और SI unit prefixes उपयोग करने वाले किसी भी field में useful।",
+          "Tradeoff: scientific notation का fixed-format coefficient है (always 1 ≤ |coef| < 10); engineering wider coefficient range allow करता है (1 ≤ |coef| < 1000) लेकिन cleaner SI prefix mapping।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Conversion direction चुनें", "text": "Decimal → scientific या scientific → decimal।" },
+      { "name": "Number या coefficient + exponent type करें", "text": "प्रत्येक direction का अपना input format है।" },
+      { "name": "Result पढ़ें", "text": "Bonus के रूप में E-notation और engineering notation शामिल है।" }
+    ]
+  },
+  "faq": [
+    { "q": "Exponent useful क्यों है?", "a": "यह order of magnitude बताता है। 10⁹ एक billion है; 10⁻⁹ nanometer-scale number है। बहुत different scales (atomic बनाम astronomical) compare करने के लिए, exponents natural language हैं।" },
+    { "q": "क्या 1.23e4 और 1.23 × 10⁴ same हैं?", "a": "हाँ — same number, different notation। 'e4' '× 10⁴' लिखने का computer-friendly way है। अधिकांश programming languages और calculators इसे input के रूप में accept करते हैं।" },
+    { "q": "इस calculator की precision क्या है?", "a": "Floating-point precision (लगभग 15-17 significant digits)। Higher precision के लिए (1000+ digits), SymPy या Mathematica जैसा CAS उपयोग करें।" },
+    { "q": "क्या मैं scientific notation पर math कर सकता हूँ?", "a": "Multiply: coefficients multiply करें, exponents add करें। Divide: coefficients divide करें, exponents subtract करें। Add/subtract: पहले same exponent पर लाएँ, फिर coefficients add/subtract करें।" },
+    { "q": "मेरा number 'Infinity' क्यों दिखाता है?", "a": "Exponent IEEE 754 double precision के लिए बहुत large है (लगभग 308)। बड़े numbers के लिए, CAS या BigInt-based libraries उपयोग करें।" },
+    { "q": "'Mantissa' क्या है?", "a": "Coefficient का पुराना synonym — × 10^ से पहले का part। कुछ textbooks अभी भी इसे उपयोग करते हैं। Modern convention 'coefficient' या 'significand' है।" },
+    { "q": "क्या मैं negative coefficients के लिए scientific notation उपयोग कर सकता हूँ?", "a": "हाँ। -3 × 10⁵ = -300,000। Minus sign coefficient पर जाता है, exponent पर नहीं।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Calculation locally चलती है; कुछ भी server को नहीं भेजा जाता।" }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "title": "Yaşam Maliyeti Karşılaştırması (şehirden şehire, eşdeğer maaş)",
+  "shortDescription": "Aynı yaşam standardını sürdürmek için hedef şehirde ne kadar maaşa ihtiyacın olduğunu gör. Genel ve kira endekslerine göre ağırlıklandırılmış.",
+  "description": "Ön ayarlardan kaynak ve hedef şehir seç ya da Numbeo, EIU veya Mercer'den kendi YME ve kira endekslerini gir. Mevcut maaşını ve tahmini kira payını ayarla. Hesaplayıcı eşdeğer maaşı ve % farkı döndürür; kira diğer kategorilerden genellikle daha fazla dalgalandığı için genel maliyetler ve kira ayrı ayrı ağırlıklandırılır.",
+  "metaDescription": "Ücretsiz yaşam maliyeti karşılaştırması. Şehir taşınmasında genel ve kira endekslerine göre ağırlıklandırılmış eşdeğer maaş. 27 şehir ön ayarı dahil.",
+  "keywords": [
+    "yaşam maliyeti karşılaştırması",
+    "şehir maliyet hesaplayıcı",
+    "eşdeğer maaş",
+    "yeni şehirde gereken maaş",
+    "taşınma hesaplayıcı"
+  ],
+  "sourceHeading": "Kaynak şehir",
+  "targetHeading": "Hedef şehir",
+  "empty": "Tüm değerler pozitif olmalıdır. Özellikle kaynak endeksler.",
+  "input": {
+    "preset": "Hızlı ön ayar (NYC = 100)",
+    "presetPlaceholder": "Endeksleri yüklemek için bir şehir seç…",
+    "colIndex": "Genel YME endeksi",
+    "rentIndex": "Kira endeksi",
+    "salary": "Mevcut yıllık maaş",
+    "rentShare": "Bütçenin kira payı (%)",
+    "rentShareHint": "Tipik: %25-35. Pahalı şehirlerde daha yüksek."
+  },
+  "result": {
+    "equivalentLabel": "Hedef şehirdeki eşdeğer maaş",
+    "cheaperLine": "Hedef şehir %{pct} daha ucuz — aynı yaşam tarzı daha az maliyetli.",
+    "expensiveLine": "Hedef şehir %{pct} daha pahalı — aynı yaşam tarzını sürdürmek için bu kadar gerekiyor.",
+    "monthlyCurrent": "Mevcut aylık",
+    "monthlyEquivalent": "Eşdeğer aylık",
+    "disclaimer": "Endeksler yaklaşıktır ve döviz hareketleri ile yerel enflasyonla değişir. Doğal hata payı olarak ±%10'u kabul edin."
+  },
+  "city": {
+    "newYork": "New York",
+    "sanFrancisco": "San Francisco",
+    "losAngeles": "Los Angeles",
+    "chicago": "Chicago",
+    "austin": "Austin",
+    "seattle": "Seattle",
+    "boston": "Boston",
+    "miami": "Miami",
+    "denver": "Denver",
+    "london": "Londra",
+    "paris": "Paris",
+    "berlin": "Berlin",
+    "tokyo": "Tokyo",
+    "osaka": "Osaka",
+    "seoul": "Seul",
+    "singapore": "Singapur",
+    "hongKong": "Hong Kong",
+    "shanghai": "Şangay",
+    "beijing": "Pekin",
+    "taipei": "Taipei",
+    "sydney": "Sidney",
+    "toronto": "Toronto",
+    "mexicoCity": "Meksiko Şehri",
+    "saoPaulo": "São Paulo",
+    "buenosAires": "Buenos Aires",
+    "madrid": "Madrid",
+    "barcelona": "Barselona"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Endeksler ne anlama gelir?",
+        "paragraphs": [
+          "Yaşam Maliyeti endeksleri (Numbeo, EIU, Mercer), konut, gıda, ulaşım, sağlık ve eğlenceyi referans bir şehire (genellikle NYC = 100) sabitlenen tek bir sayıya toplar. Kira Endeksi yalnızca konut kısmıdır; bu kısım çoğunlukla diğer kategorilerden çok daha fazla dalgalanır. Bu hesaplayıcı, yanıtın ortalama bir hane yerine gerçek bütçeni yansıtması için kira payına göre ağırlıklandırarak her ikisini birleştirir."
+        ]
+      },
+      {
+        "heading": "Kira neden ayrı ele alınıyor?",
+        "paragraphs": [
+          "Kira genellikle en değişken bileşendir. İstanbul ile Berlin karşılaştırmasında: genel YME ~%40 farklıyken kira ~%100 farklı olabilir. Maaşının %40'ını kiraya harcıyorsan, kira endeksi gerçekliğini belirler. Ödenmiş bir evde oturuyorsan kira endeksi neredeyse önem taşımaz."
+        ]
+      },
+      {
+        "heading": "Modellenmeyen neler var?",
+        "paragraphs": [
+          "Vergi farkları (ABD eyaletleri arasında, AB ile JP arasında büyük farklılıklar). Sağlık erişimi. Çocuğun varsa okul ücretleri. Ulaşım: araba bağımlısı şehirler kira ucuz olsa bile daha pahalıdır. Hesaplayıcıyı başlangıç noktası olarak kullan, kesin yanıt olarak değil."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Bu endeksler nereden geliyor?",
+      "a": "Ön ayarlar, Numbeo'nun endekslerinin yaklaşımlarıdır (NYC = 100). Gerçek bir taşınma kararı için güncel rakamları doğrudan Numbeo veya EIU'dan al — endeksler her yıl döviz ve enflasyonla değişir."
+    },
+    {
+      "q": "Yanıt neden basit bir çarpandan bu kadar farklı?",
+      "a": "Çünkü kira ve kira dışı maliyetler farklı ölçekleniyor. Basit 'NYC Berlin'in 1,5 katı' çarpanı, NYC kirasının Berlin'in 2,5 katı olduğunu gizler. Düşük kira payı olan Berlin'den NYC'ye taşınan biri, maaşının 1,5 katından çok daha azına ihtiyaç duyabilir."
+    },
+    {
+      "q": "Vergileri dahil etmeli miyim?",
+      "a": "En temiz karşılaştırma için her iki taraf için de vergi sonrası maaş kullan. YME endeksleri tasarım gereği vergi sonrası tüketim maliyetleridir. Brüt maaşları karşılaştırırsan vergi farklılıkları göz ardı edilir."
+    },
+    {
+      "q": "Satın alma gücü paritesi (SGP) hakkında ne söyleyebilirsin?",
+      "a": "IMF veya Dünya Bankası'ndan SGP oranları ülke düzeyinde benzer bir rol oynar. Şehir düzeyindeki YME endeksleri daha ayrıntılı ve taşınma kararları için daha kullanışlıdır."
+    },
+    {
+      "q": "Ön ayarlar ne kadar doğru?",
+      "a": "2026 ortası itibarıyla gerçek Numbeo rakamlarının ±%10 içindedir. Her çeyrekte kayma yaşanır — kesin karar için kaynak/hedef şehirler için güncel değerlere bak."
+    },
+    {
+      "q": "Kira payı neden genel YME'den ayrı?",
+      "a": "Farklı insanlar kiraya çılgınca farklı paylar harcar. İpoteği olmayan ev sahibi %0 harcıyor; NYC'deki genç kiracı %50. Bunu ayarlamana izin vermek, genel bir şehir karşılaştırmasını kişisel bir karşılaştırmaya dönüştürür."
+    },
+    {
+      "q": "Eşdeğer maaşı mı hedeflemeliyim, yoksa daha mı yüksek?",
+      "a": "Eşdeğer, yaşam tarzını korur. Taşınma maliyetleri için (nakliye, depozitolar, eşya değiştirme), birinci yılda eşdeğer maaşın %5-10 üzerini bekle. Sonrasında eşdeğer yeterlidir."
+    },
+    {
+      "q": "Bu şehir içi karşılaştırmalar için de çalışıyor mu (örn. Kadıköy ve Beşiktaş)?",
+      "a": "Numbeo pek çok şehir için mahalle düzeyinde kira endeksleri sağlar. Genel YME'yi aynı tutarken kira endeksi girişi için bunları kullan. Hesaplama matematiği herhangi bir ayrıntı düzeyinde çalışır — yalnızca iki endeks çiftini karşılaştırır."
+    }
+  ],
+  "howto": {
+    "name": "Şehirler arasında yaşam maliyeti nasıl karşılaştırılır?",
+    "steps": [
+      {
+        "name": "YME endekslerini al",
+        "text": "En güncel değerler için kaynak ve hedef şehirleri Numbeo, EIU veya Mercer'de ara."
+      },
+      {
+        "name": "Kira endekslerini al",
+        "text": "Numbeo bunları ayrı belirtir. Mevcutsa mahalle düzeyi rakamları kullan."
+      },
+      {
+        "name": "Kira payını tahmin et",
+        "text": "Aylık bütçenin yüzde kaçı kiraya veya ipoteğe gidiyor? Dürüst ol — ev sahibi için %25, pahalı şehirlerdeki kiracılar için %30-40 tipik."
+      },
+      {
+        "name": "Karşılaştırmayı çalıştır",
+        "text": "Maaşı ve dört endeksi gir. Eşdeğer maaş, aynı yaşam tarzını sürdürmek için ihtiyacın olan tutardır."
+      },
+      {
+        "name": "Vergi ve tek seferlik giderler için düzelt",
+        "text": "Birinci yıl taşınma maliyetleri için %5-10 ekle. Yeni yerdeki vergi dilimlerinin kazancı yutmayacağını doğrula."
+      }
+    ]
+  }
+}

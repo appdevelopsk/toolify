@@ -1,0 +1,77 @@
+{
+  "title": "Piano di Ammortamento del Prestito (completo o annuale)",
+  "shortDescription": "Genera un piano di ammortamento completo mese per mese per qualsiasi prestito a tasso fisso. Mostra la suddivisione capitale/interessi per ogni rata, saldo finale ed esportazione CSV.",
+  "description": "Inserisci il capitale, il tasso annuo e la durata in anni. Restituisce la rata mensile, gli interessi totali, i pagamenti totali e un piano riga-per-mese che mostra come ogni rata si divide tra capitale e interessi. Alterna visualizzazione completa o annuale; scarica CSV.",
+  "metaDescription": "Piano di ammortamento del prestito gratuito. Dettaglio mensile capitale/interessi, interessi totali, saldo finale per periodo. Esportazione CSV. Basato sul browser.",
+  "keywords": ["piano di ammortamento", "tabella ammortamento", "capitale interessi mensile", "piano rimborso prestito", "ammortamento mutuo"],
+  "input": {
+    "principal": "Importo del prestito",
+    "ratePct": "Tasso annuo %",
+    "years": "Durata (anni)"
+  },
+  "result": {
+    "monthly": "Rata mensile",
+    "totalInterest": "Interessi totali pagati",
+    "totalPayments": "Totale pagamenti",
+    "months": "Mesi totali"
+  },
+  "schedule": {
+    "heading": "Piano di rimborso",
+    "showAll": "Mostra tutti i mesi",
+    "condense": "Condensato per anno",
+    "downloadCsv": "Scarica CSV",
+    "condensedNote": "Vista condensata: mostra il primo mese, ogni 12° mese e l'ultimo mese. Clicca 'Mostra tutti i mesi' per il dettaglio completo.",
+    "col": {
+      "month": "Mese",
+      "payment": "Rata",
+      "principal": "Capitale",
+      "interest": "Interessi",
+      "balance": "Saldo"
+    }
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Come funziona l'ammortamento",
+        "paragraphs": [
+          "Ogni rata mensile fissa è divisa tra interessi (calcolati sul saldo corrente) e capitale (il rimborso effettivo del prestito). All'inizio del prestito, il saldo è elevato, quindi la maggior parte della rata è costituita da interessi. Man mano che il saldo diminuisce, gli interessi calano e una quota maggiore di ogni rata va al capitale — finché le ultime rate sono quasi interamente capitale.",
+          "Formula standard di ammortamento a tasso fisso: rata mensile = P × r / (1 − (1+r)⁻ⁿ), dove P è il capitale, r è il tasso mensile (annuo / 12), n è il numero di mesi. La stessa rata mensile viene usata per tutta la durata, ma la sua suddivisione capitale/interessi cambia ogni mese al variare del saldo."
+        ]
+      },
+      {
+        "heading": "Perché il piano è importante",
+        "paragraphs": [
+          "Ti dice esattamente quando 'sorpassi' dal pagare principalmente interessi al pagare principalmente capitale. Per un tipico mutuo a 30 anni al 6%, quel sorpasso avviene intorno all'anno 13 — il che significa che i primi 13 anni di rate sono principalmente interessi, non equity.",
+          "Mostra anche il costo di rimanere in un prestito lungo. Rispetto a una durata di 15 anni allo stesso tasso, un mutuo a 30 anni può pagare 2-3 volte gli interessi totali nel corso della sua vita. Il piano lo rende concreto: guarda la riga del saldo finale e l'importo degli interessi totali per vedere il costo a lungo termine.",
+          "I pagamenti anticipati del capitale all'inizio del prestito risparmiano molto più di quelli tardivi. Il piano ti aiuta a vederlo — pagare €100 extra al mese per i primi 5 anni risparmia più che pagare €100 al mese per gli anni 26-30."
+        ]
+      },
+      {
+        "heading": "Limitazioni",
+        "paragraphs": [
+          "Solo tasso fisso. I mutui a tasso variabile richiedono il ricalcolo del piano ad ogni cambio di tasso.",
+          "Nessuna tassa, assicurazione o spese accessorie. La 'rata mensile' qui è solo capitale + interessi. Per il pagamento totale, aggiungi separatamente tasse, assicurazioni, ecc.",
+          "Nessuno scenario di pagamento anticipato. Se effettui pagamenti extra, il piano oltre quel punto non è più accurato. Per l'analisi del pagamento anticipato, ricalcola con il nuovo saldo.",
+          "Capitalizzazione: assume la capitalizzazione mensile (standard per i mutui). Alcuni prodotti di prestito usano interessi giornalieri o semplici — per quelli, il piano è approssimativo."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Inserisci l'importo del prestito", "text": "L'importo preso in prestito (capitale)." },
+      { "name": "Inserisci il tasso", "text": "Tasso annuo percentuale. Per 6,5%, inserisci 6,5." },
+      { "name": "Inserisci la durata", "text": "In anni. I mutui in Italia hanno tipicamente durate da 10 a 30 anni." },
+      { "name": "Leggi il riepilogo + il piano", "text": "Rata mensile, interessi totali, dettaglio mese per mese di dove va ogni euro." },
+      { "name": "Scarica CSV", "text": "Esporta il piano completo per l'analisi in foglio di calcolo." }
+    ]
+  },
+  "faq": [
+    { "q": "Perché il mio estratto conto del mutuo mostra numeri diversi?", "a": "I creditori reali includono tasse, assicurazioni e spese accessorie nella rata mensile. Questo calcolatore mostra solo P&I (capitale + interessi). Sottrai queste aggiunte per confrontare." },
+    { "q": "Come vengono calcolati gli interessi ogni mese?", "a": "Interessi mensili = saldo corrente × tasso mensile. Poi capitale = rata mensile − interessi. Nuovo saldo = vecchio saldo − capitale. Ripeti per n mesi." },
+    { "q": "Perché i pagamenti iniziali sembrano così 'sprecati' sugli interessi?", "a": "Non sono sprecati — stanno pagando per l'esistenza del prestito a un saldo elevato. La matematica è onesta: saldo elevato × tasso = interessi elevati. Man mano che il saldo scende, scendono anche gli interessi." },
+    { "q": "Qual è l'impatto di una variazione di 1 punto nel tasso?", "a": "Circa il 12% di aumento nella rata mensile e il 25-35% di aumento negli interessi totali su un mutuo a 30 anni. Blocca i tassi bassi se possibile." },
+    { "q": "Dovrei pagare un extra di capitale ogni mese?", "a": "Se il tuo prestito non ha penale per il rimborso anticipato (la maggior parte dei mutui in Italia), sì. Anche €100 extra al mese all'inizio del prestito risparmiano migliaia di euro di interessi. Il piano mostra l'impatto." },
+    { "q": "Cos'è un prestito bullet?", "a": "Un prestito in cui le rate regolari non ammortizzano completamente il debito, lasciando un grande pagamento finale. Comune nel real estate commerciale; raro nel residenziale. Questo calcolatore non modella i bullet loan." },
+    { "q": "Perché gli interessi totali a 30 anni sono molto più alti che a 15 anni?", "a": "La capitalizzazione lavora contro di te. Al 6%, un prestito a 30 anni ha circa il doppio degli interessi totali rispetto a uno a 15 anni, nonostante il tasso sia lo stesso. La durata più breve significa che il periodo ad alto saldo è più corto." },
+    { "q": "I dati escono dal mio browser?", "a": "No. Il calcolo viene eseguito localmente; anche il download CSV viene generato nel browser." }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "title": "Calculateur de ratio d'aspect (conserver les proportions au",
+  "shortDescription": "Calcule la largeur ou la hauteur pour conserver un ratio d'aspect cible. Préréglages en un clic pour les ratios courants (16:9, 9:16, 1:1, 4:3, 21:9).",
+  "description": "Définis un ratio cible et une dimension ; l'autre se remplit automatiquement. Fonctionne dans les deux sens. Utile pour la vidéo, le recadrage de photos et la mise en page web responsive.",
+  "metaDescription": "Calculateur de ratio d'aspect gratuit. Conserve les ratios comme 16:9, 9:16, 1:1, 4:3 lors du redimensionnement.",
+  "keywords": [
+    "calculateur de ratio d'aspect",
+    "redimensionnement proportionnel",
+    "calculateur 16:9",
+    "ratio d'aspect image",
+    "ratio d'aspect vidéo"
+  ],
+  "input": {
+    "ratioW": "Ratio L",
+    "ratioH": "Ratio H",
+    "width": "Largeur",
+    "height": "Hauteur"
+  },
+  "result": {
+    "ratio": "Ratio d'aspect",
+    "decimal": "Décimal",
+    "dimensions": "Dimensions",
+    "simplified": "Simplifié"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Qu'est-ce que le ratio d'aspect",
+        "paragraphs": [
+          "Le ratio d'aspect décrit la largeur par rapport à la hauteur : 16:9 signifie 16 unités de large pour 9 de haut. Le même ratio fonctionne à n'importe quelle taille — 1920×1080 et 800×450 sont tous les deux en 16:9. Conserver le ratio d'aspect lors du redimensionnement évite les images déformées ou écrasées, et c'est la base du design responsive.",
+          "Tu peux entrer des nombres entiers (16:9) ou décimaux (1,78:1) pour le ratio, et n'importe quelle taille pour la largeur/hauteur. Modifie n'importe quel champ — les autres se mettent à jour pour maintenir le ratio. Le ratio décimal (largeur / hauteur) est affiché pour une utilisation dans les expressions calc() CSS ou les outils de montage vidéo."
+        ]
+      },
+      {
+        "heading": "Ratios courants et leurs usages",
+        "paragraphs": [
+          "16:9 — télévision HD moderne, moniteurs d'ordinateur, YouTube, la plupart des films depuis 2009. Le format par défaut pour presque tout ce que tu fais aujourd'hui.",
+          "9:16 — vidéo verticale pour Instagram Stories, TikTok, YouTube Shorts. L'inverse du 16:9 pour les contenus pensés pour le smartphone.",
+          "1:1 — carré. Format par défaut du fil Instagram jusqu'en 2021. Pochettes d'album, photos de profil.",
+          "4:3 — anciennes télévisions et moniteurs avant la HD. Encore utilisé pour certains contenus de style classique.",
+          "3:2 — format par défaut des appareils photo reflex. Pellicule 35mm. Grandes impressions.",
+          "21:9 — cinématique ultra-large. Films tournés en anamorphique. Certains moniteurs PC et téléviseurs."
+        ]
+      },
+      {
+        "heading": "Pourquoi la propriété CSS aspect-ratio est importante",
+        "paragraphs": [
+          "Le CSS moderne dispose de aspect-ratio: 16/9; — définis le ratio et laisse le navigateur calculer la hauteur à partir de la largeur (ou vice versa). Cela évite l'ancienne astuce du padding-bottom et est essentiel pour les embeds responsifs et les espaces réservés aux images, afin d'éviter les décalages de mise en page.",
+          "Le Cumulative Layout Shift (CLS) est un Core Web Vital. Les vidéos intégrées, les images sans dimensions et les publicités peuvent tous causer du CLS — corrige ce problème en définissant une largeur/hauteur explicite (que le navigateur utilise pour calculer le ratio d'aspect) ou en utilisant CSS aspect-ratio."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisir un ratio",
+        "text": "Appuie sur un préréglage ou entre des valeurs L:H personnalisées."
+      },
+      {
+        "name": "Entre une dimension connue",
+        "text": "Largeur ou hauteur — l'autre se remplit automatiquement."
+      },
+      {
+        "name": "Modifie n'importe quel champ",
+        "text": "Les mises à jour se propagent pour maintenir le ratio."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quelle est la différence entre 16:9 et 1,78:1 ?",
+      "a": "C'est le même ratio, avec une notation différente. 16/9 = 1,778. La forme avec deux-points est conventionnelle en TV/web ; la forme décimale est conventionnelle au cinéma."
+    },
+    {
+      "q": "Comment conserver le ratio d'aspect en CSS ?",
+      "a": "Utilise la propriété aspect-ratio : img { aspect-ratio: 16/9; width: 100%; height: auto; }. L'image remplit la largeur du conteneur et la hauteur s'ajuste pour préserver le ratio."
+    },
+    {
+      "q": "Pourquoi ma vidéo est-elle déformée sur un écran 4:3 ?",
+      "a": "La plupart des vidéos modernes sont en 16:9. Sur un écran 4:3, elles sont soit en letterbox (barres noires), en pillarbox, soit étirées. Les réglages de la TV permettent de choisir le mode."
+    },
+    {
+      "q": "Puis-je utiliser des ratios non entiers ?",
+      "a": "Oui — entre 1,5 ou 2,39. Le calculateur les traite comme des décimaux ; le résultat en ratio simplifié n'apparaît que pour les ratios entiers."
+    },
+    {
+      "q": "Qu'est-ce que le « pixel aspect ratio » ?",
+      "a": "Un concept distinct : la forme d'un pixel individuel. Les écrans modernes utilisent des pixels carrés (1:1). Certains formats vidéo SD anciens utilisaient des pixels non carrés (ex. 1,0667 pour le NTSC grand écran). Ce calculateur gère le ratio d'aspect d'affichage, pas le pixel aspect ratio."
+    },
+    {
+      "q": "Qu'est-ce que le rendu « cinématique » ?",
+      "a": "21:9 (plus précisément 2,39:1 ou 2,40:1) — plus large que la HDTV. Courant dans les grosses productions modernes. Les services de streaming diffusent souvent des films dans ce format."
+    },
+    {
+      "q": "Pourquoi Instagram Reel/TikTok utilisent-ils le 9:16 ?",
+      "a": "Parce que les smartphones sont généralement tenus à la verticale. Le 9:16 remplit tout l'écran du téléphone ; le 16:9 laisse des bandes en haut et en bas sur un téléphone tenu verticalement."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Le calcul s'effectue localement."
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "title": "Verificador de Número Primo (com fatoração)",
+  "shortDescription": "Verifique se um número é primo. Se não for, veja sua fatoração em primos. Mais os números primos anterior e seguinte.",
+  "description": "Insira um inteiro não negativo até 10^18. A calculadora testa a primalidade com divisão por tentativa (determinístico até ~10^15 em tempo razoável) e fornece a fatoração em primos para números compostos.",
+  "metaDescription": "Verificador gratuito de número primo com fatoração. Teste primalidade, veja fatores primos e encontre o próximo/anterior primo. Lida com números até 10^18.",
+  "keywords": ["verificador de primo", "é primo", "fatoração em primos", "teste de número primo", "próximo primo"],
+  "input": { "value": "Número" },
+  "result": {
+    "isPrime": "é primo",
+    "notPrime": "NÃO é primo",
+    "factors": "Fatoração em primos",
+    "prevPrime": "Primo anterior",
+    "nextPrime": "Próximo primo"
+  },
+  "empty": "Insira um inteiro positivo.",
+  "tooLarge": "Número muito grande para computação no navegador (máx 10^18).",
+  "article": {
+    "sections": [
+      {
+        "heading": "O que é um número primo",
+        "paragraphs": [
+          "Um primo é um número natural maior que 1 que não tem divisores positivos além de 1 e ele mesmo. Os primeiros primos: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37. Eles são os 'átomos' da aritmética inteira — cada inteiro ≥ 2 pode ser escrito de forma única como um produto de primos (Teorema Fundamental da Aritmética).",
+          "1 não é primo por convenção. 0 e números negativos não são primos. 2 é o único primo par — todo outro número par é divisível por 2 e, portanto, composto."
+        ]
+      },
+      {
+        "heading": "Como o teste funciona",
+        "paragraphs": [
+          "Usamos divisão por tentativa: verificamos a divisibilidade por 2, depois 3, depois 5, 7, 11, … até √n. Se nenhum divide exatamente, n é primo. Usamos a otimização 6k±1 que verifica apenas candidatos da forma 6k+1 ou 6k−1 (já que todos os primos > 3 são dessa forma), reduzindo a contagem de testes em 2/3.",
+          "A divisão por tentativa é rápida para n até ~10^15 (sub-segundo). Além disso, testes avançados como Miller-Rabin (probabilístico) ou AKS (determinístico) são necessários. Limitamos em 10^18 para evitar que o navegador trave em entradas extremas."
+        ]
+      },
+      {
+        "heading": "Por que os primos importam",
+        "paragraphs": [
+          "Criptografia: a criptografia RSA multiplica dois primos de ~1000 dígitos para produzir um número difícil de fatorar. A segurança se baseia na dificuldade de fatorar grandes números — um desafio estudado por milhares de anos.",
+          "Educação matemática: a fatoração em primos é fundamental. Conceitos como MDC, MMC, aritmética modular, frações e teoria dos números são todos construídos sobre a estrutura de fatores primos.",
+          "Ciência da computação: tamanhos de tabelas hash, geradores de números aleatórios e muitos algoritmos usam primos por suas propriedades de divisibilidade distintas."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Insira um número", "text": "Inteiro positivo até 10^18." },
+      { "name": "Leia o veredicto", "text": "Verde ✓ para primo, âmbar ✗ para composto." },
+      { "name": "Veja a fatoração", "text": "Se composto, os fatores primos únicos são mostrados." },
+      { "name": "Navegue pelos primos", "text": "Os primos anterior e seguinte são listados para contexto." }
+    ]
+  },
+  "faq": [
+    { "q": "1 é primo?", "a": "Não. 1 é uma 'unidade', não um primo. Primos têm exatamente dois divisores positivos distintos (1 e ele mesmo); 1 tem apenas um." },
+    { "q": "0 é primo?", "a": "Não. Primos são inteiros > 1." },
+    { "q": "2 é primo?", "a": "Sim — 2 é o único primo par. Todos os outros números pares têm 2 como divisor além de 1 e eles mesmos." },
+    { "q": "Como o próximo primo é encontrado?", "a": "Incrementando a partir de n+1 e testando a primalidade em cada passo. Sempre há um primo dentro de n × ln(n) de qualquer número, então isso termina rapidamente mesmo para entradas grandes." },
+    { "q": "Por que o máximo é 10^18?", "a": "O BigInt do JavaScript lida com números maiores, mas a divisão por tentativa fica lenta. 10^18 é seguro para verificações de sub-segundo de entradas típicas. Além disso, use ferramentas especializadas como SymPy ou Mathematica." },
+    { "q": "Você pode verificar primos de 1000 dígitos?", "a": "Não com esta ferramenta — a divisão por tentativa é muito lenta nessa escala. A criptografia usa testes probabilísticos de Miller-Rabin para primos de 1024 bits (~300 dígitos)." },
+    { "q": "O que é um primo de Mersenne?", "a": "Um primo da forma 2^p − 1. Em 2025, apenas 51 são conhecidos. O maior primo conhecido (M82589933) é um primo de Mersenne com ~25 milhões de dígitos." },
+    { "q": "Os dados saem do meu navegador?", "a": "Não. O cálculo é feito localmente; nada é enviado para um servidor." }
+  ]
+}

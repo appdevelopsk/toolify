@@ -1,0 +1,100 @@
+{
+  "title": "Formatter & Minifier JSON (validasi dan pretty-print)",
+  "shortDescription": "Pretty-print atau minify JSON. Memvalidasi input dan menampilkan pesan error yang jelas dengan baris dan kolom jika gagal.",
+  "description": "Tempel JSON apapun untuk diformat dengan indentasi 2/4/8 spasi, atau diminify menjadi satu baris. JSON yang tidak valid menampilkan parse error sehingga Anda dapat menemukan masalah dengan cepat.",
+  "metaDescription": "Formatter dan minifier JSON gratis. Memvalidasi input, pretty-print dengan indentasi yang dipilih, atau minify menjadi satu baris.",
+  "keywords": [
+    "formatter json",
+    "minifier json",
+    "validator json",
+    "pretty print json",
+    "format json online",
+    "beautify json"
+  ],
+  "input": "Input JSON",
+  "output": "Output yang diformat",
+  "mode": {
+    "format": "Format",
+    "minify": "Minify"
+  },
+  "indent": "Indentasi",
+  "copy": "Salin",
+  "copied": "Tersalin",
+  "error": "Parse error",
+  "stats": "Input: {input} byte · Output: {output} byte",
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa yang dilakukan alat ini",
+        "paragraphs": [
+          "JSON adalah format yang ketat — setiap tanda kutip, koma, dan tanda kurung harus berada di tempat yang benar. Browser dan API mengembalikan pesan 'Unexpected token' yang membingungkan ketika ada yang salah, dan masalahnya seringkali tidak terlihat sekilas. Formatter ini mem-parse input dengan parser JSON native browser, lalu menyeriali ulang menjadi pretty (dengan indentasi) atau diminified (tanpa spasi).",
+          "Jika parsing gagal, Anda mendapatkan error langsung — biasanya dengan posisi karakter yang bermasalah. Dari sana, Anda dapat menemukan koma yang hilang, tanda kutip yang tidak di-escape, atau koma di akhir dengan cepat."
+        ]
+      },
+      {
+        "heading": "Format vs minify",
+        "paragraphs": [
+          "Format dengan indentasi: cara standar untuk membaca JSON. 2 spasi adalah konvensi di dunia JavaScript; 4 spasi umum dalam konteks Python dan Java. Pilih yang digunakan proyek Anda.",
+          "Minify: gabungkan menjadi satu baris tanpa spasi. Berguna saat menyematkan JSON dalam URL, variabel lingkungan, atau di mana saja spasi penting. Perbedaan ukurannya signifikan: file konfigurasi yang di-pretty-print biasanya mengecil 20-40% saat diminified."
+        ]
+      },
+      {
+        "heading": "Jebakan umum JSON",
+        "paragraphs": [
+          "Koma di akhir. Diizinkan dalam JavaScript, tidak dalam JSON. {a:1, b:2,} di-parse di editor kode Anda tetapi gagal saat dikirim melalui jaringan.",
+          "Tanda kutip tunggal. JSON memerlukan tanda kutip ganda untuk kunci dan nilai string. {'a': 1} adalah JSON yang tidak valid. {\"a\": 1} adalah benar.",
+          "Komentar. JSON tidak memiliki komentar. // atau /* */ di dalam JSON merusak parsing. JSONC (digunakan oleh konfigurasi VS Code) mendukung komentar tetapi bukan JSON standar.",
+          "Angka. JSON tidak mendukung NaN atau Infinity. Gunakan null, atau bungkus dalam string, tergantung pada konsumen downstream Anda."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Tempel JSON Anda",
+        "text": "Mulai dari beberapa byte hingga beberapa ratus KB berfungsi tanpa lag."
+      },
+      {
+        "name": "Pilih format atau minify",
+        "text": "Plus tingkat indentasi untuk mode format."
+      },
+      {
+        "name": "Baca atau salin hasilnya",
+        "text": "Jika ada error, pesan parser yang mendasari menunjuk ke masalah."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apakah ini mendukung JSONC (JSON dengan komentar)?",
+      "a": "Belum. Hapus komentar terlebih dahulu atau gunakan alat yang mendukung JSONC."
+    },
+    {
+      "q": "Berapa batas ukurannya?",
+      "a": "Browser modern menangani JSON multi-megabyte, meskipun textarea mungkin melambat di atas ~1 MB. Untuk file besar, gunakan alat desktop."
+    },
+    {
+      "q": "Mengapa JSON saya tidak valid?",
+      "a": "Paling sering: koma di akhir, tanda kutip tunggal, atau tanda kutip yang tidak di-escape di dalam string. Error parser menunjuk pada kolom di mana masalah terdeteksi."
+    },
+    {
+      "q": "Bisakah saya mengurutkan kunci secara alfabetis?",
+      "a": "Tidak dalam versi ini. Menempel ke alat yang mendukung pengurutan (seperti jq dengan --sort-keys) adalah cara paling bersih; kami mungkin menambahkan opsi ini nanti."
+    },
+    {
+      "q": "Apakah menangani JSON yang sangat bersarang?",
+      "a": "Ya. Parser JSON browser menangani kedalaman praktis apapun."
+    },
+    {
+      "q": "Mengapa minify tidak membuat file 1 MB menjadi 1 byte?",
+      "a": "Minify hanya menghapus spasi. Data sebenarnya masih ada. Untuk pengurangan ukuran nyata, gunakan gzip atau format biner seperti MessagePack."
+    },
+    {
+      "q": "Apakah data dikirim ke mana saja?",
+      "a": "Tidak. Semua parsing dan pemformatan terjadi di browser Anda."
+    },
+    {
+      "q": "Bagaimana dengan validasi JSON Schema?",
+      "a": "Alat ini hanya memvalidasi sintaks. Untuk validasi schema, gunakan validator JSON Schema dengan file schema Anda."
+    }
+  ]
+}

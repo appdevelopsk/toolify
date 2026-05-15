@@ -1,0 +1,106 @@
+{
+  "title": "Calculadora de Dias Úteis (pular fins de semana + feriados)",
+  "shortDescription": "Conte dias úteis entre duas datas, excluindo fins de semana e quaisquer feriados que você listar. Personalizável: inclua sábado ou domingo como dias úteis se necessário.",
+  "description": "Escolha uma data de início e fim, opcionalmente inclua sábado ou domingo como dias úteis, e adicione datas de feriados para excluir. Retorna dias úteis, dias de fim de semana e feriados separadamente.",
+  "metaDescription": "Calculadora gratuita de dias úteis. Conte dias úteis entre duas datas, excluindo fins de semana e feriados personalizados.",
+  "keywords": [
+    "calculadora de dias úteis",
+    "calculadora de dias de trabalho",
+    "dias úteis entre datas",
+    "contagem de dias de semana",
+    "pular fins de semana e feriados"
+  ],
+  "empty": "Escolha uma data de início e fim para contar os dias úteis.",
+  "input": {
+    "start": "Data de início",
+    "end": "Data de fim",
+    "includeSat": "Sábado é dia útil",
+    "includeSun": "Domingo é dia útil",
+    "holidays": "Feriados a excluir (um por linha)",
+    "holidaysHint": "Formato ISO: 2026-01-01. Separados por vírgula, espaço ou quebra de linha."
+  },
+  "result": {
+    "workdays": "Dias úteis",
+    "weekendDays": "Dias de fim de semana",
+    "holidayDays": "Feriados",
+    "total": "Total de dias"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Por que contar dias úteis importa",
+        "paragraphs": [
+          "Prazos de projetos, termos contratuais, ciclos de folha de pagamento e planejamento de férias usam 'dias úteis' em vez de dias do calendário. Uma promessa de entrega de 30 dias úteis feita em uma sexta-feira são na verdade 42 dias corridos porque os fins de semana não contam. Confundir os dois leva a prazos perdidos e disputas contratuais.",
+          "Os dias úteis também importam para contagens legais: em muitas jurisdições, limites de tempo estatutários (ex.: '14 dias úteis para responder') excluem fins de semana e feriados. Sempre verifique se 'dias' significa corridos ou úteis em qualquer acordo."
+        ]
+      },
+      {
+        "heading": "Por que permitimos personalizar os fins de semana",
+        "paragraphs": [
+          "A maioria dos países usa sábado-domingo como fim de semana, mas varia. A maioria dos países do Oriente Médio e alguns do norte da África observam sexta-sábado como fim de semana. Alguns setores (varejo, hotelaria) consideram os fins de semana como dias úteis.",
+          "Nossos controles permitem marcar sábado ou domingo como dias úteis individualmente. Você pode configurar: seg-sex apenas (padrão), semana de trabalho de 6 dias (incluir sábado), ou até domingo como único dia de descanso."
+        ]
+      },
+      {
+        "heading": "Como usar a entrada de feriados",
+        "paragraphs": [
+          "Cole uma lista de datas no formato AAAA-MM-DD (ISO 8601). Os separadores podem ser vírgulas, espaços ou quebras de linha. Cada data que você listar será excluída da contagem de dias úteis se cair no que de outra forma seria um dia útil.",
+          "Para os feriados nacionais brasileiros em 2026, cole: 2026-01-01, 2026-02-16, 2026-02-17, 2026-04-03, 2026-04-21, 2026-05-01, 2026-06-04, 2026-09-07, 2026-10-12, 2026-11-02, 2026-11-15, 2026-11-20, 2026-12-25.",
+          "Não incluímos os feriados automaticamente porque (a) os feriados variam por país, estado, município e ano, e (b) algumas empresas observam dias adicionais específicos da empresa."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Defina as datas de início e fim",
+        "text": "Ambas inclusivas — ambas as datas contam se forem dias úteis."
+      },
+      {
+        "name": "Escolha os dias de fim de semana",
+        "text": "Por padrão, sábado e domingo são fins de semana. Alterne-os como dias úteis se necessário."
+      },
+      {
+        "name": "Adicione feriados para excluir",
+        "text": "Liste datas ISO separadas por vírgulas, espaços ou quebras de linha."
+      },
+      {
+        "name": "Leia o detalhamento",
+        "text": "Dias úteis, dias de fim de semana, feriados e total de dias corridos."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "As datas de início e fim são inclusivas?",
+      "a": "Sim. Se ambas forem dias úteis, ambas são contadas. Se o seu contrato contar apenas os dias entre (exclusivo), subtraia 2 do resultado."
+    },
+    {
+      "q": "Por que vocês não incluem os feriados automaticamente?",
+      "a": "Os feriados variam muito por país, estado e ano. Incluí-los automaticamente arrisca subtrair feriados que não se aplicam à sua jurisdição. Adicioná-los manualmente mantém o controle com você."
+    },
+    {
+      "q": "Posso usar isso para contratos internacionais?",
+      "a": "Sim — mas certifique-se de que ambas as partes concordem com quais feriados contar. Contratos multinacionais frequentemente especificam 'dias úteis conforme observados na [cidade] de [país]' para evitar ambiguidade."
+    },
+    {
+      "q": "E se um feriado cair em um fim de semana?",
+      "a": "Não é contado duas vezes. Se 2026-01-01 for uma quinta-feira (feriado), é contado como feriado. Se 2026-12-25 cair em um domingo, o algoritmo corretamente o conta como um dia (fim de semana), não dois."
+    },
+    {
+      "q": "Como isso funciona para uma semana de trabalho de 6 dias?",
+      "a": "Marque 'Sábado é dia útil'. A calculadora contará seg-sab como dias úteis e excluirá apenas domingos e feriados listados."
+    },
+    {
+      "q": "Qual é o intervalo máximo de datas que posso calcular?",
+      "a": "Centenas de anos no mínimo. O navegador lida com aritmética de datas até ±100 milhões de dias a partir de 1970."
+    },
+    {
+      "q": "Posso exportar a lista de dias úteis?",
+      "a": "Não como download, mas você pode copiar os números exibidos. Para uma lista por dia, uma planilha é mais flexível."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. Tudo é executado localmente; nada é enviado para um servidor."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "title": "Karakter Frekans Analizörü (harfler, tüm karakterler veya kelimeler)",
+  "shortDescription": "Her karakterin veya kelimenin metinde kaç kez geçtiğini say. Yüzdelerle sıralanabilir ve isteğe bağlı büyük-küçük harf duyarlılığı.",
+  "description": "Herhangi bir metin yapıştırarak sıralı frekans tablosu al. Üç mod: tüm karakterler, yalnızca harfler/rakamlar veya tam kelimeler. Kriptanaliz, yazı analizi ve veri seti temizliği için kullanışlıdır.",
+  "metaDescription": "Ücretsiz karakter frekans analizörü. Harf, tüm karakter veya kelime sayısı. Yüzdeli sıralanabilir tablo. CJK ve emoji dahil UTF-8 farkındadır.",
+  "keywords": ["karakter frekansı", "harf frekansı", "kelime frekansı", "frekans analizi", "metin istatistikleri"],
+  "input": { "text": "Metin" },
+  "mode": { "all": "Tüm karakterler", "letters": "Harfler ve rakamlar", "words": "Kelimeler" },
+  "caseSensitive": "Büyük-küçük harf duyarlı",
+  "stats": {
+    "unique": "{n} benzersiz",
+    "total": "{n} toplam",
+    "showingTop": "en iyi {n} gösteriliyor",
+    "remainingCount": "+{n} diğeri kuyrukta gösterilmiyor"
+  },
+  "col": { "item": "Öğe", "count": "Sayı" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ne işe yarar?",
+        "paragraphs": [
+          "Kriptanaliz: klasik şifreler (Sezar, ikame) harf frekanslarını korur. İngilizce metinlerde en yaygın harf her zaman E'dir, ardından T, A, O, I, N gelir. Şifreli metinde bu dağılımı görürseniz, ikame şifresiyle karşı karşıyasınız demektir. Türkçede en sık kullanılan harf A'dır, ardından E, İ, N, R gelir.",
+          "Yazı analizi: aşırı kullanılan kelimeleri tespit etmek taslakları iyileştirmenin en hızlı yollarından biridir. 1000 kelimelik bir makalede 'çok' veya 'gerçekten' 50 kez geçiyorsa, düzeltilmesi gereken bir alışkanlık buldunuz demektir.",
+          "Veri seti temizliği: bu araçla bir CSV sütununu taramak, gizlenmiş karakterleri, kodlama hatalarını ve beklenmedik büyük-küçük harf kullanımını ortaya çıkarır. Veriyi daha katı bir sisteme aktarmadan önce kullanışlıdır."
+        ]
+      },
+      {
+        "heading": "Üç mod",
+        "paragraphs": [
+          "Tüm karakterler: boşluklar, noktalama işaretleri, satır sonları, emojiler dahil. Ham metin analizi için en iyisi. Bir dosyayı bozan gizli karakterleri (sıfır genişlikli boşluk, BOM) şüphelendiğinizde kullanışlıdır.",
+          "Harfler ve rakamlar: yalnızca Unicode harfleri ve sayıları filtreler. Geleneksel harf-frekans analizi (kriptanaliz, dil tanımlama) için en iyisi.",
+          "Kelimeler: boşlukta böler ve tam kelimeleri sayar. Yazı analizi ve üslup kontrolü için en iyisi."
+        ]
+      },
+      {
+        "heading": "'Büyük-küçük harf duyarlı' ne yapar?",
+        "paragraphs": [
+          "Kapalı (varsayılan): 'A' ve 'a' birlikte sayılır. Büyük-küçük harfin tesadüfi olduğu doğal metinde harf-frekans analizi için en iyisi.",
+          "Açık: 'A' ve 'a' ayrı sayılır. Büyük-küçük harfin anlamlı olduğu durumlarda kullanışlıdır — programlama tanımlayıcıları, markalı terimler veya büyük-küçük harf kalıplarını analiz etme. Not: büyük-küçük harf duyarsız katlama, yerel ayarın küçük harf kurallarını kullanır; Türkçe için I/ı ve İ/i çiftleri önemlidir."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Metin yapıştır", "text": "Tek bir cümleden birkaç megabaytlık dosyaya kadar her şey." },
+      { "name": "Mod seç", "text": "Tüm karakterler, harfler/rakamlar veya kelimeler." },
+      { "name": "Büyük-küçük harf duyarlılığını değiştir", "text": "Doğal metin için kapalı; büyük-küçük harf anlamlıysa açık." },
+      { "name": "Tabloyu oku", "text": "Frekansa göre sıralı. En yüksek 50 gösterilir; kalan kuyruk aşağıda özetlenir." }
+    ]
+  },
+  "faq": [
+    { "q": "Japonca, Çince, Korece metin için çalışıyor mu?", "a": "Evet. Harf modu her ideografı bir 'harf' olarak değerlendirir; dolayısıyla hanzi/kanji frekansı alırsın. Kelime modu boşlukta böler; bu da boşluksuz CJK metni tek bir dev kelime olarak gösterebilir — bunlar için harf modunu kullan." },
+    { "q": "Türkçede en yaygın harf hangisi?", "a": "Türkçede en sık kullanılan harf 'A' (yaklaşık %12,9), ardından E, İ, N, R gelir. Basit ikame şifrelerini kırmak için bu bilgi temel oluşturur." },
+    { "q": "Emojiler sayılıyor mu?", "a": "'Tüm karakterler' modunda evet. Harf modu bunları filtreler (Unicode sınıflandırmasına göre harf değiller)." },
+    { "q": "Emojiler neden bazen birden fazla karaktere bölünüyor?", "a": "Bazı emojiler birden fazla Unicode kod noktasından oluşur (örn. bayraklar = iki bölgesel gösterge harfi). Sayaç, kod noktalarına saygı gösteren JavaScript dizi yinelemesini takip eder. Çoğu analiz için bu sorun değildir." },
+    { "q": "Tabloyu dışa aktarabilir miyim?", "a": "Henüz değil — şimdilik işlenmiş tabloyu kopyala-yapıştır kullan. CSV dışa aktarma yol haritasında var." },
+    { "q": "Kaç giriş gösteriyor?", "a": "Tabloda en yüksek 50. Kuyruk sayısı altta özetleniyor." },
+    { "q": "Büyük-küçük harf duyarsız Türkçe sonuçları neden beklentimi karşılamıyor?", "a": "Türkçede alışılmadık büyük-küçük harf kuralları var (noktalı İ/i ve noktasız I/ı). JavaScript'in toLowerCase() işlevi varsayılan Unicode büyük-küçük harf katlamayı kullanır; bu genellikle doğrudur ama kenar durumlarda sürpriz yapabilir." },
+    { "q": "Veriler tarayıcımı terk ediyor mu?", "a": "Hayır. Tüm sayım yerel olarak yapılır." }
+  ]
+}

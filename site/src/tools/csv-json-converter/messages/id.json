@@ -1,0 +1,115 @@
+{
+  "title": "Konverter CSV ↔ JSON (sesuai RFC 4180)",
+  "shortDescription": "Konversi CSV ke JSON atau JSON ke CSV. Pembatas yang dapat dikonfigurasi (koma/titik koma/tab/pipe), toggle baris header, penanganan kolom yang dikutip RFC 4180.",
+  "description": "Tempel CSV atau JSON. Konverter mengurai CSV yang sesuai RFC 4180 (menangani kolom yang dikutip dengan koma, kutip yang di-escape, nilai multi-baris). Untuk JSON-ke-CSV, menerima array-of-objects (menggunakan kunci sebagai header) dan array-of-arrays.",
+  "metaDescription": "Konverter CSV ↔ JSON gratis. Sesuai RFC 4180, pembatas yang dapat dikonfigurasi, toggle baris header. Hanya di browser — data Anda tidak pernah meninggalkan perangkat",
+  "keywords": [
+    "CSV ke JSON",
+    "JSON ke CSV",
+    "konverter CSV",
+    "konverter JSON",
+    "RFC 4180"
+  ],
+  "direction": {
+    "csvToJson": "CSV → JSON",
+    "jsonToCsv": "JSON → CSV"
+  },
+  "input": {
+    "csv": "Input CSV",
+    "json": "Input JSON",
+    "delimiter": "Pembatas",
+    "headerRow": "Baris pertama adalah header"
+  },
+  "delim": {
+    "comma": "Koma (,)",
+    "semicolon": "Titik koma (;)",
+    "tab": "Tab",
+    "pipe": "Pipe (|)"
+  },
+  "output": "Output",
+  "empty": "Masukkan input untuk melihat output yang dikonversi.",
+  "error": {
+    "label": "Kesalahan konversi"
+  },
+  "copy": "Salin",
+  "article": {
+    "sections": [
+      {
+        "heading": "Mengapa RFC 4180 penting",
+        "paragraphs": [
+          "CSV terlihat sederhana tetapi memiliki kasus tepi: kolom yang berisi koma harus dikutip; kolom yang berisi kutipan harus meng-escape sebagai kutipan ganda; kolom dapat berisi baris baru jika dikutip. Parser split-on-comma naif rusak pada data dunia nyata. Konverter ini mengimplementasikan tata bahasa RFC 4180 dengan tepat.",
+          "Parser naif juga rusak pada ekspor Excel yang menggunakan titik koma (umum di lokasi Eropa di mana ',' adalah pemisah desimal) atau tab (TSV). Dropdown pembatas menangani keempat varian umum."
+        ]
+      },
+      {
+        "heading": "Bentuk JSON untuk output",
+        "paragraphs": [
+          "Array of objects (default dengan baris header): setiap baris menjadi {kolom: nilai}. Bentuk JSON paling umum, mudah digunakan dalam bahasa apa pun.",
+          "Array of arrays (baris header nonaktif): setiap baris menjadi [v1, v2, ...]. Berguna ketika kolom tidak diberi nama atau Anda menginginkan struktur posisional.",
+          "Saat JSON ke CSV, konverter mendeteksi bentuk mana yang Anda miliki. Objek: mengekstrak kunci unik di semua baris untuk header. Array: menulis baris apa adanya."
+        ]
+      },
+      {
+        "heading": "Jebakan umum",
+        "paragraphs": [
+          "Lokasi Excel: di beberapa instalasi Excel Eropa, pembatas default adalah ';' bukan ','. Jika CSV Anda terlihat seperti satu kolom besar saat diimpor, beralih ke ; di dropdown pembatas.",
+          "BOM (Byte Order Mark): beberapa ekspor Excel mengawali file dengan U+FEFF. Kami meneruskannya; jika parser hilir Anda gagal, hapus 3 byte pertama.",
+          "Baris baru di akhir: CSV yang diakhiri dengan '\\n' menambahkan baris kosong terakhir di beberapa parser; kami memfilter baris kosong secara otomatis.",
+          "Angka sebagai string: CSV tidak memiliki tipe — '42' menjadi string \"42\" dalam JSON. Jika Anda memerlukan nilai bertipe, jalankan langkah pasca-pemrosesan yang memaksa kolom angka yang dikenal."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Pilih arah",
+        "text": "CSV → JSON atau JSON → CSV."
+      },
+      {
+        "name": "Atur pembatas",
+        "text": "Koma (default), titik koma, tab, atau pipe."
+      },
+      {
+        "name": "Toggle baris header",
+        "text": "Aktif untuk JSON berbentuk objek, nonaktif untuk array-of-arrays."
+      },
+      {
+        "name": "Tempel data Anda",
+        "text": "Output diperbarui langsung. Klik 'Salin' untuk menyalin hasil ke clipboard."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apakah ini menangani kolom yang dikutip dengan koma?",
+      "a": "Ya — quoting RFC 4180 didukung penuh. \"Doe, John\" diurai sebagai satu kolom."
+    },
+    {
+      "q": "Bagaimana kutipan yang di-escape ditangani?",
+      "a": "Per RFC 4180, literal '\"' di dalam kolom yang dikutip ditulis sebagai '\"\"' (dua kutipan). Parser menangani ini dengan benar."
+    },
+    {
+      "q": "Bisakah kolom berisi baris baru?",
+      "a": "Ya, bila dikutip. \"baris 1\\nbaris 2\" di dalam kutipan diperlakukan sebagai satu kolom dengan baris baru tertanam."
+    },
+    {
+      "q": "Apakah ini mendukung BOM (UTF-8)?",
+      "a": "BOM diteruskan. Jika konsumen hilir Anda tidak mentoleransinya, hapus 3 byte pertama (EF BB BF) dari CSV."
+    },
+    {
+      "q": "Bagaimana dengan file yang sangat besar?",
+      "a": "Browser menangani beberapa MB tanpa masalah. Untuk CSV yang sangat besar (100MB+), gunakan parser streaming seperti Papa Parse dengan worker, atau alat CLI."
+    },
+    {
+      "q": "Apakah angka dipertahankan sebagai angka?",
+      "a": "CSV → JSON: semua nilai menjadi string (CSV tidak bertipe). JSON → CSV: angka menjadi sel CSV tanpa kutipan. Untuk mendapatkan JSON bertipe, pasca-proses kolom yang Anda tahu bersifat numerik."
+    },
+    {
+      "q": "Mengapa JSON saya menampilkan string kosong alih-alih null?",
+      "a": "CSV merepresentasikan nilai yang hilang sebagai sel kosong. Kami memetakannya ke string kosong. Untuk mendapatkan null dalam JSON, pasca-proses output."
+    },
+    {
+      "q": "Apakah data meninggalkan browser saya?",
+      "a": "Tidak. Konversi berjalan secara lokal; tidak ada yang dikirim ke server."
+    }
+  ]
+}

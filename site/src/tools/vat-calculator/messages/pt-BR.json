@@ -1,0 +1,76 @@
+{
+  "title": "Calculadora de IVA / Imposto (taxas internacionais)",
+  "shortDescription": "Adicione ou remova IVA/GST/imposto de consumo. Atalhos rápidos para Japão, Reino Unido, países da UE, Austrália, Canadá, China.",
+  "description": "Dois modos: 'Adicionar IVA' calcula o valor bruto a partir do líquido + taxa; 'Remover IVA' calcula o líquido a partir do bruto. Entrada de taxa personalizada mais atalhos de um clique para as principais jurisdições.",
+  "metaDescription": "Calculadora gratuita de IVA/GST. Adicione ou remova IVA de qualquer valor. Atalhos para taxas do Japão, Reino Unido, UE, Austrália, Canadá, China.",
+  "keywords": ["calculadora de IVA", "calculadora de GST", "calculadora de imposto sobre consumo", "imposto sobre consumo", "remoção de IVA"],
+  "empty": "Insira um valor e uma alíquota de IVA.",
+  "mode": {
+    "addVat": "Adicionar IVA (líquido → bruto)",
+    "removeVat": "Remover IVA (bruto → líquido)"
+  },
+  "input": {
+    "netAmount": "Valor líquido (sem IVA)",
+    "grossAmount": "Valor bruto (com IVA)",
+    "ratePct": "Alíquota de IVA %"
+  },
+  "preset": {
+    "JP-std": "JP padrão",
+    "JP-reduced": "JP reduzido",
+    "UK": "UK",
+    "DE": "Alemanha",
+    "FR": "França",
+    "AU": "Austrália GST",
+    "CA": "Canadá GST",
+    "CN": "China IVA"
+  },
+  "result": {
+    "gross": "Bruto (com IVA)",
+    "net": "Líquido (sem IVA)",
+    "vat": "Valor do IVA"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "IVA, GST, imposto sobre vendas — mesma ideia, nomes diferentes",
+        "paragraphs": [
+          "IVA (Imposto sobre Valor Agregado): Europa, Reino Unido, Japão (chamado 消費税). Cobrado em cada etapa da produção, mas pago pelo consumidor final. No Brasil, o IVA é fragmentado em vários tributos: ICMS (estadual), ISS (municipal), PIS e Cofins (federais). A Reforma Tributária de 2023-2024 está unificando esses em um novo IBS/CBS de alíquota padrão.",
+          "GST (Imposto sobre Bens e Serviços): Austrália, Canadá, Índia, Singapura. Mecanicamente similar ao IVA, apenas com nome diferente. Alguns países (Canadá) sobrepõem um GST federal e impostos provinciais (HST, PST).",
+          "Imposto sobre vendas: EUA. Cobrado apenas no ponto de venda final, varia por estado, condado e cidade. Alguns estados não têm (ex.: Oregon, New Hampshire); outros acumulam múltiplas jurisdições para taxas totais acima de 10%."
+        ]
+      },
+      {
+        "heading": "Cálculo nos dois sentidos",
+        "paragraphs": [
+          "Adicionar IVA: quando você tem um preço líquido (sem imposto) e precisa do bruto (com imposto). Comum ao listar preços para clientes B2B ou cotar antes do imposto. Fórmula: bruto = líquido × (1 + taxa/100).",
+          "Remover IVA: quando você tem um preço bruto (com imposto) e precisa extrair o líquido. Comum para recibos, relatórios de despesas ou itens de nota fiscal. Fórmula: líquido = bruto / (1 + taxa/100).",
+          "Erro comum: subtrair a taxa% do bruto para obter o líquido (ex.: R$ 110 − 10% = R$ 99). Isso está errado — o cálculo correto é R$ 110 / 1,10 = R$ 100. O IVA de 10% incide sobre o líquido, não sobre o bruto."
+        ]
+      },
+      {
+        "heading": "Quando o IVA já está incluído ou não",
+        "paragraphs": [
+          "A maioria dos preços ao consumidor na Europa, Japão e Austrália incluem o imposto. A etiqueta de preço é o que você paga no caixa; nenhum extra no checkout. Então um produto de €10 significa €10 no total.",
+          "A maioria dos preços no varejo dos EUA exclui o imposto. Um preço de US$ 10 vira US$ 10,85 após 8,5% de imposto estadual da Califórnia. Restaurantes, lojas online e faturas B2B frequentemente variam.",
+          "No Brasil, os preços ao consumidor já incluem ICMS e demais impostos indiretos por determinação legal. Para transações B2B, a nota fiscal destaca o imposto separadamente para fins de crédito fiscal."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escolha o modo", "text": "Adicionar IVA (líquido → bruto) ou Remover IVA (bruto → líquido)." },
+      { "name": "Insira o valor", "text": "O valor líquido ou bruto, dependendo do modo." },
+      { "name": "Defina a alíquota", "text": "Use um atalho para os principais países ou digite uma alíquota personalizada." },
+      { "name": "Leia os três valores", "text": "Líquido, IVA, bruto. Útil para itens de nota fiscal e cotações de preço." }
+    ]
+  },
+  "faq": [
+    { "q": "IVA e imposto sobre consumo (消費税) são iguais?", "a": "Sim — o 消費税 japonês é o nome local do IVA. Mesmo mecanismo: cobrado em cada etapa da produção, pago pelo consumidor final. Taxa padrão 10%, reduzida 8% para alimentos e jornais." },
+    { "q": "Por que 'remover 10%' dá uma resposta diferente de dividir por 1,1?", "a": "Remover 10% É dividir por 1,10. Subtrair 10% (ex.: 110 − 10% = 99) está matematicamente errado porque o 10% aplicado incidia sobre o líquido (100), não sobre o bruto (110)." },
+    { "q": "Posso calcular IVA de múltiplos estágios?", "a": "Não nesta ferramenta — tratamos cenários de alíquota única. Para B2B com inversão de sujeito passivo ou transações com alíquota zero, consulte um contador ou software fiscal especializado." },
+    { "q": "Qual é a menor alíquota de IVA?", "a": "Alguns países têm alíquotas de 0% sobre bens essenciais (UK taxa reduzida em roupas infantis, Japão 0% sobre aluguel e mensalidades). Use a alíquota real aplicável para sua transação." },
+    { "q": "Qual é a maior alíquota de IVA?", "a": "Hungria a 27%. A maioria dos países da UE está em 19-25%. O Japão é comparativamente baixo a 10%." },
+    { "q": "Isso funciona para impostos brasileiros como ICMS e ISS?", "a": "Sim — insira a alíquota combinada aplicável. O ICMS (12-20% conforme o estado e produto) e o ISS (2-5% conforme o município e serviço) funcionam como IVA de estágio único nesta calculadora. Use o modo 'adicionar' para precificação típica → nota fiscal." },
+    { "q": "E para itens isentos de IVA?", "a": "Use alíquota 0% para itens totalmente isentos. Nota: 'isento' e 'alíquota zero' têm diferenças legais em algumas jurisdições, mas o mesmo resultado na calculadora." },
+    { "q": "Os dados saem do meu navegador?", "a": "Não. O cálculo é feito localmente; nada é enviado para um servidor." }
+  ]
+}

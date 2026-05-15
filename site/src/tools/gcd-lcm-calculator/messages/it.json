@@ -1,0 +1,91 @@
+{
+  "title": "Calcolatore MCD e mcm (con fattorizzazione in numeri primi)",
+  "shortDescription": "Calcola il Massimo Comun Divisore (MCD) e il minimo comune multiplo (mcm) di due interi, con la fattorizzazione in numeri primi di ciascuno.",
+  "description": "Inserisci due interi positivi. Il calcolatore restituisce MCD, mcm e la fattorizzazione in numeri primi di entrambi i numeri. Usa l'algoritmo di Euclide per il MCD e la formula mcm = (a × b) / MCD.",
+  "metaDescription": "Calcolatore gratuito di MCD e mcm con fattorizzazione in numeri primi. Algoritmo di Euclide. Utile per semplificare frazioni e trovare denominatori comuni.",
+  "keywords": [
+    "calcolatore MCD",
+    "calcolatore mcm",
+    "massimo comun divisore",
+    "minimo comune multiplo",
+    "fattorizzazione numeri primi"
+  ],
+  "result": {
+    "gcd": "MCD",
+    "lcm": "mcm",
+    "factorizations": "Fattorizzazioni"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Massimo Comun Divisore (MCD)",
+        "paragraphs": [
+          "Il MCD di due interi a e b è il numero più grande che divide entrambi senza resto. MCD(12, 18) = 6 perché 6 divide sia 12 che 18, e nessun numero più grande lo fa.",
+          "L'algoritmo di Euclide calcola il MCD in modo efficiente: MCD(a, b) = MCD(b, a mod b), ripetuto finché il resto è 0. MCD(48, 18): 48 = 2×18+12 → MCD(18, 12); 18 = 1×12+6 → MCD(12, 6); 12 = 2×6+0 → MCD = 6. Funziona in O(log min(a,b)) passi.",
+          "La fattorizzazione in numeri primi mostra perché: 12 = 2²×3, 18 = 2×3². Il MCD prende il minimo di ogni esponente: 2^min(2,1) × 3^min(1,2) = 2¹×3¹ = 6."
+        ]
+      },
+      {
+        "heading": "Minimo comune multiplo (mcm)",
+        "paragraphs": [
+          "Il mcm di a e b è il numero più piccolo che è multiplo di entrambi. mcm(4, 6) = 12 perché 12 è il primo numero divisibile sia per 4 che per 6.",
+          "La formula più efficiente: mcm(a, b) = (a × b) / MCD(a, b). Per 4 e 6: (4×6) / MCD(4,6) = 24/2 = 12. Questo evita di fattorizzare entrambi i numeri separatamente.",
+          "Con la fattorizzazione: 4 = 2², 6 = 2×3. Il mcm prende il massimo di ogni esponente: 2^max(2,1) × 3^max(0,1) = 2²×3 = 12."
+        ]
+      },
+      {
+        "heading": "Applicazioni pratiche",
+        "paragraphs": [
+          "Frazioni: per sommare 1/12 + 1/18, il denominatore comune minimo è mcm(12, 18) = 36. 1/12 = 3/36, 1/18 = 2/36, somma = 5/36. Per semplificare 18/24: MCD(18, 24) = 6, quindi 18/24 = 3/4.",
+          "Pianificazione: due eventi si ripetono rispettivamente ogni 4 e ogni 6 giorni. Si incontrano di nuovo al giorno mcm(4, 6) = 12. Il MCD è utile per suddividere equamente: dividere 48 mele e 36 arance in sacchetti identici massimizzati → MCD(48, 36) = 12 sacchetti, con 4 mele e 3 arance ciascuno.",
+          "Informatica: il mcm si usa per la sincronizzazione dei timer, l'allineamento della memoria e il design degli scheduler. Il MCD appare nella riduzione delle frazioni, nella crittografia RSA e negli algoritmi su grafi."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Inserisci il primo numero",
+        "text": "Un intero positivo."
+      },
+      {
+        "name": "Inserisci il secondo numero",
+        "text": "Un altro intero positivo."
+      },
+      {
+        "name": "Leggi il risultato",
+        "text": "MCD, mcm e le fattorizzazioni in numeri primi di entrambi i numeri."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual è la differenza tra MCD e mcm?",
+      "a": "Il MCD divide entrambi i numeri (il più grande possibile). Il mcm è divisibile da entrambi (il più piccolo possibile). MCD(12,18)=6; mcm(12,18)=36."
+    },
+    {
+      "q": "Cosa succede se uno dei numeri è 0?",
+      "a": "MCD(a, 0) = a per convenzione (ogni numero divide 0). Il mcm di 0 e qualsiasi numero è 0."
+    },
+    {
+      "q": "Funziona per più di due numeri?",
+      "a": "Questo strumento calcola per due numeri. Per più numeri: MCD(a,b,c) = MCD(MCD(a,b),c). Applica la stessa formula a coppie successive."
+    },
+    {
+      "q": "I numeri possono essere negativi?",
+      "a": "Il MCD e il mcm sono convenzionalmente definiti per interi positivi. Il calcolatore usa i valori assoluti."
+    },
+    {
+      "q": "A cosa serve la fattorizzazione in numeri primi?",
+      "a": "Mostra la struttura matematica dei numeri e rende visibile perché MCD e mcm hanno quei valori. Utile per capire il metodo invece di memorizzare solo il risultato."
+    },
+    {
+      "q": "I dati lasciano il mio browser?",
+      "a": "No. Il calcolo viene eseguito localmente; nulla viene inviato a un server."
+    }
+  ],
+  "input": {
+    "numbers": "Numeri",
+    "hint": "Separati da virgola, spazio o a capo. Almeno 2 numeri."
+  },
+  "empty": "Inserisci almeno 2 numeri interi."
+}

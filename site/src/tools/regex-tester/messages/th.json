@@ -1,0 +1,109 @@
+{
+  "title": "เครื่องทดสอบ Regex (แสดง match สด",
+  "shortDescription": "ทดสอบ regular expression ของ JavaScript แบบ interactive ดู match ที่ไฮไลต์แบบสด capture group และ preview การแทนที่",
+  "description": "พิมพ์ regex และข้อความทดสอบ — match ไฮไลต์แบบสดขณะพิมพ์ สลับ flag (g/i/m/s/u) ตรวจ capture group และ preview การแทนที่",
+  "metaDescription": "เครื่องทดสอบ regex ของ JavaScript ฟรี พร้อมไฮไลต์สด capture group named group และ preview การแทนที่",
+  "keywords": [
+    "ทดสอบ regex",
+    "ทดสอบ regular expression",
+    "JavaScript regex",
+    "regex match",
+    "regex แทนที่"
+  ],
+  "input": {
+    "pattern": "Pattern",
+    "flags": "Flags",
+    "test": "ข้อความทดสอบ",
+    "replaceMode": "แสดง preview การแทนที่",
+    "replace": "ข้อความแทนที่"
+  },
+  "result": {
+    "matches": "Matches",
+    "replaced": "ผลลัพธ์หลังแทนที่",
+    "groups": "Capture groups"
+  },
+  "hint": {
+    "replaceVars": "ใช้ $& สำหรับ match ทั้งหมด $1, $2 สำหรับ group และ $<name> สำหรับ named group"
+  },
+  "error": {
+    "invalid": "Pattern ไม่ถูกต้อง"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Flag แต่ละตัวทำอะไร",
+        "paragraphs": [
+          "g (global): หา match ทั้งหมด ไม่ใช่แค่ตัวแรก จำเป็นสำหรับการแทนที่ทุกครั้ง i (case-insensitive): /[a-z]/i match ทั้งตัวพิมพ์ใหญ่และเล็ก m (multiline): ^ และ $ match ที่ขึ้นบรรทัดใหม่แทนที่จะเป็นแค่ต้น/จบ string s (dotall): . match ขึ้นบรรทัดใหม่ด้วย u (unicode): จัดการ code point เหนือ 0xFFFF ได้ถูกต้อง (emoji, ตัวอักษรใน surrogate pairs)",
+          "คนส่วนใหญ่เริ่มด้วย /g/i/m /s/ มีประโยชน์สำหรับ match ข้อความหลายบรรทัด /u/ แนะนำเมื่ออาจพบ emoji หรือตัวอักษรนอก BMP — ถ้าไม่ใช้ /./ จะไม่ match emoji 4 ไบต์เป็นอักขระเดียว"
+        ]
+      },
+      {
+        "heading": "Capture group และการแทนที่",
+        "paragraphs": [
+          "วงเล็บสร้าง capture group: /(\\d{4})-(\\d{2})/ บน '2026-05' จับ '2026' และ '05' แยกกัน อ้างอิงเป็น $1, $2 ในการแทนที่ Named group ใช้ (?<name>...) และอ้างอิง $<name> ในการแทนที่",
+          "เทคนิคแทนที่ทั่วไป: $& แทรก match ทั้งหมด $1, $2 เป็นต้นแทรก capture group $$ แทรก $ ตัวอักษรจริง preview การแทนที่ที่นี่ช่วยตรวจสอบก่อนรัน pattern เดียวกันบนข้อความจริง — ปลอดภัยกว่ารันโดยตรงบน production data"
+        ]
+      },
+      {
+        "heading": "ข้อผิดพลาดที่ควรระวัง",
+        "paragraphs": [
+          "การ escape backslash เพื่อ match '.' ตัวอักษรจริง ใช้'\\.' ใน source string ของ JavaScript จะเป็น '\\\\.' แต่ในเครื่องมือนี้พิมพ์แค่ '\\.' เพราะเป็น regex source โดยตรง",
+          "Catastrophic backtracking Pattern อย่าง /(a+)+/ บน 'aaaa…!' อาจใช้เวลานานมาก ถ้าการทดสอบดูเหมือนค้าง regex อาจมี nested quantifier ทำให้เรียบง่ายขึ้นหรือออกแบบให้ระมัดระวัง",
+          "Greedy กับ lazy /<.+>/ บน '<a><b>' match '<a><b>' (greedy) /<.+?>/ match '<a>' (lazy) เลือกให้เหมาะกับกรณีใช้งาน"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "พิมพ์ pattern",
+        "text": "ใช้ syntax regex ของ JavaScript (ไม่ต้องใส่ slash รอบ)"
+      },
+      {
+        "name": "ตั้ง flag",
+        "text": "คลิกตัวอักษรเพื่อสลับ: g (global), i (case-insensitive), m (multiline), s (dotall), u (unicode)"
+      },
+      {
+        "name": "วางข้อความทดสอบ",
+        "text": "Match ไฮไลต์แบบ real-time"
+      },
+      {
+        "name": "ทางเลือก: ลองแทนที่",
+        "text": "สลับ 'preview การแทนที่' เพื่อดูผลลัพธ์ที่แก้ไขแล้ว"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "เครื่องมือนี้ใช้ regex flavor ใด?",
+      "a": "JavaScript ECMAScript regex (ที่เบราว์เซอร์ implement) ต่างจาก PCRE ที่ใช้ใน PHP, .NET หรือ Python เล็กน้อย"
+    },
+    {
+      "q": "ทำไม lookbehind ไม่ทำงาน?",
+      "a": "ทำงานได้ในเบราว์เซอร์ทันสมัย — Chrome, Firefox, Safari, Edge ทั้งหมดรองรับ (?<=...) และ (?<!...) ตั้งแต่ปี 2021 ถ้าไม่ทำงาน เบราว์เซอร์ของคุณอาจล้าสมัย"
+    },
+    {
+      "q": "flag 'u' ทำอะไร?",
+      "a": "เปิดใช้การจัดการ Unicode อย่างถูกต้อง Emoji อย่าง 🎉 (ซึ่งเป็น surrogate pair ใน UTF-16) ถือเป็นอักขระเดียวด้วย /u/ แต่สองตัวในโหมดปริยาย"
+    },
+    {
+      "q": "จะ match tab หรือขึ้นบรรทัดใหม่ได้อย่างไร?",
+      "a": "\\t สำหรับ tab, \\n สำหรับขึ้นบรรทัดใหม่, \\r สำหรับ carriage return, \\s สำหรับ whitespace ใดก็ได้รวมทั้งหมดนี้"
+    },
+    {
+      "q": "ทำไมการแทนที่ไม่ทำงาน?",
+      "a": "บ่อยครั้งที่ลืม flag 'g' — การแทนที่โดยไม่มี 'g' จะแทนที่แค่ match แรกเท่านั้น สลับ 'g' เพื่อแทนที่ทั้งหมด"
+    },
+    {
+      "q": "ใช้กับข้อความยาวมากได้ไหม?",
+      "a": "ได้ ถึงสองสามเมกะไบต์ เกินกว่านั้นเบราว์เซอร์อาจช้าลง หลีกเลี่ยง pattern ที่ล่มสลาย (nested quantifier) กับ input ยาว"
+    },
+    {
+      "q": "ข้อมูลออกจากเบราว์เซอร์ไหม?",
+      "a": "ไม่ Pattern และข้อความถูกประมวลผลในเครื่องเท่านั้น"
+    },
+    {
+      "q": "มี cheat sheet สำหรับ regex ไหม?",
+      "a": "ค้นหา 'JavaScript regex cheat sheet' หน้า RegExp ของ MDN เป็นข้อมูลอ้างอิงที่น่าเชื่อถือที่สุด"
+    }
+  ]
+}

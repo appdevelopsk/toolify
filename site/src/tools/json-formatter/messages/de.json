@@ -1,0 +1,99 @@
+{
+  "title": "JSON-Formatierer & Minifier (validiert und gibt lesbar aus)",
+  "shortDescription": "JSON lesbar formatieren oder minimieren. Validiert die Eingabe und zeigt bei einem Fehler eine klare Fehlermeldung mit Zeile und Spalte.",
+  "description": "Beliebiges JSON einfügen, um es mit 2/4/8 Leerzeichen Einrückung zu formatieren oder auf eine einzige Zeile zu minimieren. Ungültiges JSON zeigt einen Parse-Fehler, damit das Problem schnell gefunden werden kann.",
+  "metaDescription": "Kostenloser JSON-Formatierer und Minifier. Validiert Eingabe, gibt lesbar mit gewählter Einrückung aus oder minimiert auf eine Zeile.",
+  "keywords": [
+    "JSON Formatierer",
+    "JSON Minifier",
+    "JSON Validator",
+    "JSON formatieren",
+    "JSON verschönern"
+  ],
+  "input": "JSON-Eingabe",
+  "output": "Formatierte Ausgabe",
+  "mode": {
+    "format": "Formatieren",
+    "minify": "Minimieren"
+  },
+  "indent": "Einrückung",
+  "copy": "Kopieren",
+  "copied": "Kopiert",
+  "error": "Parse-Fehler",
+  "stats": "Eingabe: {input} Bytes · Ausgabe: {output} Bytes",
+  "article": {
+    "sections": [
+      {
+        "heading": "Was dieses Tool tut",
+        "paragraphs": [
+          "JSON ist ein striktes Format – jedes Anführungszeichen, Komma und jede geschweifte Klammer muss an der richtigen Stelle sein. Browser und APIs geben kryptische 'Unexpected token'-Meldungen aus, wenn etwas nicht stimmt, und das Problem ist oft auf den ersten Blick unsichtbar. Dieser Formatierer parst die Eingabe mit dem nativen JSON-Parser des Browsers und gibt sie dann lesbar (mit Einrückung) oder minimiert (ohne Leerzeichen) aus.",
+          "Wenn das Parsen fehlschlägt, erhältst du direkt die zugrunde liegende Fehlermeldung – meist mit der Position des fehlerhaften Zeichens. Von dort aus kann das fehlende Komma, das nicht-escapte Anführungszeichen oder das überschüssige Komma schnell gefunden werden."
+        ]
+      },
+      {
+        "heading": "Formatieren vs. Minimieren",
+        "paragraphs": [
+          "Formatieren mit Einrückung: die Standardmethode zum Lesen von JSON. 2 Leerzeichen sind in JavaScript-Projekten üblich; 4 Leerzeichen sind in Python- und Java-Kontexten verbreitet. Diejenige Variante wählen, die das eigene Projekt verwendet.",
+          "Minimieren: auf eine einzige Zeile ohne Leerzeichen komprimieren. Nützlich, wenn JSON in URLs, Umgebungsvariablen oder an Orten eingebettet wird, wo Leerzeichen eine Rolle spielen. Die Größendifferenz ist spürbar: eine typische lesbar formatierte Konfigurationsdatei schrumpft beim Minimieren um 20–40 %."
+        ]
+      },
+      {
+        "heading": "Häufige JSON-Fallstricke",
+        "paragraphs": [
+          "Abschließende Kommas. In JavaScript erlaubt, nicht in JSON. {a:1, b:2,} wird im Code-Editor geparst, schlägt aber bei der Übertragung fehl.",
+          "Einfache Anführungszeichen. JSON verlangt doppelte Anführungszeichen für Schlüssel und Zeichenkettenwerte. {'a': 1} ist ungültiges JSON. {\"a\": 1} ist korrekt.",
+          "Kommentare. JSON kennt keine Kommentare. // oder /* */ innerhalb von JSON bricht das Parsen. JSONC (von VS Code-Konfiguration verwendet) unterstützt Kommentare, ist aber kein Standard-JSON.",
+          "Zahlen. JSON unterstützt weder NaN noch Infinity. Stattdessen null verwenden oder den Wert in eine Zeichenkette einwickeln, je nach weiterverarbeitendem System."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "JSON einfügen",
+        "text": "Von einigen Bytes bis zu einigen hundert KB funktioniert ohne Verzögerung."
+      },
+      {
+        "name": "Formatieren oder Minimieren wählen",
+        "text": "Plus eine Einrückstufe für den Formatierungsmodus."
+      },
+      {
+        "name": "Ergebnis lesen oder kopieren",
+        "text": "Bei einem Fehler zeigt die Parser-Meldung auf das Problem."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Wird JSONC (JSON mit Kommentaren) unterstützt?",
+      "a": "Noch nicht. Kommentare zuerst entfernen oder ein Tool verwenden, das JSONC unterstützt."
+    },
+    {
+      "q": "Gibt es ein Größenlimit?",
+      "a": "Moderne Browser verarbeiten JSON im Megabyte-Bereich, wobei das Textfeld ab ~1 MB langsamer werden kann. Für sehr große Dateien ein Desktop-Tool verwenden."
+    },
+    {
+      "q": "Warum ist mein JSON ungültig?",
+      "a": "Meistens: ein abschließendes Komma, einfache Anführungszeichen oder ein nicht-escaptes Anführungszeichen in einer Zeichenkette. Der Parser-Fehler zeigt auf die Spalte, an der das Problem erkannt wird."
+    },
+    {
+      "q": "Kann ich Schlüssel alphabetisch sortieren?",
+      "a": "Nicht in dieser Version. In ein sortierfähiges Tool einfügen (wie jq mit --sort-keys) ist der sauberste Weg; wir können die Option später hinzufügen."
+    },
+    {
+      "q": "Werden tief verschachtelte JSON-Strukturen verarbeitet?",
+      "a": "Ja. Der JSON-Parser des Browsers verarbeitet jede praktische Tiefe."
+    },
+    {
+      "q": "Warum schrumpft eine 1-MB-Datei durch Minimieren nicht auf 1 Byte?",
+      "a": "Minimieren entfernt nur Leerzeichen. Die eigentlichen Daten sind weiterhin vorhanden. Für echte Größenreduzierung gzip oder ein Binärformat wie MessagePack verwenden."
+    },
+    {
+      "q": "Werden die Daten irgendwohin gesendet?",
+      "a": "Nein. Alles Parsen und Formatieren erfolgt im Browser."
+    },
+    {
+      "q": "Was ist mit JSON-Schema-Validierung?",
+      "a": "Dieses Tool validiert nur die Syntax. Für Schema-Validierung einen JSON-Schema-Validator mit der eigenen Schema-Datei verwenden."
+    }
+  ]
+}

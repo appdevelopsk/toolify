@@ -1,0 +1,100 @@
+{
+  "title": "Cifra de César — Codificador / Decodificador (com ROT13)",
+  "shortDescription": "Codifique ou decodifique texto com a clássica cifra de César. Deslocamento ajustável de -25 a +25, com presets de um clique para ROT13 e o deslocamento histórico de +3.",
+  "description": "Digite o texto e escolha o deslocamento. As letras são rotacionadas por esse número de posições no alfabeto (A-Z, a-z); outros caracteres passam inalterados. Use deslocamento=13 para ROT13 e deslocamento=3 para o César original.",
+  "metaDescription": "Ferramenta de cifra de César gratuita. Codifique ou decodifique qualquer texto com deslocamento de -25 a +25, incluindo ROT13.",
+  "keywords": [
+    "cifra de césar",
+    "ROT13",
+    "deslocamento de césar",
+    "cifra de letras",
+    "cifra clássica"
+  ],
+  "mode": {
+    "encode": "Codificar",
+    "decode": "Decodificar"
+  },
+  "input": {
+    "text": "Texto",
+    "shift": "Deslocamento"
+  },
+  "output": "Saída",
+  "copy": "Copiar",
+  "article": {
+    "sections": [
+      {
+        "heading": "Como funciona a cifra de César",
+        "paragraphs": [
+          "Cada letra da entrada é substituída por uma letra um número fixo de posições mais adiante no alfabeto. Com deslocamento +3, A vira D, B vira E, …, X vira A (voltando ao início). Não-letras passam inalteradas. Decodificar é o mesmo processo com o sinal oposto.",
+          "Batizada em homenagem a Júlio César, que supostamente usava um deslocamento +3 para mensagens militares. O tamanho do deslocamento é o único segredo. Com apenas 26 possíveis deslocamentos, é trivialmente quebrada tentando todos — mas é um excelente exemplo pedagógico de cifras de substituição."
+        ]
+      },
+      {
+        "heading": "ROT13 — a variante mais comum",
+        "paragraphs": [
+          "ROT13 usa deslocamento=13. Como 13 é metade de 26, aplicar ROT13 duas vezes retorna o texto original — codificação e decodificação usam exatamente a mesma operação. Isso a tornou popular em Usenet e fóruns para ocultar spoilers e piadas; os leitores podem decodificar clicando em um botão 'mostrar' sem precisar de um decodificador separado.",
+          "ROT13 não é criptografia em qualquer sentido significativo. É ofuscação — o equivalente a escrever 'spoiler oculto abaixo' para que quem não quiser saber possa pular."
+        ]
+      },
+      {
+        "heading": "Por que é divertido, mas não seguro",
+        "paragraphs": [
+          "Atacantes modernos quebram uma cifra de César em microssegundos por análise de frequência (E é a letra mais comum em inglês; o que mapeia para uma letra frequente no texto cifrado é provavelmente E). Não use para nada que você se importe.",
+          "Use para: exemplos educativos, jogos de puzzle, ARGs (jogos de realidade alternada), ocultar texto à vista, tags de spoiler ROT13. Não use para: senhas, dados financeiros, qualquer coisa com consequências."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolha o modo",
+        "text": "Codificar (aplicar deslocamento para frente) ou Decodificar (aplicar deslocamento para trás)."
+      },
+      {
+        "name": "Digite ou cole o texto",
+        "text": "Letras são deslocadas; pontuação, dígitos e espaços passam inalterados."
+      },
+      {
+        "name": "Ajuste o deslocamento",
+        "text": "O controle deslizante vai de -25 a +25. Use presets para +3 (César), 13 (ROT13) ou negativos."
+      },
+      {
+        "name": "Copie a saída",
+        "text": "Cópia para área de transferência com um clique."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual é a diferença entre César +3 e ROT13?",
+      "a": "Apenas o deslocamento. +3 é a escolha original de César; 13 é exatamente metade do alfabeto (então codificação e decodificação são a mesma operação). Matematicamente são da mesma família de cifra."
+    },
+    {
+      "q": "Por que o deslocamento +26 retorna o mesmo texto?",
+      "a": "São 26 letras no alfabeto — deslocar exatamente 26 posições retorna à letra original. O mesmo vale para qualquer múltiplo de 26."
+    },
+    {
+      "q": "Por que ROT13 é usado para spoilers?",
+      "a": "Porque aplicar ROT13 duas vezes retorna o original. Fóruns e leitores de Usenet tinham botões embutidos de 'rot13 este texto' que funcionavam em ambas as direções. Conveniente para ocultar e depois revelar texto."
+    },
+    {
+      "q": "Funciona com alfabetos não latinos?",
+      "a": "Não — apenas A-Z e a-z. Cirílico, grego, CJK e árabe passam inalterados. A cifra de César é intrinsecamente específica para o alfabeto latino."
+    },
+    {
+      "q": "Posso usar isso para segurança real?",
+      "a": "De jeito nenhum. Com 25 possíveis deslocamentos (excluindo 0 e 26), um computador quebra isso instantaneamente. Use AES, RSA ou bibliotecas criptográficas estabelecidas para segurança real."
+    },
+    {
+      "q": "E a cifra de Vigenère?",
+      "a": "Uma cifra clássica mais avançada que usa uma palavra-chave para variar o deslocamento por letra. Ainda quebrável à mão com texto suficiente, mas muito mais difícil que César. Não a incluímos (ainda)."
+    },
+    {
+      "q": "Por que incluir deslocamentos negativos?",
+      "a": "Por conveniência. Codificar com +3 e decodificar com +3 está errado; você precisa de -3 para decodificar. Deslocamentos negativos permitem decodificar sem trocar de modo (ou o botão faz isso por você)."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. Codificação e decodificação rodam localmente; nada é enviado a um servidor."
+    }
+  ]
+}

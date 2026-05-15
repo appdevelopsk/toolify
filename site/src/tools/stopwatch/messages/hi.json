@@ -1,0 +1,56 @@
+{
+  "title": "Stopwatch (millisecond precision, lap times)",
+  "shortDescription": "Start/pause, lap recording, और split-time calculation के साथ high-precision in-browser stopwatch। Millisecond display, accuracy के लिए monotonic clock।",
+  "description": "Jitter-free timing के लिए performance.now() उपयोग करने वाला browser-based stopwatch। Start, pause, resume, laps capture, और reset। प्रत्येक lap split (previous से delta) plus cumulative time दिखाता है।",
+  "metaDescription": "Millisecond precision और lap recording के साथ मुफ्त browser stopwatch। Monotonic timing, कोई network नहीं चाहिए। Sports, cooking, और study sessions के लिए useful।",
+  "keywords": ["stopwatch", "timer milliseconds", "lap timer", "online stopwatch", "split timer"],
+  "start": "शुरू करें",
+  "pause": "रुकें",
+  "resume": "जारी रखें",
+  "reset": "Reset करें",
+  "lap": "Lap",
+  "laps": "Laps",
+  "article": {
+    "sections": [
+      {
+        "heading": "यह stopwatch accurate क्यों है",
+        "paragraphs": [
+          "अधिकांश browser stopwatches Date.now() और setInterval उपयोग करते हैं, जो session के दौरान tens of milliseconds drift कर सकते हैं। यह implementation performance.now() उपयोग करता है — एक monotonic clock जो system clock adjust होने पर backward jump नहीं करता। Display updates के लिए requestAnimationFrame के साथ combined, accuracy ±1 ms के भीतर रहती है।",
+          "यदि आप tabs switch करते हैं, displayed time briefly freeze हो सकता है क्योंकि browsers background work throttle करते हैं। Internal clock correctly running रहती है — जब आप वापस switch करते हैं, display actual elapsed time पर catch up करता है।"
+        ]
+      },
+      {
+        "heading": "Lap times और split times",
+        "paragraphs": [
+          "जब आप Lap press करते हैं, current cumulative time record होती है। Displayed split previous lap से delta है: 5×400m run में, प्रत्येक split एक 400m segment time है, जबकि cumulative start से total elapsed है।",
+          "अधिकांश lap-list users cumulative नहीं, splits care करते हैं। हम दोनों दिखाते हैं। Cumulative best individual segment identify करना भी easy बनाता है — interval consistency track करने वाले athletes के लिए useful।"
+        ]
+      },
+      {
+        "heading": "Common uses",
+        "paragraphs": [
+          "Sports: running, swimming, cycling intervals के लिए lap times track करें। Smaller is better; splits के बीच consistency अच्छी pacing का sign है।",
+          "Cooking: laps को 'check points' के रूप में उपयोग करके multiple steps simultaneously time करें।",
+          "Study/work: focused work sessions timeboxing करें। Structured breaks के लिए हमारे Pomodoro timer के साथ pair करें।",
+          "Process timing: किसी भी task की duration measure करें। बाद की review के लिए export-friendly lap list उपयोग करें।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Start click करें", "text": "Timer immediately 0 से शुरू होता है।" },
+      { "name": "Laps capture करें", "text": "Run के दौरान Lap click करें। प्रत्येक lap split और cumulative time के साथ recorded होता है।" },
+      { "name": "Pause / Resume", "text": "Hold करने के लिए Pause click करें; same time से continue करने के लिए Resume click करें।" },
+      { "name": "Reset", "text": "सभी laps clear करता है और 0 पर return करता है।" }
+    ]
+  },
+  "faq": [
+    { "q": "यदि मैं tab close करूँ तो timer running रहेगा?", "a": "नहीं — tab close करने से in-memory state clear होती है। Long timing session preserve करने के लिए, close करने से पहले running display का screenshot लें या lap list copy करें।" },
+    { "q": "Practice में millisecond precision कितनी accurate है?", "a": "performance.now() resolution browser-dependent है: अधिकांश browsers security reasons के लिए 1ms या 0.1ms तक limit करते हैं। यह human-scale timing के लिए plenty है — human reaction time (~250ms) से far more accurate।" },
+    { "q": "Display 60fps पर update क्यों होता है लेकिन milliseconds दिखाता है?", "a": "Internal clock precise है; display ~60 times per second render होता है इसलिए आप smoothly updating millisecond field देखते हैं।" },
+    { "q": "क्या मैं lap session save कर सकता हूँ?", "a": "Directly नहीं — lap list manually copy करें।" },
+    { "q": "इसमें और phone stopwatch में क्या अंतर है?", "a": "Browser-based, कोई app install नहीं चाहिए। Human-scale timing के लिए equally accurate। Phone stopwatch screen lock survive करता है; browser tab open रहना चाहिए।" },
+    { "q": "क्या data कहीं भेजा जाता है?", "a": "नहीं। सब कुछ locally चलता है; कोई laps या times transmit नहीं होते।" },
+    { "q": "मेरा lap 0 milliseconds क्यों दिखाता है?", "a": "यदि आप Start के immediately बाद Lap tap करते हैं, elapsed time display precision के साथ 0 round हो सकती है। Laps के बीच कम से कम एक fraction of a second run करें।" },
+    { "q": "क्या यह sub-second events measure कर सकता है?", "a": "हाँ, ~1ms तक। किसी भी human-observable event के लिए यह precise enough है।" }
+  ]
+}

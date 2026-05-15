@@ -1,0 +1,101 @@
+{
+  "title": "Testeur d'expression cron (aperçu des 5 prochaines exécutions)",
+  "shortDescription": "Teste les expressions cron et vois les 5 prochaines exécutions planifiées dans ton fuseau horaire local. Valide les champs, prend en charge les plages, listes et pas.",
+  "description": "Tape une expression cron à 5 champs (min, heure, jour-du-mois, mois, jour-de-la-semaine) et vois les 5 prochains déclenchements. Préréglages courants inclus.",
+  "metaDescription": "Testeur d'expression cron gratuit. Valide la syntaxe et prévisualise les 5 prochains déclenchements dans ton fuseau horaire local.",
+  "keywords": [
+    "testeur cron",
+    "testeur crontab",
+    "prochaine exécution cron",
+    "aperçu planification",
+    "syntaxe cron"
+  ],
+  "input": {
+    "expr": "Expression cron",
+    "format": "Format"
+  },
+  "result": {
+    "next5": "5 prochaines exécutions"
+  },
+  "error": {
+    "label": "Erreur",
+    "fieldCount": "l'expression doit avoir exactement 5 champs"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Syntaxe cron en cinq champs",
+        "paragraphs": [
+          "Le cron standard comporte 5 champs séparés par des espaces : minute (0-59), heure (0-23), jour du mois (1-31), mois (1-12), jour de la semaine (0-6, 0=Dimanche). Chaque champ accepte : une valeur unique (5), une plage (1-5), une liste (1,3,5), un pas (*/15 signifie toutes les 15), ou un joker (*). Les combinaisons fonctionnent : 1-5,10/2 signifie 1-5 puis tous les 2 à partir de 10.",
+          "Ce testeur utilise le dialecte POSIX/Linux crontab strict. Certains systèmes étendent cron avec des noms de mois (JAN-DÉC) ou de jours (DIM-SAM) — ceux-ci ne sont pas pris en charge ici. Utilise des valeurs numériques pour une compatibilité maximale."
+        ]
+      },
+      {
+        "heading": "Modèles courants",
+        "paragraphs": [
+          "*/5 * * * * — toutes les 5 minutes. Utile pour les actualisations de cache et les sondages courts.",
+          "0 9 * * 1-5 — 9h tous les jours de la semaine. Rapports en heures de bureau.",
+          "0 0 1 * * — minuit le 1er de chaque mois. Facturation mensuelle ou consolidations de statistiques.",
+          "0 */6 * * * — toutes les 6 heures (00:00, 06:00, 12:00, 18:00). Sondages longs.",
+          "0 0 * * 0 — minuit chaque dimanche. Rapports hebdomadaires.",
+          "*/15 9-17 * * 1-5 — toutes les 15 minutes pendant les heures de bureau, jours de semaine. Sondage en heures actives."
+        ]
+      },
+      {
+        "heading": "Jour du mois vs jour de la semaine",
+        "paragraphs": [
+          "Les deux champs acceptent des valeurs, mais attention : dans le dialecte standard, quand les deux champs sont définis (pas '*'), le cron s'exécute quand L'UNE OU L'AUTRE condition correspond, pas les deux. Donc `0 0 1 * MON` (1er du mois, OU Lundi) se déclenche plus souvent que tu ne le penses.",
+          "Pour restreindre au 'premier lundi du mois', le cron seul ne peut pas le faire directement — tu dois soit exécuter un script quotidiennement et vérifier que le jour du mois <= 7, soit utiliser un ordonnanceur (Airflow, GitHub Actions avec vérification) qui supporte une planification plus expressive."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Tape une expression cron",
+        "text": "5 champs : minute, heure, jour-du-mois, mois, jour-de-la-semaine."
+      },
+      {
+        "name": "Ou choisis un préréglage",
+        "text": "Les modèles courants se chargent en un clic."
+      },
+      {
+        "name": "Lis les 5 prochaines exécutions",
+        "text": "Heures dans ton fuseau horaire local. Utile pour vérifier un planning avant le déploiement."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Pourquoi est-ce que je vois 5 exécutions dans mon fuseau horaire local ?",
+      "a": "Cron est toujours dans le fuseau horaire local de l'hôte. Le fuseau horaire de ton navigateur est ce qui est affiché ici. Les vrais démons cron respectent le TZ du serveur ; vérifie ton hôte."
+    },
+    {
+      "q": "Puis-je utiliser des noms de mois/jours ?",
+      "a": "Pas encore — seulement des valeurs numériques. Nous pourrions ajouter des alias de style JAN/LUN plus tard."
+    },
+    {
+      "q": "Quelle est la différence entre * et ? ?",
+      "a": "Dans le cron standard, ils sont identiques. Certains dialectes Quartz utilisent ? pour distinguer 'non spécifié' pour les champs jour-du-mois vs jour-de-la-semaine. Le cron standard les traite de la même façon."
+    },
+    {
+      "q": "Pourquoi jour-du-mois + jour-de-la-semaine ne fonctionne-t-il pas comme je l'attends ?",
+      "a": "Quand les deux champs ne sont pas '*', le cron standard utilise OU (correspond à l'un ou l'autre). Pour obtenir ET ('premier lundi du mois'), tu as besoin d'un script wrapper ou d'un ordonnanceur plus expressif."
+    },
+    {
+      "q": "Prend-il en charge les secondes ?",
+      "a": "Le cron standard est à précision de la minute. Certains systèmes ajoutent un sixième champ pour les secondes ; nous ne le supportons pas. Si tu as besoin d'une précision à la seconde, utilise setInterval ou un autre ordonnanceur."
+    },
+    {
+      "q": "Quelle est la limite de granularité ?",
+      "a": "Au niveau de la minute. Les planifications plus fines que 1 minute ne sont pas exprimables en cron."
+    },
+    {
+      "q": "Puis-je tester des expressions cron pour des années passées ?",
+      "a": "Nous calculons vers l'avant depuis 'maintenant'. Pour l'analyse historique, utilise la bibliothèque cron d'un langage de programmation."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. L'analyse et le calcul sont tous locaux."
+    }
+  ]
+}

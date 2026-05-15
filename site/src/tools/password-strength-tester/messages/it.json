@@ -1,0 +1,92 @@
+{
+  "title": "Tester della Forza Password (entropia + tempo di crack)",
+  "shortDescription": "Testa la forza della password con bit di entropia, analisi del set di caratteri, controllo password comuni e tempo di crack stimato in vari scenari di attacco.",
+  "description": "Digita una password (solo nel browser, mai trasmessa). Il tester calcola entropia, copertura del set di caratteri, rischio di corrispondenza dizionario e mostra i tempi di crack stimati per attacchi offline GPU, limiti API online e attacchi online lenti.",
+  "metaDescription": "Tester della forza password gratuito. Bit di entropia, stime del tempo di crack, analisi del set di caratteri, rilevamento password comuni e pattern. Solo nel browser.",
+  "keywords": ["tester forza password", "entropia password", "calcolatore tempo crack", "sicurezza password", "test password"],
+  "input": {
+    "password": "Password",
+    "privacyNote": "Testata interamente nel tuo browser. Mai inviata o memorizzata da nessuna parte."
+  },
+  "show": "Mostra",
+  "hide": "Nascondi",
+  "result": {
+    "strength": "Forza",
+    "length": "Lunghezza",
+    "charsetSize": "Dimensione del set di caratteri",
+    "entropy": "Entropia",
+    "bits": "bit",
+    "lowercase": "Minuscole a-z",
+    "uppercase": "Maiuscole A-Z",
+    "digits": "Cifre 0-9",
+    "symbols": "Simboli",
+    "crackTime": "Tempo di crack stimato",
+    "crackOffline": "GPU offline (10⁹⁰/s)",
+    "crackOnlineFast": "Online veloce (1k/s)",
+    "crackOnlineSlow": "Online lento (100/s)",
+    "warningsHeading": "Avvertenze"
+  },
+  "level": {
+    "veryWeak": "Molto debole",
+    "weak": "Debole",
+    "fair": "Discreta",
+    "strong": "Robusta",
+    "veryStrong": "Molto robusta"
+  },
+  "warning": {
+    "isCommon": "Questa password appare nelle liste di password comuni. Non usarla.",
+    "tooShort": "Lunghezza sotto 8 — troppo corta per qualsiasi sicurezza reale.",
+    "hasRepeated": "Caratteri ripetuti (es. 'aaa') riducono l'entropia nel mondo reale.",
+    "hasSequential": "Pattern sequenziali (1234, qwer, abcd) sono facili da indovinare.",
+    "limitedCharset": "Le password con un solo set di caratteri (solo minuscole, solo cifre) sono deboli anche quando sono lunghe."
+  },
+  "time": {
+    "instant": "istante",
+    "yrs": "anni",
+    "eternity": "eternità"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cosa significa 'entropia' per le password",
+        "paragraphs": [
+          "L'entropia misura l'imprevedibilità in bit. Una password con 30 bit di entropia necessita in media di ~2³⁰ ≈ 1 miliardo di tentativi per essere crackata. 70+ bit è generalmente considerato robusto; 80+ è eccellente.",
+          "Formula: entropia = lunghezza × log₂(dimensione_set_caratteri). 'abcdefgh' (8 caratteri, solo minuscole) = 8 × log₂(26) ≈ 37,6 bit. 'aA1!aaaa' (8 caratteri, tutti i set) = 8 × log₂(95) ≈ 52,6 bit — ma il tempo di crack è molto peggiore di quanto suggerirebbe 52 bit perché 'aaaa' è un pattern comune."
+        ]
+      },
+      {
+        "heading": "Perché i tempi di crack variano così tanto",
+        "paragraphs": [
+          "GPU offline: un hash di password violato che viene attaccato offline. Le GPU moderne possono indovinare 10⁹+ hash MD5 al secondo; gli hash bcrypt solo 10⁴-10⁵/s. La stima qui usa l'ipotesi di hash veloce GPU.",
+          "Online veloce: un attaccante che martella direttamente un'API di login. La maggior parte delle API ha qualche limite di frequenza; 1000 tentativi/sec è una stima alta per un endpoint mal difeso.",
+          "Online lento: un endpoint correttamente difeso con limiti di frequenza rigidi, blocchi account e CAPTCHA. 100 tentativi/sec è generoso; molti sistemi consentono solo 5-10/min.",
+          "Queste stime ignorano fattori del mondo reale come gli attacchi con dizionario (che trovano le password comuni molto più velocemente del brute force) e il riutilizzo delle password (craccare la violazione di un sito aiuta a craccare gli altri)."
+        ]
+      },
+      {
+        "heading": "Cosa rende una password robusta",
+        "paragraphs": [
+          "Lunghezza prima della complessità: una passphrase di 16 caratteri come 'cavallo corretto batteria graffetta' è più robusta di un torturato 'P@ssw0rd!'. L'intuizione di XKCD del 2011 vale ancora: 4 parole casuali danno ~44 bit di entropia.",
+          "Evita i pattern: date, nomi, '123', 'qwer', caratteri ripetuti riducono tutti l'entropia reale al di sotto del valore della formula. Gli strumenti di attacco includono estese trasformazioni 'basate su regole' (es. 'password' → 'P@ssw0rd!').",
+          "Usa un gestore di password: gli esseri umani scelgono pattern; i gestori no. Bitwarden, 1Password, KeePass generano password davvero casuali per sito, con 16+ caratteri su tutti i set. L'unica password che devi ricordare è la password master — e quella dovrebbe essere una lunga passphrase memorabile."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Digita la password", "text": "Viene testata completamente lato client. Usa il toggle Mostra se non riesci a vedere cosa stai digitando." },
+      { "name": "Leggi il misuratore di forza", "text": "Cinque segmenti. Punta a 4-5 (Robusta/Molto robusta) per gli account importanti." },
+      { "name": "Controlla entropia e tempi di crack", "text": "Entropia più alta = tempo di crack più lungo. Fai attenzione agli avvisi sui pattern comuni." },
+      { "name": "Adatta secondo necessità", "text": "Aggiungi lunghezza, mescola i set di caratteri, evita parole comuni. Testa le varianti finché non sei soddisfatto." }
+    ]
+  },
+  "faq": [
+    { "q": "La mia password viene inviata da qualche parte?", "a": "No. Tutto viene eseguito localmente nel tuo browser. Non vediamo, memorizziamo o trasmettiamo la tua password." },
+    { "q": "Perché la mia password lunga mostra un'entropia bassa?", "a": "La lunghezza non è tutto — ripetere 'a' 50 volte ha un'entropia reale molto bassa. Il calcolatore usa una formula semplice ma segnala pattern ripetuti/sequenziali. Per i migliori risultati: lunga, varia, nessun pattern." },
+    { "q": "Questi tempi di crack sono accurati?", "a": "Sono stime basate sul brute force ingenuo. I cracker reali usano prima dizionari, pattern comuni e database di password violate — quindi una password 'comune' potrebbe craccarsi in secondi nonostante l'alta entropia della formula." },
+    { "q": "Devo preoccuparmi dei computer quantistici?", "a": "Eventualmente sì — l'algoritmo di Grover dimezza i bit effettivi della crittografia simmetrica. Una chiave simmetrica equivalente a 128 bit necessita di 64+ bit equivalenti post-quantum. Per ora, 80+ bit di entropia è comodo; 128+ per segreti a lunghissimo termine." },
+    { "q": "Perché lo strumento segnala 'P@ssw0rd1' anche se ha tutti i set di caratteri?", "a": "Perché 'password' è nei dizionari e le sostituzioni banali (a → @) fanno parte del set di regole di ogni strumento di crack. Usa password davvero casuali o in stile passphrase, non sostituzioni di parole comuni." },
+    { "q": "'cavallo corretto batteria graffetta' è davvero sicuro?", "a": "Ragionevolmente. 4 parole casuali da una lista di 7.000 parole = ~52 bit di entropia. Più robusto della maggior parte delle password complesse di 8 caratteri. Ma una volta che diventa famoso (come questo esempio), è nei dizionari — scegli le tue parole casuali." },
+    { "q": "Qual è la lunghezza minima della password che dovrei usare?", "a": "8 è il minimo assoluto (e solo con tutti i set di caratteri). 12+ è raccomandato per la maggior parte degli account. 16+ per quelli importanti (email, banca, gestore di password master)." },
+    { "q": "La distinzione tra maiuscole e minuscole è importante?", "a": "Sì — aggiungere le maiuscole raddoppia la dimensione del set di caratteri da 26 a 52. Circa +1 bit per carattere. Mescolare i casi in modo significativo (non solo la prima lettera) vale la pena." }
+  ]
+}

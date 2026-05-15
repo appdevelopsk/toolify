@@ -1,0 +1,67 @@
+{
+  "title": "CSS-Verlauf-Generator (linear, radial, konisch)",
+  "shortDescription": "CSS-Verläufe visuell erstellen: linear, radial und konisch. Mehrere Farbstopps, Winkelsteuerung, Vorlagen. Fertigen CSS-Code kopieren.",
+  "description": "Verlaufstyp wählen, Winkel einstellen, Farbstopps mit Positionen hinzufügen oder entfernen. Live-Vorschau. CSS-Hintergrunddeklaration mit einem Klick kopieren.",
+  "metaDescription": "Kostenloser CSS-Verlauf-Generator mit Live-Vorschau. Lineare, radiale und konische Verläufe. Mehrere Stopps, Winkelsteuerung, kopierfertiger CSS-Code.",
+  "keywords": ["CSS Verlauf Generator", "linearer Verlauf", "radialer Verlauf", "konischer Verlauf", "Gradient Maker"],
+  "preview": "Vorschau",
+  "input": {
+    "type": "Typ",
+    "angle": "Winkel",
+    "stops": "Farbstopps"
+  },
+  "type": {
+    "linear": "Linear",
+    "radial": "Radial",
+    "conic": "Konisch"
+  },
+  "output": {
+    "css": "CSS-Code"
+  },
+  "addStop": "Stopp hinzufügen",
+  "removeStop": "Stopp entfernen",
+  "copy": "CSS kopieren",
+  "copied": "Kopiert!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Drei Verlaufstypen in CSS",
+        "paragraphs": [
+          "Linearer Verlauf: Farben gehen entlang einer geraden Linie in einem bestimmten Winkel ineinander über. 0° zeigt nach oben, 90° nach rechts (Standardleserichtung), 180° nach unten. Am gebräuchlichsten für Hintergründe, Buttons und Hero-Bereiche.",
+          "Radialer Verlauf: Farben gehen von einem Mittelpunkt nach außen über. Die Form kann ein Kreis (Standard) oder eine Ellipse sein. Ideal für Spotlight-Effekte, sonnenähnliche Elemente oder auffällige Mittelpunkte.",
+          "Konischer Verlauf: Farben rotieren um einen Mittelpunkt, wie ein Farbrad. Seltener, aber wirkungsvoll für Tortendiagramme, Zifferblätter oder dekorative Drehelemente. In modernen Browsern seit 2020 unterstützt."
+        ]
+      },
+      {
+        "heading": "Farbstopps und das Prozentsystem",
+        "paragraphs": [
+          "Jeder Farbstopp hat eine Farbe und eine Position von 0 % bis 100 %. 0 % ist der Anfang des Verlaufs, 100 % das Ende. Zwei Stopps erzeugen einen sanften Zweifarbverlauf. Ein dritter Stopp in der Mitte schafft je nach Positionierung einen Dreifarbverlauf oder ein scharfes Farbband.",
+          "Für harte Übergänge (ohne Überblendung) zwei Stopps an derselben Position mit unterschiedlichen Farben setzen. Zum Beispiel erzeugt '#000 50%, #fff 50%' einen harten Schwarz-Weiß-Schnitt in der Mitte. So werden 'gestreifte' Hintergründe erstellt."
+        ]
+      },
+      {
+        "heading": "Performance- und Barrierefreiheit-Tipps",
+        "paragraphs": [
+          "Verläufe werden nativ gerendert, ohne HTTP-Anfragen – anders als Hintergrundbilder. Sie skalieren verlustfrei und sind animationsfreundlich: Über background-position oder CSS Custom Properties lassen sie sich smooth bewegen.",
+          "Barrierefreiheit: Keinen Text direkt über einem komplexen Verlauf platzieren, wenn der Kontrast variiert. Entweder eine einfarbige Überlagerung verwenden, sicherstellen, dass die durchschnittliche Helligkeit des Verlaufs ausreichend Kontrast zum Text bietet, oder mit einem Kontrastprüfer testen. WCAG AA erfordert 4,5:1 für normalen Text und 3:1 für großen Text."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Vorlage auswählen", "text": "Oder von Grund auf neu mit Typ, Winkel und Stopps aufbauen." },
+      { "name": "Winkel einstellen", "text": "Für linear und konisch: 0–360°. Radial verwendet den Mittelpunkt als Ausgangspunkt." },
+      { "name": "Farbstopps hinzufügen", "text": "Mindestens zwei, kein praktisches Maximum. Jeder hat eine Farbe und eine 0–100 %-Position." },
+      { "name": "CSS kopieren", "text": "Auf 'CSS kopieren' klicken – direkt in die background-Eigenschaft des Stylesheets einfügen." }
+    ]
+  },
+  "faq": [
+    { "q": "Werden Verläufe in alten Browsern unterstützt?", "a": "Lineare und radiale Verläufe funktionieren in allen modernen Browsern (Edge, Firefox, Chrome, Safari seit 2014). Konische Verläufe benötigen Chrome 69+, Firefox 83+, Safari 12.1+ – für ältere Browser auf linear zurückfallen." },
+    { "q": "Kann ich diese in React Native oder mobilen Apps verwenden?", "a": "Web-CSS-Verläufe lassen sich nicht direkt in React Native übertragen – Bibliotheken wie `react-native-linear-gradient` verwenden. Die Farbstopps übertragen sich, die Syntax unterscheidet sich jedoch. iOS und Android nutzen plattformspezifische APIs." },
+    { "q": "Kann ich benannte Farben verwenden?", "a": "Ja. Einen beliebigen Hex-Code (z. B. #ff0000) durch den CSS-Farbnamen (red, dodgerblue usw.) im Texteingabefeld neben der Farbauswahl ersetzen." },
+    { "q": "Warum sieht mein konischer Verlauf seltsam aus?", "a": "Konische Verläufe rotieren im Uhrzeigersinn ab dem eingestellten Winkel. Sie sehen mit mehreren Stopps, die die volle 360°-Rotation abdecken, am besten aus. Mit nur 2 Stopps wirken sie oft unvollständig." },
+    { "q": "Wie erstelle ich einen 'Glow'-Effekt?", "a": "Einen radialen Verlauf mit vollständig transparentem Endpunkt verwenden: z. B. 'radial-gradient(circle, rgba(255,200,0,0.6) 0%, transparent 70%)'." },
+    { "q": "Kann ich den Verlauf animieren?", "a": "CSS animiert Verlaufsstopps nicht direkt, aber background-position für einen Bewegungseffekt lässt sich animieren, oder CSS Custom Properties können per JavaScript aktualisiert werden." },
+    { "q": "Warum ist der CSS-Code so lang?", "a": "Jeder Stopp fügt Farbe und Position hinzu. Verläufe mit vielen Stopps erzeugen ausführlichen Code. Für kompaktere Ergebnisse bei 2–3 Stopps bleiben." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Alles wird lokal berechnet; nichts wird an einen Server gesendet." }
+  ]
+}

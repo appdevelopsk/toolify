@@ -1,0 +1,107 @@
+{
+  "title": "Calculateur de Retraite (projection composée + ajustée à l'inflation)",
+  "shortDescription": "Projette ton épargne retraite avec des versements mensuels, un rendement attendu et l'inflation. Affiche le solde nominal, la valeur en euros d'aujourd'hui et le revenu mensuel selon la règle des 4 %.",
+  "description": "Saisis ton âge actuel, l'âge cible de retraite, l'épargne actuelle, le versement mensuel, le rendement annuel attendu et le taux d'inflation. Le calculateur projette la croissance composée et applique la règle des 4 % pour un retrait durable.",
+  "metaDescription": "Calculateur de retraite gratuit. Compose des versements mensuels sur des décennies, ajuste pour l'inflation en euros d'aujourd'hui, et applique la règle des 4 % pour un",
+  "keywords": [
+    "calculateur retraite",
+    "épargne retraite",
+    "calculateur PER",
+    "calculateur FIRE",
+    "retraite ajustée inflation"
+  ],
+  "input": {
+    "currentAge": "Âge actuel",
+    "retireAge": "Âge de retraite",
+    "currentSaved": "Épargne actuelle",
+    "monthly": "Versement mensuel",
+    "returnPct": "Rendement annuel %",
+    "inflationPct": "Inflation annuelle %"
+  },
+  "result": {
+    "nominalBalance": "Solde projeté",
+    "realBalance": "En euros d'aujourd'hui",
+    "contributed": "Total versé",
+    "growth": "Croissance des investissements",
+    "monthly4pct": "Revenu mensuel (règle des 4 %)",
+    "yearsLabel": "ans"
+  },
+  "empty": "Remplis tous les champs pour projeter ton épargne retraite.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionne la projection",
+        "paragraphs": [
+          "On compose ton solde de départ plus chaque versement mensuel au taux de rendement annuel. Le calcul est récursif : solde(mois+1) = solde(mois) × (1 + taux_mensuel) + versement_mensuel. Sur des décennies, même de modestes montants mensuels croissent considérablement grâce à la capitalisation — les rendements sur les rendements précédents se composent eux-mêmes.",
+          "On projette aussi une valeur en 'euros d'aujourd'hui' en déflactant le solde nominal avec ton taux d'inflation. Un million d'euros dans 30 ans ne vaut pas un million aujourd'hui — à 2,5 % d'inflation, 1 000 000 € dans 30 ans a le pouvoir d'achat d'environ 475 000 € aujourd'hui. Le chiffre en euros d'aujourd'hui est celui à comparer au coût de la vie actuel."
+        ]
+      },
+      {
+        "heading": "Quel taux utiliser",
+        "paragraphs": [
+          "La moyenne historique du CAC 40 ou d'un indice world diversifié tourne autour de 7-9 % nominal / 5-7 % réel (après inflation) sur de très longues périodes. Pour des projections de retraite à partir de 25 ans, 6-8 % nominal est raisonnable. Descendre sous 5 % est trop conservateur pour les horizons longs ; dépasser 9 % est optimiste compte tenu des valorisations actuelles.",
+          "Plus tu approches de la retraite, plus ton portefeuille devient généralement conservateur (plus d'obligations, moins d'actions). Pour une fenêtre de 5-10 ans avant la retraite, le rendement attendu descend à 4-6 % au fur et à mesure que la part obligataire augmente. Ce calculateur utilise un taux unique pour tout l'horizon — pour des projections plus nuancées, lance plusieurs scénarios avec des taux différents."
+        ]
+      },
+      {
+        "heading": "La règle des 4 %",
+        "paragraphs": [
+          "La règle des 4 % (Trinity Study, 1998) dit que tu peux retirer en toute sécurité 4 % de ton épargne retraite la première année, puis ajuster à la hausse chaque année selon l'inflation, avec une très haute probabilité de ne pas manquer d'argent sur 30 ans. Ainsi, 1 000 000 € d'épargne retraite soutient 40 000 €/an (soit environ 3 333 €/mois) de dépenses ajustées à l'inflation.",
+          "La règle a ses limites — elle est basée sur la performance historique des actions/obligations américaines et peut être optimiste pour certains scénarios futurs. Certains experts recommandent désormais 3-3,5 % pour plus de sécurité. Pour une retraite anticipée (FIRE) avec des horizons de 50 ans et plus, 3 % est plus conservateur. Utilise le chiffre des 4 % comme vérification approximative, pas comme garantie."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Saisis les âges actuel et de retraite",
+        "text": "La différence est ton horizon d'investissement."
+      },
+      {
+        "name": "Saisis ton solde de départ et ton versement mensuel",
+        "text": "PER, assurance-vie, PEA, comptes courants — tout ce qui est destiné à la retraite."
+      },
+      {
+        "name": "Règle les taux de rendement et d'inflation",
+        "text": "Valeurs raisonnables par défaut : 7 % de rendement (long terme réel), 2,5 % d'inflation (cible BCE)."
+      },
+      {
+        "name": "Lis les deux projections",
+        "text": "Le nominal est le montant réel en euros futurs ; les euros d'aujourd'hui représentent son pouvoir d'achat réel."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quel taux de rendement utiliser ?",
+      "a": "Pour des horizons de 25 ans et plus avec un portefeuille diversifié à dominante actions : 6-7 %. Pour des horizons plus courts ou un mix plus conservateur : 4-5 %. Hypothèse tout-actions : 7-8 %. Utilise les rendements réels historiques (après inflation) — c'est environ 5-7 % pour les actions à long terme."
+    },
+    {
+      "q": "Pourquoi les euros d'aujourd'hui sont-ils importants ?",
+      "a": "2 000 000 € dans 35 ans ça paraît fantastique, mais à 3 % d'inflation ça vaut environ 700 000 € aujourd'hui. Le chiffre en euros d'aujourd'hui te dit ce que ton épargne retraite pourra acheter en termes actuels — utile pour planifier les dépenses présentes et futures."
+    },
+    {
+      "q": "Dois-je utiliser des versements avant ou après impôt ?",
+      "a": "Ça dépend du type de compte. Le PER (Plan d'Épargne Retraite) permet une déduction fiscale à l'entrée (tu paieras l'impôt au retrait). L'assurance-vie en sortie rente ou rachat est imposée selon l'ancienneté. Pour un PER classique, ton solde retraite est brut — prévois 15-30 % de prélèvements à la sortie."
+    },
+    {
+      "q": "Et si j'augmente mes versements au fil du temps ?",
+      "a": "Lance le calculateur plusieurs fois pour chaque phase, ou utilise un versement constant qui approche ta moyenne. Dans la pratique, les contributions augmentent souvent avec le salaire ; le calculateur utilise un montant fixe."
+    },
+    {
+      "q": "Est-ce que ça inclut la retraite de base et complémentaire ?",
+      "a": "Non. La retraite CNAV et AGIRC-ARRCO sont des flux de revenus séparés. Projette ton épargne personnelle ici, puis ajoute tes estimations de pension de base et complémentaire pour un plan retraite complet."
+    },
+    {
+      "q": "Qu'est-ce que le 'taux de retrait sécurisé' ?",
+      "a": "Traditionnellement 4 % (Trinity Study). Pour les longues retraites (FIRE, 40 ans et plus), 3-3,5 % est plus sûr. Le calculateur affiche 4 % par défaut ; ajuste ton objectif mensuel si tu veux un taux différent."
+    },
+    {
+      "q": "De combien ai-je besoin pour prendre ma retraite ?",
+      "a": "Règle empirique : 25 fois tes dépenses annuelles (l'inverse de la règle des 4 %). Tu dépenses 30 000 €/an en euros d'aujourd'hui ? Il te faut 750 000 € en euros d'aujourd'hui (ou davantage en nominal en tenant compte de l'inflation d'ici la retraite)."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Tous les calculs de projection s'exécutent localement ; rien n'est envoyé à aucun serveur."
+    }
+  ]
+}

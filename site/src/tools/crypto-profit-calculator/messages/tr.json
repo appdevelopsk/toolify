@@ -1,0 +1,108 @@
+{
+  "title": "Kripto Kâr Hesaplayıcı (borsa komisyonlarıyla)",
+  "shortDescription": "Kripto işlem kârını, ROI'yi ve komisyon etkisini hesapla. Tutulan miktarı, alış fiyatını, satış fiyatını ve borsa komisyonu %'sini gir — her iki komisyon düşüldükten sonra net kârı al.",
+  "description": "Hem giriş hem de çıkışta borsa komisyonları dahil kripto işlem kârını hesapla. İşlemleri geriye dönük test etmek, borsalar arası komisyonları karşılaştırmak ve küçük veya sık işlemlerde komisyon yükünü anlamak için kullanışlıdır.",
+  "metaDescription": "Ücretsiz kripto kâr hesaplayıcı. Komisyon sonrası net kâr, ROI% ve komisyon etkisi. Miktar, alış/satış fiyatı ve borsa komisyonu gir.",
+  "keywords": [
+    "kripto kâr hesaplayıcı",
+    "kripto işlem kârı",
+    "bitcoin kârı",
+    "kripto ROI",
+    "borsa komisyon etkisi"
+  ],
+  "empty": "Miktar, alış fiyatı, satış fiyatı ve komisyon gir.",
+  "input": {
+    "amount": "Coin miktarı",
+    "buyPrice": "Alış fiyatı (coin başına)",
+    "sellPrice": "Satış fiyatı (coin başına)",
+    "feePct": "Borsa komisyonu %"
+  },
+  "result": {
+    "netProfit": "Net kâr",
+    "roi": "ROI",
+    "cost": "Toplam maliyet",
+    "gross": "Brüt gelir",
+    "totalFees": "Toplam komisyonlar"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Komisyonlar kârı nasıl yutar?",
+        "paragraphs": [
+          "Kripto borsaları hem giriş hem de çıkışta komisyon alır. İki kez uygulanan %0,2 maker/taker komisyonu, işlem değerinin %0,4'ünün komisyon olduğu anlamına gelir — büyük fiyat hareketleri için küçük, küçük hareketler için yıkıcı. %0,2/%0,2 komisyon yapısında başa baş gelmek için fiyatın en az %0,4 lehinize hareket etmesi gerekir.",
+          "Komisyonlar büyük farklılıklar gösterir: en iyi merkezi borsalar taraf başına %0,1-0,4 alır. Merkeziyetsiz borsalar (Uniswap vb.) %0,3 havuz ücreti artı gas alır (Ethereum'da ağ koşullarına bağlı olarak 5-50 dolar veya daha fazla olabilir). Bazı borsalar pazarlama amacıyla belirli çiftlerde %0 komisyon sunar — bunu daha geniş spread ile telafi edip etmediklerini kontrol edin."
+        ]
+      },
+      {
+        "heading": "ROI'yi yorumlamak",
+        "paragraphs": [
+          "ROI (yatırım getirisi), net kârın toplam yatırılan sermayeye (maliyet artı alış komisyonu) bölümüdür. Farklı büyüklükteki işlemleri karşılaştırmak için en kullanışlı metrik budur. 100₺'lik işlemde 20₺ kazanmak (%20 ROI), 10.000₺'de 2.000₺ kazanmakla (her ikisi de %20 ROI) matematiksel olarak aynı sonuçtur.",
+          "ROI ile mutlak kâr arasındaki farka dikkat edin. Günlük işlem yapanlar genellikle çok sayıda küçük ROI kazancı için optimize eder. Uzun vadeli yatırımcılar mutlak kârla daha çok ilgilenir. Her ikisi de geçerlidir; stratejileri karşılaştırırken bunları karıştırma."
+        ]
+      },
+      {
+        "heading": "Vergi etkileri (genel)",
+        "paragraphs": [
+          "Çoğu yargı bölgesi kripto işlemlerini sermaye kazancı olarak vergilendirir. Türkiye'de kripto işlemleri gelir vergisine tabi olabilir; güncel vergi mevzuatı için Mali Müşavirinize danışın.",
+          "Her işlemi tarih, varlık, miktar, zamanındaki TL karşılığı ve komisyonlarla takip edin. CoinTracker, Koinly ve TaxBit gibi araçlar borsa CSV'lerini alıp vergi raporları üretebilir. Bu, vergi danışmanlığı değildir; yerel kuralları danışmanınızla kontrol edin."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Coin miktarını gir",
+        "text": "Ne kadar aldığın (örn. 0,5 BTC, 100 SOL)."
+      },
+      {
+        "name": "Coin başına alış fiyatını gir",
+        "text": "Girişte birim başına ödediğin tutar."
+      },
+      {
+        "name": "Coin başına satış fiyatını gir",
+        "text": "Birim başına aldığın (veya almayı beklediğin) tutar."
+      },
+      {
+        "name": "Borsa komisyonu %'yi gir",
+        "text": "Taraf başına. Çoğu merkezi borsa %0,1-0,4 alır."
+      },
+      {
+        "name": "Dökümü oku",
+        "text": "Net kâr, ROI%, toplam komisyonlar, maliyet ve brüt gelir."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Komisyon hem alış hem satışa uygulanıyor mu?",
+      "a": "Evet, bu hesaplayıcıda. Her iki tarafta aynı komisyonu varsayıyoruz. Komisyonlarınız farklıysa (örn. %0,1 alış, %0,4 satış), ortalamayı kullanın veya iki hesaplama yapın."
+    },
+    {
+      "q": "Kayma payı ne olacak?",
+      "a": "Kayma payı, düşük likidite piyasalarında yaygın olan beklenen ile gerçek uygulama fiyatı arasındaki farktır. Bu hesaplayıcı kaymayı modellemez — gerçek dolum fiyatlarınızı kullanın."
+    },
+    {
+      "q": "DEX işlemleri için gas ücretlerini dahil etmeli miyim?",
+      "a": "Gas ücretlerini işlem değerinin yüzdesi olarak dönüştürüp komisyon alanına ekleyin. 10₺ gas bulunan 1.000₺'lik işlem için bu taraf başına %1 ek komisyondur."
+    },
+    {
+      "q": "Stablecoin'ler için de çalışıyor mu?",
+      "a": "Evet. Stablecoin-stablecoin işlemleri genellikle ince kâr (%0,1-0,3) sunar ve komisyonlar kazançları kolayca silebilir. Hesaplayıcı bunları doğru işler."
+    },
+    {
+      "q": "Stop loss nasıl dahil ederim?",
+      "a": "Hesaplayıcıyı iki kez kullanın: bir kez planlanan kâr alma çıkışı için, bir kez stop loss çıkışı için. Riskinizi boyutlandırmak için her iki sonucu pozisyon büyüklüğünüzle karşılaştırın."
+    },
+    {
+      "q": "Varsaymak için iyi bir komisyon % nedir?",
+      "a": "Çoğu büyük borsa için %0,1-0,2 (Binance, Kraken). Perakende/standart katmanlar için %0,4-1. DEX'ler için gas dahil %0,3-1."
+    },
+    {
+      "q": "ROI neden kâr %'sinden farklı?",
+      "a": "ROI, maliyet bazını payda olarak kullanır (maliyet + alış komisyonu). 'Kâr %' genellikle alış komisyonu olmadan başlangıç yatırımını kullanır; bu da sayıyı biraz şişirir."
+    },
+    {
+      "q": "Veriler tarayıcımı terk ediyor mu?",
+      "a": "Hayır. Hesaplama yerel olarak çalışır; sunucuya hiçbir şey gönderilmez."
+    }
+  ]
+}

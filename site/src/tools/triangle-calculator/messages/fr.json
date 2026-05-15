@@ -1,0 +1,111 @@
+{
+  "title": "Calculateur de Triangle (rectangle, CCC, SAS)",
+  "shortDescription": "Calcule l'aire, le périmètre, les côtés et les angles d'un triangle. Trois modes : triangle rectangle (Pythagore), trois côtés (CCC), ou deux côtés + angle inclus (SAS).",
+  "description": "Choisis un mode, saisis les valeurs connues, et obtiens tous les côtés, les trois angles, l'aire et le périmètre. Valide l'inégalité triangulaire pour le mode CCC.",
+  "metaDescription": "Calculateur de triangle gratuit. Modes rectangle (Pythagore), CCC ou SAS. Retourne les côtés, angles, aire, périmètre.",
+  "keywords": [
+    "calculateur triangle",
+    "théorème de Pythagore",
+    "loi des cosinus",
+    "aire triangle",
+    "résoudre triangle"
+  ],
+  "empty": "Saisis les valeurs connues pour le mode sélectionné.",
+  "invalid": "Triangle invalide : viole l'inégalité triangulaire (le côté le plus long doit être plus court que la somme des deux autres).",
+  "mode": {
+    "right": "Triangle rectangle",
+    "sss": "Trois côtés (CCC)",
+    "sas": "Deux côtés + angle (SAS)"
+  },
+  "input": {
+    "legA": "Côté a",
+    "legB": "Côté b",
+    "sideA": "Côté a",
+    "sideB": "Côté b",
+    "sideC": "Côté c",
+    "angleC": "Angle C (degrés)"
+  },
+  "result": {
+    "area": "Aire",
+    "perim": "Périmètre",
+    "sides": "Côtés",
+    "angles": "Angles"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Trois modes pour trois problèmes",
+        "paragraphs": [
+          "Triangle rectangle (côtés a, b) : le cas le plus courant. Hypoténuse c = √(a² + b²) par le théorème de Pythagore. Angle A = arctan(a/b), B = arctan(b/a), C = 90°. Aire = (a × b) / 2.",
+          "Trois côtés (CCC — Côté-Côté-Côté) : quand tu connais les trois longueurs de côté. Valide avec l'inégalité triangulaire (côté le plus long < somme des deux autres). Angles via la loi des cosinus : cos A = (b² + c² − a²) / (2bc). Aire via la formule de Héron : √(s(s−a)(s−b)(s−c)) où s = (a+b+c)/2.",
+          "Deux côtés + angle inclus (SAS — Side-Angle-Side) : quand tu connais deux côtés et l'angle entre eux. Troisième côté via la loi des cosinus : c = √(a² + b² − 2ab cos C). Autres angles via la loi des sinus. Aire = (1/2) × a × b × sin C."
+        ]
+      },
+      {
+        "heading": "Quand utiliser chaque mode",
+        "paragraphs": [
+          "Le triangle rectangle est le plus courant en géométrie quotidienne — construire un angle de mur, calculer la pente d'un toit, trouver la diagonale d'une TV à partir de la largeur et de la hauteur. Le théorème de Pythagore est l'une des formules les plus utilisées en construction et en design.",
+          "CCC apparaît dans l'arpentage, la navigation et tout cas où tu mesures directement trois côtés. Utile pour vérifier la forme d'un triangle à partir de mesures physiques.",
+          "SAS est pour les cas où tu as deux côtés se rejoignant à un angle connu mais le troisième côté est non mesuré ou difficile d'accès. Courant dans les cours de trigonométrie et les exercices de trigonométrie."
+        ]
+      },
+      {
+        "heading": "Applications pratiques",
+        "paragraphs": [
+          "Construction : pente de toit à partir de la hauteur et de la longueur (triangle rectangle). La règle du charpentier 3-4-5 : un triangle 3-4-5 a un angle parfaitement droit, sans rapporteur.",
+          "Navigation : la triangulation utilise CCC ou SAS pour trouver ta position à partir de trois points de repère connus. La même mathématique propulse le GPS (avec des corrections relativistes).",
+          "Infographie : tout modèle 3D est décomposé en triangles. La formule d'aire de triangle apparaît dans le code de shader calculant l'éclairage de surface.",
+          "Astronomie : les mesures de distance par parallaxe utilisent les principes CCC. L'angle soleil-Terre-étoile donne la distance de l'étoile par trigonométrie simple."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis un mode",
+        "text": "Triangle rectangle, CCC (trois côtés), ou SAS (deux côtés + angle)."
+      },
+      {
+        "name": "Saisis les valeurs connues",
+        "text": "Chaque mode nécessite des entrées différentes."
+      },
+      {
+        "name": "Lis toutes les inconnues",
+        "text": "Côtés, angles, aire et périmètre tous calculés."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qu'est-ce que l'inégalité triangulaire ?",
+      "a": "Pour que trois longueurs forment un triangle, la somme de deux quelconques doit dépasser la troisième. Donc 3, 4, 5 est valide (3+4=7 > 5) ; 1, 2, 5 ne l'est pas (1+2=3 < 5). Le calculateur détecte cela en mode CCC."
+    },
+    {
+      "q": "Quelle est la précision ?",
+      "a": "Précision en virgule flottante (~15-17 chiffres significatifs). Pour les entrées typiques, l'erreur est bien inférieure à l'erreur de mesure dans le monde réel."
+    },
+    {
+      "q": "Les angles peuvent-ils être en radians ?",
+      "a": "Pas encore — on utilise des degrés dans tous les modes. Convertis via radians × 180/π si nécessaire, ou utilise notre convertisseur d'angles."
+    },
+    {
+      "q": "Et si mon triangle a un angle obtus ?",
+      "a": "Tous les modes gèrent correctement les triangles obtus. Assure-toi pour SAS que l'angle inclus est strictement entre 0° et 180°."
+    },
+    {
+      "q": "Pourquoi ça ne fonctionne pas pour tous les 'deux côtés et un angle' ?",
+      "a": "On supporte SAS (l'angle ENTRE deux côtés). Le cas ambigu (SSA — deux côtés et un angle opposé à l'un d'eux) a parfois 0, 1 ou 2 triangles valides. CCC et SAS sont non ambigus."
+    },
+    {
+      "q": "Puis-je résoudre des problèmes de type triangle rectangle 3-4-5 ?",
+      "a": "3-4-5 est un triangle rectangle. Pour un triangle obtus, essaie 4-5-7 en mode CCC — l'angle le plus grand est supérieur à 90°."
+    },
+    {
+      "q": "Comment trouver un côté avec seulement les angles ?",
+      "a": "C'est impossible — les angles seuls déterminent la forme mais pas la taille. Tu as besoin d'au moins un côté. Deux angles + un côté suffisent (le troisième angle = 180 − somme des deux)."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Le calcul s'exécute localement ; rien n'est envoyé à un serveur."
+    }
+  ]
+}

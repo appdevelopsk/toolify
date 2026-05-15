@@ -1,0 +1,99 @@
+{
+  "title": "Contador de Palavras (com tempo de leitura e fala)",
+  "shortDescription": "Conte palavras, caracteres, frases, parágrafos, mais o tempo estimado de leitura e fala. Lida corretamente com idiomas CJK.",
+  "description": "Cole qualquer texto para ver contagem de palavras, contagem de caracteres (com e sem espaços), contagem de frases, contagem de parágrafos e estimativas de tempo para leitura silenciosa e em voz alta.",
+  "metaDescription": "Contador de palavras gratuito online com tempo de leitura. Conta palavras, caracteres, frases e parágrafos em tempo real.",
+  "keywords": [
+    "contador de palavras",
+    "contagem de caracteres",
+    "tempo de leitura",
+    "contagem de palavras de redação",
+    "contador de letras"
+  ],
+  "placeholder": "Cole ou digite seu texto aqui…",
+  "stat": {
+    "words": "Palavras",
+    "characters": "Caracteres",
+    "charactersNoSpaces": "Sem espaços",
+    "sentences": "Frases",
+    "paragraphs": "Parágrafos",
+    "readingTime": "Tempo de leitura",
+    "speakingTime": "Tempo de fala"
+  },
+  "unit": {
+    "min": "min"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Como cada métrica é calculada",
+        "paragraphs": [
+          "Caracteres são o comprimento bruto do texto, incluindo espaços, quebras de linha e emoji. 'Sem espaços' remove espaços em branco antes de contar. Palavras são divididas por espaços para idiomas de escrita latina; para japonês, chinês, coreano e tailandês, cada ideograma é contado como uma palavra, pois esses idiomas não usam espaçamento de palavras como o português.",
+          "Frases são detectadas por pontuação terminal (. ! ? em scripts latinos; 。！？ em CJK). Parágrafos são blocos separados por linhas em branco. Essas regras são pragmáticas — textos com pontuação peculiar podem estar incorretos em um, mas para prosa normal as contagens são confiáveis."
+        ]
+      },
+      {
+        "heading": "Como o tempo de leitura é estimado",
+        "paragraphs": [
+          "O tempo de leitura usa 200 palavras por minuto, a mediana para adultos lendo prosa. O tempo de fala usa 130 palavras por minuto, a taxa de um orador público experiente. Ambos são arredondados para cima para o minuto inteiro mais próximo, então uma frase de 50 palavras mostra '1 min'.",
+          "Esses números são aproximações. Textos técnicos densos são lidos mais devagar (cerca de 150 ppm), ficção leve é lida mais rápido (cerca de 250 ppm), e o ritmo de apresentação varia muito com o estilo e o público. Use a cifra como verificação de sanidade, não como cronômetro."
+        ]
+      },
+      {
+        "heading": "Usos comuns",
+        "paragraphs": [
+          "Blogueiros e escritores usam contagens de palavras para atingir um comprimento alvo (a maioria dos artigos de formato longo mira 1.500-2.500 palavras para SEO). Estudantes usam para trabalhos de escola e redações do ENEM. Criadores de conteúdo usam a contagem de caracteres para limites de posts no X (Twitter) e comprimentos de meta descrições. Palestrantes usam o tempo de fala para calibrar scripts para uma palestra relâmpago de 5 minutos versus uma apresentação de 20 minutos.",
+          "Tradutores e editores acompanham todas as quatro contagens ao faturar por palavra ou por caractere — a escolha entre 'com espaços' e 'sem espaços' afeta os valores em 10-20%."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Cole seu texto",
+        "text": "Digite ou cole na área de texto. As contagens se atualizam a cada pressionamento de tecla."
+      },
+      {
+        "name": "Leia as métricas",
+        "text": "Todas as sete métricas são visíveis de uma vez — palavras, caracteres, frases, parágrafos e as estimativas de tempo."
+      },
+      {
+        "name": "Ajuste conforme necessário",
+        "text": "Edite o texto diretamente para trazer a contagem de palavras a uma meta, depois copie a versão editada."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Por que minha contagem de palavras CJK é maior do que esperava?",
+      "a": "Contamos cada ideograma (hanzi chinês, kanji/kana japonês, hangul coreano) como uma palavra. Palavras em script latino no mesmo texto ainda são contadas por espaços."
+    },
+    {
+      "q": "Emoji são contados como caracteres?",
+      "a": "Sim. Alguns emoji são tecnicamente múltiplas unidades de código Unicode; o contador segue o comprimento de string JavaScript, que conta cada unidade de código UTF-16."
+    },
+    {
+      "q": "O tempo de leitura é preciso?",
+      "a": "A cifra de 200 ppm corresponde à velocidade de leitura silenciosa mediana de adultos para prosa. Texto altamente técnico é lido mais devagar; ficção fácil é lida mais rápido — trate como uma estimativa de ±30%."
+    },
+    {
+      "q": "Por que a contagem de frases parece errada?",
+      "a": "A detecção é baseada na pontuação terminal. Listas, títulos sem pontuação ou estilos de prosa incomuns podem deslocar em um. A contagem de palavras permanece confiável."
+    },
+    {
+      "q": "O texto sai do meu navegador?",
+      "a": "Não. Tudo é executado localmente; não temos um endpoint de servidor que receba a entrada."
+    },
+    {
+      "q": "Qual é o limite de comprimento do texto?",
+      "a": "Não há limite aplicado. Navegadores modernos lidam com texto de múltiplos megabytes sem problemas, embora a área de texto possa desacelerar acima de cerca de 100.000 caracteres."
+    },
+    {
+      "q": "Posso contar posts do X (Twitter)?",
+      "a": "Sim — use 'caracteres' (com espaços) pois o X conta espaços em branco. O limite de 280 caracteres também inclui URLs como 23 caracteres."
+    },
+    {
+      "q": "Isso suporta Markdown?",
+      "a": "Conta o texto bruto incluindo a sintaxe Markdown. Se quiser uma contagem 'renderizada', cole apenas a saída renderizada."
+    }
+  ]
+}

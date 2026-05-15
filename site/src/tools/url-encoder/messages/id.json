@@ -1,0 +1,54 @@
+{
+  "title": "Enkoder / Dekoder URL (persen-encoding, aman UTF-8)",
+  "shortDescription": "Enkode teks apapun ke dalam persen-encoding URL atau dekode string yang dikodekan kembali. Aman UTF-8 — menangani emoji dan karakter CJK dengan benar.",
+  "description": "Gunakan untuk menyematkan teks dengan aman di URL, parameter kueri, atau data formulir. Menangani spasi, karakter khusus, dan Unicode (termasuk CJK dan emoji) dengan benar.",
+  "metaDescription": "Enkoder dan dekoder URL gratis. Konversi teks ke persen-encoding atau dekode string yang dikodekan kembali ke teks biasa. Aman UTF-8, menangani semua Unicode.",
+  "keywords": ["enkoder URL", "dekoder URL", "persen encoding", "URI encode", "decodeURIComponent"],
+  "input": { "plain": "Teks biasa", "encoded": "String URL yang dikodekan" },
+  "output": { "encoded": "Hasil yang dikodekan", "plain": "Hasil yang didekode" },
+  "mode": { "encode": "Enkode", "decode": "Dekode" },
+  "copy": "Salin",
+  "copied": "Disalin",
+  "error": "Kesalahan dekode",
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa itu encoding URL",
+        "paragraphs": [
+          "URL dibatasi pada set kecil karakter ASCII. Untuk menyertakan hal lain — spasi, aksen, karakter Cina, emoji, simbol khusus — Anda mengganti setiap byte yang tidak aman dengan %XX di mana XX adalah nilai byte heksadesimalnya. Spasi menjadi %20, garis miring %2F, karakter kanji 漢 menjadi %E6%BC%A2 (byte UTF-8-nya yang dikodekan persen).",
+          "Kalkulator ini menggunakan encodeURIComponent dan decodeURIComponent bawaan browser. Ia mengkodekan semua yang bukan karakter yang tidak dikhususkan (huruf, digit, -._~), yang merupakan perilaku yang tepat untuk parameter kueri dan data formulir."
+        ]
+      },
+      {
+        "heading": "encodeURI vs encodeURIComponent",
+        "paragraphs": [
+          "JavaScript memiliki dua enkoder. encodeURI membiarkan karakter struktur URL (/ ? & # = + dll.) tidak diubah — gunakan pada URL lengkap. encodeURIComponent meng-escape semuanya — gunakan pada nilai di dalam parameter kueri.",
+          "Alat ini menggunakan encodeURIComponent, pilihan yang lebih aman untuk menyematkan teks sembarang ke dalam URL. Jika Anda memiliki URL lengkap dengan struktur yang ingin Anda pertahankan, kodekan hanya bagian yang perlu."
+        ]
+      },
+      {
+        "heading": "Jebakan umum",
+        "paragraphs": [
+          "Tanda plus dalam URL. Beberapa server memperlakukan '+' sebagai spasi (warisan dari form encoding). encodeURIComponent membiarkan '+' sendiri, tetapi server mungkin mendekodenya sebagai spasi. Untuk keamanan, ganti '+' dengan %2B jika Anda mengirimnya sebagai data.",
+          "Pengkodean ganda. Mengkodekan string yang sudah dikodekan menambahkan lapisan lain (% menjadi %25, jadi '%20' menjadi '%2520'). Selalu periksa apakah input sudah dikodekan sebelum menjalankan enkode lagi.",
+          "Peningkatan panjang. Karakter multi-byte UTF-8 berkembang menjadi 3-4 kode persen masing-masing. String 100 karakter dalam huruf Indonesia dengan aksara khusus dapat dengan mudah menjadi URL 300+ karakter."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih mode", "text": "Enkode teks biasa ke bentuk aman URL, atau dekode string yang dikodekan URL kembali ke teks biasa." },
+      { "name": "Tempel input Anda", "text": "Teks biasa untuk pengkodean, string yang dikodekan persen untuk pendekodean." },
+      { "name": "Salin hasilnya", "text": "Output muncul di bawah; klik 'Salin' untuk menggunakannya." }
+    ]
+  },
+  "faq": [
+    { "q": "Mengapa '%20' saya tidak didekode menjadi spasi?", "a": "Seharusnya bisa — tetapi jika Anda memiliki '+' dalam URL itu mungkin juga merepresentasikan spasi (form encoding warisan). Ganti + dengan spasi terlebih dahulu jika diperlukan." },
+    { "q": "Apakah ini menangani emoji?", "a": "Ya. Emoji dikodekan sebagai urutan byte UTF-8 mereka (biasanya 4 byte / 4 kode persen per emoji)." },
+    { "q": "Apa perbedaan antara encoding URL dan encoding HTML?", "a": "Encoding URL menggunakan notasi % untuk konteks URL. Encoding HTML menggunakan &lt; &gt; dll. untuk HTML. Konteks berbeda, aturan berbeda." },
+    { "q": "Kapan saya harus mengkodekan dan kapan tidak?", "a": "Kodekan nilai apapun yang masuk ke parameter kueri URL, segmen jalur yang mengandung input pengguna, atau data formulir. Jangan kodekan URL yang sudah dibuat — itu akan mengkodekan ganda." },
+    { "q": "Mengapa '%' dalam teks yang didekode menyebabkan kesalahan?", "a": "Tanda '%' kosong yang diikuti sesuatu yang bukan hex valid adalah persen-encoding yang tidak valid. Kodekan '%' ke '%25' sebelum menyertakannya dalam URL." },
+    { "q": "Apakah browser melakukan ini secara otomatis?", "a": "Ya — saat membangun URL melalui API URL atau URLSearchParams. Alat ini mengekspos logika yang sama untuk penggunaan ad-hoc." },
+    { "q": "Karakter mana yang 'aman' dan tidak perlu dikodekan?", "a": "Huruf (A-Z, a-z), digit (0-9), dan ini: - . _ ~ . Semua yang lain mendapatkan persen-kodekan oleh encodeURIComponent." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Pengkodean dan pendekodean keduanya berjalan secara lokal." }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "title": "Sparziel-Rechner (Zeit bis zum Ziel)",
+  "shortDescription": "Finde heraus, wie lange es dauert, ein Sparziel zu erreichen – ausgehend von einem Anfangsguthaben, monatlichem Beitrag und jährlicher Rendite.",
+  "description": "Gib dein Ziel, aktuelles Guthaben, monatliche Sparrate und erwartete Jahresrendite ein. Der Rechner berechnet die Anzahl der Monate, bis du das Ziel erreichst.",
+  "metaDescription": "Kostenloser Sparziel-Rechner. Sieh, wie lange es dauert, einen Zielbetrag bei monatlichen Beiträgen und Zinssatz zu erreichen. Zinseszins, monatliche Verzinsung.",
+  "keywords": ["Sparziel Rechner", "Zeit bis Sparziel", "Sparziel berechnen", "wie lange bis zum Sparziel", "Sparrechner"],
+  "empty": "Ziel und entweder monatlichen Beitrag oder Rendite über 0 eingeben.",
+  "input": {
+    "goal": "Zielbetrag",
+    "start": "Anfangsguthaben",
+    "monthly": "Monatlicher Beitrag",
+    "ratePct": "Jahresrendite %"
+  },
+  "result": {
+    "timeToGoal": "Zeit bis zum Ziel",
+    "years": "J.",
+    "months": "M.",
+    "totalMonths": "Gesamtmonate",
+    "totalContrib": "Gesamte Einzahlungen",
+    "interest": "Verdiente Zinsen"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie die Zeit bis zum Ziel berechnet wird",
+        "paragraphs": [
+          "Die Standard-Zukunftswertformel ist FV = P × (1 + r)^n + M × ((1 + r)^n − 1) / r, wobei P das Anfangsguthaben, M der monatliche Beitrag, r der monatliche Zinssatz (jährlich / 12) und n die Monate ist. FV = dein Ziel setzen und nach n auflösen ergibt n = log((Z × r + M) / (P × r + M)) / log(1 + r).",
+          "Wenn der Zinssatz null ist, reduziert sich die Formel auf (Z − P) / M Monate. Der Rechner wählt den richtigen Weg automatisch und rundet auf den nächsten ganzen Monat auf, da ein monatlicher Beitrag nicht ‚halb' geleistet werden kann."
+        ]
+      },
+      {
+        "heading": "Was mehr zählt: monatlicher Beitrag oder Rendite?",
+        "paragraphs": [
+          "Für typische Sparhorizonte (1–10 Jahre) dominiert der monatliche Beitrag. Von 300 € auf 500 € pro Monat zu gehen macht einen viel größeren Unterschied als von 3 % auf 5 % Rendite zu gehen. Zeit und Beitrag sind linear; Rendite ist exponentiell, aber nur über sehr lange Horizonte.",
+          "Für 20+-Jahres-Ziele (Rente, Ausbildungsfonds) wird die Rendite entscheidend. Dieselben 500 €/Monat über 30 Jahre ergeben bei 4 % vs. 8 % vastly unterschiedliche Gesamtsummen. Deshalb sind frühe Altersvorsorge-Ersparnisse exponentiell wertvoller als spätere."
+        ]
+      },
+      {
+        "heading": "Realistische Zinssätze",
+        "paragraphs": [
+          "Tagesgeld / Hochzinssparkonto: 3–4 % in aktuellen deutschen Raten. Geldmarktfonds: ähnlich. Festgeld: 3–4 % für feste Laufzeiten. Staatsanleihen: 3–4 % aber längere Bindungszeit.",
+          "Diversifizierter Aktienindex (MSCI World historischer Durchschnitt): etwa 7–9 % nominal / 5–7 % real. Für konservative Planung 5–6 % verwenden.",
+          "Inflation frisst 2–3 % pro Jahr. Für ‚heutige Euro'-Ziele die erwartete Inflation von deiner Nominalrate abziehen."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Ziel eingeben", "text": "Der Betrag, den du erreichen möchtest." },
+      { "name": "Anfangsguthaben eingeben", "text": "Was du heute hast; kann 0 sein." },
+      { "name": "Monatlichen Beitrag eingeben", "text": "Was du jeden Monat hinzufügen wirst." },
+      { "name": "Erwartete Jahresrendite eingeben", "text": "Konservativ: 3–4 %. Aktienmarkt: 5–8 %." },
+      { "name": "Ergebnis ablesen", "text": "Jahre, Monate bis zum Ziel, plus gesamte Einzahlungen und verdiente Zinsen." }
+    ]
+  },
+  "faq": [
+    { "q": "Warum wird auf ganze Monate aufgerundet?", "a": "Weil man einen monatlichen Beitrag nicht ‚halb' leisten kann. Wenn die Mathematik 32,4 Monate sagt, erreichst du dein Ziel tatsächlich in Monat 33 (bei konstantem Beitrag)." },
+    { "q": "Welchen Zinssatz soll ich verwenden?", "a": "Für Tagesgeld: 3–4 %. Für MSCI World langfristig: 5–7 %. Für ultrakonservativ: 0 % verwenden, um zu sehen, wie lang reines Sparen dauert." },
+    { "q": "Soll ich Inflation berücksichtigen?", "a": "Wenn dein Ziel in heutigen Euro ist, erwartete Inflation von deiner Rate abziehen (z. B. 6 % nominal − 2,5 % Inflation = 3,5 % real). Der Rechner gibt dann eine ‚reale' Kaufkraft-Antwort." },
+    { "q": "Setzt das monatliche Verzinsung voraus?", "a": "Ja – Zinsen werden im gleichen monatlichen Rhythmus wie deine Beiträge aufgezinst. Für die meisten Sparprodukte entspricht das der Realität eng." },
+    { "q": "Was, wenn ich 0 € pro Monat bei 0 % Rendite spare?", "a": "Dann kannst du kein Ziel über deinem Anfangsguthaben erreichen. Der Rechner gibt in diesem Fall kein Ergebnis zurück." },
+    { "q": "Sind die Zinsen steuerpflichtig?", "a": "In den meisten Ländern ja (sofern nicht in einem steuerlich begünstigten Konto). In Deutschland gilt der Sparerpauschbetrag von 1.000 €/Jahr (2.000 € für Paare), darüber 25 % Abgeltungssteuer. Die effektive Nachsteuer-Rendite verwenden." },
+    { "q": "Was, wenn mein Beitrag variiert?", "a": "Den Rechner mehrmals für jede Phase ausführen. Für variable Beiträge ist eine Finanzplanungs-Tabellenkalkulation flexibler." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein – Berechnungen laufen lokal." }
+  ]
+}

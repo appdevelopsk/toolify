@@ -1,0 +1,100 @@
+{
+  "title": "Résolveur d'Équation du Second Degré (ax² + bx + c = 0)",
+  "shortDescription": "Résous n'importe quelle équation du second degré. Retourne les racines réelles ou complexes, le discriminant et les coordonnées du sommet de la parabole.",
+  "description": "Saisis les coefficients a, b, c. Le solveur applique la formule quadratique x = (−b ± √(b²−4ac)) / 2a. Distingue deux racines réelles, une racine double, deux racines complexes conjuguées ou les cas dégénérés.",
+  "metaDescription": "Résolveur d'équation du second degré gratuit. Racines réelles ou complexes, discriminant, coordonnées du sommet.",
+  "keywords": [
+    "résolveur équation second degré",
+    "formule quadratique",
+    "discriminant",
+    "racines complexes",
+    "sommet parabole"
+  ],
+  "empty": "Saisis les coefficients a, b, c.",
+  "result": {
+    "twoReal": "Deux racines réelles",
+    "oneReal": "Une racine réelle double",
+    "complex": "Deux racines complexes conjuguées",
+    "linear": "Équation linéaire (a = 0)",
+    "linearLabel": "a est 0 ; c'est une équation linéaire :",
+    "all": "Tout x est solution (tous les coefficients sont nuls).",
+    "none": "Pas de solution (b = 0, c ≠ 0).",
+    "discriminant": "Discriminant (b² − 4ac)",
+    "vertex": "Sommet de la parabole"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "La formule quadratique",
+        "paragraphs": [
+          "Pour ax² + bx + c = 0 avec a ≠ 0, les solutions sont x = (−b ± √(b² − 4ac)) / (2a). L'expression sous la racine carrée est le « discriminant » (Δ = b² − 4ac), et son signe détermine le type de racines.",
+          "Δ > 0 : deux racines réelles distinctes. La parabole coupe l'axe des x en deux points.",
+          "Δ = 0 : une racine réelle double. La parabole touche l'axe des x au sommet (tangente).",
+          "Δ < 0 : deux racines complexes conjuguées. La parabole ne touche pas du tout l'axe des x."
+        ]
+      },
+      {
+        "heading": "Sommet et forme de la parabole",
+        "paragraphs": [
+          "Toute équation quadratique donne une parabole. Le sommet (point de retournement) est en x = −b / 2a, et en substituant on obtient la coordonnée y. Nous la calculons comme y = −Δ / 4a, ce qui est équivalent.",
+          "Si a > 0, la parabole s'ouvre vers le haut et le sommet est le minimum. Si a < 0, vers le bas et le sommet est le maximum. L'axe de symétrie passe verticalement par le sommet."
+        ]
+      },
+      {
+        "heading": "Cas dégénérés",
+        "paragraphs": [
+          "Si a = 0, l'équation n'est pas vraiment quadratique — elle devient linéaire : bx + c = 0, avec solution x = −c/b (si b ≠ 0). Nous détectons cela et résolvons comme une équation linéaire.",
+          "Si a = 0 ET b = 0 : c doit être nul pour qu'une solution existe. Si c = 0, tout x est solution ; si c ≠ 0, pas de solution. Nous signalons les deux cas."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Saisis les coefficients",
+        "text": "a, b, c. Utilise des nombres négatifs si nécessaire (ex. −3 pour le coefficient b)."
+      },
+      {
+        "name": "Lis l'équation",
+        "text": "L'affichage montre ton ax² + bx + c = 0 actuel."
+      },
+      {
+        "name": "Lis les racines",
+        "text": "Deux réelles, une double, ou deux complexes conjuguées, plus le discriminant et le sommet."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Pourquoi le discriminant est-il utile ?",
+      "a": "Il te dit la nature des racines sans résoudre : Δ > 0 signifie deux racines réelles, Δ = 0 signifie une double, Δ < 0 signifie complexes. C'est souvent tout ce qu'il faut savoir."
+    },
+    {
+      "q": "Qu'est-ce qu'une « racine double » ?",
+      "a": "Quand Δ = 0, la formule donne x = −b/2a seulement. Algébriquement, l'équation se factorise en a(x − r)² = 0, donc r apparaît deux fois comme racine avec « multiplicité 2 »."
+    },
+    {
+      "q": "Les racines complexes sont-elles utiles dans le monde réel ?",
+      "a": "Oui. Les circuits AC, le traitement du signal, la mécanique quantique et l'aérodynamique utilisent tous les nombres complexes. Même quand la réponse physique est réelle, des étapes intermédiaires complexes sont courantes."
+    },
+    {
+      "q": "Puis-je résoudre des équations cubiques ou de degré supérieur ici ?",
+      "a": "Pas avec cet outil. Les cubiques et quartiques ont des solutions en forme fermée mais sont plus complexes. Pour des solutions numériques de polynômes de haut degré, utilise NumPy ou un CAS comme Sage/Mathematica."
+    },
+    {
+      "q": "Et si mes coefficients sont très grands ?",
+      "a": "La précision en virgule flottante se dégrade pour Δ quand b² et 4ac sont presque égaux. Pour une précision de niveau recherche, utilise une bibliothèque à précision arbitraire."
+    },
+    {
+      "q": "Que signifie « sommet » pour une parabole ?",
+      "a": "Le « point de retournement » unique où la parabole change de direction (de décroissante à croissante ou vice versa). Situé à x = −b/(2a). Utile pour trouver des minima/maxima dans les problèmes d'optimisation."
+    },
+    {
+      "q": "Pourquoi les racines s'appellent-elles « racines » ?",
+      "a": "Historique : « racine » traduit le latin radix, utilisé métaphoriquement comme la source/origine de l'équation. Les racines sont les valeurs où le polynôme est égal à zéro."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Le calcul s'exécute localement ; rien n'est envoyé à un serveur."
+    }
+  ]
+}

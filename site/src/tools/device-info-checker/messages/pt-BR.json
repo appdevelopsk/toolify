@@ -1,0 +1,134 @@
+{
+  "title": "Verificador de Informações do Dispositivo (navegador, SO, hardware",
+  "shortDescription": "Veja o navegador, SO, tela, hardware, GPU, armazenamento, rede e preferências de modo escuro do seu dispositivo em um só lugar. Tudo detectado no lado do cliente.",
+  "description": "Dump do lado do navegador de cada API Web pública que o dispositivo expõe: user agent, SO, versão do navegador, tamanho da tela, devicePixelRatio, concorrência de hardware (núcleos de CPU), memória do dispositivo, informações de GPU via WebGL, cota de armazenamento, tipo e velocidade de rede, idioma, fuso horário, preferências de modo escuro e de movimento reduzido.",
+  "metaDescription": "Verificador de informações do dispositivo gratuito. Navegador, SO, núcleos de CPU, memória, GPU, tela, rede, idioma, fuso horário — todas as informações do seu",
+  "keywords": [
+    "verificador de informações do dispositivo",
+    "detecção de navegador",
+    "informações do sistema",
+    "user agent",
+    "informações de hardware"
+  ],
+  "loading": "Detectando…",
+  "copyJson": "Copiar JSON",
+  "copied": "Copiado!",
+  "notAvailable": "(não disponível)",
+  "automation": "Automação detectada",
+  "real": "Navegador real",
+  "section": {
+    "browser": "Navegador e SO",
+    "display": "Tela",
+    "hardware": "Hardware",
+    "network": "Rede",
+    "userAgent": "String User-Agent"
+  },
+  "field": {
+    "browser": "Navegador",
+    "os": "Sistema operacional",
+    "platform": "Plataforma",
+    "language": "Idioma principal",
+    "languages": "Todos os idiomas",
+    "timezone": "Fuso horário",
+    "cookiesEnabled": "Cookies ativados",
+    "online": "Status online",
+    "doNotTrack": "Não Rastrear",
+    "webdriver": "Webdriver",
+    "screenSize": "Tamanho da tela",
+    "availSize": "Área disponível",
+    "windowSize": "Tamanho da janela",
+    "colorDepth": "Profundidade de cor",
+    "pixelRatio": "devicePixelRatio",
+    "darkMode": "Prefere modo escuro",
+    "reducedMotion": "Movimento reduzido",
+    "cpuCores": "Threads de CPU",
+    "deviceMemory": "Memória do dispositivo",
+    "touchPoints": "Pontos de toque",
+    "gpu": "GPU (WebGL)",
+    "storageQuota": "Cota de armazenamento",
+    "storageUsage": "Armazenamento usado",
+    "connectionType": "Tipo de conexão",
+    "downlink": "Downlink",
+    "rtt": "Tempo de ida e volta"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "O que é coletado",
+        "paragraphs": [
+          "Navegador e SO: user-agent, navegador/SO analisados, idioma, fuso horário, cookies, status online. As mesmas informações que qualquer site que você visita pode ler.",
+          "Tela: tamanho da tela, tamanho do viewport, profundidade de cor, devicePixelRatio (Retina/HiDPI), prefers-color-scheme, prefers-reduced-motion. Usados por sites para design responsivo e acessibilidade.",
+          "Hardware: contagem de threads de CPU (navigator.hardwareConcurrency), classe de memória do dispositivo (navigator.deviceMemory, em GB, ≥4 reportado com corte em 8), pontos de toque máximos, informações de GPU via WebGL, cota de armazenamento e uso atual.",
+          "Rede: tipo efetivo de conexão (slow-2g/2g/3g/4g), downlink (Mbps) e tempo de ida e volta (ms) quando suportado pelo navegador. Útil para carregamento adaptativo."
+        ]
+      },
+      {
+        "heading": "Privacidade: o que os sites veem vs. não veem",
+        "paragraphs": [
+          "Tudo mostrado aqui são informações que qualquer site que você visita já pode acessar via APIs JavaScript padrão. Não é necessária nenhuma permissão especial; tudo está nos objetos públicos navigator e screen. Portanto, esta ferramenta é informativa, não extrativista.",
+          "O que os sites NÃO veem (e esta ferramenta não pode mostrar): seu endereço IP (apenas no lado do servidor; esta ferramenta é totalmente do lado do cliente), seu sistema de arquivos local, o conteúdo de outras abas do navegador ou qualquer coisa fora do sandbox do navegador. A impressão digital do navegador combina muitos desses campos visíveis para identificar um navegador único, mesmo sem cookies — uma preocupação de privacidade amplamente documentada."
+        ]
+      },
+      {
+        "heading": "Útil para depuração",
+        "paragraphs": [
+          "Teste mobile vs desktop: o user agent revela o que o site vê. Às vezes problemas responsivos vêm de uma classe de dispositivo detectada incorretamente.",
+          "GPU/WebGL: 'GPU (WebGL)' mostra seu renderizador gráfico. Útil quando sites com 3D complexo ou muito canvas têm desempenho ruim — sua GPU pode ser o gargalo.",
+          "Armazenamento: a cota de armazenamento informa quanto de localStorage/IndexedDB/cache o site pode usar. O padrão é tipicamente vários GB no desktop, menos no mobile. Se um aplicativo web está atingindo 'cota excedida', esse número é o porquê."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Abra esta página",
+        "text": "A detecção é executada automaticamente quando a página carrega."
+      },
+      {
+        "name": "Leia cada seção",
+        "text": "Navegador e SO, Tela, Hardware, Rede, User-Agent."
+      },
+      {
+        "name": "Redimensione sua janela",
+        "text": "O tamanho da janela e campos relacionados a dpi são atualizados ao vivo."
+      },
+      {
+        "name": "Opcional: copie como JSON",
+        "text": "Clique em 'Copiar JSON' para capturar o snapshot completo para relatórios de bugs ou comparações."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Isso envia meus dados para algum lugar?",
+      "a": "Não. Tudo é detectado e renderizado localmente no seu navegador. Nada é registrado ou transmitido."
+    },
+    {
+      "q": "Por que alguns campos mostram '(não disponível)'?",
+      "a": "Os navegadores variam no que as APIs expõem. navigator.deviceMemory é apenas Chrome/Edge; navigator.connection é principalmente Chrome; a cota de armazenamento requer HTTPS. Safari e Firefox restringem mais no modo privado."
+    },
+    {
+      "q": "Por que o tamanho da minha tela difere da resolução esperada?",
+      "a": "Os navegadores reportam o tamanho em 'pixel CSS', não em pixels físicos. devicePixelRatio mostra o multiplicador (ex.: 2,0 no Retina). Resolução física = tamanho da tela × devicePixelRatio."
+    },
+    {
+      "q": "O que 'GPU (WebGL)' mostra?",
+      "a": "O nome do seu renderizador gráfico conforme reportado pelo WebGL. Navegadores mais novos podem obscurecer isso para proteção contra impressão digital — você pode ver 'Apple GPU' em vez de 'M2 Pro' no macOS, por exemplo."
+    },
+    {
+      "q": "Posso confiar no user agent?",
+      "a": "As strings de user agent podem ser falsificadas por extensões ou configurações do navegador. São uma dica, não uma garantia. Alguns navegadores reduzem ativamente os detalhes do UA (Safari, Firefox no modo privado)."
+    },
+    {
+      "q": "Por que 'threads de CPU' mostra 8 mesmo que minha CPU tenha 12?",
+      "a": "navigator.hardwareConcurrency pode ser limitado para proteção contra impressão digital. Alguns navegadores reportam um máximo de 8 ou 16 mesmo em sistemas com mais núcleos."
+    },
+    {
+      "q": "E se meu celular mostrar 0 pontos de toque?",
+      "a": "Em dispositivos móveis, maxTouchPoints é normalmente ≥1. Se for 0, você pode estar no modo de visualização desktop. Tente atualizar ou mude para a visualização mobile nas configurações do navegador."
+    },
+    {
+      "q": "Funciona no iPhone?",
+      "a": "Sim, com as limitações do Safari iOS. Alguns campos (deviceMemory, connection) podem não estar disponíveis. A detecção do user-agent e navegador/SO básico sempre funciona."
+    }
+  ]
+}

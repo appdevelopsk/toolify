@@ -1,0 +1,56 @@
+{
+  "title": "Trình tung xúc xắc (d4 đến d100, có modifier và lịch sử)",
+  "shortDescription": "Tung bất kỳ số lượng xúc xắc nào với bất kỳ số mặt nào. Ngẫu nhiên an toàn mật mã, với modifier (+N), tổng chạy và lịch sử tung.",
+  "description": "Chọn số lượng, số mặt (4, 6, 8, 10, 12, 20, 100 hoặc tùy chỉnh đến 1000) và modifier. Mỗi lần tung dùng crypto.getRandomValues để phân phối đồng đều không thiên lệch.",
+  "metaDescription": "Trình tung xúc xắc miễn phí cho D&D và bất kỳ TTRPG nào. d4/d6/d8/d10/d12/d20/d100 + tùy chỉnh, modifier, lịch sử. Tung an toàn mật mã không thiên lệch trên trình duyệt.",
+  "keywords": ["tung xúc xắc", "xúc xắc online", "tung d20", "xúc xắc TTRPG", "d6 d10 d100"],
+  "input": { "count": "Bao nhiêu cái", "sides": "Số mặt", "modifier": "Modifier (±)" },
+  "roll": "Tung {count}d{sides}{modifier}",
+  "result": {
+    "total": "Tổng",
+    "history": "Lần tung gần đây"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cách tạo ra các lần tung",
+        "paragraphs": [
+          "Mỗi xúc xắc dùng crypto.getRandomValues — API ngẫu nhiên an toàn mật mã của trình duyệt, cùng nguyên thủy hỗ trợ các phiên HTTPS. Chúng tôi cũng áp dụng rejection sampling để đảm bảo mỗi mặt có xác suất bằng nhau chính xác, bất kể kích thước xúc xắc. `random % sides` đơn giản gây ra thiên lệch khi số mặt không chia sạch vào 2³².",
+          "Điều này có nghĩa là d100 không hơi thiên lệch về phía 1-36 (điều sẽ xảy ra với modulo được triển khai kém), và d3 không ưu tiên 1 hơn 2 hoặc 3. Toán học giống hệt xúc xắc vật lý với độ chính xác vô hạn."
+        ]
+      },
+      {
+        "heading": "Ký hiệu TTRPG (Trò chơi nhập vai bàn cờ)",
+        "paragraphs": [
+          "Ký hiệu phổ biến: 'NdS+M' trong đó N là số xúc xắc, S là số mặt, M là modifier. '2d6+3' có nghĩa là tung 2 xúc xắc 6 mặt và cộng 3. '1d20+5' là lần tung tấn công D&D điển hình với modifier +5 từ điểm thưởng của nhân vật.",
+          "Bộ xúc xắc chuẩn: d4 (hình kim tự tháp), d6 (hình lập phương), d8 (bát diện), d10 (ngũ giác tứ diện), d12 (thập nhị diện), d20 (hai mươi diện). d100 thường được tung dưới dạng 2d10 (một cho hàng chục, một cho hàng đơn vị). Dùng mẫu d100 để bỏ qua chuyển đổi thủ công."
+        ]
+      },
+      {
+        "heading": "Các trường hợp sử dụng phổ biến",
+        "paragraphs": [
+          "D&D / Pathfinder / TTRPG: d20+5 để tấn công, 1d8+3 cho sát thương, 4d6 bỏ thấp nhất để tạo nhân vật.",
+          "Chọn ngẫu nhiên: chọn người thắng từ N người bằng cách tung dN. Với 7 người, đặt số mặt=7. Tính ngẫu nhiên mật mã đảm bảo công bằng.",
+          "Bài học xác suất: tung nhiều xúc xắc và quan sát phân phối. Tổng nhiều xúc xắc tiến đến phân phối chuẩn (định lý giới hạn trung tâm).",
+          "Ra quyết định: 'tôi có nên làm X không' với 50/50? Tung d2 (2 mặt). Muốn quyết định có trọng số? Dùng d10 và đặt ngưỡng (1-7 = có, 8-10 = không cho 70/30)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn mẫu xúc xắc", "text": "Hoặc gõ số mặt tùy chỉnh từ 2 đến 1000." },
+      { "name": "Đặt số lượng", "text": "Bao nhiêu xúc xắc để tung cùng lúc. Tối đa 50." },
+      { "name": "Thêm modifier", "text": "Số phẳng tùy chọn được cộng vào tổng." },
+      { "name": "Tung", "text": "Tổng, các lần tung riêng lẻ và lịch sử gần đây đều được hiển thị." }
+    ]
+  },
+  "faq": [
+    { "q": "Các lần tung có thực sự công bằng không?", "a": "Có. Chúng tôi dùng crypto.getRandomValues (RNG an toàn) cộng rejection sampling để mỗi mặt có xác suất bằng nhau chính xác — không có thiên lệch cạnh từ thao tác modulo." },
+    { "q": "Số lượng xúc xắc tối đa là bao nhiêu?", "a": "50 mỗi lần tung. Để có thêm, chỉ cần tung nhiều lần — mỗi lần độc lập." },
+    { "q": "Số mặt tối đa là bao nhiêu?", "a": "1000. Vượt quá con số đó toán học vẫn hoạt động nhưng trường hợp sử dụng trở nên giả tạo." },
+    { "q": "Tôi có thể lưu các tổ hợp xúc xắc yêu thích không?", "a": "Chưa. Chúng tôi có thể thêm mẫu đã lưu sau cho các lần tung chiến đấu thông thường của bạn." },
+    { "q": "Tại sao d20 nổi tiếng?", "a": "Dungeons & Dragons đã phổ biến nó cho kiểm tra kỹ năng và lần tung tấn công. Mỗi mặt có 5% xác suất — độ chi tiết mịn cho sự khác biệt kỹ năng mà không cần phần trăm (d100)." },
+    { "q": "Tại sao lịch sử chỉ hiển thị 10 lần tung?", "a": "Để giữ trang gọn gàng. Để ghi nhật ký dài hơn, hãy dán từng kết quả vào tệp ghi chú hoặc bảng nhân vật RPG." },
+    { "q": "Công cụ này có thay thế xúc xắc vật lý không?", "a": "Về mặt chức năng có, đặc biệt cho các trò chơi online. Xúc xắc vật lý được yêu thích vì cảm giác và nghi thức — nhưng về mặt toán học, lần tung kỹ thuật số với crypto RNG ít nhất là công bằng như d20 vật lý." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Mỗi lần tung xảy ra cục bộ." }
+  ]
+}

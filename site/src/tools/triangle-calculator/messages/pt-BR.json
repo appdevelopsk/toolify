@@ -1,0 +1,72 @@
+{
+  "title": "Calculadora de Triângulo (ângulo reto, LLL, LAL)",
+  "shortDescription": "Calcule área, perímetro, lados e ângulos de um triângulo. Três modos: triângulo retângulo (Pitágoras), três lados (LLL) ou dois lados + ângulo incluído (LAL).",
+  "description": "Escolha um modo, insira os valores conhecidos e obtenha todos os lados, todos os três ângulos, área e perímetro. Valida a desigualdade triangular no modo LLL.",
+  "metaDescription": "Calculadora gratuita de triângulo. Modos ângulo reto (Pitágoras), LLL ou LAL. Retorna lados, ângulos, área, perímetro. Útil para tarefas de geometria e construção.",
+  "keywords": ["calculadora de triângulo", "teorema de Pitágoras", "lei dos cossenos", "área do triângulo", "solucionador de triângulo"],
+  "empty": "Insira os valores conhecidos para o modo selecionado.",
+  "invalid": "Triângulo inválido: viola a desigualdade triangular (o lado maior deve ser menor que a soma dos outros dois).",
+  "mode": {
+    "right": "Triângulo retângulo",
+    "sss": "Três lados (LLL)",
+    "sas": "Dois lados + ângulo (LAL)"
+  },
+  "input": {
+    "legA": "Cateto a",
+    "legB": "Cateto b",
+    "sideA": "Lado a",
+    "sideB": "Lado b",
+    "sideC": "Lado c",
+    "angleC": "Ângulo C (graus)"
+  },
+  "result": {
+    "area": "Área",
+    "perim": "Perímetro",
+    "sides": "Lados",
+    "angles": "Ângulos"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Três modos para três problemas",
+        "paragraphs": [
+          "Triângulo retângulo (catetos a, b): o caso mais comum. Hipotenusa c = √(a² + b²) pelo teorema de Pitágoras. Ângulo A = arctan(a/b), B = arctan(b/a), C = 90°. Área = (a × b) / 2.",
+          "Três lados (LLL — Lado-Lado-Lado): quando você conhece todos os três comprimentos de lado. Valide com a desigualdade triangular (lado maior < soma dos outros dois). Ângulos via lei dos cossenos: cos A = (b² + c² − a²) / (2bc). Área pela fórmula de Heron: √(s(s−a)(s−b)(s−c)) onde s = (a+b+c)/2.",
+          "Dois lados + ângulo incluído (LAL — Lado-Ângulo-Lado): quando você conhece dois lados e o ângulo entre eles. Terceiro lado pela lei dos cossenos: c = √(a² + b² − 2ab cos C). Outros ângulos pela lei dos senos. Área = (1/2) × a × b × sen C."
+        ]
+      },
+      {
+        "heading": "Quando usar cada modo",
+        "paragraphs": [
+          "Triângulo retângulo é o mais comum na geometria cotidiana — construir o canto de uma parede, calcular a inclinação de um telhado, encontrar a diagonal de uma TV pela largura e altura. O teorema de Pitágoras é uma das fórmulas mais usadas em construção e design.",
+          "LLL aparece em topografia, navegação e em qualquer caso onde você mede três lados diretamente. Útil para verificar a forma de um triângulo a partir de medidas físicas.",
+          "LAL é para casos onde você tem dois lados se encontrando em um ângulo conhecido, mas o terceiro lado não foi medido ou é difícil de alcançar. Comum em aulas de trigonometria e conjuntos de problemas trigonométricos."
+        ]
+      },
+      {
+        "heading": "Aplicações práticas",
+        "paragraphs": [
+          "Construção: inclinação de telhado pela altura e projeção horizontal (triângulo retângulo). A 'regra do 3-4-5' do carpinteiro: um triângulo 3-4-5 tem um ângulo reto perfeito, sem necessidade de transferidor.",
+          "Navegação: a triangulação usa LLL ou LAL para encontrar sua posição a partir de três marcos conhecidos. A mesma matemática alimenta o GPS (com correções relativísticas).",
+          "Computação gráfica: todo modelo 3D é decomposto em triângulos. A fórmula de área do triângulo aparece em código de shader calculando iluminação de superfície.",
+          "Astronomia: medições de distância por paralaxe usam princípios de LLL. O ângulo Sol-Terra-estrela dá a distância da estrela via trigonometria simples."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escolha um modo", "text": "Triângulo retângulo, LLL (três lados) ou LAL (dois lados + ângulo)." },
+      { "name": "Insira os valores conhecidos", "text": "Cada modo requer entradas diferentes." },
+      { "name": "Leia todas as incógnitas", "text": "Lados, ângulos, área e perímetro todos calculados." }
+    ]
+  },
+  "faq": [
+    { "q": "O que é a desigualdade triangular?", "a": "Para três comprimentos formarem um triângulo, a soma de quaisquer dois deve exceder o terceiro. Então 3, 4, 5 é válido (3+4=7 > 5); 1, 2, 5 não é (1+2=3 < 5). A calculadora verifica isso no modo LLL." },
+    { "q": "Qual é a precisão?", "a": "Precisão de ponto flutuante (~15-17 dígitos significativos). Para entradas típicas, o erro é muito menor que o erro de medição no mundo real." },
+    { "q": "Os ângulos podem ser em radianos?", "a": "Ainda não — usamos graus em toda a calculadora. Converta via radianos × 180/π se necessário, ou use nosso conversor de ângulos." },
+    { "q": "E se meu triângulo tiver um ângulo obtuso?", "a": "Todos os modos lidam com triângulos obtusos corretamente. Para LAL, certifique-se de que o ângulo incluído esteja entre 0° e 180° exclusivos." },
+    { "q": "Por que não funciona para todos os 'dois lados e um ângulo'?", "a": "Suportamos LAL (o ângulo ENTRE dois lados). O caso ambíguo (LLA — ângulo, depois dois lados, onde um é oposto ao ângulo) às vezes tem 0, 1 ou 2 triângulos válidos. LLL e LAL são inequívocos." },
+    { "q": "O teorema de Pitágoras é um caso especial?", "a": "Sim. 3-4-5 é um triângulo retângulo (3² + 4² = 5²). Para triângulos obtusos, tente 4-5-7 no modo LLL — o maior ângulo é acima de 90°." },
+    { "q": "Como encontro um lado a partir apenas dos ângulos?", "a": "Não é possível — os ângulos sozinhos determinam a forma, mas não o tamanho. Você precisa de pelo menos um lado. Dois ângulos + um lado é suficiente (terceiro ângulo = 180 − soma dos dois)." },
+    { "q": "Os dados saem do meu navegador?", "a": "Não. O cálculo é feito localmente; nada é enviado para um servidor." }
+  ]
+}

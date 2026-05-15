@@ -1,0 +1,73 @@
+{
+  "title": "प्रतिशत कैलकुलेटर (% of, what %, % change)",
+  "shortDescription": "एक में तीन प्रतिशत कैलकुलेटर: 'X% of Y', 'X, Y का कितना %', और दो मानों के बीच प्रतिशत बदलाव।",
+  "description": "एक mode चुनें, दो संख्याएँ दर्ज करें, और तुरंत उत्तर पाएँ। 'percent of', 'what percent', और 'percent change' handle करता है — लगभग हर प्रतिशत प्रश्न के पीछे के तीन operations।",
+  "metaDescription": "मुफ्त प्रतिशत कैलकुलेटर: X% of Y, एक संख्या दूसरे का कितना प्रतिशत है, या दो मानों के बीच percent change खोजें। तुरंत, browser में।",
+  "keywords": ["प्रतिशत कैलकुलेटर", "percent of", "percentage change", "discount कैलकुलेटर", "बढ़ोतरी घटाव प्रतिशत"],
+  "empty": "परिणाम देखने के लिए दोनों मान दर्ज करें।",
+  "mode": {
+    "pct_of": {
+      "title": "Y का X%",
+      "labelA": "X (प्रतिशत)",
+      "labelB": "Y (मान)",
+      "resultLabel": "Y का X%",
+      "resultUnit": ""
+    },
+    "what_pct": {
+      "title": "X, Y का कितना % है",
+      "labelA": "X (हिस्सा)",
+      "labelB": "Y (पूर्ण)",
+      "resultLabel": "X, Y का यह % है",
+      "resultUnit": "%"
+    },
+    "pct_change": {
+      "title": "A से B में बदलाव",
+      "labelA": "A (शुरुआत)",
+      "labelB": "B (अंत)",
+      "resultLabel": "बदलाव",
+      "resultUnit": "%"
+    }
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "तीन प्रतिशत operations",
+        "paragraphs": [
+          "लगभग हर real-world प्रतिशत समस्या तीन patterns में से एक में reduce होती है: 'Y का X%' (discount या tax), 'X, Y का कितना %' (percent के रूप में expressed ratio), या A से B तक percent change (year-over-year growth, वजन घटाना, exam score improvement)।",
+          "यह कैलकुलेटर एक single interface में तीनों expose करता है। ऊपर mode switch करें, फिर दो values plug in करें। Math simple है लेकिन bookkeeping — कौन सी संख्या कहाँ जाती है — वहीं अधिकांश गलतियाँ होती हैं, इसलिए यहाँ labels explicit हैं कि कौन सा input हिस्सा है और कौन सा पूर्ण।"
+        ]
+      },
+      {
+        "heading": "Percent change कैसे compute होता है",
+        "paragraphs": [
+          "Percent change = (new − old) / old × 100। Positive result वृद्धि का मतलब है, negative result decrease का। Notice करें formula old value से divide करता है, new से नहीं या average से — इसीलिए 50% drop के बाद 50% gain आपको वापस वहाँ नहीं लाता जहाँ से शुरू हुए: यह original का 75% पर ends।",
+          "जब old value zero हो, percent change undefined है (zero से divide नहीं कर सकते)। Calculator उस case में कोई result return नहीं करता बजाय 'infinity' दिखाने के, क्योंकि 'कुछ नहीं की तुलना में बदलाव कितना बड़ा है' का उत्तर meaningful नहीं है।"
+        ]
+      },
+      {
+        "heading": "सामान्य गलतियाँ",
+        "paragraphs": [
+          "Compounding percentages। 10% raise के बाद 10% raise 21% है, 20% नहीं (1.10 × 1.10 = 1.21)। Final ratio के लिए percent-of mode दो बार या percent-change mode उपयोग करें।",
+          "Percentage points बनाम percent। यदि एक poll 40% से 42% जाता है, वह 2 percentage points का बदलाव है लेकिन 5% relative increase है। Calculator का 'percent change' mode relative change report करता है।",
+          "Discount stacking। '20% off' sale के बाद applied '20% off' coupon original का 36% off है (0.8 × 0.8 = 0.64), 40% नहीं। इसे directly देखने के लिए 'percent of' mode में calculator दो बार run करें।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "एक mode चुनें", "text": "आप जो find करने की कोशिश कर रहे हैं उसके आधार पर 'percent of', 'what percent', या 'percent change' चुनें।" },
+      { "name": "पहली संख्या दर्ज करें", "text": "Label बताता है कि chosen mode के लिए कौन सी value यहाँ जाती है।" },
+      { "name": "दूसरी संख्या दर्ज करें", "text": "Type करते समय result update होता है।" },
+      { "name": "उत्तर पढ़ें", "text": "Result में आपने जो mode चुना उसके लिए appropriate unit (%, plain number) शामिल है।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या calculation कई decimals तक accurate है?", "a": "हाँ — हम double-precision floating point उपयोग करते हैं और display को चार decimals पर round करते हैं। बहुत high-precision financial work के लिए, result को 16वें significant digit पर approximate मानें।" },
+    { "q": "Percent change old फिर new क्यों पूछता है?", "a": "क्योंकि formula old value से divide करता है। दोनों inputs swap करने से result का sign flip होता है।" },
+    { "q": "Discounted price कैसे calculate करें?", "a": "'Percent of' उपयोग करें X = discount percent और Y = original price के साथ; result को original से subtract करें। या final price directly के लिए X = (100 − discount) और Y = price के साथ percent-of उपयोग करें।" },
+    { "q": "यदि मुझे दोनों prices पता हों तो percent off कैसे खोजें?", "a": "A = original price और B = sale price के साथ 'percent change' उपयोग करें। Negative number आपका discount है।" },
+    { "q": "यदि मैं negative number दर्ज करूँ?", "a": "सभी तीन modes negatives accept करते हैं। Percent change विशेष रूप से well-defined है: −5 से 5 तक change −200% है।" },
+    { "q": "क्या मैं GST calculations के लिए उपयोग कर सकता हूँ?", "a": "हाँ — X = GST rate और Y = pre-tax amount के साथ 'percent of' tax देता है। इसे original में जोड़ें या X = (100 + GST) के साथ percent-of उपयोग करें।" },
+    { "q": "'50% बढ़ाएँ फिर 50% घटाएँ' original क्यों नहीं return करता?", "a": "क्योंकि percentages compound होती हैं। 100 × 1.5 × 0.5 = 75, 100 नहीं। Net change −25% है यह देखने के लिए percent-change mode end-to-end run करें।" },
+    { "q": "क्या यह grade calculations के लिए काम करता है?", "a": "हाँ। अपना percentage grade पाने के लिए X = earned marks और Y = total marks के साथ 'what percent' उपयोग करें।" }
+  ]
+}

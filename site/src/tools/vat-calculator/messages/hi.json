@@ -1,0 +1,74 @@
+{
+  "title": "GST / VAT Calculator (भारत और international rates)",
+  "shortDescription": "GST/VAT/Sales Tax add या remove करें। India GST tiers, Japan, UK, EU countries, Australia, Canada, China के quick presets।",
+  "description": "दो modes: 'GST Add करें' net + rate से gross compute करता है; 'GST Remove करें' gross से net compute करता है। Custom rate input plus major jurisdictions के one-click presets।",
+  "metaDescription": "मुफ्त GST/VAT calculator। किसी भी amount से GST add या remove करें। India GST (5/12/18/28%), Japan, UK, EU, Australia, Canada, China rates के presets।",
+  "keywords": ["vat calculator", "gst calculator", "sales tax calculator", "consumption tax", "vat removal"],
+  "empty": "Amount और GST rate enter करें।",
+  "mode": {
+    "addVat": "GST Add करें (net → gross)",
+    "removeVat": "GST Remove करें (gross → net)"
+  },
+  "input": {
+    "netAmount": "Net amount (GST excl.)",
+    "grossAmount": "Gross amount (GST incl.)",
+    "ratePct": "GST rate %"
+  },
+  "preset": {
+    "JP-std": "JP standard",
+    "JP-reduced": "JP reduced",
+    "UK": "UK VAT",
+    "DE": "Germany",
+    "FR": "France",
+    "AU": "Australia GST",
+    "CA": "Canada GST",
+    "CN": "China VAT"
+  },
+  "result": {
+    "gross": "Gross (GST incl.)",
+    "net": "Net (GST excl.)",
+    "vat": "GST amount"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "India में GST — VAT, GST, Sales Tax एक ही idea के अलग नाम",
+        "paragraphs": [
+          "GST (Goods and Services Tax): India में 2017 से लागू। Destination-based tax है जो उत्पादन के हर stage पर लगती है लेकिन ultimately consumer pay करता है। India में four standard slabs हैं: 5% (essential goods — खाना, medicines), 12% (processed food, business services), 18% (most goods और services — electronics, telecom), 28% (luxury goods — cars, tobacco, beverages)।",
+          "VAT (Value Added Tax): Europe, UK, Japan में। Mechanically GST जैसा ही है। GST (Australia, Canada, Singapore): similar mechanism। Sales tax (USA): केवल final sale point पर charged, state/city के अनुसार vary होता है।"
+        ]
+      },
+      {
+        "heading": "दो-direction calculation",
+        "paragraphs": [
+          "GST Add करें: जब net (pre-tax) price हो और gross (post-tax) चाहिए। B2B clients के लिए prices list करते समय या tax से पहले quote करते समय common। Formula: gross = net × (1 + rate/100)।",
+          "GST Remove करें: जब gross (post-tax) price हो और net निकालना हो। Receipts, expense reports, या invoice line items के लिए common। Formula: net = gross / (1 + rate/100)।",
+          "Common error: gross से rate% subtract करके net निकालना (जैसे ₹1,180 − 18% = ₹967)। यह गलत है — सही calculation ₹1,180 / 1.18 = ₹1,000 है। 18% GST net पर था, gross पर नहीं।"
+        ]
+      },
+      {
+        "heading": "GST included है या नहीं",
+        "paragraphs": [
+          "India में consumer prices अक्सर GST-inclusive होती हैं — price tag वही है जो आप pay करते हैं। MRP (Maximum Retail Price) GST सहित होता है। लेकिन B2B invoices में net + GST separately दिखाना mandatory है।",
+          "B2B invoices typically net + GST separately दिखाते हैं input-tax-credit purposes के लिए। Businesses अपने inputs पर paid GST को अपने customers से collected GST के against reclaim कर सकते हैं — इसे input tax credit (ITC) कहते हैं। यह GST की core feature है।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Mode pick करें", "text": "GST Add करें (net → gross) या GST Remove करें (gross → net)।" },
+      { "name": "Amount enter करें", "text": "Mode के अनुसार net या gross amount।" },
+      { "name": "Rate set करें", "text": "Major countries के लिए preset use करें या custom rate type करें। India GST: 5/12/18/28%।" },
+      { "name": "तीनों values पढ़ें", "text": "Net, GST, gross। Invoice line items और price quoting के लिए useful।" }
+    ]
+  },
+  "faq": [
+    { "q": "India में GST slabs क्या हैं?", "a": "0% (basic groceries, education, health), 5% (essential goods), 12% (processed food, some services), 18% (most goods और services), 28% (luxury items — cars, tobacco, aerated drinks)।" },
+    { "q": "'10% remove करना' 10% subtract करने से अलग क्यों है?", "a": "10% remove करना 1.10 से divide करना है। 10% subtract करना (₹1,100 − 10% = ₹990) mathematically गलत है क्योंकि 10% net (₹1,000) पर apply हुआ था, gross पर नहीं।" },
+    { "q": "क्या मैं multi-rate GST calculate कर सकता हूँ?", "a": "नहीं — हम single-rate scenarios handle करते हैं। Mixed supply या compound supply के लिए accountant या GST software consult करें।" },
+    { "q": "GST और VAT में क्या फर्क है?", "a": "Mechanically same हैं — दोनों multi-stage taxes हैं। India ने 2017 में multiple state VATs को unified GST से replace किया।" },
+    { "q": "Input Tax Credit (ITC) क्या है?", "a": "Businesses अपने purchases पर paid GST को अपने sales पर collected GST के against claim कर सकते हैं। तो effectively केवल 'value addition' पर tax pay होता है।" },
+    { "q": "क्या यह US sales tax के लिए काम करता है?", "a": "हाँ — combined state + local rate input करें। US sales tax calculator terms में single-stage VAT जैसा behave करता है।" },
+    { "q": "GST-exempt items का क्या?", "a": "Fully exempt items के लिए 0% rate use करें। Note: 'exempt' और 'zero-rated' के कुछ jurisdictions में legal differences हैं लेकिन calculator outcome same है।" },
+    { "q": "क्या data browser से बाहर जाता है?", "a": "नहीं। Calculation locally चलती है; कुछ server को नहीं भेजा जाता।" }
+  ]
+}

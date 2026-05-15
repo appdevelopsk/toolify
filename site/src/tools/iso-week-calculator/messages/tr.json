@@ -1,0 +1,61 @@
+{
+  "title": "ISO Hafta Numarası Hesaplayıcı (yılın haftası)",
+  "shortDescription": "Herhangi bir takvim tarihi için ISO 8601 hafta numarasını, ISO haftanın gününü ve hafta tarih aralığını bulun. Yılın günü ve yıldaki hafta sayısı dahildir.",
+  "description": "Herhangi bir tarih seçin ve ISO 8601 hafta numarasını (1-53), ISO haftanın gününü (1=Pazartesi, 7=Pazar), o haftanın Pazartesi-Pazar aralığını ve yararlı ilgili sayıları (yılın günü, yıldaki hafta sayısı) görün.",
+  "metaDescription": "Ücretsiz ISO hafta numarası hesaplayıcı. ISO 8601 haftası, haftanın günü, hafta tarih aralığı, yılın günü, yıldaki hafta sayısı. Standart yıl haftası biçimi.",
+  "keywords": ["iso hafta numarası", "yılın haftası", "iso 8601 haftası", "hafta hesaplayıcı", "takvim haftası"],
+  "input": { "date": "Tarih" },
+  "today": "Bugün",
+  "result": {
+    "iso": "ISO 8601 gösterimi",
+    "weekNumber": "Hafta numarası",
+    "weekday": "Haftanın günü",
+    "weekStart": "Hafta başlangıcı (Pazartesi)",
+    "weekEnd": "Hafta sonu (Pazar)",
+    "dayOfYear": "Yılın günü",
+    "weeksInYear": "Yıldaki hafta sayısı"
+  },
+  "empty": "Bir tarih seçin.",
+  "article": {
+    "sections": [
+      {
+        "heading": "ISO haftası nedir",
+        "paragraphs": [
+          "ISO 8601, Pazartesi başlayıp Pazar biten bir takvim haftası tanımlar. Herhangi bir ISO yılının ilk haftası, o yılın ilk Perşembe gününü içeren haftadır — ya da eşdeğer olarak 4 Ocak'ı içeren hafta. Bu, bir yılın 52 veya 53 ISO haftası olabileceği ve Aralık sonu ile Ocak başı tarihler için ISO yılının takvim yılıyla her zaman örtüşmediği anlamına gelir.",
+          "Biçim: 'YYYY-Whh-G'. Yani '2026-W19-3', 2026'nın 19. haftasının Çarşamba günü anlamına gelir. Haftanın günü numarası: 1=Pazartesi, 7=Pazar. Hafta numarası: 1-52 veya 1-53."
+        ]
+      },
+      {
+        "heading": "ISO haftaları neden takvim haftalarından farklı",
+        "paragraphs": [
+          "ABD takvimleri genellikle Pazarı ilk gün olarak sayar. ISO ise Pazartesi ilkidir. Bu şu anlama gelir: yerel takviminizde 30. haftanın sonundaki bir Pazar, ISO açısından yine 30. haftanın sonudur. Ancak aynı Pazar, bir yılın son Pazar'ı ise ve bir sonraki Pazartesi başka bir yılın ilk günüyse, farklı bir ISO haftasına düşebilir.",
+          "Ayrıca: ISO yılları takvim yıllarından bir birim sapabilir. 31 Aralık 2024, 2025'in 1. ISO haftasındadır (takvim yılı 2024, ISO yılı 2025). 1 Ocak 2024 Pazartesi'ydi — 2024'ün 1. haftası 1 Ocak'ta başlar. 1 Ocak 2025 Çarşamba'ydı — 2025'in 1. haftası 30 Aralık 2024'te başlar."
+        ]
+      },
+      {
+        "heading": "ISO haftaları nerede kullanılır",
+        "paragraphs": [
+          "İş dünyası: birçok Avrupa şirketi ISO haftasına göre fatura keser ve sevkiyat yapar. 'Sipariş W23'te gelecek' ifadesi muğlak değildir ve dilden bağımsızdır.",
+          "Yazılım: birçok programlama dilinde ISO hafta fonksiyonları bulunur. JavaScript Date'in doğrudan desteği yoktur; date-fns ve dayjs gibi kütüphaneler ekler. Zamanlama, log analizi ve raporlamada kullanılır.",
+          "Sağlık epidemiyolojisi: haftalık hastalık insidans raporları ISO haftaları kullanır. WHO ve CDC, grip ve COVID gösterge panellerinde bunları kullanır.",
+          "Spor / oyunlar: birçok lig 'Hafta 1, Hafta 2, ...' şeklinde programlanır ve bu çoğunlukla ISO haftalarıyla örtüşür (özellikle Avrupa ligleri)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Bir tarih seçin", "text": "Tarih seçici veya 'Bugün' düğmesi." },
+      { "name": "ISO gösterimini okuyun", "text": "Biçim: YYYY-Whh-G; w hafta numarası, G ise haftanın günüdür." },
+      { "name": "Hafta aralığını görün", "text": "O haftanın Pazartesi ve Pazar günleri, yerel tarih biçiminizde." }
+    ]
+  },
+  "faq": [
+    { "q": "Bu neden Excel'in WEEKNUM fonksiyonuyla eşleşmiyor?", "a": "Excel'in WEEKNUM'u farklı kurallar kullanır. Varsayılan ABD tarzıdır (Pazar ilk gün). Excel'de ISO haftaları için ISOWEEKNUM kullanın veya WEEKNUM'da return_type=21 belirtin." },
+    { "q": "Bir yılın 53 haftası olabilir mi?", "a": "Evet. 1 Ocak Perşembe VEYA 31 Aralık Perşembe ise bir yılın 53 ISO haftası olur. Her 400 yılda yaklaşık 71 yılda bu durum gerçekleşir." },
+    { "q": "ISO yılı ile takvim yılı arasındaki fark nedir?", "a": "Çoğu gün için aynıdır. Aralık sonu ve Ocak başı kenar durumları farklıdır. 29 Aralık 2008, 2009'un 1. ISO haftasındadır (takvim yılı 2008, ISO yılı 2009)." },
+    { "q": "1. hafta her zaman 1 Ocak'ın haftası mıdır?", "a": "Her zaman değil. ISO 1. haftası, yılın ilk Perşembe'sini içerir. Dolayısıyla 1 Ocak Cuma-Pazar arasındaysa o gün önceki yılın son ISO haftasının parçasıdır." },
+    { "q": "W1 ile Hafta 1 arasındaki fark nedir?", "a": "ISO bağlamında aynı şey. W öneki ISO biçim kuralıdır. '2026-W01', 2026'nın 1. ISO haftası anlamına gelir." },
+    { "q": "Neden hafta başı Pazartesi?", "a": "ISO 8601 bunu standartlaştırdı. Dünyanın çoğu Pazartesi ilkini kullanır; yalnızca Suudi Arabistan, ABD, Kanada ve birkaç ülke geleneksel olarak Pazar ilkini kullanır." },
+    { "q": "Takvime dışa aktarabilir miyim?", "a": "Bu araçtan doğrudan değil. Hafta başlangıç/bitiş tarihlerini kullanarak kendi takvim etkinliğinizi oluşturun." },
+    { "q": "Veriler tarayıcımdan çıkıyor mu?", "a": "Hayır. Hesaplama yerel olarak çalışır; hiçbir şey sunucuya gönderilmez." }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "title": "Penyelesai Persamaan Kuadrat (ax² + bx + c = 0)",
+  "shortDescription": "Selesaikan persamaan kuadrat apapun. Mengembalikan akar real atau kompleks, diskriminan, dan koordinat titik puncak parabola.",
+  "description": "Masukkan koefisien a, b, c. Penyelesai menerapkan rumus kuadrat x = (−b ± √(b²−4ac)) / 2a. Membedakan dua akar real, satu akar berulang, dua akar kompleks konjugat, atau kasus degenerasi.",
+  "metaDescription": "Penyelesai persamaan kuadrat gratis. Akar real atau kompleks, diskriminan, koordinat titik puncak. Menangani semua kasus: degenerasi, linear, dua real, satu real",
+  "keywords": [
+    "penyelesai persamaan kuadrat",
+    "rumus kuadrat",
+    "diskriminan",
+    "akar kompleks",
+    "titik puncak parabola"
+  ],
+  "empty": "Masukkan koefisien a, b, c.",
+  "result": {
+    "twoReal": "Dua akar real",
+    "oneReal": "Satu akar real berulang",
+    "complex": "Dua akar kompleks konjugat",
+    "linear": "Persamaan linear (a = 0)",
+    "linearLabel": "a adalah 0; ini adalah persamaan linear:",
+    "all": "Setiap x adalah solusi (semua koefisien nol).",
+    "none": "Tidak ada solusi (b = 0, c ≠ 0).",
+    "discriminant": "Diskriminan (b² − 4ac)",
+    "vertex": "Titik puncak parabola"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Rumus kuadrat",
+        "paragraphs": [
+          "Untuk ax² + bx + c = 0 dengan a ≠ 0, solusinya adalah x = (−b ± √(b² − 4ac)) / (2a). Ekspresi di bawah akar kuadrat adalah 'diskriminan' (D = b² − 4ac), dan tandanya menentukan jenis akar.",
+          "D > 0: dua akar real berbeda. Parabola memotong sumbu x di dua titik.",
+          "D = 0: satu akar real berulang. Parabola menyentuh sumbu x di titik puncak (tangen).",
+          "D < 0: dua akar kompleks konjugat. Parabola tidak menyentuh sumbu x sama sekali."
+        ]
+      },
+      {
+        "heading": "Titik puncak dan bentuk parabola",
+        "paragraphs": [
+          "Setiap persamaan kuadrat digambarkan sebagai parabola. Titik puncak (titik balik) berada di x = −b / 2a, dan substitusi balik memberikan koordinat y. Kami menghitungnya sebagai y = −D / 4a, yang setara.",
+          "Jika a > 0, parabola terbuka ke atas dan titik puncak adalah minimum. Jika a < 0, terbuka ke bawah dan titik puncak adalah maksimum. Sumbu simetri melewati titik puncak secara vertikal."
+        ]
+      },
+      {
+        "heading": "Kasus degenerasi",
+        "paragraphs": [
+          "Jika a = 0, persamaan sebenarnya bukan kuadrat — menjadi linear: bx + c = 0, dengan solusi x = −c/b (jika b ≠ 0). Kami mendeteksi ini dan menyelesaikannya sebagai linear.",
+          "Jika a = 0 DAN b = 0: c harus sama dengan 0 agar ada solusi. Jika c = 0, setiap x adalah solusi; jika c ≠ 0, tidak ada solusi. Kami melaporkan kedua kasus."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Masukkan koefisien",
+        "text": "a, b, c. Gunakan bilangan negatif seperlunya (misalnya, −3 untuk koefisien b)."
+      },
+      {
+        "name": "Baca persamaan",
+        "text": "Tampilan menunjukkan ax² + bx + c = 0 Anda saat ini."
+      },
+      {
+        "name": "Baca akar-akarnya",
+        "text": "Dua real, satu berulang, atau dua kompleks konjugat, ditambah diskriminan dan titik puncak."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Mengapa diskriminan berguna?",
+      "a": "Diskriminan memberi tahu Anda sifat akar tanpa menyelesaikannya: D > 0 berarti dua akar real, D = 0 berarti satu berulang, D < 0 berarti kompleks. Seringkali itu saja yang perlu Anda ketahui."
+    },
+    {
+      "q": "Apa itu 'akar berulang'?",
+      "a": "Ketika D = 0, rumus hanya memberikan x = −b/2a. Secara aljabar, persamaan dapat difaktorkan sebagai a(x − r)² = 0, sehingga r muncul dua kali sebagai akar dengan 'multiplisitas 2'."
+    },
+    {
+      "q": "Apakah akar kompleks berguna di dunia nyata?",
+      "a": "Ya. Rangkaian AC, pemrosesan sinyal, mekanika kuantum, dan aerodinamika semuanya menggunakan bilangan kompleks. Bahkan ketika jawaban fisik adalah real, langkah-langkah antara yang kompleks adalah umum."
+    },
+    {
+      "q": "Bisakah saya menyelesaikan persamaan kubik atau lebih tinggi di sini?",
+      "a": "Tidak dalam alat ini. Kubik dan kuartik memiliki solusi bentuk tertutup tetapi lebih rumit. Untuk solusi numerik polinomial derajat tinggi, gunakan NumPy atau CAS seperti Sage/Mathematica."
+    },
+    {
+      "q": "Bagaimana jika koefisien saya sangat besar?",
+      "a": "Presisi titik mengambang menurun untuk D ketika b² dan 4ac hampir sama. Untuk akurasi tingkat penelitian, gunakan pustaka dengan aritmetika presisi sembarang."
+    },
+    {
+      "q": "Apa yang dimaksud dengan 'titik puncak' pada parabola?",
+      "a": "Satu-satunya 'titik balik' di mana parabola mengubah arah (dari menurun ke meningkat atau sebaliknya). Terletak di x = −b/(2a). Berguna untuk menemukan minimum/maksimum dalam masalah optimasi."
+    },
+    {
+      "q": "Mengapa akar-akar disebut 'akar'?",
+      "a": "Historis: 'akar' menerjemahkan bahasa Latin radix, digunakan secara metaforis sebagai sumber/asal persamaan. Akar-akar adalah di mana polinomial sama dengan nol."
+    },
+    {
+      "q": "Apakah data meninggalkan browser saya?",
+      "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server."
+    }
+  ]
+}

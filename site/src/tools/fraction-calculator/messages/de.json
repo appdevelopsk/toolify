@@ -1,0 +1,56 @@
+{
+  "title": "Bruchrechner (addieren, subtrahieren, multiplizieren, dividieren)",
+  "shortDescription": "Zwei Brüche addieren, subtrahieren, multiplizieren oder dividieren. Gibt das vereinfachte Ergebnis, den Dezimalwert und die gemischte Zahl zurück.",
+  "description": "Gib zwei Brüche (Zähler über Nenner) und eine Rechenoperation ein. Der Rechner gibt das Ergebnis als gekürzten Bruch, Dezimalzahl und gemischte Zahl zurück. Verwendet BigInt für exakte Ergebnisse beliebiger Größe.",
+  "metaDescription": "Kostenloser Bruchrechner. Brüche addieren, subtrahieren, multiplizieren, dividieren. Vereinfachtes Ergebnis, Dezimalwert, gemischte Zahl. Exakte BigInt-Arithmetik.",
+  "keywords": ["Bruchrechner", "Brüche addieren", "Brüche multiplizieren", "Bruch kürzen", "gemischte Zahl"],
+  "empty": "Gib beide Brüche und eine Operation ein.",
+  "result": {
+    "simplified": "Ergebnis (gekürzt)",
+    "decimal": "Dezimalzahl",
+    "mixed": "Gemischte Zahl"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie Bruchoperationen funktionieren",
+        "paragraphs": [
+          "Addition/Subtraktion: Erst auf einen gemeinsamen Nenner bringen. a/b ± c/d = (ad ± bc) / bd. Beispiel: 1/2 + 1/3 = (1×3 + 1×2) / (2×3) = 5/6.",
+          "Multiplikation: a/b × c/d = (ac) / (bd). Kreuzkürzen vereinfacht vor der Multiplikation. Beispiel: 2/3 × 9/10 = (2×9)/(3×10) = 18/30 = 3/5.",
+          "Division: Den zweiten Bruch umkehren und multiplizieren. a/b ÷ c/d = a/b × d/c = (ad) / (bc). Beispiel: 1/2 ÷ 3/4 = (1×4)/(2×3) = 4/6 = 2/3."
+        ]
+      },
+      {
+        "heading": "Warum kürzen?",
+        "paragraphs": [
+          "Ein Bruch ist vollständig gekürzt, wenn Zähler und Nenner keinen gemeinsamen Teiler größer als 1 haben. Wir verwenden den euklidischen Algorithmus, um den GGT zu finden, und teilen beide dadurch.",
+          "Beispiel: 18/30 hat den GGT 6, wird also zu 3/5 gekürzt. Mathematisch äquivalent, aber einfacher zu lesen und zu verwenden.",
+          "Wir normalisieren auch das Vorzeichen: Ein positiver Zähler ist die Konvention. −3/−5 wird also zu 3/5 vereinfacht; 3/−5 zu −3/5."
+        ]
+      },
+      {
+        "heading": "Gemischte Zahlen",
+        "paragraphs": [
+          "Wenn der Betrag des Zählers den Nenner übersteigt, kann der Bruch als ganze Zahl plus echtem Bruch ausgedrückt werden. Beispiel: 7/3 = 2⅓ (da 7 = 2×3 + 1).",
+          "Gemischte Zahlen sind im Alltag verbreitet (Rezepte, Holzmaße, Taktangaben in der Musik), aber in Mathematik und Naturwissenschaften weniger üblich – dort sind unechte Brüche einfacher zu berechnen. Wir zeigen beide Darstellungen."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Ersten Bruch eingeben", "text": "Zähler oben, Nenner unten." },
+      { "name": "Operation wählen", "text": "+, −, ×, oder ÷." },
+      { "name": "Zweiten Bruch eingeben", "text": "Gleiches Format." },
+      { "name": "Ergebnis ablesen", "text": "Gekürzter Bruch, Dezimalwert und gemischte Zahl (wenn zutreffend)." }
+    ]
+  },
+  "faq": [
+    { "q": "Kann ich negative Brüche eingeben?", "a": "Ja. Minus-Zeichen bei Zähler oder Nenner verwenden. Der Rechner normalisiert auf ein einzelnes Minus im Zähler." },
+    { "q": "Warum ist 1/2 + 1/3 = 5/6 und nicht 2/5?", "a": "Man kann Brüche nicht addieren, indem man Zähler und Nenner separat addiert. Erst einen gemeinsamen Nenner finden: 1/2 = 3/6, 1/3 = 2/6, also 1/2 + 1/3 = 3/6 + 2/6 = 5/6." },
+    { "q": "Werden auch ganze Zahlen als Brüche unterstützt?", "a": "Ja. Ganze Zahl = ganze Zahl/1 eingeben. Also 5 + 1/2 = 5/1 + 1/2 = 11/2 = 5½." },
+    { "q": "Wie groß darf der Bruch maximal sein?", "a": "Wir verwenden intern BigInt, sodass Arithmetik mit Zählern und Nennern beliebiger Größe exakt ist. Die Anzeige ist nur durch den Bildschirmplatz begrenzt." },
+    { "q": "Warum ist der Dezimalwert manchmal ungenau?", "a": "Manche Brüche haben keine exakte Dezimaldarstellung (1/3 = 0,3333…). Wir zeigen bis zu 8 Nachkommastellen. Der Bruch selbst ist exakt; die Dezimalzahl ist eine Näherung." },
+    { "q": "Kann ich durch null dividieren?", "a": "Nein. Division durch null (oder ein Bruch mit Null im Nenner als Divisor) ist nicht definiert. Der Rechner gibt in diesem Fall kein Ergebnis zurück." },
+    { "q": "Woher kommen gemischte Zahlen?", "a": "Aus unechten Brüchen (Zähler ≥ Nenner). 7/3 = 2 + 1/3 = 2⅓. Beide Formen sind gleichwertig; Wahl nach Kontext (Mathematik: unechter Bruch, Rezepte: gemischte Zahl)." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Berechnung läuft lokal; nichts wird an einen Server gesendet." }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "title": "Datumsrechner (Tage addieren/subtrahieren oder Differenz zwischen",
+  "shortDescription": "Jahre/Monate/Tage zu einem Datum addieren oder subtrahieren oder die genaue Differenz zwischen zwei Daten einschließlich Werktagen berechnen.",
+  "description": "Zwei Modi: 'Addieren oder subtrahieren' zur Berechnung eines zukünftigen oder vergangenen Datums oder 'Zwischen' zur Ermittlung der Differenz in Jahren, Monaten, Tagen, Wochen und Werktagen.",
+  "metaDescription": "Kostenloser Datumsrechner. Jahre/Monate/Tage addieren oder subtrahieren oder Differenz zwischen zwei Daten mit Werktags-Zählung berechnen.",
+  "keywords": [
+    "Datumsrechner",
+    "Tage zu Datum addieren",
+    "Datumsdifferenz",
+    "Werktage",
+    "Tage zwischen Daten"
+  ],
+  "empty": "Wähle Daten zum Berechnen.",
+  "mode": {
+    "addSubtract": "Addieren oder subtrahieren",
+    "between": "Differenz zwischen Daten"
+  },
+  "op": {
+    "add": "Addieren",
+    "subtract": "Subtrahieren"
+  },
+  "input": {
+    "start": "Startdatum",
+    "end": "Enddatum",
+    "years": "Jahre",
+    "months": "Monate",
+    "days": "Tage"
+  },
+  "result": {
+    "resultDate": "Ergebnisdatum",
+    "difference": "Differenz",
+    "ymd": "{y} Jahre, {m} Monate, {d} Tage",
+    "totalDays": "Tage gesamt",
+    "totalWeeks": "Wochen gesamt",
+    "totalMonths": "Monate gesamt",
+    "businessDays": "Werktage (Mo–Fr)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Was berechnet wird",
+        "paragraphs": [
+          "Addieren/Subtrahieren-Modus: Nimmt ein Datum, addiert oder subtrahiert eine Anzahl von Jahren, Monaten und Tagen und gibt das resultierende Kalenderdatum zurück. Jahre und Monate verwenden Kalenderarithmetik (also ergibt das Addieren von 1 Monat zum 31. Januar den 28. Februar oder 29. Februar je nach Schaltjahr, nicht den 3. März). Tage sind exakt – das Addieren von 30 Tagen rückt immer genau 30 Kalendertage vor.",
+          "Zwischen-Modus: Nimmt zwei Daten und gibt die Differenz in Jahren/Monaten/Tagen plus Gesamtwerte in Tagen, Wochen, Monaten und Werktagen (Montag bis Freitag, keine Feiertage) zurück. Das J/M/T-Format verwendet dieselbe Borge-Logik wie unser Altersrechner – eine Differenz ist z. B. '2 Jahre, 5 Monate, 3 Tage', kein Dezimaljahr."
+        ]
+      },
+      {
+        "heading": "Warum Werktage keine Feiertage einschließen",
+        "paragraphs": [
+          "Wir zählen Montag bis Freitag als Werktage und schließen Samstag und Sonntag aus. Gesetzliche Feiertage variieren nach Land, Region und Jahr, daher subtrahieren wir sie nicht automatisch. Für Deutschland subtrahiere ca. 9–13 Feiertage pro Jahr vom Ergebnis (je nach Bundesland).",
+          "Wenn Feiertage für deine Berechnung wichtig sind (Terminverfolgung, Vertragsverhandlungen), führe hier die Kalenderrechnung durch und prüfe anschließend den Feiertagskalender deines Bundeslandes manuell. Wir könnten länderspezifische Feiertagssubtraktion in einer zukünftigen Version hinzufügen."
+        ]
+      },
+      {
+        "heading": "Typische Anwendungsfälle",
+        "paragraphs": [
+          "Projektdeadlines: 'Das ist 90 Tage nach Projektstart fällig'. Addiere 90 Tage zum Startdatum.",
+          "Vertragslaufzeiten: Tage zwischen Vertragsbeginn und -ende zählen. Mit der Vertragssprache für die Rechnungsstellung abgleichen.",
+          "Reiseplanung: Wie viele Werktage zwischen Abfahrt und Rückkehr? Nützlich für Abwesenheitskalender und Spesenberichte.",
+          "Persönliche Meilensteine: Jubiläen, Tage ohne Sucht, Zeit seit einem bedeutsamen Lebensereignis."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Modus wählen",
+        "text": "Addieren/Subtrahieren zum Verschieben von einem Datum oder Zwischen zur Ermittlung einer Differenz."
+      },
+      {
+        "name": "Startdatum eingeben",
+        "text": "Datumsauswahl verwenden."
+      },
+      {
+        "name": "Versatz oder Enddatum hinzufügen",
+        "text": "Jahre/Monate/Tage für den Addier-Modus oder Enddatum für den Zwischen-Modus."
+      },
+      {
+        "name": "Ergebnis ablesen",
+        "text": "Ergebnisdatum oder vollständige Differenzaufschlüsselung."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was passiert, wenn ich 1 Monat zum 31. Januar addiere?",
+      "a": "Du erhältst den 28. Februar (oder 29. Februar in einem Schaltjahr). Kalenderarithmetik begrenzt auf den letzten Tag des Zielmonats, wenn der Quelltag nicht existiert."
+    },
+    {
+      "q": "Werden Feiertage von den Werktagen subtrahiert?",
+      "a": "Nein – nur Wochenenden. Subtrahiere landes- und bundeslandspezifische Feiertage manuell basierend auf dem Kalender deines Standorts."
+    },
+    {
+      "q": "Wird negative Datumsarithmetik unterstützt?",
+      "a": "Ja über den 'Subtrahieren'-Modus. Intern ist Subtraktion nur das Addieren negativer Deltas. Der 'Zwischen'-Modus gibt immer positive Werte unabhängig von der Reihenfolge zurück."
+    },
+    {
+      "q": "Welche Zeitzone wird verwendet?",
+      "a": "Die lokale Zeitzone deines Browsers. Daten werden als Mitternacht Ortszeit interpretiert. Zeitzonenübergreifende Berechnungen können Anpassungen erfordern."
+    },
+    {
+      "q": "Kann ich Stunden und Minuten addieren?",
+      "a": "Noch nicht – nur Datumsgenauigkeit. Verwende ein separates Zeitstempel-Tool für Berechnungen auf Stundenebene."
+    },
+    {
+      "q": "Was ist die größte Differenz, die verarbeitet wird?",
+      "a": "Bequem Hunderte von Jahren. JavaScripts Date unterstützt ±100 Millionen Tage ab 1970, was die praktische Grenze ist."
+    },
+    {
+      "q": "Warum werden beide Endpunkte unterschiedlich gezählt?",
+      "a": "Gesamttage ist die Anzahl der Nächte zwischen den beiden Daten. Zwei aufeinanderfolgende Tage haben eine Differenz von 1 Tag. Die Werktags-Zählung geht durch jeden Kalendertag dazwischen."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Alle Berechnungen laufen lokal."
+    }
+  ]
+}

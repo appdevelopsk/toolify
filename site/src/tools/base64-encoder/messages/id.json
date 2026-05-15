@@ -1,0 +1,54 @@
+{
+  "title": "Encoder / Decoder Base64 (UTF-8 dan URL-safe)",
+  "shortDescription": "Encode teks UTF-8 apa pun ke Base64 atau decode kembali. Aktifkan encoding URL-safe untuk digunakan dalam URL dan JWT.",
+  "description": "Ketik teks apa pun atau tempel string Base64 untuk mengonversi ke kedua arah. Menangani UTF-8 (termasuk emoji dan CJK) dan mendukung varian URL-safe yang digunakan dalam JWT dan OAuth.",
+  "metaDescription": "Encoder dan decoder Base64 gratis dengan dukungan UTF-8 dan URL-safe. Konversi teks ke Base64 atau decode string gaya JWT secara instan di browser Anda.",
+  "keywords": ["encoder base64", "decoder base64", "url safe base64", "base64 utf8", "encode teks"],
+  "input": { "plain": "Teks biasa", "encoded": "String Base64" },
+  "output": { "encoded": "Hasil encode", "plain": "Hasil decode" },
+  "mode": { "encode": "Encode", "decode": "Decode" },
+  "urlSafe": "URL-safe (-, _, tanpa padding)",
+  "copy": "Salin",
+  "copied": "Tersalin",
+  "invalidInput": "Input Base64 tidak valid.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa itu Base64 dan apa bukan",
+        "paragraphs": [
+          "Base64 mengenkode byte arbitrer menggunakan alfabet 64 karakter (A-Z, a-z, 0-9, +, /, dengan padding =). Ini adalah cara standar untuk menyematkan data biner — byte gambar, blob terenkripsi, token yang ditandatangani — ke dalam format hanya teks seperti JSON, HTML, atau header email. Output sekitar 33% lebih besar dari input.",
+          "Base64 adalah encoding, bukan enkripsi. Siapa pun dapat mendecode string Base64 kembali ke byte aslinya. Jangan gunakan untuk menyembunyikan rahasia — gunakan algoritma enkripsi nyata jika Anda membutuhkan kerahasiaan."
+        ]
+      },
+      {
+        "heading": "URL-safe vs standar",
+        "paragraphs": [
+          "Base64 standar menyertakan '+' dan '/', yang memiliki makna khusus dalam URL dan perlu di-percent-encode. Base64 URL-safe (RFC 4648 §5) mengganti '+' dengan '-', '/' dengan '_', dan menghapus padding '=' di akhir. JWT, token OAuth, dan banyak API web menggunakan bentuk URL-safe.",
+          "Jika mendecode JWT atau token secara manual, aktifkan URL-safe. Jika bekerja dengan email klasik atau data yang disematkan dalam PDF, biarkan nonaktif. Decoder menerima kedua bentuk saat URL-safe aktif, karena alfabet standar adalah superset minus pasangan khusus."
+        ]
+      },
+      {
+        "heading": "Penanganan UTF-8",
+        "paragraphs": [
+          "btoa() browser lama hanya dapat menangani ASCII. Alat ini menggunakan TextEncoder untuk mengonversi input Anda ke byte UTF-8 terlebih dahulu, lalu meng-encode byte tersebut dengan Base64. Artinya emoji, karakter CJK, Latin beraksen, dan Unicode lainnya semuanya di-encode dan round-trip dengan benar. Pendekatan bytes-then-base64 sama dengan yang digunakan oleh library JWT dan sebagian besar framework modern."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih encode atau decode", "text": "Aktifkan mode di bagian atas." },
+      { "name": "Atur URL-safe jika diperlukan", "text": "Aktif untuk JWT dan token OAuth; nonaktif untuk yang lainnya." },
+      { "name": "Tempel input Anda", "text": "Teks biasa untuk encoding, string Base64 untuk decoding." },
+      { "name": "Salin hasilnya", "text": "Klik 'Salin' di samping output." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah Base64 adalah enkripsi?", "a": "Tidak. Ini adalah cara untuk mengenkode biner sebagai teks ASCII. Siapa pun dapat mendekodenya. Gunakan enkripsi nyata (AES, RSA, dll.) untuk kerahasiaan." },
+    { "q": "Mengapa URL-safe berbeda?", "a": "Base64 standar menggunakan '+' dan '/' yang memiliki makna khusus dalam URL dan perlu di-percent-encode. Base64 URL-safe mengganti '-' dan '_' untuk menghindari itu." },
+    { "q": "Bisakah saya mendecode tanda tangan JWT?", "a": "Mendecode tanda tangan memberikan Anda byte mentah dari tanda tangan, tetapi itu dimaksudkan untuk verifikasi, bukan dibaca manusia. Decode header dan payload JWT (dua segmen pertama) untuk melihat datanya." },
+    { "q": "Apakah ini bekerja untuk file biner?", "a": "Tidak langsung — tempel teks saja. Untuk file, gunakan alat yang mendukung biner. (Sebagian besar browser memiliki pasangan atob/btoa bawaan yang dapat Anda gunakan di DevTools untuk file kecil.)" },
+    { "q": "Mengapa teks yang saya decode kacau?", "a": "Entah inputnya bukan Base64 valid, atau itu mengenkode byte non-UTF-8 (mis., file Latin-1). Verifikasi encoding asli. Alat yang mendecode 'sebagai teks' mengasumsikan UTF-8." },
+    { "q": "Apakah data dikirim ke mana pun?", "a": "Tidak. Encoding dan decoding berjalan sepenuhnya di browser Anda." },
+    { "q": "Berapa overhead ukurannya?", "a": "Sekitar 33% lebih besar dari byte sumber (setiap 3 byte input menjadi 4 karakter output). URL-safe tanpa padding memiliki overhead yang sama." },
+    { "q": "Mengapa padding penting?", "a": "Base64 standar menambahkan '=' di akhir sehingga panjangnya adalah kelipatan 4. Versi URL-safe sering melewati ini karena tidak diperlukan untuk decoding." }
+  ]
+}

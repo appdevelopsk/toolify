@@ -1,0 +1,102 @@
+{
+  "title": "Römische Zahlen Konverter (1 bis 3999, beide Richtungen)",
+  "shortDescription": "Konvertiere arabische Zahlen in römische Ziffern (und zurück). Validiert kanonische Form, sodass VIIII nicht stillschweigend als 9 akzeptiert wird.",
+  "description": "Gib eine Zahl 1–3999 ein, um die römische Zahl zu erhalten, oder füge römische Ziffern ein, um zurückzukonvertieren. Strenge Validierung lehnt nicht-kanonische Formen ab.",
+  "metaDescription": "Kostenloser Römische-Zahlen-Konverter. Zahlen 1–3999 in römische Ziffern umrechnen oder Roman in Arabisch dekodieren.",
+  "keywords": [
+    "römische Zahlen Konverter",
+    "arabisch in römisch",
+    "römisch in Zahl",
+    "MMXXVI",
+    "römische Ziffern"
+  ],
+  "input": {
+    "number": "Zahl (1 bis 3999)",
+    "roman": "Römische Zahl"
+  },
+  "result": {
+    "roman": "Römische Zahl",
+    "number": "Arabische Zahl"
+  },
+  "mode": {
+    "toRoman": "Zahl → Römisch",
+    "fromRoman": "Römisch → Zahl"
+  },
+  "error": {
+    "invalidNumber": "Gib eine ganze Zahl ein.",
+    "outOfRange": "Römische Ziffern unterstützen nur 1 bis 3999.",
+    "invalidRoman": "Keine gültige römische Zahl (kanonische Form erforderlich)."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie römische Zahlen funktionieren",
+        "paragraphs": [
+          "Römische Ziffern verwenden sieben Buchstaben: I=1, V=5, X=10, L=50, C=100, D=500, M=1000. Zahlen werden durch Addition (II=2, XX=20) oder durch Subtraktion gebildet, wenn ein kleinerer Buchstabe einem größeren voransteht (IV=4, IX=9, XL=40, XC=90, CD=400, CM=900). Jeder Buchstabe kann maximal dreimal hintereinander wiederholt werden, weshalb 4 IV ist, nicht IIII.",
+          "Standard-Römisch-Notation unterstützt 1 bis 3999. Zahlen ≥ 4000 erfordern eine Überstrich-Notation (V̄ = 5000), die schwer einzutippen und heute selten benötigt wird, daher ist dieser Konverter auf 3999 begrenzt."
+        ]
+      },
+      {
+        "heading": "Kanonisches vs. informelles Römisch",
+        "paragraphs": [
+          "Strenge kanonische Form folgt den oben genannten Regeln. ‚Informelles' Römisch (manchmal ‚archaisch' genannt) erlaubt Dinge wie IIII für 4 – das ist auf Ziffernblättern zu sehen, wo die Symmetrie bevorzugt wird. Dieser Konverter erfordert kanonische Form für Eingabe und erzeugt kanonische Form bei Ausgabe. ‚IIII' wird also abgelehnt; stattdessen ‚IV' eingeben.",
+          "Der Decoder validiert durch Neu-Kodierung: Roman parsen, Zahl erhalten, diese Zahl kodieren und prüfen, ob es mit der Eingabe übereinstimmt. Alles, was keinen Rundtrip macht, wird abgelehnt. Das erfasst ‚VV' (fälschlicherweise = 10), ‚IIX' (fälschlicherweise = 8) und andere nicht-standardmäßige Formen."
+        ]
+      },
+      {
+        "heading": "Wo römische Zahlen heute erscheinen",
+        "paragraphs": [
+          "Filmurheberrechtsdaten (MCMXCIX = 1999), Super-Bowl-Nummerierung, Monarchen- und Papst-Sequenzen (Heinrich VIII., Johannes XXIII.), Buchkapitel und Gliederungen, Ziffernblätter und stilisierte Jahresmarker. Sie sind weitgehend aus der arithmetischen Verwendung gefallen, weil arabische Arithmetik viel einfacher ist – versuche MCXLVII mit IV zu multiplizieren und du verstehst warum."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Richtung wählen",
+        "text": "Zahl→Römisch oder Römisch→Zahl."
+      },
+      {
+        "name": "Eingabe tippen",
+        "text": "Eine ganze Zahl 1–3999 oder eine römische Zahl."
+      },
+      {
+        "name": "Ergebnis ablesen",
+        "text": "Ungültige Eingabe zeigt einen spezifischen Fehler, sodass du ihn korrigieren kannst."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Warum wird IIII nicht als 4 akzeptiert?",
+      "a": "Kanonisches Römisch schreibt 4 als IV. IIII erscheint auf manchen Ziffernblättern, ist aber keine standardmäßige arithmetische Notation. IV verwenden."
+    },
+    {
+      "q": "Was ist die größte römische Zahl?",
+      "a": "Ohne Überstriche: 3999 = MMMCMXCIX. Zahlen darüber benötigen eine Überstrich-Notation, die hier nicht unterstützt wird."
+    },
+    {
+      "q": "Kann ich null haben?",
+      "a": "Die Römer hatten keine null. Die Notation beginnt bei 1 (I)."
+    },
+    {
+      "q": "Was bedeutet CMXLIV?",
+      "a": "CM=900, XL=40, IV=4. Gesamt = 944. Subtraktionspaare (CM, XL, IV) plus ihre Komponenten."
+    },
+    {
+      "q": "Wie lese ich MMXXVI?",
+      "a": "MM=2000, XX=20, VI=6. Gesamt = 2026."
+    },
+    {
+      "q": "Warum sind Uhren-4en manchmal IIII?",
+      "a": "Tradition. Uhrmacher bevorzugten historisch IIII für visuelle Symmetrie mit VIII (beide vier Zeichen). Es ist kanonisch nicht ‚korrekt'."
+    },
+    {
+      "q": "Sind römische Zahlen Basis-10?",
+      "a": "Sie haben dezimalgruppierende Buchstaben (I/V für Einer, X/L für Zehner, C/D für Hunderter, M für Tausender), verwenden aber Addition und Subtraktion statt Stellenschreibweise. Sie sind also dezimal beeinflusst, aber nicht positionsmäßig."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Die Umrechnung läuft lokal."
+    }
+  ]
+}

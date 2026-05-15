@@ -1,0 +1,103 @@
+{
+  "title": "Chuyển đổi kiểu chữ (camel, snake, kebab, Title, v.v.)",
+  "shortDescription": "Chuyển đổi văn bản thành 10 kiểu chữ: CHỮ HOA, chữ thường, Title, Sentence, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE và đảo ngược.",
+  "description": "Gõ bất kỳ văn bản nào và xem mười kiểu chữ phổ biến song song, mỗi kiểu có nút sao chép. Hữu ích để đổi tên biến, tên file, tiêu đề, slug và làm sạch tập dữ liệu.",
+  "metaDescription": "Công cụ chuyển đổi kiểu chữ miễn phí cho camelCase, snake_case, kebab-case, PascalCase, Title Case và nhiều hơn. Mười kiểu cùng lúc với sao chép một chạm.",
+  "keywords": [
+    "chuyển đổi kiểu chữ",
+    "camel case",
+    "snake case",
+    "kebab case",
+    "title case"
+  ],
+  "input": {
+    "text": "Văn bản nguồn"
+  },
+  "copy": "Sao chép",
+  "copied": "Đã sao chép",
+  "case": {
+    "lower": "chữ thường",
+    "upper": "CHỮ HOA",
+    "title": "Title Case",
+    "sentence": "Sentence case",
+    "camel": "camelCase",
+    "pascal": "PascalCase",
+    "snake": "snake_case",
+    "kebab": "kebab-case",
+    "constant": "CONSTANT_CASE",
+    "invert": "ĐảO NgƯợC cHữ"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Mỗi kiểu được dùng ở đâu",
+        "paragraphs": [
+          "camelCase: định danh JavaScript và Java (tenBienCuaToi). PascalCase: lớp và component React (HoSoNguoiDung). snake_case: biến Python và Ruby (ho_so_nguoi_dung). kebab-case: URL và class CSS (ho-so-nguoi-dung). CONSTANT_CASE: biến môi trường và hằng số (HO_SO_NGUOI_DUNG).",
+          "Title Case: tiêu đề sách và bài viết, đề mục. Sentence case: hầu hết nhãn và tiêu đề UI hiện đại — dễ đọc hơn Title Case cho chuỗi dài. CHỮ HOA: nhấn mạnh, viết tắt. chữ thường: thẻ, nhãn, tên file không phân biệt chữ hoa/thường."
+        ]
+      },
+      {
+        "heading": "Cách công cụ phân tích từ",
+        "paragraphs": [
+          "Chúng tôi tách theo khoảng trắng, dấu gạch ngang, dấu gạch dưới, dấu gạch chéo và dấu chấm. Chúng tôi cũng tách tại ranh giới giữa chữ thường và chữ hoa (nên 'xinChaoTat' tách thành ['xin', 'Chao', 'Tat']) và giữa chữ cái và chữ số. Điều này xử lý hầu hết các trường hợp hàng ngày bao gồm code dán, slug và đường dẫn file.",
+          "Trường hợp đặc biệt: từ viết tắt toàn chữ hoa ('XMLHTTPRequest') không tách sạch mà không có ngữ cảnh, nên chúng tôi coi các chữ hoa liên tiếp là một khối từ duy nhất. Với hầu hết văn bản hàng ngày — câu, tiêu đề, tên cột tập dữ liệu — bộ phân tích tạo ra kết quả bạn mong đợi."
+        ]
+      },
+      {
+        "heading": "Mẹo cho đánh giá code và tái cấu trúc",
+        "paragraphs": [
+          "Khi chuyển đổi giữa các ngôn ngữ, dán danh sách tên định danh và sao chép phiên bản đã chuyển đổi. snake-to-camel là ranh giới JavaScript-to-Python phổ biến nhất; kebab-to-snake phổ biến khi tái cấu trúc thuộc tính HTML thành đối tượng JS.",
+          "Đối với slug SEO, kebab-case là tiêu chuẩn — dễ đọc trong URL và Google coi dấu gạch ngang là dấu phân tách từ (dấu gạch dưới thì không). 'ten-san-pham' được ưu tiên hơn 'ten_san_pham' cho bất kỳ đường dẫn URL nào hướng đến người dùng."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Gõ hoặc dán văn bản",
+        "text": "Bất cứ thứ gì — câu, định danh code, tên file."
+      },
+      {
+        "name": "Đọc tất cả 10 kiểu chuyển đổi",
+        "text": "Mỗi kiểu xuất hiện trong khối có nhãn riêng."
+      },
+      {
+        "name": "Sao chép kiểu bạn cần",
+        "text": "Nhấp 'Sao chép' bên cạnh bất kỳ khối nào."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Nếu đầu vào có từ viết tắt như 'XML' thì sao?",
+      "a": "Các chữ hoa liên tiếp được coi là một khối duy nhất. 'XMLParser' tách thành 'XML' và 'Parser'. Điều này hoạt động với hầu hết code; xem lại và chỉnh tay cho các trường hợp đặc biệt."
+    },
+    {
+      "q": "Tại sao URL slug luôn là kebab-case?",
+      "a": "Dấu gạch ngang được Google's URL parser coi là ranh giới từ; dấu gạch dưới thì không. URL kebab-case lập chỉ mục đáng tin cậy hơn cho SEO."
+    },
+    {
+      "q": "Sự khác biệt giữa Title Case và Sentence case là gì?",
+      "a": "Title Case viết hoa hầu hết các từ ('Cáo Nhanh Màu Nâu'). Sentence case chỉ viết hoa từ đầu tiên và danh từ riêng ('Cáo nhanh màu nâu'). UI hiện đại có xu hướng ưu tiên sentence case."
+    },
+    {
+      "q": "Công cụ này có hỗ trợ Unicode không?",
+      "a": "Có — toLowerCase/toUpperCase của JavaScript nhận biết Unicode. Dấu phụ và chữ viết không phải Latin đi qua chính xác."
+    },
+    {
+      "q": "Tôi có thể chuyển đổi ngược lại không?",
+      "a": "Có — dán bất kỳ đầu ra đã chuyển đổi nào vào và dùng một kiểu chuyển đổi khác. Chuyển đổi khứ hồi camelCase ↔ snake_case không bị mất dữ liệu."
+    },
+    {
+      "q": "Tại sao camelCase không giữ nguyên từ viết tắt ở dạng chữ hoa?",
+      "a": "Theo quy ước, camelCase chỉ viết hoa chữ cái đầu tiên của mỗi từ tiếp theo. 'XmlHttpRequest' được ưu tiên hơn 'XMLHTTPRequest' trong hướng dẫn phong cách hiện đại."
+    },
+    {
+      "q": "Dữ liệu có rời khỏi trình duyệt không?",
+      "a": "Không. Tất cả chuyển đổi chạy cục bộ."
+    },
+    {
+      "q": "Có cách nào chuyển đổi hàng loạt một danh sách không?",
+      "a": "Dán toàn bộ danh sách của bạn vào cùng một lúc. Mỗi dòng được coi là đầu vào riêng biệt trong cùng kiểu chữ — chuyển đổi, sau đó tách các dòng nếu cần."
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "title": "แปลง Markdown เป็น HTML (รองรับ",
+  "shortDescription": "แปลง Markdown เป็น HTML สะอาดในเบราว์เซอร์ รองรับหัวข้อ รายการ code block ลิงก์ รูปภาพ blockquote ตัวหนา/เอียง/ขีดทับ",
+  "description": "วาง Markdown และดู HTML เทียบเท่าทันที ใช้สำหรับบล็อก เอกสาร README ผลลัพธ์เป็น HTML สะอาดเชิงความหมายที่คัดลอกไปใส่ CMS หรือ static site ได้เลย",
+  "metaDescription": "แปลง Markdown เป็น HTML ฟรี แสดงผลแบบ live HTML สะอาดเชิงความหมาย รองรับ CommonMark",
+  "keywords": [
+    "แปลง markdown เป็น html",
+    "md เป็น html",
+    "markdown converter",
+    "commonmark to html",
+    "markdown บล็อก"
+  ],
+  "input": {
+    "markdown": "Markdown"
+  },
+  "output": {
+    "html": "HTML output"
+  },
+  "preview": "แสดง preview ที่ render แล้ว",
+  "copy": "คัดลอก HTML",
+  "copied": "คัดลอกแล้ว!",
+  "article": {
+    "sections": [
+      {
+        "heading": "สิ่งที่รองรับ",
+        "paragraphs": [
+          "หัวข้อ: # H1 ถึง ###### H6 รายการ: - / * / + สำหรับไม่เรียงลำดับ 1. 2. 3. สำหรับเรียงลำดับ Blockquote: > ต้นบรรทัด Code block: ``` พร้อมภาษาที่เลือกได้ Inline: **ตัวหนา** *ตัวเอียง* `code` ~~ขีดทับ~~ [ลิงก์](url) ![alt](image-url) เส้นแนวนอน: --- *** หรือ ___",
+          "เราใช้ CommonMark พื้นฐาน ตาราง footnote และ task list (-[ ]) ยังไม่รวม สำหรับสิ่งเหล่านั้น ใช้ CommonMark หรือ GFM library เต็มรูปแบบใน build pipeline ของคุณ"
+        ]
+      },
+      {
+        "heading": "เมื่อใดควรใช้เครื่องมือนี้",
+        "paragraphs": [
+          "แปลงด่วนสำหรับวางใน CMS CMS ส่วนใหญ่รับ HTML ถ้าคุณเขียนใน Markdown แต่ editor ไม่ render ให้ native ให้ผ่านเครื่องมือนี้ก่อน",
+          "การสร้างเอกสาร: แปลง README.md เป็น HTML สำหรับหน้า landing page ของโปรเจกต์ ผลลัพธ์สะอาดพอที่จะ wrap ใน template พื้นฐาน",
+          "การเขียน email: email client หลายตัว render HTML แต่ไม่ใช่ Markdown เขียนใน Markdown แปลง แล้ววาง"
+        ]
+      },
+      {
+        "heading": "การแปลงฝั่งเบราว์เซอร์",
+        "paragraphs": [
+          "การแปลงทั้งหมดทำงานในเบราว์เซอร์ของคุณ Markdown ของคุณ — ซึ่งอาจมีร่างเอกสารลับ snippet โค้ด หรือบันทึก — ไม่ออกจากเครื่องของคุณ ไม่มี server log ไม่มีข้อมูลฝึก AI แค่การแปลง regex แบบ deterministic",
+          "ถ้าคุณต้องการฟีเจอร์ GFM (ตาราง task list footnote) ใช้ library ที่สมบูรณ์กว่าอย่าง marked.js, markdown-it หรือ remark ใน build ของคุณ สำหรับ Markdown ง่ายถึงปานกลาง output ของเครื่องมือนี้เพียงพอ"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "วาง Markdown",
+        "text": "หรือพิมพ์โดยตรงในพื้นที่ input"
+      },
+      {
+        "name": "อ่าน HTML output",
+        "text": "อัพเดต live ขณะพิมพ์"
+      },
+      {
+        "name": "คัดลอกไปยัง clipboard",
+        "text": "คลิก 'คัดลอก HTML' เพื่อรับ output"
+      },
+      {
+        "name": "ตัวเลือก: preview",
+        "text": "คลิก 'แสดง preview ที่ render แล้ว' เพื่อดูว่าจะมีหน้าตาอย่างไรในเบราว์เซอร์"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "รองรับตารางไหม?",
+      "a": "ยังไม่ได้ ตารางเป็น GFM extension ไม่ใช่ CommonMark บริสุทธิ์ อาจเพิ่มในเวอร์ชันอนาคต"
+    },
+    {
+      "q": "Code block จะ syntax highlight ไหม?",
+      "a": "เราเพิ่ม class='language-X' ให้แท็ก <pre><code> เพื่อให้ highlighter อย่าง Prism หรือ highlight.js สามารถจัดรูปแบบได้ HTML เองไม่มีการ style — ใช้ CSS หรือ library ของคุณเอง"
+    },
+    {
+      "q": "output ปลอดภัยที่จะวางในที่ใดก็ได้ไหม?",
+      "a": "เรา escape <, >, & และ \" ใน code block และ inline code เนื้อหาอื่นแปลงตามที่เป็น ถ้าคุณวาง Markdown ที่ผู้ใช้สร้าง ให้ sanitize output ก่อน inject เข้าหน้า"
+    },
+    {
+      "q": "ทำไม emphasis ของฉันถึงแปลก?",
+      "a": "การซ้อน Markdown emphasis อาจซับซ้อน * เทียบกับ _ อาจทำงานต่างกันกับเครื่องหมายวรรคตอนที่อยู่ติดกัน CommonMark spec แม่นยำ ถ้า output ของเราต่างออกไป ให้วาง spec example เพื่อตรวจสอบ"
+    },
+    {
+      "q": "รองรับ HTML ภายใน Markdown ไหม?",
+      "a": "Inline HTML ผ่านไปได้ (ซึ่งเป็นพฤติกรรม CommonMark) ใช้อย่างระมัดระวัง — HTML ที่เป็นอันตรายจากแหล่งที่ไม่น่าเชื่อถือจะผ่านไปโดยไม่เปลี่ยนแปลง"
+    },
+    {
+      "q": "แปลง HTML กลับเป็น Markdown ได้ไหม?",
+      "a": "ได้ — ดูเครื่องมือแปลง HTML เป็น Markdown ของเรา (ลิงก์ใต้ Related Tools)"
+    },
+    {
+      "q": "แล้ว footnote ล่ะ?",
+      "a": "ยังไม่ได้ใช้งาน (GFM extension) สำหรับเอกสารซับซ้อน ใช้ server-side library อย่าง remark-gfm"
+    },
+    {
+      "q": "ข้อมูลออกจากเบราว์เซอร์ไหม?",
+      "a": "ไม่ การแปลงทำงานในเครื่องของคุณ Markdown ของคุณไม่ถูกส่งไปที่ไหน"
+    }
+  ]
+}

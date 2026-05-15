@@ -1,0 +1,111 @@
+{
+  "title": "JWT-Decoder (Header, Payload, Signatur, Ablauf)",
+  "shortDescription": "Jeden JWT (JSON Web Token) in Header-, Payload- und Signaturteile dekodieren. Markiert abgelaufene Tokens. Nur im Browser – dein Token verlässt nie dein Gerät.",
+  "description": "JWT einfügen, um Header und Payload sofort als JSON zu dekodieren. Erkennt Standard-Claims (iat, exp, nbf) und wandelt Unix-Zeitstempel in ISO 8601 um. Markiert abgelaufene oder noch nicht gültige Tokens.",
+  "metaDescription": "Kostenloser JWT-Decoder. Header, Payload, Signaturvorhandensein und Ablauf prüfen. Standard-Claims (iat/exp/nbf) automatisch formatiert.",
+  "keywords": [
+    "JWT Decoder",
+    "JSON Web Token",
+    "JWT dekodieren",
+    "JWT Inspector",
+    "JWT Debugger"
+  ],
+  "input": {
+    "token": "JWT-Token",
+    "privacyNote": "Vollständig im Browser dekodiert. Das Token wird nie über das Netzwerk gesendet."
+  },
+  "result": {
+    "header": "Header",
+    "payload": "Payload",
+    "signaturePresent": "Signatur vorhanden",
+    "issuedAt": "Ausgestellt am (iat)",
+    "expiresAt": "Läuft ab am (exp)",
+    "notBefore": "Nicht gültig vor (nbf)"
+  },
+  "warning": {
+    "expired": "⚠ Dieses Token ist abgelaufen. Server, die exp berücksichtigen, werden es ablehnen.",
+    "notYetValid": "⚠ Noch nicht gültig (nbf liegt in der Zukunft). Server werden es bis dahin ablehnen."
+  },
+  "error": {
+    "label": "Dekodierungsfehler"
+  },
+  "copy": "Kopieren",
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie ein JWT aussieht",
+        "paragraphs": [
+          "Ein JWT besteht aus drei Base64url-kodierten Segmenten, die durch Punkte verbunden sind: Header.Payload.Signatur. Jedes Segment ist ein JSON-Objekt, das für die URL-sichere Übertragung kodiert wurde. Der Header deklariert den Signierungsalgorithmus, der Payload enthält Claims (Betreff, Ablaufzeit, benutzerdefinierte Daten), und die Signatur ermöglicht dem Empfänger die Integritätsprüfung, wenn er den Schlüssel hat.",
+          "Dieser Decoder liest nur die ersten beiden Segmente. Die Signatur ist das dritte Segment, aber ihre Verifizierung erfordert den geheimen/öffentlichen Schlüssel – das ist eine separate Operation, die wir hier nicht durchführen."
+        ]
+      },
+      {
+        "heading": "Standard-Claims, die man kennen sollte",
+        "paragraphs": [
+          "iss (Aussteller): wer das Token erstellt hat. iat (ausgestellt am): wann, als Unix-Zeitstempel. exp (Ablauf): wann es ungültig wird, ebenfalls Unix. nbf (nicht vor): der früheste Zeitpunkt, zu dem es akzeptiert werden soll. sub (Betreff): die dargestellte Entität, oft eine Benutzer-ID. aud (Zielgruppe): für wen das Token gedacht ist, üblicherweise eine Dienst-URL.",
+          "Nicht alle sind obligatorisch; minimale JWTs haben oft nur sub + iat + exp. Benutzerdefinierte Claims sind alles Weitere – sie existieren neben den Standard-Claims im Payload."
+        ]
+      },
+      {
+        "heading": "Warum Dekodieren ≠ Verifizieren bedeutet",
+        "paragraphs": [
+          "Jeder kann einen JWT dekodieren – Header und Payload sind nur Base64-kodiertes JSON. Deshalb gilt: 'Niemals Geheimnisse im Payload ablegen': Sie sind praktisch öffentlich.",
+          "Verifizierung bedeutet, die Signatur gegen den geheimen Schlüssel (HMAC) oder öffentlichen Schlüssel (RSA/ECDSA) zu prüfen. Ohne Verifizierung kann keinem Claim im Payload vertraut werden – ein Angreifer kann beliebige Payloads erstellen.",
+          "Dieses Tool zum Überprüfen von Tokens beim Debuggen verwenden. Auf dem Server eine JWT-Bibliothek für die Verifizierung in der Produktion einsetzen."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "JWT einfügen",
+        "text": "Drei durch Punkte verbundene Segmente."
+      },
+      {
+        "name": "Dekodierte Teile lesen",
+        "text": "Header (Algorithmus), Payload (Claims), Signaturvorhandensein."
+      },
+      {
+        "name": "Ablauf prüfen",
+        "text": "Standard-Claims iat/exp/nbf werden automatisch als ISO-Daten formatiert und bei Ablauf oder fehlender Gültigkeit markiert."
+      },
+      {
+        "name": "Bei Bedarf kopieren",
+        "text": "Jeder Abschnitt hat einen Kopier-Button für die JSON-Ausgabe."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Kann ich die Signatur hier verifizieren?",
+      "a": "Nein – die Verifizierung benötigt den geheimen oder öffentlichen Schlüssel, der eine vertrauenswürdige Umgebung nie verlassen sollte. Eine serverseitige JWT-Bibliothek verwenden (jsonwebtoken für Node, PyJWT für Python usw.)."
+    },
+    {
+      "q": "Verlässt das Token meinen Browser?",
+      "a": "Niemals. Die Dekodierung läuft lokal; es gibt keinen Server-Endpunkt, der es empfangen würde."
+    },
+    {
+      "q": "Warum ist mein Token 'ungültig'?",
+      "a": "Häufig: Einfügen hat Leerzeichen hinzugefügt/entfernt, eines der drei Segmente fehlt, oder ein Segment ist fehlerhaftes Base64url. Trimmen und erneut versuchen."
+    },
+    {
+      "q": "Was ist Base64url vs. Base64?",
+      "a": "Base64url ersetzt '+' durch '-', '/' durch '_' und lässt das '='-Padding weg, damit die kodierte Zeichenkette in URLs und HTTP-Headern sicher ist. JWTs verwenden immer Base64url."
+    },
+    {
+      "q": "Warum zeigt mein Unicode-Payload unlesbaren Text?",
+      "a": "Wir dekodieren UTF-8, was der Standard ist. Wenn der Payload anders kodiert wurde, kann JSON.parse fehlschlagen. Die meisten JWT-Aussteller kodieren korrekt UTF-8."
+    },
+    {
+      "q": "Ist HS256 sicher?",
+      "a": "Wenn das Geheimnis ausreichend lang ist (≥256 Bit) und geheim bleibt, ja. Häufige HS256-Schwachstellen sind schwache Geheimnisse und das Akzeptieren von Tokens mit alg='none'. Mindestens 32 Zeichen lange zufällige Geheimnisse verwenden und 'none' explizit ablehnen."
+    },
+    {
+      "q": "Warum RS256 statt HS256 bevorzugen?",
+      "a": "RS256 (asymmetrisches RSA) ermöglicht das Veröffentlichen eines öffentlichen Schlüssels zur Verifizierung, während der Signierschlüssel privat bleibt. HS256 (symmetrisches HMAC) erfordert das Teilen des Geheimnisses mit jedem Verifier. Für Multi-Service-Architekturen ist RS256 sicherer."
+    },
+    {
+      "q": "Kann ich sehr große Tokens dekodieren?",
+      "a": "Das praktische Limit liegt bei ~10 MB Eingabe; darüber hinaus kann der Browser langsamer werden. JWTs sind meist unter 4 KB; wenn deiner größer ist, prüfen, ob zu viel in Claims gespeichert wird."
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "title": "Wissenschaftliche Notation Konverter (Dezimal ↔ Wissenschaftlich)",
+  "shortDescription": "Konvertiere Dezimalzahlen zu/von wissenschaftlicher (1,23 × 10^4) und technischer (1,23e3) Notation. Bidirektional, mit E-Notation-Ausgabe.",
+  "description": "Zwei Modi: Dezimal-zu-Wissenschaftlich berechnet Koeffizient und Exponent für jede Zahl; Wissenschaftlich-zu-Dezimal expandiert zurück. Technische Notation (Vielfache von 3 im Exponenten) wird auch angezeigt.",
+  "metaDescription": "Kostenloser Wissenschaftliche-Notation-Konverter. Dezimal zu wissenschaftlich (×10^n) oder zurück. E-Notation, technische Notation.",
+  "keywords": [
+    "wissenschaftliche Notation Konverter",
+    "E-Notation",
+    "technische Notation",
+    "Dezimal in wissenschaftlich",
+    "Exponentenrechner"
+  ],
+  "dir": {
+    "toSci": "Dezimal → Wissenschaftlich",
+    "toDec": "Wissenschaftlich → Dezimal"
+  },
+  "input": {
+    "decimal": "Dezimalzahl",
+    "coefficient": "Koeffizient",
+    "exponent": "Exponent (10^n)"
+  },
+  "result": {
+    "scientific": "Wissenschaftliche Notation",
+    "eNotation": "E-Notation",
+    "engineering": "Technische Notation",
+    "decimal": "Dezimalwert"
+  },
+  "empty": "Gib eine Zahl zum Konvertieren ein.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Was ist wissenschaftliche Notation",
+        "paragraphs": [
+          "Wissenschaftliche Notation drückt Zahlen als Koeff × 10^Exponent aus, wobei Koeff zwischen 1 und 10 liegt (üblicherweise 1 ≤ Koeff < 10). Sie wird für sehr große oder kleine Zahlen verwendet, die in Dezimalform umständlich wären.",
+          "Beispiele: Lichtgeschwindigkeit = 3 × 10⁸ m/s. Avogadros Zahl = 6,022 × 10²³. Elektronenmasse = 9,109 × 10⁻³¹ kg. Der Exponent gibt an, wie viele Stellen das Komma verschoben wird: positiv nach rechts (multiplizieren), negativ nach links (dividieren)."
+        ]
+      },
+      {
+        "heading": "E-Notation in Computern",
+        "paragraphs": [
+          "E-Notation (1,23e4 = 1,23 × 10⁴) ist die computerfreundliche Version. JavaScript, Python, Excel und die meisten Rechner verwenden sie. Das ‚e' ist nur Notation – die Eulersche Zahl ‚e' ist nicht beteiligt.",
+          "Warum Computer E-Notation verwenden: Tastaturen haben typischerweise keine hochgestellten Zeichen oder ‚×' als leicht tippbare Zeichen. Einfaches ASCII E oder e funktioniert in jeder Texteingabe.",
+          "Hinweis: ‚e' in regex-Programmierung oder anderen Kontexten bedeutet etwas anderes. In Zahlen steht es spezifisch für ‚× 10 hoch'."
+        ]
+      },
+      {
+        "heading": "Technische Notation",
+        "paragraphs": [
+          "Technische Notation ist ähnlich wie wissenschaftlich, aber der Exponent ist immer ein Vielfaches von 3 (3, 6, 9, 12, … oder −3, −6, −9, …). Das stimmt mit SI-Präfixen überein: Kilo (10³), Mega (10⁶), Giga (10⁹), Milli (10⁻³), Mikro (10⁻⁶), Nano (10⁻⁹).",
+          "Beispiel: 1,23 × 10⁴ in wissenschaftlich ist 12,3 × 10³ in technisch, was als ‚12,3 Kilo' gelesen werden kann. Nützlich in Elektronik, Ingenieurwesen und jedem Bereich mit SI-Einheitspräfixen.",
+          "Kompromiss: wissenschaftliche Notation hat einen fest formatierten Koeffizient (immer 1 ≤ |Koeff| < 10); technische erlaubt einen breiteren Koeffizient-Bereich (1 ≤ |Koeff| < 1000), aber sauberere SI-Präfix-Zuordnung."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Konvertierungsrichtung wählen",
+        "text": "Dezimal → wissenschaftlich oder wissenschaftlich → dezimal."
+      },
+      {
+        "name": "Zahl oder Koeffizient + Exponent eingeben",
+        "text": "Jede Richtung hat ihr eigenes Eingabeformat."
+      },
+      {
+        "name": "Ergebnis ablesen",
+        "text": "Enthält E-Notation und technische Notation als Bonus."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Warum ist der Exponent nützlich?",
+      "a": "Er gibt die Größenordnung an. 10⁹ ist eine Milliarde; 10⁻⁹ ist eine nanometergroße Zahl. Für den Vergleich sehr unterschiedlicher Skalen (atomar vs. astronomisch) sind Exponenten die natürliche Sprache."
+    },
+    {
+      "q": "Ist 1,23e4 dasselbe wie 1,23 × 10⁴?",
+      "a": "Ja – gleiche Zahl, verschiedene Notation. ‚e4' ist eine computerfreundliche Art, ‚× 10⁴' zu schreiben. Die meisten Programmiersprachen und Rechner akzeptieren es als Eingabe."
+    },
+    {
+      "q": "Was ist die Genauigkeit dieses Rechners?",
+      "a": "Gleitkommagenauigkeit (etwa 15–17 signifikante Stellen). Für höhere Genauigkeit (1000+ Stellen) ein CAS wie SymPy oder Mathematica verwenden."
+    },
+    {
+      "q": "Kann ich Mathematik auf wissenschaftlicher Notation machen?",
+      "a": "Multiplizieren: Koeffizienten multiplizieren, Exponenten addieren. Dividieren: Koeffizienten dividieren, Exponenten subtrahieren. Addieren/Subtrahieren: zuerst auf denselben Exponenten bringen, dann Koeffizienten addieren/subtrahieren."
+    },
+    {
+      "q": "Warum zeigt meine Zahl ‚Infinity'?",
+      "a": "Exponent zu groß für IEEE-754-Doppelpräzision (etwa 308). Für größere Zahlen ein CAS oder BigInt-basierte Bibliotheken verwenden."
+    },
+    {
+      "q": "Was ist eine ‚Mantisse'?",
+      "a": "Älteres Synonym für den Koeffizient – der Teil vor dem × 10^. Manche Lehrbücher verwenden es noch. Moderne Konvention ist ‚Koeffizient' oder ‚Signifikand'."
+    },
+    {
+      "q": "Kann ich wissenschaftliche Notation für negative Koeffizienten verwenden?",
+      "a": "Ja. −3 × 10⁵ = −300.000. Das Minuszeichen geht auf den Koeffizienten, nicht den Exponenten."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Die Berechnung läuft lokal; nichts wird an einen Server gesendet."
+    }
+  ]
+}

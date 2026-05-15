@@ -1,0 +1,117 @@
+{
+  "title": "Calcolatore di Date (aggiungi/sottrai giorni, o differenza tra date)",
+  "shortDescription": "Aggiungi o sottrai anni/mesi/giorni da una data, o trova la differenza precisa tra due date inclusi i giorni lavorativi.",
+  "description": "Due modalità: 'aggiungi o sottrai' per calcolare una data futura o passata, oppure 'tra' per trovare la differenza in anni, mesi, giorni, settimane e giorni lavorativi.",
+  "metaDescription": "Calcolatore di date gratuito. Aggiungi o sottrai anni/mesi/giorni, o trova la differenza tra due date con conteggio dei giorni lavorativi.",
+  "keywords": [
+    "calcolatore date",
+    "aggiungi giorni a data",
+    "differenza date",
+    "giorni lavorativi",
+    "giorni tra date"
+  ],
+  "empty": "Scegli le date per calcolare.",
+  "mode": {
+    "addSubtract": "Aggiungi o sottrai",
+    "between": "Differenza tra date"
+  },
+  "op": {
+    "add": "Aggiungi",
+    "subtract": "Sottrai"
+  },
+  "input": {
+    "start": "Data di inizio",
+    "end": "Data di fine",
+    "years": "Anni",
+    "months": "Mesi",
+    "days": "Giorni"
+  },
+  "result": {
+    "resultDate": "Data risultante",
+    "difference": "Differenza",
+    "ymd": "{y} anni, {m} mesi, {d} giorni",
+    "totalDays": "Giorni totali",
+    "totalWeeks": "Settimane totali",
+    "totalMonths": "Mesi totali",
+    "businessDays": "Giorni lavorativi (lun-ven)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cosa calcola",
+        "paragraphs": [
+          "Modalità aggiungi/sottrai: prende una data, aggiunge o sottrae un numero di anni, mesi e giorni, e ti dà la data di calendario risultante. Anni e mesi usano l'aritmetica del calendario (quindi aggiungere 1 mese al 31 gennaio dà il 28 o 29 febbraio a seconda dell'anno bisestile, non il 3 marzo). I giorni sono esatti — aggiungere 30 giorni avanza sempre esattamente 30 giorni di calendario.",
+          "Modalità tra: prende due date e fornisce la differenza in anni/mesi/giorni più i totali in giorni, settimane, mesi e giorni lavorativi (da lunedì a venerdì, senza festività). La forma A/M/G usa la stessa logica di prestito del nostro calcolatore di età — una differenza è ad es. '2 anni, 5 mesi, 3 giorni', non un anno decimale."
+        ]
+      },
+      {
+        "heading": "Perché i giorni lavorativi non includono i festivi",
+        "paragraphs": [
+          "Contiamo da lunedì a venerdì come giorni lavorativi ed escludiamo sabato e domenica. Le festività pubbliche variano per paese, regione e anno, quindi non le sottraiamo automaticamente. Per il lavoro con giorni lavorativi in Italia, sottrai circa 12 festività nazionali all'anno dal risultato.",
+          "Se i festivi sono importanti per il tuo calcolo (tracciamento delle scadenze, negoziazioni contrattuali), fai il conteggio del calendario qui, poi controlla manualmente il calendario delle festività del tuo paese. Potremmo aggiungere la sottrazione delle festività specifiche per paese in una versione futura."
+        ]
+      },
+      {
+        "heading": "Casi d'uso comuni",
+        "paragraphs": [
+          "Scadenze di progetto: 'questo è dovuto 90 giorni dopo il kickoff'. Aggiungi 90 giorni alla data di inizio.",
+          "Termini contrattuali: conta i giorni tra inizio e fine del contratto. Abbina alla lingua del contratto per la fatturazione.",
+          "Pianificazione del viaggio: quanti giorni lavorativi tra la partenza e il ritorno? Utile per calendari fuori ufficio e note spese.",
+          "Traguardi personali: anniversari, conteggi di sobrietà, tempo da un grande evento di vita."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Scegli una modalità",
+        "text": "Aggiungi/sottrai per spostarsi da una data, oppure tra per trovare una differenza."
+      },
+      {
+        "name": "Inserisci la data di inizio",
+        "text": "Usa il selettore di date."
+      },
+      {
+        "name": "Aggiungi l'offset o la data di fine",
+        "text": "Anni/mesi/giorni per la modalità aggiungi, o data di fine per la modalità tra."
+      },
+      {
+        "name": "Leggi il risultato",
+        "text": "Data risultante o ripartizione completa della differenza."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Cosa succede se aggiungo 1 mese al 31 gennaio?",
+      "a": "Ottieni il 28 febbraio (o il 29 febbraio in un anno bisestile). L'aritmetica del calendario si fissa all'ultimo giorno del mese target quando il giorno sorgente non esiste."
+    },
+    {
+      "q": "Le festività vengono sottratte dai giorni lavorativi?",
+      "a": "No — solo i fine settimana. Sottrai manualmente i festivi specifici del paese in base al calendario della tua giurisdizione."
+    },
+    {
+      "q": "Gestisce l'aritmetica delle date negative?",
+      "a": "Sì tramite la modalità 'sottrai'. Internamente, la sottrazione è solo aggiungere delta negativi. La modalità 'differenza tra' restituisce sempre valori positivi indipendentemente dall'ordine."
+    },
+    {
+      "q": "Quale fuso orario usa?",
+      "a": "Il fuso orario locale del tuo browser. Le date sono interpretate come mezzanotte locale. I calcoli attraverso fusi orari diversi potrebbero necessitare di aggiustamenti."
+    },
+    {
+      "q": "Posso aggiungere ore e minuti?",
+      "a": "Non ancora — solo granularità della data. Usa uno strumento timestamp separato per la matematica a livello di ora."
+    },
+    {
+      "q": "Qual è la differenza massima che gestisce?",
+      "a": "Centinaia di anni comodamente. Il Date di JavaScript supporta ±100 milioni di giorni dal 1970, quindi questo è il limite pratico."
+    },
+    {
+      "q": "Perché conta gli endpoint in modo diverso?",
+      "a": "I giorni totali sono il conteggio delle notti tra le due date. Due giorni consecutivi hanno una differenza di 1 giorno. Il conteggio dei giorni lavorativi passa attraverso ogni giorno di calendario intermedio."
+    },
+    {
+      "q": "I dati lasciano il mio browser?",
+      "a": "No. Tutta la matematica viene eseguita localmente."
+    }
+  ]
+}

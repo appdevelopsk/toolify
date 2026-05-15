@@ -1,0 +1,72 @@
+{
+  "title": "Kalkulator Segitiga (siku-siku, SSS, SAS)",
+  "shortDescription": "Hitung luas, keliling, sisi, dan sudut segitiga. Tiga mode: segitiga siku-siku (Pythagoras), tiga sisi (SSS), atau dua sisi + sudut yang diapit (SAS).",
+  "description": "Pilih mode, masukkan nilai yang diketahui, dan dapatkan semua sisi, ketiga sudut, luas, dan keliling. Memvalidasi pertidaksamaan segitiga untuk mode SSS.",
+  "metaDescription": "Kalkulator segitiga gratis. Mode siku-siku (Pythagoras), SSS, atau SAS. Mengembalikan sisi, sudut, luas, keliling. Berguna untuk PR geometri dan konstruksi.",
+  "keywords": ["kalkulator segitiga", "teorema pythagoras", "aturan kosinus", "luas segitiga", "penyelesai segitiga"],
+  "empty": "Masukkan nilai yang diketahui untuk mode yang dipilih.",
+  "invalid": "Segitiga tidak valid: melanggar pertidaksamaan segitiga (sisi terpanjang harus lebih pendek dari jumlah dua sisi lainnya).",
+  "mode": {
+    "right": "Segitiga siku-siku",
+    "sss": "Tiga sisi (SSS)",
+    "sas": "Dua sisi + sudut (SAS)"
+  },
+  "input": {
+    "legA": "Kaki a",
+    "legB": "Kaki b",
+    "sideA": "Sisi a",
+    "sideB": "Sisi b",
+    "sideC": "Sisi c",
+    "angleC": "Sudut C (derajat)"
+  },
+  "result": {
+    "area": "Luas",
+    "perim": "Keliling",
+    "sides": "Sisi",
+    "angles": "Sudut"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Tiga mode untuk tiga masalah",
+        "paragraphs": [
+          "Segitiga siku-siku (kaki a, b): kasus paling umum. Hipotenusa c = √(a² + b²) berdasarkan teorema Pythagoras. Sudut A = arctan(a/b), B = arctan(b/a), C = 90°. Luas = (a × b) / 2.",
+          "Tiga sisi (SSS — Sisi-Sisi-Sisi): ketika Anda mengetahui ketiga panjang sisi. Validasi dengan pertidaksamaan segitiga (sisi terpanjang < jumlah dua lainnya). Sudut melalui aturan kosinus: cos A = (b² + c² − a²) / (2bc). Luas melalui rumus Heron: √(s(s−a)(s−b)(s−c)) di mana s = (a+b+c)/2.",
+          "Dua sisi + sudut yang diapit (SAS — Sisi-Sudut-Sisi): ketika Anda mengetahui dua sisi dan sudut di antara keduanya. Sisi ketiga melalui aturan kosinus: c = √(a² + b² − 2ab cos C). Sudut lain melalui aturan sinus. Luas = (1/2) × a × b × sin C."
+        ]
+      },
+      {
+        "heading": "Kapan menggunakan setiap mode",
+        "paragraphs": [
+          "Segitiga siku-siku adalah yang paling umum dalam geometri sehari-hari — membangun sudut dinding, menghitung kemiringan atap, menemukan diagonal TV dari lebar dan tinggi. Teorema Pythagoras adalah salah satu rumus yang paling sering digunakan dalam konstruksi dan desain.",
+          "SSS muncul dalam survei, navigasi, dan kasus apapun di mana Anda mengukur tiga sisi secara langsung. Berguna untuk memverifikasi bentuk segitiga dari pengukuran fisik.",
+          "SAS untuk kasus di mana Anda memiliki dua sisi yang bertemu pada sudut yang diketahui tetapi sisi ketiga tidak diukur atau sulit dijangkau. Umum dalam kelas trigonometri dan rangkaian soal trigonometri."
+        ]
+      },
+      {
+        "heading": "Aplikasi praktis",
+        "paragraphs": [
+          "Konstruksi: kemiringan atap dari naik dan lari (segitiga siku-siku). 'Aturan tiga' tukang kayu: segitiga 3-4-5 memiliki sudut siku-siku yang sempurna, tidak perlu busur derajat.",
+          "Navigasi: triangulasi menggunakan SSS atau SAS untuk menemukan posisi Anda dari tiga landmark yang diketahui. Matematika yang sama mendukung GPS (dengan koreksi relativistik).",
+          "Grafis komputer: setiap model 3D didekomposisi menjadi segitiga. Rumus luas segitiga muncul dalam kode shader yang menghitung pencahayaan permukaan.",
+          "Astronomi: pengukuran jarak paralaks menggunakan prinsip SSS. Sudut matahari-Bumi-bintang memberikan jarak bintang melalui trigonometri sederhana."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih mode", "text": "Segitiga siku-siku, SSS (tiga sisi), atau SAS (dua sisi + sudut)." },
+      { "name": "Masukkan nilai yang diketahui", "text": "Setiap mode memerlukan input yang berbeda." },
+      { "name": "Baca semua yang tidak diketahui", "text": "Sisi, sudut, luas, dan keliling semua dihitung." }
+    ]
+  },
+  "faq": [
+    { "q": "Apa itu pertidaksamaan segitiga?", "a": "Agar tiga panjang dapat membentuk segitiga, jumlah dua manapun harus melebihi yang ketiga. Jadi 3, 4, 5 valid (3+4=7 > 5); 1, 2, 5 tidak (1+2=3 < 5). Kalkulator menangkap ini dalam mode SSS." },
+    { "q": "Seberapa akurat ini?", "a": "Presisi titik mengambang (~15-17 digit signifikan). Untuk input khas kesalahannya jauh lebih kecil dari kesalahan pengukuran di dunia nyata." },
+    { "q": "Bisakah sudut dalam radian?", "a": "Belum — kami menggunakan derajat di seluruh. Konversi melalui radian × 180/π jika diperlukan." },
+    { "q": "Bagaimana jika segitiga saya memiliki sudut tumpul?", "a": "Semua mode menangani segitiga tumpul dengan benar. Pastikan untuk SAS bahwa sudut yang diapit berada antara 0° dan 180° eksklusif." },
+    { "q": "Mengapa ini tidak bekerja untuk semua 'dua sisi dan sudut'?", "a": "Kami mendukung SAS (sudut ANTARA dua sisi). Kasus ambigu (SSA — sudut, lalu dua sisi di mana satu berlawanan dengan sudut) kadang memiliki 0, 1, atau 2 segitiga valid. SSS dan SAS tidak ambigu." },
+    { "q": "Bisakah saya menyelesaikan segitiga siku-siku 3-4-5?", "a": "3-4-5 adalah segitiga siku-siku. Untuk tumpul, coba 4-5-7 dalam mode SSS — sudut terbesar lebih dari 90°." },
+    { "q": "Bagaimana cara menemukan sisi dari sudut saja?", "a": "Tidak bisa — sudut saja menentukan bentuk tetapi bukan ukuran. Anda memerlukan setidaknya satu sisi. Dua sudut + satu sisi sudah cukup (sudut ketiga = 180 − jumlah dua)." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

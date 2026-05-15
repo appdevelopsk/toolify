@@ -1,0 +1,53 @@
+{
+  "title": "HTML-zu-Markdown-Konverter",
+  "shortDescription": "HTML im Browser in Markdown umwandeln. Überschriften, Listen, Code, Links, Bilder, Zitate, Fett/Kursiv/Durchgestrichen.",
+  "description": "HTML einfügen und sauberes Markdown erhalten. Nützlich für CMS-Migrationen, Artikel-Archivierung oder die Umwandlung von WYSIWYG-Ausgaben in reines Markdown für statische Websites.",
+  "metaDescription": "Kostenloser HTML-zu-Markdown-Konverter. Überschriften, Listen, Code-Blöcke, Links, Zitate, Fett/Kursiv. Ausgabe ist reines Markdown, bereit zum Einfügen.",
+  "keywords": ["HTML zu Markdown", "HTML in Markdown", "Markdown Konverter", "HTML entfernen", "WYSIWYG zu Markdown"],
+  "input": { "html": "HTML" },
+  "output": { "markdown": "Markdown-Ausgabe" },
+  "copy": "Markdown kopieren",
+  "copied": "Kopiert!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Was umgewandelt wird",
+        "paragraphs": [
+          "Überschriften (h1–h6) werden zu # bis ######. <strong>/<b> wird zu **fett**, <em>/<i> zu *kursiv*. <code> wird zu `Inline-Code`, <pre><code> zu einem eingezäunten ```-Block. <ul>/<ol> werden zu - oder 1.-Listen. <a href> wird zu [Text](URL), <img src alt> zu ![Alt](URL). <blockquote> wird zu >, <hr> zu ---. <br> wird zu einem Zeilenumbruch.",
+          "Alles nicht Erkannte (benutzerdefiniertes HTML wie <details>, <table>, <video> usw.) wird von Tags befreit, aber der Textinhalt bleibt erhalten. Bei komplexem HTML mit Tabellen oder Medien ist mit Informationsverlust zu rechnen."
+        ]
+      },
+      {
+        "heading": "Typische Anwendungsfälle",
+        "paragraphs": [
+          "CMS-Migration: WYSIWYG-HTML aus WordPress, Wix usw. kopieren und in sauberes Markdown für Static-Site-Generatoren (Hugo, Jekyll, Next.js, Astro) umwandeln.",
+          "Artikel-Archivierung: Webartikel als Markdown für persönliche Lektüre speichern. In Kombination mit einem Reader-Mode-Extraktor erhält man saubere reine Textausgaben.",
+          "E-Mail zu Markdown: HTML-E-Mail-Inhalte einfügen und eine Markdown-Version für das Cross-Posting auf dem eigenen Blog erhalten."
+        ]
+      },
+      {
+        "heading": "Einschränkungen",
+        "paragraphs": [
+          "Tabellen: Werden nicht umgewandelt (Markdown-Tabellen sind GFM, nicht CommonMark). Tabellen werden zu Klartext reduziert. Bei komplexen Tabellen das HTML stattdessen direkt einfügen.",
+          "Inline-Styles: Farben, Schriften oder Layouts per <style> oder style=''-Attributen gehen verloren. Markdown ist absichtlich minimalistisch.",
+          "Verschachtelte Listen: Einfache einzeilige Listen funktionieren; tief verschachtelte Listen können zusammenfließen oder die Struktur verlieren. Bei komplexen Gliederungen nach der Konvertierung manuell nachbearbeiten."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "HTML einfügen", "text": "Aus beliebiger Quelle – WordPress-Export, kopierter Webartikel usw." },
+      { "name": "Markdown-Ausgabe lesen", "text": "Wird live beim Bearbeiten aktualisiert." },
+      { "name": "Kopieren und weiter verwenden", "text": "Ausgabe ist reines Markdown, bereit für jeden Static-Site-Generator oder Markdown-Editor." }
+    ]
+  },
+  "faq": [
+    { "q": "Wird die Formatierung perfekt erhalten?", "a": "Für CommonMark-kompatible Elemente: ja. Für HTML-spezifische Funktionen (benutzerdefiniertes CSS, komplexe Layouts): nein – Markdown ist absichtlich ein Teilsatz." },
+    { "q": "Werden Tabellen umgewandelt?", "a": "Noch nicht. Tabellen werden zu Klartext. Eine GFM-Tabellenkonvertierung könnte in einer späteren Version hinzukommen." },
+    { "q": "Bleiben meine Links erhalten?", "a": "Ja. <a href='url'>Text</a> wird zu [Text](url). Das href-Attribut bleibt erhalten." },
+    { "q": "Was ist mit Inline-Styles?", "a": "Werden entfernt. Markdown unterstützt keine beliebige Formatierung – das ist Absicht." },
+    { "q": "Wie konvertiere ich zurück zu HTML?", "a": "Unseren Markdown-zu-HTML-Konverter verwenden (unter Verwandte Tools verlinkt)." },
+    { "q": "Ist die Ausgabe sicher einzufügen?", "a": "Es ist reiner Text – kein Script, kein HTML – daher für jeden Markdown-Editor oder jedes Textfeld sicher. Vor der Veröffentlichung prüfen, wenn die Eingabe aus einer nicht vertrauenswürdigen Quelle stammt." },
+    { "q": "Warum fehlt manche Inhalte?", "a": "Benutzerdefinierte oder nicht standardmäßige HTML-Elemente können entfernt werden. Einen Ausschnitt mit <details>, <video> oder Framework-spezifischen Tags einfügen, um zu prüfen." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Konvertierung läuft lokal; dein HTML wird nirgendwo hingesendet." }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "title": "Calculateur de Jours Ouvrés (sans week-ends + jours fériés)",
+  "shortDescription": "Compte les jours ouvrés entre deux dates, en excluant les week-ends et les jours fériés que tu indiques. Paramétrable : inclure le samedi ou le dimanche comme jour ouvré si besoin.",
+  "description": "Choisis une date de début et de fin, inclus éventuellement le samedi ou le dimanche comme jours ouvrés, et ajoute les jours fériés à exclure. Retourne séparément les jours ouvrés, les jours de week-end et les jours fériés.",
+  "metaDescription": "Calculateur de jours ouvrés gratuit. Compte les jours ouvrables entre deux dates, sans week-ends ni jours fériés personnalisables.",
+  "keywords": [
+    "calculateur jours ouvrés",
+    "calculateur jours ouvrables",
+    "jours travaillés entre dates",
+    "compter les jours de semaine",
+    "exclure week-ends jours fériés"
+  ],
+  "empty": "Choisis une date de début et de fin pour compter les jours ouvrés.",
+  "input": {
+    "start": "Date de début",
+    "end": "Date de fin",
+    "includeSat": "Le samedi est un jour ouvré",
+    "includeSun": "Le dimanche est un jour ouvré",
+    "holidays": "Jours fériés à exclure (un par ligne)",
+    "holidaysHint": "Format ISO : 2026-01-01. Séparés par des virgules, espaces ou sauts de ligne."
+  },
+  "result": {
+    "workdays": "Jours ouvrés",
+    "weekendDays": "Jours de week-end",
+    "holidayDays": "Jours fériés",
+    "total": "Total de jours"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Pourquoi le décompte des jours ouvrés est important",
+        "paragraphs": [
+          "Les délais de projet, les termes contractuels, les cycles de paie et la planification des congés utilisent tous les « jours ouvrables » plutôt que les jours calendaires. Une promesse de livraison de 30 jours faite un vendredi correspond en réalité à 32 jours calendaires car le week-end ne compte pas. Confondre les deux entraîne des retards et des litiges contractuels.",
+          "Les jours ouvrés comptent aussi pour les délais légaux : dans de nombreux systèmes juridiques, les délais légaux (par ex. « 14 jours ouvrables pour répondre ») excluent les week-ends et les jours fériés. Vérifie toujours si « jours » signifie calendaires ou ouvrables dans tout accord."
+        ]
+      },
+      {
+        "heading": "Pourquoi personnaliser les week-ends",
+        "paragraphs": [
+          "La plupart des pays utilisent samedi-dimanche comme week-end, mais cela varie. La plupart des pays du Moyen-Orient et certains pays d'Afrique du Nord observent le vendredi-samedi comme week-end. Certains secteurs (commerce de détail, hôtellerie) considèrent les week-ends comme des jours ouvrés.",
+          "Les options permettent de marquer individuellement le samedi ou le dimanche comme jours ouvrés. Tu peux ainsi configurer : lun-ven uniquement (défaut), semaine de 6 jours (inclure le samedi), ou semaine sans dimanche (décocher dimanche)."
+        ]
+      },
+      {
+        "heading": "Comment utiliser le champ des jours fériés",
+        "paragraphs": [
+          "Colle une liste de dates au format AAAA-MM-JJ (ISO 8601). Les séparateurs peuvent être des virgules, des espaces ou des sauts de ligne. Chaque date listée sera exclue du décompte des jours ouvrés si elle tombe un jour normalement ouvré.",
+          "Pour les jours fériés français en 2026, colle : 2026-01-01, 2026-04-06, 2026-05-01, 2026-05-08, 2026-05-14, 2026-05-25, 2026-07-14, 2026-08-15, 2026-11-01, 2026-11-11, 2026-12-25.",
+          "Nous n'incluons pas les jours fériés automatiquement car (a) ils varient selon le pays, la région et l'année, et (b) certaines entreprises observent des jours de congé supplémentaires spécifiques à leur politique interne."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Définis les dates de début et de fin",
+        "text": "Les deux sont incluses — les deux dates comptent si elles sont ouvrées."
+      },
+      {
+        "name": "Choisis les jours de week-end",
+        "text": "Par défaut, samedi et dimanche sont les jours de week-end. Active-les comme jours ouvrés si besoin."
+      },
+      {
+        "name": "Ajoute les jours fériés à exclure",
+        "text": "Liste les dates ISO séparées par des virgules, espaces ou sauts de ligne."
+      },
+      {
+        "name": "Lis le détail",
+        "text": "Jours ouvrés, jours de week-end, jours fériés et total de jours calendaires."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Les dates de début et de fin sont-elles incluses ?",
+      "a": "Oui. Si les deux sont des jours ouvrés, les deux sont comptées. Si ton contrat ne compte que les jours intermédiaires (exclu), soustrais 2 du résultat."
+    },
+    {
+      "q": "Pourquoi les jours fériés ne sont-ils pas inclus automatiquement ?",
+      "a": "Les jours fériés varient selon le pays, la région et l'année. Les inclure automatiquement risque de soustraire des jours qui ne s'appliquent pas à ta juridiction. Les ajouter manuellement te laisse le contrôle."
+    },
+    {
+      "q": "Puis-je l'utiliser pour des contrats internationaux ?",
+      "a": "Oui — mais assure-toi que les deux parties s'accordent sur les jours fériés à comptabiliser. Les contrats multinationaux précisent souvent « jours ouvrables observés à [ville] de [pays] » pour éviter toute ambiguïté."
+    },
+    {
+      "q": "Que se passe-t-il si un jour férié tombe un week-end ?",
+      "a": "Il n'est pas doublement comptabilisé. Si le 1er janvier est un jeudi férié, il compte comme jour férié. Si le 25 décembre tombe un dimanche, l'algorithme le compte correctement comme un seul jour (week-end), pas deux."
+    },
+    {
+      "q": "Comment ça fonctionne pour une semaine de 6 jours ?",
+      "a": "Coche « Le samedi est un jour ouvré ». Le calculateur comptera lun-sam comme jours ouvrés et n'exclura que les dimanches et les jours fériés listés."
+    },
+    {
+      "q": "Quelle est la plage de dates maximale calculable ?",
+      "a": "Plusieurs centaines d'années au minimum. Le navigateur gère l'arithmétique de dates jusqu'à ±100 millions de jours depuis 1970."
+    },
+    {
+      "q": "Puis-je exporter la liste des jours ouvrés ?",
+      "a": "Pas en téléchargement, mais tu peux copier les chiffres affichés. Pour une liste jour par jour, un tableur est plus adapté."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Tout s'exécute localement ; rien n'est envoyé à un serveur."
+    }
+  ]
+}

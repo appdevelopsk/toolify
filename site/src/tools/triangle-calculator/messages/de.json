@@ -1,0 +1,72 @@
+{
+  "title": "Dreieck-Rechner (Rechtwinkliges Dreieck, SSS, SAS)",
+  "shortDescription": "Berechne Fläche, Umfang, Seiten und Winkel eines Dreiecks. Drei Modi: rechtwinkliges Dreieck (Pythagoras), drei Seiten (SSS) oder zwei Seiten + eingeschlossener Winkel (SAS).",
+  "description": "Einen Modus wählen, bekannte Werte eingeben und alle Seiten, alle drei Winkel, Fläche und Umfang erhalten. Prüft die Dreiecksungleichung im SSS-Modus.",
+  "metaDescription": "Kostenloser Dreieck-Rechner. Modi: rechtwinklig (Pythagoras), SSS oder SAS. Gibt Seiten, Winkel, Fläche und Umfang zurück. Für Geometrie-Hausaufgaben und Bau.",
+  "keywords": ["Dreieck Rechner", "Satz des Pythagoras", "Kosinussatz", "Dreieck Fläche", "Dreieck lösen"],
+  "empty": "Bekannte Werte für den gewählten Modus eingeben.",
+  "invalid": "Ungültiges Dreieck: verletzt die Dreiecksungleichung (die längste Seite muss kürzer sein als die Summe der anderen beiden).",
+  "mode": {
+    "right": "Rechtwinkliges Dreieck",
+    "sss": "Drei Seiten (SSS)",
+    "sas": "Zwei Seiten + Winkel (SAS)"
+  },
+  "input": {
+    "legA": "Kathete a",
+    "legB": "Kathete b",
+    "sideA": "Seite a",
+    "sideB": "Seite b",
+    "sideC": "Seite c",
+    "angleC": "Winkel C (Grad)"
+  },
+  "result": {
+    "area": "Fläche",
+    "perim": "Umfang",
+    "sides": "Seiten",
+    "angles": "Winkel"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Drei Modi für drei Probleme",
+        "paragraphs": [
+          "Rechtwinkliges Dreieck (Katheten a, b): der häufigste Fall. Hypotenuse c = √(a² + b²) nach dem Satz des Pythagoras. Winkel A = arctan(a/b), B = arctan(b/a), C = 90°. Fläche = (a × b) / 2.",
+          "Drei Seiten (SSS — Seite-Seite-Seite): wenn alle drei Seitenlängen bekannt sind. Dreiecksungleichung prüfen (längste Seite < Summe der anderen beiden). Winkel über den Kosinussatz: cos A = (b² + c² − a²) / (2bc). Fläche über die Heronsche Formel: √(s(s−a)(s−b)(s−c)) mit s = (a+b+c)/2.",
+          "Zwei Seiten + eingeschlossener Winkel (SAS — Seite-Winkel-Seite): wenn zwei Seiten und der Winkel dazwischen bekannt sind. Dritte Seite über Kosinussatz: c = √(a² + b² − 2ab cos C). Andere Winkel über den Sinussatz. Fläche = (1/2) × a × b × sin C."
+        ]
+      },
+      {
+        "heading": "Wann welcher Modus verwendet wird",
+        "paragraphs": [
+          "Rechtwinkliges Dreieck ist der häufigste in der Alltagsgeometrie — eine rechtwinklige Ecke beim Bauen, die Dachneigung berechnen, die Diagonale eines Fernsehers aus Breite und Höhe finden. Der Satz des Pythagoras ist eine der meistverwendeten Formeln im Bauwesen und Design.",
+          "SSS taucht in der Vermessung, Navigation und überall dort auf, wo drei Seiten direkt gemessen werden. Nützlich zur Überprüfung der Form eines Dreiecks aus physischer Messung.",
+          "SAS ist für Fälle, in denen zwei Seiten unter einem bekannten Winkel zusammentreffen, die dritte Seite aber ungemessen oder schwer erreichbar ist. Häufig in Trigonometrie-Kursen und Aufgabensammlungen."
+        ]
+      },
+      {
+        "heading": "Praktische Anwendungen",
+        "paragraphs": [
+          "Bauwesen: Dachneigung aus Steigung und Auftritt (rechtwinkliges Dreieck). Die Zimmerermanns-Regel ‚3-4-5': Ein 3-4-5-Dreieck hat einen perfekten rechten Winkel, kein Winkelmesser erforderlich.",
+          "Navigation: Triangulation nutzt SSS oder SAS, um die eigene Position aus drei bekannten Landmarks zu bestimmen. Dieselbe Mathematik steckt hinter GPS (mit relativistischen Korrekturen).",
+          "Computergrafik: Jedes 3D-Modell wird in Dreiecke zerlegt. Die Dreiecksflächenformel erscheint in Shader-Code zur Berechnung der Oberflächenbeleuchtung.",
+          "Astronomie: Parallax-Entfernungsmessungen nutzen SSS-Prinzipien. Der Sonne-Erde-Stern-Winkel gibt die Entfernung des Sterns über einfache Trigonometrie."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Modus wählen", "text": "Rechtwinkliges Dreieck, SSS (drei Seiten) oder SAS (zwei Seiten + Winkel)." },
+      { "name": "Bekannte Werte eingeben", "text": "Jeder Modus erfordert andere Eingaben." },
+      { "name": "Alle Unbekannten ablesen", "text": "Seiten, Winkel, Fläche und Umfang werden alle berechnet." }
+    ]
+  },
+  "faq": [
+    { "q": "Was ist die Dreiecksungleichung?", "a": "Damit drei Längen ein Dreieck bilden, muss die Summe je zweier Seiten die dritte übersteigen. Also ist 3, 4, 5 gültig (3+4=7 > 5); 1, 2, 5 nicht (1+2=3 < 5). Der Rechner prüft das im SSS-Modus." },
+    { "q": "Wie genau ist das?", "a": "Gleitkommagenauigkeit (~15–17 signifikante Stellen). Bei typischen Eingaben ist der Fehler viel kleiner als der Messfehler in der realen Welt." },
+    { "q": "Können Winkel in Radiant angegeben werden?", "a": "Noch nicht — wir verwenden durchgehend Grad. Bei Bedarf über Radiant × 180/π umrechnen." },
+    { "q": "Was, wenn mein Dreieck einen stumpfen Winkel hat?", "a": "Alle Modi verarbeiten stumpfwinklige Dreiecke korrekt. Beim SAS-Modus sicherstellen, dass der eingeschlossene Winkel zwischen 0° und 180° exklusiv liegt." },
+    { "q": "Warum funktioniert das nicht für alle ‚zwei Seiten und ein Winkel'-Fälle?", "a": "Wir unterstützen SAS (den Winkel ZWISCHEN zwei Seiten). Der mehrdeutige Fall (SSA — Winkel, dann zwei Seiten, wobei eine dem Winkel gegenüberliegt) hat manchmal 0, 1 oder 2 gültige Dreiecke. SSS und SAS sind eindeutig." },
+    { "q": "Wie löse ich 3-4-5-Typ-Probleme mit stumpfem Winkel?", "a": "3-4-5 ist ein rechtwinkliges Dreieck. Für Stumpfwinkel 4-5-7 im SSS-Modus versuchen — der größte Winkel ist über 90°." },
+    { "q": "Wie finde ich eine Seite, wenn ich nur Winkel kenne?", "a": "Das ist nicht möglich — Winkel allein bestimmen die Form, aber nicht die Größe. Mindestens eine Seite wird benötigt. Zwei Winkel + eine Seite reichen (dritter Winkel = 180 − Summe der beiden)." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Die Berechnung läuft lokal; nichts wird an einen Server gesendet." }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "title": "UUID Generator (v4 random, v7 time-ordered)",
+  "shortDescription": "Cryptographically random UUID v4 या time-ordered UUID v7 generate करें। एक बार में 100 तक bulk-generate करें, one-click copy के साथ।",
+  "description": "एक या कई UUIDs generate करने के लिए click करें। Fully random IDs के लिए v4 और time-sortable IDs के लिए v7 use करें जो creation time के अनुसार naturally order होते हैं — database keys के लिए useful।",
+  "metaDescription": "मुफ्त UUID generator v4 (random) और v7 (time-ordered) के लिए। Cryptographically secure, 100 तक bulk-generate करें, प्रत्येक या सब copy करें।",
+  "keywords": ["UUID generator", "UUID v4", "UUID v7", "GUID generator", "random UUID"],
+  "count": "Count",
+  "regenerate": "Regenerate",
+  "copy": "Copy",
+  "copyAll": "सब copy करें",
+  "copied": "Copy हो गया",
+  "article": {
+    "sections": [
+      {
+        "heading": "v4 बनाम v7 कब use करें",
+        "paragraphs": [
+          "UUID v4 purely random है — 122 random bits जिनसे ~5.3 × 10³⁶ possible values। दो practically कभी collide नहीं होंगे। v4 कहीं भी use करें जहाँ ordering की जरूरत नहीं — जैसे API request IDs या anonymous user identifiers।",
+          "UUID v7 (RFC 9562, 2024 में published) 48-bit Unix millisecond timestamp से शुरू होता है जिसके बाद 74 random bits आते हैं। वे creation order में lexicographically sort होते हैं, जो database performance के लिए बड़ा है — time से sort होने वाले primary keys का मतलब inserts हमेशा B-tree के end पर जाते हैं, कोई random page splits नहीं। नए database primary keys के लिए v7 use करें।"
+        ]
+      },
+      {
+        "heading": "यह generator कैसे काम करता है",
+        "paragraphs": [
+          "v4 और v7 दोनों crypto.getRandomValues उपयोग करते हैं — browser का secure random source, वही primitive जो HTTPS और password managers use करते हैं। v4 में 122 bits randomly fill होते हैं। v7 में RFC के अनुसार 48 bits timestamp + 74 bits random plus version/variant markers होते हैं।",
+          "Generation आपके browser में होती है। UUIDs store या transmit नहीं होते। 100 v4 UUIDs generate करने पर collision की chance astronomically small है — CPU में cosmic rays से bits flip होने की chance से भी कम।"
+        ]
+      },
+      {
+        "heading": "Common UUID gotchas",
+        "paragraphs": [
+          "Database primary keys के रूप में v4 UUIDs performance hurt करते हैं auto-incrementing integers की तुलना में क्योंकि random values inserts के दौरान B-tree page splits cause करती हैं। v7 इसे fix करता है — UUID benefits बिना index pain के चाहिए तो v7 use करें।",
+          "UUIDs users को expose न करें जहाँ guessability matter करती है। v4 UUIDs में 122 bits entropy हैं और unguessable हैं। v7 UUIDs creation time leak करते हैं, जो अधिकांश uses के लिए fine है लेकिन creation time sensitive हो तो bad है।",
+          "UUIDs 36 chars होते हैं hyphens सहित (32 hex + 4 hyphens)। वे 16 bytes binary या 36 bytes text लेते हैं। Very high-cardinality columns के लिए, VARCHAR(36) की बजाय binary BLOB / UUID native type में store करने पर consider करें।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "v4 या v7 pick करें", "text": "Fully random के लिए v4, time-ordered के लिए v7।" },
+      { "name": "Count set करें", "text": "1 से 100 तक। Default 5 है।" },
+      { "name": "जो चाहिए copy करें", "text": "UUID के next 'Copy' click करें, या newline-separated list में सब grab करने के लिए 'सब copy करें'।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या ये cryptographically secure हैं?", "a": "हाँ। v4 और v7 दोनों crypto.getRandomValues उपयोग करते हैं, secure random API। v4 में 122 bits entropy है; v7 में 74।" },
+    { "q": "v7 database keys के लिए बेहतर क्यों है?", "a": "क्योंकि v7 UUIDs creation time से sort होते हैं, inserts हमेशा B-tree index के end पर जाते हैं random positions की बजाय। यह page splits avoid करता है और write throughput dramatically improve करता है।" },
+    { "q": "क्या दो UUIDs collide हो सकते हैं?", "a": "Theoretically हाँ। v4 से 50% collision risk के लिए ~10¹⁸ generate करने होंगे। v7 में time component same millisecond के अंदर इसे ~2⁷⁴ तक reduce करता है — practically impossible।" },
+    { "q": "क्या UUIDs और GUIDs same हैं?", "a": "हाँ। GUID Microsoft का UUID का नाम है। Same format, same uniqueness guarantees।" },
+    { "q": "Format क्या है?", "a": "8-4-4-4-12 hex digits with hyphens। 32 hex chars total + 4 hyphens = 36 characters। RFC convention से lowercase।" },
+    { "q": "क्या v1 use करूँ?", "a": "v1 MAC address include करता है, जो privacy leak है। v7 ने time-ordered IDs के लिए hardware identifiers expose किए बिना v1 को supersede किया है।" },
+    { "q": "क्या मैं v4 URL-safe Base64 में generate कर सकता हूँ?", "a": "यहाँ directly नहीं। UUID के 16 bytes को URL-safe Base64 के रूप में encode करें 22-character ID पाने के लिए। Shorter URLs के लिए useful।" },
+    { "q": "क्या data browser से बाहर जाता है?", "a": "नहीं। Generation पूरी तरह आपके browser में होती है।" }
+  ]
+}

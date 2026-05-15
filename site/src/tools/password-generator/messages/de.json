@@ -1,0 +1,106 @@
+{
+  "title": "Passwort-Generator (kryptografisch sicher, mit Stärkemesser)",
+  "shortDescription": "Generiere starke zufällige Passwörter mit der sicheren Krypto-API deines Browsers. Konfigurierbare Länge, Zeichensätze und Mehrdeutigkeitsfilter.",
+  "description": "Erstellt Passwörter mit crypto.getRandomValues – derselben Quelle, die Banken verwenden, nicht Math.random. Länge und Zeichenklassen anpassen; der Entropiemesser zeigt, wie stark das Ergebnis tatsächlich ist.",
+  "metaDescription": "Kostenloser Passwort-Generator. Kryptografisch sichere Zufallspasswörter mit konfigurierbarer Länge und Zeichensätzen.",
+  "keywords": [
+    "Passwort-Generator",
+    "sicheres Passwort",
+    "zufälliges Passwort",
+    "starkes Passwort",
+    "Passwort erstellen"
+  ],
+  "copy": "Kopieren",
+  "copied": "Kopiert",
+  "regenerate": "Neues Passwort",
+  "input": {
+    "length": "Länge"
+  },
+  "opt": {
+    "upper": "Großbuchstaben (A-Z)",
+    "lower": "Kleinbuchstaben (a-z)",
+    "numbers": "Zahlen (0-9)",
+    "symbols": "Sonderzeichen (!@#$...)",
+    "avoidAmbiguous": "Mehrdeutige vermeiden (0OoIl1)"
+  },
+  "strength": {
+    "weak": "Schwach",
+    "medium": "Mittel",
+    "strong": "Stark",
+    "excellent": "Ausgezeichnet"
+  },
+  "entropy": "{bits} Bits Entropie",
+  "article": {
+    "sections": [
+      {
+        "heading": "Warum dieser Generator wirklich sicher ist",
+        "paragraphs": [
+          "Die meisten ‚Passwort-Generatoren' im Web verwenden Math.random(), was nicht kryptografisch sicher ist – seine Ausgabe kann von einem Angreifer vorhergesagt werden, der einige frühere Werte sieht. Dieser Generator verwendet crypto.getRandomValues aus der Web-Crypto-API, dasselbe Grundelement, das HTTPS-Sitzungen und OS-Schlüsselbunde sichert. Jedes Zeichen wird aus einer gleichmäßigen Verteilung über das gewählte Alphabet gezogen.",
+          "Die Generierung findet vollständig in deinem Browser statt. Das Passwort reist nie über das Netzwerk und berührt nie unsere Server. Selbst wenn unsere Domain kompromittiert würde, hätte ein Angreifer nichts zu stehlen, weil nichts gespeichert wird."
+        ]
+      },
+      {
+        "heading": "Wie der Stärkemesser funktioniert",
+        "paragraphs": [
+          "Das Stärkelabel wird aus der Entropie berechnet: Bits = log₂(Alphabetgröße) × Länge. Ein 10-stelliges Passwort aus Kleinbuchstaben hat log₂(26) × 10 ≈ 47 Bits – anfällig für einen entschlossenen Offline-Angreifer. Ein 16-stelliges Passwort mit allen vier Zeichenklassen hat etwa 105 Bits – stark genug für die meisten Verwendungszwecke. Die Stufen sind: <50 schwach, 50–80 mittel, 80–128 stark, ≥128 ausgezeichnet.",
+          "Diese Schwellenwerte entsprechen ungefähr: schwach = in Tagen erratbar durch einen moderaten Angreifer; mittel = dauert ein Botnetz Jahre; stark = kein realistischer Angreifer heute; ausgezeichnet = komfortable Reserve gegen künftige Angreifer einschließlich Quantenüberlegungen."
+        ]
+      },
+      {
+        "heading": "Länge schlägt Komplexität",
+        "paragraphs": [
+          "Die Mathematik ist eindeutig: Hinzufügen eines Zeichens zu deinem Passwort verdoppelt ungefähr den Suchraum (je nach Alphabet). Hinzufügen einer weiteren Zeichenklasse vergrößert ihn nur leicht. Ein 20-stelliges Kleinbuchstaben-Passwort hat mehr Entropie als ein 12-stelliges gemischtes Passwort mit Sonderzeichen und ist leichter zu tippen. Wenn du es lieber auswendig lernen möchtest, wähle vier zufällige Wörter aus einer 7.000-Wort-Liste – das sind 51 Bits, ähnlich wie ein starkes 8-stelliges gemischtes Passwort.",
+          "Die Option ‚Mehrdeutige vermeiden' schließt Zeichen aus, die in vielen Schriftarten wie andere aussehen (0/O, I/l/1). Das macht das Passwort leicht schwächer, aber leichter laut zu lesen oder abzuschreiben. Verwende es, wenn du das Passwort von einer gedruckten Liste eintippen müsstest."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Länge wählen",
+        "text": "16 ist ein guter Standard für Konten; 20+ für Passwort-Manager-Master-Schlüssel."
+      },
+      {
+        "name": "Zeichenklassen wählen",
+        "text": "Die meisten Seiten akzeptieren alle vier – Groß-, Kleinbuchstaben, Zahlen, Sonderzeichen. Einige ältere Seiten lehnen Sonderzeichen ab."
+      },
+      {
+        "name": "Generieren und kopieren",
+        "text": "Auf ‚Neues Passwort' klicken, bis eines gefällt, dann direkt in den Passwort-Manager kopieren."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Ist dieser Generator wirklich sicher?",
+      "a": "Ja. Wir verwenden die sichere Zufallsquelle der Web-Crypto-API, nicht Math.random(). Die vom Browser-Anbieter bereitgestellte Implementierung ist geprüft und identisch mit dem, was HTTPS zugrunde liegt."
+    },
+    {
+      "q": "Verlässt das Passwort meinen Browser?",
+      "a": "Niemals. Generierung, Entropieberechnung und In-Zwischenablage-Kopieren geschehen alles lokal. Wir haben keinen Server-Endpunkt, um es zu empfangen, selbst wenn wir es wollten."
+    },
+    {
+      "q": "Sind 16 Zeichen genug?",
+      "a": "Für Online-Konten ja – fast immer. Für Passwort-Manager-Master-Passwörter oder Verschlüsselungsschlüssel auf 24+ Zeichen gehen oder eine 6-Wort-Passphrase verwenden."
+    },
+    {
+      "q": "Warum mag der Stärkemesser mein langes Passwort nicht?",
+      "a": "Er kennt nur die aktivierten Zeichenklassen. Wenn nur Kleinbuchstaben aktiviert, ist das Alphabet nur 26 – lange Passwörter sind immer noch stark, wachsen aber nicht so schnell."
+    },
+    {
+      "q": "Was bedeutet ‚Bits Entropie'?",
+      "a": "Es ist der log₂ der Anzahl möglicher Passwörter, die deine Einstellungen erzeugen könnten. 80 Bits ≈ 1,2 × 10²⁴ Möglichkeiten – weit außerhalb des Brute-Force-Bereichs heute."
+    },
+    {
+      "q": "Soll ich Sonderzeichen einschließen?",
+      "a": "Ja, wenn erlaubt. Jedes Sonderzeichen erhöht die Entropie ungefähr um die Entropie einer Zahl plus einem Buchstaben. Einige alte Seiten lehnen sie ab; wenn ja, die Länge erhöhen."
+    },
+    {
+      "q": "Lohnt sich ‚Mehrdeutige vermeiden'?",
+      "a": "Nur verwenden, wenn das Passwort manuell gelesen oder getippt werden muss. Für Passwort-Manager ausschalten – der Lesbarkeitsgewinn ist dort verschwendet."
+    },
+    {
+      "q": "Kann dasselbe Passwort zweimal generiert werden?",
+      "a": "Theoretisch ja, aber mit nur 50 Bits Entropie liegt die Chance pro Paar von Generierungen bei 1 in 2⁵⁰ ≈ 10¹⁵. Praktisch unmöglich."
+    }
+  ]
+}

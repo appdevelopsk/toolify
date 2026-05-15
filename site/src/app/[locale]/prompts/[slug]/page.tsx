@@ -9,10 +9,10 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { faqJsonLd, breadcrumbJsonLd } from "@/lib/seo/structured-data";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
-import { LOCALES, type Locale } from "@/lib/i18n/locales";
+import { LOCALES, PROMPT_LOCALES, isPromptLocale, type Locale } from "@/lib/i18n/locales";
 
 export function generateStaticParams() {
-  return LOCALES.flatMap((locale) =>
+  return PROMPT_LOCALES.flatMap((locale) =>
     listPrompts().map((p) => ({ locale, slug: p.slug })),
   );
 }
@@ -23,6 +23,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
+  if (!isPromptLocale(locale)) return {};
   const p = getPrompt(slug);
   if (!p) return {};
   const t = await getTranslations({ locale, namespace: `prompts.${slug}` });
@@ -43,6 +44,7 @@ export default async function PromptPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  if (!isPromptLocale(locale)) notFound();
   setRequestLocale(locale);
   const p = getPrompt(slug);
   if (!p) notFound();

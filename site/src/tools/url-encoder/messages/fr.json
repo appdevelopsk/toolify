@@ -1,0 +1,54 @@
+{
+  "title": "Encodeur / Décodeur URL (encodage pourcent, sûr UTF-8)",
+  "shortDescription": "Encode n'importe quel texte en encodage pourcent d'URL ou décode une chaîne encodée. Sûr UTF-8 — gère correctement les emoji et les caractères CJK.",
+  "description": "Utilise pour intégrer du texte en toute sécurité dans des URLs, des paramètres de requête ou des données de formulaire. Gère correctement les espaces, les caractères spéciaux et l'Unicode (y compris CJK et emoji).",
+  "metaDescription": "Encodeur et décodeur URL gratuit. Convertit le texte en encodage pourcent ou décode les chaînes encodées en texte brut. Sûr UTF-8, gère tout l'Unicode.",
+  "keywords": ["encodeur URL", "décodeur URL", "encodage pourcent", "URI encode", "decodeURIComponent"],
+  "input": { "plain": "Texte brut", "encoded": "Chaîne URL encodée" },
+  "output": { "encoded": "Résultat encodé", "plain": "Résultat décodé" },
+  "mode": { "encode": "Encoder", "decode": "Décoder" },
+  "copy": "Copier",
+  "copied": "Copié",
+  "error": "Erreur de décodage",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qu'est-ce que l'encodage URL",
+        "paragraphs": [
+          "Les URLs sont limitées à un petit ensemble de caractères ASCII. Pour inclure autre chose — espaces, accents, caractères chinois, emoji, symboles spéciaux — on remplace chaque octet non sûr par %XX où XX est sa valeur en hexadécimal. Un espace devient %20, un slash %2F, le caractère japonais 漢 devient %E6%BC%A2 (ses octets UTF-8 encodés en pourcent).",
+          "Ce calculateur utilise les fonctions intégrées du navigateur encodeURIComponent et decodeURIComponent. Il encode tout ce qui n'est pas un caractère non réservé (lettres, chiffres, -._~), ce qui est le comportement correct pour les paramètres de requête et les données de formulaire."
+        ]
+      },
+      {
+        "heading": "encodeURI vs encodeURIComponent",
+        "paragraphs": [
+          "JavaScript a deux encodeurs. encodeURI laisse les caractères de structure URL (/ ? & # = + etc.) intacts — utilise-le sur une URL complète. encodeURIComponent échappe tous ces caractères — utilise-le sur la valeur à l'intérieur d'un paramètre de requête.",
+          "Cet outil utilise encodeURIComponent, le choix le plus sûr pour intégrer du texte arbitraire dans une URL. Si tu as une URL complète avec une structure à préserver, encode uniquement les parties qui en ont besoin."
+        ]
+      },
+      {
+        "heading": "Pièges courants",
+        "paragraphs": [
+          "Le signe plus dans les URLs. Certains serveurs traitent '+' comme un espace (héritage de l'encodage de formulaire). encodeURIComponent laisse '+' intact, mais un serveur pourrait le décoder en espace. Pour plus de sécurité, remplace '+' par %2B si tu l'envoies comme donnée.",
+          "Double encodage. Encoder une chaîne déjà encodée ajoute une autre couche (% devient %25, donc '%20' devient '%2520'). Vérifie toujours si l'entrée est déjà encodée avant de lancer l'encodage à nouveau.",
+          "Augmentation de longueur. Les caractères multi-octets UTF-8 s'étendent à 3-4 codes pourcent chacun. Une chaîne japonaise de 100 caractères peut facilement devenir une URL de 900+ caractères."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choisis le mode", "text": "Encoder du texte brut en forme sûre pour URL, ou décoder une chaîne encodée en URL en texte brut." },
+      { "name": "Colle ta saisie", "text": "Texte brut pour l'encodage, chaîne encodée en pourcent pour le décodage." },
+      { "name": "Copie le résultat", "text": "La sortie apparaît en dessous ; clique sur 'Copier' pour l'utiliser." }
+    ]
+  },
+  "faq": [
+    { "q": "Pourquoi mon espace '%20' ne se décode pas en espace ?", "a": "Il devrait — mais si tu as '+' dans une URL il peut aussi représenter un espace (encodage de formulaire hérité). Remplace + par espace d'abord si nécessaire." },
+    { "q": "Est-ce que ça gère les emoji ?", "a": "Oui. Les emoji sont encodés comme leurs séquences d'octets UTF-8 (typiquement 4 octets / 4 codes pourcent par emoji)." },
+    { "q": "Quelle est la différence entre l'encodage URL et l'encodage HTML ?", "a": "L'encodage URL utilise la notation % pour les contextes d'URL. L'encodage HTML utilise &lt; &gt; etc. pour le HTML. Contextes différents, règles différentes." },
+    { "q": "Quand encoder et quand ne pas le faire ?", "a": "Encode toute valeur allant dans un paramètre de requête URL, un segment de chemin contenant une saisie utilisateur, ou des données de formulaire. N'encode pas une URL déjà construite — cela double-encode." },
+    { "q": "Pourquoi '%' dans mon texte décodé cause-t-il une erreur ?", "a": "Un '%' nu suivi de quelque chose qui n'est pas un hex valide est un encodage pourcent invalide. Encode '%' en '%25' avant de l'inclure dans une URL." },
+    { "q": "Le navigateur fait-il cela automatiquement ?", "a": "Oui — lors de la construction d'URLs via les APIs URL ou URLSearchParams. Cet outil expose la même logique pour un usage ponctuel." },
+    { "q": "Quels caractères sont 'sûrs' et n'ont pas besoin d'encodage ?", "a": "Les lettres (A-Z, a-z), les chiffres (0-9) et ceux-ci : - . _ ~ . Tout le reste est encodé en pourcent par encodeURIComponent." },
+    { "q": "Les données quittent-elles mon navigateur ?", "a": "Non. L'encodage et le décodage s'exécutent tous deux localement." }
+  ]
+}

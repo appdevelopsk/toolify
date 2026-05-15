@@ -1,0 +1,57 @@
+{
+  "title": "JSON Biçimlendirici ve Küçültücü (doğrular ve güzel yazdırır)",
+  "shortDescription": "JSON'ı güzel biçimde yazdırın veya küçültün. Girişi doğrular ve başarısızlık durumunda satır ve sütunla birlikte net bir hata gösterir.",
+  "description": "Herhangi bir JSON yapıştırın ve 2/4/8 boşlukla girintili biçimlendirin ya da tek satıra küçültün. Geçersiz JSON, sorunu hızlıca bulmanız için ayrıştırma hatası gösterir.",
+  "metaDescription": "Ücretsiz JSON biçimlendirici ve küçültücü. Girişi doğrular, seçilen girintiyle güzel yazdırır veya tek satıra küçültür. Yalnızca tarayıcıda — veriniz sayfadan çıkmaz.",
+  "keywords": ["JSON biçimlendirici", "JSON küçültücü", "JSON doğrulayıcı", "JSON güzel yazdır", "JSON formatla"],
+  "input": "JSON girişi",
+  "output": "Biçimlendirilmiş çıktı",
+  "mode": { "format": "Biçimlendir", "minify": "Küçült" },
+  "indent": "Girinti",
+  "copy": "Kopyala",
+  "copied": "Kopyalandı",
+  "error": "Ayrıştırma hatası",
+  "stats": "Giriş: {input} bayt · Çıktı: {output} bayt",
+  "article": {
+    "sections": [
+      {
+        "heading": "Bu araç ne yapıyor",
+        "paragraphs": [
+          "JSON katı bir biçimdir — her tırnak işareti, virgül ve köşeli parantez doğru yerde olmalıdır. Tarayıcılar ve API'ler bir şeyler ters gittiğinde şifreli 'Beklenmeyen token' mesajları döndürür ve sorun ilk bakışta çoğunlukla görünmez. Bu biçimlendirici, girişi tarayıcının yerel JSON ayrıştırıcısıyla ayrıştırır ve ardından güzel biçimde (girintili) veya küçültülmüş (boşluksuz) olarak yeniden serileştirir.",
+          "Ayrıştırma başarısız olursa, genellikle hatalı karakterin konumunu da belirten temel hatayı doğrudan alırsınız. Buradan eksik virgülü, kaçışsız tırnağı veya sondaki virgülü hızla bulabilirsiniz."
+        ]
+      },
+      {
+        "heading": "Biçimlendirme ve küçültme karşılaştırması",
+        "paragraphs": [
+          "Girintili biçimlendirme: JSON okumak için standart yol. 2 boşluk JavaScript dünyasında gelenekseldir; 4 boşluk Python ve Java bağlamlarında yaygındır. Projenizin kullandığını seçin.",
+          "Küçültme: boşluk olmadan tek satıra daralt. JSON'ı URL'lere, ortam değişkenlerine veya boşluğun önemli olduğu yerlere gömerken kullanışlıdır. Boyut farkı önemlidir: tipik bir güzel yazdırılmış yapılandırma dosyası küçültüldüğünde %20-40 küçülür."
+        ]
+      },
+      {
+        "heading": "Yaygın JSON tuzakları",
+        "paragraphs": [
+          "Sondaki virgül. JavaScript'te izin verilir, JSON'da verilmez. {a:1, b:2,} kod düzenleyicinizde ayrıştırılır ama ağ üzerinden gönderildiğinde başarısız olur.",
+          "Tek tırnak. JSON hem anahtarlar hem de dize değerleri için çift tırnak gerektirir. {'a': 1} geçersiz JSON'dur. {\"a\": 1} doğrudur.",
+          "Yorumlar. JSON'ın yorumları yoktur. JSON içindeki // veya /* */ ayrıştırmayı bozar. JSONC (VS Code yapılandırması tarafından kullanılır) yorumları destekler ancak standart JSON değildir.",
+          "Sayılar. JSON NaN veya Infinity desteklemez. Aşağı akış tüketicinize bağlı olarak null kullanın veya dizeye sarın."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "JSON'ınızı yapıştırın", "text": "Birkaç bayttan birkaç yüz KB'a kadar gecikme olmadan çalışır." },
+      { "name": "Biçimlendirme veya küçültme seçin", "text": "Biçimlendirme modu için girinti düzeyi de seçin." },
+      { "name": "Sonucu okuyun veya kopyalayın", "text": "Hata durumunda temel ayrıştırıcı mesajı sorunu gösterir." }
+    ]
+  },
+  "faq": [
+    { "q": "Bu JSONC (yorumlu JSON) destekliyor mu?", "a": "Henüz değil. Önce yorumları kaldırın ya da JSONC destekleyen bir araç kullanın." },
+    { "q": "Boyut sınırı nedir?", "a": "Modern tarayıcılar birkaç megabaytlık JSON'ı işler, ancak textarea ~1 MB'ın üzerinde yavaşlayabilir. Büyük dosyalar için masaüstü aracı kullanın." },
+    { "q": "JSON'ım neden geçersiz?", "a": "Çoğunlukla: sondaki virgül, tek tırnak veya dize içinde kaçışsız tırnak. Ayrıştırıcı hatası, sorunun tespit edildiği sütunu işaret eder." },
+    { "q": "Anahtarları alfabetik olarak sıralayabilir miyim?", "a": "Bu sürümde değil. Sıralama destekleyen bir araca yapıştırmak (--sort-keys ile jq gibi) en temiz yoldur; seçeneği daha sonra ekleyebiliriz." },
+    { "q": "Derin iç içe JSON'ı işliyor mu?", "a": "Evet. Tarayıcının JSON ayrıştırıcısı herhangi bir pratik derinliği işler." },
+    { "q": "Küçültme neden 1 MB'lık dosyayı 1 bayta indirmiyor?", "a": "Küçültme yalnızca boşluğu kaldırır. Gerçek veri hâlâ orada. Gerçek boyut azaltma için gzip kullanın veya MessagePack gibi ikili biçim tercih edin." },
+    { "q": "Veriler bir yere gönderiliyor mu?", "a": "Hayır. Tüm ayrıştırma ve biçimlendirme tarayıcınızda gerçekleşir." },
+    { "q": "JSON Schema doğrulaması ne olacak?", "a": "Bu araç yalnızca sözdizimini doğrular. Şema doğrulaması için şema dosyanızla birlikte bir JSON Schema doğrulayıcısı kullanın." }
+  ]
+}

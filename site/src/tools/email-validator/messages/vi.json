@@ -1,0 +1,60 @@
+{
+  "title": "Kiểm tra email (cú pháp + phát hiện lỗi đánh máy phổ biến)",
+  "shortDescription": "Kiểm tra cú pháp địa chỉ email theo RFC 5322 và phát hiện lỗi đánh máy phổ biến ở các nhà cung cấp lớn (gmail, yahoo, hotmail, v.v.).",
+  "description": "Nhập email để kiểm tra cú pháp có hợp lệ không và phát hiện lỗi tên miền như 'gmial.com' → 'gmail.com'. Phân tích local-part, domain, TLD và cảnh báo khi vượt giới hạn RFC.",
+  "metaDescription": "Kiểm tra email miễn phí. Xác thực cú pháp RFC 5322 và bắt lỗi đánh máy như gmial.com hay yaho.com. Hiển thị phân tích local-part, domain, TLD.",
+  "keywords": ["kiểm tra email", "xác thực email", "định dạng email hợp lệ", "xác minh email", "lỗi đánh máy email"],
+  "input": { "email": "Địa chỉ email" },
+  "status": { "valid": "Cú pháp hợp lệ", "invalid": "Cú pháp không hợp lệ" },
+  "suggestion": "Bạn có muốn nhập: {suggestion}?",
+  "empty": "Nhập địa chỉ email để kiểm tra.",
+  "breakdown": {
+    "localPart": "Phần local",
+    "domain": "Tên miền",
+    "tld": "TLD",
+    "hasPlus": "Thẻ plus (+)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Công cụ này làm được gì (và không làm được gì)",
+        "paragraphs": [
+          "Kiểm tra cú pháp email xác định xem 'tên@domain.tld' có tuân theo các quy tắc cấu trúc trong RFC 5322 không. Chúng tôi sử dụng regex thực tế bắt hầu hết các lỗi đánh máy trong thực tế, đồng thời đủ linh hoạt cho các địa chỉ hợp lệ có thẻ plus, dấu chấm và TLD đặc biệt.",
+          "Công cụ này KHÔNG làm được: xác nhận địa chỉ có thực sự nhận được mail không. Điều đó yêu cầu gửi email thực hoặc kiểm tra SMTP, cả hai đều cần code phía server và có nguy cơ dương tính giả. Kiểm tra cú pháp bắt lỗi đánh máy một cách nhanh chóng; kiểm tra khả năng gửi được cần cách tiếp cận khác."
+        ]
+      },
+      {
+        "heading": "Phát hiện lỗi đánh máy phổ biến",
+        "paragraphs": [
+          "Chúng tôi theo dõi lỗi đánh máy ở các nhà cung cấp email miễn phí lớn — 'gmial.com' thay vì 'gmail.com', 'yaho.com' thay vì 'yahoo.com', v.v. Khoảng 95% lỗi đánh máy khi đăng ký email là lỗi tên miền ở một số nhà cung cấp này. Bắt lỗi phía client giúp bạn tránh được email chào mừng bị trả lại và tình huống khó xử phải yêu cầu 'vui lòng kiểm tra lại địa chỉ'.",
+          "Nếu bạn đang xây dựng form đăng ký, hãy chạy logic tương tự trước khi submit. Hiển thị gợi ý 'Bạn có muốn nhập…?' và cho phép người dùng chấp nhận hoặc giữ nguyên. Các form đăng ký chuyên nghiệp đều làm điều này thường xuyên; nó cải thiện đáng kể khả năng gửi email."
+        ]
+      },
+      {
+        "heading": "Quy tắc phần local",
+        "paragraphs": [
+          "Thẻ plus ('user+filter@gmail.com'): được hỗ trợ rộng rãi bởi các nhà cung cấp lớn. Dùng để tạo địa chỉ riêng cho các đăng ký khác nhau trong khi vẫn dùng chung một hộp thư.",
+          "Dấu chấm ('user.name@gmail.com'): Gmail coi là cùng một địa chỉ (bỏ qua dấu chấm), nhưng các nhà cung cấp khác có thể coi là địa chỉ khác nhau. Đừng dựa vào tính tương đương dấu chấm ngoài Gmail.",
+          "Độ dài: RFC 5321 giới hạn phần local tối đa 64 ký tự và toàn bộ địa chỉ tối đa 254 ký tự. Chúng tôi cảnh báo khi vượt quá — hầu hết các server từ chối địa chỉ dài hơn.",
+          "Phân biệt chữ hoa/thường: theo RFC, phần local phân biệt hoa thường nhưng hầu hết nhà cung cấp coi là không phân biệt. Tên miền luôn không phân biệt hoa thường."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Nhập email", "text": "Hoặc dán từ form / danh sách." },
+      { "name": "Đọc kết quả", "text": "Dấu tích xanh = cú pháp hợp lệ; dấu X đỏ = không hợp lệ." },
+      { "name": "Chú ý gợi ý", "text": "Lỗi đánh máy phổ biến ở các nhà cung cấp lớn sẽ được đánh dấu kèm gợi ý." },
+      { "name": "Xem phân tích chi tiết", "text": "Local part, domain, TLD và ghi chú cảnh báo hiển thị bên dưới." }
+    ]
+  },
+  "faq": [
+    { "q": "Công cụ này có xác nhận email tồn tại không?", "a": "Không — chỉ kiểm tra cú pháp. Xác nhận hộp thư tồn tại yêu cầu kiểm tra SMTP phía server hoặc gửi email xác minh. Công cụ này bắt lỗi đánh máy nhanh chóng." },
+    { "q": "Tại sao 'a@b.co' được chấp nhận?", "a": "Vì đó là cú pháp hợp lệ về mặt kỹ thuật. TLD '.co' có thực (Colombia). Kiểm tra cú pháp không thể lọc các TLD hiếm gặp nhưng thực sự tồn tại." },
+    { "q": "Email có unicode thì sao (ví dụ: 用户@例え.jp)?", "a": "Địa chỉ email quốc tế hóa hợp lệ theo RFC 6531 nhưng regex dùng ở đây không hỗ trợ. Hầu hết backend form cũng chưa hỗ trợ. Với kiểm tra thân thiện unicode, hãy dùng thư viện chuyên dụng." },
+    { "q": "Thẻ plus là gì?", "a": "Bất kỳ nội dung nào giữa + và @ được Gmail và nhiều nhà cung cấp xử lý như một phần định tuyến. user+toolify@gmail.com được gửi đến user@gmail.com nhưng bạn có thể lọc theo hậu tố +toolify." },
+    { "q": "Tại sao Gmail bỏ qua dấu chấm?", "a": "Chính sách lịch sử của Gmail. user.name@gmail.com và username@gmail.com cùng đến một hộp thư. Các nhà cung cấp khác (Yahoo, Outlook) coi đây là hai địa chỉ khác nhau." },
+    { "q": "Email hợp lệ dài nhất là bao nhiêu?", "a": "254 ký tự tổng cộng theo RFC 5321. Phần local ≤ 64 ký tự. Hầu hết server từ chối địa chỉ dài hơn." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Kiểm tra chạy cục bộ; không có gì được gửi đến server." },
+    { "q": "Có thể kiểm tra hàng loạt không?", "a": "Không có trong công cụ này — dán từng địa chỉ một. Với danh sách, hãy dùng script hoặc dịch vụ kiểm tra hàng loạt chuyên dụng (với sự đồng ý của chủ sở hữu địa chỉ)." }
+  ]
+}

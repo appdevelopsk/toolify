@@ -1,0 +1,61 @@
+{
+  "title": "Máy tính giai thừa / Hoán vị / Tổ hợp",
+  "shortDescription": "Tính n! (giai thừa), P(n,k) hoán vị và C(n,k) tổ hợp. Hỗ trợ số nguyên lớn qua BigInt đến n=5000.",
+  "description": "Nhập n và k. Trả về n!, P(n,k) (chọn có thứ tự) và C(n,k) (chọn không có thứ tự). Hữu ích cho bài tập xác suất, thống kê và tổ hợp.",
+  "metaDescription": "Máy tính giai thừa, hoán vị (nPr) và tổ hợp (nCr) miễn phí. Hỗ trợ số nguyên lớn đến n=5000. Sẵn sàng cho xác suất và tổ hợp học.",
+  "keywords": ["máy tính giai thừa", "nCr nPr", "máy tính hoán vị", "máy tính tổ hợp", "tổ hợp toán học"],
+  "input": {
+    "kHint": "(cho hoán vị / tổ hợp)"
+  },
+  "result": {
+    "permutationsLabel": "hoán vị",
+    "combinationsLabel": "tổ hợp"
+  },
+  "error": {
+    "tooLargeOrNeg": "n phải là số nguyên không âm ≤ 5000.",
+    "invalid": "Yêu cầu 0 ≤ k ≤ n."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Giai thừa",
+        "paragraphs": [
+          "n! (đọc là 'n giai thừa') là tích của tất cả số nguyên dương từ 1 đến n. Vì vậy 5! = 1×2×3×4×5 = 120. Theo quy ước, 0! = 1 (tích rỗng).",
+          "Giai thừa tăng cực kỳ nhanh. 10! = 3.600.000, 20! = 2,4×10¹⁸, 100! có 158 chữ số. Số thực dấu phẩy động bị sai từ 21! (do giới hạn độ chính xác kép); chúng tôi sử dụng BigInt để có giá trị chính xác đến n=5000."
+        ]
+      },
+      {
+        "heading": "Hoán vị so với tổ hợp",
+        "paragraphs": [
+          "Hoán vị P(n,k) = n! / (n−k)!: số cách chọn có thứ tự k phần tử từ n. P(5,2) = 20: chọn vị trí đầu từ 5, vị trí thứ hai từ 4 còn lại = 5×4 = 20.",
+          "Tổ hợp C(n,k) = n! / (k!(n−k)!): số cách chọn không có thứ tự. C(5,2) = 10: cùng lựa chọn nhưng {nhất, nhì} = {nhì, nhất} nên chia cho 2!. Công thức nổi tiếng 'chọn k từ n'.",
+          "Dùng hoán vị khi thứ tự quan trọng (thứ hạng cuộc đua, thứ tự mật khẩu). Dùng tổ hợp khi chỉ tập hợp được chọn là quan trọng (số xổ số, chọn ủy ban). C(n,k) ≤ P(n,k) luôn luôn; bằng nhau khi k=1."
+        ]
+      },
+      {
+        "heading": "Ứng dụng thực tế",
+        "paragraphs": [
+          "Xác suất: xúc xắc, bài, tung đồng tiền. P(3 mặt sấp trong 5 lần tung) = C(5,3) × (1/2)⁵ = 10/32. Tổ hợp cho phép đếm các kết quả thuận lợi.",
+          "Thống kê: phân phối nhị thức dùng C(n,k). Lấy mẫu không hoàn lại dùng tổ hợp.",
+          "Khoa học máy tính: đếm tập con, phân tích độ phức tạp (ví dụ liệt kê k-clique là C(n,k)), thuật toán đồ thị.",
+          "Thực tế: xác suất xổ số (Vietlott 6/45: C(45,6) ≈ 8,1 triệu tổ hợp). Tổ hợp thực đơn nhà hàng: 'chọn 3 món phụ từ 8' là C(8,3) = 56 cách."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Nhập n", "text": "Tổng số phần tử / số nguyên không âm." },
+      { "name": "Nhập k (tùy chọn)", "text": "Số phần tử cần chọn (cho tính P và C). Phải có 0 ≤ k ≤ n." },
+      { "name": "Đọc cả ba kết quả", "text": "n!, P(n,k), C(n,k). Kết quả được rút gọn cho số rất lớn." }
+    ]
+  },
+  "faq": [
+    { "q": "Tại sao 0! = 1?", "a": "Theo quy ước, 'tích rỗng' bằng 1 (giống như tổng rỗng bằng 0). Nó cũng làm cho các công thức như C(n,0) = 1 (một cách chọn không có gì) hoạt động nhất quán." },
+    { "q": "Giai thừa lớn nhất công cụ này có thể tính là bao nhiêu?", "a": "n=5000 cho số có 16.326 chữ số. Chúng tôi giới hạn ở 5000 để tránh trình duyệt bị đơ với đầu vào quá lớn. Với n lớn hơn, hãy dùng phần mềm tính toán đại số." },
+    { "q": "Sự khác biệt giữa hoán vị và tổ hợp là gì?", "a": "Thứ tự quan trọng trong hoán vị, không quan trọng trong tổ hợp. {A,B} là cùng một tổ hợp với {B,A} nhưng là hai hoán vị khác nhau: AB và BA." },
+    { "q": "Giai thừa có được định nghĩa cho số âm không?", "a": "Không theo nghĩa tiêu chuẩn. Hàm gamma Γ(x) mở rộng giai thừa cho tất cả số thực (và phức), nhưng máy tính của chúng tôi chỉ xử lý số nguyên không âm." },
+    { "q": "Công thức tổ hợp là gì?", "a": "C(n,k) = n! / (k! × (n-k)!). Đọc là 'chọn k từ n'. Tương đương: P(n,k) / k! vì thứ tự không quan trọng." },
+    { "q": "Kết quả có chính xác không?", "a": "Chính xác cho tất cả giá trị trong phạm vi. Chúng tôi dùng số học BigInt, không có lỗi dấu phẩy động." },
+    { "q": "Tại sao 70! lại lớn hơn rất nhiều so với 60!?", "a": "Mỗi giai thừa nhân với số nguyên tiếp theo. 70! xấp xỉ 60! × 61 × 62 × … × 70 ≈ 60! × 1,4 × 10¹⁷. Giai thừa tăng nhanh hơn hàm mũ — xấp xỉ n^n × e^-n × √(2πn) theo xấp xỉ Stirling." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Tính toán chạy cục bộ; không có gì được gửi đến server." }
+  ]
+}

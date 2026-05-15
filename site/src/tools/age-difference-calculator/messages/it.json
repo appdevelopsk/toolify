@@ -1,0 +1,66 @@
+{
+  "title": "Calcolatore di Differenza di Età (tra due persone)",
+  "shortDescription": "Calcola la differenza di età esatta tra due persone in anni, mesi, giorni, più i totali in settimane, giorni e ore.",
+  "description": "Inserisci due date di nascita (e facoltativamente i nomi). Il calcolatore calcola la differenza in anni/mesi/giorni usando l'aritmetica del calendario e identifica chi è più anziano/più giovane.",
+  "metaDescription": "Calcolatore di differenza di età gratuito. Calcola il divario tra due compleanni in anni, mesi, giorni, settimane, ore. Identifica il più anziano e il più giovane.",
+  "keywords": ["calcolatore differenza età", "gap di età", "differenza compleanni", "confronto età", "differenza anni mesi giorni"],
+  "input": {
+    "name1": "Nome (facoltativo)",
+    "birth1": "Data di nascita",
+    "name2": "Nome (facoltativo)",
+    "birth2": "Data di nascita"
+  },
+  "result": {
+    "elderYounger": "{elder} è più vecchio/a di {younger} di",
+    "y": "a",
+    "m": "me",
+    "d": "g",
+    "totalDays": "Giorni totali",
+    "totalWeeks": "Settimane totali",
+    "totalMonths": "Mesi totali",
+    "totalHours": "Ore totali"
+  },
+  "empty": "Seleziona entrambe le date di nascita.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Perché una differenza basata sul calendario è importante",
+        "paragraphs": [
+          "Le differenze di età sembrano ovvie — «3 anni» — ma il divario effettivo dipende dai giorni. Due persone nate «nello stesso anno» potrebbero essere distanti di pochi giorni o di 364. Il calcolatore calcola la differenza esatta del calendario: il dettaglio del tipo 3 anni, 5 mesi, 12 giorni.",
+          "L'aritmetica del calendario prende in prestito dall'unità più grande quando necessario. Se la persona B è nata il 15 maggio e la persona A il 23 maggio dello stesso anno, la differenza è «0 anni, 0 mesi, 8 giorni», non «0 anni, 0 mesi, −8 giorni»."
+        ]
+      },
+      {
+        "heading": "Casi d'uso comuni",
+        "paragraphs": [
+          "Pianificazione familiare: quanto distano i fratelli? Utile per la pianificazione di compleanni e feste, l'allineamento delle classi scolastiche, la scelta dei regali.",
+          "Amici e partner: un semplice «di quanto sei più vecchio/a di me?» risposto al giorno.",
+          "Ricerca storica: tra le date di nascita di due figure storiche, comune in genealogia e biografia.",
+          "Sport e competizioni: gli atleti sono spesso categorizzati per anno di nascita; il calcolatore mostra se qualcuno rientra appena in una categoria o ne è ben al centro."
+        ]
+      },
+      {
+        "heading": "Unità totali (settimane, ore, ecc.)",
+        "paragraphs": [
+          "Ogni unità totale offre una prospettiva diversa sullo stesso divario. «3 anni» = ~157 settimane = 1.095 giorni = 26.280 ore. Utile per curiosità, conteggi motivazionali (giorni vissuti) o semplice interesse.",
+          "Le ore sono calcolate come giorni × 24. Adatta per gli anni bisestili e il fuso orario se serve maggiore precisione; per i casi d'uso tipici di «vite distanti», 24 ore/giorno è sufficientemente accurato."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Scegli la prima data di nascita", "text": "Usa il selettore di date. Il nome è facoltativo." },
+      { "name": "Scegli la seconda data di nascita", "text": "L'ordine non importa — il calcolatore identifica chi è più anziano/giovane." },
+      { "name": "Leggi la differenza", "text": "Anni/mesi/giorni più i totali." }
+    ]
+  },
+  "faq": [
+    { "q": "L'ordine delle date è importante?", "a": "No. Il calcolatore rileva chi è più anziano e lo etichetta. Il risultato è sempre la differenza assoluta (positiva)." },
+    { "q": "La differenza è esatta?", "a": "Sì — aritmetica del calendario con precisione al mese/giorno. Stessa precisione del nostro calcolatore di età." },
+    { "q": "Cosa succede se entrambe le persone hanno lo stesso compleanno?", "a": "Se condividono mese e giorno in anni diversi, si ottengono anni interi (senza resto di mesi o giorni). Stesso compleanno esatto: differenza 0." },
+    { "q": "Tiene conto degli anni bisestili?", "a": "Sì. I giorni totali contano i giorni di calendario effettivi incluso il 29 febbraio quando rilevante." },
+    { "q": "Perché i «mesi totali» sono una semplice addizione?", "a": "Mesi totali = anni × 12 + mesi. I giorni rimanenti non fanno parte del conteggio dei mesi, ma l'output A/M/G del nostro calendario li bilancia già correttamente." },
+    { "q": "Posso confrontare compleanni di secoli diversi?", "a": "Sì — il Date di JavaScript supporta molti secoli (ben oltre 1900-2100). Le date degli anni '700 per la genealogia funzionano bene." },
+    { "q": "Perché non c'è «chi è più anziano» per le nascite dello stesso giorno?", "a": "Se gli orari di nascita non sono registrati, le nascite dello stesso giorno sono pari. Mostriamo 0 di differenza e non designiamo maggiore/minore quando il divario è zero." },
+    { "q": "I dati lasciano il mio browser?", "a": "No. Il calcolo è locale; nulla viene inviato a un server." }
+  ]
+}

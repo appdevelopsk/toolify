@@ -1,0 +1,61 @@
+{
+  "title": "ROI Calculator (Return on Investment + Annualized)",
+  "shortDescription": "किसी भी holding period के लिए return on investment (ROI) % और annualized return calculate करें। Stocks, real estate, business, side projects — किसी भी investment के लिए काम करता है।",
+  "description": "Initial investment, total returns, और holding period in years दर्ज करें। ROI%, annualized (CAGR) %, और absolute profit return करता है। किसी भी time horizon के लिए काम करता है।",
+  "metaDescription": "Annualized return (CAGR) के साथ मुफ्त ROI calculator। Same scale पर different holding periods के investments compare करें।",
+  "keywords": ["roi calculator", "return on investment", "annualized return", "CAGR calculator", "investment return"],
+  "input": {
+    "investment": "Initial investment",
+    "returns": "Final value (या total returns)",
+    "holdYears": "Holding period (years)"
+  },
+  "result": {
+    "roi": "ROI",
+    "annualized": "Annualized (CAGR)",
+    "profit": "Absolute profit"
+  },
+  "empty": "Initial investment और final value दर्ज करें।",
+  "article": {
+    "sections": [
+      {
+        "heading": "ROI बनाम annualized return",
+        "paragraphs": [
+          "ROI (Return on Investment) = (final value − initial) / initial × 100%। Simple, useful जब same period के लिए held investments compare करते हैं। 1 साल में 50% ROI 10 साल में 50% ROI से way better है — लेकिन ROI alone यह नहीं दिखाता।",
+          "Annualized return (CAGR — Compound Annual Growth Rate भी कहते हैं) ROI को annual figure पर normalize करता है। 2 साल में 21% ROI 10% annualized return है। 7 साल में 100% ROI भी 10% annualized return है। CAGR apples-to-apples comparisons बनाता है।"
+        ]
+      },
+      {
+        "heading": "कब कौन सा उपयोग करें",
+        "paragraphs": [
+          "ROI: best जब same date पर या same end के साथ investments compare करते हैं। 'मैंने January में stock A और stock B खरीदे, आज उनके ROIs क्या हैं?' एक fair comparison है।",
+          "CAGR: best जब different durations के लिए held investments compare करते हैं। 'मेरी real estate ने 5 साल में 80% दिया; मेरे stocks ने 2 साल में 30% दिए। कौन बेहतर perform किया?' दोनों के लिए CAGR calculate करें: real estate = 12.5% annualized, stocks = 14% annualized — stocks जीते (per year)।",
+          "ऐसे investments के लिए जहाँ आपने reinvest किया या समय के साथ add किया, न तो metric sufficient है — IRR (internal rate of return) उपयोग करें जो irregular cash flows account करता है। Spreadsheets में built-in IRR functions होते हैं।"
+        ]
+      },
+      {
+        "heading": "कौन से 'returns' उपयोग करें",
+        "paragraphs": [
+          "Final value या total returns received उपयोग करें। Stocks के लिए: dividends include करें यदि आपने उन्हें reinvest किया; या cash लिए तो dividends + final price को 'returns' treat करें।",
+          "Real estate के लिए: rental income (यदि rental property है) plus sale price include करें। Net ROI के लिए total returns से repairs, taxes, fees subtract करें।",
+          "Business / side projects के लिए: returns = revenue minus सभी expenses (केवल gross नहीं)। अन्यथा आप inflated number पर ROI calculate कर रहे।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Initial investment दर्ज करें", "text": "शुरुआत में आपने जो put in किया।" },
+      { "name": "Final value या total returns दर्ज करें", "text": "आपको जो मिला (या आज मिल सकता)।" },
+      { "name": "Holding period years में दर्ज करें", "text": "Annualized calculation के लिए उपयोग। Partial years के लिए decimals उपयोग करें (0.5 = 6 months)।" },
+      { "name": "दोनों metrics पढ़ें", "text": "Total ROI और annualized return। Context के लिए अन्य investments से compare करें।" }
+    ]
+  },
+  "faq": [
+    { "q": "'अच्छा' ROI क्या है?", "a": "Context मायने रखता है। Nifty 50 long-term: ~12% nominal CAGR। Real estate: 8-12% combined CAGR। Inflation (~5%) से ऊपर कुछ भी real growth है। उससे नीचे: आप purchasing power खो रहे।" },
+    { "q": "क्या ROI risk account करता है?", "a": "नहीं। Same ROI वाले दो investments में बहुत different risk levels हो सकते हैं। 8% देने वाला FD और 8% return करने वाला startup equivalent नहीं हैं — startup में ~50% chance था zero का। हमेशा risk-adjusted returns consider करें।" },
+    { "q": "Long holds के लिए annualized return, total ROI से lower क्यों है?", "a": "Compounding। 10 साल में 100% total केवल 7.18% annualized है — rule of 72 (72/10 = 7.2) के through अपना पैसा double करने में लगने वाला half time।" },
+    { "q": "Accurate ROI के लिए क्या मुझे taxes subtract करने चाहिए?", "a": "After-tax ROI के लिए, हाँ। Pre-tax investments compare करने के लिए, gross returns उपयोग करें। Consistent रहें — tax-free account के return को taxable account के gross return से compare न करें।" },
+    { "q": "CAGR और IRR में क्या अंतर है?", "a": "CAGR एक initial investment और एक final value assume करता है। IRR irregular cash flows handle करता है — multiple deposits, dividends, withdrawals over time। Simple buy-and-hold के लिए CAGR ≈ IRR।" },
+    { "q": "क्या मैं इसे business sale के लिए उपयोग कर सकता हूँ?", "a": "हाँ। 'Investment' = total cost basis (purchase price plus capital improvements)। 'Returns' = sale proceeds plus ownership के दौरान distributed कोई cumulative profit।" },
+    { "q": "ROI, profit margin से कैसे differ करता है?", "a": "ROI = invested capital से divided return। Profit margin = revenue से divided profit। वे अलग चीज़ें measure करते हैं: ROI = capital का use कितना अच्छा है, margin = प्रत्येक sale कितना profitable है।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Calculation locally चलती है; कुछ भी server को नहीं भेजा जाता।" }
+  ]
+}

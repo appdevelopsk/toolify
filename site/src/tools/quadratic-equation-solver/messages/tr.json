@@ -1,0 +1,100 @@
+{
+  "title": "İkinci Dereceden Denklem Çözücü (ax² + bx + c = 0)",
+  "shortDescription": "Herhangi bir ikinci dereceden denklemi çözün. Gerçek veya karmaşık kökleri, diskriminantı ve parabolün tepe noktası koordinatlarını döndürür.",
+  "description": "a, b, c katsayılarını girin. Çözücü x = (−b ± √(b²−4ac)) / 2a ikinci dereceden formülünü uygular. İki gerçek kök, tek tekrarlı kök, iki karmaşık konjugat kök veya bozuk durumları ayırt eder.",
+  "metaDescription": "Ücretsiz ikinci dereceden denklem çözücü. Gerçek veya karmaşık kökler, diskriminant, tepe noktası koordinatları.",
+  "keywords": [
+    "ikinci dereceden denklem çözücü",
+    "ikinci dereceden formül",
+    "diskriminant",
+    "karmaşık kökler",
+    "parabol tepe noktası"
+  ],
+  "empty": "a, b, c katsayılarını girin.",
+  "result": {
+    "twoReal": "İki gerçek kök",
+    "oneReal": "Bir tekrarlı gerçek kök",
+    "complex": "İki karmaşık konjugat kök",
+    "linear": "Doğrusal denklem (a = 0)",
+    "linearLabel": "a sıfırdır; bu bir doğrusal denklemdir:",
+    "all": "Her x bir çözümdür (tüm katsayılar sıfır).",
+    "none": "Çözüm yok (b = 0, c ≠ 0).",
+    "discriminant": "Diskriminant (b² − 4ac)",
+    "vertex": "Parabol tepe noktası"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "İkinci dereceden formül",
+        "paragraphs": [
+          "a ≠ 0 ile ax² + bx + c = 0 için çözümler x = (−b ± √(b² − 4ac)) / (2a)'dır. Karekök altındaki ifade 'diskriminant'tır (D = b² − 4ac) ve işareti kök türünü belirler.",
+          "D > 0: iki farklı gerçek kök. Parabol x eksenini iki noktada keser.",
+          "D = 0: tek tekrarlı gerçek kök. Parabol x eksenine tepe noktasında teğet olur.",
+          "D < 0: iki karmaşık konjugat kök. Parabol x eksenine hiç değmez."
+        ]
+      },
+      {
+        "heading": "Tepe noktası ve parabol şekli",
+        "paragraphs": [
+          "Her ikinci dereceden denklem parabol olarak çizilir. Tepe noktası (dönüm noktası) x = −b / 2a'dadır; yerine koyarak y koordinatı bulunur. Eşdeğer olan y = −D / 4a formülüyle hesaplarız.",
+          "a > 0 ise parabol yukarı açılır ve tepe noktası minimumdur. a < 0 ise aşağı açılır ve tepe noktası maksimumdur. Simetri ekseni tepe noktasından dikey geçer."
+        ]
+      },
+      {
+        "heading": "Bozuk durumlar",
+        "paragraphs": [
+          "a = 0 ise denklem aslında ikinci dereceden değildir — doğrusal olur: bx + c = 0, çözüm x = −c/b (b ≠ 0 ise). Bunu tespit ederek doğrusal olarak çözeriz.",
+          "a = 0 VE b = 0 ise: herhangi bir çözümün var olması için c sıfıra eşit olmalıdır. c = 0 ise her x bir çözümdür; c ≠ 0 ise çözüm yoktur. Her iki durumu da raporlarız."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Katsayıları girin",
+        "text": "a, b, c. Gerektiğinde negatif sayılar kullanın (ör. b katsayısı için −3)."
+      },
+      {
+        "name": "Denklemi okuyun",
+        "text": "Görüntü mevcut ax² + bx + c = 0'ı gösterir."
+      },
+      {
+        "name": "Kökleri okuyun",
+        "text": "İki gerçek, bir tekrarlı veya iki karmaşık konjugat, artı diskriminant ve tepe noktası."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Diskriminant neden faydalıdır?",
+      "a": "Çözmeden köklerin niteliğini söyler: D > 0 iki gerçek kök, D = 0 tek tekrarlı, D < 0 karmaşık demektir. Çoğu zaman bilmeniz gereken tek şey budur."
+    },
+    {
+      "q": "'Tekrarlı kök' nedir?",
+      "a": "D = 0 olduğunda formül yalnızca x = −b/2a verir. Cebirsel olarak denklem a(x − r)² = 0 olarak çarpanlarına ayrılır; dolayısıyla r 'çokluk 2' ile iki kez kök olarak görünür."
+    },
+    {
+      "q": "Karmaşık kökler gerçek dünyada işe yarar mı?",
+      "a": "Evet. AC devreleri, sinyal işleme, kuantum mekaniği ve aerodinamik karmaşık sayılar kullanır. Fiziksel cevap gerçek olsa bile karmaşık ara adımlar yaygındır."
+    },
+    {
+      "q": "Burada kübik veya daha yüksek dereceli denklemleri çözebilir miyim?",
+      "a": "Bu araçla hayır. Kübik ve dördüncü dereceli denklemlerin kapalı form çözümleri var ama daha karmaşık. Yüksek dereceli polinomların sayısal çözümleri için NumPy veya Sage/Mathematica gibi bir CAS kullanın."
+    },
+    {
+      "q": "Katsayılarım çok büyükse ne olur?",
+      "a": "b² ve 4ac neredeyse eşit olduğunda D için kayan nokta hassasiyeti bozulur. Araştırma düzeyinde doğruluk için keyfi duyarlıklı aritmetik destekli bir kütüphane kullanın."
+    },
+    {
+      "q": "Bir parabol için 'tepe noktası' ne anlama gelir?",
+      "a": "Parabolün yön değiştirdiği tek 'dönüm noktası' (azalandan artana veya tersi). x = −b/(2a)'da bulunur. Optimizasyon problemlerinde minimum/maksimum bulmak için kullanışlıdır."
+    },
+    {
+      "q": "Köklere neden 'kök' deniyor?",
+      "a": "Tarihsel: 'kök' Latince radix'i çevirir, denklemin kaynağı/kökeni olarak mecazi kullanılmıştır. Kökler, polinomun sıfıra eşit olduğu noktalardır."
+    },
+    {
+      "q": "Veriler tarayıcımdan çıkıyor mu?",
+      "a": "Hayır. Hesaplama yerel olarak çalışır; hiçbir şey sunucuya gönderilmez."
+    }
+  ]
+}

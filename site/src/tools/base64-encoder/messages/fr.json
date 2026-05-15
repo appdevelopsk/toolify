@@ -1,0 +1,54 @@
+{
+  "title": "Encodeur / Décodeur Base64 (UTF-8 et URL-safe)",
+  "shortDescription": "Encode n'importe quel texte UTF-8 en Base64 ou décode la chaîne inverse. Bascule en encodage URL-safe pour les URLs et les JWT.",
+  "description": "Tape du texte ou colle une chaîne Base64 pour convertir dans les deux sens. Gère l'UTF-8 (y compris les emojis et les caractères CJK) et prend en charge la variante URL-safe utilisée dans JWT et OAuth.",
+  "metaDescription": "Encodeur et décodeur Base64 gratuit avec support UTF-8 et URL-safe. Convertit du texte en Base64 ou décode des chaînes JWT instantanément dans ton navigateur.",
+  "keywords": ["encodeur base64", "décodeur base64", "base64 url-safe", "base64 utf8", "encoder du texte"],
+  "input": { "plain": "Texte brut", "encoded": "Chaîne Base64" },
+  "output": { "encoded": "Résultat encodé", "plain": "Résultat décodé" },
+  "mode": { "encode": "Encoder", "decode": "Décoder" },
+  "urlSafe": "URL-safe (-, _, sans rembourrage)",
+  "copy": "Copier",
+  "copied": "Copié",
+  "invalidInput": "Entrée Base64 invalide.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Ce qu'est (et n'est pas) le Base64",
+        "paragraphs": [
+          "Le Base64 encode des octets arbitraires en utilisant un alphabet de 64 caractères (A-Z, a-z, 0-9, +, /, avec le rembourrage =). C'est la méthode standard pour intégrer des données binaires — octets d'image, blobs chiffrés, jetons signés — dans des formats texte uniquement comme JSON, HTML ou les en-têtes d'e-mail. La sortie est environ 33 % plus grande que l'entrée.",
+          "Le Base64 est un encodage, pas un chiffrement. N'importe qui peut décoder une chaîne Base64 pour retrouver les octets d'origine. Ne l'utilise pas pour cacher des secrets — utilise un vrai algorithme de chiffrement si tu as besoin de confidentialité."
+        ]
+      },
+      {
+        "heading": "URL-safe vs standard",
+        "paragraphs": [
+          "Le Base64 standard inclut '+' et '/', qui ont une signification spéciale dans les URLs et doivent être encodés en pourcentage. Le Base64 URL-safe (RFC 4648 §5) remplace '+' par '-', '/' par '_', et supprime le rembourrage '=' final. Les JWT, les jetons OAuth et de nombreuses API web utilisent la forme URL-safe.",
+          "Si tu décode un JWT ou un jeton manuellement, active l'option URL-safe. Si tu travailles avec des e-mails classiques ou des données intégrées dans des PDF, laisse-la désactivée. Le décodeur accepte les deux formes lorsque URL-safe est activé, car l'alphabet standard est un sur-ensemble sans la paire spéciale."
+        ]
+      },
+      {
+        "heading": "Gestion de l'UTF-8",
+        "paragraphs": [
+          "L'ancienne fonction btoa() des navigateurs ne gère que l'ASCII. Cet outil utilise TextEncoder pour convertir d'abord ton entrée en octets UTF-8, puis encode ces octets en Base64. Cela signifie que les emojis, les caractères CJK, les lettres latines accentuées et tout autre caractère Unicode s'encodent et se décodent correctement. L'approche octets-puis-Base64 est la même que celle utilisée par les bibliothèques JWT et la plupart des frameworks modernes."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choisis encoder ou décoder", "text": "Bascule le mode en haut." },
+      { "name": "Active URL-safe si nécessaire", "text": "Activé pour les JWT et les jetons OAuth ; désactivé pour tout le reste." },
+      { "name": "Colle ton entrée", "text": "Texte brut pour l'encodage, chaîne Base64 pour le décodage." },
+      { "name": "Copie le résultat", "text": "Clique sur « Copier » à côté de la sortie." }
+    ]
+  },
+  "faq": [
+    { "q": "Le Base64 est-il du chiffrement ?", "a": "Non. C'est une façon d'encoder du binaire sous forme de texte ASCII. N'importe qui peut le décoder. Utilise un vrai chiffrement (AES, RSA, etc.) pour la confidentialité." },
+    { "q": "Pourquoi l'URL-safe est-il différent ?", "a": "Le Base64 standard utilise '+' et '/' qui ont une signification spéciale dans les URLs et nécessitent un encodage en pourcentage. Le Base64 URL-safe substitue '-' et '_' pour éviter ce problème." },
+    { "q": "Puis-je décoder la signature d'un JWT ?", "a": "Décoder la signature donne les octets bruts de la signature, mais ils sont destinés à la vérification, pas à la lecture humaine. Décode l'en-tête et le payload du JWT (les deux premiers segments) pour voir les données." },
+    { "q": "Est-ce que ça fonctionne pour les fichiers binaires ?", "a": "Pas directement — colle uniquement du texte. Pour les fichiers, utilise un outil adapté au binaire. (La plupart des navigateurs disposent d'une paire atob/btoa intégrée utilisable dans les DevTools pour les petits fichiers.)" },
+    { "q": "Pourquoi mon texte décodé est-il illisible ?", "a": "Soit l'entrée n'était pas du Base64 valide, soit elle encodait des octets non-UTF-8 (ex. un fichier Latin-1). Vérifie l'encodage d'origine. Les outils qui décodent « en texte » supposent l'UTF-8." },
+    { "q": "Les données sont-elles envoyées quelque part ?", "a": "Non. L'encodage et le décodage s'effectuent entièrement dans ton navigateur." },
+    { "q": "Quelle est la surcharge de taille ?", "a": "Environ 33 % de plus que les octets source (chaque groupe de 3 octets d'entrée devient 4 caractères en sortie). L'URL-safe sans rembourrage a la même surcharge." },
+    { "q": "Pourquoi le rembourrage est-il important ?", "a": "Le Base64 standard rembourre la fin avec '=' pour que la longueur soit un multiple de 4. Les versions URL-safe omettent souvent ce rembourrage car il n'est pas nécessaire au décodage." }
+  ]
+}

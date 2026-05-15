@@ -1,0 +1,100 @@
+{
+  "title": "Quadratische Gleichungslöser (ax² + bx + c = 0)",
+  "shortDescription": "Löse jede quadratische Gleichung. Gibt reelle oder komplexe Wurzeln, die Diskriminante und die Scheitelpunktkoordinaten der Parabel zurück.",
+  "description": "Gib Koeffizienten a, b, c ein. Der Löser wendet die Lösungsformel x = (−b ± √(b²−4ac)) / 2a an. Unterscheidet zwei reelle Wurzeln, eine doppelte Wurzel, zwei konjugiert komplexe Wurzeln oder degenerierte Fälle.",
+  "metaDescription": "Kostenloser quadratischer Gleichungslöser. Reelle oder komplexe Wurzeln, Diskriminante, Scheitelpunktkoordinaten.",
+  "keywords": [
+    "quadratische Gleichung lösen",
+    "Lösungsformel",
+    "Diskriminante",
+    "komplexe Wurzeln",
+    "Parabelscheitel"
+  ],
+  "empty": "Gib Koeffizienten a, b, c ein.",
+  "result": {
+    "twoReal": "Zwei reelle Wurzeln",
+    "oneReal": "Eine doppelte reelle Wurzel",
+    "complex": "Zwei konjugiert komplexe Wurzeln",
+    "linear": "Lineare Gleichung (a = 0)",
+    "linearLabel": "a ist 0; das ist eine lineare Gleichung:",
+    "all": "Jedes x ist eine Lösung (alle Koeffizienten null).",
+    "none": "Keine Lösung (b = 0, c ≠ 0).",
+    "discriminant": "Diskriminante (b² − 4ac)",
+    "vertex": "Parabelscheitel"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Die Lösungsformel für quadratische Gleichungen",
+        "paragraphs": [
+          "Für ax² + bx + c = 0 mit a ≠ 0 sind die Lösungen x = (−b ± √(b² − 4ac)) / (2a). Der Ausdruck unter der Wurzel ist die ‚Diskriminante' (D = b² − 4ac), und ihr Vorzeichen bestimmt die Art der Wurzeln.",
+          "D > 0: zwei verschiedene reelle Wurzeln. Die Parabel schneidet die x-Achse an zwei Punkten.",
+          "D = 0: eine doppelte reelle Wurzel. Die Parabel berührt die x-Achse am Scheitel (Tangente).",
+          "D < 0: zwei konjugiert komplexe Wurzeln. Die Parabel berührt die x-Achse gar nicht."
+        ]
+      },
+      {
+        "heading": "Scheitel und Parabelform",
+        "paragraphs": [
+          "Jede quadratische Funktion wird als Parabel dargestellt. Der Scheitel (Wendepunkt) liegt bei x = −b / 2a, und durch Einsetzen erhält man die y-Koordinate. Wir berechnen sie als y = −D / 4a, was äquivalent ist.",
+          "Wenn a > 0 öffnet die Parabel nach oben und der Scheitel ist das Minimum. Wenn a < 0, nach unten und der Scheitel ist das Maximum. Die Symmetrieachse verläuft vertikal durch den Scheitel."
+        ]
+      },
+      {
+        "heading": "Degenerierte Fälle",
+        "paragraphs": [
+          "Wenn a = 0, ist die Gleichung eigentlich nicht quadratisch – sie wird linear: bx + c = 0, mit Lösung x = −c/b (wenn b ≠ 0). Wir erkennen das und lösen als lineare Gleichung.",
+          "Wenn a = 0 UND b = 0: c muss 0 sein, damit eine Lösung existiert. Wenn c = 0, ist jedes x eine Lösung; wenn c ≠ 0, existiert keine Lösung. Wir berichten beide Fälle."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Koeffizienten eingeben",
+        "text": "a, b, c. Negative Zahlen bei Bedarf verwenden (z. B. −3 für den b-Koeffizienten)."
+      },
+      {
+        "name": "Gleichung ablesen",
+        "text": "Die Anzeige zeigt deine aktuelle ax² + bx + c = 0."
+      },
+      {
+        "name": "Wurzeln ablesen",
+        "text": "Zwei reelle, eine doppelte oder zwei konjugiert komplexe Wurzeln, plus Diskriminante und Scheitel."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Warum ist die Diskriminante nützlich?",
+      "a": "Sie zeigt die Art der Wurzeln ohne Lösung: D > 0 bedeutet zwei reelle Wurzeln, D = 0 eine doppelte, D < 0 komplexe. Oft ist das alles, was man wissen muss."
+    },
+    {
+      "q": "Was ist eine ‚doppelte Wurzel'?",
+      "a": "Wenn D = 0, gibt die Formel nur x = −b/2a. Algebraisch faktorisiert die Gleichung als a(x − r)² = 0, sodass r zweimal als Wurzel mit ‚Vielfachheit 2' auftritt."
+    },
+    {
+      "q": "Sind komplexe Wurzeln in der realen Welt nützlich?",
+      "a": "Ja. Wechselstromkreise, Signalverarbeitung, Quantenmechanik und Aerodynamik verwenden alle komplexe Zahlen. Selbst wenn die physikalische Antwort reell ist, sind komplexe Zwischenschritte üblich."
+    },
+    {
+      "q": "Kann ich kubische oder höhere Gleichungen hier lösen?",
+      "a": "Nicht mit diesem Tool. Kubische und biquadratische Gleichungen haben geschlossene Lösungsformeln, aber sie sind aufwendiger. Für numerische Lösungen von hochgradigen Polynomen NumPy oder ein CAS wie Sage/Mathematica verwenden."
+    },
+    {
+      "q": "Was, wenn meine Koeffizienten sehr groß sind?",
+      "a": "Gleitkommagenauigkeit verschlechtert sich für D, wenn b² und 4ac nahezu gleich sind. Für forschungsgenaue Ergebnisse eine Bibliothek mit beliebiger Präzisionsarithmetik verwenden."
+    },
+    {
+      "q": "Was bedeutet ‚Scheitel' bei einer Parabel?",
+      "a": "Der einzelne ‚Umkehrpunkt', an dem die Parabel die Richtung wechselt (von fallend zu steigend oder umgekehrt). Liegt bei x = −b/(2a). Nützlich zum Finden von Minima/Maxima bei Optimierungsaufgaben."
+    },
+    {
+      "q": "Warum heißen Lösungen ‚Wurzeln'?",
+      "a": "Historisch: ‚Wurzel' übersetzt das lateinische radix, metaphorisch als Ursprung der Gleichung verwendet. Die Wurzeln sind, wo das Polynom null ist."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Die Berechnung läuft lokal; nichts wird an einen Server gesendet."
+    }
+  ]
+}

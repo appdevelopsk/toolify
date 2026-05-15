@@ -1,0 +1,63 @@
+{
+  "title": "Kalkulator Rasio Aspek (pertahankan rasio saat mengubah ukuran)",
+  "shortDescription": "Hitung lebar atau tinggi untuk mempertahankan rasio aspek target. Termasuk preset satu klik untuk rasio umum (16:9, 9:16, 1:1, 4:3, 21:9).",
+  "description": "Atur rasio target dan satu dimensi; yang lainnya otomatis terisi. Arah sebaliknya bekerja dengan cara yang sama. Berguna untuk video, pemotongan foto, dan tata letak web responsif.",
+  "metaDescription": "Kalkulator rasio aspek gratis. Pertahankan rasio seperti 16:9, 9:16, 1:1, 4:3 saat mengubah ukuran. Hitung lebar atau tinggi yang hilang secara instan.",
+  "keywords": ["kalkulator rasio aspek", "ubah ukuran rasio", "kalkulator 16:9", "rasio aspek gambar", "rasio aspek video"],
+  "input": {
+    "ratioW": "Rasio L",
+    "ratioH": "Rasio T",
+    "width": "Lebar",
+    "height": "Tinggi"
+  },
+  "result": {
+    "ratio": "Rasio aspek",
+    "decimal": "Desimal",
+    "dimensions": "Dimensi",
+    "simplified": "Disederhanakan"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa itu rasio aspek",
+        "paragraphs": [
+          "Rasio aspek menggambarkan lebar relatif terhadap tinggi: 16:9 berarti 16 unit lebar untuk setiap 9 unit tinggi. Rasio yang sama berlaku pada ukuran berapa pun — 1920×1080 dan 800×450 keduanya adalah 16:9. Mempertahankan rasio aspek saat mengubah ukuran mencegah gambar meregang atau menjadi gepeng dan merupakan dasar desain responsif.",
+          "Kami menerima bilangan bulat (16:9) atau desimal (1,78:1) untuk rasio, dan ukuran berapa pun untuk lebar/tinggi. Edit bidang mana pun — yang lainnya diperbarui untuk mempertahankan rasio. Rasio desimal (lebar / tinggi) ditampilkan untuk digunakan dalam ekspresi CSS calc() atau alat pengeditan video."
+        ]
+      },
+      {
+        "heading": "Rasio umum dan di mana digunakan",
+        "paragraphs": [
+          "16:9 — TV HD modern, monitor komputer, YouTube, sebagian besar film sejak 2009. Default untuk hampir semua yang Anda lakukan saat ini.",
+          "9:16 — video vertikal untuk Instagram Stories, TikTok, YouTube Shorts. Sisi balik 16:9 untuk konten berbasis ponsel.",
+          "1:1 — persegi. Default feed Instagram hingga 2021. Sampul album, foto profil.",
+          "4:3 — TV lama dan monitor komputer sebelum HD. Masih digunakan untuk beberapa konten bergaya klasik.",
+          "3:2 — default kamera DSLR. Film 35mm. Cetakan lebih besar.",
+          "21:9 — sinematik ultrawide. Film yang direkam secara anamorfik. Beberapa monitor PC dan TV LG."
+        ]
+      },
+      {
+        "heading": "Mengapa CSS aspect-ratio penting",
+        "paragraphs": [
+          "CSS modern memiliki aspect-ratio: 16/9; — atur rasio dan biarkan browser menghitung tinggi dari lebar (atau sebaliknya). Menghindari hack padding-bottom lama dan sangat penting untuk embed responsif dan placeholder gambar untuk mencegah pergeseran tata letak.",
+          "Cumulative Layout Shift (CLS) adalah Core Web Vital. Video yang disematkan, gambar tanpa dimensi, dan iklan semuanya dapat menyebabkan CLS — perbaiki dengan menetapkan lebar/tinggi eksplisit (yang digunakan browser untuk menghitung rasio aspek) atau menggunakan CSS aspect-ratio."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih rasio", "text": "Ketuk preset atau masukkan nilai W:H kustom." },
+      { "name": "Masukkan dimensi yang diketahui", "text": "Lebar atau tinggi — yang lainnya otomatis terisi." },
+      { "name": "Edit bidang mana pun", "text": "Pembaruan menyebar untuk mempertahankan rasio." }
+    ]
+  },
+  "faq": [
+    { "q": "Apa perbedaan antara 16:9 dan 1,78:1?", "a": "Rasio yang sama, notasi berbeda. 16/9 = 1,778. Bentuk titik dua konvensional dalam TV/web; bentuk desimal konvensional dalam sinema." },
+    { "q": "Bagaimana cara mempertahankan rasio aspek di CSS?", "a": "Gunakan properti aspect-ratio: img { aspect-ratio: 16/9; width: 100%; height: auto; }. Gambar mengisi lebar container dan tinggi menyesuaikan untuk mempertahankan rasio." },
+    { "q": "Mengapa video saya terlihat salah di TV 4:3?", "a": "Sebagian besar video modern adalah 16:9. Di layar 4:3, mereka letterbox (bilah hitam), pillar-box, atau meregang. Pengaturan TV mengontrol mana yang terjadi." },
+    { "q": "Bisakah saya menggunakan rasio non-integer?", "a": "Ya — ketik 1,5 atau 2,39. Kalkulator memperlakukannya sebagai desimal; output rasio-sederhana hanya muncul untuk rasio integer." },
+    { "q": "Apa itu 'rasio aspek piksel'?", "a": "Konsep yang berbeda: bentuk piksel individual. Tampilan modern menggunakan piksel persegi (1:1). Beberapa format video SD lama menggunakan piksel non-persegi (mis., 1,0667 untuk NTSC widescreen). Kalkulator ini menangani rasio aspek tampilan, bukan rasio aspek piksel." },
+    { "q": "Apa tampilan 'sinematik'?", "a": "21:9 (lebih tepatnya 2,39:1 atau 2,40:1) — lebih lebar dari HDTV. Umum dalam film blockbuster modern. Layanan streaming sering menyajikan film dalam rasio ini." },
+    { "q": "Mengapa Instagram Reel/TikTok menggunakan 9:16?", "a": "Karena ponsel biasanya dipegang secara vertikal. 9:16 mengisi seluruh layar ponsel dengan konten; 16:9 meninggalkan pita di atas dan bawah pada ponsel vertikal." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Perhitungan berjalan secara lokal." }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "title": "Máy tính GCD & LCM (kèm phân tích nhân tử nguyên tố)",
+  "shortDescription": "Tìm ước chung lớn nhất (GCD) và bội chung nhỏ nhất (LCM) của hai hoặc nhiều số nguyên, cùng phân tích nhân tử nguyên tố của mỗi số.",
+  "description": "Nhập danh sách các số nguyên. Máy tính trả về GCD (thuật toán Euclid), LCM và phân tích nhân tử nguyên tố đầy đủ của mỗi đầu vào. Xử lý số nguyên kích thước tùy ý qua BigInt.",
+  "metaDescription": "Máy tính GCD và LCM miễn phí kèm phân tích nhân tử nguyên tố. Nhập nhiều số. Số học BigInt chính xác cho số nguyên kích thước bất kỳ.",
+  "keywords": ["máy tính GCD", "máy tính LCM", "ước chung lớn nhất", "bội chung nhỏ nhất", "phân tích nhân tử nguyên tố"],
+  "input": {
+    "numbers": "Các số",
+    "hint": "Phân cách bằng dấu phẩy, khoảng trắng hoặc xuống dòng. Ít nhất 2 số."
+  },
+  "result": {
+    "gcd": "GCD (ước chung lớn nhất)",
+    "lcm": "LCM (bội chung nhỏ nhất)",
+    "factorizations": "Phân tích nhân tử nguyên tố"
+  },
+  "empty": "Nhập ít nhất 2 số nguyên.",
+  "article": {
+    "sections": [
+      {
+        "heading": "GCD: nhân tử chung lớn nhất",
+        "paragraphs": [
+          "GCD của hai số nguyên là số nguyên lớn nhất chia hết cả hai mà không có phần dư. GCD(12, 18) = 6 vì 6 chia hết cả hai và không có số nào lớn hơn làm được điều này. GCD(7, 13) = 1 vì chúng không có nhân tử chung nào (các cặp như vậy gọi là 'nguyên tố cùng nhau').",
+          "Chúng tôi sử dụng thuật toán Euclid: gcd(a, b) = gcd(b, a mod b), đệ quy. Đã được biết đến ~2300 năm và vẫn là phương pháp tiêu chuẩn nhanh nhất. Với ba số trở lên, gcd(a, b, c) = gcd(gcd(a, b), c)."
+        ]
+      },
+      {
+        "heading": "LCM: bội chung nhỏ nhất",
+        "paragraphs": [
+          "LCM là số nguyên dương nhỏ nhất là bội của cả hai. LCM(4, 6) = 12 vì 12 là số đầu tiên mà cả 4 và 6 đều chia hết.",
+          "Công thức: lcm(a, b) = (a × b) / gcd(a, b). Với 4 và 6: 24 / 2 = 12. Với ba số: lcm(a, b, c) = lcm(lcm(a, b), c).",
+          "Nếu bất kỳ số nào là 0, LCM là 0 (mọi số đều chia hết 0, nhưng 'nhỏ nhất dương' không xác định). Máy tính trả về 0 trong trường hợp đó."
+        ]
+      },
+      {
+        "heading": "Tại sao điều này quan trọng",
+        "paragraphs": [
+          "Phân số: để cộng 1/4 + 1/6, tìm LCM(4, 6) = 12 là mẫu số chung. 1/4 = 3/12, 1/6 = 2/12, tổng = 5/12.",
+          "Lịch trình: nếu sự kiện A lặp lại mỗi 4 ngày và sự kiện B mỗi 6 ngày, chúng trùng nhau mỗi LCM(4, 6) = 12 ngày.",
+          "Mật mã học: các thuật toán dựa trên GCD (Euclid mở rộng) là nền tảng của tạo khóa RSA và tính toán nghịch đảo modulo.",
+          "Lý thuyết âm nhạc: các nhịp điệu với chu kỳ 3 và 4 đồng bộ sau 12 nhịp (LCM)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Nhập các số nguyên", "text": "Ít nhất 2, phân cách bằng dấu phẩy, khoảng trắng hoặc xuống dòng." },
+      { "name": "Đọc GCD và LCM", "text": "Cả hai hiển thị nổi bật trong khu vực kết quả." },
+      { "name": "Xem phân tích nhân tử", "text": "Phân tích nhân tử nguyên tố của mỗi số giải thích tại sao GCD/LCM ra kết quả như vậy." }
+    ]
+  },
+  "faq": [
+    { "q": "Nếu các số nguyên tố cùng nhau thì sao?", "a": "GCD = 1 và LCM = tích của tất cả các số. Nguyên tố cùng nhau có nghĩa là không có nhân tử nguyên tố chung." },
+    { "q": "Tôi có thể nhập số âm không?", "a": "Có. Chúng tôi dùng giá trị tuyệt đối cho tính toán GCD/LCM. -12 và 18 cho GCD 6 và LCM 36, giống như 12 và 18." },
+    { "q": "Nếu tôi nhập 0 thì sao?", "a": "GCD(0, n) = |n| (vì mọi số nguyên đều chia hết 0, và n là lớn nhất như vậy cho cặp đó). LCM với 0 là 0 theo quy ước. Với tất cả số không, GCD/LCM không xác định." },
+    { "q": "Số của tôi có thể lớn đến mức nào?", "a": "Chúng tôi dùng BigInt nội bộ, nên số học với số nguyên kích thước bất kỳ là chính xác. Giới hạn thực tế là tốc độ gõ phím và không gian màn hình." },
+    { "q": "Tại sao phân tích nhân tử nguyên tố lại hữu ích?", "a": "GCD = tích của các số nguyên tố chung (lấy số mũ nhỏ hơn). LCM = tích của tất cả số nguyên tố xuất hiện trong bất kỳ số nào (lấy số mũ lớn hơn). Phân tích nhân tử làm các mối quan hệ này trở nên rõ ràng." },
+    { "q": "Mối quan hệ giữa GCD và LCM là gì?", "a": "Với hai số: a × b = gcd(a, b) × lcm(a, b). Vậy nếu bạn biết bất kỳ ba trong số {a, b, gcd, lcm}, bạn có thể tính số thứ tư. Không tổng quát hóa được rõ ràng cho ba số trở lên." },
+    { "q": "Tôi có thể dùng cái này cho GCD đa thức không?", "a": "Không có trong công cụ này — chúng tôi chỉ xử lý số nguyên. Với đa thức, hãy dùng CAS như SymPy hoặc Maxima." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Tính toán chạy cục bộ; không có gì được gửi đến server." }
+  ]
+}

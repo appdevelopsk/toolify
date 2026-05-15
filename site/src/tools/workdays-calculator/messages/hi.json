@@ -1,0 +1,106 @@
+{
+  "title": "Workdays Calculator (weekends + holidays skip करें)",
+  "shortDescription": "दो dates के बीच business days count करें, weekends और आपकी listed holidays को excluding करके। Customizable: Saturday या Sunday को workday include करें।",
+  "description": "Start और end date pick करें, optionally Saturday या Sunday को workdays include करें, और exclude करने के लिए holiday dates add करें। Workdays, weekend days, और holidays separately return करता है।",
+  "metaDescription": "मुफ्त workdays calculator। दो dates के बीच business days count करें, weekends और custom holidays skip करें। Project deadlines, contract terms, leave planning के लिए",
+  "keywords": [
+    "workdays calculator",
+    "business days calculator",
+    "working days between dates",
+    "weekday count",
+    "skip weekends holidays"
+  ],
+  "empty": "Workdays count करने के लिए start और end date pick करें।",
+  "input": {
+    "start": "Start date",
+    "end": "End date",
+    "includeSat": "Saturday workday है",
+    "includeSun": "Sunday workday है",
+    "holidays": "Exclude करने के लिए holidays (एक per line)",
+    "holidaysHint": "ISO format: 2026-01-01। Comma, space, या newline-separated।"
+  },
+  "result": {
+    "workdays": "Workdays",
+    "weekendDays": "Weekend days",
+    "holidayDays": "Holidays",
+    "total": "Total days"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Workday counting क्यों matter करती है",
+        "paragraphs": [
+          "Project deadlines, contract terms, payroll cycles, और leave planning सभी calendar days की बजाय 'business days' use करते हैं। Friday को किया गया 30-day delivery promise actually 32 calendar days है क्योंकि weekend count नहीं होता। दोनों को confuse करने से missed deadlines और contract disputes होते हैं।",
+          "India में workdays legal counting के लिए भी matter करते हैं: Companies Act, Labor laws, और court deadlines अक्सर 'business days' specify करते हैं। India में Gazetted holidays (Republic Day, Independence Day, Gandhi Jayanti, Diwali, आदि) और Regional holidays (state-specific) दोनों matter करते हैं।"
+        ]
+      },
+      {
+        "heading": "हम weekends customize करने क्यों देते हैं",
+        "paragraphs": [
+          "India में standard 5-day work week (Mon-Fri) offices में common है। लेकिन कई businesses Saturday को half-day या full workday मानते हैं। Retail, hospitality, और कुछ factories 6 days/week operate करते हैं।",
+          "हमारे toggles से आप Saturday या Sunday को individually workday mark कर सकते हैं। Configure करें: Mon-Fri only (default), 6-day work week (Saturday include करें), या customized schedule।"
+        ]
+      },
+      {
+        "heading": "Holidays input कैसे use करें",
+        "paragraphs": [
+          "YYYY-MM-DD format (ISO 8601) में dates की list paste करें। Separators commas, spaces, या newlines हो सकते हैं। आपकी listed प्रत्येक date workday count से exclude होगी यदि वह otherwise workday होती।",
+          "India के 2026 Gazetted holidays के लिए paste करें: 2026-01-26, 2026-04-14, 2026-04-18, 2026-05-23, 2026-08-15, 2026-10-02, 2026-10-24, 2026-11-04, 2026-12-25।",
+          "हम automatically include नहीं करते क्योंकि (a) holidays country, region, और year से vary करते हैं, और (b) कुछ businesses additional company-specific days off observe करते हैं।"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Start और end dates set करें",
+        "text": "दोनों inclusive — दोनों dates count होती हैं यदि workdays हों।"
+      },
+      {
+        "name": "Weekend days pick करें",
+        "text": "Default पर Saturday और Sunday weekends हैं। जरूरत हो तो workdays के रूप में toggle करें।"
+      },
+      {
+        "name": "Exclude करने के लिए holidays add करें",
+        "text": "ISO dates को commas, spaces, या newlines से separated list करें।"
+      },
+      {
+        "name": "Breakdown पढ़ें",
+        "text": "Workdays, weekend days, holidays, और total calendar days।"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "क्या start और end dates inclusive हैं?",
+      "a": "हाँ। दोनों workdays हों तो दोनों count होती हैं। यदि आपका contract केवल बीच के days count करे (exclusive), result में से 2 subtract करें।"
+    },
+    {
+      "q": "Holidays automatically include क्यों नहीं हैं?",
+      "a": "Holidays country, region, और year से widely vary करते हैं। Auto-include करने से उन holidays subtract होने का risk है जो आपके jurisdiction पर apply नहीं होते।"
+    },
+    {
+      "q": "क्या मैं इसे international contracts के लिए use कर सकता हूँ?",
+      "a": "हाँ — लेकिन ensure करें कि दोनों parties agree करें कि कौन से holidays count करें। Multinational contracts अक्सर specify करते हैं 'business days as observed in [city] of [country]'।"
+    },
+    {
+      "q": "Holiday weekend पर पड़े तो?",
+      "a": "Double-count नहीं होता। यदि 2026-01-26 (Republic Day) Thursday है, holiday count होता है। यदि वह Sunday पर पड़े, algorithm correctly इसे एक day (weekend) count करता है, दो नहीं।"
+    },
+    {
+      "q": "6-day work week के लिए कैसे use करें?",
+      "a": "'Saturday workday है' check करें। Calculator Mon-Sat को workdays count करेगा और केवल Sundays और listed holidays exclude करेगा।"
+    },
+    {
+      "q": "Maximum date range क्या है?",
+      "a": "Minimum hundreds of years। Browser 1970 से ±100 million days तक date arithmetic handle करता है।"
+    },
+    {
+      "q": "क्या मैं workday list export कर सकता हूँ?",
+      "a": "Download के रूप में नहीं, लेकिन displayed numbers copy कर सकते हैं। Per-day list के लिए, spreadsheet more flexible है।"
+    },
+    {
+      "q": "क्या data browser से बाहर जाता है?",
+      "a": "नहीं। सब कुछ locally चलता है; कुछ server को नहीं भेजा जाता।"
+    }
+  ]
+}

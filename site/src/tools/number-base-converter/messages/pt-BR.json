@@ -1,0 +1,50 @@
+{
+  "title": "Conversor de Base Numérica (binário, octal, decimal, hex)",
+  "shortDescription": "Converta números entre binário, octal, decimal e hexadecimal. Valida a entrada para a base escolhida e mostra todas as quatro representações.",
+  "description": "Escolha uma base de origem, digite um valor e veja os equivalentes em binário, octal, decimal e hex. Útil para programação, redes e eletrônica.",
+  "metaDescription": "Conversor gratuito de base numérica para binário, octal, decimal e hexadecimal. Valida a entrada por base, mostra as quatro representações lado a lado.",
+  "keywords": ["conversor de base numérica", "binário para decimal", "decimal para hex", "hex para binário", "base 2 base 16"],
+  "input": { "value": "Valor", "from": "Da base" },
+  "error": { "invalidForBase": "A entrada contém caracteres que não são válidos para a base selecionada." },
+  "article": {
+    "sections": [
+      {
+        "heading": "Como funcionam as bases numéricas posicionais",
+        "paragraphs": [
+          "Toda base usa notação posicional: o dígito mais à direita é base⁰ = 1, o próximo é base¹, depois base², e assim por diante. Em decimal, '255' significa 2×100 + 5×10 + 5×1. Em binário, '11111111' significa 1×128 + 1×64 + ... + 1×1 = 255. O mesmo número, bases diferentes.",
+          "Hexadecimal usa 0-9 e A-F para caber 16 valores por dígito. 'FF' = 15×16 + 15×1 = 255. Octal usa 0-7 (3 bits por dígito), e binário usa apenas 0 e 1. A conversão é mecânica — converta para decimal e depois para a base alvo — e a calculadora faz isso por você para qualquer inteiro não negativo."
+        ]
+      },
+      {
+        "heading": "Quando você usará cada base",
+        "paragraphs": [
+          "Binário (base 2): trabalho de baixo nível em computadores — campos de bits, máscaras, firmware embarcado. Leitura de layouts de registradores, depuração no nível de hardware.",
+          "Octal (base 8): permissões de arquivos Unix (chmod 755 = rwxr-xr-x), alguns formatos de arquivo legados. Menos comum hoje.",
+          "Decimal (base 10): tudo que os humanos contam. O padrão para aritmética normal.",
+          "Hexadecimal (base 16): o mais comum em software — cores (#FF6B35), endereços de memória (0x7fff...), endereços MAC, representações de bytes de dados binários, hashes codificados."
+        ]
+      },
+      {
+        "heading": "Referência rápida",
+        "paragraphs": [
+          "1 byte = 8 bits = 2 dígitos hex = 256 valores (0-255). 1 dígito hex = 4 bits = 16 valores. 1 dígito octal = 3 bits. Hex 'FF' = decimal 255 = binário 11111111. Hex '100' = decimal 256. Hex 'FFFF' = decimal 65535 (máximo para 16 bits sem sinal). Hex 'FFFFFFFF' = decimal 4294967295 (máximo para 32 bits sem sinal)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escolha a base de origem", "text": "Selecione binário, octal, decimal ou hex." },
+      { "name": "Insira seu valor", "text": "Use apenas dígitos válidos para essa base. Hex não diferencia maiúsculas de minúsculas." },
+      { "name": "Leia as quatro bases", "text": "A conversão para cada uma das outras três aparece ao lado." }
+    ]
+  },
+  "faq": [
+    { "q": "Hex diferencia maiúsculas de minúsculas?", "a": "Tanto 'ff' quanto 'FF' decodificam para o mesmo valor. Exibimos em maiúsculas por convenção." },
+    { "q": "Posso inserir números negativos?", "a": "Sim, prefixe com '-'. A calculadora exibe a representação de cada base com o sinal preservado (ex.: -255 → -FF em hex)." },
+    { "q": "Qual é o valor máximo?", "a": "Limitado pelo intervalo de inteiros seguros do JavaScript (cerca de 2⁵³). Para valores maiores, use ferramentas compatíveis com BigInt." },
+    { "q": "Como leio o prefixo 0x ou 0b?", "a": "Remova o prefixo antes de inserir. '0xFF' → apenas 'FF' com hex selecionado. '0b1010' → '1010' com binário selecionado." },
+    { "q": "Por que o chmod do Unix usa octal?", "a": "As permissões têm três grupos (dono/grupo/outros) de três bits cada. Os 3 bits de cada grupo mapeiam para um único dígito octal, então 755 = 111 101 101 = rwx r-x r-x." },
+    { "q": "Posso converter valores fracionários?", "a": "Ainda não — apenas inteiros não negativos são suportados. Podemos adicionar suporte a ponto fixo depois." },
+    { "q": "O que fazer se aparecer 'inválido para a base'?", "a": "Você digitou um caractere que não é permitido na base escolhida. Hex permite 0-9 e A-F; binário apenas 0 e 1; etc." },
+    { "q": "Os dados são enviados para algum lugar?", "a": "Não. A conversão é feita localmente." }
+  ]
+}

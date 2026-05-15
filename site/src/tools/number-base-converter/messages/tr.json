@@ -1,0 +1,50 @@
+{
+  "title": "Sayı Tabanı Dönüştürücü (ikili, sekizli, onlu, onaltılı)",
+  "shortDescription": "Sayıları ikili, sekizli, onlu ve onaltılı arasında dönüştürün. Seçilen taban için girişi doğrular ve dört gösterimi birden gösterir.",
+  "description": "Kaynak tabanı seçin, bir değer yazın ve ikili, sekizli, onlu ile onaltılı eşdeğerleri görün. Programlama, ağ kurma ve elektronik için yararlıdır.",
+  "metaDescription": "İkili, sekizli, onlu ve onaltılı için ücretsiz sayı tabanı dönüştürücü. Tabana göre girişi doğrular, dört gösterimi yan yana gösterir.",
+  "keywords": ["sayı tabanı dönüştürücü", "ikili onlu çevirme", "onlu onaltılı çevirme", "hex binary çevirme", "taban 2 taban 16"],
+  "input": { "value": "Değer", "from": "Kaynak taban" },
+  "error": { "invalidForBase": "Giriş, seçilen taban için geçerli olmayan karakterler içeriyor." },
+  "article": {
+    "sections": [
+      {
+        "heading": "Konumsal sayı tabanları nasıl çalışır",
+        "paragraphs": [
+          "Her taban konumsal gösterim kullanır: en sağdaki basamak taban⁰ = 1, sonraki taban¹, sonra taban²'dir. Onlu sistemde '255', 2×100 + 5×10 + 5×1 demektir. İkili sistemde '11111111', 1×128 + 1×64 + ... + 1×1 = 255 demektir. Aynı sayı, farklı tabanlar.",
+          "Onaltılı sistem, basamak başına 16 değere uymak için 0-9 ve A-F kullanır. 'FF' = 15×16 + 15×1 = 255. Sekizli 0-7 kullanır (basamak başına 3 bit), ikili ise yalnızca 0 ve 1. Dönüşüm mekaniktir — önce onluya, ardından hedef tabana çevirin — ve hesaplayıcı bunu herhangi bir negatif olmayan tam sayı için yapar."
+        ]
+      },
+      {
+        "heading": "Her tabanın kullanım alanı",
+        "paragraphs": [
+          "İkili (taban 2): düşük seviyeli bilgisayar çalışması — bit alanları, maskeler, gömülü yazılım. Kayıt düzenlerini okuma, donanım düzeyinde hata ayıklama.",
+          "Sekizli (taban 8): Unix dosya izinleri (chmod 755 = rwxr-xr-x), bazı eski dosya biçimleri. Günümüzde daha az yaygın.",
+          "Onlu (taban 10): insanların saydığı her şey. Normal aritmetik için varsayılan.",
+          "Onaltılı (taban 16): yazılımda en yaygın — renkler (#FF6B35), bellek adresleri (0x7fff...), MAC adresleri, ikili verilerin bayt gösterimleri, kodlanmış hash'ler."
+        ]
+      },
+      {
+        "heading": "Hızlı referans",
+        "paragraphs": [
+          "1 bayt = 8 bit = 2 onaltılı basamak = 256 değer (0-255). 1 onaltılı basamak = 4 bit = 16 değer. 1 sekizli basamak = 3 bit. Hex 'FF' = onlu 255 = ikili 11111111. Hex '100' = onlu 256. Hex 'FFFF' = onlu 65535 (16 bit işaretsiz maksimum). Hex 'FFFFFFFF' = onlu 4294967295 (32 bit işaretsiz maksimum)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Kaynak tabanı seçin", "text": "İkili, sekizli, onlu veya onaltılı seçin." },
+      { "name": "Değerinizi girin", "text": "Yalnızca o taban için geçerli basamaklar kullanın. Onaltılı büyük/küçük harfe duyarsızdır." },
+      { "name": "Dört tabanı okuyun", "text": "Diğer üçüne dönüşüm yan yana görünür." }
+    ]
+  },
+  "faq": [
+    { "q": "Onaltılı büyük/küçük harfe duyarlı mı?", "a": "Hem 'ff' hem de 'FF' aynı değere çözülür. Kural olarak büyük harf gösteriyoruz." },
+    { "q": "Negatif sayılar girebilir miyim?", "a": "Evet, '-' ön ekiyle. Hesaplayıcı her tabanın gösterimini işaret korunarak gösterir (ör. -255 → onaltılıda -FF)." },
+    { "q": "Maksimum değer nedir?", "a": "JavaScript'in güvenli tam sayı aralığıyla sınırlı (yaklaşık 2⁵³). Daha büyük değerler için BigInt destekli araçlar kullanın." },
+    { "q": "0x önekini veya 0b önekini nasıl okurum?", "a": "Girmeden önce öneki kaldırın. '0xFF' → onaltılı seçiliyken yalnızca 'FF'. '0b1010' → ikili seçiliyken '1010'." },
+    { "q": "Unix chmod neden sekizli kullanır?", "a": "İzinlerin üç biti olan üç grubu (sahip/grup/diğer) vardır. Her grubun 3 biti temiz biçimde bir sekizli basamağa eşlenir; dolayısıyla 755 = 111 101 101 = rwx r-x r-x." },
+    { "q": "Kesirli değerleri dönüştürebilir miyim?", "a": "Henüz değil — yalnızca negatif olmayan tam sayılar desteklenmektedir. Daha sonra sabit nokta desteği ekleyebiliriz." },
+    { "q": "'Taban için geçersiz' görürsem ne yapmalıyım?", "a": "Seçilen tabanda izin verilmeyen bir karakter yazdınız. Onaltılı 0-9 ve A-F'ye izin verir; ikili yalnızca 0 ve 1'e; vb." },
+    { "q": "Veriler bir yere gönderiliyor mu?", "a": "Hayır. Dönüşüm yerel olarak çalışır." }
+  ]
+}

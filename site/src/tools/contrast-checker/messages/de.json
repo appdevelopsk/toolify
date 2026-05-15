@@ -1,0 +1,62 @@
+{
+  "title": "Kontrastprüfung (WCAG AA / AAA-Bewertungen)",
+  "shortDescription": "Überprüfe das Farbkontrastverhältnis zwischen Text und Hintergrund. Zeigt eine Live-Vorschau und Bestanden/Nicht-Bestanden-Abzeichen für WCAG AA und AAA bei normaler und großer Textgröße.",
+  "description": "Wähle eine Vordergrund- und Hintergrundfarbe aus, um das WCAG-Kontrastverhältnis zu berechnen. Live-Textvorschau und vier Bewertungsabzeichen (AA normal, AA groß, AAA normal, AAA groß) aktualisieren sich in Echtzeit.",
+  "metaDescription": "Kostenlose WCAG-Kontrastprüfung. Beliebige Vordergrund-/Hintergrundfarben vergleichen und AA- und AAA-Bewertungsabzeichen mit Live-Textvorschau sehen.",
+  "keywords": ["Kontrastprüfung", "WCAG Kontrast", "AA AAA Farbe", "Barrierefreiheit Farbe", "Farbverhältnis"],
+  "input": { "fg": "Vordergrund (Text)", "bg": "Hintergrund" },
+  "result": { "label": "Kontrastverhältnis" },
+  "preview": {
+    "large": "Große Überschrift (24px+ oder 18,66px+ fett)",
+    "normal": "Normaler Fließtext für alltägliche Absätze.",
+    "small": "Kleinerer Text für Bildunterschriften, Fußnoten und Beschriftungen."
+  },
+  "badge": {
+    "aaNormal": "WCAG AA — Normaler Text",
+    "aaLarge": "WCAG AA — Großer Text",
+    "aaaNormal": "WCAG AAA — Normaler Text",
+    "aaaLarge": "WCAG AAA — Großer Text"
+  },
+  "empty": "Gib zwei gültige Farben (HEX) ein, um das Kontrastverhältnis zu sehen.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie das Kontrastverhältnis funktioniert",
+        "paragraphs": [
+          "WCAG (Web Content Accessibility Guidelines) definiert Kontrast als das Verhältnis zwischen der relativen Leuchtdichte zweier Farben. Die Formel linearisiert jeden sRGB-Kanal, gewichtet sie nach der Empfindlichkeit des menschlichen Auges (R 0,2126, G 0,7152, B 0,0722) und berechnet dann (hellere + 0,05) / (dunklere + 0,05). Das Ergebnis liegt zwischen 1:1 (identisch) und 21:1 (Schwarz auf Weiß).",
+          "Wir berechnen dies in deinem Browser mit der offiziellen WCAG-2.x-Formel. Die vier Bewertungsabzeichen prüfen gegen die Schwellenwerte AA (4,5:1 für normalen Text, 3:1 für großen Text) und AAA (7:1 für normalen Text, 4,5:1 für großen Text). 'Großer Text' ist 24px / 18pt oder 18,66px / 14pt fett."
+        ]
+      },
+      {
+        "heading": "Warum mindestens AA bestehen",
+        "paragraphs": [
+          "AA ist in vielen Rechtssystemen die rechtlich durchsetzbare Ebene (US ADA, EU EN 301 549, britischer Equality Act für digitale Dienste). AA bei Fließtext nicht zu bestehen ist das häufigste Barrierefreiheitsproblem und am einfachsten während des Designs zu beheben, nicht nach dem Launch.",
+          "AAA wird für Langformlesen, Behördendienste und hochgradig kritische Benutzeroberflächen empfohlen. Es ist streng – ein Designer's erster Instinkt mit hellem Grau auf Weiß fällt oft leicht durch AAA. Wenn deine Website überwiegend schnell scannbare Inhalte bereitstellt, ziele auf AA ab; wenn du Bücher, Artikel oder kritische Informationen veröffentlichst, ziele auf AAA ab."
+        ]
+      },
+      {
+        "heading": "Häufige Fehler",
+        "paragraphs": [
+          "'Sieht gut aus auf meinem Bildschirm.' Kalibrierte Bildschirme, fluoreszierendes Bürolicht und Smartphone-Nutzung im Freien verändern den wahrgenommenen Kontrast. Verwende das Verhältnis, nicht dein Augenurteil.",
+          "Dark Mode durch Invertieren von Hex-Codes gestalten. Invertierung ändert den Farbton und bricht den Kontrast. Teste jedes Farbpaar nach dem Wechsel der Themes erneut.",
+          "Markenrichtlinien vertrauen. Viele Markenpaletten wurden vor dem WCAG-Bewusstsein gewählt. Wenn Markenrosa auf Weiß nicht besteht, schlage ein leicht dunkleres Rosa für Fließtext vor und behalte das Original für dekorative Zwecke."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Vordergrund wählen", "text": "Die Textfarbe." },
+      { "name": "Hintergrund wählen", "text": "Die Farbe hinter dem Text." },
+      { "name": "Verhältnis und Abzeichen ablesen", "text": "Die Zahl ist das WCAG-Verhältnis. Die vier Abzeichen zeigen Bestanden/Nicht-Bestanden für AA und AAA bei normaler und großer Textgröße." }
+    ]
+  },
+  "faq": [
+    { "q": "Was ist der Unterschied zwischen AA und AAA?", "a": "AA erfordert 4,5:1 für normalen Text und 3:1 für großen Text. AAA verschärft auf 7:1 und 4,5:1. AAA wird empfohlen, ist aber nicht immer erreichbar." },
+    { "q": "Was ist 'großer Text'?", "a": "WCAG definiert ihn als 18pt (24px) oder größer, oder 14pt (18,66px) und fett." },
+    { "q": "Unterstützt dieses Tool Transparenz?", "a": "Noch nicht. Wähle die tatsächliche Farbe, die der Benutzer sieht (Vordergrund auf Hintergrund zusammengesetzt). Transparenzunterstützung kann später kommen." },
+    { "q": "Warum besteht meine Marke nicht?", "a": "Viele Markenpaletten wurden für Ästhetik, nicht für Barrierefreiheit ausgewählt. Häufige Korrekturen: Akzentfarben abdunkeln, die als Text verwendet werden; helle Varianten für Hintergründe oder dekorative Elemente reservieren." },
+    { "q": "Ist das Verhältnis dasselbe wie 'wahrgenommener Kontrast'?", "a": "Nein – WCAG 2.x verwendet eine vereinfachte leuchtdichtebasierte Formel. WCAG 3 (in Entwicklung) verwendet APCA, das den wahrgenommenen Kontrast besser vorhersagt, aber noch nicht standardisiert ist." },
+    { "q": "Welches Verhältnis für Icons oder UI-Steuerelemente?", "a": "WCAG 2.1 hat ein 3:1-Minimum für Nicht-Text-Kontrast hinzugefügt (Icons, Formularelemente, Fokusindikatoren). Verwende denselben Checker – erreiche oder überschreite 3:1." },
+    { "q": "Funktioniert das für grafische Diagramme?", "a": "Derselbe Schwellenwert gilt für benachbarte Farben, die eine Bedeutung vermitteln. Bei Datenvisualisierungen ist 3:1 zwischen benachbarten Farben das WCAG-1.4.11-Minimum." },
+    { "q": "Werden die Daten irgendwohin gesendet?", "a": "Nein. Die Berechnung läuft lokal in deinem Browser." }
+  ]
+}

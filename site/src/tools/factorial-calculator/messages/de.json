@@ -1,0 +1,61 @@
+{
+  "title": "Fakultät / Permutationen / Kombinationen Rechner",
+  "shortDescription": "Berechne n! (Fakultät), P(n,k) Permutationen und C(n,k) Kombinationen. Unterstützt große Ganzzahlen via BigInt bis n=5000.",
+  "description": "Gib n und k ein. Gibt n!, P(n,k) (geordnete Auswahlen) und C(n,k) (ungeordnete Auswahlen) zurück. Nützlich für Wahrscheinlichkeitsrechnung, Statistik und Kombinatorik.",
+  "metaDescription": "Kostenloser Fakultät-, Permutationen- (nPr) und Kombinationen-Rechner (nCr). Ganzzahl-Unterstützung bis n=5000. Bereit für Wahrscheinlichkeit und Kombinatorik.",
+  "keywords": ["Fakultät Rechner", "nCr nPr", "Permutationen Rechner", "Kombinationen Rechner", "Kombinatorik"],
+  "input": {
+    "kHint": "(für Permutationen / Kombinationen)"
+  },
+  "result": {
+    "permutationsLabel": "Permutationen",
+    "combinationsLabel": "Kombinationen"
+  },
+  "error": {
+    "tooLargeOrNeg": "n muss eine nicht-negative ganze Zahl ≤ 5000 sein.",
+    "invalid": "Erfordert 0 ≤ k ≤ n."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Fakultät",
+        "paragraphs": [
+          "n! (gelesen 'n Fakultät') ist das Produkt aller positiven ganzen Zahlen von 1 bis n. Also 5! = 1×2×3×4×5 = 120. Per Konvention gilt 0! = 1 (das leere Produkt).",
+          "Fakultäten wachsen extrem schnell. 10! = 3,6 Mio., 20! = 2,4×10¹⁸, 100! hat 158 Stellen. Gleitkomma versagt ab 21! (wegen Double-Precision-Limit); wir verwenden BigInt für exakte Werte bis n=5000."
+        ]
+      },
+      {
+        "heading": "Permutationen vs. Kombinationen",
+        "paragraphs": [
+          "Permutationen P(n,k) = n! / (n−k)!: Anzahl geordneter Möglichkeiten, k Elemente aus n zu wählen. P(5,2) = 20: Ersten Platz aus 5 wählen, zweiten aus verbleibenden 4 = 5×4 = 20.",
+          "Kombinationen C(n,k) = n! / (k!(n−k)!): Anzahl ungeordneter Möglichkeiten. C(5,2) = 10: Dieselben Auswahlen, aber {Erster, Zweiter} = {Zweiter, Erster}, also durch 2! dividieren. Das berühmte 'n über k'.",
+          "Permutationen verwenden, wenn die Reihenfolge wichtig ist (Rennpodium, Passwort-Reihenfolge). Kombinationen verwenden, wenn nur die gewählte Menge wichtig ist (Lottozahlen, Ausschusswahl). C(n,k) ≤ P(n,k) immer; gleich bei k=1."
+        ]
+      },
+      {
+        "heading": "Wo diese vorkommen",
+        "paragraphs": [
+          "Wahrscheinlichkeit: Würfel, Karten, Münzwürfe. P(3 Köpfe in 5 Würfen) = C(5,3) × (1/2)⁵ = 10/32. Kombinationen erlauben das Zählen günstiger Ergebnisse.",
+          "Statistik: Binomialverteilung verwendet C(n,k). Stichprobenziehung ohne Zurücklegen verwendet Kombinationen.",
+          "Informatik: Teilmengen zählen, Komplexitätsanalyse (z. B. k-Clique-Aufzählung ist C(n,k)), Graphalgorithmen.",
+          "Praxis: Lottoquoten (6 aus 49: C(49,6) ≈ 13,9 Mio. Kombinationen). Restaurantmenü-Kombinationen: '3 Beilagen aus 8 wählen' ist C(8,3) = 56 Möglichkeiten."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "n eingeben", "text": "Gesamtanzahl der Elemente / nicht-negative ganze Zahl." },
+      { "name": "k eingeben (optional)", "text": "Anzahl der zu wählenden Elemente (für P- und C-Berechnungen). Muss 0 ≤ k ≤ n sein." },
+      { "name": "Alle drei ablesen", "text": "n!, P(n,k), C(n,k). Ausgaben werden bei sehr großen Zahlen abgekürzt." }
+    ]
+  },
+  "faq": [
+    { "q": "Warum ist 0! = 1?", "a": "Per Konvention ist das 'leere Produkt' 1 (genau wie die leere Summe 0 ist). Es lässt auch Formeln wie C(n,0) = 1 (eine Möglichkeit, nichts zu wählen) konsistent funktionieren." },
+    { "q": "Was ist die größte Fakultät, die berechnet werden kann?", "a": "n=5000 ergibt eine 16.326-stellige Zahl. Wir begrenzen auf 5000, um das Einfrieren des Browsers bei riesigen Eingaben zu verhindern. Für größere Werte ein CAS verwenden." },
+    { "q": "Was ist der Unterschied zwischen Permutationen und Kombinationen?", "a": "Die Reihenfolge ist bei Permutationen wichtig, bei Kombinationen nicht. {A,B} ist dieselbe Kombination wie {B,A}, aber zwei verschiedene Permutationen: AB und BA." },
+    { "q": "Sind Fakultäten für negative Zahlen definiert?", "a": "Nicht im Standardsinn. Die Gammafunktion Γ(x) erweitert die Fakultät auf alle reellen (und komplexen) Zahlen, aber unser Rechner behandelt nur nicht-negative ganze Zahlen." },
+    { "q": "Was ist die Formel für Kombinationen?", "a": "C(n,k) = n! / (k! × (n-k)!). Gelesen als 'n über k'. Äquivalent: P(n,k) / k!, da die Reihenfolge keine Rolle spielt." },
+    { "q": "Wie genau ist das?", "a": "Exakt für alle Werte im Bereich. Wir verwenden BigInt-Arithmetik, die keine Gleitkommafeher hat." },
+    { "q": "Warum ist 70! so viel größer als 60!?", "a": "Jede Fakultät multipliziert mit der nächsten ganzen Zahl. 70! ist ungefähr 60! × 61 × 62 × … × 70 ≈ 60! × 1,4 × 10¹⁷. Fakultäten wachsen schneller als Exponentialfunktionen – sie sind laut Stirlings Näherung ungefähr n^n × e^-n × √(2πn)." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Berechnung läuft lokal; nichts wird an einen Server gesendet." }
+  ]
+}

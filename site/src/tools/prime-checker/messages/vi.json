@@ -1,0 +1,59 @@
+{
+  "title": "Kiểm tra số nguyên tố (kèm phân tích nhân tử)",
+  "shortDescription": "Kiểm tra một số có phải số nguyên tố không. Nếu không, xem phân tích nhân tử nguyên tố của nó. Cùng số nguyên tố tiếp theo và trước đó.",
+  "description": "Nhập số nguyên không âm tới 10^18. Máy tính kiểm tra tính nguyên tố bằng phép chia thử (xác định đến ~10^15 trong thời gian hợp lý) và cho phân tích nhân tử nguyên tố với số hợp.",
+  "metaDescription": "Kiểm tra số nguyên tố miễn phí kèm phân tích nhân tử. Kiểm tra tính nguyên tố, xem nhân tử nguyên tố và tìm số nguyên tố kế tiếp/trước đó. Xử lý số tới 10^18.",
+  "keywords": ["kiểm tra số nguyên tố", "có phải số nguyên tố không", "phân tích nhân tử nguyên tố", "kiểm tra số nguyên tố", "số nguyên tố tiếp theo"],
+  "input": { "value": "Số" },
+  "result": {
+    "isPrime": "là số nguyên tố",
+    "notPrime": "KHÔNG phải số nguyên tố",
+    "factors": "Phân tích nhân tử nguyên tố",
+    "prevPrime": "Số nguyên tố trước",
+    "nextPrime": "Số nguyên tố tiếp theo"
+  },
+  "empty": "Nhập số nguyên dương.",
+  "tooLarge": "Số quá lớn để tính trong trình duyệt (tối đa 10^18).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Số nguyên tố là gì",
+        "paragraphs": [
+          "Số nguyên tố là số tự nhiên lớn hơn 1 không có ước số dương nào ngoài 1 và chính nó. Vài số nguyên tố đầu tiên: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37. Chúng là 'nguyên tử' của số học nguyên — mọi số nguyên ≥ 2 đều có thể viết duy nhất dưới dạng tích của các số nguyên tố (Định lý cơ bản về số học).",
+          "1 không phải số nguyên tố theo quy ước. 0 và số âm không phải số nguyên tố. 2 là số nguyên tố chẵn duy nhất — mọi số chẵn khác đều chia hết cho 2 nên là số hợp."
+        ]
+      },
+      {
+        "heading": "Bài kiểm tra hoạt động như thế nào",
+        "paragraphs": [
+          "Chúng tôi dùng phép chia thử: kiểm tra khả năng chia hết cho 2, rồi 3, rồi 5, 7, 11, … lên đến √n. Nếu không có số nào chia hết, n là số nguyên tố. Chúng tôi dùng tối ưu hóa 6k±1 chỉ kiểm tra các ứng viên dạng 6k+1 hoặc 6k−1 (vì tất cả số nguyên tố > 3 đều có dạng này), giảm số lần kiểm tra đi 2/3.",
+          "Phép chia thử nhanh với n tới ~10^15 (dưới một giây). Ngoài đó, cần các bài kiểm tra nâng cao như Miller-Rabin (xác suất) hoặc AKS (xác định). Chúng tôi giới hạn ở 10^18 để ngăn trình duyệt bị treo với đầu vào cực lớn."
+        ]
+      },
+      {
+        "heading": "Tại sao số nguyên tố quan trọng",
+        "paragraphs": [
+          "Mật mã học: mã hóa RSA nhân hai số nguyên tố ~1000 chữ số để tạo ra một số khó phân tích nhân tử. Bảo mật dựa vào sự khó khăn của việc phân tích số lớn — thách thức đã được nghiên cứu hàng nghìn năm.",
+          "Giáo dục toán: phân tích nhân tử nguyên tố là nền tảng. Các khái niệm như GCD, LCM, số học modular, phân số và lý thuyết số đều xây dựng trên cấu trúc nhân tử nguyên tố.",
+          "Khoa học máy tính: kích thước bảng băm, bộ tạo số ngẫu nhiên và nhiều thuật toán dùng số nguyên tố vì tính chất khả năng chia hết đặc biệt của chúng."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Nhập số", "text": "Số nguyên dương tới 10^18." },
+      { "name": "Đọc kết quả", "text": "✓ xanh lá cho số nguyên tố, ✗ vàng cho số hợp." },
+      { "name": "Xem phân tích nhân tử", "text": "Nếu là số hợp, các nhân tử nguyên tố duy nhất được hiển thị." },
+      { "name": "Điều hướng số nguyên tố", "text": "Số nguyên tố trước và tiếp theo được liệt kê cho ngữ cảnh." }
+    ]
+  },
+  "faq": [
+    { "q": "1 có phải số nguyên tố không?", "a": "Không. 1 là 'đơn vị', không phải số nguyên tố. Số nguyên tố có đúng hai ước số dương riêng biệt (1 và chính nó); 1 chỉ có một." },
+    { "q": "0 có phải số nguyên tố không?", "a": "Không. Số nguyên tố là số nguyên > 1." },
+    { "q": "2 có phải số nguyên tố không?", "a": "Có — 2 là số nguyên tố chẵn duy nhất. Tất cả số chẵn khác đều có 2 là ước số ngoài 1 và chính nó." },
+    { "q": "Số nguyên tố tiếp theo được tìm như thế nào?", "a": "Bằng cách tăng từ n+1 và kiểm tra tính nguyên tố tại mỗi bước. Luôn có một số nguyên tố trong phạm vi n × ln(n) của bất kỳ số nào, nên điều này kết thúc nhanh ngay cả với đầu vào lớn." },
+    { "q": "Tại sao giới hạn tối đa là 10^18?", "a": "JavaScript BigInt xử lý lớn hơn, nhưng phép chia thử trở nên chậm. 10^18 an toàn cho kiểm tra dưới một giây với đầu vào điển hình. Ngoài đó, dùng các công cụ chuyên biệt như SymPy hoặc Mathematica." },
+    { "q": "Có thể kiểm tra số nguyên tố 1000 chữ số không?", "a": "Không với công cụ này — phép chia thử quá chậm ở quy mô đó. Mật mã học dùng các bài kiểm tra xác suất Miller-Rabin cho số nguyên tố 1024-bit (~300 chữ số)." },
+    { "q": "Số nguyên tố Mersenne là gì?", "a": "Số nguyên tố dạng 2^p − 1. Tính đến năm 2025, chỉ có 51 cái được biết. Số nguyên tố lớn nhất được biết (M82589933) là số nguyên tố Mersenne với ~25 triệu chữ số." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Tính toán chạy cục bộ; không có gì được gửi đến server." }
+  ]
+}

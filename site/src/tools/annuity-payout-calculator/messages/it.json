@@ -1,0 +1,114 @@
+{
+  "title": "Calcolatore di Rendita (periodo fisso)",
+  "shortDescription": "Calcola il pagamento periodico di una rendita dato il capitale, il tasso di interesse e il periodo di distribuzione. Supporta distribuzioni mensili o annuali.",
+  "description": "Inserisci il capitale, il tasso di interesse annuo e il numero di anni. Restituisce il pagamento periodico (mensile o annuale), l'importo totale erogato, gli interessi totali maturati e il numero di pagamenti. Utilizza la formula standard per rendite a periodo fisso.",
+  "metaDescription": "Calcolatore di rendita gratuito. Distribuzioni a periodo fisso mensili o annuali. Visualizza il totale erogato, gli interessi maturati e il numero di pagamenti.",
+  "keywords": [
+    "calcolatore rendita",
+    "rendita a periodo fisso",
+    "prelievo rendita",
+    "calcolatore reddito pensionistico",
+    "prelievo sistematico"
+  ],
+  "empty": "Inserisci un capitale e un periodo maggiori di zero.",
+  "input": {
+    "principal": "Capitale (somma forfettaria)",
+    "ratePct": "Tasso di interesse annuo %",
+    "years": "Periodo di erogazione (anni)",
+    "frequency": "Frequenza di pagamento"
+  },
+  "freq": {
+    "monthly": "Mensile",
+    "annual": "Annuale"
+  },
+  "result": {
+    "monthlyPayout": "Pagamento mensile",
+    "annualPayout": "Pagamento annuale",
+    "totalPayout": "Importo totale erogato",
+    "totalInterest": "Interessi totali maturati",
+    "periods": "Numero di pagamenti"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "La matematica della rendita a periodo fisso",
+        "paragraphs": [
+          "Una rendita a periodo fisso converte una somma forfettaria in una serie di pagamenti uguali nell'arco di un numero scelto di anni. La formula è quella dell'ammortamento del prestito al contrario: il capitale è la prospettiva della banca, e il pagamento è la prospettiva del depositante. Forma standard: pagamento = P × r / (1 − (1+r)⁻ⁿ), dove P è il capitale, r è il tasso di interesse periodico, n è il numero di periodi.",
+          "Se investi 500.000 € al 4% annuo per 25 anni con pagamenti mensili, la formula dà circa 2.640 €/mese. Totale erogato: oltre 791.000 €. Interessi totali maturati: oltre 291.000 €. La rendita si azzera nel corso del periodo — ecco perché si chiama «a periodo certo»: garantita per il termine, non oltre."
+        ]
+      },
+      {
+        "heading": "Perché differisce dal solo interesse o dalla regola del 4%",
+        "paragraphs": [
+          "Il prelievo solo degli interessi ti paga solo gli interessi di ogni periodo (P × r). Al 4% su 500.000 €, sono 20.000 €/anno — e il capitale rimane intatto per gli eredi o la distribuzione finale. La rendita a periodo fisso offre un reddito annuale più alto perché consuma il capitale: a 25 anni paga oltre 31.000 € annui, ma termina con 0 €.",
+          "La regola del 4% è un modello a rendimenti stocastici dello Studio Trinity, progettato per portafogli azionari/obbligazionari su 30 anni. Assume rendimenti variabili con una media del ~6-7% reale e sopravvive alla maggior parte delle sequenze storiche. La formula della rendita qui assume un rendimento fisso, ed è per questo che viene usata per i contratti di rendita fissa effettivi e non per i prelievi da portafoglio.",
+          "Usa questo strumento per modellare un prodotto garantito: una scala di CD, un contratto di rendita fissa, o un accordo strutturato. Usa un calcolatore Monte Carlo o della regola del 4% per un portafoglio investito nel mercato."
+        ]
+      },
+      {
+        "heading": "Considerazioni su tasse e inflazione",
+        "paragraphs": [
+          "Il pagamento è nominale (in euro odierni). Il potere d'acquisto reale diminuisce con l'inflazione: al 3% di inflazione in 25 anni, un pagamento di 2.640 € vale circa 1.260 € in euro odierni entro il 25° anno. Per un reddito protetto dall'inflazione, considera le obbligazioni indicizzate o le rendite adeguate al costo della vita — entrambe hanno pagamenti iniziali più bassi.",
+          "Le tasse dipendono dalla fonte. Una rendita non qualificata da denaro già tassato è tassata solo sulla componente di guadagno di ogni pagamento (rapporto di esclusione). Le rendite qualificate (da pensioni integrative) sono completamente tassabili. Questo calcolatore mostra importi al lordo delle imposte.",
+          "Il tasso di interesse inserito dovrebbe essere il tasso accreditato al netto delle commissioni del contratto di rendita. I prodotti assicurativi spesso citano un tasso lordo ma addebitano l'1-2% di commissioni, lasciando al titolare un tasso netto inferiore. Usa il netto per una proiezione onesta."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Inserisci il capitale",
+        "text": "La somma forfettaria da trasformare in rendita. Per un contratto di rendita esistente, usa il valore accumulato al momento di inizio dei pagamenti."
+      },
+      {
+        "name": "Inserisci il tasso annuo",
+        "text": "Il tasso accreditato al netto delle commissioni. Per il 4%, inserisci 4. Per la maggior parte delle rendite fisse, è tra il 3% e il 6%."
+      },
+      {
+        "name": "Scegli il periodo",
+        "text": "Gli anni nell'arco dei quali il capitale verrà esaurito. Valori comuni: 10, 15, 20, 25, 30 anni."
+      },
+      {
+        "name": "Scegli la frequenza",
+        "text": "Il mensile è il più comune per il reddito pensionistico; l'annuale è più semplice per le proiezioni."
+      },
+      {
+        "name": "Leggi il pagamento",
+        "text": "Reddito per periodo, totale sull'intero periodo e interessi totali maturati."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual è la differenza con una rendita vitalizia?",
+      "a": "Questa è a periodo certo: paga per un numero fisso di anni, poi si interrompe. Le rendite vitalizie pagano fino alla morte (o alla morte congiunta). I pagamenti vitalizi sono di solito inferiori per periodo perché la compagnia assicurativa si assume il rischio di mortalità."
+    },
+    {
+      "q": "La rendita continua se sopravvivo al periodo?",
+      "a": "No. Una rendita a periodo fisso di 25 anni smette di pagare al 26° anno. Se vivi fino a 100 anni e il termine è scaduto a 90, non hai più nulla. Ecco perché il periodo certo puro è raro — la maggior parte è abbinata a opzioni legate alla vita."
+    },
+    {
+      "q": "Quale tasso devo usare?",
+      "a": "Per un contratto di rendita fissa reale, usa il tasso accreditato contrattualmente al netto delle commissioni. Per un portafoglio investito, questo calcolatore sovrastima la sicurezza perché assume rendimenti costanti — usa invece uno strumento Monte Carlo."
+    },
+    {
+      "q": "Perché il pagamento mensile × 12 è diverso dal calcolo del pagamento annuale?",
+      "a": "La versione mensile capitalizza mensilmente (capitalizzazione più frequente = pagamento leggermente diverso). Al 4% annuo, la capitalizzazione mensile dà un tasso effettivo leggermente più alto, quindi mensile × 12 ≈ annuale ma non esattamente uguale."
+    },
+    {
+      "q": "Posso aggiungere al capitale nel corso del tempo?",
+      "a": "La maggior parte dei contratti di rendita fissa non consente contributi dopo la rendita. Questo strumento modella uno scenario a premio unico. Se vuoi aggiungere in modo flessibile, modellalo separatamente e ricalcola."
+    },
+    {
+      "q": "Come influisce l'inflazione sul valore «reale»?",
+      "a": "Al 3% di inflazione, gli euro del 25° anno valgono circa il 48% degli euro del 1° anno. Per preservare il potere d'acquisto, aggiungi un adeguamento al costo della vita (pagamento iniziale inferiore) o usa obbligazioni indicizzate all'inflazione."
+    },
+    {
+      "q": "Cosa succede al capitale residuo alla fine?",
+      "a": "Nulla — la formula è progettata per esaurire esattamente il capitale nel corso del periodo. Il saldo finale è zero per costruzione. Confronta con i prelievi solo di interessi dove il capitale è preservato."
+    },
+    {
+      "q": "Il calcolo condivide i dati?",
+      "a": "No. Puro calcolo nel browser; nulla viene inviato a nessun server."
+    }
+  ]
+}

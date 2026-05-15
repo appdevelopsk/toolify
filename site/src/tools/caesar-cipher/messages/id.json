@@ -1,0 +1,58 @@
+{
+  "title": "Encoder / Decoder Caesar Cipher (dengan ROT13)",
+  "shortDescription": "Encode atau decode teks dengan Caesar cipher klasik. Pergeseran yang dapat disesuaikan dari -25 hingga +25, dengan preset satu klik untuk ROT13 dan pergeseran historis +3.",
+  "description": "Ketik teks dan pilih jumlah pergeseran. Huruf diputar sebanyak posisi tersebut dalam alfabet (A-Z, a-z); karakter lain tidak berubah. Gunakan shift=13 untuk ROT13, shift=3 untuk Caesar asli.",
+  "metaDescription": "Alat Caesar cipher gratis. Encode atau decode teks apa pun dengan pergeseran -25 hingga +25 termasuk ROT13. Huruf bergeser, tanda baca dan angka tidak berubah.",
+  "keywords": ["caesar cipher", "ROT13", "caesar shift", "sandi huruf", "sandi klasik"],
+  "mode": {
+    "encode": "Encode",
+    "decode": "Decode"
+  },
+  "input": {
+    "text": "Teks",
+    "shift": "Pergeseran"
+  },
+  "output": "Output",
+  "copy": "Salin",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara kerja Caesar cipher",
+        "paragraphs": [
+          "Setiap huruf dalam input digantikan oleh huruf sejumlah posisi tertentu kemudian dalam alfabet. Dengan pergeseran +3, A menjadi D, B menjadi E, …, X menjadi A (melingkar). Bukan huruf tidak berubah. Decoding adalah proses yang sama dengan tanda yang berlawanan.",
+          "Dinamai setelah Julius Caesar, yang konon menggunakan pergeseran +3 untuk pesan militer. Ukuran pergeseran adalah satu-satunya rahasia. Dengan hanya 26 kemungkinan pergeseran, ini mudah dipecahkan dengan mencoba semuanya — tetapi ini adalah contoh pengajaran yang sangat baik untuk sandi substitusi."
+        ]
+      },
+      {
+        "heading": "ROT13 — varian paling umum",
+        "paragraphs": [
+          "ROT13 menggunakan shift=13. Karena 13 adalah setengah dari 26, menerapkan ROT13 dua kali mengembalikan teks asli — encoding dan decoding menggunakan operasi yang persis sama. Ini membuatnya populer di Usenet dan forum untuk menyembunyikan spoiler dan lelucon ofensif; pembaca dapat mendecode dengan mengklik tombol 'tampilkan' tanpa memerlukan decoder terpisah.",
+          "ROT13 bukan enkripsi dalam arti yang berarti. Ini adalah obfuskasi — setara dengan menulis 'spoiler tersembunyi di bawah' sehingga orang yang tidak ingin tahu dapat melewatinya."
+        ]
+      },
+      {
+        "heading": "Mengapa ini menyenangkan, bukan aman",
+        "paragraphs": [
+          "Penyerang modern memecahkan Caesar cipher dalam mikrodetik dengan analisis frekuensi (E adalah huruf paling umum dalam bahasa Inggris; apa pun yang memetakan ke huruf yang sering dalam ciphertext kemungkinan adalah E). Jangan gunakan untuk hal-hal yang penting bagi Anda.",
+          "Gunakan untuk: contoh pendidikan, permainan teka-teki, ARG (alternate reality games), menyembunyikan teks di depan mata, tag spoiler ROT13. Jangan gunakan untuk: kata sandi, data keuangan, apa pun yang memiliki konsekuensi."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih mode", "text": "Encode (terapkan pergeseran maju) atau Decode (terapkan pergeseran mundur)." },
+      { "name": "Ketik atau tempel teks", "text": "Huruf digeser; tanda baca, angka, dan spasi tidak berubah." },
+      { "name": "Sesuaikan pergeseran", "text": "Slider dari -25 hingga +25. Gunakan preset untuk +3 (Caesar), 13 (ROT13), atau negatif." },
+      { "name": "Salin output", "text": "Salin ke clipboard dengan satu klik." }
+    ]
+  },
+  "faq": [
+    { "q": "Apa perbedaan antara Caesar +3 dan ROT13?", "a": "Hanya jumlah pergeseran. +3 adalah pilihan asli Caesar; 13 adalah tepat setengah alfabet (sehingga encoding dan decoding adalah operasi yang sama). Secara matematis keduanya adalah keluarga sandi yang sama." },
+    { "q": "Mengapa shift +26 memberikan teks yang sama kembali?", "a": "26 huruf dalam alfabet — menggeser tepat 26 mendarat di huruf asli. Sama untuk kelipatan berapa pun dari 26." },
+    { "q": "Mengapa ROT13 digunakan untuk spoiler?", "a": "Karena menerapkan ROT13 dua kali mengembalikan aslinya. Forum dan pembaca Usenet memiliki tombol 'rot13 teks ini' bawaan yang bekerja untuk kedua arah. Nyaman untuk menyembunyikan kemudian mengungkapkan teks." },
+    { "q": "Apakah ini menangani alfabet non-Latin?", "a": "Tidak — hanya A-Z dan a-z. Cyrillic, Yunani, CJK, dan Arab tidak berubah. Caesar cipher secara intrinsik spesifik untuk alfabet Latin." },
+    { "q": "Bisakah saya menggunakan ini untuk keamanan nyata?", "a": "Sama sekali tidak. Dengan 25 kemungkinan pergeseran (tidak termasuk 0 dan 26), komputer memecahkannya secara instan. Gunakan AES, RSA, atau library kriptografi yang sudah terbukti untuk keamanan nyata." },
+    { "q": "Bagaimana dengan Vigenère cipher?", "a": "Sandi klasik yang lebih canggih menggunakan kata kunci untuk memvariasikan pergeseran per huruf. Masih bisa dipecahkan secara manual dengan cukup teks, tetapi jauh lebih sulit daripada Caesar. Kami belum menyertakannya." },
+    { "q": "Mengapa menyertakan pergeseran negatif?", "a": "Kenyamanan. Encoding dengan +3 dan decoding dengan +3 salah; Anda perlu -3 untuk mendecode. Pergeseran negatif memungkinkan Anda mendecode tanpa mengalihkan mode (atau tombol melakukannya untuk Anda)." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Encoding dan decoding berjalan secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "title": "Retirement कैलकुलेटर (compound projection + inflation-adjusted)",
+  "shortDescription": "Monthly contributions, expected return, और inflation के साथ अपनी retirement savings project करें। Nominal balance, today-dollar value, और 4%-rule monthly income दिखाता है।",
+  "description": "अपनी current age, target retirement age, current savings, monthly contribution, expected annual return, और inflation rate दर्ज करें। Calculator compounded growth project करता है और sustainable withdrawal के लिए 4% rule apply करता है।",
+  "metaDescription": "मुफ्त retirement calculator। Decades में monthly contributions compound करें, today's dollars में inflation adjust करें, और sustainable income के लिए 4% rule apply करें।",
+  "keywords": ["retirement calculator", "retirement savings", "NPS calculator", "FIRE calculator", "inflation adjusted retirement"],
+  "input": {
+    "currentAge": "वर्तमान आयु",
+    "retireAge": "Retirement आयु",
+    "currentSaved": "वर्तमान बचत",
+    "monthly": "Monthly contribution",
+    "returnPct": "Annual return %",
+    "inflationPct": "Annual inflation %"
+  },
+  "result": {
+    "nominalBalance": "Projected balance",
+    "realBalance": "आज के रुपयों में",
+    "contributed": "कुल contributed",
+    "growth": "Investment growth",
+    "monthly4pct": "Monthly income (4% rule)",
+    "yearsLabel": "वर्ष"
+  },
+  "empty": "Retirement savings project करने के लिए सभी fields भरें।",
+  "article": {
+    "sections": [
+      {
+        "heading": "Projection कैसे काम करती है",
+        "paragraphs": [
+          "हम आपकी starting balance plus प्रत्येक monthly contribution को annual return rate पर compound करते हैं। Math recursive है: balance(month+1) = balance(month) × (1 + monthly_rate) + monthly_contribution। Decades में, modest monthly amounts भी significantly grow करते हैं compounding की वजह से — prior returns पर returns खुद compound होते हैं।",
+          "हम आपके inflation rate का उपयोग करके nominal balance deflate करके 'आज के रुपयों' में value भी project करते हैं। 30 साल में ₹1 crore आज ₹1 crore worth नहीं है — 5% inflation पर, 30 साल में ₹1 crore आज लगभग ₹23 lakh की purchasing power है। Today-dollar figure वह है जिसे आपको current cost of living से compare करना चाहिए।"
+        ]
+      },
+      {
+        "heading": "कौन सा rate assume करें",
+        "paragraphs": [
+          "Nifty 50 historical average बहुत long periods में लगभग 12% nominal / 7% real (inflation के बाद) है। 25 साल से शुरू होने वाले retirement projections के लिए, 8-10% nominal reasonable है। 6% से नीचे जाना long horizons के लिए overly conservative है; 12% से ऊपर जाना optimistic है।",
+          "Retirement के करीब, आपका portfolio typically अधिक conservative हो जाता है (अधिक debt funds, कम equity)। Retirement से 5-10 साल की window के लिए, bond allocation बढ़ने के साथ expected return 6-8% तक drop होता है।"
+        ]
+      },
+      {
+        "heading": "4% rule",
+        "paragraphs": [
+          "4% rule (Trinity Study, 1998) कहता है कि आप year 1 में अपनी retirement savings का 4% safely withdraw कर सकते हैं, फिर हर साल inflation के लिए upward adjust कर सकते हैं, 30 साल में run out न होने की बहुत high probability के साथ। तो ₹1 crore retirement savings ₹4 lakh/year (या लगभग ₹33,000/month) inflation-adjusted spending support करती है।",
+          "Rule की limitations हैं — यह historical US stock/bond performance पर based है। India के context में, PPF (7.1%), NPS equity (10-12%), और ELSS जैसे instruments एक balanced portfolio बनाते हैं। Early retirement (FIRE) के लिए 50+ year horizons के साथ, 3% अधिक conservative है।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Current और retirement ages दर्ज करें", "text": "अंतर आपका investment horizon है।" },
+      { "name": "Starting balance और monthly contribution दर्ज करें", "text": "PPF, NPS, EPF, mutual funds — retirement के लिए earmark की गई कोई भी चीज़।" },
+      { "name": "Return और inflation rates set करें", "text": "Reasonable defaults: 8% return (Indian equity long-term), 5% inflation (India RBI target)।" },
+      { "name": "दोनों projections पढ़ें", "text": "Nominal actual rupee amount है; today's rupees इसकी real purchasing power है।" }
+    ]
+  },
+  "faq": [
+    { "q": "मुझे कौन सा return rate उपयोग करना चाहिए?", "a": "25+ year horizons के लिए diversified equity-heavy portfolio में: 8-10%। Shorter horizons या more conservative mix के लिए: 5-7%। NPS equity fund assumption: 10-12%। Historical real returns (inflation के बाद) उपयोग करें — stocks के लिए long-term लगभग 6-8% है।" },
+    { "q": "Today's rupees क्यों मायने रखते हैं?", "a": "35 साल में ₹2 crore amazing लगता है लेकिन 5% inflation पर यह आज लगभग ₹35 lakh worth है। Today-dollar figure बताता है कि आपकी retirement savings current terms में क्या buy करेगी।" },
+    { "q": "क्या मुझे pre-tax या after-tax contributions उपयोग करने चाहिए?", "a": "Account type पर निर्भर। PPF और NPS pre-tax investments हैं (withdrawals tax-exempt या partial). ELSS tax-saving mutual funds का 3-year lock-in है। अपने specific scheme के tax implications check करें।" },
+    { "q": "यदि मेरी salary बढ़े और contributions increase करूँ?", "a": "प्रत्येक phase के लिए calculator multiple बार run करें, या एक constant contribution उपयोग करें जो आपके average approximate करे।" },
+    { "q": "क्या यह EPF या gratuity account करता है?", "a": "नहीं। EPF एक separate income stream है। Retirement savings यहाँ project करें, फिर total retirement income planning के लिए EPF, gratuity, और pension estimates ऊपर layer करें।" },
+    { "q": "'Safe withdrawal rate' क्या है?", "a": "Traditionally 4% (Trinity Study)। Long retirements (FIRE, 40+ years) के लिए, 3-3.5% safer है। Calculator default 4% दिखाता है।" },
+    { "q": "Retire करने के लिए कितना चाहिए?", "a": "Rule of thumb: annual spending का 25× (4% rule का inverse)। आज के rupees में ₹6 lakh/year spend करते हैं? आज के rupees में ₹1.5 crore चाहिए।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। सभी projection math locally चलता है; कुछ भी किसी server को नहीं भेजा जाता।" }
+  ]
+}

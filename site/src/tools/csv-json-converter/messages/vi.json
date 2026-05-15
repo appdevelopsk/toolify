@@ -1,0 +1,115 @@
+{
+  "title": "Chuyển đổi CSV ↔ JSON (tuân thủ RFC 4180)",
+  "shortDescription": "Chuyển đổi CSV sang JSON hoặc JSON sang CSV. Dấu phân cách có thể cấu hình (dấu phẩy/chấm phẩy/tab/ống), chuyển đổi hàng tiêu đề, xử lý trường được trích dẫn RFC 4180.",
+  "description": "Dán CSV hoặc JSON. Bộ chuyển đổi phân tích CSV tuân thủ RFC 4180 (xử lý trường được trích dẫn với dấu phẩy, dấu ngoặc kép được thoát, giá trị nhiều dòng). Đối với JSON sang CSV, chấp nhận cả mảng đối tượng (dùng khóa làm tiêu đề) và mảng mảng.",
+  "metaDescription": "Công cụ chuyển đổi CSV ↔ JSON miễn phí. Tuân thủ RFC 4180, dấu phân cách có thể cấu hình, chuyển đổi hàng tiêu đề.",
+  "keywords": [
+    "CSV sang JSON",
+    "JSON sang CSV",
+    "chuyển đổi CSV",
+    "chuyển đổi JSON",
+    "RFC 4180"
+  ],
+  "direction": {
+    "csvToJson": "CSV → JSON",
+    "jsonToCsv": "JSON → CSV"
+  },
+  "input": {
+    "csv": "Đầu vào CSV",
+    "json": "Đầu vào JSON",
+    "delimiter": "Dấu phân cách",
+    "headerRow": "Hàng đầu tiên là tiêu đề"
+  },
+  "delim": {
+    "comma": "Dấu phẩy (,)",
+    "semicolon": "Chấm phẩy (;)",
+    "tab": "Tab",
+    "pipe": "Ống (|)"
+  },
+  "output": "Đầu ra",
+  "empty": "Nhập dữ liệu để xem kết quả chuyển đổi.",
+  "error": {
+    "label": "Lỗi chuyển đổi"
+  },
+  "copy": "Sao chép",
+  "article": {
+    "sections": [
+      {
+        "heading": "Tại sao RFC 4180 quan trọng",
+        "paragraphs": [
+          "CSV trông đơn giản nhưng có các trường hợp đặc biệt: một trường chứa dấu phẩy phải được trích dẫn; một trường chứa dấu ngoặc kép phải thoát nó dưới dạng dấu ngoặc kép nhân đôi; một trường có thể chứa ngắt dòng nếu được trích dẫn. Các trình phân tích tách-theo-dấu-phẩy đơn giản không hoạt động với dữ liệu thực tế. Bộ chuyển đổi này triển khai chính xác ngữ pháp RFC 4180.",
+          "Các trình phân tích đơn giản cũng không hoạt động với các xuất Excel sử dụng chấm phẩy (phổ biến ở các locale châu Âu nơi ',' là dấu phân cách thập phân) hoặc tab (TSV). Danh sách thả xuống dấu phân cách xử lý cả bốn biến thể phổ biến."
+        ]
+      },
+      {
+        "heading": "Hình dạng JSON cho đầu ra",
+        "paragraphs": [
+          "Mảng đối tượng (mặc định với hàng tiêu đề): mỗi hàng trở thành {cột: giá_trị}. Hình dạng JSON phổ biến nhất, dễ sử dụng trong bất kỳ ngôn ngữ nào.",
+          "Mảng mảng (hàng tiêu đề tắt): mỗi hàng trở thành [v1, v2, ...]. Hữu ích khi các cột không được đặt tên hoặc bạn muốn cấu trúc theo vị trí.",
+          "Khi chuyển JSON sang CSV, bộ chuyển đổi phát hiện hình dạng bạn có. Đối tượng: trích xuất các khóa duy nhất trên tất cả các hàng cho tiêu đề. Mảng: ghi hàng nguyên trạng."
+        ]
+      },
+      {
+        "heading": "Các lỗi phổ biến",
+        "paragraphs": [
+          "Locale Excel: trong một số cài đặt Excel châu Âu, dấu phân cách mặc định là ';' không phải ','. Nếu CSV của bạn trông như một cột khổng lồ khi được nhập, chuyển sang ; trong danh sách thả xuống dấu phân cách.",
+          "BOM (Byte Order Mark): một số xuất Excel thêm tiền tố tệp với U+FEFF. Chúng tôi truyền nó qua; nếu trình phân tích xuôi dòng của bạn gặp lỗi, hãy loại bỏ 3 byte đầu tiên.",
+          "Dòng mới cuối: CSV kết thúc bằng '\\n' thêm hàng trống cuối cùng trong một số trình phân tích; chúng tôi tự động lọc các hàng trống.",
+          "Số dưới dạng chuỗi: CSV không có kiểu — '42' trở thành chuỗi \"42\" trong JSON. Nếu bạn cần giá trị có kiểu, chạy bước xử lý sau ép các cột số đã biết."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Chọn hướng",
+        "text": "CSV → JSON hoặc JSON → CSV."
+      },
+      {
+        "name": "Đặt dấu phân cách",
+        "text": "Dấu phẩy (mặc định), chấm phẩy, tab hoặc ống."
+      },
+      {
+        "name": "Chuyển đổi hàng tiêu đề",
+        "text": "Bật cho JSON hình dạng đối tượng, tắt cho mảng-mảng."
+      },
+      {
+        "name": "Dán dữ liệu của bạn",
+        "text": "Đầu ra cập nhật trực tiếp. Nhấp 'Sao chép' để sao chép kết quả vào clipboard."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Công cụ này có xử lý trường được trích dẫn có dấu phẩy không?",
+      "a": "Có — trích dẫn RFC 4180 được hỗ trợ đầy đủ. \"Nguyễn, Văn A\" được phân tích như một trường duy nhất."
+    },
+    {
+      "q": "Dấu ngoặc kép được thoát xử lý như thế nào?",
+      "a": "Theo RFC 4180, một '\"' theo nghĩa đen bên trong trường được trích dẫn được viết là '\"\"' (hai dấu ngoặc kép). Trình phân tích xử lý điều này chính xác."
+    },
+    {
+      "q": "Các trường có thể chứa ngắt dòng không?",
+      "a": "Có, khi được trích dẫn. \"dòng 1\\ndòng 2\" bên trong dấu ngoặc kép được coi là một trường với ngắt dòng nhúng."
+    },
+    {
+      "q": "Công cụ này có hỗ trợ BOM (UTF-8) không?",
+      "a": "BOM đi qua. Nếu người dùng xuôi dòng của bạn không chịu được nó, hãy loại bỏ 3 byte đầu tiên (EF BB BF) khỏi CSV."
+    },
+    {
+      "q": "Còn tệp lớn thì sao?",
+      "a": "Trình duyệt xử lý vài MB mà không có vấn đề. Đối với CSV rất lớn (100MB+), dùng trình phân tích phát trực tiếp như Papa Parse với worker, hoặc công cụ CLI."
+    },
+    {
+      "q": "Số có được giữ nguyên là số không?",
+      "a": "CSV → JSON: tất cả giá trị trở thành chuỗi (CSV không có kiểu). JSON → CSV: số trở thành ô CSV không được trích dẫn. Để lấy JSON có kiểu, xử lý sau các cột bạn biết là số."
+    },
+    {
+      "q": "Tại sao JSON của tôi hiển thị chuỗi rỗng thay vì null?",
+      "a": "CSV biểu diễn giá trị thiếu là ô trống. Chúng tôi ánh xạ chúng thành chuỗi rỗng. Để lấy null trong JSON, xử lý sau đầu ra."
+    },
+    {
+      "q": "Dữ liệu có rời khỏi trình duyệt không?",
+      "a": "Không. Chuyển đổi chạy cục bộ; không có gì được gửi lên máy chủ."
+    }
+  ]
+}

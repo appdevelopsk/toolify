@@ -1,0 +1,110 @@
+{
+  "title": "Calculateur de Statistiques (moyenne, médiane, écart-type, quartiles)",
+  "shortDescription": "Calcule la moyenne, médiane, mode, écart-type, variance, étendue, quartiles et plus à partir d'une liste de nombres. Mode échantillon ou population.",
+  "description": "Colle une liste de nombres (séparés par virgules, espaces ou sauts de ligne). Le calculateur retourne les statistiques descriptives incluant la tendance centrale, la dispersion et les quartiles en une vue.",
+  "metaDescription": "Calculateur de statistiques gratuit. Colle des nombres pour obtenir instantanément moyenne, médiane, mode, écart-type, variance, étendue et quartiles.",
+  "keywords": [
+    "calculateur statistiques",
+    "moyenne médiane mode",
+    "calculateur écart-type",
+    "calculateur variance",
+    "calculateur quartile"
+  ],
+  "empty": "Saisis des nombres séparés par des virgules, espaces ou sauts de ligne.",
+  "placeholder": "12, 15, 18, 22, 25, 25, 30, 35, 40",
+  "input": {
+    "values": "Nombres",
+    "sampleMode": "Utiliser l'écart-type d'échantillon (n−1)"
+  },
+  "result": {
+    "count": "Effectif (n)",
+    "sum": "Somme",
+    "mean": "Moyenne",
+    "median": "Médiane",
+    "mode": "Mode",
+    "none": "(aucune valeur répétée)",
+    "range": "Étendue",
+    "min": "Minimum",
+    "max": "Maximum",
+    "q1": "Q1 (25e percentile)",
+    "q3": "Q3 (75e percentile)",
+    "stdev": "Écart-type",
+    "variance": "Variance"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ce que chaque statistique mesure",
+        "paragraphs": [
+          "Moyenne : somme divisée par l'effectif. Sensible aux valeurs aberrantes — une seule valeur énorme peut tirer la moyenne loin de la valeur typique. Meilleure quand les données sont approximativement symétriques.",
+          "Médiane : la valeur centrale une fois les données triées. Robuste aux valeurs aberrantes — quelques valeurs extrêmes ne la font pas bouger. Meilleure que la moyenne pour les données asymétriques comme les revenus ou les prix immobiliers.",
+          "Mode : la valeur la plus fréquente. Plus utile pour les données discrètes (réponses à un sondage, lancers de dés). Pour les données continues, le mode est souvent sans signification et on rapporte 'aucun' si aucune valeur ne se répète.",
+          "Écart-type : distance typique par rapport à la moyenne. Mêmes unités que tes données. Les deux tiers des valeurs tombent généralement dans ±1 écart-type de la moyenne (pour les distributions normales)."
+        ]
+      },
+      {
+        "heading": "Échantillon vs population",
+        "paragraphs": [
+          "Si tes nombres représentent toute la population (tous les employés de ton entreprise, tous les jours d'un mois), utilise l'écart-type de population : divise par n. On bascule en mode population quand tu décoches 'Écart-type d'échantillon'.",
+          "Si tes nombres sont un échantillon tiré d'une population plus large (un sondage de 100 parmi 10 000 clients), utilise l'écart-type d'échantillon : divise par n−1 (correction de Bessel). C'est la valeur par défaut et ce que la plupart des cours de statistiques et logiciels utilisent par défaut.",
+          "La différence diminue à mesure que n augmente. Pour n=100 les deux diffèrent de 0,5 % ; pour n=10 ils diffèrent de 5 %. Pour de très petits échantillons, le choix compte."
+        ]
+      },
+      {
+        "heading": "Quartiles et l'IQR",
+        "paragraphs": [
+          "Q1 (premier quartile, 25e percentile) est la médiane de la moitié inférieure. Q3 (troisième quartile, 75e percentile) est la médiane de la moitié supérieure. L'écart interquartile (IQR = Q3 − Q1) décrit les 50 % centraux de tes données et est robuste aux valeurs aberrantes.",
+          "Les boîtes à moustaches utilisent ces valeurs : la boîte s'étend de Q1 à Q3, avec la médiane comme trait à l'intérieur. Les moustaches s'étendent jusqu'aux valeurs les plus extrêmes dans 1,5 × IQR ; tout au-delà est tracé comme valeur aberrante."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Colle tes nombres",
+        "text": "Sépare par virgules, espaces, tabulations ou sauts de ligne. Un mélange fonctionne aussi."
+      },
+      {
+        "name": "Choisis le mode échantillon ou population",
+        "text": "Échantillon (n−1) est la valeur par défaut. Bascule en population si tes données représentent toute la population."
+      },
+      {
+        "name": "Lis les résultats",
+        "text": "Toutes les statistiques se mettent à jour en direct au fur et à mesure de la saisie."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Combien de nombres puis-je coller ?",
+      "a": "Jusqu'à environ 100 000 sans problème. Au-delà, le navigateur peut ralentir. Pour les jeux de données massifs, utilise un outil de programmation."
+    },
+    {
+      "q": "Et si j'ai des nombres décimaux ?",
+      "a": "Utilise un point (.) comme séparateur décimal quelle que soit ta langue : 3.14, pas 3,14."
+    },
+    {
+      "q": "Pourquoi le mode est-il 'aucun' ?",
+      "a": "Parce qu'aucune valeur ne se répète. Le mode n'a de sens que quand au moins une valeur apparaît deux fois ou plus."
+    },
+    {
+      "q": "Dois-je utiliser l'échantillon ou la population pour mes données de classe ?",
+      "a": "Si tu traites ta classe comme un échantillon de l'école, utilise l'échantillon (n−1). Si ta classe EST la population, utilise la population (n)."
+    },
+    {
+      "q": "Quelle est la différence entre l'écart-type et la variance ?",
+      "a": "La variance est la distance quadratique moyenne par rapport à la moyenne ; l'écart-type est sa racine carrée. L'écart-type est dans les mêmes unités que tes données, c'est pourquoi on rapporte les deux mais l'écart-type est généralement plus utile."
+    },
+    {
+      "q": "Pourquoi Q1 diffère-t-il de ce que donne ma calculatrice ?",
+      "a": "Différentes méthodes existent (méthode 1, méthode 2, défaut R, défaut Excel). On utilise la méthode médiane de la moitié inférieure. La plupart des cours d'introduction utilisent celle-ci ; QUARTILE() dans les tableurs peut différer légèrement."
+    },
+    {
+      "q": "Puis-je utiliser des nombres négatifs ?",
+      "a": "Oui. Les nombres négatifs sont entièrement supportés."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Tous les calculs s'exécutent localement ; rien n'est envoyé à aucun serveur."
+    }
+  ]
+}

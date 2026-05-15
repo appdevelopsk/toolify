@@ -1,0 +1,100 @@
+{
+  "title": "Timer Hitung Mundur (langsung, hari/jam/menit/detik)",
+  "shortDescription": "Hitung mundur langsung ke tanggal dan waktu mendatang mana pun. Diperbarui setiap detik; cocok untuk acara, tenggat waktu, peluncuran, liburan.",
+  "description": "Pilih tanggal dan waktu target dan lihat hitung mundur berjalan detik demi detik. Tambahkan judul opsional untuk memberi label acara. Setelah target berlalu, tampilan yang sama menunjukkan waktu yang telah berlalu.",
+  "metaDescription": "Timer hitung mundur langsung gratis ke tanggal mana pun. Hari, jam, menit, detik — diperbarui setiap detik.",
+  "keywords": [
+    "timer hitung mundur",
+    "hitung mundur ke tanggal",
+    "hitung mundur langsung",
+    "timer tenggat waktu",
+    "hitung mundur acara"
+  ],
+  "input": {
+    "target": "Tanggal & waktu target",
+    "title": "Nama acara (opsional)",
+    "titlePlaceholder": "Tenggat waktu proyek"
+  },
+  "remaining": "Waktu tersisa hingga",
+  "ended": "Waktu yang telah berlalu sejak",
+  "empty": "Pilih tanggal dan waktu target untuk memulai hitung mundur.",
+  "unit": {
+    "days": "Hari",
+    "hours": "Jam",
+    "minutes": "Menit",
+    "seconds": "Detik"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara kerja timer",
+        "paragraphs": [
+          "Hitung mundur berdetak sekali per detik menggunakan setInterval. Setiap detik membaca waktu lokal saat ini, menguranginya dari target Anda, dan memecah selisihnya menjadi hari, jam, menit, dan detik. Tidak ada perjalanan server, sehingga hitung mundur tetap akurat bahkan jika jaringan Anda terputus — hanya halaman itu sendiri yang perlu dimuat.",
+          "Zona waktu menggunakan apa yang browser Anda anggap sebagai 'lokal'. Jika Anda menetapkan target ke '12:00 hari ini' dan orang lain di zona waktu berbeda mengunjungi halaman, hitung mundur akan berbeda — keduanya benar, tetapi untuk 12:00 lokal mereka."
+        ]
+      },
+      {
+        "heading": "Kasus penggunaan umum",
+        "paragraphs": [
+          "Tenggat waktu proyek (tampilkan hitung mundur di layar ruang rapat), peluncuran produk (hitung mundur ke rilis publik), perjalanan (liburan, penerbangan, kereta), ujian dan sertifikasi, pernikahan dan hari jadi, acara olahraga. Kolom judul opsional memungkinkan Anda memberi label acara agar halaman dapat dipahami sendiri.",
+          "Setelah target berlalu, tampilan yang sama beralih ke 'waktu yang telah berlalu sejak' dan terus menghitung naik. Ini berguna saat 'berapa lama sejak X terjadi' yang sebenarnya Anda inginkan — mis., 'hari sejak insiden terakhir' untuk dashboard SRE."
+        ]
+      },
+      {
+        "heading": "Mengapa hitung mundur daripada pengingat kalender",
+        "paragraphs": [
+          "Pengingat kalender muncul sekali pada waktu acara. Hitung mundur langsung memberi Anda kesadaran perifer yang konstan — berguna untuk tujuan yang ingin Anda ingat terus. Tim olahraga menampilkannya, tim perangkat lunak menampilkannya di war room, dan pelari maraton menyematkannya di layar latihan.",
+          "Jika Anda ingin ini hidup di dashboard publik, tandai URL setelah menetapkan target. Status tetap di input; memuat ulang halaman mengatur ulangnya (belum ada link berbagi, tetapi kolom input dipertahankan dalam sesi)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Pilih target",
+        "text": "Pilih tanggal dan waktu yang Anda hitung mundurnya. Pemilih menggunakan zona waktu lokal Anda."
+      },
+      {
+        "name": "Tambahkan judul (opsional)",
+        "text": "Ketik nama acara agar tampilan bermakna sekilas."
+      },
+      {
+        "name": "Lihat hitung mundurnya",
+        "text": "Hari, jam, menit, dan detik berdetak sekali per detik. Setelah target, tampilan yang sama beralih ke waktu yang telah berlalu."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apakah hitung mundur akurat hingga detik?",
+      "a": "Ya — tampilan diperbarui sekali per detik, dan setiap pembaruan dihitung ulang dari jam saat ini, sehingga drift yang terkumpul tidak dapat terjadi."
+    },
+    {
+      "q": "Zona waktu mana yang digunakan?",
+      "a": "Zona waktu lokal browser Anda. Target yang Anda pilih diinterpretasikan dalam zona lokal Anda, bukan UTC."
+    },
+    {
+      "q": "Apakah hitung mundur bekerja offline?",
+      "a": "Ya, setelah halaman dimuat. Tidak diperlukan koneksi jaringan agar timer terus berdetak."
+    },
+    {
+      "q": "Bisakah saya berbagi hitung mundur dengan orang lain?",
+      "a": "Belum melalui URL. Kami sedang mengerjakan URL berisi status sehingga tautan dapat membawa target dan judul; untuk saat ini Anda dapat menempel tangkapan layar atau merekam layar."
+    },
+    {
+      "q": "Apa yang terjadi setelah target berlalu?",
+      "a": "Tampilan beralih ke 'waktu yang telah berlalu sejak' dan terus menghitung naik. Angkanya positif tetapi labelnya berubah."
+    },
+    {
+      "q": "Bisakah saya memiliki beberapa hitung mundur?",
+      "a": "Buka beberapa tab — masing-masing independen. Mode multi-acara bawaan ada dalam roadmap."
+    },
+    {
+      "q": "Apakah timer akan terus berjalan jika saya berpindah tab?",
+      "a": "Browser membatasi setInterval di tab latar belakang. Hitung mundur akan mengejar dengan benar saat Anda kembali — komputasi ulang berasal dari jam, bukan dari ketukan yang terkumpul."
+    },
+    {
+      "q": "Apakah data input dikirim ke mana pun?",
+      "a": "Tidak. Semuanya tetap di browser Anda."
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "title": "Konverter Basis Bilangan (biner, oktal, desimal, heks)",
+  "shortDescription": "Konversi bilangan antara biner, oktal, desimal, dan heksadesimal. Memvalidasi input untuk basis yang dipilih dan menampilkan keempat representasi.",
+  "description": "Pilih basis sumber, ketik nilai, dan lihat ekuivalennya dalam biner, oktal, desimal, dan heks. Berguna untuk pemrograman, jaringan, dan elektronika.",
+  "metaDescription": "Konverter basis bilangan gratis untuk biner, oktal, desimal, dan heks. Memvalidasi input per basis, menampilkan keempat representasi berdampingan.",
+  "keywords": ["konverter basis bilangan", "biner ke desimal", "desimal ke heks", "heks ke biner", "basis 2 basis 16", "konversi bilangan biner"],
+  "input": { "value": "Nilai", "from": "Dari basis" },
+  "error": { "invalidForBase": "Input mengandung karakter yang tidak valid untuk basis yang dipilih." },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara notasi posisional basis bilangan bekerja",
+        "paragraphs": [
+          "Setiap basis menggunakan notasi posisional: digit paling kanan adalah basis⁰ = 1, berikutnya adalah basis¹, kemudian basis², dan seterusnya. Dalam desimal, '255' berarti 2×100 + 5×10 + 5×1. Dalam biner, '11111111' berarti 1×128 + 1×64 + ... + 1×1 = 255. Bilangan yang sama, basis yang berbeda.",
+          "Heksadesimal menggunakan 0-9 dan A-F untuk menampung 16 nilai per digit. 'FF' = 15×16 + 15×1 = 255. Oktal menggunakan 0-7 (3 bit per digit), dan biner hanya menggunakan 0 dan 1. Konversinya mekanis — konversi ke desimal kemudian kembali ke basis target — dan kalkulator melakukannya untuk Anda untuk bilangan bulat non-negatif apapun."
+        ]
+      },
+      {
+        "heading": "Kapan Anda akan menggunakan setiap basis",
+        "paragraphs": [
+          "Biner (basis 2): pekerjaan komputer tingkat rendah — bit field, mask, firmware embedded. Membaca tata letak register, debugging di tingkat perangkat keras.",
+          "Oktal (basis 8): izin file Unix (chmod 755 = rwxr-xr-x), beberapa format file lama. Kurang umum saat ini.",
+          "Desimal (basis 10): semua yang dihitung manusia. Default untuk aritmetika normal.",
+          "Heksadesimal (basis 16): paling umum dalam perangkat lunak — warna (#FF6B35), alamat memori (0x7fff...), alamat MAC, representasi byte data biner, hash yang dikodekan."
+        ]
+      },
+      {
+        "heading": "Referensi cepat",
+        "paragraphs": [
+          "1 byte = 8 bit = 2 digit heks = 256 nilai (0-255). 1 digit heks = 4 bit = 16 nilai. 1 digit oktal = 3 bit. Heks 'FF' = desimal 255 = biner 11111111. Heks '100' = desimal 256. Heks 'FFFF' = desimal 65535 (maksimum untuk unsigned 16-bit). Heks 'FFFFFFFF' = desimal 4294967295 (maksimum untuk unsigned 32-bit)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih basis sumber", "text": "Pilih biner, oktal, desimal, atau heks." },
+      { "name": "Masukkan nilai Anda", "text": "Gunakan hanya digit yang valid untuk basis tersebut. Heks tidak peka huruf besar/kecil." },
+      { "name": "Baca keempat basis", "text": "Konversi ke masing-masing tiga lainnya muncul berdampingan." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah heks peka huruf besar/kecil?", "a": "Baik 'ff' maupun 'FF' mendekode ke nilai yang sama. Kami menampilkan huruf besar berdasarkan konvensi." },
+    { "q": "Bisakah saya memasukkan bilangan negatif?", "a": "Ya, awali dengan '-'. Kalkulator menampilkan representasi setiap basis dengan tanda yang dipertahankan (misalnya, -255 → -FF dalam heks)." },
+    { "q": "Berapa nilai maksimum?", "a": "Dibatasi oleh rentang bilangan bulat aman JavaScript (sekitar 2⁵³). Untuk nilai yang lebih besar, gunakan alat yang sadar BigInt." },
+    { "q": "Bagaimana cara membaca awalan 0x atau 0b?", "a": "Hapus awalan sebelum memasukkan. '0xFF' → cukup 'FF' dengan heks dipilih. '0b1010' → '1010' dengan biner dipilih." },
+    { "q": "Mengapa chmod Unix menggunakan oktal?", "a": "Izin memiliki tiga kelompok (pemilik/grup/lainnya) masing-masing tiga bit. 3 bit setiap kelompok dipetakan dengan bersih ke satu digit oktal, sehingga 755 = 111 101 101 = rwx r-x r-x." },
+    { "q": "Bisakah saya mengonversi nilai pecahan?", "a": "Belum — hanya bilangan bulat non-negatif yang didukung. Kami mungkin menambahkan dukungan fixed-point nanti." },
+    { "q": "Apa yang harus dilakukan jika saya melihat 'tidak valid untuk basis'?", "a": "Anda mengetik karakter yang tidak diizinkan dalam basis yang dipilih. Heks mengizinkan 0-9 dan A-F; biner hanya 0 dan 1; dll." },
+    { "q": "Apakah data dikirim ke mana saja?", "a": "Tidak. Konversi berjalan secara lokal." }
+  ]
+}

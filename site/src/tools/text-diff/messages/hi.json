@@ -1,0 +1,53 @@
+{
+  "title": "Text Diff Tool (line-level comparison, color-coded)",
+  "shortDescription": "दो blocks of text को line by line compare करें। Added, removed, और unchanged lines line numbers के साथ color-coded हैं।",
+  "description": "Side-by-side line-level diff देखने के लिए original और revised version paste करें। Documents, configs, code review, और prose editing के लिए useful।",
+  "metaDescription": "मुफ्त online text diff tool। Color-coded added, removed, और unchanged lines के साथ line-by-line comparison। Browser-only — आपका text आपके device से नहीं जाता।",
+  "keywords": ["text diff", "text compare", "diff tool", "line diff", "differences खोजें"],
+  "input": { "left": "Original (left)", "right": "Revised (right)" },
+  "stats": { "added": "added", "removed": "removed", "unchanged": "unchanged" },
+  "empty": "Diff देखने के लिए दोनों versions paste करें।",
+  "article": {
+    "sections": [
+      {
+        "heading": "Diff कैसे compute होता है",
+        "paragraphs": [
+          "हम दोनों versions के बीच कौन सी lines shared हैं यह खोजने के लिए Longest Common Subsequence (LCS) algorithm उपयोग करते हैं। दोनों में appear होने वाली lines 'unchanged' हैं। केवल original में वाली lines 'removed' हैं। केवल revised version में वाली lines 'added' हैं। Result दोनों sides पर line numbers preserved के साथ clear annotated comparison है।",
+          "LCS standard approach है जो git और अधिकांश diff tools उपयोग करते हैं। बहुत large inputs (10,000+ lines) के लिए runtime quadratically बढ़ता है; large logs compare करने के लिए streaming diff tool उपयोग करें।"
+        ]
+      },
+      {
+        "heading": "यह किसके लिए अच्छा है",
+        "paragraphs": [
+          "Document revisions: drafts के बीच exactly क्या बदला देखें। Legal contracts, terms of service, और किसी भी text के लिए useful जहाँ 'क्या बदला?' मायने रखता है।",
+          "Configuration files: misconfiguration spot करने के लिए दो .env या YAML files compare करें।",
+          "Prose editing: writers editor के revisions context में देख सकते हैं, विशेषकर जब केवल कुछ lines बदली हों।",
+          "Code review (light use): small snippets के लिए। Real code review के लिए, IDE या dedicated review tool better results देगा।"
+        ]
+      },
+      {
+        "heading": "Limitations",
+        "paragraphs": [
+          "हम line granularity पर diff करते हैं। यदि आप किसी line पर 'cat' को 'cats' change करते हैं, पूरी line removed-and-added दिखती है; हम inserted 's' highlight नहीं करते।",
+          "Trailing whitespace significant है — 'foo' और 'foo ' (trailing space) different lines count होती हैं।",
+          "Order matters। Different positions में दो paragraphs दोनों removed और added count होती हैं। Diff 'moved' blocks detect करने की कोशिश नहीं करता।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Original paste करें", "text": "Left side पर।" },
+      { "name": "Revised paste करें", "text": "Right side पर।" },
+      { "name": "Diff पढ़ें", "text": "Type करते समय lines update होती हैं। Green = added, red = removed, plain = unchanged।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या यह word-level diff support करता है?", "a": "अभी नहीं — केवल line-level। हम बाद में short comparisons के लिए character या word granularity add कर सकते हैं।" },
+    { "q": "मेरा text कितना बड़ा हो सकता है?", "a": "Practically प्रति side कुछ thousand lines तक। Quadratic complexity का मतलब बहुत large inputs browser tab को briefly freeze कर सकते हैं।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Diffing entirely locally चलता है।" },
+    { "q": "क्या trailing spaces significant हैं?", "a": "हाँ। केवल trailing whitespace में differ होने वाली दो lines different count होती हैं।" },
+    { "q": "क्या मैं diff save कर सकता हूँ?", "a": "Saved file के रूप में नहीं। Rendered text copy-paste करें या screenshot लें।" },
+    { "q": "क्या यह git diff जैसा algorithm है?", "a": "Conceptually हाँ — हम LCS उपयोग करते हैं, जो git के options में से एक है।" },
+    { "q": "केवल एक word बदलने पर पूरी lines क्यों marked होती हैं?", "a": "क्योंकि हम line granularity पर काम करते हैं। Character-level diff changed word highlight करेगा, लेकिन long lines पर read करना कठिन है।" },
+    { "q": "क्या मैं दो से अधिक versions compare कर सकता हूँ?", "a": "इस tool में नहीं। Multi-way merge के लिए, dedicated 3-way diff tool उपयोग करें।" }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "title": "Bilimsel Notasyon Dönüştürücü (ondalık ↔ bilimsel)",
+  "shortDescription": "Ondalık sayıları bilimsel (1,23 × 10^4) ve mühendislik (1,23e3) notasyonuna/notasyondan dönüştürün. Çift yönlü, E-notasyonu çıktısıyla.",
+  "description": "İki mod: ondalıktan bilimsel, herhangi bir sayı için katsayı ve üssü hesaplar; bilimseldan ondalık ise geri genişletir. Mühendislik notasyonu (üste 3'ün katları) da gösterilir.",
+  "metaDescription": "Ücretsiz bilimsel notasyon dönüştürücü. Ondalıktan bilimsel (×10^n) veya geri. E-notasyonu, mühendislik notasyonu. Fizik, kimya, çok büyük/küçük sayılar için.",
+  "keywords": ["bilimsel notasyon dönüştürücü", "e notasyonu", "mühendislik notasyonu", "ondalık bilimsel dönüşüm", "üs hesaplayıcı"],
+  "dir": {
+    "toSci": "Ondalık → Bilimsel",
+    "toDec": "Bilimsel → Ondalık"
+  },
+  "input": {
+    "decimal": "Ondalık sayı",
+    "coefficient": "Katsayı",
+    "exponent": "Üs (10^n)"
+  },
+  "result": {
+    "scientific": "Bilimsel notasyon",
+    "eNotation": "E-notasyonu",
+    "engineering": "Mühendislik notasyonu",
+    "decimal": "Ondalık değer"
+  },
+  "empty": "Dönüştürmek için bir sayı girin.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Bilimsel notasyon nedir",
+        "paragraphs": [
+          "Bilimsel notasyon sayıları katsayı × 10^üs olarak ifade eder; burada katsayı 1 ile 10 arasındadır (genellikle 1 ≤ katsayı < 10). Ondalık biçimde zahmetli olacak çok büyük veya çok küçük sayılar için kullanılır.",
+          "Örnekler: ışık hızı = 3 × 10⁸ m/s. Avogadro sayısı = 6,022 × 10²³. Elektron kütlesi = 9,109 × 10⁻³¹ kg. Üs, ondalık noktanın kaç yer kaydırılacağını söyler: pozitif sağa kaydırır (çarpar), negatif sola kaydırır (böler)."
+        ]
+      },
+      {
+        "heading": "Bilgisayarlarda E-notasyonu",
+        "paragraphs": [
+          "E-notasyonu (1,23e4 = 1,23 × 10⁴) bilgisayar dostu versiyondur. JavaScript, Python, Excel ve çoğu hesap makinesi bunu kullanır. 'e' yalnızca bir notasyondur — 'e' (Euler sayısı) dahil değildir.",
+          "Bilgisayarların E-notasyonunu kullanmasının nedeni: klavyeler genellikle kolayca yazılabilen üs veya '×' karakterlerine sahip değildir. Düz ASCII E veya e herhangi bir metin girişinde çalışır.",
+          "Not: 'e' regex programlaması veya diğer bağlamlarda farklı şeyler ifade eder. Sayılarda özellikle '× 10 üs' anlamına gelir."
+        ]
+      },
+      {
+        "heading": "Mühendislik notasyonu",
+        "paragraphs": [
+          "Mühendislik notasyonu bilimsel notasyona benzer ancak üs her zaman 3'ün katıdır (3, 6, 9, 12, … veya −3, −6, −9, …). Bu SI önekleriyle uyumludur: kilo (10³), mega (10⁶), giga (10⁹), mili (10⁻³), mikro (10⁻⁶), nano (10⁻⁹).",
+          "Örnek: bilimsel 1,23 × 10⁴, mühendislikte 12,3 × 10³'tür ve '12,3 kilo' olarak okunabilir. Elektronik, mühendislik ve SI birim önekleri kullanan her alanda kullanışlıdır.",
+          "Uzlaşma: bilimsel notasyon sabit formatlı katsayıya sahiptir (her zaman 1 ≤ |katsayı| < 10); mühendislik daha geniş katsayı aralığına (1 ≤ |katsayı| < 1000) izin verir ama daha temiz SI önek eşlemesi sağlar."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Dönüşüm yönünü seçin", "text": "Ondalık → bilimsel veya bilimsel → ondalık." },
+      { "name": "Sayıyı veya katsayı + üsü yazın", "text": "Her yönün kendi giriş biçimi vardır." },
+      { "name": "Sonucu okuyun", "text": "Bonus olarak E-notasyonu ve mühendislik notasyonu dahildir." }
+    ]
+  },
+  "faq": [
+    { "q": "Üs neden faydalıdır?", "a": "Büyüklük mertebesini söyler. 10⁹ bir milyardır; 10⁻⁹ nanometre ölçeğinde bir sayıdır. Çok farklı ölçekleri (atomik ile astronomik) karşılaştırmak için üsler doğal dildir." },
+    { "q": "1,23e4 ile 1,23 × 10⁴ aynı mı?", "a": "Evet — aynı sayı, farklı notasyon. 'e4', '× 10⁴' yazmanın bilgisayar dostu yoludur. Çoğu programlama dili ve hesap makinesi bunu giriş olarak kabul eder." },
+    { "q": "Bu hesaplayıcının hassasiyeti nedir?", "a": "Kayan nokta hassasiyeti (yaklaşık 15-17 anlamlı basamak). Daha yüksek hassasiyet için (1000+ basamak) SymPy veya Mathematica gibi bir CAS kullanın." },
+    { "q": "Bilimsel notasyonda matematik yapabilir miyim?", "a": "Çarpma: katsayıları çarpın, üsleri toplayın. Bölme: katsayıları bölün, üsleri çıkarın. Toplama/çıkarma: önce aynı üse getirin, ardından katsayıları toplayın/çıkarın." },
+    { "q": "Sayım neden 'Sonsuzluk' görünüyor?", "a": "Üs IEEE 754 çift hassasiyet için çok büyük (yaklaşık 308). Daha büyük sayılar için bir CAS veya BigInt tabanlı kütüphaneler kullanın." },
+    { "q": "'Mantissa' nedir?", "a": "Katsayının eski eş anlamlısı — × 10^'den önceki kısım. Bazı ders kitapları hâlâ kullanır. Modern sözleşme 'katsayı' veya 'anlamlı' ('significand')." },
+    { "q": "Negatif katsayılar için bilimsel notasyon kullanabilir miyim?", "a": "Evet. -3 × 10⁵ = -300.000. Eksi işareti katsayıya gider, üse değil." },
+    { "q": "Veriler tarayıcımdan çıkıyor mu?", "a": "Hayır. Hesaplama yerel olarak çalışır; hiçbir şey sunucuya gönderilmez." }
+  ]
+}

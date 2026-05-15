@@ -1,0 +1,114 @@
+{
+  "title": "Calculadora de Pagamento de Anuidade (período fixo)",
+  "shortDescription": "Calcule o pagamento regular de uma anuidade com base no capital, taxa de juros e período de pagamento. Suporta distribuições mensais ou anuais.",
+  "description": "Insira o capital, a taxa de juros anual e o número de anos. Retorna o pagamento periódico (mensal ou anual), o valor total pago, os juros totais ganhos e o número de parcelas. Usa a fórmula padrão de anuidade por período fixo.",
+  "metaDescription": "Calculadora de pagamento de anuidade gratuita. Distribuições mensais ou anuais por período fixo. Veja o total pago, juros ganhos e número de parcelas.",
+  "keywords": [
+    "calculadora de anuidade",
+    "anuidade por período fixo",
+    "retirada de anuidade",
+    "calculadora de renda na aposentadoria",
+    "retirada sistemática"
+  ],
+  "empty": "Insira o capital e o prazo maiores que zero.",
+  "input": {
+    "principal": "Capital (valor inicial)",
+    "ratePct": "Taxa de juros anual %",
+    "years": "Período de pagamento (anos)",
+    "frequency": "Frequência de pagamento"
+  },
+  "freq": {
+    "monthly": "Mensal",
+    "annual": "Anual"
+  },
+  "result": {
+    "monthlyPayout": "Pagamento mensal",
+    "annualPayout": "Pagamento anual",
+    "totalPayout": "Valor total pago",
+    "totalInterest": "Juros totais ganhos",
+    "periods": "Número de pagamentos"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "A matemática da anuidade por período fixo",
+        "paragraphs": [
+          "Uma anuidade por período fixo converte um valor único em uma série de pagamentos iguais ao longo de um número escolhido de anos. A fórmula é a da amortização de empréstimo ao contrário: o capital é a perspectiva do banco e o pagamento é a perspectiva do depositante. Forma padrão: pagamento = P × r / (1 − (1+r)⁻ⁿ), onde P é o capital, r é a taxa de juros periódica e n é o número de períodos.",
+          "Se você investir R$ 500.000 a 4% ao ano por 25 anos com pagamentos mensais, a fórmula resulta em aproximadamente R$ 2.640/mês. Total pago: mais de R$ 791.000. Juros totais ganhos: mais de R$ 291.000. A anuidade esgota o capital ao longo do período, por isso é chamada de 'período certo' — garantido pelo prazo, não mais."
+        ]
+      },
+      {
+        "heading": "Por que isso é diferente do saque apenas de juros ou da regra dos 4%",
+        "paragraphs": [
+          "O saque apenas de juros paga somente os juros de cada período (P × r). A 4% sobre R$ 500 mil, isso é R$ 20 mil/ano — e o capital fica intacto para herdeiros ou distribuição final. A anuidade por período fixo gera renda anual maior porque consome o capital: em 25 anos paga mais de R$ 31 mil anuais, mas termina com R$ 0.",
+          "A regra dos 4% é um modelo de retorno estocástico do Trinity Study, desenvolvido para carteiras de ações/títulos em 30 anos. Pressupõe retornos variáveis com média de ~6-7% real e sobrevive à maioria das sequências históricas. A fórmula de anuidade aqui pressupõe retorno fixo, por isso é usada para contratos reais de anuidade fixa e não para retiradas de carteira.",
+          "Use esta ferramenta para modelar um produto garantido: uma escada de CDBs, um contrato de anuidade fixa ou um acordo estruturado. Use uma calculadora de Monte Carlo ou da regra dos 4% para uma carteira investida no mercado."
+        ]
+      },
+      {
+        "heading": "Ressalvas sobre impostos e inflação",
+        "paragraphs": [
+          "O pagamento é nominal (em reais de hoje). O poder de compra real diminui com a inflação: a 3% de inflação em 25 anos, um pagamento de R$ 2.640 vale aproximadamente R$ 1.260 em reais de hoje no ano 25. Para renda protegida contra a inflação, considere títulos atrelados ao IPCA (como o Tesouro IPCA+) — ambos têm pagamentos iniciais mais baixos.",
+          "Os impostos dependem da origem. Uma anuidade não qualificada de dinheiro pós-imposto é tributada apenas sobre a parte do ganho de cada pagamento (proporção de exclusão). Anuidades qualificadas (de previdência privada/PGBL) são totalmente tributáveis. CDBs pagam juros como renda ordinária. Esta calculadora mostra valores antes de impostos.",
+          "A taxa de juros inserida deve ser a taxa creditada líquida de quaisquer taxas do contrato de anuidade. Produtos de seguradoras frequentemente apresentam uma taxa bruta, mas cobram 1-2% em taxas, deixando o titular com uma taxa líquida menor. Use a taxa líquida para uma projeção honesta."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Insira o capital",
+        "text": "O valor único sendo anuado. Para um contrato de anuidade existente, use o valor acumulado no momento em que os pagamentos começam."
+      },
+      {
+        "name": "Insira a taxa anual",
+        "text": "A taxa creditada líquida de taxas. Para 4%, insira 4. Para a maioria das anuidades fixas, isso está entre 3-6%."
+      },
+      {
+        "name": "Escolha o período",
+        "text": "Anos em que o capital será esgotado. Valores comuns: 10, 15, 20, 25, 30 anos."
+      },
+      {
+        "name": "Escolha a frequência",
+        "text": "Mensal é o mais comum para renda na aposentadoria; anual é mais simples para projeções."
+      },
+      {
+        "name": "Leia o pagamento",
+        "text": "Renda por período, total ao longo do período completo e juros totais ganhos."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual é a diferença entre isso e uma anuidade vitalícia?",
+      "a": "Esta é por período certo: paga por um número fixo de anos e depois para. Anuidades vitalícias pagam até a morte (ou morte do cônjuge). Os pagamentos de anuidades vitalícias geralmente são menores por período porque a seguradora assume o risco de mortalidade."
+    },
+    {
+      "q": "A anuidade continua se eu sobreviver ao período?",
+      "a": "Não. Uma anuidade de período fixo de 25 anos para de pagar no ano 26. Se você viver até os 100 anos e o prazo terminou aos 90, não há mais nada. Por isso a anuidade de período puro é incomum — a maioria é combinada com opções contingentes de vida."
+    },
+    {
+      "q": "Qual taxa devo usar?",
+      "a": "Para um contrato real de anuidade fixa, use a taxa contratualmente creditada líquida de taxas. Para simulação de escada de CDBs, use o rendimento médio do CDB. Para retirada com base em investimentos, esta calculadora superestima a segurança porque pressupõe retornos constantes — use uma ferramenta de Monte Carlo."
+    },
+    {
+      "q": "Por que o pagamento mensal × 12 é diferente do cálculo do pagamento anual?",
+      "a": "A versão mensal compõe mensalmente (capitalização mais frequente = pagamento ligeiramente diferente). A 4% ao ano, a capitalização mensal gera uma taxa efetiva ligeiramente maior, então mensal × 12 ≈ anual, mas não exatamente igual."
+    },
+    {
+      "q": "Posso acrescentar ao capital ao longo do caminho?",
+      "a": "A maioria dos contratos de anuidade fixa não permite contribuições após a anuitização. Esta ferramenta modela um cenário de prêmio único. Se quiser adições flexíveis, modele isso separadamente e recalcule."
+    },
+    {
+      "q": "Como a inflação afeta o valor 'real'?",
+      "a": "A 3% de inflação, os reais do ano 25 valem cerca de 48% dos reais do ano 1. Para preservar o poder de compra, adicione um benefício de correção de 2-3% (pagamento inicial menor) ou use títulos atrelados ao IPCA."
+    },
+    {
+      "q": "O que acontece com o capital restante no final?",
+      "a": "Nada — a fórmula é projetada para exaurir exatamente o capital ao longo do período. O saldo final é zero por construção. Compare com saques apenas de juros ou baseados em distribuição mínima obrigatória, onde o capital é preservado."
+    },
+    {
+      "q": "O cálculo compartilha dados?",
+      "a": "Não. Computação pura no navegador; nada é enviado a qualquer servidor."
+    }
+  ]
+}

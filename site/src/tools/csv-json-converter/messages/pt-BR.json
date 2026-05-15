@@ -1,0 +1,115 @@
+{
+  "title": "Conversor CSV ↔ JSON (compatível com RFC 4180)",
+  "shortDescription": "Converta CSV para JSON ou JSON para CSV. Delimitador configurável (vírgula/ponto e vírgula/tab/pipe), alternância de linha de cabeçalho, tratamento de campos entre aspas segundo RFC 4180.",
+  "description": "Cole CSV ou JSON. O conversor analisa CSV compatível com RFC 4180 (trata campos entre aspas com vírgulas, aspas escapadas, valores multilinhas). Para JSON para CSV, aceita tanto array de objetos (usa chaves como cabeçalhos) quanto array de arrays.",
+  "metaDescription": "Conversor CSV ↔ JSON gratuito. Compatível com RFC 4180, delimitador configurável, alternância de linha de cabeçalho.",
+  "keywords": [
+    "CSV para JSON",
+    "JSON para CSV",
+    "conversor CSV",
+    "conversor JSON",
+    "RFC 4180"
+  ],
+  "direction": {
+    "csvToJson": "CSV → JSON",
+    "jsonToCsv": "JSON → CSV"
+  },
+  "input": {
+    "csv": "Entrada CSV",
+    "json": "Entrada JSON",
+    "delimiter": "Delimitador",
+    "headerRow": "Primeira linha é cabeçalho"
+  },
+  "delim": {
+    "comma": "Vírgula (,)",
+    "semicolon": "Ponto e vírgula (;)",
+    "tab": "Tab",
+    "pipe": "Pipe (|)"
+  },
+  "output": "Saída",
+  "empty": "Insira a entrada para ver a saída convertida.",
+  "error": {
+    "label": "Erro de conversão"
+  },
+  "copy": "Copiar",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por que o RFC 4180 importa",
+        "paragraphs": [
+          "O CSV parece simples, mas tem casos extremos: um campo contendo uma vírgula deve ser colocado entre aspas; um campo contendo uma aspa deve escapá-la como aspas duplas; um campo pode conter quebras de linha se estiver entre aspas. Parsers ingênuos de separar por vírgula quebram em dados do mundo real. Este conversor implementa a gramática RFC 4180 exatamente.",
+          "Parsers ingênuos também quebram em exportações do Excel que usam ponto e vírgula (comum em locais europeus onde ',' é separador decimal) ou tabs (TSV). O menu suspenso de delimitador trata as quatro variantes comuns."
+        ]
+      },
+      {
+        "heading": "Formatos JSON para saída",
+        "paragraphs": [
+          "Array de objetos (padrão com linha de cabeçalho): cada linha vira {coluna: valor}. O formato JSON mais comum, fácil de consumir em qualquer linguagem.",
+          "Array de arrays (linha de cabeçalho desativada): cada linha vira [v1, v2, ...]. Útil quando as colunas não têm nome ou você quer uma estrutura posicional.",
+          "De JSON para CSV, o conversor detecta qual formato você tem. Objetos: extrai chaves únicas em todas as linhas para cabeçalhos. Arrays: escreve as linhas como estão."
+        ]
+      },
+      {
+        "heading": "Armadilhas comuns",
+        "paragraphs": [
+          "Localidade do Excel: em algumas instalações europeias do Excel, o delimitador padrão é ';' e não ','. Se seu CSV parece uma coluna gigante quando importado, mude para ; no menu suspenso de delimitador.",
+          "BOM (Marca de Ordem de Bytes): algumas exportações do Excel prefixam o arquivo com U+FEFF. Passamos isso adiante; se seu parser downstream falhar, remova os primeiros 3 bytes.",
+          "Quebra de linha final: um CSV terminando em '\\n' adiciona uma última linha vazia em alguns parsers; filtramos linhas vazias automaticamente.",
+          "Números como strings: CSV não tem tipos — '42' vira a string \"42\" em JSON. Se você precisar de valores tipados, execute uma etapa de pós-processamento que converte colunas numéricas conhecidas."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolha a direção",
+        "text": "CSV → JSON ou JSON → CSV."
+      },
+      {
+        "name": "Defina o delimitador",
+        "text": "Vírgula (padrão), ponto e vírgula, tab ou pipe."
+      },
+      {
+        "name": "Alterne linha de cabeçalho",
+        "text": "Ativado para JSON em forma de objeto, desativado para array de arrays."
+      },
+      {
+        "name": "Cole seus dados",
+        "text": "A saída é atualizada ao vivo. Clique em 'Copiar' para copiar o resultado para a área de transferência."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Trata campos entre aspas com vírgulas?",
+      "a": "Sim — as aspas RFC 4180 são totalmente suportadas. \"Silva, João\" é analisado como um único campo."
+    },
+    {
+      "q": "Como aspas escapadas são tratadas?",
+      "a": "Segundo o RFC 4180, um '\"' literal dentro de um campo entre aspas é escrito como '\"\"' (duas aspas). O parser lida com isso corretamente."
+    },
+    {
+      "q": "Os campos podem conter quebras de linha?",
+      "a": "Sim, quando entre aspas. \"linha 1\\nlinha 2\" dentro de aspas é tratado como um único campo com quebra de linha incorporada."
+    },
+    {
+      "q": "Suporta BOM (UTF-8)?",
+      "a": "BOM passa adiante. Se seu consumidor downstream não o tolerar, remova os primeiros 3 bytes (EF BB BF) do CSV."
+    },
+    {
+      "q": "E arquivos grandes?",
+      "a": "O navegador lida com alguns MB sem problemas. Para CSVs muito grandes (100MB+), use um parser de streaming como Papa Parse com um worker, ou uma ferramenta de linha de comando."
+    },
+    {
+      "q": "Os números são preservados como números?",
+      "a": "CSV → JSON: todos os valores viram strings (CSV não tem tipos). JSON → CSV: números viram células CSV sem aspas. Para obter JSON tipado, pós-processe as colunas que você sabe que são numéricas."
+    },
+    {
+      "q": "Por que meu JSON mostra strings vazias em vez de null?",
+      "a": "CSV representa valores ausentes como células vazias. Mapeamos para strings vazias. Para obter null em JSON, pós-processe a saída."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. A conversão é feita localmente; nada é enviado a um servidor."
+    }
+  ]
+}

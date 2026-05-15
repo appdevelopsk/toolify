@@ -1,0 +1,53 @@
+{
+  "title": "Máy tính thuế bán hàng / VAT (cộng thuế hoặc trích xuất từ tổng)",
+  "shortDescription": "Cộng thuế bán hàng vào số tiền trước thuế hoặc trích xuất thuế từ tổng đã bao gồm thuế. Hoạt động với mọi thuế suất (thuế bán hàng, VAT, GST).",
+  "description": "Chuyển đổi giữa chế độ 'cộng thuế' và 'trích xuất từ tổng', nhập số tiền và thuế suất, và xem bảng phân tích thành giá gốc, thuế và tổng cộng.",
+  "metaDescription": "Máy tính thuế bán hàng / VAT / GST miễn phí. Cộng thuế vào giá trước thuế hoặc trích xuất thuế từ tổng đã bao gồm thuế. Hoạt động với mọi thuế suất, trong trình duyệt.",
+  "keywords": ["máy tính thuế bán hàng", "máy tính VAT", "máy tính GST", "máy tính thuế", "trích xuất thuế từ tổng"],
+  "empty": "Nhập số tiền để tính phân tích thuế.",
+  "mode": { "addTax": "Cộng thuế vào giá chưa thuế", "fromTotal": "Trích xuất thuế từ tổng" },
+  "input": { "amountNet": "Giá chưa thuế", "amountGross": "Tổng đã bao gồm thuế", "taxPct": "Thuế suất (%)" },
+  "result": { "net": "Chưa thuế", "tax": "Thuế", "gross": "Tổng cộng" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cộng thuế so với trích xuất thuế",
+        "paragraphs": [
+          "Cộng thuế: bạn có giá trước thuế và muốn biết giá cuối cùng. Nhân với (1 + thuế_suất/100). Ví dụ: 100.000₫ ở mức thuế VAT 10% = 110.000₫.",
+          "Trích xuất thuế: bạn có tổng số khách hàng đã trả (hoặc hiển thị trên hóa đơn) và cần tính ngược bao nhiêu là thuế. Chia tổng cho (1 + thuế_suất/100) để tính giá trước thuế; phần chênh lệch là thuế. Ví dụ: 110.000₫ ở mức 10% trích thành 100.000₫ + 10.000₫ thuế. Đừng nhân 110.000₫ với 10% — điều đó cho 11.000₫, không đúng."
+        ]
+      },
+      {
+        "heading": "Thuế bán hàng, VAT và GST",
+        "paragraphs": [
+          "Thuế bán hàng (Mỹ): được cộng tại điểm bán, khác nhau theo bang và thành phố. New York City là 8,875%, Oregon không có, California từ 7,25-10,75% tùy thành phố. Nhiều giá ở Mỹ quảng cáo chưa thuế và thuế được cộng khi thanh toán.",
+          "VAT tại Việt Nam: Luật Thuế GTGT áp dụng mức 10% tiêu chuẩn cho hầu hết hàng hóa, dịch vụ. Một số hàng hóa được miễn thuế hoặc áp thuế 5% (như phân bón, nông sản, thiết bị y tế). Giá niêm yết tại Việt Nam thường đã bao gồm VAT theo quy định.",
+          "GST (Úc, New Zealand, Canada, Ấn Độ): mức thuế quốc gia thống nhất (Úc và NZ lần lượt là 10% và 15%, Canada có GST cộng thuế tỉnh). Ấn Độ dùng mức GST theo bậc (5/12/18/28%) theo danh mục sản phẩm."
+        ]
+      },
+      {
+        "heading": "Các cạm bẫy phổ biến",
+        "paragraphs": [
+          "Đừng nhân tổng đã bao gồm thuế với thuế suất. Để trích thuế từ 110.000₫ ở mức 10%, chia cho 1,10 trước. Nhân với 10% cho câu trả lời sai vì 110.000₫ đã bao gồm 10% trên giá gốc 100.000₫ — bạn sẽ đang đánh thuế lên thuế.",
+          "Một số sản phẩm được miễn thuế hoặc chịu thuế không (hàng thiết yếu ở nhiều quốc gia; sách ở EU ở mức giảm; v.v.). Khi quảng cáo giá bao gồm/không gồm thuế, hãy tuân theo quy định pháp lý tại địa phương."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn chế độ", "text": "Cộng thuế vào giá chưa thuế, hoặc trích xuất thuế từ tổng đã bao gồm thuế." },
+      { "name": "Nhập số tiền", "text": "Giá chưa thuế ở chế độ 'cộng'; tổng ở chế độ 'trích'." },
+      { "name": "Nhập thuế suất", "text": "Thuế suất theo phần trăm (ví dụ 10 cho VAT Việt Nam, 20 cho VAT Anh, 8,875 cho NYC)." },
+      { "name": "Đọc bảng phân tích", "text": "Giá chưa thuế, số tiền thuế và tổng đều được hiển thị." }
+    ]
+  },
+  "faq": [
+    { "q": "Tại sao trích từ tổng là ÷ (1 + thuế suất) thay vì × thuế suất?", "a": "Vì tổng đã bao gồm thuế trên giá gốc. Nhân cho ra thuế trên tổng bao gồm, vốn nhiều hơn đúng. Chia cho (1 + thuế_suất/100) đảo ngược phép cộng đúng cách." },
+    { "q": "Tôi nên dùng thuế suất nào cho Việt Nam?", "a": "VAT tiêu chuẩn Việt Nam là 10% cho hầu hết hàng hóa, dịch vụ. Một số hàng hóa chịu 5% (y tế, giáo dục, nông nghiệp). Hàng xuất khẩu được áp 0%." },
+    { "q": "Thuế tiêu thụ Nhật Bản chỉ là 10% không?", "a": "Phần lớn là vậy — 10% là mức tiêu chuẩn. Thực phẩm và đồ uống (trừ rượu/ăn uống tại chỗ) được áp mức 8% giảm." },
+    { "q": "Giá hiển thị có bao gồm thuế không?", "a": "Phụ thuộc vào quốc gia. EU/Anh/Nhật thường quảng cáo giá đã bao gồm thuế. Mỹ thường hiển thị chưa thuế. Tại Việt Nam, giá niêm yết theo quy định phải bao gồm VAT. Dùng chế độ 'trích' cho giá đã bao gồm, chế độ 'cộng' cho giá chưa thuế." },
+    { "q": "Cái này có xử lý nhiều thuế suất không?", "a": "Không cùng lúc. Với thuế kết hợp (ví dụ thuế bang + thuế địa phương), cộng chúng lại trước và dùng thuế suất kết hợp." },
+    { "q": "Còn hóa đơn kinh doanh đã bao gồm VAT thì sao?", "a": "Phép tính giống nhau: 'trích xuất từ tổng' để xem VAT và giá chưa VAT. Hầu hết phần mềm kế toán làm điều này tự động." },
+    { "q": "Tiền tệ?", "a": "Phép tính độc lập với tiền tệ — dùng bất kỳ đơn vị nào nhất quán. Kết quả hiển thị số tương ứng với đầu vào của bạn." },
+    { "q": "Dữ liệu có được gửi đi đâu không?", "a": "Không. Tất cả tính toán chạy cục bộ trong trình duyệt của bạn." }
+  ]
+}

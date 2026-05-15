@@ -1,0 +1,71 @@
+{
+  "title": "Statistics Calculator (mean, median, std dev, quartiles)",
+  "shortDescription": "Numbers की list से mean, median, mode, standard deviation, variance, range, quartiles, और अधिक compute करें। Sample या population mode।",
+  "description": "Numbers की list paste करें (comma, space, या newline separated)। Calculator central tendency, dispersion, और quartiles सहित descriptive statistics एक view में return करता है।",
+  "metaDescription": "मुफ्त statistics calculator। Numbers paste करके instantly mean, median, mode, standard deviation, variance, range, और quartiles पाएँ। Sample/population modes।",
+  "keywords": ["statistics calculator", "mean median mode", "standard deviation calculator", "variance calculator", "quartile calculator"],
+  "empty": "Commas, spaces, या newlines से separated numbers दर्ज करें।",
+  "placeholder": "12, 15, 18, 22, 25, 25, 30, 35, 40",
+  "input": {
+    "values": "Numbers",
+    "sampleMode": "Sample standard deviation उपयोग करें (n−1)"
+  },
+  "result": {
+    "count": "Count (n)",
+    "sum": "Sum",
+    "mean": "Mean (average)",
+    "median": "Median",
+    "mode": "Mode",
+    "none": "(कोई repeated values नहीं)",
+    "range": "Range",
+    "min": "Minimum",
+    "max": "Maximum",
+    "q1": "Q1 (25th percentile)",
+    "q3": "Q3 (75th percentile)",
+    "stdev": "Standard deviation",
+    "variance": "Variance"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "प्रत्येक statistic क्या measure करती है",
+        "paragraphs": [
+          "Mean (average): count से divided sum। Outliers के प्रति sensitive — एक single huge value mean को typical value से far pull कर सकती है। Best जब data roughly symmetric हो।",
+          "Median: sorted होने पर middle value। Outliers के प्रति robust — कुछ extreme values इसे move नहीं करतीं। Income या house prices जैसे skewed data के लिए mean से better।",
+          "Mode: सबसे frequent value। Discrete data (survey responses, dice rolls) के लिए most useful। Continuous data के लिए, mode अक्सर meaningless है और हम 'none' report करते हैं यदि कोई value repeat नहीं होती।",
+          "Standard deviation: mean से typical distance। आपके data जैसी same units में। Normal distributions के लिए, values का two-thirds typically mean के ±1 standard deviation के भीतर fall करता है।"
+        ]
+      },
+      {
+        "heading": "Sample बनाम population",
+        "paragraphs": [
+          "यदि आपकी numbers entire population हैं (आपकी company के हर employee, एक month के हर दिन), population standard deviation उपयोग करें: n से divide करें। आप 'Sample standard deviation' uncheck करने पर इसे toggle कर सकते हैं।",
+          "यदि आपकी numbers larger population से drawn sample हैं (10,000 customers में से 100 का survey), sample standard deviation उपयोग करें: n−1 से divide करें (Bessel's correction)। यह default है।",
+          "n बढ़ने के साथ अंतर shrink होता है। n=100 के लिए दोनों 0.5% differ करते हैं; n=10 के लिए 5%।"
+        ]
+      },
+      {
+        "heading": "Quartiles और IQR",
+        "paragraphs": [
+          "Q1 (first quartile, 25th percentile) lower half का median है। Q3 (third quartile, 75th percentile) upper half का median है। Interquartile range (IQR = Q3 − Q1) आपके data के middle 50% describe करता है और outliers के प्रति robust है।",
+          "Box plots इन्हें उपयोग करते हैं: box Q1 से Q3 तक span करता है, median अंदर एक line के रूप में। Whiskers 1.5 × IQR के भीतर most extreme values तक extend होते हैं; उससे आगे कुछ भी outliers के रूप में plotted होता है।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Numbers paste करें", "text": "Commas, spaces, tabs, या newlines से separate करें।" },
+      { "name": "Sample या population mode चुनें", "text": "Sample (n−1) default है। यदि आपका data पूरी population है तो population पर switch करें।" },
+      { "name": "Results पढ़ें", "text": "सभी statistics type करते समय live update होती हैं।" }
+    ]
+  },
+  "faq": [
+    { "q": "मैं कितने numbers paste कर सकता हूँ?", "a": "Reasonably लगभग 1,00,000 तक। उससे आगे browser slow हो सकता है। Massive datasets के लिए programming tool उपयोग करें।" },
+    { "q": "यदि मेरे पास decimal numbers हों?", "a": "Decimal separator के रूप में period (.) उपयोग करें: 3.14, 3,14 नहीं।" },
+    { "q": "Mode 'none' क्यों है?", "a": "क्योंकि कोई value repeat नहीं होती। Mode केवल meaningful है जब कम से कम एक value दो या अधिक बार appear हो।" },
+    { "q": "मेरे class data के लिए sample या population उपयोग करूँ?", "a": "यदि आप अपनी class को school के sample के रूप में treat कर रहे हैं, sample (n−1) उपयोग करें। यदि आपकी class ही population है, population (n) उपयोग करें।" },
+    { "q": "Standard deviation और variance में क्या अंतर है?", "a": "Variance mean से average squared distance है; standard deviation उसका square root है। Standard deviation आपके data के same units में है, इसलिए हम दोनों report करते हैं।" },
+    { "q": "Q1 मेरे calculator से different क्यों है?", "a": "Different methods exist। हम median-of-lower-half method उपयोग करते हैं। अधिकांश introductory courses यही उपयोग करती हैं; spreadsheet QUARTILE() slightly differ हो सकती है।" },
+    { "q": "क्या मैं negative numbers उपयोग कर सकता हूँ?", "a": "हाँ। Negative numbers fully supported हैं।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। सभी calculations locally चलती हैं; कुछ भी server को नहीं भेजा जाता।" }
+  ]
+}

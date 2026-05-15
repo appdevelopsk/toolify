@@ -1,0 +1,112 @@
+{
+  "title": "IPv4 Alt Ağ Hesaplayıcı (CIDR, maske, ana bilgisayarlar)",
+  "shortDescription": "Herhangi bir IPv4 + CIDR'dan ağ adresi, yayın, ana bilgisayar aralığı, ağ maskesi, wildcard, toplam/kullanılabilir ana bilgisayarları hesaplayın. İkili gösterim ve sınıf tespiti dahil.",
+  "description": "İsteğe bağlı CIDR ile bir IPv4 adresi yazın (ör. 192.168.1.10/24). Ağ adresi, yayın, ilk/son kullanılabilir ana bilgisayar, toplam adres, ağ maskesi, wildcard, IP sınıfı, genel/özel durum ve ikili gösterim döndürür.",
+  "metaDescription": "Ücretsiz IPv4 alt ağ hesaplayıcısı. CIDR, ağ maskesi, wildcard, ağ/yayın, ana bilgisayar aralığı, toplam/kullanılabilir ana bilgisayarlar, genel/özel tespiti.",
+  "keywords": [
+    "alt ağ hesaplayıcı",
+    "cidr hesaplayıcı",
+    "ipv4 alt ağ",
+    "ağ maskesi hesaplayıcı",
+    "ip adresi hesaplayıcı"
+  ],
+  "input": {
+    "cidr": "IP adresi / CIDR",
+    "hint": "Biçim: 192.168.1.10/24 (CIDR isteğe bağlı, varsayılan /24)"
+  },
+  "result": {
+    "network": "Ağ",
+    "ip": "IP adresi",
+    "netmask": "Alt ağ maskesi",
+    "wildcard": "Wildcard maskesi",
+    "networkAddr": "Ağ adresi",
+    "broadcast": "Yayın adresi",
+    "hostMin": "İlk kullanılabilir ana bilgisayar",
+    "hostMax": "Son kullanılabilir ana bilgisayar",
+    "totalAddresses": "Toplam adres",
+    "usableHosts": "Kullanılabilir ana bilgisayarlar",
+    "ipClass": "IP sınıfı",
+    "private": "RFC 1918 özel",
+    "binary": "İkili"
+  },
+  "empty": "İsteğe bağlı /CIDR ile bir IPv4 adresi girin.",
+  "article": {
+    "sections": [
+      {
+        "heading": "CIDR notasyonu ne anlama gelir",
+        "paragraphs": [
+          "CIDR (Sınıfsız Etki Alanı Arası Yönlendirme), bir IP adresinden sonraki eğik çizgi + sayıdır — '192.168.1.10/24'. Sayı, adresin başındaki kaç bitin ağ bölümüne ait olduğudur (ana bilgisayar bölümüne karşı). /24, 24 bit ağ = 8 bit ana bilgisayar = 256 toplam adres, 254 kullanılabilir anlamına gelir.",
+          "Yaygın CIDR'lar: /32 tek ana bilgisayar, /30 bağlantı (4 adres, 2 kullanılabilir), /29 küçük alt ağ (8/6), /24 LAN (256/254), /16 büyük ağ (65k), /8 ISP ölçeğinde blok (16M). CIDR sayısı ne kadar küçükse ağ o kadar büyük."
+        ]
+      },
+      {
+        "heading": "Ağ, yayın ve kullanılabilir ana bilgisayarlar",
+        "paragraphs": [
+          "Ağ adresi: alt ağdaki ilk adres, tüm ana bilgisayar bitleri sıfır. Alt ağın kendisini tanımlamak için kullanılır; bir cihaza atanamaz.",
+          "Yayın adresi: son adres, tüm ana bilgisayar bitleri bir. Alt ağdaki her ana bilgisayara paket göndermek için kullanılır; atanamaz.",
+          "Kullanılabilir ana bilgisayarlar: toplam adresler eksi ağ ve yayın = 2^(32−CIDR) − 2. İstisna: /31 (noktadan noktaya bağlantılar) ve /32 (tek ana bilgisayar) RFC 3021'e göre tüm adresleri kullanılabilir olarak kabul eder."
+        ]
+      },
+      {
+        "heading": "Genel ve özel adresler",
+        "paragraphs": [
+          "RFC 1918, özel dahili ağlar için üç adres aralığı ayırır: 10.0.0.0/8 (16M adres), 172.16.0.0/12 (1M), 192.168.0.0/16 (65k). Çoğu ev ve ofis yönlendiricisi bunların bir dilimini kullanır (tipik olarak 192.168.1.0/24 veya 192.168.0.0/24).",
+          "Genel adresler küresel internette yönlendirilebilir ve bölgesel kayıt kuruluşları (ARIN, RIPE, APNIC vb.) tarafından atanır. Ücretlidir ve giderek azalmaktadır — IPv4 tükenmesi CIDR benimsenmesini ve IPv6 dağıtımını hızlandırmıştır.",
+          "Hesaplayıcı, bir adresin özel aralıklarda olup olmadığını tespit eder; ağ tasarımını doğrulamak veya özel adreslerin internete gönderilmediğini teyit etmek için kullanışlıdır."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Bir adres yazın",
+        "text": "/CIDR ile veya olmadan. CIDR atlanırsa /24 varsayılır."
+      },
+      {
+        "name": "Ağ bilgilerini okuyun",
+        "text": "Ağ adresi, yayın, ana bilgisayar aralığı, maske, wildcard."
+      },
+      {
+        "name": "Sınıf ve özel durumu kontrol edin",
+        "text": "Adres alanı türünün hızlı doğrulaması."
+      },
+      {
+        "name": "Hata ayıklama için ikili görünümü kullanın",
+        "text": "Bit düzeyindeki işlemler hakkında düşünmeniz veya alt ağları hizalamanız gerektiğinde yardımcı olur."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Kullanılabilir ana bilgisayarlar neden toplamdan 2 az?",
+      "a": "İlk adres (tüm ana bilgisayar bitleri 0) ağ tanımlayıcısıdır ve son (tümü 1) yayındır. Her ikisi de ayrılmıştır ve bir ana bilgisayara atanamaz."
+    },
+    {
+      "q": "/31 neden 0 yerine 2 kullanılabilir ana bilgisayara sahip?",
+      "a": "RFC 3021, /31 ağlarına noktadan noktaya bağlantılar için (ör. yönlendiriciler arasında) izin verir. Her iki adres de kullanılabilir; yayın ve ağ rezervasyonları geçerli değildir."
+    },
+    {
+      "q": "Ağ maskesi ile wildcard arasındaki fark nedir?",
+      "a": "Ağ maskesinin ağ bitlerinde 1'ler, ana bilgisayar bitlerinde 0'lar vardır (255.255.255.0). Wildcard tersidir (0.0.0.255) — Cisco ACL'leri ve OSPF alan tanımlarında kullanılır."
+    },
+    {
+      "q": "Bir ağı nasıl alt ağlara bölerim?",
+      "a": "Bir üst ağ alın ve CIDR'a bit ekleyerek daha küçük bloklara bölün. /24 → /25 iki alt ağa bölünür, /24 → /26 dörde vb. Departmanları ayırmak veya IoT/misafir ağlarını izole etmek için kullanışlıdır."
+    },
+    {
+      "q": "Sahip olabileceğim en küçük alt ağ nedir?",
+      "a": "/32 — tek IP adresi. /31 en küçük 'normal' alt ağdır (2 adres). /30, yönlendirici-yönlendirici bağlantıları için yaygındır (4/2 kullanılabilir)."
+    },
+    {
+      "q": "Bu IPv6 için çalışıyor mu?",
+      "a": "Henüz değil — yalnızca IPv4. IPv6 alt ağları kavramsal olarak benzerdir ama 128 bitlik adresler, onaltılık notasyon ve farklı gelenekler kullanır. Gelecekteki bir sürümde IPv6 ekleyebiliriz."
+    },
+    {
+      "q": "Mümkün olan en büyük tek alt ağ nedir?",
+      "a": "/0 tüm 4,3 milyar IPv4 adresini kapsar — tüm IPv4 adres alanı. /1 iki yarıya bölünür. /8, 16M'dir ve tarihsel olarak tek bir 'sınıf A' bloğuydu (ör. 10.0.0.0/8)."
+    },
+    {
+      "q": "Veriler tarayıcımdan çıkıyor mu?",
+      "a": "Hayır. Hesaplama yerel olarak çalışır; hiçbir şey sunucuya gönderilmez."
+    }
+  ]
+}

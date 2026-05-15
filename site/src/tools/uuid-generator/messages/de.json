@@ -1,0 +1,53 @@
+{
+  "title": "UUID-Generator (v4 zufällig, v7 zeitgeordnet)",
+  "shortDescription": "Kryptografisch zufällige UUID v4 oder zeitgeordnete UUID v7 generieren. Bis zu 100 auf einmal in Massen generieren mit Ein-Klick-Kopieren.",
+  "description": "Klicken, um eine oder mehrere UUIDs zu generieren. v4 für vollständig zufällige IDs und v7 für zeitlich sortierbare IDs verwenden, die natürlich nach Erstellungszeit geordnet sind — nützlich für Datenbankschlüssel.",
+  "metaDescription": "Kostenloser UUID-Generator für v4 (zufällig) und v7 (zeitgeordnet). Kryptografisch sicher, bis zu 100 in Massen generieren, einzeln oder alle kopieren.",
+  "keywords": ["UUID-Generator", "UUID v4", "UUID v7", "GUID-Generator", "zufällige UUID"],
+  "count": "Anzahl",
+  "regenerate": "Neu generieren",
+  "copy": "Kopieren",
+  "copyAll": "Alle kopieren",
+  "copied": "Kopiert",
+  "article": {
+    "sections": [
+      {
+        "heading": "Wann v4 vs. v7 verwenden",
+        "paragraphs": [
+          "UUID v4 ist rein zufällig — 122 zufällige Bits mit zwei Versions-/Variantenbits, was etwa 5,3 × 10³⁶ mögliche Werte ergibt. Zwei kollidieren praktisch garantiert nie. v4 überall verwenden, wo keine Reihenfolge benötigt wird, wie API-Anfrage-IDs oder anonyme Nutzerkennungen.",
+          "UUID v7 (RFC 9562, veröffentlicht 2024) beginnt mit einem 48-Bit-Unix-Millisekunden-Timestamp, gefolgt von 74 zufälligen Bits. Sie sortieren lexikografisch in Erstellungsreihenfolge, was für die Datenbankleistung enorm ist — Primärschlüssel, die nach Zeit sortieren, bedeuten, dass Einfügungen immer ans Ende des B-Baums gehen, keine zufälligen Seitenteilungen. v7 für neue Datenbank-Primärschlüssel verwenden."
+        ]
+      },
+      {
+        "heading": "Wie dieser Generator funktioniert",
+        "paragraphs": [
+          "Sowohl v4 als auch v7 verwenden crypto.getRandomValues — die sichere Zufallsquelle des Browsers, dieselbe Grundlage wie HTTPS und Passwort-Manager. v4 füllt 122 Bits zufällig. v7 teilt 48 Bits Timestamp + 74 Bits Zufall plus Versions-/Variantenmarkierungen gemäß RFC.",
+          "Die Generierung erfolgt im Browser. Die UUIDs werden weder gespeichert noch übertragen. Wenn 100 v4-UUIDs generiert werden, ist die Kollisionswahrscheinlichkeit astronomisch gering — weit unter der Wahrscheinlichkeit, dass kosmische Strahlen Bits in der CPU umkippen."
+        ]
+      },
+      {
+        "heading": "Häufige UUID-Fallstricke",
+        "paragraphs": [
+          "v4-UUIDs als Datenbank-Primärschlüssel beeinträchtigen die Leistung im Vergleich zu auto-inkrementierenden Integern, weil zufällige Werte bei Einfügungen B-Baum-Seitenteilungen verursachen. v7 behebt das — v7 verwenden, wenn UUID-Vorteile ohne Index-Schmerzen gewünscht sind.",
+          "UUIDs nicht für Nutzer sichtbar machen, wenn Unratbarkeit wichtig ist. v4-UUIDs haben 122 Bits Entropie und sind nicht zu erraten. v7-UUIDs verraten die Erstellungszeit, was für die meisten Anwendungsfälle in Ordnung, aber schlecht ist, wenn die Erstellungszeit sensibel ist.",
+          "UUIDs sind 36 Zeichen inkl. Bindestrichen (32 Hex + 4 Bindestriche). Sie benötigen 16 Bytes binär oder 36 Bytes Text. Für Spalten mit sehr hoher Kardinalität in Erwägung ziehen, sie als binären BLOB / nativen UUID-Typ statt VARCHAR(36) zu speichern."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "v4 oder v7 wählen", "text": "v4 für vollständig zufällig, v7 für zeitgeordnet." },
+      { "name": "Anzahl festlegen", "text": "1 bis 100. Standard ist 5." },
+      { "name": "Benötigtes kopieren", "text": "Neben einer UUID auf ‚Kopieren' klicken oder ‚Alle kopieren', um alle als zeilenseparierte Liste zu erhalten." }
+    ]
+  },
+  "faq": [
+    { "q": "Sind diese kryptografisch sicher?", "a": "Ja. Sowohl v4 als auch v7 verwenden crypto.getRandomValues, die sichere Zufalls-API. v4 hat 122 Bits Entropie; v7 hat 74." },
+    { "q": "Warum ist v7 besser für Datenbankschlüssel?", "a": "Weil v7-UUIDs nach Erstellungszeit sortieren, gehen Einfügungen immer ans Ende des B-Baum-Index statt an zufällige Positionen. Das vermeidet Seitenteilungen und verbessert den Schreibdurchsatz erheblich." },
+    { "q": "Können zwei UUIDs kollidieren?", "a": "Theoretisch ja. Mit v4 müssten ~10¹⁸ generiert werden, bevor das 50%-Kollisionsrisiko eintritt. Mit v7 reduziert die Zeitkomponente das auf etwa 2⁷⁴ innerhalb derselben Millisekunde — immer noch praktisch unmöglich." },
+    { "q": "Sind UUIDs dasselbe wie GUIDs?", "a": "Ja. GUID ist Microsofts Name für UUID. Gleiche Format, gleiche Eindeutigkeitsgarantien." },
+    { "q": "Was ist das Format?", "a": "8-4-4-4-12 Hex-Stellen mit Bindestrichen. 32 Hex-Zeichen gesamt + 4 Bindestriche = 36 Zeichen. Kleinbuchstaben per RFC-Konvention." },
+    { "q": "Soll ich v1 stattdessen verwenden?", "a": "v1 enthält die MAC-Adresse, was ein Datenschutzleck ist. v7 löst v1 für zeitgeordnete IDs ab, ohne Hardware-Kennungen preiszugeben." },
+    { "q": "Kann ich v4 in URL-sicherem Base64 generieren?", "a": "Nicht direkt hier. Die 16 Bytes der UUID als URL-sicheres Base64 kodieren, um eine 22-Zeichen-ID zu erhalten. Nützlich für kürzere URLs." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Die Generierung erfolgt vollständig im Browser." }
+  ]
+}

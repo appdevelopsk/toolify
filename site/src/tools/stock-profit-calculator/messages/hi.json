@@ -1,0 +1,72 @@
+{
+  "title": "Stock Profit Calculator (dividends + taxes के साथ)",
+  "shortDescription": "Buy/sell commissions, received dividends, और capital-gains tax सहित stock trade profit calculate करें। Net after-tax profit और ROI return करता है।",
+  "description": "Shares, buy/sell prices, commissions, received dividends, और capital-gains tax rate दर्ज करें। Calculator total gain, tax owed, और after-tax net return करता है।",
+  "metaDescription": "Dividend और tax support के साथ मुफ्त stock profit calculator। किसी भी trade के लिए capital gain, dividend income, taxes owed, और after-tax ROI compute करें।",
+  "keywords": ["stock profit calculator", "stock trade profit", "capital gains calculator", "stock ROI", "after tax profit"],
+  "empty": "Shares, buy और sell prices, dividends, और tax rate दर्ज करें।",
+  "input": {
+    "shares": "Shares",
+    "buyPrice": "Buy price (per share)",
+    "sellPrice": "Sell price (per share)",
+    "buyCommission": "Buy commission",
+    "sellCommission": "Sell commission",
+    "dividends": "Received dividends",
+    "taxPct": "Capital gains tax %"
+  },
+  "result": {
+    "afterTax": "After-tax profit",
+    "roi": "ROI (after tax)",
+    "cost": "Total cost",
+    "gross": "Gross proceeds",
+    "capitalGain": "Capital gain",
+    "dividendsLabel": "Dividends",
+    "totalGain": "Total gain (pre-tax)",
+    "totalTax": "Tax owed"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Stock-trade profit में क्या जाता है",
+        "paragraphs": [
+          "Stock profit के तीन main components हैं: capital gain (sell price minus buy price, times shares, minus commissions), आपके holding period के दौरान received dividends, और combined gain पर owed tax। अधिकांश calculators केवल इनमें से एक compute करते हैं — हम accurate after-tax result के लिए तीनों compute करते हैं।",
+          "Commissions: India में Zerodha, Upstox, Angel One जैसे discount brokers बहुत low या flat commissions charge करते हैं। NSE/BSE transactions पर STT (Securities Transaction Tax), exchange turnover charges, और SEBI fees भी applicable हैं।"
+        ]
+      },
+      {
+        "heading": "Tax rate: long बनाम short term",
+        "paragraphs": [
+          "India: Short-term capital gains (STCG, held < 12 months for equity) पर 20% tax है (FY2024-25 से 20%, previously 15%)। Long-term capital gains (LTCG, held ≥ 12 months for equity) पर ₹1 lakh से अधिक gains पर 12.5% tax है बिना indexation के।",
+          "Dividends: India में dividends shareholders के हाथों में income के रूप में taxable हैं (TDS after threshold)।",
+          "EU और UK rates अलग-अलग हैं। Calculator सिर्फ जो rate आप enter करें वह apply करता है।"
+        ]
+      },
+      {
+        "heading": "यह calculator क्या model नहीं करता",
+        "paragraphs": [
+          "Bid-ask spread costs: liquid large-caps के लिए negligible; illiquid small-caps के लिए 0.5-2% हो सकता है। Realistic execution prices उपयोग करें।",
+          "Currency conversion: यदि आपने USD stocks INR से खरीदे, आपका return USD/INR movements से भी affected है। हम FX compute नहीं करते।",
+          "STT और other charges: India में Securities Transaction Tax, stamp duty, और SEBI charges profit को affect करते हैं। इन्हें commission fields में manually include करें।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Shares दर्ज करें", "text": "खरीदे गए shares की संख्या।" },
+      { "name": "Buy और sell prices दर्ज करें", "text": "प्रत्येक transaction पर per-share prices।" },
+      { "name": "Commissions दर्ज करें", "text": "Buy और sell पर per-trade fees। STT, brokerage, exchange charges include करें।" },
+      { "name": "Received dividends दर्ज करें", "text": "Holding period के दौरान paid total dividends।" },
+      { "name": "Tax rate दर्ज करें", "text": "आपकी applicable capital-gains rate। India STCG: 20%। India LTCG: 12.5% (₹1L threshold के बाद)।" },
+      { "name": "Breakdown पढ़ें", "text": "After-tax profit, ROI, capital gain, dividend income, total tax।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या यह ETFs और mutual funds के लिए काम करता है?", "a": "हाँ — same math। Funds dividends और capital gains distribute कर सकते हैं; दोनों amounts dividends field में enter करें।" },
+    { "q": "Reinvested dividends (DRIP) के बारे में क्या?", "a": "प्रत्येक reinvestment अधिकांश jurisdictions में new tax lot है। यह calculator single buy/sell assume करता है।" },
+    { "q": "Calculator losses पर भी tax apply क्यों करता है?", "a": "यह नहीं करता — हम tax केवल तब apply करते हैं जब capital gain या dividends positive हों। Loss treatment manual handling पर छोड़ते हैं।" },
+    { "q": "India में LTCG exemption क्या है?", "a": "Listed equity पर LTCG के लिए, first ₹1 lakh per financial year tax-free है। उसके बाद 12.5% LTCG tax (FY2024-25 से) applicable है।" },
+    { "q": "क्या मुझे broker subscription fees include करनी चाहिए?", "a": "Subscription/account fees usually specific trade को नहीं बल्कि total return से deductible हैं। After-tax profit से subtract करें यदि आपका broker charge करता है।" },
+    { "q": "Crypto calculator से यह कैसे different है?", "a": "Stocks dividends pay करते हैं; crypto generally नहीं। Stocks usually flat commission उपयोग करते हैं; crypto fee % उपयोग करता है। Math similar है लेकिन inputs differ करते हैं।" },
+    { "q": "क्या ROI negative हो सकता है?", "a": "हाँ। यदि sell price + dividends < buy price + commissions + tax, ROI negative है।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Calculation locally चलती है; कुछ भी server को नहीं भेजा जाता।" }
+  ]
+}

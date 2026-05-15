@@ -1,0 +1,54 @@
+{
+  "title": "Chuyển đổi múi giờ (so sánh thời gian nhiều khu vực)",
+  "shortDescription": "Chuyển đổi một thời điểm sang nhiều múi giờ cùng lúc. Thêm hoặc xóa múi giờ; lý tưởng để lên lịch họp quốc tế.",
+  "description": "Chọn múi giờ nguồn và ngày/giờ, sau đó thêm bao nhiêu múi giờ đích tùy cần. Mỗi đích hiển thị giờ địa phương tương đương với tên viết tắt múi giờ.",
+  "metaDescription": "Công cụ chuyển đổi múi giờ miễn phí. Xem một thời điểm ở nhiều thành phố cùng lúc. Hữu ích cho lên lịch họp, du lịch và phát sóng qua nhiều múi giờ.",
+  "keywords": ["chuyển đổi múi giờ", "đồng hồ thế giới", "giờ họp nhiều khu vực", "chuyển đổi UTC", "chênh lệch múi giờ"],
+  "empty": "Thêm múi giờ để xem tương đương.",
+  "input": { "sourceTz": "Múi giờ nguồn", "dt": "Ngày & giờ" },
+  "now": "Hiện tại",
+  "addTz": "Thêm múi giờ",
+  "remove": "Xóa",
+  "article": {
+    "sections": [
+      {
+        "heading": "Chuyển đổi múi giờ hoạt động như thế nào",
+        "paragraphs": [
+          "Mỗi thời điểm là một điểm duy nhất — thứ Ba 9 giờ sáng ở Tokyo là cùng thời điểm với thứ Hai 5 giờ chiều ở San Francisco. Chuyển đổi múi giờ chỉ đặt lại nhãn cho thời điểm đó bằng giờ địa phương của mỗi khu vực. Giờ mùa hè (DST) làm phức tạp thêm — Mỹ chuyển sang EDT (UTC-4) từ tháng 3 đến tháng 11. Browser Intl.DateTimeFormat xử lý đúng khi bạn dùng tên IANA như 'America/New_York'.",
+          "Chúng tôi dùng tên IANA (như 'Asia/Tokyo' hay 'Asia/Ho_Chi_Minh') vì chúng không mơ hồ và tuân theo quy tắc DST lịch sử của từng địa điểm. Viết tắt như 'ICT' hay 'GMT' có thể trùng nhau; tên IANA thì không."
+        ]
+      },
+      {
+        "heading": "Những cạm bẫy phổ biến khi lên lịch",
+        "paragraphs": [
+          "Chuyển đổi DST: 'thứ Ba tuần sau lúc 9 giờ sáng EST' mơ hồ vào tháng 3 hoặc tháng 11 vì quy tắc thay đổi. Luôn nói 'giờ New York' hoặc gửi lời mời lịch — Outlook, Google Calendar và Slack đều xử lý chuyển đổi đúng khi cả hai bên chỉ định múi giờ.",
+          "Độ lệch nửa tiếng: Ấn Độ là UTC+5:30, Newfoundland là UTC-3:30, một số vùng Úc là UTC+9:30 hoặc +10:30. Nếu tính giờ họp theo 'giờ nguyên', bạn sẽ sai 30 phút cho các khu vực này.",
+          "Nhảy qua ngày: Tokyo sang San Francisco là ngày hôm sau so với ngày hôm nay tùy chiều. Lịch hiển thị đúng, nhưng phán đoán của con người có thể sai."
+        ]
+      },
+      {
+        "heading": "Các trường hợp sử dụng hữu ích",
+        "paragraphs": [
+          "Standup quốc tế: Chọn múi giờ nguồn (thường UTC) và các múi giờ của team. Đặt giờ họp và xác minh không ai phải tham gia lúc 3 giờ sáng.",
+          "Ra mắt sản phẩm: Chọn múi giờ ra mắt và thêm các thị trường lớn. Hữu ích để xác minh email marketing đến vào giờ hợp lý ở địa phương.",
+          "Lập kế hoạch du lịch: Chọn múi giờ khởi hành và thêm múi giờ điểm đến để tìm giờ đến địa phương mà không cần tính tay."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Đặt múi giờ nguồn", "text": "Chọn múi giờ nguồn (mặc định là múi giờ trình duyệt) và ngày/giờ cần chuyển đổi." },
+      { "name": "Thêm múi giờ đích", "text": "Dùng danh sách thả xuống để thêm bao nhiêu tùy cần." },
+      { "name": "Đọc kết quả tương đương", "text": "Mỗi múi giờ đích hiển thị cùng thời điểm theo giờ địa phương của nó." }
+    ]
+  },
+  "faq": [
+    { "q": "Có xử lý DST không?", "a": "Có — dữ liệu múi giờ IANA bao gồm quy tắc DST cho từng địa điểm. Intl API của trình duyệt xử lý chuyển đổi quá khứ, hiện tại và (khi đã biết) tương lai." },
+    { "q": "Sự khác biệt giữa EST và ET là gì?", "a": "EST cố định UTC-5. ET (Eastern Time) là EST mùa đông và EDT mùa hè — theo dõi DST. Chúng tôi dùng tên IANA như 'America/New_York' tự động chọn EST hay EDT dựa theo ngày." },
+    { "q": "Tôi có thể chuyển đổi giữa hai thành phố cụ thể không?", "a": "Có. Đặt một là nguồn và thêm cái kia là đích. Giờ hiển thị là thời điểm nguồn thể hiện theo đồng hồ địa phương của đích." },
+    { "q": "Tại sao một số múi giờ có độ lệch :30?", "a": "Quyết định lịch sử. Ấn Độ, Iran, Afghanistan, Newfoundland, một số vùng Úc đều dùng độ lệch 30 hoặc 45 phút so với UTC. Máy tính xử lý đúng các trường hợp này." },
+    { "q": "Cái này có hoạt động cho ngày trong quá khứ không?", "a": "Có, kể cả ranh giới DST có thể khác nhau theo lịch sử. Dữ liệu IANA bao gồm hầu hết lịch sử địa điểm từ năm 1970 trở đi." },
+    { "q": "Còn Nam Cực hay Hawaii thì sao?", "a": "Danh sách IANA bao gồm chúng. Thêm 'Pacific/Honolulu' hay 'Antarctica/McMurdo' từ danh sách thả xuống nếu cần." },
+    { "q": "Dữ liệu có được gửi đi không?", "a": "Không. Intl API của trình duyệt xử lý mọi thứ cục bộ." },
+    { "q": "Tôi có thể lưu danh sách múi giờ không?", "a": "Chưa. Tải lại trang sẽ đặt lại danh sách. Chúng tôi có thể thêm lưu vào local storage sau." }
+  ]
+}

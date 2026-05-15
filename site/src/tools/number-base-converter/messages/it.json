@@ -1,0 +1,94 @@
+{
+  "title": "Convertitore di Basi Numeriche (binario, ottale, decimale",
+  "shortDescription": "Converti numeri tra binario, ottale, decimale ed esadecimale. Valida l'input per la base scelta e mostra tutte e quattro le rappresentazioni.",
+  "description": "Scegli una base di partenza, digita un valore e visualizza gli equivalenti in binario, ottale, decimale ed esadecimale. Utile per programmazione, networking ed elettronica.",
+  "metaDescription": "Convertitore di basi numeriche gratuito per binario, ottale, decimale ed esadecimale. Valida l'input per base, mostra tutte e quattro le rappresentazioni fianco a fianco.",
+  "keywords": [
+    "convertitore basi numeriche",
+    "binario in decimale",
+    "decimale in esadecimale",
+    "esadecimale in binario",
+    "base 2 base 16"
+  ],
+  "input": {
+    "value": "Valore",
+    "from": "Base di partenza"
+  },
+  "error": {
+    "invalidForBase": "L'input contiene caratteri non validi per la base selezionata."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Come funzionano le basi numeriche posizionali",
+        "paragraphs": [
+          "Ogni base usa la notazione posizionale: la cifra più a destra è base⁰ = 1, la successiva è base¹, poi base², e così via. In decimale, '255' significa 2×100 + 5×10 + 5×1. In binario, '11111111' significa 1×128 + 1×64 + ... + 1×1 = 255. Lo stesso numero, basi diverse.",
+          "L'esadecimale usa 0-9 e A-F per contenere 16 valori per cifra. 'FF' = 15×16 + 15×1 = 255. L'ottale usa 0-7 (3 bit per cifra), e il binario usa solo 0 e 1. La conversione è meccanica — converti in decimale poi nella base target — e il calcolatore lo fa per te per qualsiasi intero non negativo."
+        ]
+      },
+      {
+        "heading": "Quando usi ogni base",
+        "paragraphs": [
+          "Binario (base 2): lavoro informatico a basso livello — campi di bit, maschere, firmware embedded. Lettura di layout di registri, debug a livello hardware.",
+          "Ottale (base 8): permessi di file Unix (chmod 755 = rwxr-xr-x), alcuni formati di file legacy. Meno comune oggi.",
+          "Decimale (base 10): tutto ciò che gli esseri umani contano. Il default per l'aritmetica normale.",
+          "Esadecimale (base 16): il più comune nel software — colori (#FF6B35), indirizzi di memoria (0x7fff...), indirizzi MAC, rappresentazioni byte di dati binari, hash codificati."
+        ]
+      },
+      {
+        "heading": "Riferimento rapido",
+        "paragraphs": [
+          "1 byte = 8 bit = 2 cifre hex = 256 valori (0-255). 1 cifra hex = 4 bit = 16 valori. 1 cifra ottale = 3 bit. Hex 'FF' = decimale 255 = binario 11111111. Hex '100' = decimale 256. Hex 'FFFF' = decimale 65535 (max per unsigned a 16 bit). Hex 'FFFFFFFF' = decimale 4294967295 (max per unsigned a 32 bit)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Scegli la base di partenza",
+        "text": "Scegli binario, ottale, decimale o esadecimale."
+      },
+      {
+        "name": "Inserisci il tuo valore",
+        "text": "Usa solo cifre valide per quella base. L'esadecimale non è case-sensitive."
+      },
+      {
+        "name": "Leggi tutte e quattro le basi",
+        "text": "La conversione in ognuna delle altre tre appare accanto."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "L'esadecimale distingue maiuscole e minuscole?",
+      "a": "Sia 'ff' che 'FF' si decodificano nello stesso valore. Per convenzione mostriamo le maiuscole."
+    },
+    {
+      "q": "Posso inserire numeri negativi?",
+      "a": "Sì, usa il prefisso '-'. Il calcolatore visualizza la rappresentazione di ogni base con il segno preservato (es. -255 → -FF in hex)."
+    },
+    {
+      "q": "Qual è il valore massimo?",
+      "a": "Limitato dall'intervallo degli interi sicuri di JavaScript (circa 2⁵³). Per valori più grandi, usa strumenti con supporto BigInt."
+    },
+    {
+      "q": "Come leggo il prefisso 0x o 0b?",
+      "a": "Rimuovi il prefisso prima di inserire. '0xFF' → solo 'FF' con hex selezionato. '0b1010' → '1010' con binario selezionato."
+    },
+    {
+      "q": "Perché Unix chmod usa l'ottale?",
+      "a": "I permessi hanno tre gruppi (proprietario/gruppo/altri) di tre bit ciascuno. I 3 bit di ogni gruppo si mappano chiaramente su una cifra ottale, quindi 755 = 111 101 101 = rwx r-x r-x."
+    },
+    {
+      "q": "Posso convertire valori frazionari?",
+      "a": "Non ancora — sono supportati solo gli interi non negativi. Potremmo aggiungere il supporto per i fixed-point in seguito."
+    },
+    {
+      "q": "Cosa succede se vedo 'non valido per la base'?",
+      "a": "Hai digitato un carattere non consentito nella base scelta. L'esadecimale ammette 0-9 e A-F; il binario solo 0 e 1; ecc."
+    },
+    {
+      "q": "I dati vengono inviati da qualche parte?",
+      "a": "No. La conversione viene eseguita localmente."
+    }
+  ]
+}

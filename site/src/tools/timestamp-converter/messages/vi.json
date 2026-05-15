@@ -1,0 +1,72 @@
+{
+  "title": "Chuyển đổi Unix Timestamp (giây, ms, ISO, giờ địa phương)",
+  "shortDescription": "Chuyển đổi giữa Unix timestamp (giây hoặc mili giây) và ngày tháng dễ đọc. Hiển thị ISO 8601, giờ địa phương và thời gian tương đối.",
+  "description": "Nhập Unix timestamp để xem ngày ở nhiều định dạng, hoặc chọn ngày để lấy giá trị Unix. Hiển thị timestamp hiện tại trực tiếp để tham khảo.",
+  "metaDescription": "Công cụ chuyển đổi Unix timestamp miễn phí. Chuyển giây hoặc mili giây sang ngày ISO/địa phương và ngược lại. Kèm timestamp hiện tại và hiển thị thời gian tương đối.",
+  "keywords": ["Unix timestamp", "epoch converter", "timestamp sang ngày", "ngày sang timestamp", "ISO 8601"],
+  "empty": "Nhập timestamp hoặc ngày để chuyển đổi.",
+  "input": { "timestamp": "Unix timestamp", "date": "Ngày & giờ" },
+  "now": "Hiện tại",
+  "currentTimestamp": "Hiện tại",
+  "mode": { "fromTimestamp": "Timestamp → Ngày", "fromDate": "Ngày → Timestamp" },
+  "unit": { "seconds": "Giây", "milliseconds": "Mili giây" },
+  "result": {
+    "timestampSec": "Timestamp (giây)",
+    "timestampMs": "Timestamp (ms)",
+    "iso": "ISO 8601 (UTC)",
+    "local": "Giờ địa phương",
+    "locale": "Định dạng địa phương",
+    "relative": "Tương đối"
+  },
+  "relative": {
+    "justNow": "ngay bây giờ",
+    "justPast": "vừa xong",
+    "minutesFromNow": "sau {n} phút",
+    "minutesAgo": "{n} phút trước",
+    "hoursFromNow": "sau {n} giờ",
+    "hoursAgo": "{n} giờ trước",
+    "daysFromNow": "sau {n} ngày",
+    "daysAgo": "{n} ngày trước"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Unix timestamp là gì",
+        "paragraphs": [
+          "Unix timestamp là số giây (hoặc mili giây trong JavaScript) kể từ epoch Unix — nửa đêm UTC ngày 1 tháng 1 năm 1970. Đây là một số duy nhất mã hóa một thời điểm mà không có sự mơ hồ. API, cơ sở dữ liệu và file log dùng nó ở khắp nơi vì so sánh timestamp chỉ là phép tính số nguyên.",
+          "JavaScript, Python và nhiều hệ thống khác dùng mili giây (Date.now() trả về ms trong JS). C, Go và Unix shell dùng giây (date +%s). Khi chuyển đổi, luôn kiểm tra đơn vị timestamp của bạn — giá trị 1,7 nghìn tỷ là mili giây; 1,7 tỷ là giây."
+        ]
+      },
+      {
+        "heading": "ISO 8601 so với định dạng địa phương",
+        "paragraphs": [
+          "ISO 8601 (ví dụ 2026-05-06T14:30:00Z) là định dạng trao đổi phổ quát. Múi giờ rõ ràng ('Z' = UTC, hoặc +07:00 cho Việt Nam), và sắp xếp đúng dưới dạng văn bản. Luôn dùng cho lưu trữ và API.",
+          "Định dạng địa phương (ví dụ '6 tháng 5, 2026, 14:30:00') dùng để hiển thị. Phụ thuộc vào ngôn ngữ và khu vực người dùng. Máy tính hiển thị cả hai — sao chép ISO cho code, sao chép địa phương cho email hoặc báo cáo."
+        ]
+      },
+      {
+        "heading": "Vấn đề năm 2038",
+        "paragraphs": [
+          "Unix timestamp số nguyên có dấu 32-bit tràn tại 2³¹ − 1 giây = 2.147.483.647 = 03:14:07 UTC ngày 19 tháng 1 năm 2038. Các hệ thống dùng int32 sẽ cuộn về giá trị âm, phá vỡ tính toán ngày tháng. Các hệ thống hiện đại dùng timestamp 64-bit an toàn cho ~292 tỷ năm.",
+          "Nếu bạn đang làm việc với hệ thống nhúng, schema cơ sở dữ liệu cũ hoặc code C cũ, hãy kiểm tra kích thước time_t. Di chuyển sang số nguyên 64-bit là cách sửa; lưu timestamp dưới dạng chuỗi (ISO) tránh hoàn toàn vấn đề."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn chiều chuyển đổi", "text": "Timestamp → Ngày hoặc Ngày → Timestamp." },
+      { "name": "Chọn đơn vị", "text": "Giây (chuẩn Unix) hoặc mili giây (JavaScript)." },
+      { "name": "Nhập hoặc chọn", "text": "Gõ số, hoặc dùng nút 'Hiện tại' cho thời điểm hiện tại." },
+      { "name": "Đọc tất cả định dạng", "text": "Giây, ms, ISO, địa phương và tương đối đều hiển thị cùng lúc." }
+    ]
+  },
+  "faq": [
+    { "q": "Tại sao timestamp đôi khi có 13 chữ số?", "a": "Đó là mili giây. JavaScript và nhiều API web dùng ms. Chia cho 1000 để lấy giây." },
+    { "q": "Unix timestamp thuộc múi giờ nào?", "a": "Không có — đó là giây UTC kể từ epoch. Chuyển đổi sang ngày địa phương dùng múi giờ ứng dụng hoặc người dùng của bạn. Việt Nam là UTC+7." },
+    { "q": "Chuyển đổi có chính xác không?", "a": "Có. Chúng tôi dùng Date API của trình duyệt, sử dụng đồng hồ hệ thống. Độ chính xác tới mili giây." },
+    { "q": "ISO 8601 là gì?", "a": "Định dạng ngày-giờ tiêu chuẩn quốc tế: YYYY-MM-DDTHH:MM:SS+TZ. Sắp xếp được dưới dạng văn bản, không mơ hồ về múi giờ." },
+    { "q": "Tại sao 'giờ địa phương' không khớp đồng hồ hệ thống?", "a": "Nó dùng múi giờ trình duyệt báo cáo. Nếu đồng hồ hệ thống sai hoặc múi giờ trình duyệt khác, kết quả sẽ khác." },
+    { "q": "Timestamp âm có hợp lệ không?", "a": "Có — chúng đại diện cho ngày trước năm 1970. Hầu hết ngôn ngữ lập trình xử lý được; hãy cẩn thận với tương thích cơ sở dữ liệu." },
+    { "q": "Tôi có thể chuyển đổi hàng loạt không?", "a": "Chưa. Với chuyển đổi đơn lẻ, công cụ này là đủ; với hàng nghìn giá trị, hãy dùng script." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Chuyển đổi chạy cục bộ." }
+  ]
+}

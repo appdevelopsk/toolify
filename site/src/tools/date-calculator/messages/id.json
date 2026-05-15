@@ -1,0 +1,117 @@
+{
+  "title": "Kalkulator Tanggal (tambah/kurangi hari, atau selisih antar tanggal)",
+  "shortDescription": "Tambah atau kurangi tahun/bulan/hari dari suatu tanggal, atau temukan selisih tepat antara dua tanggal termasuk hari kerja.",
+  "description": "Dua mode: 'tambah atau kurangi' untuk menghitung tanggal masa depan atau masa lalu, atau 'antara' untuk menemukan selisih dalam tahun, bulan, hari, minggu, dan hari kerja.",
+  "metaDescription": "Kalkulator tanggal gratis. Tambah atau kurangi tahun/bulan/hari, atau temukan selisih antara dua tanggal dengan penghitungan hari kerja.",
+  "keywords": [
+    "kalkulator tanggal",
+    "tambah hari ke tanggal",
+    "selisih tanggal",
+    "hari kerja",
+    "hari antara tanggal"
+  ],
+  "empty": "Pilih tanggal untuk dihitung.",
+  "mode": {
+    "addSubtract": "Tambah atau kurangi",
+    "between": "Selisih antara tanggal"
+  },
+  "op": {
+    "add": "Tambah",
+    "subtract": "Kurangi"
+  },
+  "input": {
+    "start": "Tanggal mulai",
+    "end": "Tanggal akhir",
+    "years": "Tahun",
+    "months": "Bulan",
+    "days": "Hari"
+  },
+  "result": {
+    "resultDate": "Tanggal hasil",
+    "difference": "Selisih",
+    "ymd": "{y} tahun, {m} bulan, {d} hari",
+    "totalDays": "Total hari",
+    "totalWeeks": "Total minggu",
+    "totalMonths": "Total bulan",
+    "businessDays": "Hari kerja (Sen-Jum)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Yang dihitung",
+        "paragraphs": [
+          "Mode tambah/kurangi: mengambil tanggal, menambahkan atau mengurangi sejumlah tahun, bulan, dan hari, dan memberikan tanggal kalender yang dihasilkan. Tahun dan bulan menggunakan aritmetika kalender (sehingga menambahkan 1 bulan ke 31 Jan memberikan 28 Feb atau 29 Feb tergantung tahun kabisat, bukan 3 Mar). Hari bersifat tepat — menambahkan 30 hari selalu maju tepat 30 hari kalender.",
+          "Mode antara: mengambil dua tanggal dan memberikan selisih dalam tahun/bulan/hari plus total dalam hari, minggu, bulan, dan hari kerja (Senin hingga Jumat, tidak ada hari libur). Bentuk T/B/H menggunakan logika pinjaman yang sama dengan kalkulator umur kami — selisih adalah mis. '2 tahun, 5 bulan, 3 hari', bukan tahun desimal."
+        ]
+      },
+      {
+        "heading": "Mengapa hari kerja tidak termasuk hari libur",
+        "paragraphs": [
+          "Kami menghitung Senin hingga Jumat sebagai hari kerja dan tidak termasuk Sabtu dan Minggu. Hari libur umum bervariasi berdasarkan negara, wilayah, dan tahun, sehingga kami tidak menguranginya secara otomatis. Untuk pekerjaan hari kerja Indonesia, kurangi sekitar 16-20 hari libur nasional per tahun dari hasilnya.",
+          "Jika hari libur penting untuk perhitungan Anda (pelacakan tenggat waktu, negosiasi kontrak), lakukan penghitungan kalender di sini, lalu periksa daftar hari libur negara Anda secara manual."
+        ]
+      },
+      {
+        "heading": "Kasus penggunaan umum",
+        "paragraphs": [
+          "Tenggat waktu proyek: 'ini jatuh tempo 90 hari setelah kickoff'. Tambahkan 90 hari ke tanggal mulai.",
+          "Ketentuan kontrak: hitung hari antara awal dan akhir kontrak. Cocokkan dengan bahasa kontrak Anda untuk penagihan.",
+          "Perencanaan perjalanan: berapa hari kerja antara berangkat dan kembali? Berguna untuk kalender out-of-office dan laporan pengeluaran.",
+          "Tonggak pribadi: hari jadi, hitungan sobriety, waktu sejak peristiwa besar dalam hidup."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Pilih mode",
+        "text": "Tambah/kurangi untuk berpindah dari satu tanggal, atau antara untuk menemukan selisih."
+      },
+      {
+        "name": "Masukkan tanggal mulai",
+        "text": "Gunakan pemilih tanggal."
+      },
+      {
+        "name": "Tambahkan offset atau tanggal akhir",
+        "text": "Tahun/bulan/hari untuk mode tambah, atau tanggal akhir untuk mode antara."
+      },
+      {
+        "name": "Baca hasilnya",
+        "text": "Tanggal hasil atau rincian selisih lengkap."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apa yang terjadi jika saya menambahkan 1 bulan ke 31 Jan?",
+      "a": "Anda mendapatkan 28 Feb (atau 29 Feb di tahun kabisat). Aritmetika kalender terpotong ke hari terakhir bulan target ketika hari sumber tidak ada."
+    },
+    {
+      "q": "Apakah hari libur dikurangi dari hari kerja?",
+      "a": "Tidak — hanya akhir pekan. Kurangi hari libur khusus negara secara manual berdasarkan kalender yurisdiksi Anda."
+    },
+    {
+      "q": "Apakah ini menangani aritmetika tanggal negatif?",
+      "a": "Ya melalui mode 'kurangi'. Secara internal, pengurangan hanyalah penambahan delta negatif. Mode 'selisih antara' selalu mengembalikan nilai positif terlepas dari urutan."
+    },
+    {
+      "q": "Zona waktu mana yang digunakan?",
+      "a": "Zona waktu lokal browser Anda. Tanggal diinterpretasikan sebagai tengah malam lokal. Perhitungan lintas-zona-waktu mungkin memerlukan penyesuaian."
+    },
+    {
+      "q": "Bisakah saya menambahkan jam dan menit?",
+      "a": "Belum — hanya granularitas tanggal. Gunakan alat timestamp terpisah untuk matematika tingkat jam."
+    },
+    {
+      "q": "Apa selisih terbesar yang ditangani?",
+      "a": "Ratusan tahun dengan nyaman. Date JavaScript mendukung ±100 juta hari dari 1970, jadi ini adalah batas praktisnya."
+    },
+    {
+      "q": "Mengapa menghitung kedua titik akhir secara berbeda?",
+      "a": "Total hari adalah jumlah malam antara dua tanggal. Dua hari berturut-turut memiliki selisih 1 hari. Penghitungan hari kerja berjalan melalui setiap hari kalender di antaranya."
+    },
+    {
+      "q": "Apakah data meninggalkan browser saya?",
+      "a": "Tidak. Semua matematika berjalan secara lokal."
+    }
+  ]
+}

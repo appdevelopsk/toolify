@@ -1,0 +1,56 @@
+{
+  "title": "Kalkulator Pecahan (tambah, kurangi, kali, bagi)",
+  "shortDescription": "Tambah, kurangi, kali, atau bagi dua pecahan. Mengembalikan bentuk sederhana, setara desimal, dan representasi bilangan campuran.",
+  "description": "Masukkan dua pecahan (pembilang di atas penyebut) dan operasi. Kalkulator mengembalikan hasilnya dalam bentuk tereduksi, beserta nilai desimal dan bentuk bilangan campuran bila berlaku. Menggunakan BigInt untuk hasil ukuran arbitrer yang tepat.",
+  "metaDescription": "Kalkulator pecahan gratis. Tambah, kurangi, kali, bagi pecahan. Hasil sederhana, setara desimal, bilangan campuran. Aritmetika BigInt yang tepat.",
+  "keywords": ["kalkulator pecahan", "menjumlahkan pecahan", "mengalikan pecahan", "penyederhana pecahan", "bilangan campuran"],
+  "empty": "Masukkan kedua pecahan dan operasi.",
+  "result": {
+    "simplified": "Hasil (disederhanakan)",
+    "decimal": "Desimal",
+    "mixed": "Bilangan campuran"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara operasi pecahan bekerja",
+        "paragraphs": [
+          "Penjumlahan/pengurangan: konversi ke penyebut yang sama terlebih dahulu. a/b ± c/d = (ad ± bc) / bd. Contoh: 1/2 + 1/3 = (1×3 + 1×2) / (2×3) = 5/6.",
+          "Perkalian: a/b × c/d = (ac) / (bd). Penyederhanaan silang menyederhanakan sebelum mengalikan. Contoh: 2/3 × 9/10 = (2×9)/(3×10) = 18/30 = 3/5.",
+          "Pembagian: balikkan pecahan kedua dan kalikan. a/b ÷ c/d = a/b × d/c = (ad) / (bc). Contoh: 1/2 ÷ 3/4 = (1×4)/(2×3) = 4/6 = 2/3."
+        ]
+      },
+      {
+        "heading": "Mengapa menyederhanakan",
+        "paragraphs": [
+          "Pecahan berada dalam bentuk tereduksi ketika pembilang dan penyebut tidak berbagi faktor persekutuan lebih dari 1. Kami menggunakan algoritma Euclidean untuk menemukan FPB dan membagi keduanya dengannya.",
+          "Contoh: 18/30 memiliki FPB 6, sehingga disederhanakan menjadi 3/5. Secara matematis setara tetapi lebih mudah dibaca dan dikerjakan.",
+          "Kami juga menormalkan tanda: pembilang positif adalah konvensional. Jadi −3/−5 disederhanakan menjadi 3/5; 3/−5 menjadi −3/5."
+        ]
+      },
+      {
+        "heading": "Bilangan campuran",
+        "paragraphs": [
+          "Ketika nilai absolut pembilang melebihi penyebut, pecahan dapat dinyatakan sebagai bilangan bulat ditambah pecahan biasa. Contoh: 7/3 = 2⅓ (karena 7 = 2×3 + 1).",
+          "Bilangan campuran umum dalam pengukuran sehari-hari (resep, dimensi kayu, tanda birama musik) tetapi kurang umum dalam matematika/sains di mana pecahan tidak wajar lebih mudah dimanipulasi. Kami menampilkan kedua representasi."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Masukkan pecahan pertama", "text": "Pembilang di atas, penyebut di bawah." },
+      { "name": "Pilih operasi", "text": "+, −, ×, atau ÷." },
+      { "name": "Masukkan pecahan kedua", "text": "Format yang sama." },
+      { "name": "Baca hasilnya", "text": "Bentuk sederhana, nilai desimal, dan bilangan campuran bila berlaku." }
+    ]
+  },
+  "faq": [
+    { "q": "Bisakah saya memasukkan pecahan negatif?", "a": "Ya. Gunakan tanda minus pada pembilang atau penyebut. Kalkulator menormalkan ke satu tanda minus di pembilang." },
+    { "q": "Mengapa 1/2 + 1/3 = 5/6 dan bukan 2/5?", "a": "Anda tidak dapat menjumlahkan pecahan dengan menjumlahkan pembilang dan penyebut secara terpisah. Anda harus terlebih dahulu menemukan penyebut yang sama. 1/2 = 3/6, 1/3 = 2/6, sehingga 1/2 + 1/3 = 3/6 + 2/6 = 5/6." },
+    { "q": "Apakah ini mendukung bilangan bulat sebagai pecahan?", "a": "Ya. Masukkan bilangan bulat = bilangan bulat/1. Jadi 5 + 1/2 = 5/1 + 1/2 = 11/2 = 5½." },
+    { "q": "Berapa pecahan terbesar yang ditangani?", "a": "Kami menggunakan BigInt secara internal, sehingga aritmetika pada pembilang dan penyebut ukuran berapa pun pada dasarnya tepat." },
+    { "q": "Mengapa desimalnya terkadang tidak tepat?", "a": "Beberapa pecahan tidak memiliki representasi desimal yang tepat (1/3 = 0,3333…). Kami menampilkan hingga 8 tempat desimal. Pecahan itu sendiri tepat; desimal adalah perkiraan." },
+    { "q": "Bisakah saya membagi dengan nol?", "a": "Tidak. Pembagian dengan nol (atau pecahan mana pun dengan pembilang nol sebagai pembagi) tidak terdefinisi. Kalkulator tidak mengembalikan hasil untuk kasus tersebut." },
+    { "q": "Dari mana bilangan campuran berasal?", "a": "Pecahan tidak wajar (pembilang ≥ penyebut). 7/3 = 2 + 1/3 = 2⅓. Kedua bentuk setara; pilih berdasarkan konteks (matematika: tidak wajar, resep: campuran)." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

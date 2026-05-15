@@ -1,0 +1,103 @@
+{
+  "title": "Büyük-Küçük Harf Dönüştürücü (camel, snake, kebab, Title vb.)",
+  "shortDescription": "Metni 10 büyük-küçük harf stiline dönüştür: BÜYÜK, küçük, Title, Cümle, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE ve ters.",
+  "description": "Herhangi bir metin yaz ve on yaygın harf dönüşümünü yan yana gör; her birinin kopyalama düğmesi vardır. Değişken adlandırma, dosya adları, başlıklar, slug'lar ve veri seti temizliği için kullanışlıdır.",
+  "metaDescription": "camelCase, snake_case, kebab-case, PascalCase, Title Case ve daha fazlası için ücretsiz büyük-küçük harf dönüştürücü. Tek tıkla kopyalamayla aynı anda on stil.",
+  "keywords": [
+    "büyük küçük harf dönüştürücü",
+    "camel case",
+    "snake case",
+    "kebab case",
+    "title case"
+  ],
+  "input": {
+    "text": "Kaynak metin"
+  },
+  "copy": "Kopyala",
+  "copied": "Kopyalandı",
+  "case": {
+    "lower": "küçük harf",
+    "upper": "BÜYÜK HARF",
+    "title": "Title Case",
+    "sentence": "Cümle büyüklüğü",
+    "camel": "camelCase",
+    "pascal": "PascalCase",
+    "snake": "snake_case",
+    "kebab": "kebab-case",
+    "constant": "CONSTANT_CASE",
+    "invert": "TeRs BüYüKlÜk"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Her stilin kullanıldığı yer",
+        "paragraphs": [
+          "camelCase: JavaScript ve Java tanımlayıcıları (benimDeğişkenim). PascalCase: sınıflar ve React bileşenleri (KullanicıProfili). snake_case: Python ve Ruby değişkenleri (kullanici_profili). kebab-case: URL'ler ve CSS sınıfları (kullanici-profili). CONSTANT_CASE: ortam değişkenleri ve sabitler (KULLANICI_PROFILI).",
+          "Title Case: kitap ve makale başlıkları, başlıklar. Cümle büyüklüğü: çoğu modern UI etiketi ve başlığı — uzun dizeler için Title Case'den daha kolay okunur. BÜYÜK HARF: vurgu, kısaltmalar. küçük harf: büyük-küçük harfe duyarsız olması gereken etiketler, dosya adları."
+        ]
+      },
+      {
+        "heading": "Dönüştürücü kelimeleri nasıl ayrıştırır?",
+        "paragraphs": [
+          "Boşluklar, kısa çizgiler, alt çizgiler, eğik çizgiler ve noktalar üzerinde böleriz. Ayrıca küçük harf ile büyük harf arasındaki sınırda da böleriz ('helloWorld' → ['hello', 'World']) ve harf ile rakam arasında da. Bu, yapıştırılan kod, slug ve dosya yolları dahil çoğu günlük durumu ele alır.",
+          "Kenar durumlar: tamamen büyük harfli kısaltmalar ('XMLHTTPRequest') bağlam olmadan düzgün bölünmez; bu nedenle ardışık büyük harfleri tek bir kelime bloğu olarak değerlendiririz. Çoğu günlük metin için ayrıştırıcı beklenen sonucu üretir."
+        ]
+      },
+      {
+        "heading": "Kod incelemesi ve yeniden düzenleme için ipuçları",
+        "paragraphs": [
+          "Diller arasında geçiş yaparken tanımlayıcı adlarının listesini yapıştır ve dönüştürülmüş sürümü kopyala. snake'den camel'e geçiş en yaygın JavaScript-Python sınırıdır; HTML özniteliklerini JS nesnelerine yeniden düzenlerken kebab'dan snake'e geçiş yaygındır.",
+          "SEO slug'ları için kebab-case standarttır — URL'lerde okunabilir ve Google kısa çizgileri kelime ayırıcısı olarak değerlendirir (alt çizgiler değerlendirilmez). Kullanıcıya yönelik herhangi bir URL yolu için 'urun-adi' tercih edilir."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Metin yaz veya yapıştır",
+        "text": "Cümleler, kod tanımlayıcıları, dosya adları — herhangi bir şey."
+      },
+      {
+        "name": "10 dönüşümün hepsini oku",
+        "text": "Her stil kendi etiketli bloğunda görünür."
+      },
+      {
+        "name": "İhtiyacın olanı kopyala",
+        "text": "Herhangi bir bloğun yanındaki 'Kopyala'ya tıkla."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Girişimde 'XML' gibi kısaltmalar varsa ne olur?",
+      "a": "Ardışık büyük harfler tek blok olarak değerlendirilir. 'XMLParser', 'XML' ve 'Parser' olarak bölünür. Çoğu kod için bu çalışır; kenar durumlar için elle gözden geçir."
+    },
+    {
+      "q": "URL slug'ları neden her zaman kebab-case?",
+      "a": "Kısa çizgiler, Google'ın URL ayrıştırıcısı tarafından kelime sınırı olarak değerlendirilir; alt çizgiler değerlendirilmez. kebab-case URL'ler SEO açısından daha güvenilir şekilde indekslenir."
+    },
+    {
+      "q": "Title Case ile Cümle büyüklüğü arasındaki fark nedir?",
+      "a": "Title Case çoğu kelimeyi büyük harfle yazar ('Hızlı Kahverengi Tilki'). Cümle büyüklüğü yalnızca ilk kelimeyi ve özel isimleri büyük harfle yazar. Modern UI genellikle cümle büyüklüğünü tercih eder."
+    },
+    {
+      "q": "Unicode'u destekliyor mu?",
+      "a": "Evet — JavaScript'in toLowerCase/toUpperCase özellikleri Unicode'u bilir. Diakritik işaretler ve Latin dışı alfabeler doğru şekilde geçer."
+    },
+    {
+      "q": "Geri dönüştürebilir miyim?",
+      "a": "Evet — herhangi bir harf-dönüştürülmüş çıktıyı geri yapıştır ve farklı bir dönüşüm kullan. camelCase ↔ snake_case gidiş-dönüşü kayıpsızdır."
+    },
+    {
+      "q": "camelCase neden kısaltmaları büyük harfte korumaz?",
+      "a": "Geleneksel olarak camelCase, sonraki her kelimenin yalnızca ilk harfini büyük yapar. Modern stil rehberlerinde 'XmlHttpRequest', 'XMLHTTPRequest'e tercih edilir."
+    },
+    {
+      "q": "Veriler tarayıcımı terk ediyor mu?",
+      "a": "Hayır. Tüm dönüşümler yerel olarak çalışır."
+    },
+    {
+      "q": "Toplu liste dönüştürme var mı?",
+      "a": "Tüm listeyi bir defada yapıştır. Her satır aynı büyük-küçük harf stilinde ayrı giriş olarak işlenir — dönüştür, ardından satırları ihtiyacına göre ayır."
+    }
+  ]
+}

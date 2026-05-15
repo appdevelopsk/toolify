@@ -1,0 +1,90 @@
+{
+  "title": "Convertisseur de couleurs (HEX, RGB, HSL — instantané)",
+  "shortDescription": "Convertit les couleurs entre HEX, RGB et HSL avec un aperçu en direct. Modifie n'importe quel champ ; les autres se mettent à jour.",
+  "description": "Tape un code hex, un triplet RGB ou une valeur HSL — les autres formats se mettent à jour instantanément avec un aperçu visible. Utile pour les designers, les développeurs web et toute personne devant faire correspondre des couleurs entre différents outils.",
+  "metaDescription": "Convertisseur de couleurs HEX, RGB, HSL gratuit avec aperçu en direct. Modifie n'importe quel format et les autres se mettent à jour instantanément.",
+  "keywords": [
+    "convertisseur de couleurs",
+    "hex vers rgb",
+    "rgb vers hsl",
+    "sélecteur de couleur",
+    "convertisseur code hex"
+  ],
+  "hex": "HEX",
+  "rgb": "RGB",
+  "hsl": "HSL",
+  "article": {
+    "sections": [
+      {
+        "heading": "Trois façons de décrire la même couleur",
+        "paragraphs": [
+          "HEX, RGB et HSL sont trois notations pour la couleur sRGB. HEX est un raccourci pour RGB : #FF6B35 signifie rouge=255, vert=107, bleu=53. RGB décrit une couleur selon la quantité de lumière rouge, verte et bleue à mélanger (0-255 chacune). HSL réencode la même couleur RGB en termes de teinte (quelle couleur), saturation (quelle vivacité) et luminosité (quelle brillance).",
+          "Les trois sont équivalents — tu peux convertir dans tous les sens sans perte. Les designers préfèrent HSL pour ajuster les tons (augmenter la luminosité maintient la teinte stable), tandis que les développeurs collent généralement le HEX des outils de design directement dans le CSS. RGB apparaît le plus souvent avec les API de traitement d'image ou de canvas."
+        ]
+      },
+      {
+        "heading": "Quand utiliser chacun",
+        "paragraphs": [
+          "HEX : copier-coller depuis des maquettes, exports Figma, chartes graphiques, littéraux de couleur CSS. Concis mais difficile à lire.",
+          "RGB : travail programmatique sur les couleurs (canvas, manipulation d'images), vérifications d'accessibilité (les calculs de contraste fonctionnent en RGB linéaire), et quand tu veux des valeurs entières exactes.",
+          "HSL : modifier les couleurs à l'intuition — créer « une version légèrement plus saturée », « une variante plus sombre pour les états hover », ou générer une palette en faisant évoluer la teinte. Beaucoup plus facile à raisonner pour ces tâches que le HEX."
+        ]
+      },
+      {
+        "heading": "Ce que cet outil ne couvre pas",
+        "paragraphs": [
+          "Nous omettons le canal alpha (transparence) pour l'instant — mais #RRGGBBAA fonctionne dans tous les navigateurs modernes si tu ajoutes deux chiffres hex pour l'opacité (00 = transparent, FF = opaque).",
+          "Nous ne couvrons pas non plus les gamuts de couleurs plus larges (P3, Rec.2020, OKLCH). Pour la plupart du travail web, les HEX/RGB/HSL basés sur sRGB sont le bon choix. Si tu cibles des affichages HDR ou à gamut étendu, renseigne-toi sur les syntaxes CSS Color Module Level 4."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Modifie n'importe quel champ",
+        "text": "Tape un code HEX, un triplet RGB ou une valeur HSL."
+      },
+      {
+        "name": "Observe les autres se mettre à jour",
+        "text": "Les trois formats restent synchronisés ; l'aperçu montre le résultat."
+      },
+      {
+        "name": "Copie ce dont tu as besoin",
+        "text": "Le bloc de texte en bas contient les trois formats prêts à copier dans CSS."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Puis-je convertir de HSL vers HEX sans perte de précision ?",
+      "a": "Généralement oui. HSL est stocké en degrés entiers et pourcentages, donc 360 × 101 × 101 = 3,7 M de valeurs HSL s'appliquent sur 16,7 M de combinaisons RGB. Un léger arrondi peut se produire aux extrêmes. Utilise HEX comme référence canonique pour un stockage exact."
+    },
+    {
+      "q": "Prend-il en charge les codes HEX à 3 chiffres ?",
+      "a": "Oui. #f60 est traité comme #ff6600. Les deux s'expandent vers le même triplet RGB."
+    },
+    {
+      "q": "Pourquoi HSL ne va-t-il pas jusqu'à 360 pour la saturation/luminosité ?",
+      "a": "La teinte est en degrés (0-360 sur la roue chromatique). La saturation et la luminosité sont des pourcentages (0-100)."
+    },
+    {
+      "q": "HSL est-il identique à HSB ou HSV ?",
+      "a": "Non. HSV (et HSB) remplacent « luminosité » par « valeur », un modèle de brillance différent. L=50% de HSL représente une couleur complète ; V=100% de HSV représente une couleur complète. Nous utilisons HSL car il correspond au CSS."
+    },
+    {
+      "q": "Prend-il en charge la transparence ?",
+      "a": "Pas encore. Pour l'instant, ajoute un alpha à deux chiffres au HEX (ex. #00000080 pour du noir à 50%)."
+    },
+    {
+      "q": "Pourquoi RGB n'affiche-t-il pas des flottants 0-1 ?",
+      "a": "Parce que la plupart des contextes (CSS, outils de design) utilisent des entiers 0-255. Pour le travail avec les shaders, divise par 255 pour obtenir des flottants 0-1."
+    },
+    {
+      "q": "Où les designers trouvent-ils les bonnes couleurs ?",
+      "a": "Dans les chartes graphiques, les design tokens ou les générateurs de palettes. L'outil de vérification de contraste peut vérifier qu'une paire texte/fond respecte WCAG AA/AAA."
+    },
+    {
+      "q": "Le calculateur est-il précis ?",
+      "a": "Oui. Il utilise les maths de conversion sRGB standard. Les différences d'aller-retour proviennent uniquement de la quantification entière de HSL."
+    }
+  ]
+}

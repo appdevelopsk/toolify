@@ -1,0 +1,114 @@
+{
+  "title": "Calculateur d'intérêts composés (avec versements mensuels)",
+  "shortDescription": "Vois comment un investissement croît dans le temps avec les intérêts composés et des versements mensuels optionnels. Fréquence de capitalisation personnalisable.",
+  "description": "Entre ton solde de départ, le taux d'intérêt, l'horizon temporel et un versement mensuel optionnel. Le calculateur affiche le solde final ainsi qu'une décomposition des versements par rapport aux intérêts gagnés.",
+  "metaDescription": "Calculateur d'intérêts composés gratuit avec versements mensuels. Vois le solde final, le total versé et les intérêts totaux.",
+  "keywords": [
+    "calculateur intérêts composés",
+    "croissance d'investissement",
+    "calculateur d'épargne",
+    "calculateur d'intérêts",
+    "valeur future"
+  ],
+  "empty": "Remplis les champs pour voir la projection.",
+  "input": {
+    "principal": "Solde de départ",
+    "ratePct": "Taux d'intérêt annuel (%)",
+    "years": "Années",
+    "compoundsPerYear": "Fréquence de capitalisation",
+    "monthlyContribution": "Versement mensuel"
+  },
+  "compound": {
+    "annual": "Annuelle (1×/an)",
+    "semiannual": "Semestrielle (2×/an)",
+    "quarterly": "Trimestrielle (4×/an)",
+    "monthly": "Mensuelle (12×/an)",
+    "daily": "Quotidienne (365×/an)"
+  },
+  "result": {
+    "finalBalance": "Solde final",
+    "totalContributed": "Total versé",
+    "totalInterest": "Intérêts totaux"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionnent les intérêts composés",
+        "paragraphs": [
+          "Les intérêts composés sont des intérêts gagnés à la fois sur ton capital initial et sur les intérêts que tu as déjà perçus. La formule pour la partie capital est : VF = P × (1 + r/n)^(n × t), où P est le capital, r le taux annuel en décimal, n le nombre de périodes de capitalisation par an, et t le nombre d'années. Avec un taux de 5 % capitalisé mensuellement sur 30 ans, 10 000 € deviennent environ 44 677 € — plus de 4 fois le montant initial, rien que grâce à la composition.",
+          "Ajouter un versement mensuel transforme le calcul en une rente. La valeur future des versements réguliers est M × ((1 + r/12)^(12×t) − 1) / (r/12), où M est le montant mensuel. Ce calculateur combine les deux formules, pour voir ce que produit « investir un capital maintenant et ajouter un peu chaque mois »."
+        ]
+      },
+      {
+        "heading": "Pourquoi la fréquence de capitalisation importe moins que tu ne le penses",
+        "paragraphs": [
+          "Passer d'une capitalisation annuelle à mensuelle augmente légèrement le taux effectif, mais la différence diminue vite. À 5 % sur 10 ans pour 10 000 € : annuelle donne 16 289 € ; mensuelle donne 16 470 € ; quotidienne donne 16 486 €. Au-delà du mensuel, les gains sont infimes. La capitalisation continue (la limite mathématique) sur le même exemple donne 16 487 € — pratiquement indiscernable du quotidien.",
+          "Ce qui domine les rendements réels, c'est taux × temps, pas la fréquence de capitalisation. Doubler l'horizon d'investissement de 10 à 20 ans met à peu près au carré ton multiplicateur (en supposant le même taux). Doubler le taux aussi. Doubler la fréquence de capitalisation ? Ça ajoute peut-être une fraction de pourcent."
+        ]
+      },
+      {
+        "heading": "Hypothèses réalistes",
+        "paragraphs": [
+          "Ces projections supposent un taux constant, ce qui ne correspond pas à la réalité — les rendements des actions varient, les taux des obligations changent et les taux promotionnels des banques expirent. Pour la planification à long terme, fais tourner le calculateur à trois taux : pessimiste (3-4 %), attendu (5-6 %) et optimiste (8-9 %) pour voir une fourchette de résultats.",
+          "L'inflation grignote les rendements nominaux. Un rendement nominal de 7 % avec une inflation de 3 % représente environ 4 % en pouvoir d'achat « réel ». Si tu veux le solde en euros d'aujourd'hui, utilise (taux − inflation attendue) plutôt que le taux nominal. De plus, les frais et les impôts réduisent généralement les rendements réels de 1 à 2 % — soustrait cela du taux pour une approximation plus proche."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Entre ton solde de départ",
+        "text": "Combien tu as investi aujourd'hui."
+      },
+      {
+        "name": "Entre le taux et la durée",
+        "text": "Taux d'intérêt annuel en pourcentage, et combien d'années tu prévois d'investir."
+      },
+      {
+        "name": "Choisis la fréquence de capitalisation",
+        "text": "Mensuelle est un bon défaut. Quotidienne fait une petite différence ; annuelle est conservatrice."
+      },
+      {
+        "name": "Ajoute un versement mensuel (facultatif)",
+        "text": "Si tu prévois d'ajouter de l'argent régulièrement, entre le montant mensuel."
+      },
+      {
+        "name": "Lis la décomposition",
+        "text": "Solde final, total versé (capital + versements) et intérêts totaux gagnés."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quel taux d'intérêt réaliste utiliser ?",
+      "a": "Les moyennes long terme des marchés actions français/européens tournent autour de 5 à 7 % réel / 7 à 9 % nominal. Les obligations retournent historiquement 2 à 4 % réel. Les livrets et fonds euros varient selon le contexte de taux. Essaie 5 à 6 % comme base de référence pour un portefeuille diversifié."
+    },
+    {
+      "q": "Pourquoi de petites différences de taux comptent-elles autant sur le long terme ?",
+      "a": "La composition multiplie. Sur 30 ans, un rendement de 6 % fait environ 2,86 fois plus croître ton argent qu'un rendement de 4 %, même si l'écart n'est que de 2 points de pourcentage."
+    },
+    {
+      "q": "Les versements mensuels se font-ils en début ou en fin de mois ?",
+      "a": "Nous utilisons le timing de fin de période (rente ordinaire). Le début de période ajouterait une période de capitalisation supplémentaire, augmentant le résultat d'environ un mois d'intérêts. Suffisamment proche pour la planification."
+    },
+    {
+      "q": "Tient-il compte de l'inflation ?",
+      "a": "Non. Utilise un taux « réel » (nominal moins l'inflation attendue) si tu veux des projections en euros d'aujourd'hui. Un rendement de 7 % avec une inflation de 3 % représente 4 % réel."
+    },
+    {
+      "q": "Qu'en est-il des impôts et des frais ?",
+      "a": "Non modélisés. Soustrait 1 à 2 % de ton taux comme ajustement approximatif pour les impôts (sur les comptes imposables) et les frais de fonds."
+    },
+    {
+      "q": "Pourquoi le résultat ne correspond-il pas à l'application de ma banque ?",
+      "a": "Les banques peuvent capitaliser à des intervalles légèrement différents ou utiliser des intérêts simples pour les courtes périodes. Pour des projections exactes spécifiques à ta banque, utilise son propre calculateur."
+    },
+    {
+      "q": "Les taux d'intérêt peuvent-ils être négatifs ?",
+      "a": "Oui, mathématiquement — la formule le gère. Des taux négatifs ont existé sur certains placements européens, mais rarement sur les produits grand public."
+    },
+    {
+      "q": "Les données sont-elles envoyées quelque part ?",
+      "a": "Non. Tous les calculs s'effectuent dans ton navigateur."
+    }
+  ]
+}

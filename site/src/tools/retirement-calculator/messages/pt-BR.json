@@ -1,0 +1,107 @@
+{
+  "title": "Calculadora de Aposentadoria (projeção composta + ajustada pela",
+  "shortDescription": "Projete suas economias de aposentadoria com aportes mensais, retorno esperado e inflação. Mostra o saldo nominal, valor em reais de hoje e renda mensal pela regra dos 4%.",
+  "description": "Insira sua idade atual, idade alvo de aposentadoria, poupança atual, aporte mensal, retorno anual esperado e taxa de inflação. A calculadora projeta o crescimento composto e aplica a regra dos 4% para retirada sustentável.",
+  "metaDescription": "Calculadora de aposentadoria gratuita. Composição de aportes mensais ao longo de décadas, ajuste pela inflação em reais de hoje e regra dos 4% para renda sustentável.",
+  "keywords": [
+    "calculadora de aposentadoria",
+    "poupança para aposentadoria",
+    "calculadora de previdência privada",
+    "calculadora FIRE",
+    "aposentadoria ajustada pela inflação"
+  ],
+  "input": {
+    "currentAge": "Idade atual",
+    "retireAge": "Idade de aposentadoria",
+    "currentSaved": "Poupança atual",
+    "monthly": "Aporte mensal",
+    "returnPct": "Retorno anual %",
+    "inflationPct": "Inflação anual %"
+  },
+  "result": {
+    "nominalBalance": "Saldo projetado",
+    "realBalance": "Em reais de hoje",
+    "contributed": "Total aportado",
+    "growth": "Crescimento do investimento",
+    "monthly4pct": "Renda mensal (regra dos 4%)",
+    "yearsLabel": "anos"
+  },
+  "empty": "Preencha todos os campos para projetar as economias de aposentadoria.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Como a projeção funciona",
+        "paragraphs": [
+          "Compostos sobre seu saldo inicial mais cada aporte mensal à taxa de retorno anual. A matemática é recursiva: saldo(mês+1) = saldo(mês) × (1 + taxa_mensal) + aporte_mensal. Ao longo de décadas, mesmo valores mensais modestos crescem significativamente devido à composição — os retornos sobre retornos anteriores se compõem sobre si mesmos.",
+          "Também projetamos um valor em 'reais de hoje' deflacionando o saldo nominal usando sua taxa de inflação. R$ 1 milhão em 30 anos não vale R$ 1 milhão hoje — a 4% de inflação, R$ 1 milhão em 30 anos tem o poder de compra de cerca de R$ 308 mil hoje. O valor em reais de hoje é o que você deve comparar com o custo de vida atual."
+        ]
+      },
+      {
+        "heading": "Que taxa assumir",
+        "paragraphs": [
+          "A média histórica do Ibovespa é de cerca de 12-15% nominal ao longo de períodos muito longos, mas com alta volatilidade. Para projeções de aposentadoria em carteiras diversificadas, 7-10% nominal é razoável após considerar o mix de renda fixa. Ir abaixo de 6% é demasiado conservador para horizontes longos; ir acima de 12% é otimista.",
+          "Quanto mais próximo da aposentadoria, mais conservadora geralmente fica a carteira (mais renda fixa, menos ações). Para uma janela de 5-10 anos antes da aposentadoria, o retorno esperado cai para 5-7% conforme a alocação em renda fixa aumenta. Esta calculadora usa uma única taxa para todo o horizonte — para projeções mais detalhadas, rode cenários com taxas diferentes."
+        ]
+      },
+      {
+        "heading": "A regra dos 4%",
+        "paragraphs": [
+          "A regra dos 4% (Estudo Trinity, 1998) diz que você pode sacar com segurança 4% das suas economias de aposentadoria no primeiro ano, depois ajustar para cima pela inflação a cada ano, com altíssima probabilidade de não se esgotar em 30 anos. Então R$ 1 milhão em poupança de aposentadoria sustenta R$ 40.000/ano (ou cerca de R$ 3.333/mês) de gastos ajustados pela inflação.",
+          "A regra tem limitações — é baseada no desempenho histórico de ações/títulos dos EUA e pode ser otimista para alguns cenários futuros. Alguns especialistas agora recomendam 3-3,5% para segurança. Para aposentadoria antecipada (FIRE) com horizontes de 50+ anos, 3% é mais conservador. Use o número dos 4% como uma verificação de sanidade grosseira, não como garantia."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Insira as idades atual e de aposentadoria",
+        "text": "A diferença é o seu horizonte de investimento."
+      },
+      {
+        "name": "Insira seu saldo inicial e aporte mensal",
+        "text": "Previdência privada, FGTS, investimentos — qualquer coisa destinada à aposentadoria."
+      },
+      {
+        "name": "Defina as taxas de retorno e inflação",
+        "text": "Padrões razoáveis: 8% de retorno, 4% de inflação (metas do banco central)."
+      },
+      {
+        "name": "Leia as duas projeções",
+        "text": "Nominal é o valor real em reais; em reais de hoje é o seu poder de compra real."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Que taxa de retorno devo usar?",
+      "a": "Para horizontes de 25+ anos em uma carteira diversificada com ações: 8-10%. Para horizontes mais curtos ou mix mais conservador: 6-7%. Use retornos reais históricos (após inflação) — isso é cerca de 5-7% para ações no longo prazo."
+    },
+    {
+      "q": "Por que os reais de hoje importam?",
+      "a": "R$ 2 milhões em 35 anos parece incrível, mas a 4% de inflação vale cerca de R$ 500 mil hoje. O valor em reais de hoje diz o que suas economias de aposentadoria vão comprar em termos atuais — útil para planejar despesas atuais vs futuras."
+    },
+    {
+      "q": "Devo usar contribuições pré-imposto ou pós-imposto?",
+      "a": "Depende do tipo de conta. PGBL é pré-imposto (você pagará IR nos resgates). VGBL é pós-imposto (IR apenas sobre os rendimentos no resgate). Para o PGBL, seu saldo de aposentadoria é bruto — você perderá uma parte para impostos na aposentadoria."
+    },
+    {
+      "q": "E se eu receber aumentos e aumentar os aportes?",
+      "a": "Execute a calculadora várias vezes para cada fase, ou use um aporte constante que se aproxime da sua média. Os aportes do mundo real geralmente crescem com o salário; a calculadora usa um número fixo."
+    },
+    {
+      "q": "Isso considera o INSS?",
+      "a": "Não. O INSS é um fluxo de renda separado. Projete as economias de aposentadoria aqui, depois adicione as estimativas do INSS por cima para o planejamento total de renda na aposentadoria."
+    },
+    {
+      "q": "Qual é a 'taxa de saque segura'?",
+      "a": "Tradicionalmente 4% (Estudo Trinity). Para aposentadorias longas (FIRE, 40+ anos), 3-3,5% é mais seguro. A calculadora mostra 4% por padrão; ajuste sua meta mensal se quiser uma taxa diferente."
+    },
+    {
+      "q": "Quanto preciso para me aposentar?",
+      "a": "Regra geral: 25× suas necessidades de gastos anuais (o inverso da regra dos 4%). Gasta R$ 50 mil/ano em reais de hoje? Precisa de R$ 1,25 milhão em reais de hoje (ou mais nominal considerando a inflação até a aposentadoria)."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. Toda a matemática de projeção é executada localmente; nada é enviado para nenhum servidor."
+    }
+  ]
+}

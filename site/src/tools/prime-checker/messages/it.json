@@ -1,0 +1,103 @@
+{
+  "title": "Verificatore di Numeri Primi (con fattorizzazione)",
+  "shortDescription": "Controlla se un numero è primo. Se non lo è, vedi la sua fattorizzazione in numeri primi. Più i numeri primi precedente e successivo.",
+  "description": "Inserisci un intero non negativo fino a 10^18. Il calcolatore verifica la primalità con la divisione di prova (deterministica fino a ~10^15 in tempo ragionevole) e fornisce la fattorizzazione in numeri primi per i numeri composti.",
+  "metaDescription": "Verificatore di numeri primi gratuito con fattorizzazione. Testa la primalità, visualizza i fattori primi e trova il primo precedente/successivo.",
+  "keywords": [
+    "verificatore numeri primi",
+    "è primo",
+    "fattorizzazione in numeri primi",
+    "test numero primo",
+    "prossimo numero primo"
+  ],
+  "input": {
+    "value": "Numero"
+  },
+  "result": {
+    "isPrime": "è primo",
+    "notPrime": "NON è primo",
+    "factors": "Fattorizzazione in numeri primi",
+    "prevPrime": "Primo precedente",
+    "nextPrime": "Primo successivo"
+  },
+  "empty": "Inserisci un intero positivo.",
+  "tooLarge": "Numero troppo grande per il calcolo nel browser (max 10^18).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cos'è un numero primo",
+        "paragraphs": [
+          "Un numero primo è un numero naturale maggiore di 1 che non ha divisori positivi oltre a 1 e se stesso. I primi numeri primi: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37. Sono gli 'atomi' dell'aritmetica degli interi — ogni intero ≥ 2 può essere scritto in modo unico come prodotto di numeri primi (Teorema Fondamentale dell'Aritmetica).",
+          "1 non è primo per convenzione. 0 e i numeri negativi non sono primi. 2 è l'unico numero primo pari — ogni altro numero pari è divisibile per 2 e quindi composito."
+        ]
+      },
+      {
+        "heading": "Come funziona il test",
+        "paragraphs": [
+          "Usiamo la divisione di prova: controlliamo la divisibilità per 2, poi 3, poi 5, 7, 11, … fino a √n. Se nessuno divide esattamente, n è primo. Usiamo l'ottimizzazione 6k±1 che controlla solo i candidati della forma 6k+1 o 6k−1 (poiché tutti i primi > 3 sono di questa forma), riducendo il numero di test di 2/3.",
+          "La divisione di prova è veloce per n fino a ~10^15 (sotto il secondo). Oltre, servono test avanzati come Miller-Rabin (probabilistico) o AKS (deterministico). Limitiamo a 10^18 per evitare che il browser si blocchi su input estremi."
+        ]
+      },
+      {
+        "heading": "Perché i numeri primi sono importanti",
+        "paragraphs": [
+          "Crittografia: la cifratura RSA moltiplica due numeri primi di ~1000 cifre per produrre un numero difficile da fattorizzare. La sicurezza si basa sulla difficoltà di fattorizzare numeri grandi — una sfida studiata per migliaia di anni.",
+          "Educazione matematica: la fattorizzazione in numeri primi è fondamentale. Concetti come MCD, mcm, aritmetica modulare, frazioni e teoria dei numeri si basano tutti sulla struttura dei fattori primi.",
+          "Informatica: le dimensioni delle tabelle hash, i generatori di numeri casuali e molti algoritmi usano i numeri primi per le loro distintive proprietà di divisibilità."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Inserisci un numero",
+        "text": "Intero positivo fino a 10^18."
+      },
+      {
+        "name": "Leggi il verdetto",
+        "text": "Verde ✓ per primo, ambra ✗ per composito."
+      },
+      {
+        "name": "Visualizza la fattorizzazione",
+        "text": "Se composito, i fattori primi unici vengono mostrati."
+      },
+      {
+        "name": "Naviga i numeri primi",
+        "text": "I numeri primi precedente e successivo sono elencati per il contesto."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "1 è primo?",
+      "a": "No. 1 è un 'unità', non un numero primo. I numeri primi hanno esattamente due divisori positivi distinti (1 e se stesso); 1 ne ha solo uno."
+    },
+    {
+      "q": "0 è primo?",
+      "a": "No. I numeri primi sono interi > 1."
+    },
+    {
+      "q": "2 è primo?",
+      "a": "Sì — 2 è l'unico numero primo pari. Tutti gli altri numeri pari hanno 2 come divisore oltre a 1 e se stessi."
+    },
+    {
+      "q": "Come viene trovato il primo successivo?",
+      "a": "Incrementando da n+1 e testando la primalità ad ogni passo. C'è sempre un primo entro n × ln(n) da qualsiasi numero, quindi questo termina rapidamente anche per input grandi."
+    },
+    {
+      "q": "Perché il massimo è 10^18?",
+      "a": "JavaScript BigInt gestisce numeri più grandi, ma la divisione di prova diventa lenta. 10^18 è sicuro per controlli sotto il secondo di input tipici. Oltre, usa strumenti specializzati come SymPy o Mathematica."
+    },
+    {
+      "q": "Si possono controllare primi a 1000 cifre?",
+      "a": "Non con questo strumento — la divisione di prova è troppo lenta a quella scala. La crittografia usa test probabilistici Miller-Rabin per primi a 1024 bit (~300 cifre)."
+    },
+    {
+      "q": "Cos'è un numero primo di Mersenne?",
+      "a": "Un primo della forma 2^p − 1. Al 2025, ne sono noti solo 51. Il più grande primo noto (M82589933) è un numero primo di Mersenne con ~25 milioni di cifre."
+    },
+    {
+      "q": "I dati escono dal mio browser?",
+      "a": "No. Il calcolo viene eseguito localmente; nulla viene inviato a un server."
+    }
+  ]
+}

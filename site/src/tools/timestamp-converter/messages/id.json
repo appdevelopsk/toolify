@@ -1,0 +1,72 @@
+{
+  "title": "Konverter Timestamp Unix (dtk, ms, ISO, lokal)",
+  "shortDescription": "Konversi antara timestamp Unix (detik atau milidetik) dan tanggal yang dapat dibaca manusia. Menampilkan ISO 8601, waktu lokal, dan waktu relatif.",
+  "description": "Ketik timestamp Unix untuk melihat tanggal dalam berbagai format, atau pilih tanggal untuk mendapatkan nilai Unix-nya. Timestamp saat ini ditampilkan secara langsung sebagai referensi.",
+  "metaDescription": "Konverter timestamp Unix gratis. Konversi detik atau milidetik ke tanggal ISO/lokal dan sebaliknya. Timestamp saat ini langsung, tampilan waktu relatif disertakan.",
+  "keywords": ["timestamp Unix", "konverter epoch", "timestamp ke tanggal", "tanggal ke timestamp", "ISO 8601"],
+  "empty": "Masukkan timestamp atau tanggal untuk dikonversi.",
+  "input": { "timestamp": "Timestamp Unix", "date": "Tanggal & waktu" },
+  "now": "Sekarang",
+  "currentTimestamp": "Saat ini",
+  "mode": { "fromTimestamp": "Timestamp → Tanggal", "fromDate": "Tanggal → Timestamp" },
+  "unit": { "seconds": "Detik", "milliseconds": "Milidetik" },
+  "result": {
+    "timestampSec": "Timestamp (dtk)",
+    "timestampMs": "Timestamp (ms)",
+    "iso": "ISO 8601 (UTC)",
+    "local": "Waktu lokal",
+    "locale": "Format lokal",
+    "relative": "Relatif"
+  },
+  "relative": {
+    "justNow": "sebentar lagi",
+    "justPast": "baru saja",
+    "minutesFromNow": "dalam {n} mnt",
+    "minutesAgo": "{n} mnt lalu",
+    "hoursFromNow": "dalam {n} jam",
+    "hoursAgo": "{n} jam lalu",
+    "daysFromNow": "dalam {n} hari",
+    "daysAgo": "{n} hari lalu"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa itu timestamp Unix",
+        "paragraphs": [
+          "Timestamp Unix adalah jumlah detik (atau milidetik, dalam JavaScript) sejak epoch Unix — tengah malam UTC pada 1 Januari 1970. Ini adalah satu angka yang mengkodekan momen dalam waktu tanpa ambiguitas. API, database, dan file log menggunakannya di mana-mana karena membandingkan timestamp hanyalah aritmetika bilangan bulat.",
+          "JavaScript, Python, dan banyak sistem lain menggunakan milidetik (Date.now() mengembalikan ms dalam JS). C, Go, dan shell Unix menggunakan detik (date +%s). Saat mengonversi, selalu periksa satuan mana yang digunakan timestamp Anda — nilai 1,7 triliun adalah milidetik; 1,7 miliar adalah detik."
+        ]
+      },
+      {
+        "heading": "ISO 8601 vs format lokal",
+        "paragraphs": [
+          "ISO 8601 (misalnya, 2026-05-06T14:30:00Z) adalah format pertukaran universal. Zona waktu eksplisit ('Z' = UTC, atau +07:00 untuk WIB, dll.), dan diurutkan dengan benar sebagai teks. Selalu gunakan untuk penyimpanan dan API.",
+          "Format lokal (misalnya, '6 Mei 2026, 14.30.00') adalah untuk tampilan. Bergantung pada bahasa dan wilayah pengguna. Kalkulator menampilkan keduanya — salin ISO untuk kode, salin lokal untuk email atau laporan."
+        ]
+      },
+      {
+        "heading": "Masalah Tahun 2038",
+        "paragraphs": [
+          "Timestamp Unix bilangan bulat bertanda 32-bit meluap pada 2³¹ − 1 detik = 2.147.483.647 = 03:14:07 UTC pada 19 Januari 2038. Sistem yang menggunakan int32 akan kembali ke nilai negatif, merusak aritmetika tanggal. Sistem modern menggunakan timestamp 64-bit yang aman selama ~292 miliar tahun.",
+          "Jika Anda bekerja dengan sistem tertanam, skema database lama, atau kode C warisan, audit ukuran time_t. Migrasi ke bilangan bulat 64-bit adalah solusinya; menyimpan timestamp sebagai string (ISO) menghindari masalah sepenuhnya."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih arahnya", "text": "Timestamp → Tanggal atau Tanggal → Timestamp." },
+      { "name": "Pilih satuannya", "text": "Detik (standar Unix) atau milidetik (JavaScript)." },
+      { "name": "Ketik atau pilih", "text": "Ketik angka, atau gunakan tombol 'Sekarang' untuk momen saat ini." },
+      { "name": "Baca semua format", "text": "Dtk, ms, ISO, lokal, dan relatif semuanya ditampilkan bersama." }
+    ]
+  },
+  "faq": [
+    { "q": "Mengapa timestamp kadang memiliki 13 digit?", "a": "Itu adalah milidetik. JavaScript dan banyak API web menggunakan ms. Bagi dengan 1000 untuk mendapatkan detik." },
+    { "q": "Zona waktu mana yang ada dalam timestamp Unix?", "a": "Tidak ada — itu adalah detik UTC sejak epoch. Konversi ke tanggal lokal menggunakan zona waktu yang digunakan aplikasi atau pengguna Anda. Indonesia: WIB (UTC+7), WITA (UTC+8), WIT (UTC+9)." },
+    { "q": "Apakah konversinya akurat?", "a": "Ya. Kami menggunakan API Date browser, yang menggunakan jam sistem. Presisi hingga milidetik." },
+    { "q": "Apa itu ISO 8601?", "a": "Standar internasional format tanggal-waktu: YYYY-MM-DDTHH:MM:SS+TZ. Dapat diurutkan sebagai teks, tidak ambigu tentang zona waktu." },
+    { "q": "Mengapa 'waktu lokal' tidak cocok dengan jam sistem saya?", "a": "Ini menggunakan zona waktu yang dilaporkan browser Anda. Jika jam sistem Anda salah atau zona browser berbeda, hasilnya berbeda." },
+    { "q": "Apakah timestamp negatif valid?", "a": "Ya — timestamp negatif mewakili tanggal sebelum 1970. Sebagian besar bahasa menanganinya; berhati-hatilah dengan kompatibilitas database." },
+    { "q": "Bisakah saya mengonversi secara batch?", "a": "Belum. Untuk konversi satu kali, alat ini cocok; untuk ribuan nilai, gunakan skrip." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Konversi berjalan secara lokal." }
+  ]
+}

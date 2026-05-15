@@ -1,0 +1,103 @@
+{
+  "title": "Conversor de Capitalização (camel, snake, kebab, Title etc.)",
+  "shortDescription": "Converta texto em 10 estilos de capitalização: MAIÚSCULO, minúsculo, Title, Sentença, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE e invertido.",
+  "description": "Digite qualquer texto e veja dez transformações comuns de capitalização lado a lado, cada uma com botão de copiar. Útil para renomear variáveis, nomes de arquivos, títulos, slugs e limpeza de conjuntos de dados.",
+  "metaDescription": "Conversor de capitalização gratuito para camelCase, snake_case, kebab-case, PascalCase, Title Case e mais. Dez formatos de uma vez com cópia de um clique.",
+  "keywords": [
+    "conversor de capitalização",
+    "camel case",
+    "snake case",
+    "kebab case",
+    "title case"
+  ],
+  "input": {
+    "text": "Texto de origem"
+  },
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "case": {
+    "lower": "minúsculo",
+    "upper": "MAIÚSCULO",
+    "title": "Title Case",
+    "sentence": "Sentença",
+    "camel": "camelCase",
+    "pascal": "PascalCase",
+    "snake": "snake_case",
+    "kebab": "kebab-case",
+    "constant": "CONSTANT_CASE",
+    "invert": "CaSo InVeRtIdO"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Onde cada estilo é usado",
+        "paragraphs": [
+          "camelCase: identificadores em JavaScript e Java (meuNomeDeVariavel). PascalCase: classes e componentes React (PerfilDeUsuario). snake_case: variáveis em Python e Ruby (perfil_de_usuario). kebab-case: URLs e classes CSS (perfil-de-usuario). CONSTANT_CASE: variáveis de ambiente e constantes (PERFIL_DE_USUARIO).",
+          "Title Case: títulos de livros e artigos, cabeçalhos. Sentence case: a maioria dos rótulos e cabeçalhos modernos de UI — mais fácil de ler que Title Case para strings longas. MAIÚSCULO: ênfase, abreviações. minúsculo: tags, rótulos, nomes de arquivos que precisam ser insensíveis a maiúsculas/minúsculas."
+        ]
+      },
+      {
+        "heading": "Como o conversor analisa palavras",
+        "paragraphs": [
+          "Dividimos em espaços em branco, hífens, underscores, barras e pontos. Também dividimos na fronteira entre uma letra minúscula e uma maiúscula (então 'helloWorld' divide em ['hello', 'World']) e entre uma letra e um dígito. Isso cobre a maioria dos casos do dia a dia, incluindo código colado, slugs e caminhos de arquivo.",
+          "Casos extremos: siglas em maiúsculas ('XMLHTTPRequest') não se dividem corretamente sem contexto, então tratamos letras maiúsculas consecutivas como um único bloco de palavras e contamos com o usuário para limpar quando necessário. Para textos comuns — frases, títulos, nomes de colunas de conjuntos de dados — o analisador produz o resultado esperado."
+        ]
+      },
+      {
+        "heading": "Dicas para revisão de código e refatoração",
+        "paragraphs": [
+          "Ao migrar entre linguagens, cole uma lista de nomes de identificadores e copie a versão convertida. snake-to-camel é a fronteira mais comum de JavaScript para Python; kebab-to-snake é comum ao refatorar atributos HTML para objetos JS.",
+          "Para slugs de SEO, kebab-case é o padrão — legível em URLs e o Google trata hífens como separadores de palavras (underscores não). 'nome-do-produto' é preferível a 'nome_do_produto' para qualquer caminho de URL voltado ao usuário."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Digite ou cole o texto",
+        "text": "Qualquer coisa — frases, identificadores de código, nomes de arquivos."
+      },
+      {
+        "name": "Leia as 10 conversões",
+        "text": "Cada formato aparece em seu próprio bloco rotulado."
+      },
+      {
+        "name": "Copie o que você precisa",
+        "text": "Clique em 'Copiar' ao lado de qualquer bloco."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "E se minha entrada tiver siglas como 'XML'?",
+      "a": "Letras maiúsculas consecutivas são tratadas como um único bloco. 'XMLParser' divide em 'XML' e 'Parser'. Funciona para a maioria do código; revise e ajuste manualmente em casos extremos."
+    },
+    {
+      "q": "Por que slugs de URL são sempre kebab-case?",
+      "a": "Os hífens são tratados como limites de palavras pelo analisador de URL do Google; underscores não são. URLs em kebab-case são indexados de forma mais confiável para SEO."
+    },
+    {
+      "q": "Qual é a diferença entre Title Case e Sentence Case?",
+      "a": "Title Case capitaliza a maioria das palavras ('O Rápido Raposo Marrom'). Sentence case capitaliza apenas a primeira palavra e nomes próprios ('O rápido raposo marrom'). A UI moderna tende a preferir sentence case."
+    },
+    {
+      "q": "Suporta Unicode?",
+      "a": "Sim — as funções toLowerCase/toUpperCase do JavaScript são conscientes de Unicode. Diacríticos e scripts não latinos passam corretamente."
+    },
+    {
+      "q": "Posso converter de volta?",
+      "a": "Sim — cole qualquer saída convertida e use uma conversão diferente. A ida e volta camelCase ↔ snake_case é sem perda de informação."
+    },
+    {
+      "q": "Por que camelCase não preserva siglas em maiúsculas?",
+      "a": "Convencionalmente, camelCase capitaliza apenas a primeira letra de cada palavra subsequente. 'XmlHttpRequest' é preferível a 'XMLHTTPRequest' nos guias de estilo modernos."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. Todas as transformações são feitas localmente."
+    },
+    {
+      "q": "Há como converter uma lista em massa?",
+      "a": "Cole sua lista inteira de uma vez. Cada linha é tratada como uma entrada separada dentro do mesmo estilo de capitalização — converta e depois divida as linhas conforme necessário."
+    }
+  ]
+}

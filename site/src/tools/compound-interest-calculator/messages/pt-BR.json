@@ -1,0 +1,69 @@
+{
+  "title": "Calculadora de Juros Compostos (com aportes mensais)",
+  "shortDescription": "Veja como um investimento cresce ao longo do tempo com juros compostos e aportes mensais opcionais. Frequência de capitalização personalizável.",
+  "description": "Insira seu saldo inicial, taxa de juros, horizonte de tempo e aporte mensal opcional. A calculadora mostra o saldo final mais um detalhamento de aportes versus juros ganhos.",
+  "metaDescription": "Calculadora de juros compostos gratuita com aportes mensais. Veja saldo final, total aportado e juros totais. Capitalização diária, mensal, trimestral ou anual.",
+  "keywords": ["calculadora de juros compostos", "crescimento de investimento", "calculadora de poupança", "calculadora de juros", "valor futuro"],
+  "empty": "Preencha os campos para ver a projeção.",
+  "input": {
+    "principal": "Saldo inicial",
+    "ratePct": "Taxa de juros anual (%)",
+    "years": "Anos",
+    "compoundsPerYear": "Frequência de capitalização",
+    "monthlyContribution": "Aporte mensal"
+  },
+  "compound": {
+    "annual": "Anual (1×/ano)",
+    "semiannual": "Semestral (2×/ano)",
+    "quarterly": "Trimestral (4×/ano)",
+    "monthly": "Mensal (12×/ano)",
+    "daily": "Diário (365×/ano)"
+  },
+  "result": {
+    "finalBalance": "Saldo final",
+    "totalContributed": "Total aportado",
+    "totalInterest": "Juros totais"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Como funcionam os juros compostos",
+        "paragraphs": [
+          "Juros compostos são juros calculados sobre o principal original e sobre os juros já acumulados. A fórmula para a parte do principal é VF = P × (1 + r/n)^(n × t), onde P é o principal, r é a taxa anual como decimal, n é o número de períodos de capitalização por ano e t é o número de anos. Com uma taxa de 12% capitalizada mensalmente por 30 anos, R$ 10.000 crescem para mais de R$ 350.000 — mais de 35× o valor inicial, tudo pelo poder dos juros compostos.",
+          "Adicionar um aporte mensal transforma isso em uma anuidade. O valor futuro dos aportes regulares é M × ((1 + r/12)^(12×t) − 1) / (r/12), onde M é o valor mensal. Esta calculadora combina as duas fórmulas, para que você possa ver o que 'investir um montante agora e adicionar um pouco a cada mês' produz."
+        ]
+      },
+      {
+        "heading": "Por que a frequência de capitalização importa menos do que você pensa",
+        "paragraphs": [
+          "Passar de capitalização anual para mensal aumenta levemente a taxa efetiva, mas a diferença diminui rapidamente. A 12% por 10 anos sobre R$ 10.000: capitalização anual dá R$ 31.058; mensal dá R$ 33.004; diária dá R$ 33.073. Além da mensal, os ganhos são mínimos. A capitalização contínua (o limite matemático) no mesmo exemplo dá R$ 33.093 — essencialmente indistinguível da diária.",
+          "O que domina os retornos reais é taxa × tempo, não a frequência de capitalização. Dobrar seu horizonte de investimento de 10 para 20 anos aproximadamente eleva ao quadrado seu multiplicador (assumindo a mesma taxa). Dobrar a taxa também o eleva ao quadrado. Dobrar a frequência de capitalização? Adiciona talvez uma fração de porcentagem."
+        ]
+      },
+      {
+        "heading": "Premissas realistas",
+        "paragraphs": [
+          "Essas projeções assumem uma taxa constante, o que não condiz com a realidade — os retornos de ações variam, as taxas de títulos mudam e as taxas promocionais dos bancos expiram. Para planejamento de longo prazo, execute a calculadora com três taxas: pessimista (4-6%), esperada (8-10%) e otimista (12-15%) para ver uma faixa de resultados.",
+          "A inflação corrói os retornos nominais. Um retorno de 12% nominal com inflação de 4,5% (IPCA histórico) é cerca de 7,2% em poder de compra 'real'. Se você quiser o saldo em valores de hoje, insira (taxa − inflação esperada) em vez da taxa nominal. Além disso, taxas e impostos (IR sobre rendimentos) tipicamente reduzem os retornos reais em 1-2% — subtraia também isso da taxa para uma aproximação mais próxima."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Insira seu saldo inicial", "text": "Quanto você tem investido hoje." },
+      { "name": "Insira a taxa e o prazo", "text": "Taxa de juros anual em porcentagem e quantos anos você planeja investir." },
+      { "name": "Escolha a frequência de capitalização", "text": "Mensal é um bom padrão. Diária faz uma pequena diferença; anual é conservador." },
+      { "name": "Adicione um aporte mensal (opcional)", "text": "Se você planeja adicionar dinheiro regularmente, insira o valor mensal." },
+      { "name": "Leia o detalhamento", "text": "Saldo final, total aportado (principal + aportes) e juros totais ganhos." }
+    ]
+  },
+  "faq": [
+    { "q": "Qual taxa de juros realista usar?", "a": "Médias históricas da bolsa brasileira: ~10-14% nominal, ~6-8% real (acima do IPCA). O Tesouro Selic rende próximo à taxa Selic. Tente 8-10% como linha de base para uma carteira diversificada no Brasil." },
+    { "q": "Por que pequenas diferenças de taxa importam tanto ao longo do tempo?", "a": "A capitalização multiplica. Em 30 anos, um retorno de 12% produz um patrimônio muito maior do que 10%, embora a diferença seja de apenas 2 pontos percentuais. Isso é o poder dos juros compostos a longo prazo." },
+    { "q": "Os aportes mensais são feitos no início ou no final do mês?", "a": "Usamos o timing de aporte no final do período (uma 'anuidade ordinária'). O início do período adicionaria um período extra de capitalização, elevando o resultado por cerca de 1 mês de juros. Diferença pequena o suficiente para não importar no planejamento." },
+    { "q": "Isso considera a inflação?", "a": "Não. Use uma taxa 'real' (nominal menos inflação esperada) se quiser projeções em valores de hoje. Um retorno de 12% com 4,5% de inflação é 7,2% real." },
+    { "q": "E impostos e taxas?", "a": "Não modelados. Subtraia 1-2% da sua taxa como ajuste aproximado para impostos (em contas tributáveis) e taxas de fundos." },
+    { "q": "Por que o resultado não corresponde ao app do meu banco?", "a": "Os bancos podem capitalizar em intervalos ligeiramente diferentes ou usar juros simples por curtos períodos. Para projeções específicas de cada banco, use a própria calculadora do banco." },
+    { "q": "As taxas de juros podem ser negativas?", "a": "Sim, matematicamente — a fórmula lida com isso. Taxas negativas apareceram em títulos governamentais europeus, mas raramente em produtos de varejo." },
+    { "q": "Os dados são enviados para algum lugar?", "a": "Não. Toda a matemática roda no seu navegador." }
+  ]
+}

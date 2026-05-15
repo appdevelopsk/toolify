@@ -1,0 +1,100 @@
+{
+  "title": "Codificatore / Decodificatore Cifrario di Cesare (con ROT13)",
+  "shortDescription": "Codifica o decodifica testo con il classico cifrario di Cesare. Spostamento regolabile da -25 a +25, con preset con un clic per ROT13 e lo spostamento storico di +3.",
+  "description": "Digita il testo e scegli uno spostamento. Le lettere vengono ruotate di quel numero di posizioni nell'alfabeto (A-Z, a-z); gli altri caratteri passano invariati. Usa shift=13 per ROT13, shift=3 per il classico Cesare.",
+  "metaDescription": "Strumento cifrario di Cesare gratuito. Codifica o decodifica qualsiasi testo con spostamento da -25 a +25, incluso ROT13.",
+  "keywords": [
+    "cifrario di cesare",
+    "ROT13",
+    "spostamento cesareo",
+    "cifrario lettere",
+    "cifrario classico"
+  ],
+  "mode": {
+    "encode": "Codifica",
+    "decode": "Decodifica"
+  },
+  "input": {
+    "text": "Testo",
+    "shift": "Spostamento"
+  },
+  "output": "Output",
+  "copy": "Copia",
+  "article": {
+    "sections": [
+      {
+        "heading": "Come funziona il cifrario di Cesare",
+        "paragraphs": [
+          "Ogni lettera nell'input viene sostituita da una lettera un numero fisso di posizioni più avanti nell'alfabeto. Con lo spostamento +3, A diventa D, B diventa E, …, X diventa A (ricominciando dall'inizio). I non-lettere passano invariati. La decodifica è lo stesso processo con il segno opposto.",
+          "Prende il nome da Giulio Cesare, che si dice usasse uno spostamento di +3 per i messaggi militari. La dimensione dello spostamento è l'unico segreto. Con soli 26 spostamenti possibili, viene banalmente violato provandoli tutti — ma è un eccellente esempio didattico per i cifrari a sostituzione."
+        ]
+      },
+      {
+        "heading": "ROT13 — la variante più comune",
+        "paragraphs": [
+          "ROT13 usa shift=13. Poiché 13 è la metà di 26, applicare ROT13 due volte restituisce il testo originale — codifica e decodifica usano esattamente la stessa operazione. Questo lo ha reso popolare su Usenet e nei forum per nascondere spoiler e battute offensive; i lettori possono decodificare cliccando un pulsante 'mostra' senza bisogno di un decoder separato.",
+          "ROT13 non è cifratura in nessun senso significativo. È offuscamento — l'equivalente di scrivere 'spoiler nascosto qui sotto' così chi non vuole sapere può saltarlo."
+        ]
+      },
+      {
+        "heading": "Perché è divertente, non sicuro",
+        "paragraphs": [
+          "Gli attaccanti moderni violano un cifrario di Cesare in microsecondi tramite analisi della frequenza (la E è la lettera più comune in italiano; qualunque cosa si mappi a una lettera frequente nel testo cifrato è probabilmente E). Non usarlo per nulla di importante.",
+          "Usalo per: esempi educativi, giochi puzzle, ARG (giochi di realtà alternata), nascondere testo alla vista, tag spoiler ROT13. Non usarlo per: password, dati finanziari, nulla con conseguenze reali."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Scegli la modalità",
+        "text": "Codifica (applica spostamento in avanti) o Decodifica (applica spostamento all'indietro)."
+      },
+      {
+        "name": "Digita o incolla il testo",
+        "text": "Le lettere vengono spostate; punteggiatura, cifre e spazi passano invariati."
+      },
+      {
+        "name": "Regola lo spostamento",
+        "text": "Il cursore va da -25 a +25. Usa i preset per +3 (Cesare), 13 (ROT13) o valori negativi."
+      },
+      {
+        "name": "Copia l'output",
+        "text": "Copia negli appunti con un clic."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual è la differenza tra Cesare +3 e ROT13?",
+      "a": "Solo la quantità di spostamento. +3 è la scelta originale di Cesare; 13 è esattamente metà dell'alfabeto (quindi codifica e decodifica sono la stessa operazione). Matematicamente appartengono alla stessa famiglia di cifrari."
+    },
+    {
+      "q": "Perché lo spostamento +26 restituisce lo stesso testo?",
+      "a": "26 lettere nell'alfabeto — spostarsi esattamente di 26 ti riporta alla lettera originale. Lo stesso vale per qualsiasi multiplo di 26."
+    },
+    {
+      "q": "Perché ROT13 viene usato per gli spoiler?",
+      "a": "Perché applicare ROT13 due volte restituisce l'originale. I forum e i lettori Usenet avevano pulsanti integrati 'rot13 questo testo' che funzionavano in entrambe le direzioni. Comodo per nascondere e poi rivelare testo."
+    },
+    {
+      "q": "Gestisce alfabeti non latini?",
+      "a": "No — solo A-Z e a-z. Il cirillico, il greco, i caratteri CJK e l'arabo passano invariati. Il cifrario di Cesare è intrinsecamente specifico per l'alfabeto latino."
+    },
+    {
+      "q": "Posso usarlo per vera sicurezza?",
+      "a": "Assolutamente no. Con 25 spostamenti possibili (escludendo 0 e 26), un computer lo viola istantaneamente. Usa AES, RSA o librerie crittografiche consolidate per vera sicurezza."
+    },
+    {
+      "q": "E il cifrario di Vigenère?",
+      "a": "Un cifrario classico più avanzato che usa una parola chiave per variare lo spostamento per lettera. Ancora violabile a mano con abbastanza testo, ma molto più difficile di Cesare. Non lo includiamo (ancora)."
+    },
+    {
+      "q": "Perché includere spostamenti negativi?",
+      "a": "Per comodità. Codificare con +3 e decodificare con +3 è sbagliato; hai bisogno di -3 per decodificare. Gli spostamenti negativi ti permettono di decodificare senza cambiare modalità (o il toggle lo fa per te)."
+    },
+    {
+      "q": "I dati lasciano il mio browser?",
+      "a": "No. Codifica e decodifica vengono eseguite localmente; nulla viene inviato a un server."
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "title": "Pemeriksa Info Perangkat (browser, OS, hardware, jaringan)",
+  "shortDescription": "Lihat browser, OS, layar, hardware, GPU, penyimpanan, jaringan, dan preferensi dark-mode perangkat Anda di satu tempat. Semua terdeteksi di sisi klien.",
+  "description": "Dump sisi browser dari setiap Web API publik yang diekspos perangkat: user agent, OS, versi browser, ukuran layar, devicePixelRatio, hardware concurrency (core CPU), memori perangkat, info GPU melalui WebGL, kuota penyimpanan, jenis dan kecepatan jaringan, bahasa, zona waktu, preferensi dark-mode dan reduced-motion.",
+  "metaDescription": "Pemeriksa info perangkat gratis. Browser, OS, core CPU, memori, GPU, layar, jaringan, bahasa, zona waktu — semua info perangkat Anda di satu halaman.",
+  "keywords": ["pemeriksa info perangkat", "deteksi browser", "info sistem", "user agent", "info hardware"],
+  "loading": "Mendeteksi…",
+  "copyJson": "Salin JSON",
+  "copied": "Tersalin!",
+  "notAvailable": "(tidak tersedia)",
+  "automation": "Otomasi terdeteksi",
+  "real": "Browser nyata",
+  "section": {
+    "browser": "Browser & OS",
+    "display": "Tampilan",
+    "hardware": "Hardware",
+    "network": "Jaringan",
+    "userAgent": "String User-Agent"
+  },
+  "field": {
+    "browser": "Browser",
+    "os": "Sistem operasi",
+    "platform": "Platform",
+    "language": "Bahasa utama",
+    "languages": "Semua bahasa",
+    "timezone": "Zona waktu",
+    "cookiesEnabled": "Cookie diaktifkan",
+    "online": "Status online",
+    "doNotTrack": "Do Not Track",
+    "webdriver": "Webdriver",
+    "screenSize": "Ukuran layar",
+    "availSize": "Area yang tersedia",
+    "windowSize": "Ukuran jendela",
+    "colorDepth": "Kedalaman warna",
+    "pixelRatio": "devicePixelRatio",
+    "darkMode": "Preferensi dark mode",
+    "reducedMotion": "Reduced motion",
+    "cpuCores": "Thread CPU",
+    "deviceMemory": "Memori perangkat",
+    "touchPoints": "Titik sentuh",
+    "gpu": "GPU (WebGL)",
+    "storageQuota": "Kuota penyimpanan",
+    "storageUsage": "Penyimpanan yang digunakan",
+    "connectionType": "Jenis koneksi",
+    "downlink": "Downlink",
+    "rtt": "Round-trip time"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Yang dikumpulkan",
+        "paragraphs": [
+          "Browser & OS: user-agent, browser/OS yang diurai, bahasa, zona waktu, cookie, status online. Informasi yang sama dapat dibaca oleh situs web mana pun yang Anda kunjungi.",
+          "Tampilan: ukuran layar, ukuran viewport, kedalaman warna, devicePixelRatio (Retina/HiDPI), prefers-color-scheme, prefers-reduced-motion. Digunakan oleh situs untuk desain responsif dan aksesibilitas.",
+          "Hardware: jumlah thread CPU (navigator.hardwareConcurrency), kelas memori perangkat (navigator.deviceMemory, dalam GB), titik sentuh maksimum, info GPU dari WebGL, kuota penyimpanan dan penggunaan saat ini.",
+          "Jaringan: jenis efektif koneksi (slow-2g/2g/3g/4g), downlink (Mbps), dan round-trip time (ms) saat didukung browser. Berguna untuk pemuatan adaptif."
+        ]
+      },
+      {
+        "heading": "Privasi: apa yang dilihat vs tidak dilihat situs web",
+        "paragraphs": [
+          "Semua yang ditampilkan di sini adalah informasi yang dapat diakses oleh situs web mana pun yang Anda kunjungi melalui API JavaScript standar. Tidak diperlukan izin khusus; semuanya ada di objek navigator dan screen publik. Jadi alat ini bersifat informatif, bukan ekstraktif.",
+          "Yang TIDAK dilihat situs web (dan alat ini tidak dapat menampilkan): alamat IP Anda (hanya sisi server, alat ini sepenuhnya sisi klien), sistem file lokal Anda, konten tab browser lainnya, atau apa pun di luar sandbox browser. Fingerprinting browser menggabungkan banyak kolom yang terlihat ini untuk mengidentifikasi browser yang unik, bahkan tanpa cookie — masalah privasi yang didokumentasikan secara luas."
+        ]
+      },
+      {
+        "heading": "Berguna untuk debugging",
+        "paragraphs": [
+          "Pengujian mobile vs desktop: user agent mengungkapkan apa yang dilihat situs. Terkadang masalah responsif berasal dari kelas perangkat yang salah terdeteksi.",
+          "GPU/WebGL: 'GPU (WebGL)' menampilkan renderer grafis Anda. Berguna saat situs dengan 3D kompleks atau canvas-heavy berkinerja buruk — GPU Anda mungkin menjadi hambatan.",
+          "Penyimpanan: kuota penyimpanan memberi tahu seberapa banyak localStorage/IndexedDB/cache yang dapat digunakan situs. Default biasanya beberapa GB di desktop, lebih sedikit di mobile. Jika aplikasi web mencapai 'kuota terlampaui', angka ini alasannya."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Buka halaman ini", "text": "Deteksi berjalan secara otomatis saat halaman dimuat." },
+      { "name": "Baca setiap bagian", "text": "Browser & OS, Tampilan, Hardware, Jaringan, User-Agent." },
+      { "name": "Ubah ukuran jendela Anda", "text": "Ukuran jendela dan kolom terkait dpi diperbarui secara langsung." },
+      { "name": "Opsional: salin sebagai JSON", "text": "Klik 'Salin JSON' untuk menangkap snapshot lengkap untuk laporan bug atau perbandingan." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah ini mengirim data saya ke mana pun?", "a": "Tidak. Semuanya terdeteksi dan dirender secara lokal di browser Anda. Tidak ada yang dicatat atau ditransmisikan." },
+    { "q": "Mengapa beberapa kolom '(tidak tersedia)'?", "a": "Browser bervariasi dalam API yang mereka ekspos. navigator.deviceMemory hanya untuk Chrome/Edge; navigator.connection sebagian besar Chrome; kuota penyimpanan memerlukan HTTPS. Safari dan Firefox lebih membatasi dalam mode privasi." },
+    { "q": "Mengapa ukuran layar saya berbeda dari resolusi yang diharapkan?", "a": "Browser melaporkan ukuran 'piksel CSS', bukan ukuran piksel fisik. devicePixelRatio menampilkan pengganda (mis., 2,0 di Retina). Resolusi fisik = ukuran layar × devicePixelRatio." },
+    { "q": "Apa yang ditampilkan 'GPU (WebGL)'?", "a": "Nama renderer grafis Anda seperti yang dilaporkan oleh WebGL. Browser yang lebih baru mungkin mengaburkan ini untuk perlindungan fingerprinting — Anda mungkin melihat 'Apple GPU' alih-alih nama chip spesifik di macOS." },
+    { "q": "Bisakah saya mempercayai user agent?", "a": "String user agent dapat dipalsukan oleh ekstensi atau pengaturan browser. Itu adalah petunjuk, bukan jaminan. Beberapa browser secara aktif mengurangi detail UA (Safari, Firefox dalam mode privasi)." },
+    { "q": "Mengapa 'Thread CPU' menampilkan 8 meskipun CPU saya memiliki 12?", "a": "navigator.hardwareConcurrency mungkin dibatasi untuk melindungi dari fingerprinting. Beberapa browser melaporkan maksimum 8 atau 16 bahkan pada sistem dengan core lebih tinggi." },
+    { "q": "Bagaimana jika mobile saya menampilkan 0 titik sentuh?", "a": "Di mobile, maxTouchPoints biasanya ≥1. Jika 0, Anda mungkin dalam mode tampilan desktop. Coba refresh atau beralih ke tampilan mobile di pengaturan browser Anda." },
+    { "q": "Apakah ini bekerja di iPhone?", "a": "Ya, dengan keterbatasan Safari iOS. Beberapa kolom (deviceMemory, connection) mungkin tidak tersedia. User-agent dan deteksi browser/OS dasar selalu bekerja." }
+  ]
+}

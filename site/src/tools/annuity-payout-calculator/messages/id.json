@@ -1,0 +1,69 @@
+{
+  "title": "Kalkulator Pembayaran Anuitas (periode tetap)",
+  "shortDescription": "Hitung pembayaran berkala dari anuitas berdasarkan pokok, suku bunga, dan periode pembayaran. Mendukung distribusi bulanan atau tahunan.",
+  "description": "Masukkan pokok, suku bunga tahunan, dan jumlah tahun. Mengembalikan pembayaran periodik (bulanan atau tahunan), total yang dibayarkan, total bunga yang diperoleh, dan jumlah pembayaran. Menggunakan rumus anuitas periode tetap standar.",
+  "metaDescription": "Kalkulator pembayaran anuitas gratis. Distribusi periode tetap bulanan atau tahunan. Lihat total pembayaran, bunga yang diperoleh, dan jumlah cicilan. Berbasis browser.",
+  "keywords": ["kalkulator anuitas", "anuitas periode tetap", "penarikan anuitas", "kalkulator pendapatan pensiun", "penarikan sistematis"],
+  "empty": "Masukkan pokok dan jangka waktu lebih dari nol.",
+  "input": {
+    "principal": "Pokok (sekaligus)",
+    "ratePct": "Suku bunga tahunan %",
+    "years": "Periode pembayaran (tahun)",
+    "frequency": "Frekuensi pembayaran"
+  },
+  "freq": {
+    "monthly": "Bulanan",
+    "annual": "Tahunan"
+  },
+  "result": {
+    "monthlyPayout": "Pembayaran bulanan",
+    "annualPayout": "Pembayaran tahunan",
+    "totalPayout": "Total yang dibayarkan",
+    "totalInterest": "Total bunga yang diperoleh",
+    "periods": "Jumlah pembayaran"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Matematika anuitas periode tetap",
+        "paragraphs": [
+          "Anuitas periode tetap mengubah sekaligus menjadi serangkaian pembayaran yang sama selama jumlah tahun yang dipilih. Rumusnya adalah rumus amortisasi pinjaman secara terbalik: pokok adalah perspektif bank, dan pembayaran adalah perspektif deposan. Bentuk standar: pembayaran = P × r / (1 − (1+r)⁻ⁿ), di mana P adalah pokok, r adalah suku bunga periodik, n adalah jumlah periode.",
+          "Jika Anda menyetor Rp 7.500.000.000 dengan bunga tahunan 4% selama 25 tahun bulanan, rumusnya menghasilkan ≈Rp 39.600.000/bulan. Total yang dibayarkan: lebih dari Rp 11,8 miliar. Total bunga yang diperoleh: lebih dari Rp 4,3 miliar. Anuitas habis hingga nol selama periode tersebut, itulah mengapa ini disebut 'periode tertentu' — dijamin untuk jangka waktu, tidak lebih."
+        ]
+      },
+      {
+        "heading": "Mengapa ini berbeda dari penarikan bunga saja atau aturan 4%",
+        "paragraphs": [
+          "Penarikan bunga saja membayar Anda hanya bunga setiap periode (P × r). Pada 4% dari Rp 7,5 miliar, itu adalah Rp 300 juta/tahun — dan pokok tetap utuh untuk ahli waris atau distribusi akhir. Anuitas periode tetap memberikan pendapatan tahunan lebih tinggi karena mengonsumsi pokok: dalam 25 tahun membayar lebih dari Rp 465 juta per tahun, tetapi berakhir dengan Rp 0.",
+          "Aturan 4% adalah model pengembalian stokastik dari Trinity Study, dirancang untuk portofolio saham/obligasi selama 30 tahun. Model ini mengasumsikan pengembalian variabel rata-rata ~6-7% riil dan bertahan dalam sebagian besar urutan historis. Rumus anuitas di sini mengasumsikan pengembalian tetap, itulah mengapa digunakan untuk kontrak anuitas tetap aktual dan bukan penarikan portofolio.",
+          "Gunakan alat ini saat memodelkan produk yang dijamin: tangga CD, kontrak anuitas tetap, atau penyelesaian terstruktur. Gunakan kalkulator Monte Carlo atau aturan 4% untuk portofolio yang diinvestasikan di pasar."
+        ]
+      },
+      {
+        "heading": "Peringatan pajak dan inflasi",
+        "paragraphs": [
+          "Pembayaran bersifat nominal (nilai uang saat ini). Daya beli riil merosot akibat inflasi: pada inflasi 3% selama 25 tahun, pembayaran Rp 39.600.000 bernilai ~Rp 18.900.000 dalam uang saat ini pada tahun ke-25. Untuk pendapatan yang terlindungi inflasi, lihat tangga obligasi inflasi atau anuitas yang disesuaikan dengan COLA — keduanya memiliki pembayaran awal yang lebih rendah.",
+          "Pajak bergantung pada sumbernya. Anuitas non-kualifikasi dari uang setelah pajak hanya dikenakan pajak pada porsi keuntungan dari setiap pembayaran (rasio pengecualian). Anuitas yang memenuhi syarat (dari IRA/401k) sepenuhnya kena pajak. Ini menampilkan angka sebelum pajak.",
+          "Input suku bunga harus berupa tingkat kredit bersih dari biaya kontrak anuitas apa pun. Produk asuransi sering mengutip tingkat kotor tetapi mengenakan biaya 1-2%, sehingga pemegang mendapat tingkat bersih yang lebih rendah. Gunakan bersih untuk proyeksi yang jujur."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Masukkan pokok", "text": "Sekaligus yang dianuitaskan. Untuk kontrak anuitas yang ada, gunakan nilai yang terkumpul saat pembayaran dimulai." },
+      { "name": "Masukkan tingkat tahunan", "text": "Tingkat kredit bersih dari biaya. Untuk 4%, masukkan 4. Untuk sebagian besar anuitas tetap, ini antara 3-6%." },
+      { "name": "Pilih periode", "text": "Tahun di mana pokok akan habis. Umum: 10, 15, 20, 25, 30 tahun." },
+      { "name": "Pilih frekuensi", "text": "Bulanan paling umum untuk pendapatan pensiun; tahunan lebih sederhana untuk proyeksi." },
+      { "name": "Baca pembayarannya", "text": "Pendapatan per periode, total selama periode penuh, dan total bunga yang diperoleh." }
+    ]
+  },
+  "faq": [
+    { "q": "Apa perbedaan antara ini dan anuitas seumur hidup?", "a": "Ini adalah periode-tertentu: membayar selama jumlah tahun yang tetap, lalu berhenti. Anuitas seumur hidup membayar hingga kematian (atau kematian bersama). Pembayaran seumur hidup biasanya lebih rendah per periode karena perusahaan asuransi menanggung risiko mortalitas." },
+    { "q": "Apakah anuitas berlanjut jika saya melebihi periode?", "a": "Tidak. Anuitas periode tetap 25 tahun berhenti membayar di tahun ke-26. Ini adalah mengapa periode-tertentu murni jarang — sebagian besar digabungkan dengan opsi kontingen-jiwa." },
+    { "q": "Tingkat apa yang harus saya gunakan?", "a": "Untuk kontrak anuitas tetap nyata, gunakan tingkat kredit kontraktual bersih dari biaya. Untuk simulasi tangga CD, gunakan rata-rata hasil CD. Untuk penarikan berbasis investasi, kalkulator ini melebih-lebihkan keamanan karena mengasumsikan pengembalian konstan — gunakan alat Monte Carlo." },
+    { "q": "Mengapa pembayaran bulanan × 12 berbeda dari perhitungan pembayaran tahunan?", "a": "Versi bulanan berbunga bulanan (pemajemukan lebih sering = pembayaran sedikit berbeda). Pada 4% tahunan, pemajemukan bulanan memberikan tingkat efektif sedikit lebih tinggi, sehingga bulanan × 12 ≈ tahunan tetapi tidak persis sama." },
+    { "q": "Bisakah saya menambah pokok di tengah jalan?", "a": "Sebagian besar kontrak anuitas tetap tidak mengizinkan kontribusi setelah anuitasi. Alat ini memodelkan skenario premi tunggal. Jika Anda ingin penambahan fleksibel, modelkan itu secara terpisah dan hitung ulang." },
+    { "q": "Bagaimana inflasi mempengaruhi nilai 'riil'?", "a": "Pada inflasi 3%, dolar tahun ke-25 bernilai sekitar 48% dari dolar tahun ke-1. Untuk mempertahankan daya beli, tambahkan rider COLA 2-3% (pembayaran awal lebih rendah) atau gunakan tangga obligasi inflasi." },
+    { "q": "Apa yang terjadi pada pokok yang tersisa di akhir?", "a": "Tidak ada — rumusnya dirancang untuk menghabiskan pokok secara tepat selama periode tersebut. Saldo akhir adalah nol berdasarkan konstruksi. Bandingkan ini dengan penarikan hanya-bunga atau berbasis RMD di mana pokok dipertahankan." },
+    { "q": "Apakah perhitungan berbagi data?", "a": "Tidak. Komputasi browser murni; tidak ada yang dikirim ke server mana pun." }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "title": "Conversor de HTML para Markdown",
+  "shortDescription": "Converta HTML para Markdown no seu navegador. Títulos, listas, código, links, imagens, citações, negrito/itálico/riscado.",
+  "description": "Cole HTML e obtenha Markdown limpo. Útil para migrar conteúdo de CMS, extrair artigos ou converter saída de WYSIWYG para Markdown simples em sites estáticos.",
+  "metaDescription": "Conversor gratuito de HTML para Markdown. Títulos, listas, blocos de código, links, citações, negrito/itálico.",
+  "keywords": [
+    "html para markdown",
+    "html para md",
+    "conversor de markdown",
+    "remover html",
+    "wysiwyg para markdown"
+  ],
+  "input": {
+    "html": "HTML"
+  },
+  "output": {
+    "markdown": "Saída em Markdown"
+  },
+  "copy": "Copiar Markdown",
+  "copied": "Copiado!",
+  "article": {
+    "sections": [
+      {
+        "heading": "O que é convertido",
+        "paragraphs": [
+          "Títulos (h1-h6) viram # a ######. <strong>/<b> viram **negrito**, <em>/<i> viram *itálico*. <code> vira `código inline`, <pre><code> vira um bloco delimitado por ```. <ul>/<ol> viram listas com - ou 1. <a href> vira [texto](url), <img src alt> vira ![alt](url). <blockquote> vira >, <hr> vira ---. <br> vira uma quebra de linha.",
+          "Qualquer coisa não reconhecida (HTML personalizado como <details>, <table>, <video>, etc.) tem as tags removidas, mas o conteúdo de texto é preservado. Para HTML complexo com tabelas ou mídia, espere alguma perda."
+        ]
+      },
+      {
+        "heading": "Casos de uso comuns",
+        "paragraphs": [
+          "Migração de CMS: copie o HTML do WYSIWYG do WordPress, Wix, etc., e converta para Markdown limpo para uso em geradores de sites estáticos (Hugo, Jekyll, Next.js, Astro).",
+          "Arquivamento de artigos: salve artigos da web como Markdown para leitura pessoal. Combine com um extrator compatível com paywall (HTML do modo Leitura) para saída só em texto.",
+          "E-mail para Markdown: cole o conteúdo HTML de um e-mail e obtenha uma versão em Markdown para republicar no seu blog."
+        ]
+      },
+      {
+        "heading": "Limitações",
+        "paragraphs": [
+          "Tabelas: não são convertidas (tabelas Markdown são GFM, não CommonMark). As tabelas são convertidas em texto simples. Para tabelas complexas, cole como HTML.",
+          "Estilos inline: qualquer cor, fonte ou layout via <style> ou atributos style='' são perdidos. Markdown é intencionalmente minimalista.",
+          "Listas aninhadas: listas simples de um nível funcionam; listas muito aninhadas podem se fundir ou perder estrutura. Para estruturas complexas, edite manualmente após a conversão."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Cole o HTML",
+        "text": "De qualquer fonte — exportação do WordPress, artigo copiado da web, etc."
+      },
+      {
+        "name": "Leia a saída em Markdown",
+        "text": "Atualizada em tempo real enquanto você edita."
+      },
+      {
+        "name": "Copie e cole em outro lugar",
+        "text": "A saída é Markdown puro pronto para qualquer site estático ou editor de Markdown."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "A formatação é preservada perfeitamente?",
+      "a": "Para elementos compatíveis com CommonMark: sim. Para recursos exclusivos do HTML (CSS personalizado, layouts complexos): não — Markdown é intencionalmente um subconjunto."
+    },
+    {
+      "q": "As tabelas são convertidas?",
+      "a": "Ainda não. Tabelas viram texto simples. Podemos adicionar a conversão de tabelas GFM em uma versão futura."
+    },
+    {
+      "q": "Meus links sobrevivem à conversão?",
+      "a": "Sim. <a href='url'>texto</a> vira [texto](url). O atributo href é preservado."
+    },
+    {
+      "q": "E os estilos inline?",
+      "a": "São removidos. Markdown não suporta estilos arbitrários — isso é intencional."
+    },
+    {
+      "q": "Como converto de volta para HTML?",
+      "a": "Use nosso conversor de Markdown para HTML (disponível em Ferramentas Relacionadas)."
+    },
+    {
+      "q": "A saída é segura para colar em qualquer lugar?",
+      "a": "É texto puro — sem scripts, sem HTML — portanto seguro para qualquer editor de Markdown ou campo de texto. Valide antes de publicar se a entrada veio de uma fonte não confiável."
+    },
+    {
+      "q": "Por que algum conteúdo está faltando?",
+      "a": "Elementos HTML personalizados ou não padronizados podem ser removidos. Cole um trecho HTML com <details>, <video> ou tags específicas de framework para verificar."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. A conversão é feita localmente; seu HTML nunca é enviado para lugar nenhum."
+    }
+  ]
+}

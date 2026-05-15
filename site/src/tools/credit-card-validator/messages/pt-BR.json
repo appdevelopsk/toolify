@@ -1,0 +1,102 @@
+{
+  "title": "Validador de Cartão de Crédito (verificação Luhn + detecção de",
+  "shortDescription": "Valide o checksum de um número de cartão de crédito (algoritmo de Luhn) e detecte a bandeira emissora. Funciona apenas no navegador — seu número de cartão nunca sai do seu dispositivo.",
+  "description": "Digite um número de cartão para verificar se passa na verificação de Luhn e detectar a bandeira (Visa, Mastercard, Amex, Discover, JCB, Diners, UnionPay) pelo intervalo IIN/BIN.",
+  "metaDescription": "Validador de cartão de crédito gratuito. Verificação pelo algoritmo de Luhn + detecção de bandeira (Visa, Mastercard, Amex etc).",
+  "keywords": [
+    "validador de cartão de crédito",
+    "algoritmo de Luhn",
+    "verificação de número de cartão",
+    "verificação de BIN",
+    "detecção de bandeira de cartão"
+  ],
+  "warning": "⚠ Nunca insira um número de cartão real em um site que você não confia. Esta ferramenta roda inteiramente no seu navegador — mas isso é impossível de verificar em qualquer site desconhecido.",
+  "input": {
+    "cardNumber": "Número do cartão"
+  },
+  "status": {
+    "valid": "Sintaxe válida",
+    "invalid": "Inválido"
+  },
+  "empty": "Digite um número de cartão para validar.",
+  "breakdown": {
+    "brand": "Bandeira",
+    "length": "Comprimento",
+    "luhn": "Verificação Luhn",
+    "formatted": "Formatado",
+    "unknown": "Desconhecida"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "O que este validador verifica (e o que não verifica)",
+        "paragraphs": [
+          "Três verificações: (1) o prefixo corresponde ao intervalo IIN/BIN de um emissor conhecido, (2) o comprimento é um dos comprimentos válidos para aquela bandeira, (3) o checksum de Luhn passa. Se as três forem verdadeiras, o número é sintaticamente válido como número de cartão.",
+          "O que NÃO é verificado: se o cartão realmente existe, se tem fundos, se o titular do cartão o autorizou. Isso requer passar por um processador de pagamento real com autorização adequada. Esta ferramenta detecta erros de digitação de forma econômica — como 1234 vs 1243 em um copia-e-cola — mas não pode verificar se o cartão pertence a uma conta real."
+        ]
+      },
+      {
+        "heading": "Como funciona o algoritmo de Luhn",
+        "paragraphs": [
+          "Luhn (1954, pelo cientista da IBM Hans Peter Luhn) é um checksum simples: começando pelo dígito mais à direita, dobre cada segundo dígito. Se um dígito dobrado for maior que 9, some seus dois dígitos (ou equivalentemente, subtraia 9). Some todos os dígitos resultantes. O total deve ser divisível por 10.",
+          "Luhn detecta erros de um único dígito e a maioria das transposições adjacentes — os dois tipos mais comuns de erros de digitação quando humanos copiam números longos. Não é criptográfico; você não pode usá-lo para detectar adulteração maliciosa. Processadores reais de cartão usam Luhn como filtro de primeira linha antes de verificações de backend mais caras."
+        ]
+      },
+      {
+        "heading": "Detecção de bandeira por IIN/BIN",
+        "paragraphs": [
+          "Os primeiros 6-8 dígitos de um número de cartão identificam o emissor (Número de Identificação do Emissor / Número de Identificação do Banco). As principais bandeiras têm intervalos de prefixo bem conhecidos: Visa começa com 4, Mastercard com 51-55 ou 2221-2720, Amex com 34 ou 37, etc. Detectamos a bandeira correspondendo a esses intervalos.",
+          "A bandeira e o país geralmente podem ser inferidos do IIN. As pesquisas em um banco de dados IIN completo fornecem país, banco, tipo de cartão (débito/crédito) e programa — usados por comerciantes para pontuação de risco. Não incluímos um banco de dados IIN completo; apenas os padrões de bandeira mais comuns."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Digite o número do cartão",
+        "text": "Espaços e traços são ignorados automaticamente."
+      },
+      {
+        "name": "Leia o veredicto",
+        "text": "Marca verde = sintaxe válida (Luhn passa + comprimento corresponde à bandeira)."
+      },
+      {
+        "name": "Revise o detalhamento",
+        "text": "Bandeira, comprimento, verificação de Luhn e número de cartão formatado corretamente."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Devo confiar nessa ferramenta com meu número de cartão real?",
+      "a": "Mesmo que executemos apenas no seu navegador, você nunca deve colar um número de cartão real em uma ferramenta na qual não confia profundamente. Use um dos números de cartão de teste padrão (ex.: 4111 1111 1111 1111) para verificações de sintaxe."
+    },
+    {
+      "q": "Por que recebo 'inválido' para um número que parece real?",
+      "a": "Na maioria das vezes o checksum de Luhn falhou — provavelmente um erro de digitação. Verifique os dígitos mais uma vez."
+    },
+    {
+      "q": "A validação de Luhn prova que o cartão existe?",
+      "a": "Não. Luhn apenas detecta erros de transcrição. Muitos números nunca emitidos passam em Luhn; muitos cartões reais falham em Luhn se digitados incorretamente."
+    },
+    {
+      "q": "O que é 'BIN'?",
+      "a": "Número de Identificação do Banco — primeiros 6-8 dígitos identificando o emissor. Mesmo que IIN (Número de Identificação do Emissor); os termos são intercambiáveis."
+    },
+    {
+      "q": "Posso usar isso para gerar números de cartão de teste?",
+      "a": "Não diretamente, mas os números de teste padrão da Stripe/Visa/Mastercard são bem documentados (ex.: 4242 4242 4242 4242). Eles passam em Luhn, mas nunca cobram."
+    },
+    {
+      "q": "Por que [alguma bandeira] não é detectada?",
+      "a": "Suportamos as principais bandeiras. Cartões regionais ou co-branded podem não corresponder. Consulte a documentação do emissor para os intervalos IIN que ele usa."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. A validação roda inteiramente no seu navegador sem chamadas de rede."
+    },
+    {
+      "q": "Luhn é usado para outras coisas além de cartões de crédito?",
+      "a": "Sim — números IMEI, SIN canadense, ISIN, NPI e muitos outros sistemas de ID usam Luhn. O algoritmo é o mesmo; apenas os mapeamentos de prefixo diferem."
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "title": "Calculateur de Numéro de Semaine ISO (semaine de l'année)",
+  "shortDescription": "Trouve le numéro de semaine ISO 8601, le jour de la semaine ISO et la plage de dates de la semaine pour n'importe quelle date. Inclut le jour de l'année et les semaines dans l'année.",
+  "description": "Choisis n'importe quelle date et vois son numéro de semaine ISO 8601 (1-53), le jour de la semaine ISO (1=lundi, 7=dimanche), la plage lundi-dimanche de cette semaine et des comptages connexes utiles (jour de l'année, semaines dans l'année).",
+  "metaDescription": "Calculateur de numéro de semaine ISO gratuit. Semaine ISO 8601, jour de la semaine, plage de dates de la semaine, jour de l'année, semaines dans l'année.",
+  "keywords": [
+    "numéro semaine ISO",
+    "semaine de l'année",
+    "semaine ISO 8601",
+    "calculateur semaine",
+    "semaine calendaire"
+  ],
+  "input": {
+    "date": "Date"
+  },
+  "today": "Aujourd'hui",
+  "result": {
+    "iso": "Représentation ISO 8601",
+    "weekNumber": "Numéro de semaine",
+    "weekday": "Jour de la semaine",
+    "weekStart": "Début de semaine (lundi)",
+    "weekEnd": "Fin de semaine (dimanche)",
+    "dayOfYear": "Jour de l'année",
+    "weeksInYear": "Semaines dans l'année"
+  },
+  "empty": "Choisis une date.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qu'est-ce qu'une semaine ISO",
+        "paragraphs": [
+          "ISO 8601 définit une semaine calendaire commençant le lundi et se terminant le dimanche. La première semaine de toute année ISO est celle contenant le premier jeudi de cette année — ou de façon équivalente, la semaine contenant le 4 janvier. Cela signifie qu'une année peut avoir 52 ou 53 semaines ISO, et que l'année ISO ne correspond pas toujours à l'année civile pour les dates de fin décembre et début janvier.",
+          "Format : « AAAA-Www-J ». Ainsi « 2026-W19-3 » signifie mercredi de la semaine 19 de 2026. Numéro de jour : 1=lundi, 7=dimanche. Numéro de semaine : 1-52 ou 1-53."
+        ]
+      },
+      {
+        "heading": "Pourquoi les semaines ISO diffèrent des semaines civiles",
+        "paragraphs": [
+          "Les calendriers américains comptent généralement le dimanche comme premier jour. ISO commence le lundi. Cela signifie : un dimanche dans ton calendrier local qui est en fin de semaine 30 est, en ISO, en fin de semaine 30. Mais ton dimanche saisi peut tomber sur une semaine ISO différente s'il s'agit du dernier dimanche d'une année et que le premier lundi appartient à l'autre.",
+          "Aussi : les années ISO peuvent différer d'une année par rapport aux années civiles. Le 31 déc. 2024 est en semaine ISO 1 de 2025 (année civile 2024, année ISO 2025). Le 1er jan. 2024 était un lundi — la semaine 1 de 2024 commence le 1er janv. Le 1er jan. 2025 est un mercredi — la semaine 1 de 2025 commence le 30 déc. 2024."
+        ]
+      },
+      {
+        "heading": "Où les semaines ISO sont utilisées",
+        "paragraphs": [
+          "Entreprises : de nombreuses entreprises européennes facturent et livrent par semaine ISO. « La commande arrivera en S23 » est sans ambiguïté et indépendant de la langue.",
+          "Logiciels : de nombreux langages de programmation ont des fonctions de semaine ISO. JavaScript Date ne le fait pas directement, donc des bibliothèques comme date-fns et dayjs l'ajoutent. Utilisé dans la planification, l'analyse de journaux et les rapports.",
+          "Épidémiologie de la santé : les rapports hebdomadaires d'incidence des maladies utilisent les semaines ISO. L'OMS et le CDC les utilisent dans leurs tableaux de bord grippe et COVID.",
+          "Sports/jeux : de nombreuses ligues planifient par « semaine 1, semaine 2, … » qui s'alignent souvent avec les semaines ISO (notamment les ligues européennes)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis une date",
+        "text": "Sélecteur de date ou bouton « Aujourd'hui »."
+      },
+      {
+        "name": "Lis la représentation ISO",
+        "text": "Format : AAAA-Www-J, où w est le numéro de semaine et J le jour de la semaine."
+      },
+      {
+        "name": "Vois la plage de la semaine",
+        "text": "Lundi et dimanche de cette semaine, dans le format de date de ta région."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Pourquoi cela ne correspond-il pas à la fonction WEEKNUM d'Excel ?",
+      "a": "WEEKNUM d'Excel utilise des conventions différentes. La valeur par défaut est le style américain (dimanche en premier). Pour les semaines ISO dans Excel, utilise ISOWEEKNUM ou spécifie return_type=21 dans WEEKNUM."
+    },
+    {
+      "q": "Une année peut-elle avoir 53 semaines ?",
+      "a": "Oui. Une année a 53 semaines ISO si le 1er janv. est un jeudi OU si le 31 déc. est un jeudi. Environ 71 années sur 400."
+    },
+    {
+      "q": "Qu'est-ce que l'année ISO par rapport à l'année civile ?",
+      "a": "La plupart des jours sont identiques. Les cas limites de fin décembre et début janvier diffèrent. Le 29 déc. 2008 est en semaine ISO 1 de 2009 (année civile 2008, année ISO 2009)."
+    },
+    {
+      "q": "La semaine 1 est-elle toujours la semaine du 1er janv. ?",
+      "a": "Pas toujours. La semaine ISO 1 contient le premier jeudi de l'année. Donc si le 1er janv. tombe un vendredi-dimanche, ce jour fait partie de la dernière semaine ISO de l'année précédente."
+    },
+    {
+      "q": "Quelle est la différence entre W1 et Semaine 1 ?",
+      "a": "La même chose dans le contexte ISO. Le préfixe W est la convention de format ISO. « 2026-W01 » signifie semaine ISO 1 de 2026."
+    },
+    {
+      "q": "Pourquoi le lundi comme début de semaine ?",
+      "a": "ISO 8601 l'a standardisé. La plupart des pays utilisent lundi en premier ; seuls l'Arabie saoudite, les États-Unis, le Canada et quelques autres pays utilisent customairement dimanche en premier."
+    },
+    {
+      "q": "Puis-je exporter vers un calendrier ?",
+      "a": "Pas directement depuis cet outil. Utilise les dates de début/fin de semaine pour créer ton propre événement de calendrier."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Le calcul s'exécute localement ; rien n'est envoyé à un serveur."
+    }
+  ]
+}

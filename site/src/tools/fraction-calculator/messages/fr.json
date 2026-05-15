@@ -1,0 +1,98 @@
+{
+  "title": "Calculateur de fractions (addition, soustraction, multiplication",
+  "shortDescription": "Additionne, soustrait, multiplie ou divise deux fractions. Retourne la forme simplifiée, l'équivalent décimal et la représentation en nombre mixte.",
+  "description": "Entre deux fractions (numérateur sur dénominateur) et une opération. Le calculateur retourne le résultat en termes réduits, plus sa valeur décimale et sa forme en nombre mixte le cas échéant. Utilise BigInt pour des résultats exacts de taille arbitraire.",
+  "metaDescription": "Calculateur de fractions gratuit. Addition, soustraction, multiplication, division de fractions. Résultat simplifié, équivalent décimal, nombre mixte.",
+  "keywords": [
+    "calculateur fractions",
+    "addition fractions",
+    "multiplication fractions",
+    "simplification fraction",
+    "nombre mixte"
+  ],
+  "empty": "Entre les deux fractions et une opération.",
+  "result": {
+    "simplified": "Résultat (simplifié)",
+    "decimal": "Décimal",
+    "mixed": "Nombre mixte"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionnent les opérations sur les fractions",
+        "paragraphs": [
+          "Addition/soustraction : convertit d'abord en un dénominateur commun. a/b ± c/d = (ad ± bc) / bd. Exemple : 1/2 + 1/3 = (1×3 + 1×2) / (2×3) = 5/6.",
+          "Multiplication : a/b × c/d = (ac) / (bd). La simplification croisée simplifie avant de multiplier. Exemple : 2/3 × 9/10 = (2×9)/(3×10) = 18/30 = 3/5.",
+          "Division : inverse la deuxième fraction et multiplie. a/b ÷ c/d = a/b × d/c = (ad) / (bc). Exemple : 1/2 ÷ 3/4 = (1×4)/(2×3) = 4/6 = 2/3."
+        ]
+      },
+      {
+        "heading": "Pourquoi simplifier",
+        "paragraphs": [
+          "Une fraction est en termes réduits quand le numérateur et le dénominateur ne partagent aucun facteur commun supérieur à 1. Nous utilisons l'algorithme d'Euclide pour trouver leur PGCD et diviser les deux par lui.",
+          "Exemple : 18/30 a un PGCD de 6, donc se simplifie en 3/5. Mathématiquement équivalent mais plus facile à lire et à utiliser.",
+          "Nous normalisons aussi le signe : un numérateur positif est conventionnel. Donc −3/−5 se simplifie en 3/5 ; 3/−5 en −3/5."
+        ]
+      },
+      {
+        "heading": "Nombres mixtes",
+        "paragraphs": [
+          "Quand la valeur absolue du numérateur dépasse celle du dénominateur, la fraction peut être exprimée comme un entier plus une fraction propre. Exemple : 7/3 = 2⅓ (puisque 7 = 2×3 + 1).",
+          "Les nombres mixtes sont courants dans les mesures du quotidien (recettes, dimensions de bois, signatures temporelles musicales) mais moins courants en maths/sciences où les fractions impropres sont plus simples à manipuler. Nous montrons les deux représentations."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Entre la première fraction",
+        "text": "Numérateur en haut, dénominateur en bas."
+      },
+      {
+        "name": "Choisis une opération",
+        "text": "+, −, ×, ou ÷."
+      },
+      {
+        "name": "Entre la deuxième fraction",
+        "text": "Même format."
+      },
+      {
+        "name": "Lis le résultat",
+        "text": "Forme simplifiée, valeur décimale et nombre mixte le cas échéant."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Puis-je entrer des fractions négatives ?",
+      "a": "Oui. Utilise un signe moins sur le numérateur ou le dénominateur. Le calculateur normalise en un seul signe négatif au numérateur."
+    },
+    {
+      "q": "Pourquoi 1/2 + 1/3 = 5/6 et pas 2/5 ?",
+      "a": "Tu ne peux pas additionner les fractions en additionnant séparément numérateurs et dénominateurs. Tu dois d'abord trouver un dénominateur commun. 1/2 = 3/6, 1/3 = 2/6, donc 1/2 + 1/3 = 3/6 + 2/6 = 5/6."
+    },
+    {
+      "q": "Prend-il en charge les entiers comme fractions ?",
+      "a": "Oui. Entre entier = entier/1. Donc 5 + 1/2 = 5/1 + 1/2 = 11/2 = 5½."
+    },
+    {
+      "q": "Quelle est la plus grande fraction que ça gère ?",
+      "a": "Nous utilisons BigInt en interne, donc l'arithmétique sur des numérateurs et dénominateurs de taille essentiellement quelconque est exacte. L'affichage est limité à ce que ton écran peut contenir."
+    },
+    {
+      "q": "Pourquoi le décimal n'est-il parfois pas exact ?",
+      "a": "Certaines fractions n'ont pas de représentations décimales exactes (1/3 = 0,3333…). Nous affichons jusqu'à 8 décimales. La fraction elle-même est exacte ; le décimal est une approximation."
+    },
+    {
+      "q": "Puis-je diviser par zéro ?",
+      "a": "Non. La division par zéro (ou toute fraction avec un numérateur nul comme diviseur) n'est pas définie. Le calculateur ne retourne pas de résultat dans ce cas."
+    },
+    {
+      "q": "D'où viennent les nombres mixtes ?",
+      "a": "Des fractions impropres (numérateur ≥ dénominateur). 7/3 = 2 + 1/3 = 2⅓. Les deux formes sont équivalentes ; choisis selon le contexte (maths : impropre, recettes : mixte)."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Le calcul s'effectue localement ; rien n'est envoyé à un serveur."
+    }
+  ]
+}

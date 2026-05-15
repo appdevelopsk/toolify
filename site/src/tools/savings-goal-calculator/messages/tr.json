@@ -1,0 +1,110 @@
+{
+  "title": "Tasarruf Hedefi Hesaplayıcı (hedefe ulaşma süresi)",
+  "shortDescription": "Başlangıç bakiyesi, aylık katkı ve yıllık getiri ile bir tasarruf hedefine ulaşmanın ne kadar sürdüğünü öğrenin.",
+  "description": "Hedefinizi, mevcut bakiyenizi, aylık tasarrufunuzu ve beklenen yıllık getirinizi girin. Hesaplayıcı hedefe kadar geçen ay sayısını çözer.",
+  "metaDescription": "Ücretsiz tasarruf hedefi hesaplayıcısı. Aylık katkılar ve faiz oranı göz önüne alındığında hedef tutara ne kadar sürede ulaşılacağını görün.",
+  "keywords": [
+    "tasarruf hedefi hesaplayıcı",
+    "tasarruf süresi",
+    "tasarruf hedefi",
+    "ne kadar tasarruf etmek gerekir",
+    "tasarruf hesaplayıcı"
+  ],
+  "empty": "Hedefi ve sıfırdan büyük aylık katkıyı veya oranı girin.",
+  "input": {
+    "goal": "Hedef tutar",
+    "start": "Başlangıç bakiyesi",
+    "monthly": "Aylık katkı",
+    "ratePct": "Yıllık getiri %"
+  },
+  "result": {
+    "timeToGoal": "Hedefe süre",
+    "years": "yıl",
+    "months": "ay",
+    "totalMonths": "Toplam ay",
+    "totalContrib": "Toplam katkı",
+    "interest": "Kazanılan faiz"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Hedefe süre nasıl hesaplanır",
+        "paragraphs": [
+          "Standart gelecek değer formülü FV = P × (1 + r)^n + M × ((1 + r)^n − 1) / r'dir; burada P başlangıç bakiyesi, M aylık katkı, r aylık oran (yıllık / 12) ve n ay sayısıdır. FV = hedefiniz olarak ayarlayıp n için çözmek n = log((G × r + M) / (P × r + M)) / log(1 + r) verir.",
+          "Oran sıfır olduğunda formül (G − P) / M aya indirgenir. Hesaplayıcı doğru yolu otomatik seçer ve en yakın tam aya yukarı yuvarlar çünkü aylık katkıyı 'yarım' yapamazsınız."
+        ]
+      },
+      {
+        "heading": "En önemli olan: aylık katkı mı, oran mı?",
+        "paragraphs": [
+          "Tipik tasarruf ufukları için (1-10 yıl) aylık katkı belirleyicidir. Ayda 3.000 ₺'den 5.000 ₺'ye çıkmak, %3'ten %5 getiriye geçmekten çok daha büyük fark yaratır. Süre ve katkı doğrusaldır; oran üsteldir ama yalnızca çok uzun vadelerde.",
+          "20+ yıllık hedefler için (emeklilik, çocuk eğitim fonu), oran belirleyici olur. 30 yıl boyunca aynı aylık katkı, %4 ile %8 getiri arasında büyük farklı toplamlar üretir. Bu yüzden erken tasarruf başlamak üstel olarak daha değerlidir."
+        ]
+      },
+      {
+        "heading": "Gerçekçi oranlar",
+        "paragraphs": [
+          "Yüksek faizli mevduat hesabı: güncel koşullarda Türkiye'de mevduat faizi değişkendir; enflasyonla mücadelede Türkiye Cumhuriyet Merkez Bankası politika faizini baz alın. Devlet tahvilleri: değişken, genellikle enflasyon civarı.",
+          "Çeşitlendirilmiş hisse endeksi (uzun vadeli tarihsel ortalama): nominal ~%7-10, gerçek (enflasyon sonrası) daha mütevazı. Muhafazakâr planlama için gerçek getiriyi kullanın.",
+          "Enflasyon yılda %20-25'i eritir. 'Bugünkü TL değeri' hedefleri için nominal orandan beklenen enflasyonu çıkarın."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Hedefinizi girin",
+        "text": "Ulaşmak istediğiniz tutar."
+      },
+      {
+        "name": "Başlangıç bakiyesini girin",
+        "text": "Bugün sahip olduğunuz; 0 olabilir."
+      },
+      {
+        "name": "Aylık katkıyı girin",
+        "text": "Her ay ekleyeceğiniz tutar."
+      },
+      {
+        "name": "Beklenen yıllık getiriyi girin",
+        "text": "Muhafazakâr: %4. Hisse piyasası: %6-8."
+      },
+      {
+        "name": "Sonucu okuyun",
+        "text": "Yıl, aya kadar süre, artı toplam katkı ve kazanılan faiz."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Cevap neden tam aylara yuvarlanıyor?",
+      "a": "Kısmi aylık katkı yapamadığınız için. Matematik 32,4 ay diyorsa, hedefinize gerçekte ay 33'te ulaşırsınız (tutarlı katkı varsayımıyla)."
+    },
+    {
+      "q": "Hangi oranı kullanmalıyım?",
+      "a": "Vadeli mevduat veya devlet tahvili için güncel faiz oranlarını kontrol edin. Borsa uzun vadesi için %6-8. Ultra muhafazakâr: saf tasarrufun ne kadar süreceğini görmek için %0 kullanın."
+    },
+    {
+      "q": "Enflasyonu dahil etmeli miyim?",
+      "a": "Hedefiniz bugünkü TL değerindeyse, oranınızdan beklenen enflasyonu çıkarın (ör. %20 nominal − %15 enflasyon = %5 gerçek). Bu şekilde hesaplayıcı 'gerçek' satın alma gücü cevabı verir."
+    },
+    {
+      "q": "Bu aylık bileşiklendirme varsayıyor mu?",
+      "a": "Evet — faiz, katkılarınızla aynı aylık ritimde bileşimlenir. Çoğu tasarruf ürünü için bu gerçekliğe yakından uyar."
+    },
+    {
+      "q": "%0 oran ile ayda 0 tasarruf edersem ne olur?",
+      "a": "O zaman başlangıç bakiyenizin üzerinde bir hedefe ulaşamazsınız. Hesaplayıcı bu durumda sonuç döndürmez."
+    },
+    {
+      "q": "Faiz vergiye tabi mi?",
+      "a": "Çoğu durumda evet (vergi avantajlı hesap değilse, ör. BES, bireysel emeklilik vb.). Hedefiniz vergi sonrası satın alma gücüyse vergi sonrası oranı kullanın."
+    },
+    {
+      "q": "Katkı tutarım değişirse ne olur?",
+      "a": "Her aşama için hesaplayıcıyı birden fazla kez çalıştırın. Değişken katkılar için finansal planlama tablosu daha esnektir."
+    },
+    {
+      "q": "Veriler tarayıcımdan çıkıyor mu?",
+      "a": "Hayır — hesaplamalar yerel olarak çalışır."
+    }
+  ]
+}

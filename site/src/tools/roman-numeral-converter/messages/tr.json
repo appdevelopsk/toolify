@@ -1,0 +1,102 @@
+{
+  "title": "Roma Rakamı Dönüştürücü (1'den 3999'a, her iki yönde)",
+  "shortDescription": "Arap rakamlarını Roma rakamlarına (ve tersine) dönüştürün. Kanonik formu doğrular; VIIII sessizce 9 olarak kabul edilmez.",
+  "description": "Roma rakamı almak için 1-3999 arası bir sayı yazın veya geri dönüştürmek için Roma rakamlarını yapıştırın. Sıkı doğrulama kanonik olmayan formları reddeder.",
+  "metaDescription": "Ücretsiz Roma rakamı dönüştürücü. 1-3999 arası sayıları Roma rakamlarına dönüştürün veya Romayı Arap rakamlarına çözün.",
+  "keywords": [
+    "Roma rakamı dönüştürücü",
+    "Arap Roma dönüşümü",
+    "Roma sayıya dönüşüm",
+    "MMXXVI",
+    "Roma rakamları"
+  ],
+  "input": {
+    "number": "Sayı (1 ile 3999 arası)",
+    "roman": "Roma rakamı"
+  },
+  "result": {
+    "roman": "Roma rakamı",
+    "number": "Arap rakamı"
+  },
+  "mode": {
+    "toRoman": "Sayı → Roma",
+    "fromRoman": "Roma → Sayı"
+  },
+  "error": {
+    "invalidNumber": "Bir tam sayı girin.",
+    "outOfRange": "Roma rakamları yalnızca 1 ile 3999 arasını destekler.",
+    "invalidRoman": "Geçerli bir Roma rakamı değil (kanonik form gerekli)."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Roma rakamları nasıl çalışır",
+        "paragraphs": [
+          "Roma rakamları yedi harf kullanır: I=1, V=5, X=10, L=50, C=100, D=500, M=1000. Sayılar toplama (II=2, XX=20) veya daha küçük bir harf daha büyük birinin önüne geldiğinde çıkarma ile oluşturulur (IV=4, IX=9, XL=40, XC=90, CD=400, CM=900). Her harf en fazla üç kez art arda tekrar edebilir; bu yüzden 4, IIII değil IV'tür.",
+          "Standart Roma gösterimi 1'den 3999'a kadar destekler. 4000 ve üzeri sayılar, yazmak güç ve günümüzde nadiren kullanılan bir üst çizgi gösterimi gerektirir (V̄ = 5000), dolayısıyla bu dönüştürücü 3999'da sınırlandırılmıştır."
+        ]
+      },
+      {
+        "heading": "Kanonik ve resmi olmayan Roma",
+        "paragraphs": [
+          "Sıkı kanonik form yukarıdaki kuralları izler. 'Resmi olmayan' Roma (bazen 'arkaik' olarak adlandırılır), 4 için IIII gibi şeylere izin verir — simetriyi tercih ettikleri saat yüzlerinde bunu görürsünüz. Bu dönüştürücü giriş için kanonik form gerektirir ve çıkışta kanonik form üretir. Dolayısıyla 'IIII' reddedilir; bunun yerine 'IV' yazın.",
+          "Çözücü yeniden kodlayarak doğrular: Roma'yı ayrıştırır, sayıyı alır, o sayıyı kodlar ve girişle eşleştiğini kontrol eder. Gidiş-dönüş olmayan her şey reddedilir. Bu, 'VV' (yanlış = 10), 'IIX' (yanlış = 8) ve diğer standart dışı formları yakalar."
+        ]
+      },
+      {
+        "heading": "Roma rakamları bugün nerede görünür",
+        "paragraphs": [
+          "Film telif tarihleri (MCMXCIX = 1999), Süper Kase numaralandırması, hükümdar ve papa dizileri (Henry VIII, John XXIII), kitap bölümleri ve ana hatlar, saat yüzleri ve stilize yıl işaretleri. Arap rakamıyla aritmetik çok daha kolay olduğundan aritmetik kullanımdan büyük ölçüde kalkmıştır — MCXLVII'yi IV ile çarpmayı deneyin ve neden anlarsınız."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Yönü seçin",
+        "text": "Sayı→Roma veya Roma→Sayı."
+      },
+      {
+        "name": "Girdinizi yazın",
+        "text": "1-3999 arası bir tam sayı veya bir Roma rakamı."
+      },
+      {
+        "name": "Sonucu okuyun",
+        "text": "Geçersiz giriş, düzeltebilmeniz için belirli bir hata gösterir."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "IIII neden 4 olarak kabul edilmiyor?",
+      "a": "Kanonik Roma 4'ü IV olarak yazar. IIII bazı saat yüzlerinde görünür ama standart aritmetik gösterim değildir. IV kullanın."
+    },
+    {
+      "q": "En büyük Roma rakamı nedir?",
+      "a": "Üst çizgi olmadan 3999 = MMMCMXCIX. Bunun üzerindeki sayılar desteklemediğimiz üst çizgi gösterimi gerektirir."
+    },
+    {
+      "q": "Sıfır olabilir mi?",
+      "a": "Romalıların sıfırı yoktu. Gösterim 1'de (I) başlar."
+    },
+    {
+      "q": "CMXLIV ne demek?",
+      "a": "CM=900, XL=40, IV=4. Toplam = 944. Çıkarmalı çiftler (CM, XL, IV) artı bileşenleri."
+    },
+    {
+      "q": "MMXXVI nasıl okunur?",
+      "a": "MM=2000, XX=20, VI=6. Toplam = 2026."
+    },
+    {
+      "q": "Saatlerde 4'ler neden bazen IIII?",
+      "a": "Gelenek. Saat yapımcıları tarihsel olarak VIII (her ikisi de dört karakter) ile görsel simetri için IIII'yü tercih etmiştir. Kanonik olarak 'doğru' değildir."
+    },
+    {
+      "q": "Roma rakamları onluk tabanda mı?",
+      "a": "Onluk gruplu harfleri var (1'ler için I/V, 10'lar için X/L, 100'ler için C/D, 1000 için M) ama konumsal gösterim yerine toplama ve çıkarma kullanır. Dolayısıyla ondalıktan etkilenmiş ama konumsal değil."
+    },
+    {
+      "q": "Veriler tarayıcımdan çıkıyor mu?",
+      "a": "Hayır. Dönüşüm yerel olarak çalışır."
+    }
+  ]
+}

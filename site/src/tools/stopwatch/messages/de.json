@@ -1,0 +1,56 @@
+{
+  "title": "Stoppuhr (Millisekundengenauigkeit, Rundenzeiten)",
+  "shortDescription": "Hochpräzise Browser-Stoppuhr mit Start/Pause, Rundenaufzeichnung und Zwischenzeitberechnung. Millisekunden-Anzeige, monotone Uhr für Genauigkeit.",
+  "description": "Browser-basierte Stoppuhr mit performance.now() für jitterfreies Timing. Starten, pausieren, fortsetzen, Runden erfassen und zurücksetzen. Jede Runde zeigt die Teilzeit (Delta zur vorherigen Runde) plus Gesamtzeit.",
+  "metaDescription": "Kostenlose Browser-Stoppuhr mit Millisekundengenauigkeit und Rundenaufzeichnung. Monotones Timing, kein Netzwerk erforderlich. Für Sport, Kochen und Lerneinheiten.",
+  "keywords": ["Stoppuhr", "Timer Millisekunden", "Rundentimer", "Online Stoppuhr", "Zwischenzeitrechner"],
+  "start": "Start",
+  "pause": "Pause",
+  "resume": "Fortsetzen",
+  "reset": "Zurücksetzen",
+  "lap": "Runde",
+  "laps": "Runden",
+  "article": {
+    "sections": [
+      {
+        "heading": "Warum diese Stoppuhr genau ist",
+        "paragraphs": [
+          "Die meisten Browser-Stoppuhren verwenden Date.now() und setInterval, die während einer Sitzung um Dutzende Millisekunden driften können. Diese Implementierung verwendet performance.now() — eine monotone Uhr, die nicht zurückspringt, wenn die Systemuhr angepasst wird. In Kombination mit requestAnimationFrame für Anzeigeaktualisierungen bleibt die Genauigkeit innerhalb von ±1 ms.",
+          "Wenn du den Tab wechselst, kann die angezeigte Zeit kurz einfrieren, da Browser Hintergrundprozesse drosseln. Die interne Uhr läuft jedoch korrekt weiter — beim Zurückwechseln holt die Anzeige die tatsächlich vergangene Zeit nach."
+        ]
+      },
+      {
+        "heading": "Runden- und Zwischenzeiten",
+        "paragraphs": [
+          "Wenn du auf Runde drückst, wird die aktuelle Gesamtzeit aufgezeichnet. Die angezeigte Teilzeit ist das Delta zur vorherigen Runde: Bei einem 5×400-m-Lauf ist jede Teilzeit ein 400-m-Abschnittszeit, während die Gesamtzeit die seit dem Start vergangene Zeit ist.",
+          "Die meisten Nutzer einer Rundenliste interessieren sich für Teilzeiten, nicht für Gesamtzeiten. Wir zeigen beides. Die Gesamtzeit erleichtert auch die Identifizierung des besten Einzelabschnitts — nützlich für Sportler, die Intervalltreue verfolgen."
+        ]
+      },
+      {
+        "heading": "Häufige Anwendungsfälle",
+        "paragraphs": [
+          "Sport: Rundenzeiten für Laufen, Schwimmen und Radsport-Intervalle messen. Kleinere Werte sind besser; Gleichmäßigkeit zwischen Teilzeiten ist ein Zeichen für gutes Tempo.",
+          "Kochen: Mehrere Schritte gleichzeitig zeitlich erfassen, indem Runden als ‚Kontrollpunkte' verwendet werden (Zutaten hinzugefügt, Teig geht, etc.).",
+          "Lernen/Arbeiten: Fokussierte Arbeitssitzungen per Timeboxing messen. Mit unserem Pomodoro-Timer für strukturierte Pausen kombinieren.",
+          "Prozessmessung: Dauer beliebiger Aufgaben messen — Software-Builds, manuelle Dateneingabe, Kundensupport-Lösungen. Die exportierbare Rundenliste für spätere Auswertung nutzen."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Start klicken", "text": "Der Timer beginnt sofort bei 0." },
+      { "name": "Runden erfassen", "text": "Während des Laufs auf Runde klicken. Jede Runde wird mit Teil- und Gesamtzeit aufgezeichnet." },
+      { "name": "Pause / Fortsetzen", "text": "Pause klicken zum Anhalten; Fortsetzen klicken, um von der gleichen Zeit weiterzumachen." },
+      { "name": "Zurücksetzen", "text": "Löscht alle Runden und kehrt zu 0 zurück." }
+    ]
+  },
+  "faq": [
+    { "q": "Läuft der Timer weiter, wenn ich den Tab schließe?", "a": "Nein — das Schließen des Tabs löscht den Speicherzustand. Um eine lange Zeitmessung zu bewahren, einen Screenshot der laufenden Anzeige machen oder die Rundenliste vor dem Schließen kopieren." },
+    { "q": "Wie genau ist die Millisekundengenauigkeit in der Praxis?", "a": "Die Auflösung von performance.now() ist browserabhängig: Die meisten Browser begrenzen auf 1 ms oder 0,1 ms aus Sicherheitsgründen (Schutz vor Timing-Angriffen). Das ist für menschliche Zeiterfassung mehr als ausreichend — weit genauer als die menschliche Reaktionszeit (~250 ms)." },
+    { "q": "Warum aktualisiert die Anzeige mit 60 fps, zeigt aber Millisekunden?", "a": "Die interne Uhr ist präzise; die Anzeige wird ~60 Mal pro Sekunde gerendert, sodass du ein flüssig aktualisiertes Millisekundenfeld siehst. Jedes Frame berechnet den aktuellen Ablaufwert aus performance.now()." },
+    { "q": "Kann ich eine Rundensitzung speichern?", "a": "Nicht direkt — die Rundenliste manuell kopieren. Das Speichern von Sitzungen im lokalen Speicher ist geplant." },
+    { "q": "Was ist der Unterschied zu einer Handy-Stoppuhr?", "a": "Browser-basiert, keine App-Installation erforderlich. Gleich genau für menschliche Zeiterfassung. Die Handy-Stoppuhr übersteht die Displaysperre; der Browser-Tab muss geöffnet bleiben (braucht aber keinen Fokus)." },
+    { "q": "Werden die Daten irgendwohin gesendet?", "a": "Nein. Alles läuft lokal; keine Runden oder Zeiten werden übertragen." },
+    { "q": "Warum zeigt meine Runde 0 Millisekunden?", "a": "Wenn du direkt nach dem Start auf Runde drückst, kann die vergangene Zeit mit der Anzeigegenauigkeit auf 0 runden. Mindestens einen Bruchteil einer Sekunde zwischen Runden laufen lassen." },
+    { "q": "Kann das Ereignisse im Sekundenbruchteil messen?", "a": "Ja, bis zu ~1 ms. Für Nanosekunden-Timing (Chip-Benchmarking) wäre anderes Werkzeug erforderlich, aber für jedes menschlich beobachtbare Ereignis ist das präzise genug." }
+  ]
+}

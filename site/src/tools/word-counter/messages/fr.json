@@ -1,0 +1,58 @@
+{
+  "title": "Compteur de Mots (avec temps de lecture et de parole)",
+  "shortDescription": "Compte les mots, caractères, phrases, paragraphes, plus le temps de lecture estimé et le temps de parole. Gère correctement les langues CJK.",
+  "description": "Colle n'importe quel texte pour voir le nombre de mots, de caractères (avec et sans espaces), de phrases, de paragraphes, et les estimations de temps de lecture silencieuse et à voix haute.",
+  "metaDescription": "Compteur de mots gratuit avec temps de lecture. Compte mots, caractères, phrases et paragraphes en temps réel. Compatible CJK pour le japonais, le chinois et le coréen.",
+  "keywords": ["compteur de mots", "compter les caractères", "temps de lecture", "nombre de mots essai", "compteur de lettres"],
+  "placeholder": "Colle ou tape ton texte ici…",
+  "stat": {
+    "words": "Mots",
+    "characters": "Caractères",
+    "charactersNoSpaces": "Sans espaces",
+    "sentences": "Phrases",
+    "paragraphs": "Paragraphes",
+    "readingTime": "Temps de lecture",
+    "speakingTime": "Temps de parole"
+  },
+  "unit": { "min": "min" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment chaque métrique est calculée",
+        "paragraphs": [
+          "Les caractères correspondent à la longueur brute du texte, espaces, sauts de ligne et emojis inclus. « Sans espaces » supprime les espaces avant de compter. Les mots sont séparés par des espaces pour les langues à écriture latine ; pour le japonais, le chinois, le coréen et le thaï, chaque idéogramme est compté comme un mot, car ces langues n'utilisent pas les espaces entre les mots comme le français.",
+          "Les phrases sont détectées par la ponctuation terminale (. ! ? dans les scripts latins ; 。！？ en CJK). Les paragraphes sont des blocs séparés par des lignes vides. Ces règles sont pragmatiques — un texte avec une ponctuation particulière peut être décalé d'une unité, mais pour une prose normale les comptages sont fiables."
+        ]
+      },
+      {
+        "heading": "Comment le temps de lecture est estimé",
+        "paragraphs": [
+          "Le temps de lecture utilise 200 mots par minute, la médiane pour les adultes lisant de la prose. Le temps de parole utilise 130 mots par minute, le rythme d'un orateur public expérimenté. Les deux sont arrondis à la minute entière supérieure, donc une phrase de 50 mots affiche « 1 min ».",
+          "Ces chiffres sont des approximations. Un texte technique dense se lit plus lentement (environ 150 mpm), un roman léger plus vite (environ 250 mpm), et le rythme de présentation varie considérablement selon le style et le public. Utilise ce chiffre comme ordre de grandeur, pas comme un chronomètre."
+        ]
+      },
+      {
+        "heading": "Usages courants",
+        "paragraphs": [
+          "Les blogueurs et les rédacteurs utilisent le nombre de mots pour atteindre une longueur cible (la plupart des articles longue forme visent 1 500-2 500 mots pour le SEO). Les étudiants s'en servent pour les devoirs. Les marketeurs utilisent le nombre de caractères avec espaces pour les limites des publications X (Twitter) et la longueur des balises meta description. Les orateurs utilisent le temps de parole pour calibrer leurs scripts — 5 minutes pour un lightning talk contre 20 minutes pour un keynote.",
+          "Les traducteurs et les rédacteurs suivent les quatre comptages lors de la facturation au mot ou au caractère — le choix entre « avec espaces » et « sans espaces » affecte les tarifs de 10 à 20 %."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Colle ton texte", "text": "Tape ou colle dans la zone de texte. Les comptages se mettent à jour à chaque frappe." },
+      { "name": "Lis les métriques", "text": "Les sept métriques sont visibles en même temps — mots, caractères, phrases, paragraphes et les estimations de temps." },
+      { "name": "Ajuste si nécessaire", "text": "Modifie le texte directement pour atteindre un nombre de mots cible, puis copie la version finale." }
+    ]
+  },
+  "faq": [
+    { "q": "Pourquoi mon nombre de mots CJK est-il plus élevé que prévu ?", "a": "Chaque idéogramme (hanzi chinois, kanji/kana japonais, hangul coréen) est compté comme un mot. Les mots latins présents dans le même texte sont toujours comptés par espaces." },
+    { "q": "Les emojis sont-ils comptés comme des caractères ?", "a": "Oui. Certains emojis sont techniquement composés de plusieurs unités de code Unicode ; le compteur suit la longueur de chaîne JavaScript, qui compte chaque unité de code UTF-16." },
+    { "q": "Le temps de lecture est-il précis ?", "a": "Le chiffre de 200 mpm correspond à la vitesse de lecture silencieuse médiane d'un adulte pour de la prose. Un texte très technique se lit plus lentement, un roman facile plus vite — considère cela comme une estimation à ±30 %." },
+    { "q": "Pourquoi le nombre de phrases semble-t-il erroné ?", "a": "La détection est basée sur la ponctuation terminale. Les listes, les titres sans ponctuation ou les styles de prose inhabituels peuvent fausser le résultat. Le nombre de mots reste fiable." },
+    { "q": "Le texte quitte-t-il mon navigateur ?", "a": "Non. Tout s'exécute localement ; il n'y a aucun serveur qui reçoit le texte saisi." },
+    { "q": "Quelle est la limite de longueur du texte ?", "a": "Aucune limite imposée. Les navigateurs modernes gèrent des textes de plusieurs mégaoctets sans problème, bien que la zone de texte puisse ralentir au-delà d'environ 100 000 caractères." },
+    { "q": "Puis-je compter des tweets ou des publications X ?", "a": "Oui — utilise « caractères » (avec espaces) car X compte les espaces. La limite de 280 caractères inclut également les URL comptées comme 23 caractères." },
+    { "q": "Est-ce compatible avec le Markdown ?", "a": "Il compte le texte brut, syntaxe Markdown incluse. Si tu veux un nombre de mots « rendu », colle uniquement le résultat rendu." }
+  ]
+}

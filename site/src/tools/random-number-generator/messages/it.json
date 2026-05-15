@@ -1,0 +1,106 @@
+{
+  "title": "Generatore di Numeri Casuali (crittograficamente sicuro, modalità",
+  "shortDescription": "Genera interi casuali in qualsiasi intervallo usando la API casuale sicura del tuo browser. Opzionalmente imponi l'unicità per lotterie, sorteggi o campionamento senza ripetizione.",
+  "description": "Scegli un minimo, un massimo e un conteggio per generare interi casuali crittograficamente sicuri. Attiva 'unico' per il campionamento senza ripetizione (sorteggi, lotterie).",
+  "metaDescription": "Generatore di numeri casuali crittograficamente sicuro gratuito. Imposta intervallo e conteggio, opzionalmente unici.",
+  "keywords": [
+    "generatore numeri casuali",
+    "casuale sicuro",
+    "numeri lotteria",
+    "intero casuale",
+    "RNG"
+  ],
+  "empty": "Imposta un intervallo e clicca 'Rigenera' per ottenere numeri casuali.",
+  "input": {
+    "min": "Minimo",
+    "max": "Massimo",
+    "count": "Quanti"
+  },
+  "unique": "Tutti unici (nessun duplicato)",
+  "regenerate": "Rigenera",
+  "copyAll": "Copia tutti",
+  "copied": "Copiato",
+  "error": {
+    "invalidRange": "Il minimo deve essere minore o uguale al massimo.",
+    "tooManyUnique": "Non è possibile scegliere più numeri unici di quanti ne consenta l'intervallo."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Perché questo è davvero casuale",
+        "paragraphs": [
+          "Usiamo crypto.getRandomValues — la fonte casuale crittograficamente sicura del browser — invece di Math.random(). L'output CSPRNG non può essere previsto dai valori precedenti, il che è importante per le estrazioni della lotteria, le applicazioni vicine al gioco d'azzardo e qualsiasi uso in cui 'casuale' è un requisito reale, non solo 'arbitrario'.",
+          "Usiamo anche il campionamento per rifiuto per rendere la distribuzione esattamente uniforme nell'intervallo scelto. Il 'casuale % intervallo' naive introduce distorsioni quando l'intervallo non si divide uniformemente in 2³². Il campionamento per rifiuto scarta i valori che causerebbero distorsioni e riprova, così ogni numero nell'intervallo ha esattamente la stessa probabilità."
+        ]
+      },
+      {
+        "heading": "Unico vs duplicati ammessi",
+        "paragraphs": [
+          "Modalità predefinita: ogni numero è indipendente — possono verificarsi duplicati. Questo è ciò che 'casuale' di solito significa nell'uso comune (lanciare i dadi, scegliere un film, test randomizzato).",
+          "Modalità unica: campionamento senza ripetizione — una volta che un numero viene scelto, non può essere scelto di nuovo nello stesso batch. Utile per: estrazioni della lotteria (es. 6 numeri da 1-90), sorteggi (estrazione vincitori), assegnazioni di squadre e qualsiasi situazione 'scegli N da M'. Richiede conteggio ≤ intervallo."
+        ]
+      },
+      {
+        "heading": "Casi d'uso comuni",
+        "paragraphs": [
+          "Lotteria / sorteggio: 6 numeri unici da 1-90 (Superenalotto), o qualunque sia la tua estrazione. Attiva 'unico'.",
+          "Lanci di dadi: intervallo 1-6 (o 1-20 per D20). Lascia 'unico' disattivato così ogni lancio è indipendente.",
+          "Campionamento casuale per test: scegli 10 ID utente casuali da 1-10000 per un controllo spot. Usa 'unico' per evitare duplicati.",
+          "Simulazione di lanci di moneta: intervallo 0-1, risultati multipli. Conta testa/croce per verifica dell'equità (vedrai ~50/50 su campioni grandi)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Imposta l'intervallo",
+        "text": "Minimo e massimo — entrambi inclusi. Sono ammessi numeri negativi."
+      },
+      {
+        "name": "Imposta quanti",
+        "text": "Da 1 a 100 numeri per generazione."
+      },
+      {
+        "name": "Attiva 'unico' se necessario",
+        "text": "Attivo per il campionamento senza ripetizione (sorteggi, lotterie)."
+      },
+      {
+        "name": "Clicca rigenera",
+        "text": "Un nuovo set viene estratto ogni volta. Copia tutto in una volta se ne hai bisogno tutti."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "È equo per sorteggi o lotterie?",
+      "a": "La casualità è crittograficamente sicura e senza distorsioni. Se sia legalmente 'equo' per una lotteria ufficiale dipende dalle regole della tua giurisdizione — molte richiedono RNG hardware certificati."
+    },
+    {
+      "q": "Qual è la differenza da Math.random()?",
+      "a": "Math.random() usa un algoritmo il cui output può essere previsto dai risultati precedenti da un attaccante. crypto.getRandomValues usa un RNG crittografico a livello di sistema operativo che non può essere previsto. Per vera equità, usa questo."
+    },
+    {
+      "q": "Posso ottenere numeri negativi?",
+      "a": "Sì. Imposta il minimo su un valore negativo."
+    },
+    {
+      "q": "Qual è l'intervallo massimo?",
+      "a": "Limitato dall'intervallo degli interi sicuri di JavaScript (~2⁵³), ma praticamente puoi arrivare a miliardi senza problemi. La tecnica di campionamento per rifiuto gestisce correttamente qualsiasi intervallo."
+    },
+    {
+      "q": "Perché 'unico' fallisce quando il conteggio > intervallo?",
+      "a": "Se scegli 10 numeri unici da 1-5, quattro non esistono. La convalida lo rileva e ti chiede di allargare l'intervallo o ridurre il conteggio."
+    },
+    {
+      "q": "Funziona per i lanci di dadi?",
+      "a": "Sì — imposta l'intervallo su 1-6 (o qualunque siano i tuoi dadi) e disattiva 'unico' così ogni lancio è indipendente."
+    },
+    {
+      "q": "Posso salvare il seme e riprodurre?",
+      "a": "No — il casuale sicuro è progettato senza seme. Se hai bisogno di 'casuale' riproducibile per test, usa una libreria PRNG con seme."
+    },
+    {
+      "q": "I dati vengono inviati da qualche parte?",
+      "a": "No. La generazione è completamente locale."
+    }
+  ]
+}

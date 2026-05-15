@@ -1,0 +1,102 @@
+{
+  "title": "Calcolatore del Numero di Settimana ISO (settimana dell'anno)",
+  "shortDescription": "Trova il numero di settimana ISO 8601, il giorno della settimana ISO e l'intervallo di date della settimana per qualsiasi data del calendario. Include giorno dell'anno e settimane nell'anno.",
+  "description": "Scegli qualsiasi data e visualizza il suo numero di settimana ISO 8601 (1-53), il giorno della settimana ISO (1=Lunedì, 7=Domenica), l'intervallo lunedì-domenica di quella settimana e conteggi correlati utili (giorno dell'anno, settimane nell'anno).",
+  "metaDescription": "Calcolatore del numero di settimana ISO gratuito. Settimana ISO 8601, giorno della settimana, intervallo di date, giorno dell'anno, settimane nell'anno.",
+  "keywords": [
+    "numero settimana iso",
+    "settimana dell'anno",
+    "settimana iso 8601",
+    "calcolatore settimane",
+    "settimana calendario"
+  ],
+  "input": {
+    "date": "Data"
+  },
+  "today": "Oggi",
+  "result": {
+    "iso": "Rappresentazione ISO 8601",
+    "weekNumber": "Numero di settimana",
+    "weekday": "Giorno della settimana",
+    "weekStart": "Inizio settimana (Lunedì)",
+    "weekEnd": "Fine settimana (Domenica)",
+    "dayOfYear": "Giorno dell'anno",
+    "weeksInYear": "Settimane nell'anno"
+  },
+  "empty": "Scegli una data.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cos'è una settimana ISO",
+        "paragraphs": [
+          "ISO 8601 definisce una settimana che inizia il lunedì e finisce la domenica. La prima settimana di qualsiasi anno ISO è quella che contiene il primo giovedì dell'anno — o equivalentemente, la settimana che contiene il 4 gennaio. Ciò significa che un anno può avere 52 o 53 settimane ISO, e l'anno ISO non corrisponde sempre all'anno solare per le date di fine dicembre e inizio gennaio.",
+          "Formato: 'AAAA-Www-G'. Quindi '2026-W19-3' significa mercoledì della settimana 19 del 2026. Numero del giorno: 1=Lunedì, 7=Domenica. Numero di settimana: 1-52 o 1-53."
+        ]
+      },
+      {
+        "heading": "Perché le settimane ISO differiscono dalle settimane del calendario",
+        "paragraphs": [
+          "I calendari statunitensi contano tipicamente la domenica come primo giorno. ISO inizia di lunedì. Una domenica di fine settimana 30 nel calendario locale è, secondo ISO, la fine della settimana 30. Ma una domenica potrebbe rientrare in una settimana ISO diversa se è l'ultima domenica di un anno e il primo lunedì appartiene all'anno successivo.",
+          "Inoltre: gli anni ISO possono differire di uno dagli anni solari. Il 31 dicembre 2024 è nella settimana ISO 1 del 2025 (settimana contenente il primo giovedì del 2025). Il 1° gennaio 2024 era lunedì — la settimana 1 del 2024 inizia il 1° gennaio. Il 1° gennaio 2025 è mercoledì — la settimana 1 del 2025 inizia il 30 dicembre 2024."
+        ]
+      },
+      {
+        "heading": "Dove vengono usate le settimane ISO",
+        "paragraphs": [
+          "Affari: molte aziende europee fatturano e spediscono per settimana ISO. 'L'ordine arriverà in W23' è inequivocabile e indipendente dalla lingua.",
+          "Software: molti linguaggi di programmazione hanno funzioni per le settimane ISO. JavaScript Date non le ha direttamente, quindi librerie come date-fns e dayjs le aggiungono. Usate nella pianificazione, nell'analisi dei log e nei report.",
+          "Epidemiologia sanitaria: i rapporti settimanali di incidenza delle malattie usano le settimane ISO. OMS e CDC le usano nei loro dashboard per l'influenza e il COVID.",
+          "Sport/gaming: molti campionati programmano per 'settimana 1, settimana 2, …' che spesso si allineano con le settimane ISO (specialmente i campionati europei)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Scegli una data",
+        "text": "Selettore di data o pulsante 'Oggi'."
+      },
+      {
+        "name": "Leggi la rappresentazione ISO",
+        "text": "Formato: AAAA-Www-G, dove w è il numero di settimana e G è il giorno della settimana."
+      },
+      {
+        "name": "Visualizza l'intervallo della settimana",
+        "text": "Lunedì e domenica di quella settimana, nel formato data della tua locale."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Perché non corrisponde alla funzione WEEKNUM di Excel?",
+      "a": "WEEKNUM di Excel usa convenzioni diverse. Il default è lo stile USA (prima domenica). Per le settimane ISO in Excel, usa ISOWEEKNUM o specifica return_type=21 in WEEKNUM."
+    },
+    {
+      "q": "Un anno può avere 53 settimane?",
+      "a": "Sì. Un anno ha 53 settimane ISO se il 1° gennaio è giovedì OPPURE il 31 dicembre è giovedì. Circa 71 volte ogni 400 anni."
+    },
+    {
+      "q": "Qual è la differenza tra anno ISO e anno solare?",
+      "a": "Per la maggior parte dei giorni sono identici. I casi limite di fine dicembre e inizio gennaio differiscono. Il 29 dicembre 2008 è nella settimana ISO 1 del 2009 (anno solare 2008, anno ISO 2009)."
+    },
+    {
+      "q": "La settimana 1 contiene sempre il 1° gennaio?",
+      "a": "Non sempre. La settimana ISO 1 contiene il primo giovedì dell'anno. Quindi se il 1° gennaio è venerdì, sabato o domenica, quel giorno fa parte dell'ultima settimana ISO dell'anno precedente."
+    },
+    {
+      "q": "Qual è la differenza tra W1 e Settimana 1?",
+      "a": "La stessa cosa in contesto ISO. Il prefisso W è la convenzione del formato ISO. '2026-W01' significa settimana ISO 1 del 2026."
+    },
+    {
+      "q": "Perché il lunedì come inizio settimana?",
+      "a": "ISO 8601 lo ha standardizzato. La maggior parte del mondo usa lunedì come primo giorno; solo Arabia Saudita, USA, Canada e pochi altri paesi usano tradizionalmente la domenica come primo giorno."
+    },
+    {
+      "q": "Posso esportare in un calendario?",
+      "a": "Non direttamente da questo strumento. Usa le date di inizio/fine settimana e crea il tuo evento nel calendario."
+    },
+    {
+      "q": "I dati escono dal mio browser?",
+      "a": "No. Il calcolo viene eseguito localmente; nulla viene inviato a un server."
+    }
+  ]
+}

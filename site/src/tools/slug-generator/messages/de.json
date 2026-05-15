@@ -1,0 +1,111 @@
+{
+  "title": "URL-Slug-Generator (SEO-freundliche URLs)",
+  "shortDescription": "Wandle beliebige Titel oder Sätze in SEO-freundliche URL-Slugs um. Konfigurierbares Trennzeichen, Maximallänge, Kleinschreibung und Unicode-Unterstützung.",
+  "description": "Titel eingeben oder einfügen; der Generator entfernt Satzzeichen, normalisiert Akzente, reduziert Leerzeichen und erzeugt einen sauberen Slug. Unterstützt Bindestriche, Unterstriche oder Punkte; konfigurierbare Maximallänge; optionale Unicode-Erhaltung für nicht-lateinische URLs.",
+  "metaDescription": "Kostenloser URL-Slug-Generator. SEO-freundliche Slugs aus beliebigen Titeln. Bindestrich/Unterstrich/Punkt-Trennzeichen, Maximallänge, Unicode-Unterstützung",
+  "keywords": [
+    "Slug-Generator",
+    "URL-Slug",
+    "SEO-URL-Generator",
+    "Slugify",
+    "Permalink-Generator"
+  ],
+  "input": {
+    "text": "Titel oder Satz",
+    "separator": "Trennzeichen",
+    "lowercase": "Kleinschreibung",
+    "allowUnicode": "Unicode erlauben (Nicht-ASCII)",
+    "maxLen": "Maximallänge"
+  },
+  "sep": {
+    "hyphen": "Bindestrich",
+    "underscore": "Unterstrich",
+    "dot": "Punkt"
+  },
+  "result": {
+    "slug": "Slug",
+    "length": "Länge"
+  },
+  "empty": "(leer)",
+  "copy": "Kopieren",
+  "copied": "Kopiert!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Was ist ein URL-Slug",
+        "paragraphs": [
+          "Ein Slug ist der für Menschen lesbare Teil einer URL nach der Domain — zum Beispiel ‚brot-backen-anleitung' in ‚/blog/brot-backen-anleitung'. Gute Slugs sind kurz, beschreibend und stabil. Suchmaschinen und Menschen lesen sie als Teil der Identität einer Seite.",
+          "Standardregeln: nur Kleinbuchstaben, Ziffern und Bindestriche. Leerzeichen werden zu Bindestrichen. Satzzeichen wird entfernt. Stoppwörter (der, die, das, ein) können für Kürze weggelassen werden, obwohl das eine stilistische Entscheidung ist."
+        ]
+      },
+      {
+        "heading": "ASCII- vs. Unicode-Slugs",
+        "paragraphs": [
+          "ASCII-Slugs (Standard): nur lateinische Buchstaben und Ziffern. Universell unterstützt, nie URL-kodiert, teilfreundlich. Die Standardwahl für SEO-fokussierte deutsch- und englischsprachige Blogs.",
+          "Unicode-Slugs: Originalzeichen in URLs beibehalten. Browser zeigen sie lesbar an, aber Kopieren erzeugt prozent-kodierte URLs (%E3%83%96...). Manche Plattformen schränken Unicode-Slugs ein; vorher prüfen.",
+          "Wann Unicode wählen: Japanische, chinesische oder koreanische Blogs für native Leser. Die IDN-URL erscheint für native Nutzer sauber und Google indexiert sie gut. Der Nachteil ist das Teilen auf Plattformen, die rohe URLs anzeigen."
+        ]
+      },
+      {
+        "heading": "Slug-Länge und SEO",
+        "paragraphs": [
+          "Googles URL-Anzeige endet bei etwa 60–80 Zeichen. Längere Slugs werden abgeschnitten und wirken ‚spam-artig'. Wir setzen die Maximallänge standardmäßig auf 60 — kurz genug für die meisten Einträge.",
+          "Googles Algorithmen bestrafen Slug-Länge jedoch nicht direkt. Länge spielt für die Klickrate eine Rolle (Menschen überspringen lange URLs) und um den Slug lesbar zu halten. Keywords im Slug helfen leicht beim Ranking; Keywords in lange Slugs zu stopfen, schadet mehr als es nützt.",
+          "Best Practice: die wichtigsten 2–3 Keywords einbeziehen, Stoppwörter und Artikel weglassen, unter 60 Zeichen bleiben."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Titel eingeben oder einfügen",
+        "text": "Artikeltitel, Produktname oder beliebiger beschreibender Text."
+      },
+      {
+        "name": "Trennzeichen wählen",
+        "text": "Bindestrich ist Standard. Unterstrich funktioniert für manche Legacy-CMS. Punkte sind ungewöhnlich, aber gültig."
+      },
+      {
+        "name": "Optionen konfigurieren",
+        "text": "Kleinschreibung (empfohlen), Unicode (für nicht-lateinische URLs), Maximallänge."
+      },
+      {
+        "name": "Slug kopieren",
+        "text": "In CMS, Blog-Beitrag oder Routing-Konfiguration einfügen."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Soll ich Bindestriche oder Unterstriche verwenden?",
+      "a": "Bindestriche. Google behandelt Bindestriche explizit als Worttrennzeichen in URLs; Unterstriche gelten als Teil des Wortes. Also sind ‚schnelle-autos' zwei Keywords, ‚schnelle_autos' ist eines. Bindestriche gewinnen für SEO."
+    },
+    {
+      "q": "Soll ich Stoppwörter wie ‚der' oder ‚ein' einbeziehen?",
+      "a": "Optional. Sie weglassen hält Slugs kurz. Sie einbeziehen hält Slugs lesbar. Die SEO-Auswirkung ist in beide Richtungen vernachlässigbar; Lesbarkeit ist wichtiger."
+    },
+    {
+      "q": "Was ist mit Apostrophen (it's, don't)?",
+      "a": "Wir entfernen sie. ‚don't' wird zu ‚dont'. Manche Generatoren behalten sie als Wortteile; wir folgen der einfacheren Konvention."
+    },
+    {
+      "q": "Unterstützt das Japanisch/Chinesisch?",
+      "a": "Ja — ‚Unicode erlauben' einschalten, um CJK-Zeichen im Slug zu behalten. Ohne dieses Flag werden CJK-Zeichen entfernt (da sie kein ASCII-Äquivalent haben)."
+    },
+    {
+      "q": "Warum wird mein koreanischer Slug im ASCII-Modus leer?",
+      "a": "Koreanische Zeichen haben keine direkten ASCII-Entsprechungen. Entweder Unicode-Modus aktivieren oder vor dem Einfügen manuell transliterieren."
+    },
+    {
+      "q": "Werden Emojis beibehalten?",
+      "a": "Ja im Unicode-Modus. URL-kodierte Emojis sind gültig, aber hässlich — die meisten Plattformen entfernen sie. Praktischer Rat: keine Emojis in Slugs verwenden."
+    },
+    {
+      "q": "Welche maximale Slug-Länge soll ich verwenden?",
+      "a": "60 Zeichen oder weniger ist der Sweet Spot für SEO und Klickrate. Manche CMS-Systeme begrenzen auf 200 Zeichen. Googles Index unterstützt viel längere, aber das verbessert selten die Lesbarkeit."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Die Generierung läuft lokal; nichts wird an einen Server gesendet."
+    }
+  ]
+}

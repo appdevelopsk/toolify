@@ -1,0 +1,60 @@
+{
+  "title": "E-Mail-Validator (Syntax + Tippfehler-Erkennung)",
+  "shortDescription": "E-Mail-Adresssyntax gegen RFC 5322 validieren und häufige Tippfehler bei gängigen Anbietern (Gmail, Yahoo, Hotmail usw.) erkennen.",
+  "description": "Gib eine E-Mail ein, um zu prüfen, ob die Syntax gültig ist und Domain-Tippfehler wie 'gmial.com' → 'gmail.com' zu erkennen. Zerlegt lokalen Teil, Domain, TLD und warnt bei RFC-Grenzwertverletzungen.",
+  "metaDescription": "Kostenloser E-Mail-Validator. Prüft RFC-5322-Syntax und erkennt häufige Tippfehler wie gmial.com oder yaho.com. Zeigt Aufschlüsselung von lokalem Teil, Domain und TLD.",
+  "keywords": ["E-Mail Validator", "E-Mail Syntaxprüfung", "E-Mail Format prüfen", "E-Mail verifizieren", "E-Mail Tippfehler"],
+  "input": { "email": "E-Mail-Adresse" },
+  "status": { "valid": "Gültige Syntax", "invalid": "Ungültige Syntax" },
+  "suggestion": "Meintest du: {suggestion}?",
+  "empty": "Gib eine E-Mail-Adresse ein, um sie zu validieren.",
+  "breakdown": {
+    "localPart": "Lokaler Teil",
+    "domain": "Domain",
+    "tld": "TLD",
+    "hasPlus": "Plus-Tag (+)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Was dieser Validator tut (und was er nicht kann)",
+        "paragraphs": [
+          "Die E-Mail-Syntaxvalidierung prüft, ob 'name@domain.tld' den strukturellen Regeln in RFC 5322 folgt. Wir verwenden einen pragmatischen Regex, der fast alle realen Tippfehler erkennt und gleichzeitig flexibel genug für legitime Adressen mit Plus-Tags, Punkten und ungewöhnlichen TLDs ist.",
+          "Was diese Prüfung NICHT kann: bestätigen, dass die Adresse tatsächlich Mails empfängt. Dazu ist das Senden einer echten E-Mail oder eine SMTP-Prüfung erforderlich, beides erfordert serverseitigen Code und birgt das Risiko falscher Positive (Catch-All-Domains, Greylisting). Syntaxvalidierung erkennt Tippfehler günstig; Zustellbarkeitsprüfungen brauchen einen anderen Ansatz."
+        ]
+      },
+      {
+        "heading": "Häufige Tippfehler-Erkennung",
+        "paragraphs": [
+          "Wir achten auf Tippfehler bei den wichtigsten kostenlosen E-Mail-Anbietern – 'gmial.com' statt 'gmail.com', 'yaho.com' statt 'yahoo.com' usw. Etwa 95 % der E-Mail-Anmeldetippfehler sind Domain-Tippfehler bei diesen wenigen Anbietern. Sie clientseitig zu erkennen spart dir eine zurückgesendete Willkommens-E-Mail und ein unangenehmes 'Bitte überprüfe deine Adresse'-Nachfolge.",
+          "Wenn du ein Anmeldeformular erstellst, führe dieselbe Logik vor dem Absenden aus. Zeige einen 'Meintest du…?'-Vorschlag und lass den Benutzer akzeptieren oder überschreiben. Ausgereifte Anmeldeabläufe tun das routinemäßig; es verbessert merklich die E-Mail-Zustellbarkeit."
+        ]
+      },
+      {
+        "heading": "Regeln für den lokalen Teil",
+        "paragraphs": [
+          "Plus-Tag ('benutzer+filter@gmail.com'): von großen Anbietern weitgehend unterstützt. Zum Erstellen eindeutiger Adressen für verschiedene Anmeldungen bei einem einzigen Posteingang verwenden.",
+          "Punkte ('benutzer.name@gmail.com'): von Gmail als dieselbe Adresse behandelt (Punkte werden ignoriert), aber andere Anbieter könnten sie als unterschiedliche Adressen behandeln. Verlasse dich nicht auf Punkt-Äquivalenz außerhalb von Gmail.",
+          "Länge: RFC 5321 begrenzt den lokalen Teil auf 64 Zeichen und die vollständige Adresse auf 254 Zeichen. Wir warnen, wenn diese überschritten werden – die meisten Server lehnen längere Adressen ab.",
+          "Groß-/Kleinschreibung: Per RFC ist der lokale Teil case-sensitiv, aber die meisten Anbieter behandeln ihn als case-insensitiv. Die Domain ist immer case-insensitiv."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "E-Mail eingeben", "text": "Oder aus einem Formular/einer Liste einfügen." },
+      { "name": "Ergebnis lesen", "text": "Grünes Häkchen = gültige Syntax; rotes X = ungültig." },
+      { "name": "Auf Vorschläge achten", "text": "Häufige Tippfehler bei gängigen Anbietern werden mit einem Vorschlag markiert." },
+      { "name": "Aufschlüsselung überprüfen", "text": "Lokaler Teil, Domain, TLD und Warnhinweise werden unten angezeigt." }
+    ]
+  },
+  "faq": [
+    { "q": "Bestätigt das, dass die E-Mail existiert?", "a": "Nein – nur Syntax. Das Bestätigen, dass ein Posteingang existiert, erfordert eine serverseitige SMTP-Prüfung oder das Senden einer Bestätigungs-E-Mail. Dieses Tool erkennt Tippfehler günstig." },
+    { "q": "Warum hat es 'a@b.co' akzeptiert?", "a": "Weil das technisch gültige Syntax ist. Die TLD '.co' ist real (Kolumbien). Syntaxvalidierung kann keine realen, aber seltenen TLDs filtern." },
+    { "q": "Was ist mit E-Mails mit Unicode (z. B. benutzer@beispiel.de)?", "a": "Internationalisierte E-Mail-Adressen sind per RFC 6531 gültig, aber der hier verwendete Regex akzeptiert sie nicht. Die meisten Formular-Backends auch nicht. Für Unicode-freundliche Validierung verwende eine dedizierte Bibliothek." },
+    { "q": "Was ist ein Plus-Tag?", "a": "Alles zwischen + und @ wird von Gmail und vielen Anbietern als Teil des Routings behandelt. benutzer+toolify@gmail.com geht an benutzer@gmail.com, aber du kannst nach dem +toolify-Suffix filtern." },
+    { "q": "Warum ignoriert Gmail Punkte?", "a": "Historische Gmail-Richtlinie. benutzer.name@gmail.com und benutzername@gmail.com werden an denselben Posteingang zugestellt. Andere Anbieter (Yahoo, Outlook) behandeln sie als unterschiedlich." },
+    { "q": "Was ist die längste gültige E-Mail?", "a": "254 Zeichen insgesamt per RFC 5321. Lokaler Teil ≤ 64. Die meisten Server lehnen alles Längere ab." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Validierung läuft lokal; nichts wird an einen Server gesendet." },
+    { "q": "Kann ich mehrere E-Mails auf einmal validieren?", "a": "Nicht in diesem Tool – jeweils eine Adresse einfügen. Für Listen ein Skript oder einen dedizierten Massenvalidierungsdienst verwenden (mit Einwilligung derjenigen, deren Adressen du prüfst)." }
+  ]
+}

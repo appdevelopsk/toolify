@@ -1,0 +1,73 @@
+{
+  "title": "Trình tạo CSS Box Shadow (với xem trước trực tiếp)",
+  "shortDescription": "Xây dựng giá trị CSS box-shadow bằng hình ảnh. Điều chỉnh offset, blur, spread, màu sắc, độ mờ và inset. Xem trước trực tiếp, sao chép-dán CSS.",
+  "description": "Sáu preset bóng phổ biến (soft, card, lifted, glow, neumorphic, inset). Tinh chỉnh tất cả các tham số bằng thanh trượt, xem kết quả trực tiếp và sao chép CSS sẵn sàng dán.",
+  "metaDescription": "Trình tạo CSS box-shadow miễn phí với xem trước trực tiếp. Hỗ trợ offset, blur, spread, màu sắc, độ mờ, inset. Bao gồm 6 preset trong đó có neumorphic.",
+  "keywords": ["trình tạo box shadow", "shadow css", "css bóng đổ", "trình tạo neumorphic", "trình tạo drop shadow"],
+  "preset": {
+    "soft": "Mềm",
+    "card": "Card",
+    "lifted": "Nâng lên",
+    "glow": "Phát sáng",
+    "neumorphic": "Neumorphic",
+    "inset": "Bên trong"
+  },
+  "input": {
+    "x": "Offset X",
+    "y": "Offset Y",
+    "blur": "Blur",
+    "spread": "Spread",
+    "color": "Màu sắc",
+    "opacity": "Độ mờ",
+    "inset": "Inset (bóng bên trong)"
+  },
+  "output": { "css": "Mã CSS" },
+  "copy": "Sao chép CSS",
+  "copied": "Đã sao chép!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Năm tham số bóng",
+        "paragraphs": [
+          "Offset X: dịch chuyển ngang. Dương dịch bóng sang phải, âm sang trái. Với ánh sáng từ góc trên trái (giả định UI thông thường), X dương nhỏ mô phỏng ánh sáng từ trên trái.",
+          "Offset Y: dịch chuyển dọc. Dương dịch bóng xuống dưới, mô phỏng nguồn sáng ở trên. Hầu hết bóng UI dùng Y dương.",
+          "Bán kính blur: cạnh bóng mềm đến mức nào. 0 = cạnh sắc nét (hiếm). 8-30px là điển hình cho card và nút. Giá trị cao hơn tạo bóng mơ mộng, mềm mại.",
+          "Spread: mở rộng hoặc thu hẹp bóng đều nhau. Giá trị dương làm bóng lớn hơn phần tử; âm thu nhỏ lại. Spread âm kết hợp với offset tạo hiệu ứng 'nâng lên'.",
+          "Màu sắc/độ mờ: bóng thường là màu đen với độ mờ thấp (10-30%). Bóng màu sắc thời thượng nhưng khó dùng tốt. Khớp với phạm vi giá trị nền của bạn — bóng quá tối trên UI tối biến mất, bóng quá sáng trên UI sáng thiếu tương phản."
+        ]
+      },
+      {
+        "heading": "Bóng inset",
+        "paragraphs": [
+          "Bóng inset được vẽ bên trong phần tử thay vì bên ngoài. Dùng cho: trạng thái nút bị nhấn, ô nhập liệu bị kéo xuống, hiệu ứng neumorphic '3D bị đẩy vào'.",
+          "Bóng inset tuân theo border radius của phần tử và bỏ qua overflow. Chúng hữu ích để thêm chiều sâu trực quan vào các phần tử UI phẳng mà không thay đổi bố cục thực tế."
+        ]
+      },
+      {
+        "heading": "Neumorphism và xu hướng 'soft UI'",
+        "paragraphs": [
+          "Neumorphism (phổ biến 2020-2022) dùng hai bóng đối lập — một sáng, một tối — để làm các phần tử trông như được đùn ra từ nền cùng màu. Preset 'Neumorphic' của chúng tôi hiển thị một bóng tối; để neumorphism đầy đủ, kết hợp với bóng sáng inset ở phía đối diện: 'inset -8px -8px 20px rgba(255,255,255,0.5), 8px 8px 20px rgba(0,0,0,0.12)'.",
+          "Lưu ý: neumorphism thuần túy có vấn đề về khả năng tiếp cận — thiếu tương phản khiến các phần tử khó phân biệt. Thiết kế hiện đại dùng nó một cách tiết kiệm, thường kết hợp với bóng truyền thống."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn preset", "text": "Hoặc xây dựng từ đầu với các thanh trượt." },
+      { "name": "Điều chỉnh offset X/Y", "text": "Hướng của bóng." },
+      { "name": "Tinh chỉnh blur và spread", "text": "Blur làm mềm; spread phóng to." },
+      { "name": "Đặt màu sắc và độ mờ", "text": "Hầu hết bóng UI dùng màu đen với độ mờ 10-30%." },
+      { "name": "Bật/tắt inset", "text": "Cho bóng bên trong (nút bị nhấn, ô nhập liệu bị kéo xuống)." },
+      { "name": "Sao chép CSS", "text": "Dán vào thuộc tính box-shadow trong stylesheet của bạn." }
+    ]
+  },
+  "faq": [
+    { "q": "Tôi có thể thêm nhiều bóng không?", "a": "CSS hỗ trợ nhiều bóng phân cách bằng dấu phẩy: 'box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)'. Công cụ của chúng tôi tạo một bóng mỗi lần; kết hợp nhiều bóng bằng tay." },
+    { "q": "Làm sao tạo hiệu ứng neumorphic?", "a": "Kết hợp bóng tối ở dưới phải với bóng sáng ở trên trái, cả hai inset hoặc cả hai outset. Ví dụ: '8px 8px 20px rgba(0,0,0,0.12), -8px -8px 20px rgba(255,255,255,0.7)'. Preset của chúng tôi hiển thị nửa tối; thêm bóng sáng thủ công." },
+    { "q": "Sự khác biệt giữa blur và spread là gì?", "a": "Blur làm mềm cạnh bóng (độ trong suốt gradient). Spread thay đổi kích thước tổng thể của bóng (nhiều hơn hoặc ít hơn phần tử). Blur=20 spread=0 là glow mềm bằng kích thước phần tử; blur=0 spread=20 là bóng cứng rộng hơn 20px." },
+    { "q": "Tại sao bóng của tôi trông phẳng?", "a": "Có thể do độ mờ quá thấp, không có offset hoặc màu bóng quá gần màu nền. Thử Y=8, blur=24, độ_mờ=0,18 làm điểm xuất phát — các giá trị đó hiển thị rõ trên hầu hết nền sáng." },
+    { "q": "Tôi có thể dùng cái này cho text-shadow không?", "a": "Gần như vậy — text-shadow dùng cú pháp giống minus 'spread' và 'inset'. Điều chỉnh thủ công sau khi sao chép: lấy 'X Y blur màu' (bỏ spread và inset)." },
+    { "q": "Bóng có ảnh hưởng hiệu suất không?", "a": "Box-shadow được GPU tăng tốc trong các trình duyệt hiện đại. Nhiều bóng trên nhiều phần tử vẫn có thể làm chậm cuộn. Bóng đơn trên card và nút: không cần lo." },
+    { "q": "Tôi nên dùng bóng hay viền?", "a": "Cả hai đều có công dụng. Viền sắc nét hơn và dễ tiếp cận hơn. Bóng trông mềm hơn/cao hơn. UI phẳng hiện đại thường dùng cả hai: viền mỏng để sắc nét + bóng mềm để độ cao." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Tất cả xem trước và tạo CSS chạy cục bộ; không có gì được gửi đến server." }
+  ]
+}

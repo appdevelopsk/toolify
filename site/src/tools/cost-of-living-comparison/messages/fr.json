@@ -1,0 +1,143 @@
+{
+  "title": "Comparateur de coût de la vie (ville à ville, salaire équivalent)",
+  "shortDescription": "Vois quel salaire tu as besoin dans une ville cible pour maintenir le même niveau de vie. Pondéré par les indices globaux et les indices de loyer.",
+  "description": "Choisis une ville source et une ville cible parmi les préréglages, ou entre tes propres indices de coût de la vie et de loyer depuis Numbeo, EIU ou Mercer. Définis ton salaire actuel et ta part de loyer approximative. Le calculateur retourne le salaire équivalent et l'écart en %, en pondérant séparément les coûts globaux et les loyers car les loyers varient généralement plus que les autres catégories.",
+  "metaDescription": "Comparateur de coût de la vie gratuit. Salaire équivalent nécessaire lors d'un déménagement entre villes, pondéré par les indices globaux et de loyer.",
+  "keywords": [
+    "comparateur coût de la vie",
+    "calculateur coût ville",
+    "salaire équivalent",
+    "salaire nécessaire nouvelle ville",
+    "calculateur déménagement"
+  ],
+  "sourceHeading": "Ville source",
+  "targetHeading": "Ville cible",
+  "empty": "Toutes les valeurs doivent être positives, notamment les indices sources.",
+  "input": {
+    "preset": "Préréglage rapide (NYC = 100)",
+    "presetPlaceholder": "Choisis une ville pour charger les indices…",
+    "colIndex": "Indice de coût de la vie global",
+    "rentIndex": "Indice de loyer",
+    "salary": "Salaire annuel actuel",
+    "rentShare": "Part du loyer dans le budget (%)",
+    "rentShareHint": "Typique : 25-35 %. Plus élevé dans les villes chères."
+  },
+  "result": {
+    "equivalentLabel": "Salaire équivalent dans la ville cible",
+    "cheaperLine": "La ville cible est {pct}% moins chère — le même niveau de vie coûte moins.",
+    "expensiveLine": "La ville cible est {pct}% plus chère — tu aurais besoin de ce montant pour maintenir le même niveau de vie.",
+    "monthlyCurrent": "Mensuel actuel",
+    "monthlyEquivalent": "Mensuel équivalent",
+    "disclaimer": "Les indices sont approximatifs et évoluent avec les mouvements de change et l'inflation locale. Considère ±10 % comme marge d'erreur naturelle."
+  },
+  "city": {
+    "newYork": "New York",
+    "sanFrancisco": "San Francisco",
+    "losAngeles": "Los Angeles",
+    "chicago": "Chicago",
+    "austin": "Austin",
+    "seattle": "Seattle",
+    "boston": "Boston",
+    "miami": "Miami",
+    "denver": "Denver",
+    "london": "Londres",
+    "paris": "Paris",
+    "berlin": "Berlin",
+    "tokyo": "Tokyo",
+    "osaka": "Osaka",
+    "seoul": "Séoul",
+    "singapore": "Singapour",
+    "hongKong": "Hong Kong",
+    "shanghai": "Shanghai",
+    "beijing": "Pékin",
+    "taipei": "Taipei",
+    "sydney": "Sydney",
+    "toronto": "Toronto",
+    "mexicoCity": "Mexico",
+    "saoPaulo": "São Paulo",
+    "buenosAires": "Buenos Aires",
+    "madrid": "Madrid",
+    "barcelona": "Barcelone"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ce que signifient les indices",
+        "paragraphs": [
+          "Les indices de coût de la vie (Numbeo, EIU, Mercer) regroupent le logement, l'alimentation, les transports, la santé et les loisirs en un seul chiffre ancré sur une ville de référence (souvent NYC = 100). L'Indice de loyer représente uniquement la partie logement, qui varie souvent bien plus que les autres catégories. Ce calculateur les combine en les pondérant selon ta part de loyer pour que la réponse reflète ton budget réel, pas un ménage moyen."
+        ]
+      },
+      {
+        "heading": "Pourquoi séparer le loyer",
+        "paragraphs": [
+          "Le loyer est généralement la composante la plus volatile. NYC vs Berlin : le coût de la vie global diffère d'environ 50 %, mais les loyers diffèrent d'environ 150 %. Si tu consacres 40 % de ton salaire au loyer, l'indice de loyer domine ta réalité. Si tu vis dans un logement dont tu es propriétaire, l'indice de loyer importe peu."
+        ]
+      },
+      {
+        "heading": "Ce qui n'est pas modélisé",
+        "paragraphs": [
+          "Les différences fiscales (énormes entre les pays européens). L'accès aux soins de santé (le reste à charge et les dépassements d'honoraires varient). Les frais de scolarité si tu as des enfants. Les transports : les villes où on dépend d'une voiture coûtent plus cher même si le loyer est moins élevé. Utilise ce calculateur comme point de départ, pas comme réponse définitive."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "D'où viennent ces indices ?",
+      "a": "Les préréglages sont des approximations des indices Numbeo (NYC = 100). Pour une vraie décision de déménagement, consulte les chiffres actuels directement sur Numbeo ou EIU — les indices évoluent chaque année avec les changes et l'inflation."
+    },
+    {
+      "q": "Pourquoi la réponse est-elle si différente d'un simple multiplicateur ?",
+      "a": "Parce que les coûts de loyer et hors loyer évoluent différemment. Un simple 'NYC est 1,5× Berlin' masque que le loyer à NYC est 2,5× celui de Berlin tandis que l'alimentation n'est que 1,2× — donc un déménageur Berlin→NYC avec une faible part de loyer aura besoin de bien moins que 1,5× son salaire."
+    },
+    {
+      "q": "Faut-il tenir compte des impôts ?",
+      "a": "Utilise le salaire net des deux côtés pour la comparaison la plus juste. Les indices COL sont des coûts de consommation après impôts par conception. Si tu compares des salaires bruts, les différences fiscales (ex. France 40 %+ vs Belgique ou Suisse) sont ignorées."
+    },
+    {
+      "q": "Qu'en est-il de la parité de pouvoir d'achat (PPA) ?",
+      "a": "Les taux PPA du FMI ou de la Banque mondiale jouent un rôle similaire au niveau national (EUR vs JPY pour le même panier). Les indices COL au niveau des villes sont plus granulaires et utiles pour les décisions de déménagement."
+    },
+    {
+      "q": "Quelle est la précision des préréglages ?",
+      "a": "À ±10 % des chiffres Numbeo réels à mi-2026. Ils évoluent chaque trimestre — pour une décision finale, consulte les valeurs actuelles pour tes villes source et cible spécifiques."
+    },
+    {
+      "q": "Pourquoi la part du loyer est-elle séparée du COL global ?",
+      "a": "Les personnes dépensent des parts très différentes pour le loyer. Un propriétaire sans crédit dépense 0 % pour le loyer ; un jeune locataire à Paris peut dépenser 40 %. Te laisser définir cela transforme une comparaison générique de villes en comparaison personnelle."
+    },
+    {
+      "q": "Faut-il viser le salaire équivalent, ou plus ?",
+      "a": "L'équivalent maintient ton niveau de vie. Pour les frais de déménagement (transport, dépôts de garantie, remplacement de meubles), prévois 5 à 10 % au-dessus du salaire équivalent la première année. Ensuite, l'équivalent suffit."
+    },
+    {
+      "q": "Ça fonctionne pour des comparaisons infra-villenoises (ex. Paris 16e vs Paris 20e) ?",
+      "a": "Numbeo fournit des indices de loyer au niveau des quartiers pour de nombreuses villes. Utilise-les comme entrée d'indice de loyer en gardant le COL global identique. Les calculs fonctionnent à n'importe quel niveau de granularité — il compare simplement deux paires d'indices."
+    }
+  ],
+  "howto": {
+    "name": "Comment comparer le coût de la vie entre deux villes",
+    "steps": [
+      {
+        "name": "Obtenir les indices COL",
+        "text": "Consulte les villes source et cible sur Numbeo, EIU ou Mercer pour les valeurs les plus récentes."
+      },
+      {
+        "name": "Obtenir les indices de loyer",
+        "text": "Numbeo les sépare. Utilise les chiffres au niveau du quartier si disponibles."
+      },
+      {
+        "name": "Estimer ta part de loyer",
+        "text": "Quel pourcentage de ton budget mensuel consacres-tu au loyer ou à ton crédit immobilier ? Sois honnête — 25 % est typique pour un propriétaire, 30-40 % pour les locataires dans les villes chères."
+      },
+      {
+        "name": "Lancer la comparaison",
+        "text": "Entre le salaire et les quatre indices. Le salaire équivalent est ce dont tu as besoin pour maintenir le même niveau de vie."
+      },
+      {
+        "name": "Ajuster pour les impôts et les imprévus",
+        "text": "Ajoute 5 à 10 % pour les frais de déménagement la première année. Vérifie que les tranches fiscales dans le nouvel endroit ne vont pas annuler le gain."
+      }
+    ]
+  }
+}

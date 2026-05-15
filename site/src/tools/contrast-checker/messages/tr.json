@@ -1,0 +1,62 @@
+{
+  "title": "Kontrast Kontrolü (WCAG AA / AAA notları)",
+  "shortDescription": "Metin ile arka plan arasındaki renk kontrast oranını kontrol et. Normal ve büyük metin boyutları için WCAG AA ve AAA geçti/kaldı rozetleriyle canlı önizleme gösterir.",
+  "description": "WCAG kontrast oranını hesaplamak için ön plan ve arka plan rengi seç. Canlı metin önizlemesi ve dört not rozeti (AA normal, AA büyük, AAA normal, AAA büyük) gerçek zamanlı güncellenir.",
+  "metaDescription": "Ücretsiz WCAG kontrast kontrolü. Herhangi bir ön plan/arka plan rengini karşılaştır ve canlı metin önizlemesiyle AA ve AAA not geçti/kaldı rozetlerini gör.",
+  "keywords": ["kontrast kontrolü", "WCAG kontrast", "AA AAA renk", "erişilebilirlik rengi", "renk oranı"],
+  "input": { "fg": "Ön plan (metin)", "bg": "Arka plan" },
+  "result": { "label": "Kontrast oranı" },
+  "preview": {
+    "large": "Büyük başlık örneği (24px+ veya 18,66px+ kalın)",
+    "normal": "Günlük paragraflar için normal gövde metni örneği.",
+    "small": "Altyazılar, dipnotlar ve etiketler için kullanılan küçük metin."
+  },
+  "badge": {
+    "aaNormal": "WCAG AA — Normal metin",
+    "aaLarge": "WCAG AA — Büyük metin",
+    "aaaNormal": "WCAG AAA — Normal metin",
+    "aaaLarge": "WCAG AAA — Büyük metin"
+  },
+  "empty": "Kontrast oranını görmek için geçerli iki renk (HEX) girin.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Kontrast oranı nasıl çalışır?",
+        "paragraphs": [
+          "WCAG (Web İçeriği Erişilebilirlik Kılavuzları), kontrastı iki rengin göreceli parlaklığı arasındaki oran olarak tanımlar. Formül, her sRGB kanalını doğrusallaştırır, insan gözü hassasiyetine göre ağırlandırır (R 0,2126, G 0,7152, B 0,0722), ardından (daha açık + 0,05) / (daha koyu + 0,05) hesaplar. Sonuç 1:1 (özdeş) ile 21:1 (beyaz üzere siyah) arasında değişir.",
+          "Bunu tarayıcında resmi WCAG 2.x formülünü kullanarak hesaplıyoruz. Dört not rozeti, AA'nın 4,5:1 (normal) ve 3:1 (büyük) ile AAA'nın 7:1 (normal) ve 4,5:1 (büyük) eşiklerine göre kontrol eder. 'Büyük metin', 24px / 18pt veya 18,66px / 14pt kalındır."
+        ]
+      },
+      {
+        "heading": "Asgari olarak AA'yı neden geçmeli?",
+        "paragraphs": [
+          "AA, pek çok yargı bölgesinde yasal olarak uygulanabilir düzeydir (ABD ADA, AB EN 301 549, dijital hizmetler için İngiltere Eşitlik Yasası). Gövde metni üzerinde AA'da başarısız olmak, en yaygın erişilebilirlik sorunudur ve lansmanından sonra değil, tasarım sırasında düzeltmek en kolay olanıdır.",
+          "AAA, uzun biçimli okuma, kamu hizmetleri ve yüksek önem taşıyan arayüzler için önerilir. Katıdır — tasarımcının açık gri üzerine beyaz ilk sezgisi genellikle AAA'da kolaylıkla başarısız olur. Siteniz ağırlıklı olarak hızlı bakış içerikleri sunuyorsa AA hedefle; kitap, makale veya kritik bilgi yayınlıyorsan AAA hedefle."
+        ]
+      },
+      {
+        "heading": "Yaygın hatalar",
+        "paragraphs": [
+          "'Benim ekranımda iyi görünüyor.' Kalibre edilmiş ekranlar, floresan ofis ışıkları ve açık havada akıllı telefon kullanımı algılanan kontrastı değiştirir. Oranı kullan, gözünü değil.",
+          "Hex kodlarını tersine çevirerek karanlık mod tasarlama. Ters çevirme tonu değiştirir ve kontrastı bozar. Temaları değiştirdikten sonra her renk çiftini yeniden test et.",
+          "Marka kılavuzlarına güvenme. Pek çok marka paleti WCAG farkındalığından önce seçildi. Markının pembesi beyaz üzerinde başarısız oluyorsa, gövde metni için biraz daha koyu bir pembe öner ve orijinali dekoratif kullanım için koru."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Ön planı seç", "text": "Metin rengi." },
+      { "name": "Arka planı seç", "text": "Metnin arkasındaki renk." },
+      { "name": "Oranı ve rozetleri oku", "text": "Sayı WCAG oranıdır. Dört rozet, normal ve büyük metin boyutları için AA ve AAA geçti/kaldı durumunu gösterir." }
+    ]
+  },
+  "faq": [
+    { "q": "AA ile AAA arasındaki fark nedir?", "a": "AA, normal metin için 4,5:1 ve büyük metin için 3:1 gerektirir. AAA 7:1 ve 4,5:1'e sıkılaştırır. AAA önerilir ama her zaman ulaşılabilir değildir." },
+    { "q": "'Büyük metin' nedir?", "a": "WCAG, 18pt (24px) veya daha büyük, ya da 14pt (18,66px) ve kalın olarak tanımlar." },
+    { "q": "Bu araç şeffaflığı destekliyor mu?", "a": "Henüz değil. Kullanıcının gördüğü gerçek rengi seç (arka plan üzerine bileştirilmiş ön plan). Şeffaflık desteği sonradan gelebilir." },
+    { "q": "Markam neden geçemiyor?", "a": "Pek çok marka paleti erişilebilirlik için değil, estetik için seçildi. Yaygın düzeltmeler: metin olarak kullanılan vurgu renklerini koyulaştır, açık varyantları arka planlar veya dekoratif öğeler için koru." },
+    { "q": "Oran 'algılanan kontrast' ile aynı mı?", "a": "Hayır — WCAG 2.x, basitleştirilmiş parlaklık tabanlı formül kullanır. WCAG 3 (geliştirme aşamasında) algılanan kontrastı daha iyi tahmin eden APCA kullanır ama henüz standartlaşmadı." },
+    { "q": "Simgeler veya UI kontrolleri için hangi oran?", "a": "WCAG 2.1, metin dışı kontrast (simgeler, form kontrolleri, odak göstergeleri) için 3:1 minimum ekledi. Aynı kontrolü kullan — 3:1'i karşıla veya aş." },
+    { "q": "Grafik grafikler için çalışıyor mu?", "a": "Anlam taşıyan komşu renkler arasında aynı eşik uygulanır. Veri görselleştirme için, komşu renkler arasında 3:1, WCAG 1.4.11 minimumdur." },
+    { "q": "Veri bir yere gönderiliyor mu?", "a": "Hayır. Hesaplama tarayıcında yerel olarak çalışır." }
+  ]
+}

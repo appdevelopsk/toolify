@@ -1,0 +1,107 @@
+{
+  "title": "E-posta Doğrulayıcı (sözdizimi + yaygın yazım hatası tespiti)",
+  "shortDescription": "E-posta adresinin sözdizimini RFC 5322'ye göre doğrulayın ve popüler sağlayıcılardaki yaygın yazım hatalarını (gmail, yahoo, hotmail vb.) tespit edin.",
+  "description": "Sözdiziminin geçerli olup olmadığını kontrol etmek ve 'gmial.com' → 'gmail.com' gibi alan adı yazım hatalarını yakalamak için bir e-posta yazın. Yerel bölüm, alan adı, TLD ayrıştırmasını yapar ve RFC sınır ihlallerini uyarır.",
+  "metaDescription": "Ücretsiz e-posta doğrulayıcı. RFC 5322 sözdizimini kontrol eder ve gmial.com veya yaho.com gibi yaygın yazım hatalarını yakalar.",
+  "keywords": [
+    "e-posta doğrulayıcı",
+    "e-posta sözdizimi kontrolü",
+    "e-posta format kontrolü",
+    "e-posta doğrulama",
+    "e-posta yazım hatası"
+  ],
+  "input": {
+    "email": "E-posta adresi"
+  },
+  "status": {
+    "valid": "Geçerli sözdizimi",
+    "invalid": "Geçersiz sözdizimi"
+  },
+  "suggestion": "Bunu mu demek istediniz: {suggestion}?",
+  "empty": "Doğrulamak için bir e-posta adresi yazın.",
+  "breakdown": {
+    "localPart": "Yerel bölüm",
+    "domain": "Alan adı",
+    "tld": "TLD",
+    "hasPlus": "Artı etiketi (+)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Bu doğrulayıcının yapabildiği (ve yapamadığı)",
+        "paragraphs": [
+          "E-posta sözdizimi doğrulaması, 'ad@alan.uzantı' biçiminin RFC 5322'deki yapısal kurallara uyup uymadığını kontrol eder. Artı etiketleri, noktalar ve alışılmadık TLD'ler gibi meşru adreslere yeterince esnek kalırken gerçek dünyadaki yazım hatalarının neredeyse tamamını yakalayan pragmatik bir regex kullanıyoruz.",
+          "Bu araç yapamadıkları: adresin gerçekten e-posta aldığını doğrulamak. Bunun için sunucu taraflı kod gerektiren gerçek bir e-posta göndermek veya SMTP kontrolü yapmak gerekir; ayrıca yanlış pozitif riski vardır (catch-all alan adları, greylisting). Sözdizimi doğrulaması yazım hatalarını ucuza yakalar; teslim edilebilirlik kontrolleri farklı bir yaklaşım gerektirir."
+        ]
+      },
+      {
+        "heading": "Yaygın yazım hatası tespiti",
+        "paragraphs": [
+          "Gmail.com yerine 'gmial.com', yahoo.com yerine 'yaho.com' gibi büyük ücretsiz e-posta sağlayıcılarındaki yazım hatalarını izliyoruz. E-posta kayıt yazım hatalarının yaklaşık %95'i bu birkaç sağlayıcının alan adı hatalarıdır. Bunları istemci tarafında yakalamak, geri dönen bir hoş geldiniz e-postasını ve ardından gelen 'lütfen adresinizi kontrol edin' mesajını önler.",
+          "Bir kayıt formu oluşturuyorsanız göndermeden önce aynı mantığı uygulayın. 'Bunu mu demek istediniz…?' önerisi gösterin ve kullanıcının kabul etmesine veya geçersiz kılmasına izin verin. Olgun kayıt akışları bunu rutin olarak yapar; e-posta teslim edilebilirliğini gözle görülür şekilde iyileştirir."
+        ]
+      },
+      {
+        "heading": "Yerel bölüm kuralları",
+        "paragraphs": [
+          "Artı etiketi ('kullanici+filtre@gmail.com'): büyük sağlayıcıların çoğu tarafından desteklenir. Tek bir gelen kutusu tutarken farklı kayıtlar için benzersiz adresler oluşturmaya yarar.",
+          "Noktalar ('kullanici.ad@gmail.com'): Gmail tarafından aynı adres olarak kabul edilir (noktalar yoksayılır), ancak diğer sağlayıcılar bunları farklı adresler olarak değerlendirebilir. Gmail dışında nokta eşdeğerliğine güvenmeyin.",
+          "Uzunluk: RFC 5321, yerel bölümü 64 karakter, tam adresi ise 254 karakterle sınırlar. Bunlar aşıldığında uyarıyoruz — çoğu sunucu daha uzun adresleri reddeder.",
+          "Büyük/küçük harf duyarlılığı: RFC'ye göre yerel bölüm büyük/küçük harfe duyarlıdır, ancak çoğu sağlayıcı bunu duyarsız olarak değerlendirir. Alan adı her zaman büyük/küçük harfe duyarsızdır."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "E-postayı yazın",
+        "text": "Veya bir form/listeden yapıştırın."
+      },
+      {
+        "name": "Sonucu okuyun",
+        "text": "Yeşil onay = geçerli sözdizimi; kırmızı X = geçersiz."
+      },
+      {
+        "name": "Önerilere dikkat edin",
+        "text": "Popüler sağlayıcılardaki yaygın yazım hataları öneriyle birlikte işaretlenir."
+      },
+      {
+        "name": "Ayrıştırmayı inceleyin",
+        "text": "Yerel bölüm, alan adı, TLD ve uyarı notları aşağıda gösterilir."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Bu araç e-postanın var olduğunu doğruluyor mu?",
+      "a": "Hayır — yalnızca sözdizimi. Bir gelen kutusunun var olduğunu doğrulamak için sunucu taraflı SMTP kontrolü veya doğrulama e-postası göndermek gerekir. Bu araç yazım hatalarını ucuza yakalar."
+    },
+    {
+      "q": "Neden 'a@b.co' geçerli kabul edildi?",
+      "a": "Çünkü bu teknik olarak geçerli bir sözdizimi. '.co' TLD'si gerçek (Kolombiya). Sözdizimi doğrulaması gerçek ama nadir TLD'leri filtreleyemez."
+    },
+    {
+      "q": "Unicode içeren e-postalar için ne olur (örn. kullanici@ornek.com.tr)?",
+      "a": "Uluslararasılaştırılmış e-posta adresleri RFC 6531'e göre geçerlidir, ancak burada kullanılan regex bunları kabul etmez. Çoğu form arka ucu da hâlâ kabul etmiyor. Unicode dostu doğrulama için özel bir kütüphane kullanın."
+    },
+    {
+      "q": "Artı etiketi nedir?",
+      "a": "+ ve @ arasındaki her şey Gmail ve birçok sağlayıcı tarafından yönlendirme parçası olarak değerlendirilir. kullanici+toolify@gmail.com, kullanici@gmail.com'a gider ama +toolify eki ile filtreleyebilirsiniz."
+    },
+    {
+      "q": "Gmail neden noktaları yoksayar?",
+      "a": "Tarihsel Gmail politikası. kullanici.ad@gmail.com ve kullaniciad@gmail.com aynı gelen kutusuna ulaşır. Diğer sağlayıcılar (Yahoo, Outlook) bunları ayrı adresler olarak değerlendirir."
+    },
+    {
+      "q": "En uzun geçerli e-posta ne kadardır?",
+      "a": "RFC 5321'e göre toplam 254 karakter. Yerel bölüm ≤ 64. Çoğu sunucu daha uzun adresleri reddeder."
+    },
+    {
+      "q": "Veriler tarayıcımdan çıkıyor mu?",
+      "a": "Hayır. Doğrulama yerel olarak çalışır; hiçbir şey sunucuya gönderilmez."
+    },
+    {
+      "q": "Toplu doğrulama yapabilir miyim?",
+      "a": "Bu araçta değil — bir seferde bir adres yapıştırın. Listeler için bir betik veya özel toplu doğrulama hizmeti kullanın (kontrol ettiğiniz kişilerin onayıyla)."
+    }
+  ]
+}

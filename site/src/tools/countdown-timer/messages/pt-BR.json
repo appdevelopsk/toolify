@@ -1,0 +1,100 @@
+{
+  "title": "Temporizador de Contagem Regressiva (ao vivo, dias/horas/minutos/segun",
+  "shortDescription": "Contagem regressiva ao vivo para qualquer data e hora futura. Atualiza a cada segundo; funciona para eventos, prazos, lançamentos, viagens.",
+  "description": "Escolha uma data e hora alvo e veja a contagem regressiva em segundos. Adicione um título opcional para rotular o evento. Após o prazo, a mesma exibição mostra o tempo decorrido.",
+  "metaDescription": "Temporizador de contagem regressiva gratuito para qualquer data. Dias, horas, minutos, segundos — atualiza a cada segundo.",
+  "keywords": [
+    "temporizador regressivo",
+    "contagem regressiva para data",
+    "contagem regressiva ao vivo",
+    "temporizador de prazo",
+    "contagem regressiva de evento"
+  ],
+  "input": {
+    "target": "Data e hora alvo",
+    "title": "Nome do evento (opcional)",
+    "titlePlaceholder": "Prazo do projeto"
+  },
+  "remaining": "Tempo restante até",
+  "ended": "Tempo decorrido desde",
+  "empty": "Escolha uma data e hora alvo para iniciar a contagem regressiva.",
+  "unit": {
+    "days": "Dias",
+    "hours": "Horas",
+    "minutes": "Minutos",
+    "seconds": "Segundos"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Como o temporizador funciona",
+        "paragraphs": [
+          "A contagem regressiva atualiza uma vez por segundo usando setInterval. Cada atualização lê a hora local atual, subtrai do seu alvo e divide a diferença em dias, horas, minutos e segundos. Não há chamada ao servidor, então a contagem regressiva permanece precisa mesmo se sua conexão cair — apenas a própria página precisa estar carregada.",
+          "Os fusos horários usam o que seu navegador considera 'local'. Se você definir o alvo para '12:00 hoje' e outra pessoa em um fuso diferente visitar a página, a contagem regressiva será diferente — ambas corretas, mas para o 12:00 local de cada uma."
+        ]
+      },
+      {
+        "heading": "Casos de uso comuns",
+        "paragraphs": [
+          "Prazos de projetos (exiba a contagem regressiva em uma tela de sala de reunião), lançamentos de produtos (contagem regressiva até uma liberação pública), viagens (férias, voo, trem, cruzeiro), provas e certificações, casamentos e aniversários, eventos esportivos. O campo de título opcional permite rotular o evento para que a página seja autoexplicativa.",
+          "Após o prazo passar, a mesma exibição muda para 'tempo decorrido desde' e continua contando para cima. Isso é útil quando 'há quanto tempo X aconteceu' é o que você realmente quer — ex.: 'dias desde o último incidente' para um painel de SRE."
+        ]
+      },
+      {
+        "heading": "Por que uma contagem regressiva em vez de um lembrete no calendário",
+        "paragraphs": [
+          "Os lembretes do calendário aparecem uma vez no momento do evento. Uma contagem regressiva ao vivo oferece uma consciência constante — útil para metas que você quer manter em mente. Times esportivos as exibem, equipes de software as mostram em war rooms e maratonistas as fixam em suas telas de treino.",
+          "Se quiser que isso fique em um painel público, marque a URL nos favoritos após definir o alvo. O estado permanece nos campos de entrada; recarregar a página reinicia (ainda sem link compartilhável, mas os campos são preservados dentro de uma sessão)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolha o alvo",
+        "text": "Selecione a data e hora para a qual você está fazendo a contagem regressiva. O seletor usa seu fuso horário local."
+      },
+      {
+        "name": "Adicione um título (opcional)",
+        "text": "Digite o nome do evento para que a exibição seja significativa de relance."
+      },
+      {
+        "name": "Veja a contagem regressiva",
+        "text": "Dias, horas, minutos e segundos diminuem uma vez por segundo. Após o alvo, a mesma exibição muda para tempo decorrido."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "A contagem regressiva é precisa ao segundo?",
+      "a": "Sim — a exibição é atualizada uma vez por segundo, e cada atualização recalcula a partir do relógio atual, então o desvio acumulado não pode acontecer."
+    },
+    {
+      "q": "Qual fuso horário usa?",
+      "a": "O fuso horário local do seu navegador. O alvo que você escolhe é interpretado no seu fuso local, não em UTC."
+    },
+    {
+      "q": "A contagem regressiva funciona offline?",
+      "a": "Sim, depois que a página é carregada. Nenhuma conexão de rede é necessária para o temporizador continuar contando."
+    },
+    {
+      "q": "Posso compartilhar uma contagem regressiva com outra pessoa?",
+      "a": "Ainda não via URL. Estamos trabalhando em URLs com estado codificado para que um link possa conter o alvo e o título; por enquanto, você pode colar uma captura de tela ou fazer uma gravação de tela."
+    },
+    {
+      "q": "O que acontece após o alvo passar?",
+      "a": "A exibição muda para 'tempo decorrido desde' e continua contando para cima. Os números são positivos, mas o rótulo muda."
+    },
+    {
+      "q": "Posso ter várias contagens regressivas?",
+      "a": "Abra várias abas — cada uma é independente. Um modo de múltiplos eventos integrado está no roteiro."
+    },
+    {
+      "q": "O temporizador continuará rodando se eu trocar de aba?",
+      "a": "Os navegadores limitam setInterval em abas em segundo plano. A contagem regressiva se atualizará corretamente quando você retornar — o recálculo é a partir do relógio, não de tiques acumulados."
+    },
+    {
+      "q": "Os dados de entrada são enviados para algum lugar?",
+      "a": "Não. Tudo fica no seu navegador."
+    }
+  ]
+}

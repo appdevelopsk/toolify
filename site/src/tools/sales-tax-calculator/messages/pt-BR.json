@@ -1,0 +1,106 @@
+{
+  "title": "Calculadora de Imposto / IVA (adicionar imposto ou extrair do total)",
+  "shortDescription": "Adicione imposto a um valor sem imposto ou extraia o imposto de um total já com imposto. Funciona para qualquer alíquota (ICMS, ISS, IVA, GST).",
+  "description": "Alterne entre os modos 'adicionar imposto' e 'extrair do total', insira o valor e a alíquota, e veja a divisão em líquido, imposto e total.",
+  "metaDescription": "Calculadora gratuita de imposto / IVA / ICMS. Adicione imposto a um valor sem imposto ou extraia imposto de um total com imposto.",
+  "keywords": [
+    "calculadora de imposto",
+    "calculadora de ICMS",
+    "calculadora de IVA",
+    "calcular imposto",
+    "extrair imposto do total"
+  ],
+  "empty": "Insira um valor para calcular a divisão de imposto.",
+  "mode": {
+    "addTax": "Adicionar imposto ao líquido",
+    "fromTotal": "Extrair imposto do total"
+  },
+  "input": {
+    "amountNet": "Valor sem imposto",
+    "amountGross": "Total com imposto",
+    "taxPct": "Alíquota (%)"
+  },
+  "result": {
+    "net": "Sem imposto",
+    "tax": "Imposto",
+    "gross": "Total"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Adicionar imposto vs extrair imposto",
+        "paragraphs": [
+          "Adicionar imposto: você tem o preço sem imposto e quer o preço final. Multiplique por (1 + alíquota/100). Exemplo: R$ 100 com 10% de imposto = R$ 110.",
+          "Extrair imposto: você tem o total que o cliente pagou (ou viu na nota) e precisa identificar quanto era imposto. Divida o total por (1 + alíquota/100) para obter o valor sem imposto; a diferença é o imposto. Exemplo: R$ 110 com 10% extrai para R$ 100 + R$ 10 de imposto. Não multiplique R$ 110 por 10% — isso dá R$ 11, o que está errado."
+        ]
+      },
+      {
+        "heading": "ICMS, ISS e outros impostos",
+        "paragraphs": [
+          "ICMS (imposto estadual sobre circulação de mercadorias): varia por estado e produto. A alíquota interna varia de 12% a 20% na maioria dos estados. São Paulo, por exemplo, tem alíquota geral de 12-18% dependendo do produto. Muitos preços no B2B são exibidos sem imposto e o ICMS é adicionado na nota fiscal.",
+          "ISS (imposto municipal sobre serviços): varia de 2% a 5% conforme o município e o tipo de serviço. Empreiteiras, consultores e prestadores de serviço precisam calcular o ISS sobre o valor dos serviços.",
+          "IVA (Europa, outros países): geralmente já incluído no preço exibido. No Brasil, a Reforma Tributária está unificando PIS, Cofins, IPI e outros em um novo IBS/CBS com alíquota padrão a ser definida. Use 'extrair do total' para encontrar o imposto em um preço já incluso."
+        ]
+      },
+      {
+        "heading": "Armadilhas comuns",
+        "paragraphs": [
+          "Não multiplique totais com imposto pela alíquota. Para extrair imposto de R$ 110 a 10%, divida por 1,10 primeiro. Multiplicar pela alíquota dá a resposta errada porque os R$ 110 já incluem os 10% sobre o original de R$ 100 — e você estaria tributando o imposto.",
+          "Alguns produtos são isentos ou têm alíquota reduzida (cesta básica em vários estados, medicamentos, livros). Ao anunciar preços incluindo ou excluindo imposto, siga as regras da sua atividade e estado."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolha o modo",
+        "text": "Adicionar imposto a um valor sem imposto, ou extrair imposto de um total com imposto."
+      },
+      {
+        "name": "Insira o valor",
+        "text": "Sem imposto no modo 'adicionar'; total no modo 'extrair'."
+      },
+      {
+        "name": "Insira a alíquota",
+        "text": "Alíquota como percentual (ex.: 12 para ICMS paulista, 5 para ISS máximo, 20 para IVA europeu)."
+      },
+      {
+        "name": "Leia a divisão",
+        "text": "Líquido (sem imposto), valor do imposto e total são todos exibidos."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Por que extrair do total é ÷ (1 + alíquota) em vez de × alíquota?",
+      "a": "Porque o total já inclui o imposto sobre o original. Multiplicar dá o imposto sobre o total inclusivo, que é valor excessivo. Dividir por (1 + alíquota/100) reverte a adição corretamente."
+    },
+    {
+      "q": "Qual alíquota usar para ICMS?",
+      "a": "O ICMS varia por estado e tipo de produto. Alíquota interna geral: SP 12-18%, RJ 20%, MG 12%, RS 12%. Nas operações interestaduais, use a alíquota interestadual (7% ou 12% conforme o estado destinatário)."
+    },
+    {
+      "q": "O ISS varia muito?",
+      "a": "Sim — de 2% a 5% dependendo do município e do tipo de serviço. Consulte a legislação do seu município para a lista de serviços tributáveis e as respectivas alíquotas."
+    },
+    {
+      "q": "Os preços no Brasil já incluem imposto?",
+      "a": "Para consumidor final (varejo): geralmente sim. Para B2B: frequentemente não, e o imposto é destacado na nota fiscal. Use o modo 'extrair' para preços com imposto incluído, e 'adicionar' para preços líquidos."
+    },
+    {
+      "q": "Isso lida com múltiplas alíquotas?",
+      "a": "Não ao mesmo tempo. Para alíquotas combinadas (ex.: ICMS + IPI), some-as primeiro e use a alíquota combinada."
+    },
+    {
+      "q": "E para notas fiscais com IVA incluído?",
+      "a": "Mesma matemática: 'extrair do total' para ver o IVA e o valor líquido. A maioria dos sistemas de contabilidade faz isso automaticamente."
+    },
+    {
+      "q": "Qual moeda é usada?",
+      "a": "Os cálculos são independentes de moeda — use qualquer unidade de forma consistente."
+    },
+    {
+      "q": "Os dados são enviados para algum lugar?",
+      "a": "Não. Toda a matemática é executada localmente no seu navegador."
+    }
+  ]
+}

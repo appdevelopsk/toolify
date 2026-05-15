@@ -1,0 +1,106 @@
+{
+  "title": "Verificador de Contraste (níveis WCAG AA / AAA)",
+  "shortDescription": "Verifique a proporção de contraste de cores entre texto e fundo. Mostra prévia ao vivo e selos de aprovação/reprovação para WCAG AA e AAA em tamanhos de texto normal e grande.",
+  "description": "Escolha uma cor de primeiro plano e uma cor de fundo para calcular a proporção de contraste WCAG. A prévia de texto ao vivo e os quatro selos de nível (AA normal, AA grande, AAA normal, AAA grande) são atualizados em tempo real.",
+  "metaDescription": "Verificador de contraste WCAG gratuito. Compare quaisquer cores de primeiro plano/fundo e veja selos de aprovação/reprovação para os níveis AA e AAA com prévia de texto",
+  "keywords": [
+    "verificador de contraste",
+    "contraste WCAG",
+    "cor AA AAA",
+    "cor acessível",
+    "proporção de contraste"
+  ],
+  "input": {
+    "fg": "Primeiro plano (texto)",
+    "bg": "Fundo"
+  },
+  "result": {
+    "label": "Proporção de contraste"
+  },
+  "preview": {
+    "large": "Amostra de título grande (24px+ ou 18,66px+ negrito)",
+    "normal": "Amostra de texto de corpo normal para parágrafos comuns.",
+    "small": "Texto menor usado para legendas, notas de rodapé e rótulos."
+  },
+  "badge": {
+    "aaNormal": "WCAG AA — Texto normal",
+    "aaLarge": "WCAG AA — Texto grande",
+    "aaaNormal": "WCAG AAA — Texto normal",
+    "aaaLarge": "WCAG AAA — Texto grande"
+  },
+  "empty": "Insira duas cores válidas (HEX) para ver a proporção de contraste.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Como funciona a proporção de contraste",
+        "paragraphs": [
+          "O WCAG (Diretrizes de Acessibilidade para Conteúdo Web) define contraste como a proporção entre a luminância relativa de duas cores. A fórmula lineariza cada canal sRGB, pondera-os pela sensibilidade do olho humano (R 0,2126, G 0,7152, B 0,0722) e depois calcula (mais claro + 0,05) / (mais escuro + 0,05). O resultado varia de 1:1 (idêntico) a 21:1 (preto sobre branco).",
+          "Calculamos isso no seu navegador usando a fórmula oficial do WCAG 2.x. Os quatro selos de nível verificam em relação aos limites de AA de 4,5:1 (normal) e 3:1 (grande), e de AAA de 7:1 (normal) e 4,5:1 (grande). 'Texto grande' é 24px / 18pt, ou 18,66px / 14pt negrito."
+        ]
+      },
+      {
+        "heading": "Por que passar o AA no mínimo",
+        "paragraphs": [
+          "O AA é o nível legalmente aplicável em muitas jurisdições (Lei Brasileira de Inclusão — Lei nº 13.146/2015, ADA dos EUA, EN 301 549 da UE). Reprovar o AA em texto de corpo é o problema de acessibilidade mais comum e o mais fácil de corrigir durante o design em vez de após o lançamento.",
+          "O AAA é recomendado para leitura longa, serviços governamentais e interfaces de alto risco. É rigoroso — o primeiro instinto de um designer de cinza pálido sobre branco geralmente reprovaria facilmente. Se seu site serve principalmente conteúdo visto rapidamente, almeje AA; se você publica livros, artigos ou informações críticas, almeje AAA."
+        ]
+      },
+      {
+        "heading": "Erros comuns",
+        "paragraphs": [
+          "'Parece bom na minha tela.' Telas calibradas, luz fluorescente de escritório e uso de smartphone ao ar livre mudam o contraste percebido. Use a proporção, não seus olhos.",
+          "Projetar modo escuro invertendo códigos hex. A inversão muda o matiz e quebra o contraste. Reteste cada par de cores após trocar temas.",
+          "Confiar nas diretrizes de marca. Muitas paletas de marcas foram escolhidas antes da conscientização sobre o WCAG. Se o rosa da marca sobre branco reprovar, proponha um rosa levemente mais escuro para o texto do corpo e reserve o original para uso decorativo."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolha o primeiro plano",
+        "text": "A cor do texto."
+      },
+      {
+        "name": "Escolha o fundo",
+        "text": "A cor atrás do texto."
+      },
+      {
+        "name": "Leia a proporção e os selos",
+        "text": "O número é a proporção WCAG. Os quatro selos mostram aprovação/reprovação para AA e AAA em tamanhos de texto normal e grande."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual é a diferença entre AA e AAA?",
+      "a": "AA exige 4,5:1 para texto normal e 3:1 para texto grande. AAA aumenta para 7:1 e 4,5:1. AAA é recomendado, mas nem sempre alcançável."
+    },
+    {
+      "q": "O que é 'texto grande'?",
+      "a": "O WCAG define como 18pt (24px) ou maior, ou 14pt (18,66px) e negrito."
+    },
+    {
+      "q": "Esta ferramenta suporta transparência?",
+      "a": "Ainda não. Escolha a cor real que o usuário vê (primeiro plano composto sobre o fundo). O suporte a transparência pode vir posteriormente."
+    },
+    {
+      "q": "Por que minha marca não passa?",
+      "a": "Muitas paletas de marca foram escolhidas por estética, não acessibilidade. Correções comuns: escurecer cores de destaque usadas como texto, reservar variantes claras para fundos ou elementos decorativos."
+    },
+    {
+      "q": "A proporção é igual ao 'contraste percebido'?",
+      "a": "Não — o WCAG 2.x usa uma fórmula simplificada baseada em luminância. O WCAG 3 (em desenvolvimento) usa APCA, que prevê melhor o contraste percebido, mas ainda não é padronizado."
+    },
+    {
+      "q": "Qual proporção para ícones ou controles de UI?",
+      "a": "O WCAG 2.1 adicionou um mínimo de 3:1 para contraste não textual (ícones, controles de formulário, indicadores de foco). Use o mesmo verificador — atinja ou supere 3:1."
+    },
+    {
+      "q": "Funciona para gráficos?",
+      "a": "O mesmo limite se aplica entre cores adjacentes que transmitem significado. Para visualização de dados, 3:1 entre cores adjacentes é o mínimo do WCAG 1.4.11."
+    },
+    {
+      "q": "Os dados são enviados para algum lugar?",
+      "a": "Não. O cálculo é feito localmente no seu navegador."
+    }
+  ]
+}

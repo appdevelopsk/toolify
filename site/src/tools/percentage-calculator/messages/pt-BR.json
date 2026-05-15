@@ -1,0 +1,73 @@
+{
+  "title": "Calculadora de Porcentagem (% de, que %, variação %)",
+  "shortDescription": "Três calculadoras de porcentagem em uma: 'X% de Y', 'X é que % de Y' e variação percentual entre dois valores.",
+  "description": "Escolha um modo, insira dois números e obtenha a resposta instantaneamente. Lida com 'porcentagem de', 'que porcentagem' e 'variação percentual' — as três operações por trás de quase toda questão de porcentagem.",
+  "metaDescription": "Calculadora de porcentagem gratuita: encontre X% de Y, que porcentagem um número é de outro, ou a variação percentual entre dois valores. Instantâneo, no navegador.",
+  "keywords": ["calculadora de porcentagem", "porcentagem de", "variação percentual", "calculadora de desconto", "aumento diminuição percentual"],
+  "empty": "Insira os dois valores para ver o resultado.",
+  "mode": {
+    "pct_of": {
+      "title": "X% de Y",
+      "labelA": "X (porcentagem)",
+      "labelB": "Y (valor)",
+      "resultLabel": "X% de Y",
+      "resultUnit": ""
+    },
+    "what_pct": {
+      "title": "X é que % de Y",
+      "labelA": "X (parte)",
+      "labelB": "Y (todo)",
+      "resultLabel": "X é esta % de Y",
+      "resultUnit": "%"
+    },
+    "pct_change": {
+      "title": "Variação de A para B",
+      "labelA": "A (início)",
+      "labelB": "B (fim)",
+      "resultLabel": "Variação",
+      "resultUnit": "%"
+    }
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "As três operações de porcentagem",
+        "paragraphs": [
+          "Quase todo problema de porcentagem do mundo real se reduz a um de três padrões: 'X% de Y' (um desconto ou imposto), 'X é que % de Y' (uma razão expressa como percentual) ou a variação percentual de A para B (crescimento ano a ano, perda de peso, melhora na nota de exame).",
+          "Esta calculadora expõe os três em uma única interface. Mude o modo no topo, depois insira os dois valores. A matemática é simples, mas a organização — qual número vai onde — é onde a maioria dos erros ocorre, então os rótulos aqui são explícitos sobre qual entrada é a parte e qual é o todo."
+        ]
+      },
+      {
+        "heading": "Como a variação percentual é calculada",
+        "paragraphs": [
+          "Variação percentual = (novo − antigo) / antigo × 100. Um resultado positivo significa aumento, um resultado negativo significa diminuição. Observe que a fórmula usa o valor antigo, não o novo ou a média — é por isso que uma queda de 50% seguida de um aumento de 50% não te traz de volta ao ponto de partida: termina em 75% do original.",
+          "Quando o valor antigo é zero, a variação percentual é indefinida (você não pode dividir por zero). A calculadora não retorna resultado nesse caso em vez de mostrar 'infinito', porque a resposta para 'quão grande é a variação em relação ao nada' não tem significado."
+        ]
+      },
+      {
+        "heading": "Armadilhas comuns",
+        "paragraphs": [
+          "Composição de porcentagens. Um aumento de 10% após outro aumento de 10% é 21%, não 20% (1,10 × 1,10 = 1,21). Use o modo porcentagem-de duas vezes ou o modo variação-percentual para a razão final.",
+          "Pontos percentuais vs porcentagem. Se uma pesquisa vai de 40% para 42%, isso é uma mudança de 2 pontos percentuais, mas um aumento relativo de 5%. O modo 'variação percentual' da calculadora reporta a variação relativa.",
+          "Acumulação de descontos. Um cupom de '20% de desconto' aplicado após uma promoção de '20% de desconto' é 36% de desconto do original (0,8 × 0,8 = 0,64), não 40%. Rode a calculadora duas vezes no modo 'porcentagem de' para ver isso diretamente."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escolha um modo", "text": "Escolha 'porcentagem de', 'que porcentagem' ou 'variação percentual' dependendo do que você quer encontrar." },
+      { "name": "Insira o primeiro número", "text": "O rótulo indica qual valor vai aqui para o modo escolhido." },
+      { "name": "Insira o segundo número", "text": "O resultado é atualizado enquanto você digita." },
+      { "name": "Leia a resposta", "text": "O resultado inclui a unidade apropriada (%, número simples) para o modo escolhido." }
+    ]
+  },
+  "faq": [
+    { "q": "O cálculo é preciso com muitas casas decimais?", "a": "Sim — usamos ponto flutuante de dupla precisão e arredondamos a exibição para quatro casas decimais. Para trabalho financeiro de alta precisão, trate o resultado como aproximado na 16ª casa significativa." },
+    { "q": "Por que a variação percentual pede o antigo primeiro e depois o novo?", "a": "Porque a fórmula divide pelo valor antigo. Trocar as duas entradas inverte o sinal do resultado." },
+    { "q": "Como calculo um preço com desconto?", "a": "Use 'porcentagem de' com X = o percentual de desconto e Y = o preço original; subtraia o resultado do original. Ou use porcentagem-de com X = (100 − desconto) e Y = preço para o preço final diretamente." },
+    { "q": "Como encontro o desconto se conheço os dois preços?", "a": "Use 'variação percentual' com A = preço original e B = preço de venda. O número negativo é o seu desconto." },
+    { "q": "E se eu inserir um número negativo?", "a": "Os três modos aceitam negativos. A variação percentual em particular é bem definida: a variação de −5 para 5 é −200% (o sinal do divisor inverte o resultado)." },
+    { "q": "Posso usar isso para cálculos de imposto?", "a": "Sim — 'porcentagem de' com X = alíquota e Y = valor pré-imposto dá o imposto. Adicione ao original ou use porcentagem-de com X = (100 + imposto)." },
+    { "q": "Por que 'aumentar 50% e depois diminuir 50%' não retorna o original?", "a": "Porque as porcentagens se compõem. 100 × 1,5 × 0,5 = 75, não 100. Execute o modo variação-percentual de ponta a ponta para ver que a variação líquida é −25%." },
+    { "q": "Funciona para cálculos de notas?", "a": "Sim. Use 'que porcentagem' com X = pontos obtidos e Y = pontos possíveis para obter sua nota percentual." }
+  ]
+}

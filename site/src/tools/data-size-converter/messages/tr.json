@@ -1,0 +1,50 @@
+{
+  "title": "Veri Boyutu Dönüştürücü (B, KB, MB, GB, TB — SI ve IEC)",
+  "shortDescription": "Dijital depolama boyutlarını bayt, kilobayt, megabayt, gigabayt, terabayt ve petabayt arasında dönüştür. SI (1000) ve IEC ikili (1024) arasında geçiş yap.",
+  "description": "SI (ondalık, 1 KB = 1000 B) veya IEC (ikili, 1 KiB = 1024 B) seç, değer gir ve diğer her birime dönüşümü gör. 'Megabayt ne kadar büyük' karışıklığını giderir.",
+  "metaDescription": "Bayt, KB, MB, GB, TB, PB için ücretsiz veri boyutu dönüştürücü. SI (1000) ve IEC (1024) ikili önekler arasında geçiş yap — 'megabayt ne kadar büyük' sorusunu netleştirir.",
+  "keywords": ["veri boyutu dönüştürücü", "bayttan MB'ye", "GB'dan TB'ye", "ikili önek", "SI ile IEC farkı"],
+  "input": { "value": "Değer", "from": "Birim" },
+  "mode": { "si": "SI (1000 tabanlı)", "iec": "IEC (1024 tabanlı)" },
+  "article": {
+    "sections": [
+      {
+        "heading": "SI ile IEC: megabayt belirsizliği",
+        "paragraphs": [
+          "Disk sürücüler ve ağ hızları SI birimlerinde tanıtılır: 1 GB = 1.000.000.000 bayt (10⁹). İşletim sistemleri ve RAM ikili birimler kullanır: 1 GiB = 1.073.741.824 bayt (2³⁰). GB ölçeğinde yaklaşık %7 farklılaşan bu iki birim, TB ölçeğinde neredeyse %10'a ulaşır; bu nedenle '1 TB'lik sürücünüz dosya yöneticinizde 931 GiB olarak görünür.",
+          "IEC, ikili biçimleri netleştirmek için 1998'de KiB, MiB, GiB, TiB'i tanıttı. Yavaş yavaş benimseniyorlar, ama çoğu tüketici pazarlaması hâlâ hangisini kastettiklerini belirtmeden MB/GB kullanıyor. Bu hesaplayıcı açıkça seçim yapmanıza olanak tanır — doğru dönüştürme için geçişi değiştirin."
+        ]
+      },
+      {
+        "heading": "Hangisini istiyorsunuz?",
+        "paragraphs": [
+          "SI (1000 tabanlı): sürücü pazarlamasını okurken, sabit sürücü veya SSD karşılaştırmalarında, İSS bant genişliği kotalarını kontrol ederken, ağ hızları için. Neredeyse tüm depolama pazarlaması SI kullanır.",
+          "IEC (1024 tabanlı): işletim sistemi dosya yöneticinizdeki dosya boyutlarına bakarken (Windows, macOS, Linux), RAM özelliklerini okurken, teknik özelliklerle çalışırken. Çoğu mühendislik ve yazılım bağlamı ikili önekler kullanır."
+        ]
+      },
+      {
+        "heading": "Kullanışlı referans noktaları",
+        "paragraphs": [
+          "1 MB ≈ iyi kalitede 5 dakikalık bir MP3, ya da 5 megapiksellik bir JPEG. 1 GB ≈ 7 saatlik MP3 müzik, ya da 30 dakikalık HD video, ya da yaklaşık 350.000 ortalama uzunluktaki e-posta. 1 TB ≈ 250 HD film, ya da 17.000 saatlik MP3, ya da ortalama bir akıllı telefon kullanıcısı için yaklaşık 10 yıllık günlük fotoğraf.",
+          "Ağ: 100 Mbps ≈ 12,5 MB/s ≈ 750 MB/dk. 100 Mbps ile 1 GB'lık dosya yaklaşık 80 saniye sürer. 4K akışı 15-25 Mbps kullanır; 1080p 5-8 Mbps kullanır."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "SI veya IEC seç", "text": "Sürücü boyutları ve ağ hızları için SI. Dosya boyutları ve RAM için IEC." },
+      { "name": "Değeri gir", "text": "Boyut değerini yaz." },
+      { "name": "Birimi seç", "text": "Değerinin hangi birimde olduğunu seç (B, KB, MB, vb. veya B, KiB, MiB, vb.)." },
+      { "name": "Tüm birimleri gör", "text": "Dönüşümler anında görünür." }
+    ]
+  },
+  "faq": [
+    { "q": "Neden reklamda belirtilenden daha az depolama alanı alıyorum?", "a": "Sürücü üreticileri SI kullanır (1 TB = 10¹² bayt). İşletim sistemleri ikili kullanır (1 TiB = 2⁴⁰ bayt), bu da ~%10 daha büyüktür. Bu nedenle 1 TB'lik sürücü ~931 GiB olarak görünür. Sürücü sizi 'aldatmıyor' — bu bir birim sistemi uyumsuzluğudur." },
+    { "q": "KB ile KiB aynı mı?", "a": "Kesin olarak hayır: KB = 1.000 bayt, KiB = 1.024 bayt. Gayri resmi olarak yazılım bağlamlarında 'KB' genellikle 'KiB' anlamına gelir. Bu araç açıkça netleştirir." },
+    { "q": "Windows dosya yöneticisi hangi birimleri kullanıyor?", "a": "Windows ikili boyutları (KiB, MiB, GiB) görüntüler ama bunlara KB, MB, GB etiketler. macOS Finder ve Linux genellikle varsayılan olarak SI gösterir. Windows'un gerçekte ne demek istediğiyle eşleşmek için bu araçta IEC modunu kullan." },
+    { "q": "PB'den sonra ne geliyor?", "a": "EB (exabayt), ZB (zettabayt), YB (yottabayt). Çoğu tüketici kullanım durumu TB veya düşük PB'de durur; büyük ölçekli veri ambarları çok PB'den EB'ye kadardır." },
+    { "q": "Ağ hızı ile dosya boyutu?", "a": "Ağ hızları saniyedeki bit kullanır; dosya boyutları bayt kullanır. 1 bayt = 8 bit, dolayısıyla 100 Mbps = 12,5 MB/s. Ayrı bir bit/bayt hesaplayıcı ekleyebiliriz." },
+    { "q": "Dönüştürme kesin mi?", "a": "Evet. Her iki mod da tam tamsayı faktörleri kullanır (SI için 10'un kuvvetleri, IEC için 2'nin kuvvetleri)." },
+    { "q": "SI 1 GB neden IEC 1 GiB ile tam olarak aynı değil?", "a": "Çünkü farklı birimlerdir. 1 GB = 10⁹ bayt; 1 GiB = 2³⁰ bayt ≈ 1,0737 × 10⁹ bayt. Hangisini kastettiğinizi her zaman belirtin." },
+    { "q": "Bant genişliği veya transfer süresini dönüştürebilir miyim?", "a": "Bu araç yalnızca boyut dönüştürür. 'X transferi Y hızda ne kadar sürer' için baytı saniyedeki bayta böl." }
+  ]
+}

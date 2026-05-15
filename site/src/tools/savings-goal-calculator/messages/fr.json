@@ -1,0 +1,110 @@
+{
+  "title": "Calculateur d'Objectif d'Épargne (délai pour atteindre la cible)",
+  "shortDescription": "Découvre combien de temps il faut pour atteindre un objectif d'épargne en fonction d'un solde de départ, d'une contribution mensuelle et d'un rendement annuel.",
+  "description": "Saisis ton objectif, ton solde actuel, ton épargne mensuelle et ton rendement annuel attendu. Le calculateur résout le nombre de mois nécessaires pour atteindre la cible.",
+  "metaDescription": "Calculateur d'objectif d'épargne gratuit. Vois combien de temps pour atteindre un montant cible avec des contributions mensuelles et un taux d'intérêt.",
+  "keywords": [
+    "calculateur objectif épargne",
+    "délai épargne",
+    "cible épargne",
+    "combien de temps pour épargner",
+    "calculateur épargne"
+  ],
+  "empty": "Saisis l'objectif et soit une contribution mensuelle soit un taux supérieur à 0.",
+  "input": {
+    "goal": "Montant cible",
+    "start": "Solde de départ",
+    "monthly": "Contribution mensuelle",
+    "ratePct": "Rendement annuel %"
+  },
+  "result": {
+    "timeToGoal": "Délai pour atteindre l'objectif",
+    "years": "ans",
+    "months": "mois",
+    "totalMonths": "Mois totaux",
+    "totalContrib": "Total versé",
+    "interest": "Intérêts gagnés"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment le délai est calculé",
+        "paragraphs": [
+          "La formule standard de valeur future est VF = P × (1 + r)^n + M × ((1 + r)^n − 1) / r, où P est le solde de départ, M la contribution mensuelle, r le taux mensuel (annuel / 12) et n le nombre de mois. En fixant VF = ton objectif et en résolvant pour n, on obtient n = log((G × r + M) / (P × r + M)) / log(1 + r).",
+          "Quand le taux est zéro, la formule se simplifie en (G − P) / M mois. Le calculateur choisit automatiquement la bonne méthode et arrondit au mois entier supérieur, car on ne peut pas « à moitié » effectuer une contribution mensuelle."
+        ]
+      },
+      {
+        "heading": "Ce qui compte le plus : la contribution mensuelle ou le taux ?",
+        "paragraphs": [
+          "Pour des horizons d'épargne typiques (1-10 ans), la contribution mensuelle domine. Passer de 200 € à 350 € par mois fait une bien plus grande différence que passer de 3 % à 5 % de rendement. Le temps et la contribution sont linéaires ; le taux est exponentiel mais seulement sur de très longs horizons.",
+          "Pour des objectifs à 20 ans et plus (retraite, apport immobilier), le taux devient déterminant. Les mêmes 300 €/mois pendant 30 ans produisent des totaux très différents à 4 % vs 8 %. C'est pourquoi l'épargne retraite précoce est exponentiellement plus précieuse que l'épargne tardive."
+        ]
+      },
+      {
+        "heading": "Taux réalistes",
+        "paragraphs": [
+          "Livret A (France) : 3 % actuellement (taux susceptible de changer). Livret d'Épargne Populaire (LEP) : 4 % pour les ménages éligibles. Assurance-vie en fonds euros : 2,5-3,5 % net selon les contrats.",
+          "Indice actions mondial diversifié (MSCI World, historique) : environ 7-9 % nominal / 5-7 % réel. Utilise 6-7 % pour une planification conservatrice.",
+          "L'inflation ronge 2-4 % par an. Pour des objectifs en euros d'aujourd'hui, soustrait l'inflation attendue de ton taux nominal."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Saisis ton objectif",
+        "text": "Le montant que tu veux atteindre."
+      },
+      {
+        "name": "Saisis le solde de départ",
+        "text": "Ce que tu as aujourd'hui ; peut être 0."
+      },
+      {
+        "name": "Saisis la contribution mensuelle",
+        "text": "Ce que tu vas ajouter chaque mois."
+      },
+      {
+        "name": "Saisis le rendement annuel attendu",
+        "text": "Conservateur : 3-4 %. Marché actions : 6-8 %."
+      },
+      {
+        "name": "Lis le résultat",
+        "text": "Années et mois pour atteindre l'objectif, plus le total versé et les intérêts gagnés."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Pourquoi la réponse est-elle arrondie au mois entier ?",
+      "a": "Parce qu'on ne peut pas effectuer une contribution mensuelle partielle. Si le calcul donne 32,4 mois, tu atteindras ton objectif au mois 33 (en supposant des contributions régulières)."
+    },
+    {
+      "q": "Quel taux utiliser ?",
+      "a": "Pour le Livret A : 3 %. Pour le LEP : 4 %. Pour l'assurance-vie fonds euros : 2,5-3,5 %. Pour le marché actions (MSCI World long terme) : 6-8 %. Pour ultra-conservateur : utilise 0 % pour voir combien de temps il faut sans rendement."
+    },
+    {
+      "q": "Dois-je inclure l'inflation ?",
+      "a": "Si ton objectif est en euros d'aujourd'hui, soustrait l'inflation attendue de ton taux (ex. 7 % nominal − 3 % inflation = 4 % réel). Le calculateur donne ainsi une réponse en pouvoir d'achat réel."
+    },
+    {
+      "q": "Est-ce une capitalisation mensuelle ?",
+      "a": "Oui — les intérêts se capitalisent au même rythme mensuel que tes contributions. Pour la plupart des produits d'épargne, c'est proche de la réalité."
+    },
+    {
+      "q": "Et si j'épargne 0 € par mois avec un taux de 0 % ?",
+      "a": "Tu ne peux pas atteindre un objectif supérieur à ton solde de départ. Le calculateur ne retourne aucun résultat dans ce cas."
+    },
+    {
+      "q": "Les intérêts sont-ils imposables ?",
+      "a": "En France, les intérêts sont soumis au Prélèvement Forfaitaire Unique (PFU) de 30 %, sauf sur les livrets réglementés (Livret A, LDDS, LEP) et dans le cadre du PEA ou de l'assurance-vie selon les conditions d'ancienneté."
+    },
+    {
+      "q": "Et si ma contribution change ?",
+      "a": "Lance le calculateur plusieurs fois pour chaque phase. Pour des contributions variables, un tableau de bord financier est plus flexible."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non — les calculs s'exécutent localement."
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "title": "Calculateur de dates (ajouter/soustraire des jours, ou différence",
+  "shortDescription": "Ajoute ou soustrait des années/mois/jours à une date, ou trouve la différence précise entre deux dates, y compris les jours ouvrables.",
+  "description": "Deux modes : « ajouter ou soustraire » pour calculer une date future ou passée, ou « entre » pour trouver la différence en années, mois, jours, semaines et jours ouvrables.",
+  "metaDescription": "Calculateur de dates gratuit. Ajoute ou soustrait des années/mois/jours, ou trouve la différence entre deux dates avec le compte des jours ouvrables.",
+  "keywords": [
+    "calculateur de dates",
+    "ajouter des jours à une date",
+    "différence de dates",
+    "jours ouvrables",
+    "jours entre deux dates"
+  ],
+  "empty": "Sélectionne des dates pour calculer.",
+  "mode": {
+    "addSubtract": "Ajouter ou soustraire",
+    "between": "Différence entre deux dates"
+  },
+  "op": {
+    "add": "Ajouter",
+    "subtract": "Soustraire"
+  },
+  "input": {
+    "start": "Date de début",
+    "end": "Date de fin",
+    "years": "Années",
+    "months": "Mois",
+    "days": "Jours"
+  },
+  "result": {
+    "resultDate": "Date résultante",
+    "difference": "Différence",
+    "ymd": "{y} ans, {m} mois, {d} jours",
+    "totalDays": "Total en jours",
+    "totalWeeks": "Total en semaines",
+    "totalMonths": "Total en mois",
+    "businessDays": "Jours ouvrables (lun-ven)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ce que le calculateur calcule",
+        "paragraphs": [
+          "Mode ajouter/soustraire : prend une date, ajoute ou soustrait un nombre d'années, mois et jours, et donne la date calendaire résultante. Les années et les mois utilisent l'arithmétique calendaire (donc ajouter 1 mois au 31 janvier donne le 28 ou 29 février selon l'année bissextile, pas le 3 mars). Les jours sont exacts — ajouter 30 jours avance toujours exactement 30 jours calendaires.",
+          "Mode entre : prend deux dates et donne la différence en années/mois/jours plus les totaux en jours, semaines, mois et jours ouvrables (lundi au vendredi, sans jours fériés). La forme A/M/J utilise la même logique d'emprunt que notre calculateur d'âge — une différence est par exemple « 2 ans, 5 mois, 3 jours », pas une année décimale."
+        ]
+      },
+      {
+        "heading": "Pourquoi les jours ouvrables n'incluent pas les jours fériés",
+        "paragraphs": [
+          "Nous comptons du lundi au vendredi comme jours ouvrables et excluons le samedi et le dimanche. Les jours fériés varient selon le pays, la région et l'année, donc nous ne les soustrayons pas automatiquement. Pour le travail en France, soustrait environ 11 jours fériés nationaux par an du résultat.",
+          "Si les jours fériés comptent pour ton calcul (suivi des échéances, négociations contractuelles), effectue le calcul calendaire ici, puis vérifie le calendrier des jours fériés de ton pays manuellement. Nous pourrions ajouter une soustraction des jours fériés spécifiques au pays dans une version future."
+        ]
+      },
+      {
+        "heading": "Cas d'usage courants",
+        "paragraphs": [
+          "Échéances de projet : « ceci est dû 90 jours après le lancement ». Ajoute 90 jours à la date de début.",
+          "Termes contractuels : compte les jours entre le début et la fin d'un contrat. Compare avec la formulation de ton contrat pour la facturation.",
+          "Planification de voyage : combien de jours ouvrables entre le départ et le retour ? Utile pour les calendriers d'absence et les notes de frais.",
+          "Jalons personnels : anniversaires, comptes de sobriété, temps depuis un événement de vie majeur."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis un mode",
+        "text": "Ajouter/soustraire pour déplacer depuis une date, ou entre pour trouver une différence."
+      },
+      {
+        "name": "Entre la date de début",
+        "text": "Utilise le sélecteur de date."
+      },
+      {
+        "name": "Ajoute le décalage ou la date de fin",
+        "text": "Années/mois/jours pour le mode ajout, ou date de fin pour le mode entre."
+      },
+      {
+        "name": "Lis le résultat",
+        "text": "Date résultante ou décomposition complète de la différence."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Que se passe-t-il si j'ajoute 1 mois au 31 janvier ?",
+      "a": "Tu obtiens le 28 février (ou le 29 en année bissextile). L'arithmétique calendaire s'arrête au dernier jour du mois cible quand le jour source n'existe pas."
+    },
+    {
+      "q": "Les jours fériés sont-ils soustraits des jours ouvrables ?",
+      "a": "Non — seulement les week-ends. Soustrait les jours fériés nationaux manuellement selon le calendrier de ton pays."
+    },
+    {
+      "q": "Gère-t-il l'arithmétique de dates négative ?",
+      "a": "Oui via le mode 'soustraire'. En interne, la soustraction consiste simplement à ajouter des deltas négatifs. Le mode 'différence entre' retourne toujours des valeurs positives quel que soit l'ordre."
+    },
+    {
+      "q": "Quel fuseau horaire utilise-t-il ?",
+      "a": "Le fuseau horaire local de ton navigateur. Les dates sont interprétées comme minuit local. Les calculs inter-fuseaux horaires peuvent nécessiter un ajustement."
+    },
+    {
+      "q": "Puis-je ajouter des heures et des minutes ?",
+      "a": "Pas encore — granularité de date uniquement. Utilise un outil d'horodatage séparé pour les calculs au niveau des heures."
+    },
+    {
+      "q": "Quelle est la plus grande différence qu'il gère ?",
+      "a": "Des centaines d'années confortablement. La Date JavaScript prend en charge ±100 millions de jours depuis 1970, c'est donc la limite pratique."
+    },
+    {
+      "q": "Pourquoi compte-t-il les deux extrémités différemment ?",
+      "a": "Le total en jours est le nombre de nuits entre les deux dates. Deux jours consécutifs ont une différence d'1 jour. Le compte des jours ouvrables traverse chaque jour calendaire entre les deux."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Tous les calculs s'effectuent localement."
+    }
+  ]
+}

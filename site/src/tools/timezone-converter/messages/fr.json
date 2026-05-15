@@ -1,0 +1,96 @@
+{
+  "title": "Convertisseur de Fuseaux Horaires (comparer plusieurs zones en même",
+  "shortDescription": "Convertit un moment dans le temps à travers plusieurs fuseaux horaires à la fois. Ajoute ou supprime des zones ; idéal pour planifier des réunions internationales.",
+  "description": "Choisis un fuseau horaire source et une date/heure, puis ajoute autant de fuseaux cibles que tu as besoin. Chaque cible affiche l'heure locale équivalente avec l'abréviation du fuseau horaire.",
+  "metaDescription": "Convertisseur de fuseaux horaires gratuit. Vois un moment dans plusieurs villes à la fois. Utile pour planifier des réunions, voyages, diffusions dans plusieurs fuseaux",
+  "keywords": [
+    "convertisseur fuseaux horaires",
+    "horloge mondiale",
+    "réunion heure différents fuseaux",
+    "convertir UTC",
+    "différence fuseaux horaires"
+  ],
+  "empty": "Ajoute des fuseaux horaires pour voir les équivalents.",
+  "input": {
+    "sourceTz": "Fuseau horaire source",
+    "dt": "Date et heure"
+  },
+  "now": "Maintenant",
+  "addTz": "Ajouter un fuseau horaire",
+  "remove": "Supprimer",
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionne la conversion de fuseaux horaires",
+        "paragraphs": [
+          "Chaque moment dans le temps est un point unique — mardi 9h à Tokyo est le même moment que lundi 17h à San Francisco. La conversion de fuseaux horaires ne fait que renommer ce moment unique avec l'heure locale de chaque zone. L'heure d'été complique cela — entre le dernier dimanche de mars et le dernier dimanche d'octobre en Europe, Paris est UTC+2 (CEST) ; le reste de l'année c'est UTC+1 (CET). L'API Intl.DateTimeFormat du navigateur gère tout cela correctement quand tu passes un nom de fuseau horaire IANA comme 'Europe/Paris'.",
+          "On utilise les noms IANA (comme 'Europe/Paris' ou 'America/New_York') car ils sont sans ambiguïté et suivent les règles d'heure d'été de chaque lieu historiquement. 'CET' ou 'GMT' sont des abréviations qui peuvent entrer en collision ; les noms IANA ne le font pas."
+        ]
+      },
+      {
+        "heading": "Pièges courants de planification",
+        "paragraphs": [
+          "Transitions d'heure d'été : 'mardi prochain à 9h CET' est ambigu en mars ou octobre car les règles changent. Dis toujours 'heure de Paris' ou envoie une invitation de calendrier — Outlook, Google Calendar et Slack gèrent tous la conversion correctement quand les deux parties spécifient leur zone.",
+          "Décalages d'une demi-heure : l'Inde est UTC+5:30, Terre-Neuve est UTC-3:30, des parties de l'Australie sont UTC+9:30 ou +10:30. Si ton calcul de réunion est en 'heures entières', tu seras en retard de 30 minutes pour ces régions.",
+          "Changements de date en traversant la ligne de date : Tokyo à Los Angeles peut passer d'une date à l'autre selon la direction. Le calendrier le montre correctement, mais l'hypothèse humaine peut être erronée."
+        ]
+      },
+      {
+        "heading": "Schémas utiles",
+        "paragraphs": [
+          "Stand-up international : Choisis une zone source (souvent UTC) et les fuseaux horaires de domicile de l'équipe. Définis l'heure de la réunion et vérifie que personne n'est invité à 3h du matin.",
+          "Lancement de produit : Choisis le fuseau horaire de lancement et ajoute les principaux marchés. Utile pour vérifier que l'e-mail marketing arrive à une heure locale raisonnable.",
+          "Planification de voyage : Choisis ton fuseau horaire de départ et ajoute le(s) fuseau(x) de destination pour trouver l'heure d'arrivée locale sans calcul manuel."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Définis la source",
+        "text": "Choisis ton fuseau horaire source (par défaut le fuseau de ton navigateur) et la date/heure à convertir."
+      },
+      {
+        "name": "Ajoute des fuseaux cibles",
+        "text": "Utilise le menu déroulant pour en ajouter autant que tu veux."
+      },
+      {
+        "name": "Lis les équivalents",
+        "text": "Chaque cible affiche le même moment à son heure locale."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Gère-t-il l'heure d'été ?",
+      "a": "Oui — les données de fuseau horaire IANA incluent les règles d'heure d'été pour chaque lieu. L'API Intl du navigateur gère les transitions passées, présentes et (là où elles sont connues) futures."
+    },
+    {
+      "q": "Quelle est la différence entre CET et heure de Paris ?",
+      "a": "CET est fixe à UTC+1. L'heure de Paris suit l'heure d'été — UTC+1 en hiver (CET), UTC+2 en été (CEST). On utilise les noms IANA comme 'Europe/Paris' qui choisissent automatiquement CET ou CEST selon la date."
+    },
+    {
+      "q": "Puis-je convertir entre deux villes spécifiques ?",
+      "a": "Oui. Définis l'une comme source et ajoute l'autre comme cible. L'heure affichée est le moment source exprimé dans l'horloge locale de la cible."
+    },
+    {
+      "q": "Pourquoi certaines zones ont-elles des décalages de :30 ?",
+      "a": "Décisions historiques. L'Inde, l'Iran, l'Afghanistan, Terre-Neuve, des parties de l'Australie utilisent tous des décalages de 30 ou 45 minutes par rapport à UTC. Le calculateur les gère correctement."
+    },
+    {
+      "q": "Ça fonctionne pour les dates passées ?",
+      "a": "Oui, y compris les limites d'heure d'été qui ont pu être différentes historiquement. Les données IANA couvrent la plupart des historiques de lieux depuis 1970."
+    },
+    {
+      "q": "Qu'en est-il de l'Antarctique ou d'Hawaï ?",
+      "a": "La liste IANA les inclut. Ajoute 'Pacific/Honolulu' ou 'Antarctica/McMurdo' depuis le menu déroulant si nécessaire."
+    },
+    {
+      "q": "Les données sont-elles envoyées quelque part ?",
+      "a": "Non. Les API Intl du navigateur gèrent tout localement."
+    },
+    {
+      "q": "Puis-je sauvegarder ma liste de fuseaux horaires ?",
+      "a": "Pas encore. Actualiser la page réinitialise la liste. On pourrait ajouter la persistance via le stockage local plus tard."
+    }
+  ]
+}

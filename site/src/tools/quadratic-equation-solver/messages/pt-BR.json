@@ -1,0 +1,100 @@
+{
+  "title": "Resolvedor de Equação do 2º Grau (ax² + bx + c = 0)",
+  "shortDescription": "Resolva qualquer equação do 2º grau. Retorna raízes reais ou complexas, o discriminante e as coordenadas do vértice da parábola.",
+  "description": "Insira os coeficientes a, b, c. O resolvedor aplica a fórmula de Bhaskara x = (−b ± √(b²−4ac)) / 2a. Distingue duas raízes reais, uma raiz dupla, duas raízes complexas conjugadas ou casos degenerados.",
+  "metaDescription": "Resolvedor gratuito de equação do 2º grau. Raízes reais ou complexas, discriminante, coordenadas do vértice.",
+  "keywords": [
+    "resolvedor de equação do segundo grau",
+    "fórmula de Bhaskara",
+    "discriminante",
+    "raízes complexas",
+    "vértice da parábola"
+  ],
+  "empty": "Insira os coeficientes a, b, c.",
+  "result": {
+    "twoReal": "Duas raízes reais",
+    "oneReal": "Uma raiz real dupla",
+    "complex": "Duas raízes complexas conjugadas",
+    "linear": "Equação linear (a = 0)",
+    "linearLabel": "a é 0; esta é uma equação linear:",
+    "all": "Todo x é solução (todos os coeficientes são zero).",
+    "none": "Sem solução (b = 0, c ≠ 0).",
+    "discriminant": "Discriminante (Δ = b² − 4ac)",
+    "vertex": "Vértice da parábola"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "A fórmula de Bhaskara",
+        "paragraphs": [
+          "Para ax² + bx + c = 0 com a ≠ 0, as soluções são x = (−b ± √(b² − 4ac)) / (2a). A expressão sob a raiz quadrada é o 'discriminante' (Δ = b² − 4ac), e seu sinal determina o tipo de raízes.",
+          "Δ > 0: duas raízes reais distintas. A parábola cruza o eixo x em dois pontos.",
+          "Δ = 0: uma raiz real dupla. A parábola toca o eixo x no vértice (tangente).",
+          "Δ < 0: duas raízes complexas conjugadas. A parábola não toca o eixo x."
+        ]
+      },
+      {
+        "heading": "Vértice e forma da parábola",
+        "paragraphs": [
+          "Toda equação quadrática tem como gráfico uma parábola. O vértice (ponto de inflexão) está em x = −b / 2a, e substituindo de volta obtemos a coordenada y. Calculamos como y = −Δ / 4a, que é equivalente.",
+          "Se a > 0, a parábola abre para cima e o vértice é o mínimo. Se a < 0, abre para baixo e o vértice é o máximo. O eixo de simetria passa pelo vértice verticalmente."
+        ]
+      },
+      {
+        "heading": "Casos degenerados",
+        "paragraphs": [
+          "Se a = 0, a equação não é realmente quadrática — ela se torna linear: bx + c = 0, com solução x = −c/b (se b ≠ 0). Detectamos isso e resolvemos como linear.",
+          "Se a = 0 E b = 0: c deve ser igual a 0 para que exista alguma solução. Se c = 0, todo x é solução; se c ≠ 0, não existe solução. Reportamos ambos os casos."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Insira os coeficientes",
+        "text": "a, b, c. Use números negativos quando necessário (ex.: −3 para o coeficiente b)."
+      },
+      {
+        "name": "Leia a equação",
+        "text": "A exibição mostra seu ax² + bx + c = 0 atual."
+      },
+      {
+        "name": "Leia as raízes",
+        "text": "Duas reais, uma dupla ou duas complexas conjugadas, mais o discriminante e o vértice."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Por que o discriminante é útil?",
+      "a": "Ele informa a natureza das raízes sem resolver: Δ > 0 significa duas raízes reais, Δ = 0 significa uma dupla, Δ < 0 significa complexas. Muitas vezes é tudo que você precisa saber."
+    },
+    {
+      "q": "O que é uma 'raiz dupla'?",
+      "a": "Quando Δ = 0, a fórmula dá x = −b/2a apenas. Algebricamente, a equação se fatora como a(x − r)² = 0, então r aparece duas vezes como raiz com 'multiplicidade 2'."
+    },
+    {
+      "q": "As raízes complexas são úteis no mundo real?",
+      "a": "Sim. Circuitos de corrente alternada, processamento de sinais, mecânica quântica e aerodinâmica usam números complexos. Mesmo quando a resposta física é real, etapas intermediárias complexas são comuns."
+    },
+    {
+      "q": "Posso resolver equações cúbicas ou de grau superior aqui?",
+      "a": "Não nesta ferramenta. Cúbicas e quárticas têm soluções em forma fechada, mas são mais complexas. Para soluções numéricas de polinômios de alto grau, use NumPy ou um CAS como Sage/Mathematica."
+    },
+    {
+      "q": "E se meus coeficientes forem muito grandes?",
+      "a": "A precisão de ponto flutuante se degrada para Δ quando b² e 4ac são quase iguais. Para precisão de nível de pesquisa, use uma biblioteca com aritmética de precisão arbitrária."
+    },
+    {
+      "q": "O que significa 'vértice' para uma parábola?",
+      "a": "O único 'ponto de inflexão' onde a parábola muda de direção (de decrescente para crescente ou vice-versa). Localizado em x = −b/(2a). Útil para encontrar mínimos/máximos em problemas de otimização."
+    },
+    {
+      "q": "Por que as soluções são chamadas de 'raízes'?",
+      "a": "Histórico: 'raiz' traduz o latim radix, usado metaforicamente como a fonte/origem da equação. As raízes são onde o polinômio é igual a zero."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. O cálculo é feito localmente; nada é enviado para um servidor."
+    }
+  ]
+}

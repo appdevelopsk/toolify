@@ -1,0 +1,70 @@
+{
+  "title": "Máy tính mạng con IPv4 (CIDR, mặt nạ, số host)",
+  "shortDescription": "Tính địa chỉ mạng, broadcast, dải host, netmask, wildcard, tổng/số host dùng được từ bất kỳ IPv4 + CIDR nào. Bao gồm biểu diễn nhị phân và phát hiện lớp IP.",
+  "description": "Nhập địa chỉ IPv4 với CIDR tùy chọn (ví dụ 192.168.1.10/24). Trả về địa chỉ mạng, broadcast, host đầu/cuối dùng được, tổng địa chỉ, netmask, wildcard, lớp IP, trạng thái public/private và biểu diễn nhị phân.",
+  "metaDescription": "Máy tính mạng con IPv4 miễn phí. CIDR, netmask, wildcard, mạng/broadcast, dải host, tổng/số host dùng được, phát hiện public/private. Kèm xem nhị phân.",
+  "keywords": ["máy tính mạng con", "máy tính cidr", "mạng con ipv4", "máy tính netmask", "máy tính địa chỉ ip"],
+  "input": {
+    "cidr": "Địa chỉ IP / CIDR",
+    "hint": "Định dạng: 192.168.1.10/24 (CIDR tùy chọn, mặc định /24)"
+  },
+  "result": {
+    "network": "Mạng",
+    "ip": "Địa chỉ IP",
+    "netmask": "Mặt nạ mạng con",
+    "wildcard": "Mặt nạ wildcard",
+    "networkAddr": "Địa chỉ mạng",
+    "broadcast": "Broadcast",
+    "hostMin": "Host đầu tiên dùng được",
+    "hostMax": "Host cuối cùng dùng được",
+    "totalAddresses": "Tổng địa chỉ",
+    "usableHosts": "Host dùng được",
+    "ipClass": "Lớp IP",
+    "private": "RFC 1918 riêng tư",
+    "binary": "Nhị phân"
+  },
+  "empty": "Nhập địa chỉ IPv4 với /CIDR tùy chọn.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Ký hiệu CIDR có nghĩa gì",
+        "paragraphs": [
+          "CIDR (Classless Inter-Domain Routing) là dấu gạch chéo + số sau địa chỉ IP — '192.168.1.10/24'. Con số là số bit đầu tiên của địa chỉ thuộc về phần mạng (so với phần host). /24 nghĩa là 24 bit mạng = 8 bit host = 256 địa chỉ tổng, 254 dùng được.",
+          "CIDR phổ biến: /32 một host đơn, /30 liên kết point-to-point (4 địa chỉ, 2 dùng được), /29 mạng con nhỏ (8/6), /24 LAN (256/254), /16 mạng lớn (65k), /8 khối ISP (16M). CIDR càng nhỏ thì mạng càng lớn."
+        ]
+      },
+      {
+        "heading": "Địa chỉ mạng, broadcast và host dùng được",
+        "paragraphs": [
+          "Địa chỉ mạng: địa chỉ đầu tiên trong mạng con, với tất cả bit host bằng 0. Dùng để xác định mạng con; không gán được cho thiết bị.",
+          "Địa chỉ broadcast: địa chỉ cuối cùng, với tất cả bit host bằng 1. Dùng để gửi gói tin đến mọi host trong mạng con; không gán được.",
+          "Host dùng được: tổng địa chỉ trừ mạng và broadcast = 2^(32−CIDR) − 2. Ngoại lệ: /31 (liên kết point-to-point) và /32 (host đơn) coi tất cả địa chỉ là dùng được theo RFC 3021."
+        ]
+      },
+      {
+        "heading": "Địa chỉ public so với private",
+        "paragraphs": [
+          "RFC 1918 dành riêng ba dải địa chỉ cho mạng nội bộ: 10.0.0.0/8 (16M địa chỉ), 172.16.0.0/12 (1M), 192.168.0.0/16 (65k). Hầu hết router gia đình và văn phòng dùng một phần trong số này (thường là 192.168.1.0/24 hoặc 192.168.0.0/24).",
+          "Địa chỉ public có thể định tuyến trên internet toàn cầu và được phân bổ bởi các tổ chức đăng ký khu vực (ARIN, RIPE, APNIC...). Chúng tốn tiền và ngày càng khan hiếm — IPv4 cạn kiệt đã thúc đẩy CIDR và triển khai IPv6.",
+          "Máy tính phát hiện địa chỉ nằm trong dải private; hữu ích để xác minh thiết kế mạng hoặc đảm bảo không có địa chỉ private nào bị rò rỉ ra internet."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Nhập địa chỉ", "text": "Có hoặc không có /CIDR. Nếu bỏ qua CIDR, mặc định là /24." },
+      { "name": "Đọc thông tin mạng", "text": "Địa chỉ mạng, broadcast, dải host, mặt nạ, wildcard." },
+      { "name": "Kiểm tra lớp và trạng thái private", "text": "Xác minh nhanh loại không gian địa chỉ." },
+      { "name": "Dùng xem nhị phân để debug", "text": "Hữu ích khi cần suy luận về thao tác bit hoặc căn chỉnh mạng con." }
+    ]
+  },
+  "faq": [
+    { "q": "Tại sao host dùng được ít hơn tổng 2 địa chỉ?", "a": "Địa chỉ đầu tiên (tất cả bit host bằng 0) là số định danh mạng và địa chỉ cuối (tất cả bit bằng 1) là broadcast. Cả hai đều được dành riêng và không thể gán cho host." },
+    { "q": "Tại sao /31 có 2 host dùng được thay vì 0?", "a": "RFC 3021 cho phép mạng /31 cho liên kết point-to-point (ví dụ giữa router). Cả hai địa chỉ đều dùng được; quy tắc dành riêng broadcast và mạng không áp dụng." },
+    { "q": "Sự khác biệt giữa netmask và wildcard là gì?", "a": "Netmask có bit 1 ở phần mạng, bit 0 ở phần host (255.255.255.0). Wildcard là đảo ngược (0.0.0.255) — dùng trong ACL Cisco và định nghĩa vùng OSPF." },
+    { "q": "Làm sao phân chia mạng con?", "a": "Lấy mạng cha và chia thành các khối nhỏ hơn bằng cách thêm bit vào CIDR. /24 → /25 chia thành 2 mạng con, /24 → /26 thành 4. Hữu ích để tách các phòng ban hoặc cô lập mạng IoT/khách." },
+    { "q": "Mạng con nhỏ nhất có thể có là bao nhiêu?", "a": "/32 — một địa chỉ IP duy nhất. /31 là mạng con 'bình thường' nhỏ nhất (2 địa chỉ). /30 phổ biến cho liên kết router-router (4/2 host dùng được)." },
+    { "q": "Cái này có hỗ trợ IPv6 không?", "a": "Chưa — chỉ IPv4. Mạng con IPv6 tương tự về khái niệm nhưng dùng địa chỉ 128-bit, ký hiệu hex và các quy ước khác. Chúng tôi có thể thêm IPv6 trong phiên bản tương lai." },
+    { "q": "Mạng con lớn nhất có thể là bao nhiêu?", "a": "/0 bao gồm tất cả 4,3 tỷ địa chỉ IPv4 — toàn bộ không gian địa chỉ IPv4. /1 chia thành hai nửa. /8 là 16M và trước đây là một khối 'lớp A' đơn (ví dụ 10.0.0.0/8)." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Tính toán chạy cục bộ; không có gì được gửi đến server." }
+  ]
+}

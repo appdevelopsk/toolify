@@ -1,0 +1,53 @@
+{
+  "title": "HTML'den Markdown'a Dönüştürücü",
+  "shortDescription": "HTML'yi tarayıcınızda Markdown'a dönüştürün. Başlıklar, listeler, kod, bağlantılar, görseller, blok alıntılar, kalın/italik/üstü çizili.",
+  "description": "HTML yapıştırın ve temiz Markdown elde edin. CMS içeriği taşıma, makaleleri kazıma veya statik siteler için WYSIWYG çıktısını düz markdown'a dönüştürme için kullanışlıdır.",
+  "metaDescription": "Ücretsiz HTML'den Markdown'a dönüştürücü. Başlıklar, listeler, kod blokları, bağlantılar, blok alıntılar, kalın/italik. Çıktı her yere yapıştırmaya hazır düz Markdown.",
+  "keywords": ["html markdown dönüştürücü", "html md çevirici", "markdown dönüştürücü", "html temizleyici", "wysiwyg markdown"],
+  "input": { "html": "HTML" },
+  "output": { "markdown": "Markdown çıktısı" },
+  "copy": "Markdown'ı Kopyala",
+  "copied": "Kopyalandı!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Neler dönüştürülüyor",
+        "paragraphs": [
+          "Başlıklar (h1-h6) # ile ###### olur. <strong>/<b> **kalın** olur, <em>/<i> *italik* olur. <code> `satır içi kod` olur, <pre><code> çitlenmiş ``` blok olur. <ul>/<ol> - veya 1. listesi olur. <a href> [metin](url) olur, <img src alt> ![alt](url) olur. <blockquote> > olur, <hr> --- olur. <br> satır sonu olur.",
+          "Tanınmayan her şey (<details>, <table>, <video> gibi özel HTML) etiketlerinden arındırılır ancak metin içeriği korunur. Tablolar veya medya içeren karmaşık HTML için bir miktar kayıp beklenebilir."
+        ]
+      },
+      {
+        "heading": "Yaygın kullanım senaryoları",
+        "paragraphs": [
+          "CMS taşıma: WordPress, Wix vb.'den WYSIWYG HTML'yi kopyalayın ve statik site oluşturucularında (Hugo, Jekyll, Next.js, Astro) kullanmak üzere temiz Markdown'a dönüştürün.",
+          "Makale arşivleme: kişisel okumak için web makalelerini Markdown olarak kaydedin. Temiz salt metin çıktısı için paywall dostu bir çıkarıcıyla (Okuyucu modu HTML) birleştirin.",
+          "E-posta'dan Markdown'a: HTML e-posta içeriği yapıştırın ve blogunuza çapraz gönderi yapmak için Markdown sürümü edinin."
+        ]
+      },
+      {
+        "heading": "Sınırlamalar",
+        "paragraphs": [
+          "Tablolar: dönüştürülmüyor (Markdown tabloları GFM'dir, CommonMark değil). Tablolar düz metne dönüştürülür. Karmaşık tablolar için HTML olarak yapıştırın.",
+          "Satır içi stiller: <style> veya style='' özelliği aracılığıyla herhangi bir renk, yazı tipi veya düzen kaybolur. Markdown kasıtlı olarak minimaldir.",
+          "İç içe listeler: basit tek düzeyli listeler çalışır; derin iç içe listeler birleşebilir veya yapı kaybedebilir. Karmaşık ana hatlar için dönüştürmeden sonra elle düzenleme yapın."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "HTML yapıştırın", "text": "Herhangi bir kaynaktan — WordPress dışa aktarma, kopyalanan web makalesi vb." },
+      { "name": "Markdown çıktısını okuyun", "text": "Düzenlerken canlı güncellenir." },
+      { "name": "Başka yere kopyalayıp yapıştırın", "text": "Çıktı, herhangi bir statik site veya markdown düzenleyicisi için hazır düz Markdown'dır." }
+    ]
+  },
+  "faq": [
+    { "q": "Bu biçimlendirmeyi mükemmel biçimde koruyor mu?", "a": "CommonMark uyumlu öğeler için evet. HTML'ye özgü özellikler (özel CSS, karmaşık düzenler) için hayır — Markdown kasıtlı olarak bir alt kümedir." },
+    { "q": "Tablolar dönüştürülüyor mu?", "a": "Henüz değil. Tablolar düz metne dönüşür. Gelecekteki bir sürümde GFM tablo dönüştürme ekleyebiliriz." },
+    { "q": "Bağlantılarım dönüştürmeden geçecek mi?", "a": "Evet. <a href='url'>metin</a>, [metin](url) olur. href özelliği korunur." },
+    { "q": "Satır içi stiller ne olur?", "a": "Kaldırılır. Markdown rastgele stili desteklemez — bu kasıtlıdır." },
+    { "q": "HTML'e geri nasıl dönüştürürüm?", "a": "Markdown'dan HTML'ye dönüştürücümüzü kullanın (İlgili Araçlar altında bağlantılı)." },
+    { "q": "Çıktı her yere yapıştırmak için güvenli mi?", "a": "Temiz metin — script yok, HTML yok — dolayısıyla herhangi bir markdown düzenleyicisi veya metin alanı için güvenlidir. Giriş güvenilmez bir kaynaktansa yayınlamadan önce doğrulayın." },
+    { "q": "Neden bazı içerikler eksik?", "a": "Özel veya standart dışı HTML öğeleri kaldırılmış olabilir. Doğrulamak için <details>, <video> veya çerçeveye özgü etiketlerin bir HTML parçasını yapıştırın." },
+    { "q": "Veriler tarayıcımdan çıkıyor mu?", "a": "Hayır. Dönüşüm yerel olarak çalışır; HTML'niz hiçbir yere gönderilmez." }
+  ]
+}

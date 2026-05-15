@@ -1,0 +1,54 @@
+{
+  "title": "Generatore di hash (SHA-1, SHA-256, SHA-384, SHA-512)",
+  "shortDescription": "Calcola hash SHA-1, SHA-256, SHA-384 e SHA-512 di qualsiasi testo UTF-8. Web Crypto API nativa del browser; nulla lascia il tuo dispositivo.",
+  "description": "Digita qualsiasi testo per vedere tutti e quattro gli hash SHA contemporaneamente. Utile per verificare l'integrità dei file, generare firme, debug della firma delle richieste API e apprendere la crittografia.",
+  "metaDescription": "Generatore di hash SHA-1/256/384/512 gratuito. Input UTF-8, tutti gli hash mostrati insieme, Web Crypto API nativa del browser. I tuoi dati restano sul dispositivo.",
+  "keywords": ["generatore hash", "generatore SHA-256", "calcolatore SHA-1", "hash SHA-512", "hash online"],
+  "input": { "text": "Input", "placeholder": "Digita o incolla il testo da hashare…" },
+  "copy": "Copia",
+  "copied": "Copiato",
+  "md5Note": "MD5 è omesso: è stato compromesso per scopi di sicurezza dal 2004 e non è più offerto da Web Crypto. Usa SHA-256 o superiore.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cos'è l'hashing e cosa non è",
+        "paragraphs": [
+          "Una funzione hash crittografica prende un input di qualsiasi dimensione e produce un output di dimensione fissa (il 'digest'). Lo stesso input produce sempre lo stesso digest. Una minima modifica dell'input produce un digest completamente diverso (effetto valanga). Risalire all'input dal digest è computazionalmente impossibile per funzioni crittograficamente solide come SHA-256.",
+          "L'hashing non è crittografia. Non c'è chiave, non c'è decrittazione. Confusioni comuni: fare l'hash delle password (usa bcrypt/argon2 — rallentano il brute force), fare l'hash di testo arbitrario e poi 'decodificarlo' (impossibile per design)."
+        ]
+      },
+      {
+        "heading": "Quale algoritmo scegliere",
+        "paragraphs": [
+          "SHA-256 è il default moderno. Usato in Bitcoin, certificati TLS, firme JWT (HS256), hash di integrità dei file. 256 bit sono più che sufficienti per qualsiasi esigenza di sicurezza realistica.",
+          "SHA-384 e SHA-512 sono varianti più grandi della stessa famiglia. SHA-512 è a volte più veloce su hardware a 64 bit. Usali quando un protocollo o standard lo richiede esplicitamente.",
+          "SHA-1 è deprecato per la sicurezza ma appare ancora in sistemi legacy (TLS più vecchi, hash dei commit git). Non usarlo per nuovi lavori di sicurezza critica — le collisioni sono state dimostrate dal 2017. Lo includiamo per compatibilità con il passato."
+        ]
+      },
+      {
+        "heading": "Usi comuni",
+        "paragraphs": [
+          "Integrità dei file: scarica un file e il suo hash; ricalcola l'hash localmente; confronta. Se corrispondono, il file non è stato alterato in transito.",
+          "Commit git: l'identificatore di ogni commit è un hash SHA-1 del suo contenuto. Fare l'hash di un messaggio di commit da solo non rivela nulla — hai bisogno del resto del commit per riprodurlo.",
+          "Firma delle richieste API: HMAC-SHA-256 è lo standard per AWS, GitHub e molte API. L'hash stesso è solo una parte di HMAC; l'API fornirà la costruzione esatta che si aspetta.",
+          "Chiavi di cache: fare l'hash di un URL o di un insieme di parametri dà una chiave di cache stabile e di lunghezza fissa."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Digita o incolla il testo", "text": "Qualsiasi cosa, da un singolo carattere a testi da più megabyte." },
+      { "name": "Leggi tutti e quattro gli hash", "text": "Calcolati in tempo reale mentre digiti." },
+      { "name": "Copia ciò di cui hai bisogno", "text": "Ogni algoritmo ha il proprio pulsante di copia." }
+    ]
+  },
+  "faq": [
+    { "q": "Perché non c'è MD5?", "a": "Le collisioni MD5 sono state dimostrate dal 2004; la Web Crypto API non lo espone. Per usi non legati alla sicurezza (chiavi di cache, deduplicazione file), usa SHA-256 — è solo marginalmente più lento e non ha rischi di collisione." },
+    { "q": "Posso fare l'hash di file binari?", "a": "Non direttamente con questo strumento — incolla solo testo. Per i file, usa il terminale del tuo OS: `shasum -a 256 miofile.txt` su macOS/Linux, `Get-FileHash` su Windows." },
+    { "q": "Perché SHA-512 è più lungo di SHA-256?", "a": "I numeri nei nomi si riferiscono alla lunghezza in bit dell'output: SHA-256 produce 256 bit = 64 caratteri esadecimali; SHA-512 produce 512 bit = 128 caratteri esadecimali. Il doppio." },
+    { "q": "Due input diversi possono produrre lo stesso hash?", "a": "In teoria sì (principio del cassetto), in pratica no per SHA-256 con la tecnologia attuale. Le collisioni SHA-1 sono state dimostrate; quelle di SHA-256 no." },
+    { "q": "Devo usarlo per fare l'hash delle password?", "a": "No. Le password necessitano di hashing lento (bcrypt, scrypt, argon2) più un salt. SHA-256 puro è troppo veloce — gli attaccanti possono hashare miliardi di password al secondo." },
+    { "q": "Perché lo stesso testo dà sempre lo stesso hash?", "a": "Per definizione. Le funzioni hash sono deterministiche. Se hai bisogno di output diversi ogni volta (es. 'salt'), aggiungi un valore casuale in testa o in coda all'input." },
+    { "q": "I dati vengono inviati da qualche parte?", "a": "No. Web Crypto viene eseguita interamente nel tuo browser; nulla viene trasmesso." },
+    { "q": "Cos'è HMAC e questo strumento lo calcola?", "a": "HMAC aggiunge una chiave segreta a una funzione hash. Questo strumento calcola hash semplici; per HMAC, usa uno strumento dedicato o una libreria di programmazione." }
+  ]
+}

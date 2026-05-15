@@ -1,0 +1,92 @@
+{
+  "title": "Penguji Kekuatan Password (entropi + waktu crack)",
+  "shortDescription": "Uji kekuatan password dengan bit entropi, analisis charset, pemeriksaan password umum, dan estimasi waktu crack di berbagai skenario serangan.",
+  "description": "Ketik password (hanya browser, tidak pernah ditransmisikan). Penguji menghitung entropi, cakupan charset, risiko pencocokan kamus, dan menampilkan estimasi waktu crack untuk serangan GPU offline, batas API online, dan serangan online lambat.",
+  "metaDescription": "Penguji kekuatan password gratis. Bit entropi, estimasi waktu crack, analisis charset, deteksi password umum dan pola. Hanya browser.",
+  "keywords": ["penguji kekuatan password", "entropi password", "kalkulator waktu crack", "keamanan password", "uji kata sandi"],
+  "input": {
+    "password": "Password",
+    "privacyNote": "Diuji sepenuhnya di browser Anda. Tidak pernah dikirim atau disimpan di mana saja."
+  },
+  "show": "Tampilkan",
+  "hide": "Sembunyikan",
+  "result": {
+    "strength": "Kekuatan",
+    "length": "Panjang",
+    "charsetSize": "Ukuran charset",
+    "entropy": "Entropi",
+    "bits": "bit",
+    "lowercase": "Huruf kecil a-z",
+    "uppercase": "Huruf besar A-Z",
+    "digits": "Angka 0-9",
+    "symbols": "Simbol",
+    "crackTime": "Estimasi waktu crack",
+    "crackOffline": "GPU offline (10⁹⁰/dtk)",
+    "crackOnlineFast": "Online cepat (1rb/dtk)",
+    "crackOnlineSlow": "Online lambat (100/dtk)",
+    "warningsHeading": "Perhatian"
+  },
+  "level": {
+    "veryWeak": "Sangat lemah",
+    "weak": "Lemah",
+    "fair": "Cukup",
+    "strong": "Kuat",
+    "veryStrong": "Sangat kuat"
+  },
+  "warning": {
+    "isCommon": "Password ini muncul dalam daftar password umum. Jangan gunakan.",
+    "tooShort": "Panjang di bawah 8 — terlalu pendek untuk keamanan nyata apapun.",
+    "hasRepeated": "Karakter berulang (misalnya 'aaa') mengurangi entropi dunia nyata.",
+    "hasSequential": "Pola sekuensial (1234, qwer, abcd) mudah ditebak.",
+    "limitedCharset": "Password charset tunggal (hanya huruf kecil, hanya angka) lemah bahkan jika panjang."
+  },
+  "time": {
+    "instant": "seketika",
+    "yrs": "thn",
+    "eternity": "selamanya"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa yang dimaksud 'entropi' untuk password",
+        "paragraphs": [
+          "Entropi mengukur ketidakprediktan dalam bit. Password dengan 30 bit entropi membutuhkan ~2³⁰ ≈ 1 miliar tebakan rata-rata untuk di-crack. 70+ bit umumnya dianggap kuat; 80+ sangat baik.",
+          "Formula: entropi = panjang × log₂(ukuran_charset). 'abcdefgh' (8 karakter, hanya huruf kecil) = 8 × log₂(26) ≈ 37,6 bit. 'aA1!aaaa' (8 karakter, semua charset) = 8 × log₂(95) ≈ 52,6 bit — tetapi waktu crack jauh lebih buruk dari yang disarankan 52 bit karena 'aaaa' adalah pola umum."
+        ]
+      },
+      {
+        "heading": "Mengapa waktu crack sangat bervariasi",
+        "paragraphs": [
+          "GPU offline: hash password yang bocor sedang diserang secara offline. GPU modern dapat menebak 10⁹+ hash MD5 per detik; hash bcrypt hanya 10⁴-10⁵/dtk. Estimasi ini menggunakan asumsi hash GPU-cepat.",
+          "Online cepat: penyerang yang menghantam API login secara langsung. Sebagian besar API memiliki batas suku bunga; 1000 percobaan/dtk adalah estimasi ujung atas untuk endpoint yang kurang terlindungi.",
+          "Online lambat: endpoint yang terlindungi dengan baik dengan batas suku bunga yang ketat, kunci akun, dan CAPTCHA. 100 percobaan/dtk adalah perkiraan yang murah hati; banyak sistem hanya mengizinkan 5-10/menit.",
+          "Estimasi ini mengabaikan faktor dunia nyata seperti serangan kamus (yang menemukan password umum jauh lebih cepat dari brute force) dan penggunaan ulang password (meng-crack kebocoran satu situs membantu meng-crack situs lain)."
+        ]
+      },
+      {
+        "heading": "Apa yang membuat password kuat",
+        "paragraphs": [
+          "Panjang mengalahkan kompleksitas: passphrase 16 karakter seperti 'kuda benar baterai staple' lebih kuat dari password tersiksa 8 karakter seperti 'P@ssw0rd!'. Wawasan ini masih berlaku: 4 kata acak memberikan ~44 bit entropi.",
+          "Hindari pola: tanggal, nama, '123', 'qwer', karakter berulang semuanya mengurangi entropi nyata di bawah nilai formula. Alat serangan mencakup transformasi 'berbasis aturan' yang ekstensif (misalnya 'password' → 'P@ssw0rd!').",
+          "Gunakan manajer password: manusia memilih pola; manajer tidak. Bitwarden, 1Password, KeePass menghasilkan password yang benar-benar acak per situs, dengan 16+ karakter di semua charset. Satu-satunya password yang perlu Anda ingat adalah password master — dan itu harus passphrase yang panjang dan dapat diingat."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Ketik password", "text": "Diuji sepenuhnya di sisi klien. Gunakan tombol Tampilkan jika Anda tidak dapat melihat apa yang Anda ketik." },
+      { "name": "Baca pengukur kekuatan", "text": "Lima segmen. Targetkan 4-5 (Kuat/Sangat kuat) pada akun penting." },
+      { "name": "Periksa entropi dan waktu crack", "text": "Entropi lebih tinggi = waktu crack lebih lama. Perhatikan peringatan tentang pola umum." },
+      { "name": "Sesuaikan sesuai kebutuhan", "text": "Tambahkan panjang, campurkan charset, hindari kata umum. Uji variasi hingga puas." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah password saya dikirim ke mana saja?", "a": "Tidak. Semuanya berjalan secara lokal di browser Anda. Kami tidak melihat, menyimpan, atau mentransmisikan password Anda." },
+    { "q": "Mengapa password panjang saya menampilkan entropi rendah?", "a": "Panjang bukan segalanya — mengulang 'a' 50 kali memiliki entropi nyata yang sangat rendah. Kalkulator menggunakan formula sederhana tetapi menandai pola berulang/sekuensial. Untuk hasil terbaik: panjang, bervariasi, tanpa pola." },
+    { "q": "Apakah waktu crack ini akurat?", "a": "Ini adalah estimasi berdasarkan brute force naif. Peretas nyata menggunakan kamus, pola umum, dan basis data password yang bocor terlebih dahulu — sehingga password 'umum' mungkin di-crack dalam detik meskipun memiliki entropi formula tinggi." },
+    { "q": "Haruskah saya khawatir tentang komputer kuantum?", "a": "Pada akhirnya ya — algoritma Grover mengurangi setengah bit efektif enkripsi simetris. Untuk saat ini, 80+ bit entropi sudah nyaman; 128+ untuk rahasia jangka sangat panjang." },
+    { "q": "Mengapa alat ini menandai 'P@ssw0rd1' meskipun memiliki semua charset?", "a": "Karena 'password' ada dalam kamus dan substitusi sepele (a → @) adalah bagian dari setiap alat cracking. Gunakan password yang benar-benar acak atau bergaya passphrase, bukan substitusi kata umum." },
+    { "q": "Apakah passphrase empat kata benar-benar aman?", "a": "Cukup ya. 4 kata acak dari daftar 7000 kata = ~52 bit entropi. Lebih kuat dari kebanyakan password 8 karakter kompleks. Tetapi pilih kata acak Anda sendiri — frasa yang terkenal sudah ada dalam kamus." },
+    { "q": "Berapa panjang password minimum yang harus saya gunakan?", "a": "8 adalah minimum mutlak (dan hanya dengan semua charset). 12+ direkomendasikan untuk sebagian besar akun. 16+ untuk yang penting (email, perbankan, master manajer password)." },
+    { "q": "Apakah sensitivitas huruf besar/kecil penting?", "a": "Ya — menambahkan huruf besar menggandakan ukuran charset dari 26 menjadi 52. Kira-kira +1 bit per karakter. Mencampur kasus secara bermakna (bukan hanya huruf pertama) sepadan untuk dilakukan." }
+  ]
+}

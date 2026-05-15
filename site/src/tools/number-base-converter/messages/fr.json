@@ -1,0 +1,50 @@
+{
+  "title": "Convertisseur de Base Numérique (binaire, octal, décimal, hexadécimal)",
+  "shortDescription": "Convertis des nombres entre binaire, octal, décimal et hexadécimal. Valide l'entrée pour la base choisie et affiche les quatre représentations.",
+  "description": "Choisis une base source, tape une valeur, et vois les équivalents en binaire, octal, décimal et hex. Utile pour la programmation, les réseaux et l'électronique.",
+  "metaDescription": "Convertisseur de base numérique gratuit pour binaire, octal, décimal et hex. Valide l'entrée par base, affiche les quatre représentations côte à côte.",
+  "keywords": ["convertisseur base numérique", "binaire vers décimal", "décimal vers hex", "hex vers binaire", "base 2 base 16"],
+  "input": { "value": "Valeur", "from": "De la base" },
+  "error": { "invalidForBase": "L'entrée contient des caractères non valides pour la base sélectionnée." },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionnent les bases numériques positionnelles",
+        "paragraphs": [
+          "Chaque base utilise la notation positionnelle : le chiffre le plus à droite est base⁰ = 1, le suivant est base¹, puis base², et ainsi de suite. En décimal, « 255 » signifie 2×100 + 5×10 + 5×1. En binaire, « 11111111 » signifie 1×128 + 1×64 + ... + 1×1 = 255. Le même nombre, des bases différentes.",
+          "L'hexadécimal utilise 0-9 et A-F pour représenter 16 valeurs par chiffre. « FF » = 15×16 + 15×1 = 255. L'octal utilise 0-7 (3 bits par chiffre), et le binaire utilise seulement 0 et 1. La conversion est mécanique — convertir en décimal puis dans la base cible — et le calculateur le fait pour toi pour n'importe quel entier non négatif."
+        ]
+      },
+      {
+        "heading": "Quand tu utiliseras chaque base",
+        "paragraphs": [
+          "Binaire (base 2) : travail informatique de bas niveau — champs de bits, masques, firmware embarqué. Lecture des layouts de registres, débogage au niveau matériel.",
+          "Octal (base 8) : permissions de fichiers Unix (chmod 755 = rwxr-xr-x), certains formats de fichiers legacy. Moins courant aujourd'hui.",
+          "Décimal (base 10) : tout ce que les humains comptent. La valeur par défaut pour l'arithmétique normale.",
+          "Hexadécimal (base 16) : le plus courant en logiciel — couleurs (#FF6B35), adresses mémoire (0x7fff...), adresses MAC, représentations d'octets de données binaires, hashes encodés."
+        ]
+      },
+      {
+        "heading": "Référence rapide",
+        "paragraphs": [
+          "1 octet = 8 bits = 2 chiffres hex = 256 valeurs (0-255). 1 chiffre hex = 4 bits = 16 valeurs. 1 chiffre octal = 3 bits. Hex « FF » = décimal 255 = binaire 11111111. Hex « 100 » = décimal 256. Hex « FFFF » = décimal 65 535 (max pour 16 bits non signé). Hex « FFFFFFFF » = décimal 4 294 967 295 (max pour 32 bits non signé)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choisis la base source", "text": "Sélectionne binaire, octal, décimal ou hex." },
+      { "name": "Saisis ta valeur", "text": "Utilise uniquement les chiffres valides pour cette base. L'hex est insensible à la casse." },
+      { "name": "Lis les quatre bases", "text": "La conversion vers chacune des trois autres apparaît à côté." }
+    ]
+  },
+  "faq": [
+    { "q": "L'hex est-il sensible à la casse ?", "a": "« ff » et « FF » se décodent en la même valeur. Nous affichons en majuscules par convention." },
+    { "q": "Puis-je saisir des nombres négatifs ?", "a": "Oui, préfixe avec « - ». Le calculateur affiche la représentation de chaque base avec le signe préservé (ex. -255 → -FF en hex)." },
+    { "q": "Quelle est la valeur maximale ?", "a": "Limitée par la plage des entiers sûrs de JavaScript (environ 2⁵³). Pour des valeurs plus grandes, utilise des outils compatibles BigInt." },
+    { "q": "Comment lire le préfixe 0x ou 0b ?", "a": "Supprime le préfixe avant de saisir. « 0xFF » → juste « FF » avec hex sélectionné. « 0b1010 » → « 1010 » avec binaire sélectionné." },
+    { "q": "Pourquoi Unix chmod utilise-t-il l'octal ?", "a": "Les permissions ont trois groupes (propriétaire/groupe/autre) de trois bits chacun. Les 3 bits de chaque groupe correspondent proprement à un chiffre octal, donc 755 = 111 101 101 = rwx r-x r-x." },
+    { "q": "Puis-je convertir des valeurs fractionnaires ?", "a": "Pas encore — seuls les entiers non négatifs sont supportés. Nous pourrions ajouter la prise en charge des nombres à virgule fixe ultérieurement." },
+    { "q": "Que faire si je vois « invalide pour la base » ?", "a": "Tu as tapé un caractère non autorisé dans la base choisie. L'hex autorise 0-9 et A-F ; le binaire seulement 0 et 1 ; etc." },
+    { "q": "Les données sont-elles envoyées quelque part ?", "a": "Non. La conversion s'exécute localement." }
+  ]
+}

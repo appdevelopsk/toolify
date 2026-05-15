@@ -6,7 +6,7 @@ import { CATEGORY_DESCRIPTIONS } from "@/lib/prompts/category-descriptions";
 import { PromptCard } from "@/components/prompts/PromptCard";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
-import { LOCALES, type Locale } from "@/lib/i18n/locales";
+import { PROMPT_LOCALES, isPromptLocale, type Locale } from "@/lib/i18n/locales";
 import type { PromptCategory } from "@/lib/prompts/types";
 
 const CATEGORIES = ["coding", "writing", "design", "research", "business", "marketing"] as const;
@@ -15,7 +15,7 @@ export function generateStaticParams() {
   // Only generate routes for categories that actually have prompts.
   // Empty-category pages are HCU-bait, so we 404 them instead.
   const populated = new Set(listPrompts().map((p) => p.category));
-  return LOCALES.flatMap((locale) =>
+  return PROMPT_LOCALES.flatMap((locale) =>
     CATEGORIES.filter((c) => populated.has(c)).map((cat) => ({ locale, cat })),
   );
 }
@@ -47,6 +47,7 @@ export default async function PromptCategoryPage({
   params: Promise<{ locale: string; cat: string }>;
 }) {
   const { locale, cat } = await params;
+  if (!isPromptLocale(locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations();
   const prompts = listPromptsByCategory(cat);

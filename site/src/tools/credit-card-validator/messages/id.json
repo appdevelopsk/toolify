@@ -1,0 +1,102 @@
+{
+  "title": "Validator Kartu Kredit (cek Luhn + deteksi merek)",
+  "shortDescription": "Validasi checksum nomor kartu kredit (algoritma Luhn) dan deteksi merek penerbit. Hanya di browser — nomor kartu Anda tidak pernah meninggalkan perangkat Anda.",
+  "description": "Ketik nomor kartu untuk memverifikasi apakah lolos cek Luhn dan deteksi merek (Visa, Mastercard, Amex, Discover, JCB, Diners, UnionPay) berdasarkan rentang IIN/BIN.",
+  "metaDescription": "Validator kartu kredit gratis. Cek algoritma Luhn + deteksi merek (Visa, Mastercard, Amex, dll). Semua pemrosesan di browser Anda; tidak ada nomor yang pernah",
+  "keywords": [
+    "validator kartu kredit",
+    "algoritma Luhn",
+    "cek nomor kartu",
+    "cek BIN",
+    "deteksi merek kartu"
+  ],
+  "warning": "⚠ Jangan pernah memasukkan nomor kartu nyata di situs yang tidak Anda percaya. Alat ini berjalan sepenuhnya di browser Anda — tetapi hal yang sama tidak mungkin diverifikasi di situs yang tidak dikenal.",
+  "input": {
+    "cardNumber": "Nomor kartu"
+  },
+  "status": {
+    "valid": "Sintaks valid",
+    "invalid": "Tidak valid"
+  },
+  "empty": "Ketik nomor kartu untuk divalidasi.",
+  "breakdown": {
+    "brand": "Merek",
+    "length": "Panjang",
+    "luhn": "Cek Luhn",
+    "formatted": "Diformat",
+    "unknown": "Tidak diketahui"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Yang diperiksa validator ini (dan yang tidak)",
+        "paragraphs": [
+          "Tiga pemeriksaan: (1) prefiks cocok dengan rentang IIN/BIN penerbit yang dikenal, (2) panjangnya adalah salah satu panjang valid untuk merek tersebut, (3) checksum Luhn lolos. Jika ketiganya benar, nomor tersebut secara sintaksis valid sebagai nomor kartu.",
+          "Yang TIDAK diperiksa ini: apakah kartu benar-benar ada, apakah memiliki saldo, apakah pemegang kartu mengizinkan Anda menggunakannya. Itu memerlukan melalui pemroses pembayaran nyata dengan otorisasi yang tepat. Alat ini menangkap kesalahan ketik dengan murah — seperti 1234 vs 1243 dalam tempel — tetapi tidak dapat memverifikasi kartu milik akun nyata."
+        ]
+      },
+      {
+        "heading": "Cara kerja algoritma Luhn",
+        "paragraphs": [
+          "Luhn (1954, oleh ilmuwan IBM Hans Peter Luhn) adalah checksum sederhana: mulai dari digit paling kanan, gandakan setiap digit kedua. Jika digit yang digandakan lebih dari 9, jumlahkan dua digitnya (atau setara kurangi 9). Jumlahkan semua digit yang dihasilkan. Total harus habis dibagi 10.",
+          "Luhn menangkap kesalahan satu digit dan sebagian besar transposisi berdekatan — dua kesalahan ketik paling umum saat manusia menyalin angka panjang. Ini bukan kriptografis; Anda tidak dapat menggunakannya untuk mendeteksi manipulasi berbahaya. Pemroses kartu nyata menggunakan Luhn sebagai filter lini pertama sebelum pemeriksaan backend yang lebih mahal."
+        ]
+      },
+      {
+        "heading": "Deteksi merek berdasarkan IIN/BIN",
+        "paragraphs": [
+          "6-8 digit pertama nomor kartu mengidentifikasi penerbit (Issuer Identification Number / Bank Identification Number). Merek besar memiliki rentang prefiks yang terkenal: Visa dimulai dengan 4, Mastercard dengan 51-55 atau 2221-2720, Amex dengan 34 atau 37, dll. Kami mendeteksi merek dengan mencocokkan rentang ini.",
+          "Merek dan negara biasanya dapat disimpulkan dari IIN. Pencarian basis data IIN lengkap memberikan negara, bank, jenis kartu (debit/kredit), dan program — digunakan oleh merchant untuk penilaian risiko. Kami tidak menyertakan basis data IIN lengkap; hanya pola merek paling umum."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Ketik nomor kartu",
+        "text": "Spasi dan tanda hubung diabaikan secara otomatis."
+      },
+      {
+        "name": "Baca hasilnya",
+        "text": "Tanda centang hijau = sintaks valid (Luhn lolos + panjang cocok dengan merek)."
+      },
+      {
+        "name": "Tinjau rinciannya",
+        "text": "Merek, panjang, cek Luhn, dan nomor kartu yang diformat dengan benar."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Haruskah saya mempercayai ini dengan nomor kartu nyata saya?",
+      "a": "Meskipun kami hanya berjalan di browser Anda, Anda tidak boleh pernah menempel nomor kartu nyata ke alat yang tidak Anda percayai sepenuhnya. Gunakan salah satu nomor kartu uji standar (mis., 4111 1111 1111 1111) untuk pemeriksaan sintaks."
+    },
+    {
+      "q": "Mengapa saya mendapat 'tidak valid' untuk nomor yang terlihat nyata?",
+      "a": "Paling sering checksum Luhn gagal — kemungkinan kesalahan ketik. Periksa digit sekali lagi."
+    },
+    {
+      "q": "Apakah validasi Luhn membuktikan kartu ada?",
+      "a": "Tidak. Luhn hanya menangkap kesalahan transkripsi. Banyak nomor yang belum pernah diterbitkan lolos Luhn; banyak kartu nyata gagal Luhn jika salah ketik."
+    },
+    {
+      "q": "Apa itu 'BIN'?",
+      "a": "Bank Identification Number — 6-8 digit pertama yang mengidentifikasi penerbit. Sama dengan IIN (Issuer Identification Number); istilah tersebut dapat dipertukarkan."
+    },
+    {
+      "q": "Bisakah saya menggunakan ini untuk menghasilkan nomor kartu uji?",
+      "a": "Tidak langsung, tetapi nomor uji standar Stripe/Visa/Mastercard terdokumentasi dengan baik (mis., 4242 4242 4242 4242). Mereka lolos Luhn tetapi tidak pernah dikenakan biaya."
+    },
+    {
+      "q": "Mengapa [merek tertentu] tidak terdeteksi?",
+      "a": "Kami mendukung merek besar. Kartu regional atau co-branded mungkin tidak cocok. Periksa dokumentasi penerbit untuk rentang IIN yang mereka gunakan."
+    },
+    {
+      "q": "Apakah data meninggalkan browser saya?",
+      "a": "Tidak. Validasi berjalan sepenuhnya di browser Anda tanpa panggilan jaringan."
+    },
+    {
+      "q": "Apakah Luhn digunakan untuk hal selain kartu kredit?",
+      "a": "Ya — nomor IMEI, SIN Kanada, ISIN, NPI, dan banyak sistem ID lainnya menggunakan Luhn. Algoritmanya sama; hanya pemetaan prefiks yang berbeda."
+    }
+  ]
+}

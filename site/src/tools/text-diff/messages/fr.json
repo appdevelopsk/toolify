@@ -1,0 +1,99 @@
+{
+  "title": "Outil de Comparaison de Texte (comparaison ligne par ligne, code",
+  "shortDescription": "Compare deux blocs de texte ligne par ligne. Les lignes ajoutées, supprimées et inchangées sont codées par couleur avec des numéros de ligne.",
+  "description": "Colle une version originale et une version révisée pour voir une comparaison ligne par ligne. Utile pour les documents, configurations, révisions de code et édition de texte.",
+  "metaDescription": "Outil de comparaison de texte gratuit. Comparaison ligne par ligne avec lignes ajoutées, supprimées et inchangées codées par couleur.",
+  "keywords": [
+    "comparaison texte",
+    "comparer texte",
+    "outil diff",
+    "diff lignes",
+    "trouver différences"
+  ],
+  "input": {
+    "left": "Original (gauche)",
+    "right": "Révisé (droite)"
+  },
+  "stats": {
+    "added": "ajoutées",
+    "removed": "supprimées",
+    "unchanged": "inchangées"
+  },
+  "empty": "Colle les deux versions pour voir la comparaison.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment la comparaison est calculée",
+        "paragraphs": [
+          "On utilise l'algorithme de la Plus Longue Sous-séquence Commune (LCS) pour trouver quelles lignes sont partagées entre les deux versions. Les lignes qui apparaissent dans les deux sont 'inchangées'. Les lignes seulement dans l'original sont 'supprimées'. Les lignes seulement dans la version révisée sont 'ajoutées'. Le résultat est une comparaison annotée claire avec les numéros de ligne préservés des deux côtés.",
+          "LCS est l'approche standard utilisée par git et la plupart des outils diff. Il choisit la séquence correspondante la plus longue possible, qui correspond généralement à ce qu'un humain appellerait 'le même paragraphe'. Pour de très grandes entrées (10 000+ lignes), le temps d'exécution croît quadratiquement ; si tu dois comparer de gros journaux, utilise plutôt un outil diff en streaming."
+        ]
+      },
+      {
+        "heading": "Pour quoi c'est utile",
+        "paragraphs": [
+          "Révisions de documents : vois exactement ce qui a changé entre les brouillons. Utile pour les contrats juridiques, les conditions d'utilisation et tout texte où « qu'est-ce qui a changé ? » compte.",
+          "Fichiers de configuration : compare deux fichiers .env ou YAML pour repérer une mauvaise configuration. Ou deux versions d'un script de déploiement.",
+          "Édition de texte : les auteurs peuvent voir les révisions de l'éditeur en contexte, surtout quand seulement quelques lignes ont changé.",
+          "Révision de code (utilisation légère) : pour de petits extraits. Pour une vraie révision de code, utilise un outil qui comprend la syntaxe — git diff avec des options sémantiques ou un outil de révision dédié donnera de meilleurs résultats."
+        ]
+      },
+      {
+        "heading": "Limites",
+        "paragraphs": [
+          "On compare à la granularité des lignes. Si tu changes 'chat' en 'chats' sur une ligne, toute la ligne apparaît comme supprimée-et-ajoutée ; on ne met pas en évidence le 's' inséré. Les comparaisons mot par mot et caractère par caractère sont utiles pour cela, mais plus difficiles à lire sur de longues lignes.",
+          "Les espaces en fin de ligne sont significatifs — 'foo' et 'foo ' (espace de fin) sont comptés comme des lignes différentes. Si tu veux une comparaison insensible aux espaces, normalise le texte avant de le coller.",
+          "L'ordre compte. Deux paragraphes à des positions différentes sont comptés comme supprimés et ajoutés. La comparaison ne tente pas de détecter les blocs 'déplacés'."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Colle l'original",
+        "text": "À gauche."
+      },
+      {
+        "name": "Colle la version révisée",
+        "text": "À droite."
+      },
+      {
+        "name": "Lis la comparaison",
+        "text": "Les lignes se mettent à jour au fur et à mesure de la saisie. Vert = ajouté, rouge = supprimé, normal = inchangé."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Est-ce que ça supporte la comparaison mot par mot ?",
+      "a": "Pas encore — seulement ligne par ligne. On pourrait ajouter la granularité au niveau des caractères ou des mots plus tard pour les courtes comparaisons."
+    },
+    {
+      "q": "Quelle taille peut avoir mon texte ?",
+      "a": "En pratique jusqu'à quelques milliers de lignes par côté. La complexité quadratique signifie que de très grandes entrées peuvent brièvement bloquer l'onglet du navigateur."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. La comparaison s'exécute entièrement localement."
+    },
+    {
+      "q": "Les espaces de fin de ligne sont-ils significatifs ?",
+      "a": "Oui. Deux lignes qui ne diffèrent que par des espaces en fin sont comptées comme différentes. Normalise les espaces avant de coller si tu veux une correspondance insensible aux espaces."
+    },
+    {
+      "q": "Puis-je sauvegarder la comparaison ?",
+      "a": "Pas en tant que fichier sauvegardé. Copie-colle le texte rendu ou fais une capture d'écran pour l'instant."
+    },
+    {
+      "q": "Est-ce le même algorithme que git diff ?",
+      "a": "Conceptuellement oui — on utilise LCS, qui est l'une des options de git. Git utilise par défaut un algorithme similaire mais plus sophistiqué (Myers diff avec Patience en option). Le résultat pour les petites entrées est essentiellement identique."
+    },
+    {
+      "q": "Pourquoi des lignes entières sont-elles marquées quand seul un mot a changé ?",
+      "a": "Parce qu'on travaille à la granularité des lignes. Une comparaison au niveau des caractères mettrait en évidence le mot changé, mais c'est plus difficile à lire sur de longues lignes."
+    },
+    {
+      "q": "Puis-je comparer plus de deux versions ?",
+      "a": "Pas avec cet outil. Pour une fusion à trois voies, utilise un outil diff à trois voies dédié."
+    }
+  ]
+}

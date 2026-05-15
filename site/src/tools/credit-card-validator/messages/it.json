@@ -1,0 +1,102 @@
+{
+  "title": "Validatore di Carte di Credito (controllo Luhn + rilevamento brand)",
+  "shortDescription": "Valida il checksum di un numero di carta di credito (algoritmo Luhn) e rileva il brand emittente. Solo browser — il numero della tua carta non lascia mai il tuo dispositivo.",
+  "description": "Digita un numero di carta per verificare che superi il controllo Luhn e rilevare il brand (Visa, Mastercard, Amex, Discover, JCB, Diners, UnionPay) per intervallo IIN/BIN.",
+  "metaDescription": "Validatore di carte di credito gratuito. Controllo algoritmo Luhn + rilevamento brand (Visa, Mastercard, Amex, ecc.).",
+  "keywords": [
+    "validatore carta di credito",
+    "algoritmo Luhn",
+    "controllo numero carta",
+    "controllo BIN",
+    "rilevamento brand carta"
+  ],
+  "warning": "⚠ Non inserire mai un numero di carta reale su un sito di cui non ti fidi. Questo strumento funziona interamente nel tuo browser — ma lo stesso è impossibile da verificare su qualsiasi sito sconosciuto.",
+  "input": {
+    "cardNumber": "Numero di carta"
+  },
+  "status": {
+    "valid": "Sintassi valida",
+    "invalid": "Non valido"
+  },
+  "empty": "Digita un numero di carta per validarlo.",
+  "breakdown": {
+    "brand": "Brand",
+    "length": "Lunghezza",
+    "luhn": "Controllo Luhn",
+    "formatted": "Formattato",
+    "unknown": "Sconosciuto"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cosa controlla questo validatore (e cosa no)",
+        "paragraphs": [
+          "Tre controlli: (1) il prefisso corrisponde all'intervallo IIN/BIN di un emittente noto, (2) la lunghezza è una delle lunghezze valide per quel brand, (3) il checksum Luhn supera il test. Se tutti e tre sono veri, il numero è sintatticamente valido come numero di carta.",
+          "Cosa NON controlla: se la carta esiste effettivamente, se ha fondi, se il titolare ti ha autorizzato a usarla. Questo richiede l'utilizzo di un vero processore di pagamento con autorizzazione appropriata. Questo strumento rileva i refusi in modo economico — come 1234 vs 1243 in un incolla — ma non può verificare che la carta appartenga a un conto reale."
+        ]
+      },
+      {
+        "heading": "Come funziona l'algoritmo Luhn",
+        "paragraphs": [
+          "Luhn (1954, dello scienziato IBM Hans Peter Luhn) è un semplice checksum: partendo dalla cifra più a destra, raddoppia ogni seconda cifra. Se una cifra raddoppiata supera 9, somma le sue due cifre (equivalentemente sottrai 9). Somma tutte le cifre risultanti. Il totale deve essere divisibile per 10.",
+          "Luhn rileva errori a singola cifra e la maggior parte delle trasposizioni adiacenti — i due refusi più comuni quando gli esseri umani copiano numeri lunghi. Non è crittografico; non puoi usarlo per rilevare manomissioni dolose. I veri processori di carte usano Luhn come filtro di prima linea prima di controlli backend più costosi."
+        ]
+      },
+      {
+        "heading": "Rilevamento del brand tramite IIN/BIN",
+        "paragraphs": [
+          "Le prime 6-8 cifre di un numero di carta identificano l'emittente (Issuer Identification Number / Bank Identification Number). I brand principali hanno intervalli di prefisso noti: Visa inizia con 4, Mastercard con 51-55 o 2221-2720, Amex con 34 o 37, ecc. Rileviamo il brand facendo corrispondere questi intervalli.",
+          "Brand e paese possono di solito essere dedotti dall'IIN. Le ricerche complete nel database IIN forniscono paese, banca, tipo di carta (debito/credito) e programma — usato dai commercianti per il risk scoring. Non includiamo un database IIN completo; solo i pattern di brand più comuni."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Digita il numero di carta",
+        "text": "Spazi e trattini vengono ignorati automaticamente."
+      },
+      {
+        "name": "Leggi il verdetto",
+        "text": "Segno di spunta verde = sintassi valida (Luhn supera il test + lunghezza corrisponde al brand)."
+      },
+      {
+        "name": "Esamina la ripartizione",
+        "text": "Brand, lunghezza, controllo Luhn e numero di carta correttamente formattato."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Devo fidarmi di questo con il mio numero di carta reale?",
+      "a": "Anche se funzioniamo solo nel tuo browser, non dovresti mai incollare un numero di carta reale in uno strumento di cui non ti fidi profondamente. Usa uno dei numeri di carta di test standard (es. 4111 1111 1111 1111) per i controlli di sintassi."
+    },
+    {
+      "q": "Perché ottengo 'non valido' per un numero dall'aspetto reale?",
+      "a": "Molto spesso il checksum Luhn fallisce — probabilmente un refuso. Ricontrolla le cifre un'altra volta."
+    },
+    {
+      "q": "La validazione Luhn prova che la carta esiste?",
+      "a": "No. Luhn rileva solo errori di trascrizione. Molti numeri mai emessi superano Luhn; molte carte reali falliscono Luhn se errate."
+    },
+    {
+      "q": "Cos'è un 'BIN'?",
+      "a": "Bank Identification Number — prime 6-8 cifre che identificano l'emittente. Uguale a IIN (Issuer Identification Number); i termini sono intercambiabili."
+    },
+    {
+      "q": "Posso usarlo per generare numeri di carte di test?",
+      "a": "Non direttamente, ma i numeri di test standard di Stripe/Visa/Mastercard sono ben documentati (es. 4242 4242 4242 4242). Superano Luhn ma non addebitano mai nulla."
+    },
+    {
+      "q": "Perché [qualche brand] non viene rilevato?",
+      "a": "Supportiamo i brand principali. Le carte regionali o co-branded potrebbero non corrispondere. Controlla la documentazione dell'emittente per gli intervalli IIN che utilizza."
+    },
+    {
+      "q": "I dati lasciano il mio browser?",
+      "a": "No. La validazione viene eseguita interamente nel tuo browser senza chiamate di rete."
+    },
+    {
+      "q": "Luhn viene usato per cose diverse dalle carte di credito?",
+      "a": "Sì — i numeri IMEI, il SIN canadese, ISIN, NPI e molti altri sistemi di ID usano Luhn. L'algoritmo è lo stesso; solo le mappature dei prefissi differiscono."
+    }
+  ]
+}

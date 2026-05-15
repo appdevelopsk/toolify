@@ -1,0 +1,53 @@
+{
+  "title": "Công cụ so sánh văn bản (so sánh theo dòng, tô màu)",
+  "shortDescription": "So sánh hai khối văn bản theo từng dòng. Các dòng thêm, xóa và không đổi được tô màu kèm số dòng.",
+  "description": "Dán phiên bản gốc và phiên bản sửa để xem diff theo dòng. Hữu ích cho tài liệu, file cấu hình, code review và chỉnh sửa văn bản.",
+  "metaDescription": "Công cụ so sánh văn bản online miễn phí. So sánh từng dòng với các dòng thêm, xóa và không đổi được tô màu. Chỉ chạy trên trình duyệt — văn bản không rời khỏi thiết bị.",
+  "keywords": ["so sánh văn bản", "diff văn bản", "công cụ diff", "so sánh dòng", "tìm điểm khác biệt"],
+  "input": { "left": "Bản gốc (trái)", "right": "Bản sửa (phải)" },
+  "stats": { "added": "đã thêm", "removed": "đã xóa", "unchanged": "không đổi" },
+  "empty": "Dán cả hai phiên bản để xem diff.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Diff được tính như thế nào",
+        "paragraphs": [
+          "Chúng tôi dùng thuật toán Longest Common Subsequence (LCS) để tìm các dòng chung giữa hai phiên bản. Dòng xuất hiện trong cả hai là 'không đổi'. Dòng chỉ có trong bản gốc là 'đã xóa'. Dòng chỉ có trong bản sửa là 'đã thêm'. Kết quả là bảng so sánh có chú thích rõ ràng với số dòng được giữ nguyên ở cả hai phía.",
+          "LCS là phương pháp tiêu chuẩn được git và hầu hết công cụ diff sử dụng. Nó chọn chuỗi khớp dài nhất có thể, thường khớp với những gì con người gọi là 'cùng đoạn văn'. Với đầu vào rất lớn (10.000+ dòng) thời gian chạy tăng bậc hai; nếu cần so sánh log lớn, hãy dùng công cụ diff streaming."
+        ]
+      },
+      {
+        "heading": "Phù hợp với những việc nào",
+        "paragraphs": [
+          "Sửa đổi tài liệu: xem chính xác những gì đã thay đổi giữa các bản nháp. Hữu ích cho hợp đồng pháp lý, điều khoản dịch vụ và bất kỳ văn bản nào mà câu hỏi 'đã thay đổi gì?' là quan trọng.",
+          "File cấu hình: so sánh hai file .env hoặc YAML để phát hiện cấu hình sai. Hoặc hai phiên bản script deploy.",
+          "Chỉnh sửa văn xuôi: người viết có thể xem các sửa đổi của biên tập viên trong ngữ cảnh, đặc biệt khi chỉ một vài dòng thay đổi.",
+          "Code review (dùng nhẹ): cho các đoạn code nhỏ. Với code review thực sự, hãy dùng công cụ hiểu cú pháp — git diff với semantic flags hoặc công cụ review chuyên dụng sẽ cho kết quả tốt hơn."
+        ]
+      },
+      {
+        "heading": "Giới hạn",
+        "paragraphs": [
+          "Chúng tôi diff ở mức độ chi tiết dòng. Nếu bạn đổi 'mèo' thành 'con mèo' trong một dòng, toàn bộ dòng hiển thị là đã xóa và thêm; chúng tôi không tô sáng từ được chèn vào. Diff cấp độ từ và ký tự hữu ích cho việc đó, nhưng khó đọc hơn với dòng dài.",
+          "Khoảng trắng cuối dòng có ý nghĩa — 'foo' và 'foo ' (có khoảng trắng cuối) được coi là dòng khác nhau. Nếu muốn so sánh không phân biệt khoảng trắng, hãy chuẩn hóa văn bản trước khi dán.",
+          "Thứ tự quan trọng. Hai đoạn ở các vị trí khác nhau đều được tính là đã xóa và thêm. Diff không cố phát hiện các khối 'đã di chuyển'."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Dán bản gốc", "text": "Ở phía trái." },
+      { "name": "Dán bản sửa", "text": "Ở phía phải." },
+      { "name": "Đọc kết quả diff", "text": "Các dòng cập nhật khi bạn nhập. Xanh = đã thêm, đỏ = đã xóa, thường = không đổi." }
+    ]
+  },
+  "faq": [
+    { "q": "Có hỗ trợ diff cấp độ từ không?", "a": "Chưa — chỉ cấp độ dòng. Chúng tôi có thể thêm độ chi tiết ký tự hoặc từ sau cho các so sánh ngắn." },
+    { "q": "Văn bản có thể lớn đến đâu?", "a": "Thực tế đến vài nghìn dòng mỗi phía. Độ phức tạp bậc hai có nghĩa đầu vào rất lớn có thể làm đóng băng tab trình duyệt một lúc." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Tính toán diff chạy hoàn toàn cục bộ." },
+    { "q": "Khoảng trắng cuối dòng có quan trọng không?", "a": "Có. Hai dòng chỉ khác nhau bởi khoảng trắng cuối được tính là khác nhau. Chuẩn hóa khoảng trắng trước khi dán nếu muốn so sánh không phân biệt khoảng trắng." },
+    { "q": "Tôi có thể lưu kết quả diff không?", "a": "Không phải dạng file đã lưu. Sao chép-dán văn bản đã render hoặc chụp màn hình hiện tại." },
+    { "q": "Đây có phải thuật toán giống git diff không?", "a": "Về mặt khái niệm có — chúng tôi dùng LCS, một trong các tùy chọn của git. Git mặc định dùng thuật toán tương tự nhưng tinh vi hơn (Myers diff với Patience là tùy chọn). Kết quả cho đầu vào ngắn về cơ bản giống nhau." },
+    { "q": "Tại sao cả dòng bị đánh dấu khi chỉ một từ thay đổi?", "a": "Vì chúng tôi làm việc ở mức độ dòng. Diff cấp độ ký tự sẽ tô sáng từ đã thay đổi, nhưng khó đọc hơn với dòng dài." },
+    { "q": "Tôi có thể so sánh nhiều hơn hai phiên bản không?", "a": "Không trong công cụ này. Với merge nhiều chiều, hãy dùng công cụ diff 3 chiều chuyên dụng." }
+  ]
+}

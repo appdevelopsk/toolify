@@ -1,0 +1,76 @@
+{
+  "title": "Calcolatore IVA (aliquote internazionali)",
+  "shortDescription": "Aggiungi o scorpora IVA/GST/sales tax. Preset rapidi per Italia, altri paesi UE, UK, Giappone, Australia, Canada, Cina.",
+  "description": "Due modalità: 'Aggiungi IVA' calcola il lordo da netto + aliquota; 'Scorporo IVA' calcola il netto dal lordo. Input aliquota personalizzata più preset in un clic per le principali giurisdizioni.",
+  "metaDescription": "Calcolatore IVA/GST gratuito. Aggiungi o scorpora l'IVA da qualsiasi importo. Preset per Italia, UE, UK, Giappone, Australia, Canada, Cina.",
+  "keywords": ["calcolatore IVA", "calcolo GST", "calcolatore sales tax", "imposta sul consumo", "scorporo IVA"],
+  "empty": "Inserisci un importo e un'aliquota IVA.",
+  "mode": {
+    "addVat": "Aggiungi IVA (netto → lordo)",
+    "removeVat": "Scorporo IVA (lordo → netto)"
+  },
+  "input": {
+    "netAmount": "Importo netto (IVA esclusa)",
+    "grossAmount": "Importo lordo (IVA inclusa)",
+    "ratePct": "Aliquota IVA %"
+  },
+  "preset": {
+    "JP-std": "Giappone std",
+    "JP-reduced": "Giappone ridotta",
+    "UK": "UK",
+    "DE": "Germania",
+    "FR": "Francia",
+    "AU": "Australia GST",
+    "CA": "Canada GST",
+    "CN": "Cina IVA"
+  },
+  "result": {
+    "gross": "Lordo (IVA inclusa)",
+    "net": "Netto (IVA esclusa)",
+    "vat": "Importo IVA"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "IVA, GST, sales tax — stessa idea, nomi diversi",
+        "paragraphs": [
+          "IVA (Imposta sul Valore Aggiunto): Europa, UK, Giappone (chiamata 消費税). Addebitata ad ogni fase della produzione ma in definitiva pagata dal consumatore. In Italia l'aliquota ordinaria è il 22%, con aliquote ridotte al 10%, 5% e 4%.",
+          "GST (Goods and Services Tax): Australia, Canada, India, Singapore. Meccanicamente simile all'IVA, solo un nome diverso. Alcuni paesi (Canada) aggiungono un GST federale e imposte provinciali (HST, PST).",
+          "Sales tax: USA. Addebitata solo al punto di vendita finale, varia per stato, contea e città. Alcuni stati non l'hanno (es. Oregon, New Hampshire); altri sovrappongono più giurisdizioni per aliquote totali superiori al 10%."
+        ]
+      },
+      {
+        "heading": "Calcolo bidirezionale",
+        "paragraphs": [
+          "Aggiungi IVA: quando hai un prezzo netto (pre-tasse) e hai bisogno del lordo (post-tasse). Comune quando si elencano i prezzi per clienti B2B o si fanno preventivi. Formula: lordo = netto × (1 + aliquota/100).",
+          "Scorporo IVA: quando hai un prezzo lordo (post-tasse) e devi estrarre il netto. Comune per ricevute, note spese o voci di fattura. Formula: netto = lordo / (1 + aliquota/100).",
+          "Errore comune: sottrarre l'aliquota% dal lordo per ottenere il netto (es. 110 € − 10% = 99 €). È sbagliato — il calcolo corretto è 110 € / 1,10 = 100 €. Il 10% di IVA è sul netto, non sul lordo."
+        ]
+      },
+      {
+        "heading": "Quando l'IVA è già inclusa o meno",
+        "paragraphs": [
+          "La maggior parte dei prezzi al consumo in Europa, Giappone e Australia sono IVA inclusa. Il prezzo in etichetta è quello che paghi alla cassa; nessun extra al checkout. Quindi un prodotto da 10 € significa 10 € totali.",
+          "La maggior parte dei prezzi al dettaglio USA sono IVA esclusa. Un'etichetta da $10 diventa $10,85 dopo il sales tax dell'8,5% della California. Ristoranti, negozi online e fatture B2B spesso variano.",
+          "Le fatture B2B mostrano tipicamente netto + IVA separatamente per le detrazioni dell'IVA a credito. Le imprese possono recuperare l'IVA pagata sugli acquisti (IVA a credito) contro l'IVA riscossa dai clienti (IVA a debito)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Scegli la modalità", "text": "Aggiungi IVA (netto → lordo) o Scorporo IVA (lordo → netto)." },
+      { "name": "Inserisci l'importo", "text": "L'importo netto o lordo, a seconda della modalità." },
+      { "name": "Imposta l'aliquota", "text": "Usa un preset per i principali paesi o digita un'aliquota personalizzata." },
+      { "name": "Leggi tutti e tre i valori", "text": "Netto, IVA, lordo. Utile per le voci di fattura e i preventivi." }
+    ]
+  },
+  "faq": [
+    { "q": "Qual è la differenza tra IVA esente e aliquota zero?", "a": "In Italia 'esente' (es. sanità, istruzione) non dà diritto alla detrazione dell'IVA sugli acquisti. 'Aliquota zero' (es. alcune esportazioni) dà diritto alla detrazione. Il risultato nel calcolatore è lo stesso (usa 0%), ma le implicazioni fiscali per le imprese sono diverse." },
+    { "q": "Perché 'togliere il 10%' dà una risposta diversa dal dividere per 1,1?", "a": "Rimuovere il 10% è dividere per 1,10. Sottrarre il 10% (es. 110 − 10% = 99) è matematicamente sbagliato perché il 10% applicato era sul netto (100), non sul lordo (110)." },
+    { "q": "Posso calcolare l'IVA a più fasi?", "a": "Non con questo strumento — gestiamo scenari ad aliquota singola. Per B2B con reverse charge o operazioni esenti, consulta un commercialista o un software fiscale specializzato." },
+    { "q": "Qual è l'aliquota IVA più bassa?", "a": "Alcuni paesi hanno aliquote del 0% per beni essenziali (UK per abbigliamento per bambini, Italia 4% per pane, latte, libri e giornali). Usa l'aliquota effettivamente applicabile alla tua transazione." },
+    { "q": "Qual è l'IVA più alta?", "a": "Ungheria al 27%. La maggior parte dei paesi UE è tra il 19-25%. Il Giappone è relativamente basso al 10%. L'Italia al 22% è nella media europea." },
+    { "q": "Funziona per il sales tax USA?", "a": "Sì — inserisci l'aliquota combinata stato + locale. Il sales tax USA si comporta come l'IVA a stadio singolo in termini di calcolatore. Usa la modalità 'aggiungi' per il tipico flusso listino → cassa USA." },
+    { "q": "E per gli articoli esenti IVA?", "a": "Usa l'aliquota 0% per gli articoli completamente esenti. Nota: 'esente' e 'aliquota zero' hanno differenze legali in alcune giurisdizioni ma lo stesso risultato nel calcolatore." },
+    { "q": "I dati escono dal mio browser?", "a": "No. Il calcolo viene eseguito localmente; nulla viene inviato a un server." }
+  ]
+}

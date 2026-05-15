@@ -1,0 +1,106 @@
+{
+  "title": "Generatore di Password (crittograficamente sicuro, con misuratore di",
+  "shortDescription": "Genera password casuali robuste usando la API crypto sicura del tuo browser. Lunghezza configurabile, set di caratteri e filtro ambiguità.",
+  "description": "Costruisce password usando crypto.getRandomValues — la stessa fonte che usano le banche, non Math.random. Regola lunghezza e classi di caratteri; il misuratore di entropia mostra quanto è davvero forte il risultato.",
+  "metaDescription": "Generatore di password gratuito. Password casuali crittograficamente sicure con lunghezza e set di caratteri configurabili.",
+  "keywords": [
+    "generatore password",
+    "password sicura",
+    "password casuale",
+    "password robusta",
+    "generatore passphrase"
+  ],
+  "copy": "Copia",
+  "copied": "Copiata",
+  "regenerate": "Nuova password",
+  "input": {
+    "length": "Lunghezza"
+  },
+  "opt": {
+    "upper": "Maiuscole (A-Z)",
+    "lower": "Minuscole (a-z)",
+    "numbers": "Numeri (0-9)",
+    "symbols": "Simboli (!@#$...)",
+    "avoidAmbiguous": "Evita ambigui (0OoIl1)"
+  },
+  "strength": {
+    "weak": "Debole",
+    "medium": "Media",
+    "strong": "Robusta",
+    "excellent": "Eccellente"
+  },
+  "entropy": "{bits} bit di entropia",
+  "article": {
+    "sections": [
+      {
+        "heading": "Perché questo generatore è davvero sicuro",
+        "paragraphs": [
+          "La maggior parte dei 'generatori di password' sul web usa Math.random(), che non è crittograficamente sicuro — il suo output può essere previsto da un attaccante che vede pochi valori precedenti. Questo generatore usa crypto.getRandomValues dalla Web Crypto API, la stessa primitiva che supporta le sessioni HTTPS e i portachiavi a livello di sistema operativo. Ogni carattere viene estratto da una distribuzione uniforme sull'alfabeto selezionato.",
+          "La generazione avviene interamente nel tuo browser. La password non viaggia mai in rete e non tocca mai i nostri server. Anche se il nostro dominio fosse compromesso, un attaccante non avrebbe nulla da rubare perché nulla è memorizzato."
+        ]
+      },
+      {
+        "heading": "Come funziona il misuratore di forza",
+        "paragraphs": [
+          "L'etichetta di forza viene calcolata dall'entropia: bit = log₂(dimensione_alfabeto) × lunghezza. Una password di 10 caratteri solo minuscole ha log₂(26) × 10 ≈ 47 bit — vulnerabile a un attaccante offline determinato. Una password di 16 caratteri che usa tutte e quattro le classi di caratteri ha circa 105 bit — abbastanza robusta per la maggior parte degli usi. Le bande sono: <50 debole, 50-80 media, 80-128 robusta, ≥128 eccellente.",
+          "Queste soglie corrispondono approssimativamente a: debole = indovinabile in giorni da un attaccante moderato; media = impiega anni a una botnet; robusta = nessun attaccante realistico oggi; eccellente = margine confortevole contro attaccanti futuri incluse le considerazioni quantistiche."
+        ]
+      },
+      {
+        "heading": "La lunghezza batte la complessità",
+        "paragraphs": [
+          "La matematica è spietata qui: aggiungere un carattere alla tua password raddoppia approssimativamente lo spazio di ricerca (in base all'alfabeto). Aggiungere un'altra classe di caratteri lo allarga solo leggermente. Una password di 20 caratteri solo minuscole ha più entropia di una password di 12 caratteri con maiuscole, minuscole e simboli, ed è più facile da digitare. Se preferisci memorizzarla, scegli quattro parole casuali da una lista di 7.000 parole — sono 51 bit, simile a una robusta password mista di 8 caratteri.",
+          "L'opzione 'evita ambigui' esclude i caratteri che assomigliano ad altri caratteri in molti font (0/O, I/l/1). Questo rende la password leggermente più debole ma più facile da leggere ad alta voce o trascrivere. Usala quando potresti aver bisogno di digitare la password da un elenco stampato."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Scegli una lunghezza",
+        "text": "16 è un buon default per gli account; 20+ per le chiavi master del gestore di password."
+      },
+      {
+        "name": "Scegli le classi di caratteri",
+        "text": "La maggior parte dei siti accetta tutte e quattro — maiuscole, minuscole, numeri, simboli. Alcuni siti legacy rifiutano i simboli."
+      },
+      {
+        "name": "Genera e copia",
+        "text": "Clicca 'Nuova password' finché non ne ottieni una che ti piace, poi copiala direttamente nel tuo gestore di password."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Questo generatore è davvero sicuro?",
+      "a": "Sì. Usiamo la fonte casuale sicura della Web Crypto API, non Math.random(). L'implementazione fornita dal fornitore del browser è verificata e identica a quella che supporta HTTPS."
+    },
+    {
+      "q": "La password lascia il mio browser?",
+      "a": "Mai. Generazione, calcolo dell'entropia e copia negli appunti avvengono tutti localmente. Non abbiamo un endpoint server per riceverla anche se lo volessimo."
+    },
+    {
+      "q": "16 caratteri sono abbastanza?",
+      "a": "Per gli account online, sì — quasi sempre. Per le password master dei gestori di password o le chiavi di crittografia, vai su 24+ caratteri o usa una passphrase di 6 parole."
+    },
+    {
+      "q": "Perché il misuratore di forza non ama la mia password lunga?",
+      "a": "Sa solo quali classi di caratteri hai abilitato. Se hai abilitato solo le minuscole, l'alfabeto è solo 26 — le password lunghe sono ancora robuste ma crescono più lentamente."
+    },
+    {
+      "q": "Cosa significa 'bit di entropia'?",
+      "a": "È il log₂ del numero di password possibili che le tue impostazioni potrebbero produrre. 80 bit ≈ 1,2 × 10²⁴ possibilità — ben oltre la portata del brute-force oggi."
+    },
+    {
+      "q": "Devo includere i simboli?",
+      "a": "Sì quando sono consentiti. Ogni simbolo aggiunge approssimativamente l'entropia di un numero più una lettera combinati. Alcuni siti vecchi li rifiutano; in tal caso, aumenta la lunghezza per compensare."
+    },
+    {
+      "q": "Vale la pena usare 'evita ambigui'?",
+      "a": "Usala solo quando devi leggere o digitare la password manualmente. Tienila disattivata per i gestori di password — il costo di leggibilità è sprecato lì."
+    },
+    {
+      "q": "La stessa password può essere generata due volte?",
+      "a": "Teoricamente sì, ma con anche solo 50 bit di entropia la probabilità per coppia di generazioni è 1 su 2⁵⁰ ≈ 10¹⁵. Praticamente impossibile."
+    }
+  ]
+}

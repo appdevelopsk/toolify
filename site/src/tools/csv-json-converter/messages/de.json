@@ -1,0 +1,71 @@
+{
+  "title": "CSV ↔ JSON-Konverter (RFC 4180-konform)",
+  "shortDescription": "CSV in JSON oder JSON in CSV umwandeln. Konfigurierbares Trennzeichen (Komma/Semikolon/Tab/Pipe), Kopfzeilen-Umschalter, RFC 4180-konforme Feldbehandlung.",
+  "description": "CSV oder JSON einfügen. Der Konverter analysiert RFC 4180-konformes CSV (verarbeitet zitierte Felder mit Kommas, Escape-Anführungszeichen, mehrzeilige Werte). Für JSON-zu-CSV akzeptiert er sowohl Arrays von Objekten (verwendet Schlüssel als Überschriften) als auch Arrays von Arrays.",
+  "metaDescription": "Kostenloser CSV ↔ JSON-Konverter. RFC 4180-konform, konfigurierbares Trennzeichen, Kopfzeilen-Umschalter. Nur im Browser – deine Daten verlassen nie dein Gerät.",
+  "keywords": ["CSV zu JSON", "JSON zu CSV", "CSV Konverter", "JSON Konverter", "RFC 4180"],
+  "direction": {
+    "csvToJson": "CSV → JSON",
+    "jsonToCsv": "JSON → CSV"
+  },
+  "input": {
+    "csv": "CSV-Eingabe",
+    "json": "JSON-Eingabe",
+    "delimiter": "Trennzeichen",
+    "headerRow": "Erste Zeile ist Überschrift"
+  },
+  "delim": {
+    "comma": "Komma (,)",
+    "semicolon": "Semikolon (;)",
+    "tab": "Tab",
+    "pipe": "Pipe (|)"
+  },
+  "output": "Ausgabe",
+  "empty": "Eingabe machen, um die konvertierte Ausgabe zu sehen.",
+  "error": { "label": "Konvertierungsfehler" },
+  "copy": "Kopieren",
+  "article": {
+    "sections": [
+      {
+        "heading": "Warum RFC 4180 wichtig ist",
+        "paragraphs": [
+          "CSV sieht einfach aus, hat aber Sonderfälle: Ein Feld mit einem Komma muss in Anführungszeichen gesetzt werden; ein Feld mit einem Anführungszeichen muss es als doppeltes Anführungszeichen escapen; ein Feld kann Zeilenumbrüche enthalten, wenn es in Anführungszeichen ist. Naive Trenn-an-Komma-Parser scheitern bei realen Daten. Dieser Konverter implementiert die RFC-4180-Grammatik exakt.",
+          "Naive Parser scheitern auch bei Excel-Exporten, die Semikolons verwenden (üblich in europäischen Spracheinstellungen, wo ',' als Dezimaltrennzeichen dient) oder Tabs (TSV). Das Trennzeichen-Dropdown verarbeitet alle vier gängigen Varianten."
+        ]
+      },
+      {
+        "heading": "JSON-Formen für die Ausgabe",
+        "paragraphs": [
+          "Array von Objekten (Standard mit Kopfzeile): Jede Zeile wird zu {Spalte: Wert}. Die häufigste JSON-Form, leicht in jeder Sprache zu verwenden.",
+          "Array von Arrays (Kopfzeile aus): Jede Zeile wird zu [w1, w2, ...]. Nützlich, wenn Spalten nicht benannt sind oder du eine positionsbasierte Struktur möchtest.",
+          "Bei JSON-zu-CSV erkennt der Konverter, welche Form du hast. Objekte: extrahiert eindeutige Schlüssel über alle Zeilen für Überschriften. Arrays: schreibt Zeilen unverändert."
+        ]
+      },
+      {
+        "heading": "Häufige Fallen",
+        "paragraphs": [
+          "Excel-Spracheinstellung: In einigen europäischen Excel-Installationen ist das Standard-Trennzeichen ';' statt ','. Wenn dein CSV beim Import wie eine einzige riesige Spalte aussieht, wechsle im Trennzeichen-Dropdown zu ;.",
+          "BOM (Byte Order Mark): Einige Excel-Exporte stellen der Datei U+FEFF voran. Wir lassen es durch; wenn dein nachgelagerte Parser scheitert, entferne die ersten 3 Bytes.",
+          "Abschließende Zeilenumbruch: Ein CSV, das auf '\\n' endet, fügt in manchen Parsern eine leere letzte Zeile hinzu; wir filtern leere Zeilen automatisch.",
+          "Zahlen als Zeichenketten: CSV hat keine Typen – '42' wird in JSON zur Zeichenkette \"42\". Wenn du typisierte Werte benötigst, führe einen Nachverarbeitungsschritt durch, der bekannte Zahlenspalten konvertiert."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Richtung wählen", "text": "CSV → JSON oder JSON → CSV." },
+      { "name": "Trennzeichen einstellen", "text": "Komma (Standard), Semikolon, Tab oder Pipe." },
+      { "name": "Kopfzeile umschalten", "text": "An für objekt-förmiges JSON, aus für Array-von-Arrays." },
+      { "name": "Daten einfügen", "text": "Ausgabe wird live aktualisiert. Klicke 'Kopieren', um das Ergebnis in die Zwischenablage zu kopieren." }
+    ]
+  },
+  "faq": [
+    { "q": "Werden zitierte Felder mit Kommas verarbeitet?", "a": "Ja – RFC-4180-Zitierung wird vollständig unterstützt. \"Mustermann, Max\" wird als einzelnes Feld geparst." },
+    { "q": "Wie werden Escape-Anführungszeichen verarbeitet?", "a": "Gemäß RFC 4180 wird ein wörtliches '\"' in einem zitierten Feld als '\"\"' (zwei Anführungszeichen) geschrieben. Der Parser verarbeitet das korrekt." },
+    { "q": "Können Felder Zeilenumbrüche enthalten?", "a": "Ja, wenn sie in Anführungszeichen sind. \"Zeile 1\\nZeile 2\" in Anführungszeichen wird als ein Feld mit eingebettetem Zeilenumbruch behandelt." },
+    { "q": "Wird BOM (UTF-8) unterstützt?", "a": "BOM wird durchgeleitet. Wenn dein nachgelagerter Konsument es nicht verträgt, entferne die ersten 3 Bytes (EF BB BF) aus dem CSV." },
+    { "q": "Was ist mit riesigen Dateien?", "a": "Der Browser verarbeitet ein paar MB problemlos. Für sehr große CSVs (100 MB+) verwende einen Streaming-Parser wie Papa Parse mit einem Worker oder ein CLI-Tool." },
+    { "q": "Werden Zahlen als Zahlen beibehalten?", "a": "CSV → JSON: Alle Werte werden zu Zeichenketten (CSV ist untypisiert). JSON → CSV: Zahlen werden zu nicht-zitierten CSV-Zellen. Um typisiertes JSON zu erhalten, verarbeite Spalten nach, die du als numerisch kennst." },
+    { "q": "Warum zeigt mein JSON leere Zeichenketten statt null?", "a": "CSV stellt fehlende Werte als leere Zellen dar. Wir ordnen sie leeren Zeichenketten zu. Um null im JSON zu erhalten, verarbeite die Ausgabe nach." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Die Konvertierung läuft lokal; nichts wird an einen Server gesendet." }
+  ]
+}

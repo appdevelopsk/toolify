@@ -1,0 +1,99 @@
+{
+  "title": "JSON फॉर्मेटर और मिनिफायर (मान्य करता है और pretty-print करता है)",
+  "shortDescription": "JSON को pretty-print या minify करें। इनपुट मान्य करता है और विफलता पर लाइन और कॉलम के साथ स्पष्ट त्रुटि दिखाता है।",
+  "description": "2/4/8 स्पेस इंडेंटेशन के साथ फॉर्मेट करने के लिए, या एकल लाइन पर minify करने के लिए कोई भी JSON पेस्ट करें। अमान्य JSON एक parse त्रुटि दिखाता है ताकि आप समस्या जल्दी खोज सकें।",
+  "metaDescription": "मुफ्त JSON फॉर्मेटर और मिनिफायर। इनपुट मान्य करता है, चुने गए indent के साथ pretty-print करता है, या एक लाइन पर minify करता है। Browser-only — आपका डेटा पृष्ठ नहीं",
+  "keywords": [
+    "JSON फॉर्मेटर",
+    "JSON मिनिफायर",
+    "JSON वैलिडेटर",
+    "pretty print JSON",
+    "JSON फॉर्मेट"
+  ],
+  "input": "JSON इनपुट",
+  "output": "फॉर्मेटेड आउटपुट",
+  "mode": {
+    "format": "फॉर्मेट",
+    "minify": "मिनिफाई"
+  },
+  "indent": "इंडेंट",
+  "copy": "कॉपी",
+  "copied": "कॉपी हो गया",
+  "error": "Parse त्रुटि",
+  "stats": "इनपुट: {input} bytes · आउटपुट: {output} bytes",
+  "article": {
+    "sections": [
+      {
+        "heading": "यह टूल क्या करता है",
+        "paragraphs": [
+          "JSON एक strict प्रारूप है — हर quote, comma, और bracket सही जगह होना चाहिए। ब्राउज़र और APIs cryptic 'Unexpected token' संदेश देते हैं जब कुछ गलत होता है। यह फॉर्मेटर ब्राउज़र के native JSON parser से इनपुट parse करता है, फिर इसे pretty (indent के साथ) या minified (कोई whitespace नहीं) re-serialize करता है।",
+          "यदि parsing विफल हो जाती है, तो आपको underlying त्रुटि सीधे मिलती है — आमतौर पर खराब character की position के साथ।"
+        ]
+      },
+      {
+        "heading": "Format बनाम minify",
+        "paragraphs": [
+          "Indent के साथ Format: JSON पढ़ने का मानक तरीका। 2 space JavaScript में पारंपरिक है; 4 space Python और Java संदर्भों में आम है।",
+          "Minify: कोई whitespace के बिना एकल लाइन पर collapse करें। URL, environment variables में JSON embed करते समय उपयोगी। एक विशिष्ट pretty-printed config file minify होने पर 20-40% सिकुड़ जाती है।"
+        ]
+      },
+      {
+        "heading": "सामान्य JSON गलतियाँ",
+        "paragraphs": [
+          "Trailing commas: JavaScript में allowed, JSON में नहीं। {a:1, b:2,} आपके code editor में parse होता है लेकिन wire पर भेजने पर विफल होता है।",
+          "Single quotes: JSON के लिए keys और string values दोनों के लिए double quotes आवश्यक हैं। {'a': 1} अमान्य JSON है। {\"a\": 1} सही है।",
+          "Comments: JSON में कोई comments नहीं। JSON के अंदर // या /* */ parsing तोड़ता है।",
+          "Numbers: JSON NaN या Infinity का समर्थन नहीं करता। null का उपयोग करें।"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "अपना JSON पेस्ट करें",
+        "text": "कुछ bytes से कुछ सौ KB तक बिना lag के काम करता है।"
+      },
+      {
+        "name": "format या minify चुनें",
+        "text": "Plus format mode के लिए एक indent level।"
+      },
+      {
+        "name": "परिणाम पढ़ें या कॉपी करें",
+        "text": "त्रुटि पर, underlying parser संदेश समस्या की ओर इंगित करता है।"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "क्या यह JSONC (comments के साथ JSON) का समर्थन करता है?",
+      "a": "अभी नहीं। पहले comments हटाएँ या JSONC-supporting टूल उपयोग करें।"
+    },
+    {
+      "q": "आकार सीमा क्या है?",
+      "a": "आधुनिक ब्राउज़र multi-megabyte JSON संभालते हैं, हालाँकि textarea ~1 MB से अधिक धीमा हो सकता है।"
+    },
+    {
+      "q": "मेरा JSON अमान्य क्यों है?",
+      "a": "अक्सर: एक trailing comma, single quotes, या string के अंदर unescaped quote। Parser त्रुटि उस column की ओर इंगित करती है जहाँ समस्या detect होती है।"
+    },
+    {
+      "q": "क्या मैं keys को alphabetically sort कर सकता हूँ?",
+      "a": "इस संस्करण में नहीं। jq with --sort-keys जैसे sort-aware टूल में पेस्ट करना सबसे साफ तरीका है।"
+    },
+    {
+      "q": "क्या यह deeply nested JSON संभालता है?",
+      "a": "हाँ। ब्राउज़र का JSON parser किसी भी व्यावहारिक गहराई को संभालता है।"
+    },
+    {
+      "q": "minify 1 MB फ़ाइल को 1 byte क्यों नहीं बनाता?",
+      "a": "Minify केवल whitespace हटाता है। वास्तविक डेटा अभी भी है। वास्तविक आकार कमी के लिए, gzip या MessagePack जैसे binary format का उपयोग करें।"
+    },
+    {
+      "q": "क्या डेटा कहीं भेजा जाता है?",
+      "a": "नहीं। सभी parsing और formatting आपके ब्राउज़र में होती है।"
+    },
+    {
+      "q": "JSON Schema validation के बारे में क्या?",
+      "a": "यह टूल केवल syntax मान्य करता है। Schema validation के लिए, अपनी schema file के साथ JSON Schema validator का उपयोग करें।"
+    }
+  ]
+}

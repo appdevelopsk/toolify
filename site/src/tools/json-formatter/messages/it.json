@@ -1,0 +1,99 @@
+{
+  "title": "Formattatore e Minificatore JSON (valida e stampa in modo leggibile)",
+  "shortDescription": "Formatta o minifica JSON. Valida l'input e mostra un errore chiaro con riga e colonna in caso di problema.",
+  "description": "Incolla qualsiasi JSON per formattarlo con 2/4/8 spazi di rientro, o minificarlo su una singola riga. JSON non valido mostra un errore di analisi per trovare rapidamente il problema.",
+  "metaDescription": "Formattatore e minificatore JSON gratuito. Valida l'input, formatta con il rientro scelto o minifica su una riga.",
+  "keywords": [
+    "formattatore JSON",
+    "minificatore JSON",
+    "validatore JSON",
+    "pretty print JSON",
+    "formattare JSON"
+  ],
+  "input": "Input JSON",
+  "output": "Output formattato",
+  "mode": {
+    "format": "Formatta",
+    "minify": "Minifica"
+  },
+  "indent": "Rientro",
+  "copy": "Copia",
+  "copied": "Copiato",
+  "error": "Errore di analisi",
+  "stats": "Input: {input} byte · Output: {output} byte",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cosa fa questo strumento",
+        "paragraphs": [
+          "JSON è un formato rigido — ogni virgoletta, virgola e parentesi deve essere nel posto giusto. I browser e le API restituiscono messaggi criptici come 'Unexpected token' quando qualcosa non va, e il problema è spesso invisibile a colpo d'occhio. Questo formattatore analizza l'input con il parser JSON nativo del browser, poi lo ri-serializza in modo leggibile (con rientro) o minificato (senza spazi bianchi).",
+          "Se l'analisi fallisce, ottieni direttamente l'errore sottostante — di solito con la posizione del carattere errato. Da lì puoi trovare rapidamente la virgola mancante, la virgoletta non escapata o la virgola finale."
+        ]
+      },
+      {
+        "heading": "Formattare vs minificare",
+        "paragraphs": [
+          "Formattare con rientro: il modo standard per leggere il JSON. 2 spazi è convenzionale nel mondo JavaScript; 4 spazi è comune nei contesti Python e Java. Scegli quello che usa il tuo progetto.",
+          "Minificare: comprime su una singola riga senza spazi bianchi. Utile quando si incorpora JSON in URL, variabili d'ambiente o ovunque gli spazi bianchi siano rilevanti. La differenza di dimensione è significativa: un tipico file di configurazione formattato si riduce del 20-40% quando minificato."
+        ]
+      },
+      {
+        "heading": "Errori comuni in JSON",
+        "paragraphs": [
+          "Virgole finali. Consentite in JavaScript, non in JSON. {a:1, b:2,} viene analizzato nel tuo editor di codice ma fallisce quando inviato in rete.",
+          "Virgolette singole. JSON richiede virgolette doppie sia per le chiavi che per i valori stringa. {'a': 1} è JSON non valido. {\"a\": 1} è corretto.",
+          "Commenti. JSON non ha commenti. // o /* */ all'interno di JSON interrompe l'analisi. JSONC (usato da VS Code config) supporta i commenti ma non è JSON standard.",
+          "Numeri. JSON non supporta NaN o Infinity. Usa null, o racchiudi in una stringa, a seconda del tuo consumer downstream."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Incolla il tuo JSON",
+        "text": "Da pochi byte a qualche centinaio di KB funziona senza rallentamenti."
+      },
+      {
+        "name": "Scegli formatta o minifica",
+        "text": "Più un livello di rientro per la modalità formattazione."
+      },
+      {
+        "name": "Leggi o copia il risultato",
+        "text": "In caso di errore, il messaggio del parser indica il problema."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Supporta JSONC (JSON con commenti)?",
+      "a": "Non ancora. Rimuovi prima i commenti o usa uno strumento che supporta JSONC."
+    },
+    {
+      "q": "Qual è il limite di dimensione?",
+      "a": "I browser moderni gestiscono JSON da più megabyte, anche se la textarea può rallentare oltre ~1 MB. Per file enormi, usa uno strumento desktop."
+    },
+    {
+      "q": "Perché il mio JSON non è valido?",
+      "a": "Più spesso: una virgola finale, virgolette singole o una virgoletta non escapata all'interno di una stringa. L'errore del parser indica la colonna in cui il problema viene rilevato."
+    },
+    {
+      "q": "Posso ordinare le chiavi alfabeticamente?",
+      "a": "Non in questa versione. Incollare in uno strumento con supporto all'ordinamento (come jq con --sort-keys) è il percorso più pulito; potremmo aggiungere l'opzione in seguito."
+    },
+    {
+      "q": "Gestisce JSON profondamente annidato?",
+      "a": "Sì. Il parser JSON del browser gestisce qualsiasi profondità pratica."
+    },
+    {
+      "q": "Perché minificare non riduce un file da 1 MB a 1 byte?",
+      "a": "Minificare rimuove solo gli spazi bianchi. I dati effettivi sono ancora lì. Per una vera riduzione delle dimensioni, usa gzip o un formato binario come MessagePack."
+    },
+    {
+      "q": "I dati vengono inviati da qualche parte?",
+      "a": "No. Tutta l'analisi e la formattazione avviene nel tuo browser."
+    },
+    {
+      "q": "E la validazione del JSON Schema?",
+      "a": "Questo strumento valida solo la sintassi. Per la validazione dello schema, usa un validatore JSON Schema con il tuo file di schema."
+    }
+  ]
+}

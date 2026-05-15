@@ -1,0 +1,102 @@
+{
+  "title": "URL-Encoder / -Decoder (Prozent-Kodierung, UTF-8-sicher)",
+  "shortDescription": "Beliebigen Text in URL-Prozent-Kodierung umwandeln oder eine kodierte Zeichenkette zurückdecodieren. UTF-8-sicher — handhabt Emoji und CJK-Zeichen korrekt.",
+  "description": "Zum sicheren Einbetten von Text in URLs, Query-Parameter oder Formulardaten verwenden. Verarbeitet Leerzeichen, Sonderzeichen und Unicode (inkl. CJK und Emoji) korrekt.",
+  "metaDescription": "Kostenloser URL-Encoder und -Decoder. Text in Prozent-Kodierung umwandeln oder kodierte Zeichenketten in Klartext zurückdecodieren.",
+  "keywords": [
+    "URL-Encoder",
+    "URL-Decoder",
+    "Prozent-Kodierung",
+    "URI kodieren",
+    "decodeURIComponent"
+  ],
+  "input": {
+    "plain": "Klartext",
+    "encoded": "Kodierte URL-Zeichenkette"
+  },
+  "output": {
+    "encoded": "Kodiertes Ergebnis",
+    "plain": "Decodiertes Ergebnis"
+  },
+  "mode": {
+    "encode": "Kodieren",
+    "decode": "Decodieren"
+  },
+  "copy": "Kopieren",
+  "copied": "Kopiert",
+  "error": "Decodierfehler",
+  "article": {
+    "sections": [
+      {
+        "heading": "Was URL-Kodierung ist",
+        "paragraphs": [
+          "URLs sind auf eine kleine Menge von ASCII-Zeichen beschränkt. Um alles andere einzubeziehen — Leerzeichen, Akzente, chinesische Zeichen, Emoji, Sonderzeichen — wird jedes unsichere Byte durch %XX ersetzt, wobei XX sein hexadezimaler Bytewert ist. Ein Leerzeichen wird zu %20, ein Schrägstrich zu %2F, das Kanji 漢 wird zu %E6%BC%A2 (seine UTF-8-Bytes prozent-kodiert).",
+          "Dieser Rechner verwendet die eingebauten encodeURIComponent- und decodeURIComponent-Funktionen des Browsers. Er kodiert alles, was kein unreserviertes Zeichen ist (Buchstaben, Ziffern, -._~), was das richtige Verhalten für Query-Parameter und Formulardaten ist."
+        ]
+      },
+      {
+        "heading": "encodeURI vs. encodeURIComponent",
+        "paragraphs": [
+          "JavaScript hat zwei Encoder. encodeURI lässt URL-Strukturzeichen (/ ? & # = + usw.) unverändert — für vollständige URLs verwenden. encodeURIComponent maskiert all diese — für den Wert innerhalb eines Query-Parameters verwenden.",
+          "Dieses Tool verwendet encodeURIComponent, die sicherere Wahl zum Einbetten beliebigen Textes in eine URL. Bei einer vollständigen URL mit zu erhaltender Struktur nur die Teile kodieren, die es brauchen."
+        ]
+      },
+      {
+        "heading": "Häufige Fallstricke",
+        "paragraphs": [
+          "Pluszeichen in URLs. Manche Server behandeln ‚+' als Leerzeichen (ein Überbleibsel der Formular-Kodierung). encodeURIComponent lässt ‚+' unverändert, aber ein Server könnte es als Leerzeichen decodieren. Sicherheitshalber ‚+' durch %2B ersetzen, wenn es als Datenwert gesendet wird.",
+          "Doppelkodierung. Das Kodieren einer bereits kodierten Zeichenkette fügt eine weitere Schicht hinzu (% wird zu %25, also wird ‚%20' zu ‚%2520'). Immer prüfen, ob die Eingabe bereits kodiert ist, bevor encode erneut ausgeführt wird.",
+          "Längenzunahme. UTF-8-Mehrbyte-Zeichen expandieren zu je 3–4 Prozentkodes. Eine 100-Zeichen-Zeichenkette in Chinesisch wird leicht zu einer 900+-Zeichen-URL."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Modus wählen",
+        "text": "Klartext in URL-sichere Form kodieren oder eine URL-kodierte Zeichenkette in Klartext zurückdecodieren."
+      },
+      {
+        "name": "Eingabe einfügen",
+        "text": "Klartext zum Kodieren, prozent-kodierte Zeichenkette zum Decodieren."
+      },
+      {
+        "name": "Ergebnis kopieren",
+        "text": "Die Ausgabe erscheint darunter; ‚Kopieren' klicken, um sie zu verwenden."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Warum wird mein Leerzeichen ‚%20' nicht zu einem Leerzeichen decodiert?",
+      "a": "Das sollte es — aber wenn ‚+' in einer URL steht, könnte es auch ein Leerzeichen darstellen (ältere Formular-Kodierung). Bei Bedarf ‚+' zuerst durch Leerzeichen ersetzen."
+    },
+    {
+      "q": "Handhabt das Emoji?",
+      "a": "Ja. Emoji werden als ihre UTF-8-Byte-Sequenzen kodiert (typischerweise 4 Bytes / 4 Prozentkodes pro Emoji)."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen URL-Kodierung und HTML-Kodierung?",
+      "a": "URL-Kodierung verwendet %-Notation für URL-Kontexte. HTML-Kodierung verwendet &lt; &gt; usw. für HTML. Unterschiedliche Kontexte, unterschiedliche Regeln."
+    },
+    {
+      "q": "Wann soll ich kodieren und wann nicht?",
+      "a": "Jeden Wert kodieren, der in einen URL-Query-Parameter, Pfadsegment mit Benutzereingaben oder Formulardaten einfließt. Eine bereits fertig aufgebaute URL nicht kodieren — das führt zur Doppelkodierung."
+    },
+    {
+      "q": "Warum verursacht ‚%' in meinem decodierten Text einen Fehler?",
+      "a": "Ein einzelnes ‚%' gefolgt von etwas, das kein gültiges Hex ist, ist ungültige Prozent-Kodierung. ‚%' als ‚%25' kodieren, bevor es in eine URL aufgenommen wird."
+    },
+    {
+      "q": "Macht der Browser das automatisch?",
+      "a": "Ja — beim Aufbau von URLs über die URL- oder URLSearchParams-APIs. Dieses Tool macht dieselbe Logik für den Ad-hoc-Gebrauch zugänglich."
+    },
+    {
+      "q": "Welche Zeichen sind ‚sicher' und brauchen keine Kodierung?",
+      "a": "Buchstaben (A–Z, a–z), Ziffern (0–9) und diese: - . _ ~ . Alles andere wird von encodeURIComponent prozent-kodiert."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Kodierung und Decodierung laufen beide lokal."
+    }
+  ]
+}

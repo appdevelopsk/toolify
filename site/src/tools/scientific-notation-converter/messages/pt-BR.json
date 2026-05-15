@@ -1,0 +1,104 @@
+{
+  "title": "Conversor de Notação Científica (decimal ↔ científica)",
+  "shortDescription": "Converta números decimais de/para notação científica (1,23 × 10⁴) e notação de engenharia (1,23e3). Bidirecional, com saída em notação E.",
+  "description": "Dois modos: decimal para científica calcula o coeficiente e o expoente de qualquer número; científica para decimal expande de volta. A notação de engenharia (múltiplos de 3 no expoente) também é exibida.",
+  "metaDescription": "Conversor gratuito de notação científica. Decimal para científica (×10^n) ou vice-versa. Notação E, notação de engenharia.",
+  "keywords": [
+    "conversor de notação científica",
+    "notação e",
+    "notação de engenharia",
+    "decimal para científica",
+    "calculadora de expoente"
+  ],
+  "dir": {
+    "toSci": "Decimal → Científica",
+    "toDec": "Científica → Decimal"
+  },
+  "input": {
+    "decimal": "Número decimal",
+    "coefficient": "Coeficiente",
+    "exponent": "Expoente (10^n)"
+  },
+  "result": {
+    "scientific": "Notação científica",
+    "eNotation": "Notação E",
+    "engineering": "Notação de engenharia",
+    "decimal": "Valor decimal"
+  },
+  "empty": "Insira um número para converter.",
+  "article": {
+    "sections": [
+      {
+        "heading": "O que é notação científica",
+        "paragraphs": [
+          "A notação científica expressa números como coef × 10^expoente, onde o coef está entre 1 e 10 (geralmente 1 ≤ coef < 10). É usada para números muito grandes ou muito pequenos que seriam complicados na forma decimal.",
+          "Exemplos: velocidade da luz = 3 × 10⁸ m/s. Número de Avogadro = 6,022 × 10²³. Massa do elétron = 9,109 × 10⁻³¹ kg. O expoente diz quantas casas mover o ponto decimal: positivo move para direita (multiplica), negativo move para esquerda (divide)."
+        ]
+      },
+      {
+        "heading": "Notação E nos computadores",
+        "paragraphs": [
+          "Notação E (1.23e4 = 1,23 × 10⁴) é a versão amigável para computadores. JavaScript, Python, Excel e a maioria das calculadoras usam isso. O 'e' é apenas notação — não tem relação com o 'e' (número de Euler).",
+          "Por que computadores usam notação E: teclados normalmente não têm sobrescrito ou '×' como caracteres fáceis de digitar. O E ou e em ASCII simples funciona em qualquer campo de texto.",
+          "Nota: 'e' em programação regex ou outros contextos tem significados diferentes. Em números, especificamente significa '× 10 elevado a'."
+        ]
+      },
+      {
+        "heading": "Notação de engenharia",
+        "paragraphs": [
+          "A notação de engenharia é similar à científica, mas o expoente é sempre um múltiplo de 3 (3, 6, 9, 12, … ou −3, −6, −9, …). Isso se alinha com os prefixos SI: quilo (10³), mega (10⁶), giga (10⁹), mili (10⁻³), micro (10⁻⁶), nano (10⁻⁹).",
+          "Exemplo: 1,23 × 10⁴ em científica é 12,3 × 10³ em engenharia, que pode ser lido como '12,3 quilo'. Útil em eletrônica, engenharia e qualquer campo que use prefixos SI.",
+          "Trade-off: a notação científica tem coeficiente em formato fixo (sempre 1 ≤ |coef| < 10); a engenharia permite faixa mais ampla (1 ≤ |coef| < 1000), mas mapeia melhor para prefixos SI."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolha a direção de conversão",
+        "text": "Decimal → científica ou científica → decimal."
+      },
+      {
+        "name": "Digite o número ou coeficiente + expoente",
+        "text": "Cada direção tem seu próprio formato de entrada."
+      },
+      {
+        "name": "Leia o resultado",
+        "text": "Inclui notação E e notação de engenharia como bônus."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Por que o expoente é útil?",
+      "a": "Ele informa a ordem de magnitude. 10⁹ é um bilhão; 10⁻⁹ é uma escala nanométrica. Para comparar escalas muito diferentes (atômica vs astronômica), os expoentes são a linguagem natural."
+    },
+    {
+      "q": "1,23e4 é o mesmo que 1,23 × 10⁴?",
+      "a": "Sim — mesmo número, notação diferente. 'e4' é uma forma amigável ao computador de escrever '× 10⁴'. A maioria das linguagens de programação e calculadoras aceita como entrada."
+    },
+    {
+      "q": "Qual é a precisão desta calculadora?",
+      "a": "Precisão de ponto flutuante (cerca de 15-17 dígitos significativos). Para maior precisão (1.000+ dígitos), use um CAS como SymPy ou Mathematica."
+    },
+    {
+      "q": "Posso fazer operações em notação científica?",
+      "a": "Multiplicar: multiplique os coeficientes, some os expoentes. Dividir: divida os coeficientes, subtraia os expoentes. Somar/subtrair: leve ao mesmo expoente primeiro, depois some/subtraia os coeficientes."
+    },
+    {
+      "q": "Por que meu número aparece como 'Infinity'?",
+      "a": "Expoente grande demais para precisão dupla IEEE 754 (cerca de 308). Para números maiores, use um CAS ou bibliotecas baseadas em BigInt."
+    },
+    {
+      "q": "O que é 'mantissa'?",
+      "a": "Sinônimo mais antigo para o coeficiente — a parte antes do × 10^. Alguns livros ainda usam. A convenção moderna é 'coeficiente' ou 'significando'."
+    },
+    {
+      "q": "Posso usar notação científica para coeficientes negativos?",
+      "a": "Sim. −3 × 10⁵ = −300.000. O sinal de menos vai no coeficiente, não no expoente."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. O cálculo é feito localmente; nada é enviado para um servidor."
+    }
+  ]
+}

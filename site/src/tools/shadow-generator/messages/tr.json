@@ -1,0 +1,73 @@
+{
+  "title": "CSS Kutu Gölgesi Oluşturucu (canlı önizleme ile)",
+  "shortDescription": "CSS box-shadow değerlerini görsel olarak oluşturun. Ofset, bulanıklık, yayılma, renk, opaklık ve inset ayarlayın. Canlı önizleme, kopyala-yapıştır CSS.",
+  "description": "Altı yaygın gölge ön ayarı (yumuşak, kart, kaldırılmış, parıltı, nöromorfik, inset). Kaydırıcılarla tüm parametreleri ince ayarlayın, sonucu canlı görün ve yapıştırmaya hazır CSS kopyalayın.",
+  "metaDescription": "Canlı önizlemeli ücretsiz CSS box-shadow oluşturucu. Ofset, bulanıklık, yayılma, renk, opaklık, inset desteği. Nöromorfik dahil 6 ön ayar.",
+  "keywords": ["kutu gölgesi oluşturucu", "css gölge", "shadow css", "nöromorfik oluşturucu", "drop shadow oluşturucu"],
+  "preset": {
+    "soft": "Yumuşak",
+    "card": "Kart",
+    "lifted": "Kaldırılmış",
+    "glow": "Parıltı",
+    "neumorphic": "Nöromorfik",
+    "inset": "İç gölge"
+  },
+  "input": {
+    "x": "X ofseti",
+    "y": "Y ofseti",
+    "blur": "Bulanıklık",
+    "spread": "Yayılma",
+    "color": "Renk",
+    "opacity": "Opaklık",
+    "inset": "İç gölge (inset)"
+  },
+  "output": { "css": "CSS kodu" },
+  "copy": "CSS'i Kopyala",
+  "copied": "Kopyalandı!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Beş gölge parametresi",
+        "paragraphs": [
+          "X ofseti: yatay konum değişimi. Pozitif gölgeyi sağa, negatif sola kaydırır. Sol üstten gelen ışık (tipik UI varsayımı) için küçük pozitif X, sol üstten gelen ışığı simüle eder.",
+          "Y ofseti: dikey konum değişimi. Pozitif gölgeyi aşağı kaydırır, üsteki ışık kaynağını simüle eder. Neredeyse tüm UI gölgeleri pozitif Y kullanır.",
+          "Bulanıklık yarıçapı: gölgenin kenarının ne kadar yumuşak olduğu. 0 = keskin kenar (nadir). 8-30px kartlar ve düğmeler için tipiktir. Daha yüksek değerler rüya gibi, yumuşak gölgeler oluşturur.",
+          "Yayılma: gölgeyi eşit biçimde genişletir veya küçültür. Pozitif değerler gölgeyi öğeden daha büyük yapar; negatif küçültür. Ofsetle birleştirilmiş negatif yayılma 'kaldırılmış' efekti oluşturur.",
+          "Renk/opaklık: gölgeler genellikle düşük opaklıkta siyah olur (%10-30). Renkli gölgeler trend ama kullanması daha zordur. Arka planınızın değer aralığıyla eşleştirin — koyu UI'larda çok koyu gölgeler kaybolur, açık UI'larda çok açık gölgeler kontrast sağlamaz."
+        ]
+      },
+      {
+        "heading": "İç gölgeler",
+        "paragraphs": [
+          "İç gölge dışarıda değil öğenin içinde çizilir. Şunlar için kullanılır: basılmış düğme durumları, çökük giriş alanları, nöromorfik '3D içe baskılmış' efektler.",
+          "İç gölgeler öğenin kenar yarıçapına saygı gösterir ve taşmayı yok sayar. Gerçek düzeni değiştirmeden düz UI öğelerine görsel derinlik katmak için kullanışlıdır."
+        ]
+      },
+      {
+        "heading": "Nöromorfizm ve 'yumuşak UI' trendi",
+        "paragraphs": [
+          "Nöromorfizm (2020-2022 popüler), öğeleri aynı renkli arka plandan dışarı çıkıyormuş gibi göstermek için biri açık biri koyu iki karşıt gölge kullanır. 'Nöromorfik' ön ayarımız tek koyu gölgeyi gösterir; tam nöromorfizm için karşı tarafta açık iç gölgeyle birleştirin: 'inset -8px -8px 20px rgba(255,255,255,0.5), 8px 8px 20px rgba(0,0,0,0.12)'.",
+          "Not: saf nöromorfizmin erişilebilirlik sorunları vardır — kontrast eksikliği öğeleri ayırt etmeyi zorlaştırır. Modern tasarımlar genellikle geleneksel gölgelerle birleştirerek tutumlu kullanır."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Bir ön ayar seçin", "text": "Veya kaydırıcılarla sıfırdan başlayın." },
+      { "name": "X/Y ofsetini ayarlayın", "text": "Gölgenin yönü." },
+      { "name": "Bulanıklık ve yayılmayı ayarlayın", "text": "Bulanıklık yumuşatır; yayılma büyütür." },
+      { "name": "Renk ve opaklığı belirleyin", "text": "Çoğu UI gölgesi %10-30 opaklıkta siyah kullanır." },
+      { "name": "İnset'i açın/kapatın", "text": "İç gölgeler için (basılmış düğme, çökük giriş)." },
+      { "name": "CSS'i kopyalayın", "text": "Stil sayfanızın box-shadow özelliğine yapıştırın." }
+    ]
+  },
+  "faq": [
+    { "q": "Birden fazla gölge ekleyebilir miyim?", "a": "CSS virgülle ayrılmış birden fazla gölgeyi destekler: 'box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)'. Aracımız aynı anda bir gölge üretir; birden fazlasını elle birleştirin." },
+    { "q": "Nöromorfik efekt nasıl yaparım?", "a": "Sağ altta koyu gölgeyi sol üstte açık gölgeyle birleştirin; her ikisi de iç veya her ikisi de dış. Örnek: '8px 8px 20px rgba(0,0,0,0.12), -8px -8px 20px rgba(255,255,255,0.7)'. Ön ayarımız koyu yarısını gösterir; açık gölgeyi manuel ekleyin." },
+    { "q": "Bulanıklık ile yayılma arasındaki fark nedir?", "a": "Bulanıklık gölgenin kenarını yumuşatır (gradyan şeffaflık). Yayılma gölgenin genel boyutunu değiştirir (öğeden fazla veya az). Bulanıklık=20 yayılma=0, öğe boyutunda yumuşak parıltıdır; bulanıklık=0 yayılma=20, 20px daha büyük sert gölgedir." },
+    { "q": "Gölgem neden düz görünüyor?", "a": "Muhtemelen çok düşük opaklık, ofset yok veya gölge rengi arka plana çok yakın. Başlangıç noktası olarak Y=8, bulanıklık=24, opaklık=0,18 deneyin — bu değerler çoğu açık arka planda görünür biçimde işler." },
+    { "q": "Bunu text-shadow için kullanabilir miyim?", "a": "Neredeyse — text-shadow 'yayılma' ve 'inset' dışında aynı sözdizimini kullanır. Kopyaladıktan sonra manuel ayarlayın: 'X Y bulanıklık renk' alın (yayılma ve inset'i bırakın)." },
+    { "q": "Gölgeler performanslı mı?", "a": "Box-shadow modern tarayıcılarda GPU hızlandırmalıdır. Birçok öğede birçok gölge kaydırmayı yine de yavaşlatabilir. Kart ve düğmelerdeki tek gölgeler: sıfır endişe." },
+    { "q": "Gölge mi kullanmalıyım, kenarlık mı?", "a": "Her ikisinin kullanım alanı var. Kenarlıklar daha keskin ve erişilebilir. Gölgeler daha yumuşak/daha yükseltilmiş görünür. Modern düz UI'lar genellikle her ikisini de kullanır: keskinlik için ince kenarlık + yükseklik için yumuşak gölge." },
+    { "q": "Veriler tarayıcımdan çıkıyor mu?", "a": "Hayır. Tüm önizleme ve CSS üretimi yerel olarak çalışır; hiçbir şey sunucuya gönderilmez." }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "title": "Calcolatore di Percentuale (% di, che %, variazione %)",
+  "shortDescription": "Tre calcolatori percentuali in uno: 'X% di Y', 'X è che % di Y', e variazione percentuale tra due valori.",
+  "description": "Scegli una modalità, inserisci due numeri e ottieni la risposta all'istante. Gestisce 'percentuale di', 'che percentuale' e 'variazione percentuale' — le tre operazioni dietro quasi ogni domanda sulle percentuali.",
+  "metaDescription": "Calcolatore di percentuale gratuito: trova X% di Y, che percentuale un numero è di un altro, o la variazione percentuale tra due valori. Istantaneo, nel browser.",
+  "keywords": ["calcolatore percentuale", "percentuale di", "variazione percentuale", "calcolatore sconto", "aumento diminuzione percentuale"],
+  "empty": "Inserisci entrambi i valori per vedere il risultato.",
+  "mode": {
+    "pct_of": {
+      "title": "X% di Y",
+      "labelA": "X (percentuale)",
+      "labelB": "Y (valore)",
+      "resultLabel": "X% di Y",
+      "resultUnit": ""
+    },
+    "what_pct": {
+      "title": "X è che % di Y",
+      "labelA": "X (parte)",
+      "labelB": "Y (totale)",
+      "resultLabel": "X è questa % di Y",
+      "resultUnit": "%"
+    },
+    "pct_change": {
+      "title": "Variazione da A a B",
+      "labelA": "A (inizio)",
+      "labelB": "B (fine)",
+      "resultLabel": "Variazione",
+      "resultUnit": "%"
+    }
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Le tre operazioni sulle percentuali",
+        "paragraphs": [
+          "Quasi ogni problema reale con le percentuali si riduce a uno di tre schemi: 'X% di Y' (uno sconto o una tassa), 'X è che % di Y' (un rapporto espresso come percentuale), o la variazione percentuale da A a B (crescita anno su anno, perdita di peso, miglioramento del punteggio a un esame).",
+          "Questo calcolatore espone tutti e tre in un'unica interfaccia. Cambia la modalità in alto, poi inserisci i due valori. La matematica è semplice ma la contabilità — quale numero va dove — è dove avvengono la maggior parte degli errori, quindi le etichette qui sono esplicite su quale input è la parte e quale è il totale."
+        ]
+      },
+      {
+        "heading": "Come viene calcolata la variazione percentuale",
+        "paragraphs": [
+          "Variazione percentuale = (nuovo − vecchio) / vecchio × 100. Un risultato positivo significa un aumento, un risultato negativo significa una diminuzione. Nota che la formula divide per il vecchio valore, non per quello nuovo o per la media — ecco perché un calo del 50% seguito da un aumento del 50% non ti riporta al punto di partenza: finisce al 75% dell'originale.",
+          "Quando il vecchio valore è zero, la variazione percentuale è indefinita (non puoi dividere per zero). Il calcolatore non restituisce alcun risultato in quel caso piuttosto che mostrare 'infinito', perché la risposta a 'quanto è grande la variazione rispetto a niente' non è significativa."
+        ]
+      },
+      {
+        "heading": "Errori comuni",
+        "paragraphs": [
+          "Percentuali composte. Un aumento del 10% dopo un aumento del 10% è il 21%, non il 20% (1,10 × 1,10 = 1,21). Usa la modalità 'percentuale di' due volte o la modalità 'variazione percentuale' per il rapporto finale.",
+          "Punti percentuali vs percentuale. Se un sondaggio si sposta dal 40% al 42%, si tratta di una variazione di 2 punti percentuali ma di un aumento relativo del 5%. La modalità 'variazione percentuale' del calcolatore riporta la variazione relativa.",
+          "Accumulo di sconti. Un coupon '20% di sconto' applicato dopo una svendita '20% di sconto' è il 36% sull'originale (0,8 × 0,8 = 0,64), non il 40%. Esegui il calcolatore due volte in modalità 'percentuale di' per vederlo direttamente."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Scegli una modalità", "text": "Scegli 'percentuale di', 'che percentuale' o 'variazione percentuale' in base a cosa stai cercando di trovare." },
+      { "name": "Inserisci il primo numero", "text": "L'etichetta ti dice quale valore va qui per la modalità scelta." },
+      { "name": "Inserisci il secondo numero", "text": "Il risultato si aggiorna mentre digiti." },
+      { "name": "Leggi la risposta", "text": "Il risultato include l'unità appropriata (%, numero semplice) per la modalità scelta." }
+    ]
+  },
+  "faq": [
+    { "q": "Il calcolo è preciso a molte cifre decimali?", "a": "Sì — usiamo la virgola mobile a doppia precisione e arrotondiamo la visualizzazione a quattro cifre decimali. Per lavori finanziari ad alta precisione, tratta il risultato come approssimativo alla 16ª cifra significativa." },
+    { "q": "Perché la variazione percentuale chiede prima il vecchio poi il nuovo?", "a": "Perché la formula divide per il vecchio valore. Scambiare i due input inverte il segno del risultato." },
+    { "q": "Come calcolo un prezzo scontato?", "a": "Usa 'percentuale di' con X = la percentuale di sconto e Y = il prezzo originale; sottrai il risultato dall'originale. Oppure usa 'percentuale di' con X = (100 − sconto) e Y = prezzo per il prezzo finale direttamente." },
+    { "q": "Come trovo la percentuale di sconto se conosco entrambi i prezzi?", "a": "Usa 'variazione percentuale' con A = prezzo originale e B = prezzo di saldo. Il numero negativo è il tuo sconto." },
+    { "q": "Cosa succede se inserisco un numero negativo?", "a": "Tutte e tre le modalità accettano i negativi. La variazione percentuale in particolare è ben definita: la variazione da −5 a 5 è −200% (il segno del divisore inverte il risultato)." },
+    { "q": "Posso usarlo per i calcoli delle imposte?", "a": "Sì — 'percentuale di' con X = aliquota fiscale e Y = importo al lordo delle imposte dà l'imposta. Aggiungila all'originale o usa 'percentuale di' con X = (100 + imposta)." },
+    { "q": "Perché 'aumentare del 50% poi diminuire del 50%' non restituisce l'originale?", "a": "Perché le percentuali si compongono. 100 × 1,5 × 0,5 = 75, non 100. Esegui la modalità 'variazione percentuale' dall'inizio alla fine per vedere che la variazione netta è del −25%." },
+    { "q": "Funziona per i calcoli dei voti?", "a": "Sì. Usa 'che percentuale' con X = punti ottenuti e Y = punti possibili per ottenere il tuo voto in percentuale." }
+  ]
+}

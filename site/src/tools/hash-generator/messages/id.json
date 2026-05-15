@@ -1,0 +1,54 @@
+{
+  "title": "Generator Hash (SHA-1, SHA-256, SHA-384, SHA-512)",
+  "shortDescription": "Hitung hash SHA-1, SHA-256, SHA-384, dan SHA-512 dari teks UTF-8 apapun. API Web Crypto bawaan browser; tidak ada yang meninggalkan perangkat Anda.",
+  "description": "Ketik teks apapun untuk melihat keempat hash SHA secara bersamaan. Berguna untuk memverifikasi integritas file, menghasilkan tanda tangan, men-debug penandatanganan permintaan API, dan mempelajari kriptografi.",
+  "metaDescription": "Generator hash SHA-1/256/384/512 gratis. Input UTF-8, semua hash ditampilkan sekaligus, API Web Crypto bawaan browser. Data Anda tetap di perangkat Anda.",
+  "keywords": ["generator hash", "generator SHA-256", "kalkulator SHA-1", "hash SHA-512", "hash online", "sha256 online indonesia"],
+  "input": { "text": "Input", "placeholder": "Ketik atau tempel teks untuk di-hash…" },
+  "copy": "Salin",
+  "copied": "Tersalin",
+  "md5Note": "MD5 dihilangkan: telah dibobol untuk tujuan keamanan sejak 2004 dan tidak lagi ditawarkan oleh Web Crypto. Gunakan SHA-256 atau yang lebih kuat.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa itu hashing dan apa yang bukan",
+        "paragraphs": [
+          "Fungsi hash kriptografis mengambil input berukuran apapun dan menghasilkan output berukuran tetap ('digest'). Input yang sama selalu memberikan digest yang sama. Perubahan kecil pada input menghasilkan digest yang sangat berbeda (avalanche). Membalikkan digest untuk menemukan input tidak dapat dilakukan secara komputasi untuk fungsi yang kuat secara kriptografis seperti SHA-256.",
+          "Hashing bukan enkripsi. Tidak ada kunci, tidak ada dekripsi. Kebingungan umum: hashing password (gunakan bcrypt/argon2 sebagai gantinya — mereka memperlambat brute force), hashing teks sembarang lalu 'mendekode'-nya (tidak mungkin secara desain)."
+        ]
+      },
+      {
+        "heading": "Algoritma mana yang harus dipilih",
+        "paragraphs": [
+          "SHA-256 adalah default modern. Digunakan dalam Bitcoin, sertifikat TLS, tanda tangan JWT (HS256), hash integritas file. 256 bit sudah cukup untuk kebutuhan keamanan yang realistis.",
+          "SHA-384 dan SHA-512 adalah varian lebih besar dari keluarga yang sama. SHA-512 terkadang lebih cepat di perangkat keras 64-bit. Gunakan ketika protokol atau standar secara eksplisit memerlukannya.",
+          "SHA-1 sudah tidak digunakan untuk keamanan tetapi masih muncul di sistem lama (TLS lama, hash commit git). Jangan gunakan untuk pekerjaan baru yang kritis keamanan — tabrakan telah didemonstrasikan sejak 2017. Kami menyertakannya untuk kompatibilitas mundur."
+        ]
+      },
+      {
+        "heading": "Penggunaan umum",
+        "paragraphs": [
+          "Integritas file: unduh file dan hash-nya; hitung ulang hash secara lokal; bandingkan. Jika cocok, file tidak diubah saat transit.",
+          "Commit Git: identifier setiap commit adalah hash SHA-1 dari isinya. Meng-hash pesan commit sendiri tidak mengungkapkan apapun — Anda memerlukan sisa commit untuk mereproduksinya.",
+          "Penandatanganan permintaan API: HMAC-SHA-256 adalah standar untuk AWS, GitHub, dan banyak API. Hash itu sendiri hanyalah satu bagian dari HMAC; API akan memberikan konstruksi tepat yang diharapkan.",
+          "Kunci cache: meng-hash URL atau sekumpulan parameter memberikan kunci cache yang stabil dan panjangnya tetap."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Ketik atau tempel teks", "text": "Apa saja mulai dari satu karakter hingga teks multi-megabyte." },
+      { "name": "Baca keempat hash", "text": "Dihitung langsung saat Anda mengetik." },
+      { "name": "Salin apa yang Anda butuhkan", "text": "Setiap algoritma memiliki tombol salin sendiri." }
+    ]
+  },
+  "faq": [
+    { "q": "Mengapa tidak ada MD5?", "a": "Tabrakan MD5 telah didemonstrasikan sejak 2004; API Web Crypto tidak mengeksposnya. Untuk penggunaan non-keamanan (kunci cache, deduplikasi file), gunakan SHA-256 — hanya sedikit lebih lambat dan tidak memiliki risiko tabrakan." },
+    { "q": "Bisakah saya meng-hash file biner?", "a": "Tidak langsung melalui alat ini — hanya tempel teks. Untuk file, gunakan shell OS Anda: `shasum -a 256 namafile.txt` di macOS/Linux, `Get-FileHash` di Windows." },
+    { "q": "Mengapa SHA-512 lebih panjang dari SHA-256?", "a": "Angka dalam nama merujuk pada panjang bit output: SHA-256 menghasilkan 256 bit = 64 karakter hex; SHA-512 menghasilkan 512 bit = 128 karakter hex. Dua kali lebih panjang." },
+    { "q": "Bisakah dua input berbeda menghasilkan hash yang sama?", "a": "Secara teori ya (prinsip pigeonhole), dalam praktiknya tidak untuk SHA-256 dengan teknologi saat ini. Tabrakan SHA-1 telah didemonstrasikan; SHA-256 belum." },
+    { "q": "Haruskah saya menggunakan ini untuk meng-hash password?", "a": "Tidak. Password memerlukan hashing lambat (bcrypt, scrypt, argon2) plus salt. SHA-256 biasa terlalu cepat — penyerang dapat meng-hash miliaran per detik." },
+    { "q": "Mengapa teks yang sama selalu memberikan hash yang sama?", "a": "Berdasarkan definisi. Fungsi hash bersifat deterministik. Jika Anda memerlukan output berbeda setiap kali (misalnya 'salt'), tambahkan nilai acak di awal atau akhir input." },
+    { "q": "Apakah data dikirim ke mana saja?", "a": "Tidak. Web Crypto berjalan sepenuhnya di browser Anda; tidak ada yang ditransmisikan." },
+    { "q": "Apa itu HMAC dan apakah ini HMAC?", "a": "HMAC menambahkan kunci rahasia ke fungsi hash. Alat ini menghitung hash biasa; untuk HMAC, gunakan alat khusus atau library pemrograman." }
+  ]
+}

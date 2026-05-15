@@ -1,0 +1,61 @@
+{
+  "title": "ISO-Kalenderwochen-Rechner (Kalenderwoche im Jahr)",
+  "shortDescription": "ISO-8601-Kalenderwoche, ISO-Wochentag und Wochendatumsbereich für jedes Datum ermitteln. Inkl. Jahrestag und Wochen im Jahr.",
+  "description": "Ein beliebiges Datum wählen und seine ISO-8601-Kalenderwoche (1–53), den ISO-Wochentag (1=Montag, 7=Sonntag), den Montag-Sonntag-Bereich dieser Woche sowie nützliche Zählwerte (Jahrestag, Wochen im Jahr) sehen.",
+  "metaDescription": "Kostenloser ISO-Kalenderwochen-Rechner. ISO-8601-Woche, Wochentag, Wochendatumsbereich, Jahrestag, Wochen im Jahr. Standard-Kalenderwochen-Format.",
+  "keywords": ["ISO Kalenderwoche", "Kalenderwoche im Jahr", "ISO 8601 Woche", "Kalenderwochen Rechner", "KW Rechner"],
+  "input": { "date": "Datum" },
+  "today": "Heute",
+  "result": {
+    "iso": "ISO-8601-Darstellung",
+    "weekNumber": "Kalenderwoche",
+    "weekday": "Wochentag",
+    "weekStart": "Woche beginnt (Montag)",
+    "weekEnd": "Woche endet (Sonntag)",
+    "dayOfYear": "Tag im Jahr",
+    "weeksInYear": "Wochen im Jahr"
+  },
+  "empty": "Ein Datum auswählen.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Was eine ISO-Woche ist",
+        "paragraphs": [
+          "ISO 8601 definiert eine Kalenderwoche, die montags beginnt und sonntags endet. Die erste Woche eines ISO-Jahres ist die, die den ersten Donnerstag des Jahres enthält – gleichwertig: die Woche, die den 4. Januar enthält. Das bedeutet, dass ein Jahr 52 oder 53 ISO-Wochen haben kann, und das ISO-Jahr stimmt bei Datumsangaben Ende Dezember oder Anfang Januar nicht immer mit dem Kalenderjahr überein.",
+          "Format: 'JJJJ-Www-T'. Also steht '2026-W19-3' für Mittwoch der Woche 19 des Jahres 2026. Wochentagsnummer: 1=Montag, 7=Sonntag. Wochennummer: 1–52 oder 1–53."
+        ]
+      },
+      {
+        "heading": "Warum ISO-Wochen von Kalenderwochen abweichen",
+        "paragraphs": [
+          "In den USA beginnt die Woche traditionell am Sonntag. ISO-Wochen beginnen am Montag. In Deutschland und der EU ist Montag als Wochenbeginn üblich und entspricht dem ISO-Standard. Dennoch können die Grenzfälle um Jahreswechsel zu unerwarteten Ergebnissen führen.",
+          "ISO-Jahre können um eins vom Kalenderjahr abweichen. Der 31. Dezember 2024 liegt in ISO-Woche 1 des Jahres 2025 (die Woche, die den ersten Donnerstag 2025 enthält). Der 1. Januar 2025 ist ein Mittwoch – ISO-Woche 1 von 2025 beginnt am 30. Dezember 2024."
+        ]
+      },
+      {
+        "heading": "Wo ISO-Wochen verwendet werden",
+        "paragraphs": [
+          "Geschäftsbetrieb: Viele europäische Unternehmen fakturieren und liefern nach Kalenderwoche. 'Lieferung erfolgt in KW 23' ist eindeutig und sprachunabhängig.",
+          "Software: Viele Programmiersprachen bieten ISO-Wochenfunktionen. Bibliotheken wie date-fns und dayjs fügen sie hinzu. Verwendet in Zeitplanung, Protokollanalyse und Berichterstattung.",
+          "Epidemiologie im Gesundheitswesen: Wöchentliche Krankheitsmeldungen nutzen ISO-Wochen. WHO und ECDC verwenden sie in ihren Grippe- und COVID-Dashboards.",
+          "Sport / Gaming: Viele Ligen (insbesondere europäische) planen nach 'Woche 1, Woche 2, …', was oft ISO-Wochen entspricht."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Datum auswählen", "text": "Datumsauswahl oder Schaltfläche 'Heute'." },
+      { "name": "ISO-Darstellung ablesen", "text": "Format: JJJJ-Www-T, wobei w die Wochennummer und T der Wochentag ist." },
+      { "name": "Wochenbereich ansehen", "text": "Montag und Sonntag dieser Woche im lokalen Datumsformat." }
+    ]
+  },
+  "faq": [
+    { "q": "Warum stimmt das nicht mit der WEEKNUM-Funktion in Excel überein?", "a": "Excels WEEKNUM verwendet andere Konventionen. Der Standard ist US-Stil (Sonntag als erster Tag). Für ISO-Wochen in Excel ISOWEEKNUM verwenden oder in WEEKNUM den Parameter return_type=21 angeben." },
+    { "q": "Kann ein Jahr 53 Wochen haben?", "a": "Ja. Ein Jahr hat 53 ISO-Wochen, wenn der 1. Januar oder der 31. Dezember ein Donnerstag ist. Das trifft auf etwa 71 von je 400 Jahren zu." },
+    { "q": "Was ist der Unterschied zwischen ISO-Jahr und Kalenderjahr?", "a": "An den meisten Tagen sind sie gleich. Ende Dezember und Anfang Januar gibt es Randfälle. Der 29. Dezember 2008 liegt in ISO-Woche 1 des Jahres 2009 (Kalenderjahr 2008, ISO-Jahr 2009)." },
+    { "q": "Ist Woche 1 immer die Woche mit dem 1. Januar?", "a": "Nicht immer. ISO-Woche 1 enthält den ersten Donnerstag des Jahres. Fällt der 1. Januar auf einen Freitag bis Sonntag, gehört dieser Tag zur letzten ISO-Woche des Vorjahres." },
+    { "q": "Was ist der Unterschied zwischen W1 und KW 1?", "a": "Dasselbe im ISO-Kontext. Das Präfix W ist die ISO-Formatkonvention. '2026-W01' bedeutet ISO-Woche 1 des Jahres 2026 – in Deutschland üblicherweise als 'KW 1/2026' geschrieben." },
+    { "q": "Warum beginnt die ISO-Woche am Montag?", "a": "ISO 8601 hat das standardisiert. Der größte Teil der Welt verwendet Montag als Wochenbeginn; nur Saudi-Arabien, die USA, Kanada und einige andere Länder nutzen traditionell den Sonntag." },
+    { "q": "Kann ich das in einen Kalender exportieren?", "a": "Nicht direkt aus diesem Tool. Die Anfangs- und Enddaten der Woche verwenden und eigene Kalendereinträge erstellen." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Berechnung läuft lokal; nichts wird an einen Server gesendet." }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "title": "Şifre Oluşturucu (kriptografik güvenlik + güç ölçer)",
+  "shortDescription": "Tarayıcınızın güvenli kripto API'sini kullanarak güçlü rastgele şifreler oluşturun. Yapılandırılabilir uzunluk, karakter seti ve belirsiz karakter filtresi.",
+  "description": "crypto.getRandomValues ile şifreler oluşturur — Math.random değil, bankaların kullandığıyla aynı kaynak. Uzunluğu ve karakter sınıflarını ayarlayın; entropi ölçer sonucun gerçekte ne kadar güçlü olduğunu gösterir.",
+  "metaDescription": "Ücretsiz şifre oluşturucu. Yapılandırılabilir uzunluk ve karakter setleriyle kriptografik olarak güvenli rastgele şifreler.",
+  "keywords": [
+    "şifre oluşturucu",
+    "güvenli şifre",
+    "rastgele şifre",
+    "güçlü şifre",
+    "parola oluşturucu"
+  ],
+  "copy": "Kopyala",
+  "copied": "Kopyalandı",
+  "regenerate": "Yeni şifre",
+  "input": {
+    "length": "Uzunluk"
+  },
+  "opt": {
+    "upper": "Büyük harf (A-Z)",
+    "lower": "Küçük harf (a-z)",
+    "numbers": "Rakamlar (0-9)",
+    "symbols": "Semboller (!@#$...)",
+    "avoidAmbiguous": "Belirsizleri önle (0OoIl1)"
+  },
+  "strength": {
+    "weak": "Zayıf",
+    "medium": "Orta",
+    "strong": "Güçlü",
+    "excellent": "Mükemmel"
+  },
+  "entropy": "{bits} bit entropi",
+  "article": {
+    "sections": [
+      {
+        "heading": "Bu oluşturucu neden gerçekten güvenlidir",
+        "paragraphs": [
+          "Web'deki çoğu 'şifre oluşturucu' Math.random() kullanır; bu kriptografik olarak güvenli değildir — çıktısı, birkaç önceki değeri gören bir saldırgan tarafından tahmin edilebilir. Bu oluşturucu, Web Crypto API'sinden crypto.getRandomValues kullanır; HTTPS oturumlarını ve işletim sistemi düzeyindeki anahtar zincirlerini destekleyen aynı ilkeldir. Her karakter, seçilen alfabe üzerinde düzgün bir dağılımdan çekilir.",
+          "Üretim tamamen tarayıcınızda gerçekleşir. Şifre ağ üzerinden hiç gitmez ve sunucularımıza hiç ulaşmaz. Domainimiz tehlikeye girse bile bir saldırganın çalacağı hiçbir şey yok çünkü hiçbir şey saklanmaz."
+        ]
+      },
+      {
+        "heading": "Güç ölçer nasıl çalışır",
+        "paragraphs": [
+          "Güç etiketi entropiden hesaplanır: bit = log₂(alfabe_boyutu) × uzunluk. Yalnızca küçük harf içeren 10 karakterli bir şifrenin log₂(26) × 10 ≈ 47 biti vardır — kararlı çevrimdışı bir saldırıya karşı savunmasızdır. Dört karakter sınıfının tamamını kullanan 16 karakterli bir şifrenin yaklaşık 105 biti vardır — çoğu kullanım için yeterince güçlü. Bantlar şöyledir: <50 zayıf, 50-80 orta, 80-128 güçlü, ≥128 mükemmel.",
+          "Bu eşikler kabaca şuna karşılık gelir: zayıf = orta düzey saldırgan tarafından günler içinde tahmin edilebilir; orta = botnet'in yıllar alır; güçlü = bugün gerçekçi saldırgan yok; mükemmel = kuantum değerlendirmeleri dahil gelecekteki saldırganlara karşı rahat marj."
+        ]
+      },
+      {
+        "heading": "Uzunluk karmaşıklığı yener",
+        "paragraphs": [
+          "Matematik burada acımasızdır: şifrenize bir karakter eklemek arama alanını kabaca ikiye katlar (alfabelere bağlı olarak). Bir karakter sınıfı daha eklemek yalnızca hafifçe büyütür. 20 karakterlik küçük harfli bir şifre, 12 karakterlik karışık büyük-küçük-sembol şifresinden daha fazla entropi içerir ve yazmak daha kolaydır. Ezberlemeyi tercih ediyorsanız 7.000 kelimelik bir listeden dört rastgele kelime seçin — bu 51 bit, güçlü 8 karakterli karışık şifreyle benzerdir.",
+          "'Belirsizleri önle' seçeneği, birçok yazı tipinde başka karakterlere benzeyen karakterleri dışlar (0/O, I/l/1). Bu şifreyi biraz zayıflatır ama sesli okunmasını veya kopyalanmasını kolaylaştırır. Yalnızca şifreyi basılı bir listeden yazmanız gerekebileceğinde kullanın."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Uzunluk seçin",
+        "text": "16 hesaplar için iyi bir varsayılandır; şifre yöneticisi ana anahtarları için 20+."
+      },
+      {
+        "name": "Karakter sınıflarını seçin",
+        "text": "Çoğu site dördünü de kabul eder — büyük harf, küçük harf, rakam, sembol. Bazı eski siteler sembolleri reddeder."
+      },
+      {
+        "name": "Oluştur ve kopyala",
+        "text": "Beğendiğinizi bulana kadar 'Yeni şifre'ye tıklayın, ardından doğrudan şifre yöneticinize kopyalayın."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Bu oluşturucu gerçekten güvenli mi?",
+      "a": "Evet. Math.random() değil, Web Crypto API'nin güvenli rastgele kaynağını kullanıyoruz. Tarayıcı satıcısı tarafından sağlanan uygulama denetlenmiştir ve HTTPS'nin altında yatanla aynıdır."
+    },
+    {
+      "q": "Şifre tarayıcımdan çıkıyor mu?",
+      "a": "Asla. Üretim, entropi hesaplama ve panoya kopyalama yerel olarak gerçekleşir. Onu almak istesek bile bir sunucu uç noktamız yok."
+    },
+    {
+      "q": "16 karakter yeterli mi?",
+      "a": "Çevrimiçi hesaplar için evet — neredeyse her zaman. Şifre yöneticisi ana şifreleri veya şifreleme anahtarları için 24+ karaktere gidin ya da 6 kelimelik bir parola kullanın."
+    },
+    {
+      "q": "Güç ölçeri neden uzun şifremi sevmiyor?",
+      "a": "Yalnızca hangi karakter sınıflarını etkinleştirdiğinizi bilir. Yalnızca küçük harf etkinleştirdiyseniz alfabe sadece 26'dır — uzun şifreler hâlâ güçlüdür ama o kadar hızlı büyümez."
+    },
+    {
+      "q": "'Bit entropi' ne anlama gelir?",
+      "a": "Ayarlarınızın üretebileceği olası şifre sayısının log₂'sidir. 80 bit ≈ 1,2 × 10²⁴ olasılık — bugün kaba kuvvetin çok ötesinde."
+    },
+    {
+      "q": "Semboller eklemeli miyim?",
+      "a": "İzin verildiğinde evet. Her sembol kabaca bir rakam artı bir harfin birleşik entropisi kadar ekler. Bazı eski siteler bunları reddeder; bu durumda telafi etmek için uzunluğu artırın."
+    },
+    {
+      "q": "'Belirsizleri önle' kullanmaya değer mi?",
+      "a": "Yalnızca şifreyi manuel olarak okumanız veya yazmanız gerektiğinde kullanın. Şifre yöneticileri için kapalı tutun — okunabilirlik maliyeti orada boşa harcanır."
+    },
+    {
+      "q": "Aynı şifre iki kez oluşturulabilir mi?",
+      "a": "Teorik olarak evet, ancak 50 bit entropi ile bile üretim çifti başına olasılık 1/2⁵⁰ ≈ 10¹⁵'tir. Pratikte imkânsız."
+    }
+  ]
+}

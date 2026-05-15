@@ -1,0 +1,97 @@
+{
+  "title": "Convertisseur de Température (Celsius, Fahrenheit, Kelvin, Rankine)",
+  "shortDescription": "Convertit entre Celsius, Fahrenheit, Kelvin et Rankine. Les quatre échelles se mettent à jour simultanément.",
+  "description": "Tape une température, choisis son échelle, et vois la valeur équivalente dans les trois autres échelles instantanément. Utilise des formules de conversion exactes, sans erreurs d'arrondi.",
+  "metaDescription": "Convertisseur de température gratuit pour Celsius, Fahrenheit, Kelvin et Rankine. Vois les quatre échelles à la fois avec des formules de conversion exactes —",
+  "keywords": [
+    "convertisseur température",
+    "celsius en fahrenheit",
+    "kelvin",
+    "fahrenheit en celsius",
+    "rankine"
+  ],
+  "input": {
+    "value": "Valeur",
+    "from": "Échelle"
+  },
+  "scale": {
+    "C": "Celsius",
+    "F": "Fahrenheit",
+    "K": "Kelvin",
+    "R": "Rankine"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionnent les formules de conversion",
+        "paragraphs": [
+          "Les quatre échelles pivotent en interne autour du Celsius. Fahrenheit ↔ Celsius : F = C × 9/5 + 32 et C = (F − 32) × 5/9. Le Kelvin décale le Celsius de 273,15 (le décalage du zéro absolu) : K = C + 273,15. Le Rankine est au Fahrenheit ce que le Kelvin est au Celsius — même espacement d'échelle que le Fahrenheit, mais ancré au zéro absolu : R = (C + 273,15) × 9/5.",
+          "Ces formules sont exactes : les constantes 273,15 (décalage Kelvin) et 9/5 (rapport Fahrenheit) sont définies par le système SI, pas mesurées. Tout arrondi dans le résultat vient de l'affichage en décimal, pas du calcul lui-même."
+        ]
+      },
+      {
+        "heading": "Quand utiliser chaque échelle",
+        "paragraphs": [
+          "Le Celsius est l'échelle quotidienne presque partout sauf aux États-Unis. L'eau gèle à 0°C et bout à 100°C au niveau de la mer — des repères propres et simples.",
+          "Le Fahrenheit, utilisé principalement aux États-Unis, offre une granularité plus fine pour les températures ambiantes : 0°F est très froid, 100°F est très chaud, et la plupart des conditions météo se situent entre 30 et 90°F. L'échelle a été conçue autour de la saumure et de la température corporelle humaine au XVIIIe siècle.",
+          "Le Kelvin est le standard scientifique. Il élimine la gêne des nombres négatifs car le zéro absolu est 0 K, et non −273,15. Utilisé en physique, chimie et astronomie. Le Rankine est l'équivalent du Kelvin dans le système impérial — même objectif, mais avec des degrés de la taille du Fahrenheit. Il est encore utilisé dans certains contextes d'ingénierie américains."
+        ]
+      },
+      {
+        "heading": "Points de référence utiles",
+        "paragraphs": [
+          "Zéro absolu : 0 K = −273,15°C = −459,67°F. L'eau gèle : 0°C = 32°F = 273,15 K. Température corporelle : 37°C ≈ 98,6°F = 310,15 K. L'eau bout (niveau de la mer) : 100°C = 212°F = 373,15 K. Four chaud : 200°C = 392°F. Température moyenne de surface terrestre : environ 15°C = 59°F = 288 K.",
+          "Les échelles Celsius et Fahrenheit se rejoignent à −40° : c'est la même température sur les deux. C'est le seul point où les deux échelles coïncident."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Saisis la valeur",
+        "text": "Tape le nombre à convertir."
+      },
+      {
+        "name": "Choisis l'échelle source",
+        "text": "Indique si ta valeur est en Celsius, Fahrenheit, Kelvin ou Rankine."
+      },
+      {
+        "name": "Lis les quatre échelles",
+        "text": "Les trois autres échelles se mettent à jour automatiquement. L'échelle sélectionnée est mise en évidence."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Pourquoi ces formules sont-elles exactes ?",
+      "a": "Le décalage Celsius-Kelvin (273,15) et le rapport Celsius-Fahrenheit (9/5) sont des définitions SI. Toute imprécision apparente n'est que l'arrondi de l'affichage décimal."
+    },
+    {
+      "q": "Pourquoi le Kelvin n'utilise-t-il pas le symbole degré ?",
+      "a": "Par convention SI, le Kelvin s'écrit sans °. Donc '300 K' est correct ; '300°K' ne l'est pas."
+    },
+    {
+      "q": "Quelle est la différence entre Kelvin et Rankine ?",
+      "a": "Les deux sont des échelles absolues (zéro au zéro absolu). Le Kelvin utilise des degrés de la taille du Celsius ; le Rankine utilise des degrés de la taille du Fahrenheit. 1 K = 1,8 R."
+    },
+    {
+      "q": "À quelle température Celsius et Fahrenheit sont-ils égaux ?",
+      "a": "−40°. C'est le seul point de croisement : −40°C = −40°F."
+    },
+    {
+      "q": "Pourquoi la température corporelle est-elle 37°C et non 36 ou 38 ?",
+      "a": "37°C (98,6°F) est la moyenne historique, mais la température corporelle normale varie de 0,5°C au cours de la journée et d'une personne à l'autre. Les données modernes suggèrent que la moyenne est plus proche de 36,6°C."
+    },
+    {
+      "q": "Puis-je convertir des différences de température ?",
+      "a": "Attention : une différence de 10°C est égale à 18°F (on n'ajoute pas 32). Pour les différences, multiplie par 9/5 pour aller de C vers F, ou par 5/9 pour aller de F vers C, et ne tiens pas compte du décalage."
+    },
+    {
+      "q": "Le calculateur est-il assez précis pour la science ?",
+      "a": "On affiche jusqu'à quatre décimales à partir de calculs en double précision. Pour un travail métrologique, réfère-toi directement aux tables de conversion BIPM, mais pour la chimie, la cuisine et l'ingénierie c'est plus que suffisant."
+    },
+    {
+      "q": "Pourquoi inclure le Rankine si c'est rarement utilisé ?",
+      "a": "Il apparaît encore dans certains manuels de thermodynamique américains et en génie HVAC. L'inclure ne coûte rien et aide les personnes qui en ont vraiment besoin."
+    }
+  ]
+}

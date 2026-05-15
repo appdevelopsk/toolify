@@ -1,0 +1,100 @@
+{
+  "title": "Markdown'dan HTML'ye Dönüştürücü (CommonMark alt kümesi)",
+  "shortDescription": "Markdown'ı tarayıcınızda temiz HTML'ye dönüştürün. Başlıklar, listeler, kod blokları, bağlantılar, görseller, blok alıntılar, kalın/italik/üstü çizili desteklenir.",
+  "description": "Markdown yapıştırın ve anında eşdeğer HTML'yi görün. Blog yazıları, belgeler, README dosyaları için çalışır. Çıktı herhangi bir CMS veya statik siteye yapıştırabileceğiniz temiz, anlamlı HTML'dir.",
+  "metaDescription": "Ücretsiz Markdown'dan HTML'ye dönüştürücü. Canlı önizleme, temiz anlamlı HTML, başlıklar, listeler, kod, bağlantılar, blok alıntılar dahil CommonMark temellerini",
+  "keywords": [
+    "markdown html dönüştürücü",
+    "md html çevirici",
+    "markdown dönüştürücü",
+    "commonmark html",
+    "blog markdown"
+  ],
+  "input": {
+    "markdown": "Markdown"
+  },
+  "output": {
+    "html": "HTML çıktısı"
+  },
+  "preview": "Oluşturulmuş önizlemeyi göster",
+  "copy": "HTML'yi Kopyala",
+  "copied": "Kopyalandı!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Desteklenenler",
+        "paragraphs": [
+          "Başlıklar: # H1'den ###### H6'ya. Listeler: sırasız için - / * / +, sıralı için 1. 2. 3. Blok alıntılar: satır başına >. Kod blokları: isteğe bağlı dil ile ```. Satır içi: **kalın**, *italik*, `kod`, ~~üstü çizili~~, [bağlantı](url), ![alt](görsel-url). Yatay çizgi: ---, *** veya ___.",
+          "CommonMark temellerini uyguluyoruz. Tablolar, dipnotlar ve görev listeleri (-[ ]) henüz dahil değildir; bunlar için derleme ardışık düzeninizde tam bir CommonMark veya GFM kütüphanesi kullanın."
+        ]
+      },
+      {
+        "heading": "Bu araç ne zaman kullanılır",
+        "paragraphs": [
+          "CMS'ye yapıştırmak için hızlı dönüşüm. Çoğu CMS HTML kabul eder; Markdown'da yazıyorsanız ancak editör yerel olarak işlemiyorsa önce bu araçtan geçirin.",
+          "Belgeleme oluşturma: README.md'yi proje açılış sayfası için HTML'ye dönüştürün. Çıktı temel bir şablona sarılacak kadar temizdir.",
+          "E-posta oluşturma: birçok e-posta istemcisi HTML işler ama Markdown işlemez. Markdown'da yazın, dönüştürün, yapıştırın."
+        ]
+      },
+      {
+        "heading": "Tarayıcı tarafı dönüştürme",
+        "paragraphs": [
+          "Tüm dönüştürme tarayıcınızda çalışır. Gizli taslaklar, kod parçacıkları veya notlar içerebilecek Markdown'ınız hiçbir zaman makinenizi terk etmez. Sunucu günlükleri yok, yapay zeka eğitim verisi yok, yalnızca deterministik regex dönüşümü.",
+          "GFM özelliklerine (tablolar, görev listeleri, dipnotlar) ihtiyacınız varsa, derlemenizdeki marked.js, markdown-it veya remark gibi daha tam bir kütüphane kullanın. Basit ile orta karmaşıklıktaki Markdown için bu aracın çıktısı yeterlidir."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Markdown yapıştırın",
+        "text": "Veya doğrudan giriş alanına yazın."
+      },
+      {
+        "name": "HTML çıktısını okuyun",
+        "text": "Yazarken canlı güncellenir."
+      },
+      {
+        "name": "Panoya kopyalayın",
+        "text": "Çıktıyı almak için 'HTML'yi Kopyala'ya tıklayın."
+      },
+      {
+        "name": "İsteğe bağlı: önizleme",
+        "text": "Tarayıcıda nasıl görüneceğini görmek için 'Oluşturulmuş önizlemeyi göster'e tıklayın."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Bu tablolara destek veriyor mu?",
+      "a": "Henüz değil. Tablolar saf CommonMark değil, GFM uzantısıdır. Gelecekteki bir sürümde ekleyebiliriz."
+    },
+    {
+      "q": "Kod bloklarım sözdizimi vurgulanacak mı?",
+      "a": "<pre><code> etiketlerine class='language-X' ekliyoruz; böylece Prism veya highlight.js gibi vurgulayıcılar bunları biçimlendirebilir. HTML'nin kendisi biçimsizdir — kendi CSS'inizi veya kütüphanenizi uygulayın."
+    },
+    {
+      "q": "Çıktı her yere yapıştırmak için güvenli mi?",
+      "a": "Kod bloklarında ve satır içi kodda <, >, & ve \" karakterlerini kaçırıyoruz. Diğer içerik olduğu gibi dönüştürülür. Kullanıcı tarafından oluşturulan Markdown yapıştırıyorsanız sayfaya enjekte etmeden önce çıktıyı sanitize edin."
+    },
+    {
+      "q": "Vurgum neden garip?",
+      "a": "Markdown vurgulama iç içe geçmesi karmaşık olabilir. * ve _ bitişik noktalama işaretleriyle farklı davranabilir. CommonMark spesifikasyonu kesindir; çıktımız farklı gelişiyorsa kontrol için spesifikasyon örneğini yapıştırın."
+    },
+    {
+      "q": "Bu Markdown içindeki HTML'yi işliyor mu?",
+      "a": "Satır içi HTML geçirilir (CommonMark davranışı). Dikkatli kullanın — güvenilmez kaynaklardan gelen kötü amaçlı HTML değiştirilmeden geçecektir."
+    },
+    {
+      "q": "HTML'yi Markdown'a geri dönüştürebilir miyim?",
+      "a": "Evet — HTML'den Markdown'a dönüştürücümüze bakın (İlgili Araçlar altında bağlantılı)."
+    },
+    {
+      "q": "Dipnotlar ne olacak?",
+      "a": "Uygulanmadı (GFM uzantısı). Karmaşık belgeler için remark-gfm gibi sunucu tarafı bir kütüphane kullanın."
+    },
+    {
+      "q": "Veriler tarayıcımdan çıkıyor mu?",
+      "a": "Hayır. Dönüşüm yerel olarak çalışır; Markdown'ınız hiçbir yere gönderilmez."
+    }
+  ]
+}

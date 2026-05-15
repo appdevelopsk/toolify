@@ -1,0 +1,72 @@
+{
+  "title": "Máy tính tam giác (vuông, SSS, SAS)",
+  "shortDescription": "Tính diện tích, chu vi, các cạnh và góc của tam giác. Ba chế độ: tam giác vuông (Pythagoras), ba cạnh (SSS) hoặc hai cạnh + góc xen (SAS).",
+  "description": "Chọn chế độ, nhập các giá trị đã biết và nhận tất cả các cạnh, ba góc, diện tích và chu vi. Kiểm tra bất đẳng thức tam giác cho chế độ SSS.",
+  "metaDescription": "Máy tính tam giác miễn phí. Chế độ tam giác vuông (Pythagoras), SSS hoặc SAS. Trả về các cạnh, góc, diện tích, chu vi. Hữu ích cho bài tập hình học và xây dựng.",
+  "keywords": ["máy tính tam giác", "định lý pythagoras", "định lý cosin", "diện tích tam giác", "giải tam giác"],
+  "empty": "Nhập các giá trị đã biết cho chế độ đã chọn.",
+  "invalid": "Tam giác không hợp lệ: vi phạm bất đẳng thức tam giác (cạnh dài nhất phải ngắn hơn tổng hai cạnh còn lại).",
+  "mode": {
+    "right": "Tam giác vuông",
+    "sss": "Ba cạnh (SSS)",
+    "sas": "Hai cạnh + góc (SAS)"
+  },
+  "input": {
+    "legA": "Cạnh a",
+    "legB": "Cạnh b",
+    "sideA": "Cạnh a",
+    "sideB": "Cạnh b",
+    "sideC": "Cạnh c",
+    "angleC": "Góc C (độ)"
+  },
+  "result": {
+    "area": "Diện tích",
+    "perim": "Chu vi",
+    "sides": "Các cạnh",
+    "angles": "Các góc"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ba chế độ cho ba bài toán",
+        "paragraphs": [
+          "Tam giác vuông (cạnh góc vuông a, b): trường hợp phổ biến nhất. Cạnh huyền c = √(a² + b²) theo định lý Pythagoras. Góc A = arctan(a/b), B = arctan(b/a), C = 90°. Diện tích = (a × b) / 2.",
+          "Ba cạnh (SSS — Side-Side-Side): khi biết cả ba độ dài cạnh. Kiểm tra bất đẳng thức tam giác (cạnh dài nhất < tổng hai cạnh còn lại). Góc theo định lý cosin: cos A = (b² + c² − a²) / (2bc). Diện tích theo công thức Heron: √(s(s−a)(s−b)(s−c)) với s = (a+b+c)/2.",
+          "Hai cạnh + góc xen (SAS — Side-Angle-Side): khi biết hai cạnh và góc giữa chúng. Cạnh thứ ba theo định lý cosin: c = √(a² + b² − 2ab cos C). Các góc còn lại theo định lý sin. Diện tích = (1/2) × a × b × sin C."
+        ]
+      },
+      {
+        "heading": "Khi nào dùng từng chế độ",
+        "paragraphs": [
+          "Tam giác vuông là phổ biến nhất trong hình học hàng ngày — xây góc tường, tính độ dốc mái, tìm đường chéo TV từ chiều rộng và chiều cao. Định lý Pythagoras là một trong những công thức được dùng nhiều nhất trong xây dựng và thiết kế.",
+          "SSS xuất hiện trong khảo sát, điều hướng và bất kỳ trường hợp nào đo trực tiếp ba cạnh. Hữu ích để xác minh hình dạng tam giác từ đo lường thực tế.",
+          "SAS dùng cho trường hợp có hai cạnh gặp nhau ở góc đã biết nhưng cạnh thứ ba chưa đo hoặc khó tiếp cận. Phổ biến trong bài tập lượng giác và thi cử toán."
+        ]
+      },
+      {
+        "heading": "Ứng dụng thực tế",
+        "paragraphs": [
+          "Xây dựng: độ dốc mái từ chiều cao và chiều ngang (tam giác vuông). 'Quy tắc 3-4-5': tam giác 3-4-5 có góc vuông hoàn hảo, không cần thước đo góc.",
+          "Điều hướng: tam giác đạc (triangulation) dùng SSS hoặc SAS để tìm vị trí từ ba điểm mốc đã biết. Toán học tương tự là nền tảng GPS (kèm hiệu chỉnh tương đối).",
+          "Đồ họa máy tính: mọi mô hình 3D đều được phân rã thành tam giác. Công thức diện tích tam giác xuất hiện trong code shader tính ánh sáng bề mặt.",
+          "Thiên văn học: đo khoảng cách thị sai dùng nguyên lý SSS. Góc mặt trời-Trái đất-sao cho khoảng cách sao qua phép tính lượng giác đơn giản."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn chế độ", "text": "Tam giác vuông, SSS (ba cạnh) hoặc SAS (hai cạnh + góc)." },
+      { "name": "Nhập các giá trị đã biết", "text": "Mỗi chế độ cần đầu vào khác nhau." },
+      { "name": "Đọc tất cả kết quả", "text": "Các cạnh, góc, diện tích và chu vi đều được tính." }
+    ]
+  },
+  "faq": [
+    { "q": "Bất đẳng thức tam giác là gì?", "a": "Để ba độ dài tạo thành tam giác, tổng bất kỳ hai cạnh phải lớn hơn cạnh thứ ba. Vậy 3, 4, 5 hợp lệ (3+4=7 > 5); 1, 2, 5 không hợp lệ (1+2=3 < 5). Máy tính kiểm tra điều này ở chế độ SSS." },
+    { "q": "Độ chính xác là bao nhiêu?", "a": "Độ chính xác dấu phẩy động (~15-17 chữ số có nghĩa). Với đầu vào thông thường, sai số nhỏ hơn nhiều so với sai số đo lường trong thực tế." },
+    { "q": "Góc có thể tính bằng radian không?", "a": "Chưa — chúng tôi dùng độ trong suốt. Chuyển đổi bằng radian × 180/π nếu cần, hoặc dùng công cụ chuyển đổi góc của chúng tôi." },
+    { "q": "Nếu tam giác có góc tù thì sao?", "a": "Tất cả các chế độ xử lý đúng tam giác tù. Với SAS, đảm bảo góc xen nằm trong khoảng 0° đến 180° (không kể hai đầu)." },
+    { "q": "Tại sao không hỗ trợ tất cả 'hai cạnh và một góc'?", "a": "Chúng tôi hỗ trợ SAS (góc NẰM GIỮA hai cạnh). Trường hợp mơ hồ (SSA — góc và hai cạnh, một cạnh đối diện góc) đôi khi có 0, 1 hoặc 2 tam giác hợp lệ. SSS và SAS không mơ hồ." },
+    { "q": "Tôi có thể giải bài toán kiểu tam giác tù không?", "a": "3-4-5 là tam giác vuông. Với tam giác tù, thử 4-5-7 ở chế độ SSS — góc lớn nhất hơn 90°." },
+    { "q": "Làm sao tìm cạnh khi chỉ biết góc?", "a": "Không thể — góc một mình chỉ xác định hình dạng chứ không xác định kích thước. Cần ít nhất một cạnh. Hai góc + một cạnh là đủ (góc thứ ba = 180 − tổng hai góc)." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Tính toán chạy cục bộ; không có gì được gửi đến server." }
+  ]
+}

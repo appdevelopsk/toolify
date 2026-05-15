@@ -1,0 +1,92 @@
+{
+  "title": "Şifre Güç Test Aracı (entropi + kırma süresi)",
+  "shortDescription": "Entropi bitleri, karakter seti analizi, yaygın şifre kontrolü ve saldırı senaryolarında tahmini kırma süresiyle şifre gücünü test edin.",
+  "description": "Bir şifre yazın (yalnızca tarayıcıda, asla iletilmez). Test aracı entropiyi, karakter seti kapsamını, sözlük eşleşme riskini hesaplar ve çevrimdışı GPU saldırıları, çevrimiçi API sınırları ve yavaş çevrimiçi saldırılar için tahmini kırma sürelerini gösterir.",
+  "metaDescription": "Ücretsiz şifre güç test aracı. Entropi bitleri, kırma süresi tahminleri, karakter seti analizi, yaygın şifre ve desen algılama. Yalnızca tarayıcıda.",
+  "keywords": ["şifre güç testi", "şifre entropisi", "kırma süresi hesaplayıcı", "şifre güvenliği", "şifre testi"],
+  "input": {
+    "password": "Şifre",
+    "privacyNote": "Tamamen tarayıcınızda test edilir. Asla gönderilmez veya saklanmaz."
+  },
+  "show": "Göster",
+  "hide": "Gizle",
+  "result": {
+    "strength": "Güç",
+    "length": "Uzunluk",
+    "charsetSize": "Karakter seti boyutu",
+    "entropy": "Entropi",
+    "bits": "bit",
+    "lowercase": "Küçük harf a-z",
+    "uppercase": "Büyük harf A-Z",
+    "digits": "Rakamlar 0-9",
+    "symbols": "Semboller",
+    "crackTime": "Tahmini kırma süresi",
+    "crackOffline": "Çevrimdışı GPU (10⁹⁰/s)",
+    "crackOnlineFast": "Çevrimiçi hızlı (1k/s)",
+    "crackOnlineSlow": "Çevrimiçi yavaş (100/s)",
+    "warningsHeading": "Endişeler"
+  },
+  "level": {
+    "veryWeak": "Çok zayıf",
+    "weak": "Zayıf",
+    "fair": "Orta",
+    "strong": "Güçlü",
+    "veryStrong": "Çok güçlü"
+  },
+  "warning": {
+    "isCommon": "Bu şifre yaygın şifre listelerinde görünüyor. Kullanmayın.",
+    "tooShort": "Uzunluk 8'in altında — herhangi bir gerçek güvenlik için çok kısa.",
+    "hasRepeated": "Tekrarlanan karakterler (ör. 'aaa') gerçek dünya entropısini düşürür.",
+    "hasSequential": "Sıralı desenler (1234, qwer, abcd) tahmin edilmesi kolaydır.",
+    "limitedCharset": "Tek karakter setli şifreler (yalnızca küçük harf, yalnızca rakam) uzun olsalar bile zayıftır."
+  },
+  "time": {
+    "instant": "anında",
+    "yrs": "yıl",
+    "eternity": "sonsuzluk"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Şifreler için 'entropi' ne anlama gelir",
+        "paragraphs": [
+          "Entropi, bit cinsinden öngörülemezliği ölçer. 30 bit entropili bir şifre kırılmak için ortalama ~2³⁰ ≈ 1 milyar tahmin gerektirir. 70+ bit genellikle güçlü kabul edilir; 80+ mükemmeldir.",
+          "Formül: entropi = uzunluk × log₂(karakter_seti_boyutu). 'abcdefgh' (8 karakter, yalnızca küçük harf) = 8 × log₂(26) ≈ 37,6 bit. 'aA1!aaaa' (8 karakter, tüm karakter setleri) = 8 × log₂(95) ≈ 52,6 bit — ancak kırma süresi 52 bitin ima ettiğinden çok daha kötüdür çünkü 'aaaa' yaygın bir desendir."
+        ]
+      },
+      {
+        "heading": "Kırma süreleri neden bu kadar farklı",
+        "paragraphs": [
+          "Çevrimdışı GPU: çevrimdışı saldırıya uğrayan sızdırılmış bir şifre hash'i. Modern GPU'lar saniyede 10⁹+ MD5 hash'i tahmin edebilir; bcrypt hash'leri yalnızca 10⁴-10⁵/s. Buradaki tahmin GPU-hızlı hash varsayımını kullanır.",
+          "Çevrimiçi hızlı: bir giriş API'sini doğrudan hedef alan saldırgan. Çoğu API'nin bir hız sınırı vardır; saniyede 1.000 deneme, kötü korunan bir uç nokta için üst düzey bir tahmindir.",
+          "Çevrimiçi yavaş: sıkı hız sınırları, hesap kilitleme ve CAPTCHA içeren düzgün korunan bir uç nokta. Saniyede 100 deneme cömerttir; birçok sistem yalnızca dakikada 5-10'a izin verir.",
+          "Bu tahminler, sözlük saldırıları (yaygın şifreleri kaba kuvvetten çok daha hızlı bulan) ve şifre yeniden kullanımı (bir sitenin sızıntısını kırmak diğerlerini kırmaya yardımcı olur) gibi gerçek dünya faktörlerini görmezden gelir."
+        ]
+      },
+      {
+        "heading": "Güçlü bir şifreyi ne yapar",
+        "paragraphs": [
+          "Karmaşıklık yerine uzunluk: 'düzgün at pil zımba' gibi 16 karakterlik bir parola, 'P@ssw0rd!' gibi eziyetli 8 karakterden daha güçlüdür. 2011'den XKCD içgörüsü hâlâ geçerlidir: 4 rastgele kelime ~44 bit entropi sağlar.",
+          "Desenlerden kaçının: tarihler, isimler, '123', 'qwer', tekrarlanan karakterler gerçek entropiyi formül değerinin altına düşürür. Saldırı araçları kapsamlı 'kural tabanlı' dönüşümler içerir (ör. 'şifre' → 'Ş1fr3!').",
+          "Şifre yöneticisi kullanın: insanlar desen seçer; yöneticiler seçmez. Bitwarden, 1Password, KeePass site başına tüm karakter setlerinde 16+ karakter ile gerçek anlamda rastgele şifreler üretir. Hatırlamanız gereken tek şifre ana şifredir — ve o uzun, akılda kalıcı bir parola olmalıdır."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Şifreyi yazın", "text": "Tamamen istemci tarafında test edilir. Ne yazdığınızı göremiyorsanız Göster geçişini kullanın." },
+      { "name": "Güç ölçerini okuyun", "text": "Beş segment. Önemli hesaplarda 4-5 (Güçlü/Çok güçlü) hedefleyin." },
+      { "name": "Entropi ve kırma sürelerini kontrol edin", "text": "Daha yüksek entropi = daha uzun kırma süresi. Yaygın desenler hakkındaki uyarılara dikkat edin." },
+      { "name": "Gerektiği gibi ayarlayın", "text": "Uzunluk ekleyin, karakter setlerini karıştırın, yaygın kelimelerden kaçının. Memnun olana kadar varyantları test edin." }
+    ]
+  },
+  "faq": [
+    { "q": "Şifrem bir yere gönderiliyor mu?", "a": "Hayır. Her şey tarayıcınızda yerel olarak çalışır. Şifrenizi görmüyor, saklamıyor veya iletmiyoruz." },
+    { "q": "Uzun şifrem neden düşük entropi gösteriyor?", "a": "Uzunluk tek başına her şey değildir — 'a'yı 50 kez tekrarlamak çok düşük gerçek entropiye sahiptir. Hesaplayıcı basit bir formül kullanır ama tekrarlanan/sıralı desenleri işaretler. En iyi sonuçlar için: uzun, çeşitli, desen yok." },
+    { "q": "Bu kırma süreleri doğru mu?", "a": "Naif kaba kuvvete dayalı tahminlerdir. Gerçek kırıcılar önce sözlükleri, yaygın desenleri ve sızdırılmış şifre veritabanlarını kullanır — dolayısıyla 'yaygın' bir şifre yüksek formül entropisi olmasına rağmen saniyeler içinde kırılabilir." },
+    { "q": "Kuantum bilgisayarlardan endişelenmeli miyim?", "a": "Eninde sonunda evet — Grover algoritması simetrik şifrelemenin etkin bitlerini yarıya indirir. 128 bit eşdeğeri simetrik anahtar, kuantum sonrası 64+ bit eşdeğeri gerektirir. Şimdilik 80+ bit entropi rahattır; çok uzun vadeli sırlar için 128+." },
+    { "q": "Araç tüm karakter setlerine sahip olmasına rağmen 'P@ssw0rd1'i neden işaretliyor?", "a": "Çünkü 'şifre' sözlüklerdedir ve basit değiştirmeler (P → P, a → @) her kırma aracının kural setinin parçasıdır. Gerçek anlamda rastgele veya parola tarzı şifreler kullanın, yaygın kelime değiştirmeleri değil." },
+    { "q": "'düzgün at pil zımba' gerçekten güvenli mi?", "a": "Makul ölçüde. 7.000 kelimelik listeden 4 rastgele kelime = ~52 bit entropi. Çoğu 8 karakterli karmaşık şifreden daha güçlü. Ama ünlü hale gelince (bu örnek gibi) sözlüklerde olur — kendi rastgele kelimelerinizi seçin." },
+    { "q": "Kullanmam gereken minimum şifre uzunluğu nedir?", "a": "8 en düşük sınırdır (ve yalnızca tüm karakter setleriyle). 12+ çoğu hesap için önerilir. Önemliler için 16+ (e-posta, bankacılık, şifre yöneticisi anası)." },
+    { "q": "Büyük/küçük harf ayrımı önemli mi?", "a": "Evet — büyük harf eklemek karakter seti boyutunu 26'dan 52'ye ikiye katlar. Karakter başına kabaca +1 bit. Büyük/küçük harfi anlamlı biçimde karıştırmak (yalnızca ilk harf değil) değerlidir." }
+  ]
+}

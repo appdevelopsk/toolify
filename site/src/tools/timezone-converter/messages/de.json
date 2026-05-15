@@ -1,0 +1,54 @@
+{
+  "title": "Zeitzonen-Rechner (Zeit in mehreren Zonen vergleichen)",
+  "shortDescription": "Einen Zeitpunkt gleichzeitig in mehrere Zeitzonen umrechnen. Zonen hinzufügen oder entfernen; ideal für die Planung internationaler Meetings.",
+  "description": "Eine Quellzeitzone und ein Datum/eine Uhrzeit wählen, dann beliebig viele Zielzeitzonen hinzufügen. Jedes Ziel zeigt die entsprechende Ortszeit mit Zeitzonenabkürzung.",
+  "metaDescription": "Kostenloser Zeitzonen-Rechner. Einen Zeitpunkt gleichzeitig in vielen Städten sehen. Nützlich für Meeting-Planung, Reisen und Sendungen über mehrere Zeitzonen.",
+  "keywords": ["Zeitzonen-Rechner", "Weltzeituhr", "Meeting-Zeit über Zeitzonen", "UTC umrechnen", "Zeitzonenunterschied"],
+  "empty": "Zeitzonen hinzufügen, um Entsprechungen zu sehen.",
+  "input": { "sourceTz": "Quellzeitzone", "dt": "Datum und Uhrzeit" },
+  "now": "Jetzt",
+  "addTz": "Zeitzone hinzufügen",
+  "remove": "Entfernen",
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie die Zeitzonen-Umrechnung funktioniert",
+        "paragraphs": [
+          "Jeder Zeitpunkt ist ein einzelner Punkt — Dienstag 9:00 Uhr in Tokio ist derselbe Moment wie Montag 17:00 Uhr in Los Angeles. Die Zeitzonen-Umrechnung benennt diesen einzelnen Moment einfach mit der lokalen Uhrzeitanzeige jeder Zone um. Die Sommerzeit verkompliziert das — zwischen März und Oktober zeigt Mitteleuropäische Sommerzeit (MESZ) UTC+2; den Rest des Jahres ist es Mitteleuropäische Zeit (MEZ) UTC+1. Der Browser-Intl.DateTimeFormat handhabt das korrekt, wenn ein IANA-Zeitzonenname wie ‚Europe/Berlin' übergeben wird.",
+          "Wir verwenden IANA-Namen (wie ‚Europe/Berlin' oder ‚Asia/Tokyo'), da sie eindeutig sind und den historischen Sommerzeitregeln jedes Standorts folgen. ‚CET' oder ‚GMT' sind Abkürzungen, die kollidieren können; IANA-Namen nicht."
+        ]
+      },
+      {
+        "heading": "Häufige Planungsfallen",
+        "paragraphs": [
+          "Sommerzeit-Übergänge: ‚Nächsten Dienstag um 9:00 MEZ' ist im März oder Oktober zweideutig, weil sich die Regeln ändern. Immer ‚Berliner Zeit' sagen oder einen Kalender-Einladung senden — Outlook, Google Calendar und Slack rechnen korrekt um, wenn beide Seiten ihre Zone angeben.",
+          "Halbstunden-Versätze: Indien ist UTC+5:30, Teile Australiens UTC+9:30 oder +10:30. Wenn die Meeting-Mathematik in ‚ganzen Stunden' erfolgt, können 30 Minuten Abweichung entstehen.",
+          "Datumsgrenzen-Sprünge: Tokio nach San Francisco kann je nach Richtung am nächsten oder gleichen Tag sein. Der Kalender zeigt es korrekt, aber die menschliche Annahme kann falsch sein."
+        ]
+      },
+      {
+        "heading": "Nützliche Anwendungsmuster",
+        "paragraphs": [
+          "Internationales Standup-Meeting: Eine Quellzone wählen (oft UTC) und die Heimzeitzonen des Teams hinzufügen. Die Meeting-Zeit festlegen und prüfen, ob niemand um 3 Uhr morgens teilnehmen muss.",
+          "Produkt-Launch: Die Launch-Zone wählen und die wichtigsten Märkte hinzufügen. Nützlich um zu überprüfen, ob die Marketing-E-Mail zu einer vernünftigen Ortszeit ankommt.",
+          "Reiseplanung: Die Abflugzone wählen und Zielzone(n) hinzufügen, um die lokale Ankunftszeit ohne manuelle Rechnung zu finden."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Quelle festlegen", "text": "Quellzeitzone wählen (Standard: Browserzone) und das zu konvertierende Datum/Uhrzeit." },
+      { "name": "Zielzeitzonen hinzufügen", "text": "Das Dropdown verwenden, um so viele wie nötig hinzuzufügen." },
+      { "name": "Entsprechungen ablesen", "text": "Jedes Ziel zeigt denselben Moment in seiner Ortsuhr." }
+    ]
+  },
+  "faq": [
+    { "q": "Unterstützt das die Sommerzeit?", "a": "Ja — IANA-Zeitzonendaten enthalten Sommerzeitregeln für jeden Standort. Die Browser-Intl-API handhabt vergangene, aktuelle und (soweit bekannt) zukünftige Übergänge." },
+    { "q": "Was ist der Unterschied zwischen MEZ und MESZ?", "a": "MEZ (Mitteleuropäische Zeit) ist fest bei UTC+1. MESZ (Mitteleuropäische Sommerzeit) ist UTC+2 und gilt von März bis Oktober. Wir verwenden IANA-Namen wie ‚Europe/Berlin', die je nach Datum automatisch MEZ oder MESZ wählen." },
+    { "q": "Kann ich zwischen zwei bestimmten Städten konvertieren?", "a": "Ja. Eine als Quelle festlegen und die andere als Ziel hinzufügen. Die angezeigte Zeit ist der Quellmoment in der Ortsuhr des Ziels." },
+    { "q": "Warum haben manche Zonen :30-Versätze?", "a": "Historische Entscheidungen. Indien, Iran, Afghanistan, Teile Australiens verwenden alle 30- oder 45-Minuten-Versätze von UTC. Der Rechner handhabt diese korrekt." },
+    { "q": "Funktioniert das auch für vergangene Datumsangaben?", "a": "Ja, einschließlich Sommerzeitgrenzen, die historisch anders gewesen sein können. IANA-Daten decken die meisten Standorthistorien ab 1970 ab." },
+    { "q": "Was ist mit entlegenen Zeitzonen?", "a": "Die IANA-Liste enthält sie. ‚Pacific/Honolulu' oder ‚Antarctica/McMurdo' aus dem Dropdown hinzufügen, wenn benötigt." },
+    { "q": "Werden die Daten irgendwohin gesendet?", "a": "Nein. Die Browser-Intl-APIs handhabens alles lokal." },
+    { "q": "Kann ich meine Liste von Zeitzonen speichern?", "a": "Noch nicht. Das Neuladen der Seite setzt die Liste zurück. Lokalspeicher-Persistenz könnte später hinzugefügt werden." }
+  ]
+}

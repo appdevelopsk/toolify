@@ -1,0 +1,61 @@
+{
+  "title": "Faktöriyel / Permütasyon / Kombinasyon Hesaplayıcı",
+  "shortDescription": "n! (faktöriyel), P(n,k) permütasyon ve C(n,k) kombinasyon hesaplayın. BigInt ile n=5000'e kadar büyük tam sayıları destekler.",
+  "description": "n ve k değerlerini girin. n!, P(n,k) (sıralı seçimler) ve C(n,k) (sırasız seçimler) sonuçlarını alın. Olasılık, istatistik ve kombinatorik çalışmaları için kullanışlıdır.",
+  "metaDescription": "Ücretsiz faktöriyel, permütasyon (nPr) ve kombinasyon (nCr) hesaplayıcı. n=5000'e kadar büyük tam sayı desteği. Olasılık ve kombinatorik hesapları için ideal.",
+  "keywords": ["faktöriyel hesaplayıcı", "nCr nPr", "permütasyon hesaplayıcı", "kombinasyon hesaplayıcı", "kombinatorik"],
+  "input": {
+    "kHint": "(permütasyon / kombinasyon için)"
+  },
+  "result": {
+    "permutationsLabel": "permütasyon",
+    "combinationsLabel": "kombinasyon"
+  },
+  "error": {
+    "tooLargeOrNeg": "n, 5000'den küçük veya eşit negatif olmayan bir tam sayı olmalıdır.",
+    "invalid": "0 ≤ k ≤ n koşulu gereklidir."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Faktöriyel",
+        "paragraphs": [
+          "n! ('n faktöriyel' okunur) 1'den n'ye kadar tüm pozitif tam sayıların çarpımıdır. Yani 5! = 1×2×3×4×5 = 120. Kural olarak 0! = 1'dir (boş çarpım).",
+          "Faktöriyeller son derece hızlı büyür. 10! = 3,6 milyon, 20! = 2,4×10¹⁸, 100! ise 158 basamaklıdır. Kayan nokta aritmetiği 21!'de bozulur (çift duyarlıklı sınır nedeniyle); n=5000'e kadar kesin değerler için BigInt kullanıyoruz."
+        ]
+      },
+      {
+        "heading": "Permütasyon ve kombinasyon karşılaştırması",
+        "paragraphs": [
+          "Permütasyon P(n,k) = n! / (n−k)!: n elemandan k tanesini sıralı seçme sayısı. P(5,2) = 20: birinci yere 5'ten birini, ikinci yere kalan 4'ten birini seç = 5×4 = 20.",
+          "Kombinasyon C(n,k) = n! / (k!(n−k)!): sırasız seçme sayısı. C(5,2) = 10: aynı seçimler ama {birinci, ikinci} = {ikinci, birinci} sayıldığı için 2!'e bölünür. Ünlü 'n'den k seç' formülü.",
+          "Sıra önemliyse permütasyon kullanın (yarış podyumu, şifre sıralaması). Yalnızca seçilen küme önemliyse kombinasyon kullanın (piyango numaraları, komite seçimi). C(n,k) ≤ P(n,k) her zaman; k=1 olduğunda eşittirler."
+        ]
+      },
+      {
+        "heading": "Bu formüllerin kullanım alanları",
+        "paragraphs": [
+          "Olasılık: zar, kart, yazı-tura. P(5 atışta 3 yazı) = C(5,3) × (1/2)⁵ = 10/32. Kombinasyonlar olumlu sonuçları saymanızı sağlar.",
+          "İstatistik: binom dağılımı C(n,k) kullanır. Yerine koyma olmaksızın örnekleme kombinasyonları kullanır.",
+          "Bilgisayar bilimi: alt kümeleri sayma, karmaşıklık analizi (örn. k-klik numaralandırma C(n,k) şeklindedir), grafik algoritmaları.",
+          "Gerçek hayat: piyango oranları (Milli Piyango: milyonlarca olası kombinasyon). Restoran menüsü: '8 garnitürden 3 seç' = C(8,3) = 56 yol."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "n'yi girin", "text": "Toplam eleman sayısı / negatif olmayan tam sayı." },
+      { "name": "k'yı girin (isteğe bağlı)", "text": "Kaç tane seçileceği (P ve C hesaplamaları için). 0 ≤ k ≤ n olmalıdır." },
+      { "name": "Üç sonucu okuyun", "text": "n!, P(n,k), C(n,k). Çok büyük sayılarda çıktı kısaltılır." }
+    ]
+  },
+  "faq": [
+    { "q": "Neden 0! = 1?", "a": "Kural olarak 'boş çarpım' 1'dir (tıpkı boş toplamın 0 olması gibi). Ayrıca C(n,0) = 1 (hiçbir şey seçmemenin bir yolu) gibi formüllerin tutarlı çalışmasını sağlar." },
+    { "q": "Bu hesaplayıcı en büyük hangi faktöriyeli hesaplayabilir?", "a": "n=5000, 16.326 basamaklı bir sayı verir. Tarayıcının büyük girişlerde donmasını önlemek için 5000'de sınırlandırıyoruz. Daha büyükleri için bir CAS kullanın." },
+    { "q": "Permütasyon ve kombinasyon arasındaki fark nedir?", "a": "Permütasyonda sıra önemlidir, kombinasyonda önemli değildir. {A,B} ile {B,A} aynı kombinasyondur ama AB ve BA şeklinde iki farklı permütasyondur." },
+    { "q": "Faktöriyeller negatif sayılar için tanımlı mı?", "a": "Standart anlamda değil. Gama fonksiyonu Γ(x), faktöriyeli tüm gerçek (ve karmaşık) sayılara genişletir, ancak hesaplayıcımız yalnızca negatif olmayan tam sayıları destekler." },
+    { "q": "Kombinasyon formülü nedir?", "a": "C(n,k) = n! / (k! × (n-k)!). 'n'den k seç' olarak okunur. Eşdeğer olarak: P(n,k) / k! (sıra önemli olmadığından)." },
+    { "q": "Bu hesaplayıcı ne kadar doğru?", "a": "Aralık içindeki tüm değerler için kesin. BigInt aritmetiği kullandığımızdan kayan nokta hatası yoktur." },
+    { "q": "Neden 70!, 60!'tan çok daha büyük?", "a": "Her faktöriyel bir sonraki tam sayıyla çarpılır. 70! yaklaşık olarak 60! × 61 × 62 × … × 70 ≈ 60! × 1,4×10¹⁷'dir. Faktöriyeller üstel büyümeden daha hızlı büyür; Stirling yaklaşımıyla yaklaşık n^n × e^-n × √(2πn)." },
+    { "q": "Veriler tarayıcımdan çıkıyor mu?", "a": "Hayır. Hesaplama yerel olarak çalışır; hiçbir şey sunucuya gönderilmez." }
+  ]
+}

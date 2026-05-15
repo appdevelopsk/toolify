@@ -1,0 +1,102 @@
+{
+  "title": "Calcolatore di Proporzioni (mantieni le proporzioni nel",
+  "shortDescription": "Calcola larghezza o altezza per mantenere le proporzioni target. Inclusi preset con un clic per le proporzioni più comuni (16:9, 9:16, 1:1, 4:3, 21:9).",
+  "description": "Imposta un rapporto target e una dimensione; l'altra si compila automaticamente. Funziona anche in senso inverso. Utile per video, ritaglio di foto e layout web responsive.",
+  "metaDescription": "Calcolatore di proporzioni gratuito. Mantieni i rapporti come 16:9, 9:16, 1:1, 4:3 durante il ridimensionamento. Calcola istantaneamente larghezza o altezza mancante.",
+  "keywords": [
+    "calcolatore proporzioni",
+    "ridimensionamento rapporto",
+    "calcolatore 16:9",
+    "proporzioni immagine",
+    "proporzioni video"
+  ],
+  "input": {
+    "ratioW": "Rapporto L",
+    "ratioH": "Rapporto A",
+    "width": "Larghezza",
+    "height": "Altezza"
+  },
+  "result": {
+    "ratio": "Proporzione",
+    "decimal": "Decimale",
+    "dimensions": "Dimensioni",
+    "simplified": "Semplificato"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cosa sono le proporzioni",
+        "paragraphs": [
+          "Le proporzioni descrivono la larghezza rispetto all'altezza: 16:9 significa 16 unità di larghezza per ogni 9 di altezza. Lo stesso rapporto funziona a qualsiasi dimensione — 1920×1080 e 800×450 sono entrambe 16:9. Mantenere le proporzioni nel ridimensionamento evita immagini stirate o schiacciate ed è alla base del design responsive.",
+          "Accettiamo numeri interi (16:9) o decimali (1,78:1) per il rapporto, e qualsiasi dimensione per larghezza/altezza. Modifica qualsiasi campo — gli altri si aggiornano per mantenere il rapporto. Il rapporto decimale (larghezza / altezza) è mostrato per l'uso nelle espressioni CSS calc() o negli strumenti di video editing."
+        ]
+      },
+      {
+        "heading": "Proporzioni comuni e dove vengono usate",
+        "paragraphs": [
+          "16:9 — HDTV moderna, monitor per computer, YouTube, la maggior parte dei film dal 2009. Il default per quasi tutto ciò che fai oggi.",
+          "9:16 — video verticale per Instagram Stories, TikTok, YouTube Shorts. Il lato opposto del 16:9 per i contenuti mobile-first.",
+          "1:1 — quadrato. Default del feed Instagram fino al 2021. Copertine di album, foto profilo.",
+          "4:3 — vecchi televisori e monitor prima dell'HD. Ancora usato per alcuni contenuti in stile classico.",
+          "3:2 — default delle fotocamere DSLR. Pellicola 35mm. Stampe di grandi dimensioni.",
+          "21:9 — cinematografico ultra-wide. Film girati in anamorfico. Alcuni monitor PC e TV LG."
+        ]
+      },
+      {
+        "heading": "Perché l'aspect-ratio in CSS è importante",
+        "paragraphs": [
+          "Il CSS moderno ha aspect-ratio: 16/9; — imposta il rapporto e lascia che il browser calcoli l'altezza dalla larghezza (o viceversa). Evita il vecchio trucco del padding-bottom ed è fondamentale per gli embed responsive e i segnaposto delle immagini per evitare il layout shift.",
+          "Il Cumulative Layout Shift (CLS) è un Core Web Vital. Video incorporati, immagini senza dimensioni e annunci possono causare CLS — risolvilo impostando larghezza/altezza esplicite (che il browser usa per calcolare le proporzioni) o usando CSS aspect-ratio."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Scegli un rapporto",
+        "text": "Tocca un preset o inserisci valori W:H personalizzati."
+      },
+      {
+        "name": "Inserisci una dimensione nota",
+        "text": "Larghezza o altezza — l'altra si compila automaticamente."
+      },
+      {
+        "name": "Modifica qualsiasi campo",
+        "text": "Gli aggiornamenti si propagano per mantenere il rapporto."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual è la differenza tra 16:9 e 1,78:1?",
+      "a": "Stesso rapporto, notazione diversa. 16/9 = 1,778. La forma con i due punti è convenzionale in TV/web; la forma decimale è convenzionale nel cinema."
+    },
+    {
+      "q": "Come mantengo le proporzioni in CSS?",
+      "a": "Usa la proprietà aspect-ratio: img { aspect-ratio: 16/9; width: 100%; height: auto; }. L'immagine riempie la larghezza del contenitore e l'altezza si adatta per mantenere il rapporto."
+    },
+    {
+      "q": "Perché il mio video sembra distorto su una TV 4:3?",
+      "a": "La maggior parte dei video moderni è in 16:9. Su uno schermo 4:3, vengono visualizzati con le bande nere (letterbox), con bande laterali (pillar-box) o vengono allargati. Le impostazioni del televisore controllano quale opzione viene applicata."
+    },
+    {
+      "q": "Posso usare rapporti non interi?",
+      "a": "Sì — digita 1,5 o 2,39. Il calcolatore li tratta come decimali; l'output del rapporto semplificato appare solo per i rapporti interi."
+    },
+    {
+      "q": "Cos'è il «pixel aspect ratio»?",
+      "a": "Un concetto separato: la forma di un singolo pixel. I display moderni usano pixel quadrati (1:1). Alcuni formati video SD legacy usavano pixel non quadrati. Questo calcolatore gestisce il rapporto del display, non il rapporto del pixel."
+    },
+    {
+      "q": "Cos'è il look «cinematografico»?",
+      "a": "21:9 (più precisamente 2,39:1 o 2,40:1) — più largo dell'HDTV. Comune nei blockbuster moderni. I servizi di streaming spesso trasmettono film in questo formato."
+    },
+    {
+      "q": "Perché Instagram Reel/TikTok usa il 9:16?",
+      "a": "Perché i telefoni vengono tipicamente tenuti in verticale. Il 9:16 riempie l'intero schermo del telefono con il contenuto; il 16:9 lascia bande in alto e in basso su un telefono verticale."
+    },
+    {
+      "q": "I dati lasciano il mio browser?",
+      "a": "No. Il calcolo viene eseguito localmente."
+    }
+  ]
+}

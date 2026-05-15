@@ -1,0 +1,102 @@
+{
+  "title": "Codificador / Decodificador de URL (codificação percentual, seguro",
+  "shortDescription": "Codifique qualquer texto em codificação percentual de URL ou decodifique uma string codificada de volta. Seguro para UTF-8 — lida corretamente com emoji e caracteres CJK.",
+  "description": "Use para incorporar texto com segurança em URLs, parâmetros de consulta ou dados de formulário. Lida corretamente com espaços, caracteres especiais e Unicode (incluindo CJK e emoji).",
+  "metaDescription": "Codificador e decodificador de URL gratuito. Converta texto para codificação percentual ou decodifique strings codificadas de volta para texto simples.",
+  "keywords": [
+    "codificador de URL",
+    "decodificador de URL",
+    "codificação percentual",
+    "URI encode",
+    "decodeURIComponent"
+  ],
+  "input": {
+    "plain": "Texto simples",
+    "encoded": "String URL codificada"
+  },
+  "output": {
+    "encoded": "Resultado codificado",
+    "plain": "Resultado decodificado"
+  },
+  "mode": {
+    "encode": "Codificar",
+    "decode": "Decodificar"
+  },
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "error": "Erro de decodificação",
+  "article": {
+    "sections": [
+      {
+        "heading": "O que é codificação de URL",
+        "paragraphs": [
+          "URLs são restritas a um pequeno conjunto de caracteres ASCII. Para incluir qualquer outra coisa — espaços, acentos, caracteres chineses, emoji, símbolos especiais — você substitui cada byte não seguro por %XX, onde XX é seu valor hexadecimal em bytes. Um espaço vira %20, uma barra %2F, o kanji 漢 vira %E6%BC%A2 (seus bytes UTF-8 codificados em percentual).",
+          "Esta calculadora usa os built-ins do navegador encodeURIComponent e decodeURIComponent. Codifica tudo que não é um caractere não reservado (letras, dígitos, -._~), que é o comportamento correto para parâmetros de consulta e dados de formulário."
+        ]
+      },
+      {
+        "heading": "encodeURI vs encodeURIComponent",
+        "paragraphs": [
+          "O JavaScript tem dois codificadores. encodeURI deixa os caracteres de estrutura de URL (/ ? & # = + etc.) intactos — use em uma URL completa. encodeURIComponent escapa todos eles — use no valor dentro de um parâmetro de consulta.",
+          "Esta ferramenta usa encodeURIComponent, a escolha mais segura para incorporar texto arbitrário em uma URL. Se você tem uma URL completa com estrutura que deseja preservar, codifique apenas as partes que precisam."
+        ]
+      },
+      {
+        "heading": "Armadilhas comuns",
+        "paragraphs": [
+          "Sinal de mais em URLs. Alguns servidores tratam '+' como espaço (um legado da codificação de formulários). encodeURIComponent deixa '+' intacto, mas um servidor pode decodificá-lo para espaço. Para segurança, substitua '+' por %2B se estiver enviando como dados.",
+          "Dupla codificação. Codificar uma string já codificada adiciona outra camada (% vira %25, então '%20' vira '%2520'). Sempre verifique se a entrada já está codificada antes de executar novamente.",
+          "Aumento de comprimento. Caracteres UTF-8 multibyte se expandem para 3-4 códigos percentuais cada. Uma string em português de 100 caracteres com muitos acentos pode facilmente virar uma URL de 300+ caracteres."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolha o modo",
+        "text": "Codifique texto simples para URL segura, ou decodifique uma string codificada em URL de volta para texto simples."
+      },
+      {
+        "name": "Cole sua entrada",
+        "text": "Texto simples para codificar; string codificada em percentual para decodificar."
+      },
+      {
+        "name": "Copie o resultado",
+        "text": "A saída aparece abaixo; clique em 'Copiar' para usar."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Por que meu espaço '%20' não está decodificando para espaço?",
+      "a": "Deveria — mas se você tem '+' em uma URL também pode representar espaço (codificação de formulário legado). Substitua + por espaço primeiro se necessário."
+    },
+    {
+      "q": "Isso lida com emoji?",
+      "a": "Sim. Emoji são codificados como suas sequências de bytes UTF-8 (tipicamente 4 bytes / 4 códigos percentuais por emoji)."
+    },
+    {
+      "q": "Qual é a diferença entre codificação de URL e codificação HTML?",
+      "a": "Codificação de URL usa notação % para contextos de URL. Codificação HTML usa &lt; &gt; etc. para HTML. Contextos diferentes, regras diferentes."
+    },
+    {
+      "q": "Quando devo codificar e quando não?",
+      "a": "Codifique qualquer valor que vá para um parâmetro de consulta de URL, segmento de caminho com entrada do usuário, ou dados de formulário. Não codifique uma URL já construída — isso faz dupla codificação."
+    },
+    {
+      "q": "Por que '%' no meu texto decodificado causa um erro?",
+      "a": "Um '%' isolado seguido por algo que não é hex válido é codificação percentual inválida. Codifique '%' para '%25' antes de incluí-lo em uma URL."
+    },
+    {
+      "q": "O navegador faz isso automaticamente?",
+      "a": "Sim — ao construir URLs via APIs URL ou URLSearchParams. Esta ferramenta expõe a mesma lógica para uso ad-hoc."
+    },
+    {
+      "q": "Quais caracteres são 'seguros' e não precisam de codificação?",
+      "a": "Letras (A-Z, a-z), dígitos (0-9) e estes: - . _ ~ . Tudo mais é codificado em percentual por encodeURIComponent."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. Codificação e decodificação são feitas localmente."
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "title": "डेटा आकार परिवर्तक (B, KB, MB, GB, TB — SI और IEC)",
+  "shortDescription": "bytes, kilobytes, megabytes, gigabytes, terabytes और petabytes के बीच डिजिटल स्टोरेज साइज़ कनवर्ट करें। SI (1000) और IEC binary (1024) के बीच स्विच करें।",
+  "description": "SI (decimal, 1 KB = 1000 B) या IEC (binary, 1 KiB = 1024 B) चुनें, एक मान दर्ज करें, और हर दूसरी इकाई में रूपांतरण देखें।",
+  "metaDescription": "bytes, KB, MB, GB, TB, PB के लिए मुफ्त डेटा आकार परिवर्तक। SI (1000) और IEC (1024) binary prefixes के बीच टॉगल करें।",
+  "keywords": ["data size converter", "bytes to MB", "GB to TB", "binary prefix", "SI vs IEC", "डेटा साइज़ कैलकुलेटर"],
+  "input": { "value": "मान", "from": "किससे इकाई" },
+  "mode": { "si": "SI (1000-आधारित)", "iec": "IEC (1024-आधारित)" },
+  "article": {
+    "sections": [
+      {
+        "heading": "SI बनाम IEC: megabyte की अस्पष्टता",
+        "paragraphs": [
+          "Disk drives और नेटवर्क स्पीड SI इकाइयों में advertised होते हैं: 1 GB = 1,000,000,000 bytes (10⁹)। ऑपरेटिंग सिस्टम और RAM binary इकाइयाँ उपयोग करते हैं: 1 GiB = 1,073,741,824 bytes (2³⁰)। यही कारण है कि आपका '1 TB' drive आपके file manager में 931 GiB दिखता है।",
+          "IEC ने 1998 में binary forms को disambiguate करने के लिए KiB, MiB, GiB, TiB पेश किए। अधिकांश consumer marketing अभी भी MB/GB बिना specify किए उपयोग करती है।"
+        ]
+      },
+      {
+        "heading": "आप कौन सा चाहते हैं?",
+        "paragraphs": [
+          "SI (1000-आधारित) जब: drive marketing पढ़ना, hard drives या SSDs की तुलना, ISP bandwidth quotas, network speeds जाँचना।",
+          "IEC (1024-आधारित) जब: OS file manager में file sizes देखना, RAM specifications पढ़ना, technical specs के साथ काम करना।"
+        ]
+      },
+      {
+        "heading": "उपयोगी संदर्भ बिंदु",
+        "paragraphs": [
+          "1 MB ≈ एक 5-मिनट MP3 (अच्छी quality), या एक 5-megapixel JPEG। 1 GB ≈ 7 घंटे MP3 audio, या 30 मिनट HD video। 1 TB ≈ 250 HD movies।",
+          "Network: 100 Mbps ≈ 12.5 MB/s। 1 GB फाइल 100 Mbps पर ~80 सेकंड लेती है। 4K streaming 15-25 Mbps उपयोग करती है।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "SI या IEC चुनें", "text": "drive sizes और network speeds के लिए SI। file sizes और RAM के लिए IEC।" },
+      { "name": "मान दर्ज करें", "text": "आकार मान टाइप करें।" },
+      { "name": "इकाई चुनें", "text": "चुनें कि आपका मान किसमें है।" },
+      { "name": "सभी इकाइयाँ देखें", "text": "रूपांतरण तुरंत दिखाई देते हैं।" }
+    ]
+  },
+  "faq": [
+    { "q": "advertised से कम storage क्यों मिलती है?", "a": "Drive makers SI (1 TB = 10¹² bytes) उपयोग करते हैं। OS binary (1 TiB = 2⁴⁰ bytes) उपयोग करते हैं। इसलिए 1 TB drive ~931 GiB दिखता है।" },
+    { "q": "क्या KB और KiB एक ही हैं?", "a": "सख्ती से नहीं: KB = 1,000 bytes, KiB = 1,024 bytes।" },
+    { "q": "Windows file manager कौन सी इकाइयाँ उपयोग करता है?", "a": "Windows binary sizes (KiB, MiB, GiB) दिखाता है लेकिन उन्हें KB, MB, GB लेबल करता है।" },
+    { "q": "PB के बाद क्या है?", "a": "EB (exabyte), ZB (zettabyte), YB (yottabyte)।" },
+    { "q": "Network speed बनाम file size?", "a": "Network speeds bits per second उपयोग करती हैं; file sizes bytes। 1 byte = 8 bits, इसलिए 100 Mbps = 12.5 MB/s।" },
+    { "q": "क्या रूपांतरण सटीक है?", "a": "हाँ। दोनों मोड सटीक integer factors उपयोग करते हैं।" },
+    { "q": "SI 1 GB IEC 1 GiB के समान क्यों नहीं है?", "a": "क्योंकि वे अलग इकाइयाँ हैं। 1 GB = 10⁹ bytes; 1 GiB = 2³⁰ bytes।" },
+    { "q": "क्या मैं bandwidth या transfer time कनवर्ट कर सकता हूँ?", "a": "यह टूल केवल आकार कनवर्ट करता है। 'X को Y speed पर transfer होने में कितना समय लगता है' के लिए, bytes को bytes-per-second से भाग दें।" }
+  ]
+}

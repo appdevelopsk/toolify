@@ -1,0 +1,77 @@
+{
+  "title": "Lịch khấu hao khoản vay (đầy đủ hoặc theo năm)",
+  "shortDescription": "Tạo lịch khấu hao đầy đủ theo từng tháng cho bất kỳ khoản vay lãi suất cố định nào. Hiển thị phần gốc/lãi mỗi kỳ, số dư cuối kỳ và xuất CSV.",
+  "description": "Nhập vốn gốc, lãi suất hàng năm và thời hạn tính bằng năm. Trả về thanh toán hàng tháng, tổng lãi, tổng thanh toán và lịch trình từng tháng cho thấy mỗi khoản thanh toán được chia giữa gốc và lãi như thế nào. Chuyển đổi giữa đầy đủ và tóm tắt theo năm; tải xuống CSV.",
+  "metaDescription": "Lịch khấu hao khoản vay miễn phí. Phân tích gốc/lãi hàng tháng, tổng lãi, số dư cuối kỳ. Xuất CSV. Chạy trên trình duyệt.",
+  "keywords": ["lịch khấu hao khoản vay", "bảng khấu hao", "gốc lãi hàng tháng", "máy tính lịch trả nợ", "khấu hao vay mua nhà"],
+  "input": {
+    "principal": "Số tiền vay",
+    "ratePct": "Lãi suất hàng năm %",
+    "years": "Thời hạn (năm)"
+  },
+  "result": {
+    "monthly": "Thanh toán hàng tháng",
+    "totalInterest": "Tổng lãi đã trả",
+    "totalPayments": "Tổng số tiền đã trả",
+    "months": "Tổng số tháng"
+  },
+  "schedule": {
+    "heading": "Lịch trình",
+    "showAll": "Hiển thị tất cả các tháng",
+    "condense": "Rút gọn theo năm",
+    "downloadCsv": "Tải xuống CSV",
+    "condensedNote": "Chế độ rút gọn: hiển thị tháng đầu tiên, mỗi tháng thứ 12 và tháng cuối cùng. Nhấn 'Hiển thị tất cả các tháng' để xem đầy đủ.",
+    "col": {
+      "month": "Tháng",
+      "payment": "Thanh toán",
+      "principal": "Gốc",
+      "interest": "Lãi",
+      "balance": "Số dư"
+    }
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cách khấu hao hoạt động",
+        "paragraphs": [
+          "Mỗi khoản thanh toán hàng tháng cố định được chia thành lãi (tính trên số dư hiện tại) và gốc (khoản trả nợ thực sự). Ở đầu khoản vay, số dư cao, vì vậy hầu hết thanh toán của bạn là lãi. Khi số dư giảm, lãi giảm và nhiều hơn mỗi khoản thanh toán sẽ vào gốc — cho đến khi các khoản thanh toán cuối cùng gần như hoàn toàn là gốc.",
+          "Công thức khấu hao lãi suất cố định tiêu chuẩn: thanh toán hàng tháng = P × r / (1 − (1+r)⁻ⁿ), trong đó P là vốn gốc, r là lãi suất hàng tháng (hàng năm / 12), n là số tháng. Cùng một khoản thanh toán hàng tháng được dùng xuyên suốt, nhưng phần chia gốc/lãi thay đổi mỗi tháng khi số dư thay đổi."
+        ]
+      },
+      {
+        "heading": "Tại sao lịch trình quan trọng",
+        "paragraphs": [
+          "Nó cho bạn biết chính xác khi nào bạn 'vượt qua' từ trả lãi chủ yếu sang trả gốc chủ yếu. Với vay mua nhà 30 năm điển hình ở 6%, sự chuyển đổi đó xảy ra khoảng năm thứ 13 — có nghĩa là 13 năm đầu của các khoản thanh toán chủ yếu là lãi, không phải vốn chủ sở hữu.",
+          "Nó cũng cho thấy chi phí của việc ở trong khoản vay dài. So với kỳ hạn 15 năm ở cùng mức lãi suất, khoản vay 30 năm có thể trả tổng lãi gấp 2-3 lần trong suốt thời gian vay. Lịch trình làm điều này trở nên cụ thể.",
+          "Các khoản thanh toán gốc bổ sung ở đầu khoản vay tiết kiệm lãi nhiều hơn đáng kể so với các khoản thanh toán muộn. Lịch trình giúp bạn thấy điều này — trả thêm 1 triệu₫/tháng trong 5 năm đầu tiết kiệm nhiều hơn so với trả 1 triệu₫/tháng vào các năm 26-30."
+        ]
+      },
+      {
+        "heading": "Hạn chế",
+        "paragraphs": [
+          "Chỉ lãi suất cố định. Các khoản vay ARM (thế chấp lãi suất có thể điều chỉnh) yêu cầu tính lại lịch trình mỗi khi lãi suất thay đổi.",
+          "Không có thuế, bảo hiểm, PMI hoặc escrow. 'Thanh toán hàng tháng' ở đây chỉ là gốc + lãi. Để có tổng thanh toán nhà ở, hãy thêm riêng các khoản đó.",
+          "Không có kịch bản trả trước. Nếu bạn thực hiện các khoản thanh toán bổ sung, lịch trình sau thời điểm đó không còn chính xác. Để phân tích trả trước, hãy tính lại với số dư mới.",
+          "Tính lãi kép: giả định tính lãi kép hàng tháng (tiêu chuẩn cho thế chấp tại Việt Nam). Một số sản phẩm khoản vay sử dụng lãi kép hàng ngày hoặc lãi đơn giản — đối với những sản phẩm đó, lịch trình là xấp xỉ."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Nhập số tiền vay", "text": "Số tiền đi vay (vốn gốc)." },
+      { "name": "Nhập lãi suất", "text": "Lãi suất hàng năm. Với 6,5%, nhập 6,5." },
+      { "name": "Nhập thời hạn", "text": "Tính bằng năm. Hầu hết vay mua nhà tại Việt Nam là 15 hoặc 20-25 năm." },
+      { "name": "Đọc tóm tắt + lịch trình", "text": "Thanh toán hàng tháng, tổng lãi, phân tích từng tháng về nơi mỗi đồng đi." },
+      { "name": "Tải xuống CSV", "text": "Xuất lịch trình đầy đủ để phân tích bảng tính." }
+    ]
+  },
+  "faq": [
+    { "q": "Tại sao sao kê khoản vay của tôi hiển thị số khác?", "a": "Người cho vay thực sự bao gồm thuế, bảo hiểm, PMI và escrow trong khoản thanh toán hàng tháng. Máy tính này hiển thị gốc + lãi thuần túy. Hãy trừ đi các khoản bổ sung đó để so sánh." },
+    { "q": "Lãi được tính như thế nào mỗi tháng?", "a": "lãi hàng tháng = số dư hiện tại × lãi suất hàng tháng. Sau đó gốc = thanh toán hàng tháng − lãi. Số dư mới = số dư cũ − gốc. Lặp lại cho n tháng." },
+    { "q": "Tại sao các khoản thanh toán đầu có vẻ 'lãng phí' vào lãi?", "a": "Chúng không lãng phí — chúng đang trả cho sự tồn tại của khoản vay ở số dư lớn. Toán học trung thực: số dư cao × lãi suất = lãi cao. Khi số dư giảm, lãi cũng giảm." },
+    { "q": "Tác động của thay đổi lãi suất 1 điểm là gì?", "a": "Tăng khoảng 12% thanh toán hàng tháng và 25-35% tổng lãi trong 30 năm. Hãy khóa lãi suất thấp nếu có thể." },
+    { "q": "Tôi có nên trả thêm gốc hàng tháng không?", "a": "Nếu khoản vay của bạn không có hình phạt trả trước (hầu hết vay mua nhà tại Việt Nam không có), có. Ngay cả 1 triệu₫/tháng thêm ở đầu khoản vay tiết kiệm hàng chục triệu lãi. Lịch trình cho thấy tác động." },
+    { "q": "Khoản vay balloon là gì?", "a": "Khoản vay mà các khoản thanh toán thường xuyên không hoàn toàn khấu hao, để lại khoản thanh toán cuối 'balloon' lớn. Phổ biến trong bất động sản thương mại; hiếm gặp trong nhà ở. Máy tính này không mô hình hóa balloon." },
+    { "q": "Tại sao tổng lãi 30 năm nhiều hơn nhiều so với 15 năm?", "a": "Lãi kép chống lại bạn. Ở 6%, khoản vay 30 năm có lãi tổng cộng gấp khoảng 2 lần khoản vay 15 năm mặc dù lãi suất như nhau. Kỳ hạn ngắn hơn có nghĩa là giai đoạn số dư cao ngắn hơn." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Tính toán chạy cục bộ; tải xuống CSV cũng được tạo trong trình duyệt." }
+  ]
+}

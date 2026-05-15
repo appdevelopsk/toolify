@@ -1,0 +1,120 @@
+{
+  "title": "Calcolatore Profitto Azionario (con dividendi + tasse)",
+  "shortDescription": "Calcola il profitto di un'operazione azionaria includendo commissioni di acquisto/vendita, dividendi ricevuti e imposta sulle plusvalenze. Restituisce il profitto netto e il ROI al netto delle tasse.",
+  "description": "Inserisci azioni, prezzi di acquisto/vendita, commissioni, dividendi ricevuti e la tua aliquota sull'imposta sulle plusvalenze. Il calcolatore restituisce guadagno totale, imposte dovute e netto after-tax.",
+  "metaDescription": "Calcolatore gratuito di profitto azionario con supporto per dividendi e tasse. Calcola plusvalenza, reddito da dividendi, imposte dovute e ROI dopo le tasse per",
+  "keywords": [
+    "calcolatore profitto azionario",
+    "profitto trading azioni",
+    "calcolatore plusvalenze",
+    "ROI azioni",
+    "profitto netto trading"
+  ],
+  "empty": "Inserisci azioni, prezzi di acquisto e vendita, dividendi e aliquota fiscale.",
+  "input": {
+    "shares": "Azioni",
+    "buyPrice": "Prezzo di acquisto (per azione)",
+    "sellPrice": "Prezzo di vendita (per azione)",
+    "buyCommission": "Commissione acquisto",
+    "sellCommission": "Commissione vendita",
+    "dividends": "Dividendi ricevuti",
+    "taxPct": "Imposta sulle plusvalenze %"
+  },
+  "result": {
+    "afterTax": "Profitto after-tax",
+    "roi": "ROI (after tax)",
+    "cost": "Costo totale",
+    "gross": "Proventi lordi",
+    "capitalGain": "Plusvalenza",
+    "dividendsLabel": "Dividendi",
+    "totalGain": "Guadagno totale (pre-tax)",
+    "totalTax": "Imposte dovute"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cosa compone il profitto di un'operazione azionaria",
+        "paragraphs": [
+          "Il profitto azionario ha tre componenti principali: plusvalenza (prezzo di vendita meno prezzo di acquisto, per il numero di azioni, meno le commissioni), dividendi ricevuti durante il periodo di detenzione e le imposte dovute sul guadagno combinato. La maggior parte dei calcolatori calcola solo uno di questi — noi li calcoliamo tutti e tre per un risultato after-tax preciso.",
+          "Commissioni: molti broker online italiani (Fineco, DEGIRO, Trade Republic) offrono ora commissioni basse o nulle per le azioni, ma ETF, opzioni e azioni internazionali potrebbero comunque avere spese. Controlla sempre il tariffario del tuo broker."
+        ]
+      },
+      {
+        "heading": "Aliquota fiscale: regime fiscale italiano",
+        "paragraphs": [
+          "Italia: le plusvalenze da investimenti finanziari (azioni, ETF) sono soggette a imposta sostitutiva del 26%, che scende al 12,5% per i titoli di Stato e obbligazioni equiparate. I dividendi da azioni italiane ed estere subiscono anch'essi la ritenuta del 26% (salvo convenzioni contro la doppia imposizione). Il regime del risparmio amministrato (con broker come Fineco) gestisce automaticamente l'applicazione delle imposte.",
+          "Esenzioni e regimi speciali: i Piani di Risparmio a Lungo Termine (PIR) e i conti pensione complementari hanno regimi agevolati. Con il regime del risparmio gestito è possibile compensare plusvalenze e minusvalenze all'interno dello stesso esercizio.",
+          "EU (altri paesi): le aliquote variano notevolmente (Germania 25% flat tax, Francia 30% flat tax, UK CGT con franchigia annua). Consulta le regole specifiche del tuo paese — questo calcolatore applica semplicemente l'aliquota che inserisci."
+        ]
+      },
+      {
+        "heading": "Cosa non modella questo calcolatore",
+        "paragraphs": [
+          "Costi di spread bid-ask: acquistare al prezzo ask e vendere al prezzo bid implica un piccolo costo implicito per operazione. Per i large-cap liquidi è trascurabile (centesimi su 100 €); per i small-cap illiquidi può essere lo 0,5-2%. Usa prezzi di esecuzione realistici.",
+          "Conversione valutaria: se hai acquistato azioni USA in dollari, il tuo rendimento è influenzato anche dai movimenti EUR/USD tra acquisto e vendita. Non calcoliamo il cambio — inserisci semplicemente i prezzi nella tua valuta al momento di ogni operazione.",
+          "Compensazione minusvalenze: in Italia le minusvalenze possono essere compensate con plusvalenze future entro 4 anni fiscali (regime amministrato). Questo calcolatore non traccia la compensazione — consulta un commercialista per situazioni complesse."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Inserisci le azioni",
+        "text": "Numero di azioni acquistate."
+      },
+      {
+        "name": "Inserisci prezzi di acquisto e vendita",
+        "text": "Prezzi per azione a ciascuna transazione."
+      },
+      {
+        "name": "Inserisci le commissioni",
+        "text": "Spese per operazione su acquisto e vendita. Usa 0 se il tuo broker è senza commissioni."
+      },
+      {
+        "name": "Inserisci i dividendi ricevuti",
+        "text": "Totale dividendi pagati durante il tuo periodo di detenzione."
+      },
+      {
+        "name": "Inserisci l'aliquota fiscale",
+        "text": "La tua aliquota sulle plusvalenze. Standard italiano: 26%. Titoli di Stato: 12,5%."
+      },
+      {
+        "name": "Leggi il dettaglio",
+        "text": "Profitto after-tax, ROI, plusvalenza, reddito da dividendi, totale imposte."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Funziona per ETF e fondi comuni?",
+      "a": "Sì — stessa matematica. I fondi possono distribuire dividendi e plusvalenze; inserisci entrambi gli importi nel campo dividendi, o usa un calcolo separato per fonte se le aliquote differiscono."
+    },
+    {
+      "q": "E i dividendi reinvestiti (PAC dividendi)?",
+      "a": "Ogni reinvestimento è trattato come un nuovo lotto fiscale nella maggior parte delle giurisdizioni. Questo calcolatore assume un singolo acquisto/vendita — per i dividendi reinvestiti, esegui più calcoli o usa il report fiscale del broker."
+    },
+    {
+      "q": "Perché il calcolatore applica la tassa anche alle perdite?",
+      "a": "Non lo fa — applichiamo le imposte solo quando la plusvalenza o i dividendi sono positivi. Una perdita riduce le imposte totali dovute in molti paesi, ma le regole variano quindi lasciamo il trattamento delle perdite alla gestione manuale."
+    },
+    {
+      "q": "Cos'è la franchigia sulle plusvalenze?",
+      "a": "Alcuni paesi (UK, Francia) offrono una soglia esente da imposte prima che si applichi l'imposta sulle plusvalenze. Sottrai la tua franchigia dal guadagno prima di applicare l'aliquota, o modellala come un'aliquota effettiva più bassa. In Italia non esiste una franchigia analoga."
+    },
+    {
+      "q": "Devo includere le spese di canone del broker?",
+      "a": "I canoni di abbonamento/conto sono di solito deducibili dal rendimento totale ma non specifici di un'operazione. Sottraili dal profitto after-tax se il tuo broker li addebita."
+    },
+    {
+      "q": "In cosa differisce dal calcolatore crypto?",
+      "a": "Le azioni pagano dividendi; le crypto generalmente no. Le crypto usano commissioni in percentuale (variabili per dimensione dell'operazione); le azioni usano di solito commissioni fisse. La matematica è simile ma gli input differiscono."
+    },
+    {
+      "q": "Il ROI può essere negativo?",
+      "a": "Sì. Se prezzo di vendita + dividendi < prezzo di acquisto + commissioni, il ROI è negativo (si è perso denaro sull'operazione)."
+    },
+    {
+      "q": "I dati escono dal mio browser?",
+      "a": "No. Il calcolo viene eseguito localmente; nulla viene inviato a un server."
+    }
+  ]
+}

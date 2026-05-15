@@ -1,0 +1,71 @@
+{
+  "title": "Pressure Converter (Pa, bar, psi, atm, mmHg)",
+  "shortDescription": "Pressure units के बीच convert करें: Pascal, bar, psi, atmosphere, mmHg, Torr, और अधिक। एक बदलने पर सभी units simultaneously update होती हैं।",
+  "description": "एक value type करें, source unit चुनें, और 12 pressure units में equivalent values एक साथ देखें। SI (Pa, kPa, MPa, hPa), industrial (bar, psi), atmospheric (atm, Torr, mmHg), और feet of water column शामिल हैं।",
+  "metaDescription": "मुफ्त pressure converter। Pa, hPa, kPa, MPa, bar, psi, atm, mmHg, Torr, inHg, और अधिक के बीच convert करें। सभी units side by side दिखाए जाते हैं।",
+  "keywords": ["pressure converter", "pa से psi", "bar से psi", "atm से mmHg", "pressure units"],
+  "empty": "एक value दर्ज करें और unit चुनें।",
+  "input": {
+    "value": "मान",
+    "from": "Convert from"
+  },
+  "unit": {
+    "Pa": "Pascal",
+    "hPa": "Hectopascal",
+    "kPa": "Kilopascal",
+    "MPa": "Megapascal",
+    "bar": "Bar",
+    "mbar": "Millibar",
+    "atm": "Atmosphere",
+    "psi": "PSI (pounds per square inch)",
+    "mmHg": "mmHg",
+    "inHg": "inHg",
+    "Torr": "Torr",
+    "ft_H2O": "Feet of water"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Pressure units और वे कहाँ उपयोग होते हैं",
+        "paragraphs": [
+          "SI base: Pascal (Pa) force per area है, 1 N/m²। यह छोटा है — atmospheric pressure लगभग 100,000 Pa है — इसलिए kPa, hPa, और MPa commonly उपयोग होते हैं। Hectopascal (100 Pa) पुराने 'millibar' से match करता है इसलिए weather forecasts में hPa उपयोग होता है।",
+          "Industrial और engineering: bar (100,000 Pa, ≈ 1 atm) Europe में tire और industrial pressures के लिए widely उपयोग होता है। PSI (pounds per square inch) tires के लिए US standard है। भारत में tire pressure अक्सर PSI में दिया जाता है (passenger car के लिए typical 32-35 PSI)।",
+          "Atmospheric और meteorology: 1 standard atmosphere (atm) = 101,325 Pa, average sea-level pressure। Older units जैसे mmHg (millimeters of mercury) और Torr medical (blood pressure: 120/80 mmHg), vacuum technology, और aviation में बचे हैं।"
+        ]
+      },
+      {
+        "heading": "Common conversion benchmarks",
+        "paragraphs": [
+          "1 atm = 101,325 Pa = 1.01325 bar = 14.696 psi = 760 mmHg = 760 Torr",
+          "1 bar = 100,000 Pa = 100 kPa = 0.987 atm = 14.504 psi",
+          "1 psi = 6,894.757 Pa = 6.895 kPa = 0.0689 bar = 51.715 mmHg",
+          "1 kPa = 7.501 mmHg ≈ 0.145 psi",
+          "इन्हें याद रखना engineering और scientific contexts के लिए useful है जहाँ unit confusion common है। अधिकांश calculators (यह भी) math handle करते हैं, लेकिन ballpark जानना catastrophic errors रोकता है।"
+        ]
+      },
+      {
+        "heading": "Gauge बनाम absolute pressure",
+        "paragraphs": [
+          "Gauge pressure atmospheric के ऊपर pressure measure करती है। PSIG (PSI gauge) atmosphere के ऊपर pressure का मतलब है — 32 psi tire में actually ~46.7 psi absolute है (32 gauge + 14.7 atm)।",
+          "Absolute pressure vacuum (0 psi) से measure होती है। PSIA (PSI absolute) physics formulas उपयोग करती है। Industrial और consumer applications mostly gauge उपयोग करते हैं; physics और aviation mostly absolute।",
+          "यह converter absolute values पर operate करता है। Gauge को absolute में convert करने के लिए, enter करने से पहले 1 atm (14.7 psi या 1.013 bar) जोड़ें। Absolute को gauge में convert करने के लिए, subtract करें।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Value type करें", "text": "Numeric input।" },
+      { "name": "Source unit चुनें", "text": "Dropdown उपयोग करके चुनें कि आपकी value किस unit में है।" },
+      { "name": "सभी 12 conversions पढ़ें", "text": "सभी units simultaneously update होती हैं। Source unit highlighted है।" }
+    ]
+  },
+  "faq": [
+    { "q": "mbar और hPa में क्या अंतर है?", "a": "Numerically identical: 1 mbar = 1 hPa = 100 Pa। Meteorologists hPa को SI-aligned unit के रूप में prefer करते हैं; पुराने equipment और labels अक्सर mbar कहते हैं।" },
+    { "q": "'Bar' वास्तव में क्या worth है?", "a": "1 bar = 100,000 Pa = 100 kPa, 1 standard atmosphere से थोड़ा कम (1 atm = 1.01325 bar)। यह atmospheric pressure के करीब एक convenient round number है।" },
+    { "q": "भारत में tires PSI में rate होते हैं, Europe में bar में क्यों?", "a": "Historical: US imperial units उपयोग करता है, Europe metric। Tire pressures US ranges में 30-35 psi हैं, Europe में ~2.07-2.41 bar के equivalent। दोनों pump types आमतौर पर petrol stations पर available हैं।" },
+    { "q": "mmHg और Torr में क्या अंतर है?", "a": "practically identical: 1 Torr = 1 mmHg = 133.322 Pa। Torr same physics से derived unit है; mmHg mercury column को refer करता है।" },
+    { "q": "Vacuum के लिए यह कैसे काम करता है?", "a": "Vacuum बस बहुत कम pressure है। Atmospheric 760 Torr है; medium vacuum 0.1 Torr है; high vacuum 10⁻⁶ Torr। Calculator small values को floating-point precision तक correctly handle करता है।" },
+    { "q": "क्या gauge और absolute supported हैं?", "a": "Implicitly absolute। Gauge को absolute में convert करें enter करने से पहले 1 atm जोड़कर, फिर आवश्यकतानुसार back to gauge।" },
+    { "q": "Feet of water के बारे में क्या?", "a": "Plumbing और hydraulics में उपयोग। 1 ft water column = 2989 Pa ≈ 0.433 psi। Water tank pressure या water column manometer readings के लिए useful।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Conversion locally चलता है; कुछ भी server को नहीं भेजा जाता।" }
+  ]
+}

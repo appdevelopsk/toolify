@@ -1,0 +1,111 @@
+{
+  "title": "Analyseur de fréquence de caractères (lettres, tous les caractères ou",
+  "shortDescription": "Compte combien de fois chaque caractère ou mot apparaît dans ton texte. Triable, avec pourcentages et sensibilité à la casse optionnelle.",
+  "description": "Colle n'importe quel texte pour obtenir un tableau de fréquences trié. Trois modes : tous les caractères, lettres/chiffres uniquement, ou mots entiers. Utile pour la cryptanalyse, l'analyse de l'écriture et le nettoyage de données.",
+  "metaDescription": "Analyseur de fréquence de caractères gratuit. Compte lettres, tous les caractères ou mots. Tableau triable avec pourcentages. Compatible UTF-8, CJK et emojis.",
+  "keywords": [
+    "fréquence de caractères",
+    "fréquence de lettres",
+    "fréquence de mots",
+    "analyse de fréquence",
+    "statistiques de texte"
+  ],
+  "input": {
+    "text": "Texte"
+  },
+  "mode": {
+    "all": "Tous les caractères",
+    "letters": "Lettres et chiffres",
+    "words": "Mots"
+  },
+  "caseSensitive": "Sensible à la casse",
+  "stats": {
+    "unique": "{n} uniques",
+    "total": "{n} au total",
+    "showingTop": "affichage des top {n}",
+    "remainingCount": "+{n} autres non affichés"
+  },
+  "col": {
+    "item": "Élément",
+    "count": "Nombre"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "À quoi ça sert",
+        "paragraphs": [
+          "Cryptanalyse : les chiffrements classiques (César, substitution) préservent les fréquences de lettres. En français, E est la lettre la plus fréquente, suivi de A, S, I, T, N. Si tu observes approximativement cette distribution dans un texte chiffré, tu as affaire à une substitution. Les langues CJK ont des distributions très différentes mais tout aussi reconnaissables.",
+          "Analyse de l'écriture : repérer les mots surutilisés est l'un des moyens les plus rapides d'améliorer ses brouillons. Si « vraiment » ou « juste » apparaît 50 fois dans un essai de 1 000 mots, tu as trouvé un tic à corriger.",
+          "Nettoyage de données : scanner une colonne CSV avec cet outil révèle des caractères parasites, des erreurs d'encodage et des problèmes de casse inattendus. Utile avant d'importer des données dans un système plus strict."
+        ]
+      },
+      {
+        "heading": "Trois modes",
+        "paragraphs": [
+          "Tous les caractères : inclut les espaces, la ponctuation, les sauts de ligne, les emojis. Idéal pour l'analyse de texte brut. Utile quand tu soupçonnes des caractères cachés (espace de largeur nulle, BOM) qui corrompent un fichier.",
+          "Lettres et chiffres : filtre uniquement les lettres et chiffres Unicode. Idéal pour l'analyse traditionnelle de fréquence de lettres (cryptanalyse, identification de langue).",
+          "Mots : découpe sur les espaces et compte les mots entiers. Idéal pour l'analyse de l'écriture et la vérification stylistique."
+        ]
+      },
+      {
+        "heading": "Ce que fait « Sensible à la casse »",
+        "paragraphs": [
+          "Désactivé (par défaut) : « A » et « a » comptent ensemble. Idéal pour l'analyse de fréquence de lettres sur du texte naturel où la casse est accessoire.",
+          "Activé : « A » et « a » comptent séparément. Utile quand la casse a une signification — identifiants de programmation, termes de marque, ou analyse des motifs de majuscules. Remarque : le repliage insensible à la casse utilise les règles de minuscules de la locale ; pour la plupart des langues, c'est le repliage de casse Unicode conventionnel."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Colle du texte",
+        "text": "De quelques mots à un fichier de plusieurs mégaoctets."
+      },
+      {
+        "name": "Choisis le mode",
+        "text": "Tous les caractères, lettres/chiffres, ou mots."
+      },
+      {
+        "name": "Active/désactive la sensibilité à la casse",
+        "text": "Désactivée pour le texte naturel ; activée quand la casse est significative."
+      },
+      {
+        "name": "Lis le tableau",
+        "text": "Trié par fréquence. Top 50 affiché ; le reste est résumé en dessous."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Ça fonctionne pour le japonais, le chinois, le coréen ?",
+      "a": "Oui. Le mode lettres traite chaque idéogramme comme une « lettre », tu obtiens donc la fréquence des hanzi/kanji. Le mode mots découpe sur les espaces, ce qui signifie que le texte CJK sans espaces apparaît comme un seul mot géant — utilise le mode lettres pour ceux-ci."
+    },
+    {
+      "q": "Quelle est la lettre la plus fréquente en français ?",
+      "a": "E (environ 15 %), puis A (8,1 %), S (7,9 %), I (7,3 %), T (7,2 %), N (7,1 %). Connaître cela est la base du déchiffrement des substitutions simples."
+    },
+    {
+      "q": "Les emojis sont-ils comptés ?",
+      "a": "Oui, en mode « tous les caractères ». Le mode lettres les filtre (ils ne sont pas des lettres selon la classification Unicode)."
+    },
+    {
+      "q": "Pourquoi certains emojis sont-ils parfois divisés en plusieurs caractères ?",
+      "a": "Certains emojis sont constitués de plusieurs points de code Unicode (ex. les drapeaux = deux lettres indicateurs régionaux). Le compteur suit l'itération de chaînes JavaScript qui respecte les points de code mais pas tous les clusters de graphèmes. Pour la plupart des analyses, c'est acceptable."
+    },
+    {
+      "q": "Puis-je exporter le tableau ?",
+      "a": "Pas encore — copie-colle le tableau rendu pour l'instant. L'export CSV est prévu."
+    },
+    {
+      "q": "Combien d'entrées affiche-t-il ?",
+      "a": "Top 50 dans le tableau. Le décompte de la queue est résumé en bas."
+    },
+    {
+      "q": "Pourquoi les résultats insensibles à la casse pour le grec/turc ne correspondent-ils pas à mes attentes ?",
+      "a": "Certaines langues ont des règles de casse inhabituelles (I ponctué/non ponctué turc ; allemand ß ↔ SS). Nous utilisons toLowerCase() de JavaScript qui suit le repliage de casse Unicode par défaut — généralement correct mais peut surprendre dans des cas limites."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Tout le comptage s'effectue localement."
+    }
+  ]
+}

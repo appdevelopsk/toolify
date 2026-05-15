@@ -1,0 +1,59 @@
+{
+  "title": "Pemeriksa Bilangan Prima (dengan faktorisasi)",
+  "shortDescription": "Periksa apakah suatu bilangan adalah prima. Jika tidak, lihat faktorisasi primanya. Plus bilangan prima berikutnya dan sebelumnya.",
+  "description": "Masukkan bilangan bulat non-negatif hingga 10^18. Kalkulator menguji primitas dengan pembagian percobaan (deterministik hingga ~10^15 dalam waktu yang wajar) dan memberikan faktorisasi prima untuk bilangan komposit.",
+  "metaDescription": "Pemeriksa bilangan prima gratis dengan faktorisasi. Uji primitas, lihat faktor prima, dan temukan prima berikutnya/sebelumnya. Menangani bilangan hingga 10^18.",
+  "keywords": ["pemeriksa bilangan prima", "apakah prima", "faktorisasi prima", "uji bilangan prima", "prima berikutnya"],
+  "input": { "value": "Bilangan" },
+  "result": {
+    "isPrime": "adalah prima",
+    "notPrime": "BUKAN prima",
+    "factors": "Faktorisasi prima",
+    "prevPrime": "Prima sebelumnya",
+    "nextPrime": "Prima berikutnya"
+  },
+  "empty": "Masukkan bilangan bulat positif.",
+  "tooLarge": "Bilangan terlalu besar untuk komputasi di browser (maks 10^18).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa itu bilangan prima",
+        "paragraphs": [
+          "Prima adalah bilangan asli lebih dari 1 yang tidak memiliki pembagi positif selain 1 dan dirinya sendiri. Beberapa prima pertama: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37. Mereka adalah 'atom' aritmetika bilangan bulat — setiap bilangan bulat ≥ 2 dapat ditulis secara unik sebagai hasil kali bilangan prima (Teorema Dasar Aritmetika).",
+          "1 bukan prima menurut konvensi. 0 dan bilangan negatif bukan prima. 2 adalah satu-satunya prima genap — setiap bilangan genap lainnya habis dibagi 2 dan karenanya komposit."
+        ]
+      },
+      {
+        "heading": "Cara pengujian bekerja",
+        "paragraphs": [
+          "Kami menggunakan pembagian percobaan: periksa keterbagian dengan 2, lalu 3, lalu 5, 7, 11, … hingga √n. Jika tidak ada yang membagi dengan bersih, n adalah prima. Kami menggunakan optimasi 6k±1 yang hanya memeriksa kandidat berbentuk 6k+1 atau 6k−1 (karena semua prima > 3 berbentuk ini), mengurangi jumlah pengujian sebesar 2/3.",
+          "Pembagian percobaan cepat untuk n hingga ~10^15 (di bawah satu detik). Di atasnya, pengujian lanjutan seperti Miller-Rabin (probabilistik) atau AKS (deterministik) diperlukan. Kami membatasi di 10^18 untuk mencegah browser membeku pada input ekstrem."
+        ]
+      },
+      {
+        "heading": "Mengapa bilangan prima penting",
+        "paragraphs": [
+          "Kriptografi: enkripsi RSA mengalikan dua prima berdigit ~1000 untuk menghasilkan bilangan yang sulit difaktorkan. Keamanannya bergantung pada sulitnya memfaktorkan bilangan besar — tantangan yang telah dipelajari selama ribuan tahun.",
+          "Pendidikan matematika: faktorisasi prima adalah fondasi. Konsep seperti FPB, KPK, aritmetika modular, pecahan, dan teori bilangan semuanya dibangun di atas struktur faktor prima.",
+          "Ilmu komputer: ukuran tabel hash, generator bilangan acak, dan banyak algoritma menggunakan prima karena sifat keterbagiannya yang khas."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Masukkan bilangan", "text": "Bilangan bulat positif hingga 10^18." },
+      { "name": "Baca hasilnya", "text": "Hijau ✓ untuk prima, kuning ✗ untuk komposit." },
+      { "name": "Lihat faktorisasi", "text": "Jika komposit, faktor prima unik ditampilkan." },
+      { "name": "Navigasi prima", "text": "Prima sebelumnya dan berikutnya dicantumkan sebagai konteks." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah 1 prima?", "a": "Tidak. 1 adalah 'satuan', bukan prima. Prima memiliki tepat dua pembagi positif berbeda (1 dan dirinya sendiri); 1 hanya memiliki satu." },
+    { "q": "Apakah 0 prima?", "a": "Tidak. Prima adalah bilangan bulat > 1." },
+    { "q": "Apakah 2 prima?", "a": "Ya — 2 adalah satu-satunya prima genap. Semua bilangan genap lainnya memiliki 2 sebagai pembagi selain 1 dan dirinya sendiri." },
+    { "q": "Bagaimana prima berikutnya ditemukan?", "a": "Dengan menambah dari n+1 dan menguji primitas di setiap langkah. Selalu ada prima dalam n × ln(n) dari bilangan mana pun, sehingga ini berakhir dengan cepat bahkan untuk input besar." },
+    { "q": "Mengapa maksimumnya 10^18?", "a": "JavaScript BigInt menangani yang lebih besar, tetapi pembagian percobaan menjadi lambat. 10^18 aman untuk pemeriksaan di bawah satu detik untuk input khas. Lebih dari itu, gunakan alat khusus seperti SymPy atau Mathematica." },
+    { "q": "Bisakah Anda memeriksa prima 1000 digit?", "a": "Tidak dengan alat ini — pembagian percobaan terlalu lambat pada skala itu. Kriptografi menggunakan pengujian probabilistik Miller-Rabin untuk prima 1024-bit (~300 digit)." },
+    { "q": "Apa itu prima Mersenne?", "a": "Prima berbentuk 2^p − 1. Hingga 2025, hanya 51 yang diketahui. Prima terbesar yang diketahui (M82589933) adalah prima Mersenne dengan ~25 juta digit." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

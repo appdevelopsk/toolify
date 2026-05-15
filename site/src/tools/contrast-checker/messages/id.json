@@ -1,0 +1,62 @@
+{
+  "title": "Pemeriksa Kontras (nilai WCAG AA / AAA)",
+  "shortDescription": "Periksa rasio kontras warna antara teks dan latar belakang. Menampilkan preview langsung dan lencana lulus/gagal untuk WCAG AA dan AAA di ukuran teks normal dan besar.",
+  "description": "Pilih warna foreground dan background untuk menghitung rasio kontras WCAG. Preview teks langsung dan empat lencana nilai (AA normal, AA besar, AAA normal, AAA besar) diperbarui secara real time.",
+  "metaDescription": "Pemeriksa kontras WCAG gratis. Bandingkan warna foreground/background mana pun dan lihat lencana lulus/gagal AA dan AAA dengan preview teks langsung.",
+  "keywords": ["pemeriksa kontras", "kontras WCAG", "warna AA AAA", "warna aksesibilitas", "rasio warna"],
+  "input": { "fg": "Foreground (teks)", "bg": "Latar belakang" },
+  "result": { "label": "Rasio kontras" },
+  "preview": {
+    "large": "Contoh heading besar (24px+ atau 18,66px+ tebal)",
+    "normal": "Contoh teks isi normal untuk paragraf sehari-hari.",
+    "small": "Teks lebih kecil yang digunakan untuk keterangan, catatan kaki, dan label."
+  },
+  "badge": {
+    "aaNormal": "WCAG AA — Teks normal",
+    "aaLarge": "WCAG AA — Teks besar",
+    "aaaNormal": "WCAG AAA — Teks normal",
+    "aaaLarge": "WCAG AAA — Teks besar"
+  },
+  "empty": "Masukkan dua warna valid (HEX) untuk melihat rasio kontras.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara kerja rasio kontras",
+        "paragraphs": [
+          "WCAG (Web Content Accessibility Guidelines) mendefinisikan kontras sebagai rasio antara luminansi relatif dua warna. Rumusnya melinearkan setiap saluran sRGB, membobotnya berdasarkan sensitivitas mata manusia (R 0,2126, G 0,7152, B 0,0722), kemudian menghitung (lebih terang + 0,05) / (lebih gelap + 0,05). Hasilnya berkisar dari 1:1 (identik) hingga 21:1 (hitam di atas putih).",
+          "Kami menghitung ini di browser Anda menggunakan rumus WCAG 2.x resmi. Empat lencana nilai memeriksa terhadap ambang batas AA 4,5:1 (normal) dan 3:1 (besar), dan AAA 7:1 (normal) dan 4,5:1 (besar). 'Teks besar' adalah 24px / 18pt, atau 18,66px / 14pt tebal."
+        ]
+      },
+      {
+        "heading": "Mengapa lolos AA sebagai minimum",
+        "paragraphs": [
+          "AA adalah tingkat yang dapat ditegakkan secara hukum di banyak yurisdiksi (ADA AS, EU EN 301 549, UK Equality Act untuk layanan digital). Gagal AA pada teks isi adalah masalah aksesibilitas yang paling umum dan termudah diperbaiki selama desain daripada setelah peluncuran.",
+          "AAA direkomendasikan untuk bacaan panjang, layanan pemerintah, dan antarmuka berisiko tinggi. Ini ketat — insting pertama desainer dengan abu-abu pucat di atas putih biasanya mudah gagal AAA. Jika situs Anda kebanyakan menyajikan konten yang dilihat sekilas, targetkan AA; jika Anda menerbitkan buku, artikel, atau informasi kritis, targetkan AAA."
+        ]
+      },
+      {
+        "heading": "Kesalahan umum",
+        "paragraphs": [
+          "'Terlihat baik-baik saja di layar saya.' Layar terkalibrasi, lampu kantor fluoresen, dan penggunaan smartphone di luar ruangan semuanya mengubah kontras yang dirasakan. Gunakan rasio, bukan mata Anda.",
+          "Mendesain dark mode dengan membalik kode hex. Inversi mengubah hue dan merusak kontras. Uji ulang setiap pasangan warna setelah mengalihkan tema.",
+          "Mempercayai panduan merek. Banyak palet merek dipilih sebelum kesadaran WCAG. Jika merah muda merek di atas putih gagal, usulkan merah muda yang sedikit lebih gelap untuk salinan isi dan cadangkan warna asli untuk penggunaan dekoratif."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih foreground", "text": "Warna teks." },
+      { "name": "Pilih background", "text": "Warna di belakang teks." },
+      { "name": "Baca rasio dan lencana", "text": "Angka adalah rasio WCAG. Empat lencana menunjukkan lulus/gagal untuk AA dan AAA pada ukuran teks normal dan besar." }
+    ]
+  },
+  "faq": [
+    { "q": "Apa perbedaan antara AA dan AAA?", "a": "AA memerlukan 4,5:1 untuk teks normal dan 3:1 untuk teks besar. AAA memperketat menjadi 7:1 dan 4,5:1. AAA direkomendasikan tetapi tidak selalu dapat dicapai." },
+    { "q": "Apa itu 'teks besar'?", "a": "WCAG mendefinisikannya sebagai 18pt (24px) atau lebih besar, atau 14pt (18,66px) dan tebal." },
+    { "q": "Apakah alat ini mendukung transparansi?", "a": "Belum. Pilih warna aktual yang dilihat pengguna (foreground yang digabungkan di atas background). Dukungan transparansi mungkin hadir nanti." },
+    { "q": "Mengapa merek saya tidak lolos?", "a": "Banyak palet merek dipilih untuk estetika, bukan aksesibilitas. Perbaikan umum: gelapkan warna aksen yang digunakan sebagai teks, cadangkan varian terang untuk latar belakang atau elemen dekoratif." },
+    { "q": "Apakah rasio sama dengan 'kontras yang dirasakan'?", "a": "Tidak — WCAG 2.x menggunakan rumus berbasis luminansi yang disederhanakan. WCAG 3 (dalam pengembangan) menggunakan APCA, yang lebih baik memprediksi kontras yang dirasakan tetapi belum distandarisasi." },
+    { "q": "Rasio apa untuk ikon atau kontrol UI?", "a": "WCAG 2.1 menambahkan minimum 3:1 untuk kontras non-teks (ikon, kontrol formulir, indikator fokus). Gunakan pemeriksa yang sama — penuhi atau lampaui 3:1." },
+    { "q": "Apakah ini bekerja untuk grafik data?", "a": "Ambang yang sama berlaku antara warna berdekatan yang menyampaikan makna. Untuk visualisasi data, 3:1 antara warna berdekatan adalah minimum WCAG 1.4.11." },
+    { "q": "Apakah data dikirim ke mana pun?", "a": "Tidak. Perhitungan berjalan secara lokal di browser Anda." }
+  ]
+}

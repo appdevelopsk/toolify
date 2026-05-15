@@ -1,0 +1,67 @@
+{
+  "title": "CSS Gradyan Oluşturucu (doğrusal, radyal, konik)",
+  "shortDescription": "CSS gradyanlarını görsel olarak oluşturun: doğrusal, radyal ve konik. Çoklu renk durakları, açı kontrolü, ön ayarlar. Kopyalamaya hazır CSS.",
+  "description": "Bir gradyan türü seçin, açıyı ayarlayın, konumlarıyla renk durağı ekleyin veya kaldırın. Canlı önizleme. Bir tıklamayla CSS arka plan bildirimini kopyalayın.",
+  "metaDescription": "Canlı önizlemeli ücretsiz CSS gradyan oluşturucu. Doğrusal, radyal ve konik gradyanlar. Çok duraklı, açı kontrollü, kopyalamaya hazır CSS kodu.",
+  "keywords": ["CSS gradyan oluşturucu", "doğrusal gradyan", "radyal gradyan", "konik gradyan", "gradyan yapıcı"],
+  "preview": "Önizleme",
+  "input": {
+    "type": "Tür",
+    "angle": "Açı",
+    "stops": "Renk durağı"
+  },
+  "type": {
+    "linear": "Doğrusal",
+    "radial": "Radyal",
+    "conic": "Konik"
+  },
+  "output": {
+    "css": "CSS kodu"
+  },
+  "addStop": "Durak ekle",
+  "removeStop": "Durağı kaldır",
+  "copy": "CSS'yi kopyala",
+  "copied": "Kopyalandı!",
+  "article": {
+    "sections": [
+      {
+        "heading": "CSS'de üç gradyan türü",
+        "paragraphs": [
+          "Doğrusal gradyan: renkler belirli bir açıyla düz bir çizgi boyunca geçiş yapar. 0° yukarı bakar, 90° sağa bakar (varsayılan okuma yönü), 180° aşağı bakar. Arka planlar, düğmeler ve hero bölümleri için en yaygın kullanılan türdür.",
+          "Radyal gradyan: renkler bir merkez noktasından dışarı doğru geçiş yapar. Şekil bir daire (varsayılanımız) veya elips olabilir. Spot ışığı efektleri, güneş benzeri öğeler veya dikkat çekici odak parçaları için en uygun seçenektir.",
+          "Konik gradyan: renkler bir renk çarkı gibi merkez noktası etrafında döner. Daha az yaygın ama pasta grafikleri, saat yüzleri veya dekoratif döndürücüler için güçlüdür. 2020'den itibaren modern tarayıcılarda desteklenmektedir."
+        ]
+      },
+      {
+        "heading": "Renk durağı ve yüzde sistemi",
+        "paragraphs": [
+          "Her renk durağının bir rengi ve %0'dan %100'e kadar bir konumu vardır. %0 gradyanın başlangıcı, %100 ise sonudur. İki durak akıcı iki renkli bir gradyan oluşturur. Ortaya üçüncü bir durak eklemek, konumlandırmaya bağlı olarak üç renkli bir karışım veya keskin bir bant oluşturur.",
+          "Keskin geçişler için (karışım olmadan) aynı konuma farklı renklerle iki durak koyun. Örneğin '#000 %50, #fff %50' orta noktada keskin bir siyah-beyaz bölünme oluşturur. 'Çizgili' arka planlar bu şekilde yapılır."
+        ]
+      },
+      {
+        "heading": "Performans ve erişilebilirlik ipuçları",
+        "paragraphs": [
+          "Gradyanlar, arka plan görsellerinden farklı olarak HTTP isteği olmaksızın yerel olarak işlenir. Kalite kaybı olmadan sonsuza kadar ölçeklenir. Animasyon dostudur: background-position aracılığıyla konumu geçiş yapın veya gradyan duraklarını özel özelliklerle (CSS custom properties) canlandırın.",
+          "Erişilebilirlik: gradyan boyunca kontrast değişiyorsa metni doğrudan karmaşık gradyanın üzerine koymayın. Düz bir renk katmanı kullanın, gradyanın ortalama parlaklığının metinle kontrast oluşturduğundan emin olun veya kontrast denetleyicimizle test edin. WCAG AA, normal metin için 4,5:1, büyük metin için 3:1 gerektirir."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Bir ön ayar seçin", "text": "Ya da türü, açıyı ve durağı seçerek sıfırdan oluşturun." },
+      { "name": "Açıyı ayarlayın", "text": "Doğrusal ve konik için: 0-360°. Radyal merkezi kaynak olarak kullanır." },
+      { "name": "Renk durağı ekleyin", "text": "En az iki, pratik maksimum yok. Her birinin bir rengi ve %0-100 konumu vardır." },
+      { "name": "CSS'yi kopyalayın", "text": "'CSS'yi kopyala'ya tıklayın — doğrudan stil sayfanızın background özelliğine yapıştırın." }
+    ]
+  },
+  "faq": [
+    { "q": "Gradyanlar eski tarayıcılarda destekleniyor mu?", "a": "Doğrusal ve radyal gradyanlar Edge, Firefox, Chrome, Safari dahil tüm modern tarayıcılarda çalışır (2014'ten itibaren). Konik gradyanlar Chrome 69+, Firefox 83+, Safari 12.1+ gerektirir — eski tarayıcılar için doğrusal'a geri dönün." },
+    { "q": "Bunları React Native veya mobil uygulamalarda kullanabilir miyim?", "a": "Web CSS gradyanları React Native'e doğrudan çevrilmez — `react-native-linear-gradient` gibi kütüphaneler kullanın. Renk durağı değerleri aktarılır ama sözdizimi farklıdır. iOS ve Android arayüzleri platforma özgü API'ler kullanır." },
+    { "q": "Adlandırılmış renkler kullanabilir miyim?", "a": "Evet. Renk seçicinin yanındaki metin girişinde herhangi bir hex kodu (örn. #ff0000) yerine CSS renk adını (red, dodgerblue, vb.) yazın." },
+    { "q": "Konik gradyanım neden garip görünüyor?", "a": "Konik gradyanlar ayarladığınız açıdan saat yönünde döner. Tam 360° dönüşü kapsayan birden fazla durağıyla en iyi görünürler. Yalnızca 2 durağıyla genellikle eksik görünürler." },
+    { "q": "'Parıltı' efekti nasıl oluştururum?", "a": "Tamamen şeffaf son durağı olan radyal gradyan kullanın: örn. 'radial-gradient(circle, rgba(255,200,0,0.6) 0%, transparent 70%)'." },
+    { "q": "Gradyanı canlandırabilir miyim?", "a": "CSS gradyan duraklarını doğrudan canlandırmaz, ancak hareket efekti için background-position'ı canlandırabilir veya CSS özel özelliklerini (değişkenleri) JavaScript ile güncelleyebilirsiniz." },
+    { "q": "CSS neden bu kadar uzun?", "a": "Her durak bir renk ve konum ekler. Çok sayıda durağa sahip uzun gradyanlar ayrıntılı CSS üretir. Daha basit sonuçlar için 2-3 durağa bağlı kalın." },
+    { "q": "Veriler tarayıcımdan çıkıyor mu?", "a": "Hayır. Her şey yerel olarak hesaplanır; hiçbir şey sunucuya gönderilmez." }
+  ]
+}

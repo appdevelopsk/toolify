@@ -1,0 +1,67 @@
+{
+  "title": "Générateur de dégradés CSS (linéaire, radial, conique)",
+  "shortDescription": "Crée des dégradés CSS visuellement : linéaire, radial et conique. Plusieurs points de couleur, contrôle de l'angle, préréglages. Copie le CSS prêt à coller.",
+  "description": "Choisis un type de dégradé, règle l'angle, ajoute ou supprime des points de couleur avec leurs positions. Aperçu en direct. Copie la déclaration CSS background en un clic.",
+  "metaDescription": "Générateur de dégradés CSS gratuit avec aperçu en direct. Dégradés linéaires, radiaux et coniques. Multi-stops, contrôle de l'angle, code CSS prêt à copier.",
+  "keywords": ["générateur dégradé CSS", "linear gradient", "radial gradient", "conic gradient", "créer dégradé CSS"],
+  "preview": "Aperçu",
+  "input": {
+    "type": "Type",
+    "angle": "Angle",
+    "stops": "Points de couleur"
+  },
+  "type": {
+    "linear": "Linéaire",
+    "radial": "Radial",
+    "conic": "Conique"
+  },
+  "output": {
+    "css": "Code CSS"
+  },
+  "addStop": "Ajouter un point",
+  "removeStop": "Supprimer le point",
+  "copy": "Copier le CSS",
+  "copied": "Copié !",
+  "article": {
+    "sections": [
+      {
+        "heading": "Les trois types de dégradés CSS",
+        "paragraphs": [
+          "Dégradé linéaire : les couleurs transitionnent le long d'une ligne droite selon un angle donné. 0° pointe vers le haut, 90° vers la droite (direction de lecture par défaut), 180° vers le bas. Le plus utilisé pour les arrière-plans, les boutons et les sections hero.",
+          "Dégradé radial : les couleurs transitionnent depuis un point central vers l'extérieur. La forme peut être un cercle (notre défaut) ou une ellipse. Idéal pour les effets de lumière spot, les éléments solaires ou les éléments centraux qui attirent l'attention.",
+          "Dégradé conique : les couleurs tournent autour d'un point central, comme une roue chromatique. Moins courant mais puissant pour les graphiques en camembert, les cadrans d'horloge ou les spinners décoratifs. Supporté dans les navigateurs modernes depuis 2020."
+        ]
+      },
+      {
+        "heading": "Points de couleur et système de pourcentages",
+        "paragraphs": [
+          "Chaque point de couleur a une couleur et une position de 0% à 100%. 0% est le début du dégradé, 100% est la fin. Deux points donnent un dégradé bi-couleur lisse. Ajouter un troisième point au milieu crée un mélange tri-couleur ou une bande tranchée selon le positionnement.",
+          "Pour des transitions nettes (sans fondu), place deux points à la même position avec des couleurs différentes. Par exemple, '#000 50%, #fff 50%' crée une coupure nette noir-blanc au milieu. C'est ainsi que l'on crée des arrière-plans 'rayés'."
+        ]
+      },
+      {
+        "heading": "Performances et conseils d'accessibilité",
+        "paragraphs": [
+          "Les dégradés se rendent nativement sans requêtes HTTP, contrairement aux images de fond. Ils s'adaptent à toute résolution sans perte de qualité. Ils sont facilement animables : transite la position via background-position ou anime les points de couleur avec des propriétés personnalisées CSS.",
+          "Accessibilité : ne place pas de texte directement sur un dégradé complexe si le contraste varie selon les zones. Utilise une superposition de couleur unie, assure-toi que la luminosité moyenne du dégradé contraste avec le texte, ou teste avec notre vérificateur de contraste. WCAG AA exige 4,5:1 pour le texte normal et 3:1 pour le grand texte."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choisis un préréglage", "text": "Ou construis depuis zéro en choisissant type, angle et points de couleur." },
+      { "name": "Règle l'angle", "text": "Pour les dégradés linéaires et coniques : 0-360°. Le radial utilise le centre comme origine." },
+      { "name": "Ajoute des points de couleur", "text": "Deux au minimum, sans maximum pratique. Chacun a une couleur et une position de 0 à 100%." },
+      { "name": "Copie le CSS", "text": "Clique sur 'Copier le CSS' — colle directement dans la propriété background de ta feuille de style." }
+    ]
+  },
+  "faq": [
+    { "q": "Les dégradés fonctionnent-ils dans les anciens navigateurs ?", "a": "Les dégradés linéaires et radiaux fonctionnent dans tous les navigateurs modernes y compris Edge, Firefox, Chrome, Safari (depuis 2014). Les dégradés coniques nécessitent Chrome 69+, Firefox 83+, Safari 12.1+ — pour les anciens navigateurs, replie-toi sur le linéaire." },
+    { "q": "Puis-je les utiliser dans React Native ou des applis mobiles ?", "a": "Les dégradés CSS web ne se traduisent pas directement dans React Native — utilise des bibliothèques comme `react-native-linear-gradient`. Les points de couleur se traduisent, mais la syntaxe diffère. Les UI iOS et Android utilisent des API spécifiques à chaque plateforme." },
+    { "q": "Puis-je utiliser des couleurs nommées ?", "a": "Oui. Remplace n'importe quel code hexadécimal (ex. #ff0000) par le nom de couleur CSS (red, dodgerblue, etc.) dans le champ de texte à côté du sélecteur de couleur." },
+    { "q": "Pourquoi mon dégradé conique a-t-il l'air bizarre ?", "a": "Les dégradés coniques tournent dans le sens des aiguilles d'une montre depuis l'angle défini. Ils ont un meilleur rendu avec plusieurs points couvrant les 360° complets. Avec seulement 2 points, ils semblent souvent incomplets." },
+    { "q": "Comment créer un effet 'halo' ?", "a": "Utilise un dégradé radial avec un point final entièrement transparent : ex. 'radial-gradient(circle, rgba(255,200,0,0.6) 0%, transparent 70%)'." },
+    { "q": "Puis-je animer le dégradé ?", "a": "CSS n'anime pas directement les points de couleur, mais tu peux animer background-position pour un effet de déplacement, ou utiliser des propriétés personnalisées CSS (variables) et les mettre à jour avec JavaScript." },
+    { "q": "Pourquoi le CSS est-il si long ?", "a": "Chaque point ajoute une couleur et une position. Les dégradés avec de nombreux points produisent un CSS verbeux. Pour des résultats plus simples, limite-toi à 2 à 3 points." },
+    { "q": "Les données quittent-elles mon navigateur ?", "a": "Non. Tout est calculé localement ; rien n'est envoyé à un serveur." }
+  ]
+}

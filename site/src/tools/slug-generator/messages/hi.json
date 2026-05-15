@@ -1,0 +1,69 @@
+{
+  "title": "URL Slug Generator (SEO-friendly URLs)",
+  "shortDescription": "किसी भी title या sentence को SEO-friendly URL slug में convert करें। Configurable separator, length cap, lowercase, और Unicode support।",
+  "description": "Title type या paste करें; generator punctuation strip करता है, accents normalize करता है, whitespace collapse करता है, और clean slug produce करता है। Hyphens, underscores, या dots support; configurable max length; non-Latin URLs के लिए optional Unicode preservation।",
+  "metaDescription": "मुफ्त URL slug generator। किसी भी title से SEO-friendly slugs। Hyphen/underscore/dot separators, max length, Unicode support, ASCII-only mode।",
+  "keywords": ["slug generator", "url slug", "seo url generator", "slugify", "permalink generator"],
+  "input": {
+    "text": "Title या sentence",
+    "separator": "Separator",
+    "lowercase": "Lowercase",
+    "allowUnicode": "Unicode allow करें (non-ASCII)",
+    "maxLen": "Max length"
+  },
+  "sep": {
+    "hyphen": "Hyphen",
+    "underscore": "Underscore",
+    "dot": "Dot"
+  },
+  "result": {
+    "slug": "Slug",
+    "length": "Length"
+  },
+  "empty": "(empty)",
+  "copy": "Copy",
+  "copied": "Copy हो गया!",
+  "article": {
+    "sections": [
+      {
+        "heading": "URL slug क्या है",
+        "paragraphs": [
+          "Slug domain के बाद URL का human-readable part है — उदाहरण के लिए '/blog/how-to-bake-bread' में 'how-to-bake-bread'। अच्छे slugs short, descriptive, और stable होते हैं। Search engines और humans दोनों उन्हें page की identity के part के रूप में पढ़ते हैं।",
+          "Standard rules: lowercase letters, digits, और hyphens only। Spaces hyphens बनते हैं। Punctuation removed होती है। Stop words (the, a, is) brevity के लिए omit किए जा सकते हैं।"
+        ]
+      },
+      {
+        "heading": "ASCII बनाम Unicode slugs",
+        "paragraphs": [
+          "ASCII slugs (default): Latin letters और digits only। Universally supported, never URL-encoded, share-friendly। SEO-focused multilingual blogs के लिए standard choice।",
+          "Unicode slugs: URLs में original characters preserve करते हैं। Browsers उन्हें readably display करते हैं, लेकिन copy-paste percent-encoded URLs produce करता है। कुछ platforms Unicode slugs restrict करते हैं।",
+          "Unicode कब choose करें: Hindi, Bengali, Tamil, या अन्य Indian language blog native readers targeting करे। IDN URL native users को clean appear होता है और Google इन्हें well index करता है।"
+        ]
+      },
+      {
+        "heading": "Slug length और SEO",
+        "paragraphs": [
+          "Google का URL display लगभग 60-80 characters पर cap करता है। Longer slugs truncate होते हैं और 'spammy' लगते हैं। हम max-length slider को 60 पर default करते हैं।",
+          "हालाँकि, Google के algorithms slug length directly penalize नहीं करते। Length click-through rates के लिए मायने रखता है। Slug में keywords slightly ranking में help करते हैं; long slugs में keywords stuffing more hurt than help।",
+          "Best practice: सबसे important 2-3 keywords include करें, stop words और articles drop करें, 60 characters से under रखें।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Title type या paste करें", "text": "Article title, product name, या कोई descriptive text।" },
+      { "name": "Separator चुनें", "text": "Hyphen standard है। Underscore कुछ legacy CMSs के लिए काम करता है।" },
+      { "name": "Options configure करें", "text": "Lowercase (recommended), Unicode (non-Latin URLs के लिए), max length cap।" },
+      { "name": "Slug copy करें", "text": "अपने CMS, blog post, या routing config में paste करें।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या मुझे hyphens या underscores उपयोग करने चाहिए?", "a": "Hyphens। Google explicitly hyphens को URLs में word separators treat करता है; underscores को word के part के रूप में। इसलिए 'fast-cars' दो keywords हैं, 'fast_cars' एक है। SEO के लिए hyphens जीते हैं।" },
+    { "q": "क्या मुझे 'the' या 'a' जैसे stop words include करने चाहिए?", "a": "Optional। इन्हें skip करने से slugs short रहते हैं। Include करने से readable रहते हैं। SEO impact negligible है।" },
+    { "q": "Apostrophes (it's, don't) के बारे में क्या?", "a": "हम उन्हें strip करते हैं। 'don't' 'dont' बनता है।" },
+    { "q": "क्या यह Hindi / Devanagari handle करता है?", "a": "हाँ — Devanagari characters के लिए 'Unicode Allow करें' toggle करें। Without that flag, characters stripped हो जाते हैं।" },
+    { "q": "ASCII mode में मेरा Hindi slug empty क्यों हो जाता है?", "a": "Hindi characters के direct ASCII equivalents नहीं हैं। या तो Unicode mode enable करें, या paste करने से पहले manually transliterate करें।" },
+    { "q": "क्या emoji preserve होते हैं?", "a": "Unicode mode में हाँ। URL-encoded emoji valid हैं लेकिन ugly — अधिकांश platforms उन्हें strip करते हैं। Slugs में emoji न उपयोग करें।" },
+    { "q": "Maximum slug length क्या उपयोग करनी चाहिए?", "a": "60 characters या less SEO और CTR के लिए sweet spot है।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Generation locally चलती है; कुछ भी server को नहीं भेजा जाता।" }
+  ]
+}

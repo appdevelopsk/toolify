@@ -1,0 +1,64 @@
+{
+  "title": "72 Kuralı Hesaplayıcı (ikiye katlanma süresi / gerekli oran)",
+  "shortDescription": "72 Kuralını kullanarak bir yatırımın ikiye katlanmasının ne kadar süreceğini tahmin edin veya belirli bir sürede ikiye katlanmak için gereken oranı bulun. Tam bileşik matematikle karşılaştırır.",
+  "description": "İki mod: bir orandan, ikiye katlanma yıllarını bulun (72 / oran); hedef süreden, gereken oranı bulun (72 / yıl). Her sonuç tam bileşik faiz cevabı ve yaklaşım hatasıyla birlikte gösterilir.",
+  "metaDescription": "Ücretsiz 72 Kuralı hesaplayıcısı. Getiri oranından ikiye katlanma süresi veya yıllardan gerekli oran. Tam bileşik matematikle karşılaştırılmış.",
+  "keywords": ["72 kuralı hesaplayıcı", "ikiye katlanma süresi", "yatırım ikiye katlama", "bileşik oran", "72 kuralı"],
+  "empty": "Hesaplamak için bir değer girin.",
+  "mode": {
+    "toYears": "Oran → İkiye katlanma yılı",
+    "toRate": "Yıl → Gereken oran"
+  },
+  "input": {
+    "ratePct": "Yıllık oran %",
+    "years": "Hedef yıl"
+  },
+  "result": {
+    "yearsToDouble": "İkiye katlanma yılı (72 Kuralı)",
+    "rateNeeded": "Gereken oran",
+    "exact": "Tam (bileşik matematik)",
+    "approxError": "Yaklaşım hatası",
+    "years": "yıl"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "72 Kuralı ne söyler",
+        "paragraphs": [
+          "İkiye katlanma yılı ≈ 72 / yıllık oran. Yani %6 getiri ile paranız yaklaşık 12 yılda ikiye katlanır; %8'de 9 yılda; %12'de 6 yılda. Aynı kural tersine de çalışır: 10 yılda ikiye katlanmak istiyorsanız ~%7,2 yıllık getiri gerekir.",
+          "Bu bir zihinsel matematik kısayoludur, kesin formül değildir. Tam cevap ln(2) / ln(1 + r)'dir; hesap makinesi gerektirir. 72 Kuralı, 72'nin birçok böleni olduğundan (2, 3, 4, 6, 8, 9, 12) zihinsel bölmeyi kolaylaştırdığı için 15. yüzyıl Avrupa aritmetik ders kitaplarında popüler hale geldi."
+        ]
+      },
+      {
+        "heading": "Ne kadar doğrudur?",
+        "paragraphs": [
+          "%4 ile %12 arasındaki oranlarda ~%0,5 içinde — bu gerçekçi yatırım getirilerinin çoğunu kapsar. Çok düşük oranlar (%1-2) veya çok yüksek (%15+) için hata büyür. Bazı ders kitapları düşük oranlarda daha yüksek doğruluk için 70 veya 69,3 kuralını kullanır, ancak 72 pratik açıdan en ideal noktadır.",
+          "72 Kuralı tahminini ve tam bileşik matematik cevabını yan yana görmek için bu hesaplayıcıyı kullanın. 'Yaklaşım hatası', kuralın belirli oranınız veya döneminiz için ne kadar yanılttığını gösterir."
+        ]
+      },
+      {
+        "heading": "Nerede kullanılır",
+        "paragraphs": [
+          "Yatırım planlaması: 'beklediğim %7 getiri ile para her 10 yılda bir ikiye katlanıyor' — bu 72 Kuralı'nın işlevi. Kaba emeklilik projeksiyonları için kullanışlıdır.",
+          "Enflasyon analizi: %3 enflasyonda fiyatlar her 24 yılda bir ikiye katlanır. %7'de her 10 yılda. Satın alma gücü erozyonunu kavramak için hızlı bir yol.",
+          "Nüfus ve büyüme modellemesi: sabit bir yüzde oranında büyüyen herhangi bir nicelik (nüfus, borç, teknoloji benimsenmesi) 72/r yılda ikiye katlanır. Üstel düşüncenin temeli."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Yönü seçin", "text": "Getirinizi biliyorsanız Oran → Yıl; hedef süreniz varsa Yıl → Oran." },
+      { "name": "Değeri girin", "text": "Yıllık yüzde (ör. 7) veya hedef yıl (ör. 10)." },
+      { "name": "Her iki tahmini de okuyun", "text": "72 Kuralı kısayolu ve tam bileşik cevap, artı aralarındaki hata." }
+    ]
+  },
+  "faq": [
+    { "q": "Neden 72, 70 veya 69 değil?", "a": "Üçü de kullanılır. 72'nin tam sayı böleni daha fazladır (zihinsel matematik daha kolay). 69,3 anlık oranlarda tam değerdir. 70 basit bir alternatif. %4-12 oranlar için farklar küçüktür; en hızlı bölebileceğinizi seçin." },
+    { "q": "Bu negatif oranlar için çalışır mı?", "a": "Tersine — yılda %-5'te para her 14,4 yılda yarıya iner (72 / 5). Formül negatifleri işler ama anlam 'ikiye katlama'dan 'yarıya inme'ye kayar." },
+    { "q": "Oranım aylık bileşenliyorsa ne olur?", "a": "72 Kuralı yıllık bileşiklendirmeyi varsayar. Aylık bileşiklendirme için efektif yıllık oran biraz daha yüksektir, dolayısıyla ikiye katlanma biraz daha çabuk gerçekleşir. Hesaplayıcıda efektif yıllık oranı (APY) kullanın." },
+    { "q": "Bunu basit faiz için kullanabilir miyim?", "a": "Hayır — 72 Kuralı bileşik faiz içindir. Basit faiz doğrusal olarak ikiye katlanır: %100 / oran. Yani %5 basit faiz tam olarak 20 yılda ikiye katlanır, ama %5 bileşik ~14,4 yıl sürer." },
+    { "q": "%7 hisse getirisi gerçekçi mi?", "a": "Uzun vadeli ABD borsası ~%7 gerçek (enflasyon sonrası), ~%10 nominal ortalama alır. Satın alma gücü düzeltmeli projeksiyonlar için %7, nominal hesap bakiyeleri için %10 kullanın." },
+    { "q": "İkiye katlanmak için 'gerçekçi' süre nedir?", "a": "Hisse senetleri: ~10 yıl (%7 gerçek). Tahviller: ~20 yıl (%3-4). Yüksek getirili mevduat: ~14-18 yıl (%4-5). Vadeli mevduat ve benzerleri: orana bağlı 14-25 yıl." },
+    { "q": "Bu vergileri hesaba katıyor mu?", "a": "Hayır — bunlar vergi öncesi ikiye katlanma süreleridir. Vergi sonrası efektif getirinizi kullanarak vergiyi hesaba katın (~vergilendirilebilir hesaplarda %25-30 daha düşük)." },
+    { "q": "Veriler tarayıcımdan çıkıyor mu?", "a": "Hayır. Hesaplama yerel olarak çalışır; hiçbir şey sunucuya gönderilmez." }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "title": "Zeichenhäufigkeitsanalyse (Buchstaben, alle Zeichen oder Wörter)",
+  "shortDescription": "Zähle, wie oft jedes Zeichen oder Wort in deinem Text vorkommt. Sortierbar, mit Prozentangaben und optionaler Groß-/Kleinschreibung.",
+  "description": "Füge beliebigen Text ein, um eine sortierte Häufigkeitstabelle zu erhalten. Drei Modi: alle Zeichen, nur Buchstaben/Ziffern oder ganze Wörter. Nützlich für Kryptanalyse, Schreibanalyse und Datensatzbereinigung.",
+  "metaDescription": "Kostenloser Zeichenhäufigkeitsanalysator. Buchstaben, alle Zeichen oder Wörter zählen. Sortierbare Tabelle mit Prozentangaben. UTF-8-fähig einschließlich CJK und Emoji.",
+  "keywords": ["Zeichenhäufigkeit", "Buchstabenhäufigkeit", "Worthäufigkeit", "Häufigkeitsanalyse", "Textstatistik"],
+  "input": { "text": "Text" },
+  "mode": { "all": "Alle Zeichen", "letters": "Buchstaben und Ziffern", "words": "Wörter" },
+  "caseSensitive": "Groß-/Kleinschreibung beachten",
+  "stats": {
+    "unique": "{n} einzigartig",
+    "total": "{n} gesamt",
+    "showingTop": "zeige top {n}",
+    "remainingCount": "+{n} weitere im Schwanz nicht angezeigt"
+  },
+  "col": { "item": "Element", "count": "Anzahl" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wofür es verwendet wird",
+        "paragraphs": [
+          "Kryptanalyse: Klassische Chiffren (Caesar, Substitution) bewahren Buchstabenhäufigkeiten. Deutscher Text hat E als häufigsten Buchstaben, gefolgt von N, I, S, R. Wenn du diese Verteilung ungefähr im Chiffretext siehst, liegt eine Substitution vor. CJK-Sprachen haben sehr unterschiedliche Verteilungen, sind aber immer noch erkennbar.",
+          "Schreibanalyse: Das Aufspüren von übermäßig verwendeten Wörtern ist einer der schnellsten Wege, Entwürfe zu verbessern. Wenn 'jedoch' oder 'eigentlich' 50-mal in einem 1.000-Wort-Aufsatz erscheint, hast du einen Tick gefunden, der behoben werden sollte.",
+          "Datensatzbereinigung: Das Durchsuchen einer CSV-Spalte mit diesem Tool offenbart verstreute Zeichen, Kodierungsfehler und unerwartete Groß-/Kleinschreibung. Nützlich vor dem Import von Daten in ein strengeres System."
+        ]
+      },
+      {
+        "heading": "Drei Modi",
+        "paragraphs": [
+          "Alle Zeichen: umfasst Leerzeichen, Satzzeichen, Zeilenumbrüche, Emoji. Am besten für rohe Textanalyse. Nützlich, wenn du versteckte Zeichen vermutest (Nullbreite-Leerzeichen, BOM), die eine Datei beschädigen.",
+          "Buchstaben und Ziffern: filtert auf Unicode-Buchstaben und -Zahlen. Am besten für traditionelle Buchstabenhäufigkeitsanalyse (Kryptanalyse, Sprachidentifikation).",
+          "Wörter: teilt bei Leerzeichen auf und zählt ganze Wörter. Am besten für Schreibanalyse und stilistische Überprüfung."
+        ]
+      },
+      {
+        "heading": "Was 'Groß-/Kleinschreibung beachten' bewirkt",
+        "paragraphs": [
+          "Aus (Standard): 'A' und 'a' werden zusammen gezählt. Am besten für Buchstabenhäufigkeit in natürlichem Text, wo Groß-/Kleinschreibung beiläufig ist.",
+          "Ein: 'A' und 'a' werden separat gezählt. Nützlich, wenn Groß-/Kleinschreibung bedeutungsvoll ist – Programmierbezeichner, Markennamen oder Analyse von Großschreibungsmustern. Hinweis: Die Groß-/Kleinschreibungsunempfindliche Faltung verwendet die Kleinschreibungsregeln des Locale; für die meisten Sprachen ist dies die konventionelle Unicode-Groß-/Kleinschreibungsfaltung."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Text einfügen", "text": "Alles von einem Satz bis zu einer mehrere Megabyte großen Datei." },
+      { "name": "Modus wählen", "text": "Alle Zeichen, Buchstaben/Ziffern oder Wörter." },
+      { "name": "Groß-/Kleinschreibung umschalten", "text": "Aus für natürlichen Text; ein, wenn Groß-/Kleinschreibung bedeutungsvoll ist." },
+      { "name": "Tabelle lesen", "text": "Nach Häufigkeit sortiert. Top 50 angezeigt; verbleibender Schwanz unten zusammengefasst." }
+    ]
+  },
+  "faq": [
+    { "q": "Funktioniert es für japanischen, chinesischen und koreanischen Text?", "a": "Ja. Der Buchstabenmodus behandelt jeden Schriftzeichen als einen 'Buchstaben', sodass du die Häufigkeit von Hanzi/Kanji erhältst. Der Wortmodus teilt bei Leerzeichen auf, was bedeutet, dass CJK-Text ohne Leerzeichen als ein riesiges Wort erscheint – verwende für diese Sprachen den Buchstabenmodus." },
+    { "q": "Was ist der häufigste deutsche Buchstabe?", "a": "'E' (etwa 17,4 %), gefolgt von N (9,8 %), I (7,6 %), S (7,3 %), R (7,0 %), A (6,5 %). Das Kennen dieser Häufigkeiten ist die Grundlage für das Knacken einfacher Substitutionschiffren in deutschen Texten." },
+    { "q": "Werden Emoji gezählt?", "a": "Ja, im Modus 'Alle Zeichen'. Der Buchstabenmodus filtert sie heraus (sie sind gemäß Unicode-Klassifikation keine Buchstaben)." },
+    { "q": "Warum werden Emoji manchmal in mehrere Zeichen aufgeteilt?", "a": "Einige Emoji bestehen aus mehreren Unicode-Codepunkten (z. B. Flaggen = zwei regionale Indikatorbuchstaben). Der Zähler folgt der JavaScript-String-Iteration, die Codepunkte, aber nicht alle Graphem-Cluster berücksichtigt. Für die meisten Analysen ist das in Ordnung." },
+    { "q": "Kann ich die Tabelle exportieren?", "a": "Noch nicht – kopiere die gerenderte Tabelle vorerst per Kopieren und Einfügen. CSV-Export ist geplant." },
+    { "q": "Wie viele Einträge werden angezeigt?", "a": "Top 50 in der Tabelle. Die verbleibende Anzahl wird unten zusammengefasst." },
+    { "q": "Warum stimmen die groß-/kleinschreibungsunempfindlichen Ergebnisse für Griechisch/Türkisch nicht mit meinen Erwartungen überein?", "a": "Einige Sprachen haben ungewöhnliche Groß-/Kleinschreibungsregeln (türkisches gepunktetes/ungepunktetes I; deutsches ß ↔ SS). Wir verwenden JavaScripts toLowerCase(), das der Standard-Unicode-Groß-/Kleinschreibungsfaltung folgt – normalerweise in Ordnung, kann aber in Randfällen überraschen." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Alle Zählungen laufen lokal." }
+  ]
+}

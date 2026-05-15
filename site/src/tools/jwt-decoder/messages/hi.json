@@ -1,0 +1,67 @@
+{
+  "title": "JWT डिकोडर (header, payload, signature, expiry)",
+  "shortDescription": "किसी भी JWT (JSON Web Token) को header, payload, signature भागों में decode करें। समाप्त tokens को हाइलाइट करता है। Browser-only — आपका token आपके डिवाइस से नहीं जाता।",
+  "description": "JWT पेस्ट करें और header और payload को JSON के रूप में तुरंत decode करें। Standard claims (iat, exp, nbf) पहचानता है और Unix timestamps को ISO 8601 में बदलता है। समाप्त या अभी-तक-वैध-नहीं tokens को flag करता है।",
+  "metaDescription": "मुफ्त JWT डिकोडर। Header, payload, signature उपस्थिति, expiry जाँचें। Standard claims (iat/exp/nbf) auto-formatted। Browser-only — token कभी transmitted नहीं होता।",
+  "keywords": ["JWT डिकोडर", "JSON Web Token", "JWT decode करें", "JWT inspector", "JWT debugger"],
+  "input": {
+    "token": "JWT token",
+    "privacyNote": "पूरी तरह आपके ब्राउज़र में decoded। Token network पर कभी नहीं जाता।"
+  },
+  "result": {
+    "header": "Header",
+    "payload": "Payload",
+    "signaturePresent": "Signature मौजूद",
+    "issuedAt": "जारी किया (iat)",
+    "expiresAt": "समाप्त (exp)",
+    "notBefore": "इससे पहले वैध नहीं (nbf)"
+  },
+  "warning": {
+    "expired": "⚠ यह token समाप्त हो गया है। exp का सम्मान करने वाले Servers इसे अस्वीकार करेंगे।",
+    "notYetValid": "⚠ अभी वैध नहीं (nbf भविष्य में है)। तब तक Servers इसे अस्वीकार करेंगे।"
+  },
+  "error": { "label": "Decode त्रुटि" },
+  "copy": "कॉपी",
+  "article": {
+    "sections": [
+      {
+        "heading": "JWT कैसा दिखता है",
+        "paragraphs": [
+          "JWT तीन Base64url-encoded segments होते हैं जो dots से जुड़े होते हैं: header.payload.signature। प्रत्येक segment URL-safe transmission के लिए encoded एक JSON object है। Header signing algorithm declare करता है, payload claims (subject, expiry, custom data) वहन करता है, और signature recipient को integrity verify करने देता है।",
+          "यह decoder केवल पहले दो segments पढ़ता है। Signature तीसरा segment है लेकिन इसे verify करने के लिए secret/public key की आवश्यकता है।"
+        ]
+      },
+      {
+        "heading": "जानने योग्य Standard claims",
+        "paragraphs": [
+          "iss (issuer): किसने token बनाया। iat (issued at): कब, Unix timestamp के रूप में। exp (expiry): यह कब वैध नहीं रहता, Unix में। nbf (not before): सबसे पहला समय जब इसका सम्मान किया जाना चाहिए। sub (subject): यह किसका प्रतिनिधित्व करता है, अक्सर user ID। aud (audience): token किसके लिए है।",
+          "सभी अनिवार्य नहीं हैं; minimal JWTs में अक्सर केवल sub + iat + exp होते हैं।"
+        ]
+      },
+      {
+        "heading": "Decoding ≠ Verifying क्यों है",
+        "paragraphs": [
+          "कोई भी JWT decode कर सकता है — header और payload केवल Base64-encoded JSON हैं। इसीलिए हम कहते हैं 'payload में कभी secrets न डालें': वे effectively public हैं।",
+          "Verification का मतलब है secret key (HMAC) या public key (RSA/ECDSA) के विरुद्ध signature जाँचना। Verification के बिना, आप payload के किसी भी claim पर भरोसा नहीं कर सकते।",
+          "Debugging के दौरान tokens inspect करने के लिए इस टूल का उपयोग करें। Production में उन्हें verify करने के लिए server पर JWT library का उपयोग करें।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "JWT पेस्ट करें", "text": "तीन segments dots से जुड़े।" },
+      { "name": "Decoded parts पढ़ें", "text": "Header (algorithm), payload (claims), signature presence flag।" },
+      { "name": "Expiry जाँचें", "text": "Standard claims iat/exp/nbf ISO dates के रूप में auto-formatted हैं।" },
+      { "name": "आवश्यकतानुसार कॉपी करें", "text": "प्रत्येक section में JSON output के लिए copy button है।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या मैं signature verify कर सकता हूँ?", "a": "नहीं — verification के लिए secret या public key की आवश्यकता है। Server-side JWT library का उपयोग करें।" },
+    { "q": "क्या token मेरा ब्राउज़र छोड़ता है?", "a": "कभी नहीं। Decoding locally चलता है; हमारे पास इसे receive करने का कोई server endpoint नहीं है।" },
+    { "q": "मेरा token 'invalid' क्यों है?", "a": "सामान्य: copy-paste ने whitespace जोड़ा/हटाया, तीन segments में से एक गायब है, या एक segment malformed Base64url है।" },
+    { "q": "Base64url बनाम Base64 क्या है?", "a": "Base64url '+' को '-' से, '/' को '_' से बदलता है और '=' padding हटाता है ताकि encoded string URLs में safe हो। JWTs हमेशा Base64url उपयोग करते हैं।" },
+    { "q": "मेरा Unicode payload garbled text क्यों दिखाता है?", "a": "हम UTF-8 decode करते हैं, जो standard है। यदि payload अलग तरह से encode किया गया था, तो JSON.parse विफल हो सकता है।" },
+    { "q": "क्या HS256 secure है?", "a": "यदि secret पर्याप्त लंबा है (≥256 bits) और secret रखा जाए, तो हाँ। कमजोर secrets और alg='none' accept करना सामान्य HS256 कमजोरियाँ हैं।" },
+    { "q": "HS256 से RS256 क्यों prefer करें?", "a": "RS256 (asymmetric RSA) आपको signing key private रखते हुए verification के लिए public key publish करने देता है। HS256 (symmetric HMAC) के लिए हर verifier के साथ secret share करना आवश्यक है।" },
+    { "q": "क्या मैं huge tokens decode कर सकता हूँ?", "a": "व्यावहारिक सीमा ~10 MB input है। JWTs आमतौर पर 4 KB से कम होते हैं।" }
+  ]
+}

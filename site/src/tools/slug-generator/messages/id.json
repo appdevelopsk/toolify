@@ -1,0 +1,69 @@
+{
+  "title": "Generator URL Slug (URL ramah SEO)",
+  "shortDescription": "Konversi judul atau kalimat apapun menjadi URL slug yang ramah SEO. Separator yang dapat dikonfigurasi, batas panjang, huruf kecil, dan dukungan Unicode.",
+  "description": "Ketik atau tempel judul; generator menghapus tanda baca, menormalkan aksen, menggabungkan spasi, dan menghasilkan slug yang bersih. Mendukung tanda hubung, garis bawah, atau titik; panjang maksimal yang dapat dikonfigurasi; pelestarian Unicode opsional untuk URL non-Latin.",
+  "metaDescription": "Generator URL slug gratis. Slug ramah SEO dari judul apapun. Separator tanda hubung/garis bawah/titik, panjang maksimal, dukungan Unicode, mode hanya ASCII.",
+  "keywords": ["generator slug", "url slug", "generator url seo", "slugify", "generator permalink"],
+  "input": {
+    "text": "Judul atau kalimat",
+    "separator": "Separator",
+    "lowercase": "Huruf kecil",
+    "allowUnicode": "Izinkan Unicode (non-ASCII)",
+    "maxLen": "Panjang maksimal"
+  },
+  "sep": {
+    "hyphen": "Tanda hubung",
+    "underscore": "Garis bawah",
+    "dot": "Titik"
+  },
+  "result": {
+    "slug": "Slug",
+    "length": "Panjang"
+  },
+  "empty": "(kosong)",
+  "copy": "Salin",
+  "copied": "Disalin!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa itu URL slug",
+        "paragraphs": [
+          "Slug adalah bagian URL yang dapat dibaca manusia setelah domain — misalnya 'cara-membuat-roti' dalam '/blog/cara-membuat-roti'. Slug yang baik singkat, deskriptif, dan stabil. Mesin pencari dan manusia sama-sama membacanya sebagai bagian dari identitas halaman.",
+          "Aturan standar: huruf kecil, digit, dan tanda hubung saja. Spasi menjadi tanda hubung. Tanda baca dihapus. Kata-kata umum (yang, dan, di) dapat dihilangkan untuk singkatnya, meskipun itu adalah pilihan gaya."
+        ]
+      },
+      {
+        "heading": "Slug ASCII vs Unicode",
+        "paragraphs": [
+          "Slug ASCII (default): hanya huruf Latin dan digit. Didukung secara universal, tidak pernah dikodekan URL, ramah untuk dibagikan. Pilihan standar untuk blog berbahasa Indonesia atau multilingual yang berfokus SEO.",
+          "Slug Unicode: mempertahankan karakter asli dalam URL. Browser menampilkannya secara mudah dibaca (artikel-tentang-teknologi), tetapi salin-tempel menghasilkan URL yang dikodekan persen. Beberapa platform membatasi slug Unicode; periksa sebelum mengandalkannya.",
+          "Kapan memilih Unicode: blog berbahasa Jepang, Cina, atau Korea yang menargetkan pembaca asli. URL IDN terlihat bersih untuk pengguna asli dan Google mengindeksnya dengan baik. Kelemahannya adalah berbagi di platform yang menampilkan URL mentah."
+        ]
+      },
+      {
+        "heading": "Panjang slug dan SEO",
+        "paragraphs": [
+          "Tampilan URL Google dibatasi sekitar 60-80 karakter. Slug yang lebih panjang terpotong dan terlihat 'spam'. Kami menetapkan panjang maksimal default ke 60 — cukup pendek untuk sebagian besar daftar.",
+          "Namun, algoritma Google tidak secara langsung menghukum panjang slug. Panjang penting untuk rasio klik-tayang (manusia melewati URL panjang) dan untuk menjaga slug tetap mudah dibaca. Kata kunci dalam slug sedikit membantu peringkat; menjejalkan kata kunci ke dalam slug panjang lebih merugikan daripada membantu.",
+          "Praktik terbaik: sertakan 2-3 kata kunci terpenting, hapus kata-kata umum dan artikel, pertahankan di bawah 60 karakter."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Ketik atau tempel judul", "text": "Judul artikel, nama produk, atau teks deskriptif apapun." },
+      { "name": "Pilih separator", "text": "Tanda hubung adalah standar. Garis bawah bekerja untuk beberapa CMS lama. Titik tidak biasa tetapi valid." },
+      { "name": "Konfigurasi opsi", "text": "Huruf kecil (disarankan), Unicode (untuk URL non-Latin), batas panjang maksimal." },
+      { "name": "Salin slug", "text": "Tempel ke CMS, posting blog, atau konfigurasi routing Anda." }
+    ]
+  },
+  "faq": [
+    { "q": "Haruskah saya menggunakan tanda hubung atau garis bawah?", "a": "Tanda hubung. Google secara eksplisit memperlakukan tanda hubung sebagai pemisah kata dalam URL; garis bawah diperlakukan sebagai bagian dari kata. Jadi 'mobil-cepat' adalah dua kata kunci, 'mobil_cepat' adalah satu. Tanda hubung menang untuk SEO." },
+    { "q": "Haruskah saya menyertakan kata-kata umum seperti 'yang' atau 'dan'?", "a": "Opsional. Menghilangkannya membuat slug lebih pendek. Menyertakannya membuat slug lebih mudah dibaca. Dampak SEO dapat diabaikan; keterbacaan lebih penting." },
+    { "q": "Bagaimana dengan apostrof (it's, don't)?", "a": "Kami menghapusnya. 'don't' menjadi 'dont'. Beberapa generator mempertahankannya sebagai bagian kata; kami mengikuti konvensi yang lebih sederhana." },
+    { "q": "Apakah ini menangani Jepang / Cina?", "a": "Ya — aktifkan 'Izinkan Unicode' untuk menyimpan karakter CJK dalam slug. Tanpa flag itu, karakter CJK dihapus (karena tidak memiliki padanan ASCII)." },
+    { "q": "Mengapa slug Korea saya menjadi kosong dalam mode ASCII?", "a": "Karakter Korea tidak memiliki padanan ASCII langsung. Aktifkan mode Unicode, atau transliterasikan secara manual sebelum menempel." },
+    { "q": "Apakah emoji dipertahankan?", "a": "Ya dalam mode Unicode. Emoji yang dikodekan URL valid tetapi buruk — sebagian besar platform menghapusnya. Saran praktis: jangan gunakan emoji dalam slug." },
+    { "q": "Berapa panjang slug maksimal yang harus saya gunakan?", "a": "60 karakter atau kurang adalah titik manis untuk SEO dan CTR. Beberapa sistem CMS membatasi 200 karakter. Indeks Google mendukung lebih panjang tetapi jarang meningkatkan keterbacaan." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Generasi berjalan secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

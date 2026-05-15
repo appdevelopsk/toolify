@@ -1,0 +1,54 @@
+{
+  "title": "Konverter Zona Waktu (bandingkan waktu di berbagai zona)",
+  "shortDescription": "Konversi satu momen waktu ke beberapa zona waktu sekaligus. Tambah atau hapus zona; cocok untuk menjadwalkan rapat internasional.",
+  "description": "Pilih zona waktu sumber dan tanggal/waktu, lalu tambahkan zona waktu target sebanyak yang Anda butuhkan. Setiap target menampilkan waktu lokal yang ekuivalen dengan singkatan zona waktu.",
+  "metaDescription": "Konverter zona waktu gratis. Lihat satu momen di banyak kota sekaligus. Berguna untuk menjadwalkan rapat, perjalanan, siaran di berbagai zona waktu.",
+  "keywords": ["konverter zona waktu", "jam dunia", "waktu rapat lintas zona", "konversi UTC", "perbedaan zona waktu"],
+  "empty": "Tambahkan zona waktu untuk melihat ekuivalen.",
+  "input": { "sourceTz": "Zona waktu sumber", "dt": "Tanggal & waktu" },
+  "now": "Sekarang",
+  "addTz": "Tambah zona waktu",
+  "remove": "Hapus",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara konversi zona waktu bekerja",
+        "paragraphs": [
+          "Setiap momen dalam waktu adalah satu titik — Selasa jam 9 pagi di Tokyo adalah momen yang sama dengan Senin jam 5 sore di San Francisco. Konversi zona waktu hanya memberi label ulang momen tunggal itu dengan waktu jam lokal setiap zona. Waktu musim panas (DST) memperumit ini — di beberapa negara, offset UTC berubah dua kali setahun. Browser menggunakan Intl.DateTimeFormat yang menangani ini dengan benar saat Anda memberikan nama zona IANA seperti 'America/New_York'.",
+          "Kami menggunakan nama IANA (seperti 'Asia/Jakarta' atau 'Europe/London') karena tidak ambigu dan mengikuti aturan DST setiap lokasi secara historis. 'WIB' atau 'GMT' adalah singkatan yang mungkin bertabrakan; nama IANA tidak akan."
+        ]
+      },
+      {
+        "heading": "Jebakan penjadwalan umum",
+        "paragraphs": [
+          "Transisi DST: 'Selasa depan jam 9 EST' ambigu di Maret atau November karena aturan berubah. Selalu katakan 'waktu New York' atau kirim undangan kalender — Outlook, Google Calendar, dan Slack semua menangani konversi dengan benar ketika kedua pihak menentukan zona mereka.",
+          "Offset setengah jam: India adalah UTC+5:30, Iran UTC+3:30, sebagian Australia UTC+9:30. Jika matematika rapat Anda dalam 'jam bulat', Anda akan terlambat atau lebih awal 30 menit untuk wilayah ini.",
+          "Lompatan lintas garis tanggal: Tokyo ke Los Angeles adalah hari berikutnya vs hari yang sama tergantung arahnya. Kalender menampilkannya dengan benar, tetapi asumsi manusia bisa salah."
+        ]
+      },
+      {
+        "heading": "Pola penggunaan berguna",
+        "paragraphs": [
+          "Standup internasional: Pilih zona sumber (sering UTC) dan zona rumah tim. Atur waktu rapat dan verifikasi tidak ada yang diminta hadir jam 3 pagi. Untuk tim Indonesia-AS, cek apakah waktu rapat jatuh di luar jam kerja WIB (UTC+7).",
+          "Peluncuran produk: Pilih zona peluncuran dan tambahkan pasar utama. Berguna untuk memverifikasi email pemasaran tiba pada jam lokal yang wajar.",
+          "Perencanaan perjalanan: Pilih zona keberangkatan dan tambahkan zona tujuan untuk menemukan waktu tiba lokal tanpa matematika manual."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Atur sumber", "text": "Pilih zona waktu sumber (default ke zona browser Anda) dan tanggal/waktu yang ingin dikonversi." },
+      { "name": "Tambahkan zona waktu target", "text": "Gunakan dropdown untuk menambahkan sebanyak yang Anda butuhkan." },
+      { "name": "Baca ekuivalennya", "text": "Setiap target menampilkan momen yang sama di jam lokalnya." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah ini menangani DST?", "a": "Ya — data zona waktu IANA mencakup aturan DST untuk setiap lokasi. API Intl browser menangani transisi masa lalu, sekarang, dan (jika diketahui) masa depan." },
+    { "q": "Apa perbedaan antara EST dan ET?", "a": "EST adalah tetap di UTC-5. ET (Eastern Time) adalah EST di musim dingin dan EDT di musim panas — mengikuti DST. Kami menggunakan nama IANA seperti 'America/New_York' yang secara otomatis memilih EST atau EDT berdasarkan tanggal." },
+    { "q": "Bisakah saya mengonversi antara dua kota spesifik?", "a": "Ya. Atur satu sebagai sumber dan tambahkan yang lain sebagai target. Waktu yang ditampilkan adalah momen sumber yang diekspresikan dalam jam lokal target." },
+    { "q": "Mengapa beberapa zona memiliki offset :30?", "a": "Keputusan historis. India, Iran, Afghanistan, Newfoundland, sebagian Australia semuanya menggunakan offset 30 menit atau 45 menit dari UTC. Kalkulator menangani ini dengan benar." },
+    { "q": "Apakah ini bekerja untuk tanggal masa lalu?", "a": "Ya, termasuk batas DST yang mungkin berbeda secara historis. Data IANA mencakup sebagian besar sejarah lokasi dari 1970 ke depan." },
+    { "q": "Bagaimana dengan zona waktu di Indonesia?", "a": "Indonesia memiliki tiga zona: WIB (UTC+7, Jawa/Sumatra), WITA (UTC+8, Kalimantan/Bali/Sulawesi), WIT (UTC+9, Papua/Maluku). Cari 'Asia/Jakarta', 'Asia/Makassar', atau 'Asia/Jayapura' di dropdown." },
+    { "q": "Apakah data dikirim ke mana saja?", "a": "Tidak. API Intl browser menangani semuanya secara lokal." },
+    { "q": "Bisakah saya menyimpan daftar zona waktu saya?", "a": "Belum. Menyegarkan halaman mereset daftar. Kami mungkin menambahkan persistensi penyimpanan lokal nanti." }
+  ]
+}

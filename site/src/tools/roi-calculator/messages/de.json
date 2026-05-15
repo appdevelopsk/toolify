@@ -1,0 +1,61 @@
+{
+  "title": "ROI-Rechner (Return on Investment + Annualisiert)",
+  "shortDescription": "Berechne Return on Investment (ROI) % und annualisierte Rendite für jeden Haltezeitraum. Funktioniert für jede Investition: Aktien, Immobilien, Unternehmen, Nebenprojekte.",
+  "description": "Gib Anfangsinvestition, Gesamtrendite und Haltedauer in Jahren ein. Gibt ROI %, annualisierten (CAGR) % und absoluten Gewinn zurück. Funktioniert für jeden Zeithorizont.",
+  "metaDescription": "Kostenloser ROI-Rechner mit annualisierter Rendite (CAGR). Vergleiche Investitionen über verschiedene Haltezeiträume auf derselben Skala.",
+  "keywords": ["ROI Rechner", "Return on Investment", "annualisierte Rendite", "CAGR Rechner", "Investitionsrendite"],
+  "input": {
+    "investment": "Anfangsinvestition",
+    "returns": "Endwert (oder Gesamtrendite)",
+    "holdYears": "Haltedauer (Jahre)"
+  },
+  "result": {
+    "roi": "ROI",
+    "annualized": "Annualisiert (CAGR)",
+    "profit": "Absoluter Gewinn"
+  },
+  "empty": "Gib Anfangsinvestition und Endwert ein.",
+  "article": {
+    "sections": [
+      {
+        "heading": "ROI vs. annualisierte Rendite",
+        "paragraphs": [
+          "ROI (Return on Investment) = (Endwert − Anfang) / Anfang × 100 %. Einfach, nützlich beim Vergleich von Investitionen, die für denselben Zeitraum gehalten werden. Ein ROI von 50 % in 1 Jahr ist viel besser als ein ROI von 50 % in 10 Jahren – aber ROI allein zeigt das nicht.",
+          "Annualisierte Rendite (auch CAGR – Compound Annual Growth Rate – genannt) normalisiert ROI auf eine Jahreszahl. Ein ROI von 21 % über 2 Jahre ist eine annualisierte Rendite von 10 %. Ein ROI von 100 % über 7 Jahre ist auch eine annualisierte Rendite von 10 %. CAGR ermöglicht faire Vergleiche."
+        ]
+      },
+      {
+        "heading": "Wann welche Metrik verwenden",
+        "paragraphs": [
+          "ROI: am besten bei Vergleich von Investitionen zum selben Datum oder mit demselben Ende. ‚Ich habe Aktie A und Aktie B im Januar gekauft, was sind ihre ROIs heute?' ist ein fairer Vergleich.",
+          "CAGR: am besten bei Vergleich von Investitionen mit verschiedenen Haltedauern. ‚Meine Immobilie ergab 80 % in 5 Jahren; meine Aktien 30 % in 2 Jahren. Was hat besser abgeschnitten?' CAGR für beide berechnen: Immobilie = 12,5 % annualisiert, Aktien = 14 % annualisiert – Aktien gewonnen (pro Jahr).",
+          "Für Investitionen, bei denen Erträge reinvestiert oder zusätzliche Einzahlungen geleistet wurden, reicht keine der Metriken – IRR (Internal Rate of Return) verwenden, der unregelmäßige Cashflows berücksichtigt. Tabellenkalkulationen haben integrierte IRR-Funktionen."
+        ]
+      },
+      {
+        "heading": "Welche ‚Rendite' verwenden",
+        "paragraphs": [
+          "Endwert oder erhaltene Gesamtrendite verwenden. Für Aktien: Dividenden einbeziehen, wenn sie reinvestiert wurden; oder Dividenden + Endpreis als ‚Rendite', wenn sie bar genommen wurden.",
+          "Für Immobilien: Mieteinnahmen (wenn Mietobjekt) plus Verkaufspreis einbeziehen. Reparaturen, Steuern, Gebühren von Gesamtrendite für Netto-ROI abziehen.",
+          "Für Unternehmen / Nebenprojekte: Rendite = Umsatz minus alle Ausgaben (nicht nur brutto). Sonst berechnet man ROI auf eine aufgeblähte Zahl."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Anfangsinvestition eingeben", "text": "Was du zu Beginn eingesetzt hast." },
+      { "name": "Endwert oder Gesamtrendite eingeben", "text": "Was du herausgekommen bist (oder heute herausnehmen könntest)." },
+      { "name": "Haltedauer in Jahren eingeben", "text": "Wird für die annualisierte Berechnung verwendet. Dezimalzahlen für Teiljahre verwenden (0,5 = 6 Monate)." },
+      { "name": "Beide Metriken lesen", "text": "Gesamt-ROI und annualisierte Rendite. Mit anderen Investitionen für Kontext vergleichen." }
+    ]
+  },
+  "faq": [
+    { "q": "Was ist ein ‚guter' ROI?", "a": "Kontext ist wichtig. MSCI World langfristig: ~8–9 % nominaler CAGR. Immobilien: 5–8 % kombinierter CAGR. Alles über Inflation (~3 %) ist reales Wachstum. Darunter: du verlierst Kaufkraft." },
+    { "q": "Berücksichtigt ROI Risiko?", "a": "Nein. Zwei Investitionen mit demselben ROI können sehr unterschiedliche Risikoniveaus haben. Eine Anleihe mit 5 % und ein Startup, das 5 % zurückgab, sind nicht gleichwertig – das Startup hatte ~50 % Chance auf null. Immer risikobereinigte Renditen berücksichtigen (Sharpe Ratio usw.)." },
+    { "q": "Warum ist die annualisierte Rendite für lange Haltedauern niedriger als der Gesamt-ROI?", "a": "Zinseszins. 100 % gesamt über 10 Jahre sind nur 7,18 % annualisiert – halb die Zeit, die benötigt wird, um Geld über die Regel von 72 zu verdoppeln (72/10 = 7,2)." },
+    { "q": "Soll ich Steuern für genauen ROI abziehen?", "a": "Für Netto-ROI nach Steuern, ja. Für Vergleich vor Steuern, Bruttorenditen verwenden. Konsistent bleiben – keinen steuerfreien Kontoertrag mit dem Bruttoertrag eines steuerpflichtigen Kontos vergleichen." },
+    { "q": "Was ist der Unterschied zwischen CAGR und IRR?", "a": "CAGR setzt eine Anfangsinvestition und einen Endwert voraus. IRR verarbeitet unregelmäßige Cashflows – mehrere Einzahlungen, Dividenden, Entnahmen über Zeit. CAGR ≈ IRR für einfaches Kaufen-und-Halten." },
+    { "q": "Kann ich das für einen Unternehmensverkauf verwenden?", "a": "Ja. ‚Investition' = gesamte Kostenbasis (Kaufpreis plus Kapitalverbesserungen). ‚Rendite' = Verkaufserlös plus kumulativer während der Eigentümerschaft ausgeschütteter Gewinn." },
+    { "q": "Wie unterscheidet sich ROI von der Gewinnmarge?", "a": "ROI ist Rendite geteilt durch eingesetztes Kapital. Gewinnmarge ist Gewinn geteilt durch Umsatz. Sie messen verschiedene Dinge: ROI = wie gut wird Kapital eingesetzt, Marge = wie profitabel ist jeder Verkauf." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Die Berechnung läuft lokal; nichts wird an einen Server gesendet." }
+  ]
+}

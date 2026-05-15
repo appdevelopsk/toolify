@@ -1,0 +1,102 @@
+{
+  "title": "Kreditkarten-Validator (Luhn-Prüfung + Markenkennung)",
+  "shortDescription": "Validiere die Prüfsumme einer Kreditkartennummer (Luhn-Algorithmus) und erkenne die ausgebende Marke. Nur im Browser – deine Kartennummer verlässt nie dein Gerät.",
+  "description": "Gib eine Kartennummer ein, um zu prüfen, ob sie die Luhn-Prüfung besteht, und erkenne die Marke (Visa, Mastercard, Amex, Discover, JCB, Diners, UnionPay) anhand des IIN/BIN-Bereichs.",
+  "metaDescription": "Kostenloser Kreditkarten-Validator. Luhn-Algorithmus-Prüfung + Markenerkennung (Visa, Mastercard, Amex usw.).",
+  "keywords": [
+    "Kreditkarten Validator",
+    "Luhn Algorithmus",
+    "Kartennummer prüfen",
+    "BIN Prüfung",
+    "Kartenmarken Erkennung"
+  ],
+  "warning": "⚠ Gib niemals eine echte Kartennummer auf einer Website ein, der du nicht vertraust. Dieses Tool läuft vollständig in deinem Browser – aber das lässt sich bei unbekannten Websites nicht überprüfen.",
+  "input": {
+    "cardNumber": "Kartennummer"
+  },
+  "status": {
+    "valid": "Gültige Syntax",
+    "invalid": "Ungültig"
+  },
+  "empty": "Gib eine Kartennummer ein, um sie zu validieren.",
+  "breakdown": {
+    "brand": "Marke",
+    "length": "Länge",
+    "luhn": "Luhn-Prüfung",
+    "formatted": "Formatiert",
+    "unknown": "Unbekannt"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Was dieser Validator prüft (und was nicht)",
+        "paragraphs": [
+          "Drei Prüfungen: (1) Das Präfix stimmt mit dem IIN/BIN-Bereich eines bekannten Ausstellers überein, (2) die Länge ist eine der gültigen Längen für diese Marke, (3) die Luhn-Prüfsumme besteht. Wenn alle drei zutreffen, ist die Nummer syntaktisch als Kartennummer gültig.",
+          "Was diese Prüfung NICHT überprüft: ob die Karte tatsächlich existiert, ob sie Guthaben hat, ob der Karteninhaber dir die Verwendung erlaubt hat. Dazu ist ein echter Zahlungsabwickler mit ordnungsgemäßer Autorisierung erforderlich. Dieses Tool erkennt Tippfehler günstig – wie 1234 vs. 1243 beim Einfügen – kann aber nicht verifizieren, dass die Karte zu einem echten Konto gehört."
+        ]
+      },
+      {
+        "heading": "Wie der Luhn-Algorithmus funktioniert",
+        "paragraphs": [
+          "Luhn (1954, von IBM-Wissenschaftler Hans Peter Luhn) ist eine einfache Prüfsumme: Beginnend von der rechtesten Ziffer wird jede zweite Ziffer verdoppelt. Wenn eine verdoppelte Ziffer größer als 9 ist, werden die zwei Ziffern summiert (oder equivalently 9 subtrahiert). Alle resultierenden Ziffern werden summiert. Die Gesamtsumme muss durch 10 teilbar sein.",
+          "Luhn erkennt Einstellenfehler und die meisten benachbarten Vertauschungen – die zwei häufigsten Tippfehler, wenn Menschen lange Nummern kopieren. Es ist nicht kryptografisch; man kann es nicht verwenden, um böswillige Manipulation zu erkennen. Echte Kartenprozessoren verwenden Luhn als erste Filterschicht vor teureren Backend-Prüfungen."
+        ]
+      },
+      {
+        "heading": "Markenerkennung nach IIN/BIN",
+        "paragraphs": [
+          "Die ersten 6–8 Ziffern einer Kartennummer identifizieren den Aussteller (Issuer Identification Number / Bank Identification Number). Große Marken haben bekannte Präfixbereiche: Visa beginnt mit 4, Mastercard mit 51–55 oder 2221–2720, Amex mit 34 oder 37 usw. Wir erkennen die Marke durch Abgleichen dieser Bereiche.",
+          "Marke und Land können normalerweise aus der IIN abgeleitet werden. Vollständige IIN-Datenbankabfragen geben Land, Bank, Kartentyp (Debit/Kredit) und Programm zurück – wird von Händlern für die Risikobewertung verwendet. Wir beinhalten keine vollständige IIN-Datenbank; nur die gängigsten Markenmuster."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Kartennummer eingeben",
+        "text": "Leerzeichen und Bindestriche werden automatisch ignoriert."
+      },
+      {
+        "name": "Ergebnis ablesen",
+        "text": "Grünes Häkchen = gültige Syntax (Luhn besteht + Länge stimmt mit Marke überein)."
+      },
+      {
+        "name": "Aufschlüsselung überprüfen",
+        "text": "Marke, Länge, Luhn-Prüfung und korrekt formatierte Kartennummer."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Soll ich meine echte Kartennummer verwenden?",
+      "a": "Auch wenn wir nur in deinem Browser arbeiten, solltest du niemals eine echte Kartennummer in ein Tool einfügen, dem du nicht vollständig vertraust. Verwende eine der Standard-Testkartennummern (z. B. 4111 1111 1111 1111) für Syntaxprüfungen."
+    },
+    {
+      "q": "Warum erhalte ich 'ungültig' für eine echt aussehende Nummer?",
+      "a": "Meistens schlägt die Luhn-Prüfsumme fehl – wahrscheinlich ein Tippfehler. Überprüfe die Ziffern noch einmal."
+    },
+    {
+      "q": "Beweist die Luhn-Validierung, dass die Karte existiert?",
+      "a": "Nein. Luhn erkennt nur Übertragungsfehler. Viele nie ausgegebene Nummern bestehen Luhn; viele echte Karten schlagen Luhn fehl, wenn sie falsch eingegeben werden."
+    },
+    {
+      "q": "Was ist eine 'BIN'?",
+      "a": "Bank Identification Number – die ersten 6–8 Ziffern, die den Aussteller identifizieren. Entspricht IIN (Issuer Identification Number); die Begriffe sind austauschbar."
+    },
+    {
+      "q": "Kann ich damit Testkartennummern generieren?",
+      "a": "Nicht direkt, aber die Standard-Stripe/Visa/Mastercard-Testnummern sind gut dokumentiert (z. B. 4242 4242 4242 4242). Sie bestehen Luhn, belasten aber nie."
+    },
+    {
+      "q": "Warum wird [eine bestimmte Marke] nicht erkannt?",
+      "a": "Wir unterstützen die wichtigsten Marken. Regionale oder Co-Branded-Karten stimmen möglicherweise nicht überein. Prüfe die Dokumentation des Ausstellers für die von ihm verwendeten IIN-Bereiche."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Die Validierung läuft vollständig in deinem Browser ohne Netzwerkanfragen."
+    },
+    {
+      "q": "Wird Luhn für andere Dinge als Kreditkarten verwendet?",
+      "a": "Ja – IMEI-Nummern, kanadische SIN, ISIN, NPI und viele andere ID-Systeme verwenden Luhn. Der Algorithmus ist derselbe; nur die Präfixzuordnungen unterscheiden sich."
+    }
+  ]
+}

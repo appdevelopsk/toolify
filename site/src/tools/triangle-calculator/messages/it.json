@@ -1,0 +1,72 @@
+{
+  "title": "Calcolatore Triangolo (angolo retto, LLL, LAL)",
+  "shortDescription": "Calcola area, perimetro, lati e angoli di un triangolo. Tre modalità: triangolo rettangolo (Pitagora), tre lati (LLL) o due lati + angolo incluso (LAL).",
+  "description": "Scegli una modalità, inserisci i valori noti e ottieni tutti i lati, tutti e tre gli angoli, area e perimetro. Valida la disuguaglianza triangolare per la modalità LLL.",
+  "metaDescription": "Calcolatore triangolo gratuito. Modalità angolo retto (Pitagora), LLL o LAL. Restituisce lati, angoli, area, perimetro. Utile per geometria scolastica e costruzioni.",
+  "keywords": ["calcolatore triangolo", "teorema di Pitagora", "legge dei coseni", "area triangolo", "risolutore triangolo"],
+  "empty": "Inserisci i valori noti per la modalità selezionata.",
+  "invalid": "Triangolo non valido: viola la disuguaglianza triangolare (il lato più lungo deve essere minore della somma degli altri due).",
+  "mode": {
+    "right": "Triangolo rettangolo",
+    "sss": "Tre lati (LLL)",
+    "sas": "Due lati + angolo (LAL)"
+  },
+  "input": {
+    "legA": "Cateto a",
+    "legB": "Cateto b",
+    "sideA": "Lato a",
+    "sideB": "Lato b",
+    "sideC": "Lato c",
+    "angleC": "Angolo C (gradi)"
+  },
+  "result": {
+    "area": "Area",
+    "perim": "Perimetro",
+    "sides": "Lati",
+    "angles": "Angoli"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Tre modalità per tre problemi",
+        "paragraphs": [
+          "Triangolo rettangolo (cateti a, b): il caso più comune. Ipotenusa c = √(a² + b²) per il teorema di Pitagora. Angolo A = arctan(a/b), B = arctan(b/a), C = 90°. Area = (a × b) / 2.",
+          "Tre lati (LLL — Lato-Lato-Lato): quando conosci le lunghezze di tutti e tre i lati. Convalida con la disuguaglianza triangolare (lato più lungo < somma degli altri due). Angoli tramite il teorema del coseno: cos A = (b² + c² − a²) / (2bc). Area tramite la formula di Erone: √(s(s−a)(s−b)(s−c)) dove s = (a+b+c)/2.",
+          "Due lati + angolo incluso (LAL — Lato-Angolo-Lato): quando conosci due lati e l'angolo tra loro. Terzo lato tramite il teorema del coseno: c = √(a² + b² − 2ab cos C). Altri angoli tramite il teorema dei seni. Area = (1/2) × a × b × sin C."
+        ]
+      },
+      {
+        "heading": "Quando usare ciascuna modalità",
+        "paragraphs": [
+          "Il triangolo rettangolo è il più comune nella geometria quotidiana — costruire un angolo retto per un muro, calcolare la pendenza di un tetto, trovare la diagonale di una TV da larghezza e altezza. Il teorema di Pitagora è una delle formule più usate in costruzione e design.",
+          "LLL si usa in topografia, navigazione e in qualsiasi caso in cui si misurano i tre lati direttamente. Utile per verificare la forma di un triangolo dalla misurazione fisica.",
+          "LAL è per i casi in cui hai due lati che si incontrano a un angolo noto ma il terzo lato non è misurato o difficile da raggiungere. Comune nei problemi di trigonometria scolastica."
+        ]
+      },
+      {
+        "heading": "Applicazioni pratiche",
+        "paragraphs": [
+          "Costruzione: inclinazione del tetto da alzata e sviluppo (triangolo rettangolo). La 'regola del falegname': un triangolo 3-4-5 ha un angolo retto perfetto, senza bisogno di squadra.",
+          "Navigazione: la triangolazione usa LLL o LAL per trovare la tua posizione da tre punti di riferimento noti. La stessa matematica alimenta il GPS (con correzioni relativistiche).",
+          "Computer grafica: ogni modello 3D è scomposto in triangoli. La formula dell'area del triangolo appare nel codice shader per il calcolo dell'illuminazione superficiale.",
+          "Astronomia: le misurazioni della distanza per parallasse usano i principi LLL. L'angolo sole-Terra-stella fornisce la distanza della stella tramite semplice trigonometria."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Scegli una modalità", "text": "Triangolo rettangolo, LLL (tre lati) o LAL (due lati + angolo)." },
+      { "name": "Inserisci i valori noti", "text": "Ogni modalità richiede input diversi." },
+      { "name": "Leggi tutte le incognite", "text": "Lati, angoli, area e perimetro calcolati." }
+    ]
+  },
+  "faq": [
+    { "q": "Cos'è la disuguaglianza triangolare?", "a": "Perché tre lunghezze formino un triangolo, la somma di qualsiasi due deve superare la terza. Quindi 3, 4, 5 è valido (3+4=7 > 5); 1, 2, 5 non lo è (1+2=3 < 5). Il calcolatore controlla questo nella modalità LLL." },
+    { "q": "Quanto è preciso?", "a": "Precisione in virgola mobile (~15-17 cifre significative). Per input tipici l'errore è molto più piccolo dell'errore di misura nel mondo reale." },
+    { "q": "Gli angoli possono essere in radianti?", "a": "Non ancora — usiamo i gradi ovunque. Converti tramite radianti × 180/π se necessario." },
+    { "q": "E se il mio triangolo ha un angolo ottuso?", "a": "Tutte le modalità gestiscono correttamente i triangoli ottusangoli. Per LAL, assicurati che l'angolo incluso sia compreso tra 0° e 180° esclusi." },
+    { "q": "Perché non supporta tutti i casi 'due lati e un angolo'?", "a": "Supportiamo LAL (l'angolo TRA due lati). Il caso ambiguo (LLA — angolo, poi due lati di cui uno è opposto all'angolo) a volte ha 0, 1 o 2 triangoli validi. LLL e LAL sono non ambigui." },
+    { "q": "Posso risolvere problemi tipo 3-4-5 ottusangolo?", "a": "3-4-5 è un triangolo rettangolo. Per ottusangolo, prova 4-5-7 nella modalità LLL — l'angolo più grande supera i 90°." },
+    { "q": "Come trovo un lato solo dagli angoli?", "a": "Non puoi — gli angoli da soli determinano la forma ma non la dimensione. Hai bisogno di almeno un lato. Due angoli + un lato sono sufficienti (terzo angolo = 180 − somma dei due)." },
+    { "q": "I dati escono dal mio browser?", "a": "No. Il calcolo viene eseguito localmente; nulla viene inviato a un server." }
+  ]
+}

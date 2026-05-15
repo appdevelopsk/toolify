@@ -1,0 +1,68 @@
+{
+  "title": "URL Slug Oluşturucu (SEO dostu URL'ler)",
+  "shortDescription": "Herhangi bir başlığı veya cümleyi SEO dostu URL slug'una dönüştürün. Yapılandırılabilir ayırıcı, uzunluk sınırı, küçük harf ve Unicode desteği.",
+  "description": "Bir başlık yazın veya yapıştırın; oluşturucu noktalama işaretlerini siler, aksanları normalleştirir, boşlukları daraltır ve temiz bir slug üretir. Tire, alt çizgi veya nokta destekler; yapılandırılabilir maksimum uzunluk; Latin dışı URL'ler için isteğe bağlı Unicode.",
+  "metaDescription": "Ücretsiz URL slug oluşturucu. Herhangi bir başlıktan SEO dostu slug'lar. Tire/alt çizgi/nokta ayırıcılar, maksimum uzunluk, Unicode desteği, yalnızca ASCII modu.",
+  "keywords": ["slug oluşturucu", "url slug", "seo url oluşturucu", "slugify", "kalıcı bağlantı oluşturucu"],
+  "input": {
+    "text": "Başlık veya cümle",
+    "separator": "Ayırıcı",
+    "lowercase": "Küçük harf",
+    "allowUnicode": "Unicode'a izin ver (ASCII olmayan)",
+    "maxLen": "Maksimum uzunluk"
+  },
+  "sep": {
+    "hyphen": "Tire",
+    "underscore": "Alt çizgi",
+    "dot": "Nokta"
+  },
+  "result": {
+    "slug": "Slug",
+    "length": "Uzunluk"
+  },
+  "empty": "(boş)",
+  "copy": "Kopyala",
+  "copied": "Kopyalandı!",
+  "article": {
+    "sections": [
+      {
+        "heading": "URL slug nedir",
+        "paragraphs": [
+          "Slug, bir URL'nin alan adından sonraki insanlar tarafından okunabilir kısmıdır — örneğin '/blog/ekmek-nasil-yapilir' içindeki 'ekmek-nasil-yapilir'. İyi slug'lar kısa, açıklayıcı ve kararlıdır. Hem arama motorları hem de insanlar bunları sayfanın kimliğinin bir parçası olarak okur.",
+          "Standart kurallar: yalnızca küçük harfler, rakamlar ve tireler. Boşluklar tireye dönüşür. Noktalama kaldırılır. Kısa kelimeler (ve, bir, bu) kısalık için çıkarılabilir; ancak bu stilistik bir tercihtir."
+        ]
+      },
+      {
+        "heading": "ASCII ve Unicode slug'lar",
+        "paragraphs": [
+          "ASCII slug'lar (varsayılan): yalnızca Latin harfleri ve rakamlar. Evrensel olarak desteklenir, asla URL kodlanmaz, paylaşıma uygun. SEO odaklı İngilizce/çok dilli bloglar için standart seçim.",
+          "Unicode slug'lar: URL'lerde orijinal karakterleri korur. Tarayıcılar bunları okunabilir görüntüler (gunumuz-turkiyesi), ancak kopyala-yapıştır yüzde kodlu URL'ler üretir (%E7%8F%BE...). Bazı platformlar Unicode slug'ları kısıtlar; bunlara güvenmeden önce kontrol edin.",
+          "Unicode'u ne zaman seçmeli: Türkçe karakter içeren blog URL'leri için. IDN URL'si Türk kullanıcılara temiz görünür ve Google onları iyi dizinler. Dezavantajı, ham URL'leri gösteren platformlarda paylaşımdır."
+        ]
+      },
+      {
+        "heading": "Slug uzunluğu ve SEO",
+        "paragraphs": [
+          "Google'ın URL görüntüleme sınırı yaklaşık 60-80 karakterdir. Daha uzun slug'lar kesilir ve 'spam gibi' görünür. Maksimum uzunluk kaydırıcısını 60'a varsayılan olarak ayarlıyoruz — çoğu listeleme için yeterince kısa.",
+          "Ancak Google'ın algoritmaları slug uzunluğunu doğrudan cezalandırmaz. Uzunluk, tıklama oranları (insanlar uzun URL'leri atlar) ve slug'ı okunabilir tutmak için önemlidir. Slug'daki anahtar kelimeler sıralamaya hafifçe yardımcı olur; uzun slug'lara anahtar kelime doldurmak yardımdan çok zarar verir.",
+          "En iyi uygulama: en önemli 2-3 anahtar kelimeyi ekleyin, gereksiz kelimeleri ve eklemleri bırakın, 60 karakterin altında tutun."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Bir başlık yazın veya yapıştırın", "text": "Makale başlığı, ürün adı veya açıklayıcı metin." },
+      { "name": "Ayırıcı seçin", "text": "Tire standarttır. Alt çizgi bazı eski CMS'lerde çalışır. Nokta olağandışı ama geçerlidir." },
+      { "name": "Seçenekleri yapılandırın", "text": "Küçük harf (önerilir), Unicode (Latin dışı URL'ler için), maksimum uzunluk sınırı." },
+      { "name": "Slug'ı kopyalayın", "text": "CMS'inize, blog gönderinize veya yönlendirme yapılandırmanıza yapıştırın." }
+    ]
+  },
+  "faq": [
+    { "q": "Tire mi yoksa alt çizgi mi kullanmalıyım?", "a": "Tire. Google tireleri URL'lerde kelime ayırıcı olarak açıkça tanımlar; alt çizgiler kelimenin bir parçası olarak işlenir. Yani 'hizli-arabalar' iki anahtar kelimedir, 'hizli_arabalar' birdir. SEO için tire kazanır." },
+    { "q": "Bağlaçlar ve ekler dahil edilmeli mi?", "a": "İsteğe bağlı. Çıkarmak slug'ları kısa tutar. Eklemek okunabilirliği korur. SEO etkisi her iki şekilde de ihmal edilebilir; okunabilirlik daha önemlidir." },
+    { "q": "Türkçe özel karakterler (ş, ğ, ı, ü, ö, ç) ne olur?", "a": "ASCII modunda bunlar temel Latin eşdeğerlerine dönüştürülür veya kaldırılır (ş→s, ğ→g, ı→i, ü→u, ö→o, ç→c). Türkçe karakterleri korumak için Unicode modunu açın." },
+    { "q": "Bu Japonca / Çince ile çalışıyor mu?", "a": "Evet — CJK karakterleri slug'da tutmak için 'Unicode'a İzin Ver'i açın. Bu bayrak olmadan CJK karakterleri sıyrılır (ASCII eşdeğerleri olmadığından)." },
+    { "q": "Slug'ımda maksimum ne kadar uzunluk kullanmalıyım?", "a": "60 karakter veya daha az SEO ve tıklama oranı için ideal noktadır. Bazı CMS sistemleri 200 karakterde sınırlandırır. Google'ın dizini çok daha uzunu destekler ama okunabilirlik açısından nadiren fayda sağlar." },
+    { "q": "Emoji korunuyor mu?", "a": "Unicode modunda evet. URL kodlamalı emoji geçerli ama çirkin — çoğu platform bunları sıyrır. Pratik tavsiye: slug'larda emoji kullanmayın." },
+    { "q": "Veriler tarayıcımdan çıkıyor mu?", "a": "Hayır. Üretim yerel olarak çalışır; hiçbir şey sunucuya gönderilmez." }
+  ]
+}

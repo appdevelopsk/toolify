@@ -1,0 +1,102 @@
+{
+  "title": "Calculateur TVA / Taxe (ajouter la taxe ou extraire du total)",
+  "shortDescription": "Ajoute la TVA à un montant HT ou extrait la taxe d'un total TTC. Fonctionne pour n'importe quel taux (TVA, taxe de vente, GST).",
+  "description": "Bascule entre les modes « ajouter la taxe » et « extraire du total », saisis le montant et le taux, et vois la décomposition en HT, taxe et TTC.",
+  "metaDescription": "Calculateur TVA / taxe de vente / GST gratuit. Ajoute une taxe à un montant HT ou extrait la taxe d'un total TTC.",
+  "keywords": [
+    "calculateur TVA",
+    "calculateur taxe vente",
+    "calculateur GST",
+    "calculateur taxe",
+    "extraire TVA du total"
+  ],
+  "empty": "Saisis un montant pour calculer la décomposition de la taxe.",
+  "mode": {
+    "addTax": "Ajouter la taxe au HT",
+    "fromTotal": "Extraire la taxe du TTC"
+  },
+  "input": {
+    "amountNet": "Montant HT",
+    "amountGross": "Total TTC",
+    "taxPct": "Taux de taxe (%)"
+  },
+  "result": {
+    "net": "Hors taxes (HT)",
+    "tax": "Taxe",
+    "gross": "Total TTC"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ajouter la taxe vs extraire la taxe",
+        "paragraphs": [
+          "Ajouter la taxe : tu as le prix HT et tu veux le prix final TTC. Multiplie par (1 + taux/100). Exemple : 100 € à 20 % de TVA = 120 €.",
+          "Extraire la taxe : tu as le total payé par le client (ou affiché sur le ticket de caisse) et tu dois calculer combien correspond à la taxe. Divise le total par (1 + taux/100) pour obtenir le montant HT ; la différence est la taxe. Exemple : 120 € à 20 % s'extrait en 100 € + 20 € de TVA. Ne multiplie pas 120 € par 20 % — ça donne 24 €, ce qui est erroné."
+        ]
+      },
+      {
+        "heading": "TVA, taxe de vente et GST",
+        "paragraphs": [
+          "TVA (France, UE) : généralement déjà incluse dans le prix affiché. Le taux standard en France est 20 %. Les taux réduits sont 10 % (restauration, hôtellerie, travaux de rénovation) et 5,5 % (alimentation, livres, énergie). Utilise « extraire du total » pour trouver la TVA dans un prix affiché TTC.",
+          "Taxe de vente (États-Unis) : ajoutée au moment de l'achat, varie selon l'État et la ville. New York City est à 8,875 %, l'Oregon n'en a pas, la Californie varie de 7,25 à 10,75 % selon la ville. Beaucoup de prix américains sont affichés HT, la taxe s'ajoute à la caisse.",
+          "GST (Australie, Nouvelle-Zélande, Canada, Inde) : taux national unique (Australie et Nouvelle-Zélande à 10 % et 15 % respectivement, le Canada a la TPS plus les taxes provinciales). L'Inde utilise des taux de GST par paliers (5/12/18/28 %) selon la catégorie de produit."
+        ]
+      },
+      {
+        "heading": "Erreurs courantes à éviter",
+        "paragraphs": [
+          "Ne multiplie pas les totaux TTC par le taux. Pour extraire la TVA de 120 € à 20 %, divise d'abord par 1,20. Multiplier par 20 % donne une réponse incorrecte car les 120 € incluent déjà la TVA sur les 100 € de base — tu taxerais la taxe.",
+          "Certains produits sont exonérés ou à taux zéro (médicaments remboursés en France, certains services financiers, etc.). Pour l'affichage des prix TTC/HT, respecte les règles de ta juridiction."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis le mode",
+        "text": "Ajouter la taxe à un montant HT, ou extraire la taxe d'un total TTC."
+      },
+      {
+        "name": "Saisis le montant",
+        "text": "HT en mode « ajouter » ; TTC en mode « extraire »."
+      },
+      {
+        "name": "Saisis le taux",
+        "text": "Taux de taxe en pourcentage (ex. 20 pour la TVA standard en France, 5,5 pour l'alimentaire, 10 pour la restauration)."
+      },
+      {
+        "name": "Lis la décomposition",
+        "text": "HT, montant de la taxe et TTC sont tous affichés."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Pourquoi l'extraction du total se fait par ÷ (1 + taux) et non × taux ?",
+      "a": "Parce que le total inclut déjà la taxe sur la base initiale. Multiplier donne la taxe sur le total TTC, ce qui est trop élevé. Diviser par (1 + taux/100) annule correctement l'ajout."
+    },
+    {
+      "q": "Quels sont les taux de TVA en France ?",
+      "a": "Taux standard : 20 %. Taux intermédiaire : 10 % (restauration, hôtellerie, travaux). Taux réduit : 5,5 % (alimentation, livres, énergie). Taux super-réduit : 2,1 % (médicaments remboursés, presse)."
+    },
+    {
+      "q": "Les prix en France sont-ils toujours TTC ?",
+      "a": "Pour les consommateurs, oui — la loi française impose l'affichage TTC en vente au détail. Dans les transactions B2B, les prix sont généralement affichés HT avec la TVA indiquée séparément."
+    },
+    {
+      "q": "Peut-on gérer plusieurs taux de taxe ?",
+      "a": "Pas en même temps. Pour des taux combinés, additionne-les d'abord et utilise le taux combiné."
+    },
+    {
+      "q": "Qu'en est-il des factures professionnelles avec TVA ?",
+      "a": "Même calcul : 'extraire du total' pour voir la TVA et le net HT. La plupart des logiciels de comptabilité (Sage, QuickBooks, Pennylane) le font automatiquement."
+    },
+    {
+      "q": "La devise ?",
+      "a": "Les calculs sont indépendants de la devise — utilise n'importe quelle unité de manière cohérente."
+    },
+    {
+      "q": "Est-ce que les données sont envoyées quelque part ?",
+      "a": "Non. Tous les calculs s'exécutent localement dans ton navigateur."
+    }
+  ]
+}

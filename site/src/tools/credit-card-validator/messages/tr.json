@@ -1,0 +1,58 @@
+{
+  "title": "Kredi Kartı Doğrulayıcı (Luhn kontrolü + marka algılama)",
+  "shortDescription": "Kredi kartı numarasının sağlama toplamını (Luhn algoritması) doğrula ve veren markayı tespit et. Yalnızca tarayıcıda — kart numaranız cihazınızı asla terk etmez.",
+  "description": "Luhn kontrolünü geçip geçmediğini ve markayı (Visa, Mastercard, Amex, Discover, JCB, Diners, UnionPay) IIN/BIN aralığına göre tespit etmek için bir kart numarası yaz.",
+  "metaDescription": "Ücretsiz kredi kartı doğrulayıcı. Luhn algoritması kontrolü + marka algılama (Visa, Mastercard, Amex, vb.). Tüm işlem tarayıcında; hiçbir numara iletilmez.",
+  "keywords": ["kredi kartı doğrulayıcı", "Luhn algoritması", "kart numarası kontrolü", "BIN kontrolü", "kart markası algılama"],
+  "warning": "⚠ Güvenmediğin bir sitede gerçek kart numaranı asla girme. Bu araç tamamen tarayıcında çalışır — ama aynı şeyi herhangi bilinmeyen bir sitede doğrulamak imkânsızdır.",
+  "input": { "cardNumber": "Kart numarası" },
+  "status": { "valid": "Geçerli sözdizimi", "invalid": "Geçersiz" },
+  "empty": "Doğrulamak için bir kart numarası yaz.",
+  "breakdown": {
+    "brand": "Marka",
+    "length": "Uzunluk",
+    "luhn": "Luhn kontrolü",
+    "formatted": "Biçimlendirilmiş",
+    "unknown": "Bilinmeyen"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Bu doğrulayıcı neyi kontrol ediyor (ve etmiyor)?",
+        "paragraphs": [
+          "Üç kontrol: (1) ön ek, bilinen bir yayıncının IIN/BIN aralığıyla eşleşiyor mu, (2) uzunluk bu marka için geçerli uzunluklardan biri mi, (3) Luhn sağlama toplamı geçiyor mu. Üçü de doğruysa, numara sözdizimsel olarak geçerli bir kart numarasıdır.",
+          "Bu, şunu KONTROL ETMEZ: kartın gerçekten var olup olmadığını, bakiyesi olup olmadığını, kart hamilinin kullanımı yetkilendirip yetkilendirmediğini. Bunlar için uygun yetkilendirmeyle gerçek bir ödeme işlemcisinden geçmek gerekir. Bu araç yazım hatalarını ucuza yakalar — yapıştırmada 1234 ile 1243 gibi — ama kartın gerçek bir hesaba ait olduğunu doğrulayamaz."
+        ]
+      },
+      {
+        "heading": "Luhn algoritması nasıl çalışır?",
+        "paragraphs": [
+          "Luhn (1954, IBM bilim insanı Hans Peter Luhn tarafından) basit bir sağlama toplamıdır: en sağdaki rakamdan başlayarak, her ikinci rakamı ikiye katla. İkiye katlanan rakam 9'u geçerse iki basamağını topla (veya eşdeğer olarak 9'u çıkar). Tüm sonuçları topla. Toplam 10'a bölünebilir olmalıdır.",
+          "Luhn, tek basamak hatalarını ve çoğu komşu yer değiştirmeyi yakalar — insanların uzun sayıları kopyalarken en yaygın iki yazım hatasıdır. Kriptografik değildir; kötü niyetli kurcalamayı tespit etmek için kullanamazsın. Gerçek kart işlemcileri, daha pahalı arka uç kontrollerinden önce ilk hat filtresi olarak Luhn kullanır."
+        ]
+      },
+      {
+        "heading": "IIN/BIN ile marka algılama",
+        "paragraphs": [
+          "Kart numarasının ilk 6-8 basamağı yayıncıyı tanımlar (Yayıncı Tanımlama Numarası / Banka Tanımlama Numarası). Büyük markaların iyi bilinen ön ek aralıkları vardır: Visa 4 ile başlar, Mastercard 51-55 veya 2221-2720 ile, Amex 34 veya 37 ile vb. Markayı bu aralıkları eşleştirerek tespit ediyoruz.",
+          "Marka ve ülke genellikle IIN'den çıkarılabilir. Tam IIN veritabanı aramaları ülke, banka, kart türü (banka kartı/kredi kartı) ve program verir — tüccarlar tarafından risk puanlaması için kullanılır. Yalnızca en yaygın marka kalıplarını dahil ediyoruz."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Kart numarasını yaz", "text": "Boşluklar ve kısa çizgiler otomatik olarak yok sayılır." },
+      { "name": "Kararı oku", "text": "Yeşil onay = geçerli sözdizimi (Luhn geçti + uzunluk markayla eşleşiyor)." },
+      { "name": "Dökümü incele", "text": "Marka, uzunluk, Luhn kontrolü ve düzgün biçimlendirilmiş kart numarası." }
+    ]
+  },
+  "faq": [
+    { "q": "Gerçek kart numaram için bu araca güvenmeli miyim?", "a": "Yalnızca tarayıcında çalışmamıza rağmen, gerçek kart numaranı derin güvenmediğin bir araca asla yapıştırmamalısın. Sözdizimi kontrolleri için standart test kart numaralarından birini kullan (örn. 4111 1111 1111 1111)." },
+    { "q": "Gerçek görünümlü bir numara için neden 'geçersiz' alıyorum?", "a": "Çoğunlukla Luhn sağlama toplamı başarısız olur — muhtemelen bir yazım hatası. Rakamları bir kez daha kontrol et." },
+    { "q": "Luhn doğrulaması kartın var olduğunu kanıtlıyor mu?", "a": "Hayır. Luhn yalnızca aktarım hatalarını yakalar. Çıkarılmamış pek çok numara Luhn'u geçer; yanlış yazılmış gerçek kartların çoğu Luhn'da başarısız olur." },
+    { "q": "'BIN' nedir?", "a": "Banka Tanımlama Numarası — yayıncıyı tanımlayan ilk 6-8 basamak. IIN (Yayıncı Tanımlama Numarası) ile aynıdır; terimler birbirinin yerine kullanılır." },
+    { "q": "Test kart numarası oluşturmak için kullanabilir miyim?", "a": "Doğrudan değil, ama standart Stripe/Visa/Mastercard test numaraları iyi belgelenmiştir (örn. 4242 4242 4242 4242). Luhn'u geçerler ama asla ücret almazlar." },
+    { "q": "Neden [bazı markalar] algılanmıyor?", "a": "Büyük markaları destekliyoruz. Bölgesel veya ortak markalı kartlar eşleşmeyebilir. Kullandıkları IIN aralıkları için yayıncının belgelerine bak." },
+    { "q": "Veriler tarayıcımı terk ediyor mu?", "a": "Hayır. Doğrulama tamamen tarayıcında ağ çağrısı olmadan çalışır." },
+    { "q": "Luhn kredi kartları dışında kullanılıyor mu?", "a": "Evet — IMEI numaraları, Kanada SIN, ISIN, NPI ve pek çok diğer kimlik sistemi Luhn kullanır. Algoritma aynıdır; yalnızca ön ek eşleşmeleri farklıdır." }
+  ]
+}

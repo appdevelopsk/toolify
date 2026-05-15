@@ -1,0 +1,109 @@
+{
+  "title": "Regex Test Aracı (canlı eşleşmeler, gruplar, değiştir)",
+  "shortDescription": "JavaScript düzenli ifadelerini interaktif olarak test edin. Canlı vurgulanan eşleşmeleri, yakalama gruplarını ve değiştirme önizlemesini görün.",
+  "description": "Bir regex ve test metni yazın — siz yazarken eşleşmeler canlı vurgulanır. Bayrakları (g/i/m/s/u) açıp kapatın, yakalama gruplarını inceleyin ve değiştirmeleri önizleyin.",
+  "metaDescription": "Canlı vurgulama, yakalama grupları, adlandırılmış gruplar ve değiştirme önizlemesiyle ücretsiz JavaScript regex test aracı.",
+  "keywords": [
+    "regex test aracı",
+    "düzenli ifade test aracı",
+    "JavaScript regex",
+    "regex eşleşme",
+    "regex değiştir"
+  ],
+  "input": {
+    "pattern": "Desen",
+    "flags": "Bayraklar",
+    "test": "Test metni",
+    "replaceMode": "Değiştirme önizlemesini göster",
+    "replace": "Yeni değer"
+  },
+  "result": {
+    "matches": "Eşleşmeler",
+    "replaced": "Değiştirilmiş çıktı",
+    "groups": "Yakalama grupları"
+  },
+  "hint": {
+    "replaceVars": "Tam eşleşme için $&, gruplar için $1, $2, adlandırılmış gruplar için $<ad> kullanın."
+  },
+  "error": {
+    "invalid": "Geçersiz desen"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Bayraklar ne işe yarar",
+        "paragraphs": [
+          "g (global): yalnızca ilkini değil tüm eşleşmeleri bulur. Tüm değiştirme davranışı için gereklidir. i (büyük/küçük harf duyarsız): /[a-z]/i her iki durumu da eşleştirir. m (çok satırlı): ^ ve $ yalnızca dize başı/sonu yerine satır sonlarında eşleşir. s (dotall): . yeni satırları da eşleştirir. u (unicode): 0xFFFF üzerindeki kod noktalarının (emoji, vekil çiftlerdeki CJK) doğru işlenmesi.",
+          "Çoğu kişi /g/i/m ile başlar. /s/ çok satırlı metin eşleştirme için kullanışlı olur. /u/ emoji veya BMP dışı karakterlerle karşılaşabildiğinizde önerilir — onsuz /./ 4 baytlık emojiyi tek karakter olarak eşleştirmez."
+        ]
+      },
+      {
+        "heading": "Yakalama grupları ve değiştir",
+        "paragraphs": [
+          "Parantezler yakalama grubu oluşturur: '2026-05' üzerindeki /(\\d{4})-(\\d{2})/ '2026' ve '05'yi ayrı ayrı yakalar. Değiştirme ifadesinde $1, $2 olarak başvurun. Adlandırılmış gruplar (?<ad>...) kullanır ve değiştirme ifadesinde $<ad> ile başvurulur.",
+          "Yaygın değiştirme hileleri: $& tam eşleşmeyi ekler. $1, $2 vb. yakalama gruplarını ekler. $$ değişmez $ ekler. Buradaki değiştirme önizlemesi aynı deseni gerçek bir metin üzerinde çalıştırmadan önce kontrol etmenizi sağlar — üretim verisi üzerinde doğrudan çalıştırmaktan çok daha güvenlidir."
+        ]
+      },
+      {
+        "heading": "Dikkat edilecek tuzaklar",
+        "paragraphs": [
+          "Ters eğik çizgi kaçışı. Değişmez '.' eşleştirmek için '\\.' kullanın. JavaScript kaynak dizesinde bu '\\\\.'' olur ama bu araçta yalnızca '\\.' yazarsınız çünkü bu regex kaynağıdır.",
+          "Felakete yol açan geri izleme. '/(a+)+/' gibi desenler 'aaaa…!' üzerinde sonsuza kadar sürebilir. Testiniz donmuş görünüyorsa regex'inizde iç içe niceleme işaretçileri olabilir. Basitleştirin veya iyelik/atomik gruplar kullanın (JS regex'te mevcut değil; bunun yerine dikkatli tasarım kullanın).",
+          "Açgözlü vs tembel. '/<.+>/' '\"<a><b>\"' üzerinde '<a><b>' ile eşleşir (açgözlü). '/<.+?>/' '<a>' ile eşleşir (tembel). Kullanım durumunuz için doğru olanı seçin."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Bir desen yazın",
+        "text": "JavaScript regex sözdizimini kullanın (çevreleyen eğik çizgiler olmadan)."
+      },
+      {
+        "name": "Bayrakları ayarlayın",
+        "text": "Açıp kapatmak için harflere tıklayın: g (global), i (büyük/küçük harf duyarsız), m (çok satırlı), s (dotall), u (unicode)."
+      },
+      {
+        "name": "Test metnini yapıştırın",
+        "text": "Eşleşmeler gerçek zamanlı vurgulanır."
+      },
+      {
+        "name": "İsteğe bağlı: değiştirmeyi deneyin",
+        "text": "Değiştirilmiş çıktıyı görmek için 'değiştirme önizlemesi'ni açın."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Bu hangi regex çeşidini kullanıyor?",
+      "a": "JavaScript ECMAScript regex (tarayıcınızın uyguladığı). PHP, .NET veya Python'da kullanılan PCRE'den biraz farklıdır."
+    },
+    {
+      "q": "Lookbehind neden çalışmıyor?",
+      "a": "Modern tarayıcılarda çalışır — Chrome, Firefox, Safari, Edge'in tümü 2021'den beri (?<=...) ve (?<!...) destekler. Çalışmıyorsa tarayıcınız güncel olmayabilir."
+    },
+    {
+      "q": "'u' bayrağı ne işe yarar?",
+      "a": "Doğru Unicode işlemeyi etkinleştirir. 🎉 gibi emoji (UTF-16'da vekil çifttir) /u/ ile bir karakter olarak, varsayılan modda iki karakter olarak işlenir."
+    },
+    {
+      "q": "Sekme veya yeni satırı nasıl eşleştiririm?",
+      "a": "Sekme için \\t, yeni satır için \\n, satır başı için \\r, bunların tümü dahil tüm boşluk için \\s."
+    },
+    {
+      "q": "Değiştirme neden çalışmıyor?",
+      "a": "Çoğunlukla 'g' bayrağını unutmuşsunuzdur — 'g' olmadan değiştirme yalnızca ilk eşleşmeyi değiştirir. Tümünü değiştirmek için 'g'yi açın."
+    },
+    {
+      "q": "Çok uzun metin için kullanabilir miyim?",
+      "a": "Evet, birkaç MB'a kadar. Bunun ötesinde tarayıcı yavaşlayabilir. Uzun girdide felakete yol açan desenlerden (iç içe niceleme) kaçının."
+    },
+    {
+      "q": "Veriler tarayıcımdan çıkıyor mu?",
+      "a": "Hayır. Desen ve metin yalnızca yerel olarak işlenir."
+    },
+    {
+      "q": "Bir regex hızlı başvuru tablosu var mı?",
+      "a": "'JavaScript regex cheat sheet' arayın. MDN'nin RegExp sayfası yetkili referanstır."
+    }
+  ]
+}

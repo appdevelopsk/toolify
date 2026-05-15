@@ -4,6 +4,7 @@ import { Link } from "@/lib/i18n/navigation";
 import { AdBanner, AdBelowResult, AdInArticle, AdSticky } from "@/components/ads/AdBanner";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { RelatedServices } from "@/components/affiliates/RelatedServices";
+import { isPromptLocale } from "@/lib/i18n/locales";
 import type { ToolMeta } from "@/lib/tools/types";
 
 interface Props {
@@ -91,12 +92,13 @@ export function ToolFrame({ meta, title, description, related, children, article
           {t("tool.lastUpdated")}: <time dateTime={meta.updatedAt}>{meta.updatedAt}</time>
         </p>
 
-        {/* Cross-link to /prompts — single line per page × 120 tools × 6 locales = ~720 inbound links into the prompts vertical. */}
-        <p className="mt-2 text-sm">
-          <Link href="/prompts" className="text-brand-600 hover:underline">
-            {t("tool.tryPrompts")}
-          </Link>
-        </p>
+        {isPromptLocale(locale) && (
+          <p className="mt-2 text-sm">
+            <Link href="/prompts" className="text-brand-600 hover:underline">
+              {t("tool.tryPrompts")}
+            </Link>
+          </p>
+        )}
       </main>
       <aside className="hidden lg:block">
         <AdSticky />

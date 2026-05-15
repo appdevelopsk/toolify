@@ -1,0 +1,109 @@
+{
+  "title": "Cari dan Ganti Teks (literal atau regex, dengan opsi)",
+  "shortDescription": "Ganti teks dengan cari/ganti literal atau regex penuh. Aktifkan sensitivitas huruf besar/kecil dan mode multi-baris. Jumlah pencocokan ditampilkan secara langsung.",
+  "description": "Tempel teks, atur string cari dan ganti, aktifkan regex / tidak sensitif huruf / multi-baris secara opsional, dan lihat teks yang dimodifikasi ditambah jumlah pencocokan secara instan.",
+  "metaDescription": "Alat cari-dan-ganti teks gratis. Mode literal atau regex, opsi tidak sensitif huruf, jumlah pencocokan langsung.",
+  "keywords": [
+    "cari dan ganti",
+    "ganti teks",
+    "ganti regex",
+    "cari ganti",
+    "edit teks massal"
+  ],
+  "input": {
+    "text": "Teks sumber",
+    "find": "Cari",
+    "replace": "Ganti dengan"
+  },
+  "opt": {
+    "regex": "Regex",
+    "caseSensitive": "Sensitif huruf",
+    "multiline": "Multi-baris ^ / $"
+  },
+  "output": {
+    "result": "Hasil",
+    "matches": "{n} pencocokan"
+  },
+  "error": "Kesalahan regex",
+  "copy": "Salin",
+  "copied": "Disalin",
+  "article": {
+    "sections": [
+      {
+        "heading": "Dua mode — literal dan regex",
+        "paragraphs": [
+          "Literal (regex nonaktif): string pencarian dicocokkan secara tepat. Karakter khusus seperti '.' dan '*' diperlakukan sebagai karakter itu sendiri. Ini adalah default aman untuk sebagian besar pengeditan teks sehari-hari.",
+          "Regex (regex aktif): string pencarian diinterpretasikan sebagai ekspresi reguler JavaScript. Gunakan ini untuk pola — misalnya /\\b\\w+@\\w+\\.\\w+\\b/ untuk menemukan email, atau (^.+:) untuk mencocokkan label di awal baris. Dengan mode multi-baris, ^ dan $ mencocokkan pada pemisah baris."
+        ]
+      },
+      {
+        "heading": "Sintaks khusus string pengganti",
+        "paragraphs": [
+          "Dalam mode regex, string pengganti mendukung backreference: $1, $2 dll. untuk grup penangkapan; $& untuk seluruh pencocokan; $$ untuk tanda dollar literal. Contoh: cari /(\\d{3})-(\\d{3})-(\\d{4})/ ganti ($1) $2-$3 memformat ulang nomor telepon.",
+          "Dalam mode literal, string pengganti diambil apa adanya — tidak ada backreference, tidak ada penanganan khusus. Apa yang Anda ketik itulah yang disisipkan."
+        ]
+      },
+      {
+        "heading": "Kegunaan umum",
+        "paragraphs": [
+          "Edit massal: standarisasi ejaan ('warna' → 'colour' untuk gaya UK), perbarui nama produk, perbaiki kesalahan ketik dalam dokumen panjang.",
+          "Refaktor kode: ganti nama variabel di seluruh tempel kode (gunakan sensitif huruf). Untuk refaktor nyata di banyak file, IDE lebih baik.",
+          "Pembersihan data: konversi tab ke koma dalam CSV, ganti satu pembatas dengan yang lain, normalkan spasi.",
+          "Markdown ke teks biasa: hapus sintaks Markdown dengan regex (misalnya, /\\*\\*([^*]+)\\*\\*/g → $1 untuk menghapus penanda tebal)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Tempel teks Anda",
+        "text": "Atau ketik langsung."
+      },
+      {
+        "name": "Masukkan cari dan ganti",
+        "text": "Cari apa yang dicari, ganti dengan apa yang disubstitusi."
+      },
+      {
+        "name": "Aktifkan opsi sesuai kebutuhan",
+        "text": "Regex untuk pola; tidak sensitif huruf untuk pencocokan fuzzy; multi-baris untuk pola jangkar baris."
+      },
+      {
+        "name": "Baca hasil dan salin",
+        "text": "Jumlah pencocokan menampilkan berapa banyak penggantian yang terjadi."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apa bedanya dengan penguji regex?",
+      "a": "Ini berfokus pada operasi penggantian. Penguji regex berfokus pada pemeriksaan pencocokan dan grup penangkapan. Gunakan mana yang sesuai dengan tugas."
+    },
+    {
+      "q": "Bisakah saya menggunakan Unicode dalam cari/ganti?",
+      "a": "Ya. Baik string cari maupun ganti mendukung UTF-8 penuh termasuk emoji dan karakter CJK."
+    },
+    {
+      "q": "Mengapa cari/ganti saya tidak bekerja?",
+      "a": "Paling umum: sensitivitas huruf. 'Halo' tidak akan mencocokkan 'halo' kecuali Anda mengaktifkan tidak sensitif huruf. Atau karakter regex khusus dalam mode literal yang disalahpahami."
+    },
+    {
+      "q": "Apakah ini mempertahankan pemformatan?",
+      "a": "Ini mempertahankan teks secara tepat kecuali untuk pencocokan. Jika teks Anda memiliki tab atau baris baru tertentu, itu dipertahankan."
+    },
+    {
+      "q": "Bisakah saya membatalkan penggantian?",
+      "a": "Teks aslinya ada di kolom input. Tempel ulang dari sana atau gunakan perilaku teks-mundur browser Anda. Kami tidak memiliki undo bawaan."
+    },
+    {
+      "q": "Seberapa besar teks saya bisa?",
+      "a": "Teks multi-megabyte bekerja, meskipun regex pada input besar bisa lambat jika pola ditulis dengan buruk."
+    },
+    {
+      "q": "Apa cara yang baik untuk belajar regex?",
+      "a": "Mulai dengan mode literal dan beralih ke regex ketika Anda membutuhkan pola. Cari 'JavaScript regex cheat sheet' atau lihat dokumen RegExp MDN."
+    },
+    {
+      "q": "Apakah data meninggalkan browser saya?",
+      "a": "Tidak. Semua cari/ganti berjalan secara lokal."
+    }
+  ]
+}

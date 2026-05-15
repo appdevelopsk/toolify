@@ -1,0 +1,71 @@
+{
+  "title": "CSV ↔ JSON Dönüştürücü (RFC 4180 uyumlu)",
+  "shortDescription": "CSV'yi JSON'a veya JSON'ı CSV'ye dönüştür. Yapılandırılabilir ayırıcı (virgül/noktalı virgül/sekme/pipe), başlık satırı geçişi, RFC 4180 tırnaklı alan işleme.",
+  "description": "CSV veya JSON yapıştır. Dönüştürücü, RFC 4180 uyumlu CSV'yi ayrıştırır (virgüllü alıntılanmış alanlar, kaçan alıntılar, çok satırlı değerleri işler). JSON'dan CSV'ye için hem nesne dizisi (anahtarları başlık olarak kullanır) hem de dizi dizisi kabul eder.",
+  "metaDescription": "Ücretsiz CSV ↔ JSON dönüştürücü. RFC 4180 uyumlu, yapılandırılabilir ayırıcı, başlık satırı geçişi. Yalnızca tarayıcı — veriniz cihazınızı asla terk etmez.",
+  "keywords": ["CSV JSON'a dönüştür", "JSON CSV'ye dönüştür", "CSV dönüştürücü", "JSON dönüştürücü", "RFC 4180"],
+  "direction": {
+    "csvToJson": "CSV → JSON",
+    "jsonToCsv": "JSON → CSV"
+  },
+  "input": {
+    "csv": "CSV girişi",
+    "json": "JSON girişi",
+    "delimiter": "Ayırıcı",
+    "headerRow": "İlk satır başlık"
+  },
+  "delim": {
+    "comma": "Virgül (,)",
+    "semicolon": "Noktalı virgül (;)",
+    "tab": "Sekme",
+    "pipe": "Pipe (|)"
+  },
+  "output": "Çıktı",
+  "empty": "Dönüştürülmüş çıktıyı görmek için giriş yap.",
+  "error": { "label": "Dönüştürme hatası" },
+  "copy": "Kopyala",
+  "article": {
+    "sections": [
+      {
+        "heading": "RFC 4180 neden önemlidir?",
+        "paragraphs": [
+          "CSV basit görünür ama kenar durumları vardır: virgül içeren bir alan tırnak içine alınmalıdır; tırnak içeren bir alan tırnak karakterini çift tırnak olarak kaçırmalıdır; alıntılanmışsa bir alan satır sonları içerebilir. Naif virgülde-böl ayrıştırıcıları gerçek dünya verilerinde bozulur. Bu dönüştürücü RFC 4180 gramını tam olarak uygular.",
+          "Naif ayrıştırıcılar, ondalık ayırıcı olarak ',' kullanılan Avrupa yerel ayarlarında yaygın olan noktalı virgül kullanan Excel dışa aktarımlarında veya sekmelerde (TSV) da bozulur. Ayırıcı açılır menüsü yaygın dört varyantın tamamını işler."
+        ]
+      },
+      {
+        "heading": "Çıktı için JSON şekilleri",
+        "paragraphs": [
+          "Nesne dizisi (başlık satırıyla varsayılan): her satır {sütun: değer} olur. Herhangi bir dilde kullanımı kolay en yaygın JSON şekli.",
+          "Dizi dizisi (başlık satırı kapalı): her satır [d1, d2, ...] olur. Sütunlar adlandırılmamış veya konumsal yapı istediğinizde kullanışlı.",
+          "JSON'dan CSV'ye giderken dönüştürücü hangi şekle sahip olduğunu algılar. Nesneler: başlıklar için tüm satırlardaki benzersiz anahtarları çıkarır. Diziler: satırları olduğu gibi yazar."
+        ]
+      },
+      {
+        "heading": "Yaygın tuzaklar",
+        "paragraphs": [
+          "Excel yerel ayarı: bazı Avrupa Excel yüklemelerinde varsayılan ayırıcı ',' değil ';'dir. CSV içe aktarıldığında dev bir sütun gibi görünüyorsa ayırıcı açılır menüsünde ;'ye geçin.",
+          "BOM (Bayt Sırası İşareti): bazı Excel dışa aktarımları dosyayı U+FEFF ile önekler. Bunu aktarıyoruz; aşağı akış ayrıştırıcınız başarısız olursa ilk 3 baytı çıkarın.",
+          "Sondaki satır sonu: '\\n' ile biten CSV bazı ayrıştırıcılarda boş son satır ekler; boş satırları otomatik olarak filtreleriz.",
+          "Dize olarak sayılar: CSV türsüzdür — '42' JSON'da \"42\" dizesi olur. Tipli değerlere ihtiyaç duyuyorsanız bilinen sayı sütunlarını zorlayan bir son işleme adımı çalıştırın."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Yönü seç", "text": "CSV → JSON veya JSON → CSV." },
+      { "name": "Ayırıcıyı ayarla", "text": "Virgül (varsayılan), noktalı virgül, sekme veya pipe." },
+      { "name": "Başlık satırını değiştir", "text": "Nesne şekilli JSON için açık, dizi dizisi için kapalı." },
+      { "name": "Verinizi yapıştır", "text": "Çıktı canlı güncellenir. Sonucu panoya kopyalamak için 'Kopyala'ya tıkla." }
+    ]
+  },
+  "faq": [
+    { "q": "Virgüllü tırnaklı alanları işliyor mu?", "a": "Evet — RFC 4180 alıntılama tam olarak desteklenir. \"Yılmaz, Ahmet\" tek alan olarak ayrıştırılır." },
+    { "q": "Kaçan tırnaklar nasıl işlenir?", "a": "RFC 4180'e göre, alıntılanmış alan içindeki gerçek '\"', '\"\"' (çift tırnak) olarak yazılır. Ayrıştırıcı bunu doğru işler." },
+    { "q": "Alanlar satır sonları içerebilir mi?", "a": "Evet, alıntılandığında. Tırnak içindeki \"satır 1\\nsatır 2\" gömülü satır sonuyla tek alan olarak değerlendirilir." },
+    { "q": "BOM (UTF-8) destekliyor mu?", "a": "BOM aktarılır. Aşağı akış tüketiciniz buna dayanmıyorsa CSV'den ilk 3 baytı (EF BB BF) çıkarın." },
+    { "q": "Büyük dosyalar ne olacak?", "a": "Tarayıcı birkaç MB'yi sorunsuz işler. Çok büyük CSV'ler (100MB+) için bir worker ile Papa Parse gibi akışlı ayrıştırıcı veya CLI aracı kullanın." },
+    { "q": "Sayılar sayı olarak korunuyor mu?", "a": "CSV → JSON: tüm değerler dize olur (CSV türsüzdür). JSON → CSV: sayılar tırnaksız CSV hücresi olur. Tipli JSON elde etmek için sayısal olduğunu bildiğiniz sütunları sonradan işleyin." },
+    { "q": "JSON'umda neden null yerine boş dizeler görüyorum?", "a": "CSV eksik değerleri boş hücreler olarak temsil eder. Bunları boş dizelere eşliyoruz. JSON'da null elde etmek için çıktıyı sonradan işleyin." },
+    { "q": "Veriler tarayıcımı terk ediyor mu?", "a": "Hayır. Dönüştürme yerel olarak çalışır; sunucuya hiçbir şey gönderilmez." }
+  ]
+}

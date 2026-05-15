@@ -1,0 +1,73 @@
+{
+  "title": "Generatore CSS Box Shadow (con anteprima in tempo reale)",
+  "shortDescription": "Crea valori CSS box-shadow visivamente. Regola offset, sfumatura, espansione, colore, opacità e inset. Anteprima in tempo reale, CSS da copiare e incollare.",
+  "description": "Sei preset di ombra comuni (morbida, card, sollevata, glow, neumorphic, inset). Affina tutti i parametri con i cursori, vedi il risultato in tempo reale e copia il CSS pronto all'uso.",
+  "metaDescription": "Generatore gratuito CSS box-shadow con anteprima in tempo reale. Offset, sfumatura, espansione, colore, opacità, supporto inset. Include 6 preset tra cui neumorphic.",
+  "keywords": ["generatore box shadow", "ombra css", "shadow css", "generatore neumorphic", "generatore drop shadow"],
+  "preset": {
+    "soft": "Morbida",
+    "card": "Card",
+    "lifted": "Sollevata",
+    "glow": "Glow",
+    "neumorphic": "Neumorphic",
+    "inset": "Inset"
+  },
+  "input": {
+    "x": "Offset X",
+    "y": "Offset Y",
+    "blur": "Sfumatura",
+    "spread": "Espansione",
+    "color": "Colore",
+    "opacity": "Opacità",
+    "inset": "Inset (ombra interna)"
+  },
+  "output": { "css": "Codice CSS" },
+  "copy": "Copia CSS",
+  "copied": "Copiato!",
+  "article": {
+    "sections": [
+      {
+        "heading": "I cinque parametri dell'ombra",
+        "paragraphs": [
+          "Offset X: spostamento orizzontale. Positivo sposta l'ombra a destra, negativo a sinistra. Per l'illuminazione con luce dall'alto a sinistra (la tipica assunzione UI), un piccolo X positivo simula la luce dall'alto a sinistra.",
+          "Offset Y: spostamento verticale. Positivo sposta l'ombra verso il basso, simulando una sorgente luminosa in alto. Quasi tutte le ombre UI usano Y positivo.",
+          "Raggio di sfumatura: quanto è morbido il bordo dell'ombra. 0 = bordo netto (raro). 8-30px è tipico per card e pulsanti. Valori più alti creano ombre morbide e sognanti.",
+          "Espansione: estende o restringe l'ombra uniformemente. Valori positivi rendono l'ombra più grande dell'elemento; valori negativi la restringono. Espansione negativa combinata con offset crea un effetto 'sollevato'.",
+          "Colore/opacità: le ombre sono di solito nere con bassa opacità (10-30%). Le ombre colorate sono di tendenza ma più difficili da usare bene. Abbina l'intervallo di valori dello sfondo — ombre troppo scure su UI scure scompaiono, ombre troppo chiare su UI chiare mancano di contrasto."
+        ]
+      },
+      {
+        "heading": "Ombre inset",
+        "paragraphs": [
+          "Un'ombra inset viene disegnata all'interno dell'elemento invece che all'esterno. Usata per: stati pulsante premuto, campi di input incassati, effetti neumorphic '3D spinto in dentro'.",
+          "Le ombre inset rispettano il border-radius dell'elemento e ignorano l'overflow. Sono utili per aggiungere profondità visiva agli elementi UI piatti senza modificare il layout effettivo."
+        ]
+      },
+      {
+        "heading": "Neumorphism e il trend 'soft UI'",
+        "paragraphs": [
+          "Il neumorphism (popolare nel 2020-2022) usa due ombre opposte — una chiara, una scura — per far sembrare gli elementi estrusi da uno sfondo dello stesso colore. Il nostro preset 'Neumorphic' mostra una singola ombra scura; per il neumorphism completo, combina con un'ombra chiara inset sul lato opposto: 'inset -8px -8px 20px rgba(255,255,255,0.5), 8px 8px 20px rgba(0,0,0,0.12)'.",
+          "Nota: il neumorphism puro ha problemi di accessibilità — la mancanza di contrasto rende gli elementi difficili da distinguere. I design moderni lo usano con parsimonia, spesso combinato con ombre tradizionali."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Scegli un preset", "text": "Oppure costruisci da zero con i cursori." },
+      { "name": "Regola l'offset X/Y", "text": "Direzione dell'ombra." },
+      { "name": "Affina sfumatura ed espansione", "text": "La sfumatura ammorbidisce; l'espansione ingrandisce." },
+      { "name": "Imposta colore e opacità", "text": "La maggior parte delle ombre UI usa il nero con opacità del 10-30%." },
+      { "name": "Attiva inset", "text": "Per ombre interne (pulsante premuto, input incassato)." },
+      { "name": "Copia il CSS", "text": "Incolla nella proprietà box-shadow del tuo foglio di stile." }
+    ]
+  },
+  "faq": [
+    { "q": "Posso aggiungere più ombre?", "a": "Il CSS supporta più ombre separate da virgole: 'box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)'. Il nostro strumento genera un'ombra alla volta; combina più ombre manualmente." },
+    { "q": "Come creo un effetto neumorphic?", "a": "Combina un'ombra scura in basso a destra con un'ombra chiara in alto a sinistra, entrambe inset o entrambe outset. Esempio: '8px 8px 20px rgba(0,0,0,0.12), -8px -8px 20px rgba(255,255,255,0.7)'. Il nostro preset mostra la metà scura; aggiungi l'ombra chiara manualmente." },
+    { "q": "Qual è la differenza tra sfumatura ed espansione?", "a": "La sfumatura ammorbidisce il bordo dell'ombra (trasparenza gradiente). L'espansione cambia la dimensione complessiva dell'ombra (più o meno grande dell'elemento). Sfumatura=20 espansione=0 è un bagliore morbido alle dimensioni dell'elemento; sfumatura=0 espansione=20 è un'ombra dura 20px più grande." },
+    { "q": "Perché la mia ombra sembra piatta?", "a": "Probabilmente opacità troppo bassa, nessun offset o colore dell'ombra troppo simile allo sfondo. Prova Y=8, sfumatura=24, opacità=0.18 come punto di partenza — quei valori sono visibili sulla maggior parte degli sfondi chiari." },
+    { "q": "Posso usarlo per text-shadow?", "a": "Quasi — text-shadow usa la stessa sintassi meno 'spread' e 'inset'. Adegua manualmente dopo aver copiato: prendi 'X Y blur colore' (rimuovi spread e inset)." },
+    { "q": "Le ombre sono performanti?", "a": "Box-shadow è accelerato da GPU nei browser moderni. Molte ombre su molti elementi possono comunque rallentare lo scrolling. Ombre singole su card e pulsanti: nessun problema." },
+    { "q": "Dovrei usare ombre o bordi?", "a": "Entrambi hanno i loro usi. I bordi sono più netti e accessibili. Le ombre sembrano più morbide/elevate. Le UI moderne semi-piatte spesso usano entrambi: un bordo sottile per nitidezza + ombra morbida per l'elevazione." },
+    { "q": "I dati escono dal mio browser?", "a": "No. Tutta l'anteprima e la generazione CSS vengono eseguiti localmente; nulla viene inviato a un server." }
+  ]
+}

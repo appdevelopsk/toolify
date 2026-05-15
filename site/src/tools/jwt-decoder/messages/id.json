@@ -1,0 +1,112 @@
+{
+  "title": "Decoder JWT (header, payload, tanda tangan, kedaluwarsa)",
+  "shortDescription": "Decode JWT (JSON Web Token) apapun menjadi bagian header, payload, dan tanda tangan. Menyoroti token yang kedaluwarsa. Hanya browser — token Anda tidak pernah meninggalkan perangkat Anda.",
+  "description": "Tempel JWT untuk langsung mendecode header dan payload sebagai JSON. Mengenali klaim standar (iat, exp, nbf) dan mengonversi timestamp Unix ke ISO 8601. Menandai token yang kedaluwarsa atau belum valid.",
+  "metaDescription": "Decoder JWT gratis. Periksa header, payload, kehadiran tanda tangan, kedaluwarsa. Klaim standar (iat/exp/nbf) diformat otomatis.",
+  "keywords": [
+    "decoder jwt",
+    "json web token",
+    "decode jwt",
+    "inspektor jwt",
+    "debugger jwt",
+    "jwt decoder online indonesia"
+  ],
+  "input": {
+    "token": "Token JWT",
+    "privacyNote": "Di-decode sepenuhnya di browser Anda. Token tidak pernah berjalan melalui jaringan."
+  },
+  "result": {
+    "header": "Header",
+    "payload": "Payload",
+    "signaturePresent": "Tanda tangan ada",
+    "issuedAt": "Diterbitkan pada (iat)",
+    "expiresAt": "Kedaluwarsa pada (exp)",
+    "notBefore": "Tidak valid sebelum (nbf)"
+  },
+  "warning": {
+    "expired": "⚠ Token ini telah kedaluwarsa. Server yang menghormati exp akan menolaknya.",
+    "notYetValid": "⚠ Belum valid (nbf ada di masa depan). Server akan menolaknya sampai saat itu."
+  },
+  "error": {
+    "label": "Decode error"
+  },
+  "copy": "Salin",
+  "article": {
+    "sections": [
+      {
+        "heading": "Bagaimana JWT terlihat",
+        "paragraphs": [
+          "JWT adalah tiga segmen yang dienkode Base64url, digabungkan dengan titik: header.payload.signature. Setiap segmen adalah objek JSON yang dienkode untuk transmisi yang aman di URL. Header mendeklarasikan algoritma penandatanganan, payload membawa klaim (subjek, kedaluwarsa, data kustom), dan tanda tangan memungkinkan penerima memverifikasi integritas jika mereka memiliki kunci.",
+          "Decoder ini hanya membaca dua segmen pertama. Tanda tangan adalah segmen ketiga tetapi memverifikasinya memerlukan kunci rahasia/publik — itu adalah operasi terpisah yang tidak kami lakukan di sini."
+        ]
+      },
+      {
+        "heading": "Klaim standar yang perlu diketahui",
+        "paragraphs": [
+          "iss (issuer): siapa yang membuat token. iat (issued at): kapan, sebagai timestamp Unix. exp (expiry): kapan berhenti valid, juga Unix. nbf (not before): waktu paling awal yang harus dihormati. sub (subject): entitas yang diwakilinya, seringkali ID pengguna. aud (audience): untuk siapa token, biasanya URL layanan.",
+          "Tidak semua wajib; JWT minimal seringkali hanya memiliki sub + iat + exp. Klaim kustom adalah hal lain — mereka hidup berdampingan dengan yang standar dalam payload."
+        ]
+      },
+      {
+        "heading": "Mengapa decoding ≠ verifikasi",
+        "paragraphs": [
+          "Siapapun dapat mendecode JWT — header dan payload hanyalah JSON yang dienkode Base64. Itulah mengapa kami mengatakan 'jangan pernah menyimpan rahasia di payload': mereka pada dasarnya publik.",
+          "Verifikasi berarti memeriksa tanda tangan terhadap kunci rahasia (HMAC) atau kunci publik (RSA/ECDSA). Tanpa verifikasi, Anda tidak dapat mempercayai klaim apapun di dalam payload — penyerang dapat membuat payload apapun yang mereka inginkan.",
+          "Gunakan alat ini untuk memeriksa token selama debugging. Gunakan library JWT di server Anda untuk memverifikasinya di produksi."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Tempel JWT",
+        "text": "Tiga segmen yang digabungkan dengan titik."
+      },
+      {
+        "name": "Baca bagian yang di-decode",
+        "text": "Header (algoritma), payload (klaim), flag kehadiran tanda tangan."
+      },
+      {
+        "name": "Periksa kedaluwarsa",
+        "text": "Klaim standar iat/exp/nbf diformat otomatis sebagai tanggal ISO dan ditandai jika kedaluwarsa atau belum valid."
+      },
+      {
+        "name": "Salin sesuai kebutuhan",
+        "text": "Setiap bagian memiliki tombol salin untuk output JSON."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Bisakah saya memverifikasi tanda tangan di sini?",
+      "a": "Tidak — verifikasi memerlukan kunci rahasia atau publik, yang tidak boleh pernah meninggalkan lingkungan tepercaya. Gunakan library JWT sisi server (jsonwebtoken untuk Node, PyJWT untuk Python, dll.)."
+    },
+    {
+      "q": "Apakah token meninggalkan browser saya?",
+      "a": "Tidak pernah. Decoding berjalan secara lokal; kami tidak memiliki endpoint server untuk menerimanya."
+    },
+    {
+      "q": "Mengapa token saya 'tidak valid'?",
+      "a": "Umum: salin-tempel menambah/menghapus spasi, kehilangan salah satu dari tiga segmen, atau satu segmen adalah Base64url yang rusak. Potong dan coba lagi."
+    },
+    {
+      "q": "Apa itu Base64url vs Base64?",
+      "a": "Base64url mengganti '+' dengan '-', '/' dengan '_', dan menghapus padding '=' sehingga string yang dienkode aman di URL dan header HTTP. JWT selalu menggunakan Base64url."
+    },
+    {
+      "q": "Mengapa payload Unicode saya menampilkan teks yang rusak?",
+      "a": "Kami mendecode UTF-8, yang merupakan standar. Jika payload dienkode secara berbeda, JSON.parse mungkin gagal. Sebagian besar penerbit JWT mengenkode UTF-8 dengan benar."
+    },
+    {
+      "q": "Apakah HS256 aman?",
+      "a": "Jika rahasianya cukup panjang (≥256 bit) dan dijaga kerahasiaannya, ya. Kerentanan HS256 yang umum adalah rahasia yang lemah dan menerima token dengan alg='none'. Gunakan rahasia acak ≥32 karakter dan tolak 'none' secara eksplisit."
+    },
+    {
+      "q": "Mengapa lebih memilih RS256 daripada HS256?",
+      "a": "RS256 (RSA asimetris) memungkinkan Anda mempublikasikan kunci publik untuk verifikasi sambil menjaga kunci penandatanganan tetap privat. HS256 (HMAC simetris) memerlukan berbagi rahasia dengan setiap verifier. Untuk arsitektur multi-layanan, RS256 lebih aman."
+    },
+    {
+      "q": "Bisakah saya mendecode token yang sangat besar?",
+      "a": "Batas praktisnya sekitar ~10 MB input; di atas itu browser mungkin melambat. JWT biasanya di bawah 4 KB; jika milik Anda lebih besar, pertimbangkan apakah Anda menyimpan terlalu banyak dalam klaim."
+    }
+  ]
+}

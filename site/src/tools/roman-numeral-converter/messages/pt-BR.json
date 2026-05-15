@@ -1,0 +1,102 @@
+{
+  "title": "Conversor de Algarismos Romanos (1 a 3999, nos dois sentidos)",
+  "shortDescription": "Converta números arábicos para algarismos romanos (e vice-versa). Valida a forma canônica para que VIIII não seja aceito silenciosamente como 9.",
+  "description": "Digite um número de 1 a 3999 para obter o algarismo romano, ou cole algarismos romanos para converter de volta. Validação rigorosa rejeita formas não canônicas.",
+  "metaDescription": "Conversor gratuito de algarismos romanos. Converta números de 1 a 3999 para algarismos romanos ou decodifique romano para arábico.",
+  "keywords": [
+    "conversor de algarismos romanos",
+    "arábico para romano",
+    "romano para número",
+    "MMXXVI",
+    "numerais romanos"
+  ],
+  "input": {
+    "number": "Número (1 a 3999)",
+    "roman": "Algarismo romano"
+  },
+  "result": {
+    "roman": "Algarismo romano",
+    "number": "Número arábico"
+  },
+  "mode": {
+    "toRoman": "Número → Romano",
+    "fromRoman": "Romano → Número"
+  },
+  "error": {
+    "invalidNumber": "Insira um número inteiro.",
+    "outOfRange": "Os algarismos romanos suportam apenas de 1 a 3999.",
+    "invalidRoman": "Algarismo romano inválido (forma canônica obrigatória)."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Como funcionam os algarismos romanos",
+        "paragraphs": [
+          "Os algarismos romanos usam sete letras: I=1, V=5, X=10, L=50, C=100, D=500, M=1000. Os números são formados por adição (II=2, XX=20) ou por subtração quando uma letra menor precede uma maior (IV=4, IX=9, XL=40, XC=90, CD=400, CM=900). Cada letra pode se repetir no máximo três vezes seguidas, por isso 4 é IV e não IIII.",
+          "A notação romana padrão suporta de 1 a 3999. Números ≥ 4000 exigem uma notação com barra acima (V̄ = 5000), difícil de digitar e raramente necessária hoje em dia, por isso este conversor limita a 3999."
+        ]
+      },
+      {
+        "heading": "Romano canônico vs informal",
+        "paragraphs": [
+          "A forma canônica rigorosa segue as regras acima. O romano 'informal' (às vezes chamado de 'arcaico') permite coisas como IIII para 4 — você verá isso em faces de relógio, onde a simetria é preferida. Este conversor exige a forma canônica na entrada e produz a forma canônica na saída. Então 'IIII' é rejeitado; digite 'IV'.",
+          "O decodificador valida recodificando: analisa o romano, obtém o número, codifica esse número e verifica se corresponde à entrada. Qualquer coisa que não faça o ciclo completo é rejeitada. Isso captura 'VV' (incorretamente = 10), 'IIX' (incorretamente = 8) e outras formas não padronizadas."
+        ]
+      },
+      {
+        "heading": "Onde os algarismos romanos aparecem hoje",
+        "paragraphs": [
+          "Datas de direito autoral em filmes (MCMXCIX = 1999), numeração de campeonatos (Copa do Mundo XXII), sequências de monarcas e papas (Henrique VIII, João XXIII), capítulos de livros e sumários, faces de relógio e marcadores de ano estilizados. Eles saíram amplamente do uso aritmético porque a aritmética com algarismos arábicos é muito mais fácil — tente multiplicar MCXLVII por IV e você vai entender."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolha a direção",
+        "text": "Número→Romano ou Romano→Número."
+      },
+      {
+        "name": "Digite sua entrada",
+        "text": "Um inteiro de 1 a 3999, ou um algarismo romano."
+      },
+      {
+        "name": "Leia o resultado",
+        "text": "Uma entrada inválida exibe um erro específico para você corrigir."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Por que IIII não é aceito como 4?",
+      "a": "O romano canônico escreve 4 como IV. IIII aparece em alguns relógios, mas não é notação aritmética padrão. Use IV."
+    },
+    {
+      "q": "Qual é o maior algarismo romano?",
+      "a": "Sem barras acima, 3999 = MMMCMXCIX. Números acima disso precisam de uma notação com barra que não suportamos."
+    },
+    {
+      "q": "Posso ter zero?",
+      "a": "Os romanos não tinham zero. A notação começa em 1 (I)."
+    },
+    {
+      "q": "O que significa CMXLIV?",
+      "a": "CM=900, XL=40, IV=4. Total = 944. Pares subtrativos (CM, XL, IV) mais seus componentes."
+    },
+    {
+      "q": "Como leio MMXXVI?",
+      "a": "MM=2000, XX=20, VI=6. Total = 2026."
+    },
+    {
+      "q": "Por que os relógios às vezes usam IIII para o 4?",
+      "a": "Tradição. Os relojoeiros historicamente preferiam IIII pela simetria visual com VIII (ambos com quatro caracteres). Não é 'correto' canonicamente."
+    },
+    {
+      "q": "Os algarismos romanos são na base 10?",
+      "a": "Eles têm letras agrupadas em decimal (I/V para unidades, X/L para dezenas, C/D para centenas, M para milhares), mas usam adição e subtração em vez de notação posicional. Então são influenciados pelo decimal, mas não são posicionais."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. A conversão é feita localmente."
+    }
+  ]
+}

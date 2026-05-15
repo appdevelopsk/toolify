@@ -1,0 +1,50 @@
+{
+  "title": "Zahlensystem-Konverter (Binär, Oktal, Dezimal, Hex)",
+  "shortDescription": "Konvertiere Zahlen zwischen Binär, Oktal, Dezimal und Hexadezimal. Validiert die Eingabe für die gewählte Basis und zeigt alle vier Darstellungen.",
+  "description": "Wähle eine Quellbasis, gib einen Wert ein und sieh die Entsprechungen in Binär, Oktal, Dezimal und Hex. Nützlich für Programmierung, Networking und Elektronik.",
+  "metaDescription": "Kostenloser Zahlensystem-Konverter für Binär, Oktal, Dezimal und Hex. Validiert Eingaben je nach Basis, zeigt alle vier Darstellungen nebeneinander.",
+  "keywords": ["Zahlensystem-Konverter", "binär dezimal umrechnen", "dezimal hexadezimal", "hex binär umrechnen", "Basis 2 Basis 16"],
+  "input": { "value": "Wert", "from": "Von Basis" },
+  "error": { "invalidForBase": "Die Eingabe enthält Zeichen, die für die gewählte Basis nicht gültig sind." },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie Stellenwertsysteme funktionieren",
+        "paragraphs": [
+          "Jede Basis verwendet Stellenschreibweise: die rechteste Stelle ist Basis⁰ = 1, die nächste Basis¹, dann Basis², usw. Im Dezimalsystem bedeutet ‚255' 2×100 + 5×10 + 5×1. Im Binärsystem bedeutet ‚11111111' 1×128 + 1×64 + ... + 1×1 = 255. Dieselbe Zahl, verschiedene Basen.",
+          "Hexadezimal verwendet 0–9 und A–F, um 16 Werte pro Stelle darzustellen. ‚FF' = 15×16 + 15×1 = 255. Oktal verwendet 0–7 (3 Bits pro Stelle), Binär nur 0 und 1. Die Umrechnung ist mechanisch – in Dezimal konvertieren und dann in die Zielbasis zurück – und der Rechner erledigt das für jede nicht-negative ganze Zahl."
+        ]
+      },
+      {
+        "heading": "Wann du welche Basis verwendest",
+        "paragraphs": [
+          "Binär (Basis 2): Low-Level-Computerarbeit – Bitfelder, Masken, Embedded-Firmware. Lesen von Registerlayouts, Debugging auf Hardwareebene.",
+          "Oktal (Basis 8): Unix-Dateiberechtigungen (chmod 755 = rwxr-xr-x), einige ältere Dateiformate. Heute weniger gebräuchlich.",
+          "Dezimal (Basis 10): alles, was Menschen zählen. Der Standard für normale Arithmetik.",
+          "Hexadezimal (Basis 16): am häufigsten in Software – Farben (#FF6B35), Speicheradressen (0x7fff...), MAC-Adressen, Byte-Darstellungen von Binärdaten, kodierte Hashes."
+        ]
+      },
+      {
+        "heading": "Schnellreferenz",
+        "paragraphs": [
+          "1 Byte = 8 Bits = 2 Hex-Stellen = 256 Werte (0–255). 1 Hex-Stelle = 4 Bits = 16 Werte. 1 Oktal-Stelle = 3 Bits. Hex ‚FF' = Dezimal 255 = Binär 11111111. Hex ‚100' = Dezimal 256. Hex ‚FFFF' = Dezimal 65.535 (Maximum für 16-Bit-Vorzeichenlos). Hex ‚FFFFFFFF' = Dezimal 4.294.967.295 (Maximum für 32-Bit-Vorzeichenlos)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Quellbasis wählen", "text": "Binär, Oktal, Dezimal oder Hex auswählen." },
+      { "name": "Wert eingeben", "text": "Nur für diese Basis gültige Stellen verwenden. Hex ist nicht case-sensitiv." },
+      { "name": "Alle vier Basen lesen", "text": "Umrechnung in jede der anderen drei erscheint daneben." }
+    ]
+  },
+  "faq": [
+    { "q": "Ist Hex case-sensitiv?", "a": "Sowohl ‚ff' als auch ‚FF' ergeben denselben Wert. Wir zeigen standardmäßig Großbuchstaben." },
+    { "q": "Kann ich negative Zahlen eingeben?", "a": "Ja, mit ‚-' vorne. Der Rechner zeigt die Darstellung jeder Basis mit dem Vorzeichen (z. B. -255 → -FF in Hex)." },
+    { "q": "Was ist der Maximalwert?", "a": "Begrenzt durch JavaScripts sicheren ganzzahligen Bereich (ca. 2⁵³). Für größere Werte BigInt-fähige Tools verwenden." },
+    { "q": "Wie lese ich das 0x- oder 0b-Präfix?", "a": "Präfix vor der Eingabe entfernen. ‚0xFF' → nur ‚FF' mit Hex ausgewählt. ‚0b1010' → ‚1010' mit Binär ausgewählt." },
+    { "q": "Warum verwendet Unix chmod Oktal?", "a": "Berechtigungen haben drei Gruppen (Eigentümer/Gruppe/Andere) mit je drei Bits. Jede Gruppe mit 3 Bits entspricht sauber einer Oktalstelle, daher 755 = 111 101 101 = rwx r-x r-x." },
+    { "q": "Kann ich Dezimalbrüche umrechnen?", "a": "Noch nicht – nur nicht-negative ganze Zahlen werden unterstützt. Festkomma-Unterstützung könnte später kommen." },
+    { "q": "Was bedeutet ‚ungültig für Basis'?", "a": "Du hast ein Zeichen eingegeben, das in der gewählten Basis nicht erlaubt ist. Hex erlaubt 0–9 und A–F; Binär nur 0 und 1; usw." },
+    { "q": "Werden die Daten irgendwohin gesendet?", "a": "Nein. Die Umrechnung läuft lokal." }
+  ]
+}

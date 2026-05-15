@@ -1,0 +1,60 @@
+{
+  "title": "Calculadora de MDC e MMC (com fatoração em primos)",
+  "shortDescription": "Encontre o máximo divisor comum (MDC) e o mínimo múltiplo comum (MMC) de dois ou mais inteiros, além da fatoração em primos de cada número.",
+  "description": "Digite uma lista de inteiros. A calculadora retorna o MDC (algoritmo euclidiano), MMC e a fatoração em primos completa de cada entrada. Suporta inteiros de tamanho arbitrário via BigInt.",
+  "metaDescription": "Calculadora gratuita de MDC e MMC com fatoração em primos. Entrada com múltiplos números. Aritmética exata com BigInt para inteiros de qualquer tamanho.",
+  "keywords": ["calculadora mdc", "calculadora mmc", "máximo divisor comum", "mínimo múltiplo comum", "fatoração em primos"],
+  "input": {
+    "numbers": "Números",
+    "hint": "Separados por vírgula, espaço ou nova linha. Mínimo 2 números."
+  },
+  "result": {
+    "gcd": "MDC (máximo divisor comum)",
+    "lcm": "MMC (mínimo múltiplo comum)",
+    "factorizations": "Fatorações em primos"
+  },
+  "empty": "Digite pelo menos 2 inteiros.",
+  "article": {
+    "sections": [
+      {
+        "heading": "MDC: o maior fator em comum",
+        "paragraphs": [
+          "O MDC de dois inteiros é o maior inteiro que divide ambos sem deixar resto. MDC(12, 18) = 6 porque 6 divide ambos e nenhum número maior o faz. MDC(7, 13) = 1 porque eles não compartilham fatores comuns (esses pares são chamados de 'coprimos').",
+          "Usamos o algoritmo euclidiano: mdc(a, b) = mdc(b, a mod b), recursivamente. Conhecido há ~2300 anos, continua sendo o método padrão mais rápido. Para três ou mais números: mdc(a, b, c) = mdc(mdc(a, b), c)."
+        ]
+      },
+      {
+        "heading": "MMC: o menor múltiplo em comum",
+        "paragraphs": [
+          "O MMC é o menor inteiro positivo que é múltiplo de todos os números. MMC(4, 6) = 12 porque 12 é o primeiro número que tanto 4 quanto 6 dividem.",
+          "Fórmula: mmc(a, b) = (a × b) / mdc(a, b). Para 4 e 6: 24 / 2 = 12. Para três números: mmc(a, b, c) = mmc(mmc(a, b), c).",
+          "Se algum número for 0, o MMC é 0 (todo número divide 0, mas o 'menor positivo' é indefinido). A calculadora retorna 0 nesse caso."
+        ]
+      },
+      {
+        "heading": "Por que isso importa",
+        "paragraphs": [
+          "Frações: para somar 1/4 + 1/6, encontre MMC(4, 6) = 12 como denominador comum. 1/4 = 3/12, 1/6 = 2/12, soma = 5/12.",
+          "Agendamento: se o evento A se repete a cada 4 dias e o evento B a cada 6 dias, eles coincidem a cada MMC(4, 6) = 12 dias.",
+          "Criptografia: algoritmos baseados em MDC (euclidiano estendido) são a base da geração de chaves RSA e dos cálculos de inverso modular.",
+          "Teoria musical: ritmos com períodos 3 e 4 sincronizam após 12 tempos (MMC)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Digite os inteiros", "text": "Pelo menos 2, separados por vírgulas, espaços ou novas linhas." },
+      { "name": "Leia o MDC e o MMC", "text": "Ambos aparecem em destaque na área de resultados." },
+      { "name": "Confira as fatorações", "text": "A decomposição em primos de cada número revela por que o MDC/MMC saiu como saiu." }
+    ]
+  },
+  "faq": [
+    { "q": "E se os números forem coprimos?", "a": "MDC = 1 e MMC = produto de todos os números. Coprimos significa que não compartilham fatores primos." },
+    { "q": "Posso incluir números negativos?", "a": "Sim. Usamos os valores absolutos para os cálculos de MDC/MMC. -12 e 18 resultam em MDC 6 e MMC 36, igual a 12 e 18." },
+    { "q": "E se eu digitar 0?", "a": "MDC(0, n) = |n| (pois todo inteiro divide 0, e n é o maior para esse par). MMC com 0 é 0 por convenção. Com todos os zeros, MDC/MMC são indefinidos." },
+    { "q": "Qual o tamanho máximo dos números?", "a": "Usamos BigInt internamente, então a aritmética em inteiros de qualquer tamanho é exata. O limite prático é a velocidade de digitação e o espaço na tela." },
+    { "q": "Por que a fatoração em primos é útil?", "a": "MDC = produto dos primos em comum (usando o menor expoente). MMC = produto de todos os primos que aparecem em qualquer número (usando o maior expoente). As fatorações tornam essas relações visíveis." },
+    { "q": "Qual a relação entre MDC e MMC?", "a": "Para dois números: a × b = mdc(a, b) × mmc(a, b). Então, se você sabe três dos valores {a, b, mdc, mmc}, pode calcular o quarto. Essa relação não se generaliza facilmente para três ou mais números." },
+    { "q": "Posso usar isso para MDC de polinômios?", "a": "Não nesta ferramenta — tratamos apenas inteiros. Para polinômios, use um CAS como SymPy ou Maxima." },
+    { "q": "Os dados saem do meu navegador?", "a": "Não. O cálculo roda localmente; nada é enviado a um servidor." }
+  ]
+}

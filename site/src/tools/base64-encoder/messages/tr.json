@@ -1,0 +1,54 @@
+{
+  "title": "Base64 Kodlayıcı / Çözücü (UTF-8 ve URL-güvenli)",
+  "shortDescription": "Herhangi bir UTF-8 metnini Base64'e kodla veya geri çöz. JWT ve URL'lerde kullanmak için URL-güvenli kodlamayı aç.",
+  "description": "Herhangi bir metin yaz veya bir Base64 dizesi yapıştırarak her iki yönde de dönüştür. UTF-8'i (emoji ve CJK karakterler dahil) işler ve JWT ile OAuth'ta kullanılan URL-güvenli varyantı destekler.",
+  "metaDescription": "UTF-8 ve URL-güvenli desteğiyle ücretsiz Base64 kodlayıcı ve çözücü. Metni Base64'e dönüştür veya JWT tarzı dizeleri tarayıcında anında çöz.",
+  "keywords": ["base64 kodlayıcı", "base64 çözücü", "url güvenli base64", "base64 utf8", "metin kodlama"],
+  "input": { "plain": "Düz metin", "encoded": "Base64 dizesi" },
+  "output": { "encoded": "Kodlanmış sonuç", "plain": "Çözülmüş sonuç" },
+  "mode": { "encode": "Kodla", "decode": "Çöz" },
+  "urlSafe": "URL-güvenli (-, _, dolgu yok)",
+  "copy": "Kopyala",
+  "copied": "Kopyalandı",
+  "invalidInput": "Geçersiz Base64 girişi.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Base64 nedir, ne değildir?",
+        "paragraphs": [
+          "Base64, rastgele baytları 64 karakterlik bir alfabe (A-Z, a-z, 0-9, +, /, = dolgusu) kullanarak kodlar. Görüntü baytları, şifreli bloblar ve imzalı tokenlar gibi ikili verileri JSON, HTML veya e-posta başlıkları gibi yalnızca metin içeren biçimlere yerleştirmenin standart yöntemidir. Çıktı, girişten yaklaşık %33 daha büyüktür.",
+          "Base64 kodlamadır, şifreleme değildir. Herkes bir Base64 dizesini orijinal baytlarına geri çözebilir. Gizliliğe ihtiyacın varsa gerçek bir şifreleme algoritması kullan — Base64'ü gizli tutmak için kullanma."
+        ]
+      },
+      {
+        "heading": "URL-güvenli ile standart arasındaki fark",
+        "paragraphs": [
+          "Standart Base64, URL'lerde özel anlamları olan ve yüzde kodlanması gereken '+' ve '/' karakterlerini içerir. URL-güvenli Base64 (RFC 4648 §5) '+' yerine '-', '/' yerine '_' kullanır ve sondaki '=' dolgusunu kaldırır. JWT'ler, OAuth tokenları ve pek çok web API'si URL-güvenli biçimi kullanır.",
+          "Bir JWT veya tokenı elle çözüyorsan URL-güvenli modunu AÇ. Klasik e-posta veya PDF gömülü verisiyle çalışıyorsan kapalı bırak."
+        ]
+      },
+      {
+        "heading": "UTF-8 desteği",
+        "paragraphs": [
+          "Eski tarayıcı btoa() işlevi yalnızca ASCII'yi işleyebilir. Bu araç, girişini önce UTF-8 baytlarına dönüştürmek için TextEncoder kullanır, ardından bu baytları Base64 ile kodlar. Bu sayede emoji, CJK karakterler, aksanlı Latin harfleri ve diğer tüm Unicode karakterler doğru şekilde kodlanır ve gidiş-dönüş dönüşüm çalışır."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Kodla ya da çöz seç", "text": "Üstteki modu değiştir." },
+      { "name": "Gerekirse URL-güvenliyi aç", "text": "JWT ve OAuth tokenları için açık; geri kalan her şey için kapalı." },
+      { "name": "Girişini yapıştır", "text": "Kodlama için düz metin, çözme için Base64 dizesi." },
+      { "name": "Sonucu kopyala", "text": "Çıktının yanındaki 'Kopyala' düğmesine tıkla." }
+    ]
+  },
+  "faq": [
+    { "q": "Base64 şifreleme midir?", "a": "Hayır. İkili veriyi ASCII metne kodlamanın bir yoludur. Herkes çözebilir. Gizlilik için gerçek şifreleme (AES, RSA vb.) kullan." },
+    { "q": "URL-güvenli neden farklıdır?", "a": "Standart Base64, URL'lerde özel anlamları olan '+' ve '/' kullanır ve bunların yüzde kodlanması gerekir. URL-güvenli Base64, bunu önlemek için '-' ve '_' kullanır." },
+    { "q": "JWT imzasını çözebilir miyim?", "a": "İmzayı çözmek ham imza baytlarını verir, ancak bunlar doğrulama içindir, okunabilir değildir. Veriyi görmek için JWT'nin başlığını ve yükünü (ilk iki segment) çöz." },
+    { "q": "İkili dosyalar için çalışıyor mu?", "a": "Doğrudan değil — yalnızca metin yapıştır. Dosyalar için ikili destekli bir araç kullan." },
+    { "q": "Çözülmüş metnim neden bozuk görünüyor?", "a": "Ya giriş geçerli Base64 değildi ya da UTF-8 olmayan baytları kodlıyordu (örn. Latin-1 dosyası). Orijinal kodlamayı doğrula." },
+    { "q": "Veriler bir yere gönderiliyor mu?", "a": "Hayır. Kodlama ve çözme tamamen tarayıcında çalışır." },
+    { "q": "Boyut artışı ne kadar?", "a": "Kaynak baytlardan yaklaşık %33 daha büyük (her 3 giriş baytı 4 çıktı karakterine dönüşür)." },
+    { "q": "Dolgu neden önemlidir?", "a": "Standart Base64, uzunluğun 4'ün katı olması için sonuna '=' ekler. URL-güvenli sürümler çoğunlukla bunu atlar, çünkü çözme için gerekmez." }
+  ]
+}

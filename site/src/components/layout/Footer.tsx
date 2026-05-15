@@ -1,9 +1,12 @@
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { siteConfig } from "@/lib/config";
+import { isPromptLocale } from "@/lib/i18n/locales";
 
 export function Footer() {
   const t = useTranslations();
+  const locale = useLocale();
+  const showPrompts = isPromptLocale(locale);
   const year = new Date().getFullYear();
   return (
     <footer className="border-t border-slate-200 bg-slate-50 py-10 text-sm dark:border-slate-800 dark:bg-slate-950">
@@ -16,9 +19,11 @@ export function Footer() {
           <Link href="/tools" className="hover:underline">
             {t("nav.tools")}
           </Link>
-          <Link href="/prompts" className="hover:underline">
-            {t("nav.prompts")}
-          </Link>
+          {showPrompts && (
+            <Link href="/prompts" className="hover:underline">
+              {t("nav.prompts")}
+            </Link>
+          )}
           <Link href="/about" className="hover:underline">
             {t("nav.about")}
           </Link>

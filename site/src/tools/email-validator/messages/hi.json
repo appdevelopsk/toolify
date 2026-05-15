@@ -1,0 +1,60 @@
+{
+  "title": "ईमेल वैलिडेटर (syntax + सामान्य typo detection)",
+  "shortDescription": "RFC 5322 के अनुसार ईमेल एड्रेस syntax की जाँच करें और लोकप्रिय providers (gmail, yahoo, hotmail आदि) में सामान्य typos पकड़ें।",
+  "description": "ईमेल टाइप करें — syntax सही है या नहीं जाँचें, 'gmial.com' → 'gmail.com' जैसे domain typos पकड़ें। local-part, domain, TLD breakdown और RFC सीमा उल्लंघन की चेतावनी।",
+  "metaDescription": "मुफ्त ईमेल वैलिडेटर। RFC 5322 syntax चेक और gmial.com, yaho.com जैसे typos पकड़ता है। local-part, domain, TLD breakdown दिखाता है।",
+  "keywords": ["email validator", "email syntax check", "ईमेल जाँच", "email format check", "verify email", "email typo detector", "ईमेल वैलिडेटर"],
+  "input": { "email": "ईमेल एड्रेस" },
+  "status": { "valid": "Valid syntax", "invalid": "Invalid syntax" },
+  "suggestion": "क्या आपका मतलब था: {suggestion}?",
+  "empty": "validate करने के लिए ईमेल एड्रेस टाइप करें।",
+  "breakdown": {
+    "localPart": "Local part",
+    "domain": "Domain",
+    "tld": "TLD",
+    "hasPlus": "Plus tag (+)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "यह validator क्या करता है (और क्या नहीं)",
+        "paragraphs": [
+          "ईमेल syntax validation जाँचता है कि 'name@domain.tld' RFC 5322 के structural rules का पालन करता है या नहीं। हम एक pragmatic regex उपयोग करते हैं जो वास्तविक दुनिया के लगभग सभी typos पकड़ता है, साथ ही plus tags, dots और unusual TLDs वाले legitimate addresses के लिए भी लचीला रहता है।",
+          "यह tool क्या नहीं कर सकता: यह confirm नहीं कर सकता कि address पर वास्तव में mail आता है। इसके लिए real email भेजना या SMTP check करना पड़ता है — दोनों server-side code माँगते हैं और false positives का जोखिम होता है। Syntax validation typos सस्ते में पकड़ता है; deliverability जाँचने के लिए अलग approach चाहिए।"
+        ]
+      },
+      {
+        "heading": "सामान्य typo detection",
+        "paragraphs": [
+          "हम प्रमुख free email providers में typos देखते हैं — 'gmail.com' की जगह 'gmial.com', 'yahoo.com' की जगह 'yaho.com' आदि। Email signup typos में से लगभग 95% इन कुछ providers के domain typos होते हैं। Client-side पर पकड़ने से bounced welcome email और असहज 'कृपया अपना address जाँचें' follow-up से बचा जाता है।",
+          "यदि आप signup form बना रहे हैं, तो submit करने से पहले यही logic चलाएँ। 'क्या आपका मतलब था...?' suggestion दिखाएँ और user को accept या override करने दें। mature signup flows यह routinely करते हैं; इससे email deliverability ध्यान देने योग्य रूप से सुधरती है।"
+        ]
+      },
+      {
+        "heading": "Local part के नियम",
+        "paragraphs": [
+          "Plus tag ('user+filter@gmail.com'): प्रमुख providers द्वारा व्यापक रूप से support किया जाता है। विभिन्न sign-ups के लिए unique addresses बनाने में उपयोगी, single inbox बनाए रखते हुए।",
+          "Dots ('user.name@gmail.com'): Gmail इन्हें same address मानता है (dots ignore होते हैं), लेकिन अन्य providers इन्हें अलग addresses मान सकते हैं। Gmail के बाहर dot-equivalence पर निर्भर न रहें।",
+          "लंबाई: RFC 5321 local part को 64 characters और पूरे address को 254 characters तक सीमित करता है। जब ये exceed होते हैं तो हम चेतावनी देते हैं — अधिकांश servers लंबे addresses अस्वीकार करते हैं।",
+          "Case sensitivity: RFC के अनुसार local part case-sensitive है, लेकिन अधिकांश providers इसे case-insensitive मानते हैं। Domain हमेशा case-insensitive होता है।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "ईमेल टाइप करें", "text": "या किसी form / list से paste करें।" },
+      { "name": "परिणाम पढ़ें", "text": "हरा checkmark = valid syntax; लाल X = invalid।" },
+      { "name": "Suggestions देखें", "text": "लोकप्रिय providers में सामान्य typos suggestion के साथ flagged होते हैं।" },
+      { "name": "Breakdown देखें", "text": "नीचे local part, domain, TLD और warning notes दिखते हैं।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या यह confirm करता है कि ईमेल exist करता है?", "a": "नहीं — केवल syntax। Inbox exist करता है या नहीं जाँचने के लिए server-side SMTP check या verification email भेजना पड़ता है। यह tool typos सस्ते में पकड़ता है।" },
+    { "q": "'a@b.co' क्यों accept हुआ?", "a": "क्योंकि यह technically valid syntax है। TLD '.co' real है (कोलंबिया)। Syntax validation real-but-rare TLDs filter नहीं कर सकती।" },
+    { "q": "Unicode ईमेल (जैसे user@उदाहरण.भारत) के बारे में क्या?", "a": "Internationalized email addresses RFC 6531 के अनुसार valid हैं, लेकिन यहाँ उपयोग किया गया regex उन्हें accept नहीं करता। अधिकांश form backends भी नहीं करते। Unicode-friendly validation के लिए dedicated library उपयोग करें।" },
+    { "q": "Plus tag क्या है?", "a": "+ और @ के बीच की कोई भी चीज़ Gmail और कई providers द्वारा routing के हिस्से के रूप में treat की जाती है। user+toolify@gmail.com, user@gmail.com पर जाता है लेकिन आप +toolify suffix से filter कर सकते हैं।" },
+    { "q": "Gmail dots क्यों ignore करता है?", "a": "यह Gmail की historical policy है। user.name@gmail.com और username@gmail.com same inbox पर deliver होते हैं। अन्य providers (Yahoo, Outlook) इन्हें अलग मानते हैं।" },
+    { "q": "सबसे लंबा valid ईमेल क्या है?", "a": "RFC 5321 के अनुसार कुल 254 characters। Local part ≤ 64। अधिकांश servers लंबे addresses reject करते हैं।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Validation locally चलती है; कुछ भी किसी server को नहीं भेजा जाता।" },
+    { "q": "क्या मैं bulk validate कर सकता हूँ?", "a": "इस tool में नहीं — एक बार में एक address paste करें। Lists के लिए, script या dedicated bulk-validation service उपयोग करें (उन लोगों की consent के साथ जिनके addresses आप जाँच रहे हैं)।" }
+  ]
+}

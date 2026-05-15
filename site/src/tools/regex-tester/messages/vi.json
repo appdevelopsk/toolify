@@ -1,0 +1,109 @@
+{
+  "title": "Kiểm thử Regex (kết quả khớp trực tiếp, nhóm, thay thế)",
+  "shortDescription": "Kiểm thử biểu thức chính quy JavaScript tương tác. Xem kết quả khớp được đánh dấu trực tiếp, nhóm bắt giữ và bản xem trước thay thế.",
+  "description": "Nhập regex và văn bản kiểm thử — các kết quả khớp được đánh dấu trực tiếp khi bạn nhập. Chuyển đổi cờ (g/i/m/s/u), kiểm tra nhóm bắt giữ và xem trước thay thế.",
+  "metaDescription": "Kiểm thử regex JavaScript miễn phí với đánh dấu trực tiếp, nhóm bắt giữ, nhóm đặt tên và bản xem trước thay thế.",
+  "keywords": [
+    "kiểm thử regex",
+    "kiểm thử biểu thức chính quy",
+    "regex JavaScript",
+    "khớp regex",
+    "thay thế regex"
+  ],
+  "input": {
+    "pattern": "Mẫu",
+    "flags": "Cờ",
+    "test": "Văn bản kiểm thử",
+    "replaceMode": "Hiển thị bản xem trước thay thế",
+    "replace": "Chuỗi thay thế"
+  },
+  "result": {
+    "matches": "Kết quả khớp",
+    "replaced": "Đầu ra đã thay thế",
+    "groups": "Nhóm bắt giữ"
+  },
+  "hint": {
+    "replaceVars": "Dùng $& cho toàn bộ kết quả khớp, $1, $2 cho nhóm, $<tên> cho nhóm đặt tên."
+  },
+  "error": {
+    "invalid": "Mẫu không hợp lệ"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Các cờ làm gì",
+        "paragraphs": [
+          "g (global): tìm tất cả kết quả khớp, không chỉ kết quả đầu tiên. Cần thiết cho hành vi thay-thế-tất-cả. i (không phân biệt chữ hoa thường): /[a-z]/i khớp cả hai kiểu. m (đa dòng): ^ và $ khớp tại xuống dòng thay vì chỉ đầu/cuối chuỗi. s (dotall): . khớp cả ký tự xuống dòng. u (unicode): xử lý đúng các code point trên 0xFFFF (emoji, CJK trong surrogate pair).",
+          "Hầu hết mọi người bắt đầu với /g/i/m. /s/ hữu ích cho khớp văn bản nhiều dòng. /u/ được khuyến nghị bất cứ khi nào bạn có thể gặp emoji hoặc ký tự non-BMP — không có nó, /./ không khớp emoji 4-byte như một ký tự duy nhất."
+        ]
+      },
+      {
+        "heading": "Nhóm bắt giữ và thay thế",
+        "paragraphs": [
+          "Dấu ngoặc đơn tạo nhóm bắt giữ: /(\\d{4})-(\\d{2})/ trên '2026-05' bắt giữ '2026' và '05' riêng biệt. Tham chiếu chúng là $1, $2 trong chuỗi thay thế. Nhóm đặt tên dùng (?<tên>...) và tham chiếu $<tên> trong thay thế.",
+          "Mẹo thay thế phổ biến: $& chèn toàn bộ kết quả khớp. $1, $2 v.v. chèn nhóm bắt giữ. $$ chèn ký tự $ thực. Bản xem trước thay thế ở đây cho phép kiểm tra trước khi chạy cùng mẫu trên văn bản thực — an toàn hơn nhiều so với chạy trực tiếp trên dữ liệu sản xuất."
+        ]
+      },
+      {
+        "heading": "Những cạm bẫy cần lưu ý",
+        "paragraphs": [
+          "Ký tự thoát backslash. Để khớp ký tự '.' theo nghĩa đen, dùng '\\.'. Trong mã JavaScript nguồn đây trở thành '\\\\.' nhưng trong công cụ này bạn chỉ nhập '\\.' vì đó là nguồn regex.",
+          "Quay lui thảm họa. Các mẫu như /(a+)+/ trên 'aaaa…!' có thể mất mãi mãi. Nếu kiểm thử của bạn có vẻ bị treo, regex của bạn có thể có quantifier lồng nhau. Đơn giản hóa hoặc dùng nhóm possessive/atomic (không có trong JS regex; hãy thiết kế cẩn thận thay thế).",
+          "Tham lam so với lười biếng. /<.+>/ trên '<a><b>' khớp '<a><b>' (tham lam). /<.+?>/ khớp '<a>' (lười biếng). Chọn cái phù hợp với trường hợp sử dụng của bạn."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Nhập mẫu",
+        "text": "Dùng cú pháp regex JavaScript (không có dấu gạch chéo bao quanh)."
+      },
+      {
+        "name": "Đặt cờ",
+        "text": "Nhấp chữ cái để bật/tắt: g (global), i (không phân biệt chữ hoa), m (đa dòng), s (dotall), u (unicode)."
+      },
+      {
+        "name": "Dán văn bản kiểm thử",
+        "text": "Kết quả khớp được đánh dấu trong thời gian thực."
+      },
+      {
+        "name": "Tùy chọn: thử thay thế",
+        "text": "Bật 'bản xem trước thay thế' để xem đầu ra đã chỉnh sửa."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Công cụ này dùng loại regex nào?",
+      "a": "Regex ECMAScript JavaScript (loại trình duyệt của bạn triển khai). Nó khác một chút so với PCRE dùng trong PHP, .NET hay Python."
+    },
+    {
+      "q": "Tại sao lookbehind không hoạt động?",
+      "a": "Có trong các trình duyệt hiện đại — Chrome, Firefox, Safari, Edge đều hỗ trợ (?<=...) và (?<!...) từ năm 2021. Nếu của bạn không hỗ trợ, trình duyệt có thể đã lỗi thời."
+    },
+    {
+      "q": "Cờ 'u' làm gì?",
+      "a": "Kích hoạt xử lý Unicode đúng. Emoji như 🎉 (là surrogate pair trong UTF-16) được coi là một ký tự với /u/ nhưng là hai ký tự ở chế độ mặc định."
+    },
+    {
+      "q": "Làm sao khớp tab hoặc xuống dòng?",
+      "a": "\\t cho tab, \\n cho xuống dòng, \\r cho carriage return, \\s cho bất kỳ khoảng trắng nào bao gồm tất cả những cái đó."
+    },
+    {
+      "q": "Tại sao thay thế của tôi không hoạt động?",
+      "a": "Thường là bạn quên cờ 'g' — thay thế không có 'g' chỉ thay thế kết quả khớp đầu tiên. Bật 'g' để thay thế tất cả."
+    },
+    {
+      "q": "Tôi có thể dùng cái này cho văn bản rất dài không?",
+      "a": "Có, đến vài MB. Ngoài đó, trình duyệt có thể chậm lại. Tránh các mẫu thảm họa (quantifier lồng nhau) trên đầu vào dài."
+    },
+    {
+      "q": "Dữ liệu có rời khỏi trình duyệt không?",
+      "a": "Không. Mẫu và văn bản chỉ được xử lý cục bộ."
+    },
+    {
+      "q": "Có bảng cheat sheet về regex không?",
+      "a": "Tìm kiếm 'JavaScript regex cheat sheet'. Trang RegExp của MDN là tài liệu tham khảo chính thức."
+    }
+  ]
+}

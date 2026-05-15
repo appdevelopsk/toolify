@@ -1,0 +1,73 @@
+{
+  "title": "Gerador de CSS Box Shadow (com prévia ao vivo)",
+  "shortDescription": "Crie valores CSS box-shadow visualmente. Ajuste offset, blur, spread, cor, opacidade e inset. Prévia ao vivo, CSS pronto para copiar.",
+  "description": "Seis presets comuns de sombra (suave, card, elevado, glow, neumórfico, inset). Ajuste todos os parâmetros com sliders, veja o resultado ao vivo e copie CSS pronto para colar.",
+  "metaDescription": "Gerador gratuito de CSS box-shadow com prévia ao vivo. Offset, blur, spread, cor, opacidade, suporte a inset. Inclui 6 presets incluindo neumórfico.",
+  "keywords": ["gerador de box shadow", "css shadow", "sombra css", "gerador neumórfico", "gerador de drop shadow"],
+  "preset": {
+    "soft": "Suave",
+    "card": "Card",
+    "lifted": "Elevado",
+    "glow": "Glow",
+    "neumorphic": "Neumórfico",
+    "inset": "Inset"
+  },
+  "input": {
+    "x": "Offset X",
+    "y": "Offset Y",
+    "blur": "Blur",
+    "spread": "Spread",
+    "color": "Cor",
+    "opacity": "Opacidade",
+    "inset": "Inset (sombra interna)"
+  },
+  "output": { "css": "Código CSS" },
+  "copy": "Copiar CSS",
+  "copied": "Copiado!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Os cinco parâmetros de sombra",
+        "paragraphs": [
+          "Offset X: deslocamento horizontal. Positivo move a sombra para a direita, negativo para a esquerda. Para iluminação vinda do canto superior esquerdo (suposição típica de UI), um X positivo pequeno simula luz do canto superior esquerdo.",
+          "Offset Y: deslocamento vertical. Positivo move a sombra para baixo, simulando uma fonte de luz acima. Quase todas as sombras de UI usam Y positivo.",
+          "Raio de blur: quão suave é a borda da sombra. 0 = borda nítida (raro). 8-30px é típico para cards e botões. Valores mais altos criam sombras suaves e difusas.",
+          "Spread: expande ou encolhe a sombra uniformemente. Valores positivos tornam a sombra maior que o elemento; negativos a encolhem. Spread negativo combinado com offset cria um efeito 'elevado'.",
+          "Cor/opacidade: sombras geralmente são pretas com baixa opacidade (10-30%). Sombras coloridas estão na moda, mas são mais difíceis de usar bem. Combine com o tom do seu fundo — sombras muito escuras em UIs escuras somem, sombras muito claras em UIs claras faltam contraste."
+        ]
+      },
+      {
+        "heading": "Sombras inset",
+        "paragraphs": [
+          "Uma sombra inset é desenhada dentro do elemento em vez de fora. Usada para: estados de botão pressionado, campos de entrada afundados, efeitos neumórficos '3D afundado'.",
+          "Sombras inset respeitam o border-radius do elemento e ignoram overflow. São úteis para adicionar profundidade visual a elementos de UI plana sem alterar o layout real."
+        ]
+      },
+      {
+        "heading": "Neumorfismo e a tendência 'soft UI'",
+        "paragraphs": [
+          "O neumorfismo (popular em 2020-2022) usa duas sombras opostas — uma clara, uma escura — para fazer elementos parecerem extrudados de um fundo da mesma cor. Nosso preset 'Neumórfico' mostra apenas a sombra escura; para neumorfismo completo, combine com uma sombra clara inset no lado oposto: 'inset -8px -8px 20px rgba(255,255,255,0.5), 8px 8px 20px rgba(0,0,0,0.12)'.",
+          "Nota: o neumorfismo puro tem problemas de acessibilidade — a falta de contraste torna os elementos difíceis de distinguir. Designs modernos o usam com moderação, frequentemente combinado com sombras tradicionais."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escolha um preset", "text": "Ou construa do zero com os sliders." },
+      { "name": "Ajuste o offset X/Y", "text": "Direção da sombra." },
+      { "name": "Ajuste blur e spread", "text": "Blur suaviza; spread amplia." },
+      { "name": "Defina cor e opacidade", "text": "A maioria das sombras de UI usa preto com 10-30% de opacidade." },
+      { "name": "Alterne o inset", "text": "Para sombras internas (botão pressionado, campo afundado)." },
+      { "name": "Copie o CSS", "text": "Cole na propriedade box-shadow da sua folha de estilos." }
+    ]
+  },
+  "faq": [
+    { "q": "Posso adicionar múltiplas sombras?", "a": "O CSS suporta múltiplas sombras separadas por vírgula: 'box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)'. Nossa ferramenta gera uma sombra de cada vez; combine várias manualmente." },
+    { "q": "Como faço um efeito neumórfico?", "a": "Combine uma sombra escura no canto inferior direito com uma sombra clara no canto superior esquerdo, ambas inset ou ambas outset. Exemplo: '8px 8px 20px rgba(0,0,0,0.12), -8px -8px 20px rgba(255,255,255,0.7)'. Nosso preset mostra a metade escura; adicione a sombra clara manualmente." },
+    { "q": "Qual é a diferença entre blur e spread?", "a": "Blur suaviza a borda da sombra (transparência em gradiente). Spread altera o tamanho geral da sombra (maior ou menor que o elemento). Blur=20 spread=0 é um glow suave no tamanho do elemento; blur=0 spread=20 é uma sombra nítida 20px maior." },
+    { "q": "Por que minha sombra parece plana?", "a": "Provavelmente opacidade muito baixa, sem offset, ou cor da sombra próxima demais ao fundo. Tente Y=8, blur=24, opacity=0.18 como ponto de partida — esses valores ficam visíveis na maioria dos fundos claros." },
+    { "q": "Posso usar isso para text-shadow?", "a": "Quase — text-shadow usa a mesma sintaxe menos 'spread' e 'inset'. Ajuste manualmente após copiar: use 'X Y blur cor' (descarte spread e inset)." },
+    { "q": "Sombras são performáticas?", "a": "Box-shadow é acelerado por GPU em navegadores modernos. Muitas sombras em muitos elementos ainda podem deixar a rolagem lenta. Uma sombra em cards e botões: nenhuma preocupação." },
+    { "q": "Devo usar sombras ou bordas?", "a": "Ambas têm usos. Bordas são mais nítidas e acessíveis. Sombras parecem mais suaves/elevadas. UIs modernas frequentemente usam as duas: uma borda fina para nitidez + sombra suave para elevação." },
+    { "q": "Os dados saem do meu navegador?", "a": "Não. Toda a prévia e geração de CSS é feita localmente; nada é enviado para um servidor." }
+  ]
+}

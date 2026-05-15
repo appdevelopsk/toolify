@@ -1,0 +1,63 @@
+{
+  "title": "Tarih Hesaplayıcı (gün ekle/çıkar veya tarihler arası fark)",
+  "shortDescription": "Bir tarihten yıl/ay/gün ekle veya çıkar ya da iki tarih arasındaki kesin farkı iş günleri dahil bul.",
+  "description": "İki mod: gelecekteki veya geçmişteki bir tarihi hesaplamak için 'ekle veya çıkar', ya da yıl, ay, gün, hafta ve iş günleri cinsinden farkı bulmak için 'arasında'.",
+  "metaDescription": "Ücretsiz tarih hesaplayıcı. Yıl/ay/gün ekle veya çıkar ya da iş günü sayımıyla iki tarih arasındaki farkı bul. Takvim farkındadır, artık yıllar dahil.",
+  "keywords": ["tarih hesaplayıcı", "tarihe gün ekle", "tarih farkı", "iş günleri", "tarihler arası gün sayısı"],
+  "empty": "Hesaplamak için tarih seç.",
+  "mode": { "addSubtract": "Ekle veya çıkar", "between": "Tarihler arası fark" },
+  "op": { "add": "Ekle", "subtract": "Çıkar" },
+  "input": { "start": "Başlangıç tarihi", "end": "Bitiş tarihi", "years": "Yıl", "months": "Ay", "days": "Gün" },
+  "result": {
+    "resultDate": "Sonuç tarihi",
+    "difference": "Fark",
+    "ymd": "{y} yıl, {m} ay, {d} gün",
+    "totalDays": "Toplam gün",
+    "totalWeeks": "Toplam hafta",
+    "totalMonths": "Toplam ay",
+    "businessDays": "İş günleri (Pzt-Cum)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ne hesaplar?",
+        "paragraphs": [
+          "Ekle/çıkar modu: bir tarih alır, yıl, ay ve gün sayısı ekler veya çıkarır ve sonuçtaki takvim tarihini verir. Yıllar ve aylar takvim aritmetiğini kullanır (yani 31 Ocak'a 1 ay eklemek, artık yıla bağlı olarak 28 Şubat veya 29 Şubat verir, 3 Mart değil). Günler kesindir — 30 gün eklemek her zaman tam 30 takvim günü ileri gider.",
+          "Arasında modu: iki tarih alır ve yıl/ay/gün cinsinden fark ile gün, hafta, ay ve iş günlerinde (Pazartesi'den Cuma'ya, tatiller hariç) toplam verir. Y/A/G formu, yaş hesaplayıcımızla aynı borç mantığını kullanır — fark örneğin '2 yıl, 5 ay, 3 gün'dür, ondalık yıl değil."
+        ]
+      },
+      {
+        "heading": "İş günleri neden tatilleri kapsamıyor?",
+        "paragraphs": [
+          "Pazartesi'den Cuma'ya kadar olan günleri iş günü sayıyoruz; Cumartesi ve Pazar'ı hariç tutuyoruz. Resmi tatiller ülkeye, bölgeye ve yıla göre değiştiğinden otomatik olarak çıkarmıyoruz. Türkiye'de resmi tatil sayısı yılda yaklaşık 14,5 gündür; bunu sonuçtan manuel çıkarabilirsiniz.",
+          "Tatiller hesaplamanız için önemliyse (son tarih takibi, sözleşme müzakereleri), burada takvim sayımını yapın, ardından ülkenizin tatil listesini manuel kontrol edin. İlerideki bir sürümde ülkeye özgü tatil çıkarımı ekleyebiliriz."
+        ]
+      },
+      {
+        "heading": "Yaygın kullanım alanları",
+        "paragraphs": [
+          "Proje son tarihleri: 'bu, başlangıçtan 90 gün sonra teslim edilecek'. Başlangıç tarihine 90 gün ekle.",
+          "Sözleşme şartları: sözleşme başlangıç ve bitiş tarihleri arasındaki günleri say. Faturalama için sözleşme dilinizle eşleştir.",
+          "Seyahat planlaması: ayrılma ve dönüş arasında kaç iş günü var? Dışarıda olma takvimleri ve harcama raporları için kullanışlı.",
+          "Kişisel kilometre taşları: yıldönümleri, iyileşme sayımları, büyük bir yaşam olayından bu yana geçen süre."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Mod seç", "text": "Bir tarihten hareket etmek için ekle/çıkar, fark bulmak için arasında." },
+      { "name": "Başlangıç tarihini gir", "text": "Tarih seçiciyi kullan." },
+      { "name": "Ofseti veya bitiş tarihini ekle", "text": "Ekleme modu için yıl/ay/gün, arasında modu için bitiş tarihi." },
+      { "name": "Sonucu oku", "text": "Sonuç tarihi veya tam fark dökümü." }
+    ]
+  },
+  "faq": [
+    { "q": "31 Ocak'a 1 ay eklersem ne olur?", "a": "28 Şubat alırsın (veya artık yılda 29 Şubat). Takvim aritmetiği, kaynak günün hedef ayda bulunmaması durumunda hedef ayın son gününe sıkıştırır." },
+    { "q": "Tatiller iş günlerinden çıkarılıyor mu?", "a": "Hayır — yalnızca hafta sonları. Ülkeye özgü tatilleri yargı bölgenizin takvimine göre manuel çıkarın." },
+    { "q": "Negatif tarih aritmetiğini işliyor mu?", "a": "Evet, 'çıkar' modu aracılığıyla. Dahili olarak çıkarma, negatif delta eklemektir. 'Arasındaki fark' modu sıradan bağımsız olarak her zaman pozitif değerler döndürür." },
+    { "q": "Hangi saat dilimini kullanıyor?", "a": "Tarayıcının yerel saat dilimi. Tarihler yerel gece yarısı olarak yorumlanır. Saat dilimlerini aşan hesaplamalar düzeltme gerektirebilir." },
+    { "q": "Saat ve dakika ekleyebilir miyim?", "a": "Henüz değil — yalnızca tarih ayrıntı düzeyi. Saat düzeyinde matematik için ayrı bir zaman damgası aracı kullan." },
+    { "q": "Hangi en büyük farkı işliyor?", "a": "Rahatlıkla yüzlerce yıl. JavaScript'in Date nesnesi 1970'den ±100 milyon günü destekler; bu pratik sınırdır." },
+    { "q": "Neden her iki ucu farklı sayıyor?", "a": "Toplam gün, iki tarih arasındaki gece sayısıdır. İki ardışık günün farkı 1 gündür. İş günü sayısı aradaki her takvim gününü geçerek ilerler." },
+    { "q": "Veriler tarayıcımı terk ediyor mu?", "a": "Hayır. Tüm matematik yerel olarak çalışır." }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "title": "Kalkulator Faktorial / Permutasi / Kombinasi",
+  "shortDescription": "Hitung n! (faktorial), P(n,k) permutasi, dan C(n,k) kombinasi. Menangani bilangan bulat besar melalui BigInt hingga n=5000.",
+  "description": "Masukkan n dan k. Mengembalikan n!, P(n,k) (pilihan berurutan), dan C(n,k) (pilihan tidak berurutan). Berguna untuk probabilitas, statistik, dan pekerjaan rumah kombinatorik.",
+  "metaDescription": "Kalkulator faktorial, permutasi (nPr), dan kombinasi (nCr) gratis. Dukungan bilangan bulat besar hingga n=5000. Siap untuk probabilitas dan kombinatorik.",
+  "keywords": ["kalkulator faktorial", "nCr nPr", "kalkulator permutasi", "kalkulator kombinasi", "kombinatorik"],
+  "input": {
+    "kHint": "(untuk permutasi / kombinasi)"
+  },
+  "result": {
+    "permutationsLabel": "permutasi",
+    "combinationsLabel": "kombinasi"
+  },
+  "error": {
+    "tooLargeOrNeg": "n harus bilangan bulat non-negatif ≤ 5000.",
+    "invalid": "Diperlukan 0 ≤ k ≤ n."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Faktorial",
+        "paragraphs": [
+          "n! (dibaca 'n faktorial') adalah hasil kali semua bilangan bulat positif dari 1 sampai n. Jadi 5! = 1×2×3×4×5 = 120. Secara konvensi, 0! = 1 (hasil kali kosong).",
+          "Faktorial tumbuh sangat cepat. 10! = 3,6 juta, 20! = 2,4×10¹⁸, 100! memiliki 158 digit. Floating-point rusak pada 21! (karena batas presisi ganda); kami menggunakan BigInt untuk nilai tepat hingga n=5000."
+        ]
+      },
+      {
+        "heading": "Permutasi vs kombinasi",
+        "paragraphs": [
+          "Permutasi P(n,k) = n! / (n−k)!: jumlah cara berurutan untuk memilih k item dari n. P(5,2) = 20: pilih tempat pertama dari 5, kedua dari 4 yang tersisa = 5×4 = 20.",
+          "Kombinasi C(n,k) = n! / (k!(n−k)!): jumlah cara tidak berurutan. C(5,2) = 10: pilihan yang sama tetapi {pertama, kedua} = {kedua, pertama} sehingga bagi dengan 2!. 'n pilih k' yang terkenal.",
+          "Gunakan permutasi ketika urutan penting (podium lomba, urutan kata sandi). Gunakan kombinasi ketika hanya himpunan yang dipilih yang penting (nomor lotere, pemilihan panitia). C(n,k) ≤ P(n,k) selalu; sama ketika k=1."
+        ]
+      },
+      {
+        "heading": "Di mana ini muncul",
+        "paragraphs": [
+          "Probabilitas: dadu, kartu, lempar koin. P(3 kepala dalam 5 lemparan) = C(5,3) × (1/2)⁵ = 10/32. Kombinasi memungkinkan Anda menghitung hasil yang menguntungkan.",
+          "Statistik: distribusi binomial menggunakan C(n,k). Pengambilan sampel tanpa pengembalian menggunakan kombinasi.",
+          "Ilmu komputer: menghitung subset, analisis kompleksitas (mis., enumerasi k-clique adalah C(n,k)), algoritma grafik.",
+          "Dunia nyata: peluang lotere (Togel: berbagai kombinasi). Kombo menu restoran: 'pilih 3 lauk dari 8' adalah C(8,3) = 56 cara."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Masukkan n", "text": "Total item / bilangan bulat non-negatif." },
+      { "name": "Masukkan k (opsional)", "text": "Berapa banyak yang dipilih (untuk perhitungan P dan C). Harus 0 ≤ k ≤ n." },
+      { "name": "Baca ketiga hasilnya", "text": "n!, P(n,k), C(n,k). Output dipotong untuk angka yang sangat besar." }
+    ]
+  },
+  "faq": [
+    { "q": "Mengapa 0! = 1?", "a": "Berdasarkan konvensi, 'hasil kali kosong' adalah 1 (sama seperti jumlah kosong adalah 0). Juga membuat rumus seperti C(n,0) = 1 (satu cara untuk memilih tidak ada) bekerja secara konsisten." },
+    { "q": "Berapa faktorial terbesar yang bisa dihitung?", "a": "n=5000 menghasilkan angka 16.326 digit. Kami membatasi pada 5000 untuk mencegah browser membeku pada input yang sangat besar. Untuk yang lebih besar, gunakan CAS." },
+    { "q": "Apa perbedaan antara permutasi dan kombinasi?", "a": "Urutan penting dalam permutasi, tidak dalam kombinasi. {A,B} adalah kombinasi yang sama dengan {B,A} tetapi dua permutasi berbeda: AB dan BA." },
+    { "q": "Apakah faktorial didefinisikan untuk bilangan negatif?", "a": "Tidak dalam arti standar. Fungsi gamma Γ(x) memperluas faktorial ke semua bilangan nyata (dan kompleks), tetapi kalkulator kami hanya menangani bilangan bulat non-negatif." },
+    { "q": "Apa rumus untuk kombinasi?", "a": "C(n,k) = n! / (k! × (n-k)!). Dibaca sebagai 'n pilih k'. Setara: P(n,k) / k! karena urutan tidak penting." },
+    { "q": "Seberapa akurat ini?", "a": "Tepat untuk semua nilai dalam kisaran. Kami menggunakan aritmetika BigInt, yang tidak memiliki kesalahan floating-point." },
+    { "q": "Mengapa 70! jauh lebih besar dari 60!?", "a": "Setiap faktorial mengalikan dengan bilangan bulat berikutnya. 70! kira-kira 60! × 61 × 62 × … × 70 ≈ 60! × 1,4 × 10¹⁷. Faktorial tumbuh lebih cepat dari eksponensial." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

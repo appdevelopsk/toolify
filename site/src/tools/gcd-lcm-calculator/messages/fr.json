@@ -1,0 +1,60 @@
+{
+  "title": "Calculateur PGCD & PPCM (avec factorisation en nombres premiers)",
+  "shortDescription": "Trouve le plus grand commun diviseur (PGCD) et le plus petit commun multiple (PPCM) de deux entiers ou plus, avec la décomposition en facteurs premiers de chaque nombre.",
+  "description": "Entre une liste d'entiers. Le calculateur retourne le PGCD (algorithme d'Euclide), le PPCM et la décomposition en facteurs premiers de chaque entrée. Gère les entiers de taille arbitraire via BigInt.",
+  "metaDescription": "Calculateur PGCD et PPCM gratuit avec décomposition en facteurs premiers. Entrée multi-nombres. Arithmétique BigInt exacte pour tout entier.",
+  "keywords": ["calculateur PGCD", "calculateur PPCM", "plus grand commun diviseur", "plus petit commun multiple", "décomposition facteurs premiers"],
+  "input": {
+    "numbers": "Nombres",
+    "hint": "Séparés par des virgules, espaces ou sauts de ligne. Au moins 2 nombres."
+  },
+  "result": {
+    "gcd": "PGCD (plus grand commun diviseur)",
+    "lcm": "PPCM (plus petit commun multiple)",
+    "factorizations": "Décompositions en facteurs premiers"
+  },
+  "empty": "Entre au moins 2 entiers.",
+  "article": {
+    "sections": [
+      {
+        "heading": "PGCD : le plus grand facteur commun",
+        "paragraphs": [
+          "Le PGCD de deux entiers est le plus grand entier qui divise les deux sans reste. PGCD(12, 18) = 6 car 6 divise les deux et aucun entier plus grand ne le fait. PGCD(7, 13) = 1 car ils ne partagent aucun facteur (ces paires sont dites 'premières entre elles').",
+          "On utilise l'algorithme d'Euclide : pgcd(a, b) = pgcd(b, a mod b), de façon récursive. Il est connu depuis ~2 300 ans et reste la méthode standard la plus rapide. Pour trois nombres ou plus, pgcd(a, b, c) = pgcd(pgcd(a, b), c)."
+        ]
+      },
+      {
+        "heading": "PPCM : le plus petit multiple commun",
+        "paragraphs": [
+          "Le PPCM est le plus petit entier positif qui est un multiple des deux. PPCM(4, 6) = 12 car 12 est le premier nombre que 4 et 6 divisent tous les deux.",
+          "Formule : ppcm(a, b) = (a × b) / pgcd(a, b). Pour 4 et 6 : 24 / 2 = 12. Pour trois nombres : ppcm(a, b, c) = ppcm(ppcm(a, b), c).",
+          "Si l'un des nombres est 0, le PPCM est 0 (tout entier divise 0, mais le 'plus petit positif' est indéfini). Le calculateur retourne 0 dans ce cas."
+        ]
+      },
+      {
+        "heading": "Pourquoi c'est utile",
+        "paragraphs": [
+          "Fractions : pour additionner 1/4 + 1/6, on trouve PPCM(4, 6) = 12 comme dénominateur commun. 1/4 = 3/12, 1/6 = 2/12, somme = 5/12.",
+          "Planification : si l'événement A se répète tous les 4 jours et l'événement B tous les 6 jours, ils coïncident tous les PPCM(4, 6) = 12 jours.",
+          "Cryptographie : les algorithmes basés sur le PGCD (Euclide étendu) sont au cœur de la génération de clés RSA et des calculs d'inverse modulaire.",
+          "Théorie musicale : des rythmes de périodes 3 et 4 se synchronisent après 12 temps (PPCM)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Entre les entiers", "text": "Au moins 2, séparés par des virgules, espaces ou sauts de ligne." },
+      { "name": "Lis le PGCD et le PPCM", "text": "Tous deux affichés en évidence dans la zone de résultat." },
+      { "name": "Examine les décompositions", "text": "La décomposition en facteurs premiers de chaque nombre explique pourquoi le PGCD et le PPCM ont ces valeurs." }
+    ]
+  },
+  "faq": [
+    { "q": "Et si mes nombres sont premiers entre eux ?", "a": "PGCD = 1 et PPCM = produit de tous les nombres. Premiers entre eux signifie qu'ils ne partagent aucun facteur premier." },
+    { "q": "Puis-je entrer des nombres négatifs ?", "a": "Oui. On utilise les valeurs absolues pour les calculs PGCD/PPCM. −12 et 18 donnent PGCD 6 et PPCM 36, comme 12 et 18." },
+    { "q": "Et si j'entre 0 ?", "a": "PGCD(0, n) = |n| (puisque tout entier divise 0, et n est le plus grand pour cette paire). PPCM avec 0 est 0 par convention. Avec tous des zéros, PGCD et PPCM sont indéfinis." },
+    { "q": "Quelle est la taille maximale des nombres ?", "a": "On utilise BigInt en interne, donc l'arithmétique sur des entiers de taille quelconque est exacte. La limite pratique est ta vitesse de frappe et l'espace sur l'écran." },
+    { "q": "Pourquoi la décomposition en facteurs premiers est-elle utile ?", "a": "PGCD = produit des facteurs premiers communs (en prenant le plus petit exposant). PPCM = produit de tous les facteurs premiers présents dans l'un ou l'autre nombre (en prenant le plus grand exposant). Les décompositions rendent ces relations visibles." },
+    { "q": "Quelle est la relation entre PGCD et PPCM ?", "a": "Pour deux nombres : a × b = pgcd(a, b) × ppcm(a, b). Donc si tu connais trois des quatre valeurs {a, b, pgcd, ppcm}, tu peux calculer la quatrième. Cette relation ne se généralise pas simplement à trois nombres ou plus." },
+    { "q": "Puis-je l'utiliser pour le PGCD de polynômes ?", "a": "Non, cet outil ne gère que les entiers. Pour les polynômes, utilise un système de calcul formel comme SymPy ou Maxima." },
+    { "q": "Les données quittent-elles mon navigateur ?", "a": "Non. Le calcul s'effectue localement ; rien n'est envoyé à un serveur." }
+  ]
+}

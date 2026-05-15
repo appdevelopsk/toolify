@@ -1,0 +1,65 @@
+{
+  "title": "Chuyển đổi ký hiệu khoa học (thập phân ↔ khoa học)",
+  "shortDescription": "Chuyển đổi số thập phân sang/từ ký hiệu khoa học (1,23 × 10^4) và ký hiệu kỹ thuật (1,23e3). Hai chiều, với đầu ra ký hiệu E.",
+  "description": "Hai chế độ: thập phân-sang-khoa học tính hệ số và số mũ cho bất kỳ số nào; khoa học-sang-thập phân mở rộng trở lại. Ký hiệu kỹ thuật (bội số của 3 trong số mũ) cũng được hiển thị.",
+  "metaDescription": "Công cụ chuyển đổi ký hiệu khoa học miễn phí. Thập phân sang khoa học (×10^n) hoặc ngược lại. Ký hiệu E, ký hiệu kỹ thuật. Dành cho vật lý, hóa học, số rất lớn/nhỏ.",
+  "keywords": ["chuyển đổi ký hiệu khoa học", "ký hiệu e", "ký hiệu kỹ thuật", "thập phân sang khoa học", "máy tính số mũ"],
+  "dir": {
+    "toSci": "Thập phân → Khoa học",
+    "toDec": "Khoa học → Thập phân"
+  },
+  "input": {
+    "decimal": "Số thập phân",
+    "coefficient": "Hệ số",
+    "exponent": "Số mũ (10^n)"
+  },
+  "result": {
+    "scientific": "Ký hiệu khoa học",
+    "eNotation": "Ký hiệu E",
+    "engineering": "Ký hiệu kỹ thuật",
+    "decimal": "Giá trị thập phân"
+  },
+  "empty": "Nhập số để chuyển đổi.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Ký hiệu khoa học là gì",
+        "paragraphs": [
+          "Ký hiệu khoa học biểu diễn số dưới dạng hệ_số × 10^số_mũ, trong đó hệ số nằm giữa 1 và 10 (thường là 1 ≤ hệ_số < 10). Nó được dùng cho các số rất lớn hoặc rất nhỏ mà sẽ cồng kềnh ở dạng thập phân.",
+          "Ví dụ: tốc độ ánh sáng = 3 × 10⁸ m/s. Hằng số Avogadro = 6,022 × 10²³. Khối lượng electron = 9,109 × 10⁻³¹ kg. Số mũ cho bạn biết phải dịch chuyển dấu thập phân bao nhiêu chỗ: dương dịch sang phải (nhân), âm dịch sang trái (chia)."
+        ]
+      },
+      {
+        "heading": "Ký hiệu E trong máy tính",
+        "paragraphs": [
+          "Ký hiệu E (1,23e4 = 1,23 × 10⁴) là phiên bản thân thiện với máy tính. JavaScript, Python, Excel và hầu hết máy tính đều dùng cách này. Chữ 'e' chỉ là ký hiệu — không liên quan đến số 'e' (số Euler).",
+          "Tại sao máy tính dùng ký hiệu E: bàn phím thường không có ký tự chỉ số trên hoặc '×' dễ gõ. ASCII E hoặc e thông thường hoạt động trong bất kỳ đầu vào văn bản nào.",
+          "Lưu ý: 'e' trong lập trình regex hoặc các ngữ cảnh khác có nghĩa khác nhau. Trong số học, nó cụ thể là '× 10 mũ'."
+        ]
+      },
+      {
+        "heading": "Ký hiệu kỹ thuật",
+        "paragraphs": [
+          "Ký hiệu kỹ thuật tương tự khoa học nhưng số mũ luôn là bội số của 3 (3, 6, 9, 12, …, hoặc −3, −6, −9, …). Điều này khớp với tiền tố SI: kilo (10³), mega (10⁶), giga (10⁹), milli (10⁻³), micro (10⁻⁶), nano (10⁻⁹).",
+          "Ví dụ: 1,23 × 10⁴ trong ký hiệu khoa học là 12,3 × 10³ trong kỹ thuật, có thể đọc là '12,3 kilo'. Hữu ích trong điện tử, kỹ thuật và bất kỳ lĩnh vực nào dùng tiền tố đơn vị SI.",
+          "Đánh đổi: ký hiệu khoa học có hệ số định dạng cố định (luôn 1 ≤ |hệ_số| < 10); kỹ thuật cho phép phạm vi hệ số rộng hơn (1 ≤ |hệ_số| < 1000) nhưng ánh xạ tiền tố SI rõ ràng hơn."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn chiều chuyển đổi", "text": "Thập phân → khoa học hoặc khoa học → thập phân." },
+      { "name": "Nhập số hoặc hệ số + số mũ", "text": "Mỗi chiều có định dạng đầu vào riêng." },
+      { "name": "Đọc kết quả", "text": "Bao gồm ký hiệu E và ký hiệu kỹ thuật làm thêm." }
+    ]
+  },
+  "faq": [
+    { "q": "Tại sao số mũ hữu ích?", "a": "Nó cho bạn biết bậc độ lớn. 10⁹ là một tỷ; 10⁻⁹ là số ở quy mô nanomet. Để so sánh các thang đo rất khác nhau (nguyên tử so với thiên văn), số mũ là ngôn ngữ tự nhiên." },
+    { "q": "1,23e4 có giống 1,23 × 10⁴ không?", "a": "Có — cùng số, ký hiệu khác nhau. 'e4' là cách thân thiện với máy tính để viết '× 10⁴'. Hầu hết ngôn ngữ lập trình và máy tính đều chấp nhận nó làm đầu vào." },
+    { "q": "Độ chính xác của máy tính này là bao nhiêu?", "a": "Độ chính xác dấu phẩy động (khoảng 15-17 chữ số có nghĩa). Với độ chính xác cao hơn (1000+ chữ số), dùng CAS như SymPy hoặc Mathematica." },
+    { "q": "Tôi có thể làm toán với ký hiệu khoa học không?", "a": "Nhân: nhân các hệ số, cộng số mũ. Chia: chia các hệ số, trừ số mũ. Cộng/trừ: đưa về cùng số mũ trước, sau đó cộng/trừ các hệ số." },
+    { "q": "Tại sao số của tôi hiển thị là 'Infinity'?", "a": "Số mũ quá lớn cho độ chính xác kép IEEE 754 (khoảng 308). Với số lớn hơn, dùng CAS hoặc thư viện dựa trên BigInt." },
+    { "q": "'Mantissa' là gì?", "a": "Từ đồng nghĩa cũ của hệ số — phần trước × 10^. Một số sách giáo khoa vẫn dùng nó. Quy ước hiện đại là 'hệ số' hoặc 'significand'." },
+    { "q": "Tôi có thể dùng ký hiệu khoa học cho hệ số âm không?", "a": "Có. -3 × 10⁵ = -300.000. Dấu trừ đặt ở hệ số, không phải số mũ." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Tính toán chạy cục bộ; không có gì được gửi đến server." }
+  ]
+}

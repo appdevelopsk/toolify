@@ -1,0 +1,56 @@
+{
+  "title": "पासा रोलर (d4 से d100, modifier और history के साथ)",
+  "shortDescription": "किसी भी संख्या के पासे किसी भी sides के साथ रोल करें। Cryptographically random, modifier (+N), running total और roll history के साथ।",
+  "description": "count, sides (4, 6, 8, 10, 12, 20, 100, या custom 1000 तक), और modifier चुनें। प्रत्येक roll unbiased uniform distribution के लिए crypto.getRandomValues उपयोग करता है।",
+  "metaDescription": "D&D और किसी भी TTRPG के लिए मुफ्त पासा रोलर। d4/d6/d8/d10/d12/d20/d100 + custom, modifier, history। आपके ब्राउज़र में cryptographically secure unbiased rolls।",
+  "keywords": ["dice roller", "online dice", "d20 roll", "TTRPG dice", "पासा रोलर", "random dice"],
+  "input": { "count": "कितने", "sides": "Sides", "modifier": "Modifier (±)" },
+  "roll": "{count}d{sides}{modifier} रोल करें",
+  "result": {
+    "total": "कुल",
+    "history": "हालिया rolls"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Rolls कैसे generate होते हैं",
+        "paragraphs": [
+          "प्रत्येक पासा crypto.getRandomValues उपयोग करता है — ब्राउज़र का cryptographically secure random API, वही primitive जो HTTPS sessions को support करता है। हम यह भी सुनिश्चित करने के लिए rejection sampling लागू करते हैं कि हर face की बिल्कुल बराबर probability हो।",
+          "इसका मतलब है एक d100 1-36 की ओर थोड़ा biased नहीं है। गणित physical dice के बराबर है।"
+        ]
+      },
+      {
+        "heading": "TTRPG (Tabletop RPG) notation",
+        "paragraphs": [
+          "सामान्य notation: 'NdS+M' जहाँ N पासों की संख्या है, S sides हैं, M modifier है। '2d6+3' का अर्थ है 2 six-sided पासे रोल करें और 3 जोड़ें।",
+          "मानक पासे: d4, d6, d8, d10, d12, d20, d100।"
+        ]
+      },
+      {
+        "heading": "सामान्य उपयोग के मामले",
+        "paragraphs": [
+          "D&D / Pathfinder / TTRPG: d20+5 attack के लिए, 1d8+3 damage के लिए।",
+          "Random selection: N लोगों में से विजेता चुनने के लिए dN रोल करें। Cryptographic randomness निष्पक्षता सुनिश्चित करती है।",
+          "Probability lessons: कई पासे रोल करें और distribution observe करें।",
+          "Decision making: '50/50 निर्णय' के लिए d2 (2 sides) रोल करें।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "पासे का preset चुनें", "text": "या 2 से 1000 तक custom side count टाइप करें।" },
+      { "name": "Count सेट करें", "text": "एक साथ कितने पासे रोल करने हैं। 50 तक।" },
+      { "name": "Modifier जोड़ें", "text": "वैकल्पिक flat number जो sum में जोड़ा जाता है।" },
+      { "name": "Roll करें", "text": "Total, individual rolls, और हालिया history सभी दिखते हैं।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या rolls वास्तव में fair हैं?", "a": "हाँ। हम crypto.getRandomValues (secure RNG) plus rejection sampling उपयोग करते हैं।" },
+    { "q": "पासों की अधिकतम संख्या क्या है?", "a": "प्रति roll 50। अधिक के लिए, बस कई बार roll करें।" },
+    { "q": "अधिकतम sides क्या हैं?", "a": "1000।" },
+    { "q": "क्या मैं अपने पसंदीदा पासे combinations save कर सकता हूँ?", "a": "अभी नहीं।" },
+    { "q": "d20 प्रसिद्ध क्यों है?", "a": "Dungeons & Dragons ने skill checks और attack rolls के लिए इसे लोकप्रिय बनाया। प्रत्येक face में 5% probability है।" },
+    { "q": "History केवल 10 rolls क्यों दिखाता है?", "a": "पेज को साफ रखने के लिए।" },
+    { "q": "क्या यह मेरे physical dice को replace करेगा?", "a": "कार्यात्मक रूप से हाँ। Physical dice tactility के लिए पसंद किए जाते हैं।" },
+    { "q": "क्या डेटा मेरे ब्राउज़र से बाहर जाता है?", "a": "नहीं। हर roll स्थानीय रूप से होता है।" }
+  ]
+}

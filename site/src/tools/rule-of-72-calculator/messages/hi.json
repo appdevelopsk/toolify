@@ -1,0 +1,64 @@
+{
+  "title": "Rule of 72 Calculator (doubling time / required rate)",
+  "shortDescription": "Rule of 72 का उपयोग करके अनुमान लगाएँ कि investment double होने में कितना समय लगेगा, या दिए गए period में double होने के लिए required rate solve करें।",
+  "description": "दो modes: एक rate से, double होने के years खोजें (72 / rate); एक target time से, required rate खोजें (72 / years)। प्रत्येक result exact compound math answer और approximation error के साथ दिखाया जाता है।",
+  "metaDescription": "मुफ्त Rule of 72 calculator। Return rate से doubling time, या years से required rate। Exact compound math के विरुद्ध compare किया गया।",
+  "keywords": ["rule of 72 calculator", "doubling time", "investment doubling", "compound rate", "rule of 72"],
+  "empty": "Compute करने के लिए एक value दर्ज करें।",
+  "mode": {
+    "toYears": "Rate → Double होने के Years",
+    "toRate": "Years → Required Rate"
+  },
+  "input": {
+    "ratePct": "Annual rate %",
+    "years": "Target years"
+  },
+  "result": {
+    "yearsToDouble": "Double होने के Years (Rule of 72)",
+    "rateNeeded": "Required rate",
+    "exact": "Exact (compound math)",
+    "approxError": "Approximation error",
+    "years": "वर्ष"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Rule of 72 क्या कहता है",
+        "paragraphs": [
+          "Double होने के Years ≈ 72 / annual rate। तो 6% return पर, आपका पैसा roughly 12 साल में double होता है; 8% पर, 9 साल में; 12% पर, 6 साल में। यही rule reverse में काम करता है: यदि आप 10 साल में double करना चाहते हैं, ~7.2% annual return चाहिए।",
+          "यह mental-math shortcut है, precise formula नहीं। Exact answer है ln(2) / ln(1 + r), जिसके लिए calculator चाहिए। Rule of 72 को 15वीं सदी के European arithmetic textbooks में popularize किया गया था क्योंकि 72 के कई divisors हैं (2, 3, 4, 6, 8, 9, 12), mental division आसान बनाते हैं।"
+        ]
+      },
+      {
+        "heading": "यह कितना accurate है?",
+        "paragraphs": [
+          "4% और 12% के बीच rates के लिए ~0.5% के भीतर — जो most realistic investment returns cover करता है। बहुत low rates (1-2%) या बहुत high (15%+) पर error बढ़ता है। कुछ textbooks low rates पर higher accuracy के लिए Rule of 70 या 69.3 उपयोग करते हैं, लेकिन 72 practical sweet spot है।",
+          "यह calculator देखने के लिए उपयोग करें कि Rule of 72 estimate और exact compound math side by side कैसे दिखते हैं। 'Approximation error' दिखाता है कि आपके specific rate या period के लिए rule कितना off है।"
+        ]
+      },
+      {
+        "heading": "यह कहाँ उपयोग होता है",
+        "paragraphs": [
+          "Investment planning: 'मेरे expected 8% return पर, पैसा हर 9 साल में double होता है' — यह Rule of 72 in action है। Back-of-envelope retirement projections के लिए useful।",
+          "Inflation analysis: 5% inflation पर, prices हर 14.4 साल में double होती हैं। 7% पर, हर 10 साल। Purchasing-power erosion समझने का quick way।",
+          "Population और growth modeling: constant percent rate पर growing कोई भी quantity (population, debt, technology adoption) 72/r साल में double होती है।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Direction चुनें", "text": "Rate → Years यदि आप अपना return जानते हैं; Years → Rate यदि आपके पास target time है।" },
+      { "name": "Value दर्ज करें", "text": "Annual percent (जैसे 8) या target years (जैसे 10)।" },
+      { "name": "दोनों estimates पढ़ें", "text": "Rule of 72 shortcut और exact compound answer, plus उनके बीच error।" }
+    ]
+  },
+  "faq": [
+    { "q": "70 या 69 नहीं, 72 क्यों?", "a": "तीनों उपयोग होते हैं। 72 के अधिक whole-number divisors हैं (mental math आसान है)। 69.3 instantaneous rates पर exact है। 70 एक simple alternative है। 4-12% rates के लिए differences tiny हैं।" },
+    { "q": "क्या यह negative rates के लिए काम करता है?", "a": "Inversely — -5% per year पर, पैसा हर 14.4 साल में half होता है (72 / 5)। Formula negatives handle करता है लेकिन meaning 'doubling' से 'halving' shift होती है।" },
+    { "q": "यदि मेरी rate monthly compound करे?", "a": "Rule of 72 annual compounding assume करता है। Monthly compounding के लिए effective annual rate (APY) थोड़ी higher है, इसलिए doubling थोड़ी जल्दी होती है। Calculator में effective annual rate (APY) उपयोग करें।" },
+    { "q": "क्या मैं इसे simple interest के लिए उपयोग कर सकता हूँ?", "a": "नहीं — Rule of 72 compound interest के लिए है। Simple interest linearly double होती है: 100% / rate। तो 5% simple interest exactly 20 साल में double होती है, लेकिन 5% compound ~14.4 लेता है।" },
+    { "q": "क्या 8% realistic stock return है?", "a": "भारतीय context में, Nifty 50 long-term average ~12% nominal और ~7-8% real (inflation के बाद) है। Purchasing-power-adjusted projections के लिए 7-8% उपयोग करें।" },
+    { "q": "'Realistic' doubling time क्या है?", "a": "Indian equity stocks: ~6-9 साल (8-12%)। Debt funds: ~14-18 साल (4-5%)। PPF (7.1%): ~10 साल। FD (6-7%): ~10-12 साल।" },
+    { "q": "क्या यह taxes account करता है?", "a": "नहीं — ये pre-tax doubling times हैं। Taxes के लिए, LTCG (10% equity stocks), interest income (slab rates) account करें।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Calculation locally चलती है; कुछ भी server को नहीं भेजा जाता।" }
+  ]
+}

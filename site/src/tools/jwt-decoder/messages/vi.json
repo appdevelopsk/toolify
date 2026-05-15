@@ -1,0 +1,111 @@
+{
+  "title": "Giải mã JWT (header, payload, chữ ký, hạn hết hạn)",
+  "shortDescription": "Giải mã bất kỳ JWT (JSON Web Token) nào thành các phần header, payload, chữ ký. Đánh dấu token đã hết hạn. Chỉ chạy trong trình duyệt — token của bạn không bao giờ rời khỏi thiết bị.",
+  "description": "Dán JWT để giải mã ngay header và payload dưới dạng JSON. Nhận biết các claim chuẩn (iat, exp, nbf) và chuyển đổi Unix timestamp sang ISO 8601. Đánh dấu các token đã hết hạn hoặc chưa có hiệu lực.",
+  "metaDescription": "Giải mã JWT miễn phí. Kiểm tra header, payload, sự hiện diện của chữ ký, hạn hết hạn. Các claim chuẩn (iat/exp/nbf) được định dạng tự động.",
+  "keywords": [
+    "giải mã JWT",
+    "JSON Web Token",
+    "decode JWT",
+    "kiểm tra JWT",
+    "debug JWT"
+  ],
+  "input": {
+    "token": "JWT token",
+    "privacyNote": "Được giải mã hoàn toàn trong trình duyệt của bạn. Token không bao giờ truyền qua mạng."
+  },
+  "result": {
+    "header": "Header",
+    "payload": "Payload",
+    "signaturePresent": "Có chữ ký",
+    "issuedAt": "Phát hành lúc (iat)",
+    "expiresAt": "Hết hạn lúc (exp)",
+    "notBefore": "Chưa hợp lệ trước (nbf)"
+  },
+  "warning": {
+    "expired": "⚠ Token này đã hết hạn. Các server tuân thủ exp sẽ từ chối nó.",
+    "notYetValid": "⚠ Chưa hợp lệ (nbf ở tương lai). Server sẽ từ chối cho đến lúc đó."
+  },
+  "error": {
+    "label": "Lỗi giải mã"
+  },
+  "copy": "Sao chép",
+  "article": {
+    "sections": [
+      {
+        "heading": "JWT trông như thế nào",
+        "paragraphs": [
+          "JWT là ba đoạn được mã hóa Base64url nối với nhau bằng dấu chấm: header.payload.signature. Mỗi đoạn là một đối tượng JSON được mã hóa để truyền an toàn qua URL. Header khai báo thuật toán ký, payload mang các claim (chủ thể, hạn hết hạn, dữ liệu tùy chỉnh) và chữ ký cho phép người nhận xác minh tính toàn vẹn nếu họ có khóa.",
+          "Công cụ giải mã này chỉ đọc hai đoạn đầu tiên. Chữ ký là đoạn thứ ba nhưng xác minh nó yêu cầu khóa bí mật/công khai — đó là một thao tác riêng mà chúng tôi không thực hiện ở đây."
+        ]
+      },
+      {
+        "heading": "Các claim chuẩn đáng biết",
+        "paragraphs": [
+          "iss (issuer): ai tạo token. iat (issued at): khi nào, dưới dạng Unix timestamp. exp (expiry): khi nào ngừng hợp lệ, cũng là Unix. nbf (not before): thời điểm sớm nhất nên được chấp nhận. sub (subject): thực thể mà nó đại diện, thường là ID người dùng. aud (audience): token dành cho ai, thường là URL dịch vụ.",
+          "Không phải tất cả đều bắt buộc; JWT tối giản thường chỉ có sub + iat + exp. Các claim tùy chỉnh là bất kỳ thứ gì khác — chúng nằm cùng với các claim chuẩn trong payload."
+        ]
+      },
+      {
+        "heading": "Tại sao giải mã ≠ xác minh",
+        "paragraphs": [
+          "Bất kỳ ai cũng có thể giải mã JWT — header và payload chỉ là JSON được mã hóa Base64. Đó là lý do tại sao chúng ta nói 'không bao giờ đặt bí mật vào payload': chúng thực chất là công khai.",
+          "Xác minh có nghĩa là kiểm tra chữ ký so với khóa bí mật (HMAC) hoặc khóa công khai (RSA/ECDSA). Không có xác minh, bạn không thể tin vào bất kỳ claim nào trong payload — kẻ tấn công có thể tạo ra bất kỳ payload nào họ muốn.",
+          "Dùng công cụ này để kiểm tra token trong quá trình debug. Dùng thư viện JWT trên server của bạn để xác minh chúng trong production."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Dán JWT",
+        "text": "Ba đoạn nối với nhau bằng dấu chấm."
+      },
+      {
+        "name": "Đọc các phần đã giải mã",
+        "text": "Header (thuật toán), payload (các claim), cờ hiện diện chữ ký."
+      },
+      {
+        "name": "Kiểm tra hạn hết hạn",
+        "text": "Các claim chuẩn iat/exp/nbf được định dạng tự động dưới dạng ngày ISO và được đánh dấu nếu đã hết hạn hoặc chưa hợp lệ."
+      },
+      {
+        "name": "Sao chép nếu cần",
+        "text": "Mỗi phần có nút sao chép cho đầu ra JSON."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Tôi có thể xác minh chữ ký ở đây không?",
+      "a": "Không — xác minh cần khóa bí mật hoặc công khai, không bao giờ nên rời khỏi môi trường đáng tin cậy. Dùng thư viện JWT phía server (jsonwebtoken cho Node, PyJWT cho Python, v.v.)."
+    },
+    {
+      "q": "Token có rời khỏi trình duyệt không?",
+      "a": "Không bao giờ. Giải mã chạy cục bộ; chúng tôi không có endpoint server để nhận nó."
+    },
+    {
+      "q": "Tại sao token của tôi 'không hợp lệ'?",
+      "a": "Thường gặp: copy-paste thêm/bớt khoảng trắng, thiếu một trong ba đoạn hoặc một đoạn bị méo Base64url. Cắt bỏ và thử lại."
+    },
+    {
+      "q": "Base64url so với Base64 là gì?",
+      "a": "Base64url thay '+' bằng '-', '/' bằng '_' và bỏ đệm '=' để chuỗi được mã hóa an toàn trong URL và HTTP header. JWT luôn dùng Base64url."
+    },
+    {
+      "q": "Tại sao payload Unicode của tôi hiển thị văn bản bị méo?",
+      "a": "Chúng tôi giải mã UTF-8, đây là tiêu chuẩn. Nếu payload được mã hóa khác, JSON.parse có thể thất bại. Hầu hết nhà phát hành JWT mã hóa đúng UTF-8."
+    },
+    {
+      "q": "HS256 có an toàn không?",
+      "a": "Nếu bí mật đủ dài (≥256 bit) và được giữ bí mật, có. Các lỗ hổng HS256 phổ biến là bí mật yếu và chấp nhận token với alg='none'. Dùng bí mật ngẫu nhiên ≥32 ký tự và từ chối 'none' một cách rõ ràng."
+    },
+    {
+      "q": "Tại sao ưu tiên RS256 hơn HS256?",
+      "a": "RS256 (RSA bất đối xứng) cho phép bạn công bố khóa công khai để xác minh trong khi giữ bí mật khóa ký. HS256 (HMAC đối xứng) yêu cầu chia sẻ bí mật với mọi người xác minh. Đối với kiến trúc đa dịch vụ, RS256 an toàn hơn."
+    },
+    {
+      "q": "Tôi có thể giải mã các token lớn không?",
+      "a": "Giới hạn thực tế là ~10 MB đầu vào; vượt quá đó trình duyệt có thể chậm. JWT thường dưới 4 KB; nếu của bạn lớn hơn, hãy cân nhắc xem bạn có đang lưu trữ quá nhiều trong các claim không."
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "title": "Kalkulator Statistik (rata-rata, median, std dev, kuartil)",
+  "shortDescription": "Hitung rata-rata, median, modus, deviasi standar, varians, rentang, kuartil, dan lainnya dari daftar bilangan. Mode sampel atau populasi.",
+  "description": "Tempel daftar bilangan (dipisahkan koma, spasi, atau baris baru). Kalkulator mengembalikan statistik deskriptif termasuk tendensi sentral, dispersi, dan kuartil dalam satu tampilan.",
+  "metaDescription": "Kalkulator statistik gratis. Tempel bilangan untuk mendapatkan rata-rata, median, modus, deviasi standar, varians, rentang, dan kuartil secara instan.",
+  "keywords": [
+    "kalkulator statistik",
+    "rata-rata median modus",
+    "kalkulator deviasi standar",
+    "kalkulator varians",
+    "kalkulator kuartil"
+  ],
+  "empty": "Masukkan bilangan yang dipisahkan koma, spasi, atau baris baru.",
+  "placeholder": "12, 15, 18, 22, 25, 25, 30, 35, 40",
+  "input": {
+    "values": "Bilangan",
+    "sampleMode": "Gunakan deviasi standar sampel (n−1)"
+  },
+  "result": {
+    "count": "Jumlah (n)",
+    "sum": "Jumlah total",
+    "mean": "Rata-rata (mean)",
+    "median": "Median",
+    "mode": "Modus",
+    "none": "(tidak ada nilai berulang)",
+    "range": "Rentang",
+    "min": "Minimum",
+    "max": "Maksimum",
+    "q1": "Q1 (persentil ke-25)",
+    "q3": "Q3 (persentil ke-75)",
+    "stdev": "Deviasi standar",
+    "variance": "Varians"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa yang diukur setiap statistik",
+        "paragraphs": [
+          "Rata-rata (mean): jumlah dibagi cacah. Sensitif terhadap nilai ekstrem — satu nilai yang sangat besar dapat menarik rata-rata jauh dari nilai khas. Terbaik ketika data kira-kira simetris.",
+          "Median: nilai tengah ketika diurutkan. Kuat terhadap nilai ekstrem — beberapa nilai ekstrem tidak memindahkannya. Lebih baik dari rata-rata untuk data miring seperti pendapatan atau harga rumah.",
+          "Modus: nilai yang paling sering muncul. Paling berguna untuk data diskrit (respons survei, lemparan dadu). Untuk data kontinu, modus sering tidak bermakna dan kami melaporkan 'tidak ada' jika tidak ada nilai yang berulang.",
+          "Deviasi standar: jarak khas dari rata-rata. Satuan yang sama dengan data Anda. Dua pertiga nilai biasanya jatuh dalam ±1 deviasi standar dari rata-rata (untuk distribusi normal)."
+        ]
+      },
+      {
+        "heading": "Sampel vs populasi",
+        "paragraphs": [
+          "Jika bilangan Anda adalah seluruh populasi (setiap karyawan di perusahaan Anda, setiap hari dalam sebulan), gunakan deviasi standar populasi: bagi dengan n. Kami menonaktifkan ini saat Anda menghapus centang 'Deviasi standar sampel'.",
+          "Jika bilangan Anda adalah sampel yang diambil dari populasi yang lebih besar (survei 100 dari 10.000 pelanggan), gunakan deviasi standar sampel: bagi dengan n−1 (koreksi Bessel). Ini adalah default dan yang digunakan sebagian besar kursus statistik dan perangkat lunak secara default.",
+          "Perbedaannya mengecil seiring n bertambah. Untuk n=100 keduanya berbeda 0,5%; untuk n=10 berbeda 5%. Untuk sampel yang sangat kecil, pilihan ini penting."
+        ]
+      },
+      {
+        "heading": "Kuartil dan IQR",
+        "paragraphs": [
+          "Q1 (kuartil pertama, persentil ke-25) adalah median dari setengah bawah. Q3 (kuartil ketiga, persentil ke-75) adalah median dari setengah atas. Rentang interkuartil (IQR = Q3 − Q1) mendeskripsikan 50% tengah data Anda dan kuat terhadap nilai ekstrem.",
+          "Box plot menggunakannya: kotak membentang dari Q1 ke Q3, dengan median sebagai garis di dalam. Kumis memanjang ke nilai paling ekstrem dalam 1,5 × IQR; apapun di luar itu diplot sebagai outlier."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Tempel bilangan Anda",
+        "text": "Pisahkan dengan koma, spasi, tab, atau baris baru. Campuran juga berfungsi."
+      },
+      {
+        "name": "Pilih mode sampel atau populasi",
+        "text": "Sampel (n−1) adalah default. Beralih ke populasi jika data Anda adalah seluruh populasi."
+      },
+      {
+        "name": "Baca hasilnya",
+        "text": "Semua statistik diperbarui secara langsung saat Anda mengetik."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Berapa banyak bilangan yang bisa saya tempel?",
+      "a": "Hingga sekitar 100.000 dengan wajar. Lebih dari itu browser mungkin melambat. Untuk kumpulan data masif gunakan alat pemrograman."
+    },
+    {
+      "q": "Bagaimana jika saya memiliki bilangan desimal?",
+      "a": "Gunakan titik (.) sebagai pemisah desimal terlepas dari locale Anda: 3.14, bukan 3,14."
+    },
+    {
+      "q": "Mengapa modus 'tidak ada'?",
+      "a": "Karena tidak ada nilai yang berulang. Modus hanya bermakna ketika setidaknya satu nilai muncul dua kali atau lebih."
+    },
+    {
+      "q": "Haruskah saya menggunakan sampel atau populasi untuk data kelas saya?",
+      "a": "Jika Anda memperlakukan kelas Anda sebagai sampel dari sekolah, gunakan sampel (n−1). Jika kelas Anda ADALAH populasi, gunakan populasi (n)."
+    },
+    {
+      "q": "Apa perbedaan antara deviasi standar dan varians?",
+      "a": "Varians adalah rata-rata jarak kuadrat dari rata-rata; deviasi standar adalah akar kuadratnya. Deviasi standar dalam satuan yang sama dengan data Anda, itulah mengapa kami melaporkan keduanya tetapi deviasi standar biasanya lebih berguna."
+    },
+    {
+      "q": "Mengapa Q1 saya berbeda dari yang diberikan kalkulator saya?",
+      "a": "Metode yang berbeda ada (Metode 1, Metode 2, default-R, default-Excel). Kami menggunakan metode median-dari-setengah-bawah. Sebagian besar kursus pengantar menggunakan ini; QUARTILE() spreadsheet mungkin sedikit berbeda."
+    },
+    {
+      "q": "Bisakah saya menggunakan bilangan negatif?",
+      "a": "Ya. Bilangan negatif sepenuhnya didukung."
+    },
+    {
+      "q": "Apakah data meninggalkan browser saya?",
+      "a": "Tidak. Semua perhitungan berjalan secara lokal; tidak ada yang dikirim ke server mana pun."
+    }
+  ]
+}

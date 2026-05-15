@@ -1,0 +1,103 @@
+{
+  "title": "Vérificateur de Nombre Premier (avec factorisation)",
+  "shortDescription": "Vérifie si un nombre est premier. Sinon, vois sa décomposition en facteurs premiers. Plus les nombres premiers suivant et précédent.",
+  "description": "Saisis un entier non négatif jusqu'à 10^18. Le calculateur teste la primalité par division d'essai (déterministe jusqu'à ~10^15 en temps raisonnable) et donne la décomposition en facteurs premiers pour les nombres composés.",
+  "metaDescription": "Vérificateur de nombre premier gratuit avec factorisation. Teste la primalité, vois les facteurs premiers, et trouve le nombre premier suivant/précédent.",
+  "keywords": [
+    "vérificateur nombre premier",
+    "est premier",
+    "décomposition facteurs premiers",
+    "test nombre premier",
+    "nombre premier suivant"
+  ],
+  "input": {
+    "value": "Nombre"
+  },
+  "result": {
+    "isPrime": "est premier",
+    "notPrime": "n'est PAS premier",
+    "factors": "Décomposition en facteurs premiers",
+    "prevPrime": "Nombre premier précédent",
+    "nextPrime": "Nombre premier suivant"
+  },
+  "empty": "Saisis un entier positif.",
+  "tooLarge": "Nombre trop grand pour le calcul dans le navigateur (max 10^18).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qu'est-ce qu'un nombre premier",
+        "paragraphs": [
+          "Un nombre premier est un entier naturel supérieur à 1 qui n'a pas d'autre diviseur positif que 1 et lui-même. Les premiers premiers nombres : 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37. Ce sont les « atomes » de l'arithmétique des entiers — tout entier ≥ 2 peut s'écrire de façon unique comme produit de nombres premiers (Théorème fondamental de l'arithmétique).",
+          "1 n'est pas premier par convention. 0 et les nombres négatifs ne sont pas premiers. 2 est le seul nombre premier pair — tout autre nombre pair est divisible par 2 et donc composé."
+        ]
+      },
+      {
+        "heading": "Comment le test fonctionne",
+        "paragraphs": [
+          "Nous utilisons la division d'essai : tester la divisibilité par 2, puis 3, puis 5, 7, 11, … jusqu'à √n. Si aucun ne divise exactement, n est premier. Nous utilisons l'optimisation 6k±1 qui ne vérifie que les candidats de la forme 6k+1 ou 6k−1 (car tous les premiers > 3 sont de cette forme), réduisant le nombre de tests de 2/3.",
+          "La division d'essai est rapide pour n jusqu'à ~10^15 (moins d'une seconde). Au-delà, des tests avancés comme Miller-Rabin (probabiliste) ou AKS (déterministe) sont nécessaires. Nous limitons à 10^18 pour éviter que le navigateur ne se fige sur des entrées extrêmes."
+        ]
+      },
+      {
+        "heading": "Pourquoi les nombres premiers sont importants",
+        "paragraphs": [
+          "Cryptographie : le chiffrement RSA multiplie deux nombres premiers d'environ 1 000 chiffres pour produire un nombre difficile à factoriser. La sécurité repose sur la difficulté de factoriser de grands nombres — un défi étudié depuis des millénaires.",
+          "Enseignement des mathématiques : la décomposition en facteurs premiers est fondamentale. Les concepts comme le PGCD, le PPCM, l'arithmétique modulaire, les fractions et la théorie des nombres s'appuient tous sur la structure des facteurs premiers.",
+          "Informatique : les tailles de tables de hachage, les générateurs de nombres aléatoires et de nombreux algorithmes utilisent des nombres premiers pour leurs propriétés de divisibilité distinctives."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Saisis un nombre",
+        "text": "Entier positif jusqu'à 10^18."
+      },
+      {
+        "name": "Lis le verdict",
+        "text": "✓ vert pour premier, ✗ orange pour composé."
+      },
+      {
+        "name": "Vois la factorisation",
+        "text": "Si composé, les facteurs premiers uniques sont affichés."
+      },
+      {
+        "name": "Navigue dans les premiers",
+        "text": "Les premiers précédent et suivant sont listés pour le contexte."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "1 est-il premier ?",
+      "a": "Non. 1 est une « unité », pas un premier. Les premiers ont exactement deux diviseurs positifs distincts (1 et lui-même) ; 1 n'en a qu'un."
+    },
+    {
+      "q": "0 est-il premier ?",
+      "a": "Non. Les premiers sont des entiers > 1."
+    },
+    {
+      "q": "2 est-il premier ?",
+      "a": "Oui — 2 est le seul nombre premier pair. Tous les autres nombres pairs ont 2 comme diviseur en plus de 1 et d'eux-mêmes."
+    },
+    {
+      "q": "Comment le premier suivant est-il trouvé ?",
+      "a": "En incrémentant depuis n+1 et en testant la primalité à chaque étape. Il y a toujours un premier dans n × ln(n) de tout nombre, donc cela se termine rapidement même pour les grandes entrées."
+    },
+    {
+      "q": "Pourquoi le maximum est-il 10^18 ?",
+      "a": "JavaScript BigInt gère des nombres plus grands, mais la division d'essai devient lente. 10^18 est sûr pour des vérifications en moins d'une seconde des entrées typiques. Au-delà, utilise des outils spécialisés comme SymPy ou Mathematica."
+    },
+    {
+      "q": "Peut-on vérifier des premiers à 1 000 chiffres ?",
+      "a": "Pas avec cet outil — la division d'essai est trop lente à cette échelle. La cryptographie utilise des tests probabilistes de Miller-Rabin pour les premiers à 1 024 bits (~300 chiffres)."
+    },
+    {
+      "q": "Qu'est-ce qu'un nombre premier de Mersenne ?",
+      "a": "Un premier de la forme 2^p − 1. Fin 2025, seulement 51 sont connus. Le plus grand premier connu (M82589933) est un premier de Mersenne avec ~25 millions de chiffres."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Le calcul s'exécute localement ; rien n'est envoyé à un serveur."
+    }
+  ]
+}

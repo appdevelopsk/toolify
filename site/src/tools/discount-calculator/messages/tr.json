@@ -1,0 +1,61 @@
+{
+  "title": "İndirim Hesaplayıcı (isteğe bağlı KDV dahil)",
+  "shortDescription": "Yüzdelik indirim sonrası nihai fiyatı ve isteğe bağlı KDV'yi hesaplayın. Ne kadar tasarruf ettiğinizi anında görün.",
+  "description": "Orijinal fiyatı ve indirim yüzdesini girerek nihai fiyatı ve ne kadar tasarruf ettiğinizi öğrenin. İndirim sonrasına vergi ekleniyorsa KDV oranını da girebilirsiniz.",
+  "metaDescription": "Ücretsiz indirim hesaplayıcı. Yüzdelik indirim sonrası nihai fiyatı isteğe bağlı KDV ile hesaplayın. Tasarruf miktarını ve vergi dökümünü anında görün.",
+  "keywords": ["indirim hesaplayıcı", "yüzde indirim", "indirimli fiyat hesaplama", "KDV ile indirim", "tasarruf hesaplayıcı"],
+  "empty": "Sonucu görmek için orijinal fiyatı ve indirim oranını girin.",
+  "input": {
+    "original": "Orijinal fiyat",
+    "discountPct": "İndirim %",
+    "taxPct": "KDV %"
+  },
+  "result": {
+    "finalPrice": "Nihai fiyat",
+    "saved": "Tasarruf",
+    "afterDiscount": "İndirim sonrası",
+    "tax": "Vergi"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "İndirim matematiği nasıl çalışır",
+        "paragraphs": [
+          "İndirimli fiyat = orijinal × (1 − indirim/100). 100 ₺'lik bir üründe %20 indirim 80 ₺ yapar. KDV, orijinal fiyata değil indirimli tutara uygulanır: 80 ₺ × (1 + %8 KDV/100) = 86,40 ₺ nihai fiyat.",
+          "'Tasarruf' tutarı, indirim miktarının para karşılığıdır: orijinal × indirim/100. 100 ₺'lik üründe %20 indirimde 20 ₺ tasarruf edersiniz. Alıcıların gerçekten görmek istediği işte bu rakamdır; sadece yüzde değil."
+        ]
+      },
+      {
+        "heading": "İndirimleri üst üste uygulamak",
+        "paragraphs": [
+          "İki indirim birbirine eklenmiyor. '%20 indirimli kampanya' üzerine uygulanan '%20 kupon' toplamda %40 değil %36 indirim yapar; çünkü ikinci indirim zaten düşürülmüş fiyata uygulanır (0,8 × 0,8 = 0,64 → orijinalden %36 indirim).",
+          "İndirimleri üst üste uygulamak için hesaplayıcıyı iki kez kullanın: önce büyük indirimi girin, çıkan sonucu yeni 'orijinal fiyat' olarak tekrar girin ve ikinci indirimi uygulayın. Birden fazla kupon için (1 − d1/100) × (1 − d2/100) × ... çarpımını 1'den çıkararak toplam efektif indirimi bulabilirsiniz."
+        ]
+      },
+      {
+        "heading": "Vergi zamanlaması ülkeye göre değişir",
+        "paragraphs": [
+          "Türkiye'de KDV genellikle fiyata dahildir (toplam gösterim zorunludur). Eğer girdiğiniz fiyat KDV dahilse vergi alanını 0 bırakın. ABD'de ise satış vergisi kasa başında indirim sonrasına eklenir; bu durumda vergi alanını kullanabilirsiniz.",
+          "AB/İngiltere'de KDV genellikle görüntülenen fiyata dahildir, çift sayım yapmayın. Japon tüketim vergisi de genellikle gösterilen fiyata dahildir (総額表示). Girdiğiniz fiyat KDV dahilse vergiyi 0 olarak ayarlayın.",
+          "Bazen kargo vergiye tabi olur, bazen olmaz. Bu hesaplayıcı girilen fiyatın vergiye tabi tutar olduğunu varsayar. Tam sepet hesaplaması için vergiye tabi kalemleri ayrı ayrı toplayın."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Orijinal fiyatı girin", "text": "İndirim uygulanmadan önceki liste fiyatını kullanın." },
+      { "name": "İndirim yüzdesini girin", "text": "'%20 indirim' için 20 yazın." },
+      { "name": "İsteğe bağlı: Vergi yüzdesini girin", "text": "Vergi zaten dahilse veya uygulanmıyorsa boş bırakın." },
+      { "name": "Dökümü okuyun", "text": "Nihai fiyat, tasarruf, indirim sonrası tutar ve vergi hep birlikte görüntülenir." }
+    ]
+  },
+  "faq": [
+    { "q": "İndirim vergiden önce mi sonra mı uygulanır?", "a": "Neredeyse her zaman önce. İndirim, vergiye tabi tutarı düşürür; vergi daha sonra indirimli fiyata eklenir." },
+    { "q": "Birden fazla kuponu nasıl üst üste uygularım?", "a": "Sırayla uygulayın: orijinal × (1 − d1/100) × (1 − d2/100). Hesaplayıcıyı iki kez kullanın ya da elle hesaplayın." },
+    { "q": "'Yüzde indirim' formülü nedir?", "a": "Nihai = orijinal × (1 − indirim/100). Tasarruf = orijinal × indirim/100." },
+    { "q": "Bu 'al birini öde yarısı' (BOGO) promosyonlarında işe yarar mı?", "a": "Kabaca evet — iki ürünlük pakette 'birini al birini ücretsiz al' efektif olarak %50, 'yarı fiyata al' ise %25 indirime eşdeğerdir. Kesin hesap için paket fiyatını ürün başına bölün." },
+    { "q": "Neden bazen gerçek olmayan 'karşılaştırma' fiyatı görüyorum?", "a": "Bazı satıcılar indirimleri daha büyük göstermek için 'orijinal' fiyatı şişirir. Gerçek indirimi anlamak için diğer mağazalarla veya geçmiş fiyatlarla karşılaştırın." },
+    { "q": "Gizemli indirim kodlarını üst üste uygulamak değer mi?", "a": "Her iki yolu da hesaplayın. Çoğunlukla tek büyük kod, çarpımsal etki nedeniyle iki küçük kodun toplamından daha iyi sonuç verir." },
+    { "q": "İki fiyattan indirim yüzdesini nasıl bulurum?", "a": "İndirim % = (orijinal − indirimli) / orijinal × 100. Ya da yüzde hesaplayıcımızın 'yüzde değişim' modunu kullanın." },
+    { "q": "Veriler bir yere gönderiliyor mu?", "a": "Hayır. Hesaplama tarayıcınızda çalışır." }
+  ]
+}

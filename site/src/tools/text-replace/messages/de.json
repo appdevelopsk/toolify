@@ -1,0 +1,109 @@
+{
+  "title": "Text-Suchen-und-Ersetzen (literal oder Regex, mit Optionen)",
+  "shortDescription": "Text mit literaler Suche/Ersetzung oder vollständigem Regex ersetzen. Groß-/Kleinschreibung und Mehrzeilen-Modus umschaltbar. Trefferanzahl wird live angezeigt.",
+  "description": "Text einfügen, Such- und Ersetzungsstrings festlegen, optional Regex / Groß-/Kleinschreibung ignorieren / Mehrzeilen aktivieren und sofort den geänderten Text plus Trefferanzahl sehen.",
+  "metaDescription": "Kostenloses Suchen-und-Ersetzen-Tool für Text. Literal- oder Regex-Modus, Groß-/Kleinschreibung ignorieren, Live-Trefferanzahl.",
+  "keywords": [
+    "Suchen und Ersetzen",
+    "Text ersetzen",
+    "Regex ersetzen",
+    "Suche ersetzen",
+    "Massen-Textbearbeitung"
+  ],
+  "input": {
+    "text": "Quelltext",
+    "find": "Suchen",
+    "replace": "Ersetzen durch"
+  },
+  "opt": {
+    "regex": "Regex",
+    "caseSensitive": "Groß-/Kleinschreibung",
+    "multiline": "Mehrzeilen ^ / $"
+  },
+  "output": {
+    "result": "Ergebnis",
+    "matches": "{n} Treffer"
+  },
+  "error": "Regex-Fehler",
+  "copy": "Kopieren",
+  "copied": "Kopiert",
+  "article": {
+    "sections": [
+      {
+        "heading": "Zwei Modi — Literal und Regex",
+        "paragraphs": [
+          "Literal (Regex aus): Der Suchstring wird exakt abgeglichen. Sonderzeichen wie ‚.' und ‚*' werden als solche behandelt. Das ist der sichere Standard für die meisten alltäglichen Textbearbeitungen.",
+          "Regex (Regex an): Der Suchstring wird als regulärer JavaScript-Ausdruck interpretiert. Für Muster verwenden — z. B. /\\b\\w+@\\w+\\.\\w+\\b/ zum Finden von E-Mails oder (^.+:) zum Abgleichen von Beschriftungen am Zeilenanfang. Im Mehrzeilen-Modus treffen ^ und $ auf Zeilenumbrüche."
+        ]
+      },
+      {
+        "heading": "Sondersyntax im Ersetzungsstring",
+        "paragraphs": [
+          "Im Regex-Modus unterstützt der Ersetzungsstring Rückverweise: $1, $2 usw. für Capture-Gruppen; $& für den gesamten Treffer; $$ für ein wörtliches Dollarzeichen. Beispiel: /(\\d{3})-(\\d{3})-(\\d{4})/ finden, ($1) $2-$3 ersetzen formatiert Telefonnummern um.",
+          "Im Literal-Modus wird der Ersetzungsstring unverändert übernommen — keine Rückverweise, keine Sonderbehandlung. Was eingegeben wird, wird eingefügt."
+        ]
+      },
+      {
+        "heading": "Häufige Anwendungsfälle",
+        "paragraphs": [
+          "Massenbearbeitung: Schreibweise vereinheitlichen (‚color' → ‚colour' für britisches Englisch), Produktnamen aktualisieren, Tippfehler in langen Dokumenten korrigieren.",
+          "Code-Refactoring: Eine Variable über einen eingefügten Code umbenennen (Groß-/Kleinschreibung beachten). Für echtes Refactoring über viele Dateien ist eine IDE besser.",
+          "Datenbereinigung: Tabulatoren in CSV in Kommas umwandeln, ein Trennzeichen durch ein anderes ersetzen, Leerzeichen normalisieren.",
+          "Markdown zu Plain: Markdown-Syntax mit Regex entfernen (z. B. /\\*\\*([^*]+)\\*\\*/g → $1 entfernt Fett-Markierungen)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Text einfügen",
+        "text": "Oder direkt eingeben."
+      },
+      {
+        "name": "Suchen und Ersetzen eingeben",
+        "text": "Suchen, was gesucht werden soll; Ersetzen durch was ersetzt werden soll."
+      },
+      {
+        "name": "Optionen nach Bedarf umschalten",
+        "text": "Regex für Muster; Groß-/Kleinschreibung ignorieren für unscharfe Treffer; Mehrzeilen für Zeilenanker-Muster."
+      },
+      {
+        "name": "Ergebnis ablesen und kopieren",
+        "text": "Die Trefferanzahl zeigt, wie viele Ersetzungen vorgenommen wurden."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was ist der Unterschied zum Regex-Tester?",
+      "a": "Dieses Tool konzentriert sich auf den Ersetzungsvorgang. Der Regex-Tester konzentriert sich auf die Überprüfung von Treffern und Capture-Gruppen. Das verwenden, das besser zur Aufgabe passt."
+    },
+    {
+      "q": "Kann ich Unicode in Suchen/Ersetzen verwenden?",
+      "a": "Ja. Sowohl Such- als auch Ersetzungsstrings unterstützen vollständiges UTF-8 einschließlich Emoji und CJK-Zeichen."
+    },
+    {
+      "q": "Warum hat mein Suchen/Ersetzen nicht funktioniert?",
+      "a": "Am häufigsten: Groß-/Kleinschreibung. ‚Hallo' trifft ‚hallo' nicht, wenn die Option nicht aktiviert ist. Oder Sonderzeichen im Regex-Modus werden falsch interpretiert."
+    },
+    {
+      "q": "Bleibt die Formatierung erhalten?",
+      "a": "Genau der Text wird erhalten — außer bei Treffern. Wenn der Text Tabulatoren oder bestimmte Zeilenumbrüche enthält, bleiben sie erhalten."
+    },
+    {
+      "q": "Kann ich eine Ersetzung rückgängig machen?",
+      "a": "Das Original befindet sich im Eingabefeld. Von dort erneut einfügen oder die Browser-Rückgängig-Funktion verwenden. Es gibt keine eingebaute Rückgängig-Funktion."
+    },
+    {
+      "q": "Wie groß kann mein Text sein?",
+      "a": "Text im Megabyte-Bereich funktioniert, obwohl Regex bei sehr großen Eingaben langsam sein kann, wenn das Muster schlecht geschrieben ist."
+    },
+    {
+      "q": "Wie lerne ich Regex am besten?",
+      "a": "Mit Literal-Modus starten und zu Regex wechseln, wenn Muster benötigt werden. ‚JavaScript Regex Spickzettel' suchen oder MDN's RegExp-Dokumentation verwenden."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Alle Suchen/Ersetzen-Operationen laufen lokal."
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "title": "Validateur d'e-mail (syntaxe + détection de fautes de frappe",
+  "shortDescription": "Valide la syntaxe d'une adresse e-mail selon RFC 5322 et détecte les fautes de frappe courantes chez les principaux fournisseurs (gmail, yahoo, hotmail, etc.).",
+  "description": "Tape un e-mail pour vérifier si la syntaxe est valide et repérer les fautes dans le domaine comme 'gmial.com' → 'gmail.com'. Décompose la partie locale, le domaine, le TLD et avertit des violations de limites RFC.",
+  "metaDescription": "Validateur d'e-mail gratuit. Vérifie la syntaxe RFC 5322 et détecte les fautes courantes comme gmial.com ou yaho.com.",
+  "keywords": [
+    "validateur email",
+    "vérification syntaxe email",
+    "vérification format email",
+    "valider email",
+    "faute frappe email"
+  ],
+  "input": {
+    "email": "Adresse e-mail"
+  },
+  "status": {
+    "valid": "Syntaxe valide",
+    "invalid": "Syntaxe invalide"
+  },
+  "suggestion": "Vouliez-vous dire : {suggestion} ?",
+  "empty": "Tape une adresse e-mail pour valider.",
+  "breakdown": {
+    "localPart": "Partie locale",
+    "domain": "Domaine",
+    "tld": "TLD",
+    "hasPlus": "Tag plus (+)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ce que fait ce validateur (et ce qu'il ne peut pas faire)",
+        "paragraphs": [
+          "La validation de syntaxe e-mail vérifie si 'nom@domaine.tld' suit les règles structurelles de la RFC 5322. Nous utilisons une regex pragmatique qui détecte presque toutes les fautes de frappe du monde réel tout en restant flexible pour les adresses légitimes avec des tags plus, des points et des TLD inhabituels.",
+          "Ce que cela NE peut PAS faire : confirmer que l'adresse reçoit vraiment des e-mails. Cela nécessite d'envoyer un vrai e-mail ou de faire une vérification SMTP, ce qui nécessite du code côté serveur et risque des faux positifs (domaines catch-all, greylisting). La validation syntaxique détecte les fautes à moindre coût ; les vérifications de délivrabilité nécessitent une approche différente."
+        ]
+      },
+      {
+        "heading": "Détection des fautes de frappe courantes",
+        "paragraphs": [
+          "Nous surveillons les fautes dans les principaux fournisseurs d'e-mail gratuits — 'gmial.com' au lieu de 'gmail.com', 'yaho.com' au lieu de 'yahoo.com', etc. Environ 95 % des fautes de frappe lors des inscriptions par e-mail sont des fautes de domaine chez ces quelques fournisseurs. Les détecter côté client t'évite un e-mail de bienvenue non livré et un message inconfortable 'veuillez vérifier votre adresse' en retour.",
+          "Si tu construis un formulaire d'inscription, fais tourner cette même logique avant de soumettre. Affiche une suggestion 'Vouliez-vous dire…?' et laisse l'utilisateur accepter ou ignorer. Les flux d'inscription matures font cela systématiquement ; cela améliore visiblement la délivrabilité des e-mails."
+        ]
+      },
+      {
+        "heading": "Règles de la partie locale",
+        "paragraphs": [
+          "Tag plus ('utilisateur+filtre@gmail.com') : largement supporté par les principaux fournisseurs. Utilise pour créer des adresses uniques pour différentes inscriptions tout en gardant une seule boîte de réception.",
+          "Points ('prenom.nom@gmail.com') : traités comme la même adresse par Gmail (les points sont ignorés), mais d'autres fournisseurs peuvent les traiter comme des adresses différentes. Ne te fie pas à l'équivalence des points en dehors de Gmail.",
+          "Longueur : la RFC 5321 limite la partie locale à 64 caractères et l'adresse complète à 254 caractères. Nous avertissons quand ces limites sont dépassées — la plupart des serveurs rejettent les adresses plus longues.",
+          "Sensibilité à la casse : selon la RFC, la partie locale est sensible à la casse, mais la plupart des fournisseurs la traitent comme insensible. Le domaine est toujours insensible à la casse."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Tape l'e-mail",
+        "text": "Ou colle depuis un formulaire / liste."
+      },
+      {
+        "name": "Lis le verdict",
+        "text": "Coche verte = syntaxe valide ; croix rouge = invalide."
+      },
+      {
+        "name": "Surveille les suggestions",
+        "text": "Les fautes courantes chez les fournisseurs populaires sont signalées avec une suggestion."
+      },
+      {
+        "name": "Examine la décomposition",
+        "text": "Partie locale, domaine, TLD et notes d'avertissement sont affichés en dessous."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Est-ce que ça confirme que l'e-mail existe ?",
+      "a": "Non — uniquement la syntaxe. Confirmer qu'une boîte de réception existe nécessite une vérification SMTP côté serveur ou l'envoi d'un e-mail de vérification. Cet outil détecte les fautes à moindre coût."
+    },
+    {
+      "q": "Pourquoi a-t-il accepté 'a@b.co' ?",
+      "a": "Parce que c'est techniquement une syntaxe valide. Le TLD '.co' est réel (Colombie). La validation par syntaxe ne peut pas filtrer les TLD réels mais rares."
+    },
+    {
+      "q": "Qu'en est-il des e-mails avec des caractères unicode (ex. utilisateur@exemple.fr avec des accents) ?",
+      "a": "Les adresses e-mail internationalisées sont valides selon la RFC 6531 mais la regex utilisée ici ne les accepte pas. La plupart des backends de formulaires non plus. Pour une validation compatible unicode, utilise une bibliothèque dédiée."
+    },
+    {
+      "q": "Qu'est-ce qu'un tag plus ?",
+      "a": "Tout ce qui se trouve entre + et @ est traité par Gmail et de nombreux fournisseurs comme faisant partie du routage. utilisateur+toolify@gmail.com arrive dans la boîte utilisateur@gmail.com mais tu peux filtrer par le suffixe +toolify."
+    },
+    {
+      "q": "Pourquoi Gmail ignore-t-il les points ?",
+      "a": "Politique historique de Gmail. prenom.nom@gmail.com et prenomnom@gmail.com arrivent dans la même boîte de réception. Les autres fournisseurs (Yahoo, Outlook) les traitent comme distincts."
+    },
+    {
+      "q": "Quelle est la longueur maximale d'un e-mail valide ?",
+      "a": "254 caractères au total selon la RFC 5321. Partie locale ≤ 64. La plupart des serveurs rejettent tout ce qui est plus long."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. La validation s'effectue localement ; rien n'est envoyé à un serveur."
+    },
+    {
+      "q": "Puis-je valider en masse ?",
+      "a": "Pas avec cet outil — colle une adresse à la fois. Pour les listes, utilise un script ou un service de validation en masse dédié (avec consentement pour les adresses que tu vérifie)."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "title": "Generator Bilangan Acak (kriptografis, mode unik)",
+  "shortDescription": "Hasilkan bilangan bulat acak dalam rentang apapun menggunakan API acak aman browser Anda. Secara opsional terapkan keunikan untuk undian, raffle, atau pengambilan sampel tanpa penggantian.",
+  "description": "Pilih min, maks, dan jumlah untuk menghasilkan bilangan bulat acak yang aman secara kriptografis. Aktifkan 'unik' untuk pengambilan sampel tanpa penggantian (undian, lotre).",
+  "metaDescription": "Generator bilangan acak aman kriptografis gratis. Atur rentang dan jumlah, opsional unik. Dibuat untuk lotre, undian, pengujian teracak, dan permainan.",
+  "keywords": ["generator bilangan acak", "acak aman", "nomor lotre", "bilangan bulat acak", "RNG"],
+  "empty": "Atur rentang dan klik 'Hasilkan ulang' untuk mendapatkan bilangan acak.",
+  "input": {
+    "min": "Minimum",
+    "max": "Maksimum",
+    "count": "Berapa banyak"
+  },
+  "unique": "Semua unik (tidak ada duplikat)",
+  "regenerate": "Hasilkan ulang",
+  "copyAll": "Salin semua",
+  "copied": "Disalin",
+  "error": {
+    "invalidRange": "Min harus kurang dari atau sama dengan Maks.",
+    "tooManyUnique": "Tidak dapat memilih lebih banyak bilangan unik dari yang diizinkan rentang."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Mengapa ini benar-benar acak",
+        "paragraphs": [
+          "Kami menggunakan crypto.getRandomValues — sumber acak aman kriptografis browser — alih-alih Math.random(). Output CSPRNG tidak dapat diprediksi dari nilai sebelumnya, yang penting untuk pengambilan lotre, aplikasi terkait perjudian, dan penggunaan di mana 'acak' adalah kebutuhan nyata, bukan hanya 'sembarang'.",
+          "Kami juga menggunakan rejection sampling untuk membuat distribusi seragam tepat di seluruh rentang yang dipilih. 'random % range' yang naif memperkenalkan bias ketika rentang tidak membagi 2³² secara merata. Rejection sampling membuang nilai yang akan menyebabkan bias dan mencoba lagi, sehingga setiap bilangan dalam rentang Anda memiliki probabilitas yang persis sama."
+        ]
+      },
+      {
+        "heading": "Unik vs duplikat diizinkan",
+        "paragraphs": [
+          "Mode default: setiap bilangan bersifat independen — duplikat dapat terjadi. Ini adalah arti 'acak' biasanya dalam penggunaan kasual (melempar dadu, memilih film, pengujian teracak).",
+          "Mode unik: pengambilan sampel tanpa penggantian — setelah bilangan dipilih, tidak dapat dipilih lagi dalam batch yang sama. Berguna untuk: pengambilan lotre (misalnya, 6 angka dari 1-49), undian (mengundi pemenang), penugasan tim, dan situasi 'pilih N dari M' apapun. Memerlukan jumlah ≤ rentang."
+        ]
+      },
+      {
+        "heading": "Kasus penggunaan umum",
+        "paragraphs": [
+          "Lotre / undian: 6 bilangan unik dari 1-49, atau apapun yang digunakan undian Anda. Aktifkan 'unik'.",
+          "Lemparan dadu: rentang 1-6 (atau 1-20 untuk D20). Biarkan 'unik' mati sehingga setiap lemparan bersifat independen.",
+          "Pengambilan sampel acak untuk pengujian: pilih 10 ID pengguna acak dari 1-10000 untuk pemeriksaan spot. Gunakan 'unik' untuk menghindari duplikat.",
+          "Simulasi lempar koin: rentang 0-1, beberapa hasil. Hitung kepala/ekor untuk pemeriksaan keadilan (Anda akan melihat ~50/50 pada sampel besar)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Atur rentang", "text": "Min dan maks — keduanya inklusif. Bilangan negatif diizinkan." },
+      { "name": "Atur berapa banyak", "text": "1 hingga 100 bilangan per generasi." },
+      { "name": "Aktifkan 'unik' jika diperlukan", "text": "Aktif untuk pengambilan sampel tanpa penggantian (undian, lotre)." },
+      { "name": "Klik hasilkan ulang", "text": "Set baru diambil setiap kali. Salin semua sekaligus jika Anda membutuhkan semuanya." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah ini adil untuk undian atau lotre?", "a": "Keacakannya aman secara kriptografis dan tidak bias. Apakah itu secara hukum 'adil' untuk lotre resmi tergantung pada aturan yurisdiksi Anda — banyak yang memerlukan RNG perangkat keras bersertifikat." },
+    { "q": "Apa bedanya dengan Math.random()?", "a": "Math.random() menggunakan algoritma yang outputnya dapat diprediksi dari output sebelumnya oleh penyerang. crypto.getRandomValues menggunakan RNG kriptografis tingkat OS yang tidak dapat diprediksi. Untuk keadilan nyata, gunakan ini." },
+    { "q": "Bisakah saya mendapatkan bilangan negatif?", "a": "Ya. Atur min ke nilai negatif." },
+    { "q": "Berapa rentang maksimumnya?", "a": "Dibatasi oleh rentang bilangan bulat aman JavaScript (~2⁵³), tetapi secara praktis Anda bisa sampai miliaran tanpa masalah. Teknik rejection sampling menangani rentang apapun dengan benar." },
+    { "q": "Mengapa 'unik' gagal ketika jumlah > rentang?", "a": "Jika Anda memilih 10 bilangan unik dari 1-5, empat tidak ada. Validasi menangkap ini dan meminta Anda memperluas rentang atau mengurangi jumlah." },
+    { "q": "Apakah ini bekerja untuk lemparan dadu?", "a": "Ya — atur rentang ke 1-6 (atau apapun dadu Anda) dan matikan 'unik' sehingga setiap lemparan bersifat independen." },
+    { "q": "Bisakah saya menyimpan seed dan mereproduksi?", "a": "Tidak — acak aman tidak memiliki seed. Jika Anda memerlukan 'acak' yang dapat direproduksi untuk pengujian, gunakan pustaka PRNG berbasis seed." },
+    { "q": "Apakah data dikirim ke mana saja?", "a": "Tidak. Generasi sepenuhnya lokal." }
+  ]
+}

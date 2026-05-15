@@ -1,0 +1,98 @@
+{
+  "title": "Cronômetro (precisão de milissegundos, tempos de volta)",
+  "shortDescription": "Cronômetro de alta precisão no navegador com início/pausa, gravação de voltas e cálculo de tempo parcial. Display em milissegundos, relógio monotônico para precisão.",
+  "description": "Cronômetro no navegador usando performance.now() para marcação sem oscilação. Inicie, pause, retome, registre voltas e zere. Cada volta mostra o parcial (delta desde a volta anterior) mais o tempo acumulado.",
+  "metaDescription": "Cronômetro gratuito no navegador com precisão em milissegundos e registro de voltas. Temporização monotônica, sem necessidade de internet.",
+  "keywords": [
+    "cronômetro",
+    "timer milissegundos",
+    "timer de voltas",
+    "cronômetro online",
+    "timer de parciais"
+  ],
+  "start": "Iniciar",
+  "pause": "Pausar",
+  "resume": "Continuar",
+  "reset": "Zerar",
+  "lap": "Volta",
+  "laps": "Voltas",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por que este cronômetro é preciso",
+        "paragraphs": [
+          "A maioria dos cronômetros no navegador usa Date.now() e setInterval, que podem deriva dezenas de milissegundos durante uma sessão. Esta implementação usa performance.now() — um relógio monotônico que não salta para trás quando o relógio do sistema é ajustado. Combinado com requestAnimationFrame para atualizações de exibição, a precisão fica dentro de ±1 ms.",
+          "Se você trocar de aba, o tempo exibido pode congelar brevemente porque os navegadores limitam o trabalho em segundo plano. O relógio interno continua funcionando corretamente — quando você volta, a exibição se atualiza para o tempo decorrido real."
+        ]
+      },
+      {
+        "heading": "Tempos de volta e parciais",
+        "paragraphs": [
+          "Quando você pressiona Volta, o tempo acumulado atual é registrado. O parcial exibido é o delta desde a volta anterior: em uma corrida de 5×400m, cada parcial é o tempo de um segmento de 400m, enquanto o acumulado é o total desde o início.",
+          "A maioria dos usuários da lista de voltas se importa com os parciais, não com o acumulado. Mostramos os dois. O acumulado também facilita identificar o melhor segmento individual — útil para atletas que monitoram a consistência dos intervalos."
+        ]
+      },
+      {
+        "heading": "Usos comuns",
+        "paragraphs": [
+          "Esportes: registre tempos de volta para corrida, natação, ciclismo. Menor é melhor; consistência entre os parciais é sinal de bom ritmo.",
+          "Culinária: cronometre múltiplas etapas simultaneamente usando voltas como 'pontos de verificação' (adicionou o fermento, iniciou o descanso da massa, etc.).",
+          "Estudo/trabalho: marque sessões de trabalho focado com limite de tempo. Combine com nosso Pomodoro timer para pausas estruturadas.",
+          "Medição de processos: meça a duração de qualquer tarefa — compilações de software, entrada manual de dados, resolução de suporte. Use a lista de voltas para revisão posterior."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Clique em Iniciar",
+        "text": "O cronômetro começa imediatamente do zero."
+      },
+      {
+        "name": "Registre voltas",
+        "text": "Clique em Volta durante a execução. Cada volta é registrada com o parcial e o tempo acumulado."
+      },
+      {
+        "name": "Pause / Continue",
+        "text": "Clique em Pausar para segurar; clique em Continuar para retomar do mesmo momento."
+      },
+      {
+        "name": "Zere",
+        "text": "Limpa todas as voltas e volta a 0."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "O cronômetro vai continuar rodando se eu fechar a aba?",
+      "a": "Não — fechar a aba limpa o estado em memória. Para preservar uma sessão longa, tire uma captura de tela do display em execução ou copie a lista de voltas antes de fechar."
+    },
+    {
+      "q": "Qual é a precisão real em milissegundos?",
+      "a": "A resolução de performance.now() depende do navegador: a maioria limita a 1ms ou 0,1ms por razões de segurança (mitigação de timing attack). Mais que suficiente para temporização em escala humana — muito mais preciso que o tempo de reação humano (~250ms)."
+    },
+    {
+      "q": "Por que o display atualiza a 60fps mas mostra milissegundos?",
+      "a": "O relógio interno é preciso; o display é renderizado ~60 vezes por segundo, então você vê um campo de milissegundos atualizando suavemente. Cada frame calcula o último valor decorrido a partir de performance.now()."
+    },
+    {
+      "q": "Posso salvar uma sessão de voltas?",
+      "a": "Não diretamente — copie a lista de voltas manualmente. Salvar sessões no armazenamento local está em desenvolvimento."
+    },
+    {
+      "q": "Qual é a diferença entre este e o cronômetro do celular?",
+      "a": "Baseado em navegador, sem necessidade de instalar app. Igualmente preciso para temporização em escala humana. O cronômetro do celular sobrevive ao bloqueio de tela; a aba do navegador precisa estar aberta (mas não precisa estar em foco)."
+    },
+    {
+      "q": "Os dados são enviados para algum lugar?",
+      "a": "Não. Tudo funciona localmente; nenhuma volta ou tempo é transmitido."
+    },
+    {
+      "q": "Por que minha volta mostra 0 milissegundos?",
+      "a": "Se você toca em Volta imediatamente após Iniciar, o tempo decorrido pode arredondar para 0 com a precisão do display. Execute por pelo menos uma fração de segundo entre as voltas."
+    },
+    {
+      "q": "Isso pode medir eventos abaixo de 1 segundo?",
+      "a": "Sim, até ~1ms. Para temporização em nanossegundos (benchmarking de chips) você precisaria de ferramentas diferentes, mas para qualquer evento observável por humanos isso é suficientemente preciso."
+    }
+  ]
+}

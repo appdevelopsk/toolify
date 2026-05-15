@@ -1,16 +1,16 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/config";
-import { LOCALES } from "@/lib/i18n/locales";
+import { LOCALES, PROMPT_LOCALES } from "@/lib/i18n/locales";
 import { listTools } from "@/lib/tools/registry";
 import { listPrompts } from "@/lib/prompts/registry";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPaths = ["", "/tools", "/prompts", "/about", "/privacy", "/terms", "/contact"];
+  const sharedPaths = ["", "/tools", "/about", "/privacy", "/terms", "/contact"];
   const tools = listTools();
   const prompts = listPrompts();
   const entries: MetadataRoute.Sitemap = [];
 
-  for (const path of staticPaths) {
+  for (const path of sharedPaths) {
     for (const locale of LOCALES) {
       const url = `${siteConfig.url}/${locale}${path}`;
       const alternates: Record<string, string> = {};
@@ -22,6 +22,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: { languages: alternates },
       });
     }
+  }
+
+  // /prompts index — only emit for prompt-active locales
+  for (const locale of PROMPT_LOCALES) {
+    const path = "/prompts";
+    const alternates: Record<string, string> = {};
+    for (const l of PROMPT_LOCALES) alternates[l] = `${siteConfig.url}/${l}${path}`;
+    entries.push({
+      url: `${siteConfig.url}/${locale}${path}`,
+      changeFrequency: "weekly",
+      priority: 0.6,
+      alternates: { languages: alternates },
+    });
   }
 
   for (const tool of tools) {
@@ -40,10 +53,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const prompt of prompts) {
-    for (const locale of LOCALES) {
+    for (const locale of PROMPT_LOCALES) {
       const path = `/prompts/${prompt.slug}`;
       const alternates: Record<string, string> = {};
-      for (const l of LOCALES) alternates[l] = `${siteConfig.url}/${l}${path}`;
+      for (const l of PROMPT_LOCALES) alternates[l] = `${siteConfig.url}/${l}${path}`;
       entries.push({
         url: `${siteConfig.url}/${locale}${path}`,
         lastModified: prompt.updatedAt,
@@ -58,10 +71,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // so we don't ship empty pages to Google.
   const populatedCats = new Set(prompts.map((p) => p.category));
   for (const cat of populatedCats) {
-    for (const locale of LOCALES) {
+    for (const locale of PROMPT_LOCALES) {
       const path = `/prompts/category/${cat}`;
       const alternates: Record<string, string> = {};
-      for (const l of LOCALES) alternates[l] = `${siteConfig.url}/${l}${path}`;
+      for (const l of PROMPT_LOCALES) alternates[l] = `${siteConfig.url}/${l}${path}`;
       entries.push({
         url: `${siteConfig.url}/${locale}${path}`,
         changeFrequency: "weekly",

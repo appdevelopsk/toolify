@@ -1,0 +1,59 @@
+{
+  "title": "Primzahl-Prüfer (mit Primfaktorzerlegung)",
+  "shortDescription": "Prüfe, ob eine Zahl eine Primzahl ist. Falls nicht, sieh die Primfaktorzerlegung. Plus die nächste und vorherige Primzahl.",
+  "description": "Gib eine nicht-negative ganze Zahl bis zu 10^18 ein. Der Rechner prüft die Primalität mit Probedivision (deterministisch bis ~10^15 in vertretbarer Zeit) und gibt die Primfaktorzerlegung für zusammengesetzte Zahlen.",
+  "metaDescription": "Kostenloser Primzahl-Prüfer mit Faktorzerlegung. Primalität testen, Primfaktoren sehen, nächste/vorherige Primzahl finden. Verarbeitet Zahlen bis zu 10^18.",
+  "keywords": ["Primzahl prüfen", "ist Primzahl", "Primfaktorzerlegung", "Primzahltest", "nächste Primzahl"],
+  "input": { "value": "Zahl" },
+  "result": {
+    "isPrime": "ist eine Primzahl",
+    "notPrime": "ist KEINE Primzahl",
+    "factors": "Primfaktorzerlegung",
+    "prevPrime": "Vorherige Primzahl",
+    "nextPrime": "Nächste Primzahl"
+  },
+  "empty": "Gib eine positive ganze Zahl ein.",
+  "tooLarge": "Zahl zu groß für Browser-Berechnung (max 10^18).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Was eine Primzahl ist",
+        "paragraphs": [
+          "Eine Primzahl ist eine natürliche Zahl größer als 1, die keine positiven Teiler außer 1 und sich selbst hat. Die ersten Primzahlen: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37. Sie sind die ‚Atome' der ganzzahligen Arithmetik – jede ganze Zahl ≥ 2 kann eindeutig als Produkt von Primzahlen geschrieben werden (Fundamentalsatz der Arithmetik).",
+          "1 ist per Konvention keine Primzahl. 0 und negative Zahlen sind keine Primzahlen. 2 ist die einzige gerade Primzahl – jede andere gerade Zahl ist durch 2 teilbar und damit zusammengesetzt."
+        ]
+      },
+      {
+        "heading": "Wie der Test funktioniert",
+        "paragraphs": [
+          "Wir verwenden Probedivision: Überprüfe Teilbarkeit durch 2, dann 3, dann 5, 7, 11, … bis √n. Wenn keine glatt teilt, ist n eine Primzahl. Wir verwenden die 6k±1-Optimierung, die nur Kandidaten der Form 6k+1 oder 6k−1 prüft (da alle Primzahlen > 3 diese Form haben), was die Anzahl der Tests um 2/3 reduziert.",
+          "Probedivision ist schnell für n bis ~10^15 (Sekundenbereich). Darüber hinaus werden fortgeschrittene Tests wie Miller-Rabin (probabilistisch) oder AKS (deterministisch) benötigt. Wir begrenzen auf 10^18, um das Einfrieren des Browsers bei extremen Eingaben zu verhindern."
+        ]
+      },
+      {
+        "heading": "Warum Primzahlen wichtig sind",
+        "paragraphs": [
+          "Kryptographie: RSA-Verschlüsselung multipliziert zwei ~1.000-stellige Primzahlen zu einer Zahl, die schwer zu faktorisieren ist. Die Sicherheit beruht auf der Schwierigkeit der Faktorisierung großer Zahlen – eine Herausforderung, die seit Jahrtausenden erforscht wird.",
+          "Mathematikunterricht: Primfaktorzerlegung ist grundlegend. Konzepte wie GCD, LCM, modulare Arithmetik, Brüche und Zahlentheorie bauen alle auf der Primfaktorstruktur auf.",
+          "Informatik: Hash-Tabellen-Größen, Zufallszahlengeneratoren und viele Algorithmen verwenden Primzahlen für ihre besonderen Teilbarkeitseigenschaften."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Zahl eingeben", "text": "Positive ganze Zahl bis 10^18." },
+      { "name": "Urteil ablesen", "text": "Grünes ✓ für Primzahl, gelbes ✗ für zusammengesetzt." },
+      { "name": "Faktorzerlegung sehen", "text": "Bei zusammengesetzten Zahlen werden die eindeutigen Primfaktoren gezeigt." },
+      { "name": "Durch Primzahlen navigieren", "text": "Vorherige und nächste Primzahlen werden zur Orientierung aufgelistet." }
+    ]
+  },
+  "faq": [
+    { "q": "Ist 1 eine Primzahl?", "a": "Nein. 1 ist eine ‚Einheit', keine Primzahl. Primzahlen haben genau zwei verschiedene positive Teiler (1 und sich selbst); 1 hat nur einen." },
+    { "q": "Ist 0 eine Primzahl?", "a": "Nein. Primzahlen sind ganze Zahlen > 1." },
+    { "q": "Ist 2 eine Primzahl?", "a": "Ja – 2 ist die einzige gerade Primzahl. Alle anderen geraden Zahlen haben 2 als Teiler neben 1 und sich selbst." },
+    { "q": "Wie wird die nächste Primzahl gefunden?", "a": "Durch Inkrementieren von n+1 und Primalitätstest bei jedem Schritt. Es gibt immer eine Primzahl innerhalb von n × ln(n) jeder Zahl, sodass das auch für große Eingaben schnell endet." },
+    { "q": "Warum ist das Maximum 10^18?", "a": "JavaScript BigInt verarbeitet Größeres, aber Probedivision wird zu langsam. 10^18 ist sicher für Sekundenbereich-Checks typischer Eingaben. Darüber hinaus spezialisierte Tools wie SymPy oder Mathematica verwenden." },
+    { "q": "Kann man 1.000-stellige Primzahlen prüfen?", "a": "Nicht mit diesem Tool – Probedivision ist in dieser Größenordnung zu langsam. Kryptographie verwendet Miller-Rabin-Wahrscheinlichkeitstests für 1.024-Bit-Primzahlen (~300 Stellen)." },
+    { "q": "Was ist eine Mersenne-Primzahl?", "a": "Eine Primzahl der Form 2^p − 1. Stand 2025 sind nur 51 bekannt. Die größte bekannte Primzahl (M82589933) ist eine Mersenne-Primzahl mit ~25 Millionen Stellen." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Die Berechnung läuft lokal; nichts wird an einen Server gesendet." }
+  ]
+}

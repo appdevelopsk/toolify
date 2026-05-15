@@ -1,0 +1,56 @@
+{
+  "title": "Würfelwurf (W4 bis W100, mit Modifikator und Verlauf)",
+  "shortDescription": "Beliebig viele Würfel mit beliebig vielen Seiten werfen. Kryptografisch zufällig, mit Modifikator (+N), laufender Summe und Wurfverlauf.",
+  "description": "Anzahl, Seiten (4, 6, 8, 10, 12, 20, 100 oder benutzerdefiniert bis 1000) und Modifikator wählen. Jeder Wurf verwendet crypto.getRandomValues für eine unverzerrte Gleichverteilung.",
+  "metaDescription": "Kostenloser Würfelwurf für D&D und alle TTRPGs. W4/W6/W8/W10/W12/W20/W100 + benutzerdefiniert, Modifikator, Verlauf. Kryptografisch sichere unverzerrte Würfe im Browser.",
+  "keywords": ["Würfelwurf", "Online-Würfel", "W20 werfen", "TTRPG Würfel", "W6 W10 W100"],
+  "input": { "count": "Anzahl", "sides": "Seiten", "modifier": "Modifikator (±)" },
+  "roll": "{count}W{sides}{modifier} werfen",
+  "result": {
+    "total": "Gesamt",
+    "history": "Letzte Würfe"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie die Würfe generiert werden",
+        "paragraphs": [
+          "Jeder Würfel verwendet crypto.getRandomValues – die kryptografisch sichere Zufalls-API des Browsers, dasselbe Primitiv, das HTTPS-Sitzungen unterstützt. Wir wenden auch Verwerfungs-Sampling an, um sicherzustellen, dass jede Seite genau gleiche Wahrscheinlichkeit hat, unabhängig von der Würfelgröße. Naives `random % Seiten` führt zu Verzerrung, wenn sich die Seiten nicht gleichmäßig in 2³² aufteilen lassen.",
+          "Das bedeutet, dass ein W100 nicht leicht zugunsten von 1–36 verzerrt ist (was bei schlecht implementiertem Modulo passieren würde), und ein W3 begünstigt nicht 1 gegenüber 2 oder 3. Die Mathematik ist identisch mit physischen Würfeln bei unendlicher Präzision."
+        ]
+      },
+      {
+        "heading": "TTRPG-Notation (Tischrollenspiele)",
+        "paragraphs": [
+          "Gängige Notation: 'NwS+M', wobei N die Anzahl der Würfel, S die Seiten und M der Modifikator ist. '2W6+3' bedeutet, 2 sechsseitige Würfel zu werfen und 3 hinzuzufügen. '1W20+5' ist ein typischer D&D-Angriffswurf mit +5 Modifikator aus dem Charakterbonus.",
+          "Standardwürfelsätze: W4 (Pyramide), W6 (Würfel), W8 (Oktaeder), W10 (pentagonales Trapezaeder), W12 (Dodekaeder), W20 (Ikosaeder). W100 wird normalerweise als 2W10 gewürfelt (einer für Zehner, einer für Einer). Verwende die W100-Voreinstellung, um die manuelle Konvertierung zu überspringen."
+        ]
+      },
+      {
+        "heading": "Typische Anwendungsfälle",
+        "paragraphs": [
+          "D&D / Pathfinder / TTRPGs: W20+5 für Angriffe, 1W8+3 für Schaden, 4W6 niedrigsten fallen lassen für Charaktergenerierung.",
+          "Zufällige Auswahl: Gewinner aus N Personen durch Werfen eines WN auswählen. Bei 7 Personen Seiten=7 setzen. Die kryptografische Zufälligkeit gewährleistet Fairness.",
+          "Wahrscheinlichkeitslektionen: Viele Würfel werfen und die Verteilung beobachten. Die Summe mehrerer Würfel nähert sich einer Normalverteilung an (zentraler Grenzwertsatz).",
+          "Entscheidungsfindung: 'Soll ich X tun' mit 50/50? W2 (2 Seiten) werfen. Gewichtete Entscheidung gewünscht? W10 verwenden und Schwellenwerte festlegen (1–7 = ja, 8–10 = nein für 70/30)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Würfelvoreinstellung wählen", "text": "Oder eine benutzerdefinierte Seitenanzahl von 2 bis 1000 eingeben." },
+      { "name": "Anzahl einstellen", "text": "Wie viele Würfel gleichzeitig geworfen werden sollen. Bis zu 50." },
+      { "name": "Modifikator hinzufügen", "text": "Optionale feste Zahl, die zur Summe addiert wird." },
+      { "name": "Werfen", "text": "Gesamt, einzelne Würfe und Verlauf werden alle angezeigt." }
+    ]
+  },
+  "faq": [
+    { "q": "Sind die Würfe wirklich fair?", "a": "Ja. Wir verwenden crypto.getRandomValues (den sicheren Zufallsgenerator) plus Verwerfungs-Sampling, sodass jede Seite genau gleiche Wahrscheinlichkeit hat – keine Verzerrung durch die Modulo-Operation." },
+    { "q": "Was ist die maximale Würfelanzahl?", "a": "50 pro Wurf. Für mehr einfach mehrmals werfen – jeder Wurf ist unabhängig." },
+    { "q": "Was ist die maximale Seitenanzahl?", "a": "1000. Darüber hinaus funktioniert die Mathematik noch, aber der Anwendungsfall wird konstruiert." },
+    { "q": "Kann ich meine Lieblingswürfelkombinationen speichern?", "a": "Noch nicht. Wir könnten später gespeicherte Voreinstellungen für häufige Kampfwürfe hinzufügen." },
+    { "q": "Warum ist der W20 berühmt?", "a": "Dungeons & Dragons hat ihn für Fertigkeitswürfe und Angriffe populär gemacht. Jede Seite hat 5 % Wahrscheinlichkeit – feine Granularität für Fertigkeitsunterschiede ohne den Buchführungsaufwand eines Prozentsatzes (W100)." },
+    { "q": "Warum zeigt der Verlauf nur 10 Würfe?", "a": "Um die Seite übersichtlich zu halten. Für längere Protokolle jedes Ergebnis in eine Notizdatei oder Charakterbogen einfügen." },
+    { "q": "Wird das meine physischen Würfel ersetzen?", "a": "Funktional ja, besonders für Online-Spiele. Physische Würfel sind wegen der Haptik und des Rituals beliebt – aber mathematisch ist ein digitaler Wurf mit kryptografischem Zufallsgenerator mindestens so fair wie ein physischer W20." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Jeder Wurf findet lokal statt." }
+  ]
+}

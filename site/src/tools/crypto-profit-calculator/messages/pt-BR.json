@@ -1,0 +1,108 @@
+{
+  "title": "Calculadora de Lucro em Cripto (com taxas da corretora)",
+  "shortDescription": "Calcule o lucro de trading em criptomoedas, ROI e impacto das taxas. Insira a quantidade, preço de compra, preço de venda e taxa da corretora % — obtenha o lucro líquido após as taxas de compra e venda.",
+  "description": "Calcule o lucro da sua operação com criptomoedas, incluindo as taxas da corretora na entrada e saída. Útil para backtesting de operações, comparação de taxas entre corretoras e entendimento do impacto das taxas em operações pequenas ou frequentes.",
+  "metaDescription": "Calculadora de lucro em cripto gratuita. Lucro líquido após taxas, ROI% e impacto das taxas. Insira quantidade, preços de compra/venda e taxa da corretora.",
+  "keywords": [
+    "calculadora de lucro em cripto",
+    "lucro de trading cripto",
+    "lucro bitcoin",
+    "ROI cripto",
+    "impacto de taxa de corretora"
+  ],
+  "empty": "Insira quantidade, preço de compra, preço de venda e taxa.",
+  "input": {
+    "amount": "Quantidade de moeda",
+    "buyPrice": "Preço de compra (por moeda)",
+    "sellPrice": "Preço de venda (por moeda)",
+    "feePct": "Taxa da corretora %"
+  },
+  "result": {
+    "netProfit": "Lucro líquido",
+    "roi": "ROI",
+    "cost": "Custo total",
+    "gross": "Receita bruta",
+    "totalFees": "Taxas totais"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Como as taxas corroem o lucro",
+        "paragraphs": [
+          "Corretoras de cripto cobram taxas tanto na entrada quanto na saída. Uma taxa de 0,2% maker/taker aplicada duas vezes significa 0,4% do valor negociado em taxas — pequena para grandes oscilações, devastadora para pequenas. Para empatar numa estrutura de taxas de 0,2%/0,2%, o preço deve se mover pelo menos 0,4% a seu favor.",
+          "As taxas variam amplamente: as principais corretoras centralizadas cobram 0,1-0,4% por operação. Corretoras descentralizadas (Uniswap etc.) cobram 0,3% de taxas de pool mais gas (que na Ethereum pode ser R$ 25-250+ dependendo das condições da rede). Algumas corretoras oferecem 0% de taxas em certos pares como marketing — verifique se compensam via spreads maiores."
+        ]
+      },
+      {
+        "heading": "Lendo o ROI",
+        "paragraphs": [
+          "O ROI (retorno sobre investimento) é o lucro líquido dividido pelo capital total investido (custo mais taxa de compra). É a métrica de comparação mais útil entre operações de tamanhos diferentes. Uma operação de R$ 500 gerando R$ 100 (20% de ROI) é matematicamente o mesmo resultado que R$ 50.000 gerando R$ 10.000 — ambos 20% de ROI.",
+          "Fique atento à diferença entre ROI e lucro absoluto. Day traders frequentemente otimizam para muitos pequenos ganhos de ROI. Holders de longo prazo se importam mais com o lucro absoluto. Ambas são válidas; apenas não as confunda ao comparar estratégias."
+        ]
+      },
+      {
+        "heading": "Implicações fiscais (geral)",
+        "paragraphs": [
+          "No Brasil, a Receita Federal tributa operações com criptomoedas: alienações acima de R$ 35.000/mês geram imposto sobre ganhos de capital (15% até R$ 5 milhões). Trocas cripto-por-cripto também são geralmente consideradas fatos geradores. Declare suas operações na DAA (Declaração de Ajuste Anual).",
+          "Registre cada operação com data, ativo, quantidade, equivalente em reais no momento e taxas. Ferramentas como CoinTracker, Koinly e Kriptex podem ingerir CSVs de corretoras e produzir relatórios. Não somos consultores fiscais; consulte as regras atuais da Receita Federal."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Insira a quantidade de moeda",
+        "text": "Quanto você comprou (ex.: 0,5 BTC, 100 SOL)."
+      },
+      {
+        "name": "Insira o preço de compra por moeda",
+        "text": "Quanto você pagou por unidade na entrada."
+      },
+      {
+        "name": "Insira o preço de venda por moeda",
+        "text": "Quanto você recebeu (ou espera receber) por unidade."
+      },
+      {
+        "name": "Insira a taxa da corretora %",
+        "text": "Por operação. A maioria das corretoras centralizadas cobra 0,1-0,4%."
+      },
+      {
+        "name": "Leia o detalhamento",
+        "text": "Lucro líquido, ROI%, taxas totais, custo e receita bruta."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "A taxa se aplica tanto na compra quanto na venda?",
+      "a": "Sim, nesta calculadora. Assumimos a mesma taxa nos dois lados. Se suas taxas diferem (ex.: 0,1% compra, 0,4% venda), use a média ou execute dois cálculos."
+    },
+    {
+      "q": "E o slippage?",
+      "a": "Slippage é a diferença entre o preço esperado e o preço real de execução, comum em mercados de baixa liquidez. Esta calculadora não modela slippage — use seus preços reais de execução."
+    },
+    {
+      "q": "Devo incluir taxas de gas para operações em DEX?",
+      "a": "Converta suas taxas de gas em porcentagem do valor da operação e adicione ao campo de taxa. Para uma operação de R$ 5.000 com R$ 50 de gas, são 1% de taxa adicional por operação."
+    },
+    {
+      "q": "Funciona para stablecoins?",
+      "a": "Sim. Operações de stablecoin para stablecoin geralmente têm lucro fino (0,1-0,3%) e as taxas podem facilmente eliminar os ganhos. A calculadora lida com elas corretamente."
+    },
+    {
+      "q": "Como incluo um stop loss?",
+      "a": "Use a calculadora duas vezes: uma para a saída planejada de lucro, outra para a saída com stop loss. Compare ambos os resultados com o tamanho da sua posição para dimensionar seu risco."
+    },
+    {
+      "q": "Qual taxa % assumir como boa?",
+      "a": "0,1-0,2% para as principais corretoras (Binance, Coinbase, Kraken). 0,4-1% para níveis de varejo/não-profissional. 0,3-1% para DEXes mais gas."
+    },
+    {
+      "q": "Por que ROI é diferente do % de lucro?",
+      "a": "O ROI usa o custo de base como denominador (custo + taxa de compra). '% de lucro' frequentemente usa o investimento inicial sem a taxa de compra, o que infla ligeiramente o número."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. O cálculo é feito localmente; nada é enviado a um servidor."
+    }
+  ]
+}

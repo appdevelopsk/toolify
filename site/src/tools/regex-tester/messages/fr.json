@@ -1,0 +1,109 @@
+{
+  "title": "Testeur de Regex (correspondances en direct, groupes, remplacement)",
+  "shortDescription": "Teste les expressions régulières JavaScript de façon interactive. Vois les correspondances surlignées en direct, les groupes de capture, et un aperçu du remplacement.",
+  "description": "Tape une regex et un texte de test — les correspondances se surlignent en direct pendant que tu tapes. Bascule les drapeaux (g/i/m/s/u), inspecte les groupes de capture, et prévisualise les remplacements.",
+  "metaDescription": "Testeur de regex JavaScript gratuit avec surlignage en direct, groupes de capture, groupes nommés et aperçu du remplacement.",
+  "keywords": [
+    "testeur regex",
+    "testeur expression régulière",
+    "regex JavaScript",
+    "correspondance regex",
+    "remplacement regex"
+  ],
+  "input": {
+    "pattern": "Pattern",
+    "flags": "Drapeaux",
+    "test": "Texte de test",
+    "replaceMode": "Afficher l'aperçu du remplacement",
+    "replace": "Remplacement"
+  },
+  "result": {
+    "matches": "Correspondances",
+    "replaced": "Sortie remplacée",
+    "groups": "Groupes de capture"
+  },
+  "hint": {
+    "replaceVars": "Utilise $& pour la correspondance complète, $1, $2 pour les groupes, $<nom> pour les groupes nommés."
+  },
+  "error": {
+    "invalid": "Pattern invalide"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ce que font les drapeaux",
+        "paragraphs": [
+          "g (global) : trouve toutes les correspondances, pas seulement la première. Nécessaire pour le comportement remplacer-tout. i (insensible à la casse) : /[a-z]/i correspond aux deux casses. m (multiligne) : ^ et $ correspondent aux sauts de ligne au lieu du seul début/fin de chaîne. s (dotall) : . correspond aussi aux sauts de ligne. u (unicode) : gestion correcte des points de code au-dessus de 0xFFFF (emoji, CJK en paires de substitution).",
+          "La plupart des gens commencent avec /g/i/m. /s/ devient utile pour la correspondance de texte multiligne. /u/ est recommandé quand tu pourrais rencontrer des emoji ou des caractères non-BMP — sans lui, /./ ne fera pas correspondre un emoji à 4 octets comme un seul caractère."
+        ]
+      },
+      {
+        "heading": "Groupes de capture et remplacement",
+        "paragraphs": [
+          "Les parenthèses créent un groupe de capture : /(\\d{4})-(\\d{2})/ sur « 2026-05 » capture « 2026 » et « 05 » séparément. Référence-les comme $1, $2 dans le remplacement. Les groupes nommés utilisent (?<nom>...) et référencent $<nom> dans le remplacement.",
+          "Astuces de remplacement courantes : $& insère la correspondance complète. $1, $2 etc. insèrent les groupes de capture. $$ insère un $ littéral. L'aperçu de remplacement ici te permet de vérifier avant de lancer le même pattern sur un vrai texte — bien plus sûr que de le lancer directement sur des données de production."
+        ]
+      },
+      {
+        "heading": "Pièges à surveiller",
+        "paragraphs": [
+          "Échappement des barres obliques. Pour correspondre à un '.' littéral, utilise '\\.'. Dans une chaîne source JavaScript cela devient '\\\\.' mais dans cet outil tu tapes juste '\\.' puisque c'est la source regex.",
+          "Retour arrière catastrophique. Des patterns comme /(a+)+/ sur 'aaaa…!' peuvent prendre une éternité. Si ton test semble figé, ta regex peut avoir des quantificateurs imbriqués. Simplifie ou utilise des groupes possessifs/atomiques (non disponibles en regex JS ; utilise une conception soignée à la place).",
+          "Gourmand vs paresseux. /<.+>/ sur '<a><b>' correspond à '<a><b>' (gourmand). /<.+?>/ correspond à '<a>' (paresseux). Choisis le bon pour ton cas d'utilisation."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Tape un pattern",
+        "text": "Utilise la syntaxe regex JavaScript (sans les barres obliques entourant)."
+      },
+      {
+        "name": "Règle les drapeaux",
+        "text": "Clique sur les lettres pour basculer : g (global), i (insensible à la casse), m (multiligne), s (dotall), u (unicode)."
+      },
+      {
+        "name": "Colle le texte de test",
+        "text": "Les correspondances se surlignent en temps réel."
+      },
+      {
+        "name": "Optionnel : essaie le remplacement",
+        "text": "Active « aperçu du remplacement » pour voir la sortie modifiée."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quelle saveur de regex cet outil utilise-t-il ?",
+      "a": "La regex ECMAScript JavaScript (celle que ton navigateur implémente). Elle diffère légèrement de PCRE utilisé dans PHP, .NET ou Python."
+    },
+    {
+      "q": "Pourquoi le lookbehind ne fonctionne-t-il pas ?",
+      "a": "Il fonctionne dans les navigateurs modernes — Chrome, Firefox, Safari, Edge supportent tous (?<=...) et (?<!...) depuis 2021. Si ce n'est pas le cas, ton navigateur est peut-être obsolète."
+    },
+    {
+      "q": "Que fait le drapeau 'u' ?",
+      "a": "Active la gestion Unicode correcte. Les emoji comme 🎉 (qui est une paire de substitution en UTF-16) sont traités comme un seul caractère avec /u/ mais deux sans."
+    },
+    {
+      "q": "Comment faire correspondre une tabulation ou un saut de ligne ?",
+      "a": "\\t pour tabulation, \\n pour saut de ligne, \\r pour retour chariot, \\s pour tout espace blanc y compris tout cela."
+    },
+    {
+      "q": "Pourquoi mon remplacement ne fonctionne-t-il pas ?",
+      "a": "Le plus souvent, tu as oublié le drapeau 'g' — remplacer sans 'g' ne remplace que la première correspondance. Active 'g' pour tout remplacer."
+    },
+    {
+      "q": "Puis-je utiliser cela pour du texte très long ?",
+      "a": "Oui, jusqu'à quelques Mo. Au-delà, le navigateur peut ralentir. Évite les patterns catastrophiques (quantificateurs imbriqués) sur les longues entrées."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Le pattern et le texte sont traités localement uniquement."
+    },
+    {
+      "q": "Y a-t-il un aide-mémoire regex ?",
+      "a": "Cherche « JavaScript regex cheat sheet ». La page RegExp de MDN est la référence faisant autorité."
+    }
+  ]
+}

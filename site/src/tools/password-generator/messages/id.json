@@ -1,0 +1,107 @@
+{
+  "title": "Generator Password (aman secara kriptografis, dengan pengukur",
+  "shortDescription": "Buat password acak yang kuat menggunakan API crypto browser yang aman. Panjang, kumpulan karakter, dan filter ambiguitas yang dapat dikonfigurasi.",
+  "description": "Membangun password menggunakan crypto.getRandomValues — sumber yang sama yang digunakan bank, bukan Math.random. Sesuaikan panjang dan kelas karakter; pengukur entropi menampilkan seberapa kuat hasilnya sebenarnya.",
+  "metaDescription": "Generator password gratis. Password acak yang aman secara kriptografis dengan panjang dan kumpulan karakter yang dapat dikonfigurasi.",
+  "keywords": [
+    "generator password",
+    "password aman",
+    "password acak",
+    "password kuat",
+    "buat password",
+    "generator kata sandi"
+  ],
+  "copy": "Salin",
+  "copied": "Tersalin",
+  "regenerate": "Password baru",
+  "input": {
+    "length": "Panjang"
+  },
+  "opt": {
+    "upper": "Huruf besar (A-Z)",
+    "lower": "Huruf kecil (a-z)",
+    "numbers": "Angka (0-9)",
+    "symbols": "Simbol (!@#$...)",
+    "avoidAmbiguous": "Hindari ambigu (0OoIl1)"
+  },
+  "strength": {
+    "weak": "Lemah",
+    "medium": "Sedang",
+    "strong": "Kuat",
+    "excellent": "Sangat kuat"
+  },
+  "entropy": "{bits} bit entropi",
+  "article": {
+    "sections": [
+      {
+        "heading": "Mengapa generator ini benar-benar aman",
+        "paragraphs": [
+          "Sebagian besar 'generator password' di web menggunakan Math.random(), yang tidak aman secara kriptografis — outputnya dapat diprediksi oleh penyerang yang melihat beberapa nilai sebelumnya. Generator ini menggunakan crypto.getRandomValues dari Web Crypto API, primitif yang sama yang mendukung sesi HTTPS dan keychain tingkat OS. Setiap karakter diambil dari distribusi seragam dari alfabet yang dipilih.",
+          "Pembuatan terjadi sepenuhnya di browser Anda. Password tidak pernah berjalan melalui jaringan dan tidak pernah menyentuh server kami. Bahkan jika domain kami dikompromikan, penyerang tidak akan memiliki apapun untuk dicuri karena tidak ada yang disimpan."
+        ]
+      },
+      {
+        "heading": "Cara pengukur kekuatan bekerja",
+        "paragraphs": [
+          "Label kekuatan dihitung dari entropi: bit = log₂(ukuran_alfabet) × panjang. Password 10 karakter hanya huruf kecil memiliki log₂(26) × 10 ≈ 47 bit — rentan terhadap penyerang offline yang gigih. Password 16 karakter menggunakan keempat kelas karakter memiliki sekitar 105 bit — cukup kuat untuk sebagian besar penggunaan. Bandnya adalah: <50 lemah, 50-80 sedang, 80-128 kuat, ≥128 sangat kuat.",
+          "Ambang batas ini kira-kira sesuai dengan: lemah = dapat ditebak dalam beberapa hari oleh penyerang moderat; sedang = membutuhkan botnet bertahun-tahun; kuat = tidak ada penyerang realistis saat ini; sangat kuat = margin nyaman terhadap penyerang masa depan termasuk pertimbangan kuantum."
+        ]
+      },
+      {
+        "heading": "Panjang mengalahkan kompleksitas",
+        "paragraphs": [
+          "Matematikanya tidak ampun di sini: menambahkan satu karakter pada password Anda kira-kira menggandakan ruang pencarian (tergantung alfabet). Menambahkan satu kelas karakter lagi hanya sedikit memperbesarnya. Password 20 karakter hanya huruf kecil memiliki lebih banyak entropi daripada password 12 karakter dengan huruf besar-kecil-simbol campuran, dan lebih mudah diketik. Jika Anda lebih suka menghafal, pilih empat kata acak dari daftar 7000 kata — itu adalah 51 bit, mirip dengan password campuran 8 karakter yang kuat.",
+          "Opsi 'hindari ambigu' mengecualikan karakter yang terlihat seperti karakter lain di banyak font (0/O, I/l/1). Ini membuat password sedikit lebih lemah tetapi lebih mudah dibaca dengan suara keras atau disalin. Gunakan ketika Anda mungkin perlu mengetik password dari daftar yang dicetak."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Pilih panjang",
+        "text": "16 adalah default yang baik untuk akun; 20+ untuk kunci master manajer password."
+      },
+      {
+        "name": "Pilih kelas karakter",
+        "text": "Sebagian besar situs menerima keempat — huruf besar, huruf kecil, angka, simbol. Beberapa situs lama menolak simbol."
+      },
+      {
+        "name": "Buat dan salin",
+        "text": "Klik 'Password baru' hingga Anda mendapatkan satu yang Anda sukai, kemudian salin langsung ke manajer password Anda."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apakah generator ini benar-benar aman?",
+      "a": "Ya. Kami menggunakan sumber acak aman dari Web Crypto API, bukan Math.random(). Implementasi yang disediakan vendor browser diaudit dan identik dengan yang mendukung HTTPS."
+    },
+    {
+      "q": "Apakah password meninggalkan browser saya?",
+      "a": "Tidak pernah. Pembuatan, perhitungan entropi, dan salin-ke-clipboard semuanya terjadi secara lokal. Kami tidak memiliki endpoint server untuk menerimanya bahkan jika kami mau."
+    },
+    {
+      "q": "Apakah 16 karakter cukup?",
+      "a": "Untuk akun online, ya — hampir selalu. Untuk password master manajer password atau kunci enkripsi, gunakan 24+ karakter atau gunakan passphrase 6 kata."
+    },
+    {
+      "q": "Mengapa pengukur kekuatan tidak menyukai password panjang saya?",
+      "a": "Ini hanya tahu kelas karakter apa yang Anda aktifkan. Jika Anda mengaktifkan hanya huruf kecil, alfabet hanya 26 — password panjang masih kuat tetapi tidak secepat berkembang."
+    },
+    {
+      "q": "Apa yang dimaksud 'bit entropi'?",
+      "a": "Ini adalah log₂ dari jumlah kemungkinan password yang dapat dihasilkan pengaturan Anda. 80 bit ≈ 1,2 × 10²⁴ kemungkinan — jauh melampaui jangkauan brute-force saat ini."
+    },
+    {
+      "q": "Haruskah saya menyertakan simbol?",
+      "a": "Ya jika diizinkan. Setiap simbol kira-kira menambah entropi gabungan angka plus huruf. Beberapa situs lama menolaknya; jika demikian, tingkatkan panjang untuk mengkompensasi."
+    },
+    {
+      "q": "Apakah 'hindari ambigu' sebaiknya digunakan?",
+      "a": "Gunakan hanya ketika Anda perlu membaca atau mengetik password secara manual. Matikan untuk manajer password — biaya keterbacaan terbuang sia-sia di sana."
+    },
+    {
+      "q": "Bisakah password yang sama dibuat dua kali?",
+      "a": "Secara teori ya, tetapi bahkan dengan 50 bit entropi peluang per pasang pembuatan adalah 1 dalam 2⁵⁰ ≈ 10¹⁵. Praktis tidak mungkin."
+    }
+  ]
+}

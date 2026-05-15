@@ -1,0 +1,102 @@
+{
+  "title": "Rolador de Dados (d4 a d100, com modificador e histórico)",
+  "shortDescription": "Role qualquer quantidade de dados com qualquer número de faces. Aleatório criptograficamente seguro, com modificador (+N), total acumulado e histórico de rolagens.",
+  "description": "Escolha a quantidade, os lados (4, 6, 8, 10, 12, 20, 100 ou personalizado até 1000) e o modificador. Cada rolagem usa crypto.getRandomValues para distribuição uniforme sem viés.",
+  "metaDescription": "Rolador de dados gratuito para D&D e qualquer TTRPG. d4/d6/d8/d10/d12/d20/d100 + personalizado, modificador, histórico.",
+  "keywords": [
+    "rolador de dados",
+    "dados online",
+    "rolagem d20",
+    "dados TTRPG",
+    "d6 d10 d100"
+  ],
+  "input": {
+    "count": "Quantos",
+    "sides": "Faces",
+    "modifier": "Modificador (±)"
+  },
+  "roll": "Rolar {count}d{sides}{modifier}",
+  "result": {
+    "total": "Total",
+    "history": "Rolagens recentes"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Como as rolagens são geradas",
+        "paragraphs": [
+          "Cada dado usa crypto.getRandomValues — a API de geração de números aleatórios criptograficamente segura do navegador, o mesmo primitivo que protege sessões HTTPS. Também aplicamos amostragem por rejeição para garantir que cada face tenha exatamente igual probabilidade, independentemente do tamanho do dado. O naive `random % faces` introduz viés quando o número de faces não divide perfeitamente em 2³².",
+          "Isso significa que um d100 não tem um ligeiro viés para 1-36 (o que aconteceria com um módulo mal implementado) e um d3 não favorece 1 em relação a 2 ou 3. A matemática é idêntica a dados físicos com precisão infinita."
+        ]
+      },
+      {
+        "heading": "Notação de TTRPG (RPG de Mesa)",
+        "paragraphs": [
+          "Notação comum: 'NdL+M' onde N é o número de dados, L é o número de lados e M é o modificador. '2d6+3' significa rolar 2 dados de seis faces e somar 3. '1d20+5' é uma rolagem típica de ataque no D&D com modificador +5 do bônus do personagem.",
+          "Conjuntos de dados padrão: d4 (pirâmide), d6 (cubo), d8 (octaedro), d10 (trapezoidóron pentagonal), d12 (dodecaedro), d20 (icosaedro). d100 geralmente é rolado como 2d10 (um para dezenas, outro para unidades). Use o preset d100 para pular a conversão manual."
+        ]
+      },
+      {
+        "heading": "Casos de uso comuns",
+        "paragraphs": [
+          "D&D / Pathfinder / TTRPGs: d20+5 para ataques, 1d8+3 para dano, 4d6 descartando o menor para criação de personagem.",
+          "Seleção aleatória: escolha um vencedor entre N pessoas rolando um dN. Para 7 pessoas, defina faces=7. A aleatoriedade criptográfica garante imparcialidade.",
+          "Aulas de probabilidade: role muitos dados e observe a distribuição. A soma de vários dados se aproxima de uma distribuição normal (teorema do limite central).",
+          "Tomada de decisão: 'devo fazer X' com 50/50? Role d2 (2 faces). Quer uma decisão ponderada? Use um d10 e defina limites (1-7 = sim, 8-10 = não para 70/30)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolha um preset de dado",
+        "text": "Ou digite um número de faces personalizado de 2 a 1000."
+      },
+      {
+        "name": "Defina a quantidade",
+        "text": "Quantos dados rolar de uma vez. Até 50."
+      },
+      {
+        "name": "Adicione um modificador",
+        "text": "Número plano opcional adicionado à soma."
+      },
+      {
+        "name": "Role",
+        "text": "Total, rolagens individuais e histórico recente são exibidos."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "As rolagens são realmente justas?",
+      "a": "Sim. Usamos crypto.getRandomValues (o RNG seguro) mais amostragem por rejeição para que cada face tenha exatamente igual probabilidade — sem viés de borda da operação de módulo."
+    },
+    {
+      "q": "Qual é o número máximo de dados?",
+      "a": "50 por rolagem. Para mais, simplesmente role várias vezes — cada uma é independente."
+    },
+    {
+      "q": "Qual é o máximo de faces?",
+      "a": "1000. Além disso a matemática ainda funciona, mas o caso de uso se torna incomum."
+    },
+    {
+      "q": "Posso salvar minhas combinações de dados favoritas?",
+      "a": "Ainda não. Podemos adicionar presets salvos mais tarde para suas rolagens de combate comuns."
+    },
+    {
+      "q": "Por que o d20 é famoso?",
+      "a": "Dungeons & Dragons o popularizou para verificações de habilidade e rolagens de ataque. Cada face tem 5% de probabilidade — granularidade fina para diferenças de habilidade sem a burocracia de um percentil (d100)."
+    },
+    {
+      "q": "Por que o histórico mostra apenas 10 rolagens?",
+      "a": "Para manter a página organizada. Para registros mais longos, cole cada resultado em um arquivo de notas ou ficha de personagem de RPG."
+    },
+    {
+      "q": "Isso vai substituir meus dados físicos?",
+      "a": "Funcionalmente sim, especialmente para jogos online. Os dados físicos são amados pela tátil e o ritual — mas matematicamente uma rolagem digital com crypto RNG é pelo menos tão justa quanto um d20 físico."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. Cada rolagem acontece localmente."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "title": "Seitenverhältnis-Rechner (Verhältnis beim Skalieren beibehalten)",
+  "shortDescription": "Berechne Breite oder Höhe, um ein Zielseitenverhältnis beizubehalten. Häufige Verhältnisse (16:9, 9:16, 1:1, 4:3, 21:9) als Ein-Klick-Voreinstellungen enthalten.",
+  "description": "Lege ein Zielverhältnis und eine Dimension fest; die andere wird automatisch ausgefüllt. Umgekehrte Richtung funktioniert genauso. Nützlich für Video, Fotobeschnitt und responsives Weblayout.",
+  "metaDescription": "Kostenloser Seitenverhältnis-Rechner. Verhältnisse wie 16:9, 9:16, 1:1, 4:3 beim Skalieren beibehalten. Fehlende Breite oder Höhe sofort berechnen.",
+  "keywords": ["Seitenverhältnis Rechner", "Verhältnis Skalierung", "16:9 Rechner", "Bild Seitenverhältnis", "Video Seitenverhältnis"],
+  "input": {
+    "ratioW": "Verhältnis B",
+    "ratioH": "Verhältnis H",
+    "width": "Breite",
+    "height": "Höhe"
+  },
+  "result": {
+    "ratio": "Seitenverhältnis",
+    "decimal": "Dezimal",
+    "dimensions": "Abmessungen",
+    "simplified": "Vereinfacht"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Was ein Seitenverhältnis ist",
+        "paragraphs": [
+          "Das Seitenverhältnis beschreibt die Breite im Verhältnis zur Höhe: 16:9 bedeutet 16 Einheiten breit für je 9 Einheiten hoch. Das gleiche Verhältnis gilt bei jeder Größe – 1920×1080 und 800×450 sind beide 16:9. Das Seitenverhältnis beim Skalieren beizubehalten verhindert verzerrte Bilder und ist die Grundlage des responsiven Designs.",
+          "Ganze Zahlen (16:9) oder Dezimalzahlen (1,78:1) werden als Verhältnis akzeptiert sowie beliebige Werte für Breite/Höhe. Bearbeite ein beliebiges Feld – die anderen werden aktualisiert, um das Verhältnis beizubehalten. Das Dezimalverhältnis (Breite / Höhe) wird für die Verwendung in CSS-calc()-Ausdrücken oder Videobearbeitungs-Tools angezeigt."
+        ]
+      },
+      {
+        "heading": "Häufige Verhältnisse und wo sie verwendet werden",
+        "paragraphs": [
+          "16:9 – modernes HDTV, Computermonitore, YouTube, die meisten Filme seit 2009. Der Standard für fast alles, was du heute tust.",
+          "9:16 – vertikale Videos für Instagram Stories, TikTok, YouTube Shorts. Die Kehrseite von 16:9 für Smartphone-Inhalte.",
+          "1:1 – quadratisch. Instagram-Feed-Standard bis 2021. Albumcover, Profilfotos.",
+          "4:3 – alte Fernseher und Computermonitore vor HD. Wird noch für einige klassische Inhalte verwendet.",
+          "3:2 – DSLR-Kamera-Standard. 35-mm-Film. Größere Abzüge.",
+          "21:9 – ultrabreites Kinoformat. Anamorphisch gedrehte Filme. Einige PC-Monitore und LG-Fernseher."
+        ]
+      },
+      {
+        "heading": "Warum CSS aspect-ratio wichtig ist",
+        "paragraphs": [
+          "Modernes CSS hat aspect-ratio: 16/9; – lege das Verhältnis fest und lass den Browser die Höhe aus der Breite berechnen (oder umgekehrt). Vermeidet den alten padding-bottom-Hack und ist unerlässlich für responsive Einbettungen und Bild-Platzhalter zur Vermeidung von Layout-Verschiebungen.",
+          "Cumulative Layout Shift (CLS) ist ein Core Web Vital. Eingebettete Videos, Bilder ohne Abmessungen und Anzeigen können alle CLS verursachen – behebe dies durch Angabe einer expliziten Breite/Höhe (die der Browser zur Berechnung des Seitenverhältnisses verwendet) oder durch Verwendung von CSS aspect-ratio."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Verhältnis wählen", "text": "Tippe auf eine Voreinstellung oder gib benutzerdefinierte B:H-Werte ein." },
+      { "name": "Bekannte Dimension eingeben", "text": "Entweder Breite oder Höhe – die andere wird automatisch ausgefüllt." },
+      { "name": "Beliebiges Feld bearbeiten", "text": "Aktualisierungen werden weitergegeben, um das Verhältnis beizubehalten." }
+    ]
+  },
+  "faq": [
+    { "q": "Was ist der Unterschied zwischen 16:9 und 1,78:1?", "a": "Dasselbe Verhältnis, unterschiedliche Schreibweise. 16/9 = 1,778. Die Doppelpunkt-Form ist in TV/Web üblich; die Dezimalform ist im Kino üblich." },
+    { "q": "Wie behalte ich das Seitenverhältnis in CSS bei?", "a": "Verwende die aspect-ratio-Eigenschaft: img { aspect-ratio: 16/9; width: 100%; height: auto; }. Das Bild füllt die Container-Breite und die Höhe passt sich an das Verhältnis an." },
+    { "q": "Warum sieht mein Video auf einem 4:3-Fernseher falsch aus?", "a": "Die meisten modernen Videos sind 16:9. Auf einem 4:3-Display werden sie entweder mit Letterbox (schwarze Balken), Pillarbox angezeigt oder gestreckt. Die Einstellungen des Fernsehers bestimmen, welche Option gewählt wird." },
+    { "q": "Kann ich nicht ganzzahlige Verhältnisse verwenden?", "a": "Ja – gib 1,5 oder 2,39 ein. Der Rechner behandelt sie als Dezimalzahlen; die vereinfachte Verhältnisausgabe erscheint nur bei ganzzahligen Verhältnissen." },
+    { "q": "Was ist ein 'Pixelseitenverhältnis'?", "a": "Ein separates Konzept: die Form eines einzelnen Pixels. Moderne Displays verwenden quadratische Pixel (1:1). Einige ältere SD-Videoformate verwendeten nicht-quadratische Pixel (z. B. 1,0667 für NTSC-Breitbild). Dieser Rechner behandelt das Anzeige-Seitenverhältnis, nicht das Pixel-Seitenverhältnis." },
+    { "q": "Was ist der 'Kino-Look'?", "a": "21:9 (genauer 2,39:1 oder 2,40:1) – breiter als HDTV. Üblich in modernen Blockbustern. Streaming-Dienste liefern Filme oft in diesem Format." },
+    { "q": "Warum verwenden Instagram Reels/TikTok 9:16?", "a": "Weil Smartphones typischerweise vertikal gehalten werden. 9:16 füllt den gesamten Smartphone-Bildschirm mit Inhalten; 16:9 hinterlässt Streifen oben und unten auf einem vertikalen Smartphone." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Die Berechnung läuft lokal." }
+  ]
+}

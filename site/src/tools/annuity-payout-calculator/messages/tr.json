@@ -1,0 +1,69 @@
+{
+  "title": "Anüite Ödeme Hesaplayıcı (sabit dönem)",
+  "shortDescription": "Anaparayı, faiz oranını ve ödeme dönemini girerek anüite ödemesini hesapla. Aylık veya yıllık dağıtım seçenekleri sunulur.",
+  "description": "Anapara, yıllık faiz oranı ve yıl sayısını gir. Dönemsel ödeme (aylık veya yıllık), toplam ödenen tutar, kazanılan toplam faiz ve ödeme sayısını öğren. Standart sabit dönem anüite formülü kullanılır.",
+  "metaDescription": "Ücretsiz anüite ödeme hesaplayıcı. Aylık veya yıllık sabit dönem dağıtımları. Toplam ödeme, kazanılan faiz ve ödeme sayısını gör. Tarayıcı tabanlı.",
+  "keywords": ["anüite ödeme hesaplayıcı", "sabit dönem anüite", "anüite çekimi", "emeklilik geliri hesaplayıcı", "sistemli çekim"],
+  "empty": "Sıfırdan büyük anapara ve süre girin.",
+  "input": {
+    "principal": "Anapara (toplu ödeme)",
+    "ratePct": "Yıllık faiz oranı %",
+    "years": "Ödeme dönemi (yıl)",
+    "frequency": "Ödeme sıklığı"
+  },
+  "freq": {
+    "monthly": "Aylık",
+    "annual": "Yıllık"
+  },
+  "result": {
+    "monthlyPayout": "Aylık ödeme",
+    "annualPayout": "Yıllık ödeme",
+    "totalPayout": "Toplam ödenen tutar",
+    "totalInterest": "Kazanılan toplam faiz",
+    "periods": "Ödeme sayısı"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Sabit dönem anüite matematiği",
+        "paragraphs": [
+          "Sabit dönem anüite, toplu bir tutarı belirli bir yıl sayısı boyunca eşit ödemeler serisine dönüştürür. Formül, kredinin itfa formülünün tersidir: anapara bankanın perspektifinden, ödeme ise mevduat sahibinin perspektifindedir. Standart form: ödeme = A × r / (1 − (1+r)⁻ⁿ), burada A anapara, r dönemsel faiz oranı, n dönem sayısıdır.",
+          "25 yıl boyunca aylık olarak %4 yıllık faizle ₺2.500.000 yatırırsanız formül yaklaşık ₺13.200/ay verir. Toplam ödenen: ₺3.955.000+. Kazanılan toplam faiz: ₺1.455.000+. Anüite, dönem boyunca anaparayı sıfıra tüketir; 'belirli dönem' denilen de budur — süre için garantilidir, daha fazlası değil."
+        ]
+      },
+      {
+        "heading": "Bu ile yalnızca faiz ya da %4 kuralının farkı",
+        "paragraphs": [
+          "Yalnızca faiz çekimi her dönem yalnızca faizi öder (A × r). ₺2.500.000 üzerinden %4 ile bu yıllık ₺100.000 demektir — anapara ise mirasçılar veya son dağıtım için sağlam kalır. Sabit dönem anüitesi anaparayı tükettiği için daha yüksek yıllık gelir sağlar: 25 yılda yıllık ₺155.000+ öder ama sonunda ₺0 kalır.",
+          "%4 kuralı, Trinity Study'den gelen stokastik getiri modelidir ve 30 yıl boyunca hisse/tahvil portföyleri için tasarlanmıştır. Ortalama ~%6-7 reel getiriyi varsayar ve tarihsel dizilerin büyük çoğunluğunu aşar. Buradaki anüite formülü sabit bir getiri varsayar; bu yüzden gerçek sabit anüite sözleşmeleri için kullanılır, portföy çekimleri için değil.",
+          "Garantili bir ürünü modellerken bu aracı kullan: mevduat merdiveni, sabit anüite sözleşmesi veya yapılandırılmış uzlaşma. Piyasaya yatırılmış portföy için Monte Carlo veya %4 kuralı hesaplayıcı kullan."
+        ]
+      },
+      {
+        "heading": "Vergi ve enflasyon uyarıları",
+        "paragraphs": [
+          "Ödeme nominaldir (bugünün parası). Gerçek satın alma gücü enflasyonla azalır: 25 yılda %3 enflasyonla ₺13.200'lük bir ödeme, 25. yılda bugünün parasıyla yaklaşık ₺6.300'e denk gelir. Enflasyona karşı korumalı gelir için enflasyona endeksli tahvil merdivenlerini veya TÜFEe endeksli anüiteleri araştır — her ikisinin de başlangıç ödemeleri daha düşüktür.",
+          "Vergiler kaynağa göre değişir. Vergi sonrası parayla alınan niteliksiz anüite yalnızca her ödemenin kazanç kısmından vergilendirilir. Nitelikli anüiteler (bireysel emeklilikten) tamamen vergiye tabidir. Bu hesaplayıcı vergi öncesi rakamları gösterir.",
+          "Faiz oranı girişi, anüite sözleşmesi ücretleri düşüldükten sonraki net credited oranı olmalıdır. Sigorta ürünleri genellikle brüt oranı belirtir ama %1-2 ücret keser; dolayısıyla dürüst bir projeksiyon için net oranı kullan."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Anapara gir", "text": "Anüitize edilecek toplu tutar. Mevcut bir anüite sözleşmesi için ödemelerin başladığı andaki birikmiş değeri kullan." },
+      { "name": "Yıllık oranı gir", "text": "Ücretler düşüldükten sonraki net credited oran. %4 için 4 gir. Çoğu sabit anüite için bu %3-6 arasındadır." },
+      { "name": "Dönemi seç", "text": "Anaparanın tükeneceği yıl sayısı. Yaygın değerler: 10, 15, 20, 25, 30 yıl." },
+      { "name": "Sıklığı seç", "text": "Emeklilik geliri için aylık en yaygın seçenektir; yıllık projeksiyonlar için daha basittir." },
+      { "name": "Ödemeyi oku", "text": "Dönem başına gelir, tam dönem boyunca toplam ve kazanılan toplam faiz." }
+    ]
+  },
+  "faq": [
+    { "q": "Bunun ömür boyu anüiteden farkı nedir?", "a": "Bu belirli dönem anüitesidir: sabit sayıda yıl boyunca öder, sonra durur. Ömür boyu anüiteler ölüme kadar (veya ortak ölüme kadar) öder. Sigorta şirketi ölüm riskini üstlendiğinden ömür boyu ödemeler dönem başına genellikle daha düşüktür." },
+    { "q": "Dönemi aşarsam anüite devam eder mi?", "a": "Hayır. 25 yıllık sabit dönem anüite 26. yılda ödemeyi durdurur. Bunu bilerek başından planlama yapmak önemlidir." },
+    { "q": "Hangi oranı kullanmalıyım?", "a": "Gerçek bir sabit anüite sözleşmesi için sözleşmede belirtilen net credited oranı kullan. Sabit getirili mevduat simülasyonu için ortalama mevduat faizini kullan. Yatırıma dayalı çekim için bu hesaplayıcı güvenliği abarttığından Monte Carlo aracı kullan." },
+    { "q": "Aylık ödeme × 12 neden yıllık ödeme hesabından farklıdır?", "a": "Aylık versiyon aylık bileşim uygular (daha sık bileşim = hafif farklı ödeme). %4 yıllık oranla aylık bileşim biraz daha yüksek efektif oran verir; dolayısıyla aylık × 12 ≈ yıllık ama tam olarak eşit değildir." },
+    { "q": "Süreç içinde anaparaya ekleme yapabilir miyim?", "a": "Çoğu sabit anüite sözleşmesi anüitizasyon sonrasında katkıya izin vermez. Bu araç tek primli senaryoyu modeller. Esnek eklemeler istiyorsan bunları ayrı ayrı modelleyip yeniden hesapla." },
+    { "q": "Enflasyon 'gerçek' değeri nasıl etkiler?", "a": "%3 enflasyonla 25. yıldaki para değeri, 1. yıldakinin yaklaşık %48'idir. Satın alma gücünü korumak için %2-3 TÜFE ek ödentisi eklemeyi düşün (başlangıç ödemesi daha düşük olur)." },
+    { "q": "Dönem sonunda kalan anapara ne olur?", "a": "Hiçbir şey — formül, anaparayı dönem boyunca tam olarak tükettirmek üzere tasarlanmıştır. Nihai bakiye tasarım gereği sıfırdır. Bunu yalnızca faiz veya asgari zorunlu dağıtım bazlı çekimlerle karşılaştır; orada anapara korunur." },
+    { "q": "Hesaplama veri paylaşıyor mu?", "a": "Hayır. Tamamen tarayıcı tabanlı hesaplama; hiçbir şey sunucuya gönderilmez." }
+  ]
+}

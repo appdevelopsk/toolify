@@ -1,0 +1,120 @@
+{
+  "title": "Hisse Senedi Kar Hesaplayıcı (temettü + vergi ile)",
+  "shortDescription": "Alım/satım komisyonları, alınan temettüler ve sermaye kazancı vergisi dahil hisse senedi işlem karını hesaplayın. Vergi sonrası net kar ve ROI döndürür.",
+  "description": "Hisse sayısı, alım/satım fiyatları, komisyonlar, alınan temettüler ve sermaye kazancı vergi oranınızı girin. Hesaplayıcı toplam kazanç, ödenecek vergi ve vergi sonrası neti döndürür.",
+  "metaDescription": "Temettü ve vergi desteğiyle ücretsiz hisse senedi kar hesaplayıcısı. Herhangi bir işlem için sermaye kazancı, temettü geliri, ödenecek vergi ve vergi sonrası ROI",
+  "keywords": [
+    "hisse senedi kar hesaplayıcı",
+    "hisse işlem karı",
+    "sermaye kazancı hesaplayıcı",
+    "hisse ROI",
+    "vergi sonrası kar"
+  ],
+  "empty": "Hisse sayısı, alım ve satım fiyatları, temettüler ve vergi oranı girin.",
+  "input": {
+    "shares": "Hisse sayısı",
+    "buyPrice": "Alım fiyatı (hisse başına)",
+    "sellPrice": "Satım fiyatı (hisse başına)",
+    "buyCommission": "Alım komisyonu",
+    "sellCommission": "Satım komisyonu",
+    "dividends": "Alınan temettüler",
+    "taxPct": "Sermaye kazancı vergisi %"
+  },
+  "result": {
+    "afterTax": "Vergi sonrası kar",
+    "roi": "ROI (vergi sonrası)",
+    "cost": "Toplam maliyet",
+    "gross": "Brüt gelir",
+    "capitalGain": "Sermaye kazancı",
+    "dividendsLabel": "Temettüler",
+    "totalGain": "Toplam kazanç (vergi öncesi)",
+    "totalTax": "Ödenecek vergi"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Hisse senedi işlem karına dahil olanlar",
+        "paragraphs": [
+          "Hisse senedi karının üç ana bileşeni vardır: sermaye kazancı (satış fiyatı eksi alış fiyatı, çarpı hisse sayısı, eksi komisyonlar), elde tutma sürenizde alınan temettüler ve birleşik kazanç üzerindeki vergi. Çoğu hesaplayıcı bunlardan yalnızca birini hesaplar — doğru bir vergi sonrası sonuç için üçünü birden hesaplıyoruz.",
+          "Komisyonlar: birçok Türk aracı kurum belirli işlem limitleri üzerinde sabit komisyon alır. BIST işlemleri için tipik komisyon oranları %0,1-0,3 arasında değişir. Her zaman aracı kurumunuzun ücret tarifesini kontrol edin."
+        ]
+      },
+      {
+        "heading": "Vergi oranı: Türkiye'de sermaye kazancı",
+        "paragraphs": [
+          "Türkiye: BIST'te işlem gören hisseler için elde tutma süresine bağlı olarak stopaj vergisi uygulanır. 1 yıldan fazla tutulan hisse senetleri için stopaj oranı %0 (uzun vadeli yatırımı teşvik etmek amacıyla muaf tutulmuştur). 1 yıldan az tutulan hisse senetlerinde stopaj oranı %10'dur.",
+          "Yabancı hisse senetleri ve fonlar farklı vergilendirmeye tabi olabilir. Temettü gelirleri için genellikle %15 stopaj uygulanır. Detaylar için GİB veya mali müşavirinize danışın.",
+          "BYF (Borsa Yatırım Fonu) ve tahvil kazançları için farklı oranlar geçerlidir — bu hesaplayıcı girdiğiniz oranı doğrudan uygular."
+        ]
+      },
+      {
+        "heading": "Bu hesaplayıcının modellemedikleri",
+        "paragraphs": [
+          "Alım-satım spread maliyetleri: teklif fiyatından almak ve teklif fiyatına satmak her işlemde küçük bir örtük maliyet anlamına gelir. Likit büyük şirketler için ihmal edilebilir; likit olmayan küçük şirketler için %0,5-2 olabilir. Gerçekçi işlem fiyatları kullanın.",
+          "Döviz dönüşümü: TL ile yabancı hisse satın aldıysanız, getiriniz alım ve satım arasındaki döviz kuru hareketlerinden de etkilenir. Döviz hesaplamıyoruz — her işlem zamanında kendi para biriminizde fiyatları girin.",
+          "Karmaşık vergi durumları: zarar mahsubu ve diğer vergi optimizasyonları bu hesaplayıcının kapsamı dışındadır. Karmaşık durumlar için mali müşavir danışmanızı öneririz."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Hisse sayısını girin",
+        "text": "Alınan hisse sayısı."
+      },
+      {
+        "name": "Alım ve satım fiyatlarını girin",
+        "text": "Her işlemdeki hisse başına fiyatlar."
+      },
+      {
+        "name": "Komisyonları girin",
+        "text": "Alım ve satımda işlem başına ücretler. Aracı kurumunuz ücretsizse 0 kullanın."
+      },
+      {
+        "name": "Alınan temettüleri girin",
+        "text": "Elde tutma sürenizde ödenen toplam temettüler."
+      },
+      {
+        "name": "Vergi oranını girin",
+        "text": "Geçerli sermaye kazancı oranınız. Türkiye 1 yıl altı: %10. Türkiye 1 yıl üzeri: %0."
+      },
+      {
+        "name": "Dökümü okuyun",
+        "text": "Vergi sonrası kar, ROI, sermaye kazancı, temettü geliri, toplam vergi."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Bu BYF ve yatırım fonları için çalışıyor mu?",
+      "a": "Evet — aynı matematik. Fonlar temettü ve sermaye kazancı dağıtabilir; her iki tutarı da temettü alanına girin veya oranlar farklıysa kaynak başına ayrı hesaplama yapın."
+    },
+    {
+      "q": "Yeniden yatırılan temettüler için ne yapmalıyım?",
+      "a": "Her yeniden yatırım çoğu yargı bölgesinde yeni bir vergi lotu olarak işlenir. Bu hesaplayıcı tek bir alım/satım varsayar — yeniden yatırım için birden fazla hesaplama yapın veya aracı kurum vergi belgelerini kullanın."
+    },
+    {
+      "q": "Hesaplayıcı neden zararlara da vergi uygular?",
+      "a": "Uygulamaz — yalnızca sermaye kazancı veya temettüler pozitif olduğunda vergi uygularız. Zarar birçok ülkede toplam vergiyi azaltır, ancak kurallar değiştiğinden zarar işlemini manuel olarak bırakıyoruz."
+    },
+    {
+      "q": "'Sermaye kazancı vergi indirimi' nedir?",
+      "a": "Bazı ülkeler sermaye kazancı vergisi başlamadan önce yıllık vergisiz indirim sunar. İndirimi kazançtan çıkarın, ardından vergi oranını uygulayın veya daha düşük efektif oran olarak modelleyin."
+    },
+    {
+      "q": "Aracı kurum abonelik ücretlerini dahil etmeli miyim?",
+      "a": "Abonelik/hesap ücretleri genellikle toplam getiriden düşülebilir ama belirli bir işleme özgü değildir. Aracı kurumunuz bunları alıyorsa vergi sonrası kardan çıkarın."
+    },
+    {
+      "q": "Bu kripto hesaplayıcısından nasıl farklı?",
+      "a": "Hisseler temettü öder; kripto genellikle ödemez. Kripto ücret % kullanır (işlem boyutuna göre değişir); hisseler genellikle sabit komisyon kullanır. Matematik benzerdir ama girdiler farklıdır."
+    },
+    {
+      "q": "ROI negatif olabilir mi?",
+      "a": "Evet. Satış fiyatı + temettüler < alış fiyatı + komisyonlar + vergi (temettü vergisinin temettü gelirini aştığı nadir durum) ise ROI negatiftir."
+    },
+    {
+      "q": "Veriler tarayıcımdan çıkıyor mu?",
+      "a": "Hayır. Hesaplama yerel olarak çalışır; hiçbir şey sunucuya gönderilmez."
+    }
+  ]
+}

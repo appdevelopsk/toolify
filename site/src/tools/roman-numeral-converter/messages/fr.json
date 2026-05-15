@@ -1,0 +1,102 @@
+{
+  "title": "Convertisseur de Chiffres Romains (1 à 3999, les deux sens)",
+  "shortDescription": "Convertit les nombres arabes en chiffres romains (et inversement). Valide la forme canonique pour que VIIII ne soit pas silencieusement accepté comme 9.",
+  "description": "Tape un nombre de 1 à 3999 pour obtenir le chiffre romain, ou colle des chiffres romains pour convertir dans l'autre sens. La validation stricte rejette les formes non canoniques.",
+  "metaDescription": "Convertisseur de chiffres romains gratuit. Convertit les nombres 1-3999 en chiffres romains ou décode le romain en arabe.",
+  "keywords": [
+    "convertisseur chiffres romains",
+    "arabe en romain",
+    "romain en nombre",
+    "MMXXVI",
+    "chiffres romains"
+  ],
+  "input": {
+    "number": "Nombre (1 à 3999)",
+    "roman": "Chiffre romain"
+  },
+  "result": {
+    "roman": "Chiffre romain",
+    "number": "Nombre arabe"
+  },
+  "mode": {
+    "toRoman": "Nombre → Romain",
+    "fromRoman": "Romain → Nombre"
+  },
+  "error": {
+    "invalidNumber": "Saisis un entier.",
+    "outOfRange": "Les chiffres romains ne supportent que 1 à 3999.",
+    "invalidRoman": "Chiffre romain invalide (forme canonique requise)."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionnent les chiffres romains",
+        "paragraphs": [
+          "Les chiffres romains utilisent sept lettres : I=1, V=5, X=10, L=50, C=100, D=500, M=1000. Les nombres se forment par addition (II=2, XX=20) ou par soustraction quand une petite lettre précède une plus grande (IV=4, IX=9, XL=40, XC=90, CD=400, CM=900). Chaque lettre peut se répéter au maximum trois fois de suite, c'est pourquoi 4 s'écrit IV et non IIII.",
+          "La notation romaine standard supporte 1 à 3999. Les nombres ≥ 4000 nécessitent une notation avec ligne surchargée (V̄ = 5000) difficile à taper et rarement utilisée aujourd'hui, donc ce convertisseur se limite à 3999."
+        ]
+      },
+      {
+        "heading": "Romain canonique vs informel",
+        "paragraphs": [
+          "La forme canonique stricte suit les règles ci-dessus. Le romain 'informel' (parfois appelé 'archaïque') autorise des choses comme IIII pour 4 — on le voit sur les cadrans de montres, où la symétrie est préférée. Ce convertisseur exige la forme canonique en entrée et produit la forme canonique en sortie. Donc 'IIII' est rejeté ; tape 'IV' à la place.",
+          "Le décodeur valide en ré-encodant : analyse le romain, obtient le nombre, encode ce nombre, et vérifie que ça correspond à l'entrée. Tout ce qui ne fait pas le tour est rejeté. Cela attrape 'VV' (incorrectement = 10), 'IIX' (incorrectement = 8) et autres formes non standard."
+        ]
+      },
+      {
+        "heading": "Où les chiffres romains apparaissent aujourd'hui",
+        "paragraphs": [
+          "Les dates de copyright au cinéma (MCMXCIX = 1999), la numérotation des Super Bowls et des Jeux Olympiques, les séquences de monarques et papes (Henri VIII, Jean XXIII), les chapitres de livres et plans, les cadrans d'horloge, et les marqueurs d'années stylisés. Ils ont largement disparu de l'usage arithmétique car l'arithmétique en chiffres arabes est bien plus facile — essaie de multiplier MCXLVII par IV et tu comprendras pourquoi."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis le sens",
+        "text": "Nombre→Romain ou Romain→Nombre."
+      },
+      {
+        "name": "Tape ta valeur",
+        "text": "Un entier de 1 à 3999, ou un chiffre romain."
+      },
+      {
+        "name": "Lis le résultat",
+        "text": "Une entrée invalide affiche une erreur spécifique pour que tu puisses la corriger."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Pourquoi IIII n'est-il pas accepté comme 4 ?",
+      "a": "Le romain canonique écrit 4 en IV. IIII apparaît sur certains cadrans d'horloge mais n'est pas la notation arithmétique standard. Utilise IV."
+    },
+    {
+      "q": "Quel est le plus grand chiffre romain ?",
+      "a": "Sans ligne surchargée, 3999 = MMMCMXCIX. Les nombres au-delà nécessitent une notation avec ligne surchargée que nous ne supportons pas."
+    },
+    {
+      "q": "Peut-on avoir zéro ?",
+      "a": "Les Romains n'avaient pas de zéro. La notation commence à 1 (I)."
+    },
+    {
+      "q": "Que signifie CMXLIV ?",
+      "a": "CM=900, XL=40, IV=4. Total = 944. Paires soustractives (CM, XL, IV) et leurs composantes."
+    },
+    {
+      "q": "Comment lire MMXXVI ?",
+      "a": "MM=2000, XX=20, VI=6. Total = 2026."
+    },
+    {
+      "q": "Pourquoi les 4 sur les cadrans d'horloge sont-ils parfois IIII ?",
+      "a": "Tradition. Les horlogers préféraient historiquement IIII pour la symétrie visuelle avec VIII (quatre caractères chacun). Ce n'est pas 'correct' canoniquement."
+    },
+    {
+      "q": "Les chiffres romains sont-ils en base 10 ?",
+      "a": "Ils ont des lettres groupées décimalement (I/V pour les unités, X/L pour les dizaines, C/D pour les centaines, M pour les milliers) mais utilisent l'addition et la soustraction plutôt que la notation positionnelle. Ils sont donc d'influence décimale mais non positionnels."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. La conversion s'exécute localement."
+    }
+  ]
+}

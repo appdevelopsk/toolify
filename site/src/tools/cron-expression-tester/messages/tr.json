@@ -1,0 +1,101 @@
+{
+  "title": "Cron İfadesi Test Aracı (sonraki 5 çalışmayı önizle)",
+  "shortDescription": "Cron ifadelerini test et ve yerel saat diliminizde sonraki 5 zamanlanmış çalışmayı gör. Alanları doğrular, aralıkları, listeleri ve adımları destekler.",
+  "description": "5 alanlı cron ifadesi yaz (dk, saat, ay-günü, ay, hafta-günü) ve sonraki 5 tetikleme zamanını gör. Yaygın ön ayarlar dahildir.",
+  "metaDescription": "Ücretsiz cron ifadesi test aracı. Sözdizimini doğrula ve yerel saat diliminde sonraki 5 tetikleme zamanını önizle.",
+  "keywords": [
+    "cron test aracı",
+    "crontab test aracı",
+    "cron sonraki çalışma",
+    "zamanlama önizleme",
+    "cron sözdizimi"
+  ],
+  "input": {
+    "expr": "Cron ifadesi",
+    "format": "Biçim"
+  },
+  "result": {
+    "next5": "Sonraki 5 çalışma"
+  },
+  "error": {
+    "label": "Hata",
+    "fieldCount": "ifade tam olarak 5 alan içermelidir"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Beş alanda cron sözdizimi",
+        "paragraphs": [
+          "Standart cron 5 boşlukla ayrılmış alana sahiptir: dakika (0-59), saat (0-23), ay günü (1-31), ay (1-12), haftanın günü (0-6, 0=Pazar). Her alan şunları kabul eder: tek bir değer (5), aralık (1-5), liste (1,3,5), adım (*/15 her 15 demek) veya joker (*). Kombinasyonlar çalışır: 1-5,10/2, 1-5 ardından 10'dan başlayarak her 2 anlamına gelir.",
+          "Bu test aracı katı POSIX/Linux crontab lehçesini kullanır. Bazı sistemler cron'u adlandırılmış aylar (OCA-ARA) veya haftanın günleriyle genişletir — bunlar burada desteklenmez. Tam uyumluluk için sayısal değerler kullan."
+        ]
+      },
+      {
+        "heading": "Yaygın kalıplar",
+        "paragraphs": [
+          "*/5 * * * * — her 5 dakikada bir. Önbellek yenileme ve kısa yoklamalar için kullanışlı.",
+          "0 9 * * 1-5 — her hafta içi sabah 9. Ofis saati raporları.",
+          "0 0 1 * * — her ayın 1'inde gece yarısı. Aylık fatura veya istatistik toplamları.",
+          "0 */6 * * * — her 6 saatte bir (00:00, 06:00, 12:00, 18:00). Uzun yoklamalar.",
+          "0 0 * * 0 — her Pazar gece yarısı. Haftalık raporlar.",
+          "*/15 9-17 * * 1-5 — hafta içi mesai saatlerinde her 15 dakikada bir. Aktif saat yoklaması."
+        ]
+      },
+      {
+        "heading": "Ay günü ile haftanın günü",
+        "paragraphs": [
+          "Her iki alan da değerleri kabul eder, ama dikkat: standart lehçede her iki alan da ayarlandığında ('*' değil), cron her iki koşuldan HERHANGI BİRİ eşleştiğinde çalışır, her ikisi birden değil. Yani `0 0 1 * 1` (ayın 1'i VEYA Pazartesi) düşündüğünden daha sık tetiklenir.",
+          "'Ayın ilk Pazartesisi' ile kısıtlamak için cron tek başına bunu doğrudan yapamaz — ya günlük bir betik çalıştırıp içinde ay-günü <= 7 kontrolü yapman, ya da daha ifadeli zamanlamayı destekleyen bir zamanlayıcı kullanman gerekir."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Cron ifadesi yaz",
+        "text": "5 alan: dakika, saat, ay-günü, ay, haftanın günü."
+      },
+      {
+        "name": "Veya ön ayar seç",
+        "text": "Yaygın kalıplar tek tıkla yüklenir."
+      },
+      {
+        "name": "Sonraki 5 çalışmayı oku",
+        "text": "Tarayıcının yerel saat diliminde zamanlar. Dağıtmadan önce zamanlamayı doğrulamak için kullanışlı."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Neden yerel saat dilimimde 5 çalışma görüyorum?",
+      "a": "Cron her zaman sunucunun yerel saat dilimindedir. Tarayıcının saat dilimi burada görüntülenendir. Gerçek cron daemon'ları sunucunun TZ ayarını kullanır; barındırma sağlayıcını kontrol et."
+    },
+    {
+      "q": "Adlandırılmış aylar/haftanın günlerini kullanabilir miyim?",
+      "a": "Henüz değil — yalnızca sayısal değerler. OCA/PAZ tarzı takma adlar daha sonra eklenebilir."
+    },
+    {
+      "q": "* ile ? arasındaki fark nedir?",
+      "a": "Standart cron'da ikisi aynıdır. Bazı Quartz lehçeleri ay-günü ve haftanın günü alanları için 'belirtilmemiş' anlamına ? kullanır. Standart cron bunları aynı değerlendirir."
+    },
+    {
+      "q": "Ay günü + haftanın günü neden beklediğim gibi çalışmıyor?",
+      "a": "Her iki alan da '*' değilse standart cron VEYA kullanır (herhangi biriyle eşleşir). 'Ayın ilk Pazartesi'si gibi VE almak için sarmalayıcı betik veya daha ifadeli zamanlayıcı gerekir."
+    },
+    {
+      "q": "Saniyeler destekleniyor mu?",
+      "a": "Standart cron dakika hassasiyetindedir. Bazı sistemler saniyeler için altıncı alan ekler; bunu desteklemiyoruz. Saniye hassasiyeti gerekiyorsa setInterval veya farklı bir zamanlayıcı kullan."
+    },
+    {
+      "q": "Ayrıntı düzeyi sınırı nedir?",
+      "a": "Dakika düzeyi. 1 dakikadan daha ince zamanlamalar cron'da ifade edilemez."
+    },
+    {
+      "q": "Geçmişteki cron ifadelerini test edebilir miyim?",
+      "a": "'Şimdi'den ileriye doğru hesaplıyoruz. Tarihsel analiz için programlama dilinin cron kütüphanesini kullan."
+    },
+    {
+      "q": "Veriler tarayıcımı terk ediyor mu?",
+      "a": "Hayır. Ayrıştırma ve hesaplama tamamen yereldir."
+    }
+  ]
+}

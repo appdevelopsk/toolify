@@ -1,0 +1,53 @@
+{
+  "title": "Generator UUID (v4 acak, v7 berurutan waktu)",
+  "shortDescription": "Hasilkan UUID v4 acak kriptografis atau UUID v7 berurutan waktu. Hasilkan massal hingga 100 sekaligus dengan salin satu klik.",
+  "description": "Klik untuk menghasilkan satu atau banyak UUID. Gunakan v4 untuk ID yang sepenuhnya acak dan v7 untuk ID yang dapat diurutkan berdasarkan waktu yang secara alami berurutan berdasarkan waktu pembuatan — berguna untuk kunci database.",
+  "metaDescription": "Generator UUID gratis untuk v4 (acak) dan v7 (berurutan waktu). Aman kriptografis, hasilkan massal hingga 100, salin masing-masing atau salin semua.",
+  "keywords": ["generator UUID", "UUID v4", "UUID v7", "generator GUID", "UUID acak"],
+  "count": "Jumlah",
+  "regenerate": "Hasilkan ulang",
+  "copy": "Salin",
+  "copyAll": "Salin semua",
+  "copied": "Disalin",
+  "article": {
+    "sections": [
+      {
+        "heading": "Kapan menggunakan v4 vs v7",
+        "paragraphs": [
+          "UUID v4 sepenuhnya acak — 122 bit acak dengan dua bit versi/varian, memberikan sekitar 5,3 × 10³⁶ kemungkinan nilai. Dua tidak akan pernah bertabrakan secara praktis. Gunakan v4 di mana pun Anda tidak memerlukan pengurutan, seperti ID permintaan API atau pengenal pengguna anonim.",
+          "UUID v7 (RFC 9562, diterbitkan 2024) dimulai dengan timestamp milidetik Unix 48-bit diikuti oleh 74 bit acak. Mereka diurutkan secara leksikografis dalam urutan pembuatan, yang sangat penting untuk performa database — kunci utama yang diurutkan berdasarkan waktu berarti penyisipan selalu masuk ke akhir B-tree, tidak ada pemisahan halaman acak. Gunakan v7 untuk kunci utama database baru."
+        ]
+      },
+      {
+        "heading": "Cara generator ini bekerja",
+        "paragraphs": [
+          "Baik v4 maupun v7 menggunakan crypto.getRandomValues — sumber acak aman browser, primitif yang sama yang digunakan oleh HTTPS dan manajer kata sandi. v4 mengisi 122 bit secara acak. v7 membagi 48 bit timestamp + 74 bit acak ditambah penanda versi/varian sesuai RFC.",
+          "Generasi terjadi di browser Anda. UUID tidak disimpan atau dikirimkan. Jika Anda menghasilkan 100 UUID v4, kemungkinan tabrakan di antara keduanya sangat kecil secara astronomis — jauh di bawah kemungkinan sinar kosmik membalik bit di CPU Anda."
+        ]
+      },
+      {
+        "heading": "Jebakan umum UUID",
+        "paragraphs": [
+          "UUID v4 sebagai kunci utama database merusak performa dibandingkan bilangan bulat auto-increment karena nilai acak menyebabkan pemisahan halaman B-tree selama penyisipan. v7 memperbaiki ini — gunakan v7 jika Anda menginginkan manfaat UUID tanpa masalah indeks.",
+          "Jangan ekspos UUID kepada pengguna di mana kemampuan ditebak penting. UUID v4 memiliki 122 bit entropi dan tidak dapat ditebak. UUID v7 membocorkan waktu pembuatan, yang baik untuk sebagian besar kegunaan tetapi buruk jika waktu pembuatan sensitif.",
+          "UUID adalah 36 karakter termasuk tanda hubung (32 hex + 4 tanda hubung). Mereka membutuhkan 16 byte biner atau 36 byte teks. Untuk kolom dengan kardinalitas sangat tinggi, pertimbangkan penyimpanan sebagai BLOB biner / tipe native UUID daripada VARCHAR(36)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih v4 atau v7", "text": "v4 untuk sepenuhnya acak, v7 untuk berurutan waktu." },
+      { "name": "Atur jumlah", "text": "1 hingga 100. Default adalah 5." },
+      { "name": "Salin yang Anda butuhkan", "text": "Klik 'Salin' di sebelah UUID, atau 'Salin semua' untuk mengambil semuanya sebagai daftar yang dipisahkan baris baru." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah ini aman secara kriptografis?", "a": "Ya. Baik v4 maupun v7 menggunakan crypto.getRandomValues, API acak aman. v4 memiliki 122 bit entropi; v7 memiliki 74." },
+    { "q": "Mengapa v7 lebih baik untuk kunci database?", "a": "Karena UUID v7 diurutkan berdasarkan waktu pembuatan, penyisipan selalu masuk di akhir indeks B-tree alih-alih posisi acak. Ini menghindari pemisahan halaman dan secara dramatis meningkatkan throughput penulisan." },
+    { "q": "Bisakah dua UUID bertabrakan?", "a": "Secara teoritis ya. Dengan v4 Anda perlu menghasilkan ~10¹⁸ sebelum risiko tabrakan 50% apapun. Dengan v7 komponen waktu mengurangi ini menjadi sekitar 2⁷⁴ dalam milidetik yang sama — masih praktis tidak mungkin." },
+    { "q": "Apakah UUID sama dengan GUID?", "a": "Ya. GUID adalah nama Microsoft untuk UUID. Format yang sama, jaminan keunikan yang sama." },
+    { "q": "Apa formatnya?", "a": "8-4-4-4-12 digit hex dengan tanda hubung. Total 32 karakter hex + 4 tanda hubung = 36 karakter. Huruf kecil menurut konvensi RFC." },
+    { "q": "Haruskah saya menggunakan v1?", "a": "v1 menyertakan alamat MAC, yang merupakan kebocoran privasi. v7 menggantikan v1 untuk ID berurutan waktu tanpa mengekspos pengenal perangkat keras." },
+    { "q": "Bisakah saya menghasilkan v4 dalam Base64 aman URL?", "a": "Tidak secara langsung di sini. Enkode 16 byte UUID sebagai Base64 aman URL untuk mendapatkan ID 22 karakter. Berguna untuk URL yang lebih pendek." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Generasi terjadi sepenuhnya di browser Anda." }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "title": "Testador de Força de Senha (entropia + tempo de quebra)",
+  "shortDescription": "Teste a força da senha com bits de entropia, análise de charset, verificação de senhas comuns e tempo estimado de quebra em vários cenários de ataque.",
+  "description": "Digite uma senha (somente no navegador, nunca transmitida). O testador calcula entropia, cobertura de charset, risco de correspondência com dicionário e mostra tempos estimados de quebra para ataques de GPU offline, limites de API online e ataques online lentos.",
+  "metaDescription": "Testador gratuito de força de senha. Bits de entropia, estimativas de tempo de quebra, análise de charset, detecção de senhas comuns e padrões. Somente no navegador.",
+  "keywords": ["testador de força de senha", "entropia de senha", "calculadora de tempo de quebra", "segurança de senha", "teste de senha"],
+  "input": {
+    "password": "Senha",
+    "privacyNote": "Testada inteiramente no seu navegador. Nunca enviada ou armazenada em lugar nenhum."
+  },
+  "show": "Mostrar",
+  "hide": "Ocultar",
+  "result": {
+    "strength": "Força",
+    "length": "Comprimento",
+    "charsetSize": "Tamanho do charset",
+    "entropy": "Entropia",
+    "bits": "bits",
+    "lowercase": "Minúsculas a-z",
+    "uppercase": "Maiúsculas A-Z",
+    "digits": "Dígitos 0-9",
+    "symbols": "Símbolos",
+    "crackTime": "Tempo estimado de quebra",
+    "crackOffline": "GPU offline (10⁹⁰/s)",
+    "crackOnlineFast": "Online rápido (1k/s)",
+    "crackOnlineSlow": "Online lento (100/s)",
+    "warningsHeading": "Alertas"
+  },
+  "level": {
+    "veryWeak": "Muito fraca",
+    "weak": "Fraca",
+    "fair": "Razoável",
+    "strong": "Forte",
+    "veryStrong": "Muito forte"
+  },
+  "warning": {
+    "isCommon": "Esta senha aparece em listas de senhas comuns. Não a use.",
+    "tooShort": "Comprimento abaixo de 8 — muito curta para qualquer segurança real.",
+    "hasRepeated": "Caracteres repetidos (ex.: 'aaa') reduzem a entropia no mundo real.",
+    "hasSequential": "Padrões sequenciais (1234, qwer, abcd) são fáceis de adivinhar.",
+    "limitedCharset": "Senhas com charset único (apenas minúsculas, apenas dígitos) são fracas mesmo quando longas."
+  },
+  "time": {
+    "instant": "instantâneo",
+    "yrs": "anos",
+    "eternity": "eternidade"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "O que 'entropia' significa para senhas",
+        "paragraphs": [
+          "A entropia mede a imprevisibilidade em bits. Uma senha com 30 bits de entropia precisa de ~2³⁰ ≈ 1 bilhão de tentativas em média para ser quebrada. 70+ bits é geralmente considerado forte; 80+ é excelente.",
+          "Fórmula: entropia = comprimento × log₂(tamanho_do_charset). 'abcdefgh' (8 chars, somente minúsculas) = 8 × log₂(26) ≈ 37,6 bits. 'aA1!aaaa' (8 chars, todos os charsets) = 8 × log₂(95) ≈ 52,6 bits — mas o tempo de quebra é muito pior do que 52 bits sugere porque 'aaaa' é um padrão comum."
+        ]
+      },
+      {
+        "heading": "Por que os tempos de quebra variam tanto",
+        "paragraphs": [
+          "GPU offline: um hash de senha vazado sendo atacado offline. GPUs modernas podem adivinhar 10⁹+ hashes MD5 por segundo; hashes bcrypt apenas 10⁴-10⁵/s. A estimativa aqui usa a premissa de hash rápido de GPU.",
+          "Online rápido: um atacante tentando diretamente em uma API de login. A maioria das APIs tem algum limite de taxa; 1.000 tentativas/seg é uma estimativa de ponta para um endpoint mal defendido.",
+          "Online lento: um endpoint bem defendido com limites estritos de taxa, bloqueio de conta e CAPTCHA. 100 tentativas/seg é generoso; muitos sistemas permitem apenas 5-10/min.",
+          "Essas estimativas ignoram fatores do mundo real como ataques de dicionário (que encontram senhas comuns muito mais rápido do que força bruta) e reutilização de senhas (quebrar o vazamento de um site ajuda a quebrar outros)."
+        ]
+      },
+      {
+        "heading": "O que torna uma senha forte",
+        "paragraphs": [
+          "Comprimento sobre complexidade: uma passphrase de 16 caracteres como 'cavalo correto bateria grampo' é mais forte do que um torturado 'S3nh@123!'. A percepção do XKCD de 2011 ainda se mantém: 4 palavras aleatórias dão ~44 bits de entropia.",
+          "Evite padrões: datas, nomes, '123', 'qwer', caracteres repetidos reduzem a entropia real abaixo do valor da fórmula. As ferramentas de ataque incluem extensas transformações 'baseadas em regras' (ex.: 'senha' → 'S3nh@!').",
+          "Use um gerenciador de senhas: humanos escolhem padrões; gerenciadores não. Bitwarden, 1Password, KeePass geram senhas verdadeiramente aleatórias por site, com 16+ caracteres em todos os charsets. A única senha que você precisa lembrar é a senha mestra — e essa deve ser uma longa passphrase memorável."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Digite a senha", "text": "É testada inteiramente no lado do cliente. Use o botão Mostrar se não conseguir ver o que está digitando." },
+      { "name": "Leia o medidor de força", "text": "Cinco segmentos. Busque 4-5 (Forte/Muito forte) em contas importantes." },
+      { "name": "Verifique entropia e tempos de quebra", "text": "Maior entropia = maior tempo de quebra. Preste atenção nos alertas sobre padrões comuns." },
+      { "name": "Ajuste conforme necessário", "text": "Adicione comprimento, misture charsets, evite palavras comuns. Teste variantes até ficar satisfeito." }
+    ]
+  },
+  "faq": [
+    { "q": "Minha senha é enviada para algum lugar?", "a": "Não. Tudo é executado localmente no seu navegador. Não vemos, armazenamos ou transmitimos sua senha." },
+    { "q": "Por que minha senha longa mostra baixa entropia?", "a": "Comprimento não é tudo — repetir 'a' 50 vezes tem entropia real muito baixa. A calculadora usa uma fórmula simples, mas sinaliza padrões repetidos/sequenciais. Para melhores resultados: longa, variada, sem padrões." },
+    { "q": "Esses tempos de quebra são precisos?", "a": "São estimativas baseadas em força bruta simples. Crackers reais usam dicionários, padrões comuns e bancos de dados de senhas vazadas primeiro — então uma senha 'comum' pode ser quebrada em segundos apesar de alta entropia pela fórmula." },
+    { "q": "Devo me preocupar com computadores quânticos?", "a": "Eventualmente sim — o algoritmo de Grover reduz pela metade os bits efetivos da criptografia simétrica. Por ora, 80+ bits de entropia é confortável; 128+ para segredos de muito longo prazo." },
+    { "q": "Por que a ferramenta sinaliza 'S3nh@1' mesmo tendo todos os charsets?", "a": "Porque 'senha' está em dicionários e substituições triviais (s → S, e → 3, a → @) fazem parte do conjunto de regras de toda ferramenta de quebra. Use senhas verdadeiramente aleatórias ou em estilo passphrase, não substituições de palavras comuns." },
+    { "q": "Uma passphrase de 4 palavras é realmente segura?", "a": "Razoavelmente. 4 palavras aleatórias de uma lista de 7.000 = ~52 bits de entropia. Mais forte do que a maioria das senhas complexas de 8 caracteres. Mas escolha suas próprias palavras aleatórias — use um gerador." },
+    { "q": "Qual é o comprimento mínimo de senha que devo usar?", "a": "8 é o mínimo absoluto (e somente com todos os charsets). 12+ é recomendado para a maioria das contas. 16+ para as importantes (e-mail, banco, gerenciador de senhas master)." },
+    { "q": "A diferenciação de maiúsculas e minúsculas importa?", "a": "Sim — adicionar maiúsculas dobra o tamanho do charset de 26 para 52. Aproximadamente +1 bit por caractere. Misturar maiúsculas de forma significativa (não apenas a primeira letra) vale a pena." }
+  ]
+}

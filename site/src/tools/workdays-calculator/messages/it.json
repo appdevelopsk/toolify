@@ -1,0 +1,106 @@
+{
+  "title": "Calcolatore Giorni Lavorativi (escludi weekend e festivi)",
+  "shortDescription": "Conta i giorni lavorativi tra due date, escludendo weekend e festivi personalizzati. Configurabile: includi sabato o domenica come giorni lavorativi se necessario.",
+  "description": "Scegli data di inizio e fine, includi opzionalmente sabato o domenica come giorni lavorativi, e aggiungi i giorni festivi da escludere. Restituisce separatamente giorni lavorativi, giorni di weekend e festivi.",
+  "metaDescription": "Calcolatore gratuito di giorni lavorativi. Conta i giorni lavorativi tra due date, salta weekend e festivi personalizzati.",
+  "keywords": [
+    "calcolatore giorni lavorativi",
+    "giorni lavorativi tra date",
+    "conteggio giorni feriali",
+    "calcolatore giorni lavorativi excel",
+    "giorni lavorativi escludendo festivi"
+  ],
+  "empty": "Scegli una data di inizio e fine per contare i giorni lavorativi.",
+  "input": {
+    "start": "Data inizio",
+    "end": "Data fine",
+    "includeSat": "Il sabato è un giorno lavorativo",
+    "includeSun": "La domenica è un giorno lavorativo",
+    "holidays": "Festivi da escludere (uno per riga)",
+    "holidaysHint": "Formato ISO: 2026-01-01. Separati da virgola, spazio o a capo."
+  },
+  "result": {
+    "workdays": "Giorni lavorativi",
+    "weekendDays": "Giorni di weekend",
+    "holidayDays": "Festivi",
+    "total": "Giorni totali"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Perché conta il numero di giorni lavorativi",
+        "paragraphs": [
+          "Scadenze di progetto, termini contrattuali, cicli di pagamento e pianificazione delle ferie usano tutti i 'giorni lavorativi' anziché i giorni di calendario. Una promessa di consegna in 30 giorni fatta di venerdì corrisponde in realtà a 32 giorni di calendario perché il weekend non conta. Confondere i due porta a scadenze mancate e controversie contrattuali.",
+          "I giorni lavorativi contano anche per i termini legali: in molte giurisdizioni, i termini di legge (es. '14 giorni lavorativi per rispondere') escludono weekend e festivi. Verifica sempre se 'giorni' significa giorni di calendario o lavorativi in qualsiasi accordo."
+        ]
+      },
+      {
+        "heading": "Perché ti permettiamo di personalizzare il weekend",
+        "paragraphs": [
+          "La maggior parte dei Paesi usa sabato e domenica come weekend, ma ci sono variazioni. Molti Paesi del Medio Oriente e alcune nazioni nordafricane osservano venerdì-sabato come weekend. Alcuni settori (commercio al dettaglio, ospitalità) considerano il weekend come giorni lavorativi.",
+          "Le nostre opzioni ti permettono di segnare sabato o domenica come giorni lavorativi singolarmente. Puoi così configurare: lun-ven (impostazione predefinita), settimana lavorativa di 6 giorni (includi il sabato), o anche weekend solo domenica (deseleziona domenica)."
+        ]
+      },
+      {
+        "heading": "Come usare l'input dei festivi",
+        "paragraphs": [
+          "Incolla un elenco di date nel formato AAAA-MM-GG (ISO 8601). I separatori possono essere virgole, spazi o a capo. Ogni data che inserisci verrà esclusa dal conteggio dei giorni lavorativi se cade in quello che altrimenti sarebbe un giorno lavorativo.",
+          "Per i festivi nazionali italiani 2026, incolla: 2026-01-01, 2026-01-06, 2026-04-05, 2026-04-25, 2026-05-01, 2026-06-02, 2026-08-15, 2026-11-01, 2026-12-08, 2026-12-25, 2026-12-26.",
+          "Non includiamo automaticamente i festivi perché (a) variano per Paese, regione e anno, e (b) alcune aziende osservano ulteriori giorni liberi specifici dell'azienda o del contratto collettivo (CCNL)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Imposta le date di inizio e fine",
+        "text": "Entrambe inclusive — entrambe le date contano se sono giorni lavorativi."
+      },
+      {
+        "name": "Scegli i giorni di weekend",
+        "text": "Di default sabato e domenica sono weekend. Attivali come giorni lavorativi se necessario."
+      },
+      {
+        "name": "Aggiungi i festivi da escludere",
+        "text": "Elenca le date ISO separate da virgole, spazi o a capo."
+      },
+      {
+        "name": "Leggi il riepilogo",
+        "text": "Giorni lavorativi, giorni di weekend, festivi e giorni di calendario totali."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Le date di inizio e fine sono inclusive?",
+      "a": "Sì. Se entrambe sono giorni lavorativi, entrambe vengono conteggiate. Se il tuo contratto conta solo i giorni intermedi (esclusivi), sottrai 2 dal risultato."
+    },
+    {
+      "q": "Perché non includi automaticamente i festivi?",
+      "a": "I festivi variano notevolmente per Paese, regione e anno. Includerli automaticamente rischia di sottrarre festivi che non si applicano alla tua giurisdizione. Aggiungerli manualmente ti mantiene in controllo."
+    },
+    {
+      "q": "Posso usarlo per contratti internazionali?",
+      "a": "Sì — ma assicurati che entrambe le parti concordino su quali festivi contare. I contratti multinazionali spesso specificano 'giorni lavorativi come osservati a [città] di [Paese]' per evitare ambiguità."
+    },
+    {
+      "q": "Cosa succede se un festivo cade di weekend?",
+      "a": "Non viene contato due volte. Se il 2026-01-01 è un giovedì festivo, viene contato come festivo. Se il 2026-12-25 cade di domenica, l'algoritmo lo conta correttamente come un giorno (weekend), non due."
+    },
+    {
+      "q": "Come funziona per una settimana lavorativa di 6 giorni?",
+      "a": "Seleziona 'Il sabato è un giorno lavorativo'. Il calcolatore conterà lun-sab come giorni lavorativi ed escluderà solo le domeniche e i festivi elencati."
+    },
+    {
+      "q": "Qual è il range di date massimo calcolabile?",
+      "a": "Centinaia di anni come minimo. Il browser gestisce aritmetica di date fino a ±100 milioni di giorni dal 1970."
+    },
+    {
+      "q": "Posso esportare l'elenco dei giorni lavorativi?",
+      "a": "Non come download, ma puoi copiare i numeri visualizzati. Per un elenco giorno per giorno, un foglio di calcolo è più flessibile."
+    },
+    {
+      "q": "I dati escono dal mio browser?",
+      "a": "No. Tutto funziona localmente; nulla viene inviato a un server."
+    }
+  ]
+}

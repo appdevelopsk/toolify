@@ -1,0 +1,103 @@
+{
+  "title": "Schreibstil-Konverter (camelCase, snake_case, kebab-case",
+  "shortDescription": "Text in 10 Schreibstile umwandeln: GROSS, klein, Titelschreibung, Satzanfang, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE und invertiert.",
+  "description": "Gib beliebigen Text ein und sieh zehn gängige Schreibstil-Umwandlungen nebeneinander, jede mit einem Kopieren-Button. Nützlich zum Umbenennen von Variablen, Dateinamen, Überschriften, Slugs und zur Datensatzbereinigung.",
+  "metaDescription": "Kostenloser Schreibstil-Konverter für camelCase, snake_case, kebab-case, PascalCase, Titelschreibung und mehr. Zehn Stile auf einmal mit Ein-Klick-Kopie.",
+  "keywords": [
+    "Schreibstil Konverter",
+    "camel case",
+    "snake case",
+    "kebab case",
+    "Titelschreibung"
+  ],
+  "input": {
+    "text": "Quelltext"
+  },
+  "copy": "Kopieren",
+  "copied": "Kopiert",
+  "case": {
+    "lower": "kleinbuchstaben",
+    "upper": "GROSSBUCHSTAbEN",
+    "title": "Titelschreibung",
+    "sentence": "Satzanfangschreibung",
+    "camel": "camelCase",
+    "pascal": "PascalCase",
+    "snake": "snake_case",
+    "kebab": "kebab-case",
+    "constant": "CONSTANT_CASE",
+    "invert": "InVeRtIeRtE ScHrEiBwEiSe"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wo jeder Stil verwendet wird",
+        "paragraphs": [
+          "camelCase: JavaScript- und Java-Bezeichner (meineVariablenName). PascalCase: Klassen und React-Komponenten (BenutzerProfil). snake_case: Python- und Ruby-Variablen (benutzer_profil). kebab-case: URLs und CSS-Klassen (benutzer-profil). CONSTANT_CASE: Umgebungsvariablen und Konstanten (BENUTZER_PROFIL).",
+          "Titelschreibung: Buch- und Artikeltitel, Überschriften. Satzanfangschreibung: die meisten modernen UI-Beschriftungen und Überschriften – leichter zu lesen als Titelschreibung bei langen Zeichenfolgen. GROSSBUCHSTABEN: Hervorhebung, Abkürzungen. kleinbuchstaben: Tags, Beschriftungen, Dateinamen, die Groß-/Kleinschreibung ignorieren müssen."
+        ]
+      },
+      {
+        "heading": "Wie der Konverter Wörter analysiert",
+        "paragraphs": [
+          "Wir teilen bei Leerzeichen, Bindestrichen, Unterstrichen, Schrägstrichen und Punkten auf. Wir teilen auch an der Grenze zwischen einem Kleinbuchstaben und einem Großbuchstaben auf (sodass 'helloWorld' in ['hello', 'World'] aufgeteilt wird) und zwischen einem Buchstaben und einer Ziffer. Das deckt die meisten alltäglichen Fälle ab, einschließlich eingefügtem Code, Slugs und Dateipfaden.",
+          "Sonderfälle: Nur-Großbuchstaben-Akronyme ('XMLHTTPRequest') lassen sich ohne Kontext nicht sauber aufteilen, sodass wir aufeinanderfolgende Großbuchstaben als einen einzigen Wortblock behandeln und dem Benutzer überlassen, bei Bedarf nachzubessern. Für die meisten alltäglichen Texte – Sätze, Titel, Datensatz-Spaltennamen – liefert der Parser das erwartete Ergebnis."
+        ]
+      },
+      {
+        "heading": "Tipps für Code-Review und Refactoring",
+        "paragraphs": [
+          "Beim Wechsel zwischen Sprachen füge eine Liste von Bezeichnernamen ein und kopiere die umgewandelte Version heraus. snake-zu-camel ist die häufigste Grenze zwischen JavaScript und Python; kebab-zu-snake ist beim Refactoring von HTML-Attributen in JS-Objekte üblich.",
+          "Für SEO-Slugs ist kebab-case der Standard – lesbar in URLs und Google behandelt Bindestriche als Worttrennzeichen (Unterstriche nicht). 'produkt-name' ist 'produkt_name' für jeden benutzersichtbaren URL-Pfad vorzuziehen."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Text eingeben oder einfügen",
+        "text": "Beliebiges – Sätze, Code-Bezeichner, Dateinamen."
+      },
+      {
+        "name": "Alle 10 Umwandlungen ablesen",
+        "text": "Jeder Stil erscheint in seinem eigenen beschrifteten Block."
+      },
+      {
+        "name": "Den benötigten kopieren",
+        "text": "Klicke auf 'Kopieren' neben einem beliebigen Block."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was passiert, wenn meine Eingabe Akronyme wie 'XML' enthält?",
+      "a": "Aufeinanderfolgende Großbuchstaben werden als ein einziger Block behandelt. 'XMLParser' wird in 'XML' und 'Parser' aufgeteilt. Das funktioniert für die meisten Codes; überprüfe und korrigiere Sonderfälle manuell."
+    },
+    {
+      "q": "Warum sind URL-Slugs immer kebab-case?",
+      "a": "Bindestriche werden von Googles URL-Parser als Wortgrenzen behandelt; Unterstriche nicht. kebab-case-URLs werden für SEO zuverlässiger indexiert."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen Titelschreibung und Satzanfangschreibung?",
+      "a": "Titelschreibung schreibt die meisten Wörter groß ('Der Schnelle Braune Fuchs'). Satzanfangschreibung schreibt nur das erste Wort und Eigennamen groß ('Der schnelle braune Fuchs'). Modernes UI bevorzugt tendenziell die Satzanfangschreibung."
+    },
+    {
+      "q": "Wird Unicode unterstützt?",
+      "a": "Ja – JavaScripts toLowerCase/toUpperCase sind Unicode-fähig. Diakritische Zeichen und nicht-lateinische Schriften werden korrekt durchgereicht."
+    },
+    {
+      "q": "Kann ich zurück konvertieren?",
+      "a": "Ja – füge eine beliebige konvertierte Ausgabe wieder ein und verwende eine andere Umwandlung. Die Hin- und Rückkonvertierung camelCase ↔ snake_case ist verlustfrei."
+    },
+    {
+      "q": "Warum bewahrt camelCase keine Akronyme in Großbuchstaben?",
+      "a": "Konventionell schreibt camelCase nur den ersten Buchstaben jedes nachfolgenden Wortes groß. 'XmlHttpRequest' ist in modernen Stilhandbüchern 'XMLHTTPRequest' vorzuziehen."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Alle Umwandlungen laufen lokal."
+    },
+    {
+      "q": "Gibt es eine Möglichkeit, eine Liste in großem Maßstab zu konvertieren?",
+      "a": "Füge deine gesamte Liste auf einmal ein. Jede Zeile wird als separate Eingabe innerhalb desselben Stils behandelt – konvertiere und teile die Zeilen dann nach Bedarf auf."
+    }
+  ]
+}

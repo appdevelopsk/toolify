@@ -1,0 +1,54 @@
+{
+  "title": "Tạo Hash (SHA-1, SHA-256, SHA-384, SHA-512)",
+  "shortDescription": "Tính hash SHA-1, SHA-256, SHA-384 và SHA-512 của bất kỳ văn bản UTF-8 nào. Dùng Web Crypto API gốc của trình duyệt; không có dữ liệu nào rời khỏi thiết bị.",
+  "description": "Nhập bất kỳ văn bản nào để xem tất cả bốn hash SHA cùng lúc. Hữu ích để xác minh tính toàn vẹn file, tạo chữ ký, gỡ lỗi ký yêu cầu API và học mật mã học.",
+  "metaDescription": "Tạo hash SHA-1/256/384/512 miễn phí. Đầu vào UTF-8, hiển thị tất cả hash cùng lúc, Web Crypto API gốc của trình duyệt. Dữ liệu của bạn ở lại thiết bị.",
+  "keywords": ["tạo hash", "SHA-256 generator", "tính hash SHA-1", "hash SHA-512", "hash trực tuyến"],
+  "input": { "text": "Đầu vào", "placeholder": "Nhập hoặc dán văn bản để hash…" },
+  "copy": "Sao chép",
+  "copied": "Đã sao chép",
+  "md5Note": "MD5 bị bỏ qua: nó đã bị phá vỡ về mặt bảo mật từ năm 2004 và không còn được Web Crypto cung cấp. Dùng SHA-256 hoặc mạnh hơn.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Hash là gì và không phải là gì",
+        "paragraphs": [
+          "Hàm hash mật mã nhận đầu vào kích thước bất kỳ và tạo ra đầu ra cố định (gọi là 'digest'). Cùng đầu vào luôn cho cùng digest. Thay đổi nhỏ đầu vào tạo ra digest hoàn toàn khác (hiệu ứng tuyết lở). Đảo ngược digest để tìm đầu vào là không khả thi về mặt tính toán với các hàm mạnh về mặt mật mã học như SHA-256.",
+          "Hash không phải là mã hóa. Không có khóa, không có giải mã. Nhầm lẫn phổ biến: hash mật khẩu (dùng bcrypt/argon2 thay thế — chúng làm chậm brute force), hash văn bản tùy ý rồi 'giải mã' (không thể theo thiết kế)."
+        ]
+      },
+      {
+        "heading": "Nên chọn thuật toán nào",
+        "paragraphs": [
+          "SHA-256 là mặc định hiện đại. Dùng trong Bitcoin, chứng chỉ TLS, chữ ký JWT (HS256), hash tính toàn vẹn file. 256 bit là đủ cho mọi nhu cầu bảo mật thực tế.",
+          "SHA-384 và SHA-512 là các biến thể lớn hơn của cùng họ. SHA-512 đôi khi nhanh hơn trên phần cứng 64-bit. Dùng chúng khi giao thức hoặc tiêu chuẩn yêu cầu rõ ràng.",
+          "SHA-1 đã bị loại bỏ về mặt bảo mật nhưng vẫn xuất hiện trong các hệ thống cũ (TLS cũ, hash commit git). Đừng dùng nó cho công việc quan trọng bảo mật mới — các va chạm đã được chứng minh từ năm 2017. Chúng tôi bao gồm nó để tương thích ngược."
+        ]
+      },
+      {
+        "heading": "Các ứng dụng phổ biến",
+        "paragraphs": [
+          "Tính toàn vẹn file: tải xuống file và hash; tính lại hash cục bộ; so sánh. Nếu khớp, file không bị thay đổi trong quá trình truyền.",
+          "Git commit: mỗi ID commit là hash SHA-1 của nội dung của nó. Hash một thông điệp commit không tiết lộ gì — bạn cần phần còn lại của commit để tái tạo nó.",
+          "Ký yêu cầu API: HMAC-SHA-256 là tiêu chuẩn cho AWS, GitHub và nhiều API khác. Bản thân hash chỉ là một phần của HMAC; API sẽ cung cấp cấu trúc chính xác mà nó mong đợi.",
+          "Khóa cache: hash một URL hoặc tập tham số cho một khóa cache ổn định, độ dài cố định."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Nhập hoặc dán văn bản", "text": "Bất kỳ thứ gì từ một ký tự đến văn bản nhiều megabyte." },
+      { "name": "Đọc cả bốn hash", "text": "Được tính toán trực tiếp khi bạn gõ." },
+      { "name": "Sao chép những gì bạn cần", "text": "Mỗi thuật toán có nút sao chép riêng." }
+    ]
+  },
+  "faq": [
+    { "q": "Tại sao không có MD5?", "a": "Các va chạm MD5 đã được chứng minh từ năm 2004; Web Crypto API không cung cấp nó. Cho các mục đích phi bảo mật (khóa cache, loại bỏ trùng lặp file), hãy dùng SHA-256 — nó chỉ chậm hơn không đáng kể và không có rủi ro va chạm." },
+    { "q": "Tôi có thể hash file nhị phân không?", "a": "Không trực tiếp qua công cụ này — chỉ dán văn bản. Với file, dùng shell OS: `shasum -a 256 myfile.txt` trên macOS/Linux, `Get-FileHash` trên Windows." },
+    { "q": "Tại sao SHA-512 dài hơn SHA-256?", "a": "Số trong tên đề cập đến độ dài bit đầu ra: SHA-256 tạo 256 bit = 64 ký tự hex; SHA-512 tạo 512 bit = 128 ký tự hex. Dài gấp đôi." },
+    { "q": "Hai đầu vào khác nhau có thể tạo ra cùng hash không?", "a": "Về lý thuyết có (nguyên lý hộp thư), trong thực tế không với SHA-256 và công nghệ hiện tại. Các va chạm SHA-1 đã được chứng minh; SHA-256 thì chưa." },
+    { "q": "Tôi có nên dùng cái này để hash mật khẩu không?", "a": "Không. Mật khẩu cần hash chậm (bcrypt, scrypt, argon2) cộng với salt. SHA-256 đơn giản quá nhanh — kẻ tấn công có thể hash hàng tỷ lần mỗi giây." },
+    { "q": "Tại sao cùng văn bản luôn cho cùng hash?", "a": "Theo định nghĩa. Hàm hash là xác định. Nếu bạn cần đầu ra khác nhau mỗi lần (ví dụ 'salt'), hãy thêm giá trị ngẫu nhiên vào đầu hoặc cuối đầu vào." },
+    { "q": "Dữ liệu có được gửi đi đâu không?", "a": "Không. Web Crypto chạy hoàn toàn trong trình duyệt của bạn; không có gì được truyền đi." },
+    { "q": "HMAC là gì và đây có phải là HMAC không?", "a": "HMAC thêm khóa bí mật vào hàm hash. Công cụ này tính hash đơn giản; với HMAC, dùng công cụ chuyên dụng hoặc thư viện lập trình." }
+  ]
+}

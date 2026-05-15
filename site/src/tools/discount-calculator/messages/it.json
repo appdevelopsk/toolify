@@ -1,0 +1,103 @@
+{
+  "title": "Calcolatore di Sconto (con IVA facoltativa)",
+  "shortDescription": "Calcola il prezzo finale dopo uno sconto percentuale, più IVA facoltativa. Vedi quanto hai risparmiato a colpo d'occhio.",
+  "description": "Inserisci il prezzo originale e la percentuale di sconto per vedere il prezzo finale e quanto hai risparmiato. Aggiungi un'aliquota IVA se la tua giurisdizione aggiunge l'imposta dopo lo sconto.",
+  "metaDescription": "Calcolatore di sconto gratuito. Calcola il prezzo finale dopo uno sconto percentuale, con IVA facoltativa.",
+  "keywords": [
+    "calcolatore sconto",
+    "percentuale di sconto",
+    "calcolatore prezzo scontato",
+    "sconto con IVA",
+    "calcolatore risparmio"
+  ],
+  "empty": "Inserisci un prezzo originale e uno sconto per vedere il risultato.",
+  "input": {
+    "original": "Prezzo originale",
+    "discountPct": "Sconto %",
+    "taxPct": "IVA %"
+  },
+  "result": {
+    "finalPrice": "Prezzo finale",
+    "saved": "Risparmi",
+    "afterDiscount": "Dopo lo sconto",
+    "tax": "IVA"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Come funziona la matematica dello sconto",
+        "paragraphs": [
+          "Prezzo scontato = originale × (1 − sconto/100). Uno sconto del 20% su un articolo da 100 € lascia 80 €. L'IVA viene applicata all'importo scontato, non all'originale — quindi 80 € × (1 + 22% IVA/100) = 97,60 € finale.",
+          "L'importo 'risparmiato' è lo sconto in euro: originale × sconto/100. Per il nostro esempio da 100 € con il 20% di sconto, risparmi 20 €. Questo è ciò che gli acquirenti vogliono naturalmente vedere — non solo la percentuale."
+        ]
+      },
+      {
+        "heading": "Sconti in cascata",
+        "paragraphs": [
+          "Due sconti non si sommano. Un coupon '20% di sconto' su un 'saldo al 20%' è il 36% di sconto totale, non il 40% — perché il secondo sconto si applica al prezzo già ridotto (0,8 × 0,8 = 0,64 = 36% di sconto sull'originale).",
+          "Per sommare, esegui il calcolatore due volte: prima con lo sconto maggiore, poi reinserisci il risultato come nuovo 'originale' con il secondo sconto. Oppure, se hai più coupon, moltiplica (1 − d1/100) × (1 − d2/100) × ... e sottrai da 1 per ottenere lo sconto totale effettivo."
+        ]
+      },
+      {
+        "heading": "I tempi dell'IVA variano per paese",
+        "paragraphs": [
+          "Italia/UE: l'IVA è tipicamente già inclusa nel prezzo esposto, quindi non contarla due volte. Imposta l'IVA a 0 se il prezzo inserito è già IVA inclusa (il formato di prezzo standard in Italia).",
+          "Se inserisci un prezzo al netto IVA (imponibile), aggiungi l'aliquota IVA appropriata (22% aliquota standard in Italia, 10% o 4% per alcune categorie).",
+          "A volte la spedizione è tassabile, a volte no. Questo calcolatore presume che il prezzo inserito sia l'importo imponibile. Per la matematica completa del carrello, totalizzia separatamente gli articoli tassabili."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Inserisci il prezzo originale",
+        "text": "Usa il prezzo esposto prima di qualsiasi sconto."
+      },
+      {
+        "name": "Inserisci la % di sconto",
+        "text": "La percentuale di sconto — 20 per '20% di sconto'."
+      },
+      {
+        "name": "Facoltativo: inserisci la % IVA",
+        "text": "Salta se l'IVA è già inclusa o non si applica."
+      },
+      {
+        "name": "Leggi la ripartizione",
+        "text": "Prezzo finale, risparmio, prezzo dopo lo sconto e IVA appaiono insieme."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Lo sconto viene applicato prima o dopo l'IVA?",
+      "a": "Quasi sempre prima. Lo sconto riduce l'importo imponibile; l'IVA viene poi aggiunta al prezzo scontato."
+    },
+    {
+      "q": "Come sommo più coupon?",
+      "a": "Applicali sequenzialmente: originale × (1 − d1/100) × (1 − d2/100). Usa il calcolatore due volte o calcola manualmente."
+    },
+    {
+      "q": "Qual è la formula per lo 'sconto percentuale'?",
+      "a": "Finale = originale × (1 − sconto/100). Risparmio = originale × sconto/100."
+    },
+    {
+      "q": "Funziona per le promozioni 'prendi 2 paghi 1'?",
+      "a": "Approssimativamente — metà prezzo sul secondo articolo equivale a uno sconto effettivo del 25% su un bundle da due articoli. Per la matematica esatta, dividi prima il prezzo del bundle per i singoli articoli."
+    },
+    {
+      "q": "Perché ho visto un prezzo 'originale' che non era reale?",
+      "a": "Alcuni rivenditori gonfiano il prezzo 'originale' per far sembrare gli sconti più grandi. Confronta con altri negozi o prezzi storici per conoscere lo sconto reale."
+    },
+    {
+      "q": "Vale la pena impilare i codici sconto 'misteriosi'?",
+      "a": "Fai i calcoli in entrambi i modi. Spesso un singolo codice grande batte due piccoli a causa dell'effetto moltiplicativo."
+    },
+    {
+      "q": "Come trovo la % di sconto da due prezzi?",
+      "a": "Sconto % = (originale − scontato) / originale × 100. Oppure usa la modalità 'variazione percentuale' del nostro calcolatore di percentuali."
+    },
+    {
+      "q": "I dati vengono inviati da qualche parte?",
+      "a": "No. Il calcolo viene eseguito nel tuo browser."
+    }
+  ]
+}

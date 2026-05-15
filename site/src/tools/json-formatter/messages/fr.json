@@ -1,0 +1,99 @@
+{
+  "title": "Formateur & Minificateur JSON (valide et met en forme)",
+  "shortDescription": "Mets en forme ou minifie du JSON. Valide l'entrée et affiche une erreur claire avec la ligne et la colonne en cas d'échec.",
+  "description": "Colle n'importe quel JSON pour le formater avec 2/4/8 espaces d'indentation, ou le minifier en une seule ligne. Le JSON invalide affiche une erreur de parsing pour trouver rapidement le problème.",
+  "metaDescription": "Formateur et minificateur JSON gratuit. Valide l'entrée, met en forme avec l'indentation choisie ou minifie en une ligne.",
+  "keywords": [
+    "formateur JSON",
+    "minificateur JSON",
+    "validateur JSON",
+    "pretty print JSON",
+    "formater JSON"
+  ],
+  "input": "Entrée JSON",
+  "output": "Sortie formatée",
+  "mode": {
+    "format": "Formater",
+    "minify": "Minifier"
+  },
+  "indent": "Indentation",
+  "copy": "Copier",
+  "copied": "Copié",
+  "error": "Erreur de parsing",
+  "stats": "Entrée : {input} octets · Sortie : {output} octets",
+  "article": {
+    "sections": [
+      {
+        "heading": "Ce que cet outil fait",
+        "paragraphs": [
+          "JSON est un format strict — chaque guillemet, virgule et crochet doit être au bon endroit. Les navigateurs et les API retournent des messages cryptiques « Unexpected token » quand quelque chose ne va pas, et le problème est souvent invisible au premier coup d'œil. Ce formateur analyse l'entrée avec le parseur JSON natif du navigateur, puis la resérialise joliment (avec indentation) ou minifiée (sans espace).",
+          "Si le parsing échoue, tu obtiens l'erreur sous-jacente directement — généralement avec la position du mauvais caractère. À partir de là, tu peux trouver rapidement la virgule manquante, le guillemet non échappé, ou la virgule de fin."
+        ]
+      },
+      {
+        "heading": "Formater vs minifier",
+        "paragraphs": [
+          "Formater avec indentation : la façon standard de lire du JSON. 2 espaces est la convention dans l'univers JavaScript ; 4 espaces est courant dans les contextes Python et Java. Choisis ce que ton projet utilise.",
+          "Minifier : réduire à une seule ligne sans espace. Utile lors de l'intégration de JSON dans des URL, des variables d'environnement, ou partout où les espaces ont de l'importance. La différence de taille est significative : un fichier de configuration bien formaté rétrécit de 20-40 % quand il est minifié."
+        ]
+      },
+      {
+        "heading": "Pièges courants du JSON",
+        "paragraphs": [
+          "Virgules de fin. Autorisées en JavaScript, pas en JSON. {a:1, b:2,} se parse dans ton éditeur de code mais échoue quand envoyé sur le réseau.",
+          "Guillemets simples. JSON exige des guillemets doubles pour les clés et les valeurs de chaîne. {'a': 1} est du JSON invalide. {\"a\": 1} est correct.",
+          "Commentaires. JSON n'a pas de commentaires. // ou /* */ dans du JSON casse le parsing. JSONC (utilisé par les configs VS Code) supporte les commentaires mais n'est pas du JSON standard.",
+          "Nombres. JSON ne supporte pas NaN ou Infinity. Utilise null, ou enveloppe dans une chaîne, selon ton consommateur en aval."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Colle ton JSON",
+        "text": "De quelques octets à plusieurs centaines de Ko fonctionne sans lag."
+      },
+      {
+        "name": "Choisis formater ou minifier",
+        "text": "Plus un niveau d'indentation pour le mode format."
+      },
+      {
+        "name": "Lis ou copie le résultat",
+        "text": "En cas d'erreur, le message du parseur sous-jacent pointe vers le problème."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Cet outil supporte-t-il JSONC (JSON avec commentaires) ?",
+      "a": "Pas encore. Supprime les commentaires d'abord ou utilise un outil qui supporte JSONC."
+    },
+    {
+      "q": "Quelle est la limite de taille ?",
+      "a": "Les navigateurs modernes gèrent du JSON de plusieurs mégaoctets, bien que la zone de texte puisse ralentir au-delà de ~1 Mo. Pour les fichiers très volumineux, utilise un outil de bureau."
+    },
+    {
+      "q": "Pourquoi mon JSON est-il invalide ?",
+      "a": "Le plus souvent : une virgule de fin, des guillemets simples, ou un guillemet non échappé dans une chaîne. L'erreur du parseur pointe sur la colonne où le problème est détecté."
+    },
+    {
+      "q": "Puis-je trier les clés alphabétiquement ?",
+      "a": "Pas dans cette version. Coller dans un outil avec tri (comme jq avec --sort-keys) est la voie la plus propre ; nous pourrions ajouter cette option plus tard."
+    },
+    {
+      "q": "Gère-t-il le JSON profondément imbriqué ?",
+      "a": "Oui. Le parseur JSON du navigateur gère n'importe quelle profondeur pratique."
+    },
+    {
+      "q": "Pourquoi la minification ne réduit-elle pas un fichier de 1 Mo à 1 octet ?",
+      "a": "La minification supprime uniquement les espaces. Les données réelles sont toujours là. Pour une vraie réduction de taille, utilise gzip ou un format binaire comme MessagePack."
+    },
+    {
+      "q": "Les données sont-elles envoyées quelque part ?",
+      "a": "Non. Tout le parsing et le formatage se passe dans ton navigateur."
+    },
+    {
+      "q": "Qu'en est-il de la validation par JSON Schema ?",
+      "a": "Cet outil valide uniquement la syntaxe. Pour la validation par schéma, utilise un validateur JSON Schema avec ton fichier de schéma."
+    }
+  ]
+}

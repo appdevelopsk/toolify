@@ -1,0 +1,73 @@
+{
+  "title": "CSS Box-Shadow-Generator (mit Live-Vorschau)",
+  "shortDescription": "Erstelle CSS-Box-Shadow-Werte visuell. Versatz, Unschärfe, Ausdehnung, Farbe, Deckkraft und Inset anpassen. Live-Vorschau, CSS kopieren.",
+  "description": "Sechs gängige Schatten-Presets (Sanft, Karte, Gehoben, Leuchten, Neumorphisch, Eingebettet). Alle Parameter mit Schiebereglern feinabstimmen, das Ergebnis live sehen und fertigen CSS-Code kopieren.",
+  "metaDescription": "Kostenloser CSS-Box-Shadow-Generator mit Live-Vorschau. Versatz, Unschärfe, Ausdehnung, Farbe, Deckkraft, Inset unterstützt. Mit 6 Presets inkl. Neumorphisch.",
+  "keywords": ["Box-Shadow-Generator", "CSS Schatten", "Schatten CSS", "Neumorphismus Generator", "Drop-Shadow-Generator"],
+  "preset": {
+    "soft": "Sanft",
+    "card": "Karte",
+    "lifted": "Gehoben",
+    "glow": "Leuchten",
+    "neumorphic": "Neumorphisch",
+    "inset": "Eingebettet"
+  },
+  "input": {
+    "x": "X-Versatz",
+    "y": "Y-Versatz",
+    "blur": "Unschärfe",
+    "spread": "Ausdehnung",
+    "color": "Farbe",
+    "opacity": "Deckkraft",
+    "inset": "Eingebettet (innerer Schatten)"
+  },
+  "output": { "css": "CSS-Code" },
+  "copy": "CSS kopieren",
+  "copied": "Kopiert!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Die fünf Schatten-Parameter",
+        "paragraphs": [
+          "X-Versatz: horizontale Verschiebung. Positive Werte verschieben den Schatten nach rechts, negative nach links. Für Beleuchtung von oben links (die typische UI-Annahme) simuliert ein kleiner positiver X-Wert Licht von oben links.",
+          "Y-Versatz: vertikale Verschiebung. Positive Werte verschieben den Schatten nach unten und simulieren eine Lichtquelle von oben. Fast alle UI-Schatten verwenden einen positiven Y-Wert.",
+          "Unschärferadius: wie weich die Kante des Schattens ist. 0 = scharfe Kante (selten). 8–30 px ist typisch für Karten und Schaltflächen. Höhere Werte erzeugen weiche, traumhafte Schatten.",
+          "Ausdehnung: erweitert oder verkleinert den Schatten gleichmäßig. Positive Werte machen den Schatten größer als das Element; negative verkleinern ihn. Negative Ausdehnung kombiniert mit Versatz erzeugt einen ‚gehobenen' Effekt.",
+          "Farbe/Deckkraft: Schatten sind meist schwarz mit geringer Deckkraft (10–30 %). Farbige Schatten sind im Trend, aber schwieriger einzusetzen. Den Helligkeitsbereich des Hintergrunds beachten — zu dunkle Schatten auf dunklen UIs verschwinden, zu helle auf hellen UIs haben keinen Kontrast."
+        ]
+      },
+      {
+        "heading": "Eingebettete Schatten (Inset)",
+        "paragraphs": [
+          "Ein Inset-Schatten wird innerhalb des Elements statt außerhalb gezeichnet. Verwendet für: gedrückte Schaltflächen, vertiefte Eingabefelder, neumorphische ‚3D-eingedrückte' Effekte.",
+          "Inset-Schatten berücksichtigen den Border-Radius des Elements und ignorieren Overflow. Sie sind nützlich, um flachen UI-Elementen visuelle Tiefe zu verleihen, ohne das eigentliche Layout zu verändern."
+        ]
+      },
+      {
+        "heading": "Neumorphismus und der ‚Soft-UI'-Trend",
+        "paragraphs": [
+          "Neumorphismus (beliebt 2020–2022) verwendet zwei entgegengesetzte Schatten — einen hellen, einen dunklen —, um Elemente so erscheinen zu lassen, als würden sie aus einem gleichfarbigen Hintergrund herausgedrückt. Unser ‚Neumorphisch'-Preset zeigt einen einzelnen dunklen Schatten; für vollständigen Neumorphismus mit einem hellen Inset-Schatten auf der gegenüberliegenden Seite kombinieren: ‚inset -8px -8px 20px rgba(255,255,255,0.5), 8px 8px 20px rgba(0,0,0,0.12)'.",
+          "Hinweis: reiner Neumorphismus hat Barrierefreiheitsprobleme — der fehlende Kontrast macht Elemente schwer unterscheidbar. Moderne Designs setzen ihn sparsam ein, oft in Kombination mit traditionellen Schatten."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Preset wählen", "text": "Oder mit den Schiebereglern von Grund auf neu erstellen." },
+      { "name": "X/Y-Versatz anpassen", "text": "Richtung des Schattens." },
+      { "name": "Unschärfe und Ausdehnung abstimmen", "text": "Unschärfe weicht auf; Ausdehnung vergrößert." },
+      { "name": "Farbe und Deckkraft festlegen", "text": "Die meisten UI-Schatten verwenden Schwarz mit 10–30 % Deckkraft." },
+      { "name": "Inset umschalten", "text": "Für innere Schatten (gedrückte Schaltfläche, vertieftes Eingabefeld)." },
+      { "name": "CSS kopieren", "text": "In die box-shadow-Eigenschaft deines Stylesheets einfügen." }
+    ]
+  },
+  "faq": [
+    { "q": "Kann ich mehrere Schatten hinzufügen?", "a": "CSS unterstützt kommagetrennte mehrfache Schatten: ‚box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)'. Unser Tool generiert einen Schatten auf einmal; mehrere von Hand kombinieren." },
+    { "q": "Wie erstelle ich einen neumorphischen Effekt?", "a": "Einen dunklen Schatten unten rechts mit einem hellen Schatten oben links kombinieren, beide Inset oder beide Outset. Beispiel: ‚8px 8px 20px rgba(0,0,0,0.12), -8px -8px 20px rgba(255,255,255,0.7)'. Unser Preset zeigt die dunkle Hälfte; den hellen Schatten manuell hinzufügen." },
+    { "q": "Was ist der Unterschied zwischen Unschärfe und Ausdehnung?", "a": "Unschärfe weicht die Kante des Schattens auf (Verlauftransparenz). Ausdehnung ändert die Gesamtgröße des Schattens (mehr oder weniger als das Element). Blur=20 Spread=0 ist ein weicher Leuchtschein in Elementgröße; Blur=0 Spread=20 ist ein harter Schatten, der 20 px größer ist." },
+    { "q": "Warum sieht mein Schatten flach aus?", "a": "Wahrscheinlich zu geringe Deckkraft, kein Versatz oder Schattenfarbe zu nah am Hintergrund. Als Ausgangspunkt Y=8, Blur=24, Opacity=0,18 ausprobieren — diese Werte sind auf den meisten hellen Hintergründen gut sichtbar." },
+    { "q": "Kann ich das für text-shadow verwenden?", "a": "Fast — text-shadow verwendet dieselbe Syntax, aber ohne ‚Spread' und ‚Inset'. Nach dem Kopieren manuell anpassen: ‚X Y Blur Farbe' nehmen (Spread und Inset weglassen)." },
+    { "q": "Sind Schatten performant?", "a": "box-shadow ist in modernen Browsern GPU-beschleunigt. Viele Schatten auf vielen Elementen können das Scrollen trotzdem verlangsamen. Einzelne Schatten auf Karten und Schaltflächen: kein Problem." },
+    { "q": "Soll ich Schatten oder Rahmen verwenden?", "a": "Beide haben ihre Berechtigung. Rahmen sind schärfer und barrierefreier. Schatten wirken weicher/erhobener. Moderne flache UIs verwenden oft beides: einen dünnen Rahmen für Schärfe und einen weichen Schatten für Tiefe." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Alle Vorschauen und CSS-Generierungen laufen lokal; nichts wird an einen Server gesendet." }
+  ]
+}

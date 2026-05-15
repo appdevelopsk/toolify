@@ -1,0 +1,111 @@
+{
+  "title": "Analizzatore di Frequenza Caratteri (lettere, tutti i caratteri o",
+  "shortDescription": "Conta quante volte ogni carattere o parola appare nel tuo testo. Ordinabile, con percentuali e sensibilità alle maiuscole opzionale.",
+  "description": "Incolla qualsiasi testo per ottenere una tabella di frequenza ordinata. Tre modalità: tutti i caratteri, solo lettere/cifre, o parole intere. Utile per crittanalisi, analisi della scrittura e pulizia dei dataset.",
+  "metaDescription": "Analizzatore di frequenza caratteri gratuito. Conta lettere, tutti i caratteri o parole. Tabella ordinabile con percentuali. Compatibile con UTF-8 inclusi CJK ed emoji.",
+  "keywords": [
+    "frequenza caratteri",
+    "frequenza lettere",
+    "frequenza parole",
+    "analisi della frequenza",
+    "statistiche testo"
+  ],
+  "input": {
+    "text": "Testo"
+  },
+  "mode": {
+    "all": "Tutti i caratteri",
+    "letters": "Lettere e cifre",
+    "words": "Parole"
+  },
+  "caseSensitive": "Sensibile alle maiuscole",
+  "stats": {
+    "unique": "{n} unici",
+    "total": "{n} totali",
+    "showingTop": "visualizzando i top {n}",
+    "remainingCount": "+{n} altri nella coda non mostrati"
+  },
+  "col": {
+    "item": "Elemento",
+    "count": "Conteggio"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "A cosa serve",
+        "paragraphs": [
+          "Crittanalisi: i cifrari classici (Cesare, a sostituzione) preservano le frequenze delle lettere. Il testo italiano ha sempre la E come lettera più comune, poi A, I, O, N. Se vedi circa quella distribuzione in un testo cifrato, hai una sostituzione. Le lingue CJK hanno distribuzioni molto diverse ma ancora riconoscibili.",
+          "Analisi della scrittura: individuare le parole usate eccessivamente è uno dei modi più rapidi per migliorare le bozze. Se «proprio» o «davvero» appare 50 volte in un saggio di 1.000 parole, hai trovato un tic da correggere.",
+          "Pulizia dei dataset: scansionare una colonna CSV con questo strumento rivela caratteri vaganti, errori di codifica e capitalizzazioni inaspettate. Utile prima di importare dati in un sistema più rigoroso."
+        ]
+      },
+      {
+        "heading": "Tre modalità",
+        "paragraphs": [
+          "Tutti i caratteri: include spazi, punteggiatura, interruzioni di riga, emoji. La migliore per l'analisi del testo grezzo. Utile quando si sospettano caratteri nascosti (spazio a larghezza zero, BOM) che corrompono un file.",
+          "Lettere e cifre: filtra solo le lettere e i numeri Unicode. La migliore per la tradizionale analisi della frequenza delle lettere (crittanalisi, identificazione della lingua).",
+          "Parole: divide sugli spazi bianchi e conta le parole intere. La migliore per l'analisi della scrittura e la verifica stilistica."
+        ]
+      },
+      {
+        "heading": "Cosa fa «sensibile alle maiuscole»",
+        "paragraphs": [
+          "Disattivato (predefinito): «A» e «a» vengono contate insieme. La migliore per la frequenza delle lettere nel testo naturale dove le maiuscole sono incidentali.",
+          "Attivato: «A» e «a» vengono contate separatamente. Utile quando le maiuscole sono significative — identificatori di programmazione, termini di marchio o analisi dei pattern di capitalizzazione. Nota: il folding insensibile alle maiuscole usa le regole minuscole del locale; per la maggior parte delle lingue è il folding Unicode convenzionale."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Incolla il testo",
+        "text": "Qualsiasi cosa, da una frase a un file di diversi megabyte."
+      },
+      {
+        "name": "Scegli la modalità",
+        "text": "Tutti i caratteri, lettere/cifre o parole."
+      },
+      {
+        "name": "Attiva/disattiva la sensibilità alle maiuscole",
+        "text": "Disattivato per il testo naturale; attivato quando le maiuscole sono significative."
+      },
+      {
+        "name": "Leggi la tabella",
+        "text": "Ordinata per frequenza. Mostrati i top 50; la coda rimanente è riassunta in basso."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Funziona per testo giapponese, cinese, coreano?",
+      "a": "Sì. La modalità lettere tratta ogni ideogramma come una 'lettera', quindi ottieni la frequenza degli hanzi/kanji. La modalità parole divide sugli spazi bianchi, il che significa che il testo CJK senza spazi appare come una parola gigante — usa la modalità lettere per quelli."
+    },
+    {
+      "q": "Qual è la lettera italiana più comune?",
+      "a": "'E' (circa il 11,8%), poi A (11,7%), I (10,1%), O (9,8%), N (6,9%). Conoscere questo è la base per violare i semplici cifrari a sostituzione."
+    },
+    {
+      "q": "Le emoji vengono conteggiate?",
+      "a": "Sì nella modalità 'tutti i caratteri'. La modalità lettere le filtra (non sono lettere per la classificazione Unicode)."
+    },
+    {
+      "q": "Perché le emoji a volte vengono divise in più caratteri?",
+      "a": "Alcune emoji sono più code point Unicode (ad es. le bandiere = due lettere indicatrici regionali). Il contatore segue l'iterazione delle stringhe JavaScript che rispetta i code point ma non tutti i cluster di grafemi. Per la maggior parte delle analisi questo va bene."
+    },
+    {
+      "q": "Posso esportare la tabella?",
+      "a": "Non ancora — per ora usa copia-incolla della tabella visualizzata. L'esportazione CSV è in roadmap."
+    },
+    {
+      "q": "Quante voci mostra?",
+      "a": "Top 50 nella tabella. Il conteggio della coda è riassunto in basso."
+    },
+    {
+      "q": "Perché i risultati case-insensitive greco/turco non corrispondono alle mie aspettative?",
+      "a": "Alcune lingue hanno regole di maiuscole insolite (I puntato/non puntato turco; tedesco ß ↔ SS). Usiamo toLowerCase() di JavaScript che segue il folding Unicode predefinito — di solito va bene ma può sorprendere nei casi limite."
+    },
+    {
+      "q": "I dati lasciano il mio browser?",
+      "a": "No. Tutti i conteggi vengono eseguiti localmente."
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "title": "Generatore di gradienti CSS (lineare, radiale, conico)",
+  "shortDescription": "Crea gradienti CSS visivamente: lineari, radiali e conici. Più punti di colore, controllo dell'angolo, preset. Copia il CSS pronto all'uso.",
+  "description": "Scegli il tipo di gradiente, imposta l'angolo, aggiungi o rimuovi punti di colore con le posizioni. Anteprima in tempo reale. Copia la dichiarazione CSS background con un clic.",
+  "metaDescription": "Generatore di gradienti CSS gratuito con anteprima in tempo reale. Gradienti lineari, radiali e conici. Multi-stop, controllo dell'angolo, codice CSS pronto da copiare.",
+  "keywords": ["generatore gradiente CSS", "linear gradient", "radial gradient", "conic gradient", "creatore gradiente CSS"],
+  "preview": "Anteprima",
+  "input": {
+    "type": "Tipo",
+    "angle": "Angolo",
+    "stops": "Punti di colore"
+  },
+  "type": {
+    "linear": "Lineare",
+    "radial": "Radiale",
+    "conic": "Conico"
+  },
+  "output": {
+    "css": "Codice CSS"
+  },
+  "addStop": "Aggiungi punto",
+  "removeStop": "Rimuovi punto",
+  "copy": "Copia CSS",
+  "copied": "Copiato!",
+  "article": {
+    "sections": [
+      {
+        "heading": "I tre tipi di gradiente in CSS",
+        "paragraphs": [
+          "Gradiente lineare: i colori si fondono lungo una linea retta a un angolo dato. 0° punta verso l'alto, 90° punta a destra (direzione di lettura predefinita), 180° punta verso il basso. Il più comune per sfondi, pulsanti e sezioni hero.",
+          "Gradiente radiale: i colori si espandono verso l'esterno da un punto centrale. La forma può essere un cerchio (predefinito) o un'ellisse. Ideale per effetti spotlight, elementi simili al sole o elementi centrali che catturano l'attenzione.",
+          "Gradiente conico: i colori ruotano attorno a un punto centrale, come una ruota dei colori. Meno comune ma potente per grafici a torta, quadranti di orologi o spinner decorativi. Supportato dai browser moderni dal 2020."
+        ]
+      },
+      {
+        "heading": "Punti di colore e sistema percentuale",
+        "paragraphs": [
+          "Ogni punto di colore ha un colore e una posizione da 0% a 100%. Lo 0% è l'inizio del gradiente, il 100% è la fine. Due punti creano un gradiente a due colori fluido. Aggiungere un terzo punto nel mezzo crea una miscela a tre colori o una banda netta a seconda del posizionamento.",
+          "Per transizioni nette (senza sfumatura), metti due punti nella stessa posizione con colori diversi. Ad esempio, '#000 50%, #fff 50%' crea un netto passaggio dal nero al bianco a metà. È così che si realizzano gli sfondi 'a strisce'."
+        ]
+      },
+      {
+        "heading": "Prestazioni e consigli sull'accessibilità",
+        "paragraphs": [
+          "I gradienti vengono renderizzati nativamente senza richieste HTTP, a differenza delle immagini di sfondo. Si scalano all'infinito senza perdita di qualità. Sono adatti all'animazione: puoi animare la posizione tramite background-position o animare i punti del gradiente con proprietà personalizzate.",
+          "Accessibilità: non mettere testo direttamente sopra un gradiente complesso se il contrasto varia lungo il gradiente. Usa un overlay di colore piatto, assicurati che la luminosità media del gradiente contrasti con il testo, oppure verifica con il nostro controllo del contrasto. WCAG AA richiede 4,5:1 per il testo normale, 3:1 per il testo grande."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Scegli un preset", "text": "Oppure costruisci da zero scegliendo tipo, angolo e punti di colore." },
+      { "name": "Imposta l'angolo", "text": "Per lineari e conici: 0-360°. Il radiale usa il centro come origine." },
+      { "name": "Aggiungi punti di colore", "text": "Minimo due, nessun massimo pratico. Ognuno ha un colore e una posizione da 0 a 100%." },
+      { "name": "Copia il CSS", "text": "Clicca 'Copia CSS' — incolla direttamente nella proprietà background del tuo foglio di stile." }
+    ]
+  },
+  "faq": [
+    { "q": "I gradienti sono supportati dai browser vecchi?", "a": "I gradienti lineari e radiali funzionano in tutti i browser moderni inclusi Edge, Firefox, Chrome, Safari (dal 2014). I gradienti conici richiedono Chrome 69+, Firefox 83+, Safari 12.1+ — per i browser più vecchi, usa un lineare come fallback." },
+    { "q": "Posso usarli in React Native o app mobile?", "a": "I gradienti CSS web non si traducono direttamente in React Native — usa librerie come `react-native-linear-gradient`. I punti di colore si trasferiscono, ma la sintassi è diversa. Le UI iOS e Android usano API specifiche della piattaforma." },
+    { "q": "Posso usare colori con nome?", "a": "Sì. Sostituisci qualsiasi codice esadecimale (es. #ff0000) con il nome del colore CSS (red, dodgerblue, ecc.) nel campo di testo accanto al selettore di colore." },
+    { "q": "Perché il mio gradiente conico sembra strano?", "a": "I gradienti conici ruotano in senso orario dall'angolo impostato. Sembrano migliori con più punti che coprono l'intera rotazione di 360°. Con solo 2 punti appaiono spesso incompleti." },
+    { "q": "Come creo un effetto 'bagliore'?", "a": "Usa un gradiente radiale con un punto finale completamente trasparente: es. 'radial-gradient(circle, rgba(255,200,0,0.6) 0%, transparent 70%)'." },
+    { "q": "Posso animare il gradiente?", "a": "CSS non anima direttamente i punti del gradiente, ma puoi animare background-position per un effetto in movimento, oppure usare proprietà personalizzate CSS (variabili) e aggiornarle con JavaScript." },
+    { "q": "Perché il CSS è così lungo?", "a": "Ogni punto aggiunge un colore e una posizione. I gradienti con molti punti producono CSS verboso. Per risultati più semplici, usa 2-3 punti." },
+    { "q": "I dati escono dal mio browser?", "a": "No. Tutto viene calcolato localmente; nulla viene inviato a un server." }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Zar Atıcı (d4'ten d100'e, değiştirici ve geçmiş ile)",
+  "shortDescription": "Herhangi bir yüz sayısına sahip herhangi sayıda zar at. Kriptografik olarak rastgele, değiştirici (+N), çalışan toplam ve zar geçmişiyle.",
+  "description": "Sayıyı, yüzleri (4, 6, 8, 10, 12, 20, 100 veya 1000'e kadar özel) ve değiştiriciyi seç. Her zar, tarafsız tekdüze dağılım için crypto.getRandomValues kullanır.",
+  "metaDescription": "D&D ve herhangi bir TTRPG için ücretsiz zar atıcı. d4/d6/d8/d10/d12/d20/d100 + özel, değiştirici, geçmiş. Tarayıcında kriptografik olarak güvenli tarafsız atışlar.",
+  "keywords": ["zar atıcı", "online zar", "d20 atışı", "TTRPG zarı", "d6 d10 d100"],
+  "input": { "count": "Kaç tane", "sides": "Yüzler", "modifier": "Değiştirici (±)" },
+  "roll": "{count}d{sides}{modifier} at",
+  "result": {
+    "total": "Toplam",
+    "history": "Son atışlar"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Atışlar nasıl oluşturuluyor?",
+        "paragraphs": [
+          "Her zar crypto.getRandomValues kullanır — tarayıcının kriptografik olarak güvenli rastgele API'si, HTTPS oturumlarının da dayandığı temel ilkel. Zar boyutundan bağımsız olarak her yüzün tam olarak eşit olasılığa sahip olmasını sağlamak için reddetme örneklemesi de uyguluyoruz. Naif `random % yüzler` yöntemi, yüzler 2³²'yi temiz bölmediğinde yanlılık yaratır.",
+          "Bu, d100'ün 1-36'ya doğru hafif yanlı olmadığı (kötü uygulanmış modüloda olurdu) ve d3'ün 1'i 2 veya 3'e göre kayırmadığı anlamına gelir. Matematik, sonsuz hassasiyetle fiziksel zarla aynıdır."
+        ]
+      },
+      {
+        "heading": "TTRPG (Masa üstü RPG) gösterimi",
+        "paragraphs": [
+          "Yaygın gösterim: 'NdS+M', burada N zar sayısı, S yüzler, M değiştirici. '2d6+3', 2 altı yüzlü zar at ve 3 ekle demektir. '1d20+5', karakterinin bonusundan +5 değiştiriciyle tipik bir D&D saldırı atışıdır.",
+          "Standart zar setleri: d4 (piramit), d6 (küp), d8 (sekizyüzlü), d10 (beşgen trapezoit), d12 (onikiyüzlü), d20 (yirmiyüzlü). d100 genellikle 2d10 olarak atılır (biri onlar, biri birler için). Manuel dönüşümü atlamak için d100 ön ayarını kullan."
+        ]
+      },
+      {
+        "heading": "Yaygın kullanım alanları",
+        "paragraphs": [
+          "D&D / Pathfinder / TTRPG'ler: saldırılar için d20+5, hasar için 1d8+3, karakter oluşturma için 4d6 en düşüğü bırak.",
+          "Rastgele seçim: N kişi arasından kazanan seçmek için dN at. 7 kişi için yüzler=7 yap. Kriptografik rastgelelik adalet sağlar.",
+          "Olasılık dersleri: çok zar at ve dağılımı gözlemle. Birden fazla zarın toplamı normal dağılıma yaklaşır (merkezi limit teoremi).",
+          "Karar alma: '50/50 ile X yapmalı mıyım?' d2 (2 yüz) at. Ağırlıklı karar mı? d10 kullan ve eşikler belirle (1-7 = evet, 8-10 = hayır = 70/30 için)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Bir zar ön ayarı seç", "text": "Veya 2 ile 1000 arasında özel bir yüz sayısı yaz." },
+      { "name": "Sayıyı ayarla", "text": "Bir seferde kaç zar atılacak. 50'ye kadar." },
+      { "name": "Değiştirici ekle", "text": "Toplamına eklenen isteğe bağlı düz sayı." },
+      { "name": "At", "text": "Toplam, bireysel atışlar ve son geçmiş hepsi görüntülenir." }
+    ]
+  },
+  "faq": [
+    { "q": "Atışlar gerçekten adil mi?", "a": "Evet. Modülo işleminden kaynaklanan sınır yanlılığı olmadan her yüzün tam olarak eşit olasılığa sahip olması için crypto.getRandomValues (güvenli RNG) ve reddetme örneklemesi kullanıyoruz." },
+    { "q": "Maksimum zar sayısı nedir?", "a": "Atış başına 50. Daha fazlası için birden fazla kez at — her biri bağımsızdır." },
+    { "q": "Maksimum yüz sayısı nedir?", "a": "1000. Bunun ötesinde matematik hâlâ çalışır ama kullanım durumu zorlaşır." },
+    { "q": "Favori zar kombinasyonlarımı kaydedebilir miyim?", "a": "Henüz değil. Yaygın dövüş atışların için kaydedilmiş ön ayarlar ekleyebiliriz." },
+    { "q": "Neden d20 ünlüdür?", "a": "Dungeons & Dragons onu yetenek kontrolleri ve saldırı atışları için popüler hale getirdi. Her yüzün %5 olasılığı vardır — bir yüzdelik (d100) defterini tutmadan yetenek farklılıkları için iyi ayrıntı düzeyi." },
+    { "q": "Neden geçmişte yalnızca 10 atış gösteriyor?", "a": "Sayfayı düzenli tutmak için. Daha uzun kayıtlar için her sonucu bir not dosyasına veya RPG karakter sayfasına yapıştır." },
+    { "q": "Bu fiziksel zarlarımın yerini alacak mı?", "a": "İşlevsel olarak evet, özellikle çevrimiçi oyunlar için. Fiziksel zarlar dokunusallık ve ritüel için sevilir — ama matematiksel olarak kriptoRNG ile dijital bir atış en az bir fiziksel d20 kadar adildir." },
+    { "q": "Veriler tarayıcımı terk ediyor mu?", "a": "Hayır. Her atış yerel olarak gerçekleşir." }
+  ]
+}

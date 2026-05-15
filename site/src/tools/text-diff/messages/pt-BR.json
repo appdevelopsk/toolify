@@ -1,0 +1,99 @@
+{
+  "title": "Ferramenta de Diff de Texto (comparação linha a linha, com código de",
+  "shortDescription": "Compare dois blocos de texto linha por linha. Linhas adicionadas, removidas e inalteradas são codificadas por cores com números de linha.",
+  "description": "Cole uma versão original e uma revisada para ver um diff linha a linha. Útil para documentos, configurações, revisão de código e edição de textos.",
+  "metaDescription": "Ferramenta gratuita de diff de texto online. Comparação linha a linha com linhas adicionadas, removidas e inalteradas com código de cores.",
+  "keywords": [
+    "diff de texto",
+    "comparar texto",
+    "ferramenta diff",
+    "diff de linha",
+    "encontrar diferenças"
+  ],
+  "input": {
+    "left": "Original (esquerda)",
+    "right": "Revisado (direita)"
+  },
+  "stats": {
+    "added": "adicionadas",
+    "removed": "removidas",
+    "unchanged": "inalteradas"
+  },
+  "empty": "Cole as duas versões para ver o diff.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Como o diff é calculado",
+        "paragraphs": [
+          "Usamos o algoritmo de Maior Subsequência Comum (LCS) para encontrar quais linhas são compartilhadas entre as duas versões. Linhas que aparecem nas duas são 'inalteradas'. Linhas apenas no original são 'removidas'. Linhas apenas na versão revisada são 'adicionadas'. O resultado é uma comparação anotada com números de linha preservados em ambos os lados.",
+          "LCS é a abordagem padrão usada pelo git e pela maioria das ferramentas de diff. Ela escolhe a maior sequência de correspondências possível, que geralmente corresponde ao que um humano chamaria de 'o mesmo parágrafo'. Para entradas muito grandes (10.000+ linhas) o tempo de execução cresce quadraticamente; se precisar comparar logs grandes, use uma ferramenta de diff em streaming."
+        ]
+      },
+      {
+        "heading": "Para que isso é útil",
+        "paragraphs": [
+          "Revisões de documentos: veja exatamente o que mudou entre rascunhos. Útil para contratos, termos de serviço e qualquer texto onde 'o que mudou?' importa.",
+          "Arquivos de configuração: compare dois arquivos .env ou YAML para detectar uma configuração incorreta. Ou duas versões de um script de deploy.",
+          "Edição de prosa: escritores podem ver as revisões do editor em contexto, especialmente quando apenas algumas linhas mudaram.",
+          "Revisão de código (uso leve): para pequenos trechos. Para revisão real de código, use uma ferramenta que entenda sintaxe — git diff com flags semânticos ou uma ferramenta de revisão dedicada dará melhores resultados."
+        ]
+      },
+      {
+        "heading": "Limitações",
+        "paragraphs": [
+          "Fazemos diff na granularidade de linha. Se você mudar 'gato' para 'gatos' em uma linha, a linha inteira aparece como removida-e-adicionada; não destacamos o 's' inserido. Diffs em nível de palavra e caractere são úteis para isso, mas mais difíceis de ler em linhas longas.",
+          "Espaços em branco no final são significativos — 'foo' e 'foo ' (espaço no final) contam como linhas diferentes. Se quiser comparação insensível a espaços em branco, normalize o texto antes de colar.",
+          "A ordem importa. Dois parágrafos em posições diferentes contam como removidos e adicionados. O diff não tenta detectar blocos 'movidos'."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Cole o original",
+        "text": "À esquerda."
+      },
+      {
+        "name": "Cole o revisado",
+        "text": "À direita."
+      },
+      {
+        "name": "Leia o diff",
+        "text": "As linhas se atualizam enquanto você digita. Verde = adicionada, vermelho = removida, neutro = inalterada."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Isso suporta diff em nível de palavra?",
+      "a": "Ainda não — apenas nível de linha. Podemos adicionar granularidade de caractere ou palavra mais tarde para comparações curtas."
+    },
+    {
+      "q": "Qual o tamanho máximo do meu texto?",
+      "a": "Praticamente até alguns milhares de linhas por lado. A complexidade quadrática significa que entradas muito grandes podem congelar a aba do navegador brevemente."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. O diff é executado completamente no local."
+    },
+    {
+      "q": "Espaços no final de linha são significativos?",
+      "a": "Sim. Duas linhas que diferem apenas por espaço em branco no final são contadas como diferentes. Normalize os espaços antes de colar se quiser correspondência insensível a espaços."
+    },
+    {
+      "q": "Posso salvar o diff?",
+      "a": "Não como arquivo salvo. Copie e cole o texto renderizado ou tire uma captura de tela por enquanto."
+    },
+    {
+      "q": "É o mesmo algoritmo que o git diff?",
+      "a": "Conceitualmente sim — usamos LCS, que é uma das opções do git. O git usa por padrão um algoritmo similar mas mais sofisticado (Myers diff com Patience como opt-in). A saída para entradas curtas é essencialmente idêntica."
+    },
+    {
+      "q": "Por que linhas inteiras são marcadas quando apenas uma palavra mudou?",
+      "a": "Porque trabalhamos na granularidade de linha. Um diff em nível de caractere destacaria a palavra alterada, mas é mais difícil de ler em linhas longas."
+    },
+    {
+      "q": "Posso comparar mais de duas versões?",
+      "a": "Não nesta ferramenta. Para merge de múltiplas versões, use uma ferramenta de diff de 3 vias dedicada."
+    }
+  ]
+}

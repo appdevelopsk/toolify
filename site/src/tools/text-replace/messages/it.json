@@ -1,0 +1,109 @@
+{
+  "title": "Trova e Sostituisci Testo (letterale o regex, con opzioni)",
+  "shortDescription": "Sostituisci il testo con trova/sostituisci letterale o regex completo. Attiva/disattiva la distinzione tra maiuscole e minuscole e la modalità multi-riga. Conteggio delle corrispondenze in tempo reale.",
+  "description": "Incolla il testo, imposta le stringhe di ricerca e sostituzione, abilita opzionalmente regex / non sensibile a maiuscole / multi-riga e vedi istantaneamente il testo modificato e il conteggio delle corrispondenze.",
+  "metaDescription": "Strumento gratuito di trova e sostituisci per testo. Modalità letterale o regex, opzione non sensibile a maiuscole, conteggio live delle corrispondenze.",
+  "keywords": [
+    "trova e sostituisci",
+    "sostituzione testo",
+    "sostituzione regex",
+    "cerca sostituisci",
+    "modifica testo in blocco"
+  ],
+  "input": {
+    "text": "Testo sorgente",
+    "find": "Cerca",
+    "replace": "Sostituisci con"
+  },
+  "opt": {
+    "regex": "Regex",
+    "caseSensitive": "Distingui maiuscole/minuscole",
+    "multiline": "Multi-riga ^ / $"
+  },
+  "output": {
+    "result": "Risultato",
+    "matches": "{n} corrispondenze"
+  },
+  "error": "Errore regex",
+  "copy": "Copia",
+  "copied": "Copiato",
+  "article": {
+    "sections": [
+      {
+        "heading": "Due modalità — letterale e regex",
+        "paragraphs": [
+          "Letterale (regex disattivato): la stringa di ricerca viene abbinata esattamente. I caratteri speciali come '.' e '*' vengono trattati come tali. Questo è il valore predefinito sicuro per la maggior parte delle modifiche quotidiane al testo.",
+          "Regex (regex attivato): la stringa di ricerca viene interpretata come un'espressione regolare JavaScript. Usala per i pattern — ad esempio /\\b\\w+@\\w+\\.\\w+\\b/ per trovare le email, o (^.+:) per abbinare le etichette all'inizio di una riga. Con la modalità multi-riga, ^ e $ abbinano alle interruzioni di riga."
+        ]
+      },
+      {
+        "heading": "Sintassi speciale della stringa di sostituzione",
+        "paragraphs": [
+          "In modalità regex, la stringa di sostituzione supporta i backreference: $1, $2 ecc. per i gruppi di acquisizione; $& per l'intera corrispondenza; $$ per un segno di dollaro letterale. Esempio: trova /(\\d{2})-(\\d{2})-(\\d{4})/ sostituisci $3-$2-$1 riformatta le date da gg-mm-aaaa a aaaa-mm-gg.",
+          "In modalità letterale, la stringa di sostituzione viene presa così com'è — nessun backreference, nessuna gestione speciale. Ciò che digiti è ciò che viene inserito."
+        ]
+      },
+      {
+        "heading": "Usi comuni",
+        "paragraphs": [
+          "Modifica in blocco: standardizza l'ortografia ('organizzazione' → 'organizzazione' per stile uniforme), aggiorna nomi di prodotti, correggi refusi in documenti lunghi.",
+          "Refactoring del codice: rinomina una variabile in un frammento di codice incollato (usa la distinzione maiuscole/minuscole). Per il vero refactoring su molti file, un IDE è meglio.",
+          "Pulizia dei dati: converti le tabulazioni in virgole in CSV, sostituisci un delimitatore con un altro, normalizza gli spazi.",
+          "Markdown in testo semplice: rimuovi la sintassi Markdown con regex (es. /\\*\\*([^*]+)\\*\\*/g → $1 per rimuovere i marcatori grassetto)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Incolla il tuo testo",
+        "text": "O digitalo direttamente."
+      },
+      {
+        "name": "Inserisci cerca e sostituisci",
+        "text": "Cerca cosa cercare, sostituisci con cosa sostituire."
+      },
+      {
+        "name": "Attiva le opzioni secondo necessità",
+        "text": "Regex per i pattern; non sensibile a maiuscole per corrispondenze approssimative; multi-riga per pattern con ancore di riga."
+      },
+      {
+        "name": "Leggi il risultato e copia",
+        "text": "Il conteggio delle corrispondenze mostra quante sostituzioni sono avvenute."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "In cosa differisce dal tester regex?",
+      "a": "Questo si concentra sull'operazione di sostituzione. Il tester regex si concentra sull'ispezione delle corrispondenze e dei gruppi di acquisizione. Usa quello che si adatta al compito."
+    },
+    {
+      "q": "Posso usare Unicode nella ricerca/sostituzione?",
+      "a": "Sì. Le stringhe di ricerca e sostituzione supportano UTF-8 completo inclusi emoji e caratteri CJK."
+    },
+    {
+      "q": "Perché la mia ricerca/sostituzione non ha funzionato?",
+      "a": "Più comune: distinzione maiuscole/minuscole. 'Ciao' non corrisponderà a 'ciao' a meno che tu non attivi la modalità non sensibile a maiuscole. O caratteri regex speciali in modalità letterale mal interpretati."
+    },
+    {
+      "q": "Conserva la formattazione?",
+      "a": "Conserva il testo esattamente tranne per le corrispondenze. Se il tuo testo ha tabulazioni o specifiche interruzioni di riga, vengono preservate."
+    },
+    {
+      "q": "Posso annullare una sostituzione?",
+      "a": "L'originale è nel campo di input. Reincollalo da lì o usa il comportamento testo-indietro del browser. Non abbiamo un'opzione annulla integrata."
+    },
+    {
+      "q": "Quanto grande può essere il mio testo?",
+      "a": "Funziona con testo di più megabyte, anche se il regex su input enormi può essere lento se il pattern è scritto male."
+    },
+    {
+      "q": "Come si impara il regex?",
+      "a": "Inizia con la modalità letterale e passa al regex quando hai bisogno di pattern. Cerca 'JavaScript regex cheat sheet' o fai riferimento alla documentazione RegExp di MDN."
+    },
+    {
+      "q": "I dati escono dal mio browser?",
+      "a": "No. Tutta la ricerca/sostituzione viene eseguita localmente."
+    }
+  ]
+}

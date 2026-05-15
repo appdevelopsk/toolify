@@ -1,0 +1,100 @@
+{
+  "title": "Chuyển đổi Markdown sang HTML (tập con CommonMark)",
+  "shortDescription": "Chuyển đổi Markdown sang HTML sạch trong trình duyệt. Hỗ trợ tiêu đề, danh sách, khối code, liên kết, hình ảnh, blockquote, đậm/nghiêng/gạch ngang.",
+  "description": "Dán Markdown và xem ngay HTML tương đương. Hoạt động cho bài đăng blog, tài liệu, file README. Đầu ra là HTML ngữ nghĩa sạch mà bạn có thể dán vào bất kỳ CMS hoặc trang tĩnh nào.",
+  "metaDescription": "Chuyển đổi Markdown sang HTML miễn phí. Xem trước trực tiếp, HTML ngữ nghĩa sạch, hỗ trợ các yếu tố thiết yếu CommonMark bao gồm tiêu đề, danh sách, code, liên kết",
+  "keywords": [
+    "markdown sang html",
+    "md sang html",
+    "chuyển đổi markdown",
+    "commonmark sang html",
+    "markdown blog"
+  ],
+  "input": {
+    "markdown": "Markdown"
+  },
+  "output": {
+    "html": "Đầu ra HTML"
+  },
+  "preview": "Hiển thị xem trước được render",
+  "copy": "Sao chép HTML",
+  "copied": "Đã sao chép!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Những gì được hỗ trợ",
+        "paragraphs": [
+          "Tiêu đề: # H1 đến ###### H6. Danh sách: - / * / + cho không có thứ tự, 1. 2. 3. cho có thứ tự. Blockquote: > đầu dòng. Khối code: ``` với ngôn ngữ tùy chọn. Nội tuyến: **đậm**, *nghiêng*, `code`, ~~gạch ngang~~, [liên kết](url), ![alt](url-hình). Đường ngang: ---, *** hoặc ___.",
+          "Chúng tôi triển khai các yếu tố thiết yếu CommonMark. Bảng, chú thích và danh sách task (-[ ]) chưa được bao gồm; để sử dụng những tính năng đó, hãy dùng thư viện CommonMark hoặc GFM đầy đủ trong pipeline build của bạn."
+        ]
+      },
+      {
+        "heading": "Khi nào nên dùng công cụ này",
+        "paragraphs": [
+          "Chuyển đổi nhanh để dán vào CMS. Hầu hết CMS chấp nhận HTML; nếu bạn viết bằng Markdown nhưng trình soạn thảo không render nó tự nhiên, hãy chạy qua công cụ này trước.",
+          "Tạo tài liệu: chuyển đổi README.md sang HTML cho trang landing của dự án. Đầu ra đủ sạch để gói trong một template cơ bản.",
+          "Soạn email: nhiều ứng dụng email render HTML nhưng không render Markdown. Viết bằng Markdown, chuyển đổi, dán vào."
+        ]
+      },
+      {
+        "heading": "Chuyển đổi phía trình duyệt",
+        "paragraphs": [
+          "Tất cả chuyển đổi chạy trong trình duyệt của bạn. Markdown của bạn — có thể chứa bản nháp bí mật, đoạn code hoặc ghi chú — không bao giờ rời khỏi máy của bạn. Không có log server, không có dữ liệu huấn luyện AI, chỉ là chuyển đổi regex xác định.",
+          "Nếu bạn cần tính năng GFM (bảng, danh sách task, chú thích), hãy dùng thư viện đầy đủ hơn như marked.js, markdown-it hoặc remark trong build của bạn. Với Markdown đơn giản đến vừa phải, đầu ra của công cụ này là đủ."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Dán Markdown",
+        "text": "Hoặc viết trực tiếp vào khu vực đầu vào."
+      },
+      {
+        "name": "Đọc đầu ra HTML",
+        "text": "Cập nhật trực tiếp khi bạn gõ."
+      },
+      {
+        "name": "Sao chép vào clipboard",
+        "text": "Nhấn 'Sao chép HTML' để lấy đầu ra."
+      },
+      {
+        "name": "Tùy chọn: xem trước",
+        "text": "Nhấn 'Hiển thị xem trước được render' để xem nó sẽ trông như thế nào trong trình duyệt."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Cái này có hỗ trợ bảng không?",
+      "a": "Chưa. Bảng là tiện ích mở rộng GFM, không phải CommonMark thuần túy. Chúng tôi có thể thêm chúng trong phiên bản tương lai."
+    },
+    {
+      "q": "Khối code của tôi có được tô màu cú pháp không?",
+      "a": "Chúng tôi thêm class='language-X' vào thẻ <pre><code> để các thư viện như Prism hoặc highlight.js có thể tạo kiểu. Bản thân HTML không có kiểu — hãy áp dụng CSS hoặc thư viện của riêng bạn."
+    },
+    {
+      "q": "Đầu ra có an toàn để dán bất cứ đâu không?",
+      "a": "Chúng tôi escape <, >, & và \" trong khối code và code nội tuyến. Nội dung khác được chuyển đổi nguyên vẹn. Nếu bạn đang dán Markdown do người dùng tạo, hãy sanitize đầu ra trước khi chèn vào trang."
+    },
+    {
+      "q": "Tại sao nhấn mạnh của tôi trông kỳ lạ?",
+      "a": "Lồng nhấn mạnh Markdown có thể khó khăn. * so với _ có thể hoạt động khác nhau với dấu câu liền kề. Spec CommonMark rất chính xác; nếu đầu ra của chúng tôi khác biệt, hãy dán ví dụ spec để kiểm tra."
+    },
+    {
+      "q": "Cái này có xử lý HTML bên trong Markdown không?",
+      "a": "HTML nội tuyến được truyền qua (đó là hành vi CommonMark). Sử dụng cẩn thận — HTML độc hại từ nguồn không đáng tin cậy sẽ truyền qua không thay đổi."
+    },
+    {
+      "q": "Tôi có thể chuyển đổi HTML ngược lại sang Markdown không?",
+      "a": "Có — xem công cụ HTML sang Markdown của chúng tôi (liên kết trong phần Công cụ liên quan)."
+    },
+    {
+      "q": "Còn chú thích thì sao?",
+      "a": "Chưa được triển khai (tiện ích mở rộng GFM). Với tài liệu phức tạp, hãy dùng thư viện phía server như remark-gfm."
+    },
+    {
+      "q": "Dữ liệu có rời khỏi trình duyệt không?",
+      "a": "Không. Chuyển đổi chạy cục bộ; Markdown của bạn không bao giờ được gửi đi đâu cả."
+    }
+  ]
+}

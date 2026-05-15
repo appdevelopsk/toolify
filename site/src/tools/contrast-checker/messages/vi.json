@@ -1,0 +1,62 @@
+{
+  "title": "Kiểm tra độ tương phản (xếp hạng WCAG AA / AAA)",
+  "shortDescription": "Kiểm tra tỷ lệ độ tương phản màu sắc giữa văn bản và nền. Hiển thị bản xem trước trực tiếp và huy hiệu đạt/không đạt cho WCAG AA và AAA ở kích thước văn bản thường và lớn.",
+  "description": "Chọn màu nền trước và màu nền để tính tỷ lệ tương phản WCAG. Bản xem trước văn bản trực tiếp và bốn huy hiệu xếp hạng (AA thường, AA lớn, AAA thường, AAA lớn) cập nhật theo thời gian thực.",
+  "metaDescription": "Công cụ kiểm tra độ tương phản WCAG miễn phí. So sánh bất kỳ màu nền trước/nền nào và xem huy hiệu đạt/không đạt AA và AAA với bản xem trước văn bản trực tiếp.",
+  "keywords": ["kiểm tra độ tương phản", "tương phản WCAG", "màu AA AAA", "màu tiếp cận", "tỷ lệ màu sắc"],
+  "input": { "fg": "Nền trước (văn bản)", "bg": "Nền" },
+  "result": { "label": "Tỷ lệ tương phản" },
+  "preview": {
+    "large": "Mẫu tiêu đề lớn (24px+ hoặc 18,66px+ đậm)",
+    "normal": "Mẫu văn bản thân thông thường cho các đoạn hàng ngày.",
+    "small": "Văn bản nhỏ hơn dùng cho chú thích, chú thích cuối trang và nhãn."
+  },
+  "badge": {
+    "aaNormal": "WCAG AA — Văn bản thường",
+    "aaLarge": "WCAG AA — Văn bản lớn",
+    "aaaNormal": "WCAG AAA — Văn bản thường",
+    "aaaLarge": "WCAG AAA — Văn bản lớn"
+  },
+  "empty": "Nhập hai màu hợp lệ (HEX) để xem tỷ lệ tương phản.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Cách tỷ lệ tương phản hoạt động",
+        "paragraphs": [
+          "WCAG (Hướng dẫn Khả năng Tiếp cận Nội dung Web) định nghĩa độ tương phản là tỷ lệ giữa độ sáng tương đối của hai màu. Công thức tuyến tính hóa từng kênh sRGB, cân theo độ nhạy cảm của mắt người (R 0,2126, G 0,7152, B 0,0722), rồi tính (sáng hơn + 0,05) / (tối hơn + 0,05). Kết quả nằm trong khoảng 1:1 (giống hệt) đến 21:1 (đen trên trắng).",
+          "Chúng tôi tính toán trong trình duyệt của bạn bằng công thức WCAG 2.x chính thức. Bốn huy hiệu xếp hạng kiểm tra theo ngưỡng 4,5:1 (thường) và 3:1 (lớn) của AA, và 7:1 (thường) và 4,5:1 (lớn) của AAA. 'Văn bản lớn' là 24px / 18pt hoặc lớn hơn, hoặc 18,66px / 14pt đậm."
+        ]
+      },
+      {
+        "heading": "Tại sao cần đạt AA tối thiểu",
+        "paragraphs": [
+          "AA là mức có thể thực thi về mặt pháp lý ở nhiều khu vực pháp lý (ADA của Mỹ, EN 301 549 của EU, Đạo luật Bình đẳng của Anh cho dịch vụ kỹ thuật số). Không đạt AA trên văn bản thân là vấn đề tiếp cận phổ biến nhất và dễ sửa nhất trong giai đoạn thiết kế hơn là sau khi ra mắt.",
+          "AAA được khuyến nghị cho đọc dài hạn, dịch vụ chính phủ và giao diện rủi ro cao. Nó nghiêm ngặt — bản năng đầu tiên của nhà thiết kế về màu xám nhạt trên trắng thường không đạt AAA dễ dàng. Nếu trang web của bạn chủ yếu phục vụ nội dung xem nhanh, nhắm AA; nếu bạn xuất bản sách, bài viết hoặc thông tin quan trọng, nhắm AAA."
+        ]
+      },
+      {
+        "heading": "Các lỗi phổ biến",
+        "paragraphs": [
+          "'Trông ổn trên màn hình của tôi.' Màn hình đã hiệu chỉnh, đèn huỳnh quang văn phòng và sử dụng điện thoại thông minh ngoài trời đều thay đổi độ tương phản cảm nhận. Dùng tỷ lệ, không phải mắt của bạn.",
+          "Thiết kế chế độ tối bằng cách đảo ngược mã hex. Đảo ngược thay đổi hue và phá vỡ độ tương phản. Kiểm tra lại từng cặp màu sau khi chuyển đổi chủ đề.",
+          "Tin tưởng vào hướng dẫn thương hiệu. Nhiều bảng màu thương hiệu được chọn trước khi có nhận thức về WCAG. Nếu màu hồng thương hiệu trên trắng không đạt, hãy đề xuất màu hồng tối hơn một chút cho văn bản thân và giữ màu gốc cho mục đích trang trí."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn màu nền trước", "text": "Màu văn bản." },
+      { "name": "Chọn màu nền", "text": "Màu đằng sau văn bản." },
+      { "name": "Đọc tỷ lệ và huy hiệu", "text": "Con số là tỷ lệ WCAG. Bốn huy hiệu cho biết đạt/không đạt cho AA và AAA ở kích thước văn bản thường và lớn." }
+    ]
+  },
+  "faq": [
+    { "q": "Sự khác biệt giữa AA và AAA là gì?", "a": "AA yêu cầu 4,5:1 cho văn bản thường và 3:1 cho văn bản lớn. AAA chặt chẽ hơn ở mức 7:1 và 4,5:1. AAA được khuyến nghị nhưng không phải lúc nào cũng đạt được." },
+    { "q": "'Văn bản lớn' là gì?", "a": "WCAG định nghĩa là 18pt (24px) hoặc lớn hơn, hoặc 14pt (18,66px) và đậm." },
+    { "q": "Công cụ này có hỗ trợ độ trong suốt không?", "a": "Chưa. Chọn màu thực tế người dùng thấy (nền trước kết hợp trên nền). Hỗ trợ độ trong suốt có thể có sau." },
+    { "q": "Tại sao thương hiệu của tôi không đạt?", "a": "Nhiều bảng màu thương hiệu được chọn vì thẩm mỹ, không phải khả năng tiếp cận. Sửa phổ biến: làm tối màu điểm nhấn được dùng làm văn bản, giữ biến thể nhạt cho nền hoặc các yếu tố trang trí." },
+    { "q": "Tỷ lệ có giống 'độ tương phản cảm nhận' không?", "a": "Không — WCAG 2.x dùng công thức dựa trên độ sáng đơn giản hóa. WCAG 3 (đang phát triển) dùng APCA, dự đoán độ tương phản cảm nhận tốt hơn nhưng chưa được chuẩn hóa." },
+    { "q": "Tỷ lệ nào cho biểu tượng hoặc điều khiển UI?", "a": "WCAG 2.1 thêm tối thiểu 3:1 cho độ tương phản phi văn bản (biểu tượng, điều khiển biểu mẫu, chỉ báo focus). Dùng cùng bộ kiểm tra — đáp ứng hoặc vượt quá 3:1." },
+    { "q": "Điều này có hoạt động cho biểu đồ đồ thị không?", "a": "Cùng ngưỡng áp dụng giữa các màu liền kề truyền tải ý nghĩa. Đối với trực quan hóa dữ liệu, 3:1 giữa các màu liền kề là tối thiểu WCAG 1.4.11." },
+    { "q": "Dữ liệu có được gửi đi đâu không?", "a": "Không. Tính toán chạy cục bộ trong trình duyệt của bạn." }
+  ]
+}

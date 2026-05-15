@@ -1,0 +1,92 @@
+{
+  "title": "डिवाइस जानकारी चेकर (ब्राउज़र, OS, हार्डवेयर, नेटवर्क)",
+  "shortDescription": "एक जगह पर अपने डिवाइस के ब्राउज़र, OS, स्क्रीन, हार्डवेयर, GPU, स्टोरेज, नेटवर्क और डार्क-मोड प्राथमिकताएँ देखें। सब कुछ client-side detect होता है।",
+  "description": "हर public Web API का browser-side डेटा जो डिवाइस expose करता है: user agent, OS, ब्राउज़र संस्करण, screen size, devicePixelRatio, hardware concurrency, device memory, GPU, storage quota, network type और speed, language, timezone, dark-mode।",
+  "metaDescription": "मुफ्त डिवाइस जानकारी चेकर। ब्राउज़र, OS, CPU cores, memory, GPU, screen, network, language, timezone — एक पेज में आपकी सभी डिवाइस जानकारी।",
+  "keywords": ["device info checker", "browser detection", "system info", "user agent", "hardware info", "device information"],
+  "loading": "Detecting कर रहे हैं...",
+  "copyJson": "JSON कॉपी करें",
+  "copied": "कॉपी हो गया!",
+  "notAvailable": "(उपलब्ध नहीं)",
+  "automation": "Automation detect हुई",
+  "real": "वास्तविक ब्राउज़र",
+  "section": {
+    "browser": "ब्राउज़र और OS",
+    "display": "डिस्प्ले",
+    "hardware": "हार्डवेयर",
+    "network": "नेटवर्क",
+    "userAgent": "User-Agent स्ट्रिंग"
+  },
+  "field": {
+    "browser": "ब्राउज़र",
+    "os": "ऑपरेटिंग सिस्टम",
+    "platform": "प्लेटफॉर्म",
+    "language": "प्राथमिक भाषा",
+    "languages": "सभी भाषाएँ",
+    "timezone": "समय क्षेत्र",
+    "cookiesEnabled": "Cookies सक्षम",
+    "online": "ऑनलाइन स्थिति",
+    "doNotTrack": "Do Not Track",
+    "webdriver": "Webdriver",
+    "screenSize": "स्क्रीन आकार",
+    "availSize": "उपलब्ध क्षेत्र",
+    "windowSize": "विंडो आकार",
+    "colorDepth": "रंग गहराई",
+    "pixelRatio": "devicePixelRatio",
+    "darkMode": "डार्क मोड पसंद",
+    "reducedMotion": "Reduced motion",
+    "cpuCores": "CPU threads",
+    "deviceMemory": "डिवाइस मेमोरी",
+    "touchPoints": "Touch points",
+    "gpu": "GPU (WebGL)",
+    "storageQuota": "Storage quota",
+    "storageUsage": "Storage उपयोग",
+    "connectionType": "कनेक्शन प्रकार",
+    "downlink": "Downlink",
+    "rtt": "Round-trip time"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "क्या एकत्र किया जाता है",
+        "paragraphs": [
+          "ब्राउज़र और OS: user-agent, पार्स किया गया ब्राउज़र/OS, language, timezone, cookies, ऑनलाइन स्थिति। वही जानकारी जो आप जो भी वेबसाइट visit करते हैं वह पढ़ सकती है।",
+          "डिस्प्ले: screen size, viewport size, color depth, devicePixelRatio (Retina/HiDPI), prefers-color-scheme, prefers-reduced-motion।",
+          "हार्डवेयर: CPU thread count, device memory class, max touch points, WebGL से GPU जानकारी, storage quota।",
+          "नेटवर्क: connection effective type, downlink (Mbps), और round-trip time (ms)।"
+        ]
+      },
+      {
+        "heading": "गोपनीयता: वेबसाइट क्या देखती हैं और क्या नहीं",
+        "paragraphs": [
+          "यहाँ दिखाई गई हर चीज़ वह जानकारी है जिसे आप जो भी वेबसाइट visit करते हैं वह पहले से ही मानक JavaScript APIs के माध्यम से access कर सकती है।",
+          "वेबसाइट क्या नहीं देखती हैं: आपका IP address (केवल server-side), आपकी local file system, अन्य ब्राउज़र टैब की सामग्री।"
+        ]
+      },
+      {
+        "heading": "Debugging के लिए उपयोगी",
+        "paragraphs": [
+          "Mobile बनाम desktop testing: user agent दिखाता है कि साइट क्या देखती है।",
+          "GPU/WebGL: अगर complex 3D या canvas-heavy साइट खराब perform करती है तो आपका GPU bottleneck हो सकता है।",
+          "Storage: storage quota बताता है कि साइट कितना localStorage/IndexedDB उपयोग कर सकती है।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "यह पेज खोलें", "text": "Detection पेज लोड होने पर स्वचालित रूप से चलता है।" },
+      { "name": "प्रत्येक अनुभाग पढ़ें", "text": "ब्राउज़र और OS, डिस्प्ले, हार्डवेयर, नेटवर्क, User-Agent।" },
+      { "name": "अपनी विंडो resize करें", "text": "विंडो आकार और dpi-संबंधित फील्ड लाइव अपडेट होते हैं।" },
+      { "name": "वैकल्पिक: JSON के रूप में कॉपी करें", "text": "बग रिपोर्ट या तुलना के लिए 'JSON कॉपी करें' क्लिक करें।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या यह मेरा डेटा कहीं भेजता है?", "a": "नहीं। सब कुछ आपके ब्राउज़र में detect और render होता है।" },
+    { "q": "कुछ फील्ड '(उपलब्ध नहीं)' क्यों हैं?", "a": "ब्राउज़र अलग-अलग APIs expose करते हैं। navigator.deviceMemory केवल Chrome/Edge है।" },
+    { "q": "मेरी screen size expected resolution से अलग क्यों है?", "a": "ब्राउज़र 'CSS pixel' आकार report करते हैं, physical pixel size नहीं। devicePixelRatio multiplier दिखाता है।" },
+    { "q": "'GPU (WebGL)' क्या दिखाता है?", "a": "WebGL द्वारा report किया गया आपका graphics renderer नाम।" },
+    { "q": "क्या मैं user agent पर भरोसा कर सकता हूँ?", "a": "User agent strings extensions या ब्राउज़र settings द्वारा spoofed की जा सकती हैं।" },
+    { "q": "'CPU threads' 8 क्यों दिखाता है जबकि मेरे CPU में 12 हैं?", "a": "navigator.hardwareConcurrency fingerprinting से बचाने के लिए capped हो सकता है।" },
+    { "q": "यदि मेरे mobile पर 0 touch points दिखते हैं?", "a": "आप desktop view mode में हो सकते हैं।" },
+    { "q": "क्या यह iPhone पर काम करता है?", "a": "हाँ, Safari iOS सीमाओं के साथ।" }
+  ]
+}

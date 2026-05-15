@@ -1,0 +1,65 @@
+{
+  "title": "Kalkulator Target Tabungan (waktu mencapai tujuan)",
+  "shortDescription": "Cari tahu berapa lama mencapai target tabungan dengan saldo awal, kontribusi bulanan, dan imbal hasil tahunan.",
+  "description": "Masukkan tujuan Anda, saldo saat ini, tabungan bulanan, dan imbal hasil tahunan yang diharapkan. Kalkulator menyelesaikan jumlah bulan hingga Anda mencapai target.",
+  "metaDescription": "Kalkulator target tabungan gratis. Lihat berapa lama mencapai jumlah target dengan kontribusi bulanan dan tingkat bunga. Matematika majemuk, dimajemukkan bulanan.",
+  "keywords": ["kalkulator target tabungan", "waktu menabung", "target tabungan", "berapa lama menabung", "kalkulator tabungan"],
+  "empty": "Masukkan tujuan dan kontribusi bulanan atau tingkat di atas 0.",
+  "input": {
+    "goal": "Jumlah tujuan",
+    "start": "Saldo awal",
+    "monthly": "Kontribusi bulanan",
+    "ratePct": "Imbal hasil tahunan %"
+  },
+  "result": {
+    "timeToGoal": "Waktu mencapai tujuan",
+    "years": "thn",
+    "months": "bln",
+    "totalMonths": "Total bulan",
+    "totalContrib": "Total yang dikontribusikan",
+    "interest": "Bunga yang diperoleh"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara waktu-mencapai-tujuan dihitung",
+        "paragraphs": [
+          "Rumus nilai masa depan standar adalah FV = P × (1 + r)^n + M × ((1 + r)^n − 1) / r, di mana P adalah saldo awal, M adalah kontribusi bulanan, r adalah tingkat bulanan (tahunan / 12), dan n adalah bulan. Menetapkan FV = tujuan Anda dan menyelesaikan untuk n memberikan n = log((G × r + M) / (P × r + M)) / log(1 + r).",
+          "Ketika tingkat adalah nol, rumus menjadi (G − P) / M bulan. Kalkulator memilih jalur yang tepat secara otomatis dan membulatkan ke atas ke bulan bulat terdekat, karena Anda tidak bisa 'sebagian' melakukan kontribusi bulanan."
+        ]
+      },
+      {
+        "heading": "Yang paling penting: kontribusi bulanan atau tingkat?",
+        "paragraphs": [
+          "Untuk horizon tabungan khas (1-10 tahun), kontribusi bulanan mendominasi. Naik dari Rp1 juta ke Rp2 juta per bulan membuat perbedaan jauh lebih besar daripada naik dari 3% ke 5% imbal hasil. Waktu dan kontribusi bersifat linear; tingkat bersifat eksponensial tetapi hanya selama horizon sangat panjang.",
+          "Untuk tujuan 20+ tahun (pensiun, dana pendidikan anak), tingkat menjadi penentu utama. Rp1 juta/bulan yang sama selama 30 tahun menghasilkan total yang sangat berbeda pada 4% vs 8%. Itulah mengapa tabungan pensiun awal secara eksponensial lebih berharga dari yang belakangan."
+        ]
+      },
+      {
+        "heading": "Tingkat yang realistis",
+        "paragraphs": [
+          "Tabungan bank konvensional Indonesia: 2-4% per tahun. Reksa dana pasar uang: 4-6%. Deposito: 4-6% terkunci. Obligasi Negara Ritel (ORI/SR): 5-7%.",
+          "Reksa dana saham indeks (rata-rata IHSG jangka panjang): sekitar 8-12% nominal. Gunakan 6-8% untuk perencanaan konservatif.",
+          "Inflasi menggerus 3-5% per tahun di Indonesia. Untuk tujuan dalam 'rupiah saat ini', kurangi inflasi yang diharapkan dari tingkat nominal Anda."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Masukkan tujuan Anda", "text": "Jumlah yang ingin Anda capai." },
+      { "name": "Masukkan saldo awal", "text": "Apa yang Anda miliki hari ini; bisa 0." },
+      { "name": "Masukkan kontribusi bulanan", "text": "Yang akan Anda tambahkan setiap bulan." },
+      { "name": "Masukkan imbal hasil tahunan yang diharapkan", "text": "Konservatif: 4%. Reksa dana saham: 6-8%." },
+      { "name": "Baca hasilnya", "text": "Tahun, bulan hingga tujuan, ditambah total yang dikontribusikan dan bunga yang diperoleh." }
+    ]
+  },
+  "faq": [
+    { "q": "Mengapa jawabannya dibulatkan ke bulan bulat?", "a": "Karena Anda tidak bisa membuat kontribusi bulanan parsial. Jika matematika mengatakan 32,4 bulan, Anda sebenarnya akan mencapai tujuan pada bulan ke-33 (dengan asumsi kontribusi konsisten)." },
+    { "q": "Tingkat berapa yang harus saya gunakan?", "a": "Untuk tabungan bank: 2-4%. Untuk reksa dana saham jangka panjang: 6-8%. Untuk sangat konservatif: gunakan 0% untuk melihat berapa lama tabungan murni diperlukan." },
+    { "q": "Haruskah saya memasukkan inflasi?", "a": "Jika tujuan Anda dalam rupiah saat ini, kurangi inflasi yang diharapkan dari tingkat Anda (misalnya, 8% nominal − 4% inflasi = 4% riil). Kalkulator memberikan jawaban daya beli 'riil' dengan cara itu." },
+    { "q": "Apakah ini mengasumsikan pemajemukan bulanan?", "a": "Ya — bunga dimajemukkan pada frekuensi bulanan yang sama dengan kontribusi Anda. Untuk sebagian besar produk tabungan ini mendekati realita." },
+    { "q": "Bagaimana jika saya menabung Rp0 per bulan dengan tingkat 0?", "a": "Maka Anda tidak dapat mencapai tujuan di atas saldo awal. Kalkulator tidak mengembalikan hasil dalam kasus itu." },
+    { "q": "Apakah bunganya kena pajak?", "a": "Di Indonesia, bunga tabungan dan deposito umumnya dikenai pajak final 20%. Pertimbangkan tingkat setelah pajak jika tujuan Anda adalah daya beli setelah pajak." },
+    { "q": "Bagaimana jika jumlah kontribusi saya berubah?", "a": "Jalankan kalkulator beberapa kali untuk setiap fase. Untuk kontribusi variabel, spreadsheet perencanaan keuangan lebih fleksibel." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak — perhitungan berjalan secara lokal." }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "title": "Minuteur de compte à rebours (en direct, jours/heures/minutes/secondes",
+  "shortDescription": "Compte à rebours en direct vers n'importe quelle date et heure future. Se met à jour chaque seconde ; idéal pour les événements, les échéances, les lancements, les vacances.",
+  "description": "Choisis une date et heure cible et regarde le compte à rebours s'écouler seconde par seconde. Ajoute un titre optionnel pour nommer l'événement. Après le passage de la date cible, le même affichage montre le temps écoulé.",
+  "metaDescription": "Minuteur de compte à rebours gratuit vers n'importe quelle date. Jours, heures, minutes, secondes — se met à jour chaque seconde.",
+  "keywords": [
+    "minuteur compte à rebours",
+    "compte à rebours date",
+    "compte à rebours en direct",
+    "minuteur délai",
+    "compte à rebours événement"
+  ],
+  "input": {
+    "target": "Date et heure cibles",
+    "title": "Nom de l'événement (facultatif)",
+    "titlePlaceholder": "Échéance du projet"
+  },
+  "remaining": "Temps restant avant",
+  "ended": "Temps écoulé depuis",
+  "empty": "Choisis une date et heure cibles pour démarrer le compte à rebours.",
+  "unit": {
+    "days": "Jours",
+    "hours": "Heures",
+    "minutes": "Minutes",
+    "seconds": "Secondes"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionne le minuteur",
+        "paragraphs": [
+          "Le compte à rebours s'incrémente une fois par seconde via setInterval. À chaque tick, il lit l'heure locale actuelle, la soustrait de ta cible et décompose la différence en jours, heures, minutes et secondes. Il n'y a pas d'appel serveur, donc le compte à rebours reste précis même si ta connexion réseau coupe — seul le chargement initial de la page est nécessaire.",
+          "Les fuseaux horaires utilisent ce que ton navigateur considère comme « local ». Si tu règles la cible sur « 12h00 aujourd'hui » et qu'une autre personne dans un fuseau horaire différent visite la page, le compte à rebours sera différent — les deux corrects, mais pour leur 12h00 locale."
+        ]
+      },
+      {
+        "heading": "Cas d'usage courants",
+        "paragraphs": [
+          "Échéances de projets (affiche le compte à rebours sur un écran de salle de réunion), lancements de produits (décompte jusqu'à une publication publique), voyages (vacances, vols, train), examens et certifications, mariages et anniversaires, événements sportifs. Le champ de titre optionnel te permet de nommer l'événement pour que la page soit explicite.",
+          "Après le passage de la date cible, le même affichage bascule sur « temps écoulé depuis » et continue à compter. Utile quand « il y a combien de temps X s'est-il produit » est ce que tu veux vraiment — ex. « jours depuis le dernier incident » pour un tableau de bord SRE."
+        ]
+      },
+      {
+        "heading": "Pourquoi un compte à rebours plutôt qu'un rappel agenda",
+        "paragraphs": [
+          "Les rappels agenda apparaissent une seule fois au moment de l'événement. Un compte à rebours en direct te donne une conscience périphérique constante — utile pour les objectifs que tu veux garder à l'esprit. Les équipes sportives les affichent, les équipes logicielles les montrent dans les salles de crise, et les marathoniens les épinglent sur leurs écrans d'entraînement.",
+          "Si tu veux que ce compte à rebours vive sur un tableau de bord public, mets la page en favori après avoir défini la cible. L'état reste dans les champs de saisie ; recharger la page le réinitialise (pas encore de lien partageable, mais les champs sont préservés dans une session)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis la cible",
+        "text": "Sélectionne la date et l'heure vers lesquelles tu comptes à rebours. Le sélecteur utilise ton fuseau horaire local."
+      },
+      {
+        "name": "Ajoute un titre (facultatif)",
+        "text": "Tape le nom de l'événement pour que l'affichage soit parlant en un coup d'œil."
+      },
+      {
+        "name": "Regarde le compte à rebours",
+        "text": "Jours, heures, minutes et secondes s'écoulent une fois par seconde. Après la cible, le même affichage bascule sur le temps écoulé."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Le compte à rebours est-il précis à la seconde ?",
+      "a": "Oui — l'affichage se met à jour une fois par seconde, et chaque mise à jour recalcule depuis l'horloge actuelle, donc aucune dérive ne peut s'accumuler."
+    },
+    {
+      "q": "Quel fuseau horaire utilise-t-il ?",
+      "a": "Le fuseau horaire local de ton navigateur. La cible que tu définis est interprétée dans ton fuseau local, pas en UTC."
+    },
+    {
+      "q": "Le compte à rebours fonctionne-t-il hors ligne ?",
+      "a": "Oui, une fois la page chargée. Aucune connexion réseau n'est nécessaire pour que le minuteur continue à s'égrener."
+    },
+    {
+      "q": "Puis-je partager un compte à rebours avec quelqu'un d'autre ?",
+      "a": "Pas encore via URL. Nous travaillons sur des URLs avec état encodé pour qu'un lien puisse transporter la cible et le titre ; pour l'instant tu peux coller une capture d'écran ou faire un enregistrement d'écran."
+    },
+    {
+      "q": "Que se passe-t-il après le passage de la date cible ?",
+      "a": "L'affichage bascule sur « temps écoulé depuis » et continue à compter. Les chiffres sont positifs mais le libellé change."
+    },
+    {
+      "q": "Puis-je avoir plusieurs comptes à rebours ?",
+      "a": "Ouvre plusieurs onglets — chacun est indépendant. Un mode multi-événements intégré est prévu."
+    },
+    {
+      "q": "Le minuteur continuera-t-il à tourner si je change d'onglet ?",
+      "a": "Les navigateurs ralentissent setInterval dans les onglets en arrière-plan. Le compte à rebours rattrapera correctement quand tu reviendras — le recalcul se fait depuis l'horloge, pas depuis les ticks accumulés."
+    },
+    {
+      "q": "Les données saisies sont-elles envoyées quelque part ?",
+      "a": "Non. Tout reste dans ton navigateur."
+    }
+  ]
+}

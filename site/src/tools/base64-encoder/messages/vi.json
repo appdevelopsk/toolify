@@ -1,0 +1,54 @@
+{
+  "title": "Mã hóa / Giải mã Base64 (UTF-8 và URL-safe)",
+  "shortDescription": "Mã hóa bất kỳ văn bản UTF-8 sang Base64 hoặc giải mã ngược lại. Chuyển sang mã hóa URL-safe để dùng trong URL và JWT.",
+  "description": "Gõ văn bản hoặc dán chuỗi Base64 để chuyển đổi theo cả hai hướng. Xử lý UTF-8 (bao gồm emoji và ký tự CJK) và hỗ trợ biến thể URL-safe dùng trong JWT và OAuth.",
+  "metaDescription": "Công cụ mã hóa và giải mã Base64 miễn phí với hỗ trợ UTF-8 và URL-safe. Chuyển đổi văn bản sang Base64 hoặc giải mã chuỗi kiểu JWT tức thì trên trình duyệt.",
+  "keywords": ["mã hóa base64", "giải mã base64", "url safe base64", "base64 utf8", "mã hóa văn bản"],
+  "input": { "plain": "Văn bản thường", "encoded": "Chuỗi Base64" },
+  "output": { "encoded": "Kết quả mã hóa", "plain": "Kết quả giải mã" },
+  "mode": { "encode": "Mã hóa", "decode": "Giải mã" },
+  "urlSafe": "URL-safe (-, _, không đệm)",
+  "copy": "Sao chép",
+  "copied": "Đã sao chép",
+  "invalidInput": "Đầu vào Base64 không hợp lệ.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Base64 là gì và không phải là gì",
+        "paragraphs": [
+          "Base64 mã hóa các byte tùy ý bằng bảng chữ cái 64 ký tự (A-Z, a-z, 0-9, +, /, với đệm =). Đây là cách tiêu chuẩn để nhúng dữ liệu nhị phân — byte ảnh, blob mã hóa, token đã ký — vào các định dạng chỉ có văn bản như JSON, HTML hoặc header email. Đầu ra lớn hơn đầu vào khoảng 33%.",
+          "Base64 là mã hóa, không phải mã hóa bảo mật. Bất kỳ ai cũng có thể giải mã chuỗi Base64 về các byte ban đầu. Đừng dùng nó để che giấu bí mật — hãy dùng thuật toán mã hóa thực sự như AES nếu bạn cần bảo mật."
+        ]
+      },
+      {
+        "heading": "URL-safe so với chuẩn",
+        "paragraphs": [
+          "Base64 chuẩn có chứa '+' và '/', những ký tự này có ý nghĩa đặc biệt trong URL và cần được mã hóa phần trăm. Base64 URL-safe (RFC 4648 §5) thay '+' bằng '-', '/' bằng '_', và bỏ đệm '=' cuối. JWT, token OAuth và nhiều web API dùng dạng URL-safe.",
+          "Nếu giải mã JWT hoặc token thủ công, bật URL-safe. Nếu làm việc với email cổ điển hoặc dữ liệu nhúng PDF, để tắt. Bộ giải mã chấp nhận cả hai dạng khi URL-safe được bật."
+        ]
+      },
+      {
+        "heading": "Xử lý UTF-8",
+        "paragraphs": [
+          "btoa() cũ của trình duyệt chỉ xử lý được ASCII. Công cụ này dùng TextEncoder để chuyển đổi đầu vào sang byte UTF-8 trước, rồi mã hóa các byte đó bằng Base64. Điều đó có nghĩa là emoji, ký tự CJK, ký tự Latin có dấu phụ và bất kỳ Unicode nào khác đều được mã hóa và khử mã chính xác. Cách tiếp cận byte-rồi-base64 này là cách được dùng bởi các thư viện JWT và hầu hết các framework hiện đại."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn mã hóa hoặc giải mã", "text": "Chuyển đổi chế độ ở trên cùng." },
+      { "name": "Đặt URL-safe nếu cần", "text": "Bật cho JWT và token OAuth; tắt cho mọi thứ khác." },
+      { "name": "Dán đầu vào của bạn", "text": "Văn bản thường để mã hóa, chuỗi Base64 để giải mã." },
+      { "name": "Sao chép kết quả", "text": "Nhấp 'Sao chép' bên cạnh đầu ra." }
+    ]
+  },
+  "faq": [
+    { "q": "Base64 có phải là mã hóa bảo mật không?", "a": "Không. Đây là cách mã hóa dữ liệu nhị phân thành văn bản ASCII. Bất kỳ ai cũng có thể giải mã. Dùng mã hóa thực sự (AES, RSA, v.v.) để bảo mật." },
+    { "q": "Tại sao URL-safe lại khác?", "a": "Base64 chuẩn dùng '+' và '/' có ý nghĩa đặc biệt trong URL và cần mã hóa phần trăm. Base64 URL-safe thay bằng '-' và '_' để tránh điều đó." },
+    { "q": "Tôi có thể giải mã chữ ký JWT không?", "a": "Giải mã chữ ký cho bạn thấy byte thô của chữ ký, nhưng chúng được dùng để xác minh, không phải để đọc. Giải mã header và payload của JWT (hai phần đầu tiên) để xem dữ liệu." },
+    { "q": "Công cụ này có dùng được cho file nhị phân không?", "a": "Không trực tiếp — chỉ dán văn bản. Đối với file, dùng công cụ hỗ trợ nhị phân. (Hầu hết trình duyệt có cặp atob/btoa tích hợp bạn có thể dùng trong DevTools cho file nhỏ.)" },
+    { "q": "Tại sao văn bản giải mã của tôi bị lộn xộn?", "a": "Hoặc là đầu vào không phải Base64 hợp lệ, hoặc nó mã hóa byte không phải UTF-8 (ví dụ file Latin-1). Hãy xác minh mã hóa ban đầu. Các công cụ giải mã 'thành văn bản' giả định UTF-8." },
+    { "q": "Dữ liệu có được gửi đi đâu không?", "a": "Không. Mã hóa và giải mã chạy hoàn toàn trong trình duyệt của bạn." },
+    { "q": "Chi phí kích thước là bao nhiêu?", "a": "Lớn hơn khoảng 33% so với byte nguồn (mỗi 3 byte đầu vào thành 4 ký tự đầu ra). URL-safe không có đệm có cùng chi phí." },
+    { "q": "Tại sao đệm lại quan trọng?", "a": "Base64 chuẩn đệm cuối bằng '=' để độ dài là bội số của 4. Các phiên bản URL-safe thường bỏ qua điều này vì không cần thiết để giải mã." }
+  ]
+}

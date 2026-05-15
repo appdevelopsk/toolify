@@ -1,0 +1,56 @@
+{
+  "title": "Kesir Hesaplayıcı (toplama, çıkarma, çarpma, bölme)",
+  "shortDescription": "İki kesri toplayın, çıkarın, çarpın veya bölün. Sadeleştirilmiş biçim, ondalık eşdeğer ve karma sayı gösterimi döndürür.",
+  "description": "İki kesri (pay ve payda olarak) ve bir işlem girin. Hesaplayıcı sonucu en sade biçimde, ondalık değeriyle ve uygulanabildiğinde karma sayı olarak gösterir. Tam büyüklükte sonuçlar için BigInt kullanır.",
+  "metaDescription": "Ücretsiz kesir hesaplayıcı. Kesirleri toplayın, çıkarın, çarpın, bölün. Sadeleştirilmiş sonuç, ondalık eşdeğer, karma sayı. Tam BigInt aritmetiği.",
+  "keywords": ["kesir hesaplayıcı", "kesir toplama", "kesir çarpma", "kesir sadeleştirme", "karma sayı"],
+  "empty": "Her iki kesri ve bir işlemi girin.",
+  "result": {
+    "simplified": "Sonuç (sadeleştirilmiş)",
+    "decimal": "Ondalık",
+    "mixed": "Karma sayı"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Kesir işlemleri nasıl çalışır",
+        "paragraphs": [
+          "Toplama/çıkarma: önce ortak paydaya çevirin. a/b ± c/d = (ad ± bc) / bd. Örnek: 1/2 + 1/3 = (1×3 + 1×2) / (2×3) = 5/6.",
+          "Çarpma: a/b × c/d = (ac) / (bd). Çapraz sadeleştirme çarpmadan önce basitleştirir. Örnek: 2/3 × 9/10 = (2×9)/(3×10) = 18/30 = 3/5.",
+          "Bölme: ikinci kesri ters çevirin ve çarpın. a/b ÷ c/d = a/b × d/c = (ad) / (bc). Örnek: 1/2 ÷ 3/4 = (1×4)/(2×3) = 4/6 = 2/3."
+        ]
+      },
+      {
+        "heading": "Neden sadeleştirmeli",
+        "paragraphs": [
+          "Pay ve payda 1'den büyük ortak çarpan paylaşmadığında kesir en sade biçimindedir. OBEB'i bulmak için Öklid algoritmasını kullanır ve her ikisini de buna böleriz.",
+          "Örnek: 18/30'un OBEB'i 6'dır, dolayısıyla 3/5'e sadeleşir. Matematiksel olarak eşdeğer ama okumak ve çalışmak daha kolay.",
+          "İşareti de normalize ederiz: pozitif pay gelenekseldir. Dolayısıyla −3/−5, 3/5'e; 3/−5 ise −3/5'e sadeleşir."
+        ]
+      },
+      {
+        "heading": "Karma sayılar",
+        "paragraphs": [
+          "Payın mutlak değeri paydayı aştığında kesir, tam sayı artı uygun bir kesir olarak ifade edilebilir. Örnek: 7/3 = 2⅓ (çünkü 7 = 2×3 + 1).",
+          "Karma sayılar günlük ölçümlerde yaygındır (tarifler, ahşap boyutları, müzik zaman imzaları) ama matematik/bilimde yanlış kesirlerin işlenmesi daha kolay olduğundan daha az kullanılır. Her iki gösterimi de sunuyoruz."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Birinci kesri girin", "text": "Pay üstte, payda altta." },
+      { "name": "Bir işlem seçin", "text": "+, −, ×, veya ÷." },
+      { "name": "İkinci kesri girin", "text": "Aynı biçimde." },
+      { "name": "Sonucu okuyun", "text": "Sadeleştirilmiş biçim, ondalık değer ve uygulanabildiğinde karma sayı." }
+    ]
+  },
+  "faq": [
+    { "q": "Negatif kesirler girebilir miyim?", "a": "Evet. Pay veya paydaya eksi işareti koyun. Hesaplayıcı payda tek bir negatif işarete normalize eder." },
+    { "q": "Neden 1/2 + 1/3 = 5/6 ve 2/5 değil?", "a": "Kesirleri payları ve paydaları ayrı ayrı toplayarak ekleyemezsiniz. Önce ortak payda bulmanız gerekir. 1/2 = 3/6, 1/3 = 2/6, dolayısıyla 1/2 + 1/3 = 3/6 + 2/6 = 5/6." },
+    { "q": "Tam sayıları kesir olarak destekliyor mu?", "a": "Evet. Tam sayı = tam sayı/1 olarak girin. Yani 5 + 1/2 = 5/1 + 1/2 = 11/2 = 5½." },
+    { "q": "Bu hesaplayıcının işleyebileceği en büyük kesir nedir?", "a": "İçeride BigInt kullandığımızdan, esasen herhangi bir büyüklükteki pay ve paydalar üzerinde aritmetik kesindir. Gösterim ekranınıza sığanla sınırlıdır." },
+    { "q": "Ondalık neden bazen tam değil?", "a": "Bazı kesirlerin tam ondalık gösterimi yoktur (1/3 = 0,3333…). En fazla 8 ondalık basamak gösteriyoruz. Kesirin kendisi kesindir; ondalık ise yaklaşıktır." },
+    { "q": "Sıfıra bölebilir miyim?", "a": "Hayır. Sıfıra bölme (veya bölücü olarak sıfır paydası olan herhangi bir kesir) tanımsızdır. Hesaplayıcı bu durumda sonuç döndürmez." },
+    { "q": "Karma sayılar nereden geliyor?", "a": "Yanlış kesirlerden (pay ≥ payda). 7/3 = 2 + 1/3 = 2⅓. Her iki biçim de eşdeğerdir; bağlama göre seçin (matematik: yanlış kesir, tarif: karma sayı)." },
+    { "q": "Veriler tarayıcımdan çıkıyor mu?", "a": "Hayır. Hesaplama yerel olarak çalışır; hiçbir şey sunucuya gönderilmez." }
+  ]
+}

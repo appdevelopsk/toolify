@@ -1,0 +1,60 @@
+{
+  "title": "Validador de E-mail (sintaxe + detecção de erros comuns)",
+  "shortDescription": "Valide a sintaxe do endereço de e-mail conforme o RFC 5322 e detecte erros comuns de digitação em provedores populares (gmail, yahoo, hotmail etc).",
+  "description": "Digite um e-mail para verificar se a sintaxe é válida e identificar erros de digitação no domínio como 'gmial.com' → 'gmail.com'. Detalha a parte local, domínio e TLD, e avisa sobre violações dos limites do RFC.",
+  "metaDescription": "Validador de e-mail gratuito. Verifica a sintaxe RFC 5322 e detecta erros comuns como gmial.com ou yaho.com. Mostra o detalhamento de parte local, domínio e TLD.",
+  "keywords": ["validador de e-mail", "verificação de sintaxe de e-mail", "verificação de formato de e-mail", "verificar e-mail", "erro de digitação em e-mail"],
+  "input": { "email": "Endereço de e-mail" },
+  "status": { "valid": "Sintaxe válida", "invalid": "Sintaxe inválida" },
+  "suggestion": "Você quis dizer: {suggestion}?",
+  "empty": "Digite um endereço de e-mail para validar.",
+  "breakdown": {
+    "localPart": "Parte local",
+    "domain": "Domínio",
+    "tld": "TLD",
+    "hasPlus": "Marcador de mais (+)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "O que este validador faz (e o que não pode)",
+        "paragraphs": [
+          "A validação de sintaxe de e-mail verifica se 'nome@domínio.tld' segue as regras estruturais do RFC 5322. Usamos um regex pragmático que detecta quase todos os erros de digitação do mundo real enquanto permanece flexível o suficiente para endereços legítimos com marcadores de mais, pontos e TLDs incomuns.",
+          "O que NÃO é possível: confirmar se o endereço realmente recebe e-mail. Isso requer enviar um e-mail real ou fazer uma verificação SMTP, ambos os quais precisam de código do lado do servidor e arriscam falsos positivos (domínios catch-all, greylisting). A validação de sintaxe detecta erros de digitação de forma econômica; verificações de entregabilidade precisam de uma abordagem diferente."
+        ]
+      },
+      {
+        "heading": "Detecção de erros comuns de digitação",
+        "paragraphs": [
+          "Monitoramos erros de digitação nos principais provedores de e-mail gratuito — 'gmial.com' em vez de 'gmail.com', 'yaho.com' em vez de 'yahoo.com' etc. Cerca de 95% dos erros de digitação em cadastros de e-mail são erros de domínio nesses poucos provedores. Detectá-los do lado do cliente economiza um e-mail de boas-vindas devolvido e um desconfortável seguimento 'por favor, verifique seu endereço'.",
+          "Se você estiver criando um formulário de cadastro, execute essa mesma lógica antes de enviar. Mostre uma sugestão 'Você quis dizer…?' e deixe o usuário aceitar ou substituir. Fluxos de cadastro maduros fazem isso rotineiramente; isso melhora notavelmente a entregabilidade de e-mail."
+        ]
+      },
+      {
+        "heading": "Regras da parte local",
+        "paragraphs": [
+          "Marcador de mais ('usuario+filtro@gmail.com'): amplamente suportado pelos principais provedores. Use para criar endereços únicos para diferentes cadastros enquanto mantém uma única caixa de entrada.",
+          "Pontos ('usuario.nome@gmail.com'): tratados como o mesmo endereço pelo Gmail (pontos são ignorados), mas outros provedores podem tratá-los como endereços diferentes. Não confie na equivalência de pontos fora do Gmail.",
+          "Comprimento: o RFC 5321 limita a parte local a 64 caracteres e o endereço completo a 254 caracteres. Avisamos quando isso é excedido — a maioria dos servidores rejeita endereços mais longos.",
+          "Sensibilidade a maiúsculas/minúsculas: pelo RFC, a parte local é sensível a maiúsculas/minúsculas, mas a maioria dos provedores a trata como insensível. O domínio é sempre insensível a maiúsculas/minúsculas."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Digite o e-mail", "text": "Ou cole de um formulário ou lista." },
+      { "name": "Leia o veredicto", "text": "Marca verde = sintaxe válida; X vermelho = inválida." },
+      { "name": "Observe as sugestões", "text": "Erros comuns de digitação em provedores populares são marcados com uma sugestão." },
+      { "name": "Revise o detalhamento", "text": "Parte local, domínio, TLD e notas de aviso são mostradas abaixo." }
+    ]
+  },
+  "faq": [
+    { "q": "Isso confirma se o e-mail existe?", "a": "Não — apenas a sintaxe. Confirmar se uma caixa de entrada existe requer uma verificação SMTP do lado do servidor ou enviar um e-mail de verificação. Esta ferramenta detecta erros de digitação de forma econômica." },
+    { "q": "Por que aceitou 'a@b.co'?", "a": "Porque é tecnicamente uma sintaxe válida. O TLD '.co' é real (Colômbia). A validação por sintaxe não pode filtrar TLDs reais mas raros." },
+    { "q": "E quanto a e-mails com unicode (ex.: usuário@exemplo.com.br)?", "a": "Endereços de e-mail internacionalizados são válidos pelo RFC 6531, mas o regex usado aqui não os aceita para parte local com caracteres não ASCII. Para validação amigável a unicode, use uma biblioteca dedicada." },
+    { "q": "O que é um marcador de mais?", "a": "Tudo entre + e @ é tratado pelo Gmail e muitos provedores como parte do roteamento. usuario+toolify@gmail.com vai para usuario@gmail.com, mas você pode filtrar pelo sufixo +toolify." },
+    { "q": "Por que o Gmail ignora pontos?", "a": "Política histórica do Gmail. usuario.nome@gmail.com e usuarionome@gmail.com chegam na mesma caixa de entrada. Outros provedores (Yahoo, Outlook) os tratam como distintos." },
+    { "q": "Qual é o e-mail válido mais longo?", "a": "254 caracteres no total pelo RFC 5321. Parte local ≤ 64. A maioria dos servidores rejeita qualquer coisa mais longa." },
+    { "q": "Os dados saem do meu navegador?", "a": "Não. A validação roda localmente; nada é enviado a qualquer servidor." },
+    { "q": "Posso validar em massa?", "a": "Não nesta ferramenta — cole um endereço de cada vez. Para listas, use um script ou serviço dedicado de validação em massa (com consentimento daqueles cujos endereços você verifica)." }
+  ]
+}

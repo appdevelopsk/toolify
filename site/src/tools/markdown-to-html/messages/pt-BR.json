@@ -1,0 +1,54 @@
+{
+  "title": "Conversor de Markdown para HTML (subconjunto CommonMark)",
+  "shortDescription": "Converta Markdown para HTML limpo no seu navegador. Suporta títulos, listas, blocos de código, links, imagens, citações, negrito/itálico/riscado.",
+  "description": "Cole Markdown e veja instantaneamente o HTML equivalente. Funciona para posts de blog, documentação e arquivos README. A saída é HTML limpo e semântico que você pode colar em qualquer CMS ou site estático.",
+  "metaDescription": "Conversor gratuito de Markdown para HTML. Prévia ao vivo, HTML semântico limpo, suporta essenciais do CommonMark incluindo títulos, listas, código, links, citações.",
+  "keywords": ["markdown para html", "md para html", "conversor de markdown", "commonmark para html", "markdown para blog"],
+  "input": { "markdown": "Markdown" },
+  "output": { "html": "Saída HTML" },
+  "preview": "Mostrar prévia renderizada",
+  "copy": "Copiar HTML",
+  "copied": "Copiado!",
+  "article": {
+    "sections": [
+      {
+        "heading": "O que é suportado",
+        "paragraphs": [
+          "Títulos: # H1 até ###### H6. Listas: - / * / + para não ordenadas, 1. 2. 3. para ordenadas. Citações: > no início da linha. Blocos de código: ``` com linguagem opcional. Inline: **negrito**, *itálico*, `código`, ~~riscado~~, [link](url), ![alt](url-imagem). Régua horizontal: ---, *** ou ___.",
+          "Implementamos os essenciais do CommonMark. Tabelas, notas de rodapé e listas de tarefas (-[ ]) ainda não estão incluídas; para esses recursos, use uma biblioteca completa do CommonMark ou GFM no seu pipeline de build."
+        ]
+      },
+      {
+        "heading": "Quando usar esta ferramenta",
+        "paragraphs": [
+          "Conversão rápida para colar em um CMS. A maioria dos CMSes aceita HTML; se você escreve em Markdown mas o editor não o renderiza nativamente, passe por esta ferramenta primeiro.",
+          "Geração de documentação: converta README.md para HTML para uma página inicial do projeto. A saída é limpa o suficiente para envolver em um template básico.",
+          "Composição de e-mail: muitos clientes de e-mail renderizam HTML, mas não Markdown. Escreva em Markdown, converta, cole."
+        ]
+      },
+      {
+        "heading": "Conversão no navegador",
+        "paragraphs": [
+          "Toda a conversão é feita no seu navegador. Seu Markdown — que pode conter rascunhos confidenciais, trechos de código ou notas — nunca sai da sua máquina. Sem logs de servidor, sem dados de treinamento de IA, apenas transformação determinística.",
+          "Se você precisar de recursos GFM (tabelas, listas de tarefas, notas de rodapé), use uma biblioteca mais completa como marked.js, markdown-it ou remark no seu build. Para a maioria dos Markdowns simples a moderados, a saída desta ferramenta é suficiente."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Cole o Markdown", "text": "Ou escreva diretamente na área de entrada." },
+      { "name": "Leia a saída HTML", "text": "Atualizada em tempo real enquanto você digita." },
+      { "name": "Copie para a área de transferência", "text": "Clique em 'Copiar HTML' para pegar a saída." },
+      { "name": "Opcional: prévia", "text": "Clique em 'Mostrar prévia renderizada' para ver como ficará no navegador." }
+    ]
+  },
+  "faq": [
+    { "q": "Isso suporta tabelas?", "a": "Ainda não. Tabelas são uma extensão GFM, não CommonMark puro. Podemos adicioná-las em uma versão futura." },
+    { "q": "Meus blocos de código terão destaque de sintaxe?", "a": "Adicionamos class='language-X' às tags <pre><code> para que bibliotecas como Prism ou highlight.js possam estilizá-los. O HTML em si não tem estilo — aplique seu próprio CSS ou biblioteca." },
+    { "q": "A saída é segura para colar em qualquer lugar?", "a": "Escapamos <, >, & e \" em blocos de código e código inline. Outros conteúdos são convertidos como estão. Se você está colando Markdown gerado por usuários, sanitize a saída antes de injetar em uma página." },
+    { "q": "Por que minha ênfase está estranha?", "a": "O aninhamento de ênfase em Markdown pode ser complicado. * vs _ podem se comportar de forma diferente com pontuação adjacente. A especificação CommonMark é precisa; se nossa saída divergir, cole o exemplo da especificação para verificar." },
+    { "q": "Isso lida com HTML dentro do Markdown?", "a": "HTML inline é passado como está (que é o comportamento CommonMark). Use com cuidado — HTML malicioso de fontes não confiáveis será passado sem alterações." },
+    { "q": "Posso converter HTML de volta para Markdown?", "a": "Sim — veja nosso conversor de HTML para Markdown (disponível em Ferramentas Relacionadas)." },
+    { "q": "E as notas de rodapé?", "a": "Não implementado (extensão GFM). Para documentos complexos, use uma biblioteca no servidor como remark-gfm." },
+    { "q": "Os dados saem do meu navegador?", "a": "Não. A conversão é feita localmente; seu Markdown nunca é enviado para lugar nenhum." }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "title": "CSV ↔ JSON कनवर्टर (RFC 4180 अनुपालित)",
+  "shortDescription": "CSV को JSON में या JSON को CSV में कनवर्ट करें। कॉन्फ़िगर करने योग्य delimiter (comma/semicolon/tab/pipe), header-row toggle, RFC 4180 quoted-field हैंडलिंग।",
+  "description": "CSV या JSON पेस्ट करें। कनवर्टर RFC 4180-अनुपालित CSV को पार्स करता है (commas, escaped quotes, multi-line values वाले quoted fields संभालता है)।",
+  "metaDescription": "मुफ्त CSV ↔ JSON कनवर्टर। RFC 4180 अनुपालित, कॉन्फ़िगर करने योग्य delimiter, header row toggle। ब्राउज़र-केवल — आपका डेटा कभी आपके डिवाइस से नहीं जाता।",
+  "keywords": ["CSV to JSON", "JSON to CSV", "CSV converter", "JSON converter", "RFC 4180", "CSV JSON बदलना"],
+  "direction": {
+    "csvToJson": "CSV → JSON",
+    "jsonToCsv": "JSON → CSV"
+  },
+  "input": {
+    "csv": "CSV इनपुट",
+    "json": "JSON इनपुट",
+    "delimiter": "Delimiter",
+    "headerRow": "पहली पंक्ति header है"
+  },
+  "delim": {
+    "comma": "Comma (,)",
+    "semicolon": "Semicolon (;)",
+    "tab": "Tab",
+    "pipe": "Pipe (|)"
+  },
+  "output": "आउटपुट",
+  "empty": "कनवर्ट किया गया आउटपुट देखने के लिए इनपुट दर्ज करें।",
+  "error": { "label": "रूपांतरण त्रुटि" },
+  "copy": "कॉपी करें",
+  "article": {
+    "sections": [
+      {
+        "heading": "RFC 4180 क्यों मायने रखता है",
+        "paragraphs": [
+          "CSV सरल दिखता है लेकिन इसमें edge cases हैं: एक comma वाले फील्ड को quoted होना चाहिए; quote वाले फील्ड को doubled quote के रूप में escape करना होगा। Naive split-on-comma पार्सर वास्तविक डेटा पर टूट जाते हैं।",
+          "Naive पार्सर Excel exports पर भी टूट जाते हैं जो semicolons उपयोग करते हैं (यूरोपीय locale में सामान्य) या tabs (TSV)।"
+        ]
+      },
+      {
+        "heading": "आउटपुट के लिए JSON आकार",
+        "paragraphs": [
+          "Objects की array (header row के साथ डिफ़ॉल्ट): प्रत्येक पंक्ति {column: value} बन जाती है। सबसे सामान्य JSON आकार।",
+          "Arrays की array (header row off): प्रत्येक पंक्ति [v1, v2, ...] बन जाती है। उपयोगी जब columns का नाम नहीं है।"
+        ]
+      },
+      {
+        "heading": "सामान्य pitfalls",
+        "paragraphs": [
+          "Excel locale: कुछ यूरोपीय Excel इंस्टॉल में, डिफ़ॉल्ट delimiter ',' नहीं बल्कि ';' होता है।",
+          "BOM (Byte Order Mark): कुछ Excel exports फाइल को U+FEFF से prefix करते हैं।",
+          "Trailing newline: '\\n' में समाप्त होने वाला CSV कुछ पार्सर में एक खाली अंतिम पंक्ति जोड़ता है।",
+          "Numbers as strings: CSV में कोई type नहीं है — JSON में '42' string \"42\" बन जाती है।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "दिशा चुनें", "text": "CSV → JSON या JSON → CSV।" },
+      { "name": "Delimiter सेट करें", "text": "Comma (डिफ़ॉल्ट), semicolon, tab, या pipe।" },
+      { "name": "Header row टॉगल करें", "text": "Object-shaped JSON के लिए on, array-of-arrays के लिए off।" },
+      { "name": "अपना डेटा पेस्ट करें", "text": "आउटपुट लाइव अपडेट होता है।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या यह commas वाले quoted fields संभालता है?", "a": "हाँ — RFC 4180 quoting पूरी तरह से समर्थित है।" },
+    { "q": "Escaped quotes कैसे संभाले जाते हैं?", "a": "RFC 4180 के अनुसार, एक quoted field के अंदर '\"' को '\"\"' के रूप में लिखा जाता है।" },
+    { "q": "क्या fields में newlines हो सकती हैं?", "a": "हाँ, quoted होने पर।" },
+    { "q": "क्या यह BOM (UTF-8) का समर्थन करता है?", "a": "BOM pass-through होती है।" },
+    { "q": "बड़ी फाइलों के बारे में क्या?", "a": "ब्राउज़र बिना किसी समस्या के कुछ MB संभालता है। बहुत बड़े CSV (100MB+) के लिए, Papa Parse जैसा streaming parser उपयोग करें।" },
+    { "q": "क्या numbers को numbers के रूप में संरक्षित किया जाता है?", "a": "CSV → JSON: सभी values strings बन जाती हैं। JSON → CSV: numbers unquoted CSV cells बन जाते हैं।" },
+    { "q": "null की जगह empty strings क्यों आती हैं?", "a": "CSV missing values को empty cells के रूप में represent करता है। हम उन्हें empty strings पर map करते हैं।" },
+    { "q": "क्या डेटा मेरे ब्राउज़र से बाहर जाता है?", "a": "नहीं। रूपांतरण स्थानीय रूप से चलता है।" }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "title": "Temperature Converter (Celsius, Fahrenheit, Kelvin, Rankine)",
+  "shortDescription": "Celsius, Fahrenheit, Kelvin, और Rankine के बीच convert करें। सभी चार scales एक साथ update होती हैं।",
+  "description": "Temperature type करें, scale चुनें, और instantly अन्य तीन scales में equivalent value देखें। Exact conversion formulas उपयोग करता है, कोई rounding errors नहीं।",
+  "metaDescription": "Celsius, Fahrenheit, Kelvin, और Rankine के लिए मुफ्त temperature converter। Exact conversion formulas के साथ सभी चार scales एक साथ देखें — instant, browser-based।",
+  "keywords": ["temperature converter", "celsius to fahrenheit", "kelvin", "fahrenheit to celsius", "rankine"],
+  "input": {
+    "value": "मान",
+    "from": "Scale"
+  },
+  "scale": {
+    "C": "Celsius",
+    "F": "Fahrenheit",
+    "K": "Kelvin",
+    "R": "Rankine"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Conversion formulas कैसे काम करते हैं",
+        "paragraphs": [
+          "सभी चार scales internally Celsius के through pivot होती हैं। Fahrenheit ↔ Celsius: F = C × 9/5 + 32 और C = (F − 32) × 5/9। Kelvin Celsius को 273.15 (absolute zero offset) shift करता है: K = C + 273.15। Rankine Fahrenheit के लिए वही है जो Kelvin Celsius के लिए है: R = (C + 273.15) × 9/5।",
+          "ये formulas exact हैं: constants 273.15 (Kelvin offset) और 9/5 (Fahrenheit ratio) SI system द्वारा defined हैं, measured नहीं। Result में आप जो rounding देखते हैं वह decimal display से है, calculation से नहीं।"
+        ]
+      },
+      {
+        "heading": "प्रत्येक scale कब उपयोग होती है",
+        "paragraphs": [
+          "Celsius United States को छोड़कर लगभग सभी जगह everyday scale है। Water 0°C पर freezes और sea level पर 100°C पर boils — clean, easy boundaries। India में Celsius standard है।",
+          "Fahrenheit primarily US में उपयोग होती है। Scale 18वीं century में brine और human body temperature के आसपास designed थी।",
+          "Kelvin scientific standard है। Absolute zero 0 K है, −273.15 नहीं। Physics, chemistry, और astronomy में उपयोग। Rankine, Kelvin का imperial-system equivalent है।"
+        ]
+      },
+      {
+        "heading": "Useful reference points",
+        "paragraphs": [
+          "Absolute zero: 0 K = −273.15°C = −459.67°F। Water freezes: 0°C = 32°F = 273.15 K। Body temperature: 37°C ≈ 98.6°F = 310.15 K। Water boils (sea level): 100°C = 212°F = 373.15 K। Hot oven: 200°C = 392°F। Delhi की average summer temperature: ~40°C = 104°F।",
+          "Celsius और Fahrenheit scales −40° पर मिलती हैं: यह दोनों scales पर same temperature है। यह एकमात्र point है जहाँ दोनों agree करते हैं।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Value दर्ज करें", "text": "जो number आप convert करना चाहते हैं वह type करें।" },
+      { "name": "Source scale चुनें", "text": "चुनें कि आपकी value Celsius, Fahrenheit, Kelvin, या Rankine में है।" },
+      { "name": "सभी चार scales पढ़ें", "text": "अन्य तीन scales automatically update होती हैं। Selected scale highlighted है।" }
+    ]
+  },
+  "faq": [
+    { "q": "ये formulas exact क्यों हैं?", "a": "Celsius-Kelvin offset (273.15) और Celsius-Fahrenheit ratio (9/5) SI definitions हैं। कोई भी apparent imprecision सिर्फ decimal display rounding है।" },
+    { "q": "Kelvin degree symbol क्यों नहीं उपयोग करता?", "a": "SI convention के अनुसार, Kelvin बिना ° लिखा जाता है। तो '300 K' correct है; '300°K' नहीं।" },
+    { "q": "Kelvin और Rankine में क्या अंतर है?", "a": "दोनों absolute scales हैं (absolute zero पर zero)। Kelvin Celsius-sized degrees उपयोग करता है; Rankine Fahrenheit-sized degrees। 1 K = 1.8 R।" },
+    { "q": "Celsius और Fahrenheit equal कहाँ हैं?", "a": "−40°। यह एकमात्र crossover point है: −40°C = −40°F।" },
+    { "q": "Body temperature 37°C क्यों है, 36 या 38 नहीं?", "a": "37°C (98.6°F) historical average है, लेकिन normal body temperature दिन में और person से person 0.5°C vary करती है।" },
+    { "q": "क्या मैं temperature differences convert कर सकता हूँ?", "a": "सावधान: 10°C का difference 18°F है (आप 32 add नहीं करते)। Differences के लिए, C→F जाने के लिए 9/5 से multiply करें, F→C के लिए 5/9 से।" },
+    { "q": "क्या calculator science के लिए accurate enough है?", "a": "हम double-precision math से up to four decimals display करते हैं। Chemistry, cooking, और engineering के लिए यह more than sufficient है।" },
+    { "q": "Rankine क्यों include है यदि rarely उपयोग होती है?", "a": "यह कुछ US thermodynamics texts और HVAC engineering work में appear होती है। Include करने की cost कुछ नहीं है।" }
+  ]
+}

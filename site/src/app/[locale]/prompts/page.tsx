@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { listPrompts } from "@/lib/prompts/registry";
@@ -5,7 +6,7 @@ import { PromptCard } from "@/components/prompts/PromptCard";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
 import { PROMPT_CATEGORY_CONFIG } from "@/lib/prompts/categories";
-import type { Locale } from "@/lib/i18n/locales";
+import { isPromptLocale, type Locale } from "@/lib/i18n/locales";
 import type { PromptCategory } from "@/lib/prompts/types";
 
 export async function generateMetadata({
@@ -14,6 +15,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  if (!isPromptLocale(locale)) return {};
   const t = await getTranslations({ locale });
   return buildMetadata({
     locale: locale as Locale,
@@ -25,6 +27,7 @@ export async function generateMetadata({
 
 export default async function PromptsIndex({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  if (!isPromptLocale(locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations();
   const prompts = listPrompts();

@@ -1,0 +1,117 @@
+{
+  "title": "Calculadora de Datas (adicionar/subtrair dias, ou diferença entre",
+  "shortDescription": "Adicione ou subtraia anos/meses/dias de uma data, ou encontre a diferença precisa entre duas datas, incluindo dias úteis.",
+  "description": "Dois modos: 'adicionar ou subtrair' para calcular uma data futura ou passada, ou 'entre' para encontrar a diferença em anos, meses, dias, semanas e dias úteis.",
+  "metaDescription": "Calculadora de datas gratuita. Adicione ou subtraia anos/meses/dias, ou encontre a diferença entre duas datas com contagem de dias úteis.",
+  "keywords": [
+    "calculadora de datas",
+    "adicionar dias a uma data",
+    "diferença de datas",
+    "dias úteis",
+    "dias entre datas"
+  ],
+  "empty": "Escolha as datas para calcular.",
+  "mode": {
+    "addSubtract": "Adicionar ou subtrair",
+    "between": "Diferença entre datas"
+  },
+  "op": {
+    "add": "Adicionar",
+    "subtract": "Subtrair"
+  },
+  "input": {
+    "start": "Data de início",
+    "end": "Data de fim",
+    "years": "Anos",
+    "months": "Meses",
+    "days": "Dias"
+  },
+  "result": {
+    "resultDate": "Data resultante",
+    "difference": "Diferença",
+    "ymd": "{y} anos, {m} meses, {d} dias",
+    "totalDays": "Total de dias",
+    "totalWeeks": "Total de semanas",
+    "totalMonths": "Total de meses",
+    "businessDays": "Dias úteis (Seg-Sex)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "O que calcula",
+        "paragraphs": [
+          "Modo adicionar/subtrair: pega uma data, adiciona ou subtrai um número de anos, meses e dias e retorna a data resultante do calendário. Anos e meses usam aritmética de calendário (então adicionar 1 mês ao dia 31 de janeiro dá 28 de fevereiro — ou 29 de fevereiro em ano bissexto — não 3 de março). Dias são exatos — adicionar 30 dias sempre avança exatamente 30 dias do calendário.",
+          "Modo entre: pega duas datas e fornece a diferença em anos/meses/dias mais os totais em dias, semanas, meses e dias úteis (de segunda a sexta, sem feriados). O formato A/M/D usa a mesma lógica de empréstimo de nossa calculadora de idade — uma diferença é p.ex. '2 anos, 5 meses, 3 dias', não um ano decimal."
+        ]
+      },
+      {
+        "heading": "Por que os dias úteis não incluem feriados",
+        "paragraphs": [
+          "Contamos de segunda a sexta como dias úteis e excluímos sábados e domingos. Os feriados variam por país, região e ano, então não os subtraímos automaticamente. Para trabalho com dias úteis no Brasil, subtraia aproximadamente 12-13 feriados nacionais por ano do resultado; verifique também os feriados estaduais e municipais relevantes.",
+          "Se os feriados importam para seu cálculo (acompanhamento de prazos, negociações contratuais), faça a contagem de calendário aqui e depois verifique a lista de feriados do seu município manualmente. Podemos adicionar subtração de feriados específicos por país em uma versão futura."
+        ]
+      },
+      {
+        "heading": "Casos de uso comuns",
+        "paragraphs": [
+          "Prazos de projetos: 'isto vence 90 dias após o início'. Adicione 90 dias à data de início.",
+          "Termos de contrato: conte os dias entre o início e o fim do contrato. Confirme com a redação do seu contrato para faturamento.",
+          "Planejamento de viagens: quantos dias úteis entre a saída e o retorno? Útil para calendários de ausência do escritório e relatórios de despesas.",
+          "Marcos pessoais: aniversários, contagem de sobriedade, tempo desde um grande evento de vida."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolha um modo",
+        "text": "Adicionar/subtrair para mover a partir de uma data, ou entre para encontrar a diferença."
+      },
+      {
+        "name": "Insira a data de início",
+        "text": "Use o seletor de data."
+      },
+      {
+        "name": "Adicione o deslocamento ou data de fim",
+        "text": "Anos/meses/dias para o modo de adição, ou data de fim para o modo entre."
+      },
+      {
+        "name": "Leia o resultado",
+        "text": "Data resultante ou detalhamento completo da diferença."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "O que acontece se eu adicionar 1 mês ao dia 31 de janeiro?",
+      "a": "Você obtém 28 de fevereiro (ou 29 de fevereiro em ano bissexto). A aritmética de calendário limita ao último dia do mês alvo quando o dia de origem não existe."
+    },
+    {
+      "q": "Os feriados são subtraídos dos dias úteis?",
+      "a": "Não — apenas os fins de semana. Subtraia os feriados específicos do país manualmente com base no calendário da sua jurisdição."
+    },
+    {
+      "q": "Funciona com aritmética de datas negativas?",
+      "a": "Sim, através do modo 'subtrair'. Internamente, a subtração é apenas adicionar deltas negativos. O modo 'diferença entre' sempre retorna valores positivos, independentemente da ordem."
+    },
+    {
+      "q": "Qual fuso horário usa?",
+      "a": "O fuso horário local do seu navegador. As datas são interpretadas como meia-noite local. Cálculos entre fusos horários podem precisar de ajuste."
+    },
+    {
+      "q": "Posso adicionar horas e minutos?",
+      "a": "Ainda não — apenas granularidade de datas. Use uma ferramenta de timestamp separada para matemática no nível de horas."
+    },
+    {
+      "q": "Qual é a maior diferença que suporta?",
+      "a": "Centenas de anos confortavelmente. O Date do JavaScript suporta ±100 milhões de dias a partir de 1970, o que é o limite prático."
+    },
+    {
+      "q": "Por que conta ambos os pontos extremos de forma diferente?",
+      "a": "O total de dias é a contagem de noites entre as duas datas. Dois dias consecutivos têm uma diferença de 1 dia. A contagem de dias úteis percorre cada dia do calendário entre eles."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. Toda a matemática é feita localmente."
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "title": "CSS Gradient Generator (linear, radial",
+  "shortDescription": "สร้าง CSS gradient แบบ visual: linear, radial และ conic หลาย color stop ควบคุมมุม preset ต่าง ๆ คัดลอก CSS พร้อมวาง",
+  "description": "เลือกประเภท gradient ตั้งค่ามุม เพิ่มหรือลบ color stop พร้อมตำแหน่ง preview แบบ live คัดลอก CSS background declaration ด้วยคลิกเดียว",
+  "metaDescription": "CSS gradient generator ฟรีพร้อม live preview Linear, radial และ conic gradient หลาย stop ควบคุมมุม",
+  "keywords": [
+    "CSS gradient generator",
+    "linear gradient",
+    "radial gradient",
+    "conic gradient",
+    "สร้าง gradient"
+  ],
+  "preview": "ตัวอย่าง",
+  "input": {
+    "type": "ประเภท",
+    "angle": "มุม",
+    "stops": "Color stops"
+  },
+  "type": {
+    "linear": "Linear",
+    "radial": "Radial",
+    "conic": "Conic"
+  },
+  "output": {
+    "css": "โค้ด CSS"
+  },
+  "addStop": "เพิ่ม stop",
+  "removeStop": "ลบ stop",
+  "copy": "คัดลอก CSS",
+  "copied": "คัดลอกแล้ว!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Gradient สามประเภทใน CSS",
+        "paragraphs": [
+          "Linear gradient: สีเปลี่ยนตามเส้นตรงที่มุมที่กำหนด 0° ชี้ขึ้น 90° ชี้ขวา (ทิศทางการอ่านค่าเริ่มต้น) 180° ชี้ลง พบมากที่สุดสำหรับ background ปุ่ม และส่วน hero",
+          "Radial gradient: สีเปลี่ยนออกจากจุดศูนย์กลาง รูปร่างอาจเป็นวงกลม (ค่าเริ่มต้น) หรือวงรี เหมาะสำหรับ spotlight effect องค์ประกอบคล้ายดวงอาทิตย์ หรือจุดสนใจ",
+          "Conic gradient: สีหมุนรอบจุดศูนย์กลางเหมือน color wheel พบน้อยกว่าแต่ทรงพลังสำหรับ pie chart หน้าปัดนาฬิกา หรือ spinner ตกแต่ง รองรับในเบราว์เซอร์สมัยใหม่ตั้งแต่ปี 2020"
+        ]
+      },
+      {
+        "heading": "Color stops และระบบเปอร์เซ็นต์",
+        "paragraphs": [
+          "แต่ละ color stop มีสีและตำแหน่งจาก 0% ถึง 100% 0% คือจุดเริ่มต้น 100% คือจุดสิ้นสุด สอง stop ให้ gradient สองสีแบบราบเรียบ การเพิ่ม stop ที่สามตรงกลางสร้างการผสมสามสีหรือแถบสีที่คมชัดขึ้นอยู่กับตำแหน่ง",
+          "สำหรับการเปลี่ยนที่คมชัด (ไม่มีการผสม) ใส่สอง stop ที่ตำแหน่งเดียวกันด้วยสีต่างกัน ตัวอย่าง '#000 50%, #fff 50%' สร้างการแบ่งดำ-ขาวที่คมชัดที่จุดกึ่งกลาง นี่คือวิธีสร้าง background 'ลาย'"
+        ]
+      },
+      {
+        "heading": "เคล็ดลับด้านประสิทธิภาพและการเข้าถึง",
+        "paragraphs": [
+          "Gradient แสดงผลแบบ native โดยไม่ต้องมี HTTP request ต่างจาก background image ขยายได้ไม่จำกัดโดยไม่สูญเสียคุณภาพ เหมาะสำหรับ animation: เปลี่ยน background-position หรือ animate gradient stop ด้วย custom property",
+          "การเข้าถึง: อย่าวางข้อความโดยตรงบน gradient ที่ซับซ้อนถ้า contrast แตกต่างกันตลอด gradient ให้ใช้ overlay สีเรียบ ตรวจสอบว่าความสว่างเฉลี่ยของ gradient ตัดกับข้อความ หรือทดสอบด้วย contrast checker WCAG AA ต้องการ 4.5:1 สำหรับข้อความปกติ 3:1 สำหรับข้อความขนาดใหญ่"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "เลือก preset",
+        "text": "หรือสร้างจาก scratch โดยเลือกประเภท มุม และ stop"
+      },
+      {
+        "name": "ตั้งค่ามุม",
+        "text": "สำหรับ linear และ conic: 0-360° radial ใช้ center เป็นจุดเริ่มต้น"
+      },
+      {
+        "name": "เพิ่ม color stop",
+        "text": "อย่างน้อยสอง ไม่มีขีดจำกัดในทางปฏิบัติ แต่ละอันมีสีและตำแหน่ง 0-100%"
+      },
+      {
+        "name": "คัดลอก CSS",
+        "text": "คลิก 'คัดลอก CSS' — วางโดยตรงใน property background ของ stylesheet"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Gradient รองรับเบราว์เซอร์เก่าหรือไม่?",
+      "a": "Linear และ radial gradient ทำงานในเบราว์เซอร์สมัยใหม่ทั้งหมดรวมถึง Edge, Firefox, Chrome, Safari (ตั้งแต่ปี 2014) Conic gradient ต้องการ Chrome 69+, Firefox 83+, Safari 12.1+ สำหรับเบราว์เซอร์เก่า ใช้ linear เป็น fallback"
+    },
+    {
+      "q": "ใช้ใน React Native หรือแอปมือถือได้ไหม?",
+      "a": "CSS gradient ของเว็บไม่แปลตรงไปยัง React Native — ใช้ library อย่าง `react-native-linear-gradient` Color stop แปลได้ แต่ syntax ต่างกัน iOS และ Android UI ใช้ API เฉพาะแพลตฟอร์ม"
+    },
+    {
+      "q": "ใช้ชื่อสีได้ไหม?",
+      "a": "ได้ แทนที่ hex code (เช่น #ff0000) ด้วยชื่อสี CSS (red, dodgerblue ฯลฯ) ในช่องข้อความถัดจาก color picker"
+    },
+    {
+      "q": "ทำไม conic gradient ของฉันถึงดูแปลก?",
+      "a": "Conic gradient หมุนตามเข็มนาฬิกาจากมุมที่คุณตั้ง ดูดีที่สุดด้วยหลาย stop ที่ครอบคลุม 360° ทั้งหมด ด้วยแค่ 2 stop มักดูไม่สมบูรณ์"
+    },
+    {
+      "q": "จะสร้าง 'glow' effect ได้อย่างไร?",
+      "a": "ใช้ radial gradient ที่มี stop สิ้นสุดแบบโปร่งใสสมบูรณ์: เช่น 'radial-gradient(circle, rgba(255,200,0,0.6) 0%, transparent 70%)'"
+    },
+    {
+      "q": "Animate gradient ได้ไหม?",
+      "a": "CSS ไม่ animate gradient stop โดยตรง แต่คุณสามารถ animate background-position สำหรับเอฟเฟกต์เคลื่อนไหว หรือใช้ CSS custom property (variables) และอัปเดตด้วย JavaScript"
+    },
+    {
+      "q": "ทำไม CSS ถึงยาวมาก?",
+      "a": "แต่ละ stop เพิ่มสีและตำแหน่ง Gradient ยาวที่มีหลาย stop สร้าง CSS ที่ verbose สำหรับผลลัพธ์ที่ง่ายกว่า ใช้ 2-3 stop"
+    },
+    {
+      "q": "ข้อมูลออกจากเบราว์เซอร์หรือไม่?",
+      "a": "ไม่ ทุกอย่างคำนวณในเครื่อง ไม่มีข้อมูลส่งไปยังเซิร์ฟเวอร์"
+    }
+  ]
+}

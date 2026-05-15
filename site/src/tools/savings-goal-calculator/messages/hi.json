@@ -1,0 +1,65 @@
+{
+  "title": "Savings Goal Calculator (target तक पहुँचने का समय)",
+  "shortDescription": "Starting balance, monthly contribution, और annual return दिए जाने पर savings goal तक पहुँचने में कितना समय लगेगा यह पता करें।",
+  "description": "अपना goal, current balance, monthly savings, और expected annual return दर्ज करें। Calculator months की संख्या solve करता है जब तक आप target hit करेंगे।",
+  "metaDescription": "मुफ्त savings goal calculator। Monthly contributions और interest rate दिए जाने पर target amount तक पहुँचने में कितना समय देखें। Compound math, monthly compounding।",
+  "keywords": ["savings goal calculator", "बचत समय", "savings target", "कितना समय बचत करें", "savings calculator"],
+  "empty": "Goal और 0 से अधिक monthly contribution या rate दर्ज करें।",
+  "input": {
+    "goal": "Goal amount",
+    "start": "Starting balance",
+    "monthly": "Monthly contribution",
+    "ratePct": "Annual return %"
+  },
+  "result": {
+    "timeToGoal": "Goal तक का समय",
+    "years": "वर्ष",
+    "months": "महीने",
+    "totalMonths": "कुल महीने",
+    "totalContrib": "कुल contributed",
+    "interest": "Earned interest"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Time-to-goal कैसे compute होता है",
+        "paragraphs": [
+          "Standard future value formula है FV = P × (1 + r)^n + M × ((1 + r)^n − 1) / r, जहाँ P starting balance है, M monthly contribution है, r monthly rate है (annual / 12), और n months है। FV = आपका goal set करके और n के लिए solve करके: n = log((G × r + M) / (P × r + M)) / log(1 + r)।",
+          "जब rate zero हो, formula (G − P) / M months में collapse होता है। Calculator automatically सही path चुनता है और nearest whole month तक round up करता है, क्योंकि आप monthly contribution 'partly' नहीं कर सकते।"
+        ]
+      },
+      {
+        "heading": "अधिक क्या मायने रखता है: monthly contribution या rate?",
+        "paragraphs": [
+          "Typical savings horizons (1-10 साल) के लिए, monthly contribution dominate करता है। ₹5000 से ₹10000 per month जाना 5% से 8% return जाने से far larger difference बनाता है। Time और contribution linear हैं; rate exponential है लेकिन केवल बहुत long horizons पर।",
+          "20+ साल के goals (retirement, children की education) के लिए, rate king बनता है। 30 साल के लिए same ₹5000/month 4% बनाम 8% पर vastly different totals produce करता है।"
+        ]
+      },
+      {
+        "heading": "Realistic rates",
+        "paragraphs": [
+          "Savings account (India): 3-4%। Fixed deposits: 6-7%। PPF: 7.1%। RD: 6-7%।",
+          "Diversified stock index (Nifty 50 historical average): ~12% nominal / ~7% real। Conservative planning के लिए 8-10% उपयोग करें।",
+          "Inflation India में ~5% per year खाती है। 'Today-dollar' goals के लिए, अपनी nominal rate से expected inflation subtract करें।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "अपना goal दर्ज करें", "text": "जो amount आप reach करना चाहते हैं।" },
+      { "name": "Starting balance दर्ज करें", "text": "आपके पास आज क्या है; 0 हो सकता है।" },
+      { "name": "Monthly contribution दर्ज करें", "text": "आप हर महीने कितना add करेंगे।" },
+      { "name": "Expected annual return दर्ज करें", "text": "Conservative: 5-6%। Equity market: 8-10%।" },
+      { "name": "Result पढ़ें", "text": "Goal तक years, months, plus total contributed और earned interest।" }
+    ]
+  },
+  "faq": [
+    { "q": "Answer whole months तक rounded up क्यों है?", "a": "क्योंकि आप partial monthly contribution नहीं कर सकते। यदि math 32.4 months कहता है, आप actually month 33 में goal hit करेंगे (consistent contribution assuming)।" },
+    { "q": "मुझे कौन सी rate उपयोग करनी चाहिए?", "a": "FD/RD के लिए: 6-7%। PPF के लिए: 7.1%। Equity mutual funds के लिए: 8-10%। Ultra-conservative के लिए: 0% use करें pure savings कितना समय लेती है देखने के लिए।" },
+    { "q": "क्या मुझे inflation include करनी चाहिए?", "a": "यदि आपका goal today's rupees में है, expected inflation rate से subtract करें (जैसे 8% nominal − 5% inflation = 3% real)।" },
+    { "q": "क्या यह monthly compounding assume करता है?", "a": "हाँ — interest उसी monthly cadence पर compound होता है जैसे आपके contributions। अधिकांश savings products के लिए यह reality से closely match करता है।" },
+    { "q": "यदि मैं 0% rate पर ₹0/month save करूँ?", "a": "तब आप अपने starting balance से ऊपर goal reach नहीं कर सकते। उस case में Calculator कोई result return नहीं करता।" },
+    { "q": "क्या interest taxable है?", "a": "ज़्यादातर cases में हाँ। FD interest income tax slab के अनुसार taxable है। PPF और ELSS में tax benefits हैं। Tax-advantaged accounts के लिए after-tax rate consider करें।" },
+    { "q": "यदि मेरी contribution amount बदले?", "a": "प्रत्येक phase के लिए calculator multiple बार run करें। Variable contributions के लिए, financial planning spreadsheet अधिक flexible है।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं — calculations locally चलती हैं।" }
+  ]
+}

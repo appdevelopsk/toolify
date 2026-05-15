@@ -1,0 +1,54 @@
+{
+  "title": "Hash Oluşturucu (SHA-1, SHA-256, SHA-384, SHA-512)",
+  "shortDescription": "Herhangi bir UTF-8 metnin SHA-1, SHA-256, SHA-384 ve SHA-512 hash'lerini hesaplayın. Tarayıcı yerel Web Crypto API; hiçbir şey cihazınızdan çıkmaz.",
+  "description": "Dört SHA hash'ini aynı anda görmek için herhangi bir metin yazın. Dosya bütünlüğünü doğrulama, imza oluşturma, API istek imzalamasını hata ayıklama ve kriptografi öğrenmek için kullanışlıdır.",
+  "metaDescription": "Ücretsiz SHA-1/256/384/512 hash oluşturucu. UTF-8 giriş, tüm hash'ler aynı anda gösterilir, tarayıcı yerel Web Crypto API. Verileriniz cihazınızda kalır.",
+  "keywords": ["hash oluşturucu", "SHA-256 oluşturucu", "SHA-1 hesaplayıcı", "SHA-512 hash", "çevrimiçi hash"],
+  "input": { "text": "Giriş", "placeholder": "Hash'lemek için metin yazın veya yapıştırın…" },
+  "copy": "Kopyala",
+  "copied": "Kopyalandı",
+  "md5Note": "MD5 dahil edilmedi: 2004'ten beri güvenlik amaçları için kırılmış ve artık Web Crypto tarafından sunulmamaktadır. SHA-256 veya daha güçlü bir algoritma kullanın.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Hash nedir ve ne değildir",
+        "paragraphs": [
+          "Kriptografik hash fonksiyonu, herhangi bir boyuttaki girişi alır ve sabit boyutlu bir çıktı ('özet') üretir. Aynı giriş her zaman aynı özeti verir. Küçük bir giriş değişikliği tamamen farklı bir özet üretir (çığ etkisi). SHA-256 gibi kriptografik olarak güçlü fonksiyonlar için özeti tersine çevirerek girişi bulmak hesapsal olarak olanaksızdır.",
+          "Hash şifreleme değildir. Anahtar yoktur, şifre çözme yoktur. Yaygın karışıklıklar: şifreleri hash'lemek (bunun yerine bcrypt/argon2 kullanın — kaba kuvveti yavaşlatırlar), rastgele metni hash'lemek ve ardından 'çözmek' (tasarım gereği imkansız)."
+        ]
+      },
+      {
+        "heading": "Hangi algoritmayı seçmeli",
+        "paragraphs": [
+          "SHA-256 modern varsayılandır. Bitcoin'de, TLS sertifikalarında, JWT imzalarında (HS256), dosya bütünlük hash'lerinde kullanılır. 256 bit, gerçekçi herhangi bir güvenlik ihtiyacı için yeterlidir.",
+          "SHA-384 ve SHA-512, aynı ailenin daha büyük varyantlarıdır. SHA-512, 64 bit donanımda bazen daha hızlıdır. Bir protokol veya standart açıkça gerektirdiğinde kullanın.",
+          "SHA-1, güvenlik için kullanımdan kaldırılmıştır ancak eski sistemlerde (eski TLS, git commit hash'leri) hâlâ görünmektedir. Yeni güvenlik açısından kritik çalışmalar için kullanmayın — çarpışmalar 2017'den beri gösterilmiştir. Geriye dönük uyumluluk için dahil ediyoruz."
+        ]
+      },
+      {
+        "heading": "Yaygın kullanım alanları",
+        "paragraphs": [
+          "Dosya bütünlüğü: bir dosya ve hash indirin; hash'i yerel olarak yeniden hesaplayın; karşılaştırın. Eşleşirlerse dosya aktarım sırasında değiştirilmemiştir.",
+          "Git commit'leri: her commit'in tanımlayıcısı içeriğinin SHA-1 hash'idir. Bir commit mesajını hash'lemek kendi başına hiçbir şeyi açığa çıkarmaz — onu yeniden üretmek için commit'in geri kalanına ihtiyacınız vardır.",
+          "API istek imzalama: HMAC-SHA-256, AWS, GitHub ve birçok API için standarttır. Hash'in kendisi yalnızca HMAC'ın bir parçasıdır; API beklediği tam yapıyı sağlayacaktır.",
+          "Önbellek anahtarları: bir URL veya parametre kümesini hash'lemek kararlı, sabit uzunluklu bir önbellek anahtarı verir."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Metin yazın veya yapıştırın", "text": "Tek bir karakterden çok megabaytlık metne kadar her şey." },
+      { "name": "Dört hash'i okuyun", "text": "Yazarken canlı hesaplanır." },
+      { "name": "İhtiyacınız olanı kopyalayın", "text": "Her algoritmanın kendi kopyalama düğmesi vardır." }
+    ]
+  },
+  "faq": [
+    { "q": "Neden MD5 yok?", "a": "MD5 çarpışmaları 2004'ten beri gösterilmiştir; Web Crypto API onu açığa çıkarmaz. Güvenlik dışı kullanımlar için (önbellek anahtarları, dosya tekilleştirme) SHA-256 kullanın — yalnızca marjinal olarak daha yavaşdır ve çarpışma riski yoktur." },
+    { "q": "İkili dosyaları hash'leyebilir miyim?", "a": "Bu araç aracılığıyla doğrudan değil — yalnızca metin yapıştırın. Dosyalar için işletim sistemi kabuğunuzu kullanın: macOS/Linux'ta `shasum -a 256 dosyam.txt`, Windows'ta `Get-FileHash`." },
+    { "q": "SHA-512 neden SHA-256'dan daha uzun?", "a": "İsimlerdeki sayılar çıktı bit uzunluğunu ifade eder: SHA-256 = 256 bit = 64 hex karakter; SHA-512 = 512 bit = 128 hex karakter. İki kat daha uzun." },
+    { "q": "İki farklı giriş aynı hash'i üretebilir mi?", "a": "Teoride evet (güvercin yuvası ilkesi), pratikte mevcut teknoloji ile SHA-256 için hayır. SHA-1 çarpışmaları gösterilmiştir; SHA-256 gösterilmemiştir." },
+    { "q": "Bunu şifreleri hash'lemek için kullanmalı mıyım?", "a": "Hayır. Şifreler yavaş hash (bcrypt, scrypt, argon2) artı salt gerektirir. Düz SHA-256 çok hızlıdır — saldırganlar saniyede milyarlarca hash hesaplayabilir." },
+    { "q": "Aynı metin neden her zaman aynı hash'i veriyor?", "a": "Tanım gereği. Hash fonksiyonları deterministiktir. Her seferinde farklı çıktılar istiyorsanız (örn. 'salt'), girişe rastgele bir değer ekleyin." },
+    { "q": "Veriler bir yere gönderiliyor mu?", "a": "Hayır. Web Crypto tamamen tarayıcınızda çalışır; hiçbir şey iletilmez." },
+    { "q": "HMAC nedir ve bu araç HMAC mi hesaplayıyor?", "a": "HMAC, hash fonksiyonuna gizli bir anahtar ekler. Bu araç düz hash'ler hesaplar; HMAC için özel bir araç veya programlama kütüphanesi kullanın." }
+  ]
+}

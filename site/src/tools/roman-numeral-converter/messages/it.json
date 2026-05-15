@@ -1,0 +1,54 @@
+{
+  "title": "Convertitore Numeri Romani (da 1 a 3999, in entrambe le direzioni)",
+  "shortDescription": "Converti numeri arabi in numeri romani (e viceversa). Valida la forma canonica così VIIII non viene accettato silenziosamente come 9.",
+  "description": "Digita un numero da 1 a 3999 per ottenere il numero romano, oppure incolla numeri romani per convertirli. La validazione rigorosa rifiuta le forme non canoniche.",
+  "metaDescription": "Convertitore gratuito di numeri romani. Converti i numeri da 1 a 3999 in numeri romani o decodifica i romani in arabi. Valida la forma canonica, rifiuta 'IIII' e simili.",
+  "keywords": ["convertitore numeri romani", "arabo in romano", "romano in numero", "MMXXVI", "numeri romani"],
+  "input": { "number": "Numero (da 1 a 3999)", "roman": "Numero romano" },
+  "result": { "roman": "Numero romano", "number": "Numero arabo" },
+  "mode": { "toRoman": "Numero → Romano", "fromRoman": "Romano → Numero" },
+  "error": {
+    "invalidNumber": "Inserisci un numero intero.",
+    "outOfRange": "I numeri romani supportano solo da 1 a 3999.",
+    "invalidRoman": "Numero romano non valido (richiesta la forma canonica)."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Come funzionano i numeri romani",
+        "paragraphs": [
+          "I numeri romani usano sette lettere: I=1, V=5, X=10, L=50, C=100, D=500, M=1000. I numeri si formano per addizione (II=2, XX=20) o per sottrazione quando una lettera più piccola precede una più grande (IV=4, IX=9, XL=40, XC=90, CD=400, CM=900). Ogni lettera può ripetersi al massimo tre volte di fila, ecco perché 4 è IV e non IIII.",
+          "La notazione romana standard supporta da 1 a 3999. I numeri ≥ 4000 richiedono una notazione con sopralineatura (V̄ = 5000) difficile da digitare e raramente necessaria oggi, quindi questo convertitore si ferma a 3999."
+        ]
+      },
+      {
+        "heading": "Romano canonico vs informale",
+        "paragraphs": [
+          "La forma canonica rigorosa segue le regole sopra. Il romano 'informale' (a volte chiamato 'arcaico') permette cose come IIII per 4 — si vede sui quadranti degli orologi, dove la simmetria è preferita. Questo convertitore richiede la forma canonica per l'input e produce la forma canonica in output. Quindi 'IIII' viene rifiutato; digita 'IV' invece.",
+          "Il decodificatore valida ri-codificando: analizza il romano, ottiene il numero, codifica quel numero e controlla che corrisponda all'input. Qualsiasi cosa che non effettui il round-trip viene rifiutata. Questo cattura 'VV' (scorrettamente = 10), 'IIX' (scorrettamente = 8) e altre forme non standard."
+        ]
+      },
+      {
+        "heading": "Dove appaiono i numeri romani oggi",
+        "paragraphs": [
+          "Date di copyright nei film (MCMXCIX = 1999), capitoli di libri e strutture di documenti, successioni di monarchi e papi (Enrico VIII, Giovanni XXIII), quadranti di orologi e marcatori di anni stilizzati. Sono in gran parte caduti fuori uso nell'aritmetica perché l'aritmetica con cifre arabe è molto più semplice — prova a moltiplicare MCXLVII per IV e capirai perché."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Scegli la direzione", "text": "Numero→Romano o Romano→Numero." },
+      { "name": "Digita il tuo input", "text": "Un intero da 1 a 3999, oppure un numero romano." },
+      { "name": "Leggi il risultato", "text": "L'input non valido mostra un errore specifico per correggere." }
+    ]
+  },
+  "faq": [
+    { "q": "Perché IIII non è accettato come 4?", "a": "Il romano canonico scrive 4 come IV. IIII appare su alcuni orologi ma non è la notazione aritmetica standard. Usa IV." },
+    { "q": "Qual è il numero romano più grande?", "a": "Senza sopralineatura, 3999 = MMMCMXCIX. I numeri superiori richiedono una notazione con sopralineatura che non supportiamo." },
+    { "q": "Posso avere lo zero?", "a": "I romani non avevano lo zero. La notazione inizia da 1 (I)." },
+    { "q": "Cosa significa CMXLIV?", "a": "CM=900, XL=40, IV=4. Totale = 944. Coppie sottrattive (CM, XL, IV) e loro componenti." },
+    { "q": "Come si legge MMXXVI?", "a": "MM=2000, XX=20, VI=6. Totale = 2026." },
+    { "q": "Perché i quadranti degli orologi a volte mostrano IIII?", "a": "Tradizione. I costruttori di orologi storicamente preferivano IIII per simmetria visiva con VIII (entrambi quattro caratteri). Non è 'corretto' canonicamente." },
+    { "q": "I numeri romani sono in base 10?", "a": "Hanno lettere raggruppate decimalmente (I/V per le unità, X/L per le decine, C/D per le centinaia, M per le migliaia) ma usano addizione e sottrazione piuttosto che la notazione posizionale. Sono quindi influenzati dal decimale ma non posizionali." },
+    { "q": "I dati escono dal mio browser?", "a": "No. La conversione viene eseguita localmente." }
+  ]
+}

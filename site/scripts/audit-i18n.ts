@@ -34,6 +34,12 @@ function activeLocales(): string[] {
   return matches.map((m) => m[1]!);
 }
 
+function promptLocales(): string[] {
+  const src = fs.readFileSync(path.join(SRC, "lib/i18n/locales.ts"), "utf8");
+  const matches = [...src.matchAll(/code:\s*"([^"]+)",.*?promptsActive:\s*true/g)];
+  return matches.map((m) => m[1]!);
+}
+
 function auditFolder(folder: string, label: string, locales: string[]): number {
   const enFile = path.join(folder, "en.json");
   if (!fs.existsSync(enFile)) {
@@ -65,16 +71,19 @@ function auditFolder(folder: string, label: string, locales: string[]): number {
 
 function main() {
   const locales = activeLocales();
+  const promptLocs = promptLocales();
   console.log(`Active locales: ${locales.join(", ")}`);
+  console.log(`Prompt locales: ${promptLocs.join(", ")}`);
   let totalIssues = 0;
   totalIssues += auditFolder(path.join(SRC, "messages"), "common", locales);
   for (const top of ["tools", "prompts"] as const) {
     const dir = path.join(SRC, top);
     if (!fs.existsSync(dir)) continue;
+    const checkLocales = top === "prompts" ? promptLocs : locales;
     for (const slug of fs.readdirSync(dir)) {
       const folder = path.join(dir, slug, "messages");
       if (fs.existsSync(folder)) {
-        totalIssues += auditFolder(folder, `${top}/${slug}`, locales);
+        totalIssues += auditFolder(folder, `${top}/${slug}`, checkLocales);
       }
     }
   }

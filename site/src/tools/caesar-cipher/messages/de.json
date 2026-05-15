@@ -1,0 +1,100 @@
+{
+  "title": "Caesar-Chiffre Encoder / Decoder (mit ROT13)",
+  "shortDescription": "Text mit der klassischen Caesar-Chiffre ver- oder entschlüsseln. Einstellbare Verschiebung von -25 bis +25, mit Ein-Klick-Voreinstellungen für ROT13 und die historische +3-Verschiebung.",
+  "description": "Gib Text ein und wähle einen Verschiebungswert. Buchstaben werden um so viele Positionen im Alphabet rotiert (A-Z, a-z); andere Zeichen bleiben unverändert. Verwende Verschiebung=13 für ROT13, Verschiebung=3 für den originalen Caesar.",
+  "metaDescription": "Kostenloser Caesar-Chiffre-Rechner. Text mit Verschiebung -25 bis +25 einschließlich ROT13 ver- oder entschlüsseln.",
+  "keywords": [
+    "Caesar-Chiffre",
+    "ROT13",
+    "Caesar Verschiebung",
+    "Buchstabenchiffre",
+    "klassische Chiffre"
+  ],
+  "mode": {
+    "encode": "Verschlüsseln",
+    "decode": "Entschlüsseln"
+  },
+  "input": {
+    "text": "Text",
+    "shift": "Verschiebung"
+  },
+  "output": "Ausgabe",
+  "copy": "Kopieren",
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie die Caesar-Chiffre funktioniert",
+        "paragraphs": [
+          "Jeder Buchstabe im Text wird durch einen Buchstaben ersetzt, der eine feste Anzahl von Positionen weiter im Alphabet steht. Mit Verschiebung +3 wird A zu D, B zu E, …, X zu A (mit Umlauf). Nicht-Buchstaben bleiben unverändert. Die Entschlüsselung ist derselbe Vorgang mit umgekehrtem Vorzeichen.",
+          "Benannt nach Julius Caesar, der angeblich eine +3-Verschiebung für militärische Nachrichten verwendete. Die Größe der Verschiebung ist das einzige Geheimnis. Bei nur 26 möglichen Verschiebungen ist sie trivialerweise durch einfaches Ausprobieren aller Möglichkeiten gebrochen – aber sie ist ein hervorragendes Lehrbeispiel für Substitutionschiffren."
+        ]
+      },
+      {
+        "heading": "ROT13 – die verbreitetste Variante",
+        "paragraphs": [
+          "ROT13 verwendet Verschiebung=13. Da 13 die Hälfte von 26 ist, gibt das zweimalige Anwenden von ROT13 den Originaltext zurück – Verschlüsselung und Entschlüsselung nutzen exakt dieselbe Operation. Das machte es in Usenet und Foren beliebt, um Spoiler und anstößige Witze zu verbergen; Leser können entschlüsseln, indem sie auf eine 'Anzeigen'-Schaltfläche klicken, ohne einen separaten Decoder zu benötigen.",
+          "ROT13 ist in keinem sinnvollen Sinne eine Verschlüsselung. Es ist eine Verschleierung – das Äquivalent von 'Spoiler unten versteckt', damit Leser, die es nicht wissen wollen, es überspringen können."
+        ]
+      },
+      {
+        "heading": "Warum das Spaß macht, aber nicht sicher ist",
+        "paragraphs": [
+          "Moderne Angreifer brechen eine Caesar-Chiffre in Mikrosekunden durch Häufigkeitsanalyse (E ist der häufigste Buchstabe im Deutschen; was im Geheimtext einem häufigen Buchstaben zugeordnet wird, ist wahrscheinlich E). Verwende sie nicht für etwas, das dir wichtig ist.",
+          "Verwende sie für: Lehrbeispiele, Rätselspiele, ARGs (Alternate Reality Games), Text im Klartext verstecken, ROT13-Spoiler-Tags. Verwende sie nicht für: Passwörter, Finanzdaten oder alles mit Konsequenzen."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Modus wählen",
+        "text": "Verschlüsseln (Verschiebung vorwärts anwenden) oder Entschlüsseln (Verschiebung rückwärts anwenden)."
+      },
+      {
+        "name": "Text eingeben oder einfügen",
+        "text": "Buchstaben werden verschoben; Satzzeichen, Ziffern und Leerzeichen bleiben unverändert."
+      },
+      {
+        "name": "Verschiebung anpassen",
+        "text": "Der Schieberegler geht von -25 bis +25. Verwende Voreinstellungen für +3 (Caesar), 13 (ROT13) oder negative Werte."
+      },
+      {
+        "name": "Ausgabe kopieren",
+        "text": "Ein-Klick-Kopie in die Zwischenablage."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was ist der Unterschied zwischen Caesar +3 und ROT13?",
+      "a": "Nur der Verschiebungswert. +3 ist Caesars ursprüngliche Wahl; 13 ist genau die Hälfte des Alphabets (sodass Verschlüsselung und Entschlüsselung dieselbe Operation sind). Mathematisch gehören sie derselben Chiffrefamilie an."
+    },
+    {
+      "q": "Warum ergibt Verschiebung +26 denselben Text zurück?",
+      "a": "26 Buchstaben im Alphabet – eine Verschiebung um genau 26 landet auf dem ursprünglichen Buchstaben. Dasselbe gilt für jedes Vielfache von 26."
+    },
+    {
+      "q": "Warum wird ROT13 für Spoiler verwendet?",
+      "a": "Weil zweimaliges Anwenden von ROT13 das Original zurückgibt. Foren und Usenet-Leser hatten eingebaute 'rot13 diesen Text'-Schaltflächen, die in beide Richtungen funktionierten. Praktisch zum Verbergen und Enthüllen von Text."
+    },
+    {
+      "q": "Werden nicht-lateinische Alphabete unterstützt?",
+      "a": "Nein – nur A-Z und a-z. Kyrillisch, Griechisch, CJK und Arabisch bleiben unverändert. Die Caesar-Chiffre ist grundsätzlich auf das lateinische Alphabet beschränkt."
+    },
+    {
+      "q": "Kann ich das für echte Sicherheit verwenden?",
+      "a": "Absolut nicht. Bei 25 möglichen Verschiebungen (ohne 0 und 26) bricht ein Computer sie sofort. Verwende AES, RSA oder etablierte kryptografische Bibliotheken für echte Sicherheit."
+    },
+    {
+      "q": "Was ist mit der Vigenère-Chiffre?",
+      "a": "Eine fortgeschrittenere klassische Chiffre, die ein Schlüsselwort verwendet, um die Verschiebung pro Buchstabe zu variieren. Immer noch per Hand knackbar mit genug Text, aber viel schwieriger als Caesar. Wir nehmen sie (noch) nicht auf."
+    },
+    {
+      "q": "Warum negative Verschiebungen einbeziehen?",
+      "a": "Der Bequemlichkeit halber. Mit +3 zu verschlüsseln und mit +3 zu entschlüsseln ist falsch; man braucht -3 zum Entschlüsseln. Negative Verschiebungen ermöglichen die Entschlüsselung, ohne den Modus zu wechseln (oder der Umschalter erledigt es für dich)."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Verschlüsselung und Entschlüsselung laufen lokal; nichts wird an einen Server gesendet."
+    }
+  ]
+}

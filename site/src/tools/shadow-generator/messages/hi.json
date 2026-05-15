@@ -1,0 +1,73 @@
+{
+  "title": "CSS Box Shadow Generator (live preview के साथ)",
+  "shortDescription": "CSS box-shadow values visually build करें। Offset, blur, spread, color, opacity, और inset adjust करें। Live preview, copy-paste CSS।",
+  "description": "छह common shadow presets (soft, card, lifted, glow, neumorphic, inset)। Sliders से सभी parameters fine-tune करें, result live देखें, और ready-to-paste CSS copy करें।",
+  "metaDescription": "Live preview के साथ मुफ्त CSS box-shadow generator। Offset, blur, spread, color, opacity, inset support। Neumorphic सहित 6 presets।",
+  "keywords": ["box shadow generator", "css shadow", "shadow css", "neumorphic generator", "drop shadow generator"],
+  "preset": {
+    "soft": "Soft",
+    "card": "Card",
+    "lifted": "Lifted",
+    "glow": "Glow",
+    "neumorphic": "Neumorphic",
+    "inset": "Inset"
+  },
+  "input": {
+    "x": "X offset",
+    "y": "Y offset",
+    "blur": "Blur",
+    "spread": "Spread",
+    "color": "Color",
+    "opacity": "Opacity",
+    "inset": "Inset (inner shadow)"
+  },
+  "output": { "css": "CSS code" },
+  "copy": "CSS Copy करें",
+  "copied": "Copy हो गया!",
+  "article": {
+    "sections": [
+      {
+        "heading": "पाँच shadow parameters",
+        "paragraphs": [
+          "X offset: horizontal displacement। Positive shadow right shift करता है, negative left। Upper-left से sun lighting (typical UI assumption) के लिए, small positive X upper-left से light simulate करता है।",
+          "Y offset: vertical displacement। Positive shadow down shift करता है, ऊपर से light source simulate करता है। Almost सभी UI shadows positive Y उपयोग करते हैं।",
+          "Blur radius: shadow का edge कितना soft है। 0 = sharp edge (rare)। Cards और buttons के लिए 8-30px typical है। Higher values dreamy, soft shadows create करते हैं।",
+          "Spread: shadow को uniformly extends या shrinks करता है। Positive values shadow को element से larger बनाते हैं; negative shrinks करता है। Offset के साथ combine होने पर negative spread 'lifted' effect create करता है।",
+          "Color/opacity: shadows usually black होते हैं low opacity के साथ (10-30%)। Colored shadows trendy हैं लेकिन well use करना कठिन है।"
+        ]
+      },
+      {
+        "heading": "Inset shadows",
+        "paragraphs": [
+          "Inset shadow element के बाहर के बजाय अंदर drawn होता है। Uses: pressed-button states, sunken input fields, neumorphic '3D pushed-in' effects।",
+          "Inset shadows element के border radius respect करते हैं और overflow ignore करते हैं। वे actual layout बदले बिना flat UI elements में visual depth add करने के लिए useful हैं।"
+        ]
+      },
+      {
+        "heading": "Neumorphism और 'soft UI' trend",
+        "paragraphs": [
+          "Neumorphism (popular 2020-2022) दो opposing shadows उपयोग करता है — एक light, एक dark — elements को same-colored background से extruded appear कराने के लिए। हमारा 'Neumorphic' preset single dark shadow दिखाता है; full neumorphism के लिए, opposite side पर light inset shadow के साथ combine करें।",
+          "Note: pure neumorphism में accessibility issues हैं — contrast की कमी elements को distinguish करना कठिन बनाती है। Modern designs इसे sparingly उपयोग करते हैं।"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "एक preset चुनें", "text": "या sliders के साथ scratch से build करें।" },
+      { "name": "X/Y offset adjust करें", "text": "Shadow की direction।" },
+      { "name": "Blur और spread tune करें", "text": "Blur soften करता है; spread enlarge करता है।" },
+      { "name": "Color और opacity set करें", "text": "अधिकांश UI shadows black को 10-30% opacity के साथ उपयोग करते हैं।" },
+      { "name": "Inset toggle करें", "text": "Inner shadows के लिए (pressed button, sunken input)।" },
+      { "name": "CSS copy करें", "text": "Stylesheet के box-shadow property में paste करें।" }
+    ]
+  },
+  "faq": [
+    { "q": "क्या मैं multiple shadows add कर सकता हूँ?", "a": "CSS comma-separated multiple shadows support करता है: 'box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)'। हमारा tool एक बार में एक shadow generate करता है; multiple by hand combine करें।" },
+    { "q": "Neumorphic effect कैसे बनाएँ?", "a": "Bottom-right पर dark shadow को top-left पर light shadow के साथ combine करें, दोनों inset या दोनों outset। Example: '8px 8px 20px rgba(0,0,0,0.12), -8px -8px 20px rgba(255,255,255,0.7)'।" },
+    { "q": "Blur और spread में क्या अंतर है?", "a": "Blur shadow का edge soften करता है (gradient transparency)। Spread shadow का overall size change करता है। Blur=20 spread=0 element size पर soft glow है; blur=0 spread=20 20px larger hard shadow है।" },
+    { "q": "मेरा shadow flat क्यों दिखता है?", "a": "Likely too low opacity, no offset, या shadow color background के too close है। Starting point के रूप में Y=8, blur=24, opacity=0.18 try करें।" },
+    { "q": "क्या मैं इसे text-shadow के लिए उपयोग कर सकता हूँ?", "a": "Almost — text-shadow same syntax minus 'spread' और 'inset' उपयोग करता है। Copy करने के बाद manually adjust करें: 'X Y blur color' लें (spread और inset drop करें)।" },
+    { "q": "क्या shadows performant हैं?", "a": "Box-shadow modern browsers में GPU-accelerated है। Cards और buttons पर single shadows: zero concern।" },
+    { "q": "क्या मुझे shadows या borders उपयोग करने चाहिए?", "a": "दोनों के uses हैं। Borders crisper और more accessible हैं। Shadows softer/more elevated दिखते हैं।" },
+    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। सभी preview और CSS generation locally चलती है; कुछ भी server को नहीं भेजा जाता।" }
+  ]
+}

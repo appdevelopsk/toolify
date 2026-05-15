@@ -1,0 +1,51 @@
+{
+  "title": "Renk Dönüştürücü (HEX, RGB, HSL — anında)",
+  "shortDescription": "Renkleri canlı önizleme renk örneğiyle HEX, RGB ve HSL arasında dönüştür. Herhangi bir alanı düzenle; diğerleri güncellenir.",
+  "description": "Bir hex kodu, RGB üçlüsü veya HSL değeri yaz — diğer biçimler görünür bir önizleme renk örneğiyle anında güncellenir. Tasarımcılar, web geliştiricileri ve araçlar arasında renk eşleştiren herkes için kullanışlıdır.",
+  "metaDescription": "Canlı önizlemeli ücretsiz HEX, RGB, HSL renk dönüştürücü. Herhangi bir biçimi düzenle; diğerleri anında güncellenir. Web tasarımı ve CSS çalışması için mükemmel.",
+  "keywords": ["renk dönüştürücü", "hex rgb'ye dönüştür", "rgb hsl'ye dönüştür", "renk seçici", "hex kod dönüştürücü"],
+  "hex": "HEX",
+  "rgb": "RGB",
+  "hsl": "HSL",
+  "article": {
+    "sections": [
+      {
+        "heading": "Aynı rengi tanımlamanın üç yolu",
+        "paragraphs": [
+          "HEX, RGB ve HSL, sRGB rengi için üç gösterimdir. HEX, RGB'nin kısaltmasıdır: #FF6B35, kırmızı=255, yeşil=107, mavi=53 anlamına gelir. RGB, bir rengi ne kadar kırmızı, yeşil ve mavi ışık karıştırılacağıyla (her biri 0-255) tanımlar. HSL, aynı RGB rengini ton (hangi renk), doygunluk (ne kadar canlı) ve parlaklık (ne kadar aydınlık) cinsinden yeniden kodlar.",
+          "Üçü eşdeğerdir — kayıpsız gidiş-dönüş yapılabilir. Tasarımcılar tonları ayarlamak için HSL'yi tercih eder (parlaklığı artırmak tonu sabit tutar), geliştiriciler ise genellikle tasarım araçlarından HEX'i doğrudan CSS'e yapıştırır. RGB, görüntü işleme veya canvas API'leriyle çalışırken en sık karşılaşılır."
+        ]
+      },
+      {
+        "heading": "Her birinin kullanıldığı yer",
+        "paragraphs": [
+          "HEX: tasarımlardan kopyala-yapıştır, Figma dışa aktarmaları, marka kılavuzları, CSS renk sabitleri. Öz ama okunması zor.",
+          "RGB: programatik renk çalışması (canvas, görüntü manipülasyonu), erişilebilirlik kontrolleri (kontrast hesaplamaları doğrusal RGB'de çalışır) ve tam tamsayı değerleri ayarlamak istediğinde.",
+          "HSL: renkleri hisse göre ince ayarlamak için — 'biraz daha doygun bir versiyon', 'fareyle üzerine gelme durumları için daha koyu bir varyant' veya tonu adımlayarak palet oluşturma. Bu görevler için HEX'ten çok daha kolay düşünülür."
+        ]
+      },
+      {
+        "heading": "Bu araçta ne göremezsin?",
+        "paragraphs": [
+          "Alpha kanalını (şeffaflık) şimdilik dahil etmedik — ancak #RRGGBBAA tüm modern tarayıcılarda çalışır; opaklık için iki hex basamak ekle (00 = şeffaf, FF = opak).",
+          "Ayrıca daha geniş renk gamutlarını (P3, Rec.2020, OKLCH) kapsamıyoruz. Çoğu web çalışması için sRGB tabanlı HEX/RGB/HSL doğru seçimdir. HDR veya geniş gamutlu ekranları hedefliyorsan CSS Color Module Seviye 4 sözdizimine bak."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Herhangi bir alanı düzenle", "text": "Bir HEX kodu, RGB üçlüsü veya HSL değeri yaz." },
+      { "name": "Diğerlerinin güncellendiğini izle", "text": "Her üç biçim senkronize kalır; önizleme renk örneği sonucu gösterir." },
+      { "name": "İhtiyacın olanı kopyala", "text": "Alttaki metin bloğunda CSS'e kopyalamak için hazır üç biçim var." }
+    ]
+  },
+  "faq": [
+    { "q": "HSL'den HEX'e kayıpsız gidiş-dönüş yapabilir miyim?", "a": "Büyük ölçüde. HSL tam sayı derece ve yüzde olarak depolandığından 360 × 101 × 101 = 3,7M HSL değeri 16,7M RGB kombinasyonuna eşlenir. Köşelerde küçük yuvarlama olabilir. Kesin depolama için HEX'i kanonik olarak kullan." },
+    { "q": "3 basamaklı HEX kodlarını destekliyor mu?", "a": "Evet. #f60, #ff6600 olarak değerlendirilir. Her ikisi de aynı RGB üçlüsüne genişler." },
+    { "q": "Neden HSL doygunluk/parlaklıkta 360'a kadar gitmiyor?", "a": "Ton derece cinsindendir (renk çemberinde 0-360). Doygunluk ve parlaklık yüzdedir (0-100)." },
+    { "q": "HSL ile HSB veya HSV aynı mı?", "a": "Hayır. HSV (ve HSB) 'parlaklık'ı farklı bir parlaklık modeli olan 'değer' ile değiştirir. HSL'nin L=%50'si tam renktir; HSV'nin V=%100'ü tam renktir. CSS ile eşleştiği için HSL kullanıyoruz." },
+    { "q": "Şeffaflığı destekliyor mu?", "a": "Henüz değil. Şimdilik HEX'e iki basamaklı alpha ekle (örn. %50 siyah için #00000080)." },
+    { "q": "RGB neden 0-1 ondalık göstermiyor?", "a": "Çünkü çoğu bağlam (CSS, tasarım araçları) 0-255 tamsayı kullanır. Shader çalışması için 0-1 ondalık elde etmek için 255'e böl." },
+    { "q": "Tasarımcılar doğru renkleri nereden alır?", "a": "Marka kılavuzları, tasarım token'ları veya palet oluşturucular. Kontrast kontrolü aracı, ön plan/arka plan çiftinin WCAG AA/AAA'yı karşıladığını doğrulayabilir." },
+    { "q": "Hesaplayıcı doğru mu?", "a": "Evet. Standart sRGB dönüşüm matematiğini kullanır. Gidiş-dönüş farklılıkları yalnızca HSL'nin tamsayı olarak nicelenmesinden kaynaklanır." }
+  ]
+}

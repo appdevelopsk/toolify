@@ -1,0 +1,109 @@
+{
+  "title": "Regex-Tester (Live-Treffer, Gruppen, Ersetzen)",
+  "shortDescription": "Teste JavaScript-Regular-Expressions interaktiv. Sieh live hervorgehobene Treffer, Capture-Gruppen und eine Ersetzen-Vorschau.",
+  "description": "Gib einen regex-Ausdruck und Testtext ein – Treffer werden live beim Tippen hervorgehoben. Flags umschalten (g/i/m/s/u), Capture-Gruppen inspizieren und Ersetzungen in der Vorschau prüfen.",
+  "metaDescription": "Kostenloser JavaScript-Regex-Tester mit Live-Hervorhebung, Capture-Gruppen, benannten Gruppen und Ersetzen-Vorschau.",
+  "keywords": [
+    "regex tester",
+    "regulärer Ausdruck tester",
+    "JavaScript regex",
+    "regex match",
+    "regex ersetzen"
+  ],
+  "input": {
+    "pattern": "Muster",
+    "flags": "Flags",
+    "test": "Testtext",
+    "replaceMode": "Ersetzen-Vorschau anzeigen",
+    "replace": "Ersatz"
+  },
+  "result": {
+    "matches": "Treffer",
+    "replaced": "Ersetzte Ausgabe",
+    "groups": "Capture-Gruppen"
+  },
+  "hint": {
+    "replaceVars": "Verwende $& für den vollständigen Treffer, $1, $2 für Gruppen, $<name> für benannte Gruppen."
+  },
+  "error": {
+    "invalid": "Ungültiges Muster"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Was Flags bewirken",
+        "paragraphs": [
+          "g (global): alle Treffer finden, nicht nur den ersten. Erforderlich für ‚Alle ersetzen'-Verhalten. i (Groß-/Kleinschreibung ignorieren): /[a-z]/i trifft beide. m (mehrzeilig): ^ und $ treffen an Zeilenumbrüchen statt nur am String-Anfang/-Ende. s (dotall): . trifft auch Zeilenumbrüche. u (Unicode): korrekte Behandlung von Code Points über 0xFFFF (Emoji, CJK in Surrogate-Paaren).",
+          "Die meisten beginnen mit /g/i/m. /s/ wird nützlich für mehrzeiligen Text-Abgleich. /u/ wird empfohlen, wenn Emoji oder Nicht-BMP-Zeichen vorkommen könnten – ohne ist /./ kein Einzelzeichen-Match für ein 4-Byte-Emoji."
+        ]
+      },
+      {
+        "heading": "Capture-Gruppen und Ersetzen",
+        "paragraphs": [
+          "Klammern erstellen eine Capture-Gruppe: /(\\d{4})-(\\d{2})/ auf ‚2026-05' erfasst ‚2026' und ‚05' separat. Referenziere sie als $1, $2 im Ersatz. Benannte Gruppen verwenden (?<name>...) und werden mit $<name> im Ersatz referenziert.",
+          "Häufige Ersetzen-Tricks: $& fügt den vollständigen Treffer ein. $1, $2 usw. fügen Capture-Gruppen ein. $$ fügt ein wörtliches $ ein. Die Ersetzen-Vorschau hier lässt dich prüfen, bevor du dasselbe Muster auf echten Text anwendest – viel sicherer als direkt auf Produktionsdaten."
+        ]
+      },
+      {
+        "heading": "Fallstricke beachten",
+        "paragraphs": [
+          "Backslash-Escaping. Für einen wörtlichen ‚.' verwende ‚\\.'. In einem JavaScript-Quell-String wird das ‚\\\\.' aber in diesem Tool tippst du nur ‚\\.' da es der Regex-Quellcode ist.",
+          "Katastrophales Backtracking. Muster wie /(a+)+/ auf ‚aaaa…!' können ewig dauern. Wenn dein Test einzufrieren scheint, hat dein Regex möglicherweise verschachtelte Quantoren. Vereinfachen oder possessive/atomare Gruppen verwenden (in JS regex nicht verfügbar; stattdessen sorgfältiges Design).",
+          "Gierig vs. faul. /<.+>/ auf ‚<a><b>' trifft ‚<a><b>' (gierig). /<.+?>/ trifft ‚<a>' (faul). Das richtige für den Anwendungsfall wählen."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Muster eingeben",
+        "text": "JavaScript-regex-Syntax verwenden (ohne die umgebenden Schrägstriche)."
+      },
+      {
+        "name": "Flags setzen",
+        "text": "Buchstaben anklicken zum Umschalten: g (global), i (Groß-/Kleinschreibung ignorieren), m (mehrzeilig), s (dotall), u (Unicode)."
+      },
+      {
+        "name": "Testtext einfügen",
+        "text": "Treffer werden in Echtzeit hervorgehoben."
+      },
+      {
+        "name": "Optional: Ersetzen ausprobieren",
+        "text": "‚Ersetzen-Vorschau' umschalten, um die geänderte Ausgabe zu sehen."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Welchen Regex-Typ verwendet das?",
+      "a": "JavaScript ECMAScript regex (den dein Browser implementiert). Er unterscheidet sich leicht von PCRE, das in PHP, .NET oder Python verwendet wird."
+    },
+    {
+      "q": "Warum funktioniert Lookbehind nicht?",
+      "a": "In modernen Browsern schon – Chrome, Firefox, Safari, Edge unterstützen (?<=...) und (?<!...) seit 2021. Wenn nicht, ist dein Browser möglicherweise veraltet."
+    },
+    {
+      "q": "Was bewirkt das ‚u'-Flag?",
+      "a": "Aktiviert korrekte Unicode-Behandlung. Emoji wie 🎉 (das ein Surrogate-Paar in UTF-16 ist) wird mit /u/ als ein Zeichen behandelt, ohne als zwei."
+    },
+    {
+      "q": "Wie treffe ich ein Tab oder Zeilenumbruch?",
+      "a": "\\t für Tab, \\n für Zeilenumbruch, \\r für Wagenrücklauf, \\s für jedes Leerzeichen einschließlich aller dieser."
+    },
+    {
+      "q": "Warum funktioniert mein Ersetzen nicht?",
+      "a": "Meistens wurde das ‚g'-Flag vergessen – Ersetzen ohne ‚g' ersetzt nur den ersten Treffer. ‚g' umschalten, um alle zu ersetzen."
+    },
+    {
+      "q": "Kann ich das für sehr langen Text verwenden?",
+      "a": "Ja, bis zu einigen MB. Darüber kann der Browser verlangsamen. Katastrophale Muster (verschachtelte Quantoren) bei langen Eingaben vermeiden."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Muster und Text werden nur lokal verarbeitet."
+    },
+    {
+      "q": "Gibt es ein Regex-Spickzettel?",
+      "a": "Nach ‚JavaScript regex Spickzettel' suchen. MDNs RegExp-Seite ist die autoritative Referenz."
+    }
+  ]
+}

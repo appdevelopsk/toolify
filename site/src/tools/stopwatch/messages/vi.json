@@ -1,0 +1,56 @@
+{
+  "title": "Đồng hồ bấm giờ (độ chính xác mili giây, ghi lại vòng)",
+  "shortDescription": "Đồng hồ bấm giờ chính xác cao trên trình duyệt với bắt đầu/tạm dừng, ghi lại vòng và tính thời gian split. Hiển thị mili giây, đồng hồ đơn điệu để đảm bảo độ chính xác.",
+  "description": "Đồng hồ bấm giờ trên trình duyệt dùng performance.now() để đo thời gian không bị giật lag. Bắt đầu, tạm dừng, tiếp tục, ghi lại vòng và đặt lại. Mỗi vòng hiển thị split (chênh lệch so với vòng trước) cộng thời gian tích lũy.",
+  "metaDescription": "Đồng hồ bấm giờ trên trình duyệt miễn phí với độ chính xác mili giây và ghi lại vòng. Đo thời gian đơn điệu, không cần mạng. Hữu ích cho thể thao, nấu ăn và học tập.",
+  "keywords": ["đồng hồ bấm giờ", "đồng hồ mili giây", "bấm giờ vòng", "đồng hồ bấm giờ online", "đồng hồ split"],
+  "start": "Bắt đầu",
+  "pause": "Tạm dừng",
+  "resume": "Tiếp tục",
+  "reset": "Đặt lại",
+  "lap": "Vòng",
+  "laps": "Các vòng",
+  "article": {
+    "sections": [
+      {
+        "heading": "Tại sao đồng hồ bấm giờ này chính xác",
+        "paragraphs": [
+          "Hầu hết đồng hồ bấm giờ trên trình duyệt dùng Date.now() và setInterval, có thể lệch hàng chục mili giây trong một phiên. Ứng dụng này dùng performance.now() — đồng hồ đơn điệu không nhảy lùi khi đồng hồ hệ thống được điều chỉnh. Kết hợp với requestAnimationFrame để cập nhật hiển thị, độ chính xác duy trì trong ±1 ms.",
+          "Nếu bạn chuyển tab, thời gian hiển thị có thể đóng băng ngắn vì trình duyệt giảm tốc các tác vụ nền. Đồng hồ nội bộ vẫn chạy đúng — khi bạn quay lại, màn hình cập nhật theo thời gian thực tế đã trôi qua."
+        ]
+      },
+      {
+        "heading": "Thời gian vòng và thời gian split",
+        "paragraphs": [
+          "Khi bạn nhấn Vòng, thời gian tích lũy hiện tại được ghi lại. Split hiển thị là chênh lệch so với vòng trước: trong một bài chạy 5×400m, mỗi split là thời gian đoạn 400m, còn thời gian tích lũy là tổng thời gian từ đầu.",
+          "Hầu hết người dùng quan tâm đến split hơn là tích lũy. Chúng tôi hiển thị cả hai. Tích lũy cũng giúp dễ dàng xác định đoạn tốt nhất — hữu ích cho vận động viên theo dõi tính nhất quán trong luyện tập interval."
+        ]
+      },
+      {
+        "heading": "Các ứng dụng phổ biến",
+        "paragraphs": [
+          "Thể thao: theo dõi thời gian vòng khi chạy bộ, bơi lội, đạp xe interval. Càng ngắn càng tốt; sự nhất quán giữa các split là dấu hiệu của tốc độ đều đặn.",
+          "Nấu ăn: đo thời gian nhiều bước đồng thời bằng cách dùng vòng như 'điểm kiểm tra' (đã thêm nguyên liệu, bắt đầu ủ bột, v.v.).",
+          "Học tập/làm việc: timeboxing các phiên tập trung. Kết hợp với đồng hồ Pomodoro của chúng tôi để có giờ nghỉ có cấu trúc.",
+          "Đo thời gian quy trình: đo thời lượng của bất kỳ tác vụ nào — build phần mềm, nhập dữ liệu thủ công, giải quyết yêu cầu hỗ trợ. Dùng danh sách vòng để xem xét sau."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Nhấn Bắt đầu", "text": "Bộ đếm thời gian bắt đầu ngay tại 0." },
+      { "name": "Ghi lại vòng", "text": "Nhấn Vòng trong khi chạy. Mỗi vòng được ghi với thời gian split và tích lũy." },
+      { "name": "Tạm dừng / Tiếp tục", "text": "Nhấn Tạm dừng để dừng lại; nhấn Tiếp tục để tiếp tục từ cùng thời điểm." },
+      { "name": "Đặt lại", "text": "Xóa tất cả vòng và quay về 0." }
+    ]
+  },
+  "faq": [
+    { "q": "Đồng hồ có tiếp tục chạy nếu tôi đóng tab không?", "a": "Không — đóng tab sẽ xóa trạng thái trong bộ nhớ. Để lưu một phiên đo dài, hãy chụp màn hình hoặc sao chép danh sách vòng trước khi đóng." },
+    { "q": "Độ chính xác mili giây thực tế như thế nào?", "a": "Độ phân giải performance.now() phụ thuộc vào trình duyệt: hầu hết giới hạn ở 1ms hoặc 0,1ms vì lý do bảo mật (giảm thiểu timing attack). Điều này hoàn toàn đủ cho đo thời gian thông thường — chính xác hơn nhiều so với thời gian phản ứng của con người (~250ms)." },
+    { "q": "Tại sao hiển thị cập nhật ở 60fps nhưng lại hiện mili giây?", "a": "Đồng hồ nội bộ chính xác; màn hình được render ~60 lần mỗi giây nên bạn thấy trường mili giây cập nhật mượt mà. Mỗi khung hình tính giá trị thực tế mới nhất từ performance.now()." },
+    { "q": "Tôi có thể lưu một phiên vòng không?", "a": "Không trực tiếp — hãy sao chép danh sách vòng thủ công. Tính năng lưu phiên vào local storage đang được xem xét thêm vào." },
+    { "q": "Sự khác biệt giữa cái này và đồng hồ bấm giờ trên điện thoại?", "a": "Chạy trên trình duyệt, không cần cài app. Độ chính xác tương đương cho đo thời gian thông thường. Đồng hồ điện thoại tiếp tục chạy khi khóa màn hình; tab trình duyệt cần giữ mở (nhưng không cần ở tiền cảnh)." },
+    { "q": "Dữ liệu có được gửi đi không?", "a": "Không. Tất cả chạy cục bộ; không có thời gian hay vòng nào được truyền đi." },
+    { "q": "Tại sao vòng của tôi hiển thị 0 mili giây?", "a": "Nếu bạn nhấn Vòng ngay sau Bắt đầu, thời gian trôi qua có thể làm tròn về 0 với độ chính xác hiển thị. Hãy chạy ít nhất một phần giây giữa các vòng." },
+    { "q": "Cái này có thể đo sự kiện dưới một giây không?", "a": "Có, xuống tới ~1ms. Với đo thời gian nano giây (benchmarking chip) bạn cần công cụ khác, nhưng với bất kỳ sự kiện quan sát được bằng mắt thường, độ chính xác này là đủ." }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "title": "Penghitung Kata (dengan waktu membaca dan berbicara)",
+  "shortDescription": "Hitung kata, karakter, kalimat, paragraf, ditambah perkiraan waktu membaca dan berbicara. Menangani bahasa CJK dengan benar.",
+  "description": "Tempelkan teks apapun untuk melihat jumlah kata, jumlah karakter (dengan dan tanpa spasi), jumlah kalimat, jumlah paragraf, dan perkiraan waktu untuk membaca dalam hati dan membaca keras.",
+  "metaDescription": "Penghitung kata online gratis dengan waktu membaca. Menghitung kata, karakter, kalimat, dan paragraf secara real-time. Mendukung teks Jepang, Cina, Korea (CJK).",
+  "keywords": ["penghitung kata", "jumlah karakter", "waktu membaca", "jumlah kata esai", "penghitung huruf"],
+  "placeholder": "Tempel atau ketik teks Anda di sini…",
+  "stat": {
+    "words": "Kata",
+    "characters": "Karakter",
+    "charactersNoSpaces": "Tanpa spasi",
+    "sentences": "Kalimat",
+    "paragraphs": "Paragraf",
+    "readingTime": "Waktu membaca",
+    "speakingTime": "Waktu berbicara"
+  },
+  "unit": { "min": "mnt" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara setiap metrik dihitung",
+        "paragraphs": [
+          "Karakter adalah panjang mentah teks, termasuk spasi, jeda baris, dan emoji. 'Tanpa spasi' menghapus spasi sebelum menghitung. Kata dipisahkan oleh spasi untuk bahasa dengan aksara Latin; untuk bahasa Jepang, Cina, Korea, dan Thailand, setiap ideograf dihitung sebagai satu kata, karena bahasa-bahasa ini tidak menggunakan spasi antara kata seperti bahasa Indonesia.",
+          "Kalimat dideteksi dengan tanda baca akhir (. ! ? dalam aksara Latin; 。！？ dalam CJK). Paragraf adalah blok yang dipisahkan oleh baris kosong. Aturan ini bersifat pragmatis — teks dengan tanda baca yang tidak biasa mungkin berbeda satu, tetapi untuk prosa normal jumlahnya dapat diandalkan."
+        ]
+      },
+      {
+        "heading": "Cara waktu membaca diperkirakan",
+        "paragraphs": [
+          "Waktu membaca menggunakan 200 kata per menit, median untuk orang dewasa yang membaca prosa. Waktu berbicara menggunakan 130 kata per menit, kecepatan pembicara publik berpengalaman. Keduanya dibulatkan ke atas ke menit bulat terdekat, sehingga kalimat 50 kata menampilkan '1 mnt'.",
+          "Angka-angka ini adalah perkiraan. Teks teknis berat dibaca lebih lambat (mendekati 150 kpm), fiksi ringan dibaca lebih cepat (mendekati 250 kpm), dan kecepatan presentasi sangat bervariasi berdasarkan gaya dan audiens. Gunakan angka ini sebagai perkiraan kasar, bukan pengukur yang tepat."
+        ]
+      },
+      {
+        "heading": "Penggunaan umum",
+        "paragraphs": [
+          "Blogger dan penulis menggunakan jumlah kata untuk mencapai panjang target (sebagian besar artikel panjang menargetkan 1.500-2.500 kata untuk SEO). Mahasiswa menggunakannya untuk tugas esai. Pemasar menggunakan karakter-dengan-spasi untuk batas postingan X (Twitter) dan panjang tag meta description. Pembicara publik menggunakan angka waktu berbicara untuk mengkalibrasi naskah untuk lightning talk 5 menit versus keynote 20 menit.",
+          "Penerjemah dan editor melacak keempat jumlah saat menagih per kata atau per karakter — pilihan antara 'dengan spasi' dan 'tanpa' memengaruhi tarif sebesar 10-20%."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Tempel teks Anda", "text": "Ketik atau tempel ke area teks. Hitungan diperbarui setiap kali Anda mengetik." },
+      { "name": "Baca metriknya", "text": "Semua tujuh metrik terlihat sekaligus — kata, karakter, kalimat, paragraf, dan perkiraan waktu." },
+      { "name": "Sesuaikan seperlunya", "text": "Edit teks langsung untuk membawa jumlah kata ke target, lalu salin versi yang telah diperbaiki." }
+    ]
+  },
+  "faq": [
+    { "q": "Mengapa jumlah kata CJK saya lebih tinggi dari yang diharapkan?", "a": "Kami menghitung setiap ideograf (hanzi Cina, kanji/kana Jepang, hangul Korea) sebagai satu kata. Kata Latin di tempat lain dalam teks yang sama masih dihitung berdasarkan spasi." },
+    { "q": "Apakah emoji dihitung sebagai karakter?", "a": "Ya. Beberapa emoji secara teknis merupakan beberapa unit kode Unicode; penghitung mengikuti panjang string JavaScript, yang menghitung setiap unit kode UTF-16." },
+    { "q": "Apakah waktu membaca akurat?", "a": "Angka 200 kpm cocok dengan kecepatan membaca diam median orang dewasa untuk prosa. Teks sangat teknis dibaca lebih lambat, fiksi mudah lebih cepat — anggap sebagai perkiraan ±30%." },
+    { "q": "Mengapa jumlah kalimat tampak tidak tepat?", "a": "Deteksi berdasarkan tanda baca akhir. Daftar, judul tanpa tanda baca, atau gaya prosa yang tidak biasa dapat membuatnya tidak tepat. Jumlah kata tetap dapat diandalkan." },
+    { "q": "Apakah teks meninggalkan browser saya?", "a": "Tidak. Semua berjalan secara lokal; kami tidak memiliki endpoint server yang menerima input." },
+    { "q": "Berapa batas panjang teks?", "a": "Tidak ada batas yang diberlakukan. Browser modern menangani teks berukuran multi-megabyte tanpa masalah, meskipun textarea mungkin melambat setelah sekitar 100.000 karakter." },
+    { "q": "Bisakah saya menghitung postingan Tweet atau X?", "a": "Ya — gunakan 'karakter' (dengan spasi) karena X menghitung spasi. Batas 280 karakter juga menyertakan URL sebagai 23 karakter." },
+    { "q": "Apakah ini mendukung Markdown?", "a": "Ini menghitung teks mentah termasuk sintaks Markdown. Jika Anda ingin jumlah kata 'yang dirender', tempel hanya output yang telah dirender." }
+  ]
+}

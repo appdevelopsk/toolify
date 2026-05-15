@@ -1,0 +1,58 @@
+{
+  "title": "Temperaturrechner (Celsius, Fahrenheit, Kelvin, Rankine)",
+  "shortDescription": "Konvertiere zwischen Celsius, Fahrenheit, Kelvin und Rankine. Alle vier Skalen aktualisieren sich gleichzeitig.",
+  "description": "Eine Temperatur eingeben, ihre Skala wählen und den äquivalenten Wert in den anderen drei Skalen sofort sehen. Verwendet exakte Umrechnungsformeln ohne Rundungsfehler.",
+  "metaDescription": "Kostenloser Temperaturrechner für Celsius, Fahrenheit, Kelvin und Rankine. Alle vier Skalen auf einmal mit exakten Umrechnungsformeln — sofort, browserbasiert.",
+  "keywords": ["Temperaturrechner", "Celsius in Fahrenheit", "Kelvin", "Fahrenheit in Celsius", "Rankine"],
+  "input": {
+    "value": "Wert",
+    "from": "Skala"
+  },
+  "scale": {
+    "C": "Celsius",
+    "F": "Fahrenheit",
+    "K": "Kelvin",
+    "R": "Rankine"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie die Umrechnungsformeln funktionieren",
+        "paragraphs": [
+          "Alle vier Skalen werden intern über Celsius umgerechnet. Fahrenheit ↔ Celsius: F = C × 9/5 + 32 und C = (F − 32) × 5/9. Kelvin verschiebt Celsius um 273,15 (den absoluten Nullpunkt-Offset): K = C + 273,15. Rankine ist zu Fahrenheit, was Kelvin zu Celsius ist — gleiche Skaleneinteilung wie Fahrenheit, aber am absoluten Nullpunkt verankert: R = (C + 273,15) × 9/5.",
+          "Diese Formeln sind exakt: Die Konstanten 273,15 (Kelvin-Offset) und 9/5 (Fahrenheit-Verhältnis) sind durch das SI-System definiert, nicht gemessen. Jede Rundung, die im Ergebnis erscheint, stammt aus der Dezimalanzeige, nicht aus der Berechnung selbst."
+        ]
+      },
+      {
+        "heading": "Wann man welche Skala verwendet",
+        "paragraphs": [
+          "Celsius ist die Alltagsskala fast überall außer in den USA. Wasser friert bei 0 °C und kocht bei 100 °C (auf Meereshöhe) — klare, einfache Grenzwerte.",
+          "Fahrenheit, hauptsächlich in den USA verwendet, hat für Umgebungstemperaturen eine feinere ‚Gefühl'-Einteilung: 0 °F ist sehr kalt, 100 °F ist sehr heiß und das meiste Wetter liegt im Bereich 30–90 °F. Die Skala wurde im 18. Jahrhundert um Salzlösung und Körpertemperatur entwickelt.",
+          "Kelvin ist der wissenschaftliche Standard. Er vermeidet negative Zahlen, da der absolute Nullpunkt 0 K ist, nicht −273,15. Verwendet in Physik, Chemie und Astronomie. Rankine ist das imperiale Äquivalent von Kelvin — gleicher Zweck, aber mit Fahrenheit-großen Graden. Noch in einigen US-amerikanischen Ingenieurkontexten gebräuchlich."
+        ]
+      },
+      {
+        "heading": "Nützliche Referenzwerte",
+        "paragraphs": [
+          "Absoluter Nullpunkt: 0 K = −273,15 °C = −459,67 °F. Wasser friert: 0 °C = 32 °F = 273,15 K. Körpertemperatur: 37 °C ≈ 98,6 °F = 310,15 K. Wasser siedet (Meereshöhe): 100 °C = 212 °F = 373,15 K. Heißer Backofen: 200 °C = 392 °F. Durchschnittliche Erdoberflächentemperatur: ca. 15 °C = 59 °F = 288 K.",
+          "Die Celsius- und Fahrenheit-Skalen treffen sich bei −40°: Das ist dieselbe Temperatur auf beiden Skalen. Es ist der einzige Punkt, an dem beide Skalen übereinstimmen."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Wert eingeben", "text": "Die zu konvertierende Zahl eingeben." },
+      { "name": "Quellskala wählen", "text": "Wählen, ob der Wert in Celsius, Fahrenheit, Kelvin oder Rankine ist." },
+      { "name": "Alle vier Skalen ablesen", "text": "Die anderen drei Skalen aktualisieren sich automatisch. Die gewählte Skala ist hervorgehoben." }
+    ]
+  },
+  "faq": [
+    { "q": "Warum sind diese Formeln exakt?", "a": "Der Celsius-Kelvin-Offset (273,15) und das Celsius-Fahrenheit-Verhältnis (9/5) sind SI-Definitionen. Jede scheinbare Ungenauigkeit ist nur Rundung bei der Dezimalanzeige." },
+    { "q": "Warum verwendet Kelvin kein Gradzeichen?", "a": "Nach SI-Konvention wird Kelvin ohne ° geschrieben. Also ist ‚300 K' korrekt; ‚300 °K' ist es nicht." },
+    { "q": "Was ist der Unterschied zwischen Kelvin und Rankine?", "a": "Beide sind absolute Skalen (Nullpunkt beim absoluten Nullpunkt). Kelvin verwendet Celsius-große Grade; Rankine verwendet Fahrenheit-große Grade. 1 K = 1,8 R." },
+    { "q": "Bei welcher Temperatur sind Celsius und Fahrenheit gleich?", "a": "Bei −40°. Es ist der einzige Schnittpunkt: −40 °C = −40 °F." },
+    { "q": "Warum ist Körpertemperatur 37 °C und nicht 36 oder 38?", "a": "37 °C (98,6 °F) ist der historische Durchschnitt, aber die normale Körpertemperatur schwankt im Laufe des Tages und von Person zu Person um ±0,5 °C. Moderne Daten legen nahe, dass der Durchschnitt eher bei 36,6 °C liegt." },
+    { "q": "Kann ich Temperaturunterschiede umrechnen?", "a": "Vorsicht: Ein Unterschied von 10 °C entspricht 18 °F (nicht 32 addieren). Für Differenzen mit 9/5 multiplizieren (C→F) oder mit 5/9 (F→C) und den Offset weglassen." },
+    { "q": "Ist der Rechner genau genug für wissenschaftliche Zwecke?", "a": "Es werden bis zu vier Dezimalstellen aus Doppelpräzisions-Mathematik angezeigt. Für metrologische Arbeit direkt NIST-Umrechnungstabellen verwenden, aber für Chemie, Kochen und Ingenieurwesen ist das mehr als ausreichend." },
+    { "q": "Warum Rankine einbeziehen, wenn es selten verwendet wird?", "a": "Es erscheint noch in einigen US-amerikanischen Thermodynamik-Lehrbüchern und HLK-Ingenieurarbeiten. Die Aufnahme kostet nichts und hilft denen, die es wirklich brauchen." }
+  ]
+}

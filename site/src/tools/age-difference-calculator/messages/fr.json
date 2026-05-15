@@ -1,0 +1,66 @@
+{
+  "title": "Calculateur de différence d'âge (entre deux personnes)",
+  "shortDescription": "Calcule la différence d'âge exacte entre deux personnes en années, mois, jours, ainsi que les totaux en semaines, jours et heures.",
+  "description": "Entre deux dates de naissance (et éventuellement des prénoms). Le calculateur calcule la différence en années/mois/jours par arithmétique calendaire et indique qui est le plus âgé.",
+  "metaDescription": "Calculateur de différence d'âge gratuit. Calcule l'écart entre deux anniversaires en années, mois, jours, semaines, heures. Identifie l'aîné et le cadet.",
+  "keywords": ["calculateur de différence d'âge", "écart d'âge", "entre deux anniversaires", "comparaison d'âge", "différence en années mois jours"],
+  "input": {
+    "name1": "Prénom (facultatif)",
+    "birth1": "Date de naissance",
+    "name2": "Prénom (facultatif)",
+    "birth2": "Date de naissance"
+  },
+  "result": {
+    "elderYounger": "{elder} est plus âgé(e) que {younger} de",
+    "y": "a",
+    "m": "mo",
+    "d": "j",
+    "totalDays": "Total en jours",
+    "totalWeeks": "Total en semaines",
+    "totalMonths": "Total en mois",
+    "totalHours": "Total en heures"
+  },
+  "empty": "Sélectionne les deux dates de naissance.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Pourquoi une différence basée sur le calendrier réel est importante",
+        "paragraphs": [
+          "Les différences d'âge semblent évidentes — « 3 ans » — mais l'écart réel dépend des jours. Deux personnes nées « la même année » peuvent être séparées de quelques jours ou de 364 jours. Le calculateur fournit la différence calendaire exacte : 3 ans, 5 mois, 12 jours, par exemple.",
+          "L'arithmétique calendaire emprunte à l'unité supérieure si nécessaire. Si la personne B est née le 15 mai et la personne A le 23 mai de la même année, la différence est « 0 an, 0 mois, 8 jours » — et non « 0 an, 0 mois, -8 jours »."
+        ]
+      },
+      {
+        "heading": "Cas d'usage courants",
+        "paragraphs": [
+          "Planification familiale : quel écart entre deux frères et sœurs ? Utile pour organiser les anniversaires, aligner les niveaux scolaires, choisir des cadeaux.",
+          "Amis et partenaires : un simple « de combien es-tu plus vieux/vieille ? » avec une réponse au jour près.",
+          "Recherches historiques : l'écart entre les dates de naissance de deux personnages, souvent utilisé en généalogie et en biographie.",
+          "Sports et compétitions : les athlètes sont souvent classés selon des seuils d'année de naissance ; le calculateur montre si quelqu'un est tout juste dans une catégorie ou bien dans les limites."
+        ]
+      },
+      {
+        "heading": "Totaux (semaines, heures, etc.)",
+        "paragraphs": [
+          "Chaque unité totale offre une perspective différente sur le même écart. « 3 ans » ≈ 157 semaines = 1 095 jours = 26 280 heures. Utile pour les anecdotes, les comptes à rebours motivants (jours vécus) ou simplement par curiosité.",
+          "Les heures sont calculées comme les jours × 24. Ajuste pour les années bissextiles et le fuseau horaire si une plus grande précision est nécessaire ; pour la plupart des usages, 24 h/jour est suffisant."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Sélectionner la première date de naissance", "text": "Utilise le sélecteur de date. Prénom facultatif." },
+      { "name": "Sélectionner la deuxième date de naissance", "text": "L'ordre n'a pas d'importance — le calculateur identifie l'aîné et le cadet." },
+      { "name": "Lire la différence", "text": "Années/mois/jours plus les totaux." }
+    ]
+  },
+  "faq": [
+    { "q": "L'ordre des dates a-t-il une importance ?", "a": "Non. Le calculateur détecte qui est le plus âgé et l'indique. Le résultat est toujours la différence absolue (positive)." },
+    { "q": "La différence est-elle exacte ?", "a": "Oui — arithmétique calendaire avec précision au mois et au jour. Même précision que notre calculateur d'âge." },
+    { "q": "Que se passe-t-il si les deux personnes ont le même anniversaire ?", "a": "Si elles partagent le même mois et jour mais des années différentes, le résultat sera en années entières (sans reste en mois ou jours). Même date d'anniversaire exacte : différence de 0." },
+    { "q": "Tient-il compte des années bissextiles ?", "a": "Oui. Le total en jours compte les jours calendaires réels, y compris le 29 février lorsque cela est pertinent." },
+    { "q": "Pourquoi le « total en mois » est-il une simple addition ?", "a": "Total en mois = années × 12 + mois. Les jours restants ne font pas partie du décompte des mois, mais notre résultat A/M/J calendaire les équilibre déjà correctement." },
+    { "q": "Puis-je comparer des anniversaires sur plusieurs siècles ?", "a": "Oui — la Date JavaScript prend en charge de nombreux siècles (bien au-delà de 1900-2100). Les dates de généalogie des années 1700 fonctionnent très bien." },
+    { "q": "Pourquoi n'indique-t-on pas « qui est plus âgé » pour les naissances le même jour ?", "a": "Si les heures de naissance ne sont pas connues, les naissances le même jour sont considérées comme ex æquo. On affiche une différence de 0 sans désigner d'aîné ni de cadet lorsque l'écart est nul." },
+    { "q": "Les données quittent-elles mon navigateur ?", "a": "Non. Le calcul est local ; rien n'est envoyé à un serveur." }
+  ]
+}

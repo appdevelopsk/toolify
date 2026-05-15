@@ -1,0 +1,111 @@
+{
+  "title": "JWT Çözücü (başlık, yük, imza, son kullanma)",
+  "shortDescription": "Herhangi bir JWT'yi (JSON Web Token) başlık, yük ve imza bölümlerine çözün. Süresi dolan token'ları vurgular. Yalnızca tarayıcıda — token'ınız cihazınızdan çıkmaz.",
+  "description": "Başlığı ve yükü anında JSON olarak çözmek için bir JWT yapıştırın. Standart talepleri (iat, exp, nbf) tanır ve Unix zaman damgalarını ISO 8601'e dönüştürür. Süresi dolmuş veya henüz geçerli olmayan token'ları işaretler.",
+  "metaDescription": "Ücretsiz JWT çözücü. Başlık, yük, imza varlığı, son kullanma tarihini inceleyin. Standart talepler (iat/exp/nbf) otomatik biçimlendirilir.",
+  "keywords": [
+    "JWT çözücü",
+    "JSON Web Token",
+    "JWT çözme",
+    "JWT inceleyici",
+    "JWT hata ayıklayıcı"
+  ],
+  "input": {
+    "token": "JWT token",
+    "privacyNote": "Tamamen tarayıcınızda çözülür. Token ağ üzerinden iletilmez."
+  },
+  "result": {
+    "header": "Başlık",
+    "payload": "Yük",
+    "signaturePresent": "İmza mevcut",
+    "issuedAt": "Verilme zamanı (iat)",
+    "expiresAt": "Son kullanma zamanı (exp)",
+    "notBefore": "Başlangıç geçerlilik (nbf)"
+  },
+  "warning": {
+    "expired": "⚠ Bu token'ın süresi dolmuş. exp'yi dikkate alan sunucular reddedecektir.",
+    "notYetValid": "⚠ Henüz geçerli değil (nbf gelecekte). Sunucular o zamana kadar reddedecektir."
+  },
+  "error": {
+    "label": "Çözme hatası"
+  },
+  "copy": "Kopyala",
+  "article": {
+    "sections": [
+      {
+        "heading": "JWT nasıl görünür",
+        "paragraphs": [
+          "Bir JWT, nokta ile birleştirilmiş üç Base64url kodlu bölümden oluşur: başlık.yük.imza. Her bölüm, URL güvenli iletim için kodlanmış bir JSON nesnesidir. Başlık imzalama algoritmasını bildirir, yük talepleri (konu, son kullanma, özel veri) taşır ve imza, alıcının anahtar varsa bütünlüğü doğrulamasını sağlar.",
+          "Bu çözücü yalnızca ilk iki bölümü okur. İmza üçüncü bölümdür ancak doğrulanması gizli/genel anahtar gerektirir — burada bu işlemi gerçekleştirmiyoruz."
+        ]
+      },
+      {
+        "heading": "Bilinmesi gereken standart talepler",
+        "paragraphs": [
+          "iss (veren): token'ı kimin oluşturduğu. iat (verilme zamanı): ne zaman, Unix zaman damgası olarak. exp (son kullanma): ne zaman geçersiz hale geldiği, yine Unix. nbf (önce değil): karşılanması gereken en erken zaman. sub (konu): temsil ettiği varlık, genellikle kullanıcı ID. aud (kitle): token'ın kime yönelik olduğu, genellikle bir servis URL'si.",
+          "Hepsi zorunlu değildir; minimal JWT'ler genellikle yalnızca sub + iat + exp içerir. Özel talepler başka her şeydir — yükteki standartların yanında yer alırlar."
+        ]
+      },
+      {
+        "heading": "Çözme ≠ doğrulama",
+        "paragraphs": [
+          "Herkes bir JWT'yi çözebilir — başlık ve yük yalnızca Base64 kodlu JSON'dur. Bu yüzden 'yüke asla sır koymayın' deriz: bunlar efektif olarak herkese açıktır.",
+          "Doğrulama, imzayı gizli anahtarla (HMAC) veya genel anahtarla (RSA/ECDSA) karşılaştırmak demektir. Doğrulama olmadan, yük içindeki hiçbir talebe güvenemezsiniz — bir saldırgan istediği yükü oluşturabilir.",
+          "Bu aracı hata ayıklama sırasında token'ları incelemek için kullanın. Üretimde doğrulamak için sunucunuzda bir JWT kütüphanesi kullanın."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "JWT'yi yapıştırın",
+        "text": "Nokta ile birleştirilmiş üç bölüm."
+      },
+      {
+        "name": "Çözülen parçaları okuyun",
+        "text": "Başlık (algoritma), yük (talepler), imza varlık bayrağı."
+      },
+      {
+        "name": "Son kullanmayı kontrol edin",
+        "text": "Standart talepler iat/exp/nbf otomatik olarak ISO tarihleri olarak biçimlendirilir; süresi dolmuş veya henüz geçerli değilse işaretlenir."
+      },
+      {
+        "name": "Gerektiğinde kopyalayın",
+        "text": "Her bölümün JSON çıktısı için bir kopyalama düğmesi vardır."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "İmzayı burada doğrulayabilir miyim?",
+      "a": "Hayır — doğrulama gizli veya genel anahtar gerektirir ve bu anahtar asla güvenilir bir ortamdan çıkmamalıdır. Sunucu tarafı JWT kütüphanesi kullanın (Node için jsonwebtoken, Python için PyJWT, vb.)."
+    },
+    {
+      "q": "Token tarayıcımdan çıkıyor mu?",
+      "a": "Hiçbir zaman. Çözme yerel olarak çalışır; onu almak için bir sunucu uç noktamız yoktur."
+    },
+    {
+      "q": "Token'ım neden 'geçersiz'?",
+      "a": "Yaygın nedenler: kopyala-yapıştır boşluk ekledi/kaldırdı, üç bölümden biri eksik veya bir bölüm hatalı Base64url. Kırp ve tekrar deneyin."
+    },
+    {
+      "q": "Base64url ile Base64 arasındaki fark nedir?",
+      "a": "Base64url, '+' yerine '-', '/' yerine '_' koyar ve '=' dolgusunu kaldırır; böylece kodlanmış dize URL'lerde ve HTTP başlıklarında güvenlidir. JWT'ler her zaman Base64url kullanır."
+    },
+    {
+      "q": "Unicode yükümde neden bozuk metin görünüyor?",
+      "a": "Standart olan UTF-8'i çözüyoruz. Yük farklı şekilde kodlandıysa JSON.parse başarısız olabilir. Çoğu JWT vericisi doğru biçimde UTF-8 kodlar."
+    },
+    {
+      "q": "HS256 güvenli mi?",
+      "a": "Gizli yeterince uzunsa (≥256 bit) ve gizli tutulursa evet. Yaygın HS256 güvenlik açıkları zayıf gizliler ve alg='none' içeren token'ları kabul etmektir. ≥32 karakterli rastgele gizliler kullanın ve 'none' algoritmasını açıkça reddedin."
+    },
+    {
+      "q": "RS256 neden HS256'dan tercih edilir?",
+      "a": "RS256 (asimetrik RSA), imza anahtarını gizli tutarken doğrulama için genel anahtar yayınlamanızı sağlar. HS256 (simetrik HMAC), gizlinin her doğrulayıcıyla paylaşılmasını gerektirir. Çok servisli mimariler için RS256 daha güvenlidir."
+    },
+    {
+      "q": "Büyük token'ları çözebilir miyim?",
+      "a": "Pratik sınır yaklaşık 10 MB giriştir; ötesinde tarayıcı yavaşlayabilir. JWT'ler genellikle 4 KB'ın altındadır; sizinkisi daha büyükse taleplerde çok fazla veri depolayıp depolamadığınızı düşünün."
+    }
+  ]
+}

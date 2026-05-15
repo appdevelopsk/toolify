@@ -1,0 +1,100 @@
+{
+  "title": "Markdown zu HTML Konverter (CommonMark-Subset)",
+  "shortDescription": "Konvertiere Markdown zu sauberem HTML in deinem Browser. Unterstützt Überschriften, Listen, Codeblöcke, Links, Bilder, Blockzitate, fett/kursiv/durchgestrichen.",
+  "description": "Füge Markdown ein und sieh sofort das entsprechende HTML. Geeignet für Blog-Posts, Dokumentation, README-Dateien. Die Ausgabe ist sauberes, semantisches HTML, das du in jedes CMS oder jede statische Website einfügen kannst.",
+  "metaDescription": "Kostenloser Markdown-zu-HTML-Konverter. Live-Vorschau, sauberes semantisches HTML, unterstützt CommonMark-Grundlagen inkl.",
+  "keywords": [
+    "markdown zu html",
+    "md zu html",
+    "markdown konverter",
+    "commonmark zu html",
+    "blog markdown"
+  ],
+  "input": {
+    "markdown": "Markdown"
+  },
+  "output": {
+    "html": "HTML-Ausgabe"
+  },
+  "preview": "Gerenderte Vorschau anzeigen",
+  "copy": "HTML kopieren",
+  "copied": "Kopiert!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Was unterstützt wird",
+        "paragraphs": [
+          "Überschriften: # H1 bis ###### H6. Listen: - / * / + für ungeordnete, 1. 2. 3. für geordnete. Blockzitate: > am Zeilenanfang. Codeblöcke: ``` mit optionaler Sprache. Inline: **fett**, *kursiv*, `code`, ~~durchgestrichen~~, [Link](url), ![Alt](Bild-url). Horizontale Linie: ---, *** oder ___.",
+          "Wir implementieren die CommonMark-Grundlagen. Tabellen, Fußnoten und Aufgabenlisten (- [ ]) sind noch nicht enthalten; dafür verwende eine vollständige CommonMark- oder GFM-Bibliothek in deiner Build-Pipeline."
+        ]
+      },
+      {
+        "heading": "Wann dieses Tool verwenden",
+        "paragraphs": [
+          "Schnelle Konvertierung zum Einfügen in ein CMS. Die meisten CMSes akzeptieren HTML; wenn du in Markdown schreibst, aber der Editor es nicht nativ rendert, führe es zuerst durch dieses Tool.",
+          "Dokumentationsgenerierung: README.md in HTML für eine Projekt-Landingpage konvertieren. Die Ausgabe ist sauber genug, um in eine einfache Vorlage eingebettet zu werden.",
+          "E-Mail-Erstellung: Viele E-Mail-Clients rendern HTML, aber kein Markdown. In Markdown schreiben, konvertieren, einfügen."
+        ]
+      },
+      {
+        "heading": "Konvertierung im Browser",
+        "paragraphs": [
+          "Alle Konvertierungen laufen in deinem Browser. Dein Markdown – das möglicherweise vertrauliche Entwürfe, Code-Snippets oder Notizen enthält – verlässt niemals dein Gerät. Keine Server-Logs, keine KI-Trainingsdaten, nur deterministische Regex-Transformation.",
+          "Wenn du GFM-Funktionen brauchst (Tabellen, Aufgabenlisten, Fußnoten), verwende eine umfangreichere Bibliothek wie marked.js, markdown-it oder remark in deinem Build. Für einfaches bis mittelschweres Markdown reicht die Ausgabe dieses Tools."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Markdown einfügen",
+        "text": "Oder direkt in den Eingabebereich schreiben."
+      },
+      {
+        "name": "HTML-Ausgabe lesen",
+        "text": "Wird live beim Tippen aktualisiert."
+      },
+      {
+        "name": "In Zwischenablage kopieren",
+        "text": "Klicke auf ‚HTML kopieren', um die Ausgabe zu übernehmen."
+      },
+      {
+        "name": "Optional: Vorschau",
+        "text": "Klicke auf ‚Gerenderte Vorschau anzeigen', um zu sehen, wie es im Browser aussehen wird."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Werden Tabellen unterstützt?",
+      "a": "Noch nicht. Tabellen sind eine GFM-Erweiterung, kein reines CommonMark. Wir könnten sie in einer zukünftigen Version hinzufügen."
+    },
+    {
+      "q": "Werden meine Codeblöcke syntax-highlighted?",
+      "a": "Wir fügen class='language-X' zu <pre><code>-Tags hinzu, sodass Highlighter wie Prism oder highlight.js sie stylen können. Das HTML selbst ist unstyled – eigenes CSS oder eine Bibliothek anwenden."
+    },
+    {
+      "q": "Ist die Ausgabe sicher, überall einzufügen?",
+      "a": "Wir escapen <, >, & und \" in Codeblöcken und Inline-Code. Andere Inhalte werden unverändert konvertiert. Wenn du nutzergeneriertes Markdown einfügst, die Ausgabe vor dem Einbetten in eine Seite bereinigen."
+    },
+    {
+      "q": "Warum ist meine Hervorhebung seltsam?",
+      "a": "Markdown-Hervorhebungs-Verschachtelung kann knifflig sein. * vs _ kann sich bei benachbarter Interpunktion unterschiedlich verhalten. Die CommonMark-Spezifikation ist präzise; wenn unsere Ausgabe abweicht, das Spec-Beispiel zum Überprüfen einfügen."
+    },
+    {
+      "q": "Verarbeitet das HTML innerhalb von Markdown?",
+      "a": "Inline-HTML wird durchgereicht (was CommonMark-Verhalten ist). Vorsichtig verwenden – bösartiges HTML aus nicht vertrauenswürdigen Quellen wird unverändert durchgereicht."
+    },
+    {
+      "q": "Kann ich HTML zurück in Markdown konvertieren?",
+      "a": "Ja – sieh unseren HTML-zu-Markdown-Konverter (unter Verwandte Tools verlinkt)."
+    },
+    {
+      "q": "Was ist mit Fußnoten?",
+      "a": "Nicht implementiert (GFM-Erweiterung). Für komplexe Dokumente eine serverseitige Bibliothek wie remark-gfm verwenden."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Die Konvertierung läuft lokal; dein Markdown wird nirgendwo hingesendet."
+    }
+  ]
+}

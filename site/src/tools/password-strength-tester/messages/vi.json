@@ -1,0 +1,92 @@
+{
+  "title": "Kiểm tra độ mạnh mật khẩu (entropy + thời gian bẻ khóa)",
+  "shortDescription": "Kiểm tra độ mạnh mật khẩu với số bit entropy, phân tích bộ ký tự, kiểm tra mật khẩu phổ biến và thời gian bẻ khóa ước tính theo các tình huống tấn công.",
+  "description": "Nhập mật khẩu (chỉ trong trình duyệt, không bao giờ truyền đi). Công cụ tính entropy, phạm vi bộ ký tự, rủi ro khớp từ điển và hiển thị thời gian bẻ khóa ước tính cho tấn công GPU ngoại tuyến, giới hạn API trực tuyến và tấn công trực tuyến chậm.",
+  "metaDescription": "Kiểm tra độ mạnh mật khẩu miễn phí. Bit entropy, ước tính thời gian bẻ khóa, phân tích bộ ký tự, phát hiện mật khẩu phổ biến và mẫu. Chỉ trong trình duyệt.",
+  "keywords": ["kiểm tra độ mạnh mật khẩu", "entropy mật khẩu", "máy tính thời gian bẻ khóa", "bảo mật mật khẩu", "thử nghiệm mật khẩu"],
+  "input": {
+    "password": "Mật khẩu",
+    "privacyNote": "Được kiểm tra hoàn toàn trong trình duyệt. Không bao giờ gửi hoặc lưu trữ."
+  },
+  "show": "Hiện",
+  "hide": "Ẩn",
+  "result": {
+    "strength": "Độ mạnh",
+    "length": "Độ dài",
+    "charsetSize": "Kích thước bộ ký tự",
+    "entropy": "Entropy",
+    "bits": "bit",
+    "lowercase": "Chữ thường a-z",
+    "uppercase": "Chữ hoa A-Z",
+    "digits": "Chữ số 0-9",
+    "symbols": "Ký tự đặc biệt",
+    "crackTime": "Thời gian bẻ khóa ước tính",
+    "crackOffline": "GPU ngoại tuyến (10⁹⁰/giây)",
+    "crackOnlineFast": "Trực tuyến nhanh (1k/giây)",
+    "crackOnlineSlow": "Trực tuyến chậm (100/giây)",
+    "warningsHeading": "Cảnh báo"
+  },
+  "level": {
+    "veryWeak": "Rất yếu",
+    "weak": "Yếu",
+    "fair": "Tạm",
+    "strong": "Mạnh",
+    "veryStrong": "Rất mạnh"
+  },
+  "warning": {
+    "isCommon": "Mật khẩu này xuất hiện trong danh sách mật khẩu phổ biến. Đừng dùng nó.",
+    "tooShort": "Độ dài dưới 8 — quá ngắn để bảo mật thực sự.",
+    "hasRepeated": "Ký tự lặp (ví dụ 'aaa') làm giảm entropy thực tế.",
+    "hasSequential": "Mẫu tuần tự (1234, qwer, abcd) dễ đoán.",
+    "limitedCharset": "Mật khẩu một bộ ký tự (chỉ chữ thường, chỉ số) yếu ngay cả khi dài."
+  },
+  "time": {
+    "instant": "ngay lập tức",
+    "yrs": "năm",
+    "eternity": "vĩnh viễn"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "'Entropy' có nghĩa gì với mật khẩu",
+        "paragraphs": [
+          "Entropy đo tính không thể đoán trước bằng bit. Mật khẩu với 30 bit entropy cần trung bình ~2³⁰ ≈ 1 tỷ lần đoán để bẻ khóa. Trên 70 bit thường được coi là mạnh; trên 80 bit là xuất sắc.",
+          "Công thức: entropy = độ_dài × log₂(kích_thước_bộ_ký_tự). 'abcdefgh' (8 ký tự, chỉ chữ thường) = 8 × log₂(26) ≈ 37,6 bit. 'aA1!aaaa' (8 ký tự, tất cả bộ ký tự) = 8 × log₂(95) ≈ 52,6 bit — nhưng thời gian bẻ khóa tệ hơn nhiều so với 52 bit vì 'aaaa' là mẫu phổ biến."
+        ]
+      },
+      {
+        "heading": "Tại sao thời gian bẻ khóa biến đổi rất nhiều",
+        "paragraphs": [
+          "GPU ngoại tuyến: hash mật khẩu bị rò rỉ đang bị tấn công ngoại tuyến. GPU hiện đại có thể đoán 10⁹+ hash MD5 mỗi giây; hash bcrypt chỉ 10⁴-10⁵/giây. Ước tính ở đây dùng giả định hash nhanh GPU.",
+          "Trực tuyến nhanh: kẻ tấn công tấn công API đăng nhập trực tiếp. Hầu hết API có giới hạn tốc độ; 1.000 lần thử/giây là ước tính cao đối với endpoint kém bảo vệ.",
+          "Trực tuyến chậm: endpoint được bảo vệ đúng cách với giới hạn tốc độ nghiêm ngặt, khóa tài khoản và CAPTCHA. 100 lần thử/giây là hào phóng; nhiều hệ thống chỉ cho phép 5-10 lần/phút.",
+          "Các ước tính này bỏ qua các yếu tố thực tế như tấn công từ điển (tìm mật khẩu phổ biến nhanh hơn nhiều so với brute force) và tái sử dụng mật khẩu (bẻ rò rỉ của một trang giúp bẻ các trang khác)."
+        ]
+      },
+      {
+        "heading": "Điều gì tạo nên mật khẩu mạnh",
+        "paragraphs": [
+          "Độ dài hơn độ phức tạp: cụm 16 ký tự kiểu 'mèo trèo cây cao nhìn xa' mạnh hơn kiểu tra tấn 8 ký tự như 'P@ssw0rd!'. Hiểu biết từ XKCD năm 2011 vẫn còn hiệu lực: 4 từ ngẫu nhiên cho ~44 bit entropy.",
+          "Tránh mẫu: ngày tháng, tên, '123', 'qwer', ký tự lặp đều làm giảm entropy thực tế xuống dưới giá trị công thức. Công cụ tấn công bao gồm 'biến đổi theo quy tắc' mở rộng (ví dụ 'password' → 'P@ssw0rd!').",
+          "Dùng trình quản lý mật khẩu: con người chọn mẫu; trình quản lý thì không. Bitwarden, 1Password, KeePass tạo mật khẩu thực sự ngẫu nhiên cho mỗi trang, với 16+ ký tự trên tất cả bộ ký tự. Mật khẩu duy nhất bạn cần nhớ là mật khẩu chính — và mật khẩu đó nên là cụm dài dễ nhớ."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Nhập mật khẩu", "text": "Được kiểm tra hoàn toàn ở phía client. Dùng nút Hiện nếu bạn không thể thấy những gì đang nhập." },
+      { "name": "Đọc đồng hồ độ mạnh", "text": "Năm phân đoạn. Nhắm đến 4-5 (Mạnh/Rất mạnh) cho tài khoản quan trọng." },
+      { "name": "Kiểm tra entropy và thời gian bẻ khóa", "text": "Entropy cao hơn = thời gian bẻ khóa lâu hơn. Chú ý cảnh báo về mẫu phổ biến." },
+      { "name": "Điều chỉnh khi cần", "text": "Thêm độ dài, kết hợp bộ ký tự, tránh từ phổ biến. Thử các biến thể cho đến khi hài lòng." }
+    ]
+  },
+  "faq": [
+    { "q": "Mật khẩu của tôi có được gửi đi đâu không?", "a": "Không. Mọi thứ chạy cục bộ trong trình duyệt của bạn. Chúng tôi không thấy, lưu trữ hoặc truyền mật khẩu của bạn." },
+    { "q": "Tại sao mật khẩu dài của tôi lại hiển thị entropy thấp?", "a": "Độ dài không phải là tất cả — lặp 'a' 50 lần có entropy thực tế rất thấp. Máy tính dùng công thức đơn giản nhưng cảnh báo các mẫu lặp/tuần tự. Để kết quả tốt nhất: dài, đa dạng, không có mẫu." },
+    { "q": "Thời gian bẻ khóa có chính xác không?", "a": "Đây là ước tính dựa trên brute force đơn thuần. Các công cụ bẻ khóa thực dùng từ điển, mẫu phổ biến và cơ sở dữ liệu mật khẩu bị rò rỉ trước — nên mật khẩu 'phổ biến' có thể bị bẻ trong vài giây dù entropy công thức cao." },
+    { "q": "Tôi có nên lo lắng về máy tính lượng tử không?", "a": "Cuối cùng thì có — thuật toán Grover giảm nửa số bit hiệu quả của mã hóa đối xứng. Khóa đối xứng tương đương 128 bit cần 64+ bit tương đương sau lượng tử. Hiện tại, trên 80 bit entropy là thoải mái; 128+ cho các bí mật rất dài hạn." },
+    { "q": "Tại sao công cụ cảnh báo 'P@ssw0rd1' dù nó có tất cả bộ ký tự?", "a": "Vì 'password' có trong từ điển và các thay thế tầm thường (a → @) là một phần trong bộ quy tắc của mọi công cụ bẻ khóa. Dùng mật khẩu thực sự ngẫu nhiên hoặc kiểu cụm, không phải thay thế từ phổ biến." },
+    { "q": "Cụm bốn từ ngẫu nhiên có thực sự an toàn không?", "a": "Tương đối. 4 từ ngẫu nhiên từ danh sách 7.000 từ = ~52 bit entropy. Mạnh hơn hầu hết mật khẩu 8 ký tự phức tạp. Nhưng một khi nó nổi tiếng (như ví dụ này), nó có trong từ điển — hãy chọn các từ ngẫu nhiên của riêng bạn." },
+    { "q": "Độ dài mật khẩu tối thiểu tôi nên dùng là bao nhiêu?", "a": "8 là mức tối thiểu (và chỉ với tất cả bộ ký tự). Khuyến nghị 12+ cho hầu hết tài khoản. 16+ cho tài khoản quan trọng (email, ngân hàng, mật khẩu chính trình quản lý)." },
+    { "q": "Phân biệt chữ hoa thường có quan trọng không?", "a": "Có — thêm chữ hoa nhân đôi kích thước bộ ký tự từ 26 lên 52. Khoảng +1 bit mỗi ký tự. Kết hợp chữ hoa thường có ý nghĩa (không chỉ ký tự đầu tiên) là đáng làm." }
+  ]
+}

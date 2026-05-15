@@ -1,0 +1,58 @@
+{
+  "title": "Wörter zählen (mit Lese- und Sprechzeit)",
+  "shortDescription": "Wörter, Zeichen, Sätze, Absätze sowie geschätzte Lese- und Sprechzeit zählen. Handhabt CJK-Sprachen korrekt.",
+  "description": "Beliebigen Text einfügen, um Wortanzahl, Zeichenanzahl (mit und ohne Leerzeichen), Satzanzahl, Absatzanzahl und Zeitschätzungen für stilles Lesen und laut Vorlesen zu sehen.",
+  "metaDescription": "Kostenloser Online-Wortzähler mit Lesezeit. Zählt Wörter, Zeichen, Sätze und Absätze in Echtzeit. CJK-bewusst für japanischen, chinesischen und koreanischen Text.",
+  "keywords": ["Wörter zählen", "Zeichen zählen", "Lesezeit", "Aufsatz Wortanzahl", "Buchstaben zählen"],
+  "placeholder": "Text hier einfügen oder eingeben…",
+  "stat": {
+    "words": "Wörter",
+    "characters": "Zeichen",
+    "charactersNoSpaces": "Ohne Leerzeichen",
+    "sentences": "Sätze",
+    "paragraphs": "Absätze",
+    "readingTime": "Lesezeit",
+    "speakingTime": "Sprechzeit"
+  },
+  "unit": { "min": "Min." },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie jede Kennzahl berechnet wird",
+        "paragraphs": [
+          "Zeichen entsprechen der Rohrlänge des Textes, einschließlich Leerzeichen, Zeilenumbrüchen und Emoji. ‚Ohne Leerzeichen' entfernt Leerzeichen vor dem Zählen. Wörter werden für lateinische Schriften durch Leerzeichen getrennt; für Japanisch, Chinesisch, Koreanisch und Thailändisch wird jedes Schriftzeichen als ein Wort gezählt, da diese Sprachen keine Wortabstände wie Englisch verwenden.",
+          "Sätze werden durch Abschlusspunktuation erkannt (. ! ? in lateinischen Schriften; 。！？ in CJK). Absätze sind durch Leerzeilen getrennte Blöcke. Diese Regeln sind pragmatisch — Text mit ungewöhnlicher Interpunktion kann um eins daneben liegen, aber für normalen Fließtext sind die Zählungen zuverlässig."
+        ]
+      },
+      {
+        "heading": "Wie die Lesezeit geschätzt wird",
+        "paragraphs": [
+          "Die Lesezeit verwendet 200 Wörter pro Minute, den Median für Erwachsene beim Lesen von Fließtext. Die Sprechzeit verwendet 130 Wörter pro Minute, das Tempo eines erfahrenen Redners. Beide werden auf die nächste ganze Minute aufgerundet, sodass ein 50-Wörter-Satz ‚1 Min.' anzeigt.",
+          "Diese Zahlen sind Näherungswerte. Schwerer Fachtext liest sich langsamer (näher 150 WpM), leichte Belletristik schneller (näher 250 WpM), und das Präsentationstempo variiert stark je nach Stil und Publikum. Die Zahl als Plausibilitätsprüfung verwenden, nicht als Stoppuhr."
+        ]
+      },
+      {
+        "heading": "Häufige Anwendungsfälle",
+        "paragraphs": [
+          "Blogger und Autoren verwenden Wortanzahlen, um eine Ziellänge zu erreichen (die meisten Langform-Artikel zielen für SEO auf 1.500–2.500 Wörter ab). Studenten nutzen es für Aufsätze. Marketer verwenden Zeichen-mit-Leerzeichen für X (Twitter)-Beitragslimits und Meta-Beschreibungstagslängen. Redner nutzen die Sprechzeit-Zahl, um Skripte für einen 5-minütigen Lightning Talk gegenüber einem 20-minütigen Keynote zu kalibrieren.",
+          "Übersetzer und Lektoren verfolgen alle vier Zählungen bei der Abrechnung pro Wort oder pro Zeichen — die Wahl zwischen ‚mit Leerzeichen' und ‚ohne' beeinflusst die Raten um 10–20 %."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Text einfügen", "text": "In das Textfeld eingeben oder einfügen. Zählungen aktualisieren sich mit jedem Tastendruck." },
+      { "name": "Kennzahlen ablesen", "text": "Alle sieben Kennzahlen sind auf einmal sichtbar — Wörter, Zeichen, Sätze, Absätze und die Zeitschätzungen." },
+      { "name": "Bei Bedarf anpassen", "text": "Den Text direkt bearbeiten, um die Wortanzahl auf ein Ziel zu bringen, dann die bereinigte Version kopieren." }
+    ]
+  },
+  "faq": [
+    { "q": "Warum ist meine CJK-Wortanzahl höher als erwartet?", "a": "Jedes Schriftzeichen (chinesische Hanzi, japanische Kanji/Kana, koreanische Hangul) wird als ein Wort gezählt. Lateinische Wörter anderswo im selben Text werden weiterhin durch Leerzeichen gezählt." },
+    { "q": "Werden Emoji als Zeichen gezählt?", "a": "Ja. Manche Emoji sind technisch mehrere Unicode-Codeeinheiten; der Zähler folgt der JavaScript-String-Länge, die jede UTF-16-Codeeinheit zählt." },
+    { "q": "Ist die Lesezeit genau?", "a": "Der 200-WpM-Wert entspricht der mittleren stillen Lesegeschwindigkeit für Erwachsene bei Fließtext. Sehr technischer Text liest sich langsamer, leichte Belletristik schneller — als ±30%-Schätzung behandeln." },
+    { "q": "Warum scheint die Satzanzahl ungenau?", "a": "Die Erkennung basiert auf Abschlusspunktuation. Listen, Überschriften ohne Punkt oder ungewöhnliche Prosaformen können sie aus dem Takt bringen. Die Wortanzahl bleibt zuverlässig." },
+    { "q": "Verlässt der Text meinen Browser?", "a": "Nein. Alles läuft lokal; es gibt keinen Server-Endpunkt, der die Eingabe empfängt." },
+    { "q": "Was ist das Limit für die Textlänge?", "a": "Es gibt keine erzwungene Begrenzung. Moderne Browser verarbeiten mehrmegabyte-großen Text problemlos, obwohl das Textfeld nach etwa 100.000 Zeichen langsamer werden kann." },
+    { "q": "Kann ich Tweets oder X-Beiträge zählen?", "a": "Ja — ‚Zeichen' (mit Leerzeichen) verwenden, da X Leerzeichen zählt. Das 280-Zeichen-Limit zählt URLs auch als 23 Zeichen." },
+    { "q": "Unterstützt das Markdown?", "a": "Es zählt den Rohtext einschließlich Markdown-Syntax. Für eine ‚gerenderte' Wortanzahl nur die gerenderte Ausgabe einfügen." }
+  ]
+}

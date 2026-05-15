@@ -1,0 +1,92 @@
+{
+  "title": "Cihaz Bilgisi Kontrolü (tarayıcı, OS, donanım, ağ)",
+  "shortDescription": "Cihazınızın tarayıcısını, OS'ini, ekranını, donanımını, GPU'sunu, depolama alanını, ağını ve karanlık mod tercihlerini tek bir yerde görün. Tümü istemci tarafında algılanır.",
+  "description": "Cihazın açığa çıkardığı her genel Web API'sinin tarayıcı tarafındaki dökümü: kullanıcı ajanı, OS, tarayıcı sürümü, ekran boyutu, devicePixelRatio, donanım eşzamanlılığı (CPU çekirdekleri), cihaz belleği, WebGL aracılığıyla GPU bilgisi, depolama kotası, ağ türü ve hızı, dil, saat dilimi, karanlık mod ve azaltılmış hareket tercihleri.",
+  "metaDescription": "Ücretsiz cihaz bilgisi kontrolü. Tarayıcı, OS, CPU çekirdekleri, bellek, GPU, ekran, ağ, dil, saat dilimi — tek bir sayfada tüm cihaz bilgilerin.",
+  "keywords": ["cihaz bilgisi kontrolü", "tarayıcı algılama", "sistem bilgisi", "kullanıcı ajanı", "donanım bilgisi"],
+  "loading": "Algılanıyor…",
+  "copyJson": "JSON kopyala",
+  "copied": "Kopyalandı!",
+  "notAvailable": "(mevcut değil)",
+  "automation": "Otomasyon algılandı",
+  "real": "Gerçek tarayıcı",
+  "section": {
+    "browser": "Tarayıcı ve OS",
+    "display": "Ekran",
+    "hardware": "Donanım",
+    "network": "Ağ",
+    "userAgent": "Kullanıcı-Ajanı dizisi"
+  },
+  "field": {
+    "browser": "Tarayıcı",
+    "os": "İşletim sistemi",
+    "platform": "Platform",
+    "language": "Birincil dil",
+    "languages": "Tüm diller",
+    "timezone": "Saat dilimi",
+    "cookiesEnabled": "Çerezler etkin",
+    "online": "Çevrimiçi durumu",
+    "doNotTrack": "İzleme",
+    "webdriver": "Web sürücüsü",
+    "screenSize": "Ekran boyutu",
+    "availSize": "Kullanılabilir alan",
+    "windowSize": "Pencere boyutu",
+    "colorDepth": "Renk derinliği",
+    "pixelRatio": "cihazPikselOranı",
+    "darkMode": "Karanlık mod tercihi",
+    "reducedMotion": "Azaltılmış hareket",
+    "cpuCores": "CPU iş parçacıkları",
+    "deviceMemory": "Cihaz belleği",
+    "touchPoints": "Dokunma noktaları",
+    "gpu": "GPU (WebGL)",
+    "storageQuota": "Depolama kotası",
+    "storageUsage": "Kullanılan depolama",
+    "connectionType": "Bağlantı türü",
+    "downlink": "İndirme hızı",
+    "rtt": "Gidiş-dönüş süresi"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ne toplanıyor?",
+        "paragraphs": [
+          "Tarayıcı ve OS: kullanıcı ajanı, ayrıştırılmış tarayıcı/OS, dil, saat dilimi, çerezler, çevrimiçi durumu. Ziyaret ettiğiniz herhangi bir web sitesinin okuyabileceği aynı bilgiler.",
+          "Ekran: ekran boyutu, görüntü alanı boyutu, renk derinliği, devicePixelRatio (Retina/HiDPI), prefers-color-scheme, prefers-reduced-motion. Siteler tarafından duyarlı tasarım ve erişilebilirlik için kullanılır.",
+          "Donanım: CPU iş parçacığı sayısı (navigator.hardwareConcurrency), cihaz bellek sınıfı (navigator.deviceMemory, GB cinsinden), maksimum dokunma noktaları, WebGL'den GPU bilgisi, depolama kotası ve mevcut kullanım.",
+          "Ağ: etkin bağlantı türü (yavaş-2g/2g/3g/4g), indirme hızı (Mbps) ve tarayıcı tarafından desteklendiğinde gidiş-dönüş süresi (ms). Uyarlamalı yükleme için kullanışlıdır."
+        ]
+      },
+      {
+        "heading": "Gizlilik: web siteleri neyi görür, neyi görmez",
+        "paragraphs": [
+          "Burada gösterilen her şey, ziyaret ettiğiniz herhangi bir web sitesinin standart JavaScript API'leri aracılığıyla zaten erişebileceği bilgilerdir. Özel izin gerekmez; hepsi genel navigator ve screen nesnelerindedir. Dolayısıyla bu araç bilgilendiricidir, çıkarıcı değil.",
+          "Web siteleri GÖRMEZ (ve bu araç gösteremez): IP adresiniz (yalnızca sunucu tarafı, bu araç tamamen istemci tarafıdır), yerel dosya sisteminiz, diğer tarayıcı sekmelerinin içeriği veya tarayıcı sanal alanının dışındaki her şey. Tarayıcı parmak izi, çerez olmadan bile benzersiz bir tarayıcıyı tanımlamak için bu görünür alanların çoğunu birleştirir — yaygın olarak belgelenen bir gizlilik endişesidir."
+        ]
+      },
+      {
+        "heading": "Hata ayıklama için kullanışlı",
+        "paragraphs": [
+          "Mobil ile masaüstü testi: kullanıcı ajanı sitenin ne gördüğünü ortaya koyar. Bazen duyarlı sorunlar yanlış algılanan cihaz sınıfından kaynaklanır.",
+          "GPU/WebGL: 'GPU (WebGL)' grafik oluşturucunuzu gösterir. Karmaşık 3D veya canvas ağırlıklı sitelerin kötü performans gösterdiği durumlarda kullanışlıdır — GPU darboğaz olabilir.",
+          "Depolama: depolama kotası, sitenin kullanabileceği localStorage/IndexedDB/önbellek miktarını söyler. Masaüstünde varsayılan genellikle birkaç GB, mobilde daha azdır. Bir web uygulaması 'kota aşıldı' hatası alıyorsa bu sayı nedenini açıklar."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Bu sayfayı aç", "text": "Sayfa yüklendiğinde algılama otomatik olarak çalışır." },
+      { "name": "Her bölümü oku", "text": "Tarayıcı ve OS, Ekran, Donanım, Ağ, Kullanıcı-Ajanı." },
+      { "name": "Pencerenizi yeniden boyutlandırın", "text": "Pencere boyutu ve dpi ilgili alanlar canlı güncellenir." },
+      { "name": "İsteğe bağlı: JSON olarak kopyala", "text": "Hata raporları veya karşılaştırmalar için tam anlık görüntüyü yakalamak üzere 'JSON kopyala'ya tıkla." }
+    ]
+  },
+  "faq": [
+    { "q": "Bu verilerimi bir yere gönderiyor mu?", "a": "Hayır. Her şey tarayıcınızda yerel olarak algılanır ve oluşturulur. Hiçbir şey kaydedilmez veya iletilmez." },
+    { "q": "Neden bazı alanlar '(mevcut değil)'?", "a": "Tarayıcılar açıkladıkları API'lerde farklılık gösterir. navigator.deviceMemory yalnızca Chrome/Edge'de; navigator.connection çoğunlukla Chrome'da; depolama kotası HTTPS gerektirir. Safari ve Firefox gizlilik modunda daha fazlasını kısıtlar." },
+    { "q": "Neden ekran boyutum beklenen çözünürlükten farklı?", "a": "Tarayıcılar fiziksel piksel boyutunu değil, 'CSS piksel' boyutunu bildirir. devicePixelRatio çarpanı gösterir (örn. Retina'da 2,0). Fiziksel çözünürlük = ekran boyutu × devicePixelRatio." },
+    { "q": "'GPU (WebGL)' ne gösteriyor?", "a": "WebGL tarafından bildirilen grafik oluşturucu adı. Daha yeni tarayıcılar parmak izi koruması için bunu gizleyebilir." },
+    { "q": "Kullanıcı ajanına güvenebilir miyim?", "a": "Kullanıcı ajanı dizeleri uzantılar veya tarayıcı ayarları tarafından sahte olarak oluşturulabilir. İpucu değerindedirler, garanti değildir." },
+    { "q": "Neden 'CPU iş parçacıkları' CPU'mun 12 çekirdeği olmasına rağmen 8 gösteriyor?", "a": "navigator.hardwareConcurrency parmak izine karşı korunmak için sınırlanmış olabilir. Bazı tarayıcılar daha yüksek çekirdekli sistemlerde bile maksimum 8 veya 16 bildirir." },
+    { "q": "Mobilimde 0 dokunma noktası gösterirse ne yapmalıyım?", "a": "Mobilde maxTouchPoints normalde ≥1'dir. Sıfırsa masaüstü görünüm modunda olabilirsiniz. Yenilemeyi deneyin veya tarayıcı ayarlarında mobil görünüme geçin." },
+    { "q": "iPhone'da çalışıyor mu?", "a": "Evet, Safari iOS sınırlamalarıyla. Bazı alanlar (deviceMemory, bağlantı) mevcut olmayabilir. Kullanıcı ajanı ve temel tarayıcı/OS algılama her zaman çalışır." }
+  ]
+}

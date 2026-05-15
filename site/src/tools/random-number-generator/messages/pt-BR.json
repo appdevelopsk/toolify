@@ -1,0 +1,106 @@
+{
+  "title": "Gerador de Números Aleatórios (criptograficamente seguro, modo único)",
+  "shortDescription": "Gere inteiros aleatórios em qualquer intervalo usando a API de random segura do navegador. Opcionalmente, force unicidade para sorteios, rifas ou amostragem sem reposição.",
+  "description": "Escolha um mínimo, máximo e quantidade para gerar inteiros aleatórios criptograficamente seguros. Ative 'únicos' para amostragem sem reposição (rifas, loterias).",
+  "metaDescription": "Gerador de números aleatórios criptograficamente seguro e gratuito. Defina intervalo e quantidade, opcionalmente únicos.",
+  "keywords": [
+    "gerador de números aleatórios",
+    "random seguro",
+    "números de loteria",
+    "inteiro aleatório",
+    "RNG"
+  ],
+  "empty": "Defina um intervalo e clique em 'Gerar novamente' para obter números aleatórios.",
+  "input": {
+    "min": "Mínimo",
+    "max": "Máximo",
+    "count": "Quantos"
+  },
+  "unique": "Todos únicos (sem repetições)",
+  "regenerate": "Gerar novamente",
+  "copyAll": "Copiar todos",
+  "copied": "Copiado",
+  "error": {
+    "invalidRange": "O mínimo deve ser menor ou igual ao máximo.",
+    "tooManyUnique": "Não é possível escolher mais números únicos do que o intervalo permite."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Por que isso é realmente aleatório",
+        "paragraphs": [
+          "Usamos crypto.getRandomValues — a fonte de random criptograficamente segura do navegador — em vez de Math.random(). A saída do CSPRNG não pode ser prevista a partir de valores anteriores, o que importa para sorteios, aplicativos de jogos e qualquer uso onde 'aleatório' é um requisito real, não apenas 'arbitrário'.",
+          "Também usamos amostragem por rejeição para tornar a distribuição exatamente uniforme no intervalo escolhido. O simples 'random % intervalo' introduz viés quando o intervalo não divide igualmente em 2³². A amostragem por rejeição descarta valores que causariam viés e tenta novamente, então cada número no intervalo tem exatamente a mesma probabilidade."
+        ]
+      },
+      {
+        "heading": "Único vs com repetição",
+        "paragraphs": [
+          "Modo padrão: cada número é independente — podem ocorrer repetições. Isso é o que 'aleatório' geralmente significa no uso casual (jogar dados, escolher um filme, testes aleatórios).",
+          "Modo único: amostragem sem reposição — uma vez que um número é escolhido, ele não pode ser escolhido novamente no mesmo lote. Útil para: sorteios de loteria (ex.: 6 números de 1-60), rifas (sortear ganhadores), atribuição de equipes e qualquer situação de 'escolher N de M'. Requer quantidade ≤ intervalo."
+        ]
+      },
+      {
+        "heading": "Casos de uso comuns",
+        "paragraphs": [
+          "Loteria / rifa: 6 números únicos de 1-60, ou qualquer que seja o seu sorteio. Ative 'únicos'.",
+          "Dados: intervalo 1-6 (ou 1-20 para D20). Deixe 'únicos' desativado para que cada jogada seja independente.",
+          "Amostragem aleatória para testes: escolha 10 IDs de usuário aleatórios de 1-10000 para verificação pontual. Use 'únicos' para evitar repetições.",
+          "Simulação de lances de moeda: intervalo 0-1, múltiplos resultados. Some cara/coroa para verificações de imparcialidade (você verá ~50/50 em amostras grandes)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Defina o intervalo",
+        "text": "Mínimo e máximo — ambos inclusivos. Números negativos são permitidos."
+      },
+      {
+        "name": "Defina quantos",
+        "text": "1 a 100 números por geração."
+      },
+      {
+        "name": "Ative 'únicos' se necessário",
+        "text": "Ativado para amostragem sem reposição (rifas, loterias)."
+      },
+      {
+        "name": "Clique em gerar novamente",
+        "text": "Um novo conjunto é sorteado a cada vez. Copie todos de uma vez se precisar de todos."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Isso é justo para rifas ou loterias?",
+      "a": "A aleatoriedade é criptograficamente segura e imparcial. Se é legalmente 'justo' para uma loteria oficial depende das regras da sua jurisdição — muitas exigem RNGs de hardware certificados."
+    },
+    {
+      "q": "Qual é a diferença do Math.random()?",
+      "a": "Math.random() usa um algoritmo cuja saída pode ser prevista a partir de saídas anteriores por um atacante. crypto.getRandomValues usa um RNG criptográfico em nível de sistema operacional que não pode ser previsto. Para imparcialidade real, use este."
+    },
+    {
+      "q": "Posso obter números negativos?",
+      "a": "Sim. Defina o mínimo como um valor negativo."
+    },
+    {
+      "q": "Qual é o intervalo máximo?",
+      "a": "Limitado pelo intervalo de inteiros seguros do JavaScript (~2⁵³), mas praticamente você pode ir a bilhões sem problemas. A técnica de amostragem por rejeição lida corretamente com qualquer intervalo."
+    },
+    {
+      "q": "Por que 'únicos' falha quando quantidade > intervalo?",
+      "a": "Se você escolher 10 números únicos de 1-5, quatro não existem. A validação detecta isso e pede que você amplie o intervalo ou reduza a contagem."
+    },
+    {
+      "q": "Funciona para rolagens de dados?",
+      "a": "Sim — defina o intervalo como 1-6 (ou qualquer que sejam os seus dados) e desative 'únicos' para que cada rolagem seja independente."
+    },
+    {
+      "q": "Posso salvar a semente e reproduzir?",
+      "a": "Não — random seguro por design não tem semente. Se precisar de 'aleatório' reproduzível para testes, use uma biblioteca PRNG com semente."
+    },
+    {
+      "q": "Os dados são enviados para algum lugar?",
+      "a": "Não. A geração é totalmente local."
+    }
+  ]
+}

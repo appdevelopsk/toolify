@@ -1,0 +1,60 @@
+{
+  "title": "GGT & kgV Rechner (mit Primfaktorzerlegung)",
+  "shortDescription": "Den größten gemeinsamen Teiler (GGT) und das kleinste gemeinsame Vielfache (kgV) von zwei oder mehr ganzen Zahlen berechnen, plus Primfaktorzerlegung.",
+  "description": "Eine Liste ganzer Zahlen eingeben. Der Rechner gibt den GGT (euklidischer Algorithmus), das kgV und die vollständige Primfaktorzerlegung jedes Eintrags zurück. Verarbeitet beliebig große ganze Zahlen via BigInt.",
+  "metaDescription": "Kostenloser GGT- und kgV-Rechner mit Primfaktorzerlegung. Mehrere Zahlen gleichzeitig eingeben. Exakte BigInt-Arithmetik für beliebig große ganze Zahlen.",
+  "keywords": ["GGT Rechner", "kgV Rechner", "größter gemeinsamer Teiler", "kleinstes gemeinsames Vielfaches", "Primfaktorzerlegung"],
+  "input": {
+    "numbers": "Zahlen",
+    "hint": "Durch Komma, Leerzeichen oder Zeilenumbruch getrennt. Mindestens 2 Zahlen."
+  },
+  "result": {
+    "gcd": "GGT (größter gemeinsamer Teiler)",
+    "lcm": "kgV (kleinstes gemeinsames Vielfaches)",
+    "factorizations": "Primfaktorzerlegungen"
+  },
+  "empty": "Mindestens 2 ganze Zahlen eingeben.",
+  "article": {
+    "sections": [
+      {
+        "heading": "GGT: der größte gemeinsame Teiler",
+        "paragraphs": [
+          "Der GGT zweier ganzer Zahlen ist die größte ganze Zahl, die beide ohne Rest teilt. GGT(12, 18) = 6, weil 6 beide teilt und keine größere Zahl das tut. GGT(7, 13) = 1, weil sie keine gemeinsamen Teiler haben (solche Zahlenpaare heißen 'teilerfremd').",
+          "Wir verwenden den euklidischen Algorithmus: ggT(a, b) = ggT(b, a mod b), rekursiv. Er ist seit ~2.300 Jahren bekannt und bleibt die schnellste Standardmethode. Für drei oder mehr Zahlen gilt: ggT(a, b, c) = ggT(ggT(a, b), c)."
+        ]
+      },
+      {
+        "heading": "kgV: das kleinste gemeinsame Vielfache",
+        "paragraphs": [
+          "Das kgV ist die kleinste positive ganze Zahl, die ein Vielfaches beider Zahlen ist. kgV(4, 6) = 12, weil 12 die erste Zahl ist, die sowohl 4 als auch 6 teilt.",
+          "Formel: kgV(a, b) = (a × b) / GGT(a, b). Für 4 und 6: 24 / 2 = 12. Für drei Zahlen: kgV(a, b, c) = kgV(kgV(a, b), c).",
+          "Wenn eine Zahl 0 ist, ist das kgV gleich 0 (jede Zahl teilt 0, aber das 'kleinste positive Vielfache' ist undefiniert). Der Rechner gibt in diesem Fall 0 zurück."
+        ]
+      },
+      {
+        "heading": "Wofür das wichtig ist",
+        "paragraphs": [
+          "Bruchrechnung: Um 1/4 + 1/6 zu addieren, findet man kgV(4, 6) = 12 als gemeinsamen Nenner. 1/4 = 3/12, 1/6 = 2/12, Summe = 5/12.",
+          "Ablaufplanung: Wenn Ereignis A alle 4 Tage und Ereignis B alle 6 Tage wiederkehrt, treffen sie sich alle kgV(4, 6) = 12 Tage.",
+          "Kryptographie: GGT-basierte Algorithmen (erweiterter euklidischer Algorithmus) bilden die Grundlage für RSA-Schlüsselerzeugung und modulare Inverse.",
+          "Musiktheorie: Rhythmen mit den Perioden 3 und 4 synchronisieren sich nach 12 Schlägen (kgV)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Ganze Zahlen eingeben", "text": "Mindestens 2, durch Komma, Leerzeichen oder Zeilenumbruch getrennt." },
+      { "name": "GGT und kgV ablesen", "text": "Beide werden im Ergebnisbereich deutlich angezeigt." },
+      { "name": "Primfaktorzerlegungen prüfen", "text": "Die Primzerlegung jeder Zahl zeigt, warum GGT/kgV so ausgefallen sind." }
+    ]
+  },
+  "faq": [
+    { "q": "Was, wenn meine Zahlen teilerfremd sind?", "a": "GGT = 1 und kgV = Produkt aller Zahlen. Teilerfremd bedeutet, dass keine gemeinsamen Primfaktoren vorhanden sind." },
+    { "q": "Kann ich negative Zahlen eingeben?", "a": "Ja. Für GGT/kgV-Berechnungen werden Beträge verwendet. −12 und 18 ergeben GGT 6 und kgV 36, genau wie 12 und 18." },
+    { "q": "Was passiert, wenn ich 0 eingebe?", "a": "GGT(0, n) = |n| (da jede ganze Zahl 0 teilt und n die größte für dieses Paar ist). kgV mit 0 ist per Konvention 0. Mit lauter Nullen sind GGT/kgV undefiniert." },
+    { "q": "Wie groß dürfen die Zahlen sein?", "a": "Wir verwenden intern BigInt, sodass Arithmetik mit beliebig großen ganzen Zahlen exakt ist. Die praktische Grenze ist deine Tippgeschwindigkeit und der Bildschirmplatz." },
+    { "q": "Warum ist die Primfaktorzerlegung nützlich?", "a": "GGT = Produkt der gemeinsamen Primfaktoren (kleinerer Exponent). kgV = Produkt aller vorkommenden Primfaktoren (größerer Exponent). Die Zerlegungen machen diese Zusammenhänge sichtbar." },
+    { "q": "Was ist das Verhältnis zwischen GGT und kgV?", "a": "Für zwei Zahlen gilt: a × b = GGT(a, b) × kgV(a, b). Sind also drei der vier Größen {a, b, GGT, kgV} bekannt, kann die vierte berechnet werden. Auf drei oder mehr Zahlen verallgemeinert sich das nicht einfach." },
+    { "q": "Kann ich das für den GGT von Polynomen verwenden?", "a": "Nicht mit diesem Tool – wir verarbeiten nur ganze Zahlen. Für Polynome ein CAS wie SymPy oder Maxima verwenden." },
+    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Berechnung läuft lokal; nichts wird an einen Server gesendet." }
+  ]
+}

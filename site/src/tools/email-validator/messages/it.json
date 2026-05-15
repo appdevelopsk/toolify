@@ -1,0 +1,60 @@
+{
+  "title": "Validatore Email (sintassi + rilevamento di errori comuni)",
+  "shortDescription": "Valida la sintassi dell'indirizzo email secondo RFC 5322 e rileva i refusi comuni nei provider più diffusi (gmail, yahoo, hotmail, ecc.).",
+  "description": "Digita un'email per verificare se la sintassi è valida e individuare refusi di dominio come 'gmial.com' → 'gmail.com'. Scompone parte locale, dominio, TLD e avvisa sulle violazioni dei limiti RFC.",
+  "metaDescription": "Validatore email gratuito. Controlla la sintassi RFC 5322 e rileva refusi comuni come gmial.com o yaho.com. Mostra la scomposizione in parte locale, dominio, TLD.",
+  "keywords": ["validatore email", "controllo sintassi email", "controllo formato email", "verifica email", "refuso email"],
+  "input": { "email": "Indirizzo email" },
+  "status": { "valid": "Sintassi valida", "invalid": "Sintassi non valida" },
+  "suggestion": "Intendevi: {suggestion}?",
+  "empty": "Digita un indirizzo email per validarlo.",
+  "breakdown": {
+    "localPart": "Parte locale",
+    "domain": "Dominio",
+    "tld": "TLD",
+    "hasPlus": "Tag plus (+)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cosa fa questo validatore (e cosa non può fare)",
+        "paragraphs": [
+          "La validazione della sintassi email controlla se 'nome@dominio.tld' segue le regole strutturali in RFC 5322. Usiamo un regex pragmatico che rileva quasi tutti i refusi del mondo reale rimanendo abbastanza flessibile per indirizzi legittimi con tag plus, punti e TLD insoliti.",
+          "Cosa NON PUÒ fare: confermare che l'indirizzo riceve effettivamente la posta. Questo richiede l'invio di un'email reale o un controllo SMTP, entrambi richiedono codice lato server e rischiano falsi positivi (domini catch-all, greylisting). La validazione della sintassi rileva i refusi economicamente; i controlli di consegnabilità richiedono un approccio diverso."
+        ]
+      },
+      {
+        "heading": "Rilevamento dei refusi comuni",
+        "paragraphs": [
+          "Monitoriamo i refusi nei principali provider di email gratuiti — 'gmial.com' invece di 'gmail.com', 'yaho.com' invece di 'yahoo.com', ecc. Circa il 95% dei refusi nelle registrazioni email sono refusi di dominio in questi pochi provider. Rilevarli lato client ti salva da un'email di benvenuto rimbalzata e da un imbarazzante 'controlla il tuo indirizzo' successivo.",
+          "Se stai costruendo un modulo di registrazione, esegui la stessa logica prima di inviare. Mostra un suggerimento 'Intendevi...?' e lascia che l'utente accetti o ignori. I flussi di registrazione maturi lo fanno di routine; migliora notevolmente la consegnabilità delle email."
+        ]
+      },
+      {
+        "heading": "Regole della parte locale",
+        "paragraphs": [
+          "Tag plus ('utente+filtro@gmail.com'): ampiamente supportato dai principali provider. Usalo per creare indirizzi unici per diverse registrazioni mantenendo una singola casella di posta.",
+          "Punti ('nome.utente@gmail.com'): trattati come lo stesso indirizzo da Gmail (i punti vengono ignorati), ma altri provider possono trattarli come indirizzi diversi. Non fare affidamento sull'equivalenza dei punti al di fuori di Gmail.",
+          "Lunghezza: RFC 5321 limita la parte locale a 64 caratteri e l'indirizzo completo a 254 caratteri. Avvisiamo quando vengono superati — la maggior parte dei server rifiuta gli indirizzi più lunghi.",
+          "Sensibilità alle maiuscole: per RFC, la parte locale è case-sensitive ma la maggior parte dei provider la tratta come case-insensitive. Il dominio è sempre case-insensitive."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Digita l'email", "text": "O incolla da un modulo / lista." },
+      { "name": "Leggi il verdetto", "text": "Segno di spunta verde = sintassi valida; X rossa = non valida." },
+      { "name": "Controlla i suggerimenti", "text": "I refusi comuni nei provider più diffusi vengono segnalati con un suggerimento." },
+      { "name": "Esamina la ripartizione", "text": "Parte locale, dominio, TLD e note di avviso sono mostrati in basso." }
+    ]
+  },
+  "faq": [
+    { "q": "Questo conferma che l'email esiste?", "a": "No — solo la sintassi. Confermare che esiste una casella di posta richiede un controllo SMTP lato server o l'invio di un'email di verifica. Questo strumento rileva i refusi economicamente." },
+    { "q": "Perché ha accettato 'a@b.co'?", "a": "Perché è tecnicamente una sintassi valida. Il TLD '.co' è reale (Colombia). La validazione per sintassi non può filtrare i TLD reali ma rari." },
+    { "q": "E le email con Unicode (es. 用户@例え.jp)?", "a": "Gli indirizzi email internazionalizzati sono validi per RFC 6531 ma il regex usato qui non li accetta. La maggior parte dei backend dei moduli non lo fa ancora. Per la validazione con supporto unicode, usa una libreria dedicata." },
+    { "q": "Cos'è un tag plus?", "a": "Tutto ciò che è tra + e @ viene trattato da Gmail e molti provider come parte del routing. utente+toolify@gmail.com va a utente@gmail.com ma puoi filtrare per il suffisso +toolify." },
+    { "q": "Perché Gmail ignora i punti?", "a": "Politica storica di Gmail. nome.utente@gmail.com e nomeutente@gmail.com recapitano alla stessa casella di posta. Altri provider (Yahoo, Outlook) li trattano come distinti." },
+    { "q": "Qual è l'email più lunga valida?", "a": "254 caratteri totali per RFC 5321. Parte locale ≤ 64. La maggior parte dei server rifiuta qualsiasi cosa più lunga." },
+    { "q": "I dati lasciano il mio browser?", "a": "No. La validazione viene eseguita localmente; nulla viene inviato a nessun server." },
+    { "q": "Posso validare in blocco?", "a": "Non in questo strumento — incolla un indirizzo alla volta. Per le liste, usa uno script o un servizio di validazione in blocco dedicato (con il consenso di chi ha fornito gli indirizzi)." }
+  ]
+}

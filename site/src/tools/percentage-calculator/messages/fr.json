@@ -1,0 +1,115 @@
+{
+  "title": "Calculateur de Pourcentage (% de, quel %, variation %)",
+  "shortDescription": "Trois calculateurs de pourcentage en un : « X % de Y », « X représente quel % de Y » et la variation en pourcentage entre deux valeurs.",
+  "description": "Choisis un mode, saisis deux nombres, et obtiens la réponse instantanément. Gère « pourcentage de », « quel pourcentage » et « variation en pourcentage » — les trois opérations derrière presque toutes les questions de pourcentage.",
+  "metaDescription": "Calculateur de pourcentage gratuit : trouve X % de Y, quel pourcentage représente un nombre par rapport à un autre, ou la variation en pourcentage entre deux valeurs.",
+  "keywords": [
+    "calculateur pourcentage",
+    "pourcentage de",
+    "variation en pourcentage",
+    "calculateur remise",
+    "augmentation diminution pourcentage"
+  ],
+  "empty": "Saisis les deux valeurs pour voir le résultat.",
+  "mode": {
+    "pct_of": {
+      "title": "X % de Y",
+      "labelA": "X (pourcentage)",
+      "labelB": "Y (valeur)",
+      "resultLabel": "X % de Y",
+      "resultUnit": ""
+    },
+    "what_pct": {
+      "title": "X représente quel % de Y",
+      "labelA": "X (partie)",
+      "labelB": "Y (tout)",
+      "resultLabel": "X représente ce % de Y",
+      "resultUnit": "%"
+    },
+    "pct_change": {
+      "title": "Variation de A vers B",
+      "labelA": "A (départ)",
+      "labelB": "B (arrivée)",
+      "resultLabel": "Variation",
+      "resultUnit": "%"
+    }
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Les trois opérations de pourcentage",
+        "paragraphs": [
+          "Presque tout problème de pourcentage réel se réduit à l'un des trois patterns : « X % de Y » (une remise ou une taxe), « X représente quel % de Y » (un ratio exprimé en pourcentage), ou la variation en pourcentage de A vers B (croissance d'une année sur l'autre, perte de poids, amélioration d'une note).",
+          "Ce calculateur expose les trois dans une seule interface. Change le mode en haut, puis entre les deux valeurs. Les calculs sont simples mais la comptabilité — quel nombre va où — est là où la plupart des erreurs se produisent, donc les étiquettes ici indiquent explicitement quelle entrée est la partie et laquelle est le tout."
+        ]
+      },
+      {
+        "heading": "Comment la variation en pourcentage est calculée",
+        "paragraphs": [
+          "Variation en % = (nouveau − ancien) / ancien × 100. Un résultat positif signifie une augmentation, un résultat négatif une diminution. Remarque que la formule utilise l'ancienne valeur, pas la nouvelle ni la moyenne — c'est pourquoi une baisse de 50 % suivie d'une hausse de 50 % ne te ramène pas à ton point de départ : ça se termine à 75 % de la valeur originale.",
+          "Quand l'ancienne valeur est zéro, la variation en pourcentage est indéfinie (on ne peut pas diviser par zéro). Le calculateur ne retourne pas de résultat dans ce cas plutôt qu'afficher « infini », car la réponse à « quelle est la taille du changement par rapport à rien » n'a pas de sens."
+        ]
+      },
+      {
+        "heading": "Pièges courants",
+        "paragraphs": [
+          "Pourcentages composés. Une augmentation de 10 % après une augmentation de 10 % donne 21 %, pas 20 % (1,10 × 1,10 = 1,21). Utilise le mode « pourcentage de » deux fois ou le mode « variation en % » pour le ratio final.",
+          "Points de pourcentage vs pour cent. Si un sondage passe de 40 % à 42 %, c'est un changement de 2 points de pourcentage mais une augmentation relative de 5 %. Le mode « variation en % » du calculateur signale le changement relatif.",
+          "Cumul de remises. Un bon de réduction « -20 % » appliqué après une vente « -20 % » donne -36 % sur le prix original (0,8 × 0,8 = 0,64), pas -40 %. Lance le calculateur deux fois en mode « pourcentage de » pour le voir directement."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisis un mode",
+        "text": "Choisis « pourcentage de », « quel pourcentage » ou « variation en % » selon ce que tu essaies de trouver."
+      },
+      {
+        "name": "Saisis le premier nombre",
+        "text": "L'étiquette te dit quelle valeur va ici pour le mode choisi."
+      },
+      {
+        "name": "Saisis le deuxième nombre",
+        "text": "Le résultat se met à jour pendant que tu tapes."
+      },
+      {
+        "name": "Lis la réponse",
+        "text": "Le résultat inclut l'unité appropriée (%, nombre simple) pour le mode choisi."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Le calcul est-il précis avec beaucoup de décimales ?",
+      "a": "Oui — nous utilisons la virgule flottante double précision et arrondissons l'affichage à quatre décimales. Pour les travaux financiers de très haute précision, traite le résultat comme approximatif au 16e chiffre significatif."
+    },
+    {
+      "q": "Pourquoi la variation en % demande l'ancien puis le nouveau ?",
+      "a": "Parce que la formule divise par l'ancienne valeur. Inverser les deux entrées inverse le signe du résultat."
+    },
+    {
+      "q": "Comment calculer un prix remisé ?",
+      "a": "Utilise « pourcentage de » avec X = le pourcentage de remise et Y = le prix original ; soustrait le résultat de l'original. Ou utilise « pourcentage de » avec X = (100 − remise) et Y = prix pour le prix final directement."
+    },
+    {
+      "q": "Comment trouver le % de remise si je connais les deux prix ?",
+      "a": "Utilise « variation en % » avec A = prix original et B = prix soldé. Le nombre négatif est ta remise."
+    },
+    {
+      "q": "Et si je saisis un nombre négatif ?",
+      "a": "Les trois modes acceptent les négatifs. La variation en % en particulier est bien définie : changement de −5 à 5 est −200% (le signe du diviseur inverse le résultat)."
+    },
+    {
+      "q": "Puis-je utiliser cela pour des calculs de TVA ?",
+      "a": "Oui — « pourcentage de » avec X = taux de TVA et Y = montant HT donne la TVA. Ajoute-la à l'original ou utilise « pourcentage de » avec X = (100 + taux TVA) pour le TTC directement."
+    },
+    {
+      "q": "Pourquoi « augmenter de 50 % puis baisser de 50 % » ne revient-il pas à l'original ?",
+      "a": "Parce que les pourcentages se composent. 100 × 1,5 × 0,5 = 75, pas 100. Lance le mode « variation en % » de bout en bout pour voir que le changement net est −25 %."
+    },
+    {
+      "q": "Cela fonctionne-t-il pour les calculs de notes ?",
+      "a": "Oui. Utilise « quel pourcentage » avec X = points obtenus et Y = points possibles pour obtenir ta note en pourcentage."
+    }
+  ]
+}

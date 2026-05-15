@@ -1,0 +1,91 @@
+{
+  "title": "Passwort-Stärke-Tester (Entropie + Knackzeit)",
+  "shortDescription": "Teste Passwortqualität mit Entropie-Bits, Zeichensatz-Analyse, Prüfung auf verbreitete Passwörter und geschätzter Knackzeit für verschiedene Angriffsszenarien.",
+  "description": "Gib ein Passwort ein (nur im Browser, nie übertragen). Der Tester berechnet Entropie, Zeichensatz-Abdeckung, Wörterbuch-Übereinstimmungsrisiko und zeigt geschätzte Knackzeiten für Offline-GPU-Angriffe, Online-API-Limits und langsame Online-Angriffe.",
+  "metaDescription": "Kostenloser Passwort-Stärke-Tester. Entropie-Bits, Knackzeit-Schätzungen, Zeichensatz-Analyse, Erkennung häufiger Passwörter und Muster. Nur im Browser.",
+  "keywords": ["Passwort-Stärke-Tester", "Passwort-Entropie", "Passwort-Sicherheit prüfen", "Passwort testen", "Passwort Stärke prüfen"],
+  "input": {
+    "password": "Passwort",
+    "privacyNote": "Wird vollständig in deinem Browser getestet. Wird nirgendwo gesendet oder gespeichert."
+  },
+  "show": "Anzeigen",
+  "hide": "Verbergen",
+  "result": {
+    "strength": "Stärke",
+    "length": "Länge",
+    "charsetSize": "Zeichensatz-Größe",
+    "entropy": "Entropie",
+    "bits": "Bits",
+    "lowercase": "Kleinbuchstaben a-z",
+    "uppercase": "Großbuchstaben A-Z",
+    "digits": "Ziffern 0-9",
+    "symbols": "Sonderzeichen",
+    "crackTime": "Geschätzte Knackzeit",
+    "crackOffline": "Offline-GPU (10⁹/s)",
+    "crackOnlineFast": "Online schnell (1.000/s)",
+    "crackOnlineSlow": "Online langsam (100/s)",
+    "warningsHeading": "Hinweise"
+  },
+  "level": {
+    "veryWeak": "Sehr schwach",
+    "weak": "Schwach",
+    "fair": "Akzeptabel",
+    "strong": "Stark",
+    "veryStrong": "Sehr stark"
+  },
+  "warning": {
+    "isCommon": "Dieses Passwort erscheint in Listen häufiger Passwörter. Nicht verwenden.",
+    "tooShort": "Länge unter 8 – zu kurz für echte Sicherheit.",
+    "hasRepeated": "Wiederholte Zeichen (z. B. ‚aaa') reduzieren die reale Entropie.",
+    "hasSequential": "Sequentielle Muster (1234, qwer, abcd) sind leicht zu erraten.",
+    "limitedCharset": "Passwörter mit nur einem Zeichensatz (nur Kleinbuchstaben, nur Ziffern) sind auch bei großer Länge schwach."
+  },
+  "time": {
+    "instant": "sofort",
+    "yrs": "Jahre",
+    "eternity": "Ewigkeit"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Was ‚Entropie' bei Passwörtern bedeutet",
+        "paragraphs": [
+          "Entropie misst Unvorhersehbarkeit in Bits. Ein Passwort mit 30 Bits Entropie braucht im Durchschnitt ~2³⁰ ≈ 1 Milliarde Versuche zum Knacken. 70+ Bits gilt allgemein als stark; 80+ als ausgezeichnet.",
+          "Formel: Entropie = Länge × log₂(Zeichensatz-Größe). ‚abcdefgh' (8 Zeichen, nur Kleinbuchstaben) = 8 × log₂(26) ≈ 37,6 Bits. ‚aA1!aaaa' (8 Zeichen, alle Zeichensätze) = 8 × log₂(95) ≈ 52,6 Bits – aber die Knackzeit ist viel schlechter als 52 Bits nahelegen, weil ‚aaaa' ein gängiges Muster ist."
+        ]
+      },
+      {
+        "heading": "Warum Knackzeiten so stark variieren",
+        "paragraphs": [
+          "Offline-GPU: ein gestohlener Passwort-Hash wird offline angegriffen. Moderne GPUs können 10⁹+ MD5-Hashes pro Sekunde erraten; bcrypt-Hashes nur 10⁴–10⁵/s. Die Schätzung hier verwendet die GPU-schnelle Hash-Annahme.",
+          "Online schnell: ein Angreifer, der direkt eine Login-API angreift. Die meisten APIs haben eine Ratenbegrenzung; 1.000 Versuche/Sek. ist eine obere Schätzung für einen schlecht gesicherten Endpunkt.",
+          "Online langsam: ein ordentlich gesicherter Endpunkt mit strengen Ratenlimits, Konto-Sperren und CAPTCHA. 100 Versuche/Sek. ist großzügig; viele Systeme erlauben nur 5–10/Minute.",
+          "Diese Schätzungen ignorieren reale Faktoren wie Wörterbuch-Angriffe (die gängige Passwörter viel schneller finden als Brute-Force) und Passwort-Wiederverwendung (Knacken eines Lecks hilft beim Knacken anderer)."
+        ]
+      },
+      {
+        "heading": "Was ein starkes Passwort ausmacht",
+        "paragraphs": [
+          "Länge über Komplexität: eine 16-stellige Passphrase wie ‚richtig pferd batterie heftklammer' ist stärker als ein gequältes 8-stelliges ‚P@ssw0rt!'. Die Erkenntnis gilt: 4 zufällige Wörter ergeben ~44 Bits Entropie.",
+          "Muster vermeiden: Daten, Namen, ‚123', ‚qwer', wiederholte Zeichen reduzieren alle die echte Entropie unter den Formelwert. Angriffs-Tools enthalten ausgedehnte ‚regelbasierte' Transformationen (z. B. ‚passwort' → ‚P@ssw0rt!').",
+          "Passwort-Manager verwenden: Menschen wählen Muster; Manager nicht. Bitwarden, 1Password, KeePass generieren echte Zufallspasswörter pro Seite, mit 16+ Zeichen aus allen Zeichensätzen. Das einzige Passwort, das du dir merken musst, ist das Master-Passwort – und das sollte eine lange, einprägsame Passphrase sein."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Passwort eingeben", "text": "Wird vollständig clientseitig getestet. Anzeigen-Toggle verwenden, wenn du nicht siehst, was du tippst." },
+      { "name": "Stärkemesser ablesen", "text": "Fünf Segmente. Für wichtige Konten auf 4–5 (Stark/Sehr stark) abzielen." },
+      { "name": "Entropie und Knackzeiten prüfen", "text": "Höhere Entropie = längere Knackzeit. Auf Warnungen über gängige Muster achten." },
+      { "name": "Nach Bedarf anpassen", "text": "Länge erhöhen, Zeichensätze mischen, gebräuchliche Wörter vermeiden. Varianten testen, bis zufrieden." }
+    ]
+  },
+  "faq": [
+    { "q": "Wird mein Passwort irgendwohin gesendet?", "a": "Nein. Alles läuft lokal in deinem Browser. Wir sehen, speichern oder übertragen dein Passwort nicht." },
+    { "q": "Warum zeigt mein langes Passwort niedrige Entropie?", "a": "Länge ist nicht alles – ‚a' 50-mal wiederholen hat sehr niedrige echte Entropie. Der Rechner verwendet eine einfache Formel, kennzeichnet aber Wiederholungs-/Sequenzmuster. Für beste Ergebnisse: lang, abwechslungsreich, keine Muster." },
+    { "q": "Sind diese Knackzeiten genau?", "a": "Es sind Schätzungen basierend auf naivem Brute-Force. Echte Cracker verwenden zuerst Wörterbücher, gängige Muster und geleakte Passwort-Datenbanken – ein ‚gängiges' Passwort könnte in Sekunden geknackt werden, trotz hoher Formel-Entropie." },
+    { "q": "Muss ich mich um Quantencomputer sorgen?", "a": "Langfristig ja – Grovers Algorithmus halbiert die effektiven Bits symmetrischer Verschlüsselung. Für jetzt ist 80+ Bits Entropie komfortabel; 128+ für sehr langfristige Geheimnisse." },
+    { "q": "Warum kennzeichnet das Tool ‚P@ssw0rt1', obwohl es alle Zeichensätze hat?", "a": "Weil ‚passwort' in Wörterbüchern steht und triviale Ersetzungen (a → @) Teil jedes Cracking-Tools sind. Wirklich zufällige oder Passphrasen-Passwörter verwenden, keine gebräuchlichen Wortsubstitutionen." },
+    { "q": "Was ist die Mindestpasswortlänge, die ich verwenden sollte?", "a": "8 ist das absolute Minimum (und nur mit allen Zeichensätzen). 12+ wird für die meisten Konten empfohlen. 16+ für wichtige (E-Mail, Banking, Passwort-Manager-Master)." },
+    { "q": "Spielt Groß-/Kleinschreibung eine Rolle?", "a": "Ja – das Hinzufügen von Großbuchstaben verdoppelt die Zeichensatzgröße von 26 auf 52. Ungefähr +1 Bit pro Zeichen. Sinnvolles Mischen (nicht nur erster Buchstabe) lohnt sich." }
+  ]
+}

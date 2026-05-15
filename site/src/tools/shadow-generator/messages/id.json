@@ -1,0 +1,73 @@
+{
+  "title": "Generator CSS Box Shadow (dengan pratinjau langsung)",
+  "shortDescription": "Buat nilai CSS box-shadow secara visual. Sesuaikan offset, blur, spread, warna, opasitas, dan inset. Pratinjau langsung, salin-tempel CSS.",
+  "description": "Enam preset bayangan umum (lembut, kartu, terangkat, cahaya, neumorfik, inset). Sesuaikan semua parameter dengan slider, lihat hasilnya secara langsung, dan salin CSS siap-pakai.",
+  "metaDescription": "Generator CSS box-shadow gratis dengan pratinjau langsung. Offset, blur, spread, warna, opasitas, dukungan inset. Termasuk 6 preset termasuk neumorfik.",
+  "keywords": ["generator box shadow", "css shadow", "shadow css", "generator neumorfik", "generator drop shadow"],
+  "preset": {
+    "soft": "Lembut",
+    "card": "Kartu",
+    "lifted": "Terangkat",
+    "glow": "Cahaya",
+    "neumorphic": "Neumorfik",
+    "inset": "Inset"
+  },
+  "input": {
+    "x": "Offset X",
+    "y": "Offset Y",
+    "blur": "Blur",
+    "spread": "Spread",
+    "color": "Warna",
+    "opacity": "Opasitas",
+    "inset": "Inset (bayangan dalam)"
+  },
+  "output": { "css": "Kode CSS" },
+  "copy": "Salin CSS",
+  "copied": "Disalin!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Lima parameter bayangan",
+        "paragraphs": [
+          "Offset X: perpindahan horizontal. Positif menggeser bayangan ke kanan, negatif ke kiri. Untuk pencahayaan matahari-dari-kiri-atas (asumsi UI khas), X positif kecil mensimulasikan cahaya dari kiri atas.",
+          "Offset Y: perpindahan vertikal. Positif menggeser bayangan ke bawah, mensimulasikan sumber cahaya di atas. Hampir semua bayangan UI menggunakan Y positif.",
+          "Radius blur: seberapa lembut tepi bayangan. 0 = tepi tajam (jarang). 8-30px khas untuk kartu dan tombol. Nilai lebih tinggi menciptakan bayangan lembut yang dreamy.",
+          "Spread: memperluas atau mengecilkan bayangan secara seragam. Nilai positif membuat bayangan lebih besar dari elemen; negatif mengecilkannya. Spread negatif dikombinasikan dengan offset menciptakan efek 'terangkat'.",
+          "Warna/opasitas: bayangan biasanya hitam dengan opasitas rendah (10-30%). Bayangan berwarna sedang tren tetapi lebih sulit digunakan dengan baik. Cocokkan rentang nilai latar belakang Anda — bayangan terlalu gelap pada UI gelap menghilang, bayangan terlalu terang pada UI terang kurang kontras."
+        ]
+      },
+      {
+        "heading": "Bayangan inset",
+        "paragraphs": [
+          "Bayangan inset digambar di dalam elemen alih-alih di luar. Digunakan untuk: state tombol ditekan, kolom input yang tenggelam, efek 'ditekan masuk 3D' neumorfik.",
+          "Bayangan inset menghormati border radius elemen dan mengabaikan overflow. Berguna untuk menambahkan kedalaman visual ke elemen UI datar tanpa mengubah tata letak sebenarnya."
+        ]
+      },
+      {
+        "heading": "Neumorfisme dan tren 'soft UI'",
+        "paragraphs": [
+          "Neumorfisme (populer 2020-2022) menggunakan dua bayangan berlawanan — satu terang, satu gelap — untuk membuat elemen tampak diekstrusi dari latar belakang warna yang sama. Preset 'Neumorfik' kami menunjukkan bayangan gelap tunggal; untuk neumorfisme penuh, gabungkan dengan bayangan inset terang di sisi berlawanan: 'inset -8px -8px 20px rgba(255,255,255,0.5), 8px 8px 20px rgba(0,0,0,0.12)'.",
+          "Catatan: neumorfisme murni memiliki masalah aksesibilitas — kurangnya kontras membuat elemen sulit dibedakan. Desain modern menggunakannya secukupnya, sering dikombinasikan dengan bayangan tradisional."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih preset", "text": "Atau buat dari awal dengan slider." },
+      { "name": "Sesuaikan offset X/Y", "text": "Arah bayangan." },
+      { "name": "Sesuaikan blur dan spread", "text": "Blur melunakkan; spread memperbesar." },
+      { "name": "Atur warna dan opasitas", "text": "Sebagian besar bayangan UI menggunakan hitam dengan opasitas 10-30%." },
+      { "name": "Aktifkan inset", "text": "Untuk bayangan dalam (tombol ditekan, input tenggelam)." },
+      { "name": "Salin CSS", "text": "Tempel ke properti box-shadow stylesheet Anda." }
+    ]
+  },
+  "faq": [
+    { "q": "Bisakah saya menambahkan beberapa bayangan?", "a": "CSS mendukung beberapa bayangan yang dipisahkan koma: 'box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)'. Alat kami menghasilkan satu bayangan sekaligus; gabungkan beberapa secara manual." },
+    { "q": "Bagaimana cara membuat efek neumorfik?", "a": "Gabungkan bayangan gelap di kanan-bawah dengan bayangan terang di kiri-atas, keduanya inset atau keduanya outset. Contoh: '8px 8px 20px rgba(0,0,0,0.12), -8px -8px 20px rgba(255,255,255,0.7)'. Preset kami menampilkan setengah gelap; tambahkan bayangan terang secara manual." },
+    { "q": "Apa perbedaan antara blur dan spread?", "a": "Blur melunakkan tepi bayangan (transparansi gradien). Spread mengubah ukuran keseluruhan bayangan (lebih besar atau lebih kecil dari elemen). Blur=20 spread=0 adalah cahaya lembut di ukuran elemen; blur=0 spread=20 adalah bayangan keras 20px lebih besar." },
+    { "q": "Mengapa bayangan saya terlihat datar?", "a": "Kemungkinan opasitas terlalu rendah, tidak ada offset, atau warna bayangan terlalu dekat dengan latar belakang. Coba Y=8, blur=24, opacity=0,18 sebagai titik awal — nilai tersebut terlihat pada sebagian besar latar belakang terang." },
+    { "q": "Bisakah saya menggunakan ini untuk text-shadow?", "a": "Hampir — text-shadow menggunakan sintaks yang sama minus 'spread' dan 'inset'. Sesuaikan secara manual setelah menyalin: ambil 'X Y blur color' (hapus spread dan inset)." },
+    { "q": "Apakah bayangan berperforma baik?", "a": "Box-shadow dipercepat GPU di browser modern. Banyak bayangan pada banyak elemen masih bisa memperlambat scrolling. Satu bayangan pada kartu dan tombol: tidak ada masalah." },
+    { "q": "Haruskah saya menggunakan bayangan atau border?", "a": "Keduanya memiliki kegunaan. Border lebih tajam dan lebih aksesibel. Bayangan terlihat lebih lembut/lebih tinggi. UI datar modern sering menggunakan keduanya: border tipis untuk ketajaman + bayangan lembut untuk elevasi." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Semua pratinjau dan generasi CSS berjalan secara lokal; tidak ada yang dikirim ke server." }
+  ]
+}

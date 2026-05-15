@@ -1,0 +1,54 @@
+{
+  "title": "Konverter Angka Romawi (1 hingga 3999, dua arah)",
+  "shortDescription": "Konversi angka Arab ke angka Romawi (dan sebaliknya). Memvalidasi bentuk kanonik sehingga VIIII tidak akan diterima secara diam-diam sebagai 9.",
+  "description": "Ketik angka 1-3999 untuk mendapatkan angka Romawi, atau tempel angka Romawi untuk mengonversi balik. Validasi ketat menolak bentuk non-kanonik.",
+  "metaDescription": "Konverter angka Romawi gratis. Konversi angka 1-3999 ke angka Romawi atau dekode Romawi ke Arab. Memvalidasi bentuk kanonik, menolak 'IIII' dan sejenisnya.",
+  "keywords": ["konverter angka romawi", "arab ke romawi", "romawi ke angka", "MMXXVI", "angka romawi"],
+  "input": { "number": "Angka (1 hingga 3999)", "roman": "Angka Romawi" },
+  "result": { "roman": "Angka Romawi", "number": "Angka Arab" },
+  "mode": { "toRoman": "Angka → Romawi", "fromRoman": "Romawi → Angka" },
+  "error": {
+    "invalidNumber": "Masukkan bilangan bulat.",
+    "outOfRange": "Angka Romawi hanya mendukung 1 hingga 3999.",
+    "invalidRoman": "Bukan angka Romawi yang valid (bentuk kanonik diperlukan)."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara kerja angka Romawi",
+        "paragraphs": [
+          "Angka Romawi menggunakan tujuh huruf: I=1, V=5, X=10, L=50, C=100, D=500, M=1000. Angka dibentuk dengan penjumlahan (II=2, XX=20) atau pengurangan ketika huruf lebih kecil mendahului huruf lebih besar (IV=4, IX=9, XL=40, XC=90, CD=400, CM=900). Setiap huruf dapat diulang maksimal tiga kali berturut-turut, itulah mengapa 4 adalah IV, bukan IIII.",
+          "Notasi Romawi standar mendukung 1 hingga 3999. Angka ≥ 4000 memerlukan notasi garis atas (V̄ = 5000) yang sulit diketik dan jarang diperlukan hari ini, sehingga konverter ini dibatasi hingga 3999."
+        ]
+      },
+      {
+        "heading": "Romawi kanonik vs informal",
+        "paragraphs": [
+          "Bentuk kanonik ketat mengikuti aturan di atas. Romawi 'informal' (kadang disebut 'arkais') memungkinkan hal-hal seperti IIII untuk 4 — Anda akan melihat ini di muka jam, di mana simetri lebih disukai. Konverter ini memerlukan bentuk kanonik untuk input dan menghasilkan bentuk kanonik sebagai output. Jadi 'IIII' ditolak; ketik 'IV'.",
+          "Dekoder memvalidasi dengan menyandikan ulang: urai Romawi, dapatkan angkanya, encode angka itu, dan periksa apakah cocok dengan input. Apapun yang tidak bulak-balik ditolak. Ini menangkap 'VV' (salah = 10), 'IIX' (salah = 8), dan bentuk non-standar lainnya."
+        ]
+      },
+      {
+        "heading": "Di mana angka Romawi muncul hari ini",
+        "paragraphs": [
+          "Tanggal hak cipta film (MCMXCIX = 1999), penomoran Super Bowl, urutan raja dan paus (Henry VIII, John XXIII), bab buku dan kerangka, muka jam, dan penanda tahun bergaya. Angka Romawi sebagian besar sudah tidak digunakan dalam aritmetika karena aritmetika angka Arab jauh lebih mudah — coba kalikan MCXLVII dengan IV dan Anda akan mengerti mengapa."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih arah", "text": "Angka → Romawi atau Romawi → Angka." },
+      { "name": "Ketik input Anda", "text": "Bilangan bulat 1-3999, atau angka Romawi." },
+      { "name": "Baca hasilnya", "text": "Input yang tidak valid menampilkan kesalahan spesifik sehingga Anda dapat memperbaikinya." }
+    ]
+  },
+  "faq": [
+    { "q": "Mengapa IIII tidak diterima sebagai 4?", "a": "Romawi kanonik menulis 4 sebagai IV. IIII muncul di beberapa muka jam tetapi bukan notasi aritmetika standar. Gunakan IV." },
+    { "q": "Apa angka Romawi terbesar?", "a": "Tanpa garis atas, 3999 = MMMCMXCIX. Angka di atasnya memerlukan notasi garis atas yang tidak kami dukung." },
+    { "q": "Bisakah saya menggunakan nol?", "a": "Romawi tidak memiliki nol. Notasi dimulai dari 1 (I)." },
+    { "q": "Apa arti CMXLIV?", "a": "CM=900, XL=40, IV=4. Total = 944. Pasangan subtraktif (CM, XL, IV) ditambah komponennya." },
+    { "q": "Bagaimana cara membaca MMXXVI?", "a": "MM=2000, XX=20, VI=6. Total = 2026." },
+    { "q": "Mengapa angka 4 di jam kadang IIII?", "a": "Tradisi. Pembuat jam secara historis lebih suka IIII untuk simetri visual dengan VIII (keduanya empat karakter). Ini tidak 'benar' secara kanonik." },
+    { "q": "Apakah angka Romawi berbasis 10?", "a": "Mereka memiliki huruf yang dikelompokkan secara desimal (I/V untuk satuan, X/L untuk puluhan, C/D untuk ratusan, M untuk ribuan) tetapi menggunakan penjumlahan dan pengurangan, bukan notasi posisional. Jadi mereka dipengaruhi desimal tetapi bukan posisional." },
+    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Konversi berjalan secara lokal." }
+  ]
+}

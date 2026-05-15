@@ -1,0 +1,67 @@
+{
+  "title": "Tạo gradient CSS (tuyến tính, hướng tâm, hình nón)",
+  "shortDescription": "Xây dựng gradient CSS trực quan: tuyến tính, hướng tâm và hình nón. Nhiều điểm màu, kiểm soát góc, các mẫu sẵn có. Sao chép CSS sẵn để dán.",
+  "description": "Chọn loại gradient, đặt góc, thêm hoặc xóa các điểm màu theo vị trí. Xem trước trực tiếp. Sao chép khai báo CSS background chỉ với một cú nhấp.",
+  "metaDescription": "Tạo gradient CSS miễn phí với xem trước trực tiếp. Gradient tuyến tính, hướng tâm và hình nón. Nhiều điểm màu, kiểm soát góc, code CSS sẵn để sao chép.",
+  "keywords": ["tạo gradient CSS", "linear gradient", "radial gradient", "conic gradient", "công cụ tạo gradient"],
+  "preview": "Xem trước",
+  "input": {
+    "type": "Loại",
+    "angle": "Góc",
+    "stops": "Điểm màu"
+  },
+  "type": {
+    "linear": "Tuyến tính",
+    "radial": "Hướng tâm",
+    "conic": "Hình nón"
+  },
+  "output": {
+    "css": "Code CSS"
+  },
+  "addStop": "Thêm điểm",
+  "removeStop": "Xóa điểm",
+  "copy": "Sao chép CSS",
+  "copied": "Đã sao chép!",
+  "article": {
+    "sections": [
+      {
+        "heading": "Ba loại gradient trong CSS",
+        "paragraphs": [
+          "Gradient tuyến tính: màu sắc chuyển đổi dọc theo đường thẳng ở góc cho trước. 0° hướng lên, 90° hướng sang phải (hướng đọc mặc định), 180° hướng xuống. Phổ biến nhất cho nền, nút và phần hero.",
+          "Gradient hướng tâm: màu sắc chuyển đổi từ điểm trung tâm ra ngoài. Hình có thể là hình tròn (mặc định của chúng tôi) hoặc hình elip. Tốt nhất cho hiệu ứng ánh sáng, yếu tố kiểu mặt trời hoặc điểm nhấn trung tâm thu hút sự chú ý.",
+          "Gradient hình nón: màu sắc xoay quanh điểm trung tâm, giống như bánh xe màu. Ít phổ biến hơn nhưng mạnh mẽ cho biểu đồ hình tròn, mặt đồng hồ hoặc con quay trang trí. Được hỗ trợ trong các trình duyệt hiện đại từ năm 2020."
+        ]
+      },
+      {
+        "heading": "Điểm màu và hệ thống phần trăm",
+        "paragraphs": [
+          "Mỗi điểm màu có một màu và vị trí từ 0% đến 100%. 0% là đầu gradient, 100% là cuối. Hai điểm cho gradient hai màu mượt mà. Thêm điểm thứ ba ở giữa tạo ra hòa trộn ba màu hoặc dải sắc nét tùy theo vị trí.",
+          "Để chuyển tiếp sắc nét (không hòa trộn), đặt hai điểm ở cùng vị trí với màu khác nhau. Ví dụ, '#000 50%, #fff 50%' tạo ra đường phân cắt đen-trắng sắc nét ở điểm giữa. Đây là cách tạo nền 'sọc'."
+        ]
+      },
+      {
+        "heading": "Mẹo về hiệu suất và khả năng tiếp cận",
+        "paragraphs": [
+          "Gradient hiển thị tự nhiên không cần HTTP request, khác với ảnh nền. Chúng có thể phóng to vô hạn mà không mất chất lượng. Thân thiện với animation: chuyển đổi vị trí qua background-position hoặc animation các điểm màu với custom properties.",
+          "Khả năng tiếp cận: đừng đặt văn bản trực tiếp lên gradient phức tạp nếu độ tương phản thay đổi theo gradient. Hãy dùng lớp phủ màu phẳng, đảm bảo độ sáng trung bình của gradient tương phản với văn bản, hoặc kiểm tra với trình kiểm tra tương phản. WCAG AA yêu cầu 4.5:1 cho văn bản thường, 3:1 cho văn bản lớn."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn mẫu sẵn có", "text": "Hoặc tự xây dựng bằng cách chọn loại, góc và điểm màu." },
+      { "name": "Đặt góc", "text": "Cho gradient tuyến tính và hình nón: 0-360°. Gradient hướng tâm dùng trung tâm làm gốc." },
+      { "name": "Thêm điểm màu", "text": "Tối thiểu hai, không giới hạn thực tế. Mỗi điểm có màu và vị trí 0-100%." },
+      { "name": "Sao chép CSS", "text": "Nhấn 'Sao chép CSS' — dán trực tiếp vào thuộc tính background trong stylesheet." }
+    ]
+  },
+  "faq": [
+    { "q": "Gradient có hoạt động trên trình duyệt cũ không?", "a": "Gradient tuyến tính và hướng tâm hoạt động trên tất cả trình duyệt hiện đại bao gồm Edge, Firefox, Chrome, Safari (từ 2014). Gradient hình nón yêu cầu Chrome 69+, Firefox 83+, Safari 12.1+ — cho trình duyệt cũ hơn, dùng gradient tuyến tính thay thế." },
+    { "q": "Tôi có thể dùng cái này trong React Native hoặc ứng dụng di động không?", "a": "CSS gradient web không dịch trực tiếp sang React Native — dùng thư viện như `react-native-linear-gradient`. Các điểm màu có thể dịch sang, nhưng cú pháp khác. UI iOS và Android dùng API cụ thể theo nền tảng." },
+    { "q": "Tôi có thể dùng tên màu không?", "a": "Có. Thay thế bất kỳ mã hex nào (ví dụ #ff0000) bằng tên màu CSS (red, dodgerblue, v.v.) trong ô văn bản bên cạnh bộ chọn màu." },
+    { "q": "Tại sao gradient hình nón của tôi trông kỳ lạ?", "a": "Gradient hình nón xoay theo chiều kim đồng hồ từ góc bạn đặt. Chúng trông đẹp nhất với nhiều điểm bao phủ đầy đủ 360°. Với chỉ 2 điểm chúng thường trông chưa hoàn chỉnh." },
+    { "q": "Làm thế nào để tạo hiệu ứng 'phát sáng'?", "a": "Dùng gradient hướng tâm với điểm cuối hoàn toàn trong suốt: ví dụ 'radial-gradient(circle, rgba(255,200,0,0.6) 0%, transparent 70%)'." },
+    { "q": "Tôi có thể tạo animation gradient không?", "a": "CSS không animate các điểm gradient trực tiếp, nhưng bạn có thể animate background-position để tạo hiệu ứng chuyển động, hoặc dùng CSS custom properties (biến) và cập nhật chúng bằng JavaScript." },
+    { "q": "Tại sao CSS lại dài thế?", "a": "Mỗi điểm thêm một màu và vị trí. Gradient dài với nhiều điểm tạo ra CSS dài dòng. Để kết quả đơn giản hơn, hãy dùng 2-3 điểm." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Mọi thứ được tính toán cục bộ; không có gì được gửi đến server." }
+  ]
+}

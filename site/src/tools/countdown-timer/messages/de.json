@@ -1,0 +1,100 @@
+{
+  "title": "Countdown-Timer (live, Tage/Stunden/Minuten/Sekunden)",
+  "shortDescription": "Live-Countdown bis zu einem beliebigen zukünftigen Datum und Uhrzeit. Aktualisiert jede Sekunde; geeignet für Events, Deadlines, Launches und Urlaube.",
+  "description": "Wähle ein Zieldatum und eine Zieluhrzeit und beobachte, wie der Countdown sekundenweise herunterläuft. Füge einen optionalen Titel hinzu, um das Event zu benennen. Nachdem der Zielzeitpunkt vergangen ist, zeigt dieselbe Anzeige die vergangene Zeit.",
+  "metaDescription": "Kostenloser Live-Countdown-Timer bis zu einem beliebigen Datum. Tage, Stunden, Minuten, Sekunden – aktualisiert jede Sekunde.",
+  "keywords": [
+    "Countdown-Timer",
+    "Countdown bis Datum",
+    "Live-Countdown",
+    "Deadline-Timer",
+    "Event-Countdown"
+  ],
+  "input": {
+    "target": "Zieldatum und -uhrzeit",
+    "title": "Event-Name (optional)",
+    "titlePlaceholder": "Projektdeadline"
+  },
+  "remaining": "Verbleibende Zeit bis",
+  "ended": "Vergangene Zeit seit",
+  "empty": "Wähle ein Zieldatum und eine Zieluhrzeit, um den Countdown zu starten.",
+  "unit": {
+    "days": "Tage",
+    "hours": "Stunden",
+    "minutes": "Minuten",
+    "seconds": "Sekunden"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie der Timer funktioniert",
+        "paragraphs": [
+          "Der Countdown tickt einmal pro Sekunde mit setInterval. Bei jedem Tick wird die aktuelle Ortszeit gelesen, von deinem Ziel subtrahiert und die Differenz in Tage, Stunden, Minuten und Sekunden aufgeteilt. Es gibt keinen Server-Roundtrip, sodass der Countdown auch bei Netzwerkausfall genau bleibt – nur die Seite selbst muss geladen sein.",
+          "Zeitzonen verwenden das, was dein Browser für 'lokal' hält. Wenn du das Ziel auf '12:00 heute' setzt und eine andere Person in einer anderen Zeitzone die Seite besucht, wird der Countdown unterschiedlich sein – beide korrekt, aber für ihre lokale 12:00 Uhr."
+        ]
+      },
+      {
+        "heading": "Typische Anwendungsfälle",
+        "paragraphs": [
+          "Projektdeadlines (Countdown auf einem Besprechungsraumbildschirm anzeigen), Produktlaunches (Countdown bis zur öffentlichen Veröffentlichung), Reisen (Urlaub, Flug, Zug), Prüfungen und Zertifizierungen, Hochzeiten und Jubiläen, Sportveranstaltungen. Das optionale Titelfeld ermöglicht es, das Event zu beschriften, sodass die Seite selbsterklärend ist.",
+          "Nachdem der Zielzeitpunkt vergangen ist, wechselt dieselbe Anzeige zu 'vergangene Zeit seit' und zählt weiter hoch. Das ist nützlich, wenn 'wie lange ist X her' das eigentlich Gesuchte ist – z. B. 'Tage seit dem letzten Vorfall' für ein SRE-Dashboard."
+        ]
+      },
+      {
+        "heading": "Warum ein Countdown statt einer Kalendererinnerung",
+        "paragraphs": [
+          "Kalendererinnerungen erscheinen einmalig zum Zeitpunkt des Events. Ein Live-Countdown gibt dir ein ständiges peripheres Bewusstsein – nützlich für Ziele, die du im Gedächtnis behalten möchtest. Sportteams zeigen sie an, Software-Teams zeigen sie in War Rooms, und Marathonläufer pinnen sie auf ihre Trainingsbildschirme.",
+          "Wenn du das auf einem öffentlichen Dashboard leben lassen möchtest, setze ein Lesezeichen auf die URL, nachdem du das Ziel eingestellt hast. Der Zustand bleibt in den Eingaben; das Neuladen der Seite setzt ihn zurück (noch kein gemeinsamer Link, aber die Eingabefelder werden innerhalb einer Sitzung beibehalten)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Ziel auswählen",
+        "text": "Wähle Datum und Uhrzeit, zu denen du herunterzählst. Die Auswahl verwendet deine lokale Zeitzone."
+      },
+      {
+        "name": "Titel hinzufügen (optional)",
+        "text": "Gib den Event-Namen ein, damit die Anzeige auf den ersten Blick aussagekräftig ist."
+      },
+      {
+        "name": "Countdown beobachten",
+        "text": "Tage, Stunden, Minuten und Sekunden zählen einmal pro Sekunde herunter. Nach dem Ziel wechselt dieselbe Anzeige zur vergangenen Zeit."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Ist der Countdown sekundengenau?",
+      "a": "Ja – die Anzeige aktualisiert sich einmal pro Sekunde, und jede Aktualisierung berechnet aus der aktuellen Uhr neu, sodass kein akkumulierter Drift auftreten kann."
+    },
+    {
+      "q": "Welche Zeitzone wird verwendet?",
+      "a": "Die lokale Zeitzone deines Browsers. Das von dir gewählte Ziel wird in deiner lokalen Zone interpretiert, nicht in UTC."
+    },
+    {
+      "q": "Funktioniert der Countdown offline?",
+      "a": "Ja, sobald die Seite geladen ist. Keine Netzwerkverbindung ist erforderlich, damit der Timer weiterläuft."
+    },
+    {
+      "q": "Kann ich einen Countdown mit jemand anderem teilen?",
+      "a": "Noch nicht per URL. Wir arbeiten an kodierten Zustand-URLs, damit ein Link das Ziel und den Titel übertragen kann; im Moment kannst du einen Screenshot einfügen oder eine Bildschirmaufnahme machen."
+    },
+    {
+      "q": "Was passiert, nachdem der Zielzeitpunkt vergangen ist?",
+      "a": "Die Anzeige wechselt zu 'vergangene Zeit seit' und zählt weiter hoch. Die Zahlen sind positiv, aber die Beschriftung ändert sich."
+    },
+    {
+      "q": "Kann ich mehrere Countdowns haben?",
+      "a": "Öffne mehrere Tabs – jeder ist unabhängig. Ein eingebauter Multi-Event-Modus ist geplant."
+    },
+    {
+      "q": "Läuft der Timer weiter, wenn ich Tabs wechsle?",
+      "a": "Browser drosseln setInterval in Hintergrund-Tabs. Der Countdown holt auf, wenn du zurückkehrst – die Neuberechnung erfolgt aus der Uhr, nicht aus akkumulierten Ticks."
+    },
+    {
+      "q": "Werden die Eingabedaten irgendwohin gesendet?",
+      "a": "Nein. Alles bleibt in deinem Browser."
+    }
+  ]
+}

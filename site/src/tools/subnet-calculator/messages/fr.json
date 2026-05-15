@@ -1,0 +1,112 @@
+{
+  "title": "Calculateur de Sous-réseau IPv4 (CIDR, masque, hôtes)",
+  "shortDescription": "Calcule l'adresse réseau, broadcast, plage d'hôtes, masque de sous-réseau, wildcard, total/hôtes utilisables depuis n'importe quel IPv4 + CIDR. Inclut la représentation binaire et la détection de classe.",
+  "description": "Tape une adresse IPv4 avec CIDR optionnel (ex. 192.168.1.10/24). Retourne l'adresse réseau, broadcast, premier/dernier hôte utilisable, total d'adresses, masque réseau, wildcard, classe IP, statut public/privé et représentation binaire.",
+  "metaDescription": "Calculateur de sous-réseau IPv4 gratuit. CIDR, masque réseau, wildcard, réseau/broadcast, plage d'hôtes, total/hôtes utilisables, détection public/privé.",
+  "keywords": [
+    "calculateur sous-réseau",
+    "calculateur cidr",
+    "sous-réseau ipv4",
+    "calculateur masque réseau",
+    "calculateur adresse ip"
+  ],
+  "input": {
+    "cidr": "Adresse IP / CIDR",
+    "hint": "Format : 192.168.1.10/24 (CIDR optionnel, /24 par défaut)"
+  },
+  "result": {
+    "network": "Réseau",
+    "ip": "Adresse IP",
+    "netmask": "Masque de sous-réseau",
+    "wildcard": "Masque wildcard",
+    "networkAddr": "Adresse réseau",
+    "broadcast": "Broadcast",
+    "hostMin": "Premier hôte utilisable",
+    "hostMax": "Dernier hôte utilisable",
+    "totalAddresses": "Total d'adresses",
+    "usableHosts": "Hôtes utilisables",
+    "ipClass": "Classe IP",
+    "private": "Privé RFC 1918",
+    "binary": "Binaire"
+  },
+  "empty": "Saisis une adresse IPv4 avec /CIDR optionnel.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Ce que signifie la notation CIDR",
+        "paragraphs": [
+          "CIDR (Classless Inter-Domain Routing) est le slash + nombre après une adresse IP — '192.168.1.10/24'. Le nombre indique combien de bits au début de l'adresse appartiennent à la partie réseau (vs la partie hôte). /24 signifie 24 bits de réseau = 8 bits d'hôte = 256 adresses totales, 254 utilisables.",
+          "CIDR courants : /32 hôte unique, /30 lien (4 adresses, 2 utilisables), /29 petit sous-réseau (8/6), /24 LAN (256/254), /16 grand réseau (65k), /8 bloc ISP (16M). Plus le nombre CIDR est petit, plus le réseau est grand."
+        ]
+      },
+      {
+        "heading": "Réseau, broadcast et hôtes utilisables",
+        "paragraphs": [
+          "Adresse réseau : la première adresse du sous-réseau, avec les bits hôte tous à zéro. Utilisée pour identifier le sous-réseau lui-même ; non assignable à un appareil.",
+          "Adresse broadcast : la dernière adresse, avec les bits hôte tous à un. Utilisée pour envoyer un paquet à tous les hôtes du sous-réseau ; non assignable.",
+          "Hôtes utilisables : total d'adresses moins réseau et broadcast = 2^(32−CIDR) − 2. Exception : /31 (liaisons point-à-point) et /32 (hôte unique) traitent toutes les adresses comme utilisables selon la RFC 3021."
+        ]
+      },
+      {
+        "heading": "Adresses publiques vs privées",
+        "paragraphs": [
+          "La RFC 1918 réserve trois plages d'adresses pour les réseaux internes privés : 10.0.0.0/8 (16M adresses), 172.16.0.0/12 (1M), 192.168.0.0/16 (65k). La plupart des routeurs domestiques et de bureau utilisent une tranche de ces plages (typiquement 192.168.1.0/24 ou 192.168.0.0/24).",
+          "Les adresses publiques sont routables sur l'internet mondial et assignées par des registres régionaux (ARIN, RIPE, APNIC, etc.). Elles sont de plus en plus rares — l'épuisement des adresses IPv4 a entraîné l'adoption du CIDR et le déploiement d'IPv6.",
+          "Le calculateur détecte si une adresse est dans les plages privées ; utile pour vérifier la conception réseau ou confirmer qu'une fuite n'envoie pas d'adresses privées sur internet."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Tape une adresse",
+        "text": "Avec ou sans /CIDR. Si le CIDR est omis, /24 est supposé."
+      },
+      {
+        "name": "Lis les informations réseau",
+        "text": "Adresse réseau, broadcast, plage d'hôtes, masque, wildcard."
+      },
+      {
+        "name": "Vérifie la classe et le statut privé",
+        "text": "Vérification rapide du type d'espace d'adressage."
+      },
+      {
+        "name": "Utilise la vue binaire pour le débogage",
+        "text": "Aide quand tu dois raisonner sur les opérations au niveau des bits ou aligner des sous-réseaux."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Pourquoi les hôtes utilisables sont-ils 2 de moins que le total ?",
+      "a": "La première adresse (tous les bits hôte à 0) est l'identifiant réseau et la dernière (tous à 1) est le broadcast. Les deux sont réservées et ne peuvent pas être assignées à un hôte."
+    },
+    {
+      "q": "Pourquoi /31 a-t-il 2 hôtes utilisables au lieu de 0 ?",
+      "a": "La RFC 3021 autorise les réseaux /31 pour les liaisons point-à-point (ex. entre routeurs). Les deux adresses sont utilisables ; les réservations broadcast et réseau ne s'appliquent pas."
+    },
+    {
+      "q": "Quelle est la différence entre masque réseau et wildcard ?",
+      "a": "Le masque réseau a des 1 dans les bits réseau, des 0 dans les bits hôte (255.255.255.0). Le wildcard est l'inverse (0.0.0.255) — utilisé dans les ACL Cisco et les définitions de zone OSPF."
+    },
+    {
+      "q": "Comment créer des sous-réseaux ?",
+      "a": "Prends un réseau parent et divise-le en blocs plus petits en ajoutant des bits au CIDR. /24 → /25 divise en 2 sous-réseaux, /24 → /26 en 4, etc. Utile pour séparer les départements ou isoler les réseaux IoT/invités."
+    },
+    {
+      "q": "Quel est le plus petit sous-réseau possible ?",
+      "a": "/32 — une seule adresse IP. /31 est le plus petit sous-réseau 'normal' (2 adresses). /30 est courant pour les liaisons routeur à routeur (4/2 utilisables)."
+    },
+    {
+      "q": "Ça fonctionne pour IPv6 ?",
+      "a": "Pas encore — seulement IPv4. Les sous-réseaux IPv6 sont conceptuellement similaires mais utilisent des adresses 128 bits, la notation hexadécimale et des conventions différentes. On peut ajouter IPv6 dans une future version."
+    },
+    {
+      "q": "Quel est le plus grand sous-réseau unique possible ?",
+      "a": "/0 couvre les 4,3 milliards d'adresses IPv4 — tout l'espace d'adressage IPv4. /1 le divise en deux moitiés. /8 représente 16M d'adresses, historiquement un seul bloc 'classe A' (ex. 10.0.0.0/8)."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Le calcul s'exécute localement ; rien n'est envoyé à un serveur."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "title": "Rastgele Sayı Üreteci (kriptografik güvenlik, benzersiz mod)",
+  "shortDescription": "Tarayıcınızın güvenli rastgele API'sini kullanarak herhangi bir aralıkta rastgele tam sayılar üretin. Piyango, çekiliş veya tekrarsız örnekleme için isteğe bağlı benzersizlik.",
+  "description": "Kriptografik olarak güvenli rastgele tam sayılar üretmek için min, max ve adet seçin. Tekrarsız örnekleme için (çekiliş, piyango) 'benzersiz' moduna geçin.",
+  "metaDescription": "Ücretsiz kriptografik olarak güvenli rastgele sayı üreteci. Aralık ve adet belirleyin, isteğe bağlı benzersiz. Piyango, çekiliş, rastgele test ve oyunlar için.",
+  "keywords": ["rastgele sayı üreteci", "güvenli rastgele", "piyango numaraları", "rastgele tam sayı", "RNG"],
+  "empty": "Bir aralık belirleyin ve rastgele sayılar almak için 'Yenile'ye tıklayın.",
+  "input": {
+    "min": "Minimum",
+    "max": "Maksimum",
+    "count": "Kaç tane"
+  },
+  "unique": "Hepsi benzersiz (tekrar yok)",
+  "regenerate": "Yenile",
+  "copyAll": "Tümünü kopyala",
+  "copied": "Kopyalandı",
+  "error": {
+    "invalidRange": "Min, Max'dan küçük veya eşit olmalıdır.",
+    "tooManyUnique": "Aralığın izin verdiğinden daha fazla benzersiz sayı seçilemez."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Bu neden gerçekten rastgele",
+        "paragraphs": [
+          "Math.random() yerine tarayıcının kriptografik olarak güvenli rastgele kaynağını kullanıyoruz — crypto.getRandomValues. CSPRNG çıktısı önceki değerlerden tahmin edilemez; bu, piyango seçimleri, kumara yakın uygulamalar ve 'rastgele'nin yalnızca 'keyfi' değil gerçek bir gereksinim olduğu her kullanım için önemlidir.",
+          "Dağılımı seçilen aralık üzerinde tam olarak düzgün yapmak için reddetme örneklemesi de kullanıyoruz. Naif 'random % aralık' yöntemi, aralık 2³²'ye eşit olarak bölünmediğinde önyargı oluşturur. Reddetme örneklemesi önyargıya yol açacak değerleri atar ve yeniden dener; dolayısıyla aralığınızdaki her sayı tam olarak aynı olasılığa sahip olur."
+        ]
+      },
+      {
+        "heading": "Benzersiz vs tekrar izinli",
+        "paragraphs": [
+          "Varsayılan mod: her sayı bağımsızdır — tekrarlar oluşabilir. Bu, günlük kullanımda 'rastgele'nin genellikle ifade ettiği şeydir (zar atmak, film seçmek, rastgele test).",
+          "Benzersiz mod: tekrarsız örnekleme — bir sayı seçildiğinde aynı grupta tekrar seçilemez. Şunlar için kullanışlıdır: piyango seçimleri (ör. 1-49'dan 6 sayı), çekilişler (kazananları çekme), takım atamaları ve 'M'den N seç' durumları. adet ≤ aralık gerektirir."
+        ]
+      },
+      {
+        "heading": "Yaygın kullanım senaryoları",
+        "paragraphs": [
+          "Piyango / çekiliş: 1-49'dan 6 benzersiz sayı veya çekilişinizin kullandığı sayı aralığı. 'Benzersiz' modunu açın.",
+          "Zar atışları: 1-6 aralığı (veya D20 için 1-20). Her atış bağımsız olsun diye 'benzersiz'i kapalı bırakın.",
+          "Test için rastgele örnekleme: spot kontrol için 1-10000'den 10 rastgele kullanıcı ID'si seçin. Tekrarları önlemek için 'benzersiz' kullanın.",
+          "Yazı tura simülasyonu: 0-1 aralığı, birden fazla sonuç. Adil kontrol için yazı/tura sayın (büyük örneklerde ~50/50 görürsünüz)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Aralığı belirleyin", "text": "Min ve max — her ikisi de dahil. Negatif sayılara izin verilir." },
+      { "name": "Kaç tane olduğunu belirleyin", "text": "Üretim başına 1 ile 100 sayı." },
+      { "name": "Gerekirse 'benzersiz'i açın", "text": "Tekrarsız örnekleme için (çekiliş, piyango)." },
+      { "name": "Yenile'ye tıklayın", "text": "Her tıklamada yeni bir set çekilir. Hepsine ihtiyacınız varsa tümünü tek seferde kopyalayın." }
+    ]
+  },
+  "faq": [
+    { "q": "Bu çekilişler veya piyangolar için adil mi?", "a": "Rastgelelik kriptografik olarak güvenli ve önyargısızdır. Resmi bir piyango için yasal olarak 'adil' olup olmadığı yetkililerin kurallarına bağlıdır — birçoğu sertifikalı donanım RNG'si gerektirir." },
+    { "q": "Math.random()'dan farkı ne?", "a": "Math.random() çıktısı saldırgan tarafından önceki çıktılardan tahmin edilebilen bir algoritma kullanır. crypto.getRandomValues tahmin edilemeyen işletim sistemi düzeyinde kriptografik RNG kullanır. Gerçek adalet için bunu kullanın." },
+    { "q": "Negatif sayılar alabilir miyim?", "a": "Evet. Min'i negatif bir değere ayarlayın." },
+    { "q": "Maksimum aralık nedir?", "a": "JavaScript'in güvenli tam sayı aralığıyla (~2⁵³) sınırlıdır, ancak pratikte sorunsuz biçimde milyarlara kadar çıkabilirsiniz. Reddetme örneklemesi tekniği herhangi bir aralığı doğru işler." },
+    { "q": "adet > aralık olduğunda 'benzersiz' neden başarısız olur?", "a": "1-5'ten 10 benzersiz sayı seçerseniz dördü mevcut değildir. Doğrulama bunu yakalar ve aralığı genişletmenizi veya adedi azaltmanızı ister." },
+    { "q": "Bu zar atışları için çalışır mı?", "a": "Evet — aralığı 1-6'ya (veya zarlarınızın değeri ne ise) ayarlayın ve her atış bağımsız olsun diye 'benzersiz'i kapalı bırakın." },
+    { "q": "Tohumu kaydedip yeniden üretebilir miyim?", "a": "Hayır — güvenli rastgele tasarım gereği tohum içermez. Test için yeniden üretilebilir 'rastgele'ye ihtiyacınız varsa tohumlu PRNG kütüphanesi kullanın." },
+    { "q": "Veriler bir yere gönderiliyor mu?", "a": "Hayır. Üretim tamamen yereldir." }
+  ]
+}
