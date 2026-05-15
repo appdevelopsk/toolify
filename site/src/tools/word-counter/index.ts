@@ -1,8 +1,6 @@
-import type { ToolDefinition } from "@/lib/tools/types";
-import Component from "./Component";
+import type { ToolMeta } from "@/lib/tools/types";
 
-const def: ToolDefinition = {
-  meta: {
+const meta: ToolMeta = {
     slug: "word-counter",
     category: "text",
     applicationCategory: "UtilitiesApplication",
@@ -11,8 +9,6 @@ const def: ToolDefinition = {
     primaryKeyword: { en: "word counter", ja: "文字数カウンター" },
     hasHowTo: true,
     hasFaq: true,
-  },
-  Component,
-};
+  };
 
-export default def;
+export default meta;

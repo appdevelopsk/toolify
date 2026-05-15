@@ -1,8 +1,6 @@
-import type { ToolDefinition } from "@/lib/tools/types";
-import Component from "./Component";
+import type { ToolMeta } from "@/lib/tools/types";
 
-const def: ToolDefinition = {
-  meta: {
+const meta: ToolMeta = {
     slug: "password-generator",
     category: "text",
     applicationCategory: "SecurityApplication",
@@ -11,8 +9,6 @@ const def: ToolDefinition = {
     primaryKeyword: { en: "password generator", ja: "パスワード生成" },
     hasHowTo: true,
     hasFaq: true,
-  },
-  Component,
-};
+  };
 
-export default def;
+export default meta;

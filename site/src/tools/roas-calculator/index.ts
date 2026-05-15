@@ -1,8 +1,6 @@
-import type { ToolDefinition } from "@/lib/tools/types";
-import Component from "./Component";
+import type { ToolMeta } from "@/lib/tools/types";
 
-const def: ToolDefinition = {
-  meta: {
+const meta: ToolMeta = {
     slug: "roas-calculator",
     category: "finance",
     applicationCategory: "FinanceApplication",
@@ -11,8 +9,6 @@ const def: ToolDefinition = {
     primaryKeyword: { en: "ROAS calculator", ja: "ROAS 広告費用対効果" },
     hasHowTo: true,
     hasFaq: true,
-  },
-  Component,
-};
+  };
 
-export default def;
+export default meta;

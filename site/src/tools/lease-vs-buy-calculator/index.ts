@@ -1,8 +1,6 @@
-import type { ToolDefinition } from "@/lib/tools/types";
-import Component from "./Component";
+import type { ToolMeta } from "@/lib/tools/types";
 
-const def: ToolDefinition = {
-  meta: {
+const meta: ToolMeta = {
     slug: "lease-vs-buy-calculator",
     category: "finance",
     applicationCategory: "FinanceApplication",
@@ -11,8 +9,6 @@ const def: ToolDefinition = {
     primaryKeyword: { en: "lease vs buy calculator", ja: "車 リース 購入 比較" },
     hasHowTo: true,
     hasFaq: true,
-  },
-  Component,
-};
+  };
 
-export default def;
+export default meta;

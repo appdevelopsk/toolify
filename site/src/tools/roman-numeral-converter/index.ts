@@ -1,8 +1,6 @@
-import type { ToolDefinition } from "@/lib/tools/types";
-import Component from "./Component";
+import type { ToolMeta } from "@/lib/tools/types";
 
-const def: ToolDefinition = {
-  meta: {
+const meta: ToolMeta = {
     slug: "roman-numeral-converter",
     category: "text",
     applicationCategory: "EducationApplication",
@@ -11,8 +9,6 @@ const def: ToolDefinition = {
     primaryKeyword: { en: "Roman numeral converter", ja: "ローマ数字 変換" },
     hasHowTo: true,
     hasFaq: true,
-  },
-  Component,
-};
+  };
 
-export default def;
+export default meta;

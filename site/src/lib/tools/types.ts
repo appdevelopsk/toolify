@@ -1,5 +1,3 @@
-import type { ComponentType } from "react";
-
 export type ToolCategory = "health" | "math" | "converter" | "datetime" | "text" | "color" | "finance";
 
 export interface ToolMeta {
@@ -17,9 +15,4 @@ export interface ToolMeta {
   hasHowTo: boolean;
   /** FAQ schema を出力するか */
   hasFaq: boolean;
-}
-
-export interface ToolDefinition {
-  meta: ToolMeta;
-  Component: ComponentType;
 }

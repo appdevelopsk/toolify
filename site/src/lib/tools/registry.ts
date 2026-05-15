@@ -1,4 +1,4 @@
-import type { ToolDefinition, ToolMeta } from "./types";
+import type { ToolMeta } from "./types";
 
 import bmi from "@/tools/bmi-calculator";
 import length from "@/tools/length-converter";
@@ -125,7 +125,7 @@ import investmentFee from "@/tools/investment-fee-impact-calculator";
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
  * ルーティング・サイトマップ・i18n loader・関連リンク全てに反映される。
  */
-export const TOOLS: ToolDefinition[] = [
+export const TOOLS: ToolMeta[] = [
   bmi,
   length,
   age,
@@ -248,30 +248,29 @@ export const TOOLS: ToolDefinition[] = [
   investmentFee,
 ];
 
-const SLUG_INDEX = new Map(TOOLS.map((t) => [t.meta.slug, t]));
+const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
 
 export function listTools(): ToolMeta[] {
-  return TOOLS.map((t) => t.meta);
+  return TOOLS;
 }
 
-export function getTool(slug: string): ToolDefinition | undefined {
+export function getTool(slug: string): ToolMeta | undefined {
   return SLUG_INDEX.get(slug);
 }
 
 export function listByCategory(category: string): ToolMeta[] {
-  return TOOLS.map((t) => t.meta).filter((m) => m.category === category);
+  return TOOLS.filter((m) => m.category === category);
 }
 
 export function getRelated(slug: string, limit = 5): ToolMeta[] {
   const tool = SLUG_INDEX.get(slug);
   if (!tool) return [];
-  const related = tool.meta.related
-    .map((s) => SLUG_INDEX.get(s)?.meta)
+  const related = tool.related
+    .map((s) => SLUG_INDEX.get(s))
     .filter((m): m is ToolMeta => Boolean(m));
   if (related.length >= limit) return related.slice(0, limit);
-  // 不足分は同カテゴリで補完
-  const fill = TOOLS.map((t) => t.meta)
-    .filter((m) => m.slug !== slug && m.category === tool.meta.category && !related.includes(m))
+  const fill = TOOLS
+    .filter((m) => m.slug !== slug && m.category === tool.category && !related.includes(m))
     .slice(0, limit - related.length);
   return [...related, ...fill];
 }

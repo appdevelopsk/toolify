@@ -244,10 +244,9 @@ export const CATALOG: AffiliateOffer[] = [
       "zh-CN": "全球最大的天然保健品与健康食品商店。",
     },
     cta: { ja: "詳細を見る", en: "Learn more", "zh-CN": "了解更多" },
-    url: { default: "#pending-iherb" },
-    network: "rakuten-affiliate",
+    url: { default: "https://af.moshimo.com/af/c/click?a_id=5552959&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fwww.rakuten.co.jp%2Fiherb%2F" },
+    network: "moshimo",
     badge: "🌿",
-    pending: true,
   },
   {
     id: "asken-jp",

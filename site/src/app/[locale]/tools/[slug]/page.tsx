@@ -36,7 +36,7 @@ export async function generateMetadata({
     path: `/tools/${slug}`,
     keywords: t.raw("keywords") as string[],
     type: "article",
-    modifiedTime: tool.meta.updatedAt,
+    modifiedTime: tool.updatedAt,
   });
 }
 
@@ -66,7 +66,7 @@ export default async function ToolPage({
       name: tt("title"),
       description: tt("metaDescription"),
       url,
-      applicationCategory: tool.meta.applicationCategory,
+      applicationCategory: tool.applicationCategory,
       inLanguage: locale,
     }),
     breadcrumbJsonLd([
@@ -75,15 +75,15 @@ export default async function ToolPage({
       { name: tt("title"), url },
     ]),
   ];
-  if (tool.meta.hasFaq && faq.length > 0) ld.push(faqJsonLd(faq, locale));
-  if (tool.meta.hasHowTo && article.howTo?.length) ld.push(howToJsonLd({ name: tt("title"), steps: article.howTo, inLanguage: locale }));
+  if (tool.hasFaq && faq.length > 0) ld.push(faqJsonLd(faq, locale));
+  if (tool.hasHowTo && article.howTo?.length) ld.push(howToJsonLd({ name: tt("title"), steps: article.howTo, inLanguage: locale }));
 
-  const Component = tool.Component;
+  const { default: Component } = await import(`@/tools/${slug}/Component`);
 
   return (
     <>
       <ToolFrame
-        meta={tool.meta}
+        meta={tool}
         title={tt("title")}
         description={tt("description")}
         related={related}
