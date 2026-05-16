@@ -1,0 +1,53 @@
+{
+  "title": "Metin Karşılaştırma (satır bazlı, renk kodlu)",
+  "shortDescription": "İki metin bloğunu satır satır karşılaştır. Eklenen, silinen ve değişmeyen satırlar satır numaralarıyla renklendirilir.",
+  "description": "Orijinal ve düzenlenmiş sürümü yapıştırın, yan yana satır bazlı diff görün. Belgeler, config dosyaları, kod inceleme ve metin düzenlemede yararlı.",
+  "metaDescription": "Ücretsiz çevrimiçi metin diff aracı. Eklenen, silinen ve değişmeyen satırlar renk kodlu. Sadece tarayıcıda — metniniz cihazınızdan ayrılmaz.",
+  "keywords": ["metin diff", "metin karşılaştır", "diff aracı", "satır karşılaştırma", "farkları bul"],
+  "input": { "left": "Orijinal (sol)", "right": "Düzenlenmiş (sağ)" },
+  "stats": { "added": "eklendi", "removed": "silindi", "unchanged": "değişmedi" },
+  "empty": "Diff görmek için her iki sürümü yapıştırın.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Diff nasıl hesaplanır",
+        "paragraphs": [
+          "İki sürüm arasında paylaşılan satırları bulmak için Longest Common Subsequence (LCS) algoritmasını kullanıyoruz. Her ikisinde de görünen satırlar 'değişmedi'. Sadece orijinalde olanlar 'silindi'. Sadece düzenlenmiş sürümde olanlar 'eklendi'. Sonuç, her iki tarafta satır numaraları korunmuş, açıkça açıklamalı bir karşılaştırma.",
+          "LCS, git ve çoğu diff aracının kullandığı standart yaklaşımdır. Mümkün olan en uzun eşleşen diziyi seçer; bu genellikle bir insanın 'aynı paragraf' diyeceği şeyle örtüşür. Çok büyük girdiler için (10.000+ satır) çalışma süresi karesel artar; büyük log'ları karşılaştırmanız gerekiyorsa streaming diff aracı kullanın."
+        ]
+      },
+      {
+        "heading": "Bu ne için iyi",
+        "paragraphs": [
+          "Belge revizyonları: taslaklar arasında tam olarak neyin değiştiğini görün. Yasal sözleşmeler, hizmet şartları ve 'neyin değiştiği?' önemli olan her metin için yararlı.",
+          "Yapılandırma dosyaları: yanlış yapılandırmayı tespit etmek için iki .env veya YAML dosyasını karşılaştırın. Veya bir deploy script'in iki sürümünü.",
+          "Metin düzenleme: yazarlar editörün revizyonlarını bağlam içinde görebilir, özellikle yalnızca birkaç satır değiştiğinde.",
+          "Kod incelemesi (hafif kullanım): küçük parçalar için. Gerçek kod incelemesi için sözdizimini anlayan bir araç kullanın — semantik flag'lerle git diff veya özel bir inceleme aracı daha iyi sonuç verir."
+        ]
+      },
+      {
+        "heading": "Sınırlamalar",
+        "paragraphs": [
+          "Satır seviyesinde diff yapıyoruz. Bir satırda 'cat' yerine 'cats' yazarsanız, tüm satır kaldırıldı-ve-eklendi olarak görünür; eklenen 's'yi vurgulamayız. Kelime ve karakter seviyesi diff'ler bunun için yararlıdır ama uzun satırlarda okumak zordur.",
+          "Satır sonu boşluğu önemlidir — 'foo' ve 'foo ' (sondaki boşluk) farklı satır sayılır. Boşluğa duyarsız karşılaştırma istiyorsanız, yapıştırmadan önce metni normalize edin.",
+          "Sıralama önemlidir. Farklı pozisyonlardaki iki paragraf hem silindi hem eklendi sayılır. Diff, 'taşınmış' blokları algılamaya çalışmaz."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Orijinali yapıştır", "text": "Solda." },
+      { "name": "Düzenlenmiş sürümü yapıştır", "text": "Sağda." },
+      { "name": "Diff'i oku", "text": "Yazdıkça satırlar güncellenir. Yeşil = eklendi, kırmızı = silindi, sade = değişmedi." }
+    ]
+  },
+  "faq": [
+    { "q": "Kelime seviyesi diff destekliyor mu?", "a": "Henüz değil — yalnızca satır seviyesi. Kısa karşılaştırmalar için karakter veya kelime seviyesi daha sonra eklenebilir." },
+    { "q": "Metnim ne kadar büyük olabilir?", "a": "Her iki tarafta pratik olarak birkaç bin satıra kadar. Karesel karmaşıklık, çok büyük girdilerin tarayıcı sekmesini kısa süre dondurabileceği anlamına gelir." },
+    { "q": "Veri tarayıcımdan ayrılıyor mu?", "a": "Hayır. Diff tamamen yerel olarak çalışır." },
+    { "q": "Sondaki boşluklar önemli mi?", "a": "Evet. Yalnızca sondaki boşlukta farklı iki satır farklı sayılır. Boşluğa duyarsız eşleştirme istiyorsanız yapıştırmadan önce boşlukları normalize edin." },
+    { "q": "Diff'i kaydedebilir miyim?", "a": "Dosya olarak değil. Şimdilik render edilen metni kopyalayıp yapıştırın veya ekran görüntüsü alın." },
+    { "q": "Bu, git diff ile aynı algoritma mı?", "a": "Kavramsal olarak evet — LCS kullanıyoruz, bu git'in seçeneklerinden biridir. Git varsayılan olarak benzer ama daha sofistike bir algoritma kullanır (Myers diff, Patience opt-in olarak). Kısa girdiler için çıktı temelde aynı." },
+    { "q": "Sadece bir kelime değiştiğinde neden tüm satır işaretleniyor?", "a": "Çünkü satır seviyesinde çalışıyoruz. Karakter seviyesi diff değişen kelimeyi vurgular ama uzun satırlarda okumak zordur." },
+    { "q": "İkiden fazla sürüm karşılaştırabilir miyim?", "a": "Bu araçta hayır. Çok yönlü merge için 3-way diff aracı kullanın." }
+  ]
+}

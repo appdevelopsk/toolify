@@ -1,0 +1,53 @@
+{
+  "title": "UUID Üretici (v4 rastgele, v7 zaman sıralı)",
+  "shortDescription": "Kriptografik olarak rastgele UUID v4 veya zaman sıralı UUID v7 üret. Tek seferde 100'e kadar toplu üret, tek tıkla kopyala.",
+  "description": "Bir veya birden çok UUID üretmek için tıklayın. Tamamen rastgele ID'ler için v4'ü ve oluşturma zamanına göre doğal sıralanan zaman-sıralanabilir ID'ler için v7'yi kullanın — veritabanı anahtarları için yararlı.",
+  "metaDescription": "v4 (rastgele) ve v7 (zaman sıralı) için ücretsiz UUID üretici. Kriptografik olarak güvenli, toplu olarak 100'e kadar üret, her birini veya hepsini kopyala.",
+  "keywords": ["UUID üretici", "UUID v4", "UUID v7", "GUID üretici", "rastgele UUID"],
+  "count": "Sayı",
+  "regenerate": "Yeniden üret",
+  "copy": "Kopyala",
+  "copyAll": "Hepsini kopyala",
+  "copied": "Kopyalandı",
+  "article": {
+    "sections": [
+      {
+        "heading": "Ne zaman v4 ne zaman v7",
+        "paragraphs": [
+          "UUID v4 tamamen rastgeledir — iki sürüm/varyant biti ile 122 rastgele bit, yaklaşık 5,3 × 10³⁶ olası değer sağlar. İkisi temelde asla çakışmaz. Sıralamaya ihtiyaç duymadığınız her yerde v4 kullanın, API istek ID'leri veya anonim kullanıcı tanımlayıcıları gibi.",
+          "UUID v7 (RFC 9562, 2024'te yayınlandı) 48-bit Unix milisaniye timestamp ile başlar, ardından 74 rastgele bit gelir. Oluşturma sırasına göre leksikografik olarak sıralanırlar, bu da veritabanı performansı için büyük — zamana göre sıralanan birincil anahtarlar, eklerin her zaman B-ağacının sonuna gittiği anlamına gelir, rastgele sayfa bölünmesi yok. Yeni veritabanı birincil anahtarları için v7 kullanın."
+        ]
+      },
+      {
+        "heading": "Bu üretici nasıl çalışır",
+        "paragraphs": [
+          "Hem v4 hem v7 crypto.getRandomValues kullanır — tarayıcının güvenli rastgele kaynağı, HTTPS ve şifre yöneticilerinin kullandığı aynı temel. v4 122 biti rastgele doldurur. v7 RFC'ye göre 48 bit timestamp + 74 bit rastgele artı sürüm/varyant işaretçileri böler.",
+          "Üretim tarayıcınızda olur. UUID'ler depolanmaz veya iletilmez. 100 v4 UUID üretirseniz, aralarında çakışma olasılığı astronomik olarak küçüktür — CPU'nuzdaki bitleri çeviren kozmik ışınların olasılığından çok daha düşük."
+        ]
+      },
+      {
+        "heading": "Yaygın UUID tuzakları",
+        "paragraphs": [
+          "Veritabanı birincil anahtarları olarak v4 UUID'ler, otomatik artan tamsayılara kıyasla performansı düşürür çünkü rastgele değerler eklemeler sırasında B-ağacı sayfa bölünmelerine neden olur. v7 bunu düzeltir — indeks acısı olmadan UUID avantajları istiyorsanız v7 kullanın.",
+          "Tahmin edilebilirliğin önemli olduğu yerlerde UUID'leri kullanıcılara ifşa etmeyin. v4 UUID'lerin 122 bit entropisi vardır ve tahmin edilemez. v7 UUID'ler oluşturma zamanını sızdırır, çoğu kullanım için sorun değil ama oluşturma zamanı hassassa kötü.",
+          "UUID'ler kısa çizgiler dahil 36 karakterdir (32 hex + 4 kısa çizgi). İkili olarak 16 byte veya metin olarak 36 byte tutar. Çok yüksek kardinaliteli sütunlar için, VARCHAR(36) yerine ikili BLOB / yerel UUID türü olarak saklamayı düşünün."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "v4 veya v7 seçin", "text": "Tam rastgele için v4, zaman sıralı için v7." },
+      { "name": "Sayıyı ayarlayın", "text": "1 ila 100. Varsayılan 5." },
+      { "name": "İhtiyacınız olanı kopyalayın", "text": "Bir UUID'nin yanındaki 'Kopyala'ya tıklayın veya hepsini yeni satırla ayrılmış liste olarak almak için 'Hepsini kopyala'." }
+    ]
+  },
+  "faq": [
+    { "q": "Bunlar kriptografik olarak güvenli mi?", "a": "Evet. Hem v4 hem v7 güvenli rastgele API'si olan crypto.getRandomValues'i kullanır. v4'ün 122 bit entropisi vardır; v7'nin 74." },
+    { "q": "Veritabanı anahtarları için v7 neden daha iyi?", "a": "Çünkü v7 UUID'ler oluşturma zamanına göre sıralanır, eklemeler rastgele konumlar yerine her zaman B-ağacı indeksinin sonuna gider. Bu sayfa bölünmelerinden kaçınır ve yazma verimini önemli ölçüde artırır." },
+    { "q": "İki UUID çakışabilir mi?", "a": "Teorik olarak evet. v4 ile %50 çakışma riskinden önce ~10¹⁸ üretmeniz gerekir. v7 ile zaman bileşeni bunu aynı milisaniye içinde yaklaşık 2⁷⁴'e indirir — yine de pratik olarak imkansız." },
+    { "q": "UUID'ler GUID'lerle aynı mı?", "a": "Evet. GUID, Microsoft'un UUID için adıdır. Aynı format, aynı benzersizlik garantileri." },
+    { "q": "Format nedir?", "a": "Kısa çizgilerle 8-4-4-4-12 hex rakamı. Toplam 32 hex karakter + 4 kısa çizgi = 36 karakter. RFC sözleşmesine göre küçük harf." },
+    { "q": "Bunun yerine v1 kullanmalı mıyım?", "a": "v1 MAC adresini içerir, bu bir gizlilik sızıntısıdır. v7, donanım tanımlayıcılarını açığa çıkarmadan zaman sıralı ID'ler için v1'in yerini alır." },
+    { "q": "URL-güvenli Base64'te v4 üretebilir miyim?", "a": "Burada doğrudan değil. 22 karakterlik bir ID almak için UUID'nin 16 byte'ını URL-güvenli Base64 olarak kodlayın. Daha kısa URL'ler için yararlı." },
+    { "q": "Veri tarayıcımdan ayrılıyor mu?", "a": "Hayır. Üretim tamamen tarayıcınızda olur." }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "title": "İş Günü Hesaplayıcı (hafta sonu + tatil hariç)",
+  "shortDescription": "İki tarih arasındaki iş günlerini say, hafta sonlarını ve listelediğin tatilleri hariç tut. Özelleştirilebilir: gerekirse Cumartesi veya Pazar'ı iş günü olarak dahil et.",
+  "description": "Başlangıç ve bitiş tarihi seçin, isteğe bağlı olarak Cumartesi veya Pazar'ı iş günü olarak dahil edin ve hariç tutmak için tatil tarihleri ekleyin. İş günleri, hafta sonu günleri ve tatilleri ayrı döner.",
+  "metaDescription": "Ücretsiz iş günü hesaplayıcı. İki tarih arasındaki iş günlerini say, hafta sonu ve özel tatilleri atla. Proje deadline, sözleşme şartları, izin planlama için yararlı.",
+  "keywords": ["iş günü hesaplayıcı", "iş günleri", "tarihler arası çalışma günleri", "hafta içi sayısı", "hafta sonu tatil atla"],
+  "empty": "İş günlerini saymak için başlangıç ve bitiş tarihi seçin.",
+  "input": {
+    "start": "Başlangıç tarihi",
+    "end": "Bitiş tarihi",
+    "includeSat": "Cumartesi iş günü",
+    "includeSun": "Pazar iş günü",
+    "holidays": "Hariç tutulacak tatiller (her satıra bir)",
+    "holidaysHint": "ISO formatı: 2026-01-01. Virgül, boşluk veya yeni satırla ayrılmış."
+  },
+  "result": {
+    "workdays": "İş günleri",
+    "weekendDays": "Hafta sonu günleri",
+    "holidayDays": "Tatiller",
+    "total": "Toplam günler"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "İş günü saymanın önemi",
+        "paragraphs": [
+          "Proje deadline'ları, sözleşme şartları, bordro döngüleri ve izin planlama takvim günleri yerine 'iş günleri' kullanır. Cuma günü yapılan 30 günlük teslim sözü aslında 32 takvim günüdür çünkü hafta sonu sayılmaz. İkisini karıştırmak kaçırılan deadline'lara ve sözleşme anlaşmazlıklarına yol açar.",
+          "İş günleri yasal sayım için de önemlidir: Türkiye'de ve birçok yargı bölgesinde yasal süre sınırları (örn. 'yanıt vermek için 14 iş günü') hafta sonları ve resmi tatilleri hariç tutar. Herhangi bir anlaşmada 'gün'ün takvim mi yoksa iş mi anlamına geldiğini her zaman kontrol edin."
+        ]
+      },
+      {
+        "heading": "Hafta sonlarını özelleştirmenize izin vermemizin nedeni",
+        "paragraphs": [
+          "Türkiye dahil çoğu ülke Cumartesi-Pazar'ı hafta sonu olarak kullanır, ancak değişir. Orta Doğu'nun çoğu ve Kuzey Afrika'nın bazı kısımları Cuma-Cumartesi'yi hafta sonu olarak kabul eder. Bazı endüstriler (perakende, otelcilik) hafta sonlarını iş günü olarak kabul eder.",
+          "Geçişlerimiz Cumartesi veya Pazar'ı bireysel olarak iş günü olarak işaretlemenize izin verir. Böylece şunları yapılandırabilirsiniz: yalnızca Pzt-Cum (varsayılan), 6 günlük iş haftası (Cumartesi dahil) veya yalnızca Pazar hafta sonu (Pazar'ı kaldır)."
+        ]
+      },
+      {
+        "heading": "Tatil girişi nasıl kullanılır",
+        "paragraphs": [
+          "YYYY-AA-GG formatında (ISO 8601) bir tarih listesi yapıştırın. Ayırıcılar virgül, boşluk veya yeni satır olabilir. Listelediğiniz her tarih, normalde iş günü olacak bir güne denk geliyorsa iş günü sayımından çıkarılır.",
+          "2026 Türkiye resmi tatilleri için yapıştırın: 2026-01-01 (Yılbaşı), 2026-04-23 (Ulusal Egemenlik ve Çocuk Bayramı), 2026-05-01 (Emek ve Dayanışma Günü), 2026-05-19 (Atatürk'ü Anma, Gençlik ve Spor Bayramı), 2026-07-15 (Demokrasi ve Milli Birlik Günü), 2026-08-30 (Zafer Bayramı), 2026-10-29 (Cumhuriyet Bayramı). Ramazan ve Kurban Bayramı tarihleri hicri takvime göre kayar — her yıl resmi açıklamayı kontrol edin.",
+          "Otomatik dahil etmiyoruz çünkü (a) tatiller ülke, bölge ve yıla göre değişir ve (b) bazı işletmeler ek şirkete özgü izin günleri uygular."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Başlangıç ve bitiş tarihlerini ayarlayın", "text": "İkisi de dahil — iş günüyse her iki tarih sayılır." },
+      { "name": "Hafta sonu günlerini seçin", "text": "Varsayılan olarak Cumartesi ve Pazar hafta sonudur. Gerekirse iş günü olarak değiştirin." },
+      { "name": "Hariç tutulacak tatilleri ekleyin", "text": "Virgül, boşluk veya yeni satırla ayrılmış ISO tarihlerini listeleyin." },
+      { "name": "Dağılımı okuyun", "text": "İş günleri, hafta sonu günleri, tatiller ve toplam takvim günleri." }
+    ]
+  },
+  "faq": [
+    { "q": "Başlangıç ve bitiş tarihleri dahil mi?", "a": "Evet. İkisi de iş günüyse, ikisi de sayılır. Sözleşmeniz yalnızca aradaki günleri sayıyorsa (hariç), sonuçtan 2 çıkarın." },
+    { "q": "Tatilleri neden otomatik dahil etmiyorsunuz?", "a": "Tatiller ülke, bölge ve yıla göre büyük ölçüde değişir. Otomatik dahil etme, yargı bölgenize uygulanmayan tatilleri çıkarma riski taşır. Manuel ekleme sizi kontrolde tutar." },
+    { "q": "Uluslararası sözleşmeler için kullanabilir miyim?", "a": "Evet — ancak her iki tarafın hangi tatilleri sayacağında anlaşmasını sağlayın. Çok uluslu sözleşmeler belirsizliği önlemek için genellikle '[ülke]'nin [şehir]'inde gözlemlenen iş günleri' belirtir." },
+    { "q": "Tatil hafta sonuna denk gelirse ne olur?", "a": "Çift sayılmaz. 2026-01-01 Perşembe tatiliyse, tatil olarak sayılır. 2026-12-25 Pazar'a denk gelirse, algoritma onu doğru olarak bir gün (hafta sonu) sayar, iki değil." },
+    { "q": "6 günlük iş haftası için nasıl çalışır?", "a": "'Cumartesi iş günü'nü işaretleyin. Hesaplayıcı Pzt-Cmt'yi iş günü olarak sayacak ve yalnızca Pazarları ve listelenen tatilleri hariç tutacaktır." },
+    { "q": "Hesaplanabilen maksimum tarih aralığı nedir?", "a": "En azından yüzlerce yıl. Tarayıcı 1970'ten ±100 milyon güne kadar tarih aritmetiğini işler." },
+    { "q": "İş günü listesini dışa aktarabilir miyim?", "a": "İndirme olarak değil, ancak görüntülenen sayıları kopyalayabilirsiniz. Günlük liste için bir hesap çizelgesi daha esnektir." },
+    { "q": "Veri tarayıcımdan ayrılıyor mu?", "a": "Hayır. Her şey yerel çalışır; sunucuya hiçbir şey gönderilmez." }
+  ]
+}

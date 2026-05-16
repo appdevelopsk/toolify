@@ -1,0 +1,72 @@
+{
+  "title": "Üçgen Hesaplayıcı (dik açı, SSS, SAS)",
+  "shortDescription": "Bir üçgenin alanını, çevresini, kenarlarını ve açılarını hesapla. Üç mod: dik üçgen (Pisagor), üç kenar (SSS) veya iki kenar + araç açı (SAS).",
+  "description": "Bir mod seçin, bilinen değerleri girin ve tüm kenarları, üç açıyı, alanı ve çevreyi alın. SSS modu için üçgen eşitsizliğini doğrular.",
+  "metaDescription": "Ücretsiz üçgen hesaplayıcı. Dik açı (Pisagor), SSS veya SAS modları. Kenar, açı, alan, çevre döner. Geometri ödevi ve inşaat için yararlı.",
+  "keywords": ["üçgen hesaplayıcı", "pisagor teoremi", "kosinüs teoremi", "üçgen alanı", "üçgen çözücü"],
+  "empty": "Seçilen mod için bilinen değerleri girin.",
+  "invalid": "Geçersiz üçgen: üçgen eşitsizliğini ihlal eder (en uzun kenar diğer ikisinin toplamından kısa olmalı).",
+  "mode": {
+    "right": "Dik üçgen",
+    "sss": "Üç kenar (SSS)",
+    "sas": "İki kenar + açı (SAS)"
+  },
+  "input": {
+    "legA": "Dik kenar a",
+    "legB": "Dik kenar b",
+    "sideA": "Kenar a",
+    "sideB": "Kenar b",
+    "sideC": "Kenar c",
+    "angleC": "Açı C (derece)"
+  },
+  "result": {
+    "area": "Alan",
+    "perim": "Çevre",
+    "sides": "Kenarlar",
+    "angles": "Açılar"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Üç problem için üç mod",
+        "paragraphs": [
+          "Dik üçgen (dik kenarlar a, b): en yaygın durum. Pisagor teoremiyle hipotenüs c = √(a² + b²). Açı A = arctan(a/b), B = arctan(b/a), C = 90°. Alan = (a × b) / 2.",
+          "Üç kenar (SSS — Kenar-Kenar-Kenar): üç kenar uzunluğunu da bildiğinizde. Üçgen eşitsizliğiyle doğrulayın (en uzun kenar < diğer ikisinin toplamı). Açılar kosinüs teoremiyle: cos A = (b² + c² − a²) / (2bc). Alan Heron formülüyle: √(s(s−a)(s−b)(s−c)), s = (a+b+c)/2.",
+          "İki kenar + araç açı (SAS — Kenar-Açı-Kenar): iki kenarı ve aralarındaki açıyı bildiğinizde. Üçüncü kenar kosinüs teoremiyle: c = √(a² + b² − 2ab cos C). Diğer açılar sinüs teoremiyle. Alan = (1/2) × a × b × sin C."
+        ]
+      },
+      {
+        "heading": "Her mod ne zaman kullanılır",
+        "paragraphs": [
+          "Dik üçgen günlük geometride en yaygın olanıdır — duvar köşesi yapmak, çatı yüksekliği hesaplamak, TV'nin köşegenini genişlik ve yükseklikten bulmak. Pisagor teoremi inşaat ve tasarımda en çok kullanılan formüllerden biridir.",
+          "SSS, ölçme, navigasyon ve üç kenarı doğrudan ölçtüğünüz her durumda görülür. Bir üçgenin şeklini fiziksel ölçümden doğrulamak için yararlı.",
+          "SAS, bilinen açıda buluşan iki kenarınız olduğunda ama üçüncü kenar ölçülmediğinde veya ulaşılması zor olduğunda. Trigonometri dersleri ve trigonometrik problem setlerinde yaygın."
+        ]
+      },
+      {
+        "heading": "Pratik uygulamalar",
+        "paragraphs": [
+          "İnşaat: yükseklik ve adımdan çatı eğimi (dik üçgen). Marangozun 'üçler kuralı': 3-4-5 üçgeni mükemmel dik açıya sahiptir, gönye gerekmez.",
+          "Navigasyon: triangülasyon, üç bilinen yer işaretinden konumunuzu bulmak için SSS veya SAS kullanır. Aynı matematik GPS'i çalıştırır (rölativistik düzeltmelerle).",
+          "Bilgisayar grafikleri: her 3D model üçgenlere ayrıştırılır. Üçgen alan formülü, yüzey aydınlatmasını hesaplayan shader kodunda görünür.",
+          "Astronomi: paralaks mesafe ölçümleri SSS ilkelerini kullanır. Güneş-Dünya-yıldız açısı basit trigonometriyle yıldızın mesafesini verir."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Mod seçin", "text": "Dik üçgen, SSS (üç kenar) veya SAS (iki kenar + açı)." },
+      { "name": "Bilinen değerleri girin", "text": "Her mod farklı girdiler gerektirir." },
+      { "name": "Tüm bilinmeyenleri okuyun", "text": "Kenarlar, açılar, alan ve çevre hesaplanır." }
+    ]
+  },
+  "faq": [
+    { "q": "Üçgen eşitsizliği nedir?", "a": "Üç uzunluğun bir üçgen oluşturması için herhangi ikisinin toplamı üçüncüsünü aşmalı. Yani 3, 4, 5 geçerli (3+4=7 > 5); 1, 2, 5 değil (1+2=3 < 5). Hesaplayıcı SSS modunda bunu yakalar." },
+    { "q": "Bu ne kadar doğru?", "a": "Kayan nokta hassasiyeti (~15-17 anlamlı basamak). Tipik girdiler için hata, gerçek dünyadaki ölçüm hatasından çok daha küçüktür." },
+    { "q": "Açılar radyan olabilir mi?", "a": "Henüz değil — her yerde derece kullanıyoruz. Gerekirse radyan × 180/π ile dönüştürün veya açı dönüştürücümüzü kullanın." },
+    { "q": "Üçgenimin geniş açısı varsa?", "a": "Tüm modlar geniş açılı üçgenleri doğru işler. SAS için araç açının 0° ile 180° arasında (hariç) olduğundan emin olun." },
+    { "q": "Bu neden tüm 'iki kenar ve bir açı' durumları için çalışmıyor?", "a": "SAS'i (iki kenarın ARASINDAKİ açı) destekliyoruz. Belirsiz durum (SSA — açı, sonra biri açının karşısında olan iki kenar) bazen 0, 1 veya 2 geçerli üçgene sahiptir. SSS ve SAS belirsiz değildir." },
+    { "q": "Geniş açılı 3-4-5 tipi problemleri çözebilir miyim?", "a": "3-4-5 dik üçgendir. Geniş açı için SSS modunda 4-5-7'yi deneyin — en büyük açı 90°'den fazla." },
+    { "q": "Yalnızca açılardan kenarı nasıl bulurum?", "a": "Bulamazsınız — açılar yalnızca şekli belirler, boyutu değil. En az bir kenara ihtiyacınız var. İki açı + bir kenar yeterli (üçüncü açı = 180 − iki açının toplamı)." },
+    { "q": "Veri tarayıcımdan ayrılıyor mu?", "a": "Hayır. Hesaplama yerel çalışır; sunucuya hiçbir şey gönderilmez." }
+  ]
+}

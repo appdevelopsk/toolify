@@ -1,0 +1,72 @@
+{
+  "title": "Unix Timestamp Dönüştürücü (sn, ms, ISO, yerel)",
+  "shortDescription": "Unix timestamp (saniye veya milisaniye) ile insan-okur tarihler arasında dönüştür. ISO 8601, yerel saat ve göreli zamanı gösterir.",
+  "description": "Bir Unix timestamp yazıp tarihi birden çok formatta görün veya bir tarih seçip Unix değerini alın. Referans için canlı geçerli timestamp gösterilir.",
+  "metaDescription": "Ücretsiz Unix timestamp dönüştürücü. Saniye veya milisaniyeyi ISO/yerel tarihe çevir. Canlı geçerli timestamp ve göreli zaman gösterimi dahil.",
+  "keywords": ["Unix timestamp", "epoch dönüştürücü", "timestamp tarihe", "tarih timestamp", "ISO 8601"],
+  "empty": "Dönüştürmek için timestamp veya tarih girin.",
+  "input": { "timestamp": "Unix timestamp", "date": "Tarih & saat" },
+  "now": "Şimdi",
+  "currentTimestamp": "Şu an",
+  "mode": { "fromTimestamp": "Timestamp → Tarih", "fromDate": "Tarih → Timestamp" },
+  "unit": { "seconds": "Saniye", "milliseconds": "Milisaniye" },
+  "result": {
+    "timestampSec": "Timestamp (sn)",
+    "timestampMs": "Timestamp (ms)",
+    "iso": "ISO 8601 (UTC)",
+    "local": "Yerel saat",
+    "locale": "Yerelleştirilmiş",
+    "relative": "Göreli"
+  },
+  "relative": {
+    "justNow": "az sonra",
+    "justPast": "az önce",
+    "minutesFromNow": "{n} dk sonra",
+    "minutesAgo": "{n} dk önce",
+    "hoursFromNow": "{n} sa sonra",
+    "hoursAgo": "{n} sa önce",
+    "daysFromNow": "{n} gün sonra",
+    "daysAgo": "{n} gün önce"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Unix timestamp nedir",
+        "paragraphs": [
+          "Unix timestamp, Unix epoch'tan — 1 Ocak 1970 UTC gece yarısından — itibaren saniye sayısıdır (veya JavaScript'te milisaniye). Belirsizlik olmadan bir an'ı kodlayan tek bir sayıdır. API'ler, veritabanları ve log dosyaları onu her yerde kullanır çünkü timestamp'leri karşılaştırmak tamsayı aritmetiğinden ibarettir.",
+          "JavaScript, Python ve diğer birçok sistem milisaniye kullanır (JS'de Date.now() ms döner). C, Go ve Unix kabukları saniye kullanır (date +%s). Dönüştürürken timestamp'inizin hangi birimde olduğunu kontrol edin — 1,7 trilyon değer milisaniyedir; 1,7 milyar saniyedir."
+        ]
+      },
+      {
+        "heading": "ISO 8601 vs yerel formatlar",
+        "paragraphs": [
+          "ISO 8601 (örn. 2026-05-06T14:30:00Z) evrensel değişim formatıdır. Zaman dilimi açıktır ('Z' = UTC veya +03:00 vb.) ve metin olarak doğru sıralanır. Depolama ve API'ler için her zaman onu kullanın.",
+          "Yerel formatlar (örn. '6 Mayıs 2026, 14:30:00') görüntü içindir. Kullanıcı dil ve bölgesine bağlıdır. Hesaplayıcı her ikisini de gösterir — kod için ISO kopyalayın, e-postalar veya raporlar için yereli kopyalayın."
+        ]
+      },
+      {
+        "heading": "2038 Yılı sorunu",
+        "paragraphs": [
+          "32-bit işaretli tamsayı Unix timestamp'leri 2³¹ − 1 saniyede = 2.147.483.647 = 19 Ocak 2038 UTC 03:14:07'de taşar. int32 kullanan sistemler negatif değerlere yuvarlanır ve tarih aritmetiği bozulur. Modern sistemler ~292 milyar yıl güvenli olan 64-bit timestamp'leri kullanır.",
+          "Gömülü sistemler, eski veritabanı şemaları veya legacy C kod ile çalışıyorsanız, time_t boyutunu denetleyin. 64-bit tamsayılara geçiş düzeltmedir; timestamp'leri string olarak (ISO) saklamak sorunu tamamen önler."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Yönü seçin", "text": "Timestamp → Tarih veya Tarih → Timestamp." },
+      { "name": "Birim seçin", "text": "Saniye (Unix standardı) veya milisaniye (JavaScript)." },
+      { "name": "Yazın veya seçin", "text": "Bir sayı yazın veya geçerli an için 'Şimdi' düğmesini kullanın." },
+      { "name": "Tüm formatları okuyun", "text": "Sn, ms, ISO, yerel ve göreli birlikte gösterilir." }
+    ]
+  },
+  "faq": [
+    { "q": "Timestamp'ler bazen neden 13 basamaklı?", "a": "Onlar milisaniyedir. JavaScript ve birçok web API'si ms kullanır. Saniye almak için 1000'e bölün." },
+    { "q": "Unix timestamp hangi zaman diliminde?", "a": "Hiçbiri — epoch'tan itibaren UTC saniyedir. Uygulamanızın veya kullanıcının bulunduğu zaman dilimini kullanarak yerel tarihe dönüştürün." },
+    { "q": "Dönüşüm doğru mu?", "a": "Evet. Sistem saatini kullanan tarayıcının Date API'sini kullanıyoruz. Hassasiyet milisaniyeye kadar." },
+    { "q": "ISO 8601 nedir?", "a": "Uluslararası standart tarih-zaman formatı: YYYY-MM-DDTHH:MM:SS+TZ. Metin olarak sıralanabilir, zaman dilimi konusunda kesin." },
+    { "q": "'Yerel saat' neden sistem saatimle eşleşmiyor?", "a": "Tarayıcınızın bildirdiği zaman dilimini kullanır. Sistem saatiniz yanlışsa veya tarayıcı dilimi farklıysa sonuçlar farklı olur." },
+    { "q": "Negatif timestamp'ler geçerli mi?", "a": "Evet — 1970 öncesi tarihleri temsil ederler. Çoğu dil bunları işler; veritabanı uyumluluğuna dikkat edin." },
+    { "q": "Toplu dönüştürebilir miyim?", "a": "Henüz değil. Tek seferlik dönüşümler için bu araç yeterli; binlerce değer için bir script kullanın." },
+    { "q": "Veri tarayıcımdan ayrılıyor mu?", "a": "Hayır. Dönüşüm yerel olarak çalışır." }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "title": "Kelime Sayacı (okuma ve konuşma süresiyle)",
+  "shortDescription": "Kelime, karakter, cümle, paragraf sayısı ve tahmini okuma ve konuşma süresini say. CJK dillerini doğru işler.",
+  "description": "Herhangi bir metni yapıştırıp kelime sayısı, karakter sayısı (boşluklu ve boşluksuz), cümle sayısı, paragraf sayısı ve sessizce okuma ile sesli okuma için zaman tahminlerini görün.",
+  "metaDescription": "Okuma süreli ücretsiz çevrimiçi kelime sayacı. Kelime, karakter, cümle ve paragrafları gerçek zamanlı sayar. Japonca, Çince, Korece metin için CJK-uyumlu.",
+  "keywords": ["kelime sayacı", "karakter sayısı", "okuma süresi", "kompozisyon kelime sayısı", "harf sayacı"],
+  "placeholder": "Metninizi buraya yapıştırın veya yazın…",
+  "stat": {
+    "words": "Kelime",
+    "characters": "Karakter",
+    "charactersNoSpaces": "Boşluksuz",
+    "sentences": "Cümle",
+    "paragraphs": "Paragraf",
+    "readingTime": "Okuma süresi",
+    "speakingTime": "Konuşma süresi"
+  },
+  "unit": { "min": "dk" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Her metrik nasıl hesaplanır",
+        "paragraphs": [
+          "Karakterler boşluklar, satır sonları ve emoji dahil metnin ham uzunluğudur. 'Boşluksuz' saymadan önce beyaz boşluğu çıkarır. Kelimeler Latin alfabesi dilleri için (Türkçe dahil) boşlukla ayrılır; Japonca, Çince, Korece ve Tay dili için her ideograf bir kelime olarak sayılır, çünkü bu diller kelime aralıklarını İngilizce'nin yaptığı gibi kullanmaz.",
+          "Cümleler sonlandırıcı noktalama ile algılanır (Latin alfabesinde . ! ?; CJK'de 。！？). Paragraflar boş satırlarla ayrılan bloklardır. Bu kurallar pragmatiktir — alışılmadık noktalama içeren metin bir sayı kayabilir, ancak normal düzyazı için sayımlar güvenilirdir."
+        ]
+      },
+      {
+        "heading": "Okuma süresi nasıl tahmin edilir",
+        "paragraphs": [
+          "Okuma süresi dakikada 200 kelime kullanır, yetişkinlerin düzyazı okuduğu ortancadır. Konuşma süresi dakikada 130 kelime kullanır, deneyimli bir topluluk önünde konuşanın oranıdır. Her ikisi en yakın tam dakikaya yukarı yuvarlanır, böylece 50 kelimelik bir cümle '1 dk' gösterir.",
+          "Bu sayılar yaklaşıklardır. Ağır teknik metin daha yavaş okunur (150 wpm'ye yakın), hafif kurgu daha hızlı okunur (250 wpm'ye yakın) ve sunum hızlanması stil ve dinleyiciyle vahşice değişir. Rakamı sağduyu kontrolü olarak kullanın, kronometre olarak değil."
+        ]
+      },
+      {
+        "heading": "Yaygın kullanımlar",
+        "paragraphs": [
+          "Bloggerlar ve yazarlar hedef bir uzunluğa ulaşmak için kelime sayılarını kullanır (çoğu uzun biçim makale SEO için 1500-2500 kelime hedefler). Öğrenciler kompozisyon ödevleri için kullanır. Pazarlamacılar X (Twitter) gönderi sınırları ve meta açıklama etiketi uzunlukları için boşluklu karakter kullanır. Konuşmacılar 5 dakikalık yıldırım konuşmasına karşı 20 dakikalık keynote için scriptleri ayarlamak için konuşma süresi rakamını kullanır.",
+          "Çevirmenler ve editörler kelime başına veya karakter başına fatura keserken dört sayımı da izler — 'boşluklu' ve 'boşluksuz' arasındaki seçim oranları %10-20 etkiler."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Metninizi yapıştırın", "text": "Metin alanına yazın veya yapıştırın. Sayımlar her tuş vuruşuyla güncellenir." },
+      { "name": "Metrikleri okuyun", "text": "Yedi metrik aynı anda görülür — kelime, karakter, cümle, paragraf ve zaman tahminleri." },
+      { "name": "Gerektiği gibi ayarlayın", "text": "Kelime sayısını bir hedefe getirmek için metni doğrudan düzenleyin, sonra temizlenmiş sürümü kopyalayın." }
+    ]
+  },
+  "faq": [
+    { "q": "CJK kelime sayım beklediğimden neden yüksek?", "a": "Her ideografı (Çince hanzi, Japonca kanji/kana, Korece hangul) bir kelime olarak sayıyoruz. Aynı metnin başka yerindeki Latin kelimeleri hala boşlukla sayılır." },
+    { "q": "Emoji karakter olarak sayılır mı?", "a": "Evet. Bazı emoji teknik olarak birden çok Unicode kod birimidir; sayaç JavaScript dize uzunluğunu takip eder, bu da her UTF-16 kod birimini sayar." },
+    { "q": "Okuma süresi doğru mu?", "a": "200 wpm rakamı düzyazı için yetişkin sessiz okuma hızının medyanıyla eşleşir. Yüksek derecede teknik metin daha yavaş okunur, kolay kurgu daha hızlı — ±%30 tahmin olarak ele alın." },
+    { "q": "Cümle sayısı neden yanlış görünüyor?", "a": "Algılama sonlandırıcı noktalamaya dayalıdır. Listeler, noktalama olmadan başlıklar veya alışılmadık düzyazı stilleri yanıltabilir. Kelime sayısı güvenilir kalır." },
+    { "q": "Metin tarayıcımdan ayrılıyor mu?", "a": "Hayır. Her şey yerel çalışır; girdiyi alan bir sunucu endpoint'imiz yok." },
+    { "q": "Metin uzunluğu sınırı nedir?", "a": "Zorunlu sınır yok. Modern tarayıcılar megabayt büyüklüğünde metni sorun olmadan işler, ancak metin alanı yaklaşık 100.000 karakterin üzerinde yavaşlayabilir." },
+    { "q": "Tweet veya X gönderilerini sayabilir miyim?", "a": "Evet — X beyaz boşluğu saydığından 'karakter' (boşluklu) kullanın. 280 karakter sınırı URL'leri de 23 karakter olarak sayar." },
+    { "q": "Markdown'ı destekliyor mu?", "a": "Markdown sözdizimi dahil ham metni sayar. 'Render edilmiş' kelime sayısı istiyorsanız, yalnızca render edilmiş çıktıyı yapıştırın." }
+  ]
+}

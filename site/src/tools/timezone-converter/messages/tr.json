@@ -1,0 +1,54 @@
+{
+  "title": "Saat Dilimi Dönüştürücü (birden çok dilimde karşılaştır)",
+  "shortDescription": "Bir anı aynı anda birden çok saat diliminde dönüştür. Dilim ekle/çıkar; uluslararası toplantı planlamak için harika.",
+  "description": "Bir kaynak saat dilimi ve tarih/saat seçin, ardından ihtiyaç duyduğunuz kadar hedef saat dilimi ekleyin. Her hedef, saat dilimi kısaltmasıyla eşdeğer yerel saati gösterir.",
+  "metaDescription": "Ücretsiz saat dilimi dönüştürücü. Bir anı birden çok şehirde aynı anda görün. Toplantı planlama, seyahat ve birden çok dilimde yayın için yararlı.",
+  "keywords": ["saat dilimi dönüştürücü", "dünya saati", "dilimler arası toplantı", "UTC dönüştür", "saat dilimi farkı"],
+  "empty": "Eşdeğerleri görmek için saat dilimi ekleyin.",
+  "input": { "sourceTz": "Kaynak saat dilimi", "dt": "Tarih & saat" },
+  "now": "Şimdi",
+  "addTz": "Saat dilimi ekle",
+  "remove": "Kaldır",
+  "article": {
+    "sections": [
+      {
+        "heading": "Saat dilimi dönüşümü nasıl çalışır",
+        "paragraphs": [
+          "Zamanın her anı tek bir noktadır — Tokyo'da Salı 09:00, San Francisco'da Pazartesi 17:00 ile aynı andır. Saat dilimi dönüşümü, o tek anı her dilimin yerel saatiyle yeniden etiketler. Yaz saati uygulaması bunu karmaşıklaştırır — Mart-Kasım arasında ABD'de Doğu saati UTC-4 (EDT); yılın geri kalanında UTC-5 (EST). Türkiye 2016'dan beri tüm yıl UTC+3'te (TRT, yaz saati uygulamasız).",
+          "IANA adlarını ('Asia/Tokyo' veya 'Europe/Istanbul' gibi) kullanıyoruz çünkü belirsiz değiller ve her konumun DST kurallarını tarihsel olarak takip ediyorlar. 'JST' veya 'GMT' çakışabilen kısaltmalardır; IANA adları çakışmaz."
+        ]
+      },
+      {
+        "heading": "Yaygın planlama tuzakları",
+        "paragraphs": [
+          "DST geçişleri: 'gelecek Salı 09:00 EST' Mart veya Kasım'da kurallar değiştiği için belirsizdir. Her zaman 'New York saati' deyin veya takvim daveti gönderin — Outlook, Google Calendar ve Slack her iki taraf da dilimini belirttiğinde dönüşümü doğru yapar.",
+          "Yarım-saat ofsetleri: Hindistan UTC+5:30, Newfoundland UTC-3:30, Avustralya'nın bazı kısımları UTC+9:30 veya +10:30. Toplantı matematiğiniz 'tam saatler' içindeyse, bu bölgeler için 30 dakika sapacaktır.",
+          "Tarih çizgisi atlamaları: Tokyo'dan San Francisco'ya yönelime göre ertesi gün veya aynı gündür. Takvim bunu doğru gösterir, ancak insan varsayımı yanlış olabilir."
+        ]
+      },
+      {
+        "heading": "Yararlı kalıplar",
+        "paragraphs": [
+          "Uluslararası standup: Kaynak dilimi (genellikle UTC) ve ekibin ana saat dilimlerini seçin. Toplantı saatini ayarlayın ve kimsenin 03:00'te katılması istenmediğini doğrulayın.",
+          "Ürün lansmanı: Lansman dilimini seçin ve büyük pazarları ekleyin. Pazarlama e-postasının makul bir yerel saatte ulaştığını doğrulamak için yararlı.",
+          "Seyahat planlama: Kalkış diliminizi seçin ve hedef dilim(ler)ini ekleyerek yerel varış saatini manuel matematik olmadan bulun."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Kaynağı ayarlayın", "text": "Kaynak saat diliminizi seçin (varsayılan tarayıcınızın dilimi) ve dönüştürmek istediğiniz tarih/saati seçin." },
+      { "name": "Hedef saat dilimleri ekleyin", "text": "İhtiyacınız kadar eklemek için açılır menüyü kullanın." },
+      { "name": "Eşdeğerleri okuyun", "text": "Her hedef aynı anı yerel saatinde gösterir." }
+    ]
+  },
+  "faq": [
+    { "q": "DST'yi işliyor mu?", "a": "Evet — IANA saat dilimi verisi her konum için DST kurallarını içerir. Tarayıcının Intl API'si geçmiş, şimdiki ve (bilindiği yerde) gelecek geçişleri işler." },
+    { "q": "EST ile ET arasındaki fark nedir?", "a": "EST UTC-5'te sabittir. ET (Eastern Time) kışın EST, yazın EDT'dir — DST'yi takip eder. 'America/New_York' gibi IANA adlarını kullanıyoruz, bu da tarihe göre otomatik olarak EST veya EDT seçer." },
+    { "q": "İki belirli şehir arasında dönüştürebilir miyim?", "a": "Evet. Birini kaynak olarak ayarlayın ve diğerini hedef olarak ekleyin. Görüntülenen saat, kaynak anının hedefin yerel saatinde ifadesidir." },
+    { "q": "Bazı dilimlerin :30 ofseti neden var?", "a": "Tarihsel kararlar. Hindistan, İran, Afganistan, Newfoundland, Avustralya'nın bazı kısımları UTC'den 30 dakika veya 45 dakika ofset kullanır. Hesaplayıcı bunları doğru işler." },
+    { "q": "Geçmiş tarihler için çalışır mı?", "a": "Evet, tarihsel olarak farklı olmuş olabilecek DST sınırları dahil. IANA verisi 1970'ten itibaren çoğu konum geçmişini kapsar." },
+    { "q": "Antarktika veya Hawaii ne olacak?", "a": "IANA listesi onları içerir. Gerekirse açılır menüden 'Pacific/Honolulu' veya 'Antarctica/McMurdo' ekleyin." },
+    { "q": "Veri herhangi bir yere gönderiliyor mu?", "a": "Hayır. Tarayıcının Intl API'leri her şeyi yerel olarak işler." },
+    { "q": "Saat dilimi listemi kaydedebilir miyim?", "a": "Henüz değil. Sayfayı yenilemek listeyi sıfırlar. Daha sonra yerel depolama kalıcılığı ekleyebiliriz." }
+  ]
+}

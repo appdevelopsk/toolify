@@ -1,0 +1,76 @@
+{
+  "title": "KDV / Satış Vergisi Hesaplayıcı (uluslararası oranlar)",
+  "shortDescription": "KDV/GST/satış vergisi ekle veya çıkar. Türkiye, Japonya, UK, AB ülkeleri, Avustralya, Kanada, Çin için hızlı ön ayarlar.",
+  "description": "İki mod: 'KDV ekle' net + orandan brüt hesaplar; 'KDV çıkar' brütten net hesaplar. Özel oran girişi artı büyük yargı bölgeleri için tek tıklamayla ön ayarlar.",
+  "metaDescription": "Ücretsiz KDV/GST hesaplayıcı. Herhangi bir tutardan KDV ekle veya çıkar. Türkiye, Japonya, UK, AB, Avustralya, Kanada, Çin oranları için ön ayarlar.",
+  "keywords": ["KDV hesaplayıcı", "satış vergisi hesaplayıcı", "KDV çıkar", "%20 KDV", "tüketim vergisi"],
+  "empty": "Bir tutar ve KDV oranı girin.",
+  "mode": {
+    "addVat": "KDV ekle (net → brüt)",
+    "removeVat": "KDV çıkar (brüt → net)"
+  },
+  "input": {
+    "netAmount": "Net tutar (KDV hariç)",
+    "grossAmount": "Brüt tutar (KDV dahil)",
+    "ratePct": "KDV oranı %"
+  },
+  "preset": {
+    "JP-std": "JP std",
+    "JP-reduced": "JP indirimli",
+    "UK": "UK",
+    "DE": "Almanya",
+    "FR": "Fransa",
+    "AU": "Avustralya GST",
+    "CA": "Kanada GST",
+    "CN": "Çin KDV"
+  },
+  "result": {
+    "gross": "Brüt (KDV dahil)",
+    "net": "Net (KDV hariç)",
+    "vat": "KDV tutarı"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "KDV, GST, satış vergisi — aynı fikir, farklı isimler",
+        "paragraphs": [
+          "KDV (Katma Değer Vergisi): Türkiye (standart %20, indirimli %10 ve %1), Avrupa, UK, Japonya (消費税 olarak adlandırılır). Üretimin her aşamasında alınır ancak sonuçta tüketici tarafından ödenir.",
+          "GST (Goods and Services Tax): Avustralya, Kanada, Hindistan, Singapur. KDV ile mekanik olarak benzer, sadece farklı isim. Bazı ülkeler (Kanada) federal GST ve eyalet vergilerini (HST, PST) katmanlar.",
+          "Satış vergisi: ABD. Yalnızca son satış noktasında alınır, eyalet, ilçe ve şehre göre değişir. Bazı eyaletlerde yoktur (Oregon, New Hampshire); diğerleri toplam oranların %10'u aşması için birden çok yargıyı yığar."
+        ]
+      },
+      {
+        "heading": "İki yönlü hesaplama",
+        "paragraphs": [
+          "KDV ekle: net (vergi öncesi) fiyatınız varken brüt (vergi sonrası) gerektiğinde. B2B müşterilere fiyat listelerken veya vergi öncesi teklif verirken yaygın. Formül: brüt = net × (1 + oran/100).",
+          "KDV çıkar: brüt (vergi sonrası) fiyatınız varken neti çıkarmanız gerektiğinde. Fişler, masraf raporları veya fatura satır öğeleri için yaygın. Formül: net = brüt / (1 + oran/100).",
+          "Yaygın hata: net almak için brütten oran% çıkarmak (örneğin 110 − %10 = 99). Bu yanlış — doğru hesap 110 / 1,10 = 100. %10 KDV nete uygulanır, brüte değil."
+        ]
+      },
+      {
+        "heading": "KDV dahil olduğunda veya olmadığında",
+        "paragraphs": [
+          "Türkiye, Avrupa, Japonya ve Avustralya'da çoğu tüketici fiyatı vergi-dahildir. Etiket fiyatı kasa noktasında ödediğiniz şey; checkout'ta ekstra yok. Yani 100 TL'lik bir ürün toplam 100 TL anlamına gelir.",
+          "ABD perakende fiyatlarının çoğu vergi-hariçtir. 10 $ etiketi California'nın %8,5 satış vergisinden sonra 10,85 $ olur. Restoranlar, çevrimiçi mağazalar ve B2B faturalar genellikle değişir.",
+          "B2B faturalar genellikle girdi-vergisi-kredisi amaçları için net + KDV'yi ayrı gösterir. İşletmeler, müşterilerden topladıkları KDV'ye karşı girdilere ödedikleri KDV'yi geri talep edebilirler."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Mod seçin", "text": "KDV ekle (net → brüt) veya KDV çıkar (brüt → net)." },
+      { "name": "Tutar girin", "text": "Moda bağlı olarak net veya brüt tutar." },
+      { "name": "Oranı ayarlayın", "text": "Büyük ülkeler için ön ayar kullanın veya özel oran yazın." },
+      { "name": "Üç değeri de okuyun", "text": "Net, KDV, brüt. Fatura satır öğeleri ve fiyat teklifi için yararlı." }
+    ]
+  },
+  "faq": [
+    { "q": "Türkiye'de standart KDV oranı nedir?", "a": "Standart oran %20'dir (Temmuz 2023'ten itibaren). Bazı temel gıdalar ve kitaplar gibi mallar için %10 ve %1 indirimli oranlar vardır. Tam tablo Gelir İdaresi'nin web sitesinde." },
+    { "q": "Neden 'çıkar %10' 1,1'e bölmekten farklı cevap veriyor?", "a": "%10 çıkarmak 1,10'a bölmektir. %10 çıkarmak (örn. 110 − %10 = 99) matematiksel olarak yanlıştır çünkü uygulanan %10 brüte (110) değil, nete (100) uygulanmıştı." },
+    { "q": "Çok aşamalı KDV hesaplayabilir miyim?", "a": "Bu araçta hayır — tek-oran senaryolarını işliyoruz. Tersine yük veya sıfır oranlı işlemler içeren B2B için bir muhasebeci veya özel vergi yazılımına danışın." },
+    { "q": "En düşük KDV oranı nedir?", "a": "Bazı ülkelerin temel mallar üzerinde %0 oranı vardır (UK çocuk kıyafetinde indirimli oran, Japonya kira ve eğitim ücretinde %0). İşleminiz için gerçek geçerli oranı kullanın." },
+    { "q": "En yüksek KDV nedir?", "a": "Macaristan %27. Çoğu AB ülkesi %19-25. Türkiye %20. Japonya nispeten düşük %10." },
+    { "q": "ABD satış vergisi için çalışır mı?", "a": "Evet — birleşik eyalet + yerel oranı girin. ABD satış vergisi hesaplayıcı açısından tek-aşamalı KDV gibi davranır. Tipik ABD listeleme → checkout akışı için 'ekle' modunu kullanın." },
+    { "q": "KDV'den muaf ürünler ne olacak?", "a": "Tamamen muaf ürünler için %0 oranı kullanın. Not: 'muaf' ve 'sıfır-oranlı' bazı yargı bölgelerinde yasal farklılıklara sahiptir, ancak aynı hesaplayıcı sonucu verir." },
+    { "q": "Veri tarayıcımdan ayrılıyor mu?", "a": "Hayır. Hesaplama yerel çalışır; sunucuya hiçbir şey gönderilmez." }
+  ]
+}

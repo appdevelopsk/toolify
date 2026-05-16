@@ -22,7 +22,7 @@ export const LOCALE_DEFS = [
   { code: "id", name: "Indonesian", native: "Bahasa Indonesia", dir: "ltr", active: true, promptsActive: false },
   { code: "th", name: "Thai", native: "ไทย", dir: "ltr", active: false, promptsActive: false },
   { code: "vi", name: "Vietnamese", native: "Tiếng Việt", dir: "ltr", active: true, promptsActive: false },
-  { code: "tr", name: "Turkish", native: "Türkçe", dir: "ltr", active: false, promptsActive: false },
+  { code: "tr", name: "Turkish", native: "Türkçe", dir: "ltr", active: true, promptsActive: false },
 ] as const;
 
 export const LOCALES = LOCALE_DEFS.filter((l) => l.active).map((l) => l.code);

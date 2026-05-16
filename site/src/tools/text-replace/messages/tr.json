@@ -1,0 +1,56 @@
+{
+  "title": "Metin Bul ve Değiştir (literal veya regex)",
+  "shortDescription": "Literal bul/değiştir veya tam regex ile metin değiştir. Büyük/küçük harf ve çok satırlı modu aç/kapat. Eşleşme sayısı canlı.",
+  "description": "Metni yapıştırın, bul ve değiştir dizelerini ayarlayın, isteğe bağlı regex / büyük-küçük harfe duyarsız / çok satırlı modu açın, değiştirilmiş metni ve eşleşme sayısını anında görün.",
+  "metaDescription": "Metin için ücretsiz bul-ve-değiştir aracı. Literal veya regex modu, büyük-küçük harf seçeneği, canlı eşleşme sayısı. Sadece tarayıcıda.",
+  "keywords": ["bul ve değiştir", "metin değiştir", "regex değiştir", "ara değiştir", "toplu metin düzenle"],
+  "input": { "text": "Kaynak metin", "find": "Bul", "replace": "Şununla değiştir" },
+  "opt": { "regex": "Regex", "caseSensitive": "Büyük/küçük harf duyarlı", "multiline": "Çok satırlı ^ / $" },
+  "output": { "result": "Sonuç", "matches": "{n} eşleşme" },
+  "error": "Regex hatası",
+  "copy": "Kopyala",
+  "copied": "Kopyalandı",
+  "article": {
+    "sections": [
+      {
+        "heading": "İki mod — literal ve regex",
+        "paragraphs": [
+          "Literal (regex kapalı): bul dizesi tam olarak eşleştirilir. '.' ve '*' gibi özel karakterler kendileri olarak ele alınır. Günlük metin düzenlemelerinin çoğu için güvenli varsayılan.",
+          "Regex (regex açık): bul dizesi JavaScript düzenli ifadesi olarak yorumlanır. Bunu desenler için kullanın — örneğin e-posta bulmak için /\\b\\w+@\\w+\\.\\w+\\b/ veya satır başındaki etiketleri eşleştirmek için (^.+:). Çok satırlı modda ^ ve $ satır sonlarında eşleşir."
+        ]
+      },
+      {
+        "heading": "Değiştirme dizesinde özel sözdizimi",
+        "paragraphs": [
+          "Regex modunda değiştirme dizesi geri referansları destekler: capture grupları için $1, $2 vb.; tüm eşleşme için $&; literal dolar işareti için $$. Örnek: bul /(\\d{3})-(\\d{3})-(\\d{4})/ değiştir ($1) $2-$3 ABD telefon numaralarını yeniden biçimlendirir.",
+          "Literal modda değiştirme dizesi olduğu gibi alınır — geri referans yok, özel işlem yok. Yazdığınız şey eklenir."
+        ]
+      },
+      {
+        "heading": "Yaygın kullanımlar",
+        "paragraphs": [
+          "Toplu düzenleme: yazımı standartlaştırın (UK stili için 'color' → 'colour'), ürün adlarını güncelleyin, uzun belgelerdeki yazım hatalarını düzeltin.",
+          "Kod refactoring: bir kod yapıştırması içinde değişken adını değiştirin (büyük-küçük harf duyarlı kullanın). Birden çok dosyada gerçek refactoring için IDE daha iyidir.",
+          "Veri temizliği: CSV'de tabları virgüllere çevirin, bir ayraçı başkasıyla değiştirin, boşlukları normalize edin.",
+          "Markdown'dan düz metne: regex ile Markdown sözdizimini sıyırın (örn. /\\*\\*([^*]+)\\*\\*/g → $1 ile bold işaretçilerini kaldırın)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Metninizi yapıştırın", "text": "Veya doğrudan yazın." },
+      { "name": "Bul ve değiştir girin", "text": "Ne arayacağınızı bul, ne yerine koyacağınızı değiştir." },
+      { "name": "Seçenekleri ihtiyacınıza göre açın", "text": "Desenler için regex; bulanık eşleşmeler için büyük-küçük harfe duyarsız; satır çapa desenleri için çok satırlı." },
+      { "name": "Sonucu okuyun ve kopyalayın", "text": "Eşleşme sayısı kaç değiştirme yapıldığını gösterir." }
+    ]
+  },
+  "faq": [
+    { "q": "Bu, regex tester'dan nasıl farklı?", "a": "Bu, değiştirme işlemine odaklanır. Regex tester eşleşmeleri ve capture gruplarını incelemeye odaklanır. Göreve uygun olanı kullanın." },
+    { "q": "Bul/değiştirde Unicode kullanabilir miyim?", "a": "Evet. Hem bul hem değiştir dizeleri emoji ve CJK karakterleri dahil tam UTF-8'i destekler." },
+    { "q": "Neden bul/değiştirim çalışmadı?", "a": "En yaygın: büyük-küçük harf duyarlılığı. 'Merhaba', büyük-küçük harfe duyarsız modu açmadıkça 'merhaba' ile eşleşmez. Veya literal modda yanlış anlaşılan özel regex karakterleri." },
+    { "q": "Bu biçimlendirmeyi korur mu?", "a": "Eşleşmeler dışında metni aynen korur. Metniniz tab veya belirli yeni satırlar içeriyorsa, korunurlar." },
+    { "q": "Değiştirmeyi geri alabilir miyim?", "a": "Orijinal giriş alanında. Oradan yeniden yapıştırın veya tarayıcının geri alma davranışını kullanın. Yerleşik geri alma yok." },
+    { "q": "Metnim ne kadar büyük olabilir?", "a": "Birkaç megabaytlık metin çalışır, ancak desen kötü yazılmışsa büyük girdilerde regex yavaş olabilir." },
+    { "q": "Regex öğrenmenin iyi bir yolu nedir?", "a": "Literal modla başlayın, desenler gerektiğinde regex'e geçin. 'JavaScript regex cheat sheet' arayın veya MDN'in RegExp dokümantasyonuna bakın." },
+    { "q": "Veri tarayıcımdan ayrılıyor mu?", "a": "Hayır. Tüm bul/değiştir yerel olarak çalışır." }
+  ]
+}

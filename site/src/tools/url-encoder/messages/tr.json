@@ -1,0 +1,54 @@
+{
+  "title": "URL Encoder / Decoder (percent-encoding, UTF-8 güvenli)",
+  "shortDescription": "Herhangi bir metni URL percent-encoding'e kodlayın veya kodlanmış dizeyi geri çözün. UTF-8 güvenli — emoji ve CJK karakterleri doğru işler.",
+  "description": "URL'lere, sorgu parametrelerine veya form verilerine metni güvenle gömmek için kullanın. Boşlukları, özel karakterleri ve Unicode'u (CJK ve emoji dahil) doğru işler.",
+  "metaDescription": "Ücretsiz URL kodlayıcı ve çözücü. Metni percent-encoding'e dönüştür veya kodlanmış dizeyi düz metne geri çöz. UTF-8 güvenli, tüm Unicode'u işler.",
+  "keywords": ["URL kodlayıcı", "URL çözücü", "percent encoding", "URI encode", "decodeURIComponent"],
+  "input": { "plain": "Düz metin", "encoded": "Kodlanmış URL dizesi" },
+  "output": { "encoded": "Kodlanmış sonuç", "plain": "Çözülmüş sonuç" },
+  "mode": { "encode": "Kodla", "decode": "Çöz" },
+  "copy": "Kopyala",
+  "copied": "Kopyalandı",
+  "error": "Çözme hatası",
+  "article": {
+    "sections": [
+      {
+        "heading": "URL kodlaması nedir",
+        "paragraphs": [
+          "URL'ler küçük bir ASCII karakter setiyle sınırlıdır. Başka herhangi bir şeyi eklemek için — boşluklar, aksanlar, Çince karakterler, emoji, özel semboller — her güvensiz baytı %XX ile değiştirirsiniz, burada XX onun onaltılık byte değeridir. Boşluk %20 olur, slash %2F, Türkçe 'ğ' karakteri %C4%9F olur (UTF-8 byte'ları percent-encoded).",
+          "Bu hesaplayıcı, tarayıcının yerleşik encodeURIComponent ve decodeURIComponent'ını kullanır. Rezerve edilmemiş karakter (harfler, rakamlar, -._~) dışındaki her şeyi kodlar, bu da sorgu parametreleri ve form verisi için doğru davranıştır."
+        ]
+      },
+      {
+        "heading": "encodeURI vs encodeURIComponent",
+        "paragraphs": [
+          "JavaScript'te iki kodlayıcı var. encodeURI URL yapı karakterlerini (/ ? & # = + vb.) olduğu gibi bırakır — tam bir URL'de kullanın. encodeURIComponent bunların hepsini kaçırır — sorgu parametresi içindeki değerde kullanın.",
+          "Bu araç encodeURIComponent kullanır, keyfi metni URL'ye gömmek için daha güvenli seçim. Yapısını korumak istediğiniz tam bir URL'niz varsa, yalnızca gereken kısımları kodlayın."
+        ]
+      },
+      {
+        "heading": "Yaygın tuzaklar",
+        "paragraphs": [
+          "URL'lerde artı işareti. Bazı sunucular '+' karakterini boşluk olarak değerlendirir (form kodlamasından miras). encodeURIComponent '+'ı olduğu gibi bırakır, ancak bir sunucu onu boşluğa çözebilir. Güvende olmak için, veri olarak gönderiyorsanız '+'ı %2B ile değiştirin.",
+          "Çift kodlama. Zaten kodlanmış bir dizeyi kodlamak başka bir katman ekler (% %25 olur, böylece '%20' '%2520' olur). Tekrar kodlamadan önce girdinin zaten kodlanmış olup olmadığını her zaman kontrol edin.",
+          "Uzunluk artışı. UTF-8 çok-byte karakterleri her biri için 3-4 percent-koduna genişler. Türkçe ş, ğ, ı gibi karakterleri olan 100 karakterlik bir dize kolayca 200+ karakterlik URL'ye dönüşür."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Modu seçin", "text": "Düz metni URL-güvenli forma kodlayın veya URL-encoded dizeyi düz metne geri çözün." },
+      { "name": "Girdinizi yapıştırın", "text": "Kodlama için düz metin, çözme için percent-encoded dize." },
+      { "name": "Sonucu kopyalayın", "text": "Çıktı aşağıda görünür; kullanmak için 'Kopyala'ya tıklayın." }
+    ]
+  },
+  "faq": [
+    { "q": "'%20' boşluğa neden çözülmüyor?", "a": "Çözmesi gerekir — ancak URL'de '+' varsa o da boşluğu temsil edebilir (eski form kodlama). Gerekirse önce + yerine boşluk koyun." },
+    { "q": "Emoji'yi işliyor mu?", "a": "Evet. Emoji'ler UTF-8 byte dizileri olarak kodlanır (genellikle emoji başına 4 byte / 4 percent-kod)." },
+    { "q": "URL kodlaması ile HTML kodlaması arasındaki fark nedir?", "a": "URL kodlaması URL bağlamları için % notasyonu kullanır. HTML kodlaması HTML için &lt; &gt; vb. kullanır. Farklı bağlamlar, farklı kurallar." },
+    { "q": "Ne zaman kodlamalı ne zaman kodlamamalıyım?", "a": "URL sorgu parametresine, kullanıcı girdisi içeren path segmentine veya form verisine giden her değeri kodlayın. Zaten oluşturulmuş bir URL'yi kodlamayın — bu çift kodlamaya yol açar." },
+    { "q": "Çözülmüş metnimde '%' neden hataya neden oluyor?", "a": "Geçerli hex olmayan bir şeyle takip edilen yalın bir '%' geçersiz percent-encoding'dir. URL'ye dahil etmeden önce '%' karakterini '%25'e kodlayın." },
+    { "q": "Tarayıcı bunu otomatik mi yapıyor?", "a": "Evet — URL veya URLSearchParams API'leri aracılığıyla URL oluştururken. Bu araç, geçici kullanım için aynı mantığı açığa çıkarır." },
+    { "q": "Hangi karakterler 'güvenli' ve kodlama gerektirmez?", "a": "Harfler (A-Z, a-z), rakamlar (0-9) ve bunlar: - . _ ~ . Diğer her şey encodeURIComponent tarafından percent-encoded olur." },
+    { "q": "Veri tarayıcımdan ayrılıyor mu?", "a": "Hayır. Kodlama ve çözme yerel çalışır." }
+  ]
+}
