@@ -20,7 +20,7 @@ export const LOCALE_DEFS = [
   { code: "ar", name: "Arabic", native: "العربية", dir: "rtl", active: true, promptsActive: false },
   { code: "hi", name: "Hindi", native: "हिन्दी", dir: "ltr", active: true, promptsActive: false },
   { code: "id", name: "Indonesian", native: "Bahasa Indonesia", dir: "ltr", active: true, promptsActive: false },
-  { code: "th", name: "Thai", native: "ไทย", dir: "ltr", active: false, promptsActive: false },
+  { code: "th", name: "Thai", native: "ไทย", dir: "ltr", active: true, promptsActive: false },
   { code: "vi", name: "Vietnamese", native: "Tiếng Việt", dir: "ltr", active: true, promptsActive: false },
   { code: "tr", name: "Turkish", native: "Türkçe", dir: "ltr", active: true, promptsActive: false },
 ] as const;

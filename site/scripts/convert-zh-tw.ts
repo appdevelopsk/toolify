@@ -1,7 +1,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";
-// @ts-expect-error - opencc-js has no types
+// @ts-ignore - opencc-js has no types
 import { Converter } from "opencc-js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
