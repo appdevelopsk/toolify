@@ -17,7 +17,7 @@ export const LOCALE_DEFS = [
   { code: "de", name: "German", native: "Deutsch", dir: "ltr", active: true, promptsActive: false },
   { code: "it", name: "Italian", native: "Italiano", dir: "ltr", active: true, promptsActive: false },
   { code: "ru", name: "Russian", native: "Русский", dir: "ltr", active: true, promptsActive: false },
-  { code: "ar", name: "Arabic", native: "العربية", dir: "rtl", active: false, promptsActive: false },
+  { code: "ar", name: "Arabic", native: "العربية", dir: "rtl", active: true, promptsActive: false },
   { code: "hi", name: "Hindi", native: "हिन्दी", dir: "ltr", active: true, promptsActive: false },
   { code: "id", name: "Indonesian", native: "Bahasa Indonesia", dir: "ltr", active: true, promptsActive: false },
   { code: "th", name: "Thai", native: "ไทย", dir: "ltr", active: false, promptsActive: false },
