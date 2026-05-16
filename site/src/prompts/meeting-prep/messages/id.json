@@ -1,0 +1,82 @@
+{
+  "title": "Prompt persiapan meeting — agenda, keputusan, cek async-atau-meeting",
+  "shortDescription": "Hasilkan agenda meeting yang tajam dari catatan kasar, termasuk anggaran waktu, keputusan yang harus dibuat, dan cek 'haruskah ini async' di bagian atas.",
+  "description": "Sebagian besar agenda meeting yang dihasilkan AI adalah template hambar yang tidak akan benar-benar mendorong meeting produktif. Prompt ini memaksa model untuk memberi label keputusan vs diskusi, mengalokasikan waktu per item, dan menantang apakah meeting perlu terjadi sama sekali.",
+  "metaDescription": "Prompt persiapan meeting gratis. Membangun agenda dengan anggaran waktu, keputusan bernama, dan cek async-vs-meeting. Bekerja dengan Claude, ChatGPT.",
+  "keywords": ["prompt persiapan meeting", "generator agenda AI", "prompt agenda meeting", "prompt meeting keputusan", "agenda stand up"],
+  "promptText": "Bangun agenda meeting dari catatan kasar di bawah ini.\n\nKonteks meeting:\n- Durasi: {N menit}\n- Peserta: {nama + peran}\n- Pengambil keputusan di ruangan: {siapa yang sebenarnya dapat menyetujui hasil}\n- Saluran async yang tersedia: {Slack / Linear / Notion / dll.}\n\nUntuk setiap item yang saya daftarkan, keluarkan:\n  - Item: <pernyataan ulang yang tajam>\n  - Tipe: DECISION | DISCUSSION | INFO_SHARE\n  - Waktu: <menit>\n  - Keputusan yang dibutuhkan (jika DECISION): <pertanyaan ya/tidak persis atau set opsi untuk dipilih>\n  - Pre-read: <link atau nama dokumen yang harus dibaca peserta terlebih dahulu>\n  - Owner: <siapa yang mendorong item ini>\n\nLalu di atas agenda, tambahkan bagian SHOULD THIS BE A MEETING? yang:\n  1. Mendaftar item yang dapat ditangani async (INFO_SHARE murni).\n  2. Mengidentifikasi pengambil keputusan yang hilang — jika tidak ada di ruangan yang dapat menyetujui item DECISION, tandai.\n  3. Merekomendasikan perubahan agenda: 'hapus item 2-3 (async); jadwal ulang dengan [orang yang hilang] untuk item 4'.\n\nAturan ketat:\n- Total waktu di seluruh item harus muat dalam durasi meeting, dengan 5 menit dicadangkan untuk buffer.\n- Setiap item DECISION harus memiliki ya/tidak atau pilihan opsi eksplisit. 'Diskusikan roadmap' bukan keputusan; 'Setujui roadmap Q2 atau kembalikan untuk revisi' adalah keputusan.\n- Item INFO_SHARE mendapat maksimal 5 menit masing-masing — lebih dari itu adalah diskusi yang menyamar.\n- Jika setengah atau lebih item adalah INFO_SHARE, rekomendasikan membatalkan meeting dan mengirim update tertulis.\n\nCatatan kasar:\n\n[tempel bullet point atau pemikiran Anda di sini]",
+  "useCase": {
+    "headline": "Kapan menggunakan ini",
+    "items": [
+      "Sebelum meeting berulang apa pun — tempel agenda tetap dan item yang baru ditambahkan/dihapus, dapatkan versi yang lebih ringkas.",
+      "Ketika meeting dijadwalkan oleh orang lain dan Anda ingin memperbaikinya — hasilkan versi yang lebih baik, bagikan kembali.",
+      "Sesi perencanaan kuartalan — pemisahan keputusan-vs-diskusi mencegah meeting menjadi monolog 90 menit."
+    ]
+  },
+  "modelTips": {
+    "claude": "Kuat pada tantangan 'haruskah ini async'. Akan merekomendasikan pembatalan meeting ketika diperlukan, yang model lain ragu untuk lakukan.",
+    "chatgpt": "Bekerja tetapi cenderung mempertahankan semua item di agenda. Tambahkan 'bersedia merekomendasikan pembatalan meeting jika sesuai' untuk eksplisit.",
+    "any": "Aturan 'keputusan yang dibutuhkan' adalah pengungkitnya. Jika Anda tidak dapat mengisinya untuk sebuah item, item tersebut mungkin belum siap untuk meeting."
+  },
+  "exampleHeading": "Contoh: team sync 30 menit dari catatan kasar",
+  "exampleOutput": "SHOULD THIS BE A MEETING?\n  - Item 3 & 5 (status update) harus dipindahkan ke update tertulis; menghemat 12 menit.\n  - Item 4 (persetujuan budget Q2) memerlukan CFO hadir — mereka tidak ada di undangan. Entah jadwal ulang atau pisahkan: tangani item 1-2 hari ini, 4 dengan CFO minggu depan.\n  - Rekomendasi: persingkat menjadi 15 menit, agenda di bawah.\n\nAGENDA (15 menit, buffer 5 menit)\n\n1. Setujui hiring backfill untuk peran Sarah (5 menit) — DECISION\n   Keputusan yang dibutuhkan: Setujui posting eksternal sekarang, atau tunggu 2 minggu untuk kandidat internal Q?\n   Owner: Engineering Manager. Pre-read: dokumen spec backfill (tertaut).\n\n2. Selesaikan kepemilikan API antara platform dan growth (8 menit) — DISCUSSION\n   Owner: VP Eng. Pre-read: matriks kepemilikan v3.\n   Catatan: ini membutuhkan kedua manajer di ruangan; keduanya telah dikonfirmasi.\n\n3. (dihapus — lihat atas) Review metrik Q1 → dipindahkan ke update tertulis.\n4. (dijadwal ulang — lihat atas) Persetujuan budget Q2 → jadwal ulang dengan CFO.\n5. (dihapus — lihat atas) Demo vendor tooling → video async, tonton sendiri.\n\nBuffer: 2 menit untuk parking-lot atau melampaui waktu.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Mengapa sebagian besar agenda tidak membantu meeting menjadi produktif",
+        "paragraphs": [
+          "Agenda default mendaftar topik tanpa komitmen. 'Diskusikan roadmap' mengundang diskusi tak terbatas; 'update status roadmap' mengundang monolog; tidak ada yang menghasilkan keputusan. Hasilnya: meeting berakhir dengan pertanyaan yang sama seperti saat dimulai, dan meeting berikutnya dijadwalkan untuk mengatasinya.",
+          "Pelabelan DECISION/DISCUSSION/INFO_SHARE melakukan sebagian besar pekerjaan dalam prompt ini. Setelah Anda menandai item sebagai DECISION, Anda harus mengartikulasikan ya/tidak atau pilihan opsinya. Jika tidak bisa, item belum siap dan harus dihapus (kembali ke fase diskusi async terlebih dahulu)."
+        ]
+      },
+      {
+        "heading": "Cek batalkan-meeting adalah baris dengan pengungkit tertinggi",
+        "paragraphs": [
+          "Alat AI jarang memberitahu Anda untuk membatalkan meeting yang diminta untuk direncanakan. Prompt ini secara eksplisit meminta model untuk merekomendasikan pembatalan ketika diperlukan, yang memungkinkan Anda menghindari percakapan canggung. 'Saya menjalankan agenda melalui prompt ini dan menyarankan kita batalkan — berikut update async sebagai gantinya' adalah pesan yang jauh lebih mudah daripada 'menurut saya kita harus membatalkan'.",
+          "Gunakan pada meeting berulang setiap 2-3 bulan. Kalender mengumpulkan kotoran; prompt ini adalah pembersihan terstruktur."
+        ]
+      },
+      {
+        "heading": "Pre-read membuat meeting keputusan 3x lebih cepat",
+        "paragraphs": [
+          "Setengah dari setiap meeting keputusan adalah orang-orang menyamakan diri dengan konteks. Jika pre-read satu halaman keluar 24 jam sebelumnya dan orang-orang benar-benar membacanya, meeting itu sendiri bisa 10 menit — cukup lama untuk memunculkan kekhawatiran dan memutuskan, cukup pendek sehingga tidak ada yang melamun.",
+          "Field 'pre-read' di prompt ini memaksa Anda mengidentifikasi konteks apa yang dibutuhkan peserta. Jika Anda tidak dapat menyebutkan dokumen, meeting mungkin belum siap: entah Anda belum menuliskan apa yang Anda usulkan, atau tidak ada hal yang jelas untuk direspons."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apakah bekerja untuk stand-up / sync harian?",
+      "a": "Sebagian — stand-up sebagian besar INFO_SHARE secara desain. Prompt akan merekomendasikan membatalkannya, yang tidak selalu yang Anda inginkan. Gunakan ini untuk meeting 30+ menit."
+    },
+    {
+      "q": "Bagaimana jika catatan kasar berantakan dan kontradiktif?",
+      "a": "Model akan mencoba merapikannya. Jika menghasilkan item yang tidak sesuai dengan maksud Anda, balas dengan 'item 3 sebenarnya tentang X, bukan Y'. Setelah satu koreksi biasanya menjaga sisanya tetap selaras."
+    },
+    {
+      "q": "Bagaimana saya membagikan output kembali ke peserta?",
+      "a": "Copy-paste bagian agenda (lewati analisis 'haruskah ini meeting?' jika peserta mungkin merasa lancang). Atau bagikan semuanya sebagai pesan transparan 'inilah cara saya memangkas agenda'."
+    },
+    {
+      "q": "Bisakah saya menggunakan ini untuk 1-on-1?",
+      "a": "Ya, dengan sedikit perubahan — ubah DECISION/DISCUSSION/INFO_SHARE menjadi TOPIC/FEEDBACK/CHECK_IN. Struktur anggaran waktu dan pre-read tetap membantu."
+    },
+    {
+      "q": "Bagaimana dengan parking-lot untuk hal-hal yang muncul langsung?",
+      "a": "Buffer 5 menit memainkan peran ini. Jika diskusi konsisten melebihi, prompt juga berfungsi sebagai diagnostik — entah estimasi waktu terlalu agresif, atau item lebih besar dari yang Anda scope."
+    },
+    {
+      "q": "Mengapa membatasi INFO_SHARE menjadi 5 menit?",
+      "a": "Karena apa pun yang lebih panjang adalah diskusi (seseorang memiliki pertanyaan) atau presentasi (yang bisa berupa video rekaman). Batas 5 menit memaksa Anda untuk menghapus item atau memberi label yang benar."
+    },
+    {
+      "q": "Apakah terintegrasi dengan alat kalender?",
+      "a": "Tidak secara langsung. Output adalah markdown polos; tempel ke deskripsi undangan kalender, Notion, Linear, atau di mana pun tim Anda mencatat catatan meeting. Beberapa tim menggunakan Granola/Krisp untuk transkripsi langsung, yang cocok dipasangkan."
+    },
+    {
+      "q": "Bagaimana dengan meeting brainstorming?",
+      "a": "Tandai sebagai DISCUSSION-saja dengan catatan 'tidak ada keputusan hari ini, keputusan di meeting berikutnya'. Cek 'haruskah ini async' mungkin merekomendasikan board Miro / Figjam sebagai gantinya — sering lebih baik untuk pemikiran divergen."
+    }
+  ]
+}

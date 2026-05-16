@@ -1,0 +1,88 @@
+{
+  "title": "Senior Code-Reviewer Prompt — findet Bugs, Performance-Probleme, Edge",
+  "shortDescription": "Ein wiederverwendbarer Prompt für Claude/ChatGPT/Cursor, der das Modell in einen Senior-Reviewer verwandelt, der sich auf Korrektheit, Performance und Edge Cases konzentriert — nicht auf Kleinigkeiten.",
+  "description": "Die meisten LLM-Code-Reviews ertränken dich in Stil-Kleinigkeiten und verfehlen die eigentlichen Bugs. Dieser Prompt zwingt das Modell, nach Schweregrad zu triagieren, nur die Dinge zu markieren, die ein strenges Tech-Lead-Review überstehen würden, und die exakten Zeilennummern zu zitieren, über die es sich Sorgen macht, damit du jeden Befund schnell verifizieren kannst.",
+  "metaDescription": "Kostenloser Senior Code-Review-Prompt für Claude, ChatGPT und Cursor. Triagiert nach Schweregrad, findet echte Bugs und Performance-Probleme, ignoriert",
+  "keywords": [
+    "Code Review Prompt",
+    "Claude Code Review",
+    "ChatGPT Code Review",
+    "KI Code Review",
+    "Senior Code Reviewer Prompt"
+  ],
+  "promptText": "Du bist ein Senior Staff Engineer, der den untenstehenden Diff reviewt. Dein Ziel ist es, das zu finden, was tatsächlich ein strenges Tech-Lead-Review überstehen würde — nicht Lint-Rauschen.\n\nReview-Regeln:\n1. Triagiere jeden Befund in eine dieser Kategorien: BLOCKER, MAJOR, MINOR, NIT.\n2. Gib standardmäßig nur BLOCKER und MAJOR aus. Unterdrücke MINOR und NIT, es sei denn, ich frage explizit danach.\n3. Zitiere für jeden Befund den exakten Dateipfad + Zeilennummernbereich. Erkläre dann (a) was falsch ist, (b) den Fehlermodus in Produktion, (c) den vorgeschlagenen Fix.\n4. Wenn du weniger als 80% sicher bist, dass das Problem real ist, markiere den Befund [low-confidence] und erkläre, welcher zusätzliche Kontext es dir erlauben würde, ihn zu verifizieren.\n5. Beende mit einer einabsätzigen Gesamtzusammenfassung: ship-it / ship-with-followups / do-not-ship.\n\nKommentiere NICHT zu:\n- Namens-Präferenzen, es sei denn, sie führen aktiv in die Irre.\n- Formatierung/Leerzeichen, wenn ein Formatter im Einsatz ist.\n- Hypothetische Optimierungen, die du nicht an einen gemessenen Hot Path knüpfen kannst.\n- Muster, die der Codebase bereits anderswo verwendet (das ist stilistische Konsistenz, kein Bug).\n\nZu reviewender Diff:\n\n[füge hier deinen unified diff oder Dateiinhalt ein]",
+  "useCase": {
+    "headline": "Wann du das verwenden solltest",
+    "items": [
+      "Vor dem Mergen eines nicht-trivialen PR — lass den Diff durch diesen Prompt laufen, um alles aufzudecken, wofür du ein zweites Augenpaar haben möchtest.",
+      "Selbst-Review deiner eigenen Arbeit — nützlich vor der Anforderung eines menschlichen Reviews, fängt die peinlichen Sachen ab.",
+      "Onboarding in eine unbekannte Codebase — füge eine Funktion plus den Prompt ein, um ihre Risiken zu verstehen, bevor du sie änderst."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude (Sonnet 4.6 oder Opus 4.7) liefert normalerweise die durchdachteste Triage. Füge den Diff in einen Codeblock ein; lange Kontexte handhaben PR-weite Reviews gut.",
+    "chatgpt": "GPT-5 / GPT-4o neigen dazu, aggressiver beim Markieren von Stil zu sein. Die obige Regel „MINOR und NIT unterdrücken“ hält es auf Kurs.",
+    "cursor": "In Cursor speichere das als .cursorrules-Eintrag oder füge es in den Composer ein. Es passt gut zu @file-Referenzen."
+  },
+  "exampleHeading": "Beispielausgabe",
+  "exampleOutput": "BLOCKER: src/auth/session.ts:42-58\n  - what: Session-Token-Vergleich verwendet ===, keinen konstanzeitlichen Vergleich.\n  - failure mode: Timing-Angriff-leakbar bei Remote-Login.\n  - fix: Wechsle zu crypto.timingSafeEqual() über das Buffer-Paar.\n\nMAJOR: src/auth/session.ts:73 [low-confidence]\n  - what: Refresh-Token in localStorage geschrieben.\n  - failure mode: XSS-Exfiltrationsrisiko, wenn unsaniertes Nutzerinhalt die Seite erreicht.\n  - fix: Verschiebe zu httpOnly-Cookie, wenn der Client es nicht lesen muss. (low-confidence: Ich sehe nicht, wie das Frontend dieses Token konsumiert.)\n\nSummary: ship-with-followups. Der konstantzeitliche Fix ist vor dem Merge erforderlich; der Speicherort ist ein Follow-up-Issue, das unabhängig von diesem PR eröffnet werden sollte.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Warum die meisten KI-Code-Reviews nutzlos sind",
+        "paragraphs": [
+          "Standardmäßig verfallen Sprachmodelle bei Code-Review-Aufgaben in eine „hilfreiche Junior“-Persona. Das bedeutet, sie überkommentieren bei der Benennung, schlagen „Clean Code“-Umschreibungen für Code vor, der in Ordnung ist, und vergraben den einen tatsächlichen Bug in einer Wand von Vorschlägen, die du ignorieren musst. Das Signal-Rausch-Verhältnis tötet den Workflow — die meisten Teams hören innerhalb einer Woche auf, KI fürs Review zu verwenden.",
+          "Der obige Prompt dreht drei Dinge um: Er verlangt eine Schweregrad-Triage, sodass triviale Probleme explizit unterdrückt werden, er fordert Zeilennummern, damit jeder Befund in Sekunden verifizierbar ist, und er erzwingt eine Konfidenz-Markierung, damit du weißt, welchen Befunden du vertrauen kannst, ohne die ganze Datei zu lesen."
+        ]
+      },
+      {
+        "heading": "Kombination mit deiner CI",
+        "paragraphs": [
+          "Lass diesen Prompt als „Zweitmeinung“-Schritt in deinem PR-Workflow laufen — nicht als Gating-Check. Modelle halluzinieren immer noch, besonders bei Datei-übergreifenden Invarianten und bei Code, der von Framework-Konventionen abhängt, die du nicht eingefügt hast. Verwende die Ausgabe als Liste von Dingen zur Verifizierung, nicht als Liste von Problemen, die mechanisch zu beheben sind.",
+          "Wenn du es in CI haben möchtest, gib die Befunde als JSON aus (passe den Prompt an: „gib ein JSON-Array mit den Feldern severity, path, lineStart, lineEnd, what, fix, confidence zurück“). Poste dann die BLOCKER/MAJOR-Befunde im PR als einzelnen Kommentar mit einem klaren „KI-Assistent — vor Aktion verifizieren“-Header."
+        ]
+      },
+      {
+        "heading": "Anpassung des Prompts an dein Team",
+        "paragraphs": [
+          "Füge einen Abschnitt „Codebase-Kontext“ über dem Diff hinzu — füge 5-10 Zeilen ein, die deinen Stack, deine Test-Konventionen und alle nicht offensichtlichen Invarianten beschreiben (z.B. „alle DB-Writes gehen durch src/db/withTx, niemals Raw-Client“). Modelle übersehen sonst codebase-spezifische Konventionen.",
+          "Wenn dein Team bekannte Schwachstellen hat (Race Conditions in einem Job-Runner, N+1-Queries in einem bestimmten Service), füge eine Zeile „Achte besonders auf: …“ hinzu. Das Modell gewichtet diese Bug-Klassen höher und ist eher geneigt, sie zu markieren, wenn sie vorhanden sind."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Kann ich das auf Closed-Source-Code verwenden?",
+      "a": "Ja, aber prüfe zuerst die Richtlinie deines Arbeitgebers. Der Prompt selbst ist harmlos; entscheidend ist, ob du deinen Code in das Modell einfügen darfst, das du verwendest. Claude- und ChatGPT-Enterprise-Pläne trainieren typischerweise nicht auf deinen Eingaben; Consumer-Pläne möglicherweise schon."
+    },
+    {
+      "q": "Warum MINOR- und NIT-Befunde unterdrücken?",
+      "a": "Weil sie in der Praxis Review-Müdigkeit erzeugen. Nach dem dritten „erwäge, das in eine Funktion zu extrahieren“-Hinweis hörst du auf zu lesen. Sie zu unterdrücken hält das BLOCKER/MAJOR-Signal scharf. Schalte sie mit „zeige alle Befunde einschließlich MINOR und NIT“ wieder ein, wenn du ein tiefes Review willst."
+    },
+    {
+      "q": "Wie lang kann der Diff sein?",
+      "a": "Claude Sonnet/Opus und GPT-5 handhaben 50K+ Tokens Diff bequem. Für sehr große PRs teile das Review nach Verzeichnis auf (review zuerst src/auth, dann src/billing), damit das Modell jedes Subsystem isoliert durchdenken kann."
+    },
+    {
+      "q": "Was ist mit sicherheitsspezifischen Reviews?",
+      "a": "Dieser Prompt fängt offensichtliche Krypto-/Storage-/SSRF-Probleme ab, ist aber kein Ersatz für ein Sicherheits-Review von Auth- oder Payment-Code. Für diese Pfade lass diesen Prompt und einen dedizierten Sicherheits-Review-Prompt laufen (wir werden einen separat veröffentlichen)."
+    },
+    {
+      "q": "Kann es über mehrere Dateien hinweg reviewen?",
+      "a": "Ja — füge den Diff ein, der alle Dateien enthält. Es handhabt Datei-übergreifende Invarianten innerhalb eines Einfügens vernünftig gut; für Probleme, die mehrere PRs umspannen (z.B. „ist das konsistent damit, wie Feature Flags anderswo gegated werden?“), füge ein paar repräsentative Ausschnitte aus diesen anderen Dateien hinzu."
+    },
+    {
+      "q": "Sollte ich den [low-confidence]-Befunden vertrauen?",
+      "a": "Behandle sie als „vor Aktion untersuchen“. Etwa die Hälfte der Low-Confidence-Befunde ist real, aber das Modell konnte es nicht verifizieren; die andere Hälfte sind Fehlinterpretationen. Die Markierung ist ehrliches Signal, kein Grund, den Befund zu ignorieren."
+    },
+    {
+      "q": "Warum soll ich den Fehlermodus angeben?",
+      "a": "Weil „das ist falsch“ nutzlos ist ohne „das würde bei Unicode-Eingabe abstürzen“. Die Fehlermodus-Zeile sagt dir die Priorität: Ein Fix, der einen 1-von-einer-Million-Edge-Case verhindert, ist anders als einer, der einen täglichen Prod-Incident verhindert."
+    },
+    {
+      "q": "Wie verwende ich das speziell in Cursor?",
+      "a": "Speichere den Prompt-Body in .cursorrules in deinem Repo-Root oder füge ihn mit @file-Referenzen für die zu reviewenden Dateien in den Composer ein. Cursor hält die Regeln für dieses Projekt aktiv."
+    }
+  ]
+}

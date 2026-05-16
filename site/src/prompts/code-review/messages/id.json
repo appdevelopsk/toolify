@@ -1,0 +1,88 @@
+{
+  "title": "Prompt code reviewer senior — menemukan bug, masalah performa, edge",
+  "shortDescription": "Prompt yang dapat digunakan kembali untuk Claude/ChatGPT/Cursor yang mengubah model menjadi reviewer senior yang fokus pada kebenaran, performa, dan edge case — bukan nitpick.",
+  "description": "Sebagian besar code review LLM menenggelamkan Anda dalam nit gaya dan melewatkan bug yang sebenarnya. Prompt ini memaksa model untuk melakukan triage berdasarkan severity, hanya menandai hal-hal yang akan bertahan dari review tech-lead yang ketat, dan mengutip nomor baris persis yang dikhawatirkannya sehingga Anda dapat memverifikasi setiap temuan dengan cepat.",
+  "metaDescription": "Prompt code-review senior gratis untuk Claude, ChatGPT, dan Cursor. Triage berdasarkan severity, menemukan bug nyata dan masalah performa, mengabaikan nitpick gaya.",
+  "keywords": [
+    "prompt code review",
+    "claude code review",
+    "chatgpt code review",
+    "ai code review",
+    "prompt code reviewer senior"
+  ],
+  "promptText": "Anda adalah staff engineer senior yang mereview diff di bawah ini. Tujuan Anda adalah menangkap apa yang akan bertahan dari review tech-lead yang ketat — bukan kebisingan lint.\n\nAturan review:\n1. Triage setiap temuan ke salah satu: BLOCKER, MAJOR, MINOR, NIT.\n2. Hanya keluarkan BLOCKER dan MAJOR secara default. Tekan MINOR dan NIT kecuali saya secara eksplisit memintanya.\n3. Untuk setiap temuan, kutip path file + rentang nomor baris persis. Lalu jelaskan (a) apa yang salah, (b) failure mode dalam produksi, (c) saran perbaikan.\n4. Jika Anda kurang dari 80% yakin masalahnya nyata, tandai temuan [low-confidence] dan jelaskan konteks tambahan apa yang akan memungkinkan Anda memverifikasinya.\n5. Akhiri dengan ringkasan satu paragraf keseluruhan: ship-it / ship-with-followups / do-not-ship.\n\nJANGAN komentari:\n- Preferensi penamaan kecuali secara aktif menyesatkan.\n- Formatting/whitespace jika formatter sedang digunakan.\n- Optimasi hipotetis yang tidak dapat Anda kaitkan dengan hot path yang terukur.\n- Pola yang sudah digunakan codebase di tempat lain (itu konsistensi gaya, bukan bug).\n\nDiff untuk direview:\n\n[tempel unified diff atau konten file Anda di sini]",
+  "useCase": {
+    "headline": "Kapan menggunakan ini",
+    "items": [
+      "Sebelum me-merge PR yang non-trivial — jalankan diff melalui prompt ini untuk memunculkan apa pun yang ingin Anda dapatkan pandangan kedua.",
+      "Self-review terhadap pekerjaan Anda sendiri — berguna sebelum meminta review manusia, menangkap hal-hal yang memalukan.",
+      "Onboarding ke codebase yang tidak dikenal — tempel sebuah fungsi plus prompt untuk memahami risikonya sebelum Anda mengubahnya."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude (Sonnet 4.6 atau Opus 4.7) biasanya memberikan triage yang paling cermat. Tempel diff dalam code block; konteks panjang menangani review seluruh-PR dengan baik.",
+    "chatgpt": "GPT-5 / GPT-4o cenderung lebih agresif dalam menandai gaya. Aturan 'tekan MINOR dan NIT' di atas membuatnya tetap pada jalurnya.",
+    "cursor": "Di Cursor, simpan ini sebagai entry .cursorrules atau tempel ke composer. Cocok dengan referensi @file."
+  },
+  "exampleHeading": "Contoh output",
+  "exampleOutput": "BLOCKER: src/auth/session.ts:42-58\n  - what: Perbandingan token sesi menggunakan ===, bukan constant-time compare.\n  - failure mode: Dapat di-leak melalui timing-attack pada remote login.\n  - fix: Beralih ke crypto.timingSafeEqual() di atas pasangan buffer.\n\nMAJOR: src/auth/session.ts:73 [low-confidence]\n  - what: Refresh token ditulis ke localStorage.\n  - failure mode: Risiko exfiltrasi XSS jika ada konten user yang tidak disanitasi mencapai halaman.\n  - fix: Pindahkan ke cookie httpOnly jika klien tidak perlu membacanya. (low-confidence: Saya tidak melihat bagaimana front-end mengonsumsi token ini.)\n\nSummary: ship-with-followups. Perbaikan constant-time diperlukan sebelum merge; lokasi penyimpanan adalah masalah follow-up yang layak dibuka terlepas dari PR ini.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Mengapa sebagian besar code review AI tidak berguna",
+        "paragraphs": [
+          "Secara default, language model masuk ke persona 'junior yang membantu' pada tugas code review. Itu berarti mereka terlalu banyak berkomentar tentang penamaan, menyarankan rewrite 'clean code' untuk kode yang sebenarnya baik-baik saja, dan mengubur satu bug nyata di tembok saran yang harus Anda abaikan. Rasio signal-to-noise mematikan alur kerja — sebagian besar tim berhenti menggunakan AI untuk review dalam seminggu.",
+          "Prompt di atas membalikkan tiga hal: meminta triage severity sehingga masalah trivial secara eksplisit ditekan, mengharuskan nomor baris sehingga setiap temuan dapat diverifikasi dalam hitungan detik, dan memaksa flag kepercayaan sehingga Anda tahu temuan mana yang dapat dipercaya tanpa membaca seluruh file."
+        ]
+      },
+      {
+        "heading": "Memasangkan ini dengan CI Anda",
+        "paragraphs": [
+          "Jalankan prompt ini sebagai langkah 'pendapat kedua' dalam alur PR Anda — bukan gating check. Model masih berhalusinasi, terutama pada invarian lintas file dan pada kode yang bergantung pada konvensi framework yang tidak Anda tempel. Gunakan output sebagai daftar hal yang harus diverifikasi, bukan sebagai daftar masalah yang harus diperbaiki secara mekanis.",
+          "Jika Anda menginginkannya di CI, keluarkan temuan sebagai JSON (modifikasi prompt: 'kembalikan array JSON dengan field severity, path, lineStart, lineEnd, what, fix, confidence'). Lalu posting yang BLOCKER/MAJOR ke PR sebagai satu komentar dengan header 'AI assist — verifikasi sebelum bertindak' yang jelas."
+        ]
+      },
+      {
+        "heading": "Mengadaptasi prompt untuk tim Anda",
+        "paragraphs": [
+          "Tambahkan bagian 'Konteks codebase' di atas diff — tempel 5-10 baris yang menjelaskan stack Anda, konvensi pengujian Anda, dan setiap invarian non-obvious (mis., 'semua tulisan DB melalui src/db/withTx, tidak pernah klien mentah'). Model melewatkan konvensi khusus codebase jika tidak.",
+          "Jika tim Anda memiliki titik lemah yang diketahui (race condition di job runner, query N+1 di service tertentu), tambahkan baris 'Perhatikan terutama: ...'. Model akan memberi bobot lebih tinggi pada kelas bug tersebut dan lebih mungkin menandainya saat ada."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Bisakah saya menggunakan ini pada kode closed-source?",
+      "a": "Ya, tetapi periksa kebijakan perusahaan Anda terlebih dahulu. Prompt itu sendiri tidak berbahaya; yang penting adalah apakah Anda diizinkan menempel kode Anda ke model yang Anda gunakan. Paket enterprise Claude dan ChatGPT biasanya tidak melatih pada input Anda; paket konsumen mungkin."
+    },
+    {
+      "q": "Mengapa menekan temuan MINOR dan NIT?",
+      "a": "Karena dalam praktiknya mereka menciptakan kelelahan review. Setelah catatan ketiga 'pertimbangkan untuk mengekstrak ini menjadi fungsi', Anda berhenti membaca. Menekan mereka menjaga sinyal BLOCKER/MAJOR tetap tajam. Aktifkan kembali dengan 'tampilkan semua temuan termasuk MINOR dan NIT' ketika Anda menginginkan review mendalam."
+    },
+    {
+      "q": "Berapa panjang diff yang bisa?",
+      "a": "Claude Sonnet/Opus dan GPT-5 menangani 50K+ token diff dengan nyaman. Untuk PR yang sangat besar, pisahkan review berdasarkan direktori (review src/auth dulu, lalu src/billing) sehingga model dapat memikirkan setiap subsistem secara terpisah."
+    },
+    {
+      "q": "Bagaimana dengan review khusus keamanan?",
+      "a": "Prompt ini menangkap masalah crypto/storage/SSRF yang jelas tetapi bukan pengganti review keamanan pada kode auth atau pembayaran. Untuk path tersebut, jalankan prompt ini dan prompt security-review khusus (akan kami publikasikan secara terpisah)."
+    },
+    {
+      "q": "Bisakah me-review di beberapa file?",
+      "a": "Ya — tempel diff yang mencakup semua file. Menangani invarian lintas file dengan cukup baik dalam satu tempelan; untuk masalah yang merentang beberapa PR (mis., 'apakah ini konsisten dengan bagaimana feature flag di-gate di tempat lain?'), sertakan beberapa kutipan representatif dari file lain tersebut."
+    },
+    {
+      "q": "Haruskah saya mempercayai temuan [low-confidence]?",
+      "a": "Perlakukan mereka sebagai 'selidiki sebelum bertindak'. Sekitar setengah dari temuan low-confidence adalah nyata tetapi model tidak dapat memverifikasi; setengah lainnya adalah salah baca. Flag adalah sinyal yang jujur, bukan alasan untuk mengabaikan temuan."
+    },
+    {
+      "q": "Mengapa ia ingin saya menentukan failure mode?",
+      "a": "Karena 'ini salah' tidak berguna tanpa 'ini akan crash pada input unicode'. Baris failure-mode memberitahu Anda prioritas: perbaikan yang mencegah edge case 1-banding-juta berbeda dari yang mencegah insiden produksi harian."
+    },
+    {
+      "q": "Bagaimana saya menggunakan ini di Cursor secara spesifik?",
+      "a": "Simpan body prompt ke .cursorrules di root repo Anda, atau tempel ke composer dengan referensi @file untuk file yang sedang direview. Cursor akan menjaga aturan tetap aktif untuk proyek itu."
+    }
+  ]
+}

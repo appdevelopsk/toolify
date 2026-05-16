@@ -1,0 +1,88 @@
+{
+  "title": "Prompt per code reviewer senior — trova bug, problemi di performance",
+  "shortDescription": "Un prompt riutilizzabile per Claude/ChatGPT/Cursor che trasforma il modello in un reviewer senior concentrato su correttezza, performance e casi limite — non su pignolerie.",
+  "description": "La maggior parte delle code review fatte dagli LLM ti sommergono di pignolerie stilistiche e mancano i bug reali. Questo prompt costringe il modello a fare triage per severità, segnalare solo le cose che sopravviverebbero a una review rigida da tech lead, e citare i numeri di riga esatti di cui è preoccupato così puoi verificare ogni finding velocemente.",
+  "metaDescription": "Prompt gratuito di code review senior per Claude, ChatGPT e Cursor. Fa triage per severità, trova bug reali e problemi di performance, ignora le pignolerie stilistiche.",
+  "keywords": [
+    "prompt code review",
+    "claude code review",
+    "chatgpt code review",
+    "ai code review",
+    "prompt code reviewer senior"
+  ],
+  "promptText": "Sei uno staff engineer senior che sta facendo la review del diff qui sotto. Il tuo obiettivo è cogliere ciò che sopravviverebbe davvero a una review rigida da tech lead — non rumore da linter.\n\nRegole di review:\n1. Fai triage di ogni finding in una di queste categorie: BLOCKER, MAJOR, MINOR, NIT.\n2. Emetti solo BLOCKER e MAJOR di default. Sopprimi MINOR e NIT a meno che non te li chieda esplicitamente.\n3. Per ogni finding, cita il percorso esatto del file + l'intervallo di numeri di riga. Poi spiega (a) cosa c'è di sbagliato, (b) la modalità di fallimento in produzione, (c) la correzione suggerita.\n4. Se sei sotto l'80% di confidenza che il problema sia reale, segnala il finding come [bassa-confidenza] e spiega quale contesto aggiuntivo ti permetterebbe di verificare.\n5. Termina con un sommario complessivo di un paragrafo: ship-it / ship-con-followup / non-shippare.\n\nNON commentare su:\n- Preferenze di naming a meno che non siano attivamente fuorvianti.\n- Formattazione/whitespace se è in uso un formatter.\n- Ottimizzazioni ipotetiche che non puoi legare a un hot path misurato.\n- Pattern che il codebase già usa altrove (è coerenza stilistica, non un bug).\n\nDiff da revisionare:\n\n[incolla qui il tuo unified diff o il contenuto del file]",
+  "useCase": {
+    "headline": "Quando usarlo",
+    "items": [
+      "Prima di mergiare una PR non triviale — fai passare il diff in questo prompt per far emergere qualunque cosa per cui vorresti un secondo paio d'occhi.",
+      "Self-review del tuo lavoro — utile prima di richiedere una review umana, cattura le cose imbarazzanti.",
+      "Onboarding in un codebase sconosciuto — incolla una funzione più il prompt per capirne i rischi prima di modificarla."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude (Sonnet 4.6 o Opus 4.7) di solito fa il triage più riflessivo. Incolla il diff in un blocco di codice; i contesti lunghi gestiscono bene le review di intere PR.",
+    "chatgpt": "GPT-5 / GPT-4o tendono a essere più aggressivi nel segnalare lo stile. La regola 'sopprimi MINOR e NIT' qui sopra lo tiene in carreggiata.",
+    "cursor": "In Cursor, salvalo come voce .cursorrules o incollalo nel composer. Si abbina bene con i riferimenti @file."
+  },
+  "exampleHeading": "Esempio di output",
+  "exampleOutput": "BLOCKER: src/auth/session.ts:42-58\n  - cosa: Il confronto del session token usa ===, non un confronto a tempo costante.\n  - modalità di fallimento: Esposto a timing attack al login remoto.\n  - fix: Passa a crypto.timingSafeEqual() sulla coppia di buffer.\n\nMAJOR: src/auth/session.ts:73 [bassa-confidenza]\n  - cosa: Refresh token scritto in localStorage.\n  - modalità di fallimento: Rischio di esfiltrazione XSS se qualunque contenuto utente non sanitizzato raggiunge la pagina.\n  - fix: Spostalo in un cookie httpOnly se il client non ha bisogno di leggerlo. (bassa-confidenza: non vedo come il front-end consumi questo token.)\n\nSommario: ship-con-followup. Il fix a tempo costante è richiesto pre-merge; la posizione di storage è un problema di follow-up che vale la pena aprire indipendentemente da questa PR.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Perché la maggior parte delle code review IA sono inutili",
+        "paragraphs": [
+          "Di default, i modelli linguistici passano a una persona da 'junior premuroso' nei compiti di code review. Questo significa che commentano troppo sui nomi, suggeriscono riscritture 'clean code' per codice che va bene, e seppelliscono l'unico vero bug in un muro di suggerimenti che devi ignorare. Il rapporto segnale-rumore uccide il workflow — la maggior parte dei team smette di usare l'IA per la review entro una settimana.",
+          "Il prompt qui sopra ribalta tre cose: chiede un triage per severità così i problemi triviali sono esplicitamente soppressi, richiede numeri di riga così ogni finding è verificabile in secondi, e impone un flag di confidenza così sai a quali finding fidarti senza leggere l'intero file."
+        ]
+      },
+      {
+        "heading": "Abbinarlo alla tua CI",
+        "paragraphs": [
+          "Esegui questo prompt come passo di 'seconda opinione' nel tuo workflow di PR — non come controllo bloccante. I modelli allucinano ancora, specialmente su invarianti cross-file e su codice che dipende da convenzioni del framework che non hai incollato. Usa l'output come lista di cose da verificare, non come lista di problemi da correggere meccanicamente.",
+          "Se vuoi metterlo in CI, fai produrre i finding come JSON (modifica il prompt: 'restituisci un array JSON con campi severity, path, lineStart, lineEnd, what, fix, confidence'). Poi posta quelli BLOCKER/MAJOR sulla PR come singolo commento con un'intestazione chiara 'Assistito da IA — verifica prima di agire'."
+        ]
+      },
+      {
+        "heading": "Adattare il prompt al tuo team",
+        "paragraphs": [
+          "Aggiungi una sezione 'Contesto del codebase' sopra il diff — incolla 5-10 righe che descrivono il tuo stack, le tue convenzioni di test e qualunque invariante non ovvia (es. 'tutte le scritture al DB passano per src/db/withTx, mai client raw'). I modelli altrimenti mancano le convenzioni specifiche del codebase.",
+          "Se il tuo team ha punti deboli noti (race condition in un job runner, query N+1 in un servizio specifico), aggiungi una riga 'Sta particolarmente attento a: …'. Il modello peserà di più quelle classi di bug ed è più probabile che li segnali quando presenti."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Posso usarlo su codice closed-source?",
+      "a": "Sì, ma controlla prima la policy del tuo datore di lavoro. Il prompt in sé è innocuo; quello che conta è se ti è permesso incollare il tuo codice nel modello che stai usando. I piani enterprise di Claude e ChatGPT tipicamente non si addestrano sui tuoi input; i piani consumer potrebbero."
+    },
+    {
+      "q": "Perché sopprimere i finding MINOR e NIT?",
+      "a": "Perché in pratica creano stanchezza da review. Dopo la terza nota 'considera di estrarre questo in una funzione', smetti di leggere. Sopprimerli mantiene affilato il segnale BLOCKER/MAJOR. Riattivali con 'mostra tutti i finding inclusi MINOR e NIT' quando vuoi una review profonda."
+    },
+    {
+      "q": "Quanto lungo può essere il diff?",
+      "a": "Claude Sonnet/Opus e GPT-5 gestiscono confortevolmente 50K+ token di diff. Per PR molto grandi, dividi la review per directory (revisiona prima src/auth, poi src/billing) così il modello può pensare a ogni sottosistema in isolamento."
+    },
+    {
+      "q": "E le review specifiche di sicurezza?",
+      "a": "Questo prompt cattura problemi ovvi di crypto/storage/SSRF ma non sostituisce una security review su codice di auth o pagamenti. Per quei percorsi, esegui questo prompt e un prompt dedicato di security review (ne pubblicheremo uno separatamente)."
+    },
+    {
+      "q": "Può fare review su più file?",
+      "a": "Sì — incolla il diff che include tutti i file. Gestisce ragionevolmente bene gli invarianti cross-file in un singolo paste; per problemi che si estendono su più PR (es. 'questo è coerente con come i feature flag sono gestiti altrove?'), includi qualche estratto rappresentativo da quegli altri file."
+    },
+    {
+      "q": "Dovrei fidarmi dei finding [bassa-confidenza]?",
+      "a": "Trattali come 'investiga prima di agire'. Circa metà dei finding a bassa confidenza sono reali ma il modello non ha potuto verificare; l'altra metà sono letture errate. Il flag è segnale onesto, non un motivo per ignorare il finding."
+    },
+    {
+      "q": "Perché vuole che specifichi la modalità di fallimento?",
+      "a": "Perché 'questo è sbagliato' è inutile senza 'questo crasherebbe su input unicode'. La riga della modalità di fallimento ti dice la priorità: un fix che previene un caso limite uno-su-un-milione è diverso da uno che previene un incidente di produzione quotidiano."
+    },
+    {
+      "q": "Come lo uso specificamente in Cursor?",
+      "a": "Salva il corpo del prompt in .cursorrules nella root del repo, o incollalo nel composer con riferimenti @file per i file in review. Cursor manterrà le regole attive per quel progetto."
+    }
+  ]
+}

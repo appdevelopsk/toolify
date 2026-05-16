@@ -1,0 +1,83 @@
+{
+  "title": "Prompt réécriture d'emails — clair, concis, ton contrôlé",
+  "shortDescription": "Réécris n'importe quel brouillon d'email pour le rendre plus clair et plus court sans perdre le message. Choisis un ton (chaleureux / neutre / ferme) et un objectif de longueur.",
+  "description": "La demande par défaut 'réécris cet email' à ChatGPT/Claude a tendance à gonfler la longueur et à ajouter du remplissage corporate. Ce prompt fait l'inverse : impose une longueur cible, conserve ton contenu factuel intact, et te laisse ajuster le ton explicitement.",
+  "metaDescription": "Prompt gratuit de réécriture d'emails pour ChatGPT et Claude. Longueur cible, contrôle du ton (chaleureux/neutre/ferme), conserve tes faits intacts. Avec exemples.",
+  "keywords": ["prompt réécriture email", "réécrire email IA", "ChatGPT email", "prompt email professionnel", "email ton contrôlé"],
+  "promptText": "Réécris l'email ci-dessous.\n\nCible :\n- Longueur : environ {N} mots (défaut 80 ; choisis entre 50-150).\n- Ton : {chaleureux / neutre / ferme} (défaut neutre).\n- Audience : {qui c'est — ex : mon manager, un fournisseur, un client mécontent}.\n\nRègles strictes :\n1. Préserve chaque fait concret, deadline, nombre, et nom. N'invente pas de détails et n'adoucis pas les engagements que j'ai pris.\n2. Supprime le remplissage corporate (\"j'espère que cet email vous trouve en pleine forme\", \"n'hésitez pas\", \"comme indiqué dans mon précédent email\", etc.).\n3. Une seule demande par email. Si le brouillon contient plusieurs demandes, regroupe-les en liste numérotée en bas.\n4. Ne commence jamais deux phrases consécutives par le mot \"Je\".\n5. Garde ma signature et toute pièce jointe explicitement mentionnée.\n\nRetourne uniquement le corps de l'email réécrit. Pas d'explication.\n\nBrouillon :\n\n[colle ton brouillon ici]",
+  "useCase": {
+    "headline": "Quand utiliser ce prompt",
+    "items": [
+      "Après avoir écrit un email empreint de colère — passe le ton à neutre, raccourcis la longueur, et l'IA le désamorce sans perdre ton message.",
+      "Quand tu réponds à une réclamation client — règle le ton sur chaleureux, vise 70 mots, et le résultat sera empathique sans être mielleux.",
+      "Emails de négociation ou de recadrage — ton ferme + longueur 100, tu restes direct mais professionnel."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude est exceptionnellement bon pour préserver les faits sans ajouter de fioritures. Meilleur choix par défaut pour les emails importants.",
+    "chatgpt": "GPT-5 / GPT-4o ont tendance à réintroduire du remplissage 'professionnel'. La règle 'supprime le remplissage corporate' ci-dessus est particulièrement importante pour ChatGPT.",
+    "any": "Tous les grands modèles fonctionnent. Le pattern (longueur cible + ton + audience + faits préservés) est ce qui rend ça fiable."
+  },
+  "exampleHeading": "Exemple : un brouillon énervé → version neutre de 70 mots",
+  "exampleOutput": "Brouillon (220 mots, irrité) :\n  \"Bonjour Sarah, je relance ENCORE concernant la facture manquante d'octobre. J'ai déjà écrit trois fois. C'est inacceptable de la part d'un système de facturation qu'on paie 1200€/mois. J'ai besoin que ce soit résolu d'ici vendredi sinon je devrai escalader vers ton CTO. La facture doit couvrir la période 01/10–31/10, total 4820€, et nous ne l'avons jamais reçue…\"\n\nRéécrit (neutre, 68 mots, cible atteinte) :\n  \"Bonjour Sarah,\n\n  Je relance sur la facture d'octobre de 4820€ (période 01/10–31/10). J'ai écrit trois fois depuis novembre sans la voir arriver. Nous avons besoin de la résoudre d'ici vendredi pour clôturer nos comptes. Si un problème système la bloque, dis-moi quoi envoyer au support pour débloquer.\n\n  Merci,\n  [Nom]\"",
+  "article": {
+    "sections": [
+      {
+        "heading": "Pourquoi les prompts par défaut de réécriture d'emails empirent les choses",
+        "paragraphs": [
+          "Si tu demandes 'réécris cet email pour le rendre plus professionnel', le modèle ajoute de la longueur par défaut : plus de formules de politesse, un langage prudent, des phrases de récapitulation. La sortie est plus longue que ton brouillon, et ce qui était une lecture de 20 secondes en devient une de 90 secondes. Les destinataires suppriment ou survolent les emails longs, et ton message se perd dans le rembourrage de politesses.",
+          "Le prompt ci-dessus inverse ça. En imposant une longueur cible et une règle 'supprime le remplissage corporate', la réécriture est plus courte que l'entrée sur la plupart des brouillons. Le contrôle du ton te permet de garder une justesse émotionnelle (plainte ferme, excuse chaleureuse) sans perdre le focus."
+        ]
+      },
+      {
+        "heading": "Choix du ton — lequel choisir quand",
+        "paragraphs": [
+          "Chaleureux : excuse face client, remerciement pour de l'aide, construction d'une relation avec un nouveau contact. Ajoute des formules légères (une phrase max).",
+          "Neutre : emails de travail entre pairs, mises à jour de statut, réponses factuelles. C'est le défaut. Retire toutes les politesses.",
+          "Ferme : recadrage, escalade, relance d'impayé, refus d'élargissement de périmètre. Garde des phrases courtes et un langage direct. N'adoucit pas tes demandes."
+        ]
+      },
+      {
+        "heading": "Pourquoi une seule demande par email compte",
+        "paragraphs": [
+          "Les emails avec plusieurs demandes ('peux-tu aussi m'envoyer X, et au passage transférer Y') reçoivent des réponses partielles ou sont ignorés complètement. Le destinataire bufferise mentalement la réponse et ne l'envoie jamais. La règle ci-dessus force les brouillons multi-demandes à exposer leur structure sous forme de liste numérotée, ce qui incite à une réponse également numérotée.",
+          "Si ton brouillon a deux demandes vraiment indépendantes, envoie deux emails. Le modèle ne te l'imposera pas — mais il exposera la structure assez clairement pour que tu décides généralement de scinder avant d'envoyer."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Va-t-il modifier mes faits ou mes chiffres ?",
+      "a": "Non — la règle 'préserve chaque fait concret, deadline, nombre et nom' est explicite. Si le modèle mal lit un nombre, c'est une erreur du modèle, pas un échec du prompt. Relis toujours la réécriture pour confirmer avant d'envoyer."
+    },
+    {
+      "q": "Pourquoi une longueur cible plutôt que 'sois bref' ?",
+      "a": "'Sois bref' est interprété comme 'enlève peut-être 10%'. Un nombre de mots cible force le modèle à faire de vraies suppressions. 80 mots, c'est environ 4-5 phrases courtes — assez pour une demande plus le contexte."
+    },
+    {
+      "q": "Puis-je ajouter la voix/le style de mon entreprise ?",
+      "a": "Oui — ajoute une ligne 'Notes de style :' au-dessus du brouillon. Exemple : 'Notes de style : français simple, pas de points d'exclamation, signature uniquement avec mon prénom'. Le modèle les suivra de près."
+    },
+    {
+      "q": "Et si le brouillon est déjà court ?",
+      "a": "Utilise une cible légèrement plus élevée (100-120 mots) pour signaler 'ne coupe pas agressivement'. Ou utilise le prompt avec une règle de clarté seule : remplace 'Longueur : ~N mots' par 'Garde une longueur similaire ; ne corrige que les phrases peu claires'."
+    },
+    {
+      "q": "Fonctionne-t-il pour d'autres langues que le français ?",
+      "a": "Oui — Claude et GPT-5 gèrent bien les emails professionnels en anglais, japonais, chinois, coréen, espagnol. La règle anti-remplissage doit être traduite : en anglais, 'I hope this email finds you well' est l'équivalent le plus proche à supprimer en ton neutre."
+    },
+    {
+      "q": "En quoi est-ce différent de Grammarly ou Antidote ?",
+      "a": "Grammarly et Antidote corrigent la mécanique (typos, virgules). Ce prompt restructure le contenu (supprime les phrases de remplissage, scinde les emails multi-demandes, ajuste le ton). Ils sont complémentaires — lance d'abord Grammarly/Antidote, puis ça pour la restructuration."
+    },
+    {
+      "q": "Puis-je l'enregistrer dans ChatGPT comme GPT personnalisé ?",
+      "a": "Oui — colle le corps du prompt comme instructions du GPT. Tu n'auras qu'à taper le brouillon à chaque fois. La même approche fonctionne dans Claude Projects."
+    },
+    {
+      "q": "Pourquoi ne pas commencer deux phrases d'affilée par 'Je' ?",
+      "a": "Des débuts de phrases répétés par 'Je' donnent à un email un air égocentrique, même quand le contenu est bon. Forcer la variété (commencer une phrase par le destinataire ou par un fait) est un petit levier qui rend les emails plus chaleureux à lire sans changer le sens."
+    }
+  ]
+}

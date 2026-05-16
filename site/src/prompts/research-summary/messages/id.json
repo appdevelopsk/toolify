@@ -1,0 +1,82 @@
+{
+  "title": "Prompt ringkasan riset — ekstrak klaim, bukti, dan kontradiksi",
+  "shortDescription": "Ubah PDF, paper, atau laporan panjang menjadi ringkasan terstruktur yang membedakan klaim dari bukti, memunculkan kontradiksi, dan mengutip halaman sumber agar Anda dapat memverifikasi.",
+  "description": "Default 'summarize this' menghasilkan ringkasan gaya paragraf yang menghilangkan poin dari setiap studi yang bernuansa. Prompt ini mengekstrak objek terstruktur — klaim, jenis bukti, lokasi sumber, dan kontradiksi antar dokumen — yang dapat Anda scan dalam 60 detik.",
+  "metaDescription": "Prompt ringkasan riset gratis untuk Claude, Perplexity, ChatGPT. Ekstrak klaim dengan bukti dan halaman sumber. Munculkan kontradiksi antar dokumen.",
+  "keywords": ["prompt ringkasan riset", "ringkasan paper akademis", "prompt riset Claude", "riset Perplexity", "prompt literature review"],
+  "promptText": "Anda akan meringkas dokumen di bawah ini. Keluarkan sebagai tabel terstruktur, bukan prosa.\n\nUntuk setiap klaim utama dalam sumber, ekstrak:\n  - Klaim: <satu kalimat>\n  - Jenis bukti: <studi empiris / argumen teoretis / pendapat ahli / anekdot / tidak didukung>\n  - Sumber: <nama dokumen + halaman atau bagian>\n  - Kekuatan: <kuat / sedang / lemah — berdasarkan jenis bukti dan ukuran sampel>\n  - Caveat: <batasan yang diakui sumber itu sendiri>\n\nSetelah tabel, tambahkan tiga bagian:\n\n1. CONTRADICTIONS: daftar tempat di mana dokumen tidak setuju atau di mana klaim satu dokumen bertentangan dengan data dokumen lain.\n\n2. CONFIDENCE MAP: nilai keandalan keseluruhan setiap klaim utama — tinggi (beberapa sumber kuat setuju), sedang (satu sumber kuat atau beberapa sumber lemah), rendah (sumber lemah tunggal atau pernyataan tidak didukung).\n\n3. WHAT'S MISSING: 3-5 pertanyaan yang masih akan dimiliki pembaca yang teliti setelah membaca dokumen-dokumen ini. Tandai masing-masing sebagai 'dapat dijawab dari dokumen-dokumen ini dengan lebih banyak membaca' atau 'memerlukan sumber eksternal'.\n\nAturan ketat:\n- Kutip nomor halaman atau pengenal bagian untuk setiap klaim. Jika tidak bisa, tandai [halaman tidak diketahui].\n- Jangan mensintesis melampaui apa yang dikatakan dokumen. Jika dua dokumen menyentuh topik tetapi tidak membandingkan secara langsung, katakan demikian — jangan mengarang perbandingan.\n- Bedakan 'dokumen mengklaim X' dari 'X itu benar'. Ringkasan melaporkan apa yang diklaim, bukan apa yang benar.\n\nDokumen:\n\n[tempel teks lengkap atau unggah PDF]",
+  "useCase": {
+    "headline": "Kapan menggunakan ini",
+    "items": [
+      "Membaca 5-10 paper untuk literature review — jalankan masing-masing melalui prompt ini, lalu bandingkan confidence map untuk menemukan konsensus dan kesenjangan.",
+      "Mengevaluasi laporan industri yang Anda dapatkan dari vendor — kolom kekuatan mengekspos di mana laporan didorong data vs marketing.",
+      "Cross-check artikel berita — masukkan artikel + studi yang mendasarinya; kontradiksi muncul segera."
+    ]
+  },
+  "modelTips": {
+    "claude": "Paling baik dalam membedakan klaim dari jenis bukti. Aturan 'jangan mensintesis' paling dihormati oleh Claude (Sonnet 4.6+).",
+    "perplexity": "Kuat ketika dokumen ada di web terbuka — Perplexity menambahkan verifikasi sumber secara otomatis. Kurang berguna untuk PDF pribadi.",
+    "chatgpt": "Bekerja tetapi cenderung melunakkan vonis 'tidak didukung' menjadi 'disebutkan'. Bersikap eksplisit: 'gunakan \"tidak didukung\" ketika dokumen menyajikan klaim tanpa mengutip data, bahkan jika terdengar masuk akal.'"
+  },
+  "exampleHeading": "Contoh: ringkasan 3 paper tentang produktivitas kerja remote",
+  "exampleOutput": "| Klaim | Bukti | Sumber | Kekuatan | Caveat |\n|---|---|---|---|---|\n| Pekerja remote melaporkan sendiri produktivitas 13% lebih tinggi | survei, n=2400 | Bloom 2024 hlm.7 | sedang | bias laporan diri diakui |\n| Kerja remote mengurangi inovasi tim | wawancara kualitatif, n=42 manajer | Smith 2023 hlm.14 | lemah | sampel condong ke manajer, bukan IC |\n| Hybrid (3 hari) mengungguli full-remote dalam retensi | A/B test di satu perusahaan | Chen 2025 hlm.22 | sedang | satu perusahaan, mungkin tidak digeneralisasi |\n\nCONTRADICTIONS:\n- Bloom 2024 melaporkan peningkatan produktivitas; Smith 2023 menyiratkan penurunan produktivitas (melalui 'mengurangi inovasi'). Keduanya menggunakan definisi produktivitas yang berbeda — Bloom = output per jam, Smith = output strategis. Tidak dapat dibandingkan langsung.\n\nCONFIDENCE MAP:\n- 'Kerja remote mengubah produktivitas' → tinggi (efek jelas, arah diperdebatkan)\n- 'Kerja remote mengurangi inovasi' → sedang (satu studi, kualitatif)\n- 'Hybrid optimal' → rendah (satu A/B di satu perusahaan)\n\nWHAT'S MISSING:\n1. Efek pada karyawan junior secara spesifik [memerlukan sumber eksternal]\n2. Pemecahan industri-per-industri [dapat dijawab: Bloom 2024 memiliki data appendix]\n3. Efek pada transfer pengetahuan / mentorship [memerlukan sumber eksternal]",
+  "article": {
+    "sections": [
+      {
+        "heading": "Mengapa ringkasan prosa gagal untuk riset",
+        "paragraphs": [
+          "Ringkasan paragraf menggabungkan setiap klaim ke level otoritas yang sama. Pembaca tidak dapat membedakan apakah 'studi menunjukkan bahwa...' didukung oleh satu survei yang underpowered atau meta-analisis dari empat puluh trial. Ringkasan LLM default mewarisi cacat ini dan memperkuatnya — klaim kuat dan lemah mendapat bobot prosa yang sama.",
+          "Ekstraksi terstruktur (tabel + confidence map) mempertahankan otoritas diferensial klaim. Anda dapat scan dan segera melihat bahwa temuan headline bersandar pada bukti solid sementara klaim sekunder pada dasarnya adalah opini editorial. Ini adalah perbedaan antara terinformasi dan keyakinan palsu."
+        ]
+      },
+      {
+        "heading": "Aturan terberat: membedakan klaim dari kebenaran",
+        "paragraphs": [
+          "Summarizer default tergelincir dari 'dokumen X mengatakan Y' ke 'Y itu benar' tanpa menandai transisinya. Aturan 'bedakan klaim dari kebenaran' bersifat eksplisit karena model gagal-default pada itu. Ketika aturan dipatuhi, Anda membaca ringkasan dan tahu persis pernyataan mana yang milik dokumen, bukan opini model.",
+          "Jika model melanggar aturan ini (menyatakan X sebagai fakta padahal dokumen hanya mengklaimnya), balas 'reframe untuk mengaitkan setiap klaim ke sumbernya'. Setelah satu koreksi Claude cenderung mempertahankan atribusi untuk sisa dokumen."
+        ]
+      },
+      {
+        "heading": "Alur kerja lintas dokumen",
+        "paragraphs": [
+          "Untuk literature review, jalankan setiap paper secara individual terlebih dahulu — batas konteks model dan kualitas keduanya diuntungkan dari one-doc-at-a-time. Lalu dalam pass kedua, tempel hanya tabel yang dihasilkan dan tanyakan: 'Identifikasi titik konsensus, titik perselisihan, dan klaim tunggal terkuat.' Ini jauh lebih cepat daripada memasukkan semua paper dalam satu shot.",
+          "Bangun aturan 'confidence-decay': klaim apa pun yang muncul hanya dalam satu sumber otomatis diturunkan satu level ketika diintegrasikan ke dalam ringkasan multi-sumber. Ini memaksa review terintegrasi untuk memberi bobot lebih tinggi pada temuan yang direplikasi daripada yang baru-tetapi-terisolasi, yang sesuai dengan praktik akademis yang baik."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apakah bekerja untuk PDF yang sangat panjang?",
+      "a": "Claude menangani PDF 200K-token dalam satu shot; ChatGPT/GPT-5 menangani 128K. Untuk yang lebih panjang, pisahkan per bab dan ringkas masing-masing, lalu ringkas ringkasan tersebut. Format terstruktur menjaga kualitas konsisten di seluruh pass."
+    },
+    {
+      "q": "Bisakah mengutip kutipan spesifik?",
+      "a": "Ya — tambahkan 'Untuk setiap klaim, sertakan snippet kutipan 5-15 kata dari frasa asli' ke prompt. Berguna ketika kata-kata penting (dokumen hukum, spesifikasi teknis)."
+    },
+    {
+      "q": "Bagaimana jika dokumen tidak memiliki nomor halaman yang jelas (artikel web)?",
+      "a": "Gunakan heading bagian atau nomor paragraf sebagai gantinya. 'Halaman atau bagian' di prompt memperbolehkan ini. Untuk artikel web, indeks paragraf ('para 5') bekerja baik."
+    },
+    {
+      "q": "Bagaimana ini dibandingkan dengan menggunakan NotebookLM?",
+      "a": "NotebookLM secara otomatis menangani upload dokumen dan kutipan tetapi menghasilkan ringkasan naratif secara default. Prompt ini menghasilkan output ekstraksi terstruktur yang lebih baik untuk perbandingan sistematis. Gunakan keduanya: NotebookLM untuk eksplorasi gaya chat, prompt ini untuk ringkasan tulis-sekali-baca-banyak."
+    },
+    {
+      "q": "Mengapa memaksa bagian 'what's missing'?",
+      "a": "Karena setiap ringkasan riset harus meninggalkan Anda dengan follow-up eksplisit, bukan kesan palsu kelengkapan. Bagian 'what's missing' juga mengungkapkan ketika dokumen secara fundamental tidak dapat menjawab pertanyaan Anda — berguna sebelum Anda menghabiskan lebih banyak waktu membacanya."
+    },
+    {
+      "q": "Apakah bekerja di riset non-Inggris?",
+      "a": "Ya — Claude dan GPT-5 menangani prosa akademis Jepang / Mandarin / Jerman / Prancis dengan baik. Output terstruktur tetap dalam bahasa prompt Anda; bahasa sumber bisa berbeda."
+    },
+    {
+      "q": "Bagaimana saya menghindari nomor halaman yang dihalusinasi?",
+      "a": "Jika model memberikan nomor halaman, cek satu atau dua. Jika salah, tambahkan 'Jika Anda tidak dapat memverifikasi nomor halaman, tandai [halaman tidak diketahui] — jangan pernah menebak.' ke prompt."
+    },
+    {
+      "q": "Bisakah saya menggunakan ini untuk transkrip podcast?",
+      "a": "Ya — ganti 'halaman' dengan 'timestamp' dan sisanya bekerja. Ekstraksi klaim-terstruktur bahkan lebih berguna untuk podcast, di mana klaim mengambang sekitar prosa yang lebih panjang tanpa marker yang jelas."
+    }
+  ]
+}

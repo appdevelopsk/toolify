@@ -1,0 +1,88 @@
+{
+  "title": "Prompt outline blog post — struktur H2/H3 dengan intent dan jumlah",
+  "shortDescription": "Hasilkan outline yang rapi dan ramah pencarian untuk blog post: hierarki H2/H3, intent per bagian, target jumlah kata, dan pertanyaan yang dijawab setiap bagian.",
+  "description": "Sebagian besar outline yang dihasilkan AI adalah template hambar. Prompt ini memaksa model untuk memikirkan intent pencarian, memberi setiap bagian target yang terukur, dan memunculkan pertanyaan spesifik yang akan dimiliki pembaca — struktur yang ranking dan struktur yang benar-benar dibaca tuntas oleh manusia.",
+  "metaDescription": "Prompt outline blog gratis. Menghasilkan struktur H2/H3 dengan intent, jumlah kata, dan pertanyaan pembaca per bagian. Bekerja dengan Claude, ChatGPT, Gemini.",
+  "keywords": [
+    "prompt outline blog",
+    "struktur blog AI",
+    "prompt outline SEO",
+    "prompt content brief",
+    "perencana blog post"
+  ],
+  "promptText": "Buat outline blog post.\n\nTopik: {topik Anda}\nPembaca target: {siapa mereka — pemula / praktisi berpengalaman / pengambil keputusan}\nKata kunci utama: {frasa yang ingin Anda rangkingkan}\nSearch intent: {informasional / komersial / navigasional / transaksional}\nTarget jumlah kata: {N — kisaran tipikal 1500-3500}\n\nKembalikan outline dengan struktur persis seperti ini:\n\nH1: <judul — harus mencakup kata kunci utama secara natural, maks 60 karakter>\n\nIntro (~{N*0.05} kata)\n  - Hook: <satu kalimat tentang mengapa pembaca peduli saat ini>\n  - Janji: <apa yang akan mereka ketahui setelah membaca>\n  - Skip-ahead: <jika jawaban mereka ada di bagian X, arahkan ke sana>\n\nH2: <heading bagian>\n  Intent: <pertanyaan pembaca apa yang dijawab>\n  Jumlah kata: <N>\n  Pertanyaan yang harus dijawab:\n    - <P1>\n    - <P2>\n  H3: <subbagian> (hanya jika diperlukan; maks 3 H3 per H2)\n\n... (total 3-6 bagian H2; kedalaman dipilih berdasarkan topik, bukan template)\n\nKesimpulan (~{N*0.05} kata)\n  - Takeaway satu baris\n  - Satu CTA (bukan daftar CTA)\n\nKendala ketat:\n1. Setiap H2 harus menjawab pertanyaan searcher yang berbeda — tidak ada dua bagian yang mencakup intent yang sama.\n2. Lewati bagian basa-basi 'pendahuluan itu penting' yang sering ditambahkan banyak outline AI. Pembaca nyata melewatinya.\n3. Jika Anda akan menyarankan bagian yang murni 'konteks latar belakang', tandai [opsional] — sebagian besar pembaca menginginkan jawaban terlebih dahulu.\n4. Total jumlah kata harus berjumlah dalam 10% dari target.\n5. Jangan mengarang statistik atau sumber. Jika sebuah bagian membutuhkan data, tandai [butuh data: <jenis apa>].",
+  "useCase": {
+    "headline": "Kapan menggunakan ini",
+    "items": [
+      "Sebelum menulis posting apa pun di atas 1000 kata — menghemat berjam-jam restrukturisasi di tengah draf.",
+      "Memberi brief kepada penulis freelance — salin output outline sebagai brief; jumlah kata dan intent mencegah draf yang melantur.",
+      "Mengaudit posting yang ada — tempel daftar H2 saat ini dan minta model menerapkan struktur ini sebagai kritik."
+    ]
+  },
+  "modelTips": {
+    "claude": "Paling baik dalam menangkap perbedaan intent yang halus. Akan menolak menambahkan bagian basa-basi jika tidak layak mendapat jumlah kata.",
+    "chatgpt": "Bekerja dengan baik; cenderung menambahkan satu bagian ekstra untuk kelengkapan. Pangkas setelahnya jika melebihi jumlah kata.",
+    "any": "Field 'pertanyaan yang harus dijawab' adalah pengungkitnya. Pastikan model mengisinya secara konkret (bukan 'membahas manfaat utama' tetapi 'menjawab: bagaimana X dibandingkan dengan Y dari segi harga?')."
+  },
+  "exampleHeading": "Contoh output untuk 'Cara memilih akuntan freelance'",
+  "exampleOutput": "H1: Cara Memilih Akuntan Freelance (Panduan 2026)\n\nIntro (~150 kata)\n  - Hook: Musim pajak tinggal 8 minggu lagi dan akuntan sebelumnya menghilang.\n  - Janji: Filter 4 pertanyaan yang memunculkan akuntan yang tepat dalam waktu kurang dari satu jam.\n  - Skip-ahead: Jika Anda hanya membutuhkan tarif, lompat ke §3.\n\nH2: Filter 4 pertanyaan (450 kata)\n  Intent: 'bagaimana saya mengevaluasi akuntan dengan cepat?'\n  Pertanyaan:\n    - 4 pertanyaan apa yang memunculkan freelancer kompeten vs tidak kompeten dalam 10 menit?\n    - Apa jawaban yang non-negotiable vs yang fleksibel?\n  H3: Pertanyaan 1 — mix klien saat ini\n  H3: Pertanyaan 2 — software stack\n\nH2: Cara memverifikasi kredensial (350 kata)\n  Intent: 'bagaimana saya mengonfirmasi mereka sah?'\n  Pertanyaan:\n    - Di mana memverifikasi lisensi CPA?\n    - Bagaimana akses PII terlihat dengan akuntan nyata?\n\nH2: Model harga (500 kata)\n  Intent: 'berapa yang harus saya bayar?'\n  Pertanyaan:\n    - Per jam vs tetap vs retainer — mana yang termurah untuk seseorang dengan 1 W-2 + 2 1099?\n    - Berapa kisaran tipikal di 2026?\n  [butuh data: survei tarif akuntan freelance 2026]\n\nH2: Red flag selama onboarding (300 kata)\n  Intent: 'kapan saya harus mundur?'\n  Pertanyaan:\n    - 5 red flag di panggilan pertama\n\nH2: Checklist 90 hari pertama (250 kata)\n  Intent: 'apa yang sebenarnya saya lakukan setelah mempekerjakan satu?'\n\nKesimpulan (~150 kata)\n  CTA: Link tunggal ke PDF pertanyaan wawancara yang dapat diunduh.\n\nTotal: ~2150 kata (target adalah 2200; dalam 10%).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Mengapa sebagian besar outline yang dihasilkan AI berkinerja buruk",
+        "paragraphs": [
+          "Jika Anda meminta 'outline-kan posting tentang X', model mengembalikan kerangka generik: pendahuluan, sejarah, konsep utama, contoh, kesimpulan. Strukturnya didorong template, bukan didorong topik, dan posting yang dihasilkan terbaca seperti setiap listicle lain di halaman dua hasil pencarian. Pembaca dan Google sama-sama memperhatikan ini — bounce rate naik, engagement turun, ranking terkikis.",
+          "Prompt di atas memaksa struktur yang didorong topik dengan menuntut intent dan pertanyaan pembaca per bagian. Bagian yang tidak dapat mengartikulasikan pertanyaan spesifik yang dijawabnya akan dipotong. Bagian tanpa anggaran jumlah kata tidak dapat mengencerkan sisanya. Output adalah brief yang bertahan saat berhadapan dengan tulisan sebenarnya."
+        ]
+      },
+      {
+        "heading": "Jumlah kata sebagai pengungkit perencanaan",
+        "paragraphs": [
+          "Sebagian besar posting gagal bukan karena membahas topik yang salah, tetapi karena topik yang salah mendapat jumlah ruang yang salah. Bagian terpenting mendapat 200 kata dan bagian yang tangensial mendapat 600 kata. Menentukan jumlah kata di depan memaksa keputusan prioritas selama outlining, ketika murah, alih-alih selama editing, ketika memotong itu menyakitkan.",
+          "Penegakan total-sesuai-target (dalam 10%) menangkap kegagalan AI yang umum: outline terus menambahkan bagian hingga total adalah 1,5x target Anda. Pangkas atau gabungkan sebelum menulis — jauh lebih cepat daripada selama draf kedua."
+        ]
+      },
+      {
+        "heading": "Mengadaptasi prompt untuk audit konten",
+        "paragraphs": [
+          "Gunakan kembali struktur untuk mengaudit posting yang berkinerja buruk. Tempel daftar H2 saat ini dan tanyakan: 'Terapkan kerangka kerja blog-outline. Bagian mana yang tidak memiliki pertanyaan searcher yang jelas? Bagian mana yang tumpang tindih intent-nya? Di mana alokasi jumlah kata tidak sesuai dengan kepentingan?' Model menjadi editor struktural alih-alih editor copy.",
+          "Pasangkan ini dengan pengecekan kesenjangan kata kunci cepat: sertakan 'Daftar 5 pertanyaan pembaca yang TIDAK dijawab outline ini yang dijawab oleh hasil top-3 pesaing.' Ini memunculkan bagian yang hilang tanpa Anda membaca setiap artikel pesaing."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Seberapa panjang biasanya setiap H2?",
+      "a": "Tergantung target posting, tetapi default yang masuk akal adalah 250-500 kata per H2. Di bawah 200 kata tidak layak header bagian; di atas 600 biasanya ingin dipecah menjadi H3 atau menjadi posting tersendiri."
+    },
+    {
+      "q": "Apa arti 'intent' untuk sebuah bagian?",
+      "a": "Pertanyaan pembaca spesifik yang dijawab bagian tersebut. 'Membahas harga' bukan intent. 'Menjawab: haruskah saya membayar per jam atau dengan retainer untuk situasi saya?' adalah intent. Semakin spesifik, semakin baik bagian itu ditulis."
+    },
+    {
+      "q": "Mengapa menandai bagian [opsional]?",
+      "a": "Karena prompt jujur tentang bagian mana yang benar-benar layak. Bagian 'sejarah X' mungkin menarik bagi 5% pembaca; menandainya memungkinkan Anda memutuskan apakah akan menulisnya, menurunkannya menjadi footnote, atau melewatkannya sepenuhnya."
+    },
+    {
+      "q": "Bisakah saya menggunakan ini untuk skrip video atau outline YouTube?",
+      "a": "Ya, tetapi ubah 'jumlah kata' menjadi 'waktu layar' (dalam detik), dan ubah 'pertanyaan yang harus dijawab' menjadi 'momen visual'. Struktur yang didorong intent yang sama berlaku — pemirsa meninggalkan video karena alasan yang sama pembaca meninggalkan posting: bagian yang tidak layak mendapat waktu mereka."
+    },
+    {
+      "q": "Apakah bekerja tanpa kata kunci utama?",
+      "a": "Ya — tetapi H1 tidak akan dioptimalkan untuk SEO. Jika Anda menulis untuk newsletter atau blog internal, hapus field kata kunci utama; sisanya tetap berfungsi."
+    },
+    {
+      "q": "Bagaimana saya mencegah model mengarang data?",
+      "a": "Aturan 5 ([butuh data: ...]) adalah penjaga anti-halusinasi eksplisit. Model menandai klaim yang belum diverifikasi agar Anda isi. Jika pernah menghasilkan statistik tanpa marker, tanyakan 'Sumber untuk angka itu?' dan ia akan memberikan satu atau mengakui tidak bisa."
+    },
+    {
+      "q": "Haruskah saya menambahkan analisis posting pesaing?",
+      "a": "Opsional tetapi kuat. Tambahkan bagian: '3 hasil ranking teratas untuk kata kunci utama: <tempel judul + URL>. Identifikasi kelemahan strukturalnya (bagian yang mereka lewati, pertanyaan yang tidak mereka jawab).' Outline akan secara eksplisit membedakan diri."
+    },
+    {
+      "q": "Mengapa prompt melewati bagian 'pendahuluan itu penting'?",
+      "a": "Karena sebagian besar outline AI menambahkannya sebagai bagian 200 kata yang hanya menyatakan ulang H1. Pembaca modern dan mesin pencari sama-sama menghukum padding ini. Microstruktur Hook + Janji + Skip-ahead melakukan pekerjaan yang sama dalam 50 kata."
+    }
+  ]
+}

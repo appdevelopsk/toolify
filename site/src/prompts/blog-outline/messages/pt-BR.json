@@ -1,0 +1,88 @@
+{
+  "title": "Prompt de estrutura de post de blog — hierarquia H2/H3 com intenção e",
+  "shortDescription": "Gere uma estrutura enxuta e amigável a buscas para um post de blog: hierarquia H2/H3, intenção por seção, contagens de palavras alvo e as perguntas que cada seção responde.",
+  "description": "A maioria das estruturas geradas por IA são templates sem graça. Este prompt força o modelo a pensar em intenção de busca, dar a cada seção um alvo mensurável e trazer à tona as perguntas específicas que os leitores terão — a estrutura que ranqueia e a estrutura que humanos realmente terminam de ler.",
+  "metaDescription": "Prompt gratuito de estrutura de blog. Gera hierarquia H2/H3 com intenção, contagens de palavras e perguntas do leitor por seção. Funciona com Claude, ChatGPT, Gemini.",
+  "keywords": [
+    "prompt estrutura blog",
+    "estrutura blog IA",
+    "prompt estrutura SEO",
+    "prompt briefing conteúdo",
+    "planejador post blog"
+  ],
+  "promptText": "Monte a estrutura de um post de blog.\n\nTema: {seu tema}\nLeitor alvo: {quem são — iniciantes / praticantes experientes / tomadores de decisão}\nPalavra-chave principal: {a frase que você quer ranquear}\nIntenção de busca: {informacional / comercial / navegacional / transacional}\nMeta de contagem de palavras: {N — faixa típica 1500-3500}\n\nRetorne uma estrutura com este formato exato:\n\nH1: <título — deve incluir a palavra-chave principal de forma natural, máximo 60 caracteres>\n\nIntrodução (~{N*0.05} palavras)\n  - Gancho: <uma frase sobre por que o leitor se importa agora>\n  - Promessa: <o que ele vai saber depois de ler>\n  - Atalho: <se a resposta dele está na seção X, mande-o para lá>\n\nH2: <título da seção>\n  Intenção: <qual pergunta do leitor isso responde>\n  Contagem de palavras: <N>\n  Perguntas a responder:\n    - <P1>\n    - <P2>\n  H3: <subseção> (só se necessário; máximo 3 H3 por H2)\n\n... (3-6 seções H2 no total; profundidade escolhida pelo tema, não pelo template)\n\nConclusão (~{N*0.05} palavras)\n  - Conclusão em uma linha\n  - Um único CTA (sem lista de CTAs)\n\nRestrições rígidas:\n1. Cada H2 deve responder uma pergunta diferente do buscador — duas seções não podem cobrir a mesma intenção.\n2. Pule a seção 'introdução é importante' que muitas estruturas de IA adicionam. Leitores reais passam direto.\n3. Se você sugerir uma seção que é puro 'contexto histórico', marque como [opcional] — a maioria dos leitores quer a resposta primeiro.\n4. O total de palavras deve somar dentro de 10% da meta.\n5. Não invente estatísticas ou fontes. Se uma seção precisa de dados, marque como [precisa de dados: <que tipo>].",
+  "useCase": {
+    "headline": "Quando usar",
+    "items": [
+      "Antes de escrever qualquer post acima de 1000 palavras — economiza horas de reestruturação no meio do rascunho.",
+      "Briefando um escritor freelancer — copie o output da estrutura como briefing; contagens de palavras e intenção evitam rascunhos sem rumo.",
+      "Auditando posts existentes — cole sua lista atual de H2 e peça ao modelo para aplicar essa estrutura como crítica."
+    ]
+  },
+  "modelTips": {
+    "claude": "Melhor em captar diferenças sutis de intenção. Vai se recusar a adicionar seções de enrolação se não justificarem a contagem de palavras.",
+    "chatgpt": "Funciona bem; tende a adicionar uma seção extra para 'completude'. Apare depois se ultrapassar a contagem de palavras.",
+    "any": "O campo 'perguntas a responder' é a alavanca. Garanta que o modelo o preencha concretamente (não 'discute principais benefícios' e sim 'responde: como X se compara a Y em preço?')."
+  },
+  "exampleHeading": "Exemplo de output para 'Como escolher um contador freelancer'",
+  "exampleOutput": "H1: Como Escolher um Contador Freelancer (Guia 2026)\n\nIntrodução (~150 palavras)\n  - Gancho: A época de imposto está a 8 semanas e seu contador anterior sumiu.\n  - Promessa: Um filtro de 4 perguntas que revela o contador certo em menos de uma hora.\n  - Atalho: Se você só precisa de tarifas, pule para §3.\n\nH2: O filtro de 4 perguntas (450 palavras)\n  Intenção: 'como avalio contadores rapidamente?'\n  Perguntas:\n    - Quais 4 perguntas revelam um freelancer competente vs incompetente em 10 min?\n    - Qual é uma resposta inegociável vs uma flexível?\n  H3: Pergunta 1 — mix atual de clientes\n  H3: Pergunta 2 — stack de software\n\nH2: Como verificar credenciais (350 palavras)\n  Intenção: 'como confirmo que ele é legítimo?'\n  Perguntas:\n    - Onde verificar a licença de contador?\n    - Como é o acesso a dados pessoais com um contador de verdade?\n\nH2: Modelos de preço (500 palavras)\n  Intenção: 'quanto devo esperar pagar?'\n  Perguntas:\n    - Por hora vs valor fixo vs mensal — qual é mais barato para quem tem 1 CLT + 2 contratos PJ?\n    - Qual a faixa típica em 2026?\n  [precisa de dados: pesquisa de tarifas de contador freelancer 2026]\n\nH2: Sinais de alerta durante o onboarding (300 palavras)\n  Intenção: 'quando devo desistir?'\n  Perguntas:\n    - 5 sinais de alerta na primeira conversa\n\nH2: Checklist dos primeiros 90 dias (250 palavras)\n  Intenção: 'o que faço de verdade depois de contratar um?'\n\nConclusão (~150 palavras)\n  CTA: Um único link para um PDF baixável com perguntas de entrevista.\n\nTotal: ~2150 palavras (meta era 2200; dentro de 10%).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por que a maioria das estruturas geradas por IA tem desempenho baixo",
+        "paragraphs": [
+          "Se você pede 'estruture um post sobre X', o modelo devolve um esqueleto genérico: introdução, histórico, conceitos-chave, exemplos, conclusão. A estrutura é guiada por template, não pelo tema, e o post resultante se lê como qualquer outro listicle da segunda página do Google. Leitores e o Google percebem — a taxa de rejeição sobe, o engajamento cai, o ranking se desgasta.",
+          "O prompt acima força estrutura guiada pelo tema ao exigir intenção e perguntas do leitor por seção. Uma seção que não consegue articular a pergunta específica que responde é cortada. Uma seção sem orçamento de contagem de palavras não consegue diluir o resto. O output é um briefing que sobrevive ao contato com a escrita real."
+        ]
+      },
+      {
+        "heading": "Contagem de palavras como alavanca de planejamento",
+        "paragraphs": [
+          "A maioria dos posts falha não por cobrir os tópicos errados, mas porque os tópicos errados ganham a quantidade errada de espaço. A seção mais importante leva 200 palavras e uma tangencial leva 600. Especificar contagens de palavras de antemão força decisões de prioridade durante a estruturação, quando são baratas, em vez de durante a edição, quando cortar dói.",
+          "A regra de somar até a meta (dentro de 10%) pega uma falha comum de IA: a estrutura continua adicionando seções até o total ser 1,5x a sua meta. Apare ou junte antes de escrever — muito mais rápido do que num segundo rascunho."
+        ]
+      },
+      {
+        "heading": "Adaptando o prompt para auditorias de conteúdo",
+        "paragraphs": [
+          "Reutilize a estrutura para auditar posts com desempenho ruim. Cole a lista atual de H2 e pergunte: 'Aplique o framework de estrutura de blog. Quais seções não têm uma pergunta clara do buscador? Quais seções têm intenção sobreposta? Onde as alocações de palavras não combinam com a importância?' O modelo vira um editor estrutural em vez de um revisor de copy.",
+          "Combine isso com uma checagem rápida de lacuna de palavras-chave: inclua 'Liste 5 perguntas do leitor que esta estrutura NÃO responde, mas que os 3 primeiros resultados concorrentes respondem.' Isso revela seções faltantes sem você ler todo artigo concorrente."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual deve ser o tamanho típico de cada H2?",
+      "a": "Depende da meta do post, mas um padrão razoável é 250-500 palavras por H2. Abaixo de 200 palavras não vale a pena ter um cabeçalho de seção; acima de 600 geralmente quer se dividir em H3 ou virar um post próprio."
+    },
+    {
+      "q": "O que 'intenção' significa para uma seção?",
+      "a": "A pergunta específica do leitor que a seção responde. 'Discute preços' não é intenção. 'Responde: devo pagar por hora ou mensal para minha situação?' é intenção. Quanto mais específica, melhor a seção escreve."
+    },
+    {
+      "q": "Por que marcar seções como [opcional]?",
+      "a": "Porque o prompt é honesto sobre quais seções de fato merecem seu lugar. Uma seção 'histórico de X' pode interessar a 5% dos leitores; sinalizá-la te deixa decidir se escreve, rebaixa para nota de rodapé, ou pula totalmente."
+    },
+    {
+      "q": "Posso usar isso para roteiros de vídeo ou estruturas de YouTube?",
+      "a": "Sim, mas troque 'contagem de palavras' por 'tempo de tela' (em segundos), e troque 'perguntas a responder' por 'momentos visuais'. A mesma estrutura guiada por intenção se aplica — espectadores saem de vídeos pela mesma razão que leitores saem de posts: seções que não justificam seu tempo."
+    },
+    {
+      "q": "Funciona sem uma palavra-chave principal?",
+      "a": "Sim — mas o H1 não vai estar otimizado para SEO. Se você está escrevendo para uma newsletter ou blog interno, retire o campo de palavra-chave principal; o resto continua funcionando."
+    },
+    {
+      "q": "Como impeço o modelo de inventar dados?",
+      "a": "A regra 5 ([precisa de dados: ...]) é a proteção explícita contra alucinação. O modelo marca afirmações não verificadas para você preencher. Se ele produzir estatísticas sem o marcador, pergunte 'Fonte para esse número?' e ele vai fornecer uma ou admitir que não consegue."
+    },
+    {
+      "q": "Devo adicionar análise dos posts concorrentes?",
+      "a": "Opcional, mas poderoso. Adicione uma seção: 'Top 3 resultados ranqueados para a palavra-chave principal: <cole títulos + URLs>. Identifique suas fraquezas estruturais (seções que pulam, perguntas que não respondem).' A estrutura vai diferenciar explicitamente."
+    },
+    {
+      "q": "Por que o prompt pula a seção 'introdução é importante'?",
+      "a": "Porque a maioria das estruturas de IA adiciona como uma seção de 200 palavras que só reformula o H1. Leitores modernos e mecanismos de busca penalizam esse enchimento. A microestrutura Gancho + Promessa + Atalho faz o mesmo trabalho em 50 palavras."
+    }
+  ]
+}

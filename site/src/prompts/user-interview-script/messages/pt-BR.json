@@ -1,0 +1,73 @@
+{
+  "title": "Prompt de roteiro de entrevista com usuário ",
+  "shortDescription": "Gere um roteiro de entrevista com usuário de 30 minutos com perguntas abertas, follow-ups para cada uma e regras rígidas de não-indução. Baseado nos princípios do Mom Test.",
+  "description": "A maioria dos roteiros de entrevista feitos por IA são perguntas indutivas disfarçadas: 'como nossa feature te ajudaria?' em vez de 'me conta a última vez que você esbarrou nisso'. Este prompt força o enquadramento em comportamento passado, sem hipotéticos, e táticas explícitas de follow-up.",
+  "metaDescription": "Prompt gratuito de entrevista com usuário para Claude/ChatGPT. Perguntas de comportamento passado, sem indução, com follow-ups. Baseado no The Mom Test.",
+  "keywords": [
+    "prompt entrevista usuário",
+    "prompt Mom Test",
+    "roteiro pesquisa usuário",
+    "prompt entrevista discovery",
+    "entrevista cliente"
+  ],
+  "promptText": "Gere um roteiro de entrevista com usuário de 30 minutos.\n\nObjetivo da entrevista: {o que você quer aprender — seja específico}\nSegmento: {com quem você vai conversar — papel, contexto, comportamento atual}\nHipótese de trabalho (opcional): {o que você acredita ser verdade atualmente}\n\nEntregue um roteiro com esta estrutura:\n\n1. Aquecimento (3 min): duas perguntas abertas sobre a rotina atual, sem mencionar produto.\n2. Seção de comportamento passado (15 min): 5-7 perguntas, cada uma ancorada na última vez que fizeram a ação relevante. Formato: 'Me conta a última vez que você...'.\n   Para cada pergunta, liste 2-3 probes de follow-up que o entrevistador deve manter prontos.\n3. Seção de restrições (8 min): 3-4 perguntas sobre o que tentaram, o que pagaram, o que falhou. Revela demanda real vs polidez.\n4. Encerramento (4 min): uma pergunta aberta 'o que eu não perguntei' + agradecimentos.\n\nRegras rígidas (Mom Test):\n1. NENHUMA pergunta pode começar com 'você usaria...' ou 'você acha que...' — ambas convidam mentiras educadas.\n2. NENHUMA pergunta pode mencionar seu produto ou solução hipotética.\n3. Cada pergunta deve revelar um fato (o que fizeram) ou um pagamento (dinheiro/tempo gasto), não uma opinião.\n4. Se uma pergunta não pode ser respondida sem imaginar o futuro, reescreva-a para ser sobre o passado.\n5. Follow-ups devem cavar especificidades: 'com que frequência', 'quem pagou', 'o que você de fato tentou'.\n\nRetorne apenas o roteiro. Marque cada follow-up como [follow-up: ...]. Termine com uma seção de um parágrafo 'sinais de alerta durante a entrevista' listando o que invalidaria os dados.",
+  "useCase": {
+    "headline": "Quando usar",
+    "items": [
+      "Antes de construir qualquer coisa — 5-10 destas entrevistas substituem meses de chute.",
+      "Quando as métricas estão estagnadas e você não sabe por quê — perguntas de comportamento passado revelam a árvore de decisão real.",
+      "Validando uma premissa de preço — a seção de restrições ('o que você pagou') é mais honesta que 'quanto você pagaria'."
+    ]
+  },
+  "modelTips": {
+    "claude": "Melhor em evitar perguntas indutivas. Vai reescrever um hipotético em uma pergunta de comportamento passado quando solicitado.",
+    "chatgpt": "Tende a deixar escapar fraseado 'você usaria'. A regra 'SEM você usaria' é a mais importante de impor.",
+    "any": "Se uma pergunta parece confortável de fazer, ela provavelmente é indutiva. O roteiro deveria parecer levemente invasivo — é assim que você consegue dados de verdade."
+  },
+  "exampleHeading": "Exemplo: entrevista de discovery para uma ferramenta de finanças pessoais",
+  "exampleOutput": "Objetivo: entender como funcionários de SaaS na faixa dos 30 e poucos efetivamente acompanham finanças pessoais.\n\nAquecimento (3 min)\n  - Me conta sobre seu trabalho — o que você faz no dia a dia?\n  - Como é uma segunda-feira de manhã típica para você, antes do trabalho?\n\nComportamento passado (15 min)\n  Q1: Me conta a última vez que você sentou e olhou sua conta bancária. Quando foi, o que disparou isso?\n    [follow-up: planejado ou reativo?]\n    [follow-up: quanto tempo levou?]\n  Q2: A última vez que você tomou uma decisão financeira acima de R$ 2.500 — comprar, esperar, trocar de banco — me conta isso.\n    [follow-up: o que você consultou antes de decidir?]\n    [follow-up: quem mais você consultou?]\n  ... [mais 5]\n\nRestrições (8 min)\n  Q8: Qual foi a última ferramenta de dinheiro pela qual você de fato pagou, mesmo que R$ 25? O que fez você parar ou continuar pagando?\n  ... [mais 3]\n\nEncerramento: O que eu não perguntei e você gostaria que tivesse perguntado?\n\nSinais de alerta durante a entrevista:\n- Participante diz 'eu usaria' — eles na verdade não fazem isso. Investigue o último caso real; se não há nenhum, o segmento pode não ter o problema.\n- Vago em números/datas ('eu confiro às vezes'). Vago = comportamento imaginado. Pergunte 'quando foi a última vez exatamente?' para aterrissar.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por que a maioria dos roteiros de entrevista por IA é inútil",
+        "paragraphs": [
+          "O output padrão de LLM para 'escreva um roteiro de entrevista' produz perguntas indutivas: 'como a feature X te ajudaria?'. O Mom Test (Rob Fitzpatrick, 2014) mostrou duas décadas atrás que perguntas hipotéticas recebem polidez, não dados. Usuários reais dizem o que acham que você quer ouvir. O roteiro acima força ancoragem em comportamento passado, que leva a fatos.",
+          "Os probes de follow-up são igualmente importantes. Uma pergunta como 'me conta a última vez que você esbarrou nisso' vai te dar uma resposta de 30 segundos por padrão. Os probes ('o que você consultou primeiro', 'quem pagou', 'quanto tempo') transformam esses 30 segundos em 5 minutos de detalhe útil."
+        ]
+      },
+      {
+        "heading": "Como agir sobre o output",
+        "paragraphs": [
+          "Rode 5 entrevistas antes de mudar o roteiro. Padrões emergem por volta da entrevista 3-4. Na entrevista 5 você consegue dizer quais perguntas estão pegando dados bons e quais estão pegando enrolação educada — descarte as perguntas de enrolação educada e adicione follow-ups específicos para as boas.",
+          "Depois de 5-7 entrevistas, rode-as pelo prompt de resumo de pesquisa para extrair afirmações e contradições. A combinação (roteiro de entrevista → resumo estruturado → mapeamento de afirmações) é muito mais rápida que ler transcrições tentando lembrar padrões."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Por que sem perguntas 'você usaria'?",
+      "a": "Porque todo mundo diz sim para uma feature que você descreve na cara dele. Hipotéticos convidam polidez; comportamento passado convida fatos. A maior melhoria na qualidade da entrevista é remover todo 'você usaria' do roteiro."
+    },
+    {
+      "q": "E se meu produto ainda não existe?",
+      "a": "Melhor ainda — você não tem nada para enviesar o participante. Toda pergunta vira sobre a dor existente e as soluções atuais. É exatamente para isso que entrevistas de discovery servem."
+    },
+    {
+      "q": "De quantas entrevistas eu preciso?",
+      "a": "5-12 por segmento é típico. Aos 5 você já ouviu os padrões. Adicionar mais refina em vez de descobrir novos — retornos decrescentes depois de ~10, a menos que você esteja pesquisando um novo segmento."
+    },
+    {
+      "q": "E se o participante sair do tema?",
+      "a": "Frequentemente isso é ouro. Dores reais desviam conversas; respostas confortáveis não. Deixe-os falar por 2-3 min, anote, depois faça uma ponte de volta: 'me conta mais sobre X — foi na mesma época que você também fez Y?'"
+    },
+    {
+      "q": "Devo compartilhar a hipótese de antemão?",
+      "a": "Não. Diga o objetivo em termos vagos ('estou pesquisando como as pessoas lidam com X'). Compartilhar uma hipótese específica enviesa as respostas."
+    },
+    {
+      "q": "Posso usar isso para testes de usabilidade?",
+      "a": "Objetivo diferente — testes de usabilidade precisam de um roteiro de tarefas, não de um roteiro de discovery. Há sobreposição (não conduza, observe comportamento) mas o formato difere. Vamos publicar um prompt de usabilidade separadamente."
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "title": "Prompt plan d'article de blog — structure H2/H3 avec intention et",
+  "shortDescription": "Génère un plan d'article de blog serré et orienté SEO : hiérarchie H2/H3, intention par section, objectifs de mots, et questions auxquelles répond chaque section.",
+  "description": "La plupart des plans générés par IA sont des modèles fades. Ce prompt force le modèle à réfléchir à l'intention de recherche, à donner à chaque section un objectif mesurable, et à faire émerger les questions précises des lecteurs — la structure qui se classe et celle que les humains finissent vraiment de lire.",
+  "metaDescription": "Prompt gratuit de plan d'article de blog. Génère une structure H2/H3 avec intention, compte de mots et questions du lecteur par section.",
+  "keywords": [
+    "prompt plan article blog",
+    "structure blog IA",
+    "prompt plan SEO",
+    "prompt brief contenu",
+    "planificateur article blog"
+  ],
+  "promptText": "Construis un plan d'article de blog.\n\nSujet : {ton sujet}\nLecteur cible : {qui il est — débutants / praticiens expérimentés / décideurs}\nMot-clé principal : {l'expression que tu veux positionner}\nIntention de recherche : {informationnelle / commerciale / navigationnelle / transactionnelle}\nObjectif de mots : {N — fourchette typique 1500-3500}\n\nRetourne un plan avec exactement cette structure :\n\nH1 : <titre — doit inclure le mot-clé principal naturellement, max 60 caractères>\n\nIntro (~{N*0.05} mots)\n  - Hook : <une phrase sur pourquoi le lecteur se sent concerné maintenant>\n  - Promesse : <ce qu'il saura après lecture>\n  - Skip-ahead : <si sa réponse est dans la section X, redirige-le là>\n\nH2 : <titre de section>\n  Intention : <à quelle question du lecteur cette section répond>\n  Compte de mots : <N>\n  Questions à traiter :\n    - <Q1>\n    - <Q2>\n  H3 : <sous-section> (seulement si nécessaire ; max 3 H3 par H2)\n\n... (3 à 6 sections H2 au total ; la profondeur dépend du sujet, pas du modèle)\n\nConclusion (~{N*0.05} mots)\n  - Enseignement en une ligne\n  - CTA unique (pas de liste de CTA)\n\nContraintes strictes :\n1. Chaque H2 doit répondre à une question de chercheur différente — pas deux sections couvrant la même intention.\n2. Saute la section de remplissage 'l'introduction est importante' que beaucoup de plans IA ajoutent. Les vrais lecteurs la survolent.\n3. Si tu proposes une section purement de 'contexte historique', marque-la [optionnel] — la plupart des lecteurs veulent d'abord la réponse.\n4. La somme des comptes de mots doit être à ±10% de l'objectif.\n5. N'invente pas de statistiques ni de sources. Si une section a besoin de données, marque-la [données nécessaires : <quel type>].",
+  "useCase": {
+    "headline": "Quand utiliser ce prompt",
+    "items": [
+      "Avant d'écrire tout article de plus de 1000 mots — t'économise des heures de restructuration en cours de rédaction.",
+      "Briefer un rédacteur freelance — copie la sortie du plan comme brief ; les comptes de mots et l'intention empêchent les brouillons qui partent dans tous les sens.",
+      "Auditer des articles existants — colle ta liste actuelle de H2 et demande au modèle d'appliquer cette structure comme une critique."
+    ]
+  },
+  "modelTips": {
+    "claude": "Le meilleur pour capter les nuances d'intention. Refusera d'ajouter des sections de remplissage qui ne méritent pas leur compte de mots.",
+    "chatgpt": "Fonctionne bien ; a tendance à ajouter une section supplémentaire par souci d'exhaustivité. Coupe ensuite s'il dépasse l'objectif.",
+    "any": "Le champ 'questions à traiter' est le levier. Assure-toi que le modèle le remplit concrètement (pas 'discute des avantages clés' mais 'répond à : comment X se compare à Y sur le prix ?')."
+  },
+  "exampleHeading": "Exemple de sortie pour 'Comment choisir un comptable freelance'",
+  "exampleOutput": "H1 : Comment choisir un comptable freelance (Guide 2026)\n\nIntro (~150 mots)\n  - Hook : La saison fiscale est dans 8 semaines et ton précédent comptable t'a ghosté.\n  - Promesse : Un filtre en 4 questions qui fait émerger le bon comptable en moins d'une heure.\n  - Skip-ahead : Si tu ne veux que les tarifs, saute au §3.\n\nH2 : Le filtre en 4 questions (450 mots)\n  Intention : 'comment évaluer rapidement des comptables ?'\n  Questions :\n    - Quelles 4 questions distinguent un freelance compétent d'un incompétent en 10 min ?\n    - Quelle réponse est non négociable vs flexible ?\n  H3 : Question 1 — mix actuel de clients\n  H3 : Question 2 — stack logicielle\n\nH2 : Comment vérifier les diplômes (350 mots)\n  Intention : 'comment confirmer qu'il est légitime ?'\n  Questions :\n    - Où vérifier l'inscription à l'Ordre des Experts-Comptables ?\n    - À quoi ressemble l'accès aux données personnelles avec un vrai comptable ?\n\nH2 : Modèles de tarification (500 mots)\n  Intention : 'à combien dois-je m'attendre à payer ?'\n  Questions :\n    - Horaire vs forfait vs abonnement — lequel est le moins cher pour quelqu'un avec 1 salaire + 2 missions freelance ?\n    - Quelle est la fourchette typique en 2026 ?\n  [données nécessaires : enquête tarifs comptables freelance 2026]\n\nH2 : Signaux d'alarme pendant l'onboarding (300 mots)\n  Intention : 'quand dois-je passer mon chemin ?'\n  Questions :\n    - 5 signaux d'alarme lors du premier appel\n\nH2 : Checklist des 90 premiers jours (250 mots)\n  Intention : 'que dois-je faire concrètement une fois embauché ?'\n\nConclusion (~150 mots)\n  CTA : Lien unique vers un PDF téléchargeable de questions d'entretien.\n\nTotal : ~2150 mots (objectif 2200 ; à ±10%).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Pourquoi la plupart des plans générés par IA sous-performent",
+        "paragraphs": [
+          "Si tu demandes 'fais-moi un plan sur X', le modèle te renvoie un squelette générique : introduction, historique, concepts clés, exemples, conclusion. La structure est dictée par le modèle, pas par le sujet, et l'article qui en résulte se lit comme tous les autres listicles en page deux des résultats. Les lecteurs et Google le remarquent — le taux de rebond grimpe, l'engagement baisse, le classement s'érode.",
+          "Le prompt ci-dessus force une structure pilotée par le sujet en exigeant intention et questions du lecteur par section. Une section qui n'arrive pas à articuler la question précise à laquelle elle répond saute. Une section sans budget de mots ne peut pas diluer le reste. La sortie est un brief qui survit au contact de la vraie rédaction."
+        ]
+      },
+      {
+        "heading": "Le compte de mots comme levier de planification",
+        "paragraphs": [
+          "La plupart des articles échouent non parce qu'ils couvrent les mauvais sujets mais parce que les bons sujets reçoivent la mauvaise quantité d'espace. La section la plus importante a 200 mots et une section tangentielle en a 600. Spécifier les comptes de mots à l'avance force des décisions de priorité au moment du plan, quand elles ne coûtent rien, plutôt qu'à l'édition, quand couper fait mal.",
+          "L'enforcement de la somme à ±10% attrape un échec courant des IA : le plan continue d'ajouter des sections jusqu'à ce que le total fasse 1,5x ton objectif. Coupe ou fusionne avant d'écrire — bien plus rapide qu'en deuxième jet."
+        ]
+      },
+      {
+        "heading": "Adapter le prompt aux audits de contenu",
+        "paragraphs": [
+          "Réutilise la structure pour auditer les articles sous-performants. Colle la liste actuelle de H2 et demande : 'Applique le framework de plan d'article. Quelles sections manquent d'une question claire du chercheur ? Quelles sections se chevauchent en intention ? Où les allocations de mots ne correspondent-elles pas à l'importance ?' Le modèle devient un éditeur structurel au lieu d'un correcteur.",
+          "Combine ça avec un check rapide de gap de mots-clés : ajoute 'Liste 5 questions du lecteur que ce plan ne traite PAS mais que les top 3 résultats concurrents traitent.' Cela fait émerger les sections manquantes sans avoir à lire chaque article concurrent."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Combien de mots devrait faire chaque H2 typiquement ?",
+      "a": "Cela dépend de l'objectif de l'article, mais une valeur par défaut raisonnable est 250-500 mots par H2. En dessous de 200 mots, ça ne mérite pas un titre de section ; au-dessus de 600, ça veut souvent se découper en H3 ou devenir un article à part."
+    },
+    {
+      "q": "Que signifie 'intention' pour une section ?",
+      "a": "La question précise du lecteur à laquelle la section répond. 'Discute des prix' n'est pas une intention. 'Répond à : devrais-je payer à l'heure ou en abonnement pour ma situation ?' est une intention. Plus c'est précis, mieux la section s'écrit."
+    },
+    {
+      "q": "Pourquoi marquer des sections [optionnel] ?",
+      "a": "Parce que le prompt est honnête sur les sections qui méritent vraiment leur place. Une section 'historique de X' peut intéresser 5% des lecteurs ; la marquer te permet de décider si tu l'écris, la rétrogrades en note de bas de page, ou la sautes complètement."
+    },
+    {
+      "q": "Puis-je l'utiliser pour des scripts vidéo ou plans YouTube ?",
+      "a": "Oui, mais remplace 'compte de mots' par 'durée d'écran' (en secondes), et 'questions à traiter' par 'moments visuels'. La même structure pilotée par l'intention s'applique — les spectateurs quittent les vidéos pour la même raison que les lecteurs quittent les articles : des sections qui ne méritent pas leur temps."
+    },
+    {
+      "q": "Est-ce que ça marche sans mot-clé principal ?",
+      "a": "Oui — mais le H1 ne sera pas optimisé SEO. Si tu écris pour une newsletter ou un blog interne, supprime le champ mot-clé principal ; le reste fonctionne toujours."
+    },
+    {
+      "q": "Comment empêcher le modèle d'inventer des données ?",
+      "a": "La règle 5 ([données nécessaires : ...]) est le garde-fou explicite anti-hallucination. Le modèle marque les affirmations non vérifiées pour que tu les remplisses. S'il sort des stats sans le marqueur, demande 'Source pour ce chiffre ?' et il en fournira une ou admettra qu'il ne peut pas."
+    },
+    {
+      "q": "Devrais-je ajouter une analyse des articles concurrents ?",
+      "a": "Optionnel mais puissant. Ajoute une section : 'Top 3 résultats classés pour le mot-clé principal : <colle titres + URL>. Identifie leurs faiblesses structurelles (sections qu'ils sautent, questions auxquelles ils ne répondent pas).' Le plan se différenciera explicitement."
+    },
+    {
+      "q": "Pourquoi le prompt saute-t-il la section 'l'introduction est importante' ?",
+      "a": "Parce que la plupart des plans IA l'ajoutent comme une section de 200 mots qui reformule juste le H1. Les lecteurs modernes et les moteurs de recherche pénalisent ce remplissage. La microstructure Hook + Promesse + Skip-ahead fait le même travail en 50 mots."
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "title": "Prompt chuẩn bị họp — agenda, quyết định, kiểm tra async-hay-họp",
+  "shortDescription": "Tạo agenda họp sắc bén từ ghi chú thô, bao gồm ngân sách thời gian, các quyết định cần đưa ra, và kiểm tra 'cái này có nên làm async không' ở đầu trang.",
+  "description": "Hầu hết agenda họp do AI tạo ra là khuôn mẫu nhạt nhẽo, không thực sự thúc đẩy một cuộc họp năng suất. Prompt này buộc model phải gắn nhãn quyết định vs thảo luận, phân bổ thời gian cho từng mục, và thách thức xem cuộc họp có cần diễn ra hay không.",
+  "metaDescription": "Prompt chuẩn bị họp miễn phí. Xây dựng agenda với ngân sách thời gian, các quyết định được đặt tên, và kiểm tra async-vs-họp. Hoạt động với Claude, ChatGPT.",
+  "keywords": ["prompt chuẩn bị họp", "tạo agenda AI", "prompt agenda họp", "prompt họp quyết định", "agenda stand up"],
+  "promptText": "Xây dựng agenda họp từ ghi chú thô bên dưới.\n\nBối cảnh họp:\n- Thời lượng: {N phút}\n- Người tham dự: {tên + vai trò}\n- Người ra quyết định có mặt: {ai có thể thực sự phê duyệt kết quả}\n- Các kênh async hiện có: {Slack / Linear / Notion / v.v.}\n\nVới mỗi mục tôi liệt kê, xuất ra:\n  - Mục: <phát biểu lại sắc nét>\n  - Loại: DECISION | DISCUSSION | INFO_SHARE\n  - Thời gian: <phút>\n  - Quyết định cần đưa ra (nếu DECISION): <câu hỏi yes/no chính xác hoặc tập lựa chọn để chọn>\n  - Pre-read: <link hoặc tên tài liệu mà người tham dự phải đọc trước>\n  - Owner: <ai dẫn dắt mục này>\n\nSau đó ở đầu agenda, thêm phần CÁI NÀY CÓ NÊN LÀ HỌP KHÔNG? bao gồm:\n  1. Liệt kê các mục có thể xử lý async (bất kỳ INFO_SHARE thuần túy nào).\n  2. Xác định người ra quyết định bị thiếu — nếu không ai trong phòng có thể phê duyệt một mục DECISION, hãy flag nó.\n  3. Đề xuất thay đổi agenda: 'xóa mục 2-3 (async); lùi lịch với [người thiếu] cho mục 4'.\n\nQuy tắc cứng:\n- Tổng thời gian các mục phải vừa với thời lượng họp, dành 5 phút làm buffer.\n- Mỗi mục DECISION phải có yes/no rõ ràng hoặc chọn-lựa-chọn. 'Bàn về roadmap' không phải quyết định; 'Phê duyệt roadmap Q2 hay gửi lại để chỉnh sửa' mới là.\n- Mục INFO_SHARE tối đa 5 phút mỗi mục — bất cứ gì hơn là một cuộc thảo luận trá hình.\n- Nếu một nửa số mục trở lên là INFO_SHARE, đề xuất hủy cuộc họp và gửi cập nhật bằng văn bản.\n\nGhi chú thô:\n\n[dán các bullet point hoặc suy nghĩ của bạn vào đây]",
+  "useCase": {
+    "headline": "Khi nào dùng prompt này",
+    "items": [
+      "Trước bất kỳ cuộc họp định kỳ nào — dán agenda thường lệ và các mục mới bỏ/thêm gần đây, nhận lại phiên bản chặt chẽ hơn.",
+      "Khi cuộc họp do người khác lên lịch và bạn muốn sửa nó — tạo phiên bản tốt hơn, chia sẻ ngược lại.",
+      "Họp lập kế hoạch quý — sự phân chia quyết định-vs-thảo luận ngăn cuộc họp biến thành độc thoại 90 phút."
+    ]
+  },
+  "modelTips": {
+    "claude": "Mạnh ở thử thách 'cái này có nên làm async'. Sẽ đề xuất hủy họp khi cần, điều mà các model khác ngần ngại làm.",
+    "chatgpt": "Hoạt động được nhưng có xu hướng giữ tất cả các mục trong agenda. Thêm 'sẵn sàng đề xuất hủy cuộc họp nếu phù hợp' để rõ ràng.",
+    "any": "Quy tắc 'quyết định cần đưa ra' là đòn bẩy. Nếu bạn không thể điền nó cho một mục, có lẽ mục đó chưa sẵn sàng cho cuộc họp."
+  },
+  "exampleHeading": "Ví dụ: team sync 30 phút từ ghi chú thô",
+  "exampleOutput": "CÁI NÀY CÓ NÊN LÀ HỌP KHÔNG?\n  - Mục 3 & 5 (cập nhật trạng thái) nên chuyển sang cập nhật văn bản; tiết kiệm 12 phút.\n  - Mục 4 (phê duyệt ngân sách Q2) cần CFO có mặt — họ không có trong invite. Hoặc dời lịch hoặc tách: xử lý mục 1-2 hôm nay, mục 4 với CFO tuần sau.\n  - Đề xuất: rút ngắn xuống 15 phút, agenda bên dưới.\n\nAGENDA (15 phút, buffer 5 phút)\n\n1. Phê duyệt tuyển bù vị trí của Sarah (5 phút) — DECISION\n   Quyết định cần đưa ra: Phê duyệt đăng tuyển bên ngoài ngay, hay chờ 2 tuần cho ứng viên nội bộ Q?\n   Owner: Engineering Manager. Pre-read: tài liệu spec tuyển bù (đã link).\n\n2. Giải quyết quyền sở hữu API giữa platform và growth (8 phút) — DISCUSSION\n   Owner: VP Eng. Pre-read: ma trận quyền sở hữu v3.\n   Lưu ý: cần cả hai manager trong phòng; cả hai đã xác nhận.\n\n3. (đã xóa — xem đầu trang) Review chỉ số Q1 → chuyển sang cập nhật văn bản.\n4. (lùi lịch — xem đầu trang) Phê duyệt ngân sách Q2 → lùi lịch với CFO.\n5. (đã xóa — xem đầu trang) Demo nhà cung cấp công cụ → video async, xem theo thời gian rảnh.\n\nBuffer: 2 phút cho parking-lot hoặc vượt giờ.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Vì sao hầu hết agenda không giúp cuộc họp năng suất",
+        "paragraphs": [
+          "Agenda mặc định liệt kê chủ đề mà không có cam kết. 'Bàn về roadmap' mời gọi thảo luận không giới hạn; 'cập nhật trạng thái roadmap' mời gọi độc thoại; cả hai đều không sinh ra quyết định. Kết quả: cuộc họp kết thúc với cùng câu hỏi như khi bắt đầu, và cuộc họp tiếp theo được lên lịch để giải quyết chúng.",
+          "Việc gắn nhãn DECISION/DISCUSSION/INFO_SHARE làm hầu hết công việc trong prompt này. Một khi bạn đánh dấu một mục là DECISION, bạn phải nêu rõ yes/no hoặc chọn-lựa-chọn. Nếu không thể, mục đó chưa sẵn sàng và nên bị xóa (quay lại giai đoạn thảo luận async trước)."
+        ]
+      },
+      {
+        "heading": "Kiểm tra hủy-cuộc-họp là dòng có đòn bẩy cao nhất",
+        "paragraphs": [
+          "Các công cụ AI hiếm khi bảo bạn hủy cuộc họp mà chúng được yêu cầu lên kế hoạch. Prompt này yêu cầu rõ ràng model đề xuất hủy khi cần, giúp bạn trút bỏ một cuộc trò chuyện khó xử. 'Tôi chạy agenda qua prompt này và nó gợi ý chúng ta hủy — đây là cập nhật async thay thế' là một thông điệp dễ hơn nhiều so với 'Tôi nghĩ chúng ta nên hủy'.",
+          "Dùng nó cho các cuộc họp định kỳ mỗi 2-3 tháng. Lịch tích lũy rác; prompt này là một bài dọn dẹp có cấu trúc."
+        ]
+      },
+      {
+        "heading": "Pre-read làm cuộc họp quyết định nhanh gấp 3 lần",
+        "paragraphs": [
+          "Một nửa mỗi cuộc họp quyết định là người ta cập nhật bối cảnh. Nếu một pre-read một trang được gửi trước 24 giờ và mọi người thực sự đọc nó, bản thân cuộc họp có thể chỉ 10 phút — đủ dài để phơi bày lo ngại và quyết định, đủ ngắn để không ai mất tập trung.",
+          "Trường 'pre-read' trong prompt này buộc bạn xác định bối cảnh mà người tham dự cần. Nếu bạn không thể đặt tên một tài liệu, cuộc họp có lẽ chưa sẵn sàng: hoặc bạn chưa viết ra cái bạn đang đề xuất, hoặc không có thứ gì rõ ràng để phản ứng."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Có hoạt động với stand-up / daily sync không?",
+      "a": "Tạm được — stand-up chủ yếu là INFO_SHARE theo thiết kế. Prompt sẽ đề xuất hủy chúng, điều đó không phải lúc nào cũng là điều bạn muốn. Dùng cái này cho cuộc họp 30+ phút."
+    },
+    {
+      "q": "Nếu ghi chú thô lộn xộn và mâu thuẫn thì sao?",
+      "a": "Model sẽ cố gắng làm chúng sắc nét lại. Nếu nó tạo ra một mục không khớp với ý định của bạn, trả lời với 'mục 3 thực ra là về X, không phải Y'. Sau một lần sửa nó thường giữ phần còn lại nhất quán."
+    },
+    {
+      "q": "Tôi chia sẻ output ngược lại cho người tham dự thế nào?",
+      "a": "Sao chép phần agenda (bỏ phần phân tích 'cái này có nên là họp không?' nếu người tham dự có thể thấy hơi mạo muội). Hoặc chia sẻ toàn bộ dưới dạng tin nhắn minh bạch 'đây là cách tôi cắt gọn agenda'."
+    },
+    {
+      "q": "Tôi có thể dùng cho 1-on-1 không?",
+      "a": "Có, với một chỉnh sửa nhỏ — đổi DECISION/DISCUSSION/INFO_SHARE thành TOPIC/FEEDBACK/CHECK_IN. Cấu trúc ngân sách thời gian và pre-read vẫn hữu ích."
+    },
+    {
+      "q": "Còn parking-lot cho những thứ xuất hiện trực tiếp thì sao?",
+      "a": "Buffer 5 phút đóng vai trò này. Nếu các cuộc thảo luận liên tục vượt giờ, prompt cũng là một công cụ chẩn đoán — hoặc ước tính thời gian quá hung hăng, hoặc các mục lớn hơn bạn dự kiến."
+    },
+    {
+      "q": "Vì sao giới hạn INFO_SHARE ở 5 phút?",
+      "a": "Vì bất cứ gì dài hơn hoặc là thảo luận (có người có câu hỏi) hoặc là thuyết trình (có thể là video ghi sẵn). Giới hạn 5 phút buộc bạn hoặc xóa mục đó hoặc gắn nhãn đúng."
+    },
+    {
+      "q": "Có tích hợp với công cụ lịch không?",
+      "a": "Không trực tiếp. Output là markdown thuần; dán vào phần mô tả invite lịch, Notion, Linear, hoặc bất cứ đâu team bạn lưu ghi chú họp. Một số team dùng Granola/Krisp cho transcription trực tiếp, kết hợp tốt."
+    },
+    {
+      "q": "Còn cuộc họp brainstorm thì sao?",
+      "a": "Đánh dấu chúng là chỉ-DISCUSSION với ghi chú 'không quyết định hôm nay, quyết định ở cuộc họp tiếp theo'. Kiểm tra 'cái này có nên làm async' có thể đề xuất bảng Miro / Figjam thay thế — thường tốt hơn cho tư duy phân kỳ."
+    }
+  ]
+}

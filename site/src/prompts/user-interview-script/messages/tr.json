@@ -1,0 +1,73 @@
+{
+  "title": "Kullanıcı görüşme senaryosu promptu — geçmiş davranış, yönlendirici",
+  "shortDescription": "Açık sorular, her biri için takipler ve katı yönlendirme yapmama kurallarıyla 30 dakikalık bir kullanıcı görüşme senaryosu oluşturun. Mom Test ilkelerine göre modellenmiştir.",
+  "description": "AI görüşme senaryolarının çoğu kılık değiştirmiş yönlendirici sorulardır: 'özelliğimiz size nasıl yardımcı olur?' yerine 'bununla son karşılaştığınız zamanı bana anlatın'. Bu prompt geçmiş davranış çerçevelemesini, hipotetiklerin yokluğunu ve açık takip taktiklerini zorlar.",
+  "metaDescription": "Claude/ChatGPT için ücretsiz kullanıcı görüşme promptu. Geçmiş davranış soruları, yönlendirme yok, takiplerle. Mom Test'e dayanır. 30 dakikalık senaryo şablonu.",
+  "keywords": [
+    "kullanıcı görüşmesi promptu",
+    "Mom Test promptu",
+    "kullanıcı araştırması senaryosu",
+    "keşif görüşmesi promptu",
+    "müşteri görüşmesi"
+  ],
+  "promptText": "30 dakikalık bir kullanıcı görüşme senaryosu oluştur.\n\nGörüşmenin hedefi: {ne öğrenmek istiyorsunuz — spesifik olun}\nSegment: {kiminle konuştuğunuz — rol, bağlam, mevcut davranış}\nÇalışan hipotez (opsiyonel): {şu anda neyin doğru olduğuna inanıyorsunuz}\n\nBu yapıda bir senaryo çıktıla:\n\n1. Isınma (3 dk): mevcut rutinleri hakkında iki açık soru, ürün bahsi yok.\n2. Geçmiş davranış bölümü (15 dk): 5-7 soru, her biri ilgili eylemi yaptıkları son zamanı temel alır. Format: 'Bana son... yaptığınız zamanı anlatın'.\n   Her soru için, görüşmecinin hazır tutması gereken 2-3 takip araştırması listele.\n3. Kısıtlama bölümü (8 dk): denedikleri, ödedikleri, başarısız olan şeyler hakkında 3-4 soru. Gerçek talebi nezaketten ayırır.\n4. Toparlama (4 dk): bir açık 'sormadığım ne' sorusu + teşekkürler.\n\nKatı kurallar (Mom Test):\n1. Hiçbir soru '... ister miydiniz...' veya '... düşünür müsünüz...' ile başlayamaz — her ikisi de nezaket yalanlarını davet eder.\n2. Hiçbir soru ürününüzden veya varsayılan çözümünüzden bahsedemez.\n3. Her soru bir gerçeği (ne yaptıklarını) veya bir ödemeyi (harcanan para/zaman) ortaya çıkarmalı, bir görüş değil.\n4. Bir soru geleceği hayal etmeden cevaplanamıyorsa, geçmiş hakkında olacak şekilde yeniden yaz.\n5. Takipler ayrıntılara inmelidir: 'ne sıklıkta', 'kim ödedi', 'gerçekte ne denediniz'.\n\nYalnızca senaryoyu döndür. Her takibi [takip: ...] olarak işaretle. Verileri geçersiz kılacak şeyleri listeleyen bir paragraflık 'görüşme sırasındaki kırmızı bayraklar' bölümüyle bitir.",
+  "useCase": {
+    "headline": "Bunu ne zaman kullanmalı",
+    "items": [
+      "Herhangi bir şey inşa etmeden önce — bunlardan 5-10 görüşme aylarca tahmin etmenin yerini alır.",
+      "Metrikler düz olduğunda ve nedenini bilmediğinizde — geçmiş davranış soruları gerçek karar ağacını ortaya çıkarır.",
+      "Bir fiyatlandırma varsayımını doğrularken — kısıtlama bölümü ('ne ödediniz') 'ne kadar öderdiniz'den daha dürüsttür."
+    ]
+  },
+  "modelTips": {
+    "claude": "Yönlendirici sorulardan kaçınmada en iyisi. İstek üzerine bir hipotetik soruyu geçmiş davranış sorusuna yeniden yazacaktır.",
+    "chatgpt": "'... ister miydiniz' ifadesini gizlice eklemeye eğilimlidir. 'İster miydiniz YOK' kuralı uygulanması en önemli olanıdır.",
+    "any": "Bir soruyu sormak rahat hissettiriyorsa, muhtemelen yönlendiricidir. Senaryo biraz müdahaleci hissetmeli — gerçek veriyi böyle alırsınız."
+  },
+  "exampleHeading": "Örnek: kişisel finans aracı için keşif görüşmesi",
+  "exampleOutput": "Hedef: 30'lu yaşların ortasındaki SaaS çalışanlarının kişisel finansı nasıl takip ettiğini gerçekten anlamak.\n\nIsınma (3 dk)\n  - Bana işinizden bahsedin — günlük olarak ne yapıyorsunuz?\n  - İşten önce tipik bir Pazartesi sabahı nasıl görünüyor?\n\nGeçmiş davranış (15 dk)\n  S1: Bana son banka hesabınıza oturup baktığınız zamanı anlatın. Ne zamandı, neyi tetikledi?\n    [takip: planlı mı tepkisel mi?]\n    [takip: ne kadar sürdü?]\n  S2: 500 dolar üzeri bir finansal karar verdiğiniz son zaman — satın alma, bekleme, banka değiştirme — bana onu anlatın.\n    [takip: karar vermeden önce neyi kontrol ettiniz?]\n    [takip: başka kime danıştınız?]\n  ... [5 tane daha]\n\nKısıtlamalar (8 dk)\n  S8: Gerçekten para ödediğiniz, 5 dolar bile olsa, en son para aracı nedir? Sizi durduran veya ödemeye devam etmenizi sağlayan neydi?\n  ... [3 tane daha]\n\nToparlama: Sormadığım ve sormamı istediğiniz ne vardı?\n\nGörüşme sırasındaki kırmızı bayraklar:\n- Katılımcı 'Yapardım' diyor — bunu aslında yapmıyor. Gerçek son örnek için araştır; yoksa, segmentin bu sorunu olmayabilir.\n- Sayılar/tarihler hakkında belirsiz ('bazen kontrol ediyorum'). Belirsiz = hayal edilmiş davranış. Temellendirmek için 'tam olarak son ne zamandı?' diye sorun.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Çoğu AI görüşme senaryosu neden işe yaramaz",
+        "paragraphs": [
+          "'Bana bir görüşme senaryosu yaz' için varsayılan LLM çıktısı yönlendirici sorular üretir: 'X özelliği size nasıl yardımcı olur?'. Mom Test (Rob Fitzpatrick, 2014) yirmi yıl önce hipotetik soruların nezaket aldığını, veri almadığını gösterdi. Gerçek kullanıcılar duymak istediğinizi düşündüklerini söyler. Yukarıdaki senaryo gerçeklere ulaşan geçmiş davranış demirlemesini zorlar.",
+          "Takip araştırmaları da eşit derecede önemlidir. 'Bana bununla son karşılaştığınız zamanı anlatın' gibi bir soru varsayılan olarak size 30 saniyelik bir yanıt verecektir. Araştırmalar ('önce neyi kontrol ettiniz', 'kim ödedi', 'ne kadar sürdü') o 30 saniyeyi 5 dakikalık yararlı ayrıntıya dönüştürür."
+        ]
+      },
+      {
+        "heading": "Çıktıya göre nasıl hareket edilir",
+        "paragraphs": [
+          "Senaryoyu değiştirmeden önce 5 görüşme yapın. Kalıplar görüşme 3-4'te ortaya çıkar. Görüşme 5'e kadar hangi soruların iyi veri aldığını ve hangilerinin kibar doldurma aldığını söyleyebilirsiniz — kibar doldurma sorularını çıkarın ve iyi olanlar için spesifik takipler ekleyin.",
+          "5-7 görüşmeden sonra, iddiaları ve çelişkileri çıkarmak için onları araştırma özeti promptundan geçirin. Kombo (görüşme senaryosu → yapılandırılmış özet → iddia haritalama) transkriptleri okuyup kalıpları hatırlamaya çalışmaktan çok daha hızlıdır."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Neden 'ister miydiniz' soruları yok?",
+      "a": "Çünkü herkes yüzlerine tarif ettiğiniz bir özelliğe evet der. Hipotetikler nezaketi davet eder; geçmiş davranış gerçekleri davet eder. Görüşme kalitesindeki en büyük tek iyileştirme, senaryodan her 'ister miydiniz'i çıkarmaktır."
+    },
+    {
+      "q": "Ürünüm henüz yoksa ne olur?",
+      "a": "Daha da iyi — onları önyargılı hale getirecek hiçbir şeyiniz yok. Her soru mevcut acı ve mevcut çözümler hakkında olur. Keşif görüşmelerinin tam olarak işlevi budur."
+    },
+    {
+      "q": "Kaç görüşmeye ihtiyacım var?",
+      "a": "Segment başına 5-12 tipiktir. 5'e kadar kalıpları duymuş olursunuz. Daha fazlasını eklemek yenilerini keşfetmekten çok mevcutları rafine eder — yeni bir segment araştırmıyorsanız ~10'dan sonra azalan getiriler."
+    },
+    {
+      "q": "Katılımcı konudan saparsa ne olur?",
+      "a": "Genellikle bu altındır. Gerçek acılar konuşmaları raydan çıkarır; rahat yanıtlar yapmaz. 2-3 dakika gitmesine izin verin, notlar alın, sonra geri köprü kurun: 'Bana X hakkında daha fazla anlatın — bu Y'yi de yaptığınız zamanla aynı mıydı?'"
+    },
+    {
+      "q": "Hipotezi önceden paylaşmalı mıyım?",
+      "a": "Hayır. Hedefi belirsiz terimlerle söyleyin ('İnsanların X'i nasıl ele aldığını araştırıyorum'). Spesifik bir hipotez paylaşmak yanıtlarını önyargılı hale getirir."
+    },
+    {
+      "q": "Bunu kullanılabilirlik testleri için kullanabilir miyim?",
+      "a": "Farklı hedef — kullanılabilirlik testleri keşif senaryosu değil, bir görev senaryosu gerektirir. Örtüşme var (yönlendirme yapmayın, davranışı gözlemleyin) ancak format farklıdır. Bir kullanılabilirlik promptunu ayrıca yayınlayacağız."
+    }
+  ]
+}

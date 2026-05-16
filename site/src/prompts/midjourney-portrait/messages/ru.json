@@ -1,0 +1,86 @@
+{
+  "title": "Промпт Midjourney для портрета — контроль над лицом, светом",
+  "shortDescription": "Модульный шаблон промпта Midjourney для портретов с явным контролем над субъектом, кадрированием, светом, объективом, настроением и стилем. Избегает обобщённого «ИИ-портрета».",
+  "description": "Стандартные портреты Midjourney разделяют одну и ту же «зловещую долину»-гладкость, драматичный key light и пересыщенное боке. Этот шаблон ломает дефолты: задаёт объектив (фокусное расстояние имеет значение), направление света и пункт «без переотрендеренной кожи», который заставляет получать реалистичную текстуру.",
+  "metaDescription": "Бесплатный модульный промпт Midjourney для портретов. Объектив, свет, кадр, настроение — явный контроль. Избегает обобщённого ИИ-лица. С примерами v6/v7.",
+  "keywords": [
+    "Midjourney промпт для портрета",
+    "шаблон промпта Midjourney",
+    "промпт ИИ-портрет",
+    "Midjourney промпт освещение",
+    "реалистичный ИИ-портрет"
+  ],
+  "promptText": "[subject — будьте конкретны: возраст, телосложение, волосы, выражение, одежда]\n+ [framing: headshot / waist-up / full-body], [angle: eye-level / low / 3-quarter]\n+ shot on [lens: 35mm / 50mm / 85mm / 105mm], [aperture: f/1.4 / f/2 / f/2.8]\n+ [lighting: natural window light from left / golden hour backlight / soft north-window light / overcast outdoor]\n+ [mood: contemplative / candid joy / quiet intensity / weariness — выберите одно конкретное настроение]\n+ [environment / background: описание из 5–8 слов с подсказками глубины]\n+ realistic skin texture with visible pores and natural asymmetry, no plastic smoothing\n+ [style reference: editorial / documentary / film still / Renaissance painting / 1970s magazine cover]\n--ar 4:5 --style raw --v 7\n\nПример сборки (замените части в скобках):\n\n  middle-aged woman in her late 50s, silver hair pulled back, soft smile lines, wearing a charcoal cashmere sweater, headshot, eye-level, shot on 85mm f/1.8, natural north-window light from screen left, contemplative mood, sparse home library blurred behind her with one warm lamp, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style --ar 4:5 --style raw --v 7\n\nТактики вариаций:\n- Тот же промпт, меняйте только объектив (35mm → 85mm → 135mm) для 3 разных композиций.\n- Тот же промпт, меняйте свет (окно → золотой час → пасмурно) для этюда настроения.\n- Добавьте --seed <n>, чтобы зафиксировать лицо между итерациями, когда нашли подходящее.",
+  "useCase": {
+    "headline": "Когда это использовать",
+    "items": [
+      "Портреты в editorial-стиле, где цель — характер, а не глянцевый снимок.",
+      "Фото авторов или хедшоты для LinkedIn — спецификация объектива и света убирает чрезмерный глянец, выдающий ИИ.",
+      "Концепт-арт для художественных персонажей, где нужны согласованные референсы лица между многими изображениями (используйте --seed)."
+    ]
+  },
+  "modelTips": {
+    "midjourney": "Протестировано на v6.1 и v7. Используйте --style raw, чтобы подавить дефолтный кинематографический буст Midjourney; это сохраняет реализм. --ar 4:5 — редакторский портретный кроп; переключитесь на --ar 3:2 для документального ощущения."
+  },
+  "exampleHeading": "Три вариации одного скелета",
+  "exampleOutput": "Вариация A (интимная):\n  35-year-old man with weathered hands, salt-and-pepper beard, looking down at a worn leather notebook, headshot tilted slightly down, shot on 50mm f/1.4, single candle as only light source from the right, quiet intensity, dim wooden table with handwritten pages, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, film still style, --ar 4:5 --style raw --v 7\n\nВариация B (энергичная):\n  young Black woman in her early 20s, joyful caught laugh mid-conversation, twist-out curls catching backlight, waist-up, three-quarter angle, shot on 85mm f/2, golden hour backlight from her left + soft fill from camera right, candid joy, blurred park bench and autumn leaves behind, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style, --ar 3:2 --style raw --v 7\n\nВариация C (формальная):\n  East Asian businesswoman in her 40s, sharp tailored navy blazer, neutral confident expression, three-quarter framing, low angle, shot on 35mm f/2.8, soft overcast outdoor light, quiet authority, modernist office building lobby blurred behind her, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, editorial style, --ar 4:5 --style raw --v 7",
+  "article": {
+    "sections": [
+      {
+        "heading": "Почему стандартные портреты Midjourney все выглядят одинаково",
+        "paragraphs": [
+          "Тренировочные данные и дефолтный стиль Midjourney сильно тяготеют к кинокачественному драматическому свету, отретушированной коже и боке 85mm-f/1.4. Без явного контроля над объективом, светом и текстурой кожи каждый портрет сходится к этой эстетике «ИИ-инстаграм-фильтра». Редакторы и рекрутёры теперь узнают её мгновенно.",
+          "Шаблон выше ломает сходимость в трёх местах: объектив (разное фокусное расстояние меняет геометрию лица), направление и мягкость света, и явный пункт «realistic skin texture», который подавляет дефолтное сглаживание. Первые два — это чистая фотография; третий — антипаттерн, специфичный для Midjourney."
+        ]
+      },
+      {
+        "heading": "Выбор объектива меняет лицо",
+        "paragraphs": [
+          "Широкие объективы (35mm) льстят подбородку и преувеличивают нос; портреты ощущаются интимно и иногда слегка комично. 50mm — «нормальный» объектив, самый естественный. 85mm и 105mm сжимают черты, льстят большинству лиц и дают классический редакторский вид. Смена только объектива в промпте даёт три явно разных портрета одного персонажа.",
+          "Применяйте при генерации нескольких кадров одного вымышленного персонажа. Зафиксируйте seed, варьируйте только объектив. Получите согласованную идентичность в разных визуальных контекстах — фича, которой сложно добиться чисто промптом."
+        ]
+      },
+      {
+        "heading": "Направление света задаёт настроение — говорите явно",
+        "paragraphs": [
+          "«Natural light» — не инструкция; модель по умолчанию выбирает что-то драматичное. «Soft north-window light from screen left» — инструкция, которую модель может точно исполнить. Шаблон требует направления (слева/справа/сзади/спереди), качества (мягкий/жёсткий) и источника (окно/золотой час/свеча/пасмурно).",
+          "Три быстрых соответствия настроения: контровой + тёплый тон = романтика / ностальгия. Один жёсткий боковой = драма / допрос. Пасмурно + фронтальный мягкий = документалистика / честность. Сознательный выбор — разница между «портретом» и «портретом, который передаёт то, что вы хотели»."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Работает ли это в Midjourney v5?",
+      "a": "Да, но уберите --style raw (добавлен в v5.2) и ссылку на v7. Пункты про объектив и свет всё равно помогают. Новые версии (v6.1+, v7) лучше уважают пункт про реалистичную кожу."
+    },
+    {
+      "q": "Можно ли использовать для full body?",
+      "a": "Да — измените framing на full-body, переключите объектив на 35mm или 50mm (не 85mm — слишком льстиво для тела) и добавьте описание позы. Пункт про текстуру кожи менее влиятелен на full body, но всё равно стоит сохранить."
+    },
+    {
+      "q": "Зачем указывать диафрагму, если Midjourney — не настоящая камера?",
+      "a": "Это короткая нотация, которую модель понимает. f/1.4 значит «экстремальный фон в размытии, поверхностный фокус, интимно». f/8 значит «почти всё резко, environmental-портрет». Указание диафрагмы контролирует боке предсказуемо."
+    },
+    {
+      "q": "Как сохранить одно и то же лицо между изображениями?",
+      "a": "Сгенерируйте одно понравившееся изображение, затем добавьте --seed <n> с его seed. Последующие генерации с тем же seed и похожим промптом дадут похожее лицо. В сочетании с --cref (character reference) в v6+ получаются согласованные персонажи."
+    },
+    {
+      "q": "Какие стилевые референсы работают хорошо?",
+      "a": "Имена фотографов иногда работают, но ненадёжно. Надёжнее: «documentary editorial style», «film still style», «Renaissance oil painting style», «1970s magazine cover», «medium-format film». Конкретная эпоха + носитель бьёт конкретное имя фотографа."
+    },
+    {
+      "q": "Почему не указывать этничность / возраст числом?",
+      "a": "Шаблон это и делает — и это важно. У Midjourney есть известные смещения, всплывающие, когда субъект не указан. Всегда указывайте субъект явно, чтобы избежать сваливания в узкий демографический профиль."
+    },
+    {
+      "q": "Безопасны ли эти промпты для коммерческого использования?",
+      "a": "Коммерческое использование Midjourney зависит от тарифа подписки (Standard+ разрешает). Сами промпты этого не меняют. Для клиентской работы дважды проверьте текущие ToS Midjourney — они меняются."
+    },
+    {
+      "q": "Что, если результат всё равно выглядит «ИИшно»?",
+      "a": "Добавьте «medium format film» или «shot on Portra 400» к стилевому референсу и добавьте «film grain, slight imperfection, candid» ближе к концу. Это уводит модель от чистой цифровой резкости к фотографической несовершенности."
+    }
+  ]
+}

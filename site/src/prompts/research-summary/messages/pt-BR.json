@@ -1,0 +1,88 @@
+{
+  "title": "Prompt de resumo de pesquisa — extraia afirmações, evidências e",
+  "shortDescription": "Transforme PDFs longos, papers ou relatórios em um resumo estruturado que distingue afirmações de evidências, traz à tona contradições e cita páginas-fonte para você verificar.",
+  "description": "O padrão 'resuma isto' produz resumos em parágrafo com perdas que perdem o ponto de todo estudo cheio de nuances. Este prompt extrai um objeto estruturado — afirmações, tipo de evidência, localização da fonte e quaisquer contradições entre documentos — que você consegue escanear em 60 segundos.",
+  "metaDescription": "Prompt gratuito de resumo de pesquisa para Claude, Perplexity, ChatGPT. Extraia afirmações com evidências e páginas-fonte. Traga contradições entre documentos à tona.",
+  "keywords": [
+    "prompt resumo pesquisa",
+    "resumo paper acadêmico",
+    "prompt pesquisa Claude",
+    "pesquisa Perplexity",
+    "prompt revisão literatura"
+  ],
+  "promptText": "Você vai resumir o(s) documento(s) abaixo. Entregue o output como uma tabela estruturada, não em prosa.\n\nPara cada afirmação principal na(s) fonte(s), extraia:\n  - Afirmação: <uma única frase>\n  - Tipo de evidência: <estudo empírico / argumento teórico / opinião de especialista / anedota / sem suporte>\n  - Fonte: <nome do documento + página ou seção>\n  - Força: <forte / moderada / fraca — com base no tipo de evidência e tamanho da amostra>\n  - Ressalvas: <limites que a própria fonte reconhece>\n\nDepois da tabela, adicione três seções:\n\n1. CONTRADIÇÕES: liste lugares onde os documentos discordam ou onde a afirmação de um documento conflita com os dados de outro.\n\n2. MAPA DE CONFIANÇA: avalie a confiabilidade geral de cada afirmação principal — alta (múltiplas fontes fortes concordam), média (uma fonte forte ou múltiplas fracas), baixa (uma única fonte fraca ou asserção sem suporte).\n\n3. O QUE ESTÁ FALTANDO: 3-5 perguntas que um leitor cuidadoso ainda teria após ler esses documentos. Marque cada uma como 'atendível a partir destes documentos com mais leitura' ou 'requer fontes externas'.\n\nRegras rígidas:\n- Cite números de página ou identificadores de seção para cada afirmação. Se não conseguir, marque [página desconhecida].\n- Não sintetize além do que os documentos dizem. Se dois documentos tocam um tema mas não comparam diretamente, diga isso — não invente uma comparação.\n- Distinga 'o documento afirma X' de 'X é verdadeiro'. O resumo relata o que foi afirmado, não o que é correto.\n\nDocumento(s):\n\n[cole o texto completo ou faça upload de PDFs]",
+  "useCase": {
+    "headline": "Quando usar",
+    "items": [
+      "Lendo 5-10 papers para uma revisão de literatura — rode cada um por este prompt, depois compare os mapas de confiança para encontrar consenso e lacunas.",
+      "Avaliando um relatório de indústria que você recebeu de um fornecedor — a coluna de força expõe onde o relatório é orientado por dados vs marketing.",
+      "Verificando uma matéria de jornal — alimente o artigo + o estudo subjacente; as contradições aparecem na hora."
+    ]
+  },
+  "modelTips": {
+    "claude": "Melhor em distinguir afirmação de tipo de evidência. A regra 'não sintetize' é mais respeitada pelo Claude (Sonnet 4.6+).",
+    "perplexity": "Forte quando o documento está na web aberta — o Perplexity adiciona verificação de fonte automaticamente. Menos útil para PDFs privados.",
+    "chatgpt": "Funciona mas tende a amolecer o veredicto 'sem suporte' para 'mencionado'. Seja explícito: 'use \"sem suporte\" quando o documento apresenta uma afirmação sem citar dados, mesmo que soe razoável.'"
+  },
+  "exampleHeading": "Exemplo: resumo de 3 papers sobre produtividade no trabalho remoto",
+  "exampleOutput": "| Afirmação | Evidência | Fonte | Força | Ressalvas |\n|---|---|---|---|---|\n| Trabalhadores remotos relatam 13% mais produtividade | survey, n=2400 | Bloom 2024 p.7 | moderada | viés de autorrelato reconhecido |\n| Trabalho remoto reduz inovação do time | entrevista qualitativa, n=42 gestores | Smith 2023 p.14 | fraca | amostra enviesada para gestores, não ICs |\n| Híbrido (3 dias) supera 100% remoto em retenção | teste A/B em uma empresa | Chen 2025 p.22 | moderada | empresa única, pode não generalizar |\n\nCONTRADIÇÕES:\n- Bloom 2024 reporta ganho de produtividade; Smith 2023 implica queda de produtividade (via 'redução de inovação'). Os dois usam definições diferentes de produtividade — Bloom = output por hora, Smith = output estratégico. Não diretamente comparáveis.\n\nMAPA DE CONFIANÇA:\n- 'Trabalho remoto muda a produtividade' → alta (efeito claro, direção debatida)\n- 'Trabalho remoto reduz inovação' → média (um estudo, qualitativo)\n- 'Híbrido é o ótimo' → baixa (um A/B em uma empresa)\n\nO QUE ESTÁ FALTANDO:\n1. Efeito em funcionários juniores especificamente [requer fontes externas]\n2. Quebra setor a setor [atendível: Bloom 2024 tem dados no apêndice]\n3. Efeito em transferência de conhecimento / mentoria [requer fontes externas]",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por que resumos em prosa falham para pesquisa",
+        "paragraphs": [
+          "Um resumo em parágrafo mistura cada afirmação no mesmo nível de autoridade. O leitor não consegue dizer se 'estudos mostram que…' é apoiado por uma survey de baixa potência ou uma meta-análise de quarenta ensaios. O resumo padrão de LLM herda essa falha e a amplifica — afirmações fortes e fracas ganham o mesmo peso de prosa.",
+          "Extração estruturada (tabela + mapa de confiança) preserva a autoridade diferencial das afirmações. Você consegue escanear e ver imediatamente que o achado principal repousa em evidência sólida enquanto a afirmação secundária é essencialmente um editorial. Isso é a diferença entre estar informado e estar falsamente confiante."
+        ]
+      },
+      {
+        "heading": "A regra mais difícil: distinguir afirmação de verdade",
+        "paragraphs": [
+          "Resumidores padrão deslizam de 'documento X diz Y' para 'Y é verdade' sem sinalizar a transição. A regra 'distinguir afirmação de verdade' é explícita porque modelos falham por padrão nisso. Quando a regra é mantida, você lê o resumo e sabe exatamente quais asserções são do documento, não editorialização do modelo.",
+          "Se o modelo violar essa regra (afirmar X como fato quando o documento só alegou), responda 'reformule atribuindo cada afirmação à sua fonte'. Depois de uma correção, o Claude tende a manter a atribuição para o resto do documento."
+        ]
+      },
+      {
+        "heading": "Fluxos entre documentos",
+        "paragraphs": [
+          "Para revisões de literatura, rode cada paper individualmente primeiro — tanto limites de contexto do modelo quanto qualidade se beneficiam de um-documento-por-vez. Depois, em uma segunda passada, cole apenas as tabelas resultantes e pergunte: 'Identifique pontos de consenso, pontos de discordância e a afirmação única mais forte.' Isso é muito mais rápido do que alimentar todos os papers de uma vez.",
+          "Construa uma regra de 'decaimento de confiança': qualquer afirmação que aparece em apenas uma fonte é automaticamente rebaixada um nível ao ser integrada em um resumo multi-fonte. Isso força a revisão integrada a dar mais peso a achados replicados do que a novidades isoladas, o que combina com boa prática acadêmica."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Funciona para PDFs muito longos?",
+      "a": "Claude lida com PDFs de 200 mil tokens de uma vez; ChatGPT/GPT-5 lidam com 128 mil. Para mais longo, divida por capítulo e resuma cada um, depois resuma os resumos. O formato estruturado mantém qualidade consistente entre as passadas."
+    },
+    {
+      "q": "Consegue citar trechos específicos?",
+      "a": "Sim — adicione 'Para cada afirmação, inclua um trecho citado de 5-15 palavras com o fraseado original' ao prompt. Útil quando a redação importa (documentos jurídicos, specs técnicos)."
+    },
+    {
+      "q": "E se o documento não tem números de página claros (artigo da web)?",
+      "a": "Use cabeçalhos de seção ou números de parágrafo. O 'página ou seção' do prompt permite isso. Para artigos da web, índice de parágrafo ('parág. 5') funciona bem."
+    },
+    {
+      "q": "Como isso se compara a usar NotebookLM?",
+      "a": "O NotebookLM lida automaticamente com upload de documento e citações, mas produz resumos narrativos por padrão. Este prompt produz output de extração estruturada, melhor para comparação sistemática. Use os dois: NotebookLM para exploração estilo chat, este prompt para resumos do tipo escreva-uma-vez-leia-rápido-várias-vezes."
+    },
+    {
+      "q": "Por que forçar a seção 'o que está faltando'?",
+      "a": "Porque todo resumo de pesquisa deveria deixar você com follow-ups explícitos, não com a falsa impressão de completude. A seção 'o que está faltando' também revela quando o documento fundamentalmente não consegue responder sua pergunta — útil antes de você gastar mais tempo lendo."
+    },
+    {
+      "q": "Funciona em pesquisa em outros idiomas além do inglês?",
+      "a": "Sim — Claude e GPT-5 lidam bem com prosa acadêmica em japonês / chinês / alemão / francês. O output estruturado fica no idioma do seu prompt; o idioma da fonte pode diferir."
+    },
+    {
+      "q": "Como evito números de página alucinados?",
+      "a": "Se o modelo der um número de página, confira um ou dois. Se estiverem errados, adicione 'Se não conseguir verificar um número de página, marque como [página desconhecida] — nunca chute.' ao prompt."
+    },
+    {
+      "q": "Posso usar isso para transcrições de podcast?",
+      "a": "Sim — troque 'página' por 'timestamp' e o resto funciona. A extração estruturada de afirmações é ainda mais útil para podcasts, onde afirmações flutuam em prosa mais longa sem marcadores claros."
+    }
+  ]
+}

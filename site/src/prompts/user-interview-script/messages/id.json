@@ -1,0 +1,73 @@
+{
+  "title": "Prompt skrip wawancara pengguna — perilaku masa lalu, tanpa",
+  "shortDescription": "Hasilkan skrip wawancara pengguna 30 menit dengan pertanyaan terbuka, follow-up untuk masing-masing, dan aturan ketat tanpa leading. Dimodelkan pada prinsip Mom Test.",
+  "description": "Sebagian besar skrip wawancara AI adalah pertanyaan leading yang menyamar: 'bagaimana fitur kami akan membantu Anda?' alih-alih 'pandu saya melalui terakhir kali Anda menghadapi ini'. Prompt ini memaksa framing perilaku-masa-lalu, tanpa hipotetis, dan taktik follow-up eksplisit.",
+  "metaDescription": "Prompt wawancara pengguna gratis untuk Claude/ChatGPT. Pertanyaan perilaku-masa-lalu, tanpa leading, dengan follow-up. Berdasarkan The Mom Test. Template skrip 30 menit.",
+  "keywords": [
+    "prompt wawancara pengguna",
+    "prompt Mom Test",
+    "skrip user research",
+    "prompt discovery interview",
+    "wawancara pelanggan"
+  ],
+  "promptText": "Hasilkan skrip wawancara pengguna 30 menit.\n\nTujuan wawancara: {apa yang ingin Anda pelajari — bersikap spesifik}\nSegmen: {dengan siapa Anda berbicara — peran, konteks, perilaku saat ini}\nHipotesis kerja (opsional): {apa yang saat ini Anda yakini benar}\n\nKeluarkan skrip dengan struktur ini:\n\n1. Pemanasan (3 menit): dua pertanyaan terbuka tentang rutinitas mereka saat ini, tanpa menyebutkan produk.\n2. Bagian perilaku masa lalu (15 menit): 5-7 pertanyaan, masing-masing berpijak pada terakhir kali mereka melakukan tindakan yang relevan. Format: 'Pandu saya melalui terakhir kali Anda...'.\n   Untuk setiap pertanyaan, daftar 2-3 probe follow-up yang harus disiapkan pewawancara.\n3. Bagian kendala (8 menit): 3-4 pertanyaan tentang apa yang mereka coba, apa yang mereka bayar, apa yang gagal. Memunculkan permintaan nyata vs. kesopanan.\n4. Penutup (4 menit): satu pertanyaan terbuka 'apa yang tidak saya tanyakan' + ucapan terima kasih.\n\nAturan ketat (Mom Test):\n1. TIDAK ada pertanyaan yang boleh dimulai dengan 'apakah Anda akan...' atau 'menurut Anda...' — keduanya mengundang kebohongan sopan.\n2. TIDAK ada pertanyaan yang boleh menyebutkan produk atau solusi hipotesis Anda.\n3. Setiap pertanyaan harus memunculkan fakta (apa yang mereka lakukan) atau pembayaran (uang/waktu yang dihabiskan), bukan opini.\n4. Jika pertanyaan tidak dapat dijawab tanpa membayangkan masa depan, tulis ulang menjadi tentang masa lalu.\n5. Follow-up harus menggali spesifik: 'seberapa sering', 'siapa yang membayar', 'apa yang sebenarnya Anda coba'.\n\nKembalikan hanya skrip. Tandai setiap follow-up sebagai [follow-up: ...]. Akhiri dengan bagian satu paragraf 'red flag selama wawancara' yang mendaftar apa yang akan membatalkan data.",
+  "useCase": {
+    "headline": "Kapan menggunakan ini",
+    "items": [
+      "Sebelum membangun apa pun — 5-10 wawancara seperti ini menggantikan berbulan-bulan menebak.",
+      "Ketika metrik datar dan Anda tidak tahu mengapa — pertanyaan perilaku-masa-lalu memunculkan pohon keputusan yang sebenarnya.",
+      "Memvalidasi asumsi harga — bagian kendala ('apa yang Anda bayar') lebih jujur daripada 'berapa yang akan Anda bayar'."
+    ]
+  },
+  "modelTips": {
+    "claude": "Paling baik dalam menghindari pertanyaan leading. Akan menulis ulang hipotetis menjadi pertanyaan perilaku-masa-lalu atas permintaan.",
+    "chatgpt": "Cenderung menyelipkan frasa 'apakah Anda akan'. Aturan 'TIDAK apakah Anda akan' adalah yang paling penting untuk ditegakkan.",
+    "any": "Jika pertanyaan terasa nyaman untuk ditanyakan, mungkin itu leading. Skrip harus terasa sedikit invasif — begitulah cara Anda mendapatkan data nyata."
+  },
+  "exampleHeading": "Contoh: discovery interview untuk alat keuangan pribadi",
+  "exampleOutput": "Tujuan: memahami bagaimana karyawan SaaS pertengahan 30-an sebenarnya melacak keuangan pribadi.\n\nPemanasan (3 menit)\n  - Ceritakan tentang pekerjaan Anda — apa yang Anda lakukan setiap hari?\n  - Seperti apa pagi Senin yang khas, sebelum bekerja?\n\nPerilaku masa lalu (15 menit)\n  Q1: Pandu saya melalui terakhir kali Anda duduk dan melihat rekening bank Anda. Kapan itu, apa yang memicunya?\n    [follow-up: terencana atau reaktif?]\n    [follow-up: berapa lama waktunya?]\n  Q2: Terakhir kali Anda membuat keputusan keuangan di atas $500 — membeli, menunggu, beralih bank — pandu saya melalui itu.\n    [follow-up: apa yang Anda periksa sebelum memutuskan?]\n    [follow-up: siapa lagi yang Anda konsultasikan?]\n  ... [5 lagi]\n\nKendala (8 menit)\n  Q8: Apa alat keuangan terakhir yang sebenarnya Anda bayar, bahkan $5? Apa yang membuat Anda berhenti atau terus membayar?\n  ... [3 lagi]\n\nPenutup: Apa yang tidak saya tanyakan yang Anda harap saya tanyakan?\n\nRed flag selama wawancara:\n- Peserta mengatakan 'saya akan' — mereka sebenarnya tidak melakukan ini. Probe untuk instance nyata terakhir; jika tidak ada, segmen mungkin tidak memiliki masalah.\n- Samar pada angka/tanggal ('saya cek kadang-kadang'). Samar = perilaku yang dibayangkan. Tanyakan 'kapan terakhir kali tepatnya?' untuk membumikannya.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Mengapa sebagian besar skrip wawancara AI tidak berguna",
+        "paragraphs": [
+          "Output LLM default untuk 'tuliskan saya skrip wawancara' menghasilkan pertanyaan leading: 'bagaimana fitur X akan membantu Anda?'. The Mom Test (Rob Fitzpatrick, 2014) menunjukkan dua dekade lalu bahwa pertanyaan hipotetis mendapat kesopanan, bukan data. Pengguna nyata mengatakan apa yang mereka pikir Anda ingin dengar. Skrip di atas memaksa penjangkaran perilaku-masa-lalu, yang mengarah ke fakta.",
+          "Probe follow-up sama pentingnya. Pertanyaan seperti 'pandu saya melalui terakhir kali Anda menghadapi ini' akan mendapatkan jawaban 30 detik secara default. Probe ('apa yang Anda periksa pertama', 'siapa yang membayar', 'berapa lama') mengubah 30 detik itu menjadi 5 menit detail yang berguna."
+        ]
+      },
+      {
+        "heading": "Cara menindaklanjuti output",
+        "paragraphs": [
+          "Jalankan 5 wawancara sebelum mengubah skrip. Pola muncul pada wawancara 3-4. Pada wawancara 5 Anda dapat memberi tahu pertanyaan mana yang mendapatkan data yang baik dan mana yang mendapatkan basa-basi sopan — hapus pertanyaan basa-basi sopan dan tambahkan follow-up spesifik untuk yang baik.",
+          "Setelah 5-7 wawancara, jalankan melalui prompt research-summary untuk mengekstrak klaim dan kontradiksi. Kombo (skrip wawancara → ringkasan terstruktur → pemetaan klaim) jauh lebih cepat daripada membaca transkrip dan mencoba mengingat pola."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Mengapa tidak ada pertanyaan 'apakah Anda akan'?",
+      "a": "Karena semua orang mengatakan ya untuk fitur yang Anda gambarkan di depan mereka. Hipotetis mengundang kesopanan; perilaku masa lalu mengundang fakta. Peningkatan tunggal terbesar untuk kualitas wawancara adalah menghapus setiap 'apakah Anda akan' dari skrip."
+    },
+    {
+      "q": "Bagaimana jika produk saya belum ada?",
+      "a": "Lebih baik lagi — Anda tidak memiliki apa pun untuk membiaskan mereka. Setiap pertanyaan menjadi tentang rasa sakit yang ada dan solusi saat ini. Itulah persis untuk apa discovery interview."
+    },
+    {
+      "q": "Berapa banyak wawancara yang saya butuhkan?",
+      "a": "5-12 per segmen adalah tipikal. Pada 5 Anda telah mendengar polanya. Menambahkan lebih banyak menyempurnakannya daripada menemukan yang baru — diminishing returns setelah ~10 kecuali Anda meneliti segmen baru."
+    },
+    {
+      "q": "Bagaimana jika peserta keluar topik?",
+      "a": "Sering kali itu emas. Rasa sakit nyata menderailkan percakapan; jawaban yang nyaman tidak. Biarkan mereka selama 2-3 menit, catat, lalu jembatani kembali: 'ceritakan lebih banyak tentang X — apakah itu waktu yang sama Anda juga melakukan Y?'"
+    },
+    {
+      "q": "Haruskah saya berbagi hipotesis di depan?",
+      "a": "Tidak. Beritahu mereka tujuan dalam istilah samar ('Saya meneliti bagaimana orang menangani X'). Berbagi hipotesis spesifik membiaskan jawaban mereka."
+    },
+    {
+      "q": "Bisakah saya menggunakan ini untuk tes usability?",
+      "a": "Tujuan berbeda — tes usability membutuhkan skrip tugas, bukan skrip discovery. Ada tumpang tindih (jangan leading, amati perilaku) tetapi formatnya berbeda. Kami akan mempublikasikan prompt usability secara terpisah."
+    }
+  ]
+}

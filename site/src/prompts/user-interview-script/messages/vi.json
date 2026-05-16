@@ -1,0 +1,73 @@
+{
+  "title": "Prompt kịch bản phỏng vấn người dùng ",
+  "shortDescription": "Tạo kịch bản phỏng vấn người dùng 30 phút với câu hỏi mở, câu hỏi đào sâu cho mỗi câu, và quy tắc nghiêm ngặt không-dẫn-dắt. Dựa trên các nguyên tắc Mom Test.",
+  "description": "Hầu hết các kịch bản phỏng vấn do AI tạo ra là câu hỏi dẫn dắt được ngụy trang: 'tính năng của chúng tôi sẽ giúp bạn thế nào?' thay vì 'kể tôi nghe lần gần nhất bạn gặp tình huống này'. Prompt này buộc đóng khung theo hành vi quá khứ, không giả định, và các chiến thuật đào sâu rõ ràng.",
+  "metaDescription": "Prompt phỏng vấn người dùng miễn phí cho Claude/ChatGPT. Câu hỏi về hành vi quá khứ, không dẫn dắt, kèm câu hỏi đào sâu. Dựa trên The Mom Test. Mẫu kịch bản 30 phút.",
+  "keywords": [
+    "prompt phỏng vấn người dùng",
+    "prompt Mom Test",
+    "kịch bản user research",
+    "prompt discovery interview",
+    "phỏng vấn khách hàng"
+  ],
+  "promptText": "Tạo kịch bản phỏng vấn người dùng 30 phút.\n\nMục tiêu của cuộc phỏng vấn: {bạn muốn học gì — phải cụ thể}\nSegment: {bạn đang nói chuyện với ai — vai trò, bối cảnh, hành vi hiện tại}\nGiả thuyết đang làm việc (tùy chọn): {điều bạn hiện đang tin là đúng}\n\nXuất ra kịch bản theo cấu trúc:\n\n1. Khởi động (3 phút): hai câu hỏi mở về thói quen hiện tại của họ, không nhắc đến sản phẩm.\n2. Phần hành vi quá khứ (15 phút): 5-7 câu hỏi, mỗi câu neo vào lần gần nhất họ làm hành động liên quan. Định dạng: 'Kể tôi nghe lần gần nhất bạn...'.\n   Với mỗi câu hỏi, liệt kê 2-3 câu đào sâu mà người phỏng vấn nên sẵn sàng dùng.\n3. Phần ràng buộc (8 phút): 3-4 câu hỏi về những gì họ đã thử, đã trả tiền cho, đã thất bại. Phơi bày nhu cầu thật vs sự lịch sự.\n4. Kết thúc (4 phút): một câu hỏi mở 'tôi đã không hỏi điều gì' + cảm ơn.\n\nQuy tắc cứng (Mom Test):\n1. KHÔNG câu hỏi nào được bắt đầu bằng 'bạn có sẽ...' hoặc 'bạn có nghĩ rằng...' — cả hai đều mời gọi lời nói dối lịch sự.\n2. KHÔNG câu hỏi nào được nhắc đến sản phẩm hoặc giải pháp giả định của bạn.\n3. Mỗi câu hỏi phải phơi bày một dữ kiện (họ đã làm gì) hoặc một khoản chi trả (tiền/thời gian đã bỏ ra), không phải một ý kiến.\n4. Nếu một câu hỏi không thể trả lời mà không tưởng tượng tương lai, viết lại nó để về quá khứ.\n5. Câu đào sâu phải đào vào các chi tiết cụ thể: 'tần suất ra sao', 'ai đã trả tiền', 'bạn đã thực sự thử gì'.\n\nChỉ trả về kịch bản. Đánh dấu mỗi câu đào sâu là [follow-up: ...]. Kết thúc bằng một đoạn 'cờ đỏ trong cuộc phỏng vấn' liệt kê những gì sẽ làm dữ liệu không có giá trị.",
+  "useCase": {
+    "headline": "Khi nào dùng prompt này",
+    "items": [
+      "Trước khi xây dựng bất cứ thứ gì — 5-10 cuộc phỏng vấn như thế này thay thế hàng tháng đoán mò.",
+      "Khi các chỉ số đứng yên và bạn không biết vì sao — câu hỏi về hành vi quá khứ phơi bày cây quyết định thực sự.",
+      "Xác thực một giả định về giá — phần ràng buộc ('bạn đã trả gì') trung thực hơn 'bạn sẽ trả bao nhiêu'."
+    ]
+  },
+  "modelTips": {
+    "claude": "Tốt nhất trong việc tránh câu hỏi dẫn dắt. Sẽ viết lại một câu giả định thành câu về hành vi quá khứ khi được yêu cầu.",
+    "chatgpt": "Có xu hướng trượt vào cách diễn đạt 'bạn có sẽ'. Quy tắc 'NO would you' là quan trọng nhất để thực thi.",
+    "any": "Nếu một câu hỏi cảm thấy dễ chịu khi hỏi, có lẽ nó đang dẫn dắt. Kịch bản nên cảm thấy hơi xâm phạm — đó là cách bạn lấy được dữ liệu thật."
+  },
+  "exampleHeading": "Ví dụ: discovery interview cho công cụ tài chính cá nhân",
+  "exampleOutput": "Mục tiêu: hiểu cách nhân viên SaaS giữa 30 thực sự theo dõi tài chính cá nhân.\n\nKhởi động (3 phút)\n  - Kể tôi nghe về công việc của bạn — bạn làm gì hàng ngày?\n  - Một sáng thứ Hai điển hình trông như thế nào, trước khi đi làm?\n\nHành vi quá khứ (15 phút)\n  Q1: Kể tôi nghe lần gần nhất bạn ngồi xuống và nhìn vào tài khoản ngân hàng. Đó là khi nào, điều gì kích hoạt nó?\n    [follow-up: có kế hoạch hay phản ứng?]\n    [follow-up: mất bao lâu?]\n  Q2: Lần gần nhất bạn ra quyết định tài chính trên 500$ — mua, chờ, đổi ngân hàng — kể tôi nghe về điều đó.\n    [follow-up: bạn đã kiểm tra gì trước khi quyết định?]\n    [follow-up: bạn đã tham khảo ý kiến ai khác?]\n  ... [thêm 5 câu]\n\nRàng buộc (8 phút)\n  Q8: Công cụ tài chính gần nhất bạn thực sự đã trả tiền, dù chỉ 5$? Điều gì khiến bạn ngừng hoặc tiếp tục trả?\n  ... [thêm 3 câu]\n\nKết thúc: Tôi đã không hỏi điều gì mà bạn ước tôi đã hỏi?\n\nCờ đỏ trong cuộc phỏng vấn:\n- Người tham gia nói 'tôi sẽ' — họ không thực sự làm điều này. Đào sâu vào trường hợp thật gần nhất; nếu không có, segment có thể không có vấn đề.\n- Mơ hồ về số/ngày tháng ('tôi kiểm tra thỉnh thoảng'). Mơ hồ = hành vi tưởng tượng. Hỏi 'lần gần nhất chính xác là khi nào?' để neo nó lại.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Vì sao hầu hết kịch bản phỏng vấn AI đều vô dụng",
+        "paragraphs": [
+          "Output LLM mặc định cho 'viết cho tôi kịch bản phỏng vấn' tạo ra các câu hỏi dẫn dắt: 'tính năng X sẽ giúp bạn thế nào?'. The Mom Test (Rob Fitzpatrick, 2014) đã chỉ ra hai thập kỷ trước rằng các câu hỏi giả định nhận được sự lịch sự, không phải dữ liệu. Người dùng thực sự nói những gì họ nghĩ bạn muốn nghe. Kịch bản phía trên buộc neo vào hành vi quá khứ, đi đến các sự kiện.",
+          "Các câu đào sâu cũng quan trọng không kém. Một câu hỏi như 'kể tôi nghe lần gần nhất bạn gặp tình huống này' sẽ cho bạn câu trả lời 30 giây theo mặc định. Các câu đào sâu ('bạn đã kiểm tra gì đầu tiên', 'ai đã trả tiền', 'mất bao lâu') biến 30 giây đó thành 5 phút chi tiết hữu ích."
+        ]
+      },
+      {
+        "heading": "Cách hành động dựa trên output",
+        "paragraphs": [
+          "Chạy 5 cuộc phỏng vấn trước khi thay đổi kịch bản. Các pattern xuất hiện ở cuộc phỏng vấn thứ 3-4. Đến cuộc thứ 5 bạn có thể biết câu hỏi nào đang lấy được dữ liệu tốt và câu nào đang lấy được lớp đệm lịch sự — bỏ các câu lớp-đệm-lịch-sự và thêm các câu đào sâu cụ thể cho các câu tốt.",
+          "Sau 5-7 cuộc phỏng vấn, chạy chúng qua prompt research-summary để trích các luận điểm và mâu thuẫn. Kết hợp (kịch bản phỏng vấn → tóm tắt có cấu trúc → mapping luận điểm) nhanh hơn nhiều so với đọc transcript và cố nhớ pattern."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Vì sao không có câu hỏi 'bạn có sẽ'?",
+      "a": "Vì ai cũng nói có với một tính năng bạn mô tả trước mặt họ. Câu giả định mời gọi sự lịch sự; hành vi quá khứ mời gọi sự kiện. Cải thiện lớn nhất duy nhất cho chất lượng phỏng vấn là loại bỏ mọi 'bạn có sẽ' khỏi kịch bản."
+    },
+    {
+      "q": "Nếu sản phẩm của tôi chưa tồn tại thì sao?",
+      "a": "Càng tốt — bạn không có gì để làm thiên lệch họ. Mọi câu hỏi trở thành về nỗi đau hiện tại và giải pháp hiện tại. Đó chính xác là việc của discovery interview."
+    },
+    {
+      "q": "Tôi cần bao nhiêu cuộc phỏng vấn?",
+      "a": "5-12 cho mỗi segment là điển hình. Đến 5 bạn đã nghe các pattern. Thêm nữa chỉ tinh chỉnh chứ không khám phá mới — lợi nhuận giảm dần sau ~10 trừ khi bạn đang nghiên cứu segment mới."
+    },
+    {
+      "q": "Nếu người tham gia lạc đề thì sao?",
+      "a": "Thường đó là vàng. Các nỗi đau thật làm trật bánh các cuộc trò chuyện; các câu trả lời dễ chịu thì không. Để họ đi 2-3 phút, ghi chú, sau đó nối lại: 'kể tôi thêm về X — đó có phải cùng lúc bạn cũng làm Y không?'"
+    },
+    {
+      "q": "Tôi có nên chia sẻ giả thuyết ngay từ đầu không?",
+      "a": "Không. Nói với họ mục tiêu bằng từ ngữ mơ hồ ('tôi đang nghiên cứu cách mọi người xử lý X'). Chia sẻ một giả thuyết cụ thể làm thiên lệch câu trả lời của họ."
+    },
+    {
+      "q": "Tôi có thể dùng cho usability test không?",
+      "a": "Mục tiêu khác — usability test cần kịch bản nhiệm vụ, không phải kịch bản discovery. Có sự chồng chéo (đừng dẫn dắt, quan sát hành vi) nhưng định dạng khác. Chúng tôi sẽ publish prompt usability riêng."
+    }
+  ]
+}

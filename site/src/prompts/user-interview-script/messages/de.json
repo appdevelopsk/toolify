@@ -1,0 +1,73 @@
+{
+  "title": "Nutzer-Interview-Skript Prompt — vergangenes Verhalten, keine",
+  "shortDescription": "Generiere ein 30-minütiges Nutzer-Interview-Skript mit offenen Fragen, Follow-ups für jede und strikten Anti-Suggestivfragen-Regeln. Nach den Prinzipien des Mom Test modelliert.",
+  "description": "Die meisten KI-Interview-Skripte sind getarnte Suggestivfragen: „wie würde unser Feature dir helfen?“ statt „beschreibe mir das letzte Mal, als du auf dieses Problem gestoßen bist“. Dieser Prompt erzwingt das Framing von vergangenem Verhalten, keine Hypothesen und explizite Follow-up-Taktiken.",
+  "metaDescription": "Kostenloser Nutzer-Interview-Prompt für Claude/ChatGPT. Vergangenes-Verhalten-Fragen, keine Suggestion, mit Follow-ups. Basierend auf The Mom Test. 30-Min-Skript-Vorlage.",
+  "keywords": [
+    "Nutzer Interview Prompt",
+    "Mom Test Prompt",
+    "User Research Skript",
+    "Discovery Interview Prompt",
+    "Kundeninterview"
+  ],
+  "promptText": "Generiere ein 30-minütiges Nutzer-Interview-Skript.\n\nZiel des Interviews: {was du lernen willst — sei spezifisch}\nSegment: {mit wem du sprichst — Rolle, Kontext, aktuelles Verhalten}\nArbeitshypothese (optional): {was du derzeit für wahr hältst}\n\nGib ein Skript mit dieser Struktur aus:\n\n1. Aufwärmen (3 Min): zwei offene Fragen über ihre aktuelle Routine, keine Produkterwähnung.\n2. Vergangenheits-Verhalten-Abschnitt (15 Min): 5-7 Fragen, jede verankert im letzten Mal, als sie die relevante Handlung ausgeführt haben. Format: „Beschreibe mir das letzte Mal, als du…“.\n   Liste für jede Frage 2-3 Follow-up-Sondierungen auf, die der Interviewer bereithalten sollte.\n3. Constraint-Abschnitt (8 Min): 3-4 Fragen darüber, was sie versucht haben, wofür sie bezahlt haben, was gescheitert ist. Deckt echte Nachfrage vs. Höflichkeit auf.\n4. Abschluss (4 Min): eine offene „was habe ich nicht gefragt“-Frage + Dank.\n\nHarte Regeln (Mom Test):\n1. KEINE Frage darf mit „würdest du…“ oder „denkst du, dass…“ beginnen — beide laden zu Höflichkeitslügen ein.\n2. KEINE Frage darf dein Produkt oder die hypothetische Lösung erwähnen.\n3. Jede Frage muss eine Tatsache aufdecken (was sie getan haben) oder eine Bezahlung (Geld/Zeit ausgegeben), keine Meinung.\n4. Wenn eine Frage nicht beantwortet werden kann, ohne sich die Zukunft vorzustellen, schreibe sie über die Vergangenheit um.\n5. Follow-ups müssen ins Detail gehen: „wie oft“, „wer hat bezahlt“, „was hast du tatsächlich versucht“.\n\nGib nur das Skript zurück. Markiere jeden Follow-up als [follow-up: ...]. Beende mit einem einabsätzigen „Warnsignale während des Interviews“-Abschnitt, der auflistet, was die Daten ungültig machen würde.",
+  "useCase": {
+    "headline": "Wann du das verwenden solltest",
+    "items": [
+      "Bevor du irgendetwas baust — 5-10 dieser Interviews ersetzen Monate des Ratens.",
+      "Wenn Metriken flach sind und du nicht weißt warum — Vergangenheits-Verhalten-Fragen decken den tatsächlichen Entscheidungsbaum auf.",
+      "Beim Validieren einer Preisannahme — der Constraint-Abschnitt („was hast du bezahlt“) ist ehrlicher als „wie viel würdest du bezahlen“."
+    ]
+  },
+  "modelTips": {
+    "claude": "Am besten darin, Suggestivfragen zu vermeiden. Wird auf Anfrage eine hypothetische Frage in eine Vergangenheits-Verhalten-Frage umschreiben.",
+    "chatgpt": "Neigt dazu, „würdest du“-Formulierungen einzuschleusen. Die „KEIN würdest du“-Regel ist am wichtigsten durchzusetzen.",
+    "any": "Wenn sich eine Frage angenehm zu stellen anfühlt, ist sie wahrscheinlich suggestiv. Das Skript sollte sich leicht invasiv anfühlen — so bekommst du echte Daten."
+  },
+  "exampleHeading": "Beispiel: Discovery-Interview für ein persönliches Finanztool",
+  "exampleOutput": "Ziel: verstehen, wie SaaS-Mitarbeiter Mitte 30 ihre persönlichen Finanzen tatsächlich verfolgen.\n\nAufwärmen (3 Min)\n  - Erzähl mir von deiner Arbeit — was machst du im Alltag?\n  - Wie sieht ein typischer Montagmorgen aus, vor der Arbeit?\n\nVergangenes Verhalten (15 Min)\n  F1: Beschreibe mir das letzte Mal, als du dich hingesetzt und dein Bankkonto angeschaut hast. Wann war das, was hat es ausgelöst?\n    [follow-up: geplant oder reaktiv?]\n    [follow-up: wie lange hat es gedauert?]\n  F2: Das letzte Mal, als du eine finanzielle Entscheidung über 500 € getroffen hast — Kauf, Warten, Bankwechsel — beschreibe mir das.\n    [follow-up: was hast du vor der Entscheidung geprüft?]\n    [follow-up: wen hast du sonst konsultiert?]\n  … [5 weitere]\n\nConstraints (8 Min)\n  F8: Was ist das letzte Geld-Tool, für das du tatsächlich bezahlt hast, selbst nur 5 €? Was hat dich aufhören oder weiterzahlen lassen?\n  … [3 weitere]\n\nAbschluss: Was habe ich nicht gefragt, was du dir gewünscht hättest?\n\nWarnsignale während des Interviews:\n- Teilnehmer sagt „ich würde“ — sie tun das nicht tatsächlich. Sondiere nach dem letzten echten Vorfall; wenn keiner, hat das Segment das Problem möglicherweise nicht.\n- Vage bei Zahlen/Daten („ich prüfe manchmal“). Vage = imaginiertes Verhalten. Frage „wann genau war das letzte Mal?“, um es zu erden.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Warum die meisten KI-Interview-Skripte nutzlos sind",
+        "paragraphs": [
+          "Die Standard-LLM-Ausgabe für „schreibe mir ein Interview-Skript“ produziert Suggestivfragen: „wie würde Feature X dir helfen?“. The Mom Test (Rob Fitzpatrick, 2014) zeigte vor zwei Jahrzehnten, dass hypothetische Fragen Höflichkeit, keine Daten erhalten. Echte Nutzer sagen, was sie glauben, dass du hören willst. Das obige Skript erzwingt die Verankerung in vergangenem Verhalten, was zu Tatsachen führt.",
+          "Die Follow-up-Sondierungen sind ebenso wichtig. Eine Frage wie „beschreibe mir das letzte Mal, als du auf das gestoßen bist“ bringt standardmäßig eine 30-Sekunden-Antwort. Die Sondierungen („was hast du zuerst geprüft“, „wer hat bezahlt“, „wie lange“) machen aus diesen 30 Sekunden 5 Minuten nützliche Details."
+        ]
+      },
+      {
+        "heading": "Wie du auf die Ausgabe reagierst",
+        "paragraphs": [
+          "Führe 5 Interviews durch, bevor du das Skript änderst. Muster entstehen bis Interview 3-4. Bis Interview 5 kannst du erkennen, welche Fragen gute Daten liefern und welche höflichen Füllstoff — lass die Höflichkeits-Füllstoff-Fragen fallen und füge spezifische Follow-ups für die guten hinzu.",
+          "Nach 5-7 Interviews lass sie durch den Forschungs-Zusammenfassungs-Prompt laufen, um Behauptungen und Widersprüche zu extrahieren. Die Kombination (Interview-Skript → strukturierte Zusammenfassung → Behauptungs-Mapping) ist viel schneller, als Transkripte zu lesen und sich Muster zu merken zu versuchen."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Warum keine „würdest du“-Fragen?",
+      "a": "Weil jeder Ja zu einem Feature sagt, das du ihm ins Gesicht beschreibst. Hypothesen laden zu Höflichkeit ein; vergangenes Verhalten lädt zu Tatsachen ein. Die größte einzelne Verbesserung der Interview-Qualität ist das Entfernen jedes „würdest du“ aus dem Skript."
+    },
+    {
+      "q": "Was, wenn mein Produkt noch nicht existiert?",
+      "a": "Umso besser — du hast nichts, womit du sie beeinflussen könntest. Jede Frage dreht sich um den bestehenden Schmerz und aktuelle Lösungen. Genau dafür sind Discovery-Interviews da."
+    },
+    {
+      "q": "Wie viele Interviews brauche ich?",
+      "a": "5-12 pro Segment ist typisch. Nach 5 hast du die Muster gehört. Mehr hinzuzufügen verfeinert sie, statt neue zu entdecken — abnehmende Erträge ab ~10, es sei denn, du erforschst ein neues Segment."
+    },
+    {
+      "q": "Was, wenn der Teilnehmer vom Thema abkommt?",
+      "a": "Oft ist das Gold. Echte Schmerzen lassen Gespräche entgleisen; angenehme Antworten nicht. Lass sie 2-3 Min reden, mache Notizen, dann brücke zurück: „erzähl mir mehr über X — war das das gleiche Mal, als du auch Y getan hast?“"
+    },
+    {
+      "q": "Sollte ich die Hypothese vorab teilen?",
+      "a": "Nein. Sag ihnen das Ziel in vagen Begriffen („Ich erforsche, wie Leute mit X umgehen“). Eine spezifische Hypothese zu teilen, verzerrt ihre Antworten."
+    },
+    {
+      "q": "Kann ich das für Usability-Tests verwenden?",
+      "a": "Anderes Ziel — Usability-Tests brauchen ein Aufgaben-Skript, kein Discovery-Skript. Es gibt Überschneidungen (nicht suggerieren, Verhalten beobachten), aber das Format unterscheidet sich. Wir werden einen Usability-Prompt separat veröffentlichen."
+    }
+  ]
+}

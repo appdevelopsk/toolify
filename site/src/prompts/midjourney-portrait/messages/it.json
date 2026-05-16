@@ -1,0 +1,86 @@
+{
+  "title": "Prompt per ritratti Midjourney — controllo su volto, luce, obiettivo",
+  "shortDescription": "Un template modulare di prompt Midjourney per ritratti con controllo esplicito su soggetto, inquadratura, illuminazione, obiettivo, atmosfera e stile. Evita il look generico del 'ritratto IA'.",
+  "description": "I ritratti Midjourney di default condividono tutti la stessa morbidezza da uncanny valley, la luce drammatica e il bokeh sovrasaturato. Questo template di prompt rompe i default specificando obiettivo (la lunghezza focale conta), direzione della luce, e una clausola 'niente pelle sovra-renderizzata' che forza una texture realistica.",
+  "metaDescription": "Prompt gratuito modulare per ritratti Midjourney. Obiettivo, illuminazione, inquadratura, atmosfera — controllo esplicito. Evita il volto generico IA. Con esempi v6/v7.",
+  "keywords": [
+    "prompt ritratto Midjourney",
+    "template prompt Midjourney",
+    "prompt ritratto IA",
+    "prompt illuminazione Midjourney",
+    "ritratto IA realistico"
+  ],
+  "promptText": "[soggetto — sii specifico: età, corporatura, capelli, espressione, vestiti]\n+ [inquadratura: headshot / mezzo busto / figura intera], [angolazione: ad altezza occhi / dal basso / tre quarti]\n+ shot on [obiettivo: 35mm / 50mm / 85mm / 105mm], [apertura: f/1.4 / f/2 / f/2.8]\n+ [illuminazione: luce naturale da finestra a sinistra / controluce di golden hour / luce morbida da finestra a nord / luce nuvolosa esterna]\n+ [atmosfera: contemplativa / gioia candida / intensità silenziosa / stanchezza — scegli un'atmosfera specifica]\n+ [ambiente / sfondo: descrizione di 5-8 parole con indizi di profondità]\n+ realistic skin texture with visible pores and natural asymmetry, no plastic smoothing\n+ [riferimento di stile: editoriale / documentario / film still / pittura rinascimentale / cover di rivista anni '70]\n--ar 4:5 --style raw --v 7\n\nEsempio di costruzione (sostituisci le parti tra parentesi):\n\n  donna di mezza età sulla cinquantina avanzata, capelli argentati raccolti indietro, morbide linee del sorriso, indossa un maglione di cashmere antracite, headshot, ad altezza occhi, shot on 85mm f/1.8, luce naturale da finestra a nord dalla sinistra dello schermo, atmosfera contemplativa, una sobria biblioteca domestica sfocata dietro di lei con una lampada calda, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, stile editoriale documentario --ar 4:5 --style raw --v 7\n\nTattiche di variazione:\n- Stesso prompt, cambia solo l'obiettivo (35mm → 85mm → 135mm) per 3 composizioni distinte.\n- Stesso prompt, cambia l'illuminazione (finestra → golden hour → nuvoloso) per uno studio dell'atmosfera.\n- Aggiungi --seed <n> per bloccare il volto attraverso le iterazioni una volta trovato uno che ti piace.",
+  "useCase": {
+    "headline": "Quando usarlo",
+    "items": [
+      "Ritratti in stile editoriale dove l'obiettivo è il carattere, non uno scatto da glamour.",
+      "Foto da autore o headshot LinkedIn — le specifiche di obiettivo + luce prevengono il rivelatore look IA troppo glossy.",
+      "Concept art per personaggi di fiction dove ti serve riferimenti facciali consistenti attraverso molte immagini (usa --seed)."
+    ]
+  },
+  "modelTips": {
+    "midjourney": "Testato su v6.1 e v7. Usa --style raw per sopprimere il boost cinematografico di default di Midjourney; questo preserva il realismo. --ar 4:5 è il taglio editoriale per ritratti; passa a --ar 3:2 per un feel documentario."
+  },
+  "exampleHeading": "Tre variazioni dallo stesso scheletro",
+  "exampleOutput": "Variazione A (intima):\n  uomo di 35 anni con mani consumate, barba sale e pepe, che guarda in basso un consunto taccuino di pelle, headshot leggermente inclinato in basso, shot on 50mm f/1.4, una singola candela come unica fonte di luce dalla destra, intensità silenziosa, fioco tavolo di legno con pagine scritte a mano, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, stile film still, --ar 4:5 --style raw --v 7\n\nVariazione B (energica):\n  giovane donna nera sui vent'anni, gioiosa risata colta a metà conversazione, ricci twist-out che catturano il controluce, mezzo busto, angolazione a tre quarti, shot on 85mm f/2, controluce di golden hour dalla sua sinistra + morbido fill dalla destra della camera, gioia candida, panchina del parco sfocata e foglie autunnali dietro, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, stile editoriale documentario, --ar 3:2 --style raw --v 7\n\nVariazione C (formale):\n  imprenditrice est-asiatica sui 40, blazer blu navy sartoriale netto, espressione neutra e sicura, inquadratura a tre quarti, angolazione dal basso, shot on 35mm f/2.8, morbida luce esterna nuvolosa, autorità silenziosa, lobby di edificio uffici modernista sfocata dietro di lei, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, stile editoriale, --ar 4:5 --style raw --v 7",
+  "article": {
+    "sections": [
+      {
+        "heading": "Perché i ritratti Midjourney di default sembrano tutti uguali",
+        "paragraphs": [
+          "I dati di training e lo stile di default di Midjourney favoriscono pesantemente l'illuminazione drammatica da cinema, la pelle ritoccata da bellezza e il bokeh da 85mm-f/1.4. Senza controllo esplicito di obiettivo, luce e texture della pelle, ogni ritratto converge verso questa estetica da 'filtro Instagram IA'. Editor e recruiter ora la riconoscono all'istante.",
+          "Il template di prompt qui sopra rompe la convergenza in tre punti: l'obiettivo (variare la lunghezza focale cambia la geometria del volto), la direzione e la morbidezza dell'illuminazione, e una clausola esplicita 'realistic skin texture' che sopprime lo smoothing di bellezza di default. Le prime due sono pura fotografia; la terza è un anti-pattern specifico di Midjourney."
+        ]
+      },
+      {
+        "heading": "La scelta dell'obiettivo cambia il volto",
+        "paragraphs": [
+          "Gli obiettivi grandangolari (35mm) lusingano i menti ed esagerano il naso; i ritratti si sentono intimi e talvolta leggermente comici. 50mm è l'obiettivo 'normale' — il più naturale. 85mm e 105mm comprimono i tratti, lusingano la maggior parte dei volti e producono il classico look editoriale. Cambiare solo l'obiettivo nel prompt produce tre ritratti distintamente diversi dello stesso personaggio.",
+          "Usalo quando generi più scatti dello stesso personaggio di fiction. Blocca il seed, varia solo l'obiettivo. Ottieni un'identità consistente in diversi contesti visivi — una caratteristica difficile da ottenere con i soli metodi basati sul prompt."
+        ]
+      },
+      {
+        "heading": "La direzione della luce guida l'atmosfera — dilla esplicitamente",
+        "paragraphs": [
+          "'Luce naturale' è una non-istruzione; il modello sceglie qualcosa di drammatico di default. 'Luce morbida da finestra a nord dalla sinistra dello schermo' è un'istruzione che il modello può eseguire con precisione. Il template del prompt esige una direzione (sinistra/destra/dietro/davanti), una qualità (morbida/dura) e una fonte (finestra/golden hour/candela/nuvoloso).",
+          "Tre rapidi mappaggi di atmosfera: controluce + tono caldo = romantico / nostalgico. Singola luce laterale dura = drammatico / interrogativo. Nuvoloso + luce morbida frontale = documentario / onesto. Sceglierne una consapevolmente è la differenza tra 'un ritratto' e 'un ritratto che trasmette quello che volevi'."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Funziona in Midjourney v5?",
+      "a": "Sì, ma togli --style raw (aggiunto in v5.2) e il riferimento v7. Le clausole di obiettivo + illuminazione aiutano comunque. Le versioni più nuove (v6.1+, v7) onorano meglio la clausola sulla pelle realistica."
+    },
+    {
+      "q": "Posso usarlo per scatti a figura intera?",
+      "a": "Sì — cambia l'inquadratura a figura intera, passa l'obiettivo a 35mm o 50mm (non 85mm — troppo lusinghiero per il corpo), e aggiungi una descrizione della postura. La clausola sulla texture della pelle è meno impattante a figura intera ma vale comunque la pena tenerla."
+    },
+    {
+      "q": "Perché specificare l'apertura se Midjourney non è una vera camera?",
+      "a": "È un'abbreviazione che il modello capisce. f/1.4 significa 'sfocatura dello sfondo estrema, piano di messa a fuoco sottile, intimo'. f/8 significa 'la maggior parte delle cose nitide, ritratto ambientale'. Specificare l'apertura controlla il bokeh in un modo che Midjourney interpreta in modo affidabile."
+    },
+    {
+      "q": "Come mantengo lo stesso volto attraverso più immagini?",
+      "a": "Genera un'immagine che ti piace, poi aggiungi --seed <n> con il seed di quell'immagine. Le generazioni successive che usano lo stesso seed e un prompt simile produrranno un volto simile. Combinato con --cref (character reference) in v6+, ottieni personaggi consistenti."
+    },
+    {
+      "q": "Quali riferimenti di stile funzionano bene?",
+      "a": "I nomi di fotografi a volte funzionano ma sono inaffidabili. Più affidabili: 'stile editoriale documentario', 'stile film still', 'stile pittura a olio rinascimentale', 'cover di rivista anni '70', 'pellicola medio formato'. Era specifica + medium batte il nome specifico del fotografo."
+    },
+    {
+      "q": "Perché non specificare etnia / età numericamente?",
+      "a": "Il template lo fa — ed è importante. Midjourney ha bias noti che emergono quando il soggetto non è specificato. Indica sempre il soggetto esplicitamente per evitare di passare per default a un profilo demografico ristretto."
+    },
+    {
+      "q": "Questi prompt sono sicuri per uso commerciale?",
+      "a": "L'uso commerciale di Midjourney dipende dal tuo livello di abbonamento (Standard+ lo permette). I prompt in sé non cambiano questo. Per il lavoro per clienti, ricontrolla i ToS attuali di Midjourney — cambiano."
+    },
+    {
+      "q": "E se il risultato sembra ancora troppo 'IA'?",
+      "a": "Aggiungi 'medium format film' o 'shot on Portra 400' al riferimento di stile, e aggiungi 'film grain, slight imperfection, candid' verso la fine. Questo allontana il modello dalla nitidezza digitale pulita verso l'imperfezione fotografica."
+    }
+  ]
+}

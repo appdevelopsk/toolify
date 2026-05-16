@@ -1,0 +1,88 @@
+{
+  "title": "Prompt revue de code senior — détecte bugs, problèmes de perf, cas",
+  "shortDescription": "Un prompt réutilisable pour Claude/ChatGPT/Cursor qui transforme le modèle en reviewer senior axé sur la correction, la performance et les cas limites — pas les vétilles.",
+  "description": "La plupart des revues de code par LLM te noient sous les remarques de style et passent à côté des vrais bugs. Ce prompt force le modèle à trier par sévérité, à ne remonter que ce qui survivrait à une revue stricte par un tech lead, et à citer les numéros de ligne exacts pour que tu puisses vérifier chaque trouvaille rapidement.",
+  "metaDescription": "Prompt gratuit de revue de code senior pour Claude, ChatGPT et Cursor. Tri par sévérité, détecte vrais bugs et problèmes de perf, ignore les vétilles de style.",
+  "keywords": [
+    "prompt revue de code",
+    "claude revue code",
+    "chatgpt revue code",
+    "revue de code IA",
+    "prompt code reviewer senior"
+  ],
+  "promptText": "Tu es un staff engineer senior qui passe en revue le diff ci-dessous. Ton objectif est d'attraper ce qui survivrait à une revue stricte par un tech lead — pas le bruit de linter.\n\nRègles de revue :\n1. Trie chaque trouvaille dans l'une des catégories : BLOCKER, MAJOR, MINOR, NIT.\n2. N'émets que BLOCKER et MAJOR par défaut. Supprime MINOR et NIT sauf si je les demande explicitement.\n3. Pour chaque trouvaille, cite le chemin de fichier exact + la plage de numéros de ligne. Puis explique (a) ce qui ne va pas, (b) le mode de défaillance en production, (c) le correctif suggéré.\n4. Si tu es à moins de 80% de confiance que le problème est réel, marque la trouvaille [low-confidence] et explique quel contexte supplémentaire te permettrait de vérifier.\n5. Termine par un résumé global en un paragraphe : ship-it / ship-with-followups / do-not-ship.\n\nNE COMMENTE PAS :\n- Les préférences de nommage sauf si elles induisent activement en erreur.\n- La mise en forme/espacement si un formatter est en place.\n- Les optimisations hypothétiques que tu ne peux pas relier à un hot path mesuré.\n- Les patterns que la codebase utilise déjà ailleurs (c'est de la cohérence stylistique, pas un bug).\n\nDiff à reviewer :\n\n[colle ton diff unifié ou le contenu de tes fichiers ici]",
+  "useCase": {
+    "headline": "Quand utiliser ce prompt",
+    "items": [
+      "Avant de merger une PR non triviale — fais passer le diff dans ce prompt pour faire émerger ce sur quoi tu voudrais un deuxième regard.",
+      "Auto-revue de ton propre travail — utile avant de demander une revue humaine, attrape les trucs embarrassants.",
+      "Onboarding sur une codebase inconnue — colle une fonction avec le prompt pour comprendre ses risques avant de la modifier."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude (Sonnet 4.6 ou Opus 4.7) donne généralement le tri le plus réfléchi. Colle le diff dans un bloc de code ; les longs contextes gèrent bien les revues de PR entières.",
+    "chatgpt": "GPT-5 / GPT-4o ont tendance à être plus agressifs sur les remarques de style. La règle 'supprime MINOR et NIT' ci-dessus le garde sur les rails.",
+    "cursor": "Dans Cursor, enregistre ça comme entrée .cursorrules ou colle-le dans le composer. Il fonctionne bien avec les références @file."
+  },
+  "exampleHeading": "Exemple de sortie",
+  "exampleOutput": "BLOCKER : src/auth/session.ts:42-58\n  - quoi : La comparaison du token de session utilise ===, pas une comparaison à temps constant.\n  - mode de défaillance : Fuite par timing attack lors d'un login distant.\n  - correctif : Passer à crypto.timingSafeEqual() sur la paire de buffers.\n\nMAJOR : src/auth/session.ts:73 [low-confidence]\n  - quoi : Refresh token écrit dans localStorage.\n  - mode de défaillance : Risque d'exfiltration XSS si n'importe quel contenu utilisateur non assaini atteint la page.\n  - correctif : Déplacer vers un cookie httpOnly si le client n'a pas besoin de le lire. (low-confidence : je ne vois pas comment le front-end consomme ce token.)\n\nRésumé : ship-with-followups. Le correctif temps constant est requis avant merge ; l'emplacement de stockage est un sujet de suivi qui mérite une issue indépendamment de cette PR.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Pourquoi la plupart des revues de code par IA sont inutiles",
+        "paragraphs": [
+          "Par défaut, les modèles de langage adoptent une persona de 'junior serviable' sur les tâches de revue de code. Cela signifie qu'ils commentent à outrance sur le nommage, suggèrent des réécritures 'clean code' pour du code qui va très bien, et enfouissent le seul vrai bug sous un mur de suggestions à ignorer. Le rapport signal/bruit tue le workflow — la plupart des équipes arrêtent d'utiliser l'IA pour la revue en moins d'une semaine.",
+          "Le prompt ci-dessus retourne trois choses : il demande un tri par sévérité pour que les problèmes triviaux soient explicitement supprimés, il exige des numéros de ligne pour que chaque trouvaille soit vérifiable en quelques secondes, et il force un drapeau de confiance pour que tu saches à quelles trouvailles faire confiance sans lire le fichier entier."
+        ]
+      },
+      {
+        "heading": "L'associer à ta CI",
+        "paragraphs": [
+          "Lance ce prompt comme une étape de 'deuxième avis' dans ton workflow de PR — pas comme un check bloquant. Les modèles hallucinent encore, surtout sur les invariants cross-fichiers et sur le code qui dépend de conventions de framework que tu n'as pas collées. Utilise la sortie comme une liste de choses à vérifier, pas comme une liste de problèmes à corriger mécaniquement.",
+          "Si tu veux vraiment l'intégrer en CI, sors les trouvailles en JSON (modifie le prompt : 'retourne un tableau JSON avec les champs severity, path, lineStart, lineEnd, what, fix, confidence'). Puis poste les BLOCKER/MAJOR à la PR comme un commentaire unique avec un en-tête clair 'Assistance IA — vérifier avant d'agir'."
+        ]
+      },
+      {
+        "heading": "Adapter le prompt à ton équipe",
+        "paragraphs": [
+          "Ajoute une section 'Contexte codebase' au-dessus du diff — colle 5 à 10 lignes décrivant ta stack, tes conventions de tests, et tout invariant non évident (ex : 'toutes les écritures DB passent par src/db/withTx, jamais le client brut'). Sinon, les modèles ratent les conventions spécifiques à la codebase.",
+          "Si ton équipe a des points faibles connus (race conditions dans un job runner, N+1 dans un service spécifique), ajoute une ligne 'Surveille en particulier : …'. Le modèle pondérera ces classes de bugs plus haut et sera plus susceptible de les remonter quand elles sont présentes."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Puis-je l'utiliser sur du code propriétaire ?",
+      "a": "Oui, mais vérifie d'abord la politique de ton employeur. Le prompt en lui-même est inoffensif ; ce qui compte c'est de savoir si tu as le droit de coller ton code dans le modèle que tu utilises. Les plans Enterprise de Claude et ChatGPT n'entraînent généralement pas sur tes entrées ; les plans grand public peuvent le faire."
+    },
+    {
+      "q": "Pourquoi supprimer les trouvailles MINOR et NIT ?",
+      "a": "Parce qu'en pratique elles créent de la fatigue de revue. Après la troisième note 'envisage d'extraire ça dans une fonction', tu arrêtes de lire. Les supprimer garde le signal BLOCKER/MAJOR vif. Réactive-les avec 'affiche toutes les trouvailles y compris MINOR et NIT' quand tu veux une revue approfondie."
+    },
+    {
+      "q": "Quelle taille peut faire le diff ?",
+      "a": "Claude Sonnet/Opus et GPT-5 gèrent confortablement 50K+ tokens de diff. Pour de très grosses PR, découpe la revue par répertoire (review d'abord src/auth, puis src/billing) pour que le modèle puisse penser à chaque sous-système isolément."
+    },
+    {
+      "q": "Et les revues spécifiques à la sécurité ?",
+      "a": "Ce prompt attrape les problèmes évidents de crypto/stockage/SSRF mais ne remplace pas une revue de sécurité sur du code d'auth ou de paiement. Pour ces chemins, lance ce prompt et un prompt dédié à la revue de sécurité (on en publiera un séparément)."
+    },
+    {
+      "q": "Peut-il reviewer plusieurs fichiers à la fois ?",
+      "a": "Oui — colle le diff qui inclut tous les fichiers. Il gère raisonnablement bien les invariants cross-fichiers en un seul collage ; pour les problèmes qui s'étendent sur plusieurs PR (ex : 'est-ce cohérent avec la façon dont les feature flags sont gérés ailleurs ?'), inclus quelques extraits représentatifs de ces autres fichiers."
+    },
+    {
+      "q": "Dois-je faire confiance aux trouvailles [low-confidence] ?",
+      "a": "Traite-les comme 'à investiguer avant d'agir'. Environ la moitié des trouvailles low-confidence sont réelles mais le modèle ne pouvait pas vérifier ; l'autre moitié sont des mauvaises lectures. Le drapeau est un signal honnête, pas une raison d'ignorer la trouvaille."
+    },
+    {
+      "q": "Pourquoi me demande-t-il de spécifier le mode de défaillance ?",
+      "a": "Parce que 'c'est faux' est inutile sans 'ça crasherait sur une entrée unicode'. La ligne mode de défaillance te donne la priorité : un correctif qui empêche un cas limite sur un million est différent de celui qui empêche un incident prod quotidien."
+    },
+    {
+      "q": "Comment l'utiliser spécifiquement dans Cursor ?",
+      "a": "Enregistre le corps du prompt dans .cursorrules à la racine de ton repo, ou colle-le dans le composer avec des références @file pour les fichiers à reviewer. Cursor gardera les règles actives pour ce projet."
+    }
+  ]
+}

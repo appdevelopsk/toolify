@@ -1,0 +1,88 @@
+{
+  "title": "Meeting-Vorbereitung Prompt — Agenda, Entscheidungen",
+  "shortDescription": "Erstelle eine scharfe Meeting-Agenda aus groben Notizen, einschließlich Zeitbudget, zu treffender Entscheidungen und eines „sollte das async sein“-Checks an der Spitze.",
+  "description": "Die meisten KI-generierten Meeting-Agenden sind langweilige Vorlagen, die kein wirklich produktives Meeting antreiben. Dieser Prompt zwingt das Modell, Entscheidungen vs. Diskussionen zu kennzeichnen, Zeit pro Punkt zuzuteilen und zu hinterfragen, ob das Meeting überhaupt stattfinden muss.",
+  "metaDescription": "Kostenloser Meeting-Vorbereitung-Prompt. Erstellt eine Agenda mit Zeitbudget, benannten Entscheidungen und Async-vs-Meeting-Check. Funktioniert mit Claude, ChatGPT.",
+  "keywords": [
+    "Meeting Vorbereitung Prompt",
+    "KI Agenda Generator",
+    "Meeting Agenda Prompt",
+    "Entscheidungs-Meeting Prompt",
+    "Stand-up Agenda"
+  ],
+  "promptText": "Erstelle eine Meeting-Agenda aus den untenstehenden groben Notizen.\n\nMeeting-Kontext:\n- Dauer: {N Minuten}\n- Teilnehmer: {Namen + Rollen}\n- Entscheidungsträger im Raum: {wer kann Ergebnisse tatsächlich genehmigen}\n- Verfügbare asynchrone Kanäle: {Slack / Linear / Notion / etc.}\n\nGib für jeden von mir aufgeführten Punkt aus:\n  - Item: <prägnante Neuformulierung>\n  - Type: DECISION | DISCUSSION | INFO_SHARE\n  - Time: <Minuten>\n  - Decision needed (bei DECISION): <exakte Ja/Nein-Frage oder Optionsmenge zur Auswahl>\n  - Pre-read: <Link oder Dokumentname, den Teilnehmer vorher gelesen haben sollten>\n  - Owner: <wer treibt diesen Punkt voran>\n\nFüge dann oben in der Agenda einen SHOULD THIS BE A MEETING?-Abschnitt hinzu, der:\n  1. Punkte auflistet, die async erledigt werden könnten (alle reinen INFO_SHARE).\n  2. Fehlende Entscheidungsträger identifiziert — wenn niemand im Raum einen DECISION-Punkt genehmigen kann, markiere ihn.\n  3. Agenda-Änderungen empfiehlt: „entferne Punkte 2-3 (async); plane mit [fehlender Person] für Punkt 4 neu“.\n\nHarte Regeln:\n- Die Gesamtzeit über alle Punkte muss in die Meeting-Dauer passen, mit 5 Minuten Puffer.\n- Jeder DECISION-Punkt muss eine explizite Ja/Nein- oder Optionsauswahl haben. „Roadmap diskutieren“ ist keine Entscheidung; „Q2-Roadmap genehmigen oder zur Überarbeitung zurücksenden“ schon.\n- INFO_SHARE-Punkte erhalten maximal 5 Minuten — alles darüber ist eine getarnte Diskussion.\n- Wenn die Hälfte oder mehr der Punkte INFO_SHARE sind, empfehle, das Meeting abzusagen und ein schriftliches Update zu senden.\n\nGrobe Notizen:\n\n[füge hier deine Stichpunkte oder Gedanken ein]",
+  "useCase": {
+    "headline": "Wann du das verwenden solltest",
+    "items": [
+      "Vor jedem wiederkehrenden Meeting — füge die stehende Agenda und kürzlich entfernte/hinzugefügte Punkte ein, erhalte eine straffere Version zurück.",
+      "Wenn ein Meeting von jemand anderem geplant wurde und du es korrigieren willst — erstelle die bessere Version und teile sie zurück.",
+      "Quartals-Planungssitzungen — die Aufteilung in Entscheidungen vs. Diskussionen verhindert, dass das Meeting zu einem 90-minütigen Monolog wird."
+    ]
+  },
+  "modelTips": {
+    "claude": "Stark im „sollte das async sein“-Hinterfragen. Empfiehlt das Absagen von Meetings, wenn gerechtfertigt, was andere Modelle zögern zu tun.",
+    "chatgpt": "Funktioniert, neigt aber dazu, alle Punkte auf der Agenda zu behalten. Füge „sei bereit, das Meeting abzusagen, wenn angemessen“ hinzu, um explizit zu sein.",
+    "any": "Die Regel „decision needed“ ist der Hebel. Wenn du sie für einen Punkt nicht ausfüllen kannst, ist der Punkt wahrscheinlich noch nicht reif für das Meeting."
+  },
+  "exampleHeading": "Beispiel: 30-Minuten-Team-Sync aus groben Notizen",
+  "exampleOutput": "SHOULD THIS BE A MEETING?\n  - Punkte 3 & 5 (Status-Updates) sollten zu schriftlichem Update wechseln; spart 12 Min.\n  - Punkt 4 (Q2-Budget-Genehmigung) braucht die CFO anwesend — sie ist nicht eingeladen. Entweder neu planen oder aufteilen: Punkte 1-2 heute behandeln, 4 mit CFO nächste Woche.\n  - Empfehlung: Auf 15 Min kürzen, Agenda unten.\n\nAGENDA (15 Min, Puffer 5 Min)\n\n1. Nachbesetzung für Sarahs Rolle genehmigen (5 Min) — DECISION\n   Decision needed: Externe Ausschreibung jetzt genehmigen oder 2 Wochen auf internen Kandidaten Q warten?\n   Owner: Engineering Manager. Pre-read: Backfill-Spezifikationsdokument (verlinkt).\n\n2. API-Ownership zwischen Plattform und Growth klären (8 Min) — DISCUSSION\n   Owner: VP Eng. Pre-read: Ownership-Matrix v3.\n   Hinweis: Dies erfordert beide Manager im Raum; beide bestätigt.\n\n3. (entfernt — siehe oben) Q1-Metriken-Review → zu schriftlichem Update verschoben.\n4. (verschoben — siehe oben) Q2-Budget-Genehmigung → mit CFO neu planen.\n5. (entfernt — siehe oben) Tooling-Vendor-Demo → asynchrones Video, zur eigenen Zeit ansehen.\n\nPuffer: 2 Min für Parkplatz oder Überziehen.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Warum die meisten Agenden Meetings nicht produktiv machen",
+        "paragraphs": [
+          "Standard-Agenden listen Themen ohne Verbindlichkeit auf. „Roadmap diskutieren“ lädt zu unbegrenzter Diskussion ein; „Roadmap-Status-Update“ lädt zu einem Monolog ein; keines produziert Entscheidungen. Das Ergebnis: Meetings enden mit denselben Fragen, mit denen sie begonnen haben, und das nächste Meeting wird angesetzt, um sie zu adressieren.",
+          "Die DECISION/DISCUSSION/INFO_SHARE-Kennzeichnung leistet den Großteil der Arbeit in diesem Prompt. Sobald du einen Punkt als DECISION markierst, musst du die Ja/Nein- oder Optionsauswahl artikulieren. Wenn du das nicht kannst, ist der Punkt noch nicht reif und sollte entfernt werden (zur Diskussionsphase erst einmal asynchron zurückkehren)."
+        ]
+      },
+      {
+        "heading": "Der „Meeting absagen“-Check ist die hebelreichste Zeile",
+        "paragraphs": [
+          "KI-Tools sagen dir selten, dass du das Meeting absagen sollst, das du planen lassen wolltest. Dieser Prompt fordert das Modell explizit auf, Absagen zu empfehlen, wenn gerechtfertigt, was dir ein unangenehmes Gespräch abnimmt. „Ich habe die Agenda durch diesen Prompt laufen lassen und er schlägt vor, dass wir absagen — hier ist stattdessen das schriftliche Update“ ist eine viel einfachere Botschaft als „ich denke, wir sollten absagen“.",
+          "Verwende ihn alle 2-3 Monate für wiederkehrende Meetings. Kalender sammeln Müll an; dieser Prompt ist eine strukturierte Aufräumaktion."
+        ]
+      },
+      {
+        "heading": "Pre-Reads machen Entscheidungs-Meetings 3x schneller",
+        "paragraphs": [
+          "Die Hälfte jedes Entscheidungs-Meetings besteht aus Leuten, die sich in den Kontext einarbeiten. Wenn ein einseitiges Pre-Read 24 Stunden im Voraus rausgeht und die Leute es tatsächlich lesen, kann das Meeting selbst 10 Minuten dauern — lang genug, um Bedenken aufzudecken und zu entscheiden, kurz genug, dass niemand abschaltet.",
+          "Das „pre-read“-Feld in diesem Prompt zwingt dich, zu identifizieren, welchen Kontext Teilnehmer brauchen. Wenn du kein Dokument nennen kannst, ist das Meeting wahrscheinlich nicht reif: Entweder hast du nicht aufgeschrieben, was du vorschlägst, oder es gibt nichts Klares, worauf reagiert werden kann."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Funktioniert es für Stand-ups / tägliche Syncs?",
+      "a": "Bedingt — Stand-ups sind per Design größtenteils INFO_SHARE. Der Prompt würde empfehlen, sie abzusagen, was nicht immer das ist, was du willst. Verwende das für Meetings ab 30 Minuten."
+    },
+    {
+      "q": "Was, wenn die groben Notizen chaotisch und widersprüchlich sind?",
+      "a": "Das Modell versucht, sie zu schärfen. Wenn es einen Punkt produziert, der nicht deiner Absicht entspricht, antworte mit „Punkt 3 geht eigentlich um X, nicht um Y“. Nach einer Korrektur bleibt der Rest normalerweise aligniert."
+    },
+    {
+      "q": "Wie teile ich die Ausgabe zurück an die Teilnehmer?",
+      "a": "Kopiere den Agenda-Abschnitt (überspringe die „sollte das ein Meeting sein?“-Analyse, wenn Teilnehmer sie als anmaßend empfinden könnten). Oder teile das Ganze als transparente „so habe ich die Agenda gestrafft“-Nachricht."
+    },
+    {
+      "q": "Kann ich das für 1-zu-1-Gespräche verwenden?",
+      "a": "Ja, mit einer Anpassung — ändere DECISION/DISCUSSION/INFO_SHARE zu TOPIC/FEEDBACK/CHECK_IN. Die Zeitbudget- und Pre-Read-Struktur hilft immer noch."
+    },
+    {
+      "q": "Was ist mit dem Parkplatz für Dinge, die spontan aufkommen?",
+      "a": "Der 5-Minuten-Puffer spielt diese Rolle. Wenn Diskussionen konstant überlaufen, ist der Prompt auch eine Diagnose — entweder sind die Zeitschätzungen zu aggressiv, oder die Punkte sind größer als du sie skopiert hast."
+    },
+    {
+      "q": "Warum INFO_SHARE auf 5 Minuten begrenzen?",
+      "a": "Weil alles Längere entweder eine Diskussion (jemand hat Fragen) oder eine Präsentation (die ein aufgezeichnetes Video sein kann) ist. Die 5-Minuten-Obergrenze zwingt dich, den Punkt entweder zu entfernen oder korrekt zu kennzeichnen."
+    },
+    {
+      "q": "Integriert es sich mit Kalender-Tools?",
+      "a": "Nicht direkt. Die Ausgabe ist einfaches Markdown; füge sie in deine Kalender-Einladungsbeschreibung, Notion, Linear oder wo immer dein Team Meeting-Notizen protokolliert ein. Einige Teams verwenden Granola/Krisp für Live-Transkription, was gut dazupasst."
+    },
+    {
+      "q": "Was ist mit Brainstorming-Meetings?",
+      "a": "Markiere sie als reines DISCUSSION mit einer Notiz „heute keine Entscheidungen, Entscheidungen im nächsten Meeting“. Der „sollte das async sein“-Check könnte stattdessen ein Miro-/Figjam-Board empfehlen — oft besser für divergentes Denken."
+    }
+  ]
+}

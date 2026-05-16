@@ -1,0 +1,82 @@
+{
+  "title": "Blog yazısı taslak promptu — niyet ve kelime sayılarıyla H2/H3 yapısı",
+  "shortDescription": "Bir blog yazısı için sıkı, arama dostu bir taslak üretin: H2/H3 hiyerarşisi, bölüm başına niyet, hedef kelime sayıları ve her bölümün yanıtladığı sorular.",
+  "description": "Yapay zeka tarafından üretilen taslakların çoğu sıkıcı şablonlardır. Bu prompt, modeli arama niyetini düşünmeye, her bölüme ölçülebilir bir hedef vermeye ve okuyucuların soracağı spesifik soruları gün yüzüne çıkarmaya zorlar — sıralanan yapı ve insanların gerçekten okumayı bitirdiği yapı.",
+  "metaDescription": "Ücretsiz blog taslak promptu. Niyet, kelime sayısı ve bölüm başına okuyucu sorularıyla H2/H3 yapısı üretir. Claude, ChatGPT, Gemini ile çalışır.",
+  "keywords": ["blog taslak promptu", "AI blog yapısı", "SEO taslak promptu", "içerik brief promptu", "blog yazısı planlayıcı"],
+  "promptText": "Bir blog yazısı taslağı oluştur.\n\nKonu: {konunuz}\nHedef okuyucu: {kim oldukları — yeni başlayanlar / deneyimli uygulayıcılar / karar vericiler}\nBirincil anahtar kelime: {sıralanmaya çalıştığınız ifade}\nArama niyeti: {bilgi amaçlı / ticari / yönlendirme / işlem amaçlı}\nKelime sayısı hedefi: {N — tipik aralık 1500-3500}\n\nBu kesin yapıda bir taslak döndür:\n\nH1: <başlık — birincil anahtar kelimeyi doğal olarak içermeli, maks 60 karakter>\n\nGiriş (~{N*0.05} kelime)\n  - Kanca: <okuyucunun şu anda neden önemsediğine dair bir cümle>\n  - Vaat: <okuduktan sonra ne bileceği>\n  - Atla-git: <yanıtları X bölümündeyse, onları oraya yönlendir>\n\nH2: <bölüm başlığı>\n  Niyet: <bu hangi okuyucu sorusunu yanıtlıyor>\n  Kelime sayısı: <N>\n  Ele alınacak sorular:\n    - <S1>\n    - <S2>\n  H3: <alt bölüm> (yalnızca gerekirse; H2 başına maks 3 H3)\n\n... (toplam 3-6 H2 bölümü; derinlik konuya göre seçilir, şablona değil)\n\nSonuç (~{N*0.05} kelime)\n  - Tek satırlık çıkarım\n  - Tek CTA (CTA listesi değil)\n\nKatı kısıtlamalar:\n1. Her H2 farklı bir arayan sorusunu yanıtlamalı — aynı niyeti kapsayan iki bölüm olmamalı.\n2. Birçok AI taslağının eklediği 'giriş önemlidir' dolgu bölümünü atla. Gerçek okuyucular bunu geçer.\n3. Tamamen 'arka plan bağlamı' olan bir bölüm öneriyorsan, [opsiyonel] olarak işaretle — çoğu okuyucu önce cevabı ister.\n4. Toplam kelime sayıları hedefin %10'u içinde toplanmalı.\n5. İstatistik veya kaynak uydurma. Bir bölümün veriye ihtiyacı varsa, [veri gerekli: <ne tür>] olarak işaretle.",
+  "useCase": {
+    "headline": "Bunu ne zaman kullanmalı",
+    "items": [
+      "1000 kelimeden uzun herhangi bir yazıyı yazmadan önce — saatlerce taslak ortası yeniden yapılandırmayı önler.",
+      "Serbest çalışan bir yazara brief verirken — taslak çıktısını brief olarak kopyalayın; kelime sayıları ve niyet, dolambaçlı taslakları önler.",
+      "Mevcut yazıları denetlerken — mevcut H2 listenizi yapıştırın ve modele bu yapıyı bir eleştiri olarak uygulamasını isteyin."
+    ]
+  },
+  "modelTips": {
+    "claude": "İnce niyet farklarını yakalamada en iyisi. Kelime sayılarını hak etmiyorlarsa dolgu bölümleri eklemeyi reddedecektir.",
+    "chatgpt": "İyi çalışır; bütünlük için bir ekstra bölüm ekleme eğilimindedir. Kelime sayısını aşarsa sonradan kırpın.",
+    "any": "'Ele alınacak sorular' alanı asıl kaldıraçtır. Modelin bunu somut olarak doldurduğundan emin olun ('temel faydaları tartışır' değil, 'yanıtlar: X, fiyatta Y ile nasıl kıyaslanır?')."
+  },
+  "exampleHeading": "'Serbest çalışan muhasebeci nasıl seçilir' için örnek çıktı",
+  "exampleOutput": "H1: Serbest Çalışan Muhasebeci Nasıl Seçilir (2026 Rehberi)\n\nGiriş (~150 kelime)\n  - Kanca: Vergi sezonuna 8 hafta var ve önceki muhasebeciniz iletişimi kesti.\n  - Vaat: Bir saatten kısa sürede doğru muhasebeciyi ortaya çıkaran 4 soruluk filtre.\n  - Atla-git: Sadece ücretlere ihtiyacınız varsa §3'e atlayın.\n\nH2: 4 soruluk filtre (450 kelime)\n  Niyet: 'muhasebecileri nasıl hızlıca değerlendiririm?'\n  Sorular:\n    - 10 dakikada yetkin vs yetkin olmayan bir serbest çalışanı ortaya çıkaran 4 soru nedir?\n    - Pazarlık edilemez yanıt ile esnek yanıt nedir?\n  H3: Soru 1 — mevcut müşteri portföyü\n  H3: Soru 2 — yazılım yığını\n\nH2: Kimlik bilgileri nasıl doğrulanır (350 kelime)\n  Niyet: 'gerçekten yasal olduklarını nasıl doğrularım?'\n  Sorular:\n    - CPA lisansı nerede doğrulanır?\n    - Gerçek bir muhasebeci ile PII erişimi nasıl görünür?\n\nH2: Fiyatlandırma modelleri (500 kelime)\n  Niyet: 'ne kadar ödemeyi bekleyebilirim?'\n  Sorular:\n    - Saatlik vs sabit vs sözleşmeli — 1 W-2 + 2 1099 olan biri için en ucuzu hangisi?\n    - 2026'da tipik aralık nedir?\n  [veri gerekli: 2026 serbest çalışan muhasebeci ücret anketi]\n\nH2: Başlangıçtaki kırmızı bayraklar (300 kelime)\n  Niyet: 'ne zaman vazgeçmeliyim?'\n  Sorular:\n    - İlk görüşmede 5 kırmızı bayrak\n\nH2: İlk 90 gün kontrol listesi (250 kelime)\n  Niyet: 'birini işe aldıktan sonra gerçekte ne yaparım?'\n\nSonuç (~150 kelime)\n  CTA: İndirilebilir bir görüşme sorusu PDF'ine tek bir bağlantı.\n\nToplam: ~2150 kelime (hedef 2200'dü; %10 içinde).",
+  "article": {
+    "sections": [
+      {
+        "heading": "AI tarafından üretilen taslakların çoğu neden yetersiz kalır",
+        "paragraphs": [
+          "'X hakkında bir yazı taslağı yap' diye sorarsanız, model genel bir iskelet döndürür: giriş, tarih, temel kavramlar, örnekler, sonuç. Yapı şablon odaklıdır, konu odaklı değildir ve ortaya çıkan yazı, arama sonuçlarının ikinci sayfasındaki her listenin aynısı gibi okunur. Okuyucular da Google da bunu fark eder — hemen çıkma oranı yükselir, etkileşim düşer, sıralama erir.",
+          "Yukarıdaki prompt, bölüm başına niyet ve okuyucu sorularını talep ederek konu odaklı bir yapı oluşturmaya zorlar. Yanıtladığı spesifik soruyu ifade edemeyen bir bölüm kesilir. Kelime sayısı bütçesi olmayan bir bölüm geri kalanını seyreltemez. Çıktı, gerçek yazma süreciyle temas ettikten sonra ayakta kalan bir brief'tir."
+        ]
+      },
+      {
+        "heading": "Planlama kaldıracı olarak kelime sayıları",
+        "paragraphs": [
+          "Yazıların çoğu yanlış konuları kapsadığı için değil, yanlış konuların yanlış miktarda alan kapladığı için başarısız olur. En önemli bölüm 200 kelime alır, teğet bir bölüm 600 alır. Kelime sayılarını önceden belirlemek, taslak aşamasında — ucuz olduklarında — öncelik kararlarını zorlar, düzenleme aşamasında — kesintinin acı verdiği zaman — değil.",
+          "Toplam hedef uygulaması (%10 içinde) yaygın bir AI başarısızlığını yakalar: taslak, toplam hedefinizin 1,5 katı olana kadar bölüm eklemeye devam eder. Yazmadan önce kırpın veya birleştirin — ikinci taslak sırasında olmaktan çok daha hızlı."
+        ]
+      },
+      {
+        "heading": "Promptu içerik denetimleri için uyarlama",
+        "paragraphs": [
+          "Yetersiz performans gösteren yazıları denetlemek için yapıyı yeniden kullanın. Mevcut H2 listesini yapıştırın ve sorun: 'Blog taslağı çerçevesini uygula. Hangi bölümlerde net bir arayan sorusu eksik? Hangi bölümler niyette örtüşüyor? Kelime sayısı tahsisleri nerede öneme uymuyor?' Model, kopya editörü yerine yapısal bir editör haline gelir.",
+          "Bunu hızlı bir anahtar kelime boşluğu kontrolüyle eşleştirin: 'Bu taslağın yanıtlamadığı ancak rakip ilk 3 sonucun yanıtladığı 5 okuyucu sorusunu listele' ekleyin. Bu, her rakip makaleyi okumadan eksik bölümleri ortaya çıkarır."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Her H2 tipik olarak ne kadar uzun olmalı?",
+      "a": "Yazı hedefine bağlıdır, ancak makul bir varsayılan H2 başına 250-500 kelimedir. 200 kelimenin altında bir bölüm başlığına değmez; 600'ün üzerinde genellikle H3'lere bölünmek veya kendi yazısı olmak ister."
+    },
+    {
+      "q": "Bir bölüm için 'niyet' ne anlama gelir?",
+      "a": "Bölümün yanıtladığı spesifik okuyucu sorusu. 'Fiyatlandırmayı tartışır' niyet değildir. 'Yanıtlar: durumum için saatlik mi yoksa sözleşmeli mi ödemeliyim?' niyettir. Ne kadar spesifik olursa, bölüm o kadar iyi yazılır."
+    },
+    {
+      "q": "Bölümler neden [opsiyonel] olarak işaretlenir?",
+      "a": "Çünkü prompt, hangi bölümlerin yerini gerçekten hak ettiği konusunda dürüsttür. Bir 'X tarihi' bölümü okuyucuların %5'ini ilgilendirebilir; işaretlemek, onu yazıp yazmamaya, dipnota indirip indirmemeye veya tamamen atlamaya karar vermenize olanak tanır."
+    },
+    {
+      "q": "Bunu video senaryoları veya YouTube taslakları için kullanabilir miyim?",
+      "a": "Evet, ancak 'kelime sayısı'nı 'ekran süresi' (saniye olarak) olarak değiştirin ve 'ele alınacak sorular'ı 'görsel anlar' olarak değiştirin. Aynı niyet odaklı yapı geçerlidir — izleyiciler videoları okuyucuların yazıları terk etmesiyle aynı nedenle terk eder: zamanını hak etmeyen bölümler."
+    },
+    {
+      "q": "Birincil anahtar kelime olmadan çalışır mı?",
+      "a": "Evet — ancak H1 SEO için optimize edilmeyecektir. Bir haber bülteni veya dahili blog için yazıyorsanız, birincil anahtar kelime alanını bırakın; geri kalanı hâlâ çalışır."
+    },
+    {
+      "q": "Modelin veri uydurmasını nasıl önlerim?",
+      "a": "Kural 5 ([veri gerekli: ...]) açık halüsinasyon karşıtı korumadır. Model, doldurmanız için doğrulanmamış iddiaları işaretler. İşaretleyici olmadan istatistikler üretirse, 'O rakamın kaynağı?' diye sorun ve ya bir tane sağlayacak ya da sağlayamayacağını kabul edecektir."
+    },
+    {
+      "q": "Rakip yazı analizi eklemeli miyim?",
+      "a": "Opsiyonel ama güçlü. Bir bölüm ekleyin: 'Birincil anahtar kelime için ilk 3 sıralanan sonuç: <başlıkları + URL'leri yapıştır>. Yapısal zayıflıklarını tanımla (atladıkları bölümler, yanıtlamadıkları sorular).' Taslak açıkça farklılaşacaktır."
+    },
+    {
+      "q": "Prompt neden 'giriş önemlidir' bölümünü atlıyor?",
+      "a": "Çünkü çoğu AI taslağı bunu sadece H1'i yeniden ifade eden 200 kelimelik bir bölüm olarak ekler. Hem modern okuyucular hem de arama motorları bu doldurmayı cezalandırır. Kanca + Vaat + Atla-git mikroyapısı aynı işi 50 kelimede yapar."
+    }
+  ]
+}

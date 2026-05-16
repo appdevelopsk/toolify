@@ -1,0 +1,88 @@
+{
+  "title": "Toplantı hazırlık promptu — gündem, kararlar, async-ya-da-toplantı",
+  "shortDescription": "Kaba notlardan keskin bir toplantı gündemi üretin; zaman bütçesi, alınacak kararlar ve en üstte 'bu async olmalı mı' kontrolü dahil.",
+  "description": "AI tarafından üretilen toplantı gündemlerinin çoğu, üretken bir toplantıyı gerçekten yönlendirmeyecek sıkıcı şablonlardır. Bu prompt, modeli kararları tartışmalardan ayırmaya, öğe başına süre ayırmaya ve toplantının gerçekten yapılması gerekip gerekmediğini sorgulamaya zorlar.",
+  "metaDescription": "Ücretsiz toplantı hazırlık promptu. Zaman bütçesi, adlandırılmış kararlar ve async-vs-toplantı kontrolü ile bir gündem oluşturur. Claude, ChatGPT ile çalışır.",
+  "keywords": [
+    "toplantı hazırlık promptu",
+    "AI gündem üreticisi",
+    "toplantı gündemi promptu",
+    "karar toplantısı promptu",
+    "stand up gündemi"
+  ],
+  "promptText": "Aşağıdaki kaba notlardan bir toplantı gündemi oluştur.\n\nToplantı bağlamı:\n- Süre: {N dakika}\n- Katılımcılar: {isimler + roller}\n- Odadaki karar vericiler: {sonuçları gerçekten kim onaylayabilir}\n- Mevcut async kanallar: {Slack / Linear / Notion / vb.}\n\nListelediğim her öğe için şunları çıktıla:\n  - Öğe: <net yeniden ifade>\n  - Tip: KARAR | TARTIŞMA | BİLGİ_PAYLAŞIMI\n  - Süre: <dakika>\n  - Gereken karar (KARAR ise): <tam evet/hayır sorusu veya aralarından seçilecek seçenek seti>\n  - Ön okuma: <katılımcıların önceden okuması gereken bağlantı veya belge adı>\n  - Sorumlu: <bu öğeyi kim yürütür>\n\nArdından gündemin en üstüne, şu işlevleri yapan bir BU BİR TOPLANTI OLMALI MI? bölümü ekle:\n  1. Async ele alınabilecek öğeleri listele (herhangi bir saf BİLGİ_PAYLAŞIMI).\n  2. Eksik karar vericileri tanımla — odada bir KARAR öğesini onaylayabilecek kimse yoksa işaretle.\n  3. Gündem değişiklikleri öner: 'öğe 2-3'ü kaldır (async); öğe 4 için [eksik kişi] ile yeniden planla'.\n\nKatı kurallar:\n- Öğeler arası toplam süre, 5 dakika tampon ayrılmak üzere toplantı süresine sığmalı.\n- Her KARAR öğesinin açık bir evet/hayır veya seçenek seçimi olmalı. 'Yol haritasını tartış' bir karar değildir; 'Q2 yol haritasını onayla veya revizyon için geri gönder' karardır.\n- BİLGİ_PAYLAŞIMI öğeleri her biri en fazla 5 dakika alır — daha fazlası kılık değiştirmiş bir tartışmadır.\n- Öğelerin yarısı veya daha fazlası BİLGİ_PAYLAŞIMI ise, toplantıyı iptal etmeyi ve yazılı bir güncelleme göndermeyi öner.\n\nKaba notlar:\n\n[madde işaretlerinizi veya düşüncelerinizi buraya yapıştırın]",
+  "useCase": {
+    "headline": "Bunu ne zaman kullanmalı",
+    "items": [
+      "Herhangi bir tekrar eden toplantıdan önce — sürekli gündemi ve son düşen/eklenen öğeleri yapıştırın, daha sıkı bir versiyon alın.",
+      "Bir toplantı başkası tarafından planlandığında ve siz düzeltmek istediğinizde — daha iyi versiyonu üretin, geri paylaşın.",
+      "Üç aylık planlama oturumları — kararlar-vs-tartışmalar ayrımı, toplantının 90 dakikalık bir monologa dönüşmesini önler."
+    ]
+  },
+  "modelTips": {
+    "claude": "'Bu async olmalı mı' sorgulamasında güçlüdür. Gerektiğinde toplantıları iptal etmeyi önerir, diğer modeller bunu yapmaktan çekinir.",
+    "chatgpt": "Çalışır ancak tüm öğeleri gündemde tutma eğilimindedir. Açık olmak için 'uygun olduğunda toplantıyı iptal etmeyi önermeye istekli ol' ekleyin.",
+    "any": "'Gereken karar' kuralı kaldıraçtır. Bir öğe için bunu dolduramıyorsanız, öğe muhtemelen toplantıya hazır değildir."
+  },
+  "exampleHeading": "Örnek: kaba notlardan 30 dakikalık ekip senkronizasyonu",
+  "exampleOutput": "BU BİR TOPLANTI OLMALI MI?\n  - Öğe 3 ve 5 (durum güncellemeleri) yazılı güncellemeye taşınmalı; 12 dakika tasarruf eder.\n  - Öğe 4 (Q2 bütçe onayı) için CFO gerekiyor — davetli değil. Ya yeniden planlayın ya da bölün: bugün öğe 1-2'yi, gelecek hafta CFO ile öğe 4'ü ele alın.\n  - Öneri: 15 dakikaya indir, gündem aşağıda.\n\nGÜNDEM (15 dk, tampon 5 dk)\n\n1. Sarah'nın rolü için işe alım onayı (5 dk) — KARAR\n   Gereken karar: Harici ilanı şimdi onayla ya da iç aday Q için 2 hafta bekle?\n   Sorumlu: Engineering Manager. Ön okuma: işe alım spec belgesi (bağlantılı).\n\n2. Platform ve growth arasında API sahipliğini çöz (8 dk) — TARTIŞMA\n   Sorumlu: VP Eng. Ön okuma: sahiplik matrisi v3.\n   Not: bu iki yöneticinin de odada olmasını gerektirir; ikisi de onayladı.\n\n3. (kaldırıldı — yukarıya bakın) Q1 metrik incelemesi → yazılı güncellemeye taşındı.\n4. (yeniden planlandı — yukarıya bakın) Q2 bütçe onayı → CFO ile yeniden planla.\n5. (kaldırıldı — yukarıya bakın) Araç satıcısı demosu → async video, kendi zamanınızda izleyin.\n\nTampon: park yeri veya uzayanlar için 2 dk.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Çoğu gündem neden toplantıların üretken olmasına yardımcı olmaz",
+        "paragraphs": [
+          "Varsayılan gündemler taahhüt olmadan konuları listeler. 'Yol haritasını tartış' sınırsız tartışmayı davet eder; 'yol haritası durum güncellemesi' monolog davet eder; hiçbiri karar üretmez. Sonuç: toplantılar başladıkları sorularla biter ve onları ele almak için bir sonraki toplantı planlanır.",
+          "KARAR/TARTIŞMA/BİLGİ_PAYLAŞIMI etiketlemesi bu promptta işin çoğunu yapıyor. Bir öğeyi KARAR olarak işaretlediğinizde, evet/hayır veya seçenek seçimini ifade etmelisiniz. Yapamıyorsanız, öğe hazır değil ve kaldırılmalıdır (önce async tartışma aşamasına dönün)."
+        ]
+      },
+      {
+        "heading": "Toplantıyı-iptal-et kontrolü en yüksek kaldıraçlı satırdır",
+        "paragraphs": [
+          "AI araçları nadiren planlamaları istenen toplantıyı iptal etmenizi söyler. Bu prompt, modelden gerektiğinde iptal önermesini açıkça ister, bu da garip bir konuşmayı dışarı aktarmanıza olanak tanır. 'Gündemi bu prompttan geçirdim ve iptal etmemizi öneriyor — onun yerine async güncelleme burada' demek 'Bence iptal etmeliyiz' demekten çok daha kolay bir mesajdır.",
+          "Tekrar eden toplantılarda her 2-3 ayda bir kullanın. Takvimler birikim biriktirir; bu prompt yapılandırılmış bir temizliktir."
+        ]
+      },
+      {
+        "heading": "Ön okumalar karar toplantılarını 3 kat hızlandırır",
+        "paragraphs": [
+          "Her karar toplantısının yarısı, insanların bağlamı yakalamasıdır. 24 saat önceden tek sayfalık bir ön okuma çıkarsa ve insanlar gerçekten okursa, toplantının kendisi 10 dakika olabilir — endişeleri ortaya çıkarmak ve karar vermek için yeterince uzun, kimsenin dalmasına izin vermeyecek kadar kısa.",
+          "Bu prompttaki 'ön okuma' alanı, katılımcıların hangi bağlama ihtiyaç duyduğunu tanımlamanıza zorlar. Bir belgeyi adlandıramıyorsanız, toplantı muhtemelen hazır değildir: ya önerdiğinizi yazıya dökmediniz, ya da tepki verilecek net bir şey yok."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Stand-up'lar / günlük senkronizasyonlar için işe yarar mı?",
+      "a": "Marjinal olarak — stand-up'lar tasarım gereği çoğunlukla BİLGİ_PAYLAŞIMI'dır. Prompt onları iptal etmeyi önerir, ki bu her zaman istediğiniz şey değildir. Bunu 30+ dakikalık toplantılar için kullanın."
+    },
+    {
+      "q": "Kaba notlar dağınık ve çelişkili ise ne olur?",
+      "a": "Model bunları netleştirmeye çalışacaktır. Niyetinize uymayan bir öğe üretirse, 'öğe 3 aslında X hakkındadır, Y değil' diye yanıtlayın. Bir düzeltmeden sonra genellikle geri kalanını hizalı tutar."
+    },
+    {
+      "q": "Çıktıyı katılımcılara nasıl geri paylaşırım?",
+      "a": "Gündem bölümünü kopyala-yapıştır yapın (katılımcılar küstahça bulabilirse 'bu bir toplantı olmalı mı?' analizini atlayın). Veya tüm şeyi 'gündemi nasıl kırptığım' şeffaf bir mesaj olarak paylaşın."
+    },
+    {
+      "q": "Bunu birebir görüşmeler için kullanabilir miyim?",
+      "a": "Evet, bir ayarlama ile — KARAR/TARTIŞMA/BİLGİ_PAYLAŞIMI'nı KONU/GERİBİLDİRİM/KONTROL olarak değiştirin. Zaman bütçesi ve ön okuma yapısı hâlâ yardımcı olur."
+    },
+    {
+      "q": "Canlı olarak çıkan şeyler için park yeri ne olacak?",
+      "a": "5 dakikalık tampon bu rolü oynar. Tartışmalar sürekli taşıyorsa, prompt aynı zamanda bir teşhistir — ya zaman tahminleri çok agresiftir ya da öğeler kapsamlı ettiğinizden daha büyüktür."
+    },
+    {
+      "q": "BİLGİ_PAYLAŞIMI neden 5 dakikayla sınırlandırılır?",
+      "a": "Çünkü daha uzun olan her şey ya bir tartışmadır (birinin soruları vardır) ya da bir sunumdur (kaydedilmiş video olabilir). 5 dakikalık üst sınır, öğeyi kaldırmaya veya doğru etiketlemeye zorlar."
+    },
+    {
+      "q": "Takvim araçlarıyla entegre olur mu?",
+      "a": "Doğrudan değil. Çıktı düz markdown'dır; takvim daveti açıklamasına, Notion'a, Linear'a veya ekibinizin toplantı notlarını günlüğe kaydettiği herhangi bir yere yapıştırın. Bazı ekipler canlı transkripsiyon için Granola/Krisp kullanır, bu iyi eşleşir."
+    },
+    {
+      "q": "Beyin fırtınası toplantıları ne olacak?",
+      "a": "Bunları yalnızca TARTIŞMA olarak işaretleyin, 'bugün karar yok, kararlar bir sonraki toplantıda' notuyla. 'Bu async olmalı mı' kontrolü bunun yerine bir Miro / Figjam panosu önerebilir — genellikle ıraksak düşünme için daha iyidir."
+    }
+  ]
+}

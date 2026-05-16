@@ -1,0 +1,88 @@
+{
+  "title": "Prompt de preparação de reunião — pauta, decisões, check de",
+  "shortDescription": "Gere uma pauta afiada de reunião a partir de notas brutas, incluindo orçamento de tempo, decisões a tomar e um check de 'isso deveria ser assíncrono' no topo.",
+  "description": "A maioria das pautas geradas por IA são templates sem graça que não vão de fato conduzir uma reunião produtiva. Este prompt força o modelo a rotular decisões vs discussões, alocar tempo por item e questionar se a reunião precisa acontecer.",
+  "metaDescription": "Prompt gratuito de preparação de reunião. Monta uma pauta com orçamento de tempo, decisões nomeadas e check de async-vs-reunião. Funciona com Claude, ChatGPT.",
+  "keywords": [
+    "prompt preparação reunião",
+    "gerador pauta IA",
+    "prompt pauta reunião",
+    "prompt reunião decisão",
+    "pauta stand up"
+  ],
+  "promptText": "Monte uma pauta de reunião a partir das notas brutas abaixo.\n\nContexto da reunião:\n- Duração: {N minutos}\n- Participantes: {nomes + papéis}\n- Tomadores de decisão na sala: {quem de fato pode aprovar os resultados}\n- Canais assíncronos disponíveis: {Slack / Linear / Notion / etc.}\n\nPara cada item que eu listar, entregue:\n  - Item: <reformulação enxuta>\n  - Tipo: DECISÃO | DISCUSSÃO | COMPARTILHAR_INFO\n  - Tempo: <minutos>\n  - Decisão necessária (se DECISÃO): <pergunta exata sim/não ou conjunto de opções entre as quais escolher>\n  - Pre-read: <link ou nome do doc que os participantes devem ter lido antes>\n  - Owner: <quem conduz este item>\n\nDepois, no topo da pauta, adicione uma seção ISSO DEVERIA SER UMA REUNIÃO? que:\n  1. Liste itens que poderiam ser tratados de forma assíncrona (qualquer COMPARTILHAR_INFO puro).\n  2. Identifique tomadores de decisão ausentes — se ninguém na sala pode aprovar um item DECISÃO, sinalize.\n  3. Recomende mudanças na pauta: 'remover itens 2-3 (async); reagendar com [pessoa ausente] para item 4'.\n\nRegras rígidas:\n- O tempo total entre itens deve caber na duração da reunião, com 5 minutos reservados como buffer.\n- Todo item DECISÃO deve ter um sim/não explícito ou escolha de opção. 'Discutir o roadmap' não é uma decisão; 'Aprovar roadmap do Q2 ou devolver para revisão' é.\n- Itens COMPARTILHAR_INFO ganham no máximo 5 minutos cada — qualquer coisa a mais é uma discussão disfarçada.\n- Se metade ou mais dos itens são COMPARTILHAR_INFO, recomende cancelar a reunião e mandar uma atualização escrita.\n\nNotas brutas:\n\n[cole seus bullet points ou pensamentos aqui]",
+  "useCase": {
+    "headline": "Quando usar",
+    "items": [
+      "Antes de qualquer reunião recorrente — cole a pauta padrão e itens recentes adicionados/removidos, receba uma versão mais enxuta.",
+      "Quando uma reunião foi marcada por outra pessoa e você quer consertá-la — gere a versão melhor e compartilhe de volta.",
+      "Sessões de planejamento trimestral — a separação decisões-vs-discussões evita que a reunião vire um monólogo de 90 minutos."
+    ]
+  },
+  "modelTips": {
+    "claude": "Forte no desafio 'isso deveria ser assíncrono'. Vai recomendar cancelar reuniões quando faz sentido, o que outros modelos hesitam em fazer.",
+    "chatgpt": "Funciona, mas tende a manter todos os itens na pauta. Adicione 'esteja disposto a recomendar cancelar a reunião se apropriado' para ser explícito.",
+    "any": "A regra 'decisão necessária' é a alavanca. Se você não consegue preenchê-la para um item, o item provavelmente ainda não está pronto para a reunião."
+  },
+  "exampleHeading": "Exemplo: sync de time de 30 min a partir de notas brutas",
+  "exampleOutput": "ISSO DEVERIA SER UMA REUNIÃO?\n  - Itens 3 e 5 (status updates) deveriam virar atualização escrita; economiza 12 min.\n  - Item 4 (aprovação de orçamento do Q2) precisa do CFO presente — ele não está no convite. Ou reagende ou divida: trate itens 1-2 hoje, 4 com o CFO na próxima semana.\n  - Recomendação: encurtar para 15 min, pauta abaixo.\n\nPAUTA (15 min, buffer 5 min)\n\n1. Aprovar reposição da vaga da Sarah (5 min) — DECISÃO\n   Decisão necessária: Aprovar publicação externa agora, ou esperar 2 semanas pela candidata interna Q?\n   Owner: Gerente de Engenharia. Pre-read: documento de spec da reposição (linkado).\n\n2. Resolver propriedade da API entre platform e growth (8 min) — DISCUSSÃO\n   Owner: VP Eng. Pre-read: matriz de propriedade v3.\n   Nota: precisa dos dois gerentes na sala; ambos confirmaram.\n\n3. (removido — ver topo) Revisão de métricas do Q1 → movido para atualização escrita.\n4. (reagendado — ver topo) Aprovação de orçamento do Q2 → reagendar com CFO.\n5. (removido — ver topo) Demo de fornecedor de tooling → vídeo assíncrono, assistir no seu tempo.\n\nBuffer: 2 min para parking-lot ou estouro de tempo.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por que a maioria das pautas não ajuda reuniões a serem produtivas",
+        "paragraphs": [
+          "Pautas padrão listam tópicos sem compromisso. 'Discutir roadmap' convida discussão sem limite; 'status update do roadmap' convida monólogo; nenhum produz decisões. O resultado: reuniões terminam com as mesmas perguntas com que começaram, e a próxima reunião é marcada para tratá-las.",
+          "A rotulação DECISÃO/DISCUSSÃO/COMPARTILHAR_INFO faz a maior parte do trabalho neste prompt. Uma vez que você marca um item como DECISÃO, precisa articular o sim/não ou a escolha de opção. Se não consegue, o item não está pronto e deve ser removido (volte à fase de discussão assíncrona primeiro)."
+        ]
+      },
+      {
+        "heading": "O check 'cancelar a reunião' é a linha de maior alavancagem",
+        "paragraphs": [
+          "Ferramentas de IA raramente te dizem para cancelar a reunião que pediram para planejar. Este prompt pede explicitamente que o modelo recomende cancelamento quando faz sentido, o que te deixa terceirizar uma conversa desconfortável. 'Rodei a pauta por este prompt e ele sugere cancelar — aqui está a atualização assíncrona' é uma mensagem muito mais fácil que 'acho que deveríamos cancelar'.",
+          "Use em reuniões recorrentes a cada 2-3 meses. Calendários acumulam entulho; este prompt é uma limpeza estruturada."
+        ]
+      },
+      {
+        "heading": "Pre-reads tornam reuniões de decisão 3x mais rápidas",
+        "paragraphs": [
+          "Metade de toda reunião de decisão é gente entrando no contexto. Se um pre-read de uma página sai 24 horas antes e as pessoas de fato leem, a reunião em si pode ser de 10 minutos — tempo suficiente para levantar preocupações e decidir, curto o suficiente para ninguém desligar.",
+          "O campo 'pre-read' neste prompt te força a identificar que contexto os participantes precisam. Se você não consegue nomear um documento, a reunião provavelmente não está pronta: ou você não escreveu o que está propondo, ou não há nada claro para reagir."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Funciona para stand-ups / daily syncs?",
+      "a": "Marginalmente — stand-ups são em sua maioria COMPARTILHAR_INFO por design. O prompt vai recomendar cancelá-los, o que nem sempre é o que você quer. Use isso para reuniões de 30+ minutos."
+    },
+    {
+      "q": "E se as notas brutas estão bagunçadas e contraditórias?",
+      "a": "O modelo vai tentar deixar mais enxuto. Se produzir um item que não bate com sua intenção, responda com 'item 3 é na verdade sobre X, não Y'. Depois de uma correção ele geralmente mantém o resto alinhado."
+    },
+    {
+      "q": "Como compartilho o output de volta com os participantes?",
+      "a": "Copie e cole a seção da pauta (pule a análise de 'isso deveria ser uma reunião?' se os participantes podem achar presunçoso). Ou compartilhe a coisa toda como uma mensagem transparente 'foi assim que enxutei a pauta'."
+    },
+    {
+      "q": "Posso usar para 1-on-1s?",
+      "a": "Sim, com um ajuste — troque DECISÃO/DISCUSSÃO/COMPARTILHAR_INFO por TÓPICO/FEEDBACK/CHECK_IN. A estrutura de orçamento de tempo e pre-read ainda ajuda."
+    },
+    {
+      "q": "E o parking-lot para coisas que surgem ao vivo?",
+      "a": "O buffer de 5 min cumpre esse papel. Se discussões consistentemente transbordam, o prompt também é um diagnóstico — ou as estimativas de tempo são agressivas demais, ou os itens são maiores do que você escopou."
+    },
+    {
+      "q": "Por que limitar COMPARTILHAR_INFO a 5 minutos?",
+      "a": "Porque qualquer coisa maior é uma discussão (alguém tem perguntas) ou uma apresentação (que pode ser um vídeo gravado). O teto de 5 min te força a remover o item ou rotulá-lo corretamente."
+    },
+    {
+      "q": "Integra com ferramentas de calendário?",
+      "a": "Não diretamente. O output é markdown puro; cole na descrição do convite do calendário, Notion, Linear, ou onde seu time registra notas de reunião. Alguns times usam Granola/Krisp para transcrição ao vivo, que combina bem."
+    },
+    {
+      "q": "E reuniões de brainstorming?",
+      "a": "Marque como DISCUSSÃO-apenas com uma nota 'sem decisões hoje, decisões na próxima reunião'. O check 'isso deveria ser assíncrono' pode recomendar uma board no Miro / Figjam em vez disso — frequentemente melhor para pensamento divergente."
+    }
+  ]
+}

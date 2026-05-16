@@ -1,0 +1,82 @@
+{
+  "title": "Araştırma özeti promptu — iddiaları, kanıtları ve çelişkileri çıkarır",
+  "shortDescription": "Uzun PDF'leri, makaleleri veya raporları, iddiaları kanıtlardan ayıran, çelişkileri ortaya çıkaran ve doğrulayabilmeniz için kaynak sayfalarını alıntılayan yapılandırılmış bir özete dönüştürün.",
+  "description": "Varsayılan 'bunu özetle', her nüanslı çalışmanın noktasını kaybeden kayıplı paragraf tarzı özetler üretir. Bu prompt yapılandırılmış bir nesne çıkarır — iddialar, kanıt türü, kaynak konumu ve belgeler arası çelişkiler — 60 saniyede tarayabileceğiniz.",
+  "metaDescription": "Claude, Perplexity, ChatGPT için ücretsiz araştırma özeti promptu. Kanıt ve kaynak sayfalarıyla iddiaları çıkarın. Belgeler arası çelişkileri ortaya çıkarın.",
+  "keywords": ["araştırma özeti promptu", "akademik makale özeti", "Claude araştırma promptu", "Perplexity araştırma", "literatür incelemesi promptu"],
+  "promptText": "Aşağıdaki belge(ler)i özetleyeceksin. Yapılandırılmış bir tablo olarak çıktıla, düz metin olarak değil.\n\nKaynak(lar)daki her büyük iddia için şunları çıkar:\n  - İddia: <tek cümle>\n  - Kanıt türü: <ampirik çalışma / teorik argüman / uzman görüşü / anekdot / desteksiz>\n  - Kaynak: <belge adı + sayfa veya bölüm>\n  - Güç: <güçlü / orta / zayıf — kanıt türü ve örneklem büyüklüğüne göre>\n  - Çekinceler: <kaynağın kendisinin kabul ettiği sınırlar>\n\nTablodan sonra üç bölüm ekle:\n\n1. ÇELİŞKİLER: belgelerin uyuşmadığı veya bir belgenin iddiasının diğerinin verisiyle çatıştığı yerleri listele.\n\n2. GÜVEN HARİTASI: her büyük iddianın genel güvenilirliğini değerlendir — yüksek (birden fazla güçlü kaynak hemfikir), orta (bir güçlü kaynak veya birden fazla zayıf kaynak), düşük (tek zayıf kaynak veya desteksiz iddia).\n\n3. EKSİK OLAN: dikkatli bir okuyucunun bu belgeleri okuduktan sonra hâlâ sahip olacağı 3-5 soru. Her birini ya 'daha fazla okumayla bu belgelerden ele alınabilir' ya da 'harici kaynaklar gerektirir' olarak işaretle.\n\nKatı kurallar:\n- Her iddia için sayfa numaralarını veya bölüm tanımlayıcılarını alıntıla. Yapamıyorsan, [sayfa bilinmiyor] olarak işaretle.\n- Belgelerin söylediğinin ötesinde sentez yapma. İki belge bir konuya değiniyor ama doğrudan karşılaştırma yapmıyorsa, bunu söyle — karşılaştırma uydurma.\n- 'Belge X iddia ediyor' ile 'X doğrudur'u ayırt et. Özet neyin iddia edildiğini bildirir, neyin doğru olduğunu değil.\n\nBelge(ler):\n\n[tam metni yapıştır veya PDF'leri yükle]",
+  "useCase": {
+    "headline": "Bunu ne zaman kullanmalı",
+    "items": [
+      "Literatür incelemesi için 5-10 makale okurken — her birini bu prompttan geçirin, sonra fikir birliği ve boşlukları bulmak için güven haritalarını karşılaştırın.",
+      "Bir satıcıdan aldığınız bir endüstri raporunu değerlendirirken — güç sütunu, raporun nerede veri odaklı, nerede pazarlama olduğunu ortaya çıkarır.",
+      "Bir haber makalesini çapraz kontrol ederken — makaleyi + temel çalışmayı besleyin; çelişkiler hemen ortaya çıkar."
+    ]
+  },
+  "modelTips": {
+    "claude": "İddiayı kanıt türünden ayırmada en iyisi. 'Sentez yapma' kuralı en çok Claude (Sonnet 4.6+) tarafından saygı görür.",
+    "perplexity": "Belge açık webdeyse güçlüdür — Perplexity otomatik olarak kaynak doğrulaması ekler. Özel PDF'ler için daha az yararlıdır.",
+    "chatgpt": "Çalışır ancak 'desteksiz' kararını 'bahsedilen'e yumuşatma eğilimindedir. Açık olun: 'belge, makul görünse bile veri belirtmeden bir iddia sunduğunda \"desteksiz\" kullan.'"
+  },
+  "exampleHeading": "Örnek: uzaktan çalışma üretkenliği üzerine 3 makalelik özet",
+  "exampleOutput": "| İddia | Kanıt | Kaynak | Güç | Çekinceler |\n|---|---|---|---|---|\n| Uzaktan çalışanlar %13 daha yüksek üretkenlik bildiriyor | anket, n=2400 | Bloom 2024 s.7 | orta | öz bildirim önyargısı kabul edildi |\n| Uzaktan çalışma ekip inovasyonunu azaltır | niteliksel görüşme, n=42 yönetici | Smith 2023 s.14 | zayıf | örneklem yöneticilere kaymış, IC'lere değil |\n| Hibrit (3 gün) tam uzaktan çalışmadan elde tutmada üstün | bir şirkette A/B testi | Chen 2025 s.22 | orta | tek firma, genellenemeyebilir |\n\nÇELİŞKİLER:\n- Bloom 2024 üretkenlik kazancı bildiriyor; Smith 2023 (azalan inovasyon yoluyla) üretkenlik düşüşünü ima ediyor. İkisi farklı üretkenlik tanımları kullanıyor — Bloom = saat başına çıktı, Smith = stratejik çıktı. Doğrudan karşılaştırılamaz.\n\nGÜVEN HARİTASI:\n- 'Uzaktan çalışma üretkenliği değiştirir' → yüksek (net etki, yön tartışmalı)\n- 'Uzaktan çalışma inovasyonu azaltır' → orta (bir çalışma, niteliksel)\n- 'Hibrit optimaldir' → düşük (bir firmada bir A/B)\n\nEKSİK OLAN:\n1. Özellikle genç çalışanlar üzerindeki etki [harici kaynaklar gerektirir]\n2. Sektör bazında döküm [ele alınabilir: Bloom 2024'ün ek veri vardır]\n3. Bilgi transferi / mentorluk üzerindeki etki [harici kaynaklar gerektirir]",
+  "article": {
+    "sections": [
+      {
+        "heading": "Düz metin özetler araştırma için neden başarısız olur",
+        "paragraphs": [
+          "Bir paragraf özeti her iddiayı aynı otorite seviyesinde harmanlar. Okuyucu, 'çalışmalar gösteriyor ki…' ifadesinin bir yetersiz güçlü anketle mi yoksa kırk denemenin meta-analiziyle mi desteklendiğini söyleyemez. Varsayılan LLM özeti bu kusuru miras alır ve büyütür — güçlü ve zayıf iddialar aynı metinsel ağırlığı alır.",
+          "Yapılandırılmış çıkarım (tablo + güven haritası) iddiaların farklı otoritesini korur. Tarayabilir ve manşet bulgusunun sağlam kanıtlara dayandığını, ikincil iddianın ise esasen bir editöryel olduğunu hemen görebilirsiniz. Bu, bilgili olmakla yanlış güvenli olmak arasındaki farktır."
+        ]
+      },
+      {
+        "heading": "En zor kural: iddiayı gerçekten ayırt etmek",
+        "paragraphs": [
+          "Varsayılan özetleyiciler 'belge X şunu söylüyor: Y' ifadesinden 'Y doğrudur' ifadesine geçişi işaretlemeden kayar. 'İddiayı gerçekten ayır' kuralı açıktır çünkü modeller bunda varsayılan olarak başarısız olur. Kural geçerli olduğunda, özeti okur ve hangi iddiaların belgenin, hangilerinin modelin editörleştirmesi olduğunu tam olarak bilirsiniz.",
+          "Model bu kuralı ihlal ederse (belge yalnızca iddia ettiğinde X'i gerçek olarak ifade ederse), 'her iddiayı kaynağına atfetmek için yeniden ifade et' yanıtı verin. Bir düzeltmeden sonra Claude belgenin geri kalanı için atfı korumaya eğilimlidir."
+        ]
+      },
+      {
+        "heading": "Belgeler arası iş akışları",
+        "paragraphs": [
+          "Literatür incelemeleri için, her makaleyi önce ayrı ayrı çalıştırın — model bağlam sınırları ve kalitesi her ikisi de tek seferde tek belgeden yararlanır. Sonra ikinci geçişte yalnızca elde edilen tabloları yapıştırın ve sorun: 'Fikir birliği noktalarını, anlaşmazlık noktalarını ve en güçlü tek iddiayı tanımla.' Bu, tüm makaleleri tek seferde beslemekten çok daha hızlıdır.",
+          "Bir 'güven azalması' kuralı oluşturun: yalnızca bir kaynakta görünen herhangi bir iddia, çok kaynaklı bir özete entegre edildiğinde otomatik olarak bir seviye düşürülür. Bu, entegre incelemenin tekrarlanan bulgulara yenilik ama izole olanlardan daha yüksek ağırlık vermesini zorlar, bu da iyi akademik uygulamaya uyar."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Çok uzun PDF'ler için çalışır mı?",
+      "a": "Claude 200K token PDF'leri tek seferde idare eder; ChatGPT/GPT-5 128K idare eder. Daha uzun için bölüme göre bölün ve her birini özetleyin, sonra özetleri özetleyin. Yapılandırılmış format, geçişler arasında kaliteyi tutarlı tutar."
+    },
+    {
+      "q": "Belirli alıntıları gösterebilir mi?",
+      "a": "Evet — promp'a 'Her iddia için orijinal ifadenin 5-15 kelimelik alıntılanmış bir parçasını ekle' ekleyin. İfadenin önemli olduğu durumlarda (yasal belgeler, teknik spesifikasyonlar) yararlıdır."
+    },
+    {
+      "q": "Belgede net sayfa numarası yoksa (web makalesi)?",
+      "a": "Bunun yerine bölüm başlıkları veya paragraf numaraları kullanın. Promptun 'sayfa veya bölüm' buna izin verir. Web makaleleri için paragraf dizini ('para 5') iyi çalışır."
+    },
+    {
+      "q": "Bu NotebookLM kullanmaya kıyasla nasıl?",
+      "a": "NotebookLM belge yüklemeyi ve alıntıları otomatik olarak yönetir ancak varsayılan olarak anlatımsal özetler üretir. Bu prompt, sistematik karşılaştırma için daha iyi yapılandırılmış çıkarım çıktısı üretir. İkisini de kullanın: sohbet tarzı keşif için NotebookLM, bir kez yaz-çok tara özetleri için bu promp."
+    },
+    {
+      "q": "'Eksik olan' bölümü neden zorlanır?",
+      "a": "Çünkü her araştırma özeti, tamlık yanılgısı yerine sizi açık takiplerle bırakmalıdır. 'Eksik olan' bölümü ayrıca belgenin sorunuzu temelden yanıtlayamadığı zamanları ortaya çıkarır — daha fazla zaman okumadan önce kullanışlıdır."
+    },
+    {
+      "q": "İngilizce olmayan araştırmada çalışır mı?",
+      "a": "Evet — Claude ve GPT-5 Japonca / Çince / Almanca / Fransızca akademik düzyazıyı iyi yönetir. Yapılandırılmış çıktı prompt dilinizde kalır; kaynak dili farklı olabilir."
+    },
+    {
+      "q": "Halüsinasyon sayfa numaralarından nasıl kaçınırım?",
+      "a": "Model bir sayfa numarası verirse, bir veya iki tanesini nokta kontrolü yapın. Yanlışsa, prompt'a 'Bir sayfa numarasını doğrulayamıyorsan, [sayfa bilinmiyor] olarak işaretle — asla tahmin etme.' ekleyin."
+    },
+    {
+      "q": "Bunu podcast transkriptleri için kullanabilir miyim?",
+      "a": "Evet — 'sayfa'yı 'zaman damgası' ile değiştirin ve geri kalanı çalışır. Yapılandırılmış iddia çıkarımı, iddiaların net işaretleyiciler olmadan daha uzun düz metin etrafında dolaştığı podcast'ler için daha da yararlıdır."
+    }
+  ]
+}

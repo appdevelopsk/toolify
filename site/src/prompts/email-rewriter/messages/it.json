@@ -1,0 +1,83 @@
+{
+  "title": "Prompt per riscrivere email — chiare, concise, con tono controllato",
+  "shortDescription": "Riscrivi qualunque bozza di email per renderla più chiara e più corta senza perdere il messaggio. Scegli un tono (caldo / neutro / fermo) e un obiettivo di lunghezza.",
+  "description": "La richiesta di default 'riscrivi questa email' a ChatGPT/Claude tende a gonfiare la lunghezza e ad aggiungere riempitivo corporate. Questo prompt fa l'opposto: impone una lunghezza target, mantiene intatti i tuoi contenuti fattuali e ti permette di regolare il tono esplicitamente.",
+  "metaDescription": "Prompt gratuito per riscrivere email per ChatGPT e Claude. Lunghezza target, controllo del tono (caldo/neutro/fermo), mantiene intatti i tuoi fatti. Con esempi d'uso.",
+  "keywords": ["prompt riscrivere email", "riscrivere email IA", "ChatGPT email", "prompt email professionale", "email con tono controllato"],
+  "promptText": "Riscrivi l'email qui sotto.\n\nObiettivo:\n- Lunghezza: circa {N} parole (default 80; scegli 50-150).\n- Tono: {caldo / neutro / fermo} (default neutro).\n- Pubblico: {chi sono — es. il mio capo, un fornitore, un cliente arrabbiato}.\n\nRegole rigide:\n1. Conserva ogni fatto concreto, scadenza, numero e nome. Non inventare dettagli né ammorbidire gli impegni che ho preso.\n2. Rimuovi il riempitivo corporate (\"Spero che questa email ti trovi bene\", \"non esitare a\", \"come da mia precedente email\", ecc.).\n3. Una sola richiesta per email. Se la bozza contiene più richieste, dividile in una lista numerata in fondo.\n4. Non iniziare con la parola \"Io\" due volte di seguito in frasi consecutive.\n5. Mantieni la mia firma e qualunque allegato esplicitamente menzionato.\n\nRestituisci solo il corpo dell'email riscritto. Nessuna spiegazione.\n\nBozza:\n\n[incolla qui la tua bozza]",
+  "useCase": {
+    "headline": "Quando usarlo",
+    "items": [
+      "Dopo aver scritto un'email dal tono arrabbiato — passa il tono a neutro, lunghezza più corta, e l'IA la disinnescherà senza perdere il punto.",
+      "Quando rispondi a un reclamo di un cliente — imposta tono caldo, obiettivo 70 parole, e il risultato è empatico senza essere stucchevole.",
+      "Email di negoziazione o di pushback — tono fermo + lunghezza 100, ti permette di restare diretto ma professionale."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude è straordinariamente bravo a preservare i fatti e a non aggiungere fronzoli. Miglior default per email importanti.",
+    "chatgpt": "GPT-5 / GPT-4o tendono a reintrodurre riempitivo 'professionale'. La regola 'rimuovi riempitivo corporate' qui sopra è particolarmente importante per ChatGPT.",
+    "any": "Tutti i principali modelli funzionano. Il pattern (lunghezza target + tono + pubblico + fatti preservati) è ciò che lo rende affidabile."
+  },
+  "exampleHeading": "Esempio: una bozza arrabbiata → versione neutra da 70 parole",
+  "exampleOutput": "Bozza (220 parole, irritata):\n  \"Ciao Sara, sto facendo seguito DI NUOVO sulla fattura mancante di ottobre. Ho ormai scritto tre volte. È inaccettabile per un sistema di fatturazione per cui paghiamo 1200€/mese. Ho bisogno che venga risolto entro venerdì altrimenti dovrò scalare al vostro CTO. La fattura dovrebbe coprire il periodo 1/10–31/10, totale 4.820€, e non l'abbiamo mai ricevuta…\"\n\nRiscritta (neutra, 68 parole, obiettivo raggiunto):\n  \"Ciao Sara,\n\n  Faccio seguito sulla fattura di ottobre per 4.820€ (periodo 1/10–31/10). Ho scritto tre volte da novembre e non l'ho ancora vista arrivare. Abbiamo bisogno che venga risolta entro venerdì per poter chiudere la nostra contabilità. Se c'è un problema di sistema che la blocca, fammi sapere cosa mandare al supporto per sbloccare.\n\n  Grazie,\n  [Nome]\"",
+  "article": {
+    "sections": [
+      {
+        "heading": "Perché i prompt di default per riscrivere email peggiorano le cose",
+        "paragraphs": [
+          "Se chiedi 'riscrivi questa email per renderla più professionale', il modello passa di default ad aggiungere lunghezza: più convenevoli, linguaggio cauto, frasi riassuntive. L'output è più lungo della tua bozza, e quella che era una lettura di 20 secondi è ora di 90. I destinatari cancellano o scorrono le email lunghe, quindi il tuo messaggio si perde nel cuscinetto di cortesia.",
+          "Il prompt qui sopra ribalta questo. Imponendo una lunghezza target e una regola 'rimuovi riempitivo corporate', la riscrittura è più corta dell'input nella maggior parte delle bozze. Il controllo del tono ti permette di mantenere accuratezza emotiva (reclamo fermo, scuse calorose) senza perdere il focus."
+        ]
+      },
+      {
+        "heading": "Scelta del tono — quale prendere e quando",
+        "paragraphs": [
+          "Caldo: scuse rivolte al cliente, ringraziamento per un aiuto, costruzione di rapporto con un nuovo contatto. Aggiunge convenevoli leggeri (una frase al massimo).",
+          "Neutro: email di lavoro tra pari, aggiornamenti di stato, risposte fattuali. Il default. Toglie tutti i convenevoli.",
+          "Fermo: pushback, escalation, sollecito per pagamento in ritardo, rifiuto di scope creep. Mantiene frasi corte e linguaggio diretto. Non ammorbidisce le tue richieste."
+        ]
+      },
+      {
+        "heading": "Perché 'una sola richiesta per email' è importante",
+        "paragraphs": [
+          "Le email con più richieste ('inviami anche X, e a proposito, puoi inoltrare Y?') ricevono risposte parziali o vengono ignorate del tutto. Il destinatario raggruppa mentalmente la risposta e non la invia mai. La regola qui sopra forza le bozze multi-richiesta a far emergere la loro struttura come lista numerata, che spinge a una risposta completamente numerata.",
+          "Se la tua bozza ha due richieste genuinamente indipendenti, invia due email. Il modello non lo imporrà per te — ma farà emergere la struttura abbastanza chiaramente che di solito deciderai di dividerle prima di premere invio."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Cambierà i miei fatti o i miei numeri?",
+      "a": "No — la regola 'conserva ogni fatto concreto, scadenza, numero e nome' è esplicita. Se il modello legge male un numero, è un errore del modello, non un fallimento del prompt. Rileggi sempre la riscrittura per confermare prima di inviare."
+    },
+    {
+      "q": "Perché una lunghezza target invece di 'sii breve'?",
+      "a": "'Sii breve' viene interpretato come 'rimuovi forse il 10%'. Un conteggio di parole target costringe il modello a fare cancellazioni vere. 80 parole sono circa 4-5 frasi corte — sufficienti per una richiesta più contesto."
+    },
+    {
+      "q": "Posso aggiungere la voce/stile della mia azienda?",
+      "a": "Sì — aggiungi una riga 'Note di stile:' sopra la bozza. Esempio: 'Note di stile: italiano semplice, niente punti esclamativi, firma solo con il mio nome di battesimo'. Il modello le seguirà attentamente."
+    },
+    {
+      "q": "E se la bozza è già corta?",
+      "a": "Usa un obiettivo leggermente più alto (100-120 parole) per segnalare 'non tagliare aggressivamente'. Oppure usa il prompt con una regola di sola chiarezza: sostituisci 'Lunghezza: ~N parole' con 'Mantieni la lunghezza simile; correggi solo le frasi poco chiare'."
+    },
+    {
+      "q": "Funziona per lingue diverse dall'italiano?",
+      "a": "Sì — Claude e GPT-5 gestiscono bene email di business in inglese, giapponese, cinese, coreano, spagnolo. La regola del riempitivo corporate ha bisogno di traduzione: in giapponese, l'apertura 'お世話になっております' è l'equivalente più vicino di riempitivo e viene rimossa in tono neutro."
+    },
+    {
+      "q": "In cosa è diverso da Grammarly?",
+      "a": "Grammarly aggiusta la meccanica (refusi, virgole sbagliate). Questo prompt ristruttura il contenuto (rimuove frasi riempitive, divide email multi-richiesta, regola il tono). Si complementano — esegui prima Grammarly, poi questo per la ristrutturazione."
+    },
+    {
+      "q": "Posso salvarlo in ChatGPT come GPT personalizzato?",
+      "a": "Sì — incolla il corpo del prompt come istruzioni del GPT. Dovrai digitare solo la bozza ogni volta. Lo stesso approccio funziona in Claude Projects."
+    },
+    {
+      "q": "Perché non iniziare con 'Io' due volte di seguito?",
+      "a": "Aperture di frase ripetute con 'Io-' fanno sembrare un'email autocentrata, anche quando il contenuto va bene. Forzare la varietà (iniziare una frase con il destinatario o con un fatto) è una piccola leva che fa leggere le email più calorose senza cambiarne il significato."
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "title": "Forschungs-Zusammenfassung Prompt — Behauptungen, Belege und",
+  "shortDescription": "Verwandle lange PDFs, Paper oder Berichte in eine strukturierte Zusammenfassung, die Behauptungen von Belegen unterscheidet, Widersprüche aufdeckt und Quellseiten zitiert, damit du verifizieren kannst.",
+  "description": "Das Standard-„fasse das zusammen“ produziert verlustreiche Absatz-Zusammenfassungen, die den Punkt jeder nuancierten Studie verlieren. Dieser Prompt extrahiert ein strukturiertes Objekt — Behauptungen, Beleg-Typ, Quellort und etwaige Widersprüche zwischen Dokumenten — das du in 60 Sekunden überfliegen kannst.",
+  "metaDescription": "Kostenloser Forschungs-Zusammenfassungs-Prompt für Claude, Perplexity, ChatGPT. Extrahiert Behauptungen mit Belegen und Quellseiten.",
+  "keywords": [
+    "Forschung Zusammenfassung Prompt",
+    "wissenschaftliches Paper Zusammenfassung",
+    "Claude Forschung Prompt",
+    "Perplexity Recherche",
+    "Literaturübersicht Prompt"
+  ],
+  "promptText": "Du sollst das/die untenstehende(n) Dokument(e) zusammenfassen. Gib es als strukturierte Tabelle aus, nicht als Fließtext.\n\nExtrahiere für jede wichtige Behauptung in der/den Quelle(n):\n  - Claim: <einzelner Satz>\n  - Evidence type: <empirische Studie / theoretisches Argument / Expertenmeinung / Anekdote / unbelegt>\n  - Source: <Dokumentname + Seite oder Abschnitt>\n  - Strength: <stark / mittel / schwach — basierend auf Beleg-Typ und Stichprobengröße>\n  - Caveats: <Einschränkungen, die die Quelle selbst anerkennt>\n\nFüge nach der Tabelle drei Abschnitte hinzu:\n\n1. CONTRADICTIONS: Liste Stellen auf, an denen die Dokumente nicht übereinstimmen oder an denen die Behauptung eines Dokuments den Daten eines anderen widerspricht.\n\n2. CONFIDENCE MAP: Bewerte die Gesamtzuverlässigkeit jeder wichtigen Behauptung — hoch (mehrere starke Quellen stimmen überein), mittel (eine starke Quelle oder mehrere schwache Quellen), niedrig (einzelne schwache Quelle oder unbelegte Behauptung).\n\n3. WHAT'S MISSING: 3-5 Fragen, die ein sorgfältiger Leser nach dem Lesen dieser Dokumente noch hätte. Markiere jede entweder als „adressierbar mit diesen Dokumenten und mehr Lektüre“ oder „benötigt externe Quellen“.\n\nHarte Regeln:\n- Zitiere Seitenzahlen oder Abschnittsbezeichner für jede Behauptung. Wenn du nicht kannst, markiere [page unknown].\n- Synthetisiere nicht über das hinaus, was die Dokumente sagen. Wenn zwei Dokumente ein Thema berühren, es aber nicht direkt vergleichen, sage das — erfinde keinen Vergleich.\n- Unterscheide „das Dokument behauptet X“ von „X ist wahr“. Die Zusammenfassung berichtet, was behauptet wurde, nicht was korrekt ist.\n\nDokument(e):\n\n[füge den vollständigen Text ein oder lade PDFs hoch]",
+  "useCase": {
+    "headline": "Wann du das verwenden solltest",
+    "items": [
+      "Beim Lesen von 5-10 Papern für eine Literaturübersicht — lass jedes durch diesen Prompt laufen und vergleiche dann Confidence-Maps, um Konsens und Lücken zu finden.",
+      "Beim Evaluieren eines Branchenberichts von einem Anbieter — die Strength-Spalte deckt auf, wo der Bericht datengetrieben vs. Marketing ist.",
+      "Beim Gegenprüfen eines Nachrichtenartikels — füttere den Artikel + die zugrundeliegende Studie ein; Widersprüche tauchen sofort auf."
+    ]
+  },
+  "modelTips": {
+    "claude": "Am besten darin, Behauptung von Beleg-Typ zu unterscheiden. Die „nicht synthetisieren“-Regel wird von Claude (Sonnet 4.6+) am meisten respektiert.",
+    "perplexity": "Stark, wenn das Dokument im offenen Web ist — Perplexity fügt automatisch Quellenverifizierung hinzu. Weniger nützlich für private PDFs.",
+    "chatgpt": "Funktioniert, neigt aber dazu, das „unbelegt“-Urteil zu „erwähnt“ abzuschwächen. Sei explizit: „verwende „unbelegt“, wenn das Dokument eine Behauptung präsentiert, ohne Daten zu zitieren, auch wenn es vernünftig klingt.“"
+  },
+  "exampleHeading": "Beispiel: 3-Paper-Zusammenfassung zur Remote-Work-Produktivität",
+  "exampleOutput": "| Claim | Evidence | Source | Strength | Caveats |\n|---|---|---|---|---|\n| Remote-Mitarbeiter berichten 13% höhere Produktivität | Umfrage, n=2400 | Bloom 2024 S.7 | mittel | Selbstauskunft-Bias anerkannt |\n| Remote-Arbeit reduziert Team-Innovation | qualitatives Interview, n=42 Manager | Smith 2023 S.14 | schwach | Stichprobe zu Managern verzerrt, nicht ICs |\n| Hybrid (3 Tage) schlägt Voll-Remote bei der Mitarbeiterbindung | A/B-Test in einem Unternehmen | Chen 2025 S.22 | mittel | einzelne Firma, möglicherweise nicht verallgemeinerbar |\n\nCONTRADICTIONS:\n- Bloom 2024 berichtet Produktivitätsgewinn; Smith 2023 impliziert Produktivitätsrückgang (über „reduzierte Innovation“). Die beiden verwenden unterschiedliche Produktivitätsdefinitionen — Bloom = Output pro Stunde, Smith = strategischer Output. Nicht direkt vergleichbar.\n\nCONFIDENCE MAP:\n- „Remote-Arbeit verändert Produktivität“ → hoch (klarer Effekt, Richtung umstritten)\n- „Remote-Arbeit reduziert Innovation“ → mittel (eine Studie, qualitativ)\n- „Hybrid ist optimal“ → niedrig (ein A/B-Test in einer Firma)\n\nWHAT'S MISSING:\n1. Wirkung speziell auf junge Mitarbeiter [benötigt externe Quellen]\n2. Branchen-für-Branchen-Aufschlüsselung [adressierbar: Bloom 2024 hat Anhang-Daten]\n3. Wirkung auf Wissenstransfer / Mentoring [benötigt externe Quellen]",
+  "article": {
+    "sections": [
+      {
+        "heading": "Warum Fließtext-Zusammenfassungen für Forschung versagen",
+        "paragraphs": [
+          "Eine Absatz-Zusammenfassung vermischt jede Behauptung in derselben Autoritäts-Ebene. Der Leser kann nicht erkennen, ob „Studien zeigen, dass…“ durch eine unterversorgte Umfrage oder eine Meta-Analyse von vierzig Studien gestützt wird. Die Standard-LLM-Zusammenfassung erbt diesen Mangel und verstärkt ihn — starke und schwache Behauptungen erhalten dasselbe textliche Gewicht.",
+          "Strukturierte Extraktion (Tabelle + Confidence-Map) bewahrt die differenzielle Autorität von Behauptungen. Du kannst überfliegen und sofort sehen, dass das Hauptergebnis auf soliden Belegen ruht, während die sekundäre Behauptung im Wesentlichen ein Editorial ist. Das ist der Unterschied zwischen informiert und falsch selbstbewusst."
+        ]
+      },
+      {
+        "heading": "Die härteste Regel: Behauptung von Wahrheit unterscheiden",
+        "paragraphs": [
+          "Standard-Zusammenfasser rutschen von „Dokument X sagt Y“ zu „Y ist wahr“, ohne den Übergang zu markieren. Die „Behauptung von Wahrheit unterscheiden“-Regel ist explizit, weil Modelle standardmäßig daran scheitern. Wenn die Regel gilt, liest du die Zusammenfassung und weißt genau, welche Aussagen die des Dokuments sind, nicht die Editorialisierungen des Modells.",
+          "Wenn das Modell diese Regel verletzt (X als Tatsache angibt, obwohl das Dokument es nur behauptet hat), antworte „formuliere so um, dass jede Behauptung ihrer Quelle zugeordnet wird“. Nach einer Korrektur neigt Claude dazu, die Zuordnung für den Rest des Dokuments beizubehalten."
+        ]
+      },
+      {
+        "heading": "Dokument-übergreifende Workflows",
+        "paragraphs": [
+          "Für Literaturübersichten lass zuerst jedes Paper einzeln laufen — Modell-Kontextgrenzen und Qualität profitieren beide vom Ein-Dokument-zu-einer-Zeit-Ansatz. Füge dann in einem zweiten Durchgang nur die resultierenden Tabellen ein und frage: „Identifiziere Konsenspunkte, Streitpunkte und die stärkste einzelne Behauptung.“ Das ist viel schneller, als alle Paper auf einmal einzugeben.",
+          "Baue eine „Confidence-Decay“-Regel: Jede Behauptung, die nur in einer Quelle erscheint, wird beim Integrieren in eine Mehr-Quellen-Zusammenfassung automatisch um eine Stufe herabgestuft. Das zwingt die integrierte Übersicht, replizierte Befunde höher zu gewichten als neuartige-aber-isolierte, was guter akademischer Praxis entspricht."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Funktioniert es für sehr lange PDFs?",
+      "a": "Claude handhabt 200K-Token-PDFs in einem Durchgang; ChatGPT/GPT-5 handhaben 128K. Für längere teile nach Kapitel auf und fasse jedes zusammen, dann die Zusammenfassungen. Das strukturierte Format hält die Qualität über Durchgänge hinweg konsistent."
+    },
+    {
+      "q": "Kann es bestimmte Zitate angeben?",
+      "a": "Ja — füge „Füge für jede Behauptung einen 5-15-Wort-Zitat-Ausschnitt der originalen Formulierung hinzu“ zum Prompt hinzu. Nützlich, wenn die Wortwahl zählt (juristische Dokumente, technische Spezifikationen)."
+    },
+    {
+      "q": "Was, wenn das Dokument keine klaren Seitenzahlen hat (Webartikel)?",
+      "a": "Verwende stattdessen Abschnittsüberschriften oder Absatznummern. Das „Seite oder Abschnitt“ des Prompts erlaubt das. Für Webartikel funktioniert ein Absatz-Index („Abs. 5“) gut."
+    },
+    {
+      "q": "Wie vergleicht sich das mit der Nutzung von NotebookLM?",
+      "a": "NotebookLM handhabt Dokument-Upload und Zitate automatisch, produziert aber standardmäßig narrative Zusammenfassungen. Dieser Prompt produziert strukturierte Extrakt-Ausgaben, die besser für systematischen Vergleich sind. Verwende beides: NotebookLM für chat-artige Erkundung, diesen Prompt für einmal-schreiben-viele-überfliegen-Zusammenfassungen."
+    },
+    {
+      "q": "Warum den „what's missing“-Abschnitt erzwingen?",
+      "a": "Weil jede Forschungs-Zusammenfassung dich mit expliziten Follow-ups zurücklassen sollte, nicht mit dem falschen Eindruck von Vollständigkeit. Der „what's missing“-Abschnitt offenbart auch, wenn das Dokument deine Frage grundsätzlich nicht beantworten kann — nützlich, bevor du mehr Zeit damit verbringst, es zu lesen."
+    },
+    {
+      "q": "Funktioniert es bei nicht-englischer Forschung?",
+      "a": "Ja — Claude und GPT-5 handhaben japanische / chinesische / deutsche / französische akademische Prosa gut. Die strukturierte Ausgabe bleibt in deiner Prompt-Sprache; die Quellsprache kann sich unterscheiden."
+    },
+    {
+      "q": "Wie vermeide ich halluzinierte Seitenzahlen?",
+      "a": "Wenn das Modell eine Seitenzahl angibt, prüfe ein oder zwei stichprobenartig. Wenn sie falsch sind, füge „Wenn du eine Seitenzahl nicht verifizieren kannst, markiere sie [page unknown] — rate nie.“ zum Prompt hinzu."
+    },
+    {
+      "q": "Kann ich das für Podcast-Transkripte verwenden?",
+      "a": "Ja — ersetze „Seite“ durch „Zeitstempel“ und der Rest funktioniert. Die strukturierte Behauptungs-Extraktion ist für Podcasts sogar nützlicher, wo Behauptungen in längerer Prosa ohne klare Markierungen umherschwirren."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "title": "Prompt rewriter email — jelas, ringkas, dengan kontrol nada",
+  "shortDescription": "Tulis ulang draf email apa pun agar lebih jelas dan lebih pendek tanpa kehilangan pesan. Pilih nada (warm / neutral / firm) dan target panjang.",
+  "description": "Permintaan default 'rewrite this email' dari ChatGPT/Claude cenderung memperpanjang dan menambahkan basa-basi korporat. Prompt ini melakukan kebalikannya: memberlakukan target panjang, menjaga konten faktual Anda tetap utuh, dan memungkinkan Anda mengatur nada secara eksplisit.",
+  "metaDescription": "Prompt email-rewriter gratis untuk ChatGPT dan Claude. Target panjang, kontrol nada (warm/neutral/firm), menjaga fakta Anda tetap utuh. Dengan contoh penggunaan.",
+  "keywords": ["prompt rewriter email", "tulis ulang email AI", "email ChatGPT", "prompt email profesional", "email dengan kontrol nada"],
+  "promptText": "Tulis ulang email di bawah ini.\n\nTarget:\n- Panjang: sekitar {N} kata (default 80; pilih 50-150).\n- Nada: {warm / neutral / firm} (default neutral).\n- Audiens: {siapa mereka — mis., manajer saya, vendor, pelanggan yang marah}.\n\nAturan ketat:\n1. Pertahankan setiap fakta konkret, deadline, angka, dan nama. Jangan mengarang detail atau melunakkan komitmen yang saya buat.\n2. Hapus basa-basi korporat (\"I hope this email finds you well\", \"please don't hesitate\", \"as per my last email\", dll.).\n3. Satu permintaan per email. Jika draf berisi beberapa permintaan, pisahkan menjadi daftar bernomor di bawah.\n4. Jangan pernah memulai dengan kata \"I\" dua kali berturut-turut pada kalimat berurutan.\n5. Jaga baris signature saya dan lampiran eksplisit apa pun yang disebutkan.\n\nKembalikan hanya body email yang telah ditulis ulang. Tanpa penjelasan.\n\nDraf:\n\n[tempel draf Anda di sini]",
+  "useCase": {
+    "headline": "Kapan menggunakan ini",
+    "items": [
+      "Setelah menulis email yang terasa marah — alihkan nada ke neutral, panjang yang lebih pendek, dan AI akan menjinakkannya tanpa kehilangan poin Anda.",
+      "Saat membalas keluhan pelanggan — atur nada ke warm, target 70 kata, dan hasilnya empatik tanpa terlalu manis.",
+      "Email negosiasi atau penolakan — nada firm + panjang 100, memungkinkan Anda tetap langsung tetapi profesional."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude luar biasa baik dalam mempertahankan fakta dan tidak menambah fluff. Default terbaik untuk email penting.",
+    "chatgpt": "GPT-5 / GPT-4o cenderung menambahkan kembali basa-basi 'profesional'. Aturan 'hapus basa-basi korporat' di atas sangat penting untuk ChatGPT.",
+    "any": "Semua model utama bekerja. Pola (target panjang + nada + audiens + fakta-dipertahankan) yang membuat ini andal."
+  },
+  "exampleHeading": "Contoh: draf marah → versi neutral 70 kata",
+  "exampleOutput": "Draf (220 kata, kesal):\n  \"Hi Sarah, saya menindaklanjuti LAGI tentang invoice yang hilang dari Oktober. Saya sudah mengirim email tiga kali. Ini tidak dapat diterima dari sistem billing yang kami bayar $1200/bulan. Saya butuh ini diselesaikan pada Jumat atau saya harus eskalasi ke CTO Anda. Invoice harus mencakup periode 10/1–10/31, total $4.820, dan kami tidak pernah menerimanya…\"\n\nDitulis ulang (neutral, 68 kata, target tercapai):\n  \"Hi Sarah,\n\n  Menindaklanjuti invoice Oktober sebesar $4.820 (periode 10/1–10/31). Saya telah mengirim email tiga kali sejak November dan belum melihatnya tiba. Kami perlu ini diselesaikan pada Jumat agar dapat menutup pembukuan. Jika ada masalah sistem yang menghambatnya, mohon beritahu apa yang harus dikirim ke support untuk membuka blokir.\n\n  Terima kasih,\n  [Nama]\"",
+  "article": {
+    "sections": [
+      {
+        "heading": "Mengapa prompt rewriter email default justru memperburuk",
+        "paragraphs": [
+          "Jika Anda meminta 'tulis ulang email ini agar lebih profesional', model default menambah panjang: lebih banyak basa-basi, bahasa yang melindungi diri, kalimat rekap. Output lebih panjang dari draf Anda, dan apa yang tadinya bacaan 20 detik kini menjadi 90 detik. Penerima menghapus atau skim email yang panjang, sehingga pesan Anda hilang dalam padding kesopanan.",
+          "Prompt di atas membalikkan ini. Dengan memaksa target panjang dan aturan 'hapus basa-basi korporat', tulisan ulang lebih pendek dari input pada sebagian besar draf. Kontrol nada memungkinkan Anda mempertahankan akurasi emosional (keluhan firm, permintaan maaf hangat) tanpa kehilangan fokus."
+        ]
+      },
+      {
+        "heading": "Pemilihan nada — kapan menggunakan yang mana",
+        "paragraphs": [
+          "Warm: permintaan maaf yang menghadap pelanggan, berterima kasih kepada seseorang atas bantuan, membangun hubungan dengan kontak baru. Menambahkan basa-basi ringan (maksimal satu kalimat).",
+          "Neutral: email kerja peer-to-peer, update status, balasan faktual. Default. Menghapus semua basa-basi.",
+          "Firm: penolakan, eskalasi, penagihan terlambat, penolakan scope creep. Mempertahankan kalimat pendek dan bahasa langsung. Tidak melunakkan permintaan Anda."
+        ]
+      },
+      {
+        "heading": "Mengapa satu permintaan per email itu penting",
+        "paragraphs": [
+          "Email dengan beberapa permintaan ('juga tolong kirimkan saya X, dan oh ngomong-ngomong, bisakah Anda meneruskan Y') mendapat respons parsial atau diabaikan sepenuhnya. Penerima secara mental membatch responsnya dan tidak pernah mengirimnya. Aturan di atas memaksa draf multi-permintaan memunculkan strukturnya sebagai daftar bernomor, yang mendorong balasan yang sepenuhnya bernomor.",
+          "Jika draf Anda memiliki dua permintaan yang benar-benar independen, kirim dua email. Model tidak akan menegakkan itu untuk Anda — tetapi akan memunculkan struktur dengan cukup jelas sehingga Anda biasanya akan memutuskan untuk memisahkannya sebelum menekan kirim."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Akankah mengubah fakta atau angka saya?",
+      "a": "Tidak — aturan 'pertahankan setiap fakta konkret, deadline, angka, dan nama' bersifat eksplisit. Jika model salah membaca angka, itu kesalahan model, bukan kegagalan prompt. Selalu baca ulang tulisan ulang untuk mengonfirmasi sebelum mengirim."
+    },
+    {
+      "q": "Mengapa target panjang alih-alih 'be brief'?",
+      "a": "'Be brief' diartikan sebagai 'hapus sekitar 10%'. Target jumlah kata memaksa model membuat penghapusan nyata. 80 kata kira-kira 4-5 kalimat pendek — cukup untuk satu permintaan plus konteks."
+    },
+    {
+      "q": "Bisakah saya menambahkan voice/style perusahaan saya?",
+      "a": "Ya — tambahkan baris 'Style notes:' di atas draf. Contoh: 'Style notes: Bahasa Indonesia lugas, tanpa tanda seru, sign-off hanya nama depan saya'. Model akan mengikuti ini dengan cermat."
+    },
+    {
+      "q": "Bagaimana jika draf sudah pendek?",
+      "a": "Gunakan target yang sedikit lebih tinggi (100-120 kata) untuk memberi sinyal 'jangan pangkas secara agresif'. Atau gunakan prompt dengan aturan kejelasan saja: ganti 'Panjang: ~N kata' dengan 'Pertahankan panjang serupa; hanya perbaiki kalimat yang tidak jelas'."
+    },
+    {
+      "q": "Apakah bekerja untuk bahasa selain Inggris?",
+      "a": "Ya — Claude dan GPT-5 menangani email bisnis Jepang, Mandarin, Korea, Spanyol dengan baik. Aturan basa-basi korporat memerlukan terjemahan: dalam bahasa Jepang, pembukaan 'お世話になっております' adalah ekuivalen basa-basi terdekat dan akan dihapus pada nada neutral."
+    },
+    {
+      "q": "Bagaimana ini berbeda dari Grammarly?",
+      "a": "Grammarly memperbaiki mekanika (typo, koma yang salah). Prompt ini merestrukturisasi konten (menghapus kalimat basa-basi, memisahkan email multi-permintaan, mengatur nada). Mereka saling melengkapi — jalankan Grammarly terlebih dahulu, lalu ini untuk restrukturisasi."
+    },
+    {
+      "q": "Bisakah saya menyimpan ini di ChatGPT sebagai custom GPT?",
+      "a": "Ya — tempel body prompt sebagai instruksi GPT. Anda hanya perlu mengetik draf setiap kali. Pendekatan yang sama bekerja di Claude Projects."
+    },
+    {
+      "q": "Mengapa tidak memulai dengan 'I' dua kali berturut-turut?",
+      "a": "Pembukaan kalimat 'I-' yang berulang membuat email terasa berpusat pada diri sendiri, bahkan ketika kontennya baik-baik saja. Memaksa variasi (memulai satu kalimat dengan penerima atau dengan fakta) adalah pengungkit kecil yang membuat email terbaca lebih hangat tanpa mengubah makna."
+    }
+  ]
+}

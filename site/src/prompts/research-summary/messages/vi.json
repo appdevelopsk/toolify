@@ -1,0 +1,88 @@
+{
+  "title": "Prompt tóm tắt nghiên cứu — trích các luận điểm, bằng chứng và mâu",
+  "shortDescription": "Biến PDF, bài báo hoặc báo cáo dài thành tóm tắt có cấu trúc, phân biệt luận điểm với bằng chứng, phơi bày mâu thuẫn, và trích dẫn trang nguồn để bạn có thể xác minh.",
+  "description": "Yêu cầu 'tóm tắt cái này' mặc định cho ra các bản tóm tắt dạng văn xuôi mất mát, làm lạc đi sắc thái của mọi nghiên cứu. Prompt này trích xuất ra một đối tượng có cấu trúc — các luận điểm, loại bằng chứng, vị trí nguồn, và bất kỳ mâu thuẫn nào giữa các tài liệu — mà bạn có thể quét trong 60 giây.",
+  "metaDescription": "Prompt tóm tắt nghiên cứu miễn phí cho Claude, Perplexity, ChatGPT. Trích các luận điểm kèm bằng chứng và trang nguồn. Phơi bày mâu thuẫn giữa các tài liệu.",
+  "keywords": [
+    "prompt tóm tắt nghiên cứu",
+    "tóm tắt bài báo học thuật",
+    "prompt research Claude",
+    "Perplexity nghiên cứu",
+    "prompt literature review"
+  ],
+  "promptText": "Bạn sẽ tóm tắt (các) tài liệu bên dưới. Xuất ra dạng bảng có cấu trúc, không phải văn xuôi.\n\nVới mỗi luận điểm chính trong (các) nguồn, trích xuất:\n  - Luận điểm: <một câu duy nhất>\n  - Loại bằng chứng: <empirical study / theoretical argument / expert opinion / anecdote / unsupported>\n  - Nguồn: <tên tài liệu + trang hoặc phần>\n  - Độ mạnh: <strong / moderate / weak — dựa trên loại bằng chứng và cỡ mẫu>\n  - Caveats: <những giới hạn mà chính nguồn thừa nhận>\n\nSau bảng, thêm ba phần:\n\n1. MÂU THUẪN: liệt kê những chỗ các tài liệu bất đồng hoặc nơi luận điểm của một tài liệu mâu thuẫn với dữ liệu của tài liệu khác.\n\n2. CONFIDENCE MAP: đánh giá độ tin cậy tổng thể của mỗi luận điểm chính — cao (nhiều nguồn mạnh đồng ý), trung bình (một nguồn mạnh hoặc nhiều nguồn yếu), thấp (một nguồn yếu hoặc khẳng định không có hỗ trợ).\n\n3. THIẾU GÌ: 3-5 câu hỏi mà người đọc cẩn thận vẫn sẽ có sau khi đọc các tài liệu này. Đánh dấu mỗi câu là 'có thể giải đáp từ các tài liệu này nếu đọc thêm' hoặc 'cần nguồn bên ngoài'.\n\nQuy tắc cứng:\n- Trích dẫn số trang hoặc định danh phần cho mỗi luận điểm. Nếu không thể, đánh dấu [page unknown].\n- Không tổng hợp vượt quá những gì tài liệu nói. Nếu hai tài liệu chạm vào một chủ đề nhưng không so sánh trực tiếp, hãy nói vậy — đừng bịa ra so sánh.\n- Phân biệt 'tài liệu khẳng định X' với 'X là đúng'. Bản tóm tắt báo cáo những gì đã được khẳng định, không phải những gì đúng.\n\n(Các) tài liệu:\n\n[dán toàn bộ text hoặc upload PDF]",
+  "useCase": {
+    "headline": "Khi nào dùng prompt này",
+    "items": [
+      "Đọc 5-10 bài cho literature review — chạy mỗi bài qua prompt này, sau đó so sánh các confidence map để tìm sự đồng thuận và khoảng trống.",
+      "Đánh giá một báo cáo ngành mà bạn nhận được từ nhà cung cấp — cột độ mạnh phơi bày phần nào của báo cáo là dựa trên dữ liệu vs marketing.",
+      "Kiểm tra chéo một bài báo tin tức — đưa bài báo + nghiên cứu nền tảng; các mâu thuẫn lộ ra ngay."
+    ]
+  },
+  "modelTips": {
+    "claude": "Tốt nhất trong việc phân biệt luận điểm với loại bằng chứng. Quy tắc 'do not synthesize' được Claude (Sonnet 4.6+) tôn trọng nhất.",
+    "perplexity": "Mạnh khi tài liệu nằm trên web mở — Perplexity tự động thêm xác minh nguồn. Ít hữu ích cho PDF riêng tư.",
+    "chatgpt": "Hoạt động được nhưng có xu hướng làm mềm phán quyết 'unsupported' thành 'mentioned'. Hãy rõ ràng: 'dùng \"unsupported\" khi tài liệu trình bày một luận điểm mà không trích dẫn dữ liệu, ngay cả khi nó nghe có vẻ hợp lý.'"
+  },
+  "exampleHeading": "Ví dụ: tóm tắt 3 bài về năng suất làm việc từ xa",
+  "exampleOutput": "| Luận điểm | Bằng chứng | Nguồn | Độ mạnh | Caveats |\n|---|---|---|---|---|\n| Người làm việc từ xa tự báo cáo năng suất cao hơn 13% | khảo sát, n=2400 | Bloom 2024 p.7 | moderate | thừa nhận self-report bias |\n| Làm việc từ xa giảm sự đổi mới của team | phỏng vấn định tính, n=42 quản lý | Smith 2023 p.14 | weak | mẫu lệch về quản lý, không phải IC |\n| Hybrid (3 ngày) vượt trội full-remote về giữ chân nhân viên | A/B test tại một công ty | Chen 2025 p.22 | moderate | một công ty duy nhất, có thể không tổng quát hóa được |\n\nMÂU THUẪN:\n- Bloom 2024 báo cáo tăng năng suất; Smith 2023 hàm ý giảm năng suất (qua 'reduced innovation'). Hai bài dùng định nghĩa năng suất khác nhau — Bloom = output mỗi giờ, Smith = output chiến lược. Không thể so sánh trực tiếp.\n\nCONFIDENCE MAP:\n- 'Làm việc từ xa thay đổi năng suất' → cao (hiệu ứng rõ ràng, hướng đang tranh luận)\n- 'Làm việc từ xa giảm đổi mới' → trung bình (một nghiên cứu, định tính)\n- 'Hybrid là tối ưu' → thấp (một A/B tại một công ty)\n\nTHIẾU GÌ:\n1. Tác động đến nhân viên junior cụ thể [cần nguồn bên ngoài]\n2. Phân tích theo từng ngành [có thể giải đáp: Bloom 2024 có dữ liệu phụ lục]\n3. Tác động đến chuyển giao kiến thức / mentorship [cần nguồn bên ngoài]",
+  "article": {
+    "sections": [
+      {
+        "heading": "Vì sao tóm tắt văn xuôi thất bại với nghiên cứu",
+        "paragraphs": [
+          "Bản tóm tắt văn xuôi trộn mọi luận điểm về cùng một mức độ thẩm quyền. Người đọc không thể biết 'các nghiên cứu cho thấy…' được hỗ trợ bởi một khảo sát thiếu sức mạnh thống kê hay một meta-analysis của bốn mươi thử nghiệm. Tóm tắt LLM mặc định kế thừa khiếm khuyết này và khuếch đại nó — luận điểm mạnh và yếu nhận được cùng trọng số văn xuôi.",
+          "Trích xuất có cấu trúc (bảng + confidence map) bảo toàn thẩm quyền khác biệt của các luận điểm. Bạn có thể quét và thấy ngay rằng phát hiện chính dựa trên bằng chứng vững chắc trong khi luận điểm phụ về cơ bản chỉ là một bài xã luận. Đây là sự khác biệt giữa có hiểu biết và tự tin sai lầm."
+        ]
+      },
+      {
+        "heading": "Quy tắc khó nhất: phân biệt luận điểm với sự thật",
+        "paragraphs": [
+          "Các bộ tóm tắt mặc định trượt từ 'tài liệu X nói Y' sang 'Y là đúng' mà không flag chuyển đổi. Quy tắc 'distinguish claim from truth' là rõ ràng vì model mặc định sẽ thất bại ở đó. Khi quy tắc được giữ, bạn đọc bản tóm tắt và biết chính xác khẳng định nào là của tài liệu, không phải bình luận của model.",
+          "Nếu model vi phạm quy tắc này (nêu X như sự thật khi tài liệu chỉ khẳng định), trả lời 'diễn đạt lại để gán mỗi luận điểm cho nguồn của nó'. Sau một lần sửa Claude có xu hướng duy trì việc gán nguồn cho phần còn lại của tài liệu."
+        ]
+      },
+      {
+        "heading": "Workflow đa tài liệu",
+        "paragraphs": [
+          "Với literature review, chạy mỗi bài riêng lẻ trước — cả giới hạn context của model và chất lượng đều hưởng lợi từ một tài liệu mỗi lần. Sau đó ở lượt thứ hai, chỉ dán các bảng kết quả và hỏi: 'Xác định các điểm đồng thuận, các điểm bất đồng, và luận điểm mạnh nhất duy nhất.' Cách này nhanh hơn nhiều so với đưa tất cả các bài vào một lần.",
+          "Xây dựng quy tắc 'confidence-decay': bất kỳ luận điểm nào chỉ xuất hiện ở một nguồn duy nhất tự động bị hạ một mức khi được tích hợp vào tóm tắt đa nguồn. Điều này buộc review tích hợp phải đánh trọng số cao hơn cho các phát hiện được tái lập so với các phát hiện mới-nhưng-cô-lập, khớp với thực hành học thuật tốt."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Có hoạt động với PDF rất dài không?",
+      "a": "Claude xử lý PDF 200K-token trong một lần; ChatGPT/GPT-5 xử lý 128K. Với dài hơn, chia theo chương và tóm tắt từng phần, sau đó tóm tắt các bản tóm tắt. Định dạng có cấu trúc giữ chất lượng nhất quán qua các lượt."
+    },
+    {
+      "q": "Có thể trích dẫn các đoạn cụ thể không?",
+      "a": "Có — thêm 'Với mỗi luận điểm, kèm một đoạn trích 5-15 từ theo cách diễn đạt gốc' vào prompt. Hữu ích khi từ ngữ quan trọng (tài liệu pháp lý, spec kỹ thuật)."
+    },
+    {
+      "q": "Nếu tài liệu không có số trang rõ ràng (bài web) thì sao?",
+      "a": "Dùng tiêu đề phần hoặc số đoạn văn thay thế. 'Trang hoặc phần' của prompt cho phép điều này. Với bài web, chỉ số đoạn ('para 5') hoạt động ổn."
+    },
+    {
+      "q": "So với việc dùng NotebookLM thì sao?",
+      "a": "NotebookLM tự xử lý upload tài liệu và trích dẫn nhưng tạo ra các bản tóm tắt dạng kể chuyện theo mặc định. Prompt này tạo ra output trích xuất có cấu trúc tốt hơn cho so sánh có hệ thống. Dùng cả hai: NotebookLM cho khám phá kiểu chat, prompt này cho tóm tắt viết-một-lần-quét-nhiều-lần."
+    },
+    {
+      "q": "Vì sao bắt buộc phần 'thiếu gì'?",
+      "a": "Vì mọi bản tóm tắt nghiên cứu nên để bạn lại với các bước theo dõi rõ ràng, không phải ấn tượng sai lệch về sự hoàn chỉnh. Phần 'thiếu gì' cũng tiết lộ khi tài liệu về cơ bản không thể trả lời câu hỏi của bạn — hữu ích trước khi bạn dành thêm thời gian đọc."
+    },
+    {
+      "q": "Có hoạt động với nghiên cứu không phải tiếng Anh không?",
+      "a": "Có — Claude và GPT-5 xử lý tốt văn xuôi học thuật tiếng Nhật / Trung / Đức / Pháp. Output có cấu trúc giữ nguyên ngôn ngữ prompt của bạn; ngôn ngữ nguồn có thể khác."
+    },
+    {
+      "q": "Làm sao tránh số trang ảo giác?",
+      "a": "Nếu model đưa ra số trang, kiểm tra ngẫu nhiên một hoặc hai. Nếu sai, thêm 'Nếu bạn không thể xác minh số trang, đánh dấu [page unknown] — không bao giờ đoán.' vào prompt."
+    },
+    {
+      "q": "Có thể dùng cho transcript podcast không?",
+      "a": "Có — thay 'page' bằng 'timestamp' và phần còn lại hoạt động. Việc trích luận điểm có cấu trúc thậm chí còn hữu ích hơn cho podcast, nơi các luận điểm trôi nổi quanh văn xuôi dài hơn mà không có dấu hiệu rõ ràng."
+    }
+  ]
+}

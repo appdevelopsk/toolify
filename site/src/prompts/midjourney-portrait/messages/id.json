@@ -1,0 +1,80 @@
+{
+  "title": "Prompt potret Midjourney — kontrol wajah, pencahayaan, lensa, suasana",
+  "shortDescription": "Template prompt Midjourney modular untuk potret dengan kontrol eksplisit atas subjek, framing, pencahayaan, lensa, suasana, dan gaya. Menghindari tampilan 'AI portrait' generik.",
+  "description": "Potret Midjourney default semua berbagi kehalusan uncanny-valley yang sama, dramatic key light, dan bokeh yang terlalu jenuh. Template prompt ini memecah default dengan menentukan lensa (focal length penting), arah cahaya, dan klausa 'no over-rendered skin' yang memaksa tekstur realistis.",
+  "metaDescription": "Prompt potret Midjourney modular gratis. Lensa, pencahayaan, framing, suasana — kontrol eksplisit. Menghindari tampilan wajah AI generik. Dengan contoh v6/v7.",
+  "keywords": ["prompt potret Midjourney", "template prompt Midjourney", "prompt potret AI", "prompt pencahayaan Midjourney", "potret AI realistis"],
+  "promptText": "[subjek — spesifik: usia, postur, rambut, ekspresi, pakaian]\n+ [framing: headshot / waist-up / full-body], [angle: eye-level / low / 3-quarter]\n+ shot on [lensa: 35mm / 50mm / 85mm / 105mm], [aperture: f/1.4 / f/2 / f/2.8]\n+ [lighting: natural window light from left / golden hour backlight / soft north-window light / overcast outdoor]\n+ [mood: contemplative / candid joy / quiet intensity / weariness — pilih satu mood spesifik]\n+ [environment / background: deskripsi 5-8 kata dengan petunjuk kedalaman]\n+ realistic skin texture with visible pores and natural asymmetry, no plastic smoothing\n+ [style reference: editorial / documentary / film still / Renaissance painting / 1970s magazine cover]\n--ar 4:5 --style raw --v 7\n\nContoh build (ganti bagian dalam kurung):\n\n  middle-aged woman in her late 50s, silver hair pulled back, soft smile lines, wearing a charcoal cashmere sweater, headshot, eye-level, shot on 85mm f/1.8, natural north-window light from screen left, contemplative mood, sparse home library blurred behind her with one warm lamp, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style --ar 4:5 --style raw --v 7\n\nTaktik variasi:\n- Prompt yang sama, hanya tukar lensa (35mm → 85mm → 135mm) untuk 3 komposisi yang berbeda.\n- Prompt yang sama, tukar pencahayaan (window → golden hour → overcast) untuk studi suasana.\n- Tambahkan --seed <n> untuk mengunci wajah di seluruh iterasi setelah Anda menemukan yang Anda suka.",
+  "useCase": {
+    "headline": "Kapan menggunakan ini",
+    "items": [
+      "Potret gaya editorial di mana tujuannya adalah karakter, bukan glamour shot.",
+      "Foto penulis atau headshot LinkedIn — spesifikasi lensa + cahaya mencegah ciri khas AI yang terlalu mengkilap.",
+      "Concept art untuk karakter fiksi di mana Anda membutuhkan referensi wajah yang konsisten di banyak gambar (gunakan --seed)."
+    ]
+  },
+  "modelTips": {
+    "midjourney": "Diuji pada v6.1 dan v7. Gunakan --style raw untuk menekan boost cinematic default Midjourney; ini mempertahankan realisme. --ar 4:5 adalah crop potret editorial; ganti ke --ar 3:2 untuk nuansa dokumenter."
+  },
+  "exampleHeading": "Tiga variasi dari kerangka yang sama",
+  "exampleOutput": "Variasi A (intim):\n  35-year-old man with weathered hands, salt-and-pepper beard, looking down at a worn leather notebook, headshot tilted slightly down, shot on 50mm f/1.4, single candle as only light source from the right, quiet intensity, dim wooden table with handwritten pages, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, film still style, --ar 4:5 --style raw --v 7\n\nVariasi B (energetik):\n  young Black woman in her early 20s, joyful caught laugh mid-conversation, twist-out curls catching backlight, waist-up, three-quarter angle, shot on 85mm f/2, golden hour backlight from her left + soft fill from camera right, candid joy, blurred park bench and autumn leaves behind, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style, --ar 3:2 --style raw --v 7\n\nVariasi C (formal):\n  East Asian businesswoman in her 40s, sharp tailored navy blazer, neutral confident expression, three-quarter framing, low angle, shot on 35mm f/2.8, soft overcast outdoor light, quiet authority, modernist office building lobby blurred behind her, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, editorial style, --ar 4:5 --style raw --v 7",
+  "article": {
+    "sections": [
+      {
+        "heading": "Mengapa potret Midjourney default semua terlihat sama",
+        "paragraphs": [
+          "Data pelatihan dan gaya default Midjourney sangat menyukai pencahayaan dramatis kelas sinema, kulit yang di-retouch beauty, dan bokeh 85mm-f/1.4. Tanpa kontrol eksplisit atas lensa, cahaya, dan tekstur kulit, setiap potret menuju ke estetika 'AI Instagram filter' ini. Editor dan rekruter sekarang segera mengenalinya.",
+          "Template prompt di atas memecah konvergensi di tiga tempat: lensa (memvariasikan focal length mengubah geometri wajah), arah dan kelembutan pencahayaan, dan klausa 'realistic skin texture' eksplisit yang menekan beauty smoothing default. Dua yang pertama adalah fotografi murni; yang ketiga adalah anti-pattern khusus Midjourney."
+        ]
+      },
+      {
+        "heading": "Pilihan lensa mengubah wajah",
+        "paragraphs": [
+          "Lensa lebar (35mm) menyanjung dagu dan melebih-lebihkan hidung; potret terasa intim dan kadang sedikit komikal. 50mm adalah lensa 'normal' — paling natural. 85mm dan 105mm mengompresi fitur, menyanjung sebagian besar wajah, dan menghasilkan tampilan editorial klasik. Mengganti hanya lensa di prompt menghasilkan tiga potret yang berbeda jelas dari karakter yang sama.",
+          "Gunakan ini saat menghasilkan beberapa shot dari karakter fiksi yang sama. Kunci seed, variasikan hanya lensa. Anda mendapatkan identitas yang konsisten dalam konteks visual yang berbeda — fitur yang sulit didapat dari metode prompt-only."
+        ]
+      },
+      {
+        "heading": "Arah cahaya mendorong suasana — katakan secara eksplisit",
+        "paragraphs": [
+          "'Natural light' adalah non-instruksi; model memilih sesuatu yang dramatis secara default. 'Soft north-window light from screen left' adalah instruksi yang dapat dieksekusi model dengan tepat. Template prompt menuntut arah (kiri/kanan/belakang/depan), kualitas (soft/hard), dan sumber (window/golden hour/candle/overcast).",
+          "Tiga pemetaan suasana cepat: backlight + nada hangat = romantis / nostalgic. Single hard side light = dramatic / interrogative. Overcast + frontal soft light = documentary / honest. Memilih satu secara sadar adalah perbedaan antara 'sebuah potret' dan 'potret yang menyampaikan apa yang Anda inginkan'."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apakah ini bekerja di Midjourney v5?",
+      "a": "Ya, tetapi hapus --style raw (ditambahkan di v5.2) dan referensi v7. Klausa lensa + pencahayaan tetap membantu. Versi yang lebih baru (v6.1+, v7) menghormati klausa realistic-skin lebih baik."
+    },
+    {
+      "q": "Bisakah saya menggunakan ini untuk full body shot?",
+      "a": "Ya — ubah framing menjadi full-body, ganti lensa ke 35mm atau 50mm (bukan 85mm — terlalu menyanjung untuk tubuh), dan tambahkan deskripsi postur. Klausa tekstur kulit kurang berdampak pada full body tetapi tetap layak dipertahankan."
+    },
+    {
+      "q": "Mengapa menentukan aperture jika Midjourney bukan kamera nyata?",
+      "a": "Ini adalah shorthand yang dipahami model. f/1.4 berarti 'blur background ekstrem, plane of focus dangkal, intim'. f/8 berarti 'sebagian besar hal tajam, potret lingkungan'. Menentukan aperture mengontrol bokeh dengan cara yang Midjourney interpretasikan dengan andal."
+    },
+    {
+      "q": "Bagaimana saya menjaga wajah yang sama di beberapa gambar?",
+      "a": "Hasilkan satu gambar yang Anda suka, lalu tambahkan --seed <n> dengan seed dari gambar itu. Generasi berikutnya menggunakan seed yang sama dan prompt yang serupa akan menghasilkan wajah yang serupa. Dikombinasikan dengan --cref (character reference) di v6+, Anda mendapatkan karakter yang konsisten."
+    },
+    {
+      "q": "Referensi gaya apa yang bekerja dengan baik?",
+      "a": "Nama fotografer kadang bekerja tetapi tidak dapat diandalkan. Lebih dapat diandalkan: 'documentary editorial style', 'film still style', 'Renaissance oil painting style', '1970s magazine cover', 'medium-format film'. Era spesifik + medium mengalahkan nama fotografer spesifik."
+    },
+    {
+      "q": "Mengapa tidak menentukan etnis / usia secara numerik?",
+      "a": "Template melakukannya — dan itu penting. Midjourney memiliki bias yang diketahui yang muncul ketika subjek tidak ditentukan. Selalu nyatakan subjek secara eksplisit untuk menghindari default ke profil demografis yang sempit."
+    },
+    {
+      "q": "Apakah prompt ini aman untuk penggunaan komersial?",
+      "a": "Penggunaan komersial Midjourney tergantung pada tier langganan Anda (Standard+ memperbolehkannya). Prompt itu sendiri tidak mengubah itu. Untuk pekerjaan klien, periksa ulang ToS Midjourney saat ini — itu berubah."
+    },
+    {
+      "q": "Bagaimana jika hasilnya masih terlihat terlalu 'AI-y'?",
+      "a": "Tambahkan 'medium format film' atau 'shot on Portra 400' ke referensi gaya, dan tambahkan 'film grain, slight imperfection, candid' di akhir. Ini mendorong model menjauh dari ketajaman digital yang bersih menuju ketidaksempurnaan fotografis."
+    }
+  ]
+}

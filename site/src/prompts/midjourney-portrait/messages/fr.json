@@ -1,0 +1,86 @@
+{
+  "title": "Prompt portrait Midjourney — visage, éclairage, objectif, ambiance",
+  "shortDescription": "Un template de prompt Midjourney modulaire pour portraits, avec contrôle explicite du sujet, du cadrage, de l'éclairage, de l'objectif, de l'ambiance et du style. Évite le look 'portrait IA' générique.",
+  "description": "Les portraits Midjourney par défaut partagent tous le même lissé d'uncanny valley, la même key light dramatique, et le même bokeh trop saturé. Ce template de prompt brise les réglages par défaut en spécifiant l'objectif (la focale compte), la direction de la lumière, et une clause 'pas de peau sur-rendue' qui force une texture réaliste.",
+  "metaDescription": "Prompt gratuit Midjourney modulaire pour portraits. Objectif, éclairage, cadrage, ambiance — contrôle explicite. Évite le look générique de visage IA.",
+  "keywords": [
+    "prompt portrait Midjourney",
+    "template prompt Midjourney",
+    "prompt portrait IA",
+    "prompt éclairage Midjourney",
+    "portrait IA réaliste"
+  ],
+  "promptText": "[sujet — sois précis : âge, morphologie, cheveux, expression, vêtements]\n+ [cadrage : headshot / waist-up / full-body], [angle : eye-level / low / 3-quarter]\n+ shot on [objectif : 35mm / 50mm / 85mm / 105mm], [ouverture : f/1.4 / f/2 / f/2.8]\n+ [éclairage : natural window light from left / golden hour backlight / soft north-window light / overcast outdoor]\n+ [ambiance : contemplative / candid joy / quiet intensity / weariness — choisis une ambiance précise]\n+ [environnement / arrière-plan : description de 5-8 mots avec indices de profondeur]\n+ realistic skin texture with visible pores and natural asymmetry, no plastic smoothing\n+ [référence de style : editorial / documentary / film still / Renaissance painting / 1970s magazine cover]\n--ar 4:5 --style raw --v 7\n\nExemple de construction (remplace les parties entre crochets) :\n\n  middle-aged woman in her late 50s, silver hair pulled back, soft smile lines, wearing a charcoal cashmere sweater, headshot, eye-level, shot on 85mm f/1.8, natural north-window light from screen left, contemplative mood, sparse home library blurred behind her with one warm lamp, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style --ar 4:5 --style raw --v 7\n\nTactiques de variation :\n- Même prompt, change uniquement l'objectif (35mm → 85mm → 135mm) pour 3 compositions distinctes.\n- Même prompt, change l'éclairage (window → golden hour → overcast) pour une étude d'ambiance.\n- Ajoute --seed <n> pour figer le visage entre les itérations une fois que tu en as trouvé un qui te plaît.",
+  "useCase": {
+    "headline": "Quand utiliser ce prompt",
+    "items": [
+      "Portraits style éditorial où le but est le caractère, pas un glamour shot.",
+      "Photos d'auteur ou portraits LinkedIn — les specs d'objectif + lumière empêchent le rendu trop lisse, signature de l'IA.",
+      "Concept art pour personnages de fiction où il faut une référence de visage cohérente sur plusieurs images (utilise --seed)."
+    ]
+  },
+  "modelTips": {
+    "midjourney": "Testé sur v6.1 et v7. Utilise --style raw pour supprimer le boost cinématique par défaut de Midjourney ; ça préserve le réalisme. --ar 4:5 est le crop portrait éditorial ; passe à --ar 3:2 pour un feeling documentaire."
+  },
+  "exampleHeading": "Trois variations à partir du même squelette",
+  "exampleOutput": "Variation A (intime) :\n  35-year-old man with weathered hands, salt-and-pepper beard, looking down at a worn leather notebook, headshot tilted slightly down, shot on 50mm f/1.4, single candle as only light source from the right, quiet intensity, dim wooden table with handwritten pages, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, film still style, --ar 4:5 --style raw --v 7\n\nVariation B (énergique) :\n  young Black woman in her early 20s, joyful caught laugh mid-conversation, twist-out curls catching backlight, waist-up, three-quarter angle, shot on 85mm f/2, golden hour backlight from her left + soft fill from camera right, candid joy, blurred park bench and autumn leaves behind, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style, --ar 3:2 --style raw --v 7\n\nVariation C (formelle) :\n  East Asian businesswoman in her 40s, sharp tailored navy blazer, neutral confident expression, three-quarter framing, low angle, shot on 35mm f/2.8, soft overcast outdoor light, quiet authority, modernist office building lobby blurred behind her, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, editorial style, --ar 4:5 --style raw --v 7",
+  "article": {
+    "sections": [
+      {
+        "heading": "Pourquoi les portraits Midjourney par défaut se ressemblent tous",
+        "paragraphs": [
+          "Les données d'entraînement et le style par défaut de Midjourney favorisent lourdement l'éclairage dramatique digne du cinéma, la peau retouchée beauté, et le bokeh 85mm-f/1.4. Sans contrôle explicite de l'objectif, de la lumière et de la texture de peau, chaque portrait converge vers cette esthétique 'filtre Instagram IA'. Les rédacteurs en chef et les recruteurs la reconnaissent désormais instantanément.",
+          "Le template ci-dessus casse la convergence à trois endroits : l'objectif (faire varier la focale change la géométrie du visage), la direction et la douceur de la lumière, et une clause explicite 'texture de peau réaliste' qui supprime le lissage beauté par défaut. Les deux premiers sont de la pure photographie ; le troisième est un anti-pattern propre à Midjourney."
+        ]
+      },
+      {
+        "heading": "Le choix de l'objectif change le visage",
+        "paragraphs": [
+          "Les objectifs grand-angle (35mm) flattent les mentons et exagèrent le nez ; les portraits semblent intimes et parfois légèrement comiques. Le 50mm est l'objectif 'normal' — le plus naturel. Le 85mm et le 105mm compressent les traits, flattent la plupart des visages, et produisent le look éditorial classique. Changer uniquement l'objectif dans le prompt produit trois portraits nettement différents du même personnage.",
+          "Utilise ça quand tu génères plusieurs shots d'un même personnage fictif. Verrouille la seed, fais varier uniquement l'objectif. Tu obtiens une identité cohérente dans différents contextes visuels — une fonctionnalité difficile à obtenir avec des méthodes purement prompt."
+        ]
+      },
+      {
+        "heading": "La direction de la lumière dicte l'ambiance — dis-le explicitement",
+        "paragraphs": [
+          "'Lumière naturelle' n'est pas une instruction ; le modèle choisit quelque chose de dramatique par défaut. 'Soft north-window light from screen left' est une instruction que le modèle peut exécuter précisément. Le template exige une direction (gauche/droite/dos/face), une qualité (douce/dure), et une source (fenêtre/golden hour/bougie/ciel couvert).",
+          "Trois associations d'ambiance rapides : contre-jour + ton chaud = romantique / nostalgique. Lumière latérale dure unique = dramatique / interrogative. Ciel couvert + lumière douce frontale = documentaire / honnête. En choisir une consciemment fait la différence entre 'un portrait' et 'un portrait qui transmet ce que tu voulais'."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Est-ce que ça marche dans Midjourney v5 ?",
+      "a": "Oui, mais supprime --style raw (ajouté en v5.2) et la référence à v7. Les clauses objectif + éclairage aident toujours. Les versions plus récentes (v6.1+, v7) respectent mieux la clause de peau réaliste."
+    },
+    {
+      "q": "Puis-je l'utiliser pour des plans en pied ?",
+      "a": "Oui — change le cadrage en full-body, passe l'objectif à 35mm ou 50mm (pas 85mm — trop flatteur pour le corps), et ajoute une description de posture. La clause texture de peau a moins d'impact en pied mais reste utile à garder."
+    },
+    {
+      "q": "Pourquoi spécifier l'ouverture si Midjourney n'est pas un vrai appareil photo ?",
+      "a": "C'est un raccourci que le modèle comprend. f/1.4 signifie 'flou d'arrière-plan extrême, plan de mise au point fin, intime'. f/8 signifie 'la plupart des choses nettes, portrait environnemental'. Spécifier l'ouverture contrôle le bokeh d'une manière que Midjourney interprète de manière fiable."
+    },
+    {
+      "q": "Comment garder le même visage sur plusieurs images ?",
+      "a": "Génère une image qui te plaît, puis ajoute --seed <n> avec la seed de cette image. Les générations suivantes utilisant la même seed et un prompt similaire produiront un visage similaire. Combiné à --cref (référence de personnage) en v6+, tu obtiens des personnages cohérents."
+    },
+    {
+      "q": "Quelles références de style fonctionnent bien ?",
+      "a": "Les noms de photographes fonctionnent parfois mais sont peu fiables. Plus fiable : 'documentary editorial style', 'film still style', 'Renaissance oil painting style', '1970s magazine cover', 'medium-format film'. Époque + médium précis bat le nom précis de photographe."
+    },
+    {
+      "q": "Pourquoi ne pas spécifier l'ethnie / l'âge numériquement ?",
+      "a": "Le template le fait — et c'est important. Midjourney a des biais connus qui ressortent quand le sujet n'est pas spécifié. Indique toujours le sujet explicitement pour éviter de retomber sur un profil démographique étroit."
+    },
+    {
+      "q": "Ces prompts sont-ils sûrs pour un usage commercial ?",
+      "a": "L'usage commercial de Midjourney dépend de ton tier d'abonnement (Standard+ l'autorise). Les prompts en eux-mêmes n'y changent rien. Pour le travail client, vérifie deux fois les CGU actuelles de Midjourney — elles changent."
+    },
+    {
+      "q": "Et si le résultat a encore un air 'trop IA' ?",
+      "a": "Ajoute 'medium format film' ou 'shot on Portra 400' à la référence de style, et ajoute 'film grain, slight imperfection, candid' vers la fin. Cela éloigne le modèle de la netteté numérique propre vers l'imperfection photographique."
+    }
+  ]
+}

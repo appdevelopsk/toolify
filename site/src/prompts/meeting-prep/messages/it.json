@@ -1,0 +1,88 @@
+{
+  "title": "Prompt per preparazione riunione — agenda, decisioni, check 'async o",
+  "shortDescription": "Genera un'agenda di riunione tagliente da note grezze, inclusi tempo a disposizione, decisioni da prendere e un check 'questo può essere async?' in cima.",
+  "description": "La maggior parte delle agende di riunione generate dall'IA sono template insipidi che non porteranno davvero a una riunione produttiva. Questo prompt costringe il modello a etichettare decisioni vs discussioni, allocare il tempo per ogni punto e mettere in dubbio se la riunione debba aver luogo del tutto.",
+  "metaDescription": "Prompt gratuito per preparazione riunione. Costruisce un'agenda con tempo a disposizione, decisioni nominate e check async vs riunione. Funziona con Claude, ChatGPT.",
+  "keywords": [
+    "prompt preparazione riunione",
+    "generatore agenda IA",
+    "prompt agenda riunione",
+    "prompt riunione decisionale",
+    "agenda stand up"
+  ],
+  "promptText": "Costruisci un'agenda di riunione dalle note grezze qui sotto.\n\nContesto della riunione:\n- Durata: {N minuti}\n- Partecipanti: {nomi + ruoli}\n- Decisori presenti: {chi può effettivamente approvare i risultati}\n- Canali async esistenti disponibili: {Slack / Linear / Notion / ecc.}\n\nPer ogni punto che elenco, produci:\n  - Punto: <riformulazione concisa>\n  - Tipo: DECISIONE | DISCUSSIONE | CONDIVISIONE_INFO\n  - Tempo: <minuti>\n  - Decisione necessaria (se DECISIONE): <esatta domanda sì/no o set di opzioni tra cui scegliere>\n  - Pre-lettura: <link o nome del documento che i partecipanti dovrebbero aver letto prima>\n  - Owner: <chi guida questo punto>\n\nPoi in cima all'agenda, aggiungi una sezione QUESTA DEVE ESSERE UNA RIUNIONE? che:\n  1. Elenca i punti che potrebbero essere gestiti async (qualunque CONDIVISIONE_INFO pura).\n  2. Identifica i decisori mancanti — se nessuno presente può approvare un punto DECISIONE, segnalalo.\n  3. Raccomanda modifiche all'agenda: 'rimuovi punti 2-3 (async); rischedula con [persona mancante] per il punto 4'.\n\nRegole rigide:\n- Il tempo totale tra i punti deve stare entro la durata della riunione, con 5 minuti riservati come buffer.\n- Ogni punto DECISIONE deve avere un sì/no esplicito o una scelta tra opzioni. 'Discutere la roadmap' non è una decisione; 'Approvare la roadmap Q2 o rimandarla a revisione' lo è.\n- I punti CONDIVISIONE_INFO ottengono massimo 5 minuti ciascuno — qualunque cosa di più è una discussione travestita.\n- Se metà o più dei punti sono CONDIVISIONE_INFO, raccomanda di cancellare la riunione e inviare un aggiornamento scritto.\n\nNote grezze:\n\n[incolla qui i tuoi bullet point o pensieri]",
+  "useCase": {
+    "headline": "Quando usarlo",
+    "items": [
+      "Prima di qualunque riunione ricorrente — incolla l'agenda stabilita e i punti aggiunti/tolti di recente, ricevi una versione più serrata.",
+      "Quando una riunione è stata schedulata da qualcun altro e tu vuoi sistemarla — genera la versione migliore, condividila.",
+      "Sessioni di pianificazione trimestrale — la divisione decisioni-vs-discussioni impedisce alla riunione di diventare un monologo di 90 minuti."
+    ]
+  },
+  "modelTips": {
+    "claude": "Forte sulla sfida 'questo può essere async?'. Raccomanderà di cancellare le riunioni quando giustificato, cosa che altri modelli esitano a fare.",
+    "chatgpt": "Funziona ma tende a tenere tutti i punti in agenda. Aggiungi 'sii disposto a raccomandare la cancellazione della riunione se appropriato' per essere esplicito.",
+    "any": "La regola 'decisione necessaria' è la leva. Se non puoi compilarla per un punto, probabilmente il punto non è ancora pronto per la riunione."
+  },
+  "exampleHeading": "Esempio: sync di team da 30 minuti dalle note grezze",
+  "exampleOutput": "QUESTA DEVE ESSERE UNA RIUNIONE?\n  - I punti 3 e 5 (aggiornamenti di stato) dovrebbero passare ad aggiornamento scritto; risparmia 12 min.\n  - Il punto 4 (approvazione budget Q2) necessita la presenza del CFO — non è nell'invito. O rischedula o dividi: gestisci i punti 1-2 oggi, il 4 con il CFO la settimana prossima.\n  - Raccomandazione: accorcia a 15 min, agenda sotto.\n\nAGENDA (15 min, buffer 5 min)\n\n1. Approvare il backfill per il ruolo di Sara (5 min) — DECISIONE\n   Decisione necessaria: Approvare un annuncio esterno ora o aspettare 2 settimane per il candidato interno Q?\n   Owner: Engineering Manager. Pre-lettura: documento spec del backfill (linkato).\n\n2. Risolvere l'ownership delle API tra platform e growth (8 min) — DISCUSSIONE\n   Owner: VP Eng. Pre-lettura: matrice di ownership v3.\n   Nota: serve la presenza di entrambi i manager; entrambi hanno confermato.\n\n3. (rimosso — vedi sopra) Review delle metriche Q1 → spostata ad aggiornamento scritto.\n4. (rischedulato — vedi sopra) Approvazione budget Q2 → rischedula con CFO.\n5. (rimosso — vedi sopra) Demo del vendor di tooling → video async, da guardare nei propri tempi.\n\nBuffer: 2 min per parcheggio o per andare oltre.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Perché la maggior parte delle agende non aiuta le riunioni a essere produttive",
+        "paragraphs": [
+          "Le agende di default elencano argomenti senza impegno. 'Discutere la roadmap' invita a una discussione illimitata; 'aggiornamento di stato sulla roadmap' invita al monologo; nessuna delle due produce decisioni. Il risultato: le riunioni finiscono con le stesse domande con cui sono iniziate, e la riunione successiva viene schedulata per affrontarle.",
+          "L'etichettatura DECISIONE/DISCUSSIONE/CONDIVISIONE_INFO sta facendo la maggior parte del lavoro in questo prompt. Una volta che marchi un punto come DECISIONE, devi articolare il sì/no o la scelta tra opzioni. Se non puoi, il punto non è pronto e dovrebbe essere rimosso (torna prima in fase di discussione async)."
+        ]
+      },
+      {
+        "heading": "Il check 'cancella la riunione' è la riga con più leva",
+        "paragraphs": [
+          "Gli strumenti di IA raramente ti dicono di cancellare la riunione che gli è stato chiesto di pianificare. Questo prompt chiede esplicitamente al modello di raccomandare la cancellazione quando giustificato, il che ti permette di scaricare una conversazione imbarazzante. 'Ho passato l'agenda in questo prompt e suggerisce di cancellare — ecco l'aggiornamento async invece' è un messaggio molto più facile di 'penso che dovremmo cancellare'.",
+          "Usalo sulle riunioni ricorrenti ogni 2-3 mesi. I calendari accumulano cianfrusaglie; questo prompt è una pulizia strutturata."
+        ]
+      },
+      {
+        "heading": "Le pre-letture rendono le riunioni decisionali 3 volte più veloci",
+        "paragraphs": [
+          "Metà di ogni riunione decisionale è la gente che si mette al passo con il contesto. Se una pre-lettura di una pagina viene mandata 24 ore prima e la gente la legge davvero, la riunione stessa può durare 10 minuti — abbastanza lunga da far emergere preoccupazioni e decidere, abbastanza corta che nessuno si distragga.",
+          "Il campo 'pre-lettura' in questo prompt ti costringe a identificare quale contesto serve ai partecipanti. Se non puoi nominare un documento, probabilmente la riunione non è pronta: o non hai scritto cosa stai proponendo, o non c'è una cosa chiara a cui reagire."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Funziona per stand-up / daily sync?",
+      "a": "Marginalmente — gli stand-up sono per lo più CONDIVISIONE_INFO per design. Il prompt raccomanderebbe di cancellarli, cosa che non sempre è quello che vuoi. Usa questo per riunioni di 30+ minuti."
+    },
+    {
+      "q": "E se le note grezze sono confuse e contraddittorie?",
+      "a": "Il modello cercherà di renderle nitide. Se produce un punto che non corrisponde alla tua intenzione, rispondi con 'il punto 3 è in realtà su X, non Y'. Dopo una correzione di solito mantiene il resto allineato."
+    },
+    {
+      "q": "Come condivido l'output ai partecipanti?",
+      "a": "Copia-incolla la sezione dell'agenda (salta l'analisi 'questa deve essere una riunione?' se i partecipanti potrebbero trovarla presuntuosa). Oppure condividi il tutto come messaggio trasparente 'ecco come ho potato l'agenda'."
+    },
+    {
+      "q": "Posso usarlo per gli 1-on-1?",
+      "a": "Sì, con una modifica — cambia DECISIONE/DISCUSSIONE/CONDIVISIONE_INFO in ARGOMENTO/FEEDBACK/CHECK_IN. La struttura di tempo a disposizione e pre-lettura aiuta comunque."
+    },
+    {
+      "q": "E il parcheggio per cose che emergono dal vivo?",
+      "a": "Il buffer di 5 min svolge questo ruolo. Se le discussioni straripano costantemente, il prompt è anche una diagnostica — o le stime di tempo sono troppo aggressive, o i punti sono più grandi di quanto avevi previsto."
+    },
+    {
+      "q": "Perché limitare CONDIVISIONE_INFO a 5 minuti?",
+      "a": "Perché qualunque cosa di più è o una discussione (qualcuno ha domande) o una presentazione (che può essere un video registrato). Il limite di 5 min ti costringe a rimuovere il punto o a etichettarlo correttamente."
+    },
+    {
+      "q": "Si integra con strumenti di calendario?",
+      "a": "Non direttamente. L'output è markdown semplice; incollalo nella descrizione dell'invito di calendario, in Notion, Linear, o ovunque il tuo team registri le note di riunione. Alcuni team usano Granola/Krisp per la trascrizione live, che si abbina bene."
+    },
+    {
+      "q": "E le riunioni di brainstorming?",
+      "a": "Marcale come solo-DISCUSSIONE con la nota 'nessuna decisione oggi, decisioni nella prossima riunione'. Il check 'questo può essere async?' potrebbe raccomandare invece una board Miro / Figjam — spesso meglio per il pensiero divergente."
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "title": "Prompt per sintesi di ricerca — estrai affermazioni, prove e",
+  "shortDescription": "Trasforma lunghi PDF, paper o report in una sintesi strutturata che distingue affermazioni da prove, fa emergere contraddizioni e cita le pagine sorgente così puoi verificare.",
+  "description": "Il classico 'riassumi questo' produce sintesi in stile paragrafo che perdono il punto di ogni studio sfumato. Questo prompt estrae un oggetto strutturato — affermazioni, tipo di prova, posizione nella fonte e qualunque contraddizione tra documenti — che puoi scorrere in 60 secondi.",
+  "metaDescription": "Prompt gratuito per sintesi di ricerca per Claude, Perplexity, ChatGPT. Estrai affermazioni con prove e pagine sorgente. Fai emergere contraddizioni tra documenti.",
+  "keywords": [
+    "prompt sintesi ricerca",
+    "sintesi paper accademico",
+    "prompt ricerca Claude",
+    "ricerca Perplexity",
+    "prompt revisione letteratura"
+  ],
+  "promptText": "Sintetizzerai il/i documento/i qui sotto. Produci come tabella strutturata, non in prosa.\n\nPer ogni affermazione principale nella/e fonte/i, estrai:\n  - Affermazione: <singola frase>\n  - Tipo di prova: <studio empirico / argomento teorico / opinione di esperto / aneddoto / non supportata>\n  - Fonte: <nome del documento + pagina o sezione>\n  - Forza: <forte / moderata / debole — basata sul tipo di prova e sulla dimensione del campione>\n  - Caveat: <limiti che la fonte stessa riconosce>\n\nDopo la tabella, aggiungi tre sezioni:\n\n1. CONTRADDIZIONI: elenca i punti in cui i documenti dissentono o dove l'affermazione di un documento confligge con i dati di un altro.\n\n2. MAPPA DI CONFIDENZA: valuta l'affidabilità complessiva di ogni affermazione principale — alta (più fonti forti concordano), media (una fonte forte o più fonti deboli), bassa (singola fonte debole o asserzione non supportata).\n\n3. COSA MANCA: 3-5 domande che un lettore attento si porrebbe ancora dopo aver letto questi documenti. Marca ciascuna come 'affrontabile da questi documenti con più lettura' o 'richiede fonti esterne'.\n\nRegole rigide:\n- Cita numeri di pagina o identificatori di sezione per ogni affermazione. Se non puoi, marca [pagina sconosciuta].\n- Non sintetizzare oltre quello che dicono i documenti. Se due documenti toccano un argomento ma non si confrontano direttamente, dillo — non inventare un confronto.\n- Distingui 'il documento afferma X' da 'X è vero'. La sintesi riporta cosa è stato affermato, non cosa è corretto.\n\nDocumento/i:\n\n[incolla il testo completo o carica i PDF]",
+  "useCase": {
+    "headline": "Quando usarlo",
+    "items": [
+      "Leggendo 5-10 paper per una revisione di letteratura — passa ognuno in questo prompt, poi confronta le mappe di confidenza per trovare consenso e lacune.",
+      "Valutando un report di settore ricevuto da un vendor — la colonna della forza espone dove il report è guidato dai dati vs dal marketing.",
+      "Verifica incrociata di un articolo di giornale — passa l'articolo + lo studio sottostante; le contraddizioni emergono immediatamente."
+    ]
+  },
+  "modelTips": {
+    "claude": "Migliore nel distinguere affermazione da tipo di prova. La regola 'non sintetizzare' è quella più rispettata da Claude (Sonnet 4.6+).",
+    "perplexity": "Forte quando il documento è sul web aperto — Perplexity aggiunge verifica delle fonti automaticamente. Meno utile per PDF privati.",
+    "chatgpt": "Funziona ma tende ad ammorbidire il verdetto 'non supportata' in 'menzionata'. Sii esplicito: 'usa \"non supportata\" quando il documento presenta un'affermazione senza citare dati, anche se suona ragionevole.'"
+  },
+  "exampleHeading": "Esempio: sintesi di 3 paper su produttività in lavoro remoto",
+  "exampleOutput": "| Affermazione | Prova | Fonte | Forza | Caveat |\n|---|---|---|---|---|\n| I lavoratori remoti auto-riportano produttività maggiore del 13% | sondaggio, n=2400 | Bloom 2024 p.7 | moderata | bias di auto-report riconosciuto |\n| Il lavoro remoto riduce l'innovazione di team | intervista qualitativa, n=42 manager | Smith 2023 p.14 | debole | campione sbilanciato verso manager, non IC |\n| Ibrido (3 giorni) supera il full-remote su retention | A/B test in una sola azienda | Chen 2025 p.22 | moderata | singola azienda, può non generalizzare |\n\nCONTRADDIZIONI:\n- Bloom 2024 riporta un guadagno di produttività; Smith 2023 implica un calo di produttività (tramite 'ridotta innovazione'). I due usano definizioni di produttività diverse — Bloom = output per ora, Smith = output strategico. Non direttamente confrontabili.\n\nMAPPA DI CONFIDENZA:\n- 'Il lavoro remoto cambia la produttività' → alta (effetto chiaro, direzione dibattuta)\n- 'Il lavoro remoto riduce l'innovazione' → media (uno studio, qualitativo)\n- 'L'ibrido è ottimale' → bassa (un A/B in una sola azienda)\n\nCOSA MANCA:\n1. Effetto specifico sui dipendenti junior [richiede fonti esterne]\n2. Breakdown settore per settore [affrontabile: Bloom 2024 ha dati in appendice]\n3. Effetto sul trasferimento di conoscenza / mentorship [richiede fonti esterne]",
+  "article": {
+    "sections": [
+      {
+        "heading": "Perché le sintesi in prosa falliscono per la ricerca",
+        "paragraphs": [
+          "Una sintesi in paragrafo mescola ogni affermazione nello stesso livello di autorità. Il lettore non può dire se 'gli studi mostrano che…' è supportato da un singolo sondaggio sottopotenziato o da una meta-analisi di quaranta trial. La sintesi LLM di default eredita questo difetto e lo amplifica — affermazioni forti e deboli ricevono lo stesso peso in prosa.",
+          "L'estrazione strutturata (tabella + mappa di confidenza) preserva l'autorità differenziale delle affermazioni. Puoi scorrere e vedere immediatamente che il risultato principale poggia su prove solide mentre l'affermazione secondaria è essenzialmente un editoriale. Questa è la differenza tra informato e falsamente sicuro."
+        ]
+      },
+      {
+        "heading": "La regola più difficile: distinguere affermazione da verità",
+        "paragraphs": [
+          "I summarizer di default scivolano da 'il documento X dice Y' a 'Y è vero' senza segnalare la transizione. La regola 'distingui affermazione da verità' è esplicita perché i modelli falliscono di default. Quando la regola tiene, leggi la sintesi e sai esattamente quali asserzioni sono del documento, non un editoriale del modello.",
+          "Se il modello viola questa regola (afferma X come fatto quando il documento l'ha solo affermato), rispondi 'riformula attribuendo ogni affermazione alla sua fonte'. Dopo una correzione Claude tende a mantenere l'attribuzione per il resto del documento."
+        ]
+      },
+      {
+        "heading": "Workflow cross-documento",
+        "paragraphs": [
+          "Per le revisioni di letteratura, esegui prima ogni paper individualmente — i limiti di contesto del modello e la qualità beneficiano entrambi del un-documento-alla-volta. Poi in un secondo passaggio, incolla solo le tabelle risultanti e chiedi: 'Identifica punti di consenso, punti di disaccordo e la singola affermazione più forte.' Questo è molto più veloce che dare in pasto tutti i paper in un colpo solo.",
+          "Costruisci una regola 'decadimento di confidenza': qualunque affermazione che appare in una sola fonte viene automaticamente declassata di un livello quando integrata in una sintesi multi-fonte. Questo forza la review integrata a pesare di più i risultati replicati rispetto a quelli nuovi-ma-isolati, il che corrisponde alla buona pratica accademica."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Funziona per PDF molto lunghi?",
+      "a": "Claude gestisce PDF da 200K token in un colpo; ChatGPT/GPT-5 gestiscono 128K. Per più lunghi, dividi per capitolo e sintetizza ognuno, poi sintetizza le sintesi. Il formato strutturato mantiene la qualità consistente tra i passaggi."
+    },
+    {
+      "q": "Può citare virgolette specifiche?",
+      "a": "Sì — aggiungi 'Per ogni affermazione, includi uno snippet citato di 5-15 parole della formulazione originale' al prompt. Utile quando la formulazione conta (documenti legali, specifiche tecniche)."
+    },
+    {
+      "q": "E se il documento non ha numeri di pagina chiari (articolo web)?",
+      "a": "Usa intestazioni di sezione o numeri di paragrafo invece. La 'pagina o sezione' del prompt lo permette. Per articoli web, l'indice di paragrafo ('par 5') va bene."
+    },
+    {
+      "q": "Come si confronta con l'uso di NotebookLM?",
+      "a": "NotebookLM gestisce automaticamente il caricamento dei documenti e le citazioni ma produce sintesi narrative di default. Questo prompt produce output di estrazione strutturata che è migliore per il confronto sistematico. Usa entrambi: NotebookLM per l'esplorazione in stile chat, questo prompt per sintesi scrivi-una-volta-scorri-molte."
+    },
+    {
+      "q": "Perché forzare la sezione 'cosa manca'?",
+      "a": "Perché ogni sintesi di ricerca dovrebbe lasciarti con follow-up espliciti, non con la falsa impressione di completezza. La sezione 'cosa manca' rivela anche quando il documento fondamentalmente non può rispondere alla tua domanda — utile prima di spendere più tempo a leggerlo."
+    },
+    {
+      "q": "Funziona con ricerca non in italiano?",
+      "a": "Sì — Claude e GPT-5 gestiscono bene prosa accademica in giapponese / cinese / tedesco / francese / inglese. L'output strutturato rimane nella lingua del tuo prompt; la lingua della fonte può differire."
+    },
+    {
+      "q": "Come evito numeri di pagina allucinati?",
+      "a": "Se il modello dà un numero di pagina, fai uno spot-check su uno o due. Se sono sbagliati, aggiungi 'Se non puoi verificare un numero di pagina, marcalo [pagina sconosciuta] — non indovinare mai.' al prompt."
+    },
+    {
+      "q": "Posso usarlo per trascrizioni di podcast?",
+      "a": "Sì — sostituisci 'pagina' con 'timestamp' e il resto funziona. L'estrazione di affermazioni strutturate è ancora più utile per i podcast, dove le affermazioni galleggiano in prosa lunga senza marcatori chiari."
+    }
+  ]
+}

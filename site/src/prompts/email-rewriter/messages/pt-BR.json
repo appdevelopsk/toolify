@@ -1,0 +1,83 @@
+{
+  "title": "Prompt de reescrita de e-mail — claro, conciso, com tom controlado",
+  "shortDescription": "Reescreva qualquer rascunho de e-mail para ficar mais claro e curto sem perder a mensagem. Escolha um tom (caloroso / neutro / firme) e uma meta de tamanho.",
+  "description": "O pedido padrão 'reescreva este e-mail' no ChatGPT/Claude tende a inflar o tamanho e adicionar enrolação corporativa. Este prompt faz o oposto: impõe um tamanho alvo, mantém seu conteúdo factual intacto e te deixa ajustar o tom explicitamente.",
+  "metaDescription": "Prompt gratuito de reescrita de e-mail para ChatGPT e Claude. Tamanho alvo, controle de tom (caloroso/neutro/firme), mantém seus fatos intactos. Com exemplos de uso.",
+  "keywords": ["prompt reescrita e-mail", "reescrever e-mail IA", "e-mail ChatGPT", "prompt e-mail profissional", "e-mail tom controlado"],
+  "promptText": "Reescreva o e-mail abaixo.\n\nMeta:\n- Tamanho: aproximadamente {N} palavras (padrão 80; escolha 50-150).\n- Tom: {caloroso / neutro / firme} (padrão neutro).\n- Público: {quem é — ex.: meu gestor, um fornecedor, um cliente irritado}.\n\nRegras rígidas:\n1. Preserve cada fato concreto, prazo, número e nome. Não invente detalhes nem amoleça compromissos que assumi.\n2. Remova enrolação corporativa (\"Espero que este e-mail te encontre bem\", \"por favor, não hesite\", \"conforme meu e-mail anterior\", etc.).\n3. Um pedido por e-mail. Se o rascunho contém múltiplos pedidos, divida-os em uma lista numerada no final.\n4. Nunca comece com a palavra \"Eu\" duas vezes seguidas em frases consecutivas.\n5. Mantenha minha linha de assinatura e qualquer anexo mencionado explicitamente.\n\nRetorne apenas o corpo do e-mail reescrito. Sem explicação.\n\nRascunho:\n\n[cole seu rascunho aqui]",
+  "useCase": {
+    "headline": "Quando usar",
+    "items": [
+      "Depois de escrever um e-mail com cara de bravo — mude o tom para neutro, tamanho menor, e a IA tira as garras sem perder seu ponto.",
+      "Quando responder a uma reclamação de cliente — defina o tom como caloroso, meta de 70 palavras, e o resultado é empático sem ser melado.",
+      "E-mails de negociação ou de pushback — tom firme + tamanho 100, te deixa ser direto mas profissional."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude é surpreendentemente bom em preservar fatos e não adicionar floreio. Melhor padrão para e-mails importantes.",
+    "chatgpt": "GPT-5 / GPT-4o tendem a recolocar enrolação 'profissional'. A regra de 'remover enrolação corporativa' acima é especialmente importante para o ChatGPT.",
+    "any": "Todos os modelos principais funcionam. O padrão (tamanho alvo + tom + público + fatos preservados) é o que torna isso confiável."
+  },
+  "exampleHeading": "Exemplo: um rascunho bravo → versão neutra de 70 palavras",
+  "exampleOutput": "Rascunho (220 palavras, irritado):\n  \"Oi Sarah, estou fazendo follow-up DE NOVO sobre a fatura faltante de outubro. Já te mandei e-mail três vezes. Isso é inaceitável de um sistema de billing pelo qual pagamos R$ 6.000/mês. Preciso resolver até sexta ou vou escalar para o seu CTO. A fatura deve cobrir o período 01/10–31/10, total de R$ 24.100, e nunca recebemos…\"\n\nReescrito (neutro, 68 palavras, meta atingida):\n  \"Oi Sarah,\n\n  Fazendo follow-up da fatura de outubro de R$ 24.100 (período 01/10–31/10). Mandei e-mail três vezes desde novembro e ela não apareceu. Precisamos resolver até sexta para conseguir fechar nossas contas. Se houver um problema no sistema bloqueando, me avise o que mandar para o suporte para desbloquear.\n\n  Obrigado,\n  [Nome]\"",
+  "article": {
+    "sections": [
+      {
+        "heading": "Por que prompts padrão de reescrita de e-mail pioram as coisas",
+        "paragraphs": [
+          "Se você pede 'reescreva este e-mail para ficar mais profissional', o modelo padroniza adicionando tamanho: mais gentilezas, linguagem hesitante, frases de recapitulação. O output é mais longo que seu rascunho, e o que era uma leitura de 20 segundos vira uma de 90 segundos. Destinatários deletam ou só passam o olho em e-mails longos, então sua mensagem se perde no enchimento de polidez.",
+          "O prompt acima inverte isso. Ao forçar um tamanho alvo e uma regra de 'remover enrolação corporativa', a reescrita fica mais curta que a entrada na maioria dos rascunhos. O controle de tom te deixa preservar a precisão emocional (reclamação firme, desculpa calorosa) sem perder o foco."
+        ]
+      },
+      {
+        "heading": "Seleção de tom — qual escolher quando",
+        "paragraphs": [
+          "Caloroso: desculpa para cliente, agradecer alguém por ajuda, criar rapport com um novo contato. Adiciona gentilezas leves (uma frase no máximo).",
+          "Neutro: e-mails de trabalho entre pares, status updates, respostas factuais. O padrão. Tira todas as gentilezas.",
+          "Firme: pushback, escalação, cobrança de pagamento atrasado, recusa de scope creep. Mantém frases curtas e linguagem direta. Não amolece seus pedidos."
+        ]
+      },
+      {
+        "heading": "Por que um-pedido-por-e-mail importa",
+        "paragraphs": [
+          "E-mails com múltiplos pedidos ('e por favor me mande X, e ah, aproveitando, você pode encaminhar Y?') recebem respostas parciais ou são ignorados completamente. O destinatário mentalmente agrupa a resposta e nunca manda. A regra acima força rascunhos com múltiplos pedidos a expor a estrutura como lista numerada, o que provoca uma resposta também numerada.",
+          "Se seu rascunho tem dois pedidos genuinamente independentes, mande dois e-mails. O modelo não vai impor isso por você — mas vai expor a estrutura clara o suficiente para que você geralmente decida dividir antes de apertar enviar."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Ele vai mudar meus fatos ou números?",
+      "a": "Não — a regra de 'preservar cada fato concreto, prazo, número e nome' é explícita. Se o modelo lê um número errado, é erro do modelo, não falha do prompt. Sempre releia a reescrita antes de enviar para confirmar."
+    },
+    {
+      "q": "Por que um tamanho alvo em vez de 'seja breve'?",
+      "a": "'Seja breve' é interpretado como 'remova talvez 10%'. Uma contagem alvo de palavras força o modelo a fazer deleções de verdade. 80 palavras é mais ou menos 4-5 frases curtas — suficiente para um pedido mais contexto."
+    },
+    {
+      "q": "Posso adicionar a voz/estilo da minha empresa?",
+      "a": "Sim — adicione uma linha 'Notas de estilo:' acima do rascunho. Exemplo: 'Notas de estilo: Linguagem simples, sem pontos de exclamação, assinatura é só meu primeiro nome'. O modelo vai seguir de perto."
+    },
+    {
+      "q": "E se o rascunho já está curto?",
+      "a": "Use um alvo um pouco maior (100-120 palavras) para sinalizar 'não corte agressivamente'. Ou use o prompt com uma regra só de clareza: troque 'Tamanho: ~N palavras' por 'Mantenha tamanho parecido; só conserte frases pouco claras'."
+    },
+    {
+      "q": "Funciona para outros idiomas além do inglês?",
+      "a": "Sim — Claude e GPT-5 lidam bem com e-mails de negócios em japonês, chinês, coreano, espanhol. A regra de enrolação corporativa precisa de tradução: em japonês, a abertura 'お世話になっております' é o equivalente mais próximo de enrolação e é removida no tom neutro."
+    },
+    {
+      "q": "Como isso é diferente do Grammarly?",
+      "a": "O Grammarly conserta mecânica (erros de digitação, vírgulas mal colocadas). Este prompt reestrutura conteúdo (remove frases de enrolação, divide e-mails com múltiplos pedidos, ajusta tom). Eles se complementam — rode o Grammarly primeiro, depois isso para reestruturar."
+    },
+    {
+      "q": "Posso salvar isso no ChatGPT como um GPT customizado?",
+      "a": "Sim — cole o corpo do prompt como as instruções do GPT. Você só vai precisar digitar o rascunho a cada vez. A mesma abordagem funciona em Claude Projects."
+    },
+    {
+      "q": "Por que não começar com 'Eu' duas vezes seguidas?",
+      "a": "Aberturas repetidas com 'Eu-' fazem um e-mail parecer centrado em si mesmo, mesmo quando o conteúdo está ok. Forçar variedade (começar uma frase com o destinatário ou com um fato) é uma alavanca pequena que faz e-mails soarem mais calorosos sem mudar o significado."
+    }
+  ]
+}

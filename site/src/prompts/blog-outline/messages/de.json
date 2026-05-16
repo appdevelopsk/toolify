@@ -1,0 +1,82 @@
+{
+  "title": "Blogpost-Gliederung Prompt — H2/H3-Struktur mit Intent und Wortzahl",
+  "shortDescription": "Erstelle eine kompakte, suchfreundliche Gliederung für einen Blogpost: H2/H3-Hierarchie, Intent pro Abschnitt, Ziel-Wortzahlen und die Fragen, die jeder Abschnitt beantwortet.",
+  "description": "Die meisten KI-generierten Gliederungen sind langweilige Vorlagen. Dieser Prompt zwingt das Modell, über Suchintention nachzudenken, jedem Abschnitt ein messbares Ziel zu geben und die konkreten Fragen herauszuarbeiten, die Leser haben werden — die Struktur, die rankt, und die Struktur, die Menschen tatsächlich zu Ende lesen.",
+  "metaDescription": "Kostenloser Blog-Gliederung-Prompt. Erstellt H2/H3-Struktur mit Intent, Wortzahlen und Leserfragen pro Abschnitt. Funktioniert mit Claude, ChatGPT, Gemini.",
+  "keywords": ["Blog Gliederung Prompt", "KI Blog Struktur", "SEO Outline Prompt", "Content Briefing Prompt", "Blogpost Planer"],
+  "promptText": "Erstelle eine Blogpost-Gliederung.\n\nThema: {dein Thema}\nZielleser: {wer sie sind — Anfänger / erfahrene Praktiker / Entscheidungsträger}\nHaupt-Keyword: {die Phrase, für die du ranken willst}\nSuchintention: {informational / commercial / navigational / transactional}\nZiel-Wortzahl: {N — typischer Bereich 1500-3500}\n\nGib eine Gliederung mit genau dieser Struktur zurück:\n\nH1: <Titel — muss das Haupt-Keyword natürlich enthalten, max. 60 Zeichen>\n\nIntro (~{N*0.05} Wörter)\n  - Hook: <ein Satz darüber, warum es den Leser jetzt gerade interessiert>\n  - Versprechen: <was sie nach dem Lesen wissen werden>\n  - Skip-ahead: <wenn ihre Antwort in Abschnitt X liegt, weise sie dorthin>\n\nH2: <Abschnittsüberschrift>\n  Intent: <welche Leserfrage dies beantwortet>\n  Wortzahl: <N>\n  Zu adressierende Fragen:\n    - <F1>\n    - <F2>\n  H3: <Unterabschnitt> (nur bei Bedarf; max. 3 H3 pro H2)\n\n... (insgesamt 3-6 H2-Abschnitte; Tiefe wird vom Thema gewählt, nicht von der Vorlage)\n\nFazit (~{N*0.05} Wörter)\n  - Einzeiler-Takeaway\n  - Einzelner CTA (keine Liste von CTAs)\n\nHarte Einschränkungen:\n1. Jedes H2 muss eine andere Suchfrage beantworten — keine zwei Abschnitte mit derselben Intention.\n2. Lass den Füll-Abschnitt „Einleitung ist wichtig“ weg, den viele KI-Gliederungen hinzufügen. Echte Leser überspringen ihn.\n3. Wenn du einen Abschnitt vorschlagen würdest, der rein „Hintergrundkontext“ ist, markiere ihn [optional] — die meisten Leser wollen zuerst die Antwort.\n4. Die gesamten Wortzahlen müssen innerhalb von 10% des Ziels liegen.\n5. Erfinde keine Statistiken oder Quellen. Wenn ein Abschnitt Daten braucht, markiere ihn [needs data: <welche Art>].",
+  "useCase": {
+    "headline": "Wann du das verwenden solltest",
+    "items": [
+      "Vor dem Schreiben eines Beitrags mit über 1000 Wörtern — spart Stunden mitten im Entwurf für Umstrukturierungen.",
+      "Beim Briefing eines freiberuflichen Autors — kopiere die Gliederungsausgabe als Briefing; Wortzahlen und Intent verhindern abschweifende Entwürfe.",
+      "Beim Audit bestehender Beiträge — füge deine aktuelle H2-Liste ein und bitte das Modell, diese Struktur als Kritik anzuwenden."
+    ]
+  },
+  "modelTips": {
+    "claude": "Am besten darin, subtile Intent-Unterschiede zu erkennen. Weigert sich, Füll-Abschnitte hinzuzufügen, wenn sie ihre Wortzahl nicht verdienen.",
+    "chatgpt": "Funktioniert gut; neigt dazu, einen Extra-Abschnitt der Vollständigkeit halber hinzuzufügen. Kürze danach, wenn es die Wortzahl überschreitet.",
+    "any": "Das Feld „Zu adressierende Fragen“ ist der Hebel. Stelle sicher, dass das Modell es konkret füllt (nicht „diskutiert wichtige Vorteile“, sondern „beantwortet: wie vergleicht sich X mit Y beim Preis?“)."
+  },
+  "exampleHeading": "Beispielausgabe für „Wie wähle ich einen freiberuflichen Buchhalter“",
+  "exampleOutput": "H1: Wie du einen freiberuflichen Buchhalter wählst (Leitfaden 2026)\n\nIntro (~150 Wörter)\n  - Hook: Die Steuersaison ist in 8 Wochen und dein bisheriger Buchhalter hat sich verabschiedet.\n  - Versprechen: Ein 4-Fragen-Filter, der den richtigen Buchhalter in unter einer Stunde aufdeckt.\n  - Skip-ahead: Wenn du nur Tarife brauchst, springe zu §3.\n\nH2: Der 4-Fragen-Filter (450 Wörter)\n  Intent: „wie bewerte ich Buchhalter schnell?“\n  Fragen:\n    - Welche 4 Fragen offenbaren einen kompetenten vs. inkompetenten Freiberufler in 10 Min?\n    - Was ist eine nicht verhandelbare Antwort vs. eine flexible?\n  H3: Frage 1 — aktueller Kundenmix\n  H3: Frage 2 — Software-Stack\n\nH2: Wie du Qualifikationen verifizierst (350 Wörter)\n  Intent: „wie bestätige ich, dass sie seriös sind?“\n  Fragen:\n    - Wo verifiziere ich die CPA-Lizenz?\n    - Wie sieht PII-Zugriff bei einem echten Buchhalter aus?\n\nH2: Preismodelle (500 Wörter)\n  Intent: „was sollte ich erwarten zu zahlen?“\n  Fragen:\n    - Stundenlohn vs. Festpreis vs. Retainer — was ist am günstigsten für jemanden mit 1 W-2 + 2 1099s?\n    - Was ist der typische Bereich 2026?\n  [needs data: Tarifumfrage 2026 für freiberufliche Buchhalter]\n\nH2: Warnsignale beim Onboarding (300 Wörter)\n  Intent: „wann sollte ich aussteigen?“\n  Fragen:\n    - 5 Warnsignale im ersten Gespräch\n\nH2: Erste-90-Tage-Checkliste (250 Wörter)\n  Intent: „was mache ich tatsächlich, sobald ich einen eingestellt habe?“\n\nFazit (~150 Wörter)\n  CTA: Einzelner Link zu einem herunterladbaren PDF mit Interviewfragen.\n\nGesamt: ~2150 Wörter (Ziel war 2200; innerhalb von 10%).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Warum die meisten KI-generierten Gliederungen unterdurchschnittlich abschneiden",
+        "paragraphs": [
+          "Wenn du fragst „erstelle eine Gliederung für einen Beitrag über X“, gibt das Modell ein generisches Skelett zurück: Einleitung, Geschichte, Schlüsselkonzepte, Beispiele, Fazit. Die Struktur ist vorlagengetrieben, nicht themengetrieben, und der resultierende Beitrag liest sich wie jede andere Listicle auf Seite zwei der Suchergebnisse. Leser und Google bemerken das beide — die Absprungrate steigt, das Engagement sinkt, das Ranking erodiert.",
+          "Der obige Prompt erzwingt eine themengetriebene Struktur, indem er Intent und Leserfragen pro Abschnitt verlangt. Ein Abschnitt, der nicht die konkrete Frage artikulieren kann, die er beantwortet, wird gestrichen. Ein Abschnitt ohne Wortzahl-Budget kann den Rest nicht verwässern. Das Ergebnis ist ein Briefing, das den Kontakt mit dem tatsächlichen Schreiben überlebt."
+        ]
+      },
+      {
+        "heading": "Wortzahlen als Planungshebel",
+        "paragraphs": [
+          "Die meisten Beiträge scheitern nicht, weil sie die falschen Themen abdecken, sondern weil die falschen Themen den falschen Platz bekommen. Der wichtigste Abschnitt erhält 200 Wörter und ein tangentialer 600. Wortzahlen im Voraus festzulegen, erzwingt Prioritätsentscheidungen während der Gliederung, wenn sie billig sind, statt während des Lektorats, wenn Kürzungen schmerzen.",
+          "Die Summe-zum-Ziel-Durchsetzung (innerhalb von 10%) fängt ein häufiges KI-Versagen ab: Die Gliederung fügt immer mehr Abschnitte hinzu, bis die Gesamtsumme das 1,5-fache deines Ziels beträgt. Kürze oder führe vor dem Schreiben zusammen — viel schneller als während eines zweiten Entwurfs."
+        ]
+      },
+      {
+        "heading": "Anpassung des Prompts für Content-Audits",
+        "paragraphs": [
+          "Verwende die Struktur wieder, um unterdurchschnittliche Beiträge zu auditieren. Füge die aktuelle H2-Liste ein und frage: „Wende das Blog-Gliederung-Framework an. Welchen Abschnitten fehlt eine klare Suchfrage? Welche Abschnitte überschneiden sich im Intent? Wo passen Wortzahl-Zuteilungen nicht zur Wichtigkeit?“ Das Modell wird ein struktureller Lektor statt eines Textlektors.",
+          "Kombiniere das mit einer schnellen Keyword-Lücken-Prüfung: Füge hinzu „Liste 5 Leserfragen auf, die diese Gliederung NICHT beantwortet, die konkurrierende Top-3-Ergebnisse aber beantworten.“ Das deckt fehlende Abschnitte auf, ohne dass du jeden Konkurrenzartikel lesen musst."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Wie lang sollte typischerweise jedes H2 sein?",
+      "a": "Hängt vom Beitragsziel ab, aber ein vernünftiger Standardwert ist 250-500 Wörter pro H2. Unter 200 Wörtern ist eine Abschnittsüberschrift es nicht wert; über 600 will es sich normalerweise in H3s aufteilen oder zu einem eigenen Beitrag werden."
+    },
+    {
+      "q": "Was bedeutet „Intent“ für einen Abschnitt?",
+      "a": "Die konkrete Leserfrage, die der Abschnitt beantwortet. „Diskutiert Preise“ ist kein Intent. „Beantwortet: sollte ich stündlich oder per Retainer für meine Situation zahlen?“ ist Intent. Je konkreter, desto besser schreibt sich der Abschnitt."
+    },
+    {
+      "q": "Warum Abschnitte [optional] markieren?",
+      "a": "Weil der Prompt ehrlich ist, welche Abschnitte ihren Platz tatsächlich verdienen. Ein „Geschichte von X“-Abschnitt mag 5% der Leser interessieren; die Markierung lässt dich entscheiden, ob du ihn schreibst, zu einer Fußnote degradierst oder ganz weglässt."
+    },
+    {
+      "q": "Kann ich das für Videoskripte oder YouTube-Gliederungen verwenden?",
+      "a": "Ja, aber ändere „Wortzahl“ zu „Bildschirmzeit“ (in Sekunden) und „zu adressierende Fragen“ zu „visuelle Momente“. Die gleiche intentgetriebene Struktur gilt — Zuschauer verlassen Videos aus dem gleichen Grund, aus dem Leser Beiträge verlassen: Abschnitte, die ihre Zeit nicht verdienen."
+    },
+    {
+      "q": "Funktioniert es ohne ein Haupt-Keyword?",
+      "a": "Ja — aber das H1 wird nicht SEO-optimiert sein. Wenn du für einen Newsletter oder internen Blog schreibst, lass das Haupt-Keyword-Feld weg; der Rest funktioniert weiterhin."
+    },
+    {
+      "q": "Wie verhindere ich, dass das Modell Daten erfindet?",
+      "a": "Regel 5 ([needs data: ...]) ist der explizite Anti-Halluzinations-Schutz. Das Modell markiert unbestätigte Behauptungen, die du ausfüllen sollst. Wenn es jemals Statistiken ohne die Markierung produziert, frage „Quelle für diese Zahl?“ und es wird entweder eine liefern oder zugeben, dass es das nicht kann."
+    },
+    {
+      "q": "Sollte ich eine Konkurrenzbeitrag-Analyse hinzufügen?",
+      "a": "Optional, aber wirkungsvoll. Füge einen Abschnitt hinzu: „Top 3 rankende Ergebnisse für das Haupt-Keyword: <Titel + URLs einfügen>. Identifiziere ihre strukturellen Schwächen (Abschnitte, die sie überspringen, Fragen, die sie nicht beantworten).“ Die Gliederung wird sich explizit differenzieren."
+    },
+    {
+      "q": "Warum überspringt der Prompt den „Einleitung ist wichtig“-Abschnitt?",
+      "a": "Weil die meisten KI-Gliederungen ihn als 200-Wörter-Abschnitt hinzufügen, der nur das H1 wiederholt. Moderne Leser und Suchmaschinen bestrafen beide dieses Füllmaterial. Die Hook + Versprechen + Skip-ahead-Mikrostruktur erledigt denselben Job in 50 Wörtern."
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "title": "Reklam metni varyantları promptu — 6 açı, 3 uzunluk, dolgu yok",
+  "shortDescription": "Aynı teklif için 6 farklı reklam metni varyantı üretin — farklı ikna açıları (problem, sonuç, kimlik, sosyal kanıt, kıtlık, karşılaştırma), her biri reklam platformuna hazır üç uzunlukta.",
+  "description": "Yapay zekanın ürettiği reklam metinlerinin çoğu aynı başlığın altı farklı yeniden yazımıdır. Bu prompt, her varyantı ikna açısıyla etiketleyerek gerçek açı çeşitliliğine zorlar ve her birini üç uzunlukta üretir (40 karakterlik başlık, 90 karakterlik tek satır, 50 kelimelik gövde). Tek yapıştırma = test edilebilir 18 A/B adayı.",
+  "metaDescription": "ChatGPT ve Claude için ücretsiz reklam metni promptu. 6 farklı ikna açısı × her biri 3 reklam platformu uzunluğu = teklif başına 18 test edilebilir varyant.",
+  "keywords": [
+    "reklam metni promptu",
+    "ChatGPT reklam metni",
+    "Facebook reklam promptu",
+    "Google Ads promptu",
+    "reklam varyant üreticisi"
+  ],
+  "promptText": "Aşağıdaki teklif için 6 reklam metni varyantı oluştur.\n\nTeklif: {ne sattığınız}\nHedef kitle: {nişin hakkında spesifik olun, 'küçük işletmeler' değil}\nBirincil fayda: {en önemli olan tek şey}\nPlatform: {Meta / Google / TikTok / LinkedIn / vb.}\n\nAşağıdaki 6 açının her biri için üç uzunluk üret:\n  - PROBLEM: hedef kitlenin şu anda hissettiği spesifik acıyı adlandır\n  - SONUÇ: sahip olacakları spesifik sonraki durumu resmet\n  - KİMLİK: kim olmak istediklerine / nasıl görünmek istediklerine hitap et\n  - SOSYAL_KANIT: bir sayı, müşteri tipi veya sonuç belirt\n  - KITLIK: gerçek zaman/stok sınırı (yalnızca gerçekse — uydurma)\n  - KARŞILAŞTIRMA: değerlendirdikleri bariz alternatife karşı\n\nHer açı için şunları çıktıla:\n  - <AÇI ADI>\n    başlık: <40 karakter altı>\n    tek satır: <90 karakter altı>\n    50 kelime: <görsel reklam için 50-60 kelimelik gövde>\n    CTA: <2-3 kelimelik eylem>\n\nKatı kurallar:\n1. Aynı açılış ifadesini açılar arasında tekrar kullanma.\n2. Sayılar inandırıcı olmalı — kesin rakamları bilmiyorsan 'yaklaşık X' de.\n3. KITLIK: gerçek bir kıtlık yoksa bu açıyı atla. Uydurma.\n4. 'kilidini aç', 'kaldıraç', 'oyun değiştirici' ve benzeri LinkedIn dolgu sözcüklerinden kaçın.\n5. Her açının üç uzunluğu gerçekten farklı şeyler söylemeli, tek bir cümlenin üç yeniden yazımı olmamalı.",
+  "useCase": {
+    "headline": "Bunu ne zaman kullanmalı",
+    "items": [
+      "Metin geçmişi olmayan yeni bir teklif lansmanı yaparken — ilk günden itibaren A/B testi yapabileceğiniz 18 aday verir.",
+      "Durağan bir reklam setini denetlerken — mevcut en iyi performans gösterenle birlikte bu promptu yapıştırın, 'hangi açıyı kaçırıyorum?' diye sorun.",
+      "Serbest çalışan bir metin yazarına brief verirken — yapılandırılmış çıktı, 'X için reklam yaz' demekten çok daha net bir brief sağlar."
+    ]
+  },
+  "modelTips": {
+    "claude": "Yapay zeka kalıplaşmış ifadelerden kaçınmada en iyisi. Talimat verilirse kıtlığı uydurmayı reddedecektir.",
+    "chatgpt": "Dolgu sözcükleri eklemeye eğilimlidir ('gerçekten', 'sadece', 'yalnızca'). Bunları bastırmak için 'dolgu zarfı yok' ekleyin.",
+    "any": "Asıl kaldıraç açı etiketleridir. Onlar olmadan her model varsayılan olarak SONUÇ açısına döner ve çeşitliliği atlar."
+  },
+  "exampleHeading": "Serbest çalışan muhasebe hizmeti örneği",
+  "exampleOutput": "PROBLEM\n  başlık: Yine vergi sezonu. Şimdiden mi?\n  tek satır: Geçen yılın defterleri hâlâ mutabakatsız — ve şimdi mart ayındayız.\n  50 kelime: QuickBooks'unuzda 'sınıflandırılmamış' işlemler birikiyorsa, vergi beyannameniz zaman, hata veya her ikisi açısından pahalıya patlayacak. 12 ayı iki haftada düzenleriz, sabit ücret, makbuzlar zaten ekli. 15 Nisan'ın kayıp bir hafta sonu anlamına gelmesi gerekmiyor.\n  CTA: Ücretsiz görüşme ayırt\n\nSONUÇ\n  başlık: Cuma'ya kadar kapalı defterler.\n  tek satır: Pazartesi makbuz ayakkabı kutusunu teslim edin, Cuma'ya kadar denetime hazır defterleri alın.\n  50 kelime: Yıllık mutabakatta 5 günlük teslimat: her işlem sınıflandırılmış, her makbuz ekli, her çeyreğin vergi ödemesi doğrulanmış. Gerçek marjınızı bir sonraki üç aylık toplantıya kadar bileceksiniz. Çoğu müşteri, başlangıçtan sonra çeyrek başına defter tutmada 10+ saat tasarruf eder.\n  CTA: Bu hafta başla\n\n[kalan 4 açı aynı yapıyla devam eder]",
+  "article": {
+    "sections": [
+      {
+        "heading": "Varsayılan reklam metni promptları neden altı neredeyse aynı başlık üretir",
+        "paragraphs": [
+          "Herhangi bir chatbot'a 'X için altı reklam başlığı' isteyin, aynı fikrin altı yeniden yazımını alırsınız: sonuç açısı, hafifçe yeniden karıştırılmış. Modelin, siz zorlamadıkça açı değiştirmek için bir nedeni yoktur. Sonuç, hep birlikte kazanan veya kaybeden altı aday — boşa giden bir A/B testi.",
+          "Açıları önceden etiketlemek, etkisi büyük küçük bir değişikliktir. Her etiket, modeli örneğin problem odaklı metin ile kimlik odaklı metin arasındaki gerçek farkı bulmaya yöneltir. Çıktı size test edilecek altı farklı hipotez verir, bir hipotezin altı yeniden yazımını değil."
+        ]
+      },
+      {
+        "heading": "Açı başına neden üç uzunluk",
+        "paragraphs": [
+          "Modern reklam platformları farklı formatları önemser: 40 karakterlik bir Google Ads başlığı, 90 karakterlik bir Meta birincil metni, görsel reklamlar için 50 kelimelik bir gövde. Bunları tek bir açıdan tek bir geçişte üretmek, mesajı formatlar arasında tutarlı tutar — her formatı ayrı yazıp sonradan hizalamaya çalışmaktan çok daha kolaydır.",
+          "Yalnızca iki formata ihtiyacınız varsa, üçüncüyü promptan çıkarın. Yapı aynı kalır. İstemediğiniz şey 'kısa ve uzun' — yararlı olmak için çok belirsiz, model rastgele karakter sayıları seçer."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Neden 'kilidini aç' ve 'kaldıraç' açıkça yasaklanıyor?",
+      "a": "Çünkü bunlar yapay zeka tarafından üretilmiş metnin işaretleridir ve hiçbir spesifik bilgi eklemezler. Her okuyucu 'potansiyelinizin kilidini açın' ifadesini bin kez görmüştür. Somut fiiller ('bitir', 'azalt', 'önle') soyut olanlardan tutarlı bir şekilde daha iyi performans gösterir."
+    },
+    {
+      "q": "SOSYAL_KANIT için gerçek rakamlarım yoksa ne olur?",
+      "a": "Prompt, makul tahminler için 'yaklaşık X' kullanımına izin verir. Hiç nicel kanıtınız yoksa, SOSYAL_KANIT açısını çıkarın ve yerine farklı bir sonucu vurgulayan ikinci bir SONUÇ varyantı koyun. Bir sayıyı uydurmak, açıyı atlamaktan daha kötüdür."
+    },
+    {
+      "q": "Bunun 'daha yaratıcı ol' ile yapılan 6 yeniden yazımdan farkı nedir?",
+      "a": "'Yaratıcı' bir talimat değildir; model bunu 'daha fazla sıfat ekle' olarak yorumlar. İkna açısını adlandırmak (PROBLEM, KİMLİK, vb.), modelin uygulayabileceği bir direktiftir. Farkı hemen göreceksiniz."
+    },
+    {
+      "q": "Bu B2B reklamlar için işe yarar mı?",
+      "a": "Evet — ancak hedef kitle alanını dikkatli yeniden yazın. '50-200 kişilik SaaS şirketlerindeki CTO'lar', 'B2B karar vericiler'den daha keskin bir metin üretecektir. Hedef kitle açıklaması, en büyük girdi kalitesi kaldıracıdır."
+    },
+    {
+      "q": "Landing page metni için kullanabilir miyim?",
+      "a": "'reklam'ı 'hero bölümü', 'alt başlık' ve 'ilk kıvrım gövdesi' olarak değiştirerek uyarlayın. Açı etiketleri hâlâ geçerlidir. Landing page'ler tek bir parçada 2-3 açı kullanmanıza izin verir (örneğin, başlıkta problem, alt başlıkta sonuç, kıvrım üstünde sosyal kanıt)."
+    },
+    {
+      "q": "Marka sesi tutarlılığı ne olacak?",
+      "a": "Teklifin üstüne bir 'Marka sesi notları:' bölümü ekleyin. Örnek: 'Marka sesi: sade, üstünlük belirten ifadeler yok, ortalama 12 kelimenin altında cümleler'. Model bunları yakından takip edecektir."
+    },
+    {
+      "q": "Teklifime uymayan bir açı önermesi sorun mu?",
+      "a": "Hayır — bu bir sinyaldir. KITLIK açısı 'anlamlı bir kıtlığımız yok' diye geri dönerse, bunun güçlü açınız olmadığını öğrenmiş olursunuz. Zorlamayın."
+    },
+    {
+      "q": "Bu çıktıyı A/B testine nasıl götürürüm?",
+      "a": "En güçlü 3 açıyı seçin (genellikle PROBLEM, SONUÇ ve KİMLİK/SOSYAL_KANIT'tan biri). Her açı için bir kampanyada her açıyı kendi reklam setinde olacak şekilde bir varyant yayınlayın. 7-14 gün sonra başlık gürültüsünü değil, açı etkisini göreceksiniz."
+    }
+  ]
+}

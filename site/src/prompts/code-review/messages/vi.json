@@ -1,0 +1,88 @@
+{
+  "title": "Prompt code reviewer senior — tìm bug, vấn đề hiệu năng, edge case",
+  "shortDescription": "Một prompt tái sử dụng được cho Claude/ChatGPT/Cursor, biến model thành reviewer senior tập trung vào tính đúng đắn, hiệu năng và edge case — chứ không phải bắt lỗi vặt.",
+  "description": "Hầu hết các bài review code của LLM chìm bạn trong các lỗi style vặt và bỏ qua bug thực sự. Prompt này buộc model phải phân loại theo mức độ nghiêm trọng, chỉ flag những thứ sẽ sống sót qua một bài review nghiêm khắc của tech-lead, và trích dẫn chính xác số dòng mà nó lo ngại để bạn có thể xác minh từng phát hiện một cách nhanh chóng.",
+  "metaDescription": "Prompt code review senior miễn phí cho Claude, ChatGPT và Cursor. Phân loại theo mức độ nghiêm trọng, tìm bug thật và vấn đề hiệu năng, bỏ qua lỗi style vặt.",
+  "keywords": [
+    "prompt code review",
+    "claude code review",
+    "chatgpt code review",
+    "ai code review",
+    "prompt reviewer senior"
+  ],
+  "promptText": "Bạn là một senior staff engineer đang review diff bên dưới. Mục tiêu của bạn là bắt được những gì thực sự sẽ sống sót qua một bài review nghiêm khắc của tech-lead — không phải tiếng ồn lint.\n\nQuy tắc review:\n1. Phân loại mỗi phát hiện vào một trong: BLOCKER, MAJOR, MINOR, NIT.\n2. Mặc định chỉ xuất ra BLOCKER và MAJOR. Ẩn MINOR và NIT trừ khi tôi yêu cầu rõ ràng.\n3. Với mỗi phát hiện, trích dẫn chính xác đường dẫn file + dải số dòng. Sau đó giải thích (a) cái gì sai, (b) failure mode trong production, (c) cách sửa đề xuất.\n4. Nếu bạn dưới 80% chắc chắn rằng vấn đề là thật, đánh dấu phát hiện đó là [low-confidence] và giải thích context bổ sung nào sẽ giúp bạn xác minh.\n5. Kết thúc bằng một đoạn tổng kết: ship-it / ship-with-followups / do-not-ship.\n\nKHÔNG bình luận về:\n- Sở thích đặt tên trừ khi chúng thực sự gây hiểu lầm.\n- Định dạng/khoảng trắng nếu đang dùng formatter.\n- Các tối ưu hóa giả định mà bạn không thể gắn vào một hot path đã đo lường.\n- Các pattern mà codebase đã dùng ở chỗ khác (đó là tính nhất quán phong cách, không phải bug).\n\nDiff cần review:\n\n[dán unified diff hoặc nội dung file của bạn vào đây]",
+  "useCase": {
+    "headline": "Khi nào dùng prompt này",
+    "items": [
+      "Trước khi merge một PR không tầm thường — chạy diff qua prompt này để làm nổi bật bất kỳ điều gì bạn muốn một cặp mắt thứ hai xem.",
+      "Tự review công việc của mình — hữu ích trước khi yêu cầu human review, bắt được những thứ ngượng ngùng.",
+      "Onboarding vào một codebase chưa quen — dán một hàm cùng với prompt để hiểu rủi ro trước khi bạn thay đổi nó."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude (Sonnet 4.6 hoặc Opus 4.7) thường cho ra phân loại sâu sắc nhất. Dán diff trong code block; context dài xử lý tốt review toàn PR.",
+    "chatgpt": "GPT-5 / GPT-4o có xu hướng hung hăng hơn trong việc flag style. Quy tắc 'suppress MINOR và NIT' phía trên giữ nó đi đúng hướng.",
+    "cursor": "Trong Cursor, lưu cái này thành entry .cursorrules hoặc dán vào composer. Hoạt động tốt với tham chiếu @file."
+  },
+  "exampleHeading": "Ví dụ output",
+  "exampleOutput": "BLOCKER: src/auth/session.ts:42-58\n  - what: So sánh session token dùng ===, không phải constant-time compare.\n  - failure mode: Có thể bị rò rỉ qua timing-attack khi remote login.\n  - fix: Chuyển sang crypto.timingSafeEqual() trên cặp buffer.\n\nMAJOR: src/auth/session.ts:73 [low-confidence]\n  - what: Refresh token được ghi vào localStorage.\n  - failure mode: Rủi ro bị exfiltrate qua XSS nếu bất kỳ nội dung người dùng chưa được sanitize nào đến được trang.\n  - fix: Chuyển sang httpOnly cookie nếu client không cần đọc nó. (low-confidence: Tôi không thấy front-end tiêu thụ token này như thế nào.)\n\nSummary: ship-with-followups. Sửa constant-time là bắt buộc trước khi merge; vị trí lưu trữ là issue cần follow-up, đáng mở bất kể PR này có gì.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Vì sao hầu hết AI code review đều vô dụng",
+        "paragraphs": [
+          "Mặc định, các language model mặc định vào persona 'junior hữu ích' khi làm task code-review. Điều đó nghĩa là chúng bình luận quá mức về cách đặt tên, gợi ý các bản viết lại 'clean code' cho code vốn đã ổn, và chôn bug thật duy nhất trong một bức tường các đề xuất mà bạn phải bỏ qua. Tỷ lệ tín hiệu trên nhiễu giết chết workflow — hầu hết các team dừng dùng AI cho review trong vòng một tuần.",
+          "Prompt phía trên lật ngược ba điều: yêu cầu phân loại mức độ nghiêm trọng để các vấn đề tầm thường bị ẩn rõ ràng, yêu cầu số dòng để mỗi phát hiện có thể xác minh trong vài giây, và buộc phải có flag độ tin cậy để bạn biết phát hiện nào đáng tin mà không cần đọc toàn bộ file."
+        ]
+      },
+      {
+        "heading": "Kết hợp với CI của bạn",
+        "paragraphs": [
+          "Chạy prompt này như một bước 'second opinion' trong workflow PR — không phải kiểm tra gating. Model vẫn ảo giác, đặc biệt với các invariant xuyên file và code phụ thuộc vào convention framework mà bạn không dán vào. Dùng output như một danh sách việc cần xác minh, không phải danh sách vấn đề cần máy móc sửa.",
+          "Nếu bạn muốn đưa nó vào CI, xuất các phát hiện dưới dạng JSON (sửa prompt: 'trả về JSON array với các trường severity, path, lineStart, lineEnd, what, fix, confidence'). Sau đó đăng các BLOCKER/MAJOR lên PR dưới dạng một comment duy nhất với header rõ ràng 'AI assist — xác minh trước khi hành động'."
+        ]
+      },
+      {
+        "heading": "Điều chỉnh prompt cho team của bạn",
+        "paragraphs": [
+          "Thêm phần 'Codebase context' phía trên diff — dán 5-10 dòng mô tả stack, convention test, và bất kỳ invariant không hiển nhiên nào (ví dụ: 'mọi DB write đều đi qua src/db/withTx, không bao giờ qua raw client'). Model bỏ sót convention đặc thù của codebase nếu không có.",
+          "Nếu team của bạn có các điểm yếu đã biết (race condition trong job runner, query N+1 trong một service cụ thể), thêm dòng 'Đặc biệt để ý: …'. Model sẽ đánh trọng số cao hơn cho các lớp bug đó và có xu hướng flag chúng khi có mặt."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Tôi có thể dùng cái này cho code closed-source không?",
+      "a": "Có, nhưng kiểm tra chính sách của nhà tuyển dụng trước. Bản thân prompt vô hại; điều quan trọng là bạn có được phép dán code vào model đang dùng hay không. Gói enterprise của Claude và ChatGPT thường không train trên input của bạn; gói consumer thì có thể."
+    },
+    {
+      "q": "Vì sao ẩn các phát hiện MINOR và NIT?",
+      "a": "Vì trong thực tế chúng tạo ra review fatigue. Sau ghi chú thứ ba 'cân nhắc tách cái này thành một hàm', bạn ngừng đọc. Ẩn chúng giúp giữ tín hiệu BLOCKER/MAJOR sắc nét. Bật lại với 'show all findings including MINOR and NIT' khi bạn muốn review sâu."
+    },
+    {
+      "q": "Diff có thể dài đến đâu?",
+      "a": "Claude Sonnet/Opus và GPT-5 xử lý thoải mái 50K+ token diff. Với PR rất lớn, chia review theo thư mục (review src/auth trước, sau đó src/billing) để model có thể suy nghĩ về từng subsystem độc lập."
+    },
+    {
+      "q": "Còn review chuyên về security thì sao?",
+      "a": "Prompt này bắt được các vấn đề crypto/storage/SSRF hiển nhiên nhưng không thay thế được security review cho code auth hoặc payment. Với các đường này, chạy prompt này và một prompt security-review chuyên biệt (chúng tôi sẽ publish riêng)."
+    },
+    {
+      "q": "Có review được nhiều file không?",
+      "a": "Có — dán diff bao gồm tất cả các file. Nó xử lý các invariant xuyên file khá tốt trong một lần dán; với các vấn đề trải dài qua nhiều PR (ví dụ: 'cái này có nhất quán với cách feature flag được gate ở chỗ khác không?'), bao gồm vài trích đoạn đại diện từ các file khác đó."
+    },
+    {
+      "q": "Tôi có nên tin các phát hiện [low-confidence] không?",
+      "a": "Coi chúng là 'điều tra trước khi hành động'. Khoảng một nửa các phát hiện low-confidence là thật nhưng model không xác minh được; nửa còn lại là đọc nhầm. Flag này là tín hiệu trung thực, không phải lý do để bỏ qua phát hiện."
+    },
+    {
+      "q": "Vì sao nó muốn tôi chỉ định failure mode?",
+      "a": "Vì 'cái này sai' là vô dụng nếu không có 'cái này sẽ crash với input unicode'. Dòng failure-mode cho bạn biết mức ưu tiên: bản sửa ngăn một edge case 1-trong-một-triệu khác với bản sửa ngăn một sự cố hàng ngày trong prod."
+    },
+    {
+      "q": "Tôi dùng cái này trong Cursor cụ thể thế nào?",
+      "a": "Lưu nội dung prompt vào .cursorrules ở gốc repo, hoặc dán vào composer với tham chiếu @file cho các file đang review. Cursor sẽ giữ rules hoạt động cho project đó."
+    }
+  ]
+}

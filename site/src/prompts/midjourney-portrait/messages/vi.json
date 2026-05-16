@@ -1,0 +1,86 @@
+{
+  "title": "Prompt chân dung Midjourney — kiểm soát khuôn mặt, ánh sáng, ống",
+  "shortDescription": "Mẫu prompt Midjourney dạng module cho chân dung với kiểm soát rõ ràng về chủ thể, khung hình, ánh sáng, ống kính, tâm trạng và phong cách. Tránh vẻ ngoài 'chân dung AI' chung chung.",
+  "description": "Các bức chân dung Midjourney mặc định đều có cùng độ mịn uncanny-valley, ánh sáng key kịch tính, và bokeh bão hòa quá mức. Mẫu prompt này phá vỡ mặc định bằng cách chỉ định ống kính (tiêu cự rất quan trọng), hướng ánh sáng, và một điều khoản 'no over-rendered skin' buộc kết cấu da chân thực.",
+  "metaDescription": "Prompt chân dung Midjourney dạng module miễn phí. Ống kính, ánh sáng, khung hình, tâm trạng — kiểm soát rõ ràng. Tránh vẻ AI chung chung. Kèm ví dụ v6/v7.",
+  "keywords": [
+    "prompt chân dung Midjourney",
+    "mẫu prompt Midjourney",
+    "prompt chân dung AI",
+    "prompt ánh sáng Midjourney",
+    "chân dung AI chân thực"
+  ],
+  "promptText": "[chủ thể — phải cụ thể: tuổi, vóc dáng, tóc, biểu cảm, trang phục]\n+ [khung hình: headshot / waist-up / full-body], [góc máy: eye-level / low / 3-quarter]\n+ shot on [ống kính: 35mm / 50mm / 85mm / 105mm], [khẩu độ: f/1.4 / f/2 / f/2.8]\n+ [ánh sáng: natural window light from left / golden hour backlight / soft north-window light / overcast outdoor]\n+ [tâm trạng: contemplative / candid joy / quiet intensity / weariness — chọn một tâm trạng cụ thể]\n+ [môi trường / nền: mô tả 5-8 từ với các gợi ý chiều sâu]\n+ realistic skin texture with visible pores and natural asymmetry, no plastic smoothing\n+ [tham chiếu phong cách: editorial / documentary / film still / Renaissance painting / 1970s magazine cover]\n--ar 4:5 --style raw --v 7\n\nVí dụ ráp lại (thay phần trong ngoặc):\n\n  middle-aged woman in her late 50s, silver hair pulled back, soft smile lines, wearing a charcoal cashmere sweater, headshot, eye-level, shot on 85mm f/1.8, natural north-window light from screen left, contemplative mood, sparse home library blurred behind her with one warm lamp, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style --ar 4:5 --style raw --v 7\n\nChiến thuật biến thể:\n- Cùng prompt, chỉ đổi ống kính (35mm → 85mm → 135mm) để được 3 bố cục khác biệt.\n- Cùng prompt, đổi ánh sáng (window → golden hour → overcast) để nghiên cứu tâm trạng.\n- Thêm --seed <n> để khóa khuôn mặt qua các lần lặp một khi bạn tìm được khuôn mặt ưng ý.",
+  "useCase": {
+    "headline": "Khi nào dùng prompt này",
+    "items": [
+      "Chân dung phong cách editorial, mục tiêu là cá tính, không phải ảnh glamour.",
+      "Ảnh tác giả hoặc headshot LinkedIn — đặc tả ống kính + ánh sáng ngăn vẻ AI bóng loáng dễ nhận ra.",
+      "Concept art cho nhân vật hư cấu khi bạn cần tham chiếu khuôn mặt nhất quán qua nhiều ảnh (dùng --seed)."
+    ]
+  },
+  "modelTips": {
+    "midjourney": "Đã test trên v6.1 và v7. Dùng --style raw để ức chế cú đẩy cinematic mặc định của Midjourney; điều này bảo toàn tính chân thực. --ar 4:5 là khung crop chân dung editorial; chuyển sang --ar 3:2 cho cảm giác documentary."
+  },
+  "exampleHeading": "Ba biến thể từ cùng một khung xương",
+  "exampleOutput": "Variation A (riêng tư):\n  35-year-old man with weathered hands, salt-and-pepper beard, looking down at a worn leather notebook, headshot tilted slightly down, shot on 50mm f/1.4, single candle as only light source from the right, quiet intensity, dim wooden table with handwritten pages, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, film still style, --ar 4:5 --style raw --v 7\n\nVariation B (năng động):\n  young Black woman in her early 20s, joyful caught laugh mid-conversation, twist-out curls catching backlight, waist-up, three-quarter angle, shot on 85mm f/2, golden hour backlight from her left + soft fill from camera right, candid joy, blurred park bench and autumn leaves behind, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, documentary editorial style, --ar 3:2 --style raw --v 7\n\nVariation C (trang trọng):\n  East Asian businesswoman in her 40s, sharp tailored navy blazer, neutral confident expression, three-quarter framing, low angle, shot on 35mm f/2.8, soft overcast outdoor light, quiet authority, modernist office building lobby blurred behind her, realistic skin texture with visible pores and natural asymmetry no plastic smoothing, editorial style, --ar 4:5 --style raw --v 7",
+  "article": {
+    "sections": [
+      {
+        "heading": "Vì sao các chân dung Midjourney mặc định đều trông giống nhau",
+        "paragraphs": [
+          "Dữ liệu huấn luyện và phong cách mặc định của Midjourney ưu tiên mạnh mẽ ánh sáng kịch tính cấp điện ảnh, da đã retouch làm đẹp, và bokeh 85mm-f/1.4. Không có kiểm soát ống kính, ánh sáng và kết cấu da rõ ràng, mọi chân dung đều hội tụ về thẩm mỹ 'bộ lọc Instagram AI' này. Biên tập viên và nhà tuyển dụng giờ nhận ra nó ngay lập tức.",
+          "Mẫu prompt phía trên phá vỡ sự hội tụ ở ba chỗ: ống kính (thay đổi tiêu cự thay đổi hình học khuôn mặt), hướng và độ mềm của ánh sáng, và một điều khoản 'realistic skin texture' rõ ràng ức chế chế độ làm đẹp mặc định. Hai cái đầu là nhiếp ảnh thuần túy; cái thứ ba là anti-pattern đặc thù của Midjourney."
+        ]
+      },
+      {
+        "heading": "Lựa chọn ống kính thay đổi khuôn mặt",
+        "paragraphs": [
+          "Ống kính rộng (35mm) làm cằm trông đẹp hơn và phóng đại mũi; chân dung cảm thấy gần gũi và đôi khi hơi hài hước. 50mm là ống kính 'normal' — tự nhiên nhất. 85mm và 105mm nén các đặc điểm, làm đẹp hầu hết khuôn mặt, và tạo ra vẻ editorial cổ điển. Chỉ đổi ống kính trong prompt tạo ra ba chân dung khác biệt rõ rệt của cùng một nhân vật.",
+          "Dùng cách này khi tạo nhiều shot của cùng một nhân vật hư cấu. Khóa seed, chỉ thay đổi ống kính. Bạn được danh tính nhất quán trong các bối cảnh hình ảnh khác nhau — một tính năng khó đạt được chỉ bằng prompt."
+        ]
+      },
+      {
+        "heading": "Hướng ánh sáng dẫn dắt tâm trạng — hãy nói nó rõ ràng",
+        "paragraphs": [
+          "'Ánh sáng tự nhiên' không phải là chỉ thị; model chọn cái gì đó kịch tính theo mặc định. 'Soft north-window light from screen left' là chỉ thị mà model có thể thực thi chính xác. Mẫu prompt yêu cầu một hướng (trái/phải/sau/trước), một chất lượng (mềm/cứng), và một nguồn (cửa sổ/giờ vàng/nến/u ám).",
+          "Ba ánh xạ tâm trạng nhanh: backlight + tông ấm = lãng mạn / hoài cổ. Một ánh sáng bên cứng = kịch tính / chất vấn. U ám + ánh sáng mềm chính diện = documentary / trung thực. Lựa chọn một cách có ý thức là sự khác biệt giữa 'một chân dung' và 'một chân dung truyền tải điều bạn muốn'."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Có hoạt động trong Midjourney v5 không?",
+      "a": "Có, nhưng bỏ --style raw (thêm vào ở v5.2) và tham chiếu v7. Các điều khoản về ống kính + ánh sáng vẫn giúp. Các phiên bản mới hơn (v6.1+, v7) tôn trọng điều khoản realistic-skin tốt hơn."
+    },
+    {
+      "q": "Có thể dùng cho ảnh toàn thân không?",
+      "a": "Có — đổi khung hình thành full-body, chuyển ống kính sang 35mm hoặc 50mm (không phải 85mm — quá tâng bốc cho cơ thể), và thêm mô tả tư thế. Điều khoản kết cấu da ít tác động hơn ở toàn thân nhưng vẫn nên giữ."
+    },
+    {
+      "q": "Vì sao chỉ định khẩu độ nếu Midjourney không phải máy ảnh thật?",
+      "a": "Đó là một cách viết tắt mà model hiểu. f/1.4 nghĩa là 'làm mờ nền cực mạnh, mặt phẳng lấy nét nông, gần gũi'. f/8 nghĩa là 'hầu hết mọi thứ sắc nét, chân dung môi trường'. Chỉ định khẩu độ kiểm soát bokeh theo cách Midjourney diễn giải đáng tin cậy."
+    },
+    {
+      "q": "Làm sao giữ cùng khuôn mặt qua nhiều ảnh?",
+      "a": "Tạo một ảnh bạn thích, sau đó thêm --seed <n> với seed từ ảnh đó. Các lần tạo tiếp theo dùng cùng seed và prompt tương tự sẽ cho ra khuôn mặt tương tự. Kết hợp với --cref (character reference) trong v6+, bạn có nhân vật nhất quán."
+    },
+    {
+      "q": "Tham chiếu phong cách nào hoạt động tốt?",
+      "a": "Tên nhiếp ảnh gia đôi khi hoạt động nhưng không đáng tin cậy. Đáng tin cậy hơn: 'documentary editorial style', 'film still style', 'Renaissance oil painting style', '1970s magazine cover', 'medium-format film'. Thời kỳ + phương tiện cụ thể thắng tên nhiếp ảnh gia cụ thể."
+    },
+    {
+      "q": "Vì sao không chỉ định dân tộc / tuổi bằng số?",
+      "a": "Mẫu này có — và điều đó quan trọng. Midjourney có các thiên kiến đã biết, lộ ra khi chủ thể không được chỉ định. Luôn nêu rõ chủ thể để tránh mặc định về một hồ sơ nhân khẩu học hẹp."
+    },
+    {
+      "q": "Các prompt này có an toàn cho sử dụng thương mại không?",
+      "a": "Sử dụng thương mại của Midjourney phụ thuộc vào gói đăng ký của bạn (Standard+ cho phép). Bản thân các prompt không thay đổi điều đó. Với công việc khách hàng, kiểm tra kỹ ToS hiện tại của Midjourney — nó thay đổi."
+    },
+    {
+      "q": "Nếu kết quả vẫn trông quá 'AI' thì sao?",
+      "a": "Thêm 'medium format film' hoặc 'shot on Portra 400' vào tham chiếu phong cách, và thêm 'film grain, slight imperfection, candid' gần cuối. Điều này đẩy model ra khỏi độ sắc nét số sạch sẽ về phía khiếm khuyết nhiếp ảnh."
+    }
+  ]
+}

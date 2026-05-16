@@ -1,0 +1,82 @@
+{
+  "title": "Prompt dàn ý bài blog — cấu trúc H2/H3 kèm intent và số từ",
+  "shortDescription": "Tạo một dàn ý chặt chẽ, thân thiện với tìm kiếm cho bài blog: cấu trúc phân cấp H2/H3, intent cho từng phần, mục tiêu số từ, và các câu hỏi mà mỗi phần trả lời.",
+  "description": "Hầu hết dàn ý do AI tạo ra đều là khuôn mẫu nhạt nhẽo. Prompt này buộc model phải suy nghĩ về search intent, đặt cho mỗi phần một mục tiêu đo lường được, và làm nổi bật các câu hỏi cụ thể mà người đọc sẽ có — cấu trúc giúp xếp hạng và cấu trúc mà con người thực sự đọc hết.",
+  "metaDescription": "Prompt dàn ý blog miễn phí. Tạo cấu trúc H2/H3 kèm intent, số từ và câu hỏi của người đọc cho từng phần. Hoạt động với Claude, ChatGPT, Gemini.",
+  "keywords": ["prompt dàn ý blog", "cấu trúc blog AI", "prompt dàn ý SEO", "prompt content brief", "lập kế hoạch bài blog"],
+  "promptText": "Xây dựng dàn ý cho bài blog.\n\nChủ đề: {chủ đề của bạn}\nĐộc giả mục tiêu: {họ là ai — người mới / người làm nghề lâu năm / người ra quyết định}\nTừ khóa chính: {cụm từ bạn đang cố xếp hạng}\nSearch intent: {informational / commercial / navigational / transactional}\nMục tiêu số từ: {N — khoảng phổ biến 1500-3500}\n\nTrả về dàn ý theo cấu trúc chính xác sau:\n\nH1: <tiêu đề — phải chứa từ khóa chính một cách tự nhiên, tối đa 60 ký tự>\n\nIntro (~{N*0.05} từ)\n  - Hook: <một câu về lý do người đọc quan tâm ngay lúc này>\n  - Promise: <điều họ sẽ biết sau khi đọc>\n  - Skip-ahead: <nếu câu trả lời nằm ở phần X, chỉ họ đến đó>\n\nH2: <tiêu đề phần>\n  Intent: <câu hỏi nào của người đọc mà phần này trả lời>\n  Số từ: <N>\n  Các câu hỏi cần giải quyết:\n    - <Q1>\n    - <Q2>\n  H3: <tiểu mục> (chỉ khi cần; tối đa 3 H3 cho mỗi H2)\n\n... (tổng 3-6 phần H2; độ sâu chọn theo chủ đề, không phải theo khuôn mẫu)\n\nKết luận (~{N*0.05} từ)\n  - Điểm chính một dòng\n  - Một CTA duy nhất (không liệt kê danh sách CTA)\n\nRàng buộc cứng:\n1. Mỗi H2 phải trả lời một câu hỏi tìm kiếm khác nhau — không có hai phần phủ cùng một intent.\n2. Bỏ qua phần độn 'introduction is important' mà nhiều dàn ý AI hay thêm vào. Người đọc thật sự lướt qua nó.\n3. Nếu bạn định gợi ý một phần chỉ là 'background context', hãy đánh dấu [optional] — hầu hết người đọc muốn câu trả lời trước.\n4. Tổng số từ phải nằm trong phạm vi 10% so với mục tiêu.\n5. Không bịa số liệu thống kê hay nguồn. Nếu một phần cần dữ liệu, đánh dấu [needs data: <loại dữ liệu nào>].",
+  "useCase": {
+    "headline": "Khi nào dùng prompt này",
+    "items": [
+      "Trước khi viết bất kỳ bài nào trên 1000 từ — tiết kiệm hàng giờ tái cấu trúc giữa lúc viết.",
+      "Brief cho writer freelance — copy output dàn ý làm brief; số từ và intent ngăn các bản nháp lan man.",
+      "Đánh giá các bài đã có — dán danh sách H2 hiện tại và yêu cầu model áp dụng cấu trúc này như một bài phê bình."
+    ]
+  },
+  "modelTips": {
+    "claude": "Tốt nhất trong việc nắm bắt khác biệt intent tinh tế. Sẽ từ chối thêm phần độn nếu chúng không xứng đáng với số từ được cấp.",
+    "chatgpt": "Hoạt động tốt; hay thêm một phần phụ để cho 'đầy đủ'. Cắt bớt sau nếu vượt mục tiêu số từ.",
+    "any": "Trường 'questions to address' là đòn bẩy. Đảm bảo model điền nó cụ thể (không phải 'bàn về lợi ích chính' mà là 'trả lời: X so với Y khác nhau về giá thế nào?')."
+  },
+  "exampleHeading": "Ví dụ output cho 'Cách chọn kế toán freelance'",
+  "exampleOutput": "H1: Cách Chọn Kế Toán Freelance (Hướng dẫn 2026)\n\nIntro (~150 từ)\n  - Hook: Mùa thuế còn 8 tuần nữa và kế toán cũ của bạn biến mất không lời từ biệt.\n  - Promise: Bộ lọc 4 câu hỏi giúp tìm ra kế toán phù hợp trong dưới một giờ.\n  - Skip-ahead: Nếu bạn chỉ cần biết giá, hãy nhảy đến §3.\n\nH2: Bộ lọc 4 câu hỏi (450 từ)\n  Intent: 'làm sao tôi đánh giá nhanh kế toán?'\n  Câu hỏi:\n    - 4 câu hỏi nào để phân biệt freelancer có năng lực và không có năng lực trong 10 phút?\n    - Đâu là câu trả lời không thể thương lượng và đâu là linh hoạt?\n  H3: Câu hỏi 1 — danh sách khách hàng hiện tại\n  H3: Câu hỏi 2 — bộ công cụ phần mềm\n\nH2: Cách xác minh chứng chỉ (350 từ)\n  Intent: 'làm sao tôi xác nhận họ là thật?'\n  Câu hỏi:\n    - Xác minh giấy phép CPA ở đâu?\n    - Truy cập PII với kế toán thật trông như thế nào?\n\nH2: Mô hình giá (500 từ)\n  Intent: 'tôi nên kỳ vọng trả bao nhiêu?'\n  Câu hỏi:\n    - Theo giờ vs cố định vs retainer — cái nào rẻ nhất cho người có 1 W-2 + 2 1099?\n    - Khoảng giá điển hình năm 2026 là gì?\n  [needs data: khảo sát giá kế toán freelance 2026]\n\nH2: Cờ đỏ trong quá trình onboarding (300 từ)\n  Intent: 'khi nào tôi nên rút lui?'\n  Câu hỏi:\n    - 5 cờ đỏ trong cuộc gọi đầu\n\nH2: Checklist 90 ngày đầu (250 từ)\n  Intent: 'tôi làm gì sau khi đã thuê được một người?'\n\nKết luận (~150 từ)\n  CTA: Một liên kết duy nhất đến PDF câu hỏi phỏng vấn có thể tải về.\n\nTổng: ~2150 từ (mục tiêu 2200; nằm trong 10%).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Vì sao hầu hết dàn ý do AI tạo ra đều hoạt động kém",
+        "paragraphs": [
+          "Nếu bạn hỏi 'lập dàn ý cho bài về X', model trả về một khung chung: giới thiệu, lịch sử, khái niệm chính, ví dụ, kết luận. Cấu trúc đi theo khuôn mẫu, không theo chủ đề, và bài viết kết quả đọc giống như mọi bài listicle khác ở trang hai của kết quả tìm kiếm. Người đọc và Google đều nhận ra điều này — bounce rate tăng, mức độ tương tác giảm, thứ hạng xói mòn.",
+          "Prompt phía trên buộc cấu trúc đi theo chủ đề bằng cách yêu cầu intent và câu hỏi của người đọc cho từng phần. Phần nào không nói rõ được câu hỏi cụ thể mà nó trả lời thì bị cắt. Phần nào không có ngân sách số từ thì không thể làm loãng phần còn lại. Output là một bản brief sống sót khi va chạm với việc viết thật."
+        ]
+      },
+      {
+        "heading": "Số từ như một đòn bẩy lập kế hoạch",
+        "paragraphs": [
+          "Hầu hết bài viết thất bại không phải vì phủ sai chủ đề mà vì sai chủ đề được cấp sai lượng không gian. Phần quan trọng nhất chỉ được 200 từ còn phần lan man được 600. Chỉ định số từ ngay từ đầu buộc các quyết định ưu tiên xảy ra trong giai đoạn dàn ý, khi chúng còn rẻ, thay vì lúc biên tập, khi cắt bỏ rất đau.",
+          "Yêu cầu tổng phải đạt mục tiêu (trong 10%) bắt được một lỗi AI phổ biến: dàn ý cứ thêm phần cho đến khi tổng gấp 1.5 lần mục tiêu của bạn. Cắt hoặc gộp trước khi viết — nhanh hơn nhiều so với trong bản nháp thứ hai."
+        ]
+      },
+      {
+        "heading": "Điều chỉnh prompt để audit nội dung",
+        "paragraphs": [
+          "Tái sử dụng cấu trúc để audit các bài hiệu suất kém. Dán danh sách H2 hiện tại và hỏi: 'Áp dụng framework blog-outline. Phần nào thiếu câu hỏi tìm kiếm rõ ràng? Phần nào trùng intent? Việc phân bổ số từ ở đâu không khớp với mức độ quan trọng?' Model trở thành editor cấu trúc thay vì copy editor.",
+          "Kết hợp với kiểm tra nhanh khoảng trống từ khóa: thêm 'Liệt kê 5 câu hỏi của người đọc mà dàn ý này KHÔNG trả lời nhưng top-3 kết quả cạnh tranh có trả lời.' Điều này phơi bày các phần còn thiếu mà bạn không cần đọc từng bài của đối thủ."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Mỗi H2 thường dài bao nhiêu?",
+      "a": "Tùy mục tiêu của bài, nhưng mặc định hợp lý là 250-500 từ cho mỗi H2. Dưới 200 từ thì không đáng có header riêng; trên 600 từ thường nên tách thành H3 hoặc trở thành bài viết riêng."
+    },
+    {
+      "q": "'Intent' đối với một phần nghĩa là gì?",
+      "a": "Là câu hỏi cụ thể của người đọc mà phần đó trả lời. 'Bàn về giá cả' không phải intent. 'Trả lời: tôi nên trả theo giờ hay theo retainer cho tình huống của mình?' mới là intent. Càng cụ thể, phần đó càng dễ viết."
+    },
+    {
+      "q": "Vì sao đánh dấu các phần là [optional]?",
+      "a": "Vì prompt trung thực về việc phần nào thực sự xứng đáng có chỗ. Phần 'lịch sử của X' có thể chỉ hứng thú với 5% độc giả; đánh dấu nó cho phép bạn quyết định viết, hạ xuống thành chú thích, hay bỏ hoàn toàn."
+    },
+    {
+      "q": "Có thể dùng cho kịch bản video hoặc dàn ý YouTube không?",
+      "a": "Có, nhưng đổi 'số từ' thành 'thời gian màn hình' (tính bằng giây), và đổi 'câu hỏi cần giải quyết' thành 'khoảnh khắc hình ảnh'. Cùng cấu trúc theo intent vẫn áp dụng — người xem bỏ video vì cùng lý do người đọc bỏ bài viết: các phần không xứng đáng với thời gian của họ."
+    },
+    {
+      "q": "Có hoạt động khi không có từ khóa chính không?",
+      "a": "Có — nhưng H1 sẽ không được tối ưu SEO. Nếu bạn viết cho newsletter hoặc blog nội bộ, bỏ trường từ khóa chính; phần còn lại vẫn hoạt động."
+    },
+    {
+      "q": "Làm sao ngăn model bịa dữ liệu?",
+      "a": "Quy tắc 5 ([needs data: ...]) là biện pháp chống ảo giác rõ ràng. Model đánh dấu các tuyên bố chưa được xác minh để bạn điền vào. Nếu nó từng đưa số liệu mà không có dấu này, hãy hỏi 'Nguồn của con số đó là gì?' và nó sẽ cung cấp hoặc thừa nhận không thể."
+    },
+    {
+      "q": "Tôi có nên thêm phân tích bài cạnh tranh không?",
+      "a": "Tùy chọn nhưng mạnh mẽ. Thêm phần: 'Top 3 kết quả xếp hạng cho từ khóa chính: <dán tiêu đề + URL>. Xác định điểm yếu cấu trúc của họ (phần họ bỏ qua, câu hỏi họ không trả lời).' Dàn ý sẽ tạo khác biệt rõ ràng."
+    },
+    {
+      "q": "Vì sao prompt bỏ phần 'introduction is important'?",
+      "a": "Vì hầu hết dàn ý AI thêm nó như một phần 200 từ chỉ nhắc lại H1. Cả người đọc hiện đại lẫn công cụ tìm kiếm đều phạt sự độn thừa này. Cấu trúc vi mô Hook + Promise + Skip-ahead làm cùng công việc đó trong 50 từ."
+    }
+  ]
+}

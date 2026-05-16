@@ -1,0 +1,88 @@
+{
+  "title": "Kıdemli kod inceleyici promptu — hataları, performans sorunlarını, uç",
+  "shortDescription": "Claude/ChatGPT/Cursor için yeniden kullanılabilir bir prompt; modeli doğruluk, performans ve uç durumlara odaklanan kıdemli bir inceleyiciye dönüştürür — kılı kırk yarmalara değil.",
+  "description": "LLM kod incelemelerinin çoğu sizi stil ayrıntılarına boğar ve asıl hataları kaçırır. Bu prompt, modeli önem derecesine göre triyaj yapmaya, yalnızca katı bir tech-lead incelemesinden geçecek şeyleri işaretlemeye ve endişelendiği tam satır numaralarını alıntılamaya zorlar; böylece her bulguyu hızla doğrulayabilirsiniz.",
+  "metaDescription": "Claude, ChatGPT ve Cursor için ücretsiz kıdemli kod inceleme promptu. Önem derecesine göre triyaj yapar, gerçek hataları ve performans sorunlarını bulur, stil",
+  "keywords": [
+    "kod inceleme promptu",
+    "claude kod inceleme",
+    "chatgpt kod inceleme",
+    "ai kod inceleme",
+    "kıdemli kod inceleyici promptu"
+  ],
+  "promptText": "Aşağıdaki diff'i inceleyen kıdemli bir staff engineer'sınız. Hedefiniz, katı bir tech-lead incelemesinden gerçekten geçecek olanları yakalamak — lint gürültüsü değil.\n\nİnceleme kuralları:\n1. Her bulguyu şu kategorilerden birine ayır: BLOCKER, MAJOR, MINOR, NIT.\n2. Varsayılan olarak yalnızca BLOCKER ve MAJOR yayınla. Açıkça istemedikçe MINOR ve NIT'i bastır.\n3. Her bulgu için tam dosya yolunu + satır numarası aralığını alıntıla. Sonra açıkla: (a) neyin yanlış olduğunu, (b) üretimdeki hata modunu, (c) önerilen çözümü.\n4. Sorunun gerçek olduğuna %80'in altında eminsen, bulguyu [düşük-güven] olarak işaretle ve hangi ek bağlamın doğrulamana izin vereceğini açıkla.\n5. Bir paragraflık genel özetle bitir: gönder / takip-issue'larla gönder / gönderme.\n\nŞu konularda yorum YAPMA:\n- Aktif olarak yanıltıcı olmadıkça adlandırma tercihleri.\n- Bir formatter kullanılıyorsa biçimlendirme/boşluk.\n- Ölçülmüş bir sıcak yola bağlayamadığın hipotetik optimizasyonlar.\n- Kod tabanının başka yerlerde zaten kullandığı kalıplar (bu bir hata değil, stilistik tutarlılıktır).\n\nİncelenecek diff:\n\n[birleşik diff'inizi veya dosya içeriğinizi buraya yapıştırın]",
+  "useCase": {
+    "headline": "Bunu ne zaman kullanmalı",
+    "items": [
+      "Önemsiz olmayan bir PR'ı birleştirmeden önce — ikinci bir göze istemeniz gereken her şeyi ortaya çıkarmak için diff'i bu prompttan geçirin.",
+      "Kendi çalışmanızın öz incelemesi — insan incelemesi istemeden önce yararlıdır, utanç verici şeyleri yakalar.",
+      "Tanıdık olmayan bir kod tabanına alışırken — değiştirmeden önce risklerini anlamak için bir fonksiyonu prompla birlikte yapıştırın."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude (Sonnet 4.6 veya Opus 4.7) genellikle en düşünceli triyajı sağlar. Diff'i bir kod bloğunda yapıştırın; uzun bağlamlar tam PR incelemelerini iyi yönetir.",
+    "chatgpt": "GPT-5 / GPT-4o stil işaretlemede daha agresif olma eğilimindedir. Yukarıdaki 'MINOR ve NIT'i bastır' kuralı onu yolda tutar.",
+    "cursor": "Cursor'da bunu bir .cursorrules girdisi olarak kaydedin veya composer'a yapıştırın. @file referansları ile iyi çalışır."
+  },
+  "exampleHeading": "Örnek çıktı",
+  "exampleOutput": "BLOCKER: src/auth/session.ts:42-58\n  - ne: Oturum belirteci karşılaştırması === kullanıyor, sabit zamanlı karşılaştırma değil.\n  - hata modu: Uzaktan girişte zamanlama saldırısıyla sızdırılabilir.\n  - düzeltme: Buffer çifti üzerinde crypto.timingSafeEqual() kullanacak şekilde değiştir.\n\nMAJOR: src/auth/session.ts:73 [düşük-güven]\n  - ne: Yenileme belirteci localStorage'a yazılıyor.\n  - hata modu: Sayfaya temizlenmemiş kullanıcı içeriği ulaşırsa XSS sızdırma riski.\n  - düzeltme: İstemcinin okumasına gerek yoksa httpOnly cookie'ye taşıyın. (düşük-güven: Front-end'in bu belirteci nasıl kullandığını göremiyorum.)\n\nÖzet: takip-issue'larla gönder. Sabit zamanlı düzeltme birleştirmeden önce gereklidir; depolama konumu bu PR'dan bağımsız olarak açılmaya değer bir takip sorunudur.",
+  "article": {
+    "sections": [
+      {
+        "heading": "AI kod incelemelerinin çoğu neden işe yaramaz",
+        "paragraphs": [
+          "Varsayılan olarak, dil modelleri kod inceleme görevlerinde 'yardımcı kıdemsiz' kişiliğine bürünür. Bu, adlandırma konusunda aşırı yorum yapmaları, sorunsuz koda 'temiz kod' yeniden yazımları önermeleri ve görmezden gelmeniz gereken bir öneri duvarında tek gerçek hatayı gömmeleri anlamına gelir. Sinyal-gürültü oranı iş akışını öldürür — çoğu ekip bir hafta içinde AI'yı inceleme için kullanmayı bırakır.",
+          "Yukarıdaki prompt üç şeyi tersine çevirir: önemsiz sorunların açıkça bastırılması için önem derecesi triyajı ister, her bulgunun saniyeler içinde doğrulanabilmesi için satır numaralarını talep eder ve hangi bulgulara tam dosyayı okumadan güveneceğinizi bilmeniz için bir güven bayrağına zorlar."
+        ]
+      },
+      {
+        "heading": "Bunu CI'nızla eşleştirme",
+        "paragraphs": [
+          "Bu promptu PR iş akışınızda bir 'ikinci görüş' adımı olarak çalıştırın — kapı kontrolü olarak değil. Modeller hâlâ halüsinasyon görür, özellikle dosyalar arası değişmezlerde ve yapıştırmadığınız çerçeve kurallarına bağlı kodlarda. Çıktıyı mekanik olarak düzeltilecek sorunlar listesi olarak değil, doğrulanacak şeyler listesi olarak kullanın.",
+          "CI'da istiyorsanız, bulguları JSON olarak çıktıla (promptu değiştirin: 'severity, path, lineStart, lineEnd, what, fix, confidence alanlarına sahip bir JSON dizisi döndür'). Sonra BLOCKER/MAJOR olanları açık bir 'AI yardımı — harekete geçmeden doğrulayın' başlığıyla tek bir yorum olarak PR'a gönderin."
+        ]
+      },
+      {
+        "heading": "Promptu ekibiniz için uyarlama",
+        "paragraphs": [
+          "Diff'in üstüne bir 'Kod tabanı bağlamı' bölümü ekleyin — yığınınızı, test kurallarınızı ve bariz olmayan değişmezleri açıklayan 5-10 satır yapıştırın (örneğin, 'tüm DB yazımları src/db/withTx üzerinden gider, asla ham istemci değil'). Aksi takdirde modeller kod tabanına özgü kuralları kaçırır.",
+          "Ekibinizin bilinen zayıf noktaları varsa (bir job runner'da yarış koşulları, belirli bir serviste N+1 sorguları), bir 'Özellikle dikkat et: …' satırı ekleyin. Model bu hata sınıflarına daha fazla ağırlık verecek ve mevcut olduklarında onları işaretleme olasılığı daha yüksek olacaktır."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Bunu kapalı kaynaklı kod üzerinde kullanabilir miyim?",
+      "a": "Evet, ancak önce işvereninizin politikasını kontrol edin. Promptun kendisi zararsızdır; önemli olan, kullandığınız modele kodunuzu yapıştırmanıza izin verilip verilmediğidir. Claude ve ChatGPT enterprise planları genellikle girdilerinizle eğitilmez; tüketici planları eğitebilir."
+    },
+    {
+      "q": "Neden MINOR ve NIT bulguları bastırılır?",
+      "a": "Çünkü uygulamada inceleme yorgunluğu yaratırlar. Üçüncü 'bunu bir fonksiyona çıkarmayı düşünün' notundan sonra okumayı bırakırsınız. Onları bastırmak BLOCKER/MAJOR sinyalini keskin tutar. Derin bir inceleme istediğinizde 'MINOR ve NIT dahil tüm bulguları göster' diyerek tekrar açın."
+    },
+    {
+      "q": "Diff ne kadar uzun olabilir?",
+      "a": "Claude Sonnet/Opus ve GPT-5, 50K+ token diff'i rahatlıkla idare eder. Çok büyük PR'lar için, modelin her alt sistemi izole düşünebilmesi için incelemeyi dizine göre bölün (önce src/auth, sonra src/billing)."
+    },
+    {
+      "q": "Güvenlik odaklı incelemeler ne olacak?",
+      "a": "Bu prompt bariz kripto/depolama/SSRF sorunlarını yakalar ancak kimlik doğrulama veya ödeme koduna yönelik güvenlik incelemesinin yerine geçmez. Bu yollar için bu promptu ve özel bir güvenlik inceleme promptunu çalıştırın (ayrıca yayınlayacağız)."
+    },
+    {
+      "q": "Birden fazla dosyada inceleme yapabilir mi?",
+      "a": "Evet — tüm dosyaları içeren diff'i yapıştırın. Tek bir yapıştırmada dosyalar arası değişmezleri makul derecede iyi yönetir; birden fazla PR'a yayılan sorunlar için (örneğin, 'bu, özellik bayraklarının başka yerlerde nasıl koşullandırıldığı ile tutarlı mı?'), o diğer dosyalardan birkaç temsili alıntı ekleyin."
+    },
+    {
+      "q": "[düşük-güven] bulgularına güvenmeli miyim?",
+      "a": "Onları 'harekete geçmeden önce araştır' olarak değerlendirin. Düşük güvenli bulguların yaklaşık yarısı gerçektir ancak model doğrulayamamıştır; diğer yarısı yanlış okumalardır. Bayrak, dürüst bir sinyaldir, bulguyu görmezden gelmek için bir neden değildir."
+    },
+    {
+      "q": "Neden hata modunu belirtmemi istiyor?",
+      "a": "Çünkü 'bu yanlış' demek 'bu unicode girdide çökecek' demeden işe yaramaz. Hata modu satırı size önceliği söyler: milyonda bir uç durumu önleyen bir düzeltme, günlük bir üretim olayını önleyen bir düzeltmeden farklıdır."
+    },
+    {
+      "q": "Bunu Cursor'da nasıl kullanırım?",
+      "a": "Prompt gövdesini repo kök dizininizdeki .cursorrules dosyasına kaydedin veya inceleme altındaki dosyalar için @file referanslarıyla composer'a yapıştırın. Cursor, kuralları o proje için aktif tutacaktır."
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "title": "Prompt per script di intervista utente ",
+  "shortDescription": "Genera uno script di intervista utente da 30 minuti con domande aperte, follow-up per ciascuna e regole rigide anti-domande-capziose. Modellato sui principi del Mom Test.",
+  "description": "La maggior parte degli script di intervista IA sono domande capziose travestite: 'come ti aiuterebbe la nostra funzionalità?' invece di 'raccontami l'ultima volta che hai incontrato questo problema'. Questo prompt forza un framing sul comportamento passato, niente ipotetici e tattiche di follow-up esplicite.",
+  "metaDescription": "Prompt gratuito per intervista utente per Claude/ChatGPT. Domande sul comportamento passato, niente domande capziose, con follow-up. Basato su The Mom Test.",
+  "keywords": [
+    "prompt intervista utente",
+    "prompt Mom Test",
+    "script user research",
+    "prompt intervista discovery",
+    "intervista cliente"
+  ],
+  "promptText": "Genera uno script di intervista utente da 30 minuti.\n\nObiettivo dell'intervista: {cosa vuoi imparare — sii specifico}\nSegmento: {con chi stai parlando — ruolo, contesto, comportamento attuale}\nIpotesi di lavoro (opzionale): {cosa credi attualmente sia vero}\n\nProduci uno script con questa struttura:\n\n1. Riscaldamento (3 min): due domande aperte sulla loro routine attuale, nessuna menzione del prodotto.\n2. Sezione comportamento passato (15 min): 5-7 domande, ciascuna ancorata all'ultima volta che hanno fatto l'azione rilevante. Formato: 'Raccontami l'ultima volta che hai...'.\n   Per ogni domanda, elenca 2-3 sonde di follow-up che l'intervistatore dovrebbe tenere pronte.\n3. Sezione vincoli (8 min): 3-4 domande su cosa hanno provato, cosa hanno pagato, cosa è fallito. Fa emergere la domanda reale vs la cortesia.\n4. Chiusura (4 min): una domanda aperta 'cosa non ti ho chiesto' + ringraziamenti.\n\nRegole rigide (Mom Test):\n1. NESSUNA domanda può iniziare con 'avresti...' o 'pensi che...' — entrambe invitano alle bugie di cortesia.\n2. NESSUNA domanda può menzionare il tuo prodotto o la soluzione ipotizzata.\n3. Ogni domanda deve far emergere un fatto (cosa hanno fatto) o un pagamento (denaro/tempo speso), non un'opinione.\n4. Se una domanda non può essere risposta senza immaginare il futuro, riscrivila perché sia sul passato.\n5. I follow-up devono scavare nei dettagli: 'quanto spesso', 'chi ha pagato', 'cosa hai effettivamente provato'.\n\nRestituisci solo lo script. Marca ogni follow-up come [follow-up: ...]. Termina con una sezione di un paragrafo 'campanelli d'allarme durante l'intervista' che elenca cosa invaliderebbe i dati.",
+  "useCase": {
+    "headline": "Quando usarlo",
+    "items": [
+      "Prima di costruire qualunque cosa — 5-10 di queste interviste sostituiscono mesi di tirare a indovinare.",
+      "Quando le metriche sono piatte e non sai perché — le domande sul comportamento passato fanno emergere l'albero decisionale reale.",
+      "Validando un'ipotesi di prezzo — la sezione vincoli ('cosa hai pagato') è più onesta di 'quanto pagheresti'."
+    ]
+  },
+  "modelTips": {
+    "claude": "Migliore nell'evitare domande capziose. Riscriverà un'ipotetica in una domanda sul comportamento passato su richiesta.",
+    "chatgpt": "Tende a infilare formulazioni 'avresti'. La regola 'NIENTE avresti' è la più importante da imporre.",
+    "any": "Se una domanda è comoda da fare, probabilmente è capziosa. Lo script dovrebbe sembrare leggermente invadente — è così che ottieni dati reali."
+  },
+  "exampleHeading": "Esempio: intervista discovery per uno strumento di finanza personale",
+  "exampleOutput": "Obiettivo: capire come gli impiegati SaaS sui 30-40 anni tracciano davvero la finanza personale.\n\nRiscaldamento (3 min)\n  - Raccontami del tuo lavoro — cosa fai quotidianamente?\n  - Com'è un tipico lunedì mattina, prima del lavoro?\n\nComportamento passato (15 min)\n  D1: Raccontami l'ultima volta che ti sei seduto e hai guardato il tuo conto in banca. Quando è stato, cosa l'ha innescato?\n    [follow-up: pianificato o reattivo?]\n    [follow-up: quanto ti ci è voluto?]\n  D2: L'ultima volta che hai preso una decisione finanziaria sopra i 500€ — comprare, aspettare, cambiare banca — raccontamela.\n    [follow-up: cosa hai controllato prima di decidere?]\n    [follow-up: chi altro hai consultato?]\n  ... [altre 5]\n\nVincoli (8 min)\n  D8: Qual è l'ultimo strumento finanziario che hai effettivamente pagato, anche solo 5€? Cosa ti ha fatto smettere o continuare a pagare?\n  ... [altre 3]\n\nChiusura: Cosa non ti ho chiesto che vorresti ti avessi chiesto?\n\nCampanelli d'allarme durante l'intervista:\n- Il partecipante dice 'lo farei' — in realtà non lo fa. Sonda l'ultima istanza reale; se nessuna, il segmento potrebbe non avere il problema.\n- Vago su numeri/date ('controllo a volte'). Vago = comportamento immaginato. Chiedi 'quando esattamente è stata l'ultima volta?' per ancorarlo.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Perché la maggior parte degli script di intervista IA sono inutili",
+        "paragraphs": [
+          "L'output di default degli LLM per 'scrivimi uno script di intervista' produce domande capziose: 'come ti aiuterebbe la funzionalità X?'. Il Mom Test (Rob Fitzpatrick, 2014) ha mostrato due decenni fa che le domande ipotetiche ottengono cortesia, non dati. Gli utenti reali dicono quello che pensano tu voglia sentire. Lo script qui sopra forza un ancoraggio al comportamento passato, che porta ai fatti.",
+          "Le sonde di follow-up sono altrettanto importanti. Una domanda come 'raccontami l'ultima volta che hai incontrato questo problema' ti darà una risposta di 30 secondi di default. Le sonde ('cosa hai controllato per primo', 'chi ha pagato', 'quanto a lungo') trasformano quei 30 secondi in 5 minuti di dettagli utili."
+        ]
+      },
+      {
+        "heading": "Come agire sull'output",
+        "paragraphs": [
+          "Esegui 5 interviste prima di cambiare lo script. I pattern emergono dall'intervista 3-4. Entro l'intervista 5 puoi dire quali domande stanno ottenendo buoni dati e quali stanno ottenendo cortesia riempitiva — togli le domande di cortesia riempitiva e aggiungi follow-up specifici per quelle buone.",
+          "Dopo 5-7 interviste, passale nel prompt di sintesi di ricerca per estrarre affermazioni e contraddizioni. Il combo (script di intervista → sintesi strutturata → mappatura delle affermazioni) è molto più veloce che leggere trascrizioni e cercare di ricordare i pattern."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Perché niente domande 'avresti'?",
+      "a": "Perché tutti dicono sì a una funzionalità che descrivi loro in faccia. Le ipotetiche invitano alla cortesia; il comportamento passato invita ai fatti. Il singolo miglioramento più grande alla qualità delle interviste è rimuovere ogni 'avresti' dallo script."
+    },
+    {
+      "q": "E se il mio prodotto non esiste ancora?",
+      "a": "Ancora meglio — non hai nulla con cui biasarli. Ogni domanda diventa sul dolore esistente e sulle soluzioni attuali. Esattamente per questo servono le interviste di discovery."
+    },
+    {
+      "q": "Di quante interviste ho bisogno?",
+      "a": "5-12 per segmento è tipico. Entro le 5 hai sentito i pattern. Aggiungerne altre li raffina invece di scoprirne di nuove — rendimenti decrescenti oltre le ~10 a meno che non stia ricercando un nuovo segmento."
+    },
+    {
+      "q": "E se il partecipante va fuori tema?",
+      "a": "Spesso è oro. I dolori veri fanno deragliare le conversazioni; le risposte comode no. Lasciali andare per 2-3 min, prendi appunti, poi torna: 'raccontami di più su X — era la stessa volta in cui hai anche fatto Y?'"
+    },
+    {
+      "q": "Dovrei condividere l'ipotesi in anticipo?",
+      "a": "No. Dì loro l'obiettivo in termini vaghi ('sto ricercando come le persone gestiscono X'). Condividere un'ipotesi specifica biasa le loro risposte."
+    },
+    {
+      "q": "Posso usarlo per test di usabilità?",
+      "a": "Obiettivo diverso — i test di usabilità necessitano uno script di task, non uno script di discovery. C'è sovrapposizione (non guidare, osservare il comportamento) ma il formato differisce. Pubblicheremo un prompt di usabilità separatamente."
+    }
+  ]
+}

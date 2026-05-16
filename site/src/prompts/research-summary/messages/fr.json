@@ -1,0 +1,88 @@
+{
+  "title": "Prompt synthèse de recherche — extrait affirmations, preuves et",
+  "shortDescription": "Transforme de longs PDF, articles ou rapports en une synthèse structurée qui distingue les affirmations des preuves, fait émerger les contradictions, et cite les pages sources pour que tu puisses vérifier.",
+  "description": "Le 'résume ça' par défaut produit des résumés en prose qui perdent l'essentiel de chaque étude nuancée. Ce prompt extrait un objet structuré — affirmations, type de preuve, localisation dans la source, et contradictions entre documents — que tu peux scanner en 60 secondes.",
+  "metaDescription": "Prompt gratuit de synthèse de recherche pour Claude, Perplexity, ChatGPT. Extrait les affirmations avec preuves et pages sources.",
+  "keywords": [
+    "prompt synthèse de recherche",
+    "résumé article académique",
+    "prompt recherche Claude",
+    "recherche Perplexity",
+    "prompt revue de littérature"
+  ],
+  "promptText": "Tu vas résumer le(s) document(s) ci-dessous. Sortie sous forme de tableau structuré, pas de prose.\n\nPour chaque affirmation majeure dans la/les source(s), extrais :\n  - Affirmation : <une seule phrase>\n  - Type de preuve : <étude empirique / argument théorique / opinion d'expert / anecdote / non étayée>\n  - Source : <nom du document + page ou section>\n  - Force : <forte / modérée / faible — basée sur le type de preuve et la taille de l'échantillon>\n  - Limites : <limites que la source elle-même reconnaît>\n\nAprès le tableau, ajoute trois sections :\n\n1. CONTRADICTIONS : liste les endroits où les documents sont en désaccord ou où l'affirmation d'un document entre en conflit avec les données d'un autre.\n\n2. CARTE DE CONFIANCE : note la fiabilité globale de chaque affirmation majeure — élevée (plusieurs sources fortes concordent), moyenne (une source forte ou plusieurs sources faibles), faible (source unique faible ou affirmation non étayée).\n\n3. CE QUI MANQUE : 3 à 5 questions qu'un lecteur attentif se poserait encore après avoir lu ces documents. Marque chacune comme 'adressable depuis ces documents avec lecture supplémentaire' ou 'nécessite des sources externes'.\n\nRègles strictes :\n- Cite les numéros de page ou identifiants de section pour chaque affirmation. Si tu ne peux pas, marque [page inconnue].\n- Ne synthétise pas au-delà de ce que disent les documents. Si deux documents abordent un sujet sans le comparer directement, dis-le — n'invente pas de comparaison.\n- Distingue 'le document affirme X' de 'X est vrai'. La synthèse rapporte ce qui a été affirmé, pas ce qui est correct.\n\nDocument(s) :\n\n[colle le texte complet ou téléverse les PDF]",
+  "useCase": {
+    "headline": "Quand utiliser ce prompt",
+    "items": [
+      "Lire 5 à 10 articles pour une revue de littérature — fais passer chacun dans ce prompt, puis compare les cartes de confiance pour trouver consensus et lacunes.",
+      "Évaluer un rapport sectoriel d'un fournisseur — la colonne force expose où le rapport s'appuie sur des données vs marketing.",
+      "Recouper un article de presse — donne l'article + l'étude sous-jacente ; les contradictions ressortent immédiatement."
+    ]
+  },
+  "modelTips": {
+    "claude": "Le meilleur pour distinguer affirmation et type de preuve. La règle 'ne synthétise pas' est la mieux respectée par Claude (Sonnet 4.6+).",
+    "perplexity": "Fort quand le document est sur le web ouvert — Perplexity ajoute la vérification de sources automatiquement. Moins utile pour les PDF privés.",
+    "chatgpt": "Fonctionne mais a tendance à adoucir le verdict 'non étayée' en 'mentionnée'. Sois explicite : 'utilise \"non étayée\" quand le document présente une affirmation sans citer de données, même si elle semble raisonnable.'"
+  },
+  "exampleHeading": "Exemple : synthèse de 3 articles sur la productivité en télétravail",
+  "exampleOutput": "| Affirmation | Preuve | Source | Force | Limites |\n|---|---|---|---|---|\n| Les télétravailleurs déclarent 13% de productivité en plus | sondage, n=2400 | Bloom 2024 p.7 | modérée | biais d'auto-déclaration reconnu |\n| Le télétravail réduit l'innovation d'équipe | entretien qualitatif, n=42 managers | Smith 2023 p.14 | faible | échantillon biaisé vers managers, pas IC |\n| L'hybride (3 jours) surperforme le full-remote sur la rétention | A/B test dans une entreprise | Chen 2025 p.22 | modérée | une seule entreprise, peut ne pas généraliser |\n\nCONTRADICTIONS :\n- Bloom 2024 rapporte un gain de productivité ; Smith 2023 implique un déclin de productivité (via 'innovation réduite'). Les deux utilisent des définitions de productivité différentes — Bloom = output par heure, Smith = output stratégique. Non directement comparables.\n\nCARTE DE CONFIANCE :\n- 'Le télétravail change la productivité' → élevée (effet clair, direction débattue)\n- 'Le télétravail réduit l'innovation' → moyenne (une étude, qualitative)\n- 'L'hybride est optimal' → faible (un A/B dans une entreprise)\n\nCE QUI MANQUE :\n1. Effet sur les employés juniors spécifiquement [nécessite des sources externes]\n2. Découpage par secteur d'activité [adressable : Bloom 2024 a des données en annexe]\n3. Effet sur le transfert de connaissances / mentorat [nécessite des sources externes]",
+  "article": {
+    "sections": [
+      {
+        "heading": "Pourquoi les synthèses en prose échouent pour la recherche",
+        "paragraphs": [
+          "Un résumé en paragraphe mélange toutes les affirmations au même niveau d'autorité. Le lecteur ne peut pas dire si 'des études montrent que…' est étayé par une enquête sous-dimensionnée ou une méta-analyse de quarante essais. La synthèse par défaut d'un LLM hérite de ce défaut et l'amplifie — les affirmations fortes et faibles reçoivent le même poids en prose.",
+          "L'extraction structurée (tableau + carte de confiance) préserve l'autorité différenciée des affirmations. Tu peux scanner et voir immédiatement que le résultat phare repose sur des preuves solides tandis que l'affirmation secondaire est essentiellement éditoriale. C'est la différence entre 'informé' et 'faussement confiant'."
+        ]
+      },
+      {
+        "heading": "La règle la plus difficile : distinguer affirmation et vérité",
+        "paragraphs": [
+          "Les résumeurs par défaut glissent de 'le document X dit Y' à 'Y est vrai' sans signaler la transition. La règle 'distinguer affirmation et vérité' est explicite parce que les modèles échouent par défaut. Quand la règle tient, tu lis la synthèse et tu sais exactement quelles assertions viennent du document, pas de l'éditorialisation du modèle.",
+          "Si le modèle viole cette règle (présente X comme un fait alors que le document ne fait que l'affirmer), réponds 'reformule en attribuant chaque affirmation à sa source'. Après une correction, Claude tend à maintenir l'attribution pour le reste du document."
+        ]
+      },
+      {
+        "heading": "Workflows multi-documents",
+        "paragraphs": [
+          "Pour les revues de littérature, fais passer chaque article individuellement d'abord — les limites de contexte du modèle et la qualité bénéficient toutes deux d'un doc à la fois. Puis en deuxième passe, colle uniquement les tableaux résultants et demande : 'Identifie les points de consensus, les points de désaccord, et l'affirmation la plus forte.' C'est bien plus rapide que de donner tous les articles d'un coup.",
+          "Établis une règle de 'décroissance de confiance' : toute affirmation qui n'apparaît que dans une source est automatiquement rétrogradée d'un niveau quand on l'intègre à une synthèse multi-sources. Cela force la revue intégrée à pondérer plus haut les résultats répliqués que les résultats nouveaux mais isolés, ce qui correspond à la bonne pratique académique."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Ça marche pour de très longs PDF ?",
+      "a": "Claude gère des PDF de 200K tokens en une fois ; ChatGPT/GPT-5 gèrent 128K. Pour plus long, découpe par chapitre et résume chacun, puis résume les résumés. Le format structuré garde la qualité constante sur les passes."
+    },
+    {
+      "q": "Peut-il citer des extraits précis ?",
+      "a": "Oui — ajoute 'Pour chaque affirmation, inclus une citation de 5-15 mots de la formulation originale' au prompt. Utile quand la formulation compte (documents juridiques, specs techniques)."
+    },
+    {
+      "q": "Et si le document n'a pas de numéros de page clairs (article web) ?",
+      "a": "Utilise les titres de section ou les numéros de paragraphe à la place. Le 'page ou section' du prompt le permet. Pour les articles web, l'index de paragraphe ('para 5') fonctionne bien."
+    },
+    {
+      "q": "Comment ça se compare à NotebookLM ?",
+      "a": "NotebookLM gère automatiquement l'upload de documents et les citations mais produit des synthèses narratives par défaut. Ce prompt produit une extraction structurée mieux adaptée à la comparaison systématique. Utilise les deux : NotebookLM pour l'exploration en mode chat, ce prompt pour des synthèses écrites-une-fois-scannées-plusieurs-fois."
+    },
+    {
+      "q": "Pourquoi forcer la section 'ce qui manque' ?",
+      "a": "Parce que chaque synthèse de recherche devrait te laisser avec des suivis explicites, pas la fausse impression d'exhaustivité. La section 'ce qui manque' révèle aussi quand le document ne peut fondamentalement pas répondre à ta question — utile avant de passer plus de temps à le lire."
+    },
+    {
+      "q": "Ça marche pour la recherche en langues autres que le français ?",
+      "a": "Oui — Claude et GPT-5 gèrent bien la prose académique en anglais / japonais / chinois / allemand. La sortie structurée reste dans la langue de ton prompt ; la langue source peut différer."
+    },
+    {
+      "q": "Comment éviter les numéros de page hallucinés ?",
+      "a": "Si le modèle donne un numéro de page, vérifie-en un ou deux. S'ils sont faux, ajoute 'Si tu ne peux pas vérifier un numéro de page, marque-le [page inconnue] — ne devine jamais.' au prompt."
+    },
+    {
+      "q": "Puis-je l'utiliser pour des transcriptions de podcasts ?",
+      "a": "Oui — remplace 'page' par 'timestamp' et le reste fonctionne. L'extraction d'affirmations structurées est encore plus utile pour les podcasts, où les affirmations flottent dans de longues plages de prose sans marqueurs clairs."
+    }
+  ]
+}

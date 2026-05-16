@@ -1,0 +1,73 @@
+{
+  "title": "Prompt script d'entretien utilisateur ",
+  "shortDescription": "Génère un script d'entretien utilisateur de 30 minutes avec des questions ouvertes, des relances pour chacune, et des règles strictes anti-orientation. Inspiré des principes du Mom Test.",
+  "description": "La plupart des scripts d'entretien générés par IA sont des questions orientées déguisées : 'comment notre fonctionnalité vous aiderait-elle ?' au lieu de 'raconte-moi la dernière fois que tu as eu ce problème'. Ce prompt force le cadrage en comportement passé, interdit les hypothétiques, et fournit des tactiques de relance explicites.",
+  "metaDescription": "Prompt gratuit d'entretien utilisateur pour Claude/ChatGPT. Questions sur comportement passé, sans orienter, avec relances. Basé sur The Mom Test.",
+  "keywords": [
+    "prompt entretien utilisateur",
+    "prompt Mom Test",
+    "script user research",
+    "prompt entretien découverte",
+    "interview client"
+  ],
+  "promptText": "Génère un script d'entretien utilisateur de 30 minutes.\n\nObjectif de l'entretien : {ce que tu veux apprendre — sois précis}\nSegment : {à qui tu parles — rôle, contexte, comportement actuel}\nHypothèse de travail (optionnel) : {ce que tu crois actuellement vrai}\n\nFournis un script avec cette structure :\n\n1. Échauffement (3 min) : deux questions ouvertes sur leur routine actuelle, sans mention du produit.\n2. Section comportement passé (15 min) : 5-7 questions, chacune ancrée dans la dernière fois où ils ont fait l'action concernée. Format : 'Raconte-moi la dernière fois où tu as...'.\n   Pour chaque question, liste 2-3 relances que l'interviewer doit garder prêtes.\n3. Section contraintes (8 min) : 3-4 questions sur ce qu'ils ont essayé, ce qu'ils ont payé, ce qui a échoué. Fait émerger la vraie demande vs la politesse.\n4. Conclusion (4 min) : une question ouverte 'qu'est-ce que je n'ai pas demandé' + remerciements.\n\nRègles strictes (Mom Test) :\n1. AUCUNE question ne peut commencer par 'est-ce que tu...' ou 'tu penses que...' — les deux invitent aux mensonges polis.\n2. AUCUNE question ne peut mentionner ton produit ou ta solution hypothétique.\n3. Chaque question doit faire émerger un fait (ce qu'ils ont fait) ou un paiement (argent/temps dépensé), pas une opinion.\n4. Si une question ne peut pas être répondue sans imaginer le futur, réécris-la pour qu'elle porte sur le passé.\n5. Les relances doivent creuser les détails : 'à quelle fréquence', 'qui a payé', 'qu'as-tu vraiment essayé'.\n\nRetourne uniquement le script. Marque chaque relance comme [relance : ...]. Termine par un paragraphe 'signaux d'alarme pendant l'entretien' listant ce qui invaliderait les données.",
+  "useCase": {
+    "headline": "Quand utiliser ce prompt",
+    "items": [
+      "Avant de construire quoi que ce soit — 5 à 10 de ces entretiens remplacent des mois de devinettes.",
+      "Quand les métriques sont plates et tu ne sais pas pourquoi — les questions sur le comportement passé révèlent l'arbre de décision réel.",
+      "Valider une hypothèse de pricing — la section contraintes ('qu'est-ce que tu as payé') est plus honnête que 'combien serais-tu prêt à payer'."
+    ]
+  },
+  "modelTips": {
+    "claude": "Le meilleur pour éviter les questions orientées. Réécrira un hypothétique en question sur le comportement passé sur demande.",
+    "chatgpt": "A tendance à glisser des formulations 'est-ce que tu serais'. La règle 'PAS de est-ce que tu serais' est la plus importante à imposer.",
+    "any": "Si une question semble confortable à poser, elle est probablement orientée. Le script devrait sembler légèrement intrusif — c'est comme ça qu'on obtient de vraies données."
+  },
+  "exampleHeading": "Exemple : entretien de découverte pour un outil de finances personnelles",
+  "exampleOutput": "Objectif : comprendre comment les employés SaaS d'environ 35 ans suivent réellement leurs finances personnelles.\n\nÉchauffement (3 min)\n  - Parle-moi de ton travail — qu'est-ce que tu fais au quotidien ?\n  - À quoi ressemble un lundi matin typique, avant le travail ?\n\nComportement passé (15 min)\n  Q1 : Raconte-moi la dernière fois où tu t'es assis pour regarder ton compte bancaire. C'était quand, qu'est-ce qui a déclenché ça ?\n    [relance : planifié ou réactif ?]\n    [relance : combien de temps ça t'a pris ?]\n  Q2 : La dernière fois où tu as pris une décision financière au-dessus de 500€ — achat, attente, changement de banque — raconte-moi.\n    [relance : qu'est-ce que tu as vérifié avant de décider ?]\n    [relance : qui d'autre tu as consulté ?]\n  ... [5 de plus]\n\nContraintes (8 min)\n  Q8 : Quel est le dernier outil financier pour lequel tu as vraiment payé, même 5€ ? Qu'est-ce qui t'a fait arrêter ou continuer à payer ?\n  ... [3 de plus]\n\nConclusion : Qu'est-ce que je n'ai pas demandé et que tu aurais aimé que je demande ?\n\nSignaux d'alarme pendant l'entretien :\n- Le participant dit 'je le ferais' — il ne le fait pas vraiment. Cherche le dernier cas réel ; s'il n'y en a pas, le segment n'a peut-être pas le problème.\n- Vague sur les chiffres/dates ('je regarde parfois'). Vague = comportement imaginé. Demande 'c'était quand exactement la dernière fois ?' pour l'ancrer.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Pourquoi la plupart des scripts d'entretien IA sont inutiles",
+        "paragraphs": [
+          "La sortie par défaut d'un LLM pour 'écris-moi un script d'entretien' produit des questions orientées : 'comment la fonctionnalité X t'aiderait-elle ?'. Le Mom Test (Rob Fitzpatrick, 2014) a montré il y a deux décennies que les questions hypothétiques récoltent de la politesse, pas des données. Les vrais utilisateurs disent ce qu'ils pensent que tu veux entendre. Le script ci-dessus force l'ancrage dans le comportement passé, ce qui mène aux faits.",
+          "Les relances sont tout aussi importantes. Une question comme 'raconte-moi la dernière fois où tu as eu ce problème' obtiendra une réponse de 30 secondes par défaut. Les relances ('qu'as-tu vérifié en premier', 'qui a payé', 'combien de temps') transforment ces 30 secondes en 5 minutes de détails utiles."
+        ]
+      },
+      {
+        "heading": "Comment exploiter la sortie",
+        "paragraphs": [
+          "Mène 5 entretiens avant de modifier le script. Les patterns émergent à l'entretien 3-4. À l'entretien 5 tu peux dire quelles questions récoltent de bonnes données et lesquelles ne récoltent que du remplissage poli — supprime les questions de remplissage poli et ajoute des relances spécifiques pour les bonnes.",
+          "Après 5 à 7 entretiens, passe-les dans le prompt de synthèse de recherche pour extraire affirmations et contradictions. La combo (script d'entretien → synthèse structurée → cartographie des affirmations) est bien plus rapide que de lire les transcriptions et essayer de se rappeler des patterns."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Pourquoi pas de questions 'est-ce que tu serais' ?",
+      "a": "Parce que tout le monde dit oui à une fonctionnalité que tu décris en face. Les hypothétiques invitent à la politesse ; le comportement passé invite aux faits. La plus grosse amélioration de qualité d'entretien est de retirer chaque 'est-ce que tu serais' du script."
+    },
+    {
+      "q": "Et si mon produit n'existe pas encore ?",
+      "a": "Encore mieux — tu n'as rien avec quoi les biaiser. Chaque question porte sur la douleur existante et les solutions actuelles. C'est exactement à ça que servent les entretiens de découverte."
+    },
+    {
+      "q": "Combien d'entretiens me faut-il ?",
+      "a": "5 à 12 par segment est typique. À 5 tu as entendu les patterns. En ajouter davantage les affine plutôt que d'en découvrir de nouveaux — rendements décroissants au-delà de ~10 sauf si tu recherches un nouveau segment."
+    },
+    {
+      "q": "Et si le participant part hors sujet ?",
+      "a": "Souvent c'est de l'or. Les vraies douleurs font dérailler les conversations ; les réponses confortables non. Laisse-le partir 2-3 min, prends des notes, puis fais le pont en revenant : 'parle-moi plus de X — c'était au même moment où tu as aussi fait Y ?'"
+    },
+    {
+      "q": "Devrais-je partager l'hypothèse au début ?",
+      "a": "Non. Donne-leur l'objectif en termes vagues ('je recherche comment les gens gèrent X'). Partager une hypothèse précise biaise leurs réponses."
+    },
+    {
+      "q": "Puis-je utiliser ça pour des tests d'utilisabilité ?",
+      "a": "Objectif différent — les tests d'utilisabilité ont besoin d'un script de tâches, pas d'un script de découverte. Il y a recoupement (ne pas orienter, observer le comportement) mais le format diffère. On publiera un prompt d'utilisabilité séparément."
+    }
+  ]
+}

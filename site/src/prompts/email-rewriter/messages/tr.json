@@ -1,0 +1,83 @@
+{
+  "title": "E-posta yeniden yazıcı promptu — net, kısa, ton kontrollü",
+  "shortDescription": "Herhangi bir e-posta taslağını mesajı kaybetmeden daha net ve daha kısa hale getirin. Bir ton (sıcak / nötr / kararlı) ve uzunluk hedefi seçin.",
+  "description": "ChatGPT/Claude'dan gelen varsayılan 'bu e-postayı yeniden yaz' isteği genellikle uzunluğu şişirir ve kurumsal dolgu ekler. Bu prompt tam tersini yapar: bir hedef uzunluk uygular, gerçek içeriğinizi bozulmadan korur ve tonu açıkça ayarlamanıza izin verir.",
+  "metaDescription": "ChatGPT ve Claude için ücretsiz e-posta yeniden yazıcı promptu. Hedef uzunluk, ton kontrolü (sıcak/nötr/kararlı), gerçeklerinizi bozulmadan korur. Kullanım örnekleriyle.",
+  "keywords": ["e-posta yeniden yazıcı promptu", "AI ile e-posta yeniden yaz", "ChatGPT e-posta", "profesyonel e-posta promptu", "ton kontrollü e-posta"],
+  "promptText": "Aşağıdaki e-postayı yeniden yaz.\n\nHedef:\n- Uzunluk: yaklaşık {N} kelime (varsayılan 80; 50-150 arası seçin).\n- Ton: {sıcak / nötr / kararlı} (varsayılan nötr).\n- Hedef kitle: {kim oldukları — örn. yöneticim, bir satıcı, üzgün bir müşteri}.\n\nKatı kurallar:\n1. Her somut gerçeği, son tarihi, sayıyı ve adı koru. Detay uydurma veya verdiğim taahhütleri yumuşatma.\n2. Kurumsal dolgu sözcükleri kaldır (\"Bu e-postanın sizi iyi bulmasını umuyorum\", \"lütfen çekinmeyin\", \"son e-postamda belirttiğim gibi\", vb.).\n3. E-posta başına tek istek. Taslakta birden fazla istek varsa, en alta numaralı liste olarak böl.\n4. Ardışık cümlelerde üst üste iki kez \"Ben\" sözcüğüyle başlama.\n5. İmza satırımı ve belirtilen tüm açık ekleri koru.\n\nYalnızca yeniden yazılmış e-posta gövdesini döndür. Açıklama yapma.\n\nTaslak:\n\n[taslağınızı buraya yapıştırın]",
+  "useCase": {
+    "headline": "Bunu ne zaman kullanmalı",
+    "items": [
+      "Kızgın hisli bir e-posta yazdıktan sonra — tonu nötre, uzunluğu daha kısaya geçirin, AI noktanızı kaybetmeden onu yumuşatacaktır.",
+      "Bir müşteri şikayetine yanıt verirken — tonu sıcak olarak ayarlayın, hedef 70 kelime olsun, sonuç şekerli olmadan empatik olur.",
+      "Müzakere veya geri itme e-postaları — kararlı ton + 100 uzunluk, doğrudan ama profesyonel kalmanıza izin verir."
+    ]
+  },
+  "modelTips": {
+    "claude": "Claude, gerçekleri korumada ve doldurma eklemeyişinde alışılmadık derecede iyidir. Önemli e-postalar için en iyi varsayılan.",
+    "chatgpt": "GPT-5 / GPT-4o 'profesyonel' dolguyu geri ekleme eğilimindedir. Yukarıdaki 'kurumsal dolguyu kaldır' kuralı ChatGPT için özellikle önemlidir.",
+    "any": "Tüm büyük modeller çalışır. Bunu güvenilir yapan kalıptır (hedef uzunluk + ton + hedef kitle + gerçekler korunmuş)."
+  },
+  "exampleHeading": "Örnek: kızgın bir taslak → nötr 70 kelimelik versiyon",
+  "exampleOutput": "Taslak (220 kelime, sinirli):\n  \"Merhaba Sarah, Ekim'deki kayıp fatura hakkında YİNE takip ediyorum. Şimdiye kadar üç kez e-posta gönderdim. Aylık 1200 dolar ödediğimiz bir faturalama sisteminden bu kabul edilemez. Bunu Cuma'ya kadar çözmem gerekiyor, aksi takdirde CTO'nuza yükseltmek zorunda kalacağım. Fatura 10/1–10/31 dönemini, toplam 4.820 doları kapsamalı ve biz onu hiç almadık…\"\n\nYeniden yazılmış (nötr, 68 kelime, hedef karşılandı):\n  \"Merhaba Sarah,\n\n  4.820 dolarlık Ekim faturası (10/1–10/31 dönemi) ile ilgili takip yapıyorum. Kasım'dan beri üç kez e-posta gönderdim ve hâlâ gelmedi. Defterlerimizi kapatabilmemiz için bunu Cuma'ya kadar çözmemiz gerekiyor. Engelleyen bir sistem sorunu varsa, engeli kaldırmak için destek ekibine ne göndereceğimi bana bildirin.\n\n  Teşekkürler,\n  [İsim]\"",
+  "article": {
+    "sections": [
+      {
+        "heading": "Varsayılan e-posta yeniden yazıcı promptları neden işleri kötüleştirir",
+        "paragraphs": [
+          "'Bu e-postayı daha profesyonel olacak şekilde yeniden yaz' diye sorarsanız, model varsayılan olarak uzunluk eklemeye gider: daha fazla nezaket ifadesi, kaçınma dili, özet cümleleri. Çıktı taslağınızdan daha uzundur ve 20 saniyelik bir okuma artık 90 saniyelik bir okumadır. Alıcılar uzun e-postaları siler veya gözden geçirir, bu nedenle mesajınız nezaket dolgusunda kaybolur.",
+          "Yukarıdaki prompt bunu tersine çevirir. Hedef uzunluk ve 'kurumsal dolguyu kaldır' kuralı uygulayarak, yeniden yazım çoğu taslakta girdiden daha kısadır. Ton kontrolü, odağı kaybetmeden duygusal doğruluğu (kararlı şikayet, sıcak özür) korumanıza olanak tanır."
+        ]
+      },
+      {
+        "heading": "Ton seçimi — ne zaman hangisi seçilir",
+        "paragraphs": [
+          "Sıcak: müşteriye yönelik özür, birine yardım için teşekkür etme, yeni bir kişiyle yakınlık kurma. Hafif nezaket ifadeleri ekler (en fazla bir cümle).",
+          "Nötr: meslektaşlar arası iş e-postaları, durum güncellemeleri, gerçeklere dayalı yanıtlar. Varsayılan. Tüm nezaket ifadelerini kaldırır.",
+          "Kararlı: geri itme, yükseltme, geç ödeme takibi, kapsam genişlemesi reddi. Kısa cümleler ve doğrudan dil tutar. İsteklerinizi yumuşatmaz."
+        ]
+      },
+      {
+        "heading": "E-posta başına tek istek neden önemlidir",
+        "paragraphs": [
+          "Birden fazla isteği olan e-postalar ('ayrıca X'i de gönderir misin ve bu arada Y'yi iletebilir misin') kısmi yanıt alır veya tamamen göz ardı edilir. Alıcı zihinsel olarak yanıtı toplu işler ve asla göndermez. Yukarıdaki kural, çok istekli taslakların yapısını numaralı liste olarak ortaya çıkarmaya zorlar, bu da tamamen numaralı bir yanıtı tetikler.",
+          "Taslağınızda gerçekten bağımsız iki istek varsa, iki e-posta gönderin. Model bunu sizin için zorlamayacak — ancak yapıyı yeterince net bir şekilde ortaya çıkaracak, böylece göndere basmadan önce genellikle bölmeye karar vereceksiniz."
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Gerçeklerimi veya sayılarımı değiştirir mi?",
+      "a": "Hayır — 'her somut gerçeği, son tarihi, sayıyı ve adı koru' kuralı açıktır. Model bir sayıyı yanlış okursa, bu bir model hatasıdır, prompt arızası değil. Göndermeden önce her zaman yeniden yazımı yeniden okuyup doğrulayın."
+    },
+    {
+      "q": "Neden 'kısa ol' yerine hedef uzunluk?",
+      "a": "'Kısa ol' 'belki %10'unu kaldır' olarak yorumlanır. Bir hedef kelime sayısı, modeli gerçek silmeler yapmaya zorlar. 80 kelime kabaca 4-5 kısa cümledir — bağlamla birlikte bir istek için yeterli."
+    },
+    {
+      "q": "Şirketimin ses tonunu/stilini ekleyebilir miyim?",
+      "a": "Evet — taslağın üstüne bir 'Stil notları:' satırı ekleyin. Örnek: 'Stil notları: Sade Türkçe, ünlem işareti yok, imza sadece adımdır'. Model bunları yakından takip edecektir."
+    },
+    {
+      "q": "Taslak zaten kısaysa ne olur?",
+      "a": "Biraz daha yüksek bir hedef kullanın (100-120 kelime) 'agresifçe kesme' sinyali için. Ya da yalnızca netlik kuralıyla promptu kullanın: 'Uzunluk: ~N kelime'yi 'Uzunluğu benzer tut; yalnızca net olmayan cümleleri düzelt' ile değiştirin."
+    },
+    {
+      "q": "İngilizce dışındaki diller için çalışır mı?",
+      "a": "Evet — Claude ve GPT-5 Japonca, Çince, Korece, İspanyolca iş e-postalarını iyi yönetir. Kurumsal dolgu kuralı çeviri gerektirir: Japonca'da 'お世話になっております' açılışı en yakın dolgu karşılığıdır ve nötr tonda kaldırılır."
+    },
+    {
+      "q": "Bu Grammarly'den nasıl farklı?",
+      "a": "Grammarly mekanikleri düzeltir (yazım hataları, virgül hataları). Bu prompt içeriği yeniden yapılandırır (dolgu cümlelerini kaldırır, çok istekli e-postaları böler, tonu ayarlar). Birbirlerini tamamlar — önce Grammarly çalıştırın, sonra yeniden yapılandırma için bunu."
+    },
+    {
+      "q": "Bunu ChatGPT'de özel bir GPT olarak kaydedebilir miyim?",
+      "a": "Evet — prompt gövdesini GPT'nin talimatları olarak yapıştırın. Her seferinde yalnızca taslağı yazmanız gerekecektir. Aynı yaklaşım Claude Projects'te de işe yarar."
+    },
+    {
+      "q": "Neden üst üste iki kez 'Ben' ile başlanmasın?",
+      "a": "Tekrarlanan 'Ben-' cümle açılışları, içerik iyi olsa bile bir e-postanın bencil hissetmesine neden olur. Çeşitliliği zorlamak (bir cümleyi alıcıyla veya bir gerçekle başlatmak), e-postaların anlamı değiştirmeden daha sıcak okunmasını sağlayan küçük bir kaldıraçtır."
+    }
+  ]
+}
