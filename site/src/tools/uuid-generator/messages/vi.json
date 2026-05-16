@@ -1,0 +1,53 @@
+{
+  "title": "Tạo UUID (v4 ngẫu nhiên, v7 sắp theo thời gian)",
+  "shortDescription": "Tạo UUID v4 ngẫu nhiên mật mã hoặc UUID v7 sắp theo thời gian. Tạo hàng loạt tối đa 100 cùng lúc, sao chép một click.",
+  "description": "Bấm để tạo một hoặc nhiều UUID. Dùng v4 cho ID hoàn toàn ngẫu nhiên và v7 cho ID có thể sắp theo thời gian tạo — hữu ích cho khóa cơ sở dữ liệu.",
+  "metaDescription": "Công cụ tạo UUID miễn phí cho v4 (ngẫu nhiên) và v7 (sắp theo thời gian). An toàn mật mã, tạo hàng loạt tối đa 100, sao chép từng cái hoặc tất cả.",
+  "keywords": ["tạo UUID", "UUID v4", "UUID v7", "tạo GUID", "UUID ngẫu nhiên"],
+  "count": "Số lượng",
+  "regenerate": "Tạo lại",
+  "copy": "Sao chép",
+  "copyAll": "Sao chép tất cả",
+  "copied": "Đã sao chép",
+  "article": {
+    "sections": [
+      {
+        "heading": "Khi nào dùng v4 và khi nào v7",
+        "paragraphs": [
+          "UUID v4 hoàn toàn ngẫu nhiên — 122 bit ngẫu nhiên cùng 2 bit version/variant, cho khoảng 5,3 × 10³⁶ giá trị khả dĩ. Hai UUID v4 hầu như không bao giờ trùng. Dùng v4 ở bất cứ đâu không cần sắp xếp, như request ID cho API hoặc định danh người dùng ẩn danh.",
+          "UUID v7 (RFC 9562, công bố năm 2024) bắt đầu bằng timestamp Unix 48 bit (mili-giây) theo sau là 74 bit ngẫu nhiên. Chúng sắp theo từ điển theo thứ tự tạo, điều này quan trọng với hiệu năng database — khóa chính sắp theo thời gian nghĩa là insert luôn vào cuối B-tree, không có page split ngẫu nhiên. Dùng v7 cho khóa chính database mới."
+        ]
+      },
+      {
+        "heading": "Cách công cụ này hoạt động",
+        "paragraphs": [
+          "Cả v4 và v7 đều dùng crypto.getRandomValues — nguồn ngẫu nhiên an toàn của trình duyệt, cùng primitive HTTPS và trình quản lý mật khẩu sử dụng. v4 lấp đầy 122 bit ngẫu nhiên. v7 chia 48 bit timestamp + 74 bit ngẫu nhiên cùng các marker version/variant theo RFC.",
+          "Việc tạo diễn ra trong trình duyệt của bạn. UUID không được lưu hoặc truyền đi. Nếu tạo 100 UUID v4 thì xác suất trùng giữa chúng là cực kỳ nhỏ — thấp hơn xác suất tia vũ trụ lật bit trong CPU của bạn."
+        ]
+      },
+      {
+        "heading": "Cạm bẫy thường gặp với UUID",
+        "paragraphs": [
+          "UUID v4 làm khóa chính database gây tổn hại hiệu năng so với số nguyên tự tăng vì giá trị ngẫu nhiên gây page split B-tree khi insert. v7 khắc phục điều này — dùng v7 nếu bạn muốn lợi ích của UUID không có cái dở của index.",
+          "Đừng để lộ UUID cho người dùng khi khả năng đoán quan trọng. UUID v4 có 122 bit entropy và không thể đoán. UUID v7 lộ thời gian tạo, ổn cho hầu hết trường hợp nhưng tệ nếu thời gian tạo nhạy cảm.",
+          "UUID dài 36 ký tự kể cả dấu gạch (32 hex + 4 dấu gạch). Chiếm 16 byte nhị phân hoặc 36 byte văn bản. Với cột có cardinality rất cao, hãy cân nhắc lưu dạng BLOB / kiểu UUID gốc thay vì VARCHAR(36)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn v4 hoặc v7", "text": "v4 cho ngẫu nhiên hoàn toàn, v7 cho sắp theo thời gian." },
+      { "name": "Đặt số lượng", "text": "1 đến 100. Mặc định là 5." },
+      { "name": "Sao chép thứ bạn cần", "text": "Bấm 'Sao chép' bên cạnh một UUID, hoặc 'Sao chép tất cả' để lấy tất cả dưới dạng danh sách phân cách bằng dòng mới." }
+    ]
+  },
+  "faq": [
+    { "q": "Chúng có an toàn mật mã không?", "a": "Có. Cả v4 và v7 đều dùng crypto.getRandomValues, API ngẫu nhiên an toàn. v4 có 122 bit entropy; v7 có 74." },
+    { "q": "Vì sao v7 tốt hơn cho khóa database?", "a": "Vì UUID v7 sắp theo thời gian tạo, insert luôn vào cuối index B-tree thay vì vị trí ngẫu nhiên. Điều này tránh page split và tăng đáng kể throughput ghi." },
+    { "q": "Hai UUID có thể trùng không?", "a": "Về mặt lý thuyết có. Với v4 bạn cần tạo ~10¹⁸ trước khi có rủi ro trùng 50%. Với v7 thành phần thời gian giảm con số này còn khoảng 2⁷⁴ trong cùng mili-giây — vẫn gần như không thể." },
+    { "q": "UUID có giống GUID không?", "a": "Có. GUID là tên Microsoft đặt cho UUID. Cùng định dạng, cùng đảm bảo về tính duy nhất." },
+    { "q": "Định dạng là gì?", "a": "Chữ số hex 8-4-4-4-12 với dấu gạch. Tổng 32 ký tự hex + 4 dấu gạch = 36 ký tự. Chữ thường theo quy ước RFC." },
+    { "q": "Có nên dùng v1 thay thế không?", "a": "v1 chứa địa chỉ MAC, là lỗ hổng quyền riêng tư. v7 thay thế v1 cho ID sắp theo thời gian mà không lộ định danh phần cứng." },
+    { "q": "Có thể tạo v4 ở dạng URL-safe Base64 không?", "a": "Không trực tiếp ở đây. Mã hóa 16 byte của UUID thành URL-safe Base64 để có ID 22 ký tự. Hữu ích cho URL ngắn hơn." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Việc tạo hoàn toàn diễn ra trong trình duyệt." }
+  ]
+}

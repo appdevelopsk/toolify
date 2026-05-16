@@ -1,0 +1,58 @@
+{
+  "title": "Đếm từ (kèm thời gian đọc và nói)",
+  "shortDescription": "Đếm từ, ký tự, câu, đoạn, cộng thêm thời gian đọc và nói ước tính. Xử lý đúng ngôn ngữ CJK.",
+  "description": "Dán văn bản bất kỳ để xem số từ, số ký tự (có và không tính dấu cách), số câu, số đoạn, và ước tính thời gian đọc thầm và đọc to.",
+  "metaDescription": "Đếm từ trực tuyến miễn phí kèm thời gian đọc. Đếm từ, ký tự, câu, đoạn theo thời gian thực. Hỗ trợ CJK cho tiếng Nhật, Trung, Hàn.",
+  "keywords": ["đếm từ", "đếm ký tự", "thời gian đọc", "đếm từ bài luận", "đếm chữ"],
+  "placeholder": "Dán hoặc gõ văn bản của bạn ở đây…",
+  "stat": {
+    "words": "Từ",
+    "characters": "Ký tự",
+    "charactersNoSpaces": "Không tính dấu cách",
+    "sentences": "Câu",
+    "paragraphs": "Đoạn",
+    "readingTime": "Thời gian đọc",
+    "speakingTime": "Thời gian nói"
+  },
+  "unit": { "min": "phút" },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cách tính từng chỉ số",
+        "paragraphs": [
+          "Ký tự là độ dài thô của văn bản, bao gồm dấu cách, xuống dòng và emoji. 'Không tính dấu cách' loại bỏ khoảng trắng trước khi đếm. Từ được tách bằng khoảng trắng cho các ngôn ngữ chữ Latin (như tiếng Việt); với tiếng Nhật, Trung, Hàn và Thái, mỗi ký tự biểu ý được đếm là một từ, vì các ngôn ngữ này không dùng dấu cách giữa các từ như tiếng Việt hay tiếng Anh.",
+          "Câu được phát hiện qua dấu kết thúc (. ! ? trong chữ Latin; 。！？ trong CJK). Đoạn là khối được phân tách bằng dòng trống. Các quy tắc này thực dụng — văn bản có dấu câu khác lạ có thể lệch một câu, nhưng với văn xuôi bình thường thì đếm đáng tin cậy."
+        ]
+      },
+      {
+        "heading": "Thời gian đọc được ước tính thế nào",
+        "paragraphs": [
+          "Thời gian đọc dùng 200 từ/phút, trung vị cho người lớn đọc văn xuôi. Thời gian nói dùng 130 từ/phút, tốc độ của diễn giả có kinh nghiệm. Cả hai làm tròn lên phút gần nhất, nên câu 50 từ hiện '1 phút'.",
+          "Các con số này là xấp xỉ. Văn bản kỹ thuật nặng đọc chậm hơn (gần 150 wpm), tiểu thuyết nhẹ đọc nhanh hơn (gần 250 wpm), và nhịp thuyết trình thay đổi nhiều theo phong cách và khán giả. Dùng con số để kiểm tra trực giác, không phải đồng hồ bấm giây."
+        ]
+      },
+      {
+        "heading": "Cách dùng phổ biến",
+        "paragraphs": [
+          "Blogger và người viết dùng số từ để đạt độ dài mục tiêu (hầu hết bài longform nhắm 1500-2500 từ cho SEO). Sinh viên dùng cho bài luận. Marketer dùng ký tự-có-dấu-cách cho giới hạn bài X (Twitter) và độ dài thẻ meta description. Diễn giả dùng số thời gian nói để hiệu chỉnh kịch bản cho lightning talk 5 phút hay keynote 20 phút.",
+          "Người dịch và biên tập theo dõi cả bốn số đếm khi tính tiền theo từ hoặc ký tự — chọn 'có dấu cách' hay 'không' ảnh hưởng giá 10-20%."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Dán văn bản", "text": "Gõ hoặc dán vào ô văn bản. Số đếm cập nhật theo mỗi phím gõ." },
+      { "name": "Đọc các chỉ số", "text": "Cả bảy chỉ số hiện cùng lúc — từ, ký tự, câu, đoạn và ước tính thời gian." },
+      { "name": "Điều chỉnh nếu cần", "text": "Sửa văn bản trực tiếp để đưa số từ về mục tiêu, sau đó sao chép phiên bản đã chỉnh." }
+    ]
+  },
+  "faq": [
+    { "q": "Vì sao số từ CJK của tôi cao hơn dự kiến?", "a": "Chúng tôi đếm mỗi ký tự biểu ý (Hán tự Trung, kanji/kana Nhật, hangul Hàn) là một từ. Từ chữ Latin ở phần khác trong cùng văn bản vẫn được đếm theo khoảng trắng." },
+    { "q": "Emoji có được đếm là ký tự không?", "a": "Có. Một số emoji về kỹ thuật là nhiều code unit Unicode; bộ đếm theo độ dài chuỗi JavaScript, đếm mỗi code unit UTF-16." },
+    { "q": "Thời gian đọc có chính xác không?", "a": "Con số 200 wpm khớp tốc độ đọc thầm trung vị của người lớn với văn xuôi. Văn bản kỹ thuật cao đọc chậm hơn, tiểu thuyết dễ đọc nhanh hơn — coi như ước tính ±30%." },
+    { "q": "Vì sao số câu trông lệch?", "a": "Phát hiện dựa trên dấu kết thúc. Danh sách, tiêu đề không có dấu câu, hoặc văn phong khác lạ có thể làm sai. Số từ vẫn đáng tin cậy." },
+    { "q": "Văn bản có rời khỏi trình duyệt không?", "a": "Không. Mọi thứ chạy cục bộ; chúng tôi không có endpoint server nhận đầu vào." },
+    { "q": "Giới hạn độ dài văn bản là bao nhiêu?", "a": "Không có giới hạn cưỡng chế. Trình duyệt hiện đại xử lý văn bản nhiều megabyte không vấn đề, dù textarea có thể chậm khi vượt khoảng 100.000 ký tự." },
+    { "q": "Có đếm được tweet hay bài X không?", "a": "Có — dùng 'ký tự' (có dấu cách) vì X tính khoảng trắng. Giới hạn 280 ký tự cũng tính URL thành 23 ký tự." },
+    { "q": "Có hỗ trợ Markdown không?", "a": "Nó đếm văn bản thô bao gồm cú pháp Markdown. Nếu muốn đếm từ 'đã render', hãy dán chỉ phần output đã render." }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "title": "URL Encoder / Decoder (mã hóa percent, an toàn UTF-8)",
+  "shortDescription": "Mã hóa văn bản thành percent-encoding cho URL hoặc giải mã chuỗi đã mã hóa. An toàn UTF-8 — xử lý đúng emoji và ký tự CJK.",
+  "description": "Dùng để nhúng văn bản an toàn vào URL, tham số query hoặc dữ liệu form. Xử lý đúng dấu cách, ký tự đặc biệt và Unicode (bao gồm CJK và emoji).",
+  "metaDescription": "Công cụ URL encoder và decoder miễn phí. Chuyển văn bản thành percent-encoding hoặc giải mã ngược. An toàn UTF-8, hỗ trợ mọi Unicode.",
+  "keywords": ["mã hóa URL", "giải mã URL", "percent encoding", "URI encode", "encodeURIComponent"],
+  "input": { "plain": "Văn bản thô", "encoded": "Chuỗi URL đã mã hóa" },
+  "output": { "encoded": "Kết quả mã hóa", "plain": "Kết quả giải mã" },
+  "mode": { "encode": "Mã hóa", "decode": "Giải mã" },
+  "copy": "Sao chép",
+  "copied": "Đã sao chép",
+  "error": "Lỗi giải mã",
+  "article": {
+    "sections": [
+      {
+        "heading": "URL encoding là gì",
+        "paragraphs": [
+          "URL bị giới hạn trong một tập nhỏ ký tự ASCII. Để chèn bất kỳ ký tự nào khác — dấu cách, dấu phụ, chữ Hán, emoji, ký hiệu đặc biệt — bạn thay từng byte không an toàn bằng %XX, trong đó XX là giá trị hexa của byte. Dấu cách thành %20, dấu chéo / thành %2F, chữ tiếng Việt 'á' thành %C3%A1 (byte UTF-8 đã mã hóa percent).",
+          "Công cụ này dùng encodeURIComponent và decodeURIComponent có sẵn của trình duyệt. Nó mã hóa mọi thứ không phải ký tự không cần thoát (chữ cái, số, -._~), đó là hành vi đúng cho tham số query và dữ liệu form."
+        ]
+      },
+      {
+        "heading": "encodeURI và encodeURIComponent",
+        "paragraphs": [
+          "JavaScript có hai bộ mã hóa. encodeURI giữ nguyên các ký tự cấu trúc URL (/ ? & # = + ...) — dùng cho URL đầy đủ. encodeURIComponent thoát tất cả những ký tự đó — dùng cho giá trị bên trong tham số query.",
+          "Công cụ này dùng encodeURIComponent, lựa chọn an toàn hơn cho việc nhúng văn bản tùy ý vào URL. Nếu bạn có URL đầy đủ muốn giữ cấu trúc, chỉ mã hóa phần cần thiết."
+        ]
+      },
+      {
+        "heading": "Những cạm bẫy thường gặp",
+        "paragraphs": [
+          "Dấu cộng trong URL. Một số máy chủ coi '+' là dấu cách (di sản từ form encoding). encodeURIComponent giữ nguyên '+', nhưng máy chủ có thể giải mã thành dấu cách. Để an toàn, hãy thay '+' bằng %2B khi gửi dữ liệu.",
+          "Mã hóa hai lần. Mã hóa một chuỗi đã được mã hóa sẽ thêm một lớp nữa (% thành %25, nên '%20' thành '%2520'). Luôn kiểm tra xem đầu vào đã được mã hóa hay chưa trước khi mã hóa lần nữa.",
+          "Độ dài tăng. Ký tự UTF-8 nhiều byte mở rộng thành 3-4 percent-code mỗi ký tự. Một chuỗi tiếng Việt có dấu 100 ký tự dễ dàng thành URL hơn 200 ký tự."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn chế độ", "text": "Mã hóa văn bản thô thành dạng URL-safe, hoặc giải mã chuỗi URL-encoded ngược về văn bản thô." },
+      { "name": "Dán đầu vào", "text": "Văn bản thô để mã hóa, chuỗi percent-encoded để giải mã." },
+      { "name": "Sao chép kết quả", "text": "Đầu ra xuất hiện bên dưới; bấm 'Sao chép' để dùng." }
+    ]
+  },
+  "faq": [
+    { "q": "Vì sao '%20' không giải mã thành dấu cách?", "a": "Nó nên giải mã — nhưng nếu URL có '+' thì '+' cũng có thể đại diện dấu cách (form encoding cũ). Thay + bằng dấu cách trước nếu cần." },
+    { "q": "Công cụ này có xử lý emoji không?", "a": "Có. Emoji được mã hóa thành chuỗi byte UTF-8 (thường 4 byte / 4 percent-code mỗi emoji)." },
+    { "q": "URL encoding và HTML encoding khác nhau thế nào?", "a": "URL encoding dùng ký hiệu % cho ngữ cảnh URL. HTML encoding dùng &lt; &gt; ... cho HTML. Ngữ cảnh khác nhau, quy tắc khác nhau." },
+    { "q": "Khi nào nên mã hóa và khi nào không?", "a": "Mã hóa mọi giá trị đưa vào tham số query URL, đoạn path chứa input người dùng, hoặc form data. Đừng mã hóa URL đã hoàn chỉnh — sẽ bị double-encode." },
+    { "q": "Vì sao '%' trong văn bản giải mã gây lỗi?", "a": "Một dấu '%' đứng riêng theo sau ký tự không phải hex hợp lệ là percent-encoding không hợp lệ. Mã hóa '%' thành '%25' trước khi đưa vào URL." },
+    { "q": "Trình duyệt có tự làm việc này không?", "a": "Có — khi tạo URL qua API URL hoặc URLSearchParams. Công cụ này cho phép dùng logic tương tự một cách độc lập." },
+    { "q": "Ký tự nào 'an toàn' và không cần mã hóa?", "a": "Chữ cái (A-Z, a-z), số (0-9), và các ký tự: - . _ ~ . Mọi thứ khác sẽ bị percent-encode bởi encodeURIComponent." },
+    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Mã hóa và giải mã đều chạy cục bộ." }
+  ]
+}
