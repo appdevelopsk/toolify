@@ -1,19 +1,5 @@
-import Script from "next/script";
-import { siteConfig } from "@/lib/config";
-
-/**
- * AdSenseのメインスクリプト。`<head>` 直後ではなく `afterInteractive` で読む。
- * クライアントID未設定時は何も出さない（PoCの段階で誤発火を防ぐ）。
- */
+// AdSenseスクリプトは layout.tsx の <head> 内で直接読み込むため、このコンポーネントは何も出力しない。
+// Google確認クローラーは <head> 内のスクリプトのみ検索するため body 末尾では検出不可。
 export function AdScript() {
-  if (!siteConfig.adsense.client) return null;
-  return (
-    <Script
-      id="adsense-script"
-      async
-      strategy="afterInteractive"
-      crossOrigin="anonymous"
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${siteConfig.adsense.client}`}
-    />
-  );
+  return null;
 }

@@ -81,6 +81,14 @@ export default async function LocaleLayout({
         <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} — Latest tools`} href={`${siteConfig.url}/feed.xml`} />
         <link rel="alternate" type="application/json" title={`${siteConfig.name} — Tool directory`} href={`${siteConfig.url}/tools.json`} />
         <link rel="search" type="application/opensearchdescription+xml" title={siteConfig.name} href={`${siteConfig.url}/opensearch.xml`} />
+        {siteConfig.adsense.client && (
+          // eslint-disable-next-line @next/next/no-sync-scripts
+          <script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${siteConfig.adsense.client}`}
+            crossOrigin="anonymous"
+          />
+        )}
       </head>
       <body className="min-h-screen flex flex-col antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
