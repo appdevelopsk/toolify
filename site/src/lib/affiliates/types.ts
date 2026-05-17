@@ -9,8 +9,10 @@ export type OfferCategory = ToolCategory | PromptCategory | "ai";
 export interface AffiliateOffer {
   /** Stable ID for analytics. */
   id: string;
-  /** Category this offer matches — broader than ToolCategory so /prompts can use it. */
+  /** Primary category this offer matches. */
   category: OfferCategory;
+  /** Additional categories where this offer can also appear (cross-category reach). */
+  alsoIn?: OfferCategory[];
   /** Markets where this offer is valid; if absent treated as "global". */
   markets?: Market[];
   /** Locales (BCP47) where this offer is shown; if absent shown to all. */

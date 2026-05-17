@@ -266,9 +266,10 @@ export const CATALOG: AffiliateOffer[] = [
   // Ordered by EPC descending so the top 3 (maxPerSlot) are highest-value for ja locale.
   // NordVPN EPC 89.71 → xserver EPC 51.66 → ConoHa EPC 49.89 are the visible trio for ja.
   {
-    // A8.net link → NordVPN Japanese LP. EPC 89.71 — keep first in text block.
+    // A8.net link → NordVPN Japanese LP. EPC 89.71 — keep first; alsoIn で全カテゴリへ展開
     id: "nordvpn-jp",
     category: "text",
+    alsoIn: ["finance", "math", "converter", "datetime", "color", "health"],
     markets: ["JP"],
     locales: ["ja"],
     name: { ja: "NordVPN" },
@@ -283,6 +284,7 @@ export const CATALOG: AffiliateOffer[] = [
   {
     id: "xserver-jp",
     category: "text",
+    alsoIn: ["math", "converter", "datetime", "color"],
     markets: ["JP"],
     locales: ["ja"],
     name: { ja: "エックスサーバー" },
@@ -295,6 +297,7 @@ export const CATALOG: AffiliateOffer[] = [
   {
     id: "conoha-jp",
     category: "text",
+    alsoIn: ["math", "converter", "datetime", "color"],
     markets: ["JP"],
     locales: ["ja"],
     name: { ja: "ConoHa WING" },
@@ -560,13 +563,18 @@ export const CATALOG: AffiliateOffer[] = [
  */
 export function getOffersFor(category: string, locale: string, opts: { includePending?: boolean } = {}): AffiliateOffer[] {
   const market = inferMarketFromLocale(locale);
-  return CATALOG.filter((o) => {
-    if (o.category !== category) return false;
+  const matches = (o: AffiliateOffer) => {
+    const inCategory = o.category === category || (o.alsoIn?.includes(category as AffiliateOffer["category"]) ?? false);
+    if (!inCategory) return false;
     if (o.locales && !o.locales.includes(locale)) return false;
     if (o.markets && !o.markets.includes(market) && !o.markets.includes("global")) return false;
     if (!opts.includePending && o.pending) return false;
     return true;
-  }).slice(0, POLICY.maxPerSlot);
+  };
+  // Primary-category entries first, then alsoIn entries (lower priority)
+  const primary = CATALOG.filter((o) => o.category === category && matches(o));
+  const secondary = CATALOG.filter((o) => o.category !== category && matches(o));
+  return [...primary, ...secondary].slice(0, POLICY.maxPerSlot);
 }
 
 function inferMarketFromLocale(locale: string): "JP" | "US" | "CN" | "global" {
