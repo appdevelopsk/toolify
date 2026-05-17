@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 const APP_ID = process.env.RAKUTEN_APP_ID;
 const ACCESS_KEY = process.env.RAKUTEN_ACCESS_KEY;
 const AFFILIATE_ID = process.env.RAKUTEN_AFFILIATE_ID;
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolify.pages.dev";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolify365.com";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
