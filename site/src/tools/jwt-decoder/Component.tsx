@@ -79,7 +79,7 @@ export default function JwtDecoder() {
           className="mt-1 w-full rounded border border-slate-300 px-3 py-2 font-mono text-sm break-all dark:border-slate-700 dark:bg-slate-900"
         />
       </label>
-      <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{t("input.privacyNote")}</p>
+      <p className="mt-2 text-xs text-slate-600 dark:text-slate-400">{t("input.privacyNote")}</p>
 
       {!result ? null : !result.ok ? (
         <div className="mt-4 rounded border border-rose-300 bg-rose-50 p-3 text-sm text-rose-900 dark:border-rose-900 dark:bg-rose-900/20 dark:text-rose-200">

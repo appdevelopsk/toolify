@@ -48,24 +48,24 @@ export default function DiscountCalculator() {
         {result ? (
           <dl className="grid gap-3 sm:grid-cols-2">
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.finalPrice")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.finalPrice")}</dt>
               <dd className="mt-1 text-3xl font-bold tabular-nums">{currency.format(result.finalPrice)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.saved")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.saved")}</dt>
               <dd className="mt-1 text-3xl font-bold tabular-nums text-emerald-600">{currency.format(result.saved)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.afterDiscount")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.afterDiscount")}</dt>
               <dd className="mt-1 text-xl font-semibold tabular-nums">{currency.format(result.afterDiscount)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.tax")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.tax")}</dt>
               <dd className="mt-1 text-xl font-semibold tabular-nums">{currency.format(result.tax)}</dd>
             </div>
           </dl>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

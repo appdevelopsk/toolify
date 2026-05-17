@@ -96,7 +96,7 @@ export default function TimestampConverter() {
           {t("now")}
         </button>
         {now !== null && (
-          <span className="self-center text-xs text-slate-500">
+          <span className="self-center text-xs text-slate-600 dark:text-slate-400">
             {t("currentTimestamp")}: <code className="font-mono">{Math.floor(now / 1000)}</code>
           </span>
         )}
@@ -113,7 +113,7 @@ export default function TimestampConverter() {
             <Row label={t("result.relative")} value={relativeFromNow(result.ms, now ?? Date.now(), t)} />
           </dl>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>
@@ -123,7 +123,7 @@ export default function TimestampConverter() {
 function Row({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
   return (
     <div className="flex items-baseline justify-between gap-3 border-b border-slate-200 py-1 dark:border-slate-800">
-      <dt className="text-slate-500">{label}</dt>
+      <dt className="text-slate-600 dark:text-slate-400">{label}</dt>
       <dd className={`text-right ${mono ? "font-mono" : ""}`}>{value}</dd>
     </div>
   );

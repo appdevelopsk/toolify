@@ -109,7 +109,7 @@ export default function PasswordGenerator() {
         >
           {t(`strength.${strength.level}`)}
         </span>
-        <span className="text-slate-500">
+        <span className="text-slate-600 dark:text-slate-400">
           {t("entropy", { bits: strength.bits })}
         </span>
       </div>

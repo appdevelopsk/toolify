@@ -59,25 +59,25 @@ export default function UnitPriceCalculator() {
           <div key={it.id} className={`rounded-lg border p-3 ${it.isCheapest ? "border-emerald-300 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-900/30" : "border-slate-200 dark:border-slate-800"}`}>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-[1fr_120px_120px_80px_auto] sm:items-end">
               <label className="block">
-                <span className="text-xs uppercase text-slate-500">{t("input.name")}</span>
+                <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("input.name")}</span>
                 <input value={it.name} onChange={(e) => update(it.id, { name: e.target.value })} placeholder={t("input.namePlaceholder")} className="mt-1 w-full rounded border border-slate-300 px-2 py-1.5 text-sm dark:border-slate-700 dark:bg-slate-900" />
               </label>
               <label className="block">
-                <span className="text-xs uppercase text-slate-500">{t("input.price")}</span>
+                <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("input.price")}</span>
                 <input inputMode="decimal" value={it.price} onChange={(e) => update(it.id, { price: e.target.value })} className="mt-1 w-full rounded border border-slate-300 px-2 py-1.5 text-sm tabular-nums dark:border-slate-700 dark:bg-slate-900" />
               </label>
               <label className="block">
-                <span className="text-xs uppercase text-slate-500">{t("input.quantity")}</span>
+                <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("input.quantity")}</span>
                 <input inputMode="decimal" value={it.quantity} onChange={(e) => update(it.id, { quantity: e.target.value })} className="mt-1 w-full rounded border border-slate-300 px-2 py-1.5 text-sm tabular-nums dark:border-slate-700 dark:bg-slate-900" />
               </label>
               <label className="block">
-                <span className="text-xs uppercase text-slate-500">{t("input.unit")}</span>
+                <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("input.unit")}</span>
                 <input value={it.unit} onChange={(e) => update(it.id, { unit: e.target.value })} className="mt-1 w-full rounded border border-slate-300 px-2 py-1.5 text-sm dark:border-slate-700 dark:bg-slate-900" />
               </label>
               <button onClick={() => remove(it.id)} aria-label={t("remove")} disabled={items.length <= 2} className="text-slate-400 hover:text-red-600 disabled:opacity-30">×</button>
             </div>
             <div className="mt-2 flex items-center justify-between text-sm">
-              <span className="text-slate-500">{t("result.unitPriceLabel")}</span>
+              <span className="text-slate-600 dark:text-slate-400">{t("result.unitPriceLabel")}</span>
               <div className="flex items-center gap-2">
                 <span className="font-mono tabular-nums text-base font-semibold">
                   {it.unitPrice !== null ? `${currency.format(it.unitPrice)} / ${it.unit}` : "—"}

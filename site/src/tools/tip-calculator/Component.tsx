@@ -80,20 +80,20 @@ export default function TipCalculator() {
         {result ? (
           <dl className="grid gap-3 sm:grid-cols-3">
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.tip")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.tip")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums">{currency.format(result.tip)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.total")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.total")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums">{currency.format(result.total)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.perPerson")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.perPerson")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums">{currency.format(result.perPerson)}</dd>
             </div>
           </dl>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

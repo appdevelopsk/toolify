@@ -82,7 +82,7 @@ export default function JsonFormatter() {
           <pre className="mt-1 rounded border border-red-300 bg-red-50 px-3 py-2 font-mono text-sm text-red-700 dark:border-red-800 dark:bg-red-900/20 dark:text-red-300">{t("error")}: {result.error}</pre>
         )}
         {stats && (
-          <div className="mt-2 text-xs text-slate-500 tabular-nums">
+          <div className="mt-2 text-xs text-slate-600 dark:text-slate-400 tabular-nums">
             {t("stats", { input: stats.inputBytes, output: stats.outputBytes })}
           </div>
         )}

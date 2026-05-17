@@ -86,7 +86,7 @@ export default function ScientificNotationConverter() {
                 </div>
               </div>
             ) : (
-              <div className="text-sm text-slate-500">{t("empty")}</div>
+              <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
             )}
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function ScientificNotationConverter() {
                 </div>
               </div>
             ) : (
-              <div className="text-sm text-slate-500">{t("empty")}</div>
+              <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
             )}
           </div>
         </div>

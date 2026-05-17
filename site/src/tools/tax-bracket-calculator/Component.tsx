@@ -132,10 +132,10 @@ export default function TaxBracketCalculator() {
                 })}
               </tbody>
             </table>
-            <p className="mt-3 text-xs text-slate-500">{t("disclaimer")}</p>
+            <p className="mt-3 text-xs text-slate-600 dark:text-slate-400">{t("disclaimer")}</p>
           </div>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

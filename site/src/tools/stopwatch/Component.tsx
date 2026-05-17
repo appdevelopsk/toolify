@@ -100,9 +100,9 @@ export default function Stopwatch() {
               const split = next === undefined ? lap : lap - next;
               return (
                 <li key={i} className="flex justify-between gap-3 border-b border-slate-200 py-1 font-mono tabular-nums dark:border-slate-800">
-                  <span className="text-slate-500">#{idx}</span>
+                  <span className="text-slate-600 dark:text-slate-400">#{idx}</span>
                   <span>+{formatElapsed(split)}</span>
-                  <span className="text-slate-500">{formatElapsed(lap)}</span>
+                  <span className="text-slate-600 dark:text-slate-400">{formatElapsed(lap)}</span>
                 </li>
               );
             })}

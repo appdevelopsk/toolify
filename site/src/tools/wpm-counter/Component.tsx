@@ -103,19 +103,19 @@ export default function WpmCounter() {
 
       <div aria-live="polite" className="mt-6 grid gap-3 sm:grid-cols-4">
         <div className="rounded-lg border border-slate-200 p-3 text-center dark:border-slate-800">
-          <div className="text-xs text-slate-500">{t("result.wpm")}</div>
+          <div className="text-xs text-slate-600 dark:text-slate-400">{t("result.wpm")}</div>
           <div className="text-3xl font-bold tabular-nums">{stats ? fmt.format(stats.wpm) : "—"}</div>
         </div>
         <div className="rounded-lg border border-slate-200 p-3 text-center dark:border-slate-800">
-          <div className="text-xs text-slate-500">{t("result.cpm")}</div>
+          <div className="text-xs text-slate-600 dark:text-slate-400">{t("result.cpm")}</div>
           <div className="text-3xl font-bold tabular-nums">{stats ? fmt.format(stats.cpm) : "—"}</div>
         </div>
         <div className="rounded-lg border border-slate-200 p-3 text-center dark:border-slate-800">
-          <div className="text-xs text-slate-500">{t("result.accuracy")}</div>
+          <div className="text-xs text-slate-600 dark:text-slate-400">{t("result.accuracy")}</div>
           <div className="text-3xl font-bold tabular-nums">{stats ? `${fmt.format(stats.accuracy)}%` : "—"}</div>
         </div>
         <div className="rounded-lg border border-slate-200 p-3 text-center dark:border-slate-800">
-          <div className="text-xs text-slate-500">{t("result.elapsed")}</div>
+          <div className="text-xs text-slate-600 dark:text-slate-400">{t("result.elapsed")}</div>
           <div className="text-3xl font-bold tabular-nums">{stats ? `${fmt.format(stats.elapsedSec)}s` : "—"}</div>
         </div>
       </div>

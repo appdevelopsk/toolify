@@ -174,7 +174,7 @@ export default function CsvJsonConverter() {
           </button>
         </div>
         {!result ? (
-          <div className="mt-1 rounded border border-slate-200 bg-slate-50 p-3 text-sm text-slate-500 dark:border-slate-800 dark:bg-slate-900/50">{t("empty")}</div>
+          <div className="mt-1 rounded border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600 dark:text-slate-400 dark:border-slate-800 dark:bg-slate-900/50">{t("empty")}</div>
         ) : !result.ok ? (
           <div className="mt-1 rounded border border-rose-300 bg-rose-50 p-3 text-sm text-rose-900 dark:border-rose-900 dark:bg-rose-900/20 dark:text-rose-200">
             {t("error.label")}: {result.error}

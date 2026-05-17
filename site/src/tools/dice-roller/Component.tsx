@@ -79,10 +79,10 @@ export default function DiceRoller() {
 
       {rolls.length > 0 && (
         <div aria-live="polite" className="mt-6 rounded-lg border border-brand-200 bg-brand-50 p-4 dark:border-brand-900 dark:bg-brand-900/20">
-          <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.total")}</div>
+          <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.total")}</div>
           <div className="mt-1 font-mono text-5xl font-bold tabular-nums">
             {fmt.format(total)}
-            {mod !== 0 && <span className="ml-2 text-base font-normal text-slate-500">({fmt.format(sum)} {mod >= 0 ? "+" : "−"} {Math.abs(mod)})</span>}
+            {mod !== 0 && <span className="ml-2 text-base font-normal text-slate-600 dark:text-slate-400">({fmt.format(sum)} {mod >= 0 ? "+" : "−"} {Math.abs(mod)})</span>}
           </div>
           <div className="mt-3 flex flex-wrap gap-2">
             {rolls.map((r, i) => (
@@ -94,12 +94,12 @@ export default function DiceRoller() {
 
       {history.length > 0 && (
         <div className="mt-6">
-          <div className="mb-2 text-xs uppercase tracking-wider text-slate-500">{t("result.history")}</div>
+          <div className="mb-2 text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.history")}</div>
           <div className="space-y-1">
             {history.map((h, i) => (
               <div key={i} className="flex flex-wrap items-baseline justify-between gap-2 rounded border border-slate-200 px-3 py-1.5 text-sm dark:border-slate-800">
                 <span className="font-mono">
-                  {h.rolls.length}d{h.sides}{h.modifier !== 0 && <>{h.modifier >= 0 ? "+" : ""}{h.modifier}</>}: <span className="text-slate-500">[{h.rolls.join(", ")}]</span>
+                  {h.rolls.length}d{h.sides}{h.modifier !== 0 && <>{h.modifier >= 0 ? "+" : ""}{h.modifier}</>}: <span className="text-slate-600 dark:text-slate-400">[{h.rolls.join(", ")}]</span>
                 </span>
                 <span className="font-mono text-base font-bold tabular-nums">= {fmt.format(h.sum)}</span>
               </div>

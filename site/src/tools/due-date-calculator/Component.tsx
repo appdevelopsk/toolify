@@ -63,7 +63,7 @@ export default function DueDateCalculator() {
       <div aria-live="polite" className={`mt-6 rounded-lg border p-4 ${result ? "border-brand-200 bg-brand-50 dark:border-brand-900 dark:bg-brand-900/20" : "border-slate-200 dark:border-slate-800"}`}>
         {result ? (
           <>
-            <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.dueDate")}</div>
+            <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.dueDate")}</div>
             <div className="mt-1 text-2xl font-bold">{dateFmt.format(result.dueDate)}</div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
               <div className="flex justify-between border-b border-slate-200 py-1 dark:border-slate-800">
@@ -85,7 +85,7 @@ export default function DueDateCalculator() {
             </dl>
           </>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

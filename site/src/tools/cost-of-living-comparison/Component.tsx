@@ -153,7 +153,7 @@ export default function CostOfLivingComparison() {
         <label className="block">
           <span className="text-sm font-medium">{t("input.rentShare")}</span>
           <input type="number" inputMode="decimal" min="0" max="60" value={rentShare} onChange={(e) => setRentShare(e.target.value)} className="mt-1 w-full rounded border border-slate-300 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-900" />
-          <span className="mt-1 block text-xs text-slate-500 dark:text-slate-400">{t("input.rentShareHint")}</span>
+          <span className="mt-1 block text-xs text-slate-600 dark:text-slate-400">{t("input.rentShareHint")}</span>
         </label>
       </div>
 
@@ -173,16 +173,16 @@ export default function CostOfLivingComparison() {
 
           <div className="grid gap-3 md:grid-cols-2">
             <div className="rounded border border-slate-200 p-3 dark:border-slate-800">
-              <div className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">{t("result.monthlyCurrent")}</div>
+              <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.monthlyCurrent")}</div>
               <div className="mt-1 font-mono text-lg">{currency.format(result.monthlyCurrent)}</div>
             </div>
             <div className="rounded border border-slate-200 p-3 dark:border-slate-800">
-              <div className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">{t("result.monthlyEquivalent")}</div>
+              <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.monthlyEquivalent")}</div>
               <div className="mt-1 font-mono text-lg">{currency.format(result.monthlyEquivalent)}</div>
             </div>
           </div>
 
-          <p className="text-xs text-slate-500 dark:text-slate-400">{t("result.disclaimer")}</p>
+          <p className="text-xs text-slate-600 dark:text-slate-400">{t("result.disclaimer")}</p>
         </div>
       )}
     </div>

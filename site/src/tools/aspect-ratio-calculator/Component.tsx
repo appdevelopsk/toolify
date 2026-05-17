@@ -100,19 +100,19 @@ export default function AspectRatioCalculator() {
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <label className="block">
-          <span className="text-xs uppercase text-slate-500">{t("input.ratioW")}</span>
+          <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("input.ratioW")}</span>
           <input inputMode="decimal" value={ratioW} onChange={(e) => update("ratioW", e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-center font-mono dark:border-slate-700 dark:bg-slate-900" />
         </label>
         <label className="block">
-          <span className="text-xs uppercase text-slate-500">{t("input.ratioH")}</span>
+          <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("input.ratioH")}</span>
           <input inputMode="decimal" value={ratioH} onChange={(e) => update("ratioH", e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-center font-mono dark:border-slate-700 dark:bg-slate-900" />
         </label>
         <label className="block">
-          <span className="text-xs uppercase text-slate-500">{t("input.width")}</span>
+          <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("input.width")}</span>
           <input inputMode="decimal" value={width} onChange={(e) => update("width", e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-center font-mono dark:border-slate-700 dark:bg-slate-900" />
         </label>
         <label className="block">
-          <span className="text-xs uppercase text-slate-500">{t("input.height")}</span>
+          <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("input.height")}</span>
           <input inputMode="decimal" value={height} onChange={(e) => update("height", e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-center font-mono dark:border-slate-700 dark:bg-slate-900" />
         </label>
       </div>
@@ -121,20 +121,20 @@ export default function AspectRatioCalculator() {
         <div aria-live="polite" className="mt-6 rounded-lg border border-brand-200 bg-brand-50 p-4 dark:border-brand-900 dark:bg-brand-900/20">
           <dl className="grid gap-2 text-sm sm:grid-cols-3">
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.ratio")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.ratio")}</dt>
               <dd className="mt-1 font-mono text-2xl font-bold tabular-nums">{ratioW}:{ratioH}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.decimal")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.decimal")}</dt>
               <dd className="mt-1 font-mono text-2xl font-bold tabular-nums">{fmt.format(computed.decimal)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.dimensions")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.dimensions")}</dt>
               <dd className="mt-1 font-mono text-2xl font-bold tabular-nums">{computed.w} × {computed.h}</dd>
             </div>
           </dl>
           {computed.simplifiedRatio && (
-            <div className="mt-2 text-sm text-slate-500">
+            <div className="mt-2 text-sm text-slate-600 dark:text-slate-400">
               {t("result.simplified")}: <code className="font-mono">{computed.simplifiedRatio}</code>
             </div>
           )}

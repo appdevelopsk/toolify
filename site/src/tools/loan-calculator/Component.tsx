@@ -55,20 +55,20 @@ export default function LoanCalculator() {
         {result ? (
           <dl className="grid gap-3 sm:grid-cols-3">
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.monthly")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.monthly")}</dt>
               <dd className="mt-1 text-3xl font-bold tabular-nums">{cents.format(result.monthly)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.totalPaid")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.totalPaid")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums">{currency.format(result.totalPaid)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.totalInterest")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.totalInterest")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums text-amber-700">{currency.format(result.totalInterest)}</dd>
             </div>
           </dl>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

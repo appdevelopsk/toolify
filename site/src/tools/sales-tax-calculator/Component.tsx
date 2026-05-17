@@ -57,20 +57,20 @@ export default function SalesTaxCalculator() {
         {result ? (
           <dl className="grid gap-3 sm:grid-cols-3">
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.net")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.net")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums">{currency.format(result.net)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.tax")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.tax")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums text-amber-700">{currency.format(result.tax)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.gross")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.gross")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums">{currency.format(result.gross)}</dd>
             </div>
           </dl>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

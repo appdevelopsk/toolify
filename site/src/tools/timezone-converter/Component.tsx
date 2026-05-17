@@ -98,7 +98,7 @@ export default function TimezoneConverter() {
       </div>
 
       <div className="mt-4 flex flex-wrap items-center gap-2">
-        <span className="text-xs uppercase text-slate-500">{t("addTz")}:</span>
+        <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("addTz")}:</span>
         <select onChange={(e) => { addTz(e.target.value); e.target.value = ""; }} className="rounded border border-slate-300 px-2 py-1 text-sm dark:border-slate-700 dark:bg-slate-900">
           <option value="">—</option>
           {COMMON_TIMEZONES.filter((tz) => !targetTzs.includes(tz)).map((tz) => <option key={tz} value={tz}>{tz}</option>)}
@@ -117,7 +117,7 @@ export default function TimezoneConverter() {
             <button onClick={() => removeTz(tz)} aria-label={t("remove")} className="text-slate-400 hover:text-red-600">×</button>
           </div>
         ))}
-        {targetTzs.length === 0 && <div className="rounded border border-dashed border-slate-300 px-4 py-3 text-sm text-slate-500 dark:border-slate-700">{t("empty")}</div>}
+        {targetTzs.length === 0 && <div className="rounded border border-dashed border-slate-300 px-4 py-3 text-sm text-slate-600 dark:text-slate-400 dark:border-slate-700">{t("empty")}</div>}
       </div>
     </div>
   );

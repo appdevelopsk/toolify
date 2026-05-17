@@ -99,7 +99,7 @@ export default function TextDiff() {
                   }>
                     <td className="select-none border-r border-slate-200 px-2 text-right text-slate-400 tabular-nums dark:border-slate-800">{line.oldNo ?? ""}</td>
                     <td className="select-none border-r border-slate-200 px-2 text-right text-slate-400 tabular-nums dark:border-slate-800">{line.newNo ?? ""}</td>
-                    <td className="select-none px-2 text-slate-500">
+                    <td className="select-none px-2 text-slate-600 dark:text-slate-400">
                       {line.op === "add" ? "+" : line.op === "remove" ? "−" : " "}
                     </td>
                     <td className="px-2 whitespace-pre-wrap break-all">{line.text || " "}</td>
@@ -109,7 +109,7 @@ export default function TextDiff() {
             </table>
           </pre>
         ) : (
-          <div className="rounded-lg border border-slate-200 p-4 text-sm text-slate-500 dark:border-slate-800">{t("empty")}</div>
+          <div className="rounded-lg border border-slate-200 p-4 text-sm text-slate-600 dark:text-slate-400 dark:border-slate-800">{t("empty")}</div>
         )}
       </div>
     </div>

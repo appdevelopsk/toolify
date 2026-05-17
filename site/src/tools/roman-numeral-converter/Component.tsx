@@ -85,7 +85,7 @@ export default function RomanNumeralConverter() {
       <div aria-live="polite" className={`mt-4 rounded-lg border p-4 ${result.ok ? "border-brand-200 bg-brand-50 dark:border-brand-900 dark:bg-brand-900/20" : "border-red-300 bg-red-50 dark:border-red-800 dark:bg-red-900/20"}`}>
         {result.ok ? (
           <>
-            <div className="text-xs uppercase tracking-wider text-slate-500">{mode === "toRoman" ? t("result.roman") : t("result.number")}</div>
+            <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{mode === "toRoman" ? t("result.roman") : t("result.number")}</div>
             <div className="mt-1 font-mono text-4xl font-bold tabular-nums">{result.out || "—"}</div>
           </>
         ) : (

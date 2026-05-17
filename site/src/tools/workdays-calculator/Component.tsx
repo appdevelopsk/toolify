@@ -100,7 +100,7 @@ export default function WorkdaysCalculator() {
           placeholder="2026-01-01, 2026-12-25"
           className="mt-1 w-full rounded border border-slate-300 px-3 py-2 font-mono text-sm dark:border-slate-700 dark:bg-slate-900"
         />
-        <span className="text-xs text-slate-500">{t("input.holidaysHint")}</span>
+        <span className="text-xs text-slate-600 dark:text-slate-400">{t("input.holidaysHint")}</span>
       </label>
 
       <div aria-live="polite" className="mt-6 rounded-lg border border-slate-200 p-4 dark:border-slate-800">
@@ -115,7 +115,7 @@ export default function WorkdaysCalculator() {
             <div className="flex justify-between border-b border-slate-200 py-1 dark:border-slate-800"><dt>{t("result.total")}</dt><dd className="tabular-nums">{result.total}</dd></div>
           </dl>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

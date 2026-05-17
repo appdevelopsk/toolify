@@ -94,22 +94,22 @@ export default function BmrCalculator() {
         {result ? (
           <dl className="grid gap-3 sm:grid-cols-3">
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("formula.mifflin")}</dt>
-              <dd className="mt-1 text-3xl font-bold tabular-nums">{fmt.format(result.mifflin)} <span className="text-sm font-normal text-slate-500">kcal/day</span></dd>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("formula.mifflin")}</dt>
+              <dd className="mt-1 text-3xl font-bold tabular-nums">{fmt.format(result.mifflin)} <span className="text-sm font-normal text-slate-600 dark:text-slate-400">kcal/day</span></dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("formula.harris")}</dt>
-              <dd className="mt-1 text-2xl font-bold tabular-nums">{fmt.format(result.harris)} <span className="text-sm font-normal text-slate-500">kcal/day</span></dd>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("formula.harris")}</dt>
+              <dd className="mt-1 text-2xl font-bold tabular-nums">{fmt.format(result.harris)} <span className="text-sm font-normal text-slate-600 dark:text-slate-400">kcal/day</span></dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("formula.katch")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("formula.katch")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums">
-                {result.katch !== null ? <>{fmt.format(result.katch)} <span className="text-sm font-normal text-slate-500">kcal/day</span></> : <span className="text-base font-normal text-slate-500">{t("formula.katchNoBf")}</span>}
+                {result.katch !== null ? <>{fmt.format(result.katch)} <span className="text-sm font-normal text-slate-600 dark:text-slate-400">kcal/day</span></> : <span className="text-base font-normal text-slate-600 dark:text-slate-400">{t("formula.katchNoBf")}</span>}
               </dd>
             </div>
           </dl>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

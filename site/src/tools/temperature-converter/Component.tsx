@@ -89,7 +89,7 @@ export default function TemperatureConverter() {
             <span className="font-medium">{t(`scale.${s}`)}</span>
             <span className="text-2xl font-bold tabular-nums">
               {all !== null ? fmt.format(all[s]) : "—"}
-              <span className="ml-1 text-base text-slate-500">°{s === "K" || s === "R" ? "" : ""}{s}</span>
+              <span className="ml-1 text-base text-slate-600 dark:text-slate-400">°{s === "K" || s === "R" ? "" : ""}{s}</span>
             </span>
           </div>
         ))}

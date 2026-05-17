@@ -71,7 +71,7 @@ export default function TargetHeartRateCalculator() {
                 <li key={z.id} className="flex items-center justify-between rounded border border-slate-200 px-3 py-2 dark:border-slate-800">
                   <div>
                     <div className="text-sm font-medium">{t(`zone.${z.id}.name`)}</div>
-                    <div className="text-xs text-slate-500">{t(`zone.${z.id}.purpose`)}</div>
+                    <div className="text-xs text-slate-600 dark:text-slate-400">{t(`zone.${z.id}.purpose`)}</div>
                   </div>
                   <div className="tabular-nums text-base font-bold">{fmt.format(z.lo)}–{fmt.format(z.hi)} bpm</div>
                 </li>
@@ -79,7 +79,7 @@ export default function TargetHeartRateCalculator() {
             </ul>
           </div>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

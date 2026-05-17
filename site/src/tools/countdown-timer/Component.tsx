@@ -80,7 +80,7 @@ export default function CountdownTimer() {
         {result ? (
           <>
             {title && <div className="mb-2 text-lg font-medium">{title}</div>}
-            <div className="text-xs uppercase tracking-wider text-slate-500">
+            <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">
               {result.ended ? t("ended") : t("remaining")} • {targetFmt}
             </div>
             <div className="mt-3 grid grid-cols-4 gap-2 text-center">
@@ -89,14 +89,14 @@ export default function CountdownTimer() {
                 return (
                   <div key={unit} className="rounded bg-white/60 p-2 dark:bg-slate-900/60">
                     <div className="text-3xl font-bold tabular-nums sm:text-4xl">{unit === "days" ? v : pad(v)}</div>
-                    <div className="text-xs uppercase text-slate-500">{t(`unit.${unit}`)}</div>
+                    <div className="text-xs uppercase text-slate-600 dark:text-slate-400">{t(`unit.${unit}`)}</div>
                   </div>
                 );
               })}
             </div>
           </>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

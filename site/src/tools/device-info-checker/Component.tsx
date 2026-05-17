@@ -171,7 +171,7 @@ export default function DeviceInfoChecker() {
   }
 
   if (!info) {
-    return <div className="text-sm text-slate-500">{t("loading")}</div>;
+    return <div className="text-sm text-slate-600 dark:text-slate-400">{t("loading")}</div>;
   }
 
   const Row = ({ label, value }: { label: string; value: React.ReactNode }) => (
@@ -189,7 +189,7 @@ export default function DeviceInfoChecker() {
         </button>
       </div>
 
-      <h3 className="mt-2 text-sm font-bold uppercase tracking-wide text-slate-500">{t("section.browser")}</h3>
+      <h3 className="mt-2 text-sm font-bold uppercase tracking-wide text-slate-600 dark:text-slate-400">{t("section.browser")}</h3>
       <dl>
         <Row label={t("field.browser")} value={info.browser} />
         <Row label={t("field.os")} value={info.os} />
@@ -203,7 +203,7 @@ export default function DeviceInfoChecker() {
         <Row label={t("field.webdriver")} value={info.webdriver ? t("automation") : t("real")} />
       </dl>
 
-      <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-slate-500">{t("section.display")}</h3>
+      <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-slate-600 dark:text-slate-400">{t("section.display")}</h3>
       <dl>
         <Row label={t("field.screenSize")} value={`${info.screenWidth} × ${info.screenHeight}`} />
         <Row label={t("field.availSize")} value={`${info.screenAvailWidth} × ${info.screenAvailHeight}`} />
@@ -214,7 +214,7 @@ export default function DeviceInfoChecker() {
         <Row label={t("field.reducedMotion")} value={info.prefersReducedMotion ? "✓" : "✗"} />
       </dl>
 
-      <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-slate-500">{t("section.hardware")}</h3>
+      <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-slate-600 dark:text-slate-400">{t("section.hardware")}</h3>
       <dl>
         <Row label={t("field.cpuCores")} value={info.hardwareConcurrency} />
         <Row label={t("field.deviceMemory")} value={info.deviceMemory != null ? `${info.deviceMemory} GB` : t("notAvailable")} />
@@ -226,7 +226,7 @@ export default function DeviceInfoChecker() {
 
       {info.connection && (
         <>
-          <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-slate-500">{t("section.network")}</h3>
+          <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-slate-600 dark:text-slate-400">{t("section.network")}</h3>
           <dl>
             <Row label={t("field.connectionType")} value={info.connection.effectiveType} />
             <Row label={t("field.downlink")} value={`${info.connection.downlink} Mbps`} />
@@ -235,7 +235,7 @@ export default function DeviceInfoChecker() {
         </>
       )}
 
-      <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-slate-500">{t("section.userAgent")}</h3>
+      <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-slate-600 dark:text-slate-400">{t("section.userAgent")}</h3>
       <pre className="overflow-auto rounded bg-slate-100 p-3 font-mono text-xs dark:bg-slate-800">{info.userAgent}</pre>
     </div>
   );

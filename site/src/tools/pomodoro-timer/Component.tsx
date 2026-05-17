@@ -101,7 +101,7 @@ export default function PomodoroTimer() {
       </div>
 
       <div aria-live="polite" className={`rounded-lg border-2 p-8 text-center ${phaseColor}`}>
-        <div className="text-xs uppercase tracking-wider text-slate-500">{t(`phase.${phase}`)}</div>
+        <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t(`phase.${phase}`)}</div>
         <div className="mt-2 font-mono text-7xl font-bold tabular-nums sm:text-8xl">
           {pad(minutes)}:{pad(seconds)}
         </div>
@@ -117,11 +117,11 @@ export default function PomodoroTimer() {
 
       <div className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
         <div className="rounded border border-slate-200 px-3 py-2 dark:border-slate-800">
-          <div className="text-xs text-slate-500">{t("stat.completedFocus")}</div>
+          <div className="text-xs text-slate-600 dark:text-slate-400">{t("stat.completedFocus")}</div>
           <div className="text-2xl font-bold tabular-nums">{completedFocus}</div>
         </div>
         <div className="rounded border border-slate-200 px-3 py-2 dark:border-slate-800">
-          <div className="text-xs text-slate-500">{t("stat.totalFocusMinutes")}</div>
+          <div className="text-xs text-slate-600 dark:text-slate-400">{t("stat.totalFocusMinutes")}</div>
           <div className="text-2xl font-bold tabular-nums">{completedFocus * 25}</div>
         </div>
       </div>

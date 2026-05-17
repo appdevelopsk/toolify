@@ -79,14 +79,14 @@ export default function PercentageCalculator() {
       >
         {result !== null ? (
           <>
-            <div className="text-sm uppercase tracking-wider text-slate-500">{resultLabel}</div>
+            <div className="text-sm uppercase tracking-wider text-slate-600 dark:text-slate-400">{resultLabel}</div>
             <div className="mt-1 text-4xl font-bold tabular-nums">
               {fmt.format(result)}
-              <span className="ml-1 text-2xl text-slate-500">{resultUnit}</span>
+              <span className="ml-1 text-2xl text-slate-600 dark:text-slate-400">{resultUnit}</span>
             </div>
           </>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

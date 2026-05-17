@@ -67,10 +67,10 @@ export default function WaistHipRatioCalculator() {
               <div className="tabular-nums text-4xl font-bold">{fmt.format(result.whr)}</div>
               <div className="mt-1 text-sm font-medium">{t(`category.${result.category}`)}</div>
             </div>
-            <p className="mt-3 text-xs text-slate-500">{t("result.note")}</p>
+            <p className="mt-3 text-xs text-slate-600 dark:text-slate-400">{t("result.note")}</p>
           </div>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

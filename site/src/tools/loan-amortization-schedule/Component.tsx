@@ -147,7 +147,7 @@ export default function LoanAmortizationSchedule() {
               </tbody>
             </table>
           </div>
-          {!showAll && <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{t("schedule.condensedNote")}</p>}
+          {!showAll && <p className="mt-2 text-xs text-slate-600 dark:text-slate-400">{t("schedule.condensedNote")}</p>}
         </div>
       )}
     </div>

@@ -111,22 +111,22 @@ export default function CompoundInterestCalculator() {
         {result ? (
           <dl className="grid gap-3 sm:grid-cols-3">
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.finalBalance")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.finalBalance")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums">{currency.format(result.finalBalance)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.totalContributed")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.totalContributed")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums">{currency.format(result.totalContributed)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.totalInterest")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.totalInterest")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums text-emerald-600">
                 {currency.format(result.totalInterest)}
               </dd>
             </div>
           </dl>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

@@ -103,23 +103,23 @@ export default function CalorieCalculator() {
           <>
             <div className="grid gap-3 sm:grid-cols-2">
               <div>
-                <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.bmr")}</div>
-                <div className="mt-1 text-3xl font-bold tabular-nums">{fmt.format(result.bmr)} <span className="text-sm font-normal text-slate-500">{t("unit.kcalDay")}</span></div>
+                <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.bmr")}</div>
+                <div className="mt-1 text-3xl font-bold tabular-nums">{fmt.format(result.bmr)} <span className="text-sm font-normal text-slate-600 dark:text-slate-400">{t("unit.kcalDay")}</span></div>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.tdee")}</div>
-                <div className="mt-1 text-3xl font-bold tabular-nums">{fmt.format(result.tdee)} <span className="text-sm font-normal text-slate-500">{t("unit.kcalDay")}</span></div>
+                <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.tdee")}</div>
+                <div className="mt-1 text-3xl font-bold tabular-nums">{fmt.format(result.tdee)} <span className="text-sm font-normal text-slate-600 dark:text-slate-400">{t("unit.kcalDay")}</span></div>
               </div>
             </div>
             <div className="mt-4 grid grid-cols-2 gap-2 text-sm sm:grid-cols-4">
-              <div className="rounded border border-slate-200 px-2 py-1 dark:border-slate-800"><div className="text-xs text-slate-500">{t("result.loss")}</div><div className="tabular-nums">{fmt.format(result.loss)}</div></div>
-              <div className="rounded border border-slate-200 px-2 py-1 dark:border-slate-800"><div className="text-xs text-slate-500">{t("result.mildLoss")}</div><div className="tabular-nums">{fmt.format(result.mildLoss)}</div></div>
-              <div className="rounded border border-slate-200 px-2 py-1 dark:border-slate-800"><div className="text-xs text-slate-500">{t("result.mildGain")}</div><div className="tabular-nums">{fmt.format(result.mildGain)}</div></div>
-              <div className="rounded border border-slate-200 px-2 py-1 dark:border-slate-800"><div className="text-xs text-slate-500">{t("result.gain")}</div><div className="tabular-nums">{fmt.format(result.gain)}</div></div>
+              <div className="rounded border border-slate-200 px-2 py-1 dark:border-slate-800"><div className="text-xs text-slate-600 dark:text-slate-400">{t("result.loss")}</div><div className="tabular-nums">{fmt.format(result.loss)}</div></div>
+              <div className="rounded border border-slate-200 px-2 py-1 dark:border-slate-800"><div className="text-xs text-slate-600 dark:text-slate-400">{t("result.mildLoss")}</div><div className="tabular-nums">{fmt.format(result.mildLoss)}</div></div>
+              <div className="rounded border border-slate-200 px-2 py-1 dark:border-slate-800"><div className="text-xs text-slate-600 dark:text-slate-400">{t("result.mildGain")}</div><div className="tabular-nums">{fmt.format(result.mildGain)}</div></div>
+              <div className="rounded border border-slate-200 px-2 py-1 dark:border-slate-800"><div className="text-xs text-slate-600 dark:text-slate-400">{t("result.gain")}</div><div className="tabular-nums">{fmt.format(result.gain)}</div></div>
             </div>
           </>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

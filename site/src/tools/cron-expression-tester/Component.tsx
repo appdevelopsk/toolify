@@ -106,7 +106,7 @@ export default function CronExpressionTester() {
       <label className="block">
         <span className="text-sm font-medium">{t("input.expr")}</span>
         <input value={expr} onChange={(e) => setExpr(e.target.value)} placeholder="0 9 * * 1-5" className="mt-1 w-full rounded border border-slate-300 px-3 py-2 font-mono text-base dark:border-slate-700 dark:bg-slate-900" />
-        <span className="mt-1 block text-xs text-slate-500">{t("input.format")}: <code className="font-mono">分 時 日 月 曜日</code></span>
+        <span className="mt-1 block text-xs text-slate-600 dark:text-slate-400">{t("input.format")}: <code className="font-mono">分 時 日 月 曜日</code></span>
       </label>
 
       <div className="mt-3 flex flex-wrap gap-1 text-xs">
@@ -120,7 +120,7 @@ export default function CronExpressionTester() {
         ].map((p) => (
           <button key={p.expr} onClick={() => setExpr(p.expr)} className="rounded border border-slate-300 px-2 py-1 hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800">
             <code className="font-mono">{p.expr}</code>
-            <span className="ml-1 text-slate-500">— {p.label}</span>
+            <span className="ml-1 text-slate-600 dark:text-slate-400">— {p.label}</span>
           </button>
         ))}
       </div>
@@ -132,11 +132,11 @@ export default function CronExpressionTester() {
           </div>
         ) : "next" in result && result.next ? (
           <div className="rounded-lg border border-brand-200 bg-brand-50 p-4 dark:border-brand-900 dark:bg-brand-900/20">
-            <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.next5")}</div>
+            <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.next5")}</div>
             <ol className="mt-2 space-y-1">
               {result.next.map((d, i) => (
                 <li key={i} className="font-mono text-sm tabular-nums">
-                  <span className="mr-2 text-slate-500">{i + 1}.</span>
+                  <span className="mr-2 text-slate-600 dark:text-slate-400">{i + 1}.</span>
                   {dateFmt.format(d)}
                 </li>
               ))}

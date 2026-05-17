@@ -115,7 +115,7 @@ export default function SubnetCalculator() {
           placeholder="192.168.1.10/24"
           className="mt-1 w-full rounded border border-slate-300 px-3 py-2 font-mono text-lg dark:border-slate-700 dark:bg-slate-900"
         />
-        <span className="text-xs text-slate-500">{t("input.hint")}</span>
+        <span className="text-xs text-slate-600 dark:text-slate-400">{t("input.hint")}</span>
       </label>
 
       <div className="mt-3 flex flex-wrap gap-2">
@@ -157,7 +157,7 @@ export default function SubnetCalculator() {
             </div>
           </div>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

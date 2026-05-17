@@ -85,7 +85,7 @@ export default function InvestmentFeeImpactCalculator() {
         <label className="block md:col-span-2">
           <span className="text-sm font-medium">{t("input.expenseRatio")}</span>
           <input type="number" inputMode="decimal" step="0.01" value={expenseRatio} onChange={(e) => setExpenseRatio(e.target.value)} className="mt-1 w-full rounded border border-slate-300 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-900" />
-          <span className="mt-1 block text-xs text-slate-500 dark:text-slate-400">{t("input.expenseRatioHint")}</span>
+          <span className="mt-1 block text-xs text-slate-600 dark:text-slate-400">{t("input.expenseRatioHint")}</span>
         </label>
       </div>
 
@@ -95,13 +95,13 @@ export default function InvestmentFeeImpactCalculator() {
         <div className="space-y-3">
           <div className="grid gap-3 md:grid-cols-3">
             <div className="rounded border border-slate-200 p-3 dark:border-slate-800">
-              <div className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">{t("result.noFee")}</div>
+              <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.noFee")}</div>
               <div className="mt-1 font-mono text-lg">{currency.format(result.noFee)}</div>
             </div>
             <div className="rounded border border-slate-200 p-3 dark:border-slate-800">
-              <div className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">{t("result.lowFeeIndex")}</div>
+              <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.lowFeeIndex")}</div>
               <div className="mt-1 font-mono text-lg">{currency.format(result.lowFee)}</div>
-              <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">@ 0.05% ER</div>
+              <div className="mt-1 text-xs text-slate-600 dark:text-slate-400">@ 0.05% ER</div>
             </div>
             <div className="rounded border-2 border-rose-300 bg-rose-50 p-3 dark:border-rose-700 dark:bg-rose-900/20">
               <div className="text-xs uppercase tracking-wider text-rose-700 dark:text-rose-300">{t("result.withFee")}</div>

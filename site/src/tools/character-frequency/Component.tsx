@@ -60,12 +60,12 @@ export default function CharacterFrequency() {
 
       {data.length > 0 && (
         <div aria-live="polite" className="mt-6">
-          <div className="mb-2 text-xs text-slate-500">
+          <div className="mb-2 text-xs text-slate-600 dark:text-slate-400">
             {t("stats.unique", { n: fmt.format(data.length) })} · {t("stats.total", { n: fmt.format(grandTotal) })}{data.length > top.length ? ` · ${t("stats.showingTop", { n: top.length })}` : ""}
           </div>
           <div className="overflow-hidden rounded border border-slate-200 dark:border-slate-800">
             <table className="w-full text-sm">
-              <thead className="bg-slate-50 text-xs uppercase tracking-wider text-slate-500 dark:bg-slate-900">
+              <thead className="bg-slate-50 text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400 dark:bg-slate-900">
                 <tr>
                   <th className="px-3 py-2 text-left">{t("col.item")}</th>
                   <th className="px-3 py-2 text-right">{t("col.count")}</th>
@@ -84,7 +84,7 @@ export default function CharacterFrequency() {
             </table>
           </div>
           {data.length > top.length && (
-            <div className="mt-2 text-xs text-slate-500">{t("stats.remainingCount", { n: fmt.format(grandTotal - totalShown) })}</div>
+            <div className="mt-2 text-xs text-slate-600 dark:text-slate-400">{t("stats.remainingCount", { n: fmt.format(grandTotal - totalShown) })}</div>
           )}
         </div>
       )}

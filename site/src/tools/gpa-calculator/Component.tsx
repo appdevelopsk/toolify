@@ -94,20 +94,20 @@ export default function GpaCalculator() {
         {result ? (
           <dl className="grid gap-3 sm:grid-cols-3">
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.gpa")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.gpa")}</dt>
               <dd className="mt-1 text-4xl font-bold tabular-nums">{fmt.format(result.gpa)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.totalCredits")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.totalCredits")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums">{fmt.format(result.totalCredits)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.totalPoints")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.totalPoints")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums">{fmt.format(result.totalPoints)}</dd>
             </div>
           </dl>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

@@ -68,14 +68,14 @@ export default function QuadraticEquationSolver() {
 
       <div aria-live="polite" className="mt-6 rounded-lg border border-slate-200 p-4 dark:border-slate-800">
         {!result ? (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         ) : result.kind === "all" ? (
           <div className="text-sm">{t("result.all")}</div>
         ) : result.kind === "none" ? (
           <div className="text-sm">{t("result.none")}</div>
         ) : result.kind === "linear" ? (
           <div>
-            <div className="text-sm text-slate-500">{t("result.linearLabel")}</div>
+            <div className="text-sm text-slate-600 dark:text-slate-400">{t("result.linearLabel")}</div>
             <div className="font-mono text-2xl">x = {fmt.format(result.x)}</div>
           </div>
         ) : (

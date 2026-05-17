@@ -102,8 +102,8 @@ export default function MacroCalculator() {
       <div aria-live="polite" className={`mt-6 rounded-lg border p-4 ${result ? "border-brand-200 bg-brand-50 dark:border-brand-900 dark:bg-brand-900/20" : "border-slate-200 dark:border-slate-800"}`}>
         {result ? (
           <>
-            <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.target")}</div>
-            <div className="mt-1 text-4xl font-bold tabular-nums">{fmt.format(result.targetKcal)} <span className="text-base font-normal text-slate-500">kcal/day</span></div>
+            <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.target")}</div>
+            <div className="mt-1 text-4xl font-bold tabular-nums">{fmt.format(result.targetKcal)} <span className="text-base font-normal text-slate-600 dark:text-slate-400">kcal/day</span></div>
             <dl className="mt-4 grid gap-2 sm:grid-cols-3">
               <Macro label={t("result.protein")} grams={result.proteinG} kcal={result.proteinG * 4} color="bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-200" />
               <Macro label={t("result.fat")} grams={result.fatG} kcal={result.fatG * 9} color="bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200" />
@@ -111,7 +111,7 @@ export default function MacroCalculator() {
             </dl>
           </>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

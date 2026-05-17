@@ -57,7 +57,7 @@ export default function CaseConverter() {
       <div aria-live="polite" className="mt-4 space-y-2">
         {(Object.keys(TRANSFORMS) as Key[]).map((k) => (
           <div key={k} className="rounded border border-slate-200 dark:border-slate-800">
-            <div className="flex items-center justify-between bg-slate-50 px-3 py-2 text-xs uppercase tracking-wider text-slate-500 dark:bg-slate-900">
+            <div className="flex items-center justify-between bg-slate-50 px-3 py-2 text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400 dark:bg-slate-900">
               <span>{t(`case.${k}`)}</span>
               <button onClick={() => copy(k)} className="text-xs hover:underline">
                 {copied === k ? t("copied") : t("copy")}

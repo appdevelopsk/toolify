@@ -81,13 +81,13 @@ export default function PriceCompare() {
 
       {/* 結果なし */}
       {searched && !error && items.length === 0 && (
-        <p className="text-sm text-slate-500">{t("noResults")}</p>
+        <p className="text-sm text-slate-600 dark:text-slate-400">{t("noResults")}</p>
       )}
 
       {/* 楽天結果 */}
       {items.length > 0 && (
         <>
-          <p className="mb-3 text-xs text-slate-500">
+          <p className="mb-3 text-xs text-slate-600 dark:text-slate-400">
             {t("rakutenResults", { count: items.length })}
           </p>
           <ul className="space-y-2">
@@ -127,7 +127,7 @@ export default function PriceCompare() {
                     <p className="text-sm font-medium line-clamp-2 leading-snug">
                       {item.name}
                     </p>
-                    <p className="mt-0.5 text-xs text-slate-500">{item.shop}</p>
+                    <p className="mt-0.5 text-xs text-slate-600 dark:text-slate-400">{item.shop}</p>
                     {item.reviewCount > 0 && (
                       <p className="mt-0.5 text-xs text-slate-400">
                         ★ {item.reviewAverage.toFixed(1)} ({item.reviewCount})

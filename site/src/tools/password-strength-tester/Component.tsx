@@ -113,7 +113,7 @@ export default function PasswordStrengthTester() {
             {show ? t("hide") : t("show")}
           </button>
         </div>
-        <span className="text-xs text-slate-500">{t("input.privacyNote")}</span>
+        <span className="text-xs text-slate-600 dark:text-slate-400">{t("input.privacyNote")}</span>
       </label>
 
       {a && (
@@ -121,7 +121,7 @@ export default function PasswordStrengthTester() {
           <div>
             <div className="flex items-center justify-between text-sm">
               <span className="font-medium">{t("result.strength")}: {t(`level.${scoreLabel[a.score]}`)}</span>
-              <span className="text-slate-500">{fmt.format(a.entropyBits)} {t("result.bits")}</span>
+              <span className="text-slate-600 dark:text-slate-400">{fmt.format(a.entropyBits)} {t("result.bits")}</span>
             </div>
             <div className="mt-1 flex gap-1 h-2 overflow-hidden rounded">
               {[0, 1, 2, 3, 4].map((i) => (

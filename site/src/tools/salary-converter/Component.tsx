@@ -63,7 +63,7 @@ export default function SalaryConverter() {
         ))}
       </div>
 
-      <div className="mt-4 text-xs text-slate-500">
+      <div className="mt-4 text-xs text-slate-600 dark:text-slate-400">
         {t("assumption")}
       </div>
     </div>

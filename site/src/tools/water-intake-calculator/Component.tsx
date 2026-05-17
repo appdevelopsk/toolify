@@ -60,7 +60,7 @@ export default function WaterIntakeCalculator() {
       <div aria-live="polite" className={`mt-6 rounded-lg border p-4 ${result ? "border-brand-200 bg-brand-50 dark:border-brand-900 dark:bg-brand-900/20" : "border-slate-200 dark:border-slate-800"}`}>
         {result ? (
           <>
-            <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.daily")}</div>
+            <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.daily")}</div>
             <div className="mt-1 text-4xl font-bold tabular-nums">
               {unit === "metric" ? `${fmt1.format(result.totalL)} L` : `${fmt0.format(result.totalFlOz)} fl oz`}
             </div>
@@ -80,7 +80,7 @@ export default function WaterIntakeCalculator() {
             </dl>
           </>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

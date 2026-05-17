@@ -71,7 +71,7 @@ export default function ContrastChecker() {
       <div aria-live="polite" className="mt-6">
         {ratio && grades ? (
           <>
-            <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.label")}</div>
+            <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.label")}</div>
             <div className="mt-1 text-4xl font-bold tabular-nums">{ratio.toFixed(2)}:1</div>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               <Badge ok={grades.aaNormal} label={t("badge.aaNormal")} />
@@ -81,7 +81,7 @@ export default function ContrastChecker() {
             </div>
           </>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

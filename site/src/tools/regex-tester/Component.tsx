@@ -116,20 +116,20 @@ export default function RegexTester() {
         <label className="mt-2 block">
           <span className="text-sm font-medium">{t("input.replace")}</span>
           <input value={replace} onChange={(e) => setReplace(e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 font-mono text-sm dark:border-slate-700 dark:bg-slate-900" placeholder="$&" />
-          <span className="mt-1 block text-xs text-slate-500">{t("hint.replaceVars")}</span>
+          <span className="mt-1 block text-xs text-slate-600 dark:text-slate-400">{t("hint.replaceVars")}</span>
         </label>
       )}
 
       <div aria-live="polite" className="mt-6 space-y-3">
         {compiled.ok && (
           <>
-            <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.matches")} ({matches.length})</div>
+            <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.matches")} ({matches.length})</div>
             <div className="rounded border border-slate-200 bg-slate-50 px-3 py-2 font-mono text-sm leading-relaxed whitespace-pre-wrap dark:border-slate-800 dark:bg-slate-950">
               {highlight(test, matches)}
             </div>
             {showReplace && replaced !== null && (
               <>
-                <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.replaced")}</div>
+                <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.replaced")}</div>
                 <div className="rounded border border-emerald-200 bg-emerald-50 px-3 py-2 font-mono text-sm leading-relaxed whitespace-pre-wrap dark:border-emerald-800 dark:bg-emerald-900/20">
                   {replaced}
                 </div>
@@ -143,12 +143,12 @@ export default function RegexTester() {
                     <li key={i} className="mb-2">
                       <code className="font-mono">{m.match}</code> @{m.index}
                       {m.groups.length > 0 && (
-                        <ul className="ml-4 list-disc text-xs text-slate-500">
+                        <ul className="ml-4 list-disc text-xs text-slate-600 dark:text-slate-400">
                           {m.groups.map((g, j) => <li key={j}>${j + 1}: <code>{g}</code></li>)}
                         </ul>
                       )}
                       {Object.keys(m.named).length > 0 && (
-                        <ul className="ml-4 list-disc text-xs text-slate-500">
+                        <ul className="ml-4 list-disc text-xs text-slate-600 dark:text-slate-400">
                           {Object.entries(m.named).map(([k, v]) => <li key={k}>{k}: <code>{v}</code></li>)}
                         </ul>
                       )}

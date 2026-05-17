@@ -96,15 +96,15 @@ export default function DateCalculator() {
           </div>
           <div className="mt-3 grid grid-cols-3 gap-2">
             <label className="block">
-              <span className="text-xs uppercase text-slate-500">{t("input.years")}</span>
+              <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("input.years")}</span>
               <input inputMode="numeric" value={years} onChange={(e) => setYears(e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-center dark:border-slate-700 dark:bg-slate-900" />
             </label>
             <label className="block">
-              <span className="text-xs uppercase text-slate-500">{t("input.months")}</span>
+              <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("input.months")}</span>
               <input inputMode="numeric" value={months} onChange={(e) => setMonths(e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-center dark:border-slate-700 dark:bg-slate-900" />
             </label>
             <label className="block">
-              <span className="text-xs uppercase text-slate-500">{t("input.days")}</span>
+              <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("input.days")}</span>
               <input inputMode="numeric" value={days} onChange={(e) => setDays(e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-center dark:border-slate-700 dark:bg-slate-900" />
             </label>
           </div>
@@ -119,12 +119,12 @@ export default function DateCalculator() {
       <div aria-live="polite" className={`mt-6 rounded-lg border p-4 ${result ? "border-brand-200 bg-brand-50 dark:border-brand-900 dark:bg-brand-900/20" : "border-slate-200 dark:border-slate-800"}`}>
         {result && result.type === "date" ? (
           <>
-            <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.resultDate")}</div>
+            <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.resultDate")}</div>
             <div className="mt-1 text-3xl font-bold">{dateFmt.format(result.date)}</div>
           </>
         ) : result && result.type === "diff" ? (
           <>
-            <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.difference")}</div>
+            <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.difference")}</div>
             <div className="mt-1 text-2xl font-bold tabular-nums">
               {t("result.ymd", { y: result.ymd.years, m: result.ymd.months, d: result.ymd.days })}
             </div>
@@ -136,7 +136,7 @@ export default function DateCalculator() {
             </dl>
           </>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

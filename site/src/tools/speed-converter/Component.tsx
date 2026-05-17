@@ -49,7 +49,7 @@ export default function SpeedConverter() {
           const c = isFinite(v) ? convert(v, from, u.code) : null;
           return (
             <div key={u.code} className="flex items-baseline justify-between rounded border border-slate-200 px-3 py-2 text-sm dark:border-slate-800">
-              <span className="text-slate-500">{t(`unit.${u.code}`)}</span>
+              <span className="text-slate-600 dark:text-slate-400">{t(`unit.${u.code}`)}</span>
               <span className="tabular-nums">{c !== null ? fmt.format(c) : "—"}</span>
             </div>
           );

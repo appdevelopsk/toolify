@@ -73,7 +73,7 @@ export default function CarLoanCalculator() {
             <div className="flex justify-between border-b border-slate-200 py-1 dark:border-slate-800"><dt>{t("result.total")}</dt><dd className="tabular-nums">{fmt.format(result.total)}</dd></div>
           </dl>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

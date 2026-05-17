@@ -67,15 +67,15 @@ export default function FactorialCalculator() {
 
       <div aria-live="polite" className="mt-6 space-y-3">
         <div className="rounded-lg border border-slate-200 p-4 dark:border-slate-800">
-          <div className="text-xs font-medium text-slate-500">n!</div>
+          <div className="text-xs font-medium text-slate-600 dark:text-slate-400">n!</div>
           <div className="mt-1 break-all font-mono text-base">{result.factN ? shorten(result.factN.toString()) : t("error.tooLargeOrNeg")}</div>
         </div>
         <div className="rounded-lg border border-slate-200 p-4 dark:border-slate-800">
-          <div className="text-xs font-medium text-slate-500">P(n, k) = n! / (n−k)! ({t("result.permutationsLabel")})</div>
+          <div className="text-xs font-medium text-slate-600 dark:text-slate-400">P(n, k) = n! / (n−k)! ({t("result.permutationsLabel")})</div>
           <div className="mt-1 break-all font-mono text-base">{result.perm ? shorten(result.perm.toString()) : t("error.invalid")}</div>
         </div>
         <div className="rounded-lg border border-slate-200 p-4 dark:border-slate-800">
-          <div className="text-xs font-medium text-slate-500">C(n, k) = n! / (k!(n−k)!) ({t("result.combinationsLabel")})</div>
+          <div className="text-xs font-medium text-slate-600 dark:text-slate-400">C(n, k) = n! / (k!(n−k)!) ({t("result.combinationsLabel")})</div>
           <div className="mt-1 break-all font-mono text-base">{result.comb ? shorten(result.comb.toString()) : t("error.invalid")}</div>
         </div>
       </div>

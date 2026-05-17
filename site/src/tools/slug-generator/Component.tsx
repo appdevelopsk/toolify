@@ -88,7 +88,7 @@ export default function SlugGenerator() {
           </button>
         </div>
         <code className="mt-2 block break-all rounded bg-slate-100 p-3 font-mono text-sm dark:bg-slate-800">{slug || t("empty")}</code>
-        <div className="mt-2 text-xs text-slate-500">{t("result.length")}: {slug.length}</div>
+        <div className="mt-2 text-xs text-slate-600 dark:text-slate-400">{t("result.length")}: {slug.length}</div>
       </div>
     </div>
   );

@@ -62,7 +62,7 @@ export default function CreditUtilizationCalculator() {
             </label>
             <button onClick={() => setCards((arr) => arr.filter((x) => x.id !== c.id))}
               disabled={cards.length <= 1} aria-label={t("removeCard")}
-              className="px-2 py-2 text-slate-500 hover:text-rose-600 disabled:opacity-30">×</button>
+              className="px-2 py-2 text-slate-600 dark:text-slate-400 hover:text-rose-600 disabled:opacity-30">×</button>
           </div>
         ))}
       </div>
@@ -79,7 +79,7 @@ export default function CreditUtilizationCalculator() {
         "border-rose-300 bg-rose-50 dark:border-rose-900 dark:bg-rose-900/20"
       }`}>
         {result.overallPct === null ? (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         ) : (
           <>
             <dl className="grid gap-2 text-sm sm:grid-cols-2">

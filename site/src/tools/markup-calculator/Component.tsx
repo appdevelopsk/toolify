@@ -41,20 +41,20 @@ export default function MarkupCalculator() {
         {result ? (
           <dl className="grid gap-3 sm:grid-cols-3">
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.sellPrice")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.sellPrice")}</dt>
               <dd className="mt-1 text-3xl font-bold tabular-nums">{currency.format(result.sellPrice)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.profit")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.profit")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums text-emerald-600">{currency.format(result.profit)}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.margin")}</dt>
+              <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.margin")}</dt>
               <dd className="mt-1 text-2xl font-bold tabular-nums">{fmt.format(result.marginPct)}%</dd>
             </div>
           </dl>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

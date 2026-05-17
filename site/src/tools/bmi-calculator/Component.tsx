@@ -93,12 +93,12 @@ export default function BmiCalculator() {
       >
         {result !== null && cat ? (
           <>
-            <div className="text-sm uppercase tracking-wider text-slate-500">{t("result.label")}</div>
+            <div className="text-sm uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.label")}</div>
             <div className="mt-1 text-4xl font-bold tabular-nums">{fmt.format(result)}</div>
             <div className="mt-2 text-lg">{cat.label}</div>
           </>
         ) : (
-          <div className="text-sm text-slate-500">{t("result.empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("result.empty")}</div>
         )}
       </div>
     </div>

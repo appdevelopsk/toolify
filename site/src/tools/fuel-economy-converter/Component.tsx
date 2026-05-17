@@ -57,7 +57,7 @@ export default function FuelEconomyConverter() {
           const c = isFinite(v) ? fromKml(toKml(v, from), u) : null;
           return (
             <div key={u} className="flex items-baseline justify-between rounded border border-slate-200 px-3 py-2 text-sm dark:border-slate-800">
-              <span className="text-slate-500">{t(`unit.${u}`)}</span>
+              <span className="text-slate-600 dark:text-slate-400">{t(`unit.${u}`)}</span>
               <span className="tabular-nums">{c !== null && isFinite(c) ? fmt.format(c) : "—"}</span>
             </div>
           );

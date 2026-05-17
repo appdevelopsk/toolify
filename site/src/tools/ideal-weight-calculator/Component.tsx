@@ -86,7 +86,7 @@ export default function IdealWeightCalculator() {
       <div aria-live="polite" className={`mt-6 rounded-lg border p-4 ${results ? "border-brand-200 bg-brand-50 dark:border-brand-900 dark:bg-brand-900/20" : "border-slate-200 dark:border-slate-800"}`}>
         {results ? (
           <>
-            <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.healthyBmiRange")}</div>
+            <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.healthyBmiRange")}</div>
             <div className="mt-1 text-2xl font-bold tabular-nums">{display(results.bmiRange[0])} – {display(results.bmiRange[1])}</div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
               {(["devine", "robinson", "miller", "hamwi"] as const).map((k) => (
@@ -98,7 +98,7 @@ export default function IdealWeightCalculator() {
             </dl>
           </>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

@@ -70,11 +70,11 @@ export default function WordCounter() {
           ] as const
         ).map(([key, value]) => (
           <div key={key} className="rounded border border-slate-200 p-3 dark:border-slate-800">
-            <dt className="text-xs uppercase tracking-wider text-slate-500">{t(`stat.${key}`)}</dt>
+            <dt className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t(`stat.${key}`)}</dt>
             <dd className="mt-1 text-2xl font-bold tabular-nums">
               {fmt.format(value)}
               {(key === "readingTime" || key === "speakingTime") && (
-                <span className="ml-1 text-sm font-normal text-slate-500">{t("unit.min")}</span>
+                <span className="ml-1 text-sm font-normal text-slate-600 dark:text-slate-400">{t("unit.min")}</span>
               )}
             </dd>
           </div>

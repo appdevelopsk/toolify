@@ -65,7 +65,7 @@ export default function EmergencyFundCalculator() {
               <div className="tabular-nums text-3xl font-bold">{fmt.format(result.target)}</div>
             </div>
             <div className="mt-3">
-              <div className="flex justify-between text-xs text-slate-500">
+              <div className="flex justify-between text-xs text-slate-600 dark:text-slate-400">
                 <span>{t("result.progress")}</span>
                 <span className="tabular-nums">{result.progress.toFixed(1)}%</span>
               </div>
@@ -93,7 +93,7 @@ export default function EmergencyFundCalculator() {
             </dl>
           </div>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

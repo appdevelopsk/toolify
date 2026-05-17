@@ -161,7 +161,7 @@ export default function LeaseVsBuyCalculator() {
                 {result.winner === "lease" && <span className="rounded bg-emerald-600 px-2 py-0.5 text-xs font-medium text-white">{t("result.cheaperBadge")}</span>}
               </div>
               <div className="mt-2 font-mono text-2xl">{currency.format(result.leaseTotal)}</div>
-              <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{t("result.leaseExplain", { months: result.holdMonths, monthly: currency.format(result.leaseMonthly) })}</div>
+              <div className="mt-1 text-xs text-slate-600 dark:text-slate-400">{t("result.leaseExplain", { months: result.holdMonths, monthly: currency.format(result.leaseMonthly) })}</div>
             </div>
 
             <div className={`rounded border-2 p-4 ${result.winner === "buy" ? "border-emerald-400 bg-emerald-50 dark:border-emerald-700 dark:bg-emerald-900/30" : "border-slate-200 dark:border-slate-800"}`}>
@@ -170,7 +170,7 @@ export default function LeaseVsBuyCalculator() {
                 {result.winner === "buy" && <span className="rounded bg-emerald-600 px-2 py-0.5 text-xs font-medium text-white">{t("result.cheaperBadge")}</span>}
               </div>
               <div className="mt-2 font-mono text-2xl">{currency.format(result.buyTotal)}</div>
-              <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{t("result.buyExplain", { monthly: currency.format(result.buyMonthly) })}</div>
+              <div className="mt-1 text-xs text-slate-600 dark:text-slate-400">{t("result.buyExplain", { monthly: currency.format(result.buyMonthly) })}</div>
             </div>
           </div>
 

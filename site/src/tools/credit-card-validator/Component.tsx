@@ -105,7 +105,7 @@ export default function CreditCardValidator() {
             </dl>
           </div>
         ) : (
-          <div className="rounded-lg border border-slate-200 p-4 text-sm text-slate-500 dark:border-slate-800">{t("empty")}</div>
+          <div className="rounded-lg border border-slate-200 p-4 text-sm text-slate-600 dark:text-slate-400 dark:border-slate-800">{t("empty")}</div>
         )}
       </div>
     </div>

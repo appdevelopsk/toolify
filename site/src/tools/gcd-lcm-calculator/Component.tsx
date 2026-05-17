@@ -96,7 +96,7 @@ export default function GcdLcmCalculator() {
           placeholder="12, 18, 24"
           className="mt-1 w-full rounded border border-slate-300 px-3 py-2 font-mono text-base tabular-nums dark:border-slate-700 dark:bg-slate-900"
         />
-        <span className="text-xs text-slate-500">{t("input.hint")}</span>
+        <span className="text-xs text-slate-600 dark:text-slate-400">{t("input.hint")}</span>
       </label>
 
       <div aria-live="polite" className="mt-6 rounded-lg border border-slate-200 p-4 dark:border-slate-800">
@@ -133,7 +133,7 @@ export default function GcdLcmCalculator() {
             </ul>
           </div>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
     </div>

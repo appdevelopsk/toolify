@@ -111,11 +111,11 @@ export default function MortgageRefinanceCalculator() {
         <div className="space-y-3">
           <div className="grid gap-3 md:grid-cols-3">
             <div className="rounded border border-slate-200 p-3 dark:border-slate-800">
-              <div className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">{t("result.currentPayment")}</div>
+              <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.currentPayment")}</div>
               <div className="mt-1 font-mono text-lg">{currency.format(result.currentPayment)}</div>
             </div>
             <div className="rounded border border-slate-200 p-3 dark:border-slate-800">
-              <div className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">{t("result.newPayment")}</div>
+              <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.newPayment")}</div>
               <div className="mt-1 font-mono text-lg">{currency.format(result.newPayment)}</div>
             </div>
             <div className={`rounded border p-3 ${result.monthlySavings > 0 ? "border-emerald-300 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-900/20" : "border-rose-300 bg-rose-50 dark:border-rose-800 dark:bg-rose-900/20"}`}>
