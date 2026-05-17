@@ -65,6 +65,8 @@ jobs:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
           RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
           RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+          # 楽天アプリ登録のApplication URLと一致させる (toolify365.comに変更後は不要)
+          RAKUTEN_ORIGIN_URL: ${{ secrets.RAKUTEN_ORIGIN_URL }}
           # Amazon アソシエイト (承認後に設定)
           NEXT_PUBLIC_AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
 
@@ -81,8 +83,8 @@ jobs:
           RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
           RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
         run: |
-          printf 'RAKUTEN_APP_ID=%s\nRAKUTEN_ACCESS_KEY=%s\nRAKUTEN_AFFILIATE_ID=%s\n' \
-            "$RAKUTEN_APP_ID" "$RAKUTEN_ACCESS_KEY" "$RAKUTEN_AFFILIATE_ID" \
+          printf 'RAKUTEN_APP_ID=%s\nRAKUTEN_ACCESS_KEY=%s\nRAKUTEN_AFFILIATE_ID=%s\nRAKUTEN_ORIGIN_URL=%s\n' \
+            "$RAKUTEN_APP_ID" "$RAKUTEN_ACCESS_KEY" "$RAKUTEN_AFFILIATE_ID" "$RAKUTEN_ORIGIN_URL" \
             > .next/standalone/.env.local
 
       - name: rsync standalone artifacts to VPS

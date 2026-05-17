@@ -3,7 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 const APP_ID = process.env.RAKUTEN_APP_ID;
 const ACCESS_KEY = process.env.RAKUTEN_ACCESS_KEY;
 const AFFILIATE_ID = process.env.RAKUTEN_AFFILIATE_ID;
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolify365.com";
+// 楽天APIのOrigin/Refererは登録済みApplication URLと一致する必要がある
+// RAKUTEN_ORIGIN_URL: 楽天アプリ管理画面のApplication URLに合わせて設定
+const SITE_URL = process.env.RAKUTEN_ORIGIN_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolify365.com";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
