@@ -120,6 +120,7 @@ import mortgageRefi from "@/tools/mortgage-refinance-calculator";
 import leaseVsBuy from "@/tools/lease-vs-buy-calculator";
 import costOfLiving from "@/tools/cost-of-living-comparison";
 import investmentFee from "@/tools/investment-fee-impact-calculator";
+import priceCompare from "@/tools/price-compare";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -246,6 +247,7 @@ export const TOOLS: ToolMeta[] = [
   leaseVsBuy,
   costOfLiving,
   investmentFee,
+  priceCompare,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
