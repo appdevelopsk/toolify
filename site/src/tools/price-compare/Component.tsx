@@ -160,7 +160,7 @@ export default function PriceCompare() {
               href={amazonUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-600 hover:underline dark:text-amber-400"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
             >
               🛒 {t("searchAmazon")} →
             </a>

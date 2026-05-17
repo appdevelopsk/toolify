@@ -19,7 +19,7 @@ export function ToolCard({ meta, title, description }: { meta: ToolMeta; title: 
         <h3 className="font-semibold leading-snug group-hover:text-brand-600 dark:group-hover:text-brand-500">
           {title}
         </h3>
-        <p className="mt-0.5 line-clamp-2 text-sm text-slate-500 dark:text-slate-400">{description}</p>
+        <p className="mt-0.5 line-clamp-2 text-sm text-slate-600 dark:text-slate-300">{description}</p>
       </div>
     </Link>
   );

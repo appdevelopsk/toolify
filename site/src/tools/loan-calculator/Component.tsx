@@ -64,7 +64,7 @@ export default function LoanCalculator() {
             </div>
             <div>
               <dt className="text-xs uppercase tracking-wider text-slate-500">{t("result.totalInterest")}</dt>
-              <dd className="mt-1 text-2xl font-bold tabular-nums text-amber-600">{currency.format(result.totalInterest)}</dd>
+              <dd className="mt-1 text-2xl font-bold tabular-nums text-amber-700">{currency.format(result.totalInterest)}</dd>
             </div>
           </dl>
         ) : (

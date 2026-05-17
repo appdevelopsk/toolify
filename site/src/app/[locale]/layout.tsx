@@ -75,9 +75,15 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={dir}>
       <head>
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+        {siteConfig.adsense.client && (
+          <>
+            <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+            <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+          </>
+        )}
+        {siteConfig.analytics.gaId && (
+          <link rel="preconnect" href="https://www.googletagmanager.com" />
+        )}
         <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} — Latest tools`} href={`${siteConfig.url}/feed.xml`} />
         <link rel="alternate" type="application/json" title={`${siteConfig.name} — Tool directory`} href={`${siteConfig.url}/tools.json`} />
         <link rel="search" type="application/opensearchdescription+xml" title={siteConfig.name} href={`${siteConfig.url}/opensearch.xml`} />

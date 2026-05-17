@@ -31,7 +31,7 @@ export function RelatedServices({ category, showPending = false }: Props) {
         <h2 id="related-services-heading" className="text-2xl font-bold">
           {t("affiliate.heading")}
         </h2>
-        <Link href="/disclosure" className="text-xs text-slate-500 underline-offset-2 hover:underline">
+        <Link href="/disclosure" className="text-xs text-slate-600 underline-offset-2 hover:underline dark:text-slate-400">
           {t("affiliate.disclosureLink")}
         </Link>
       </div>
@@ -69,7 +69,7 @@ export function RelatedServices({ category, showPending = false }: Props) {
                 </header>
                 <p className="flex-1 text-sm text-slate-600 dark:text-slate-400">{desc}</p>
                 {isPending ? (
-                  <span className="mt-3 inline-block text-xs italic text-slate-500">
+                  <span className="mt-3 inline-block text-xs italic text-slate-600 dark:text-slate-400">
                     {t("affiliate.pending")}
                   </span>
                 ) : (

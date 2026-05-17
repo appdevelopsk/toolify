@@ -69,7 +69,7 @@ export default function LeapYearChecker() {
         {result ? (
           <>
             <div className="flex items-center gap-2">
-              <span className={`text-3xl ${result.leap ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400"}`}>
+              <span className={`text-3xl ${result.leap ? "text-emerald-600 dark:text-emerald-400" : "text-amber-700 dark:text-amber-400"}`}>
                 {result.leap ? "✓" : "✗"}
               </span>
               <div>

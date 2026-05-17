@@ -2,9 +2,11 @@ import lighthouse from "lighthouse";
 import * as chromeLauncher from "chrome-launcher";
 
 const URLS = [
-  "https://tools.appdevelopsk.com/en",
-  "https://tools.appdevelopsk.com/en/tools",
-  "https://tools.appdevelopsk.com/en/tools/bmi-calculator",
+  "https://toolify365.com/en",
+  "https://toolify365.com/en/tools",
+  "https://toolify365.com/en/tools/bmi-calculator",
+  "https://toolify365.com/en/tools/mortgage-calculator",
+  "https://toolify365.com/en/tools/price-compare",
 ];
 
 const chrome = await chromeLauncher.launch({ chromeFlags: ["--headless=new", "--no-sandbox", "--disable-gpu"] });
@@ -27,10 +29,24 @@ for (const url of URLS) {
     const r = await lighthouse(url, flags);
     const c = r.lhr.categories;
     const ccItems = (r.lhr.audits["color-contrast"].details?.items?.length) ?? 0;
+    const bpScore = Math.round(c["best-practices"].score*100);
     console.log(
-      `${formFactor.padEnd(7)} ${url.replace("https://tools.appdevelopsk.com", "").padEnd(30)} ` +
-      `P:${Math.round(c.performance.score*100)} A:${Math.round(c.accessibility.score*100)} BP:${Math.round(c["best-practices"].score*100)} S:${Math.round(c.seo.score*100)} | color-contrast violations: ${ccItems}`
+      `${formFactor.padEnd(7)} ${url.replace("https://toolify365.com", "").padEnd(35)} ` +
+      `P:${Math.round(c.performance.score*100)} A:${Math.round(c.accessibility.score*100)} BP:${bpScore} S:${Math.round(c.seo.score*100)} | cc:${ccItems}`
     );
+    // Show failing best-practices audits if BP < 90
+    if (bpScore < 90) {
+      const bpAuditRefs = c["best-practices"].auditRefs;
+      const failingBP = bpAuditRefs
+        .filter(ref => ref.weight > 0)
+        .map(ref => ({ id: ref.id, score: r.lhr.audits[ref.id]?.score ?? null, weight: ref.weight }))
+        .filter(a => a.score !== null && a.score < 1)
+        .sort((a,b) => a.score - b.score);
+      for (const a of failingBP) {
+        const audit = r.lhr.audits[a.id];
+        console.log(`   ❌ ${a.id} (score:${a.score}, w:${a.weight}): ${audit?.displayValue ?? audit?.explanation ?? ""}`);
+      }
+    }
   }
 }
 

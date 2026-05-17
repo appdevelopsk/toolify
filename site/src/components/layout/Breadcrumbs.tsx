@@ -7,7 +7,7 @@ interface BreadcrumbItem {
 
 export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
+    <nav aria-label="Breadcrumb" className="text-sm text-slate-600 dark:text-slate-400">
       <ol className="flex flex-wrap items-center gap-1">
         {items.map((it, i) => {
           const last = i === items.length - 1;

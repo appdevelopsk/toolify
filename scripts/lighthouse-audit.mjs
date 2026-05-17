@@ -3,7 +3,7 @@ import * as chromeLauncher from "chrome-launcher";
 import { mkdirSync, existsSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
-const ORIGIN = "https://tools.appdevelopsk.com";
+const ORIGIN = "https://toolify365.com";
 const URLS = [
   { name: "home-en", url: `${ORIGIN}/en` },
   { name: "tools-index-en", url: `${ORIGIN}/en/tools` },

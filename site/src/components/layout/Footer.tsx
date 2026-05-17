@@ -13,7 +13,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-6 px-4 sm:grid-cols-2 md:grid-cols-4">
         <div>
           <div className="font-bold">{t("site.name")}</div>
-          <p className="mt-2 text-slate-500">{t("site.tagline")}</p>
+          <p className="mt-2 text-slate-600 dark:text-slate-400">{t("site.tagline")}</p>
         </div>
         <nav className="flex flex-col gap-2">
           <Link href="/tools" className="hover:underline">
@@ -42,7 +42,7 @@ export function Footer() {
             {t("affiliate.footerLink")}
           </Link>
         </nav>
-        <div className="text-xs text-slate-500">
+        <div className="text-xs text-slate-600 dark:text-slate-400">
           <div>
             © {year} {siteConfig.organization}.
           </div>

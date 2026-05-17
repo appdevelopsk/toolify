@@ -110,7 +110,7 @@ export default function PrimeChecker() {
         ) : "n" in result ? (
           <div>
             <div className={`flex items-center gap-3 rounded p-3 ${result.prime ? "bg-emerald-50 dark:bg-emerald-900/20" : "bg-amber-50 dark:bg-amber-900/20"}`}>
-              <span className={`text-3xl ${result.prime ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400"}`}>
+              <span className={`text-3xl ${result.prime ? "text-emerald-600 dark:text-emerald-400" : "text-amber-700 dark:text-amber-400"}`}>
                 {result.prime ? "✓" : "✗"}
               </span>
               <div>

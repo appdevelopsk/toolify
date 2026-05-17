@@ -81,7 +81,7 @@ export default function MortgageCalculator() {
       <div aria-live="polite" className={`mt-6 rounded-lg border p-4 ${result ? "border-brand-200 bg-brand-50 dark:border-brand-900 dark:bg-brand-900/20" : "border-slate-200 dark:border-slate-800"}`}>
         {result ? (
           <>
-            <div className="text-xs uppercase tracking-wider text-slate-500">{t("result.totalMonthly")}</div>
+            <div className="text-xs uppercase tracking-wider text-slate-600">{t("result.totalMonthly")}</div>
             <div className="mt-1 text-4xl font-bold tabular-nums">{cents.format(result.totalMonthly)}</div>
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
               <div className="flex justify-between border-b border-slate-200 py-1 dark:border-slate-800">
@@ -112,12 +112,12 @@ export default function MortgageCalculator() {
               </div>
               <div className="flex justify-between border-b border-slate-200 py-1 dark:border-slate-800">
                 <dt>{t("result.totalInterest")}</dt>
-                <dd className="tabular-nums text-amber-600">{currency.format(result.totalInterest)}</dd>
+                <dd className="tabular-nums text-amber-700">{currency.format(result.totalInterest)}</dd>
               </div>
             </dl>
           </>
         ) : (
-          <div className="text-sm text-slate-500">{t("empty")}</div>
+          <div className="text-sm text-slate-600">{t("empty")}</div>
         )}
       </div>
     </div>
