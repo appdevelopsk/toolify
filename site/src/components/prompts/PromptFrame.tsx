@@ -65,7 +65,7 @@ export function PromptFrame({
         <h1 className="mt-3 text-3xl font-bold tracking-tight">{title}</h1>
         <p className="mt-2 text-slate-600 dark:text-slate-400">{description}</p>
 
-        <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
+        <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
           <span>
             <strong className="text-slate-700 dark:text-slate-300">{t("prompt.category")}:</strong> {meta.category}
           </span>
@@ -203,7 +203,7 @@ export function PromptFrame({
           </section>
         )}
 
-        <p className="mt-10 text-xs text-slate-500 dark:text-slate-400">
+        <p className="mt-10 text-xs text-slate-600 dark:text-slate-400">
           {t("prompt.lastUpdated")}: <time dateTime={meta.updatedAt}>{meta.updatedAt}</time>
         </p>
       </main>

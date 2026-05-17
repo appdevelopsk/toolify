@@ -89,7 +89,7 @@ export function AdSlot({
   return (
     <div className={className} style={style}>
       {showLabel && (
-        <div className="mb-1 text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400">Advertisement</div>
+        <div className="mb-1 text-[10px] uppercase tracking-wider text-slate-600 dark:text-slate-400">Advertisement</div>
       )}
       <ins
         ref={ref}

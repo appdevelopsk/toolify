@@ -24,13 +24,13 @@ export function PromptCard({
         {cfg.emoji}
       </span>
       <div className="min-w-0">
-        <div className="text-xs text-slate-500 dark:text-slate-400">
+        <div className="text-xs text-slate-600 dark:text-slate-400">
           {meta.recommendedFor.slice(0, 2).join(" · ")}
         </div>
         <h3 className="font-semibold leading-snug group-hover:text-brand-600 dark:group-hover:text-brand-500">
           {title}
         </h3>
-        <p className="mt-0.5 line-clamp-2 text-sm text-slate-500 dark:text-slate-400">{description}</p>
+        <p className="mt-0.5 line-clamp-2 text-sm text-slate-600 dark:text-slate-400">{description}</p>
       </div>
     </Link>
   );

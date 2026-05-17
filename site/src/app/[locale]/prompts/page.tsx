@@ -75,7 +75,7 @@ export default async function PromptsIndex({ params }: { params: Promise<{ local
                 {cfg.emoji}
               </span>
               <h2 className="text-xl font-bold">{cfg.label}</h2>
-              <span className="ml-auto rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+              <span className="ml-auto rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-300">
                 {list.length}
               </span>
             </div>

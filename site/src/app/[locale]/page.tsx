@@ -98,7 +98,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                     <div className="text-sm font-semibold group-hover:text-brand-600 dark:group-hover:text-brand-500">
                       {cfg.label}
                     </div>
-                    <div className="text-xs text-slate-500 dark:text-slate-400">
+                    <div className="text-xs text-slate-600 dark:text-slate-400">
                       {t("home.toolsCount", { n: count })}
                     </div>
                   </div>
