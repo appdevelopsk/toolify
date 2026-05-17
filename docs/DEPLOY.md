@@ -49,9 +49,19 @@ NEXT_PUBLIC_ADSENSE_SLOT_BANNER=
 NEXT_PUBLIC_ADSENSE_SLOT_INARTICLE=
 NEXT_PUBLIC_ADSENSE_SLOT_STICKY=
 NEXT_PUBLIC_ADSENSE_SLOT_BELOWRESULT=
+
+# 楽天市場 価格比較ツール (/tools/price-compare) — サーバーサイドのみ、非公開で設定
+RAKUTEN_APP_ID=（楽天ウェブサービス管理画面のアプリID）
+RAKUTEN_ACCESS_KEY=（同 アクセスキー）
+RAKUTEN_AFFILIATE_ID=（同 アフィリエイトID）
+
+# Amazon アソシエイト — アソシエイト承認後に設定
+NEXT_PUBLIC_AMAZON_PARTNER_TAG=（例: toolify-22）
 ```
 
 審査前は AdSense Slot ID は空のまま OK（プレースホルダ表示）。承認後に slot ID を埋めて再デプロイ。
+
+> **⚠️ 注意**: `RAKUTEN_APP_ID` / `RAKUTEN_ACCESS_KEY` は秘匿情報のため CF Pages の `Secret` 変数として設定すること（`NEXT_PUBLIC_` プレフィックスなし = クライアントには漏れない）。また、楽天のアプリ登録 Application URL を `NEXT_PUBLIC_SITE_URL` と一致させること（不一致だと `HTTP_REFERRER_NOT_ALLOWED` で API が 403 を返す）。
 
 ## 4. カスタムドメイン
 

@@ -48,7 +48,8 @@ export default function PriceCompare() {
     }
   }, [query, t]);
 
-  const amazonUrl = `https://www.amazon.co.jp/s?k=${encodeURIComponent(query.trim())}`;
+  const amazonTag = process.env.NEXT_PUBLIC_AMAZON_PARTNER_TAG;
+  const amazonUrl = `https://www.amazon.co.jp/s?k=${encodeURIComponent(query.trim())}${amazonTag ? `&tag=${amazonTag}` : ""}`;
 
   return (
     <div>
