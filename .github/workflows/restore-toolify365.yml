@@ -1,0 +1,88 @@
+name: Restore toolify365.com (remove redirect, re-enable app)
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Restore toolify365.com nginx config to proxy app
+        run: |
+          ssh -i ~/.ssh/key "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" 'bash -s' << 'ENDSSH'
+            set -e
+
+            if [ -d /etc/nginx/sites-available ]; then
+              CONF=/etc/nginx/sites-available/toolify365.com
+            else
+              CONF=$(find /etc/nginx/conf.d/ -name "*toolify365*" 2>/dev/null | head -1)
+            fi
+            echo "Config: $CONF"
+
+            sudo tee "$CONF" > /dev/null << 'EOF'
+          server {
+              listen 80;
+              server_name toolify365.com www.toolify365.com;
+              return 301 https://$host$request_uri;
+          }
+
+          server {
+              listen 443 ssl;
+              server_name toolify365.com www.toolify365.com;
+              ssl_certificate /etc/letsencrypt/live/toolify365.com/fullchain.pem;
+              ssl_certificate_key /etc/letsencrypt/live/toolify365.com/privkey.pem;
+
+              location / {
+                  proxy_pass http://127.0.0.1:8500;
+                  proxy_http_version 1.1;
+                  proxy_set_header Upgrade $http_upgrade;
+                  proxy_set_header Connection 'upgrade';
+                  proxy_set_header Host $host;
+                  proxy_set_header X-Real-IP $remote_addr;
+                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                  proxy_set_header X-Forwarded-Proto $scheme;
+                  proxy_cache_bypass $http_upgrade;
+              }
+          }
+          EOF
+
+            sudo nginx -t
+            sudo systemctl reload nginx
+            echo "toolify365.com restored to app proxy"
+          ENDSSH
+
+      - name: Remove fxea365.com nginx config
+        run: |
+          ssh -i ~/.ssh/key "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" 'bash -s' << 'ENDSSH'
+            set -e
+
+            if [ -d /etc/nginx/sites-enabled ]; then
+              sudo rm -f /etc/nginx/sites-enabled/fxea365.com
+              sudo rm -f /etc/nginx/sites-available/fxea365.com
+            else
+              sudo rm -f /etc/nginx/conf.d/fxea365.com.conf
+            fi
+
+            sudo nginx -t
+            sudo systemctl reload nginx
+            echo "fxea365.com nginx config removed"
+          ENDSSH
+
+      - name: Smoke test toolify365.com
+        run: |
+          sleep 5
+          STATUS=$(curl -sSo /dev/null -w "%{http_code}" --max-time 15 https://toolify365.com/en/tools/bmi-calculator || echo "000")
+          echo "HTTP status: $STATUS"
+          [ "$STATUS" = "200" ] && echo "✓ toolify365.com restored" || echo "✗ Got $STATUS"
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/key
