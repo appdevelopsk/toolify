@@ -1,0 +1,98 @@
+{
+  "title": "HTML Entity Encoder & Decoder — Named, Numeric & Hex",
+  "shortDescription": "Encode special characters to HTML entities or decode HTML entities back to text. Supports named entities (&amp;), decimal numeric (&#65;), and hex (&#x41;) formats.",
+  "description": "Paste text to encode special characters as HTML entities, or paste HTML with entities to decode them back to readable text. Choose between named entities (&amp;, &lt;, &copy;), decimal numeric (&#169;), or hexadecimal (&#xA9;) encoding. Optionally encode all non-ASCII characters for maximum compatibility.",
+  "metaDescription": "Free HTML entity encoder and decoder. Convert special characters to &amp; &lt; &gt; and named, numeric, or hex entities. Instant decode too.",
+  "keywords": ["HTML entity encoder", "HTML entities", "encode HTML", "decode HTML entities", "special characters HTML"],
+  "mode": {
+    "encode": "Encode",
+    "decode": "Decode"
+  },
+  "encodeMode": {
+    "named": "Named (&amp;)",
+    "numeric": "Numeric (&#38;)",
+    "hex": "Hex (&#x26;)"
+  },
+  "option": {
+    "encodeAll": "Encode all non-ASCII"
+  },
+  "label": {
+    "inputText": "Input Text",
+    "inputEncoded": "Encoded HTML",
+    "outputEncoded": "Encoded Output",
+    "outputText": "Decoded Text"
+  },
+  "placeholder": {
+    "text": "Type or paste text with special characters like <, >, &, © …",
+    "encoded": "Paste HTML with entities like &amp;, &lt;, &#169; …"
+  },
+  "action": {
+    "copy": "Copy",
+    "swap": "Swap"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What are HTML entities?",
+        "paragraphs": [
+          "HTML entities are special text codes used to represent characters that either have special meaning in HTML or cannot be typed directly. The most important are the five characters reserved in HTML syntax: & (ampersand) → &amp;, < (less-than) → &lt;, > (greater-than) → &gt;, \" (double quote) → &quot;, and ' (single quote/apostrophe) → &apos;. If these characters appear in text content without encoding, the browser may interpret them as HTML markup, causing rendering errors or security vulnerabilities.",
+          "HTML entities come in three formats: named entities use a descriptive name (&copy; for ©, &euro; for €), decimal numeric character references use a code point number (&#169; for ©), and hexadecimal character references use a hex code (&#xA9; for ©). All three formats are equivalent — the browser renders the same character regardless of which format you use. Named entities are the most readable; numeric entities are the most universal since they work for any Unicode character."
+        ]
+      },
+      {
+        "heading": "When to encode HTML entities",
+        "paragraphs": [
+          "You must encode at minimum the five reserved HTML characters (&, <, >, \", ') whenever they appear in text content or attribute values. Failing to encode them is a source of Cross-Site Scripting (XSS) vulnerabilities: if user input is inserted into HTML without encoding, an attacker can inject script tags or event handlers. Modern frameworks like React, Vue, and Angular auto-encode HTML by default — innerHTML is the main exception where manual encoding is still critical.",
+          "Beyond the required five, you may also want to encode non-ASCII characters for environments that do not reliably handle UTF-8: email HTML, legacy CMS systems, or documents intended for maximum compatibility. The 'Encode all non-ASCII' option converts every character above code point 127 to a numeric entity, ensuring the output is pure ASCII while preserving the visual appearance when rendered. For modern UTF-8 HTML files, encoding non-ASCII is optional — declaring the charset properly is sufficient."
+        ]
+      },
+      {
+        "heading": "HTML entities vs URL encoding vs Base64",
+        "paragraphs": [
+          "HTML entities, URL encoding (percent-encoding), and Base64 are three different encoding schemes for different contexts. HTML entities (like &amp;) are used inside HTML documents to represent characters safely. URL encoding (like %26 for &) is used in query strings and URLs to encode characters that have special meaning in a URL. Base64 encodes arbitrary binary data as ASCII text, used for data URIs and email attachments.",
+          "A common mistake is mixing these up: URL-encoding HTML content or HTML-encoding URLs. For example, an ampersand in a URL query string needs percent-encoding (%26), not HTML entity encoding (&amp;). If you build a URL that then gets embedded in an HTML attribute, you need both: the URL-encoded form goes into the attribute, and the attribute value itself is HTML-encoded. Understanding which encoding applies in which context prevents double-encoding bugs and security issues."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Encode special characters", "text": "Select Encode mode, paste your text into the left box. The encoded output appears on the right. Choose Named for readable entities (&amp;), Numeric for universal decimal (&#38;), or Hex for hexadecimal (&#x26;). Check 'Encode all non-ASCII' to convert every non-ASCII character to an entity." },
+      { "name": "Decode HTML entities", "text": "Select Decode mode, paste HTML with entities into the left box. The tool recognizes named entities (&amp;, &copy;), decimal numeric entities (&#169;), and hex entities (&#xA9;), converting all of them back to their original characters." },
+      { "name": "Swap encode and decode", "text": "Click the Swap button to move the output to the input and switch modes — useful for verifying a round-trip or quickly reversing a conversion." },
+      { "name": "Copy the result", "text": "Click Copy to put the encoded or decoded result in your clipboard." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "What is the HTML entity for ampersand (&)?",
+      "a": "The HTML entity for ampersand is &amp; — literally the characters &, a, m, p, and semicolon. When you write &amp; in HTML source, the browser displays a single & character. This encoding is required whenever an ampersand appears in text content or attribute values, because an unencoded & starts an entity sequence that the parser tries to interpret."
+    },
+    {
+      "q": "What is the HTML entity for copyright (©)?",
+      "a": "Copyright © has three equivalent HTML entities: named &copy;, decimal numeric &#169;, and hexadecimal &#xA9;. All render the same © character. Named entities are the most readable option when available. For modern UTF-8 HTML, you can also type the © character directly — no entity needed — as long as your HTML file declares charset=utf-8."
+    },
+    {
+      "q": "Do I need to encode quotes in HTML?",
+      "a": "Double quotes (\") must be encoded as &quot; inside HTML attributes delimited by double quotes: <input value=\"&quot;\">. Single quotes (') must be encoded as &apos; or &#39; inside single-quoted attributes. Inside element text content (between tags), both quote characters can appear unencoded, but encoding them is harmless. Encoding both consistently in all contexts is the safest approach."
+    },
+    {
+      "q": "What is the difference between named and numeric entities?",
+      "a": "Named entities use a descriptive word (&copy;, &euro;, &hearts;) and are defined in the HTML specification — not every Unicode character has a named entity. Numeric entities use the Unicode code point, either as decimal (&#8364; for €) or hexadecimal (&#x20AC; for €). Numeric entities work for any Unicode character, while named entities only cover a subset. Both render identically in browsers."
+    },
+    {
+      "q": "Should I encode non-ASCII characters in HTML?",
+      "a": "Not usually. If your HTML document declares UTF-8 encoding (meta charset=utf-8) and is saved as UTF-8, you can write non-ASCII characters directly: é, ñ, 中, 🎉. Encoding them as entities is optional and makes the source harder to read. The exception is when sending HTML in contexts that may not preserve encoding: email messages, legacy APIs, or systems that mangle non-ASCII bytes. In those cases, encoding all non-ASCII as numeric entities ensures the output is pure safe ASCII."
+    },
+    {
+      "q": "What is XSS and how do HTML entities prevent it?",
+      "a": "Cross-Site Scripting (XSS) is a security vulnerability where an attacker injects malicious JavaScript into a webpage by inserting text that the server reflects into HTML without encoding. For example, if user input <script>alert('xss')</script> is inserted directly into a page, the browser executes the script. If you properly encode the input — converting < to &lt; and > to &gt; — the browser displays the text literally instead of parsing it as a tag. HTML entity encoding is the primary defense against reflected and stored XSS."
+    },
+    {
+      "q": "Why does &nbsp; not appear in this tool's list?",
+      "a": "This tool encodes characters that have named entities. The non-breaking space (Unicode U+00A0) is encoded as &nbsp; when you type the actual non-breaking space character (which you can insert with Alt+Space on some systems or copy from character maps). The regular space (U+0020, the spacebar) is not encoded because it is a safe ASCII character. If you specifically need &nbsp; in your output, type or paste a non-breaking space character into the input."
+    },
+    {
+      "q": "Can I use this to prevent HTML injection in user input?",
+      "a": "Yes — encoding user-supplied text before inserting it into HTML is one of the core defenses against HTML injection and XSS. At minimum, encode the five reserved characters: &, <, >, \", '. This tool encodes all five. However, encoding alone is not a complete security solution: you also need proper Content Security Policy headers, careful handling of javascript: URLs in attributes, and framework-level protections. For production applications, use a server-side library designed for security (OWASP Java Encoder, DOMPurify for client-side, etc.) rather than manual encoding."
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "title": "Text-zu-Binär-Konverter — Kodieren & Dekodieren",
+  "shortDescription": "Text in Binärcode umwandeln oder Binärcode zurück in lesbaren Text dekodieren. Unterstützt leer-, zeilengetrennte oder kontinuierliche Binärausgabe. Kodierung und Dekodierung mit einem Klick tauschen.",
+  "description": "Beliebigen Text eingeben, um ihn in Binärcode (0en und 1en) umzuwandeln, oder Binärcode einfügen, um ihn zurück in Text zu dekodieren. Jedes Zeichen wird über seinen ASCII/Unicode-Wert konvertiert. Leer-, zeilengetrennte oder kontinuierliche Binärausgabe wählbar. Die Tauschen-Schaltfläche kehrt die letzte Konvertierung sofort um.",
+  "metaDescription": "Kostenloser Text-zu-Binär-Konverter. Text in 0en und 1en kodieren oder Binärcode in Text dekodieren. Leer- oder kontinuierliche Trennung. Kein Upload nötig.",
+  "keywords": ["Text zu Binär", "Binär zu Text", "Binärkonverter", "Binär kodieren", "ASCII Binär"],
+  "mode": {
+    "encode": "Text → Binary",
+    "decode": "Binary → Text"
+  },
+  "separator": {
+    "label": "Trennzeichen",
+    "space": "Leerzeichen",
+    "newline": "Zeilenumbruch",
+    "none": "Keines"
+  },
+  "label": {
+    "inputText": "Eingabetext",
+    "inputBinary": "Binäreingabe",
+    "outputBinary": "Binärausgabe",
+    "outputText": "Dekodierter Text"
+  },
+  "placeholder": {
+    "text": "Text hier eingeben oder einfügen…",
+    "binary": "Binärcode hier einfügen (z. B. 01001000 01100101 01101100 01101100 01101111)"
+  },
+  "action": {
+    "copy": "Kopieren",
+    "swap": "Tauschen"
+  },
+  "stat": {
+    "encoded": "{chars} Zeichen → {bytes} Bytes",
+    "decoded": "{chars} Zeichen dekodiert"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie die Text-zu-Binär-Konvertierung funktioniert",
+        "paragraphs": [
+          "Jedes Zeichen in einem Computer wird als Zahl gespeichert. Bei standardmäßigem ASCII-Text ist der Buchstabe „A“ die Zahl 65, „B“ ist 66, das Kleinbuchstabe „a“ ist 97, ein Leerzeichen ist 32 usw. Um Text in Binärcode umzuwandeln, schlägt dieses Tool den numerischen Wert (ASCII/Unicode-Codepunkt) jedes Zeichens nach und schreibt diese Zahl in Basis 2 (binär), aufgefüllt auf 8 Stellen. Beispiel: „H“ = 72 dezimal = 01001000 binär, „e“ = 101 dezimal = 01100101 binär, „l“ = 108 dezimal = 01101100 binär.",
+          "Der umgekehrte Prozess (Binär zu Text) liest 8-Bit-Gruppen, konvertiert jede aus Basis 2 zurück in eine Dezimalzahl und schlägt dann das Zeichen mit diesem Codepunkt nach. Wenn leerzeichengetrenntes Binär (wie 01001000 01100101) eingefügt wird, teilt das Tool an Leerzeichen auf. Bei kontinuierlichem Binär (wie 0100100001100101) werden automatisch 8-Bit-Blöcke gebildet. Jede 8-Bit-Gruppe muss genau 8 Einsen und Nullen enthalten — andernfalls zeigt das Tool einen Fehler, der das ungültige Byte identifiziert."
+        ]
+      },
+      {
+        "heading": "Binär vs. Hexadezimal bei der Datendarstellung",
+        "paragraphs": [
+          "Binär (Basis 2) verwendet nur 0 und 1 und ist damit die grundlegendste Darstellung digitaler Daten — es spiegelt direkt wider, wie Bits im Computerspeicher gespeichert werden. Allerdings ist es ausführlich: Ein einzelnes ASCII-Zeichen benötigt 8 Stellen. Hexadezimal (Basis 16, mit den Ziffern 0–9 und A–F) ist kompakter: Jede Hexadezimalziffer repräsentiert genau 4 Binärziffern (ein Nibble), sodass ein Byte nur 2 Hexadezimalziffern ergibt. „H“ = 0x48 in Hex vs. 01001000 in Binär.",
+          "Binärdarstellung ist am nützlichsten, wenn Sie einzelne Bits sehen oder manipulieren müssen — beispielsweise beim Überprüfen von Flags in einer Bitmaske, beim Verstehen, wie Unicode-Codepunkte in UTF-8-Bytes enkodiert werden, oder bei der Analyse von Netzwerkpaketstrukturen auf Bitebene. Für die meisten Datenüberprüfungsaufgaben bietet Hexadezimal ein gutes Gleichgewicht zwischen Kompaktheit und Lesbarkeit. Viele Debugger, Hex-Editoren und Protokollanalysatoren zeigen Daten in Hex an, mit optionaler Binäransicht für die Arbeit auf Bitebene."
+        ]
+      },
+      {
+        "heading": "Über ASCII hinaus: Unicode und Multi-Byte-Zeichen",
+        "paragraphs": [
+          "Standard-ASCII deckt nur 128 Zeichen ab (7 Bit, Codes 0–127), ausreichend für englischen Text, aber nicht für Akzentzeichen, nicht-lateinische Schriften oder Emojis. Moderner Text wird in Unicode kodiert, das über 140.000 Zeichen definiert. Dieses Tool verwendet JavaScripts eingebaute charCodeAt()-Methode, die die UTF-16-Codeeinheit für jedes Zeichen zurückgibt. Bei grundlegenden lateinischen Zeichen entspricht dies dem Unicode-Codepunkt, der auch dem ASCII-Code entspricht.",
+          "Bei Nicht-ASCII-Zeichen wie „é“ (233), „ñ“ (241), „中“ (20013) oder „😀“ (128512, das ein UTF-16-Surrogatpaar verwendet) ist die Binärdarstellung länger oder anders aufgeteilt. Wenn Sie eine Binärkodierung benötigen, die der tatsächlichen Speicherung von Bytes durch UTF-8 auf der Festplatte entspricht, müssten Sie den String zunächst UTF-8-kodieren und dann jedes resultierende Byte in Binär umwandeln. Für die meisten pädagogischen und Kodierungspuzzle-Zwecke ist der hier verwendete zeichenweise Ansatz standard."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Text in Binär enkodieren", "text": "Wählen Sie den Modus Text → Binary, tippen oder fügen Sie Ihren Text in das linke Feld ein, und die Binärausgabe erscheint sofort rechts. Wählen Sie Ihr bevorzugtes Trennzeichen: Leerzeichen gruppiert jeden Byte durch Leerzeichen getrennt, Zeilenumbruch setzt jeden Byte auf eine eigene Zeile, Keines erzeugt eine kontinuierliche Folge von 0en und 1en." },
+      { "name": "Binär in Text dekodieren", "text": "Wählen Sie den Modus Binary → Text, fügen Sie Ihren Binärstring (leerzeichengetrennt oder kontinuierlich) in das linke Feld ein, und der dekodierte Text erscheint rechts. Wenn eine 8-Bit-Gruppe ungültig ist, identifiziert eine Fehlermeldung das problematische Byte." },
+      { "name": "Kodierung und Dekodierung tauschen", "text": "Klicken Sie auf die Tauschen-Schaltfläche, um die aktuelle Ausgabe in die Eingabe zu verschieben und den Modus automatisch zu wechseln — nützlich für die schnelle Überprüfung einer Hin-und-Rückkonvertierung." },
+      { "name": "Ergebnis kopieren", "text": "Klicken Sie auf Kopieren, um den Binär- oder dekodierten Text in die Zwischenablage zu übertragen, um ihn in einer anderen Anwendung zu verwenden." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Wie konvertiere ich Text in Binär?",
+      "a": "Jedes Zeichen im Text wird in seinen ASCII- oder Unicode-Zahlcode konvertiert, der dann in binär (Basis 2) auf 8 Bit aufgefüllt dargestellt wird. Beispiel: „A“ = 65 dezimal = 01000001 binär. „Hello“ wird zu 01001000 01100101 01101100 01101100 01101111. Dieses Tool übernimmt die Konvertierung automatisch — geben Sie einfach Ihren Text im linken Feld mit ausgewähltem Modus Text → Binary ein."
+    },
+    {
+      "q": "Wie konvertiere ich Binär in Text?",
+      "a": "Wählen Sie den Modus Binary → Text und fügen Sie Ihren Binärstring ein. Der Binärcode muss in 8-Bit-Gruppen (Bytes) vorliegen. Bei Leerzeichentrennung ist jede durch Leerzeichen abgegrenzte Gruppe ein Byte. Bei kontinuierlichem Code (ohne Leerzeichen) gruppiert das Tool jeweils 8 Stellen als ein Byte. Jedes Byte wird von Binär in eine Zahl konvertiert und dann als ASCII/Unicode-Zeichen nachgeschlagen."
+    },
+    {
+      "q": "Warum ist jede Binärgruppe 8 Stellen lang?",
+      "a": "Ein Byte besteht aus 8 Bits, und ASCII verwendet 7-Bit-Codes (0–127). Konventionell werden ASCII-Codes in einem vollständigen 8-Bit-Byte mit einer führenden Null gespeichert, wodurch alle Einträge genau 8 Binärziffern haben. Dies macht das Parsen eindeutig: Jede 8 Stellen = ein Zeichen. Einige ältere Darstellungen verwenden 7-Bit-ASCII (ohne die führende Null), aber 8-Bit-Kodierung ist der moderne Standard."
+    },
+    {
+      "q": "Was ist der Binärwert für häufige Zeichen?",
+      "a": "Leerzeichen = 00100000, „A“ = 01000001, „a“ = 01100001, „0“ = 00110000, Enter/Zeilenumbruch (LF) = 00001010, Punkt „.“ = 00101110. Das Muster ist leicht zu erkennen: Großbuchstaben beginnen mit 010, Kleinbuchstaben mit 011, und Ziffern beginnen mit 0011."
+    },
+    {
+      "q": "Kann dieses Tool nicht-englische Zeichen verarbeiten?",
+      "a": "Ja, für Zeichen mit Unicode-Codepunkten unter 65.536 (die meisten lateinischen, griechischen, kyrillischen, CJK, arabischen, hebräischen Zeichen usw.). Jedes Zeichen wird in seinen Unicode-Codepunkt in Binär konvertiert. Da Zeichen über 127 jedoch mehr als 8 Bits benötigen, entstehen Binärgruppen mit mehr als 8 Stellen. Für Emojis und andere Zeichen über U+FFFF teilt JavaScript sie in Surrogatpaare auf, was zu unerwarteten Ergebnissen führen kann."
+    },
+    {
+      "q": "Was macht die Tauschen-Schaltfläche?",
+      "a": "Tauschen nimmt die aktuelle Ausgabe (den Binärstring beim Kodieren oder den Text beim Dekodieren) und verschiebt ihn in das Eingabefeld, während der Modus in die entgegengesetzte Richtung gewechselt wird. So können Sie sofort eine Hin-und-Rückkonvertierung überprüfen: Text kodieren, auf Tauschen klicken und prüfen, ob der Originaltext zurückkommt. Es ist auch nützlich, um zu erkunden, was Binärstrings enkodieren."
+    },
+    {
+      "q": "Ist Binär dasselbe wie Morsecode?",
+      "a": "Nein. Binär verwendet genau 8 Bits (0en und 1en), um jedes Zeichen durch seinen numerischen ASCII/Unicode-Wert darzustellen. Morsecode verwendet Punkte und Striche variabler Länge, um Buchstaben und Zahlen darzustellen, mit Sequenzen basierend auf der Buchstabenhäufigkeit im Englischen (häufige Buchstaben wie E und T haben kürzere Codes). Die beiden Systeme sind völlig unterschiedliche Kodierungsverfahren, obwohl beide Text als eine Reihe von Symbolen darstellen."
+    },
+    {
+      "q": "Wie unterscheidet sich Binär von Base64?",
+      "a": "Binär zeigt das tatsächliche Bitmuster jedes Zeichens — die im Speicher gespeicherten rohen Bits. Base64 ist eine übergeordnete Kodierung, die beliebige Binärdaten (jede Datei oder Bytesequenz) in einen sicheren ASCII-Textstring unter Verwendung von 64 druckbaren Zeichen umwandelt. Base64 wird verwendet, wenn binäre Daten in Kontexten eingebettet werden müssen, die nur Text akzeptieren (wie E-Mail-Anhänge oder Daten-URIs). Binärdarstellung dient der menschlichen Überprüfung von Bitmustern; Base64 dient der Datenübertragung und -speicherung."
+    }
+  ]
+}

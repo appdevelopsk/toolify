@@ -1,0 +1,102 @@
+{
+  "title": "Renk Tonu Oluşturucu — Tailwind CSS Stili",
+  "shortDescription": "Herhangi bir renk için Tailwind CSS ölçeğinde 11 ton ve gölge (50–950) oluşturun. Herhangi bir tona tıklayarak hex kodunu kopyalayın veya tümünü CSS özel özellikleri olarak dışa aktarın.",
+  "description": "Tailwind CSS ve Material Design tarafından kullanılan ölçekte anında eksiksiz bir 11 adımlı renk paleti (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950) oluşturmak için herhangi bir temel rengi seçin. Her ton, beyaz veya siyah metne karşı WCAG kontrast derecesini gösterir. Hex kodunu kopyalamak için herhangi bir renk örneğine tıklayın ya da tüm tonları CSS özel özellikleri olarak dışa aktarmak için CSS Kopyala seçeneğini kullanın.",
+  "metaDescription": "Ücretsiz renk tonu oluşturucu. Tailwind CSS ölçeğinde 11 ton almak için herhangi bir hex rengi girin. Hex kodları veya CSS değişkenlerini kopyalayın.",
+  "keywords": [
+    "renk tonu oluşturucu",
+    "renk tonları",
+    "Tailwind renk paleti",
+    "CSS renk değişkenleri",
+    "renk ölçeği"
+  ],
+  "input": {
+    "picker": "Renk Seçici",
+    "hex": "Hex Kodu"
+  },
+  "action": {
+    "copyCSS": "CSS Kopyala",
+    "copied": "Kopyalandı!",
+    "clickCopy": "Hex kodunu kopyalamak için tıklayın"
+  },
+  "error": {
+    "invalid": "Geçerli bir 6 haneli hex rengi girin (örn. #3B82F6)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Renk tonu ölçekleri nasıl çalışır",
+        "paragraphs": [
+          "Renk tonu ölçeği, UI tasarımında görsel hiyerarşi ve erişilebilir kontrast oluşturmak için kullanılan bir temel rengin daha açık ve daha koyu varyasyonlarından oluşan sistematik bir seridir. Tailwind CSS standardı, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900 ve 950 olmak üzere numaralandırılmış 11 adım kullanır. Düşük sayılar daha açık (HSL'de daha yüksek parlaklık), yüksek sayılar ise daha koyudur. 500. adım genellikle girilen temel renge yakın olur.",
+          "Bu araç, girdi hex'i HSL'ye (Renk Tonu, Doygunluk, Parlaklık) dönüştürerek tonları oluşturur; renk tonunu ve doygunluğu korurken her adımı önceden tanımlanmış bir parlaklık değerine eşler. 50. adım yaklaşık %97 parlaklıkla (neredeyse beyaz), 500. adım yaklaşık %52 (orta aralık) ve 950. adım yaklaşık %12 (neredeyse siyah) ile eşleşir. Bu yaklaşım, rengin karakterini tüm parlaklık düzeylerinde koruyan görsel olarak tutarlı paletler üretir."
+        ]
+      },
+      {
+        "heading": "Paletteki WCAG kontrast dereceleri",
+        "paragraphs": [
+          "Paletteki her ton, siyah veya beyaz metne karşı — hangisi daha okunaklıysa — WCAG (Web İçeriği Erişilebilirlik Yönergeleri) kontrast derecesini gösterir. Dereceler şunlardır: AAA (kontrast oranı ≥ 7:1, en iyi erişilebilirlik), AA (≥ 4,5:1, normal metin için gerekli), AA Large (≥ 3:1, yalnızca büyük metin ve UI bileşenleri için kabul edilebilir) ve Fail (< 3:1, metin için yetersiz). WCAG 2.1 AA uyumluluğu birçok ülkede erişilebilirlik için minimum yasal gereksinimdir.",
+          "Renk paleti ile bir UI oluştururken, bu arka planlar üzerindeki metin için AA veya AAA dereceli tonlar kullanın. Genellikle 50–300 arasındaki tonlar koyu metin ile güçlü kontrasta sahipken, 700–950 arasındaki tonlar beyaz metin ile güçlü kontrasta sahiptir. Orta tonlar (400–600) genellikle küçük metin için AA Large veya Fail kategorisine girer; bu nedenle dekoratif öğeler, kenarlıklar veya büyük beyaz metnin arkasındaki arka planlar için uygundur, ancak küçük gövde metni için değil."
+        ]
+      },
+      {
+        "heading": "Paleti CSS ve tasarım sistemlerinde kullanma",
+        "paragraphs": [
+          "CSS Kopyala düğmesi, paletinizi stil sayfanıza yapıştırmaya hazır bir :root bloğu içinde CSS özel özellikleri (CSS değişkenleri) olarak dışa aktarır. Örneğin, blue-500 değişkeni --color-500: #3b82f6 şeklinde olur (ya da seçtiğiniz renk). Değişken önekini projenize uyacak şekilde yeniden adlandırabilirsiniz: --brand-500, --primary-500, --blue-500 vb. CSS özel özellikleri basamaklıdır ve bileşen veya tema başına geçersiz kılınabilir.",
+          "Tailwind CSS, Material Design, Ant Design ve Chakra UI gibi tasarım sistemleri, renk sistemleri için numaralandırılmış ton ölçekleri kullanır. Tutarlı bir ölçeğe sahip olmak, güvenle seçim yapmanızı sağlar: hover arka planları için 50, açık temada etkin durumlar için 100, birincil düğmeler için 500, düğmelerdeki hover durumları için 700 ve koyu arka planlar için 900 kullanın. Tüm marka renklerinizi aynı numaralı ölçekte tutmak öngörülebilirlik yaratır ve bileşen düzeyinde tasarım kararlarını azaltır."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Temel renginizi seçin",
+        "text": "Görsel olarak bir renk seçmek için renk seçiciyi kullanın veya hex girişine 6 haneli hex kodu (örn. #3B82F6) yazın. 11 adımlı ton paleti anında oluşturulur."
+      },
+      {
+        "name": "WCAG derecelerini okuyun",
+        "text": "Her ton, WCAG kontrast derecesini (AAA, AA, AA Large veya Fail) gösterir. Erişilebilirlik gereksinimlerini karşılamak için metin ve etkileşimli öğeler için AA veya AAA dereceli tonlar kullanın."
+      },
+      {
+        "name": "Bireysel tonları kopyalayın",
+        "text": "Hex kodunu panoya kopyalamak için herhangi bir ton örneğine tıklayın. Bir onay işareti kopyalamayı doğrular."
+      },
+      {
+        "name": "CSS değişkenleri olarak dışa aktarın",
+        "text": "Stil sayfanıza veya tasarım sisteminize yapıştırmaya hazır :root bloğunda tüm 11 tonu CSS özel özellikleri olarak almak için CSS Kopyala'ya tıklayın."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Ton numaraları (50–950) ne anlama gelir?",
+      "a": "Sayılar, Tailwind CSS renk ölçeği standardını takip eder. Küçük sayılar daha açıktır: 50 neredeyse beyaz, 100 çok açık, 200 ve 300 açık tonlardır. Orta (500), orijinal renge yakın bir orta değerdir. Büyük sayılar daha koyudur: 700 koyu, 900 çok koyu, 950 neredeyse siyahtır. Ölçek doğrusal değildir — adım boyutlarının tüm aralık boyunca algısal olarak eşit hissettirmesi için ayarlanmıştır."
+    },
+    {
+      "q": "Ton (tint) ile gölge (shade) arasındaki fark nedir?",
+      "a": "Ton, beyazla karıştırılarak açıklaştırılmış bir renktir. Gölge ise siyahla karıştırılarak koyulaştırılmış bir renktir. HSL terimleriyle, tonlar daha yüksek parlaklık değerlerine, gölgeler ise aynı renk tonu korunurken daha düşük parlaklık değerlerine sahiptir. Bu ölçekte 50–400 numaraları ton (tabandan daha açık), 600–950 ise gölge (tabandan daha koyu) olarak yer alır. 500. adım yaklaşık olarak temel rengin kendisidir."
+    },
+    {
+      "q": "Bu araç tonları nasıl oluşturur?",
+      "a": "Araç, hex renginizi HSL'ye (Renk Tonu, Doygunluk, Parlaklık) dönüştürür. Renk tonunu ve doygunluğu sabit tutarken her adım numarasını hedef parlaklık değerine eşler: adım 50 → %97 parlaklık, adım 500 → %52, adım 950 → %12. Sonuç daha sonra hex'e geri dönüştürülür. Bu yöntem, rengin karakterini (sıcaklık, serinlik, canlılık) tüm tonlar boyunca korur."
+    },
+    {
+      "q": "WCAG nedir ve tonlar neden derece gösterir?",
+      "a": "WCAG (Web İçeriği Erişilebilirlik Yönergeleri), okunabilir metin için minimum kontrast oranlarını tanımlar. AA, normal metin için 4,5:1 oranı gerektirir; AAA 7:1 gerektirir. Her tonun kontrast derecesi, o arka planda siyah veya beyaz metnin AA veya AAA standardını karşılayıp karşılamadığını gösterir. Bu, hangi tonların metin için güvenli olduğunu ve hangilerinin yalnızca dekoratif öğeler için kullanılması gerektiğini seçmenize yardımcı olur."
+    },
+    {
+      "q": "Bu paleti Tailwind CSS'de nasıl kullanırım?",
+      "a": "Tailwind, tailwind.config.js dosyasında özel renkler tanımlamanıza olanak tanır. Tonları theme.extend.colors altına ekleyin: colors: { brand: { 50: '#50-hex-değeriniz', 100: '#100-hex-değeriniz', ... } }. Ardından bg-brand-100, text-brand-700, border-brand-300 gibi sınıfları kullanabilirsiniz. CSS-first yapılandırmasıyla Tailwind v4 için CSS değişken çıktısını tema tanımınıza yapıştırın."
+    },
+    {
+      "q": "Seçtiğim renkteki ton neden girişime tam olarak benzemiyor?",
+      "a": "Araç, her adım için belirli parlaklık değerlerini hedefler — 500. adım yaklaşık %52 HSL parlaklığını hedefler. Giriş renginizin farklı bir parlaklığı varsa (örn. daha açık bir renk için %70), 500. adımdaki ton %52'ye doğru ayarlanır. Bu tutarlı bir ölçek oluşturur ancak 500. adımın orijinal girişinizle aynı olmayabileceği anlamına gelir. 500. adımda tam renginizi almak için hex'i manuel olarak ayarlayabilirsiniz — ölçek girdiğiniz değere göre oluşturulacaktır."
+    },
+    {
+      "q": "Bunu CSS özel özellikleriyle kullanabilir miyim?",
+      "a": "Evet — tüm 11 tonu özel özellikler olarak içeren kullanıma hazır :root bloğunu almak için CSS Kopyala'ya tıklayın. CSS'nizde bunları var(--color-500), var(--color-50) vb. olarak referans alın. --color- önekini projenize uyan herhangi bir şeyle yeniden adlandırabilirsiniz (--brand-, --primary-, --blue-). Özel özellikler basamaklıdır ve bir bileşene kapsam atanabilir ya da karanlık mod için bir medya sorgusunda geçersiz kılınabilir."
+    },
+    {
+      "q": "Bu tonlar CSS color-mix() işlevinden nasıl farklıdır?",
+      "a": "CSS color-mix() işlevi (modern tarayıcılarda desteklenir) boyaları karıştırmaya benzer şekilde iki rengi yüzde oranıyla karıştırır. Bu araç, önceden tanımlanmış bir parlaklık ölçeği (HSL tabanlı) kullanır ve daha kontrollü, öngörülebilir bir tasarım sistemi ölçeği üretir. color-mix(), tek seferlik karıştırmalar için daha uygundur (örn. marka renginizi %20 beyazla karıştırmak), bu araç ise tam bir sistematik tasarım sistemi paleti oluşturur. Her iki yaklaşımın da kullanım durumuna bağlı olarak yeri vardır."
+    }
+  ]
+}

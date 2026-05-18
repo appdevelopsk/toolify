@@ -1,0 +1,90 @@
+{
+  "title": "Tabel ASCII — Desimal, Hex, Biner dan Oktal",
+  "shortDescription": "Tabel karakter ASCII lengkap yang menampilkan nilai desimal, heksadesimal, oktal, dan biner untuk semua 128 kode ASCII. Filter berdasarkan karakter cetak atau karakter kontrol, dan cari berdasarkan angka, hex, atau karakter.",
+  "description": "Jelajahi semua 128 kode ASCII (0–127) beserta representasi desimal, heksadesimal, oktal, dan binernya. Karakter kontrol (0–31, 127) disorot dan diberi label dengan singkatan standar serta nama lengkapnya. Filter untuk menampilkan hanya karakter cetak atau hanya kode kontrol, dan cari berdasarkan angka desimal, nilai hex, atau karakter.",
+  "metaDescription": "Tabel ASCII gratis dengan 128 kode ASCII. Tampilkan desimal, hex, oktal, biner, dan karakter. Filter dan cari karakter.",
+  "keywords": ["tabel ASCII", "kode ASCII", "grafik ASCII", "hex desimal biner", "karakter kontrol"],
+  "search": {
+    "placeholder": "Cari berdasarkan desimal, hex, atau karakter…",
+    "noResults": "Tidak ada karakter yang cocok ditemukan."
+  },
+  "filter": {
+    "all": "Semua",
+    "printable": "Dapat Dicetak",
+    "control": "Kontrol"
+  },
+  "col": {
+    "dec": "Des",
+    "hex": "Hex",
+    "oct": "Okt",
+    "bin": "Biner",
+    "char": "Kar.",
+    "description": "Deskripsi"
+  },
+  "note": "Menampilkan {count} dari 128 kode ASCII",
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa itu ASCII?",
+        "paragraphs": [
+          "ASCII (American Standard Code for Information Interchange) adalah standar pengkodean karakter yang pertama kali diterbitkan pada tahun 1963. Standar ini mendefinisikan 128 karakter: 33 karakter kontrol yang tidak dapat dicetak (kode 0–31 dan 127) dan 95 karakter yang dapat dicetak (kode 32–126), termasuk huruf besar dan kecil bahasa Inggris, angka 0–9, dan tanda baca umum. ASCII menjadi fondasi bagi hampir semua pengkodean teks modern, termasuk UTF-8 yang kompatibel ke belakang dengan ASCII untuk 128 titik kode pertama.",
+          "Setiap karakter ASCII diberi nilai bilangan bulat 7-bit, itulah mengapa tabel berakhir pada 127 (2⁷ − 1). Saat disimpan dalam byte 8-bit, bit terdepan biasanya 0 untuk ASCII standar. Rentang ASCII yang diperluas (128–255) tidak distandarkan oleh spesifikasi aslinya dan bervariasi menurut halaman kode — ISO 8859-1, Windows-1252, dan pengkodean serupa masing-masing mendefinisikan kumpulan karakter yang berbeda untuk separuh atas byte tersebut."
+        ]
+      },
+      {
+        "heading": "Karakter kontrol (0–31 dan 127)",
+        "paragraphs": [
+          "32 kode ASCII pertama dan kode 127 adalah karakter kontrol yang tidak dapat dicetak, diwarisi dari konvensi mesin teletype. Sebagian besar sudah usang dalam komputasi modern, tetapi beberapa tetap penting: kode 9 (HT, tab horizontal), kode 10 (LF, umpan baris atau baris baru di Unix/Linux), kode 13 (CR, carriage return, digunakan dalam akhir baris Windows sebagai CR+LF), kode 27 (ESC, Escape, digunakan dalam urutan escape terminal) dan kode 127 (DEL). Karakter-karakter ini tidak dirender sebagai glyph yang terlihat.",
+          "Di sistem mirip Unix, Anda dapat menghasilkan karakter kontrol di terminal dengan menahan Ctrl dan menekan huruf yang sesuai: Ctrl+A = SOH (1), Ctrl+C = ETX (3, mengirim sinyal interrupt), Ctrl+D = EOT (4, menandakan akhir input), Ctrl+J = LF (10), Ctrl+M = CR (13), Ctrl+Z = SUB (26, menangguhkan proses di Unix). Memahami kode-kode ini sangat penting untuk I/O tingkat rendah, urutan kontrol terminal, dan implementasi protokol jaringan."
+        ]
+      },
+      {
+        "heading": "ASCII dalam pemrograman dan pengembangan web",
+        "paragraphs": [
+          "Dalam JavaScript, Anda bisa mendapatkan kode ASCII sebuah karakter menggunakan charCodeAt(0): 'A'.charCodeAt(0) mengembalikan 65. Untuk konversi balik, gunakan String.fromCharCode(65) untuk mendapatkan 'A'. Dalam Python, ord('A') mengembalikan 65 dan chr(65) mengembalikan 'A'. Dalam C, nilai char adalah bilangan bulat dan dapat digunakan langsung dalam aritmatika: 'A' + 1 sama dengan 'B'.",
+          "Nilai ASCII adalah dasar dari banyak pola pemrograman yang umum. Perbedaan antara huruf besar dan kecil selalu 32: 'a' (97) = 'A' (65) + 32. Angka 0–9 menempati kode 48–57, sehingga mengurangi 48 dari nilai ASCII karakter angka memberikan nilai numeriknya. Pengkodean URL merepresentasikan karakter yang tidak aman untuk URL sebagai %XX di mana XX adalah kode ASCII hex, sehingga tabel ini sangat penting untuk men-debug string berkode URL dan header HTTP."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Jelajahi tabel lengkap", "text": "Gulir melalui semua 128 kode ASCII. Karakter kontrol (0–31, 127) disorot dengan warna kuning amber. Setiap baris menampilkan desimal, hex (awalan 0x), oktal, biner, glyph karakter, dan deskripsi." },
+      { "name": "Filter berdasarkan jenis", "text": "Klik «Dapat Dicetak» untuk menampilkan hanya karakter yang terlihat (32–126), atau «Kontrol» untuk menampilkan hanya kode kontrol yang tidak dapat dicetak (0–31, 127)." },
+      { "name": "Cari karakter", "text": "Ketik angka desimal (mis. 65), nilai hex (mis. 41 atau 0x41), atau karakter (mis. A) untuk langsung menuju entri tersebut. Anda juga dapat mencari berdasarkan nama kode kontrol (mis. ESC atau LF)." },
+      { "name": "Baca representasi biner", "text": "Kolom biner menampilkan representasi 8-bit setiap kode ASCII. Misalnya, 'A' (65) = 01000001 dalam biner. Ini berguna saat bekerja dengan operasi bitwise atau memahami pengkodean karakter di level byte." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apa kode ASCII untuk Enter / baris baru?",
+      "a": "Karakter baris baru (umpan baris) adalah kode ASCII 10 (0x0A, LF). Di Unix/Linux/macOS, baris baru direpresentasikan hanya dengan LF. Di Windows, baris baru direpresentasikan dengan CR+LF (kode 13 dan 10, atau 0x0D 0x0A). Karakter carriage return adalah kode 13 (0x0D, CR). Saat menulis kode pemrosesan teks lintas platform, selalu tangani akhiran baris LF dan CR+LF."
+    },
+    {
+      "q": "Apa kode ASCII untuk karakter spasi?",
+      "a": "Karakter spasi adalah kode ASCII 32 (0x20, SP). Ini adalah karakter ASCII pertama yang dapat dicetak. Spasi non-putus (digunakan dalam HTML sebagai &nbsp;) bukan bagian dari ASCII 7-bit standar — kodenya 160 (0xA0) dalam ISO 8859-1 dan UTF-8 (dikodekan sebagai 0xC2 0xA0 dalam UTF-8)."
+    },
+    {
+      "q": "Apa perbedaan antara ASCII, UTF-8, dan Unicode?",
+      "a": "ASCII mendefinisikan 128 karakter dengan kode 7-bit. Unicode adalah standar universal yang mendefinisikan lebih dari 140.000 karakter dengan titik kode hingga U+10FFFF. UTF-8 adalah pengkodean lebar variabel dari Unicode: mengkodekan karakter ASCII (0–127) dalam satu byte, membuatnya kompatibel ke belakang dengan ASCII. Karakter di atas 127 menggunakan 2–4 byte dalam UTF-8. Sistem teks modern menggunakan UTF-8 atau UTF-16, tetapi ASCII tetap penting untuk header protokol, format file, dan sistem lama."
+    },
+    {
+      "q": "Bagaimana cara menemukan kode ASCII karakter di JavaScript?",
+      "a": "Gunakan charCodeAt(0): 'A'.charCodeAt(0) mengembalikan 65. Untuk titik kode Unicode di atas 65535, gunakan codePointAt(0). Untuk mengkonversi kode kembali ke karakter: String.fromCharCode(65) mengembalikan 'A'. Untuk dukungan Unicode penuh: String.fromCodePoint(128512) mengembalikan emoji 😀."
+    },
+    {
+      "q": "Apa yang dilakukan kode ASCII 0 (NUL)?",
+      "a": "NUL (kode 0) adalah karakter null. Dalam C dan banyak bahasa lainnya, digunakan sebagai terminator string — string 'Hello' disimpan dalam memori sebagai byte 72, 101, 108, 108, 111, 0. Dalam database dan format file, NUL dapat muncul sebagai pemisah field atau byte padding. Di sebagian besar editor teks dan terminal, NUL tidak terlihat dan diabaikan, tetapi dapat menyebabkan masalah saat membaca file biner sebagai teks."
+    },
+    {
+      "q": "Apa itu karakter Escape (ASCII 27)?",
+      "a": "ESC (kode 27, 0x1B) adalah karakter Escape. Ini adalah awal dari urutan escape ANSI/VT100 yang mengontrol warna terminal dan pergerakan kursor. Misalnya, urutan ESC[31m mengubah warna teks terminal menjadi merah. Di banyak aplikasi, menekan tombol Escape mengirimkan karakter ini. Ini juga digunakan dalam berbagai format data dan protokol komunikasi."
+    },
+    {
+      "q": "Mengapa huruf besar A memiliki kode ASCII 65 dan huruf kecil a memiliki kode 97?",
+      "a": "Tabel ASCII dirancang sehingga huruf besar (A=65, B=66, ..., Z=90) dan huruf kecil (a=97, b=98, ..., z=122) berbeda tepat 32. Ini memungkinkan konversi antara huruf besar dan kecil dengan satu penjumlahan atau pengurangan. Untuk mengkonversi huruf besar ke kecil dalam ASCII: tambahkan 32 (atau setel bit 5). Untuk mengkonversi huruf kecil ke besar: kurangi 32 (atau hapus bit 5). Itulah mengapa konversi huruf besar/kecil secara bitwise berfungsi di C: char lower = upper | 0x20."
+    },
+    {
+      "q": "Apa perbedaan antara CR, LF, dan CRLF?",
+      "a": "CR (Carriage Return, kode 13) dan LF (Line Feed, kode 10) berasal dari konvensi mesin ketik dan teletype. CR memindahkan kepala cetak ke awal baris; LF maju ke baris berikutnya. Unix/Linux menggunakan LF saja untuk baris baru. Windows menggunakan CR+LF (keduanya bersama). Mac OS klasik (sebelum OS X) menggunakan CR saja. Sebagian besar parser modern menangani ketiganya, tetapi mencampur akhiran baris dalam file sumber menyebabkan masalah dengan diff kontrol versi dan beberapa prosesor teks."
+    }
+  ]
+}

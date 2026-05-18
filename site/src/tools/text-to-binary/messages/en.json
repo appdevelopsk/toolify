@@ -1,0 +1,100 @@
+{
+  "title": "Text to Binary Converter — Encode & Decode Binary Code",
+  "shortDescription": "Convert text to binary code or binary back to readable text. Supports space-separated, newline-separated, or continuous binary output. Swap encode and decode in one click.",
+  "description": "Enter any text to convert it to binary (0s and 1s), or paste binary code to decode it back to text. Each character is converted using its ASCII/Unicode value. Choose space-separated, newline-separated, or continuous binary output. The Swap button lets you immediately reverse the last conversion.",
+  "metaDescription": "Free text to binary converter. Encode text to 0s and 1s or decode binary back to text. Space-separated or continuous binary. Works client-side, no upload.",
+  "keywords": ["text to binary", "binary to text", "binary converter", "encode binary", "ASCII binary"],
+  "mode": {
+    "encode": "Text → Binary",
+    "decode": "Binary → Text"
+  },
+  "separator": {
+    "label": "Separator",
+    "space": "Space",
+    "newline": "Newline",
+    "none": "None"
+  },
+  "label": {
+    "inputText": "Input Text",
+    "inputBinary": "Binary Input",
+    "outputBinary": "Binary Output",
+    "outputText": "Decoded Text"
+  },
+  "placeholder": {
+    "text": "Type or paste text here…",
+    "binary": "Paste binary code here (e.g. 01001000 01100101 01101100 01101100 01101111)"
+  },
+  "action": {
+    "copy": "Copy",
+    "swap": "Swap"
+  },
+  "stat": {
+    "encoded": "{chars} characters → {bytes} bytes",
+    "decoded": "{chars} characters decoded"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How text-to-binary conversion works",
+        "paragraphs": [
+          "Every character in a computer is stored as a number. For standard ASCII text, the letter 'A' is number 65, 'B' is 66, lowercase 'a' is 97, a space is 32, and so on. To convert text to binary, this tool looks up the numeric value (ASCII/Unicode code point) of each character, then writes that number in base 2 (binary), padded to 8 digits. For example: 'H' = 72 decimal = 01001000 binary, 'e' = 101 decimal = 01100101 binary, 'l' = 108 decimal = 01101100 binary.",
+          "The reverse process (binary to text) reads 8-bit groups, converts each from base 2 back to a decimal number, then looks up the character with that code point. If you paste space-separated binary (like 01001000 01100101), the tool splits on spaces. If you paste continuous binary (like 0100100001100101), it automatically groups into 8-bit chunks. Each 8-bit group must contain exactly 8 ones and zeros — otherwise the tool shows an error identifying the invalid byte."
+        ]
+      },
+      {
+        "heading": "Binary vs hexadecimal for data representation",
+        "paragraphs": [
+          "Binary (base 2) uses only 0 and 1, making it the most fundamental representation of digital data — it directly mirrors how bits are stored in computer memory. However, it is verbose: a single ASCII character needs 8 digits. Hexadecimal (base 16, using digits 0–9 and A–F) is more compact: each hex digit represents exactly 4 binary digits (a nibble), so one byte becomes just 2 hex digits. 'H' = 0x48 in hex vs 01001000 in binary.",
+          "Binary representation is most useful when you need to see or manipulate individual bits — for example, checking flags in a bitmask, understanding how Unicode code points encode into UTF-8 bytes, or analyzing network packet structures at the bit level. For most data-inspection tasks, hexadecimal offers a good balance between compactness and readability. Many debuggers, hex editors, and protocol analyzers show data in hex, with optional binary view for bit-level work."
+        ]
+      },
+      {
+        "heading": "Beyond ASCII: Unicode and multi-byte characters",
+        "paragraphs": [
+          "Standard ASCII covers only 128 characters (7 bits, codes 0–127), sufficient for English text but not for accented characters, non-Latin scripts, or emoji. Modern text is encoded in Unicode, which defines over 140,000 characters. This tool uses JavaScript's built-in charCodeAt(), which returns the UTF-16 code unit for each character. For basic Latin characters this equals the Unicode code point, which also equals the ASCII code.",
+          "For non-ASCII characters such as 'é' (233), 'ñ' (241), '中' (20013), or '😀' (128512, which uses a UTF-16 surrogate pair), the binary representation will be longer or split differently. If you need binary encoding that matches how UTF-8 actually stores bytes on disk, you would need to UTF-8-encode the string first, then convert each resulting byte to binary. For most educational and encoding-puzzle purposes, the per-character approach used here is standard."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Encode text to binary", "text": "Select Text → Binary mode, type or paste your text in the left box, and the binary output appears instantly on the right. Choose your preferred separator: Space puts each byte on one group separated by spaces, Newline puts each byte on its own line, None produces a continuous string of 0s and 1s." },
+      { "name": "Decode binary to text", "text": "Select Binary → Text mode, paste your binary string (space-separated or continuous) into the left box, and the decoded text appears on the right. If any 8-bit group is invalid, an error message identifies the problematic byte." },
+      { "name": "Swap encode and decode", "text": "Click the Swap button to move the current output to the input and automatically switch modes — useful for quickly verifying a round-trip conversion." },
+      { "name": "Copy the result", "text": "Click Copy to put the binary or decoded text into your clipboard for use in another application." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "How do I convert text to binary?",
+      "a": "Each character in the text is converted to its ASCII or Unicode numeric code, which is then written in binary (base 2) padded to 8 bits. For example: 'A' = 65 decimal = 01000001 binary. 'Hello' becomes 01001000 01100101 01101100 01101100 01101111. This tool handles the conversion automatically — just type your text in the left box with Text → Binary mode selected."
+    },
+    {
+      "q": "How do I convert binary to text?",
+      "a": "Select Binary → Text mode and paste your binary string. The binary must be in 8-bit groups (bytes). If separated by spaces, each space-delimited group is one byte. If continuous (no spaces), the tool groups every 8 digits as one byte. Each byte is converted from binary to a number, then looked up as an ASCII/Unicode character."
+    },
+    {
+      "q": "Why is each binary group 8 digits long?",
+      "a": "A byte is 8 bits, and ASCII uses 7-bit codes (0–127). By convention, ASCII codes are stored in a full 8-bit byte with a leading zero, making all entries exactly 8 binary digits. This makes parsing unambiguous: every 8 digits = one character. Some older representations use 7-bit ASCII (dropping the leading zero), but 8-bit encoding is the modern standard."
+    },
+    {
+      "q": "What is the binary for common characters?",
+      "a": "Space = 00100000, 'A' = 01000001, 'a' = 01100001, '0' = 00110000, Enter/newline (LF) = 00001010, period '.' = 00101110. The pattern is easy to spot: uppercase letters start with 010, lowercase letters start with 011, and digits start with 0011."
+    },
+    {
+      "q": "Can this tool handle non-English characters?",
+      "a": "Yes, for characters with Unicode code points below 65,536 (most Latin, Greek, Cyrillic, CJK, Arabic, Hebrew, etc.). Each character is converted to its Unicode code point in binary. However, because characters above 127 require more than 8 bits, they will produce binary groups longer than 8 digits. For emoji and other characters above U+FFFF, JavaScript splits them into surrogate pairs, which may produce unexpected results."
+    },
+    {
+      "q": "What does the Swap button do?",
+      "a": "Swap takes the current output (the binary string if encoding, or the text if decoding) and moves it to the input box, while switching the mode to the opposite direction. This lets you instantly verify a round-trip: encode some text, click Swap, and check that you get the original text back. It is also useful for exploring what binary strings encode to."
+    },
+    {
+      "q": "Is binary the same as Morse code?",
+      "a": "No. Binary uses exactly 8 bits (0s and 1s) to represent each character by its numeric ASCII/Unicode value. Morse code uses dots and dashes of variable length to represent letters and numbers, with sequences based on letter frequency in English (common letters like E and T have shorter codes). The two systems are completely different encoding schemes, though both represent text as a series of symbols."
+    },
+    {
+      "q": "How is binary different from Base64?",
+      "a": "Binary shows the actual bit pattern of each character — the raw bits stored in memory. Base64 is a higher-level encoding that converts arbitrary binary data (any file or byte sequence) into a safe ASCII text string using 64 printable characters. Base64 is used when you need to embed binary data in contexts that only accept text (like email attachments or data URIs). Binary representation is for human inspection of bit patterns; Base64 is for data transfer and storage."
+    }
+  ]
+}

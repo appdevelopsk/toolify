@@ -1,0 +1,86 @@
+{
+  "title": "键盘按键代码查询 — keyCode, code, key 属性",
+  "shortDescription": "按下任意键即可查看其JavaScript keyCode、code、key、which和charCode值，Web开发键盘事件处理必备工具。",
+  "description": "点击检测区域并按下任意键，即可查看JavaScript事件属性：key、code、keyCode、which、charCode及修饰键状态（Ctrl、Alt、Shift、Meta）。全部17个值实时更新，非常适合调试键盘事件处理程序。",
+  "metaDescription": "免费键盘按键代码查询工具。按下任意键查看keyCode、code、key、which和charCode值，专为Web开发者设计。",
+  "keywords": ["键盘代码查询", "按键代码", "javascript keyCode", "键盘事件", "which charCode"],
+  "zone": {
+    "label": "按键检测区域 — 点击此处后按任意键",
+    "prompt": "点击此处，然后按任意键"
+  },
+  "key": {
+    "space": "空格"
+  },
+  "label": {
+    "modifiers": "修饰键",
+    "none": "无"
+  },
+  "history": {
+    "title": "最近按键"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "JavaScript键盘事件：key、code与keyCode",
+        "paragraphs": [
+          "用户按下键时，浏览器按顺序触发三个事件：keydown、keypress和keyup。每个事件对象携带多个识别按键的属性。最重要的有：key（字符或命名键，如「Enter」）、code（物理键位置，如「KeyA」或「ArrowLeft」）和keyCode（遗留整数，例如无论Shift状态如何「A」始终返回65）。",
+          "keyCode和which属性在W3C UI Events规范中已被弃用，但在旧代码库中仍被广泛使用。现代应用应优先使用key（语义含义：键产生什么）和code（物理位置：按下了哪个物理键）。例如，\"A\"键根据Shift状态生成key='a'或key='A'，但code='KeyA'始终不变。"
+        ]
+      },
+      {
+        "heading": "键盘事件的location属性",
+        "paragraphs": [
+          "location属性用于区分键盘上存在多处的键：左Ctrl与右Ctrl、左Shift与右Shift、数字键盘数字键与顶行数字键。location值为：0（标准）、1（左侧）、2（右侧）、3（数字键盘）。这在检测用户按下数字键盘Enter键还是主键盘Enter键时特别有用。",
+          "修饰键（Ctrl、Alt、Shift、Meta）作为布尔标志在每个键盘事件中被追踪，而不仅仅是这些键单独按下时。这意味着即使主要监听keyCode 67（C），也能检测Ctrl+C组合。Meta键对应Windows键盘上的Windows键和Mac键盘上的Command键。"
+        ]
+      },
+      {
+        "heading": "键盘事件属性的实际应用场景",
+        "paragraphs": [
+          "Web应用中的键盘快捷键使用code（物理键）和修饰标志的组合来检测Ctrl+S（保存）或Ctrl+Shift+P（命令面板）等组合。使用code而非key可确保快捷键在不同键盘语言环境下正常工作——法语AZERTY布局中\"A\"位置的键产生不同字符，但code始终是\"KeyA\"。",
+          "游戏控制通常使用code来映射WASD或方向键，因为重要的是物理位置而非产生的字符。无障碍工具可能监听Tab（code='Tab'）和Enter（code='Enter'），确保交互元素无需鼠标即可激活。此工具让您在编写事件处理代码前快速查询任意键的确切属性值。"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "点击检测区域", "text": "点击或轻触工具顶部的虚线框以聚焦。" },
+      { "name": "按下任意键", "text": "按下键盘上的任意键——字母、数字、功能键、方向键，或Enter和Escape等特殊键。" },
+      { "name": "读取属性值", "text": "所有JavaScript键盘事件属性（key、code、keyCode、which、charCode、location、修饰键）立即显示在区域下方。" },
+      { "name": "检查修饰键组合", "text": "按住Ctrl、Alt、Shift或Meta的同时按键，查看修饰键标志如何在\"修饰键\"行中变化。" }
+    ]
+  },
+  "faq": [
+    {
+      "q": "keyCode和key有什么区别？",
+      "a": "keyCode是已弃用的整数属性，为每个键分配一个数字（如\"A\"为65，Enter为13）。key是现代替代品，返回产生的字符（\"a\"或\"A\"）或命名键字符串（\"Enter\"、\"ArrowLeft\"）。新代码应使用key或code代替keyCode。"
+    },
+    {
+      "q": "code属性是什么？",
+      "a": "code标识按下的物理键，与键盘布局或修饰键状态无关。\"KeyA\"始终指QWERTY键盘上\"A\"位置的键，即使用户切换到AZERTY布局使该键产生\"Q\"也是如此。对于不依赖语言环境的键盘快捷键，请使用code。"
+    },
+    {
+      "q": "为什么keyCode被弃用？",
+      "a": "keyCode在不同浏览器和操作系统中不一致，同一键可能返回不同值，且对非ASCII字符处理不佳。W3C UI Events规范将其弃用，推荐使用key（字符/命名键）和code（物理位置）。keyCode和which现在在规范中都标记为遗留属性。"
+    },
+    {
+      "q": "location值是什么意思？",
+      "a": "location区分在多个位置出现的键。0=标准（主区域），1=左修饰键（如左Shift），2=右修饰键（如右Ctrl），3=数字键盘。这让您能区分数字键盘5（code='Numpad5', location=3）和顶行5（code='Digit5', location=0）。"
+    },
+    {
+      "q": "如何在JavaScript中检测Ctrl+S等快捷键？",
+      "a": "监听keydown事件并同时检查key/code和修饰标志：`if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveDocument(); }`。使用e.key === 's'可以捕获大写和小写两种情况，因为修饰键状态不会改变字母键的key值。"
+    },
+    {
+      "q": "charCode属性是什么？",
+      "a": "charCode由旧版keypress事件返回，给出输入字符的Unicode码点（如\"A\"为65）。它现在与keypress事件本身一起被弃用。在keydown/keyup事件中，charCode始终为0。请改用key或input事件上的inputType。"
+    },
+    {
+      "q": "如何区分数字键盘和主键盘的Enter键？",
+      "a": "两个键都产生key='Enter'，但code不同：主Enter键为code='Enter'且location=0，数字键盘Enter键为code='NumpadEnter'且location=3。对主键盘检查e.code === 'Enter'，对数字键盘版本检查e.code === 'NumpadEnter'。"
+    },
+    {
+      "q": "Meta键是什么？",
+      "a": "Meta键是Windows键盘上的Windows键（⊞）和Mac键盘上的Command键（⌘）。在键盘事件中，它由metaKey布尔标志追踪，单独按下时产生key='Meta'。其code为\"MetaLeft\"或\"MetaRight\"。"
+    }
+  ]
+}

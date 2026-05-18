@@ -1,0 +1,84 @@
+{
+  "title": "Generatore di Sfumature Colore — Stile Tailwind",
+  "shortDescription": "Genera 11 tinte e sfumature (50–950) per qualsiasi colore, nello stile della scala Tailwind CSS. Clicca su una sfumatura per copiarne il codice hex o esporta tutte come proprietà personalizzate CSS.",
+  "description": "Scegli un colore base per generare istantaneamente una palette completa di 11 sfumature (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950), seguendo la scala di Tailwind CSS e Material Design. Ogni sfumatura mostra la sua valutazione di contrasto WCAG rispetto al testo bianco o nero. Clicca su qualsiasi campione per copiarne il codice hex, oppure clicca Copia CSS per esportare tutte le sfumature come proprietà personalizzate CSS.",
+  "metaDescription": "Generatore gratuito di sfumature colore. Inserisci un hex per ottenere 11 tinte sulla scala Tailwind CSS. Copia i codici hex o le variabili CSS. Contrasto WCAG incluso.",
+  "keywords": ["generatore sfumature colore", "tinte colore", "palette Tailwind", "variabili CSS colore", "scala colori"],
+  "input": {
+    "picker": "Selettore colore",
+    "hex": "Codice Hex"
+  },
+  "action": {
+    "copyCSS": "Copia CSS",
+    "copied": "Copiato!",
+    "clickCopy": "Clicca per copiare il codice hex"
+  },
+  "error": {
+    "invalid": "Inserisci un colore hex valido a 6 cifre (es. #3B82F6)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Come funzionano le scale di sfumature colore",
+        "paragraphs": [
+          "Una scala di sfumature colore è una serie sistematica di variazioni più chiare e più scure di un colore base, utilizzata per creare gerarchia visiva e contrasto accessibile nel design dell'interfaccia. La convenzione Tailwind CSS utilizza 11 step numerati 50, 100, 200, 300, 400, 500, 600, 700, 800, 900 e 950. I numeri più bassi sono più chiari (luminosità più alta in HSL), mentre i numeri più alti sono più scuri. Lo step 500 è tipicamente vicino al colore base inserito.",
+          "Questo strumento genera le sfumature convertendo il hex di input in HSL (Tonalità, Saturazione, Luminosità), preservando la tonalità e la saturazione mentre associa ogni step a un valore di luminosità predefinito. Lo step 50 corrisponde a circa il 97% di luminosità (quasi bianco), lo step 500 a circa il 52% (gamma media) e lo step 950 a circa il 12% (quasi nero). Questo approccio produce palette visivamente coerenti che mantengono il carattere del colore su tutti i livelli di luminosità."
+        ]
+      },
+      {
+        "heading": "Valutazioni di contrasto WCAG nella palette",
+        "paragraphs": [
+          "Ogni sfumatura nella palette mostra la sua valutazione di contrasto WCAG (Linee guida per l'accessibilità dei contenuti Web) rispetto al testo nero o bianco — quello più leggibile. Le valutazioni sono: AAA (rapporto di contrasto ≥ 7:1, migliore accessibilità), AA (≥ 4,5:1, richiesto per il testo normale), AA Large (≥ 3:1, accettabile solo per testo grande e componenti UI) e Fail (< 3:1, insufficiente per il testo). La conformità WCAG 2.1 AA è il requisito legale minimo per l'accessibilità in molte giurisdizioni.",
+          "Quando si costruisce un'interfaccia con una palette di colori, usa sfumature con valutazione AA o AAA per il testo su quei sfondi. In genere, le sfumature 50–300 hanno un forte contrasto con il testo scuro, mentre le sfumature 700–950 hanno un forte contrasto con il testo bianco. Le sfumature intermedie (400–600) rientrano spesso nella categoria AA Large o Fail per il testo piccolo, rendendole adatte a elementi decorativi, bordi o sfondi dietro a testo bianco grande, ma non per il corpo del testo piccolo."
+        ]
+      },
+      {
+        "heading": "Usare la palette in CSS e nei sistemi di design",
+        "paragraphs": [
+          "Il pulsante Copia CSS esporta la tua palette come proprietà personalizzate CSS (variabili CSS) in un blocco :root, pronto per essere incollato nel tuo foglio di stile. Ad esempio, la variabile blue-500 diventa --color-500: #3b82f6 (o il colore scelto). Puoi rinominare il prefisso della variabile in base al tuo progetto: --brand-500, --primary-500, --blue-500, ecc. Le proprietà personalizzate CSS si ereditano in cascata e possono essere sovrascritte per componente o tema.",
+          "I sistemi di design come Tailwind CSS, Material Design, Ant Design e Chakra UI utilizzano tutti scale di sfumature numerate per i loro sistemi di colore. Avere una scala coerente permette scelte sicure: usa 50 per gli sfondi al passaggio del mouse, 100 per gli stati attivi nel tema chiaro, 500 per i pulsanti principali, 700 per gli stati hover sui pulsanti e 900 per gli sfondi scuri. Mantenere tutti i colori del brand sulla stessa scala numerata crea prevedibilità e riduce le decisioni di design a livello di componente."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Scegli il colore base", "text": "Usa il selettore di colore per scegliere visivamente un colore, oppure digita un codice hex a 6 cifre (come #3B82F6) nel campo hex. La palette di 11 sfumature viene generata istantaneamente." },
+      { "name": "Leggi le valutazioni WCAG", "text": "Ogni sfumatura mostra la sua valutazione di contrasto WCAG (AAA, AA, AA Large o Fail). Usa sfumature con valutazione AA o AAA per testo ed elementi interattivi per soddisfare i requisiti di accessibilità." },
+      { "name": "Copia sfumature singole", "text": "Clicca su qualsiasi campione di colore per copiarne il codice hex negli appunti. Un segno di spunta conferma la copia." },
+      { "name": "Esporta come variabili CSS", "text": "Clicca su Copia CSS per ottenere tutte le 11 sfumature come proprietà personalizzate CSS in un blocco :root, pronto per essere incollato nel tuo foglio di stile o sistema di design." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Cosa significano i numeri delle sfumature (50–950)?",
+      "a": "I numeri seguono la convenzione della scala di colori di Tailwind CSS. I numeri più bassi sono più chiari: 50 è quasi bianco, 100 è molto chiaro, 200 e 300 sono tinte chiare. Il valore medio (500) è vicino al colore originale. I numeri più alti sono più scuri: 700 è scuro, 900 è molto scuro, 950 è quasi nero. La scala non è lineare — è calibrata in modo che le dimensioni degli step sembrino percettivamente uniformi su tutta la gamma."
+    },
+    {
+      "q": "Qual è la differenza tra una tinta e una sfumatura?",
+      "a": "Una tinta è un colore mescolato con il bianco, rendendolo più chiaro. Una sfumatura è un colore mescolato con il nero, rendendolo più scuro. In termini HSL, le tinte hanno valori di luminosità più elevati e le sfumature hanno valori di luminosità più bassi mantenendo la stessa tonalità. I numeri 50–400 in questa scala sono tinte (più chiare della base), mentre 600–950 sono sfumature (più scure della base). Lo step 500 è approssimativamente il colore base stesso."
+    },
+    {
+      "q": "Come genera le sfumature questo strumento?",
+      "a": "Lo strumento converte il tuo colore hex in HSL (Tonalità, Saturazione, Luminosità). Mantiene costanti la tonalità e la saturazione mentre associa ogni numero di step a un valore di luminosità target: step 50 → 97% di luminosità, step 500 → 52%, step 950 → 12%. Il risultato viene poi riconvertito in hex. Questo metodo preserva il carattere del colore (calore, freschezza, vivacità) su tutte le sfumature."
+    },
+    {
+      "q": "Cos'è WCAG e perché le sfumature mostrano valutazioni?",
+      "a": "WCAG (Linee guida per l'accessibilità dei contenuti Web) definisce rapporti di contrasto minimi per il testo leggibile. AA richiede un rapporto di 4,5:1 per il testo normale; AAA richiede 7:1. La valutazione di contrasto di ogni sfumatura indica se il testo nero o bianco su quello sfondo soddisfa lo standard AA o AAA. Questo ti aiuta a scegliere quali sfumature sono sicure per il testo e quali devono essere usate solo per elementi decorativi."
+    },
+    {
+      "q": "Come uso questa palette in Tailwind CSS?",
+      "a": "Tailwind ti permette di definire colori personalizzati in tailwind.config.js. Aggiungi le sfumature sotto theme.extend.colors: colors: { brand: { 50: '#il-tuo-hex-50', 100: '#il-tuo-hex-100', ... } }. Puoi poi usare classi come bg-brand-100, text-brand-700, border-brand-300. Per Tailwind v4 con configurazione CSS-first, incolla l'output delle variabili CSS nella tua definizione di tema."
+    },
+    {
+      "q": "Perché la sfumatura del mio colore scelto non sembra esattamente come il mio input?",
+      "a": "Lo strumento punta a valori di luminosità specifici per ogni step — lo step 500 punta a circa il 52% di luminosità HSL. Se il tuo colore di input ha una luminosità diversa (es. 70% se è un colore più chiaro), la sfumatura allo step 500 verrà adeguata verso il 52%. Questo crea una scala coerente, ma significa che lo step 500 potrebbe non essere identico al tuo input originale. Per ottenere il tuo colore esatto allo step 500, puoi regolare manualmente il hex — la scala verrà generata relativa a ciò che inserisci."
+    },
+    {
+      "q": "Posso usarlo con le proprietà personalizzate CSS?",
+      "a": "Sì — clicca Copia CSS per ottenere un blocco :root pronto all'uso con tutte le 11 sfumature come proprietà personalizzate. Nel tuo CSS, fai riferimento ad esse come var(--color-500), var(--color-50), ecc. Puoi rinominare il prefisso --color- in qualsiasi cosa si adatti al tuo progetto (--brand-, --primary-, --blue-). Le proprietà personalizzate si ereditano in cascata e possono essere limitate a un componente o sovrascritte in una media query per la modalità scura."
+    },
+    {
+      "q": "In cosa si differenziano queste sfumature dalla funzione CSS color-mix()?",
+      "a": "La funzione CSS color-mix() (supportata nei browser moderni) mescola due colori per percentuale, simile al mescolare la vernice. Questo strumento usa una scala di luminosità predefinita (basata su HSL), che produce una scala di sistema di design più controllata e prevedibile. color-mix() è migliore per miscelazioni occasionali (es. mescolare il tuo colore brand con il 20% di bianco), mentre questo strumento genera una palette completa e sistematica per sistemi di design. Entrambi gli approcci hanno il loro posto a seconda del caso d'uso."
+    }
+  ]
+}

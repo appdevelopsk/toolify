@@ -1,0 +1,104 @@
+{
+  "title": "ค้นหารหัสคีย์บอร์ด — keyCode, code, key",
+  "shortDescription": "กดปุ่มใดก็ได้เพื่อดูค่า JavaScript keyCode, code, key, which และ charCode ทันที เครื่องมือจำเป็นสำหรับนักพัฒนาเว็บที่จัดการ keyboard event",
+  "description": "คลิกที่โซนตรวจจับและกดปุ่มใดก็ได้เพื่อดู JavaScript event properties ทันที ได้แก่ key, code, keyCode, which, charCode และสถานะ modifier (Ctrl, Alt, Shift, Meta) ค่าทั้ง 17 อัปเดตแบบ real time เหมาะสำหรับการดีบัก keyboard event handler",
+  "metaDescription": "เครื่องมือค้นหารหัสคีย์บอร์ดฟรี กดปุ่มใดก็ได้เพื่อดูค่า keyCode, code, key, which และ charCode",
+  "keywords": [
+    "ค้นหารหัสคีย์",
+    "รหัสคีย์บอร์ด",
+    "javascript keyCode",
+    "keyboard event",
+    "which charCode"
+  ],
+  "zone": {
+    "label": "โซนตรวจจับคีย์ — คลิกที่นี่แล้วกดปุ่มใดก็ได้",
+    "prompt": "คลิกที่นี่ แล้วกดปุ่มใดก็ได้"
+  },
+  "key": {
+    "space": "Spacebar"
+  },
+  "label": {
+    "modifiers": "Modifier",
+    "none": "ไม่มี"
+  },
+  "history": {
+    "title": "คีย์ล่าสุด"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Keyboard event ใน JavaScript: key, code และ keyCode",
+        "paragraphs": [
+          "เมื่อผู้ใช้กดปุ่ม เบราว์เซอร์จะ fire event สามตัวตามลำดับ: keydown, keypress และ keyup แต่ละ event object มี property หลายตัวที่ระบุปุ่มที่กด ที่สำคัญที่สุดคือ: key (ตัวอักษรหรือปุ่มที่มีชื่อ เช่น 'Enter'), code (ตำแหน่งปุ่มจริง เช่น 'KeyA' หรือ 'ArrowLeft') และ keyCode (จำนวนเต็มแบบ legacy เช่น 65 สำหรับ 'A' โดยไม่คำนึงถึงสถานะ Shift)",
+          "Property keyCode และ which ถูก deprecated ตามสเปค W3C UI Events แต่ยังคงใช้กันอยู่มากในโค้ดเก่า แอปพลิเคชันสมัยใหม่ควรใช้ key สำหรับความหมาย semantic (ปุ่มผลิตอะไร) และ code สำหรับตำแหน่งจริง (ปุ่มกายภาพตัวไหนถูกกด) ตัวอย่างเช่น ปุ่ม 'A' ผลิต key='a' หรือ key='A' ขึ้นอยู่กับ Shift แต่ code='KeyA' เสมอไม่ว่าสถานะใด"
+        ]
+      },
+      {
+        "heading": "Property location ใน keyboard event",
+        "paragraphs": [
+          "Property location แยกแยะปุ่มที่มีอยู่หลายที่บนคีย์บอร์ด: Ctrl ซ้ายกับ Ctrl ขวา, Shift ซ้ายกับ Shift ขวา และปุ่มตัวเลขบน numpad กับตัวเลขแถวบน ค่า location คือ: 0 (มาตรฐาน), 1 (ซ้าย), 2 (ขวา) และ 3 (numpad) ซึ่งมีประโยชน์มากในการตรวจจับว่าผู้ใช้กดปุ่ม Enter บน numpad หรือปุ่ม Enter หลัก",
+          "Modifier key (Ctrl, Alt, Shift, Meta) ถูกติดตามเป็น boolean flag ในทุก keyboard event ไม่ใช่เฉพาะเมื่อกดปุ่มเหล่านั้นเดี่ยวๆ หมายความว่าคุณสามารถตรวจจับ combination เช่น Ctrl+C ได้แม้จะ listen หลักๆ ที่ keyCode 67 (C) อยู่ Meta key ตรงกับ Windows key บนคีย์บอร์ด Windows และ Command key บน Mac"
+        ]
+      },
+      {
+        "heading": "กรณีใช้งานจริงของ keyboard event properties",
+        "paragraphs": [
+          "Keyboard shortcut ในเว็บแอปใช้ combination ของ code (ปุ่มจริง) และ modifier flag เพื่อตรวจจับ combination เช่น Ctrl+S (บันทึก) หรือ Ctrl+Shift+P (command palette) การใช้ code แทน key ช่วยให้ shortcut ทำงานได้โดยไม่คำนึง locale ของคีย์บอร์ด: บน layout AZERTY ของฝรั่งเศส ปุ่มที่ตำแหน่ง 'A' ผลิตตัวอักษรต่างกัน แต่ code ยังคงเป็น 'KeyA' เสมอ",
+          "Game control มักใช้ code เพื่อ map WASD หรือปุ่มลูกศรกับการเคลื่อนไหว เพราะตำแหน่งจริงสำคัญกว่าตัวอักษรที่ผลิต Accessibility tool อาจ listen Tab (code='Tab') และ Enter (code='Enter') เพื่อให้ interactive element สามารถ activate ได้โดยไม่ต้องใช้เมาส์ เครื่องมือนี้ช่วยให้คุณค้นหาค่า property ที่แน่นอนของปุ่มใดก็ได้ก่อนเขียน event handler code"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "คลิกโซนตรวจจับ",
+        "text": "คลิกหรือแตะในกล่องเส้นประที่ด้านบนของเครื่องมือเพื่อ focus"
+      },
+      {
+        "name": "กดปุ่มใดก็ได้",
+        "text": "กดปุ่มใดก็ได้บนคีย์บอร์ด ทั้งตัวอักษร ตัวเลข function key ปุ่มลูกศร หรือปุ่มพิเศษอย่าง Enter และ Escape"
+      },
+      {
+        "name": "อ่าน property",
+        "text": "JavaScript keyboard event properties ทั้งหมด (key, code, keyCode, which, charCode, location, modifier) จะปรากฏทันทีใต้โซน"
+      },
+      {
+        "name": "ตรวจสอบ modifier combination",
+        "text": "กด Ctrl, Alt, Shift หรือ Meta ค้างไว้ขณะกดปุ่ม เพื่อดูว่า modifier flag เปลี่ยนแปลงอย่างไรในแถว Modifier"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "keyCode กับ key ต่างกันอย่างไร?",
+      "a": "keyCode เป็น integer property แบบ deprecated ที่ให้ตัวเลขสำหรับแต่ละปุ่ม (เช่น 65 สำหรับ 'A', 13 สำหรับ Enter) key คือตัวแทนสมัยใหม่ที่ return ตัวอักษรที่ผลิต ('a' หรือ 'A') หรือ string ของปุ่มที่มีชื่อ ('Enter', 'ArrowLeft') โค้ดใหม่ควรใช้ key หรือ code แทน keyCode"
+    },
+    {
+      "q": "code property คืออะไร?",
+      "a": "code ระบุปุ่มจริงที่ถูกกด โดยไม่คำนึง layout คีย์บอร์ดหรือสถานะ modifier 'KeyA' อ้างถึงปุ่มที่ตำแหน่ง 'A' บนคีย์บอร์ด QWERTY เสมอ แม้ผู้ใช้จะเปลี่ยนไปใช้ layout AZERTY ที่ปุ่มนั้นผลิต 'Q' ก็ตาม ใช้ code สำหรับ keyboard shortcut ที่ต้องทำงานโดยไม่คำนึง locale"
+    },
+    {
+      "q": "ทำไม keyCode ถึง deprecated?",
+      "a": "keyCode ไม่สอดคล้องกันในเบราว์เซอร์และระบบปฏิบัติการต่างๆ มีค่าต่างกันสำหรับปุ่มเดียวกัน และจัดการอักขระ non-ASCII ได้ไม่ดี สเปค W3C UI Events จึง deprecated มันเพื่อสนับสนุน key (สำหรับตัวอักษร/ปุ่มที่มีชื่อ) และ code (สำหรับตำแหน่งจริง) ทั้ง keyCode และ which ถูกทำเครื่องหมายเป็น legacy ในสเปค"
+    },
+    {
+      "q": "ค่า location หมายความว่าอย่างไร?",
+      "a": "location แยกแยะปุ่มที่ปรากฏในหลายตำแหน่ง 0 = มาตรฐาน (พื้นที่หลัก), 1 = modifier key ซ้าย (เช่น Shift ซ้าย), 2 = modifier key ขวา (เช่น Ctrl ขวา), 3 = numpad ทำให้แยกแยะ 5 บน numpad (code='Numpad5', location=3) กับ 5 แถวบน (code='Digit5', location=0) ได้"
+    },
+    {
+      "q": "จะตรวจจับ Ctrl+S หรือ shortcut อื่นใน JavaScript อย่างไร?",
+      "a": "Listen event keydown และตรวจสอบทั้ง key/code และ modifier flag: `if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveDocument(); }` การใช้ e.key === 's' จะ catch ทั้งตัวพิมพ์ใหญ่และเล็ก เพราะสถานะ modifier ไม่เปลี่ยนค่า key สำหรับปุ่มตัวอักษร"
+    },
+    {
+      "q": "charCode property คืออะไร?",
+      "a": "charCode ถูก return โดย legacy event keypress และให้ Unicode code point ของตัวอักษรที่พิมพ์ (เช่น 65 สำหรับ 'A') ตอนนี้ deprecated พร้อมกับ event keypress เอง ใน event keydown/keyup, charCode จะเป็น 0 เสมอ ใช้ key หรือ inputType ใน input event แทน"
+    },
+    {
+      "q": "จะแยกแยะ Enter บน numpad กับคีย์บอร์ดหลักได้อย่างไร?",
+      "a": "ทั้งสองปุ่มผลิต key='Enter' แต่ต่างกันใน code: ปุ่ม Enter หลักคือ code='Enter' พร้อม location=0 ส่วน Enter บน numpad คือ code='NumpadEnter' พร้อม location=3 ตรวจสอบ e.code === 'Enter' สำหรับปุ่มหลัก หรือ e.code === 'NumpadEnter' สำหรับเวอร์ชัน numpad"
+    },
+    {
+      "q": "Meta key คืออะไร?",
+      "a": "Meta key คือ Windows key บนคีย์บอร์ด Windows (⊞) และ Command key บนคีย์บอร์ด Mac (⌘) ใน keyboard event ถูกติดตามด้วย boolean flag metaKey และผลิต key='Meta' เมื่อกดเดี่ยว code คือ 'MetaLeft' หรือ 'MetaRight'"
+    }
+  ]
+}

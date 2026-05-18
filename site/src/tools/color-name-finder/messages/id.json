@@ -1,0 +1,83 @@
+{
+  "title": "Pencari Nama Warna CSS — Warna Terdekat dari Kode Hex",
+  "shortDescription": "Masukkan warna hex apa pun untuk menemukan nama warna CSS terdekat. Lihat 5 warna terdekat dengan nilai hex tepat dan skor jarak.",
+  "description": "Masukkan kode warna hex atau gunakan pemilih warna untuk menemukan nama warna CSS4 terdekat. Alat ini membandingkan warna Anda dengan semua 148 warna CSS bernama standar menggunakan jarak warna perseptual dan mengurutkan 5 yang terdekat. Sempurna untuk menemukan nama warna yang mudah dibaca untuk kode dan dokumentasi.",
+  "metaDescription": "Pencari nama warna CSS gratis. Masukkan warna hex apa pun untuk menemukan warna CSS bernama terdekat. Lihat nilai hex tepat dan jarak perseptual untuk 5 hasil terbaik.",
+  "keywords": ["pencari nama warna css", "nama warna terdekat", "hex ke nama warna", "nama warna dari hex", "warna css bernama"],
+  "input": {
+    "picker": "Pemilih warna",
+    "hex": "Warna hex"
+  },
+  "error": {
+    "invalid": "Silakan masukkan warna hex yang valid (mis. #3B82F6)."
+  },
+  "result": {
+    "exact": "Kecocokan tepat ditemukan:",
+    "nearest": "5 warna CSS bernama terdekat:"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Warna bernama CSS: sejarah singkat",
+        "paragraphs": [
+          "Warna bernama CSS telah berkembang melalui beberapa versi spesifikasi. CSS 1 asli (1996) mendefinisikan hanya 16 warna dasar: aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, purple, red, silver, teal, white, dan yellow. CSS 2 menambahkan orange. CSS 3 memperluas daftar menjadi 147 warna berdasarkan daftar warna X11, yang sendiri berasal dari basis data warna sistem X Window yang dipelihara di MIT pada tahun 1980-an.",
+          "CSS Color Level 4 menambahkan satu nama lagi: rebeccapurple (#663399). Warna ini ditambahkan untuk menghormati Rebecca Alissa Meyer, putri pengembang web Eric Meyer, yang meninggal karena kanker otak pada tahun 2014 di usia 6 tahun. Warna favoritnya adalah ungu, dan kelompok kerja CSS memilih untuk menyertakan namanya dalam standar sebagai peringatan. Dengan penambahan ini, spesifikasi CSS4 mendefinisikan tepat 148 warna bernama, set lengkap yang dicari oleh alat ini."
+        ]
+      },
+      {
+        "heading": "Cara jarak warna dihitung",
+        "paragraphs": [
+          "Membandingkan nilai RGB dengan jarak Euclidean tidak sesuai dengan persepsi manusia: mata kita lebih sensitif terhadap perbedaan pada hijau daripada biru, dan sensitivitasnya berubah di seluruh rentang kecerahan. Alat ini menggunakan formula Euclidean berbobot berdasarkan 'metrik warna' Thiadmer Riemersma, yang menyesuaikan bobot saluran R, G, dan B berdasarkan nilai merah rata-rata. Hasilnya jauh lebih dekat dengan cara manusia sebenarnya merasakan perbedaan warna.",
+          "Formula menggunakan: ΔE = √[(2 + R̄/256)·ΔR² + 4·ΔG² + (2 + (255-R̄)/256)·ΔB²], di mana R̄ adalah komponen merah rata-rata dari kedua warna. Ini adalah metrik perseptual yang disederhanakan; ilmu warna profesional menggunakan perhitungan CIELAB ΔE yang mempertimbangkan kecerahan, kroma, dan rona secara terpisah, tetapi untuk tujuan penamaan praktis, metrik yang disederhanakan memberikan hasil intuitif untuk sebagian besar warna."
+        ]
+      },
+      {
+        "heading": "Kapan menggunakan warna bernama dalam CSS",
+        "paragraphs": [
+          "Warna bernama paling berguna untuk pembuatan prototipe cepat, keterbacaan kode, dan debugging. Menulis `color: tomato` lebih cepat diketik dan lebih mudah diingat daripada `color: #FF6347`. Mereka juga berguna dalam konteks pendidikan, visualisasi data (di mana nama semantik membantu mengkomunikasikan makna), dan dalam sistem desain di mana satu set terbatas warna bernama membentuk palet. W3C merekomendasikan penggunaan warna bernama dalam contoh dan tutorial untuk meningkatkan keterbacaan.",
+          "Untuk sistem desain produksi, warna bernama jarang menjadi palet utama: nilai hex khusus, HSL, atau nama token desain lebih disukai. Namun, mengetahui warna bernama terdekat ke nilai khusus berguna untuk dokumentasi, komentar warna dalam tinjauan kode, dan ketika Anda ingin nama perkiraan cepat untuk berkomunikasi secara verbal tentang warna. Alat ini menjembatani kesenjangan dengan menemukan nama CSS yang paling baik menggambarkan warna hex apa pun."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Masukkan atau pilih warna", "text": "Gunakan pemilih warna atau ketik kode hex apa pun (dengan atau tanpa awalan #) di bidang input." },
+      { "name": "Baca kecocokan terdekat", "text": "Alat menampilkan 5 warna CSS bernama terdekat yang diurutkan berdasarkan jarak perseptual. Hasil pertama adalah kecocokan terbaik." },
+      { "name": "Periksa tepat vs. perkiraan", "text": "Jika warna Anda adalah warna CSS bernama yang tepat, pesan khusus 'Kecocokan tepat' muncul. Jika tidak, Anda melihat alternatif terdekat." },
+      { "name": "Gunakan dalam kode Anda", "text": "Klik nama warna untuk menggunakannya langsung di CSS Anda, atau ambil nilai hex tepat yang ditampilkan di sebelah setiap sampel untuk kontrol warna yang presisi." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Ada berapa warna CSS bernama?",
+      "a": "CSS Color Level 4 mendefinisikan 148 warna bernama. Ini mencakup 16 warna dasar asli dari CSS 1, orange dari CSS 2, 130 warna berbasis X11 dari CSS 3, dan rebeccapurple yang ditambahkan di CSS 4 untuk menghormati Rebecca Meyer. Perhatikan bahwa aqua dan cyan adalah alias (hex yang sama #00FFFF), begitu pula fuchsia dan magenta (#FF00FF)."
+    },
+    {
+      "q": "Apakah nama warna CSS peka huruf besar-kecil?",
+      "a": "Tidak. Nama warna CSS tidak peka huruf besar-kecil menurut spesifikasi. 'Red', 'RED', 'red', dan 'rEd' semuanya merujuk pada warna yang sama. Secara konvensi, huruf kecil adalah gaya yang paling umum dalam CSS modern."
+    },
+    {
+      "q": "Apa itu rebeccapurple?",
+      "a": "rebeccapurple (#663399) ditambahkan ke CSS Color Level 4 sebagai kenangan untuk Rebecca Alissa Meyer, putri ahli CSS Eric Meyer, yang meninggal karena kanker otak pada tahun 2014 di usia 6 tahun. Warna favoritnya adalah ungu, dan kelompok kerja CSS mengabadikannya dengan menamai warna tersebut menggunakan namanya. Ini adalah satu-satunya warna yang ditambahkan di CSS 4 dan warna bernama baru pertama sejak CSS 2."
+    },
+    {
+      "q": "Mengapa warna bernama CSS tidak mencakup semua warna yang mungkin?",
+      "a": "148 warna bernama adalah kumpulan yang dikurasi berdasarkan daftar warna X11 historis. Mereka mencakup rona umum tetapi meninggalkan banyak warna tanpa nama: tidak ada nama CSS untuk sebagian besar nuansa biru-hijau, merah muda-jingga, atau coklat-merah. Untuk pekerjaan desain yang presisi, digunakan kode hex, rgb(), atau hsl()."
+    },
+    {
+      "q": "Apa perbedaan antara gray dan grey dalam CSS?",
+      "a": "Kedua ejaan diterima dalam CSS. 'gray' adalah ejaan resmi bahasa Inggris Amerika dalam spesifikasi, tetapi 'grey' (bahasa Inggris Inggris) juga merupakan sinonim valid untuk warna yang sama (#808080). Demikian pula, 'lightgray'/'lightgrey', 'darkgray'/'darkgrey', 'dimgray'/'dimgrey', 'slategray'/'slategrey', dan 'darkslategray'/'darkslategrey' semuanya valid."
+    },
+    {
+      "q": "Seberapa akurat kecocokan warna terdekat?",
+      "a": "Pencocokan menggunakan formula jarak perseptual yang menimbang saluran RGB berdasarkan sensitivitas mata manusia. Untuk sebagian besar warna sehari-hari — merah, biru, hijau yang jenuh — warna bernama terdekat akan terasa intuitif benar. Untuk warna yang sangat redup, gelap, atau kecoklatan, persepsi manusia lebih bervariasi dan warna bernama 'terdekat' mungkin terasa subjektif salah. Skor jarak (Δ) yang ditampilkan membantu Anda menilai seberapa dekat kecocokannya: semakin kecil semakin baik."
+    },
+    {
+      "q": "Bisakah saya menggunakan ini untuk menemukan nama warna yang dapat diakses untuk teks alt?",
+      "a": "Ya. Alat ini berguna untuk menulis nama warna dalam teks alt, dokumentasi, atau komentar desain. Jika Anda perlu mendeskripsikan warna elemen UI kepada pembaca yang tidak dapat melihatnya, warna CSS bernama terdekat memberikan nama yang dikenal luas. Untuk nuansa yang sangat spesifik, gabungkan nama CSS dengan modifier (mis. 'teal gelap' untuk #008080)."
+    },
+    {
+      "q": "Warna hex mana yang memiliki kecocokan tepat dengan nama CSS?",
+      "a": "Salah satu dari 148 warna CSS bernama standar akan menghasilkan kecocokan tepat. Contoh umum: red = #FF0000, blue = #0000FF, white = #FFFFFF, black = #000000, coral = #FF7F50, tomato = #FF6347, skyblue = #87CEEB. Anda dapat memeriksa hex apa pun dengan memasukkannya dan mencari pesan 'Kecocokan tepat'."
+    }
+  ]
+}

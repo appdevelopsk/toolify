@@ -1,0 +1,86 @@
+{
+  "title": "Pencari Kode Tombol Keyboard — keyCode, code, key Properties",
+  "shortDescription": "Tekan tombol apa pun untuk langsung melihat nilai JavaScript keyCode, code, key, which, dan charCode. Penting untuk developer web yang menangani event keyboard.",
+  "description": "Klik zona deteksi dan tekan tombol apa pun untuk segera melihat properti event JavaScript: key, code, keyCode, which, charCode, dan status modifier (Ctrl, Alt, Shift, Meta). Semua 17 nilai diperbarui secara real time. Sempurna untuk debugging handler event keyboard.",
+  "metaDescription": "Pencari kode tombol keyboard gratis. Tekan tombol apa pun untuk melihat nilai JavaScript keyCode, code, key, which, dan charCode. Berguna untuk developer web.",
+  "keywords": ["pencari kode tombol", "kode tombol keyboard", "javascript keyCode", "event keyboard", "which charCode"],
+  "zone": {
+    "label": "Zona deteksi tombol — klik di sini lalu tekan tombol apa pun",
+    "prompt": "Klik di sini, lalu tekan tombol apa pun"
+  },
+  "key": {
+    "space": "Spasi"
+  },
+  "label": {
+    "modifiers": "Modifier",
+    "none": "Tidak ada"
+  },
+  "history": {
+    "title": "Tombol terakhir"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Event keyboard JavaScript: key, code, dan keyCode",
+        "paragraphs": [
+          "Saat pengguna menekan tombol, browser menembakkan tiga event secara berurutan: keydown, keypress, dan keyup. Setiap objek event membawa beberapa properti yang mengidentifikasi tombol yang ditekan. Yang paling penting adalah: key (karakter atau tombol bernama seperti 'Enter'), code (lokasi fisik tombol seperti 'KeyA' atau 'ArrowLeft'), dan keyCode (bilangan bulat lama, misalnya 65 untuk 'A' terlepas dari status Shift).",
+          "Properti keyCode dan which sudah usang menurut spesifikasi W3C UI Events tetapi masih banyak digunakan di basis kode lama. Aplikasi modern sebaiknya mengutamakan key untuk makna semantik (apa yang dihasilkan tombol) dan code untuk posisi fisik (tombol fisik mana yang ditekan). Misalnya, tombol 'A' menghasilkan key='a' atau key='A' tergantung Shift, tetapi selalu code='KeyA' terlepas dari keadaan."
+        ]
+      },
+      {
+        "heading": "Properti location pada event keyboard",
+        "paragraphs": [
+          "Properti location membedakan tombol yang ada di beberapa tempat pada keyboard: Ctrl kiri vs Ctrl kanan, Shift kiri vs Shift kanan, dan tombol angka numpad vs angka baris atas. Nilai location adalah: 0 (standar), 1 (sisi kiri), 2 (sisi kanan), dan 3 (numpad). Ini sangat berguna untuk mendeteksi apakah pengguna menekan tombol Enter numpad atau tombol Enter utama.",
+          "Tombol modifier (Ctrl, Alt, Shift, Meta) dilacak sebagai flag boolean pada setiap event keyboard, bukan hanya ketika tombol tersebut ditekan sendiri. Ini berarti Anda bisa mendeteksi kombinasi seperti Ctrl+C meski Anda terutama mendengarkan keyCode 67 (C). Tombol Meta sesuai dengan tombol Windows pada keyboard Windows dan tombol Command di Mac."
+        ]
+      },
+      {
+        "heading": "Kasus penggunaan praktis properti event keyboard",
+        "paragraphs": [
+          "Pintasan keyboard di aplikasi web menggunakan kombinasi code (tombol fisik) dan flag modifier untuk mendeteksi kombinasi seperti Ctrl+S (simpan) atau Ctrl+Shift+P (palet perintah). Menggunakan code daripada key memastikan pintasan berfungsi terlepas dari locale keyboard: pada layout AZERTY Prancis, tombol di posisi 'A' menghasilkan karakter berbeda, tetapi code selalu 'KeyA'.",
+          "Kontrol game biasanya menggunakan code untuk memetakan WASD atau tombol panah ke gerakan, karena posisi fisik yang penting, bukan karakter yang dihasilkan. Alat aksesibilitas mungkin mendengarkan Tab (code='Tab') dan Enter (code='Enter') untuk memastikan elemen interaktif bisa diaktifkan tanpa mouse. Alat ini memungkinkan Anda mencari nilai properti yang tepat untuk tombol apa pun sebelum menulis kode handler event."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Klik zona deteksi", "text": "Klik atau ketuk dalam kotak bertitik di bagian atas alat untuk memfokuskannya." },
+      { "name": "Tekan tombol apa pun", "text": "Tekan tombol apa pun pada keyboard Anda: huruf, angka, tombol fungsi, tombol panah, atau tombol khusus seperti Enter dan Escape." },
+      { "name": "Baca propertinya", "text": "Semua properti event keyboard JavaScript (key, code, keyCode, which, charCode, location, modifier) muncul seketika di bawah zona." },
+      { "name": "Periksa kombinasi modifier", "text": "Tahan Ctrl, Alt, Shift, atau Meta sambil menekan tombol untuk melihat bagaimana flag modifier berubah di baris Modifier." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apa perbedaan antara keyCode dan key?",
+      "a": "keyCode adalah properti bilangan bulat usang yang memberi nomor pada setiap tombol (misalnya, 65 untuk 'A', 13 untuk Enter). key adalah pengganti modern yang mengembalikan karakter yang dihasilkan ('a' atau 'A') atau string tombol bernama ('Enter', 'ArrowLeft'). Kode baru harus menggunakan key atau code daripada keyCode."
+    },
+    {
+      "q": "Apa itu properti code?",
+      "a": "code mengidentifikasi tombol fisik yang ditekan, terlepas dari layout keyboard atau status modifier. 'KeyA' selalu mengacu pada tombol di posisi 'A' pada keyboard QWERTY, meski pengguna telah beralih ke layout AZERTY di mana tombol itu menghasilkan 'Q'. Gunakan code untuk pintasan keyboard yang harus berfungsi terlepas dari locale."
+    },
+    {
+      "q": "Mengapa keyCode usang?",
+      "a": "keyCode tidak konsisten di berbagai browser dan sistem operasi, memiliki nilai berbeda untuk tombol yang sama, dan tidak menangani karakter non-ASCII dengan baik. Spesifikasi W3C UI Events mengusangkannya demi key (untuk karakter/tombol bernama) dan code (untuk posisi fisik). Baik keyCode maupun which kini ditandai sebagai warisan dalam spesifikasi."
+    },
+    {
+      "q": "Apa arti nilai location?",
+      "a": "Location membedakan tombol yang muncul di beberapa posisi. 0 = standar (area utama), 1 = tombol modifier kiri (mis. Shift kiri), 2 = tombol modifier kanan (mis. Ctrl kanan), 3 = numpad. Ini memungkinkan membedakan 5 numpad (code='Numpad5', location=3) dari 5 baris atas (code='Digit5', location=0)."
+    },
+    {
+      "q": "Bagaimana mendeteksi Ctrl+S atau pintasan lain di JavaScript?",
+      "a": "Dengarkan event keydown dan periksa key/code serta flag modifier: `if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveDocument(); }`. Menggunakan e.key === 's' menangkap huruf besar maupun kecil, karena status modifier tidak mengubah nilai key untuk tombol huruf."
+    },
+    {
+      "q": "Apa itu properti charCode?",
+      "a": "charCode dikembalikan oleh event keypress lama dan memberikan code point Unicode karakter yang diketik (misalnya, 65 untuk 'A'). Sekarang sudah usang bersama event keypress itu sendiri. Dalam event keydown/keyup, charCode selalu 0. Gunakan key atau inputType pada event input sebagai gantinya."
+    },
+    {
+      "q": "Bagaimana membedakan tombol Enter numpad vs keyboard utama?",
+      "a": "Kedua tombol menghasilkan key='Enter', tetapi berbeda dalam code: tombol Enter utama adalah code='Enter' dengan location=0, sedangkan Enter numpad adalah code='NumpadEnter' dengan location=3. Periksa e.code === 'Enter' untuk tombol utama atau e.code === 'NumpadEnter' untuk versi numpad."
+    },
+    {
+      "q": "Apa itu tombol Meta?",
+      "a": "Tombol Meta adalah tombol Windows pada keyboard Windows (⊞) dan tombol Command pada keyboard Mac (⌘). Dalam event keyboard, dilacak oleh flag boolean metaKey dan menghasilkan key='Meta' saat ditekan sendiri. code-nya adalah 'MetaLeft' atau 'MetaRight'."
+    }
+  ]
+}

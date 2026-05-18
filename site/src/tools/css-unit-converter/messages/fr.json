@@ -1,0 +1,98 @@
+{
+  "title": "Convertisseur d'unités CSS — px, rem, em, pt, % en ligne",
+  "shortDescription": "Convertissez les unités CSS instantanément : px en rem, rem en px, em, pt et %. Définissez votre taille de police de base pour des conversions rem et em précises. Indispensable pour le design web responsive.",
+  "description": "Saisissez n'importe quelle valeur CSS en px, rem, em, pt ou % et voyez instantanément l'équivalent dans toutes les autres unités. Définissez une taille de police de base personnalisée (16px par défaut) pour des conversions rem et em précises. Tous les calculs se mettent à jour en temps réel sans rechargement de page.",
+  "metaDescription": "Convertisseur d'unités CSS gratuit : px en rem, rem en px, em, pt et %. Configurez la taille de police de base pour des conversions précises en design responsive.",
+  "keywords": [
+    "convertisseur px en rem",
+    "convertisseur unités css",
+    "rem en px",
+    "px en em",
+    "unités css"
+  ],
+  "input": {
+    "value": "Valeur",
+    "base": "Taille de police de base (px)",
+    "baseHint": "Généralement 16px (valeur par défaut du navigateur)"
+  },
+  "note": {
+    "basePx": "Base : {base}px. Pour rem/em, 1 unité = {base}px au niveau racine."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Pourquoi les unités CSS comptent pour le design responsive",
+        "paragraphs": [
+          "CSS offre deux grandes catégories d'unités de longueur : absolues (px, pt, cm, mm) et relatives (rem, em, %, vw, vh). Les unités absolues ont une taille physique fixe quel que soit le contexte ; les unités relatives s'adaptent par rapport à quelque chose d'autre : la taille de police racine, la taille de police de l'élément parent ou les dimensions du viewport. Choisir le bon type d'unité détermine si votre mise en page s'adapte harmonieusement à différentes tailles d'écran, préférences de police des utilisateurs et niveaux de zoom.",
+          "Les pixels (px) restent l'unité CSS la plus courante car ils sont prévisibles et précis, mais ils ne respectent pas les paramètres de taille de police du navigateur de l'utilisateur. Un utilisateur ayant augmenté sa taille de police par défaut à 20px pour des raisons d'accessibilité verra le texte en px rester inchangé, tandis que le texte en rem s'adaptera en conséquence. C'est pourquoi le Critère de succès 1.4.4 de WCAG 2.1 (Redimensionnement du texte) est plus facilement satisfait en utilisant des unités relatives comme rem pour les tailles de police."
+        ]
+      },
+      {
+        "heading": "px vs rem vs em : quand utiliser chacun",
+        "paragraphs": [
+          "rem (root em) est relatif à la taille de police de l'élément racine, 16px par défaut dans tous les navigateurs. Comme rem est ancré à un point de référence fixe (l'élément <html>), il évite l'effet de composition auquel em est sujet. Utilisez rem pour les tailles de police, l'espacement des composants et toute valeur devant s'adapter aux préférences de police de l'utilisateur. La formule typique : rem = px ÷ base, donc 24px ÷ 16 = 1,5rem.",
+          "em est relatif à la taille de police de l'élément actuel, qui peut être définie en em, créant une chaîne de composition. `font-size: 1.2em` sur un enfant dans un parent avec `font-size: 1.2em` donne 1,44 fois la taille racine (1,2 × 1,2). Cela rend em utile pour l'espacement devant s'adapter à la taille de police locale (padding et margin dans un composant), mais difficile à prévoir pour la mise en page globale. pt (points) est principalement utile lors de la conception pour l'impression : 1pt = 1/72 pouce, et 72pt = 1 pouce ≈ 96px à l'écran."
+        ]
+      },
+      {
+        "heading": "Choisir une taille de police de base et travailler avec des systèmes de design",
+        "paragraphs": [
+          "La plupart des navigateurs utilisent 16px par défaut pour la taille de police racine, c'est pourquoi 1rem = 16px dans le réglage par défaut du convertisseur. Certains développeurs définissent `html { font-size: 62.5%; }` pour obtenir 1rem = 10px, simplifiant le calcul mental (24px = 2,4rem au lieu de 1,5rem). Cette technique est controversée car elle nécessite de réinitialiser les tailles de police partout et peut entrer en conflit avec les préférences d'accessibilité.",
+          "Les systèmes de design modernes (Material Design, Apple HIG, Tailwind CSS) utilisent une échelle modulaire pour l'espacement et la typographie, généralement des multiples de 4px ou 8px. Travailler dans ces unités et convertir en rem garantit un rythme visuel cohérent dans différents contextes. L'échelle par défaut de Tailwind utilise par exemple 4px = 1 unité, donc une valeur de 4 (16px) équivaut à 1rem. En cas de doute, conservez votre base à 16px et utilisez ce convertisseur pour des valeurs rem précises sans calcul mental."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Saisissez une valeur",
+        "text": "Tapez n'importe quelle valeur CSS dans le champ de saisie et sélectionnez son unité (px, rem, em, pt ou %) dans le menu déroulant."
+      },
+      {
+        "name": "Définissez votre taille de police de base",
+        "text": "Si votre projet utilise une taille de police racine non standard, modifiez le champ Base. La valeur par défaut est 16px (standard du navigateur)."
+      },
+      {
+        "name": "Consultez toutes les conversions",
+        "text": "Toutes les valeurs équivalentes dans les autres unités apparaissent instantanément dans la grille ci-dessous. Aucun clic de bouton n'est nécessaire."
+      },
+      {
+        "name": "Copiez et utilisez",
+        "text": "Cliquez ou appuyez sur n'importe quelle valeur pour la sélectionner, puis copiez-la directement dans votre CSS."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Comment convertir des px en rem ?",
+      "a": "Divisez la valeur en pixels par la taille de police racine. Avec la base par défaut de 16px : rem = px ÷ 16. Donc 24px = 1,5rem, 32px = 2rem, 48px = 3rem. Si votre taille de police racine est 10px (de `html { font-size: 62.5%; }`), alors rem = px ÷ 10."
+    },
+    {
+      "q": "Quelle est la taille de police par défaut du navigateur ?",
+      "a": "Tous les principaux navigateurs utilisent par défaut 16px pour la taille de police racine, sauf si l'utilisateur a modifié ses préférences. Cela signifie que 1rem = 16px dans la configuration par défaut. Certains utilisateurs augmentent cela pour des raisons d'accessibilité, raison clé d'utiliser rem plutôt que px pour le texte."
+    },
+    {
+      "q": "Quelle est la différence entre rem et em ?",
+      "a": "rem est toujours relatif à la taille de police de l'élément racine (<html>), ce qui le rend prévisible. em est relatif à la taille de police de l'élément actuel, qui peut changer par héritage. Utilisez rem pour les valeurs globales (taille de police du corps, mise en page) et em pour les valeurs devant s'adapter au contexte local (padding relatif à la taille de police propre de l'élément)."
+    },
+    {
+      "q": "Combien de pixels vaut 1rem ?",
+      "a": "Par défaut, 1rem = 16px. Si vous définissez `html { font-size: 20px }`, alors 1rem = 20px. Si vous définissez `html { font-size: 62.5% }` (relatif aux 16px par défaut), alors 1rem = 10px. Le champ Base dans ce convertisseur vous permet de modifier la taille racine supposée."
+    },
+    {
+      "q": "Dois-je utiliser rem ou px pour les tailles de police ?",
+      "a": "Utilisez rem pour les tailles de police autant que possible. Le texte en rem respecte la préférence de taille de police du navigateur de l'utilisateur, ce qui est important pour l'accessibilité. Les pixels ignorent le paramètre du navigateur, ce qui signifie qu'un utilisateur ayant besoin de texte plus grand ne bénéficiera pas du zoom (avant l'introduction du zoom navigateur)."
+    },
+    {
+      "q": "Comment convertir des px en pt ?",
+      "a": "1 point = 1/72 pouce = 1,333 pixels à l'écran. Pour convertir : pt = px × 0,75. Donc 16px = 12pt. Les points sont principalement utilisés dans le CSS d'impression et lorsqu'on cible des médias physiques comme PDF ou les feuilles de style d'impression."
+    },
+    {
+      "q": "Que signifie % dans les unités CSS ?",
+      "a": "Le pourcentage en CSS dépend du contexte. Pour font-size, 100% = la taille de police héritée (même que 1em). Pour width/height, 100% = la taille du bloc conteneur. Dans ce convertisseur, nous traitons % comme un pourcentage de la taille de police de base, donc 100% = base px et 150% = 1,5 × base."
+    },
+    {
+      "q": "Qu'est-ce que l'astuce des 62.5% ?",
+      "a": "Définir `html { font-size: 62.5%; }` fait que 1rem = 10px (puisque 62,5% de 16px par défaut = 10px). Cela simplifie le calcul rem : 24px devient 2,4rem au lieu de 1,5rem. Cependant, cela nécessite de réinitialiser les tailles de police dans tout le CSS et peut casser des composants tiers. Les design tokens et outils modernes rendent cette astuce moins nécessaire."
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "title": "HTML-Entitäten Encoder & Decoder",
+  "shortDescription": "Sonderzeichen in HTML-Entitäten kodieren oder HTML-Entitäten zurück in Text dekodieren. Unterstützt benannte Entitäten (&amp;), dezimale numerische (&#65;) und hexadezimale (&#x41;) Formate.",
+  "description": "Text einfügen, um Sonderzeichen als HTML-Entitäten zu kodieren, oder HTML mit Entitäten einfügen, um sie wieder in lesbaren Text zu dekodieren. Wählen Sie zwischen benannten Entitäten (&amp;, &lt;, &copy;), dezimalen numerischen (&#169;) oder hexadezimalen (&#xA9;) Kodierungen. Optional können alle Nicht-ASCII-Zeichen für maximale Kompatibilität kodiert werden.",
+  "metaDescription": "Kostenloser HTML-Entitäten Encoder und Decoder. Sonderzeichen in &amp; &lt; &gt; sowie benannte, numerische oder Hex-Entitäten umwandeln. Sofortiges Dekodieren inklusive.",
+  "keywords": ["HTML-Entitäten Encoder", "HTML-Entitäten", "HTML kodieren", "HTML-Entitäten dekodieren", "Sonderzeichen HTML"],
+  "mode": {
+    "encode": "Kodieren",
+    "decode": "Dekodieren"
+  },
+  "encodeMode": {
+    "named": "Benannt (&amp;)",
+    "numeric": "Numerisch (&#38;)",
+    "hex": "Hex (&#x26;)"
+  },
+  "option": {
+    "encodeAll": "Alle Nicht-ASCII-Zeichen kodieren"
+  },
+  "label": {
+    "inputText": "Eingabetext",
+    "inputEncoded": "Kodiertes HTML",
+    "outputEncoded": "Kodierte Ausgabe",
+    "outputText": "Dekodierter Text"
+  },
+  "placeholder": {
+    "text": "Text mit Sonderzeichen wie <, >, &, © … eingeben oder einfügen",
+    "encoded": "HTML mit Entitäten wie &amp;, &lt;, &#169; … einfügen"
+  },
+  "action": {
+    "copy": "Kopieren",
+    "swap": "Tauschen"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Was sind HTML-Entitäten?",
+        "paragraphs": [
+          "HTML-Entitäten sind spezielle Textcodes, die Zeichen darstellen, die entweder in HTML eine besondere Bedeutung haben oder nicht direkt eingegeben werden können. Die wichtigsten sind die fünf in der HTML-Syntax reservierten Zeichen: & (Ampersand) → &amp;, < (Kleiner-als) → &lt;, > (Größer-als) → &gt;, \" (Anführungszeichen) → &quot; und ' (Apostroph) → &apos;. Erscheinen diese Zeichen ohne Kodierung im Textinhalt, kann der Browser sie als HTML-Markup interpretieren, was zu Darstellungsfehlern oder Sicherheitslücken führt.",
+          "HTML-Entitäten gibt es in drei Formaten: Benannte Entitäten verwenden einen beschreibenden Namen (&copy; für ©, &euro; für €), dezimale numerische Zeichenreferenzen verwenden eine Codepunktnummer (&#169; für ©) und hexadezimale Zeichenreferenzen verwenden einen Hex-Code (&#xA9; für ©). Alle drei Formate sind gleichwertig — der Browser rendert dasselbe Zeichen unabhängig vom verwendeten Format. Benannte Entitäten sind am lesbarsten; numerische Entitäten sind am universellsten, da sie für jedes Unicode-Zeichen funktionieren."
+        ]
+      },
+      {
+        "heading": "Wann HTML-Entitäten kodieren?",
+        "paragraphs": [
+          "Die fünf reservierten HTML-Zeichen (&, <, >, \", ') müssen mindestens kodiert werden, wenn sie in Textinhalten oder Attributwerten vorkommen. Das Versäumnis, sie zu kodieren, ist eine Quelle von Cross-Site-Scripting (XSS)-Schwachstellen: Wenn Benutzereingaben ohne Kodierung in HTML eingefügt werden, kann ein Angreifer Script-Tags oder Event-Handler injizieren. Moderne Frameworks wie React, Vue und Angular kodieren HTML standardmäßig automatisch — innerHTML ist die Hauptausnahme, bei der manuelle Kodierung noch kritisch ist.",
+          "Über die erforderlichen fünf Zeichen hinaus möchten Sie möglicherweise auch Nicht-ASCII-Zeichen für Umgebungen kodieren, die UTF-8 nicht zuverlässig verarbeiten: HTML-E-Mails, Legacy-CMS-Systeme oder Dokumente für maximale Kompatibilität. Die Option „Alle Nicht-ASCII-Zeichen kodieren“ konvertiert jedes Zeichen über Codepunkt 127 in eine numerische Entität und stellt sicher, dass die Ausgabe reines ASCII ist, während das visuelle Erscheinungsbild beim Rendern erhalten bleibt. Für moderne UTF-8-HTML-Dateien ist das Kodieren von Nicht-ASCII optional — die korrekte Deklaration des Zeichensatzes ist ausreichend."
+        ]
+      },
+      {
+        "heading": "HTML-Entitäten vs. URL-Kodierung vs. Base64",
+        "paragraphs": [
+          "HTML-Entitäten, URL-Kodierung (Prozent-Kodierung) und Base64 sind drei verschiedene Kodierungsverfahren für unterschiedliche Kontexte. HTML-Entitäten (wie &amp;) werden in HTML-Dokumenten verwendet, um Zeichen sicher darzustellen. URL-Kodierung (wie %26 für &) wird in Abfragezeichenketten und URLs verwendet, um Zeichen mit besonderer Bedeutung in einer URL zu kodieren. Base64 kodiert beliebige Binärdaten als ASCII-Text und wird für Daten-URIs und E-Mail-Anhänge verwendet.",
+          "Ein häufiger Fehler ist das Verwechseln dieser Verfahren: URL-Kodierung für HTML-Inhalte oder HTML-Kodierung für URLs verwenden. Ein Ampersand in einer URL-Abfragezeichenkette benötigt beispielsweise Prozent-Kodierung (%26), keine HTML-Entitätskodierung (&amp;). Wenn Sie eine URL erstellen, die in ein HTML-Attribut eingebettet wird, benötigen Sie beide: Das URL-kodierte Formular kommt in das Attribut, und der Attributwert selbst wird HTML-kodiert. Das Verständnis, welche Kodierung in welchem Kontext gilt, verhindert Doppel-Kodierungs-Fehler und Sicherheitsprobleme."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Sonderzeichen kodieren", "text": "Kodierungsmodus auswählen, Text in das linke Feld einfügen. Die kodierte Ausgabe erscheint rechts. „Benannt“ für lesbare Entitäten (&amp;), „Numerisch“ für universelles Dezimal (&#38;) oder „Hex“ für Hexadezimal (&#x26;) wählen. „Alle Nicht-ASCII-Zeichen kodieren“ aktivieren, um jedes Nicht-ASCII-Zeichen in eine Entität umzuwandeln." },
+      { "name": "HTML-Entitäten dekodieren", "text": "Dekodierungsmodus auswählen, HTML mit Entitäten in das linke Feld einfügen. Das Tool erkennt benannte Entitäten (&amp;, &copy;), dezimale numerische Entitäten (&#169;) und Hex-Entitäten (&#xA9;) und konvertiert alle zurück in ihre ursprünglichen Zeichen." },
+      { "name": "Kodierung und Dekodierung tauschen", "text": "Die Schaltfläche „Tauschen“ klicken, um die Ausgabe in die Eingabe zu verschieben und den Modus zu wechseln — nützlich zum Überprüfen einer Rundreise oder zum schnellen Umkehren einer Konvertierung." },
+      { "name": "Ergebnis kopieren", "text": "„Kopieren“ klicken, um das kodierte oder dekodierte Ergebnis in die Zwischenablage zu legen." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was ist die HTML-Entität für das Ampersand (&)?",
+      "a": "Die HTML-Entität für Ampersand ist &amp; — buchstäblich die Zeichen &, a, m, p und Semikolon. Wenn Sie &amp; im HTML-Quellcode schreiben, zeigt der Browser ein einzelnes & Zeichen an. Diese Kodierung ist erforderlich, wenn ein Ampersand in Textinhalten oder Attributwerten vorkommt, da ein unkodiertes & eine Entitätssequenz beginnt, die der Parser zu interpretieren versucht."
+    },
+    {
+      "q": "Was ist die HTML-Entität für Copyright (©)?",
+      "a": "Copyright © hat drei gleichwertige HTML-Entitäten: die benannte &copy;, die dezimale numerische &#169; und die hexadezimale &#xA9;. Alle rendern dasselbe © Zeichen. Benannte Entitäten sind die lesbarste Option, wenn verfügbar. Für modernes UTF-8-HTML können Sie das © Zeichen auch direkt eingeben — keine Entität erforderlich — solange Ihre HTML-Datei charset=utf-8 deklariert."
+    },
+    {
+      "q": "Muss ich Anführungszeichen in HTML kodieren?",
+      "a": "Doppelte Anführungszeichen (\") müssen als &quot; in HTML-Attributen kodiert werden, die durch doppelte Anführungszeichen begrenzt sind: <input value=\"&quot;\">. Einfache Anführungszeichen (') müssen als &apos; oder &#39; in einfach-anführungszeichen-begrenzen Attributen kodiert werden. Im Textelement-Inhalt (zwischen Tags) können beide Anführungszeichen unkodiert erscheinen, aber das Kodieren schadet nicht. Das konsistente Kodieren beider in allen Kontexten ist der sicherste Ansatz."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen benannten und numerischen Entitäten?",
+      "a": "Benannte Entitäten verwenden ein beschreibendes Wort (&copy;, &euro;, &hearts;) und sind in der HTML-Spezifikation definiert — nicht jedes Unicode-Zeichen hat eine benannte Entität. Numerische Entitäten verwenden den Unicode-Codepunkt, entweder als Dezimalzahl (&#8364; für €) oder als Hexadezimalzahl (&#x20AC; für €). Numerische Entitäten funktionieren für jedes Unicode-Zeichen, während benannte Entitäten nur eine Teilmenge abdecken. Beide werden in Browsern identisch gerendert."
+    },
+    {
+      "q": "Sollte ich Nicht-ASCII-Zeichen in HTML kodieren?",
+      "a": "Normalerweise nicht. Wenn Ihr HTML-Dokument UTF-8-Kodierung (meta charset=utf-8) deklariert und als UTF-8 gespeichert ist, können Sie Nicht-ASCII-Zeichen direkt schreiben: é, ñ, 中, 🎉. Sie als Entitäten zu kodieren ist optional und macht den Quellcode schwerer lesbar. Die Ausnahme ist, wenn HTML in Kontexten gesendet wird, die möglicherweise keine Kodierung bewahren: E-Mail-Nachrichten, Legacy-APIs oder Systeme, die Nicht-ASCII-Bytes beschädigen. In diesen Fällen stellt das Kodieren aller Nicht-ASCII-Zeichen als numerische Entitäten sicher, dass die Ausgabe reines, sicheres ASCII ist."
+    },
+    {
+      "q": "Was ist XSS und wie verhindern HTML-Entitäten es?",
+      "a": "Cross-Site Scripting (XSS) ist eine Sicherheitslücke, bei der ein Angreifer schädliches JavaScript in eine Webseite injiziert, indem er Text einfügt, den der Server ohne Kodierung in HTML einfließen lässt. Wenn beispielsweise Benutzereingaben <script>alert('xss')</script> direkt in eine Seite eingefügt werden, führt der Browser das Skript aus. Wenn Sie die Eingabe ordnungsgemäß kodieren — < in &lt; und > in &gt; konvertieren — zeigt der Browser den Text wörtlich an, anstatt ihn als Tag zu analysieren. HTML-Entitätskodierung ist die primäre Verteidigung gegen reflektiertes und gespeichertes XSS."
+    },
+    {
+      "q": "Warum erscheint &nbsp; nicht in der Liste dieses Tools?",
+      "a": "Dieses Tool kodiert Zeichen, die benannte Entitäten haben. Das geschützte Leerzeichen (Unicode U+00A0) wird als &nbsp; kodiert, wenn Sie das tatsächliche geschützte Leerzeichen eingeben (das Sie auf einigen Systemen mit Alt+Leertaste einfügen oder aus Zeichentabellen kopieren können). Das reguläre Leerzeichen (U+0020, Leertaste) wird nicht kodiert, da es ein sicheres ASCII-Zeichen ist. Wenn Sie speziell &nbsp; in Ihrer Ausgabe benötigen, geben Sie ein geschütztes Leerzeichen in die Eingabe ein oder fügen Sie es ein."
+    },
+    {
+      "q": "Kann ich damit HTML-Injection in Benutzereingaben verhindern?",
+      "a": "Ja — das Kodieren von benutzerseitig bereitgestelltem Text vor dem Einfügen in HTML ist eine der Kernverteidigungen gegen HTML-Injection und XSS. Kodieren Sie mindestens die fünf reservierten Zeichen: &, <, >, \", '. Dieses Tool kodiert alle fünf. Das Kodieren allein ist jedoch keine vollständige Sicherheitslösung: Sie benötigen auch ordnungsgemäße Content-Security-Policy-Header, sorgfältigen Umgang mit javascript:-URLs in Attributen und Schutz auf Framework-Ebene. Für Produktionsanwendungen verwenden Sie eine serverseitige Bibliothek für Sicherheit (OWASP Java Encoder, DOMPurify für clientseitig usw.) anstelle von manuellem Kodieren."
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "title": "Farb-Schattierungen Generator — Tailwind-Stil",
+  "shortDescription": "Generiere 11 Farbtöne und Schattierungen (50–950) für jede Farbe im Tailwind-CSS-Stil. Klicke auf einen Farbton, um den Hex-Code zu kopieren, oder exportiere alle als CSS Custom Properties.",
+  "description": "Wähle eine Grundfarbe und erhalte sofort eine vollständige 11-stufige Farbpalette (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950) — angelehnt an die Skala von Tailwind CSS und Material Design. Jeder Farbton zeigt seine WCAG-Kontrastbewertung gegen Weiß oder Schwarz. Klicke auf einen Farbfelder, um den Hex-Code zu kopieren, oder nutze „CSS kopieren“, um alle Farbtöne als CSS Custom Properties zu exportieren.",
+  "metaDescription": "Kostenloser Farb-Schattierungen-Generator. Gib einen Hex-Farbwert ein und erhalte 11 Töne auf der Tailwind-CSS-Skala. Hex-Codes oder CSS-Variablen kopieren.",
+  "keywords": [
+    "Farb-Schattierungen Generator",
+    "Farbtöne",
+    "Tailwind Farbpalette",
+    "CSS Farbvariablen",
+    "Farbskala"
+  ],
+  "input": {
+    "picker": "Farbwähler",
+    "hex": "Hex-Code"
+  },
+  "action": {
+    "copyCSS": "CSS kopieren",
+    "copied": "Kopiert!",
+    "clickCopy": "Klicken um Hex-Code zu kopieren"
+  },
+  "error": {
+    "invalid": "Gib einen gültigen 6-stelligen Hex-Farbwert ein (z. B. #3B82F6)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie Farbton-Skalen funktionieren",
+        "paragraphs": [
+          "Eine Farbton-Skala ist eine systematische Reihe hellerer und dunklerer Variationen einer Grundfarbe, die zur Schaffung von visueller Hierarchie und zugänglichem Kontrast im UI-Design eingesetzt wird. Die Tailwind-CSS-Konvention verwendet 11 Stufen mit den Nummern 50, 100, 200, 300, 400, 500, 600, 700, 800, 900 und 950. Niedrigere Zahlen sind heller (höhere Helligkeit in HSL), höhere Zahlen sind dunkler. Stufe 500 entspricht in der Regel annähernd der eingegebenen Grundfarbe.",
+          "Dieses Werkzeug generiert Farbtöne, indem es den eingegebenen Hex-Wert in HSL (Farbton, Sättigung, Helligkeit) umwandelt, den Farbton und die Sättigung beibehält und jeden Schritt einem vordefinierten Helligkeitswert zuordnet. Stufe 50 entspricht ca. 97 % Helligkeit (nahezu weiß), Stufe 500 ca. 52 % (mittlerer Bereich) und Stufe 950 ca. 12 % (nahezu schwarz). Dieser Ansatz erzeugt visuell konsistente Paletten, die den Charakter der Farbe über alle Helligkeitsstufen hinweg bewahren."
+        ]
+      },
+      {
+        "heading": "WCAG-Kontrastbewertungen in der Palette",
+        "paragraphs": [
+          "Jeder Farbton in der Palette zeigt seine WCAG-Kontrastbewertung (Web Content Accessibility Guidelines) gegenüber schwarzem oder weißem Text — je nachdem, welcher lesbarer ist. Die Bewertungen lauten: AAA (Kontrastverhältnis ≥ 7:1, beste Barrierefreiheit), AA (≥ 4,5:1, erforderlich für normalen Text), AA Large (≥ 3:1, akzeptabel nur für großen Text und UI-Komponenten) und Fail (< 3:1, unzureichend für Text). Die WCAG 2.1 AA-Konformität ist in vielen Ländern die gesetzliche Mindestanforderung für Barrierefreiheit.",
+          "Beim Erstellen einer Benutzeroberfläche mit einer Farbpalette sollten Farbtöne mit AA- oder AAA-Bewertung für Text auf diesen Hintergründen verwendet werden. In der Regel haben die Stufen 50–300 einen starken Kontrast zu dunklem Text, während die Stufen 700–950 einen starken Kontrast zu weißem Text aufweisen. Mittlere Stufen (400–600) fallen für kleinen Text häufig in die Kategorie AA Large oder Fail, sind daher für dekorative Elemente, Rahmen oder Hintergründe hinter weißem Großtext geeignet, aber nicht für kleinen Fließtext."
+        ]
+      },
+      {
+        "heading": "Die Palette in CSS und Design-Systemen verwenden",
+        "paragraphs": [
+          "Die Schaltfläche „CSS kopieren“ exportiert deine Palette als CSS Custom Properties (CSS-Variablen) in einem :root-Block, bereit zum Einfügen in dein Stylesheet. Zum Beispiel wird die blue-500-Variable zu --color-500: #3b82f6 (oder welche Farbe du gewählt hast). Du kannst das Variablen-Präfix an dein Projekt anpassen: --brand-500, --primary-500, --blue-500 usw. CSS Custom Properties kaskadieren und können pro Komponente oder Theme überschrieben werden.",
+          "Design-Systeme wie Tailwind CSS, Material Design, Ant Design und Chakra UI verwenden alle nummerierte Farbton-Skalen für ihre Farbsysteme. Eine konsistente Skala ermöglicht sichere Entscheidungen: Nutze 50 für Hover-Hintergründe, 100 für aktive Zustände im hellen Theme, 500 für primäre Schaltflächen, 700 für Hover-Zustände auf Schaltflächen und 900 für dunkle Hintergründe. Wenn alle Markenfarben auf derselben nummerierten Skala liegen, entsteht Vorhersagbarkeit und Design-Entscheidungen auf Komponentenebene werden reduziert."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Grundfarbe auswählen",
+        "text": "Nutze den Farbwähler, um eine Farbe visuell auszuwählen, oder gib einen 6-stelligen Hex-Code (z. B. #3B82F6) in das Hex-Eingabefeld ein. Die 11-stufige Farbpalette wird sofort generiert."
+      },
+      {
+        "name": "WCAG-Bewertungen lesen",
+        "text": "Jeder Farbton zeigt seine WCAG-Kontrastbewertung (AAA, AA, AA Large oder Fail). Verwende Farbtöne mit AA- oder AAA-Bewertung für Text und interaktive Elemente, um Barrierefreiheitsanforderungen zu erfüllen."
+      },
+      {
+        "name": "Einzelne Farbtöne kopieren",
+        "text": "Klicke auf ein Farbfeld, um den Hex-Code in die Zwischenablage zu kopieren. Ein Häkchen bestätigt den Kopiervorgang."
+      },
+      {
+        "name": "Als CSS-Variablen exportieren",
+        "text": "Klicke auf „CSS kopieren“, um alle 11 Farbtöne als CSS Custom Properties in einem :root-Block zu erhalten, bereit zum Einfügen in dein Stylesheet oder Design-System."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was bedeuten die Farbton-Nummern (50–950)?",
+      "a": "Die Zahlen folgen der Tailwind-CSS-Farbskala-Konvention. Kleinere Zahlen sind heller: 50 ist nahezu weiß, 100 ist sehr hell, 200 und 300 sind helle Töne. Die Mitte (500) ist ein mittlerer Wert nahe der Originalfarbe. Höhere Zahlen sind dunkler: 700 ist dunkel, 900 ist sehr dunkel, 950 ist nahezu schwarz. Die Skala ist nicht linear — sie ist so abgestimmt, dass die Schrittgrößen über den gesamten Bereich wahrnehmungsgemäß gleichmäßig wirken."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen einem Tint und einem Shade?",
+      "a": "Ein Tint entsteht durch Mischen einer Farbe mit Weiß und wird heller. Ein Shade entsteht durch Mischen mit Schwarz und wird dunkler. In HSL-Begriffen haben Tints höhere Helligkeitswerte und Shades niedrigere Helligkeitswerte bei gleichem Farbton. In dieser Skala sind die Nummern 50–400 Tints (heller als die Grundfarbe), während 600–950 Shades (dunkler als die Grundfarbe) sind. Stufe 500 entspricht ungefähr der Grundfarbe selbst."
+    },
+    {
+      "q": "Wie generiert dieses Werkzeug die Farbtöne?",
+      "a": "Das Werkzeug wandelt deine Hex-Farbe in HSL (Farbton, Sättigung, Helligkeit) um. Es hält Farbton und Sättigung konstant und ordnet jede Stufennummer einem Ziel-Helligkeitswert zu: Stufe 50 → 97 % Helligkeit, Stufe 500 → 52 %, Stufe 950 → 12 %. Das Ergebnis wird dann zurück in Hex umgewandelt. Diese Methode bewahrt den Charakter der Farbe (Wärme, Kühle, Lebendigkeit) über alle Farbtöne hinweg."
+    },
+    {
+      "q": "Was ist WCAG und warum zeigen die Farbtöne Bewertungen?",
+      "a": "WCAG (Web Content Accessibility Guidelines) definiert Mindest-Kontrastverhältnisse für lesbaren Text. AA erfordert ein Verhältnis von 4,5:1 für normalen Text; AAA erfordert 7:1. Die Kontrastbewertung jedes Farbtons zeigt, ob schwarzer oder weißer Text auf diesem Hintergrund den AA- oder AAA-Standard erfüllt. Dies hilft dir zu entscheiden, welche Farbtöne für Text sicher sind und welche nur für dekorative Elemente verwendet werden sollten."
+    },
+    {
+      "q": "Wie verwende ich diese Palette in Tailwind CSS?",
+      "a": "Tailwind ermöglicht die Definition benutzerdefinierter Farben in tailwind.config.js. Füge die Farbtöne unter theme.extend.colors hinzu: colors: { brand: { 50: '#dein-50-hex', 100: '#dein-100-hex', ... } }. Anschließend kannst du Klassen wie bg-brand-100, text-brand-700, border-brand-300 verwenden. Für Tailwind v4 mit CSS-first-Konfiguration füge die CSS-Variablen-Ausgabe in deine Theme-Definition ein."
+    },
+    {
+      "q": "Warum sieht der Farbton meiner gewählten Farbe nicht genau wie meine Eingabe aus?",
+      "a": "Das Werkzeug zielt auf bestimmte Helligkeitswerte für jeden Schritt ab — Stufe 500 zielt auf ungefähr 52 % HSL-Helligkeit. Wenn deine Eingabefarbe eine andere Helligkeit hat (z. B. 70 % bei einer helleren Farbe), wird der Farbton bei Stufe 500 auf 52 % angepasst. Das erzeugt eine konsistente Skala, bedeutet aber, dass Stufe 500 möglicherweise nicht identisch mit deiner ursprünglichen Eingabe ist. Um deine genaue Farbe bei Stufe 500 zu erhalten, kannst du den Hex-Wert manuell anpassen — die Skala wird relativ zu deiner Eingabe generiert."
+    },
+    {
+      "q": "Kann ich das mit CSS Custom Properties verwenden?",
+      "a": "Ja — klicke auf „CSS kopieren“, um einen direkt verwendbaren :root-Block mit allen 11 Farbtönen als Custom Properties zu erhalten. In deinem CSS referenzierst du sie als var(--color-500), var(--color-50) usw. Du kannst das --color-Präfix in alles umbenennen, was zu deinem Projekt passt (--brand-, --primary-, --blue-). Custom Properties kaskadieren und können auf eine Komponente beschränkt oder in einer Media Query für den Dunkelmodus überschrieben werden."
+    },
+    {
+      "q": "Wie unterscheiden sich diese Farbtöne von der CSS-Funktion color-mix()?",
+      "a": "Die CSS-Funktion color-mix() (unterstützt in modernen Browsern) mischt zwei Farben prozentual, ähnlich wie beim Mischen von Farbe. Dieses Werkzeug verwendet eine vordefinierte Helligkeitsskala (HSL-basiert), die eine kontrolliertere und vorhersehbarere Design-System-Skala erzeugt. color-mix() eignet sich besser für einmalige Mischungen (z. B. deine Markenfarbe mit 20 % Weiß mischen), während dieses Werkzeug eine vollständige systematische Design-System-Palette generiert. Beide Ansätze haben je nach Anwendungsfall ihre Berechtigung."
+    }
+  ]
+}

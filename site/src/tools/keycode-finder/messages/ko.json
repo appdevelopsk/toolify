@@ -1,0 +1,86 @@
+{
+  "title": "키보드 키코드 확인기 — keyCode, code, key 속성",
+  "shortDescription": "아무 키나 누르면 JavaScript keyCode, code, key, which, charCode 값을 즉시 확인. 키보드 이벤트 처리에 필수인 웹 개발 도구.",
+  "description": "감지 영역을 클릭하고 키를 누르면 JavaScript 이벤트 속성(key, code, keyCode, which, charCode, 수정자 키 상태)이 즉시 표시됩니다. 17개 값 모두 실시간으로 업데이트됩니다. 키보드 이벤트 핸들러 디버깅에 최적입니다.",
+  "metaDescription": "무료 키보드 키코드 확인 도구. 키를 눌러 keyCode, code, key, which, charCode 값을 확인하세요. 웹 개발자 필수 도구.",
+  "keywords": ["키코드 확인", "키보드 키코드", "javascript keyCode", "키 이벤트", "which charCode"],
+  "zone": {
+    "label": "키 감지 영역 — 여기를 클릭한 후 키를 누르세요",
+    "prompt": "여기를 클릭한 후 아무 키나 누르세요"
+  },
+  "key": {
+    "space": "스페이스"
+  },
+  "label": {
+    "modifiers": "수정자 키",
+    "none": "없음"
+  },
+  "history": {
+    "title": "최근 키"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "JavaScript 키보드 이벤트: key, code, keyCode",
+        "paragraphs": [
+          "사용자가 키를 누르면 브라우저는 keydown, keypress, keyup 세 가지 이벤트를 순서대로 발생시킵니다. 각 이벤트 객체에는 눌린 키를 식별하는 여러 속성이 있습니다. 가장 중요한 것은: key(문자 또는 'Enter' 같은 명명된 키), code(물리적 키 위치, 예: 'KeyA' 또는 'ArrowLeft'), keyCode(Shift 상태와 관계없이 'A'는 65를 반환하는 레거시 정수)입니다.",
+          "keyCode와 which 속성은 W3C UI Events 사양에서 더 이상 사용되지 않지만 기존 코드베이스에서는 여전히 널리 사용됩니다. 현대 애플리케이션은 의미(키가 무엇을 생성하는지)에는 key를, 물리적 위치(어떤 물리 키가 눌렸는지)에는 code를 사용해야 합니다. 예를 들어 'A' 키는 Shift 상태에 따라 key='a' 또는 key='A'를 생성하지만, code='KeyA'는 항상 변하지 않습니다."
+        ]
+      },
+      {
+        "heading": "키보드 이벤트의 location 속성",
+        "paragraphs": [
+          "location 속성은 키보드에 여러 위치에 존재하는 키를 구분합니다: 왼쪽 Ctrl과 오른쪽 Ctrl, 왼쪽 Shift와 오른쪽 Shift, 숫자패드 숫자키와 상단 숫자키. location 값은: 0(표준), 1(왼쪽), 2(오른쪽), 3(숫자패드)입니다. 특히 숫자패드 Enter키와 메인 Enter키를 구분할 때 유용합니다.",
+          "수정자 키(Ctrl, Alt, Shift, Meta)는 해당 키가 단독으로 눌릴 때만이 아니라 모든 키보드 이벤트에서 불린 플래그로 추적됩니다. 즉, 주로 keyCode 67(C)을 감지하더라도 Ctrl+C 조합을 감지할 수 있습니다. Meta 키는 Windows 키보드의 Windows 키에, Mac 키보드의 Command 키에 해당합니다."
+        ]
+      },
+      {
+        "heading": "키보드 이벤트 속성의 실제 활용 사례",
+        "paragraphs": [
+          "웹 앱의 키보드 단축키는 code(물리 키)와 수정자 플래그의 조합을 사용하여 Ctrl+S(저장) 또는 Ctrl+Shift+P(명령 팔레트) 같은 조합을 감지합니다. key 대신 code를 사용하면 키보드 로케일에 관계없이 단축키가 작동합니다. 프랑스어 AZERTY 레이아웃에서는 'A' 위치의 키가 다른 문자를 생성하지만, code는 항상 'KeyA'입니다.",
+          "게임 컨트롤은 생성되는 문자보다 물리적 위치가 중요하므로 보통 WASD나 화살표 키를 code로 매핑합니다. 접근성 도구는 마우스 없이도 대화형 요소를 활성화할 수 있도록 Tab(code='Tab')과 Enter(code='Enter')를 감지할 수 있습니다. 이 도구로 이벤트 핸들러 코드를 작성하기 전에 어떤 키의 정확한 속성 값이든 빠르게 확인할 수 있습니다."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "감지 영역 클릭", "text": "도구 상단의 점선 상자를 클릭하거나 탭하여 포커스를 맞춥니다." },
+      { "name": "아무 키나 누르기", "text": "키보드의 아무 키나 누르세요. 문자, 숫자, 기능키, 방향키, 또는 Enter, Escape 같은 특수키도 됩니다." },
+      { "name": "속성 값 확인", "text": "모든 JavaScript 키보드 이벤트 속성(key, code, keyCode, which, charCode, location, 수정자 키)이 영역 아래에 즉시 표시됩니다." },
+      { "name": "수정자 키 조합 확인", "text": "Ctrl, Alt, Shift, Meta를 누른 상태에서 키를 눌러 수정자 플래그가 수정자 키 행에서 어떻게 변하는지 확인하세요." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "keyCode와 key의 차이점은 무엇인가요?",
+      "a": "keyCode는 더 이상 사용되지 않는 정수 속성으로 각 키에 숫자를 부여합니다(예: 'A'는 65, Enter는 13). key는 현대적 대안으로 생성된 문자('a' 또는 'A') 또는 명명된 키 문자열('Enter', 'ArrowLeft')을 반환합니다. 새 코드에서는 keyCode 대신 key 또는 code를 사용해야 합니다."
+    },
+    {
+      "q": "code 속성은 무엇인가요?",
+      "a": "code는 키보드 레이아웃이나 수정자 키 상태와 관계없이 눌린 물리 키를 식별합니다. 'KeyA'는 사용자가 AZERTY 레이아웃으로 전환하여 해당 키가 'Q'를 생성하더라도 항상 QWERTY 키보드의 'A' 위치 키를 가리킵니다. 로케일에 관계없이 작동해야 하는 키보드 단축키에는 code를 사용하세요."
+    },
+    {
+      "q": "keyCode가 더 이상 사용되지 않는 이유는 무엇인가요?",
+      "a": "keyCode는 브라우저와 운영체제마다 일관성이 없었고, 같은 키에 대해 다른 값을 반환했으며, 비ASCII 문자 처리도 불량했습니다. W3C UI Events 사양은 key(문자/명명된 키)와 code(물리 위치) 사용을 권장하며 이를 더 이상 사용되지 않는 것으로 표시했습니다. keyCode와 which 모두 사양에서 레거시로 표시됩니다."
+    },
+    {
+      "q": "location 값은 무엇을 의미하나요?",
+      "a": "location은 여러 위치에 있는 키를 구분합니다. 0=표준(주 영역), 1=왼쪽 수정자 키(예: 왼쪽 Shift), 2=오른쪽 수정자 키(예: 오른쪽 Ctrl), 3=숫자패드. 이를 통해 숫자패드 5(code='Numpad5', location=3)와 상단 5(code='Digit5', location=0)를 구분할 수 있습니다."
+    },
+    {
+      "q": "JavaScript에서 Ctrl+S 등의 단축키를 감지하려면?",
+      "a": "keydown 이벤트를 감지하고 key/code와 수정자 플래그를 모두 확인하세요: `if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveDocument(); }`. e.key === 's'를 사용하면 대소문자 모두를 캐치할 수 있습니다. 수정자 키 상태는 문자 키의 key 값을 변경하지 않기 때문입니다."
+    },
+    {
+      "q": "charCode 속성은 무엇인가요?",
+      "a": "charCode는 레거시 keypress 이벤트가 반환하던 속성으로, 입력된 문자의 유니코드 코드 포인트를 제공했습니다(예: 'A'는 65). 현재는 keypress 이벤트 자체와 함께 더 이상 사용되지 않습니다. keydown/keyup 이벤트에서 charCode는 항상 0입니다. 대신 key 또는 input 이벤트의 inputType을 사용하세요."
+    },
+    {
+      "q": "숫자패드와 메인 키보드의 Enter 키를 구분하려면?",
+      "a": "두 키 모두 key='Enter'를 생성하지만 code가 다릅니다. 메인 Enter 키는 code='Enter'이고 location=0이며, 숫자패드 Enter 키는 code='NumpadEnter'이고 location=3입니다. 메인 키보드는 e.code === 'Enter'로, 숫자패드 버전은 e.code === 'NumpadEnter'로 확인하세요."
+    },
+    {
+      "q": "Meta 키란 무엇인가요?",
+      "a": "Meta 키는 Windows 키보드의 Windows 키(⊞)이고 Mac 키보드의 Command 키(⌘)입니다. 키보드 이벤트에서 metaKey 불린 플래그로 추적되며, 단독으로 누르면 key='Meta'를 생성합니다. code는 'MetaLeft' 또는 'MetaRight'입니다."
+    }
+  ]
+}

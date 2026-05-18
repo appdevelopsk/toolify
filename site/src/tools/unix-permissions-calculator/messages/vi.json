@@ -1,0 +1,94 @@
+{
+  "title": "Máy Tính Quyền Truy Cập Unix (chmod)",
+  "shortDescription": "Bật/tắt quyền đọc/ghi/thực thi cho chủ sở hữu, nhóm và người khác. Xem ngay giá trị bát phân (755, 644…) và ký hiệu (rwxr-xr-x).",
+  "description": "Máy tính chmod tương tác. Chọn hoặc bỏ chọn các bit quyền cho chủ sở hữu, nhóm và người khác, và đọc số bát phân cùng ký hiệu theo thời gian thực. Hoặc nhập số bát phân để giải mã.",
+  "metaDescription": "Máy tính quyền Unix miễn phí. Bật/tắt đọc/ghi/thực thi cho chủ sở hữu/nhóm/khác và nhận ngay giá trị bát phân (755, 644) và ký hiệu (rwxr-xr-x).",
+  "keywords": ["máy tính quyền unix", "máy tính chmod", "quyền bát phân", "quyền file linux", "quyền rwx"],
+  "input.octal": "Giá trị bát phân",
+  "input.symbolic": "Ký hiệu",
+  "label.owner": "Chủ sở hữu",
+  "label.group": "Nhóm",
+  "label.other": "Người khác",
+  "label.read": "Đọc (r)",
+  "label.write": "Ghi (w)",
+  "label.execute": "Thực thi (x)",
+  "presets": "Cài đặt nhanh phổ biến",
+  "error.invalidOctal": "Nhập từ 1 đến 3 chữ số bát phân (chỉ 0–7).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Nguồn gốc của ký hiệu bát phân trong quyền Unix",
+        "paragraphs": [
+          "Quyền truy cập file Unix được thiết kế bởi Ken Thompson năm 1969 như một phần của Unix gốc trên PDP-7. Mỗi file lưu chín bit quyền trong inode: ba cho chủ sở hữu, ba cho nhóm và ba cho người khác. Nhóm mỗi bộ ba bit thành một chữ số bát phân (0–7) là lựa chọn tự nhiên nhất: một chữ số cho mỗi thực thể, ba chữ số tổng cộng. Quy ước bát phân này được chuẩn hóa trong POSIX.1-1988 và vẫn không thay đổi trên tất cả hệ thống Linux, macOS, BSD và Unix-like.",
+          "Dạng ký hiệu (rwxr-xr-x) xuất hiện trong đầu ra `ls -l` từ các bản phân phối Unix đầu tiên và trở thành phần bổ sung có thể đọc được cho số bát phân. POSIX định nghĩa cả hai biểu diễn là chuẩn mực. `chmod u+x file` dùng dạng ký hiệu; `chmod 755 file` dùng dạng bát phân. Cả hai dẫn đến cùng một hoạt động trong kernel: đặt các bit cụ thể trong trường mode của inode."
+        ]
+      },
+      {
+        "heading": "Ý nghĩa của từng bit quyền",
+        "paragraphs": [
+          "Với file thông thường: đọc (r=4) cho phép mở và đọc nội dung; ghi (w=2) cho phép sửa đổi hoặc cắt ngắn file; thực thi (x=1) cho phép chạy file như một chương trình. Mỗi bit độc lập. Chữ số bát phân của mỗi thực thể là tổng các bit được đặt: rwx=7, r-x=5, r--=4.",
+          "Với thư mục, ý nghĩa thay đổi. Đọc (r) cho phép liệt kê thư mục bằng `ls`. Thực thi (x) — còn gọi là 'search bit' — cho phép vào thư mục bằng `cd` và truy cập file theo tên. Ghi (w) cho phép tạo, xóa hoặc đổi tên file trong thư mục. Thư mục có quyền đọc mà không có thực thi gần như vô dụng: bạn thấy tên file nhưng không mở được. Thư mục thông thường có quyền 755."
+        ]
+      },
+      {
+        "heading": "Mẫu quyền phổ biến và cân nhắc bảo mật",
+        "paragraphs": [
+          "644 (rw-r--r--) là chuẩn cho file cấu hình, HTML và văn bản: chủ sở hữu có thể chỉnh sửa, người khác chỉ đọc. 755 (rwxr-xr-x) là chuẩn cho thư mục và script có thể thực thi: chủ sở hữu quản lý nội dung, người khác có thể duyệt và đọc. 600 (rw-------) và 700 (rwx------) giới hạn quyền truy cập chỉ cho chủ sở hữu — phù hợp với SSH private key và file mật khẩu. Đừng bao giờ dùng 777 cho bất kỳ thứ gì trên web; cấp quyền ghi cho 'người khác' có nghĩa là bất kỳ tiến trình nào trên hệ thống đều có thể ghi đè file.",
+          "umask xác định quyền mặc định cho file và thư mục mới. umask 022 (phổ biến trên hầu hết hệ thống) làm cho file mới nhận 644 và thư mục mới nhận 755, vì các bit umask bị trừ đi từ giá trị mặc định 666 (file) và 777 (thư mục). Hệ thống bảo mật cao thường dùng umask 027 hoặc 077."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Bật/tắt các ô kiểm quyền",
+        "text": "Nhấp vào ô kiểm đọc, ghi hoặc thực thi cho chủ sở hữu, nhóm hoặc người khác. Giá trị bát phân và chuỗi ký hiệu cập nhật ngay lập tức."
+      },
+      {
+        "name": "Nhập số bát phân để giải mã",
+        "text": "Nhấp vào trường nhập bát phân và gõ số từ 1 đến 3 chữ số (0–7 mỗi chữ số). Các ô kiểm cập nhật để hiển thị các bit quyền đã giải mã."
+      },
+      {
+        "name": "Dùng cài đặt nhanh",
+        "text": "Nhấp vào một trong các nút cài đặt nhanh (755, 644, 600, 700, 777) để chuyển sang bộ quyền thường dùng."
+      },
+      {
+        "name": "Sao chép lệnh chmod",
+        "text": "Lệnh chmod ở phía dưới hiển thị cú pháp chính xác để áp dụng các quyền này. Thay 'filename' bằng đường dẫn thực tế của file hoặc thư mục."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "755 có nghĩa là gì?",
+      "a": "755 có nghĩa là chủ sở hữu có đọc+ghi+thực thi (7=4+2+1), nhóm có đọc+thực thi (5=4+1) và người khác có đọc+thực thi (5=4+1). Đây là quyền chuẩn cho thư mục và script có thể thực thi."
+    },
+    {
+      "q": "644 có nghĩa là gì?",
+      "a": "644 có nghĩa là chủ sở hữu có đọc+ghi (6=4+2), nhóm chỉ đọc (4) và người khác chỉ đọc (4). Đây là giá trị mặc định cho file thông thường như file cấu hình, trang web và tài liệu văn bản."
+    },
+    {
+      "q": "Tại sao thư mục cần quyền thực thi?",
+      "a": "Với thư mục, bit thực thi là 'search bit'. Nếu không có nó, bạn không thể cd vào thư mục hoặc mở file bên trong theo đường dẫn, dù có bit đọc. Thư mục có quyền đọc mà không có thực thi gần như vô dụng trong thực tế."
+    },
+    {
+      "q": "Sự khác biệt giữa chủ sở hữu, nhóm và người khác là gì?",
+      "a": "Chủ sở hữu là tài khoản người dùng sở hữu file (đặt khi tạo hoặc thay đổi bằng chown). Nhóm là nhóm được gán cho file (thay đổi bằng chgrp); bất kỳ người dùng nào trong nhóm đó đều nhận quyền nhóm. Người khác bao gồm tất cả người dùng trong hệ thống không phải là chủ sở hữu cũng không thuộc nhóm."
+    },
+    {
+      "q": "SUID và SGID là gì?",
+      "a": "SUID (Set User ID) và SGID (Set Group ID) là các bit quyền đặc biệt ngoài chín bit chuẩn. Khi SUID được đặt trên file thực thi, nó chạy với đặc quyền của chủ sở hữu file thay vì người gọi — dùng bởi các lệnh như passwd và sudo. SGID trên thư mục làm file mới kế thừa nhóm của thư mục. Trong dạng ký hiệu xuất hiện là 's' (ví dụ: rwsr-xr-x) và thêm 4000 hoặc 2000 vào giá trị bát phân (ví dụ: 4755)."
+    },
+    {
+      "q": "chmod 777 có nguy hiểm không?",
+      "a": "Có, đặc biệt trên hệ thống chia sẻ hoặc máy chủ web. 777 cấp toàn quyền đọc, ghi và thực thi cho tất cả người dùng trong hệ thống. Bất kỳ tiến trình nào — kể cả ứng dụng web bị xâm phạm — đều có thể ghi đè hoặc thực thi file. Trên máy chủ web, điều này thường cho phép thực thi mã tùy ý. Hãy giới hạn quyền ở mức tối thiểu cần thiết."
+    },
+    {
+      "q": "Sử dụng lệnh chmod như thế nào?",
+      "a": "Dùng `chmod OCTAL đường_dẫn` cho một file, hoặc `chmod -R OCTAL thư_mục` để áp dụng đệ quy. Ví dụ: `chmod 644 index.html` hoặc `chmod 755 /var/www`. Bạn cũng có thể dùng cú pháp ký hiệu: `chmod u+x script.sh` thêm quyền thực thi cho chủ sở hữu mà không thay đổi các bit khác."
+    },
+    {
+      "q": "umask là gì và liên quan đến quyền như thế nào?",
+      "a": "umask là mặt nạ áp dụng lên quyền mặc định khi tạo file hoặc thư mục mới. umask 022 loại bỏ quyền ghi của nhóm và người khác, làm file mới nhận 644 và thư mục mới nhận 755. Chạy `umask` trong shell để xem cài đặt hiện tại và `umask GIÁ_TRỊ` để thay đổi cho phiên hiện tại."
+    }
+  ]
+}

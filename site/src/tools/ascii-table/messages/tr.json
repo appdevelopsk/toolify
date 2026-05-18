@@ -1,0 +1,90 @@
+{
+  "title": "ASCII Tablosu — Ondalık, Hex, İkili ve Sekizli",
+  "shortDescription": "Tüm 128 ASCII kodu için ondalık, onaltılık, sekizli ve ikili değerleri gösteren tam ASCII karakter tablosu. Yazdırılabilir veya kontrol karakterlerine göre filtreleyin, sayı, hex veya karaktere göre arama yapın.",
+  "description": "Tüm 128 ASCII kodunu (0–127) ondalık, onaltılık, sekizli ve ikili gösterimleriyle inceleyin. Kontrol karakterleri (0–31, 127) vurgulanır ve standart kısaltmaları ile tam adlarıyla etiketlenir. Yalnızca yazdırılabilir karakterleri veya yalnızca kontrol kodlarını göstermek için filtreleyin; ondalık sayı, hex değeri veya karaktere göre arama yapın.",
+  "metaDescription": "Ücretsiz ASCII tablosu — 128 kod, ondalık, hex, sekizli, ikili değerler. Yazdırılabilir ve kontrol karakteri filtresi ile arama.",
+  "keywords": ["ASCII tablosu", "ASCII kodları", "ASCII grafiği", "hex ondalık ikili", "kontrol karakterleri"],
+  "search": {
+    "placeholder": "Ondalık, hex veya karaktere göre arayın…",
+    "noResults": "Eşleşen karakter bulunamadı."
+  },
+  "filter": {
+    "all": "Tümü",
+    "printable": "Yazdırılabilir",
+    "control": "Kontrol"
+  },
+  "col": {
+    "dec": "On.",
+    "hex": "Hex",
+    "oct": "Sek.",
+    "bin": "İkili",
+    "char": "Kar.",
+    "description": "Açıklama"
+  },
+  "note": "128 ASCII kodundan {count} tanesi gösteriliyor",
+  "article": {
+    "sections": [
+      {
+        "heading": "ASCII nedir?",
+        "paragraphs": [
+          "ASCII (American Standard Code for Information Interchange, Amerikan Bilgi Değişimi Standart Kodu) ilk olarak 1963 yılında yayımlanan bir karakter kodlama standardıdır. 128 karakter tanımlar: 33 yazdırılamayan kontrol karakteri (kodlar 0–31 ve 127) ve 95 yazdırılabilir karakter (kodlar 32–126); bunlar arasında İngilizce büyük ve küçük harfler, 0–9 rakamları ve yaygın noktalama işaretleri bulunur. ASCII, ilk 128 kod noktası için ASCII ile geriye dönük uyumlu olan UTF-8 dahil hemen hemen tüm modern metin kodlamalarının temeli haline gelmiştir.",
+          "Her ASCII karakterine 7 bitlik bir tam sayı değeri atanır; bu nedenle tablo 127'de (2⁷ − 1) sona erer. 8 bitlik bir baytta depolandığında, standart ASCII için önde gelen bit genellikle 0'dır. Genişletilmiş ASCII aralığı (128–255) orijinal teknik özellik tarafından standartlaştırılmamıştır ve kod sayfasına göre değişir — ISO 8859-1, Windows-1252 ve benzeri kodlamalar, baytın üst yarısı için her biri farklı bir karakter kümesi tanımlar."
+        ]
+      },
+      {
+        "heading": "Kontrol karakterleri (0–31 ve 127)",
+        "paragraphs": [
+          "İlk 32 ASCII kodu ve 127. kod, teletype makinesi kurallarından miras kalan yazdırılamayan kontrol karakterleridir. Çoğu modern bilişimde artık kullanılmasa da bazıları hâlâ önemlidir: kod 9 (HT, yatay sekme), kod 10 (LF, satır besleme ya da Unix/Linux'ta yeni satır), kod 13 (CR, satır başı, Windows satır sonlarında CR+LF olarak kullanılır), kod 27 (ESC, Escape, terminal kaçış dizilerinde kullanılır) ve kod 127 (DEL). Bu karakterler görünür glyph olarak işlenmez.",
+          "Unix benzeri sistemlerde, Ctrl tuşunu basılı tutarak karşılık gelen harfe basarak terminalde kontrol karakterleri üretebilirsiniz: Ctrl+A = SOH (1), Ctrl+C = ETX (3, kesme sinyali gönderir), Ctrl+D = EOT (4, girişin sonunu işaret eder), Ctrl+J = LF (10), Ctrl+M = CR (13), Ctrl+Z = SUB (26, Unix'te bir işlemi askıya alır). Bu kodları anlamak, düşük seviyeli G/Ç, terminal kontrol dizileri ve ağ protokolü uygulaması için temel önem taşır."
+        ]
+      },
+      {
+        "heading": "Programlama ve web geliştirmede ASCII",
+        "paragraphs": [
+          "JavaScript'te charCodeAt(0) kullanarak bir karakterin ASCII kodunu alabilirsiniz: 'A'.charCodeAt(0) 65 döndürür. Geri dönüştürmek için String.fromCharCode(65) kullanarak 'A' elde edersiniz. Python'da ord('A') 65 döndürür ve chr(65) 'A' döndürür. C'de char değerleri tam sayıdır ve aritmetikte doğrudan kullanılabilir: 'A' + 1, 'B'ye eşittir.",
+          "ASCII değerleri pek çok yaygın programlama örüntüsünün temelidir. Büyük ve küçük harfler arasındaki fark her zaman 32'dir: 'a' (97) = 'A' (65) + 32. 0–9 rakamları 48–57 kodlarını kaplar; dolayısıyla bir rakam karakterinin ASCII değerinden 48 çıkarmak sayısal değerini verir. URL kodlaması, URL güvensiz karakterleri %XX biçiminde temsil eder; XX, hex ASCII kodudur. Bu nedenle bu tablo, URL kodlu dizelerin ve HTTP başlıklarının hata ayıklaması için vazgeçilmezdir."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Tam tabloyu inceleyin", "text": "128 ASCII kodunun tamamını kaydırarak görüntüleyin. Kontrol karakterleri (0–31, 127) amber rengiyle vurgulanır. Her satır ondalık, hex (0x ön eki), sekizli, ikili, karakter glyph'i ve açıklama gösterir." },
+      { "name": "Türe göre filtreleyin", "text": "Yalnızca görünür karakterleri (32–126) göstermek için «Yazdırılabilir»e, yalnızca yazdırılamayan kontrol kodlarını (0–31, 127) göstermek için «Kontrol»e tıklayın." },
+      { "name": "Karakter arayın", "text": "Doğrudan o girdiye gitmek için ondalık sayı (örn. 65), hex değeri (örn. 41 veya 0x41) veya karakter (örn. A) girin. Kontrol kodu adına göre de arama yapabilirsiniz (örn. ESC veya LF)." },
+      { "name": "İkili gösterimi okuyun", "text": "İkili sütun her ASCII kodunun 8 bitlik gösterimini gösterir. Örneğin 'A' (65) = ikilide 01000001. Bu, bit düzeyindeki işlemlerle çalışırken veya bayt düzeyinde karakter kodlamasını anlamak istediğinizde kullanışlıdır." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Enter / yeni satır için ASCII kodu nedir?",
+      "a": "Yeni satır (satır besleme) karakteri ASCII kodu 10'dur (0x0A, LF). Unix/Linux/macOS'ta yeni satır yalnızca LF ile temsil edilir. Windows'ta CR+LF (kodlar 13 ve 10, yani 0x0D 0x0A) ile temsil edilir. Satır başı karakteri ise kod 13'tür (0x0D, CR). Platformlar arası metin işleme kodu yazarken hem LF hem de CR+LF satır sonlarını her zaman işleyin."
+    },
+    {
+      "q": "Boşluk karakterinin ASCII kodu nedir?",
+      "a": "Boşluk karakteri ASCII kodu 32'dir (0x20, SP). ASCII'nin ilk yazdırılabilir karakteridir. Kırılmaz boşluk (HTML'de &nbsp; olarak kullanılır) standart 7 bitlik ASCII'nin parçası değildir — ISO 8859-1'de kod 160'tır (0xA0) ve UTF-8'de 0xC2 0xA0 olarak kodlanır."
+    },
+    {
+      "q": "ASCII, UTF-8 ve Unicode arasındaki fark nedir?",
+      "a": "ASCII, 7 bitlik kodlarla 128 karakter tanımlar. Unicode, U+10FFFF'e kadar kod noktalarıyla 140.000'den fazla karakter tanımlayan evrensel bir standarttır. UTF-8, Unicode'un değişken genişlikli kodlamasıdır: ASCII karakterlerini (0–127) tek bir baytta kodlar ve bu sayede ASCII ile geriye dönük uyumludur. 127'nin ötesindeki karakterler UTF-8'de 2–4 bayt kullanır. Modern metin sistemleri UTF-8 veya UTF-16 kullanır, ancak ASCII protokol başlıkları, dosya biçimleri ve eski sistemler için önemini korumaktadır."
+    },
+    {
+      "q": "JavaScript'te bir karakterin ASCII kodunu nasıl bulurum?",
+      "a": "charCodeAt(0) kullanın: 'A'.charCodeAt(0) 65 döndürür. 65535'i aşan Unicode kod noktaları için bunun yerine codePointAt(0) kullanın. Bir kodu tekrar karaktere dönüştürmek için: String.fromCharCode(65) 'A' döndürür. Tam Unicode desteği için: String.fromCodePoint(128512) 😀 emojisini döndürür."
+    },
+    {
+      "q": "ASCII kodu 0 (NUL) ne işe yarar?",
+      "a": "NUL (kod 0) null karakterdir. C ve pek çok dilde dize sonlandırıcı olarak kullanılır — 'Hello' dizisi bellekte 72, 101, 108, 108, 111, 0 baytları olarak depolanır. Veri tabanlarında ve dosya biçimlerinde NUL, alan ayırıcı veya dolgu baytı olarak görünebilir. Çoğu metin düzenleyici ve terminalde NUL görünmez ve yoksayılır; ancak ikili dosyalar metin olarak okunduğunda sorunlara yol açabilir."
+    },
+    {
+      "q": "Escape karakteri (ASCII 27) nedir?",
+      "a": "ESC (kod 27, 0x1B) Escape karakteridir. Terminal renklerini ve imleç hareketini kontrol eden ANSI/VT100 kaçış dizilerinin başlangıcıdır. Örneğin ESC[31m dizisi terminal metin rengini kırmızıya çevirir. Pek çok uygulamada Escape tuşuna basmak bu karakteri gönderir. Çeşitli veri biçimleri ve iletişim protokollerinde de kullanılır."
+    },
+    {
+      "q": "Büyük harf A'nın ASCII kodu neden 65, küçük harf a'nın ise 97?",
+      "a": "ASCII tablosu, büyük harflerin (A=65, B=66, ..., Z=90) ve küçük harflerin (a=97, b=98, ..., z=122) tam olarak 32 fark etmesi için tasarlanmıştır. Bu sayede tek bir toplama veya çıkarmayla büyük/küçük harf dönüşümü yapılabilir. ASCII'de büyük harften küçük harfe dönüştürmek için: 32 ekleyin (veya bit 5'i ayarlayın). Küçük harften büyüğe dönüştürmek için: 32 çıkarın (veya bit 5'i temizleyin). C'de bit düzeyinde büyük/küçük harf dönüşümünün çalışmasının nedeni budur: char lower = upper | 0x20."
+    },
+    {
+      "q": "CR, LF ve CRLF arasındaki fark nedir?",
+      "a": "CR (Carriage Return, kod 13) ve LF (Line Feed, kod 10), daktilo ve teletype kurallarından kaynaklanır. CR, yazdırma kafasını satırın başına götürür; LF bir sonraki satıra ilerler. Unix/Linux yeni satır için yalnızca LF kullanır. Windows CR+LF (ikisi birlikte) kullanır. Klasik Mac OS (OS X öncesi) yalnızca CR kullanırdı. Modern ayrıştırıcıların çoğu üçünü de işler; ancak kaynak dosyalarda satır sonlarını karıştırmak, sürüm kontrol farkları ve bazı metin işleyicilerde sorunlara yol açar."
+    }
+  ]
+}

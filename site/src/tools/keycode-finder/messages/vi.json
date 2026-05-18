@@ -1,0 +1,86 @@
+{
+  "title": "Công cụ tra cứu mã phím — keyCode, code, key Properties",
+  "shortDescription": "Nhấn bất kỳ phím nào để xem ngay giá trị JavaScript keyCode, code, key, which và charCode. Công cụ thiết yếu cho lập trình viên web xử lý sự kiện bàn phím.",
+  "description": "Nhấp vào vùng phát hiện và nhấn bất kỳ phím nào để hiển thị ngay các thuộc tính sự kiện JavaScript: key, code, keyCode, which, charCode và trạng thái modifier (Ctrl, Alt, Shift, Meta). Tất cả 17 giá trị cập nhật theo thời gian thực. Hoàn hảo để gỡ lỗi trình xử lý sự kiện bàn phím.",
+  "metaDescription": "Công cụ tra cứu mã phím bàn phím miễn phí. Nhấn phím bất kỳ để xem giá trị JavaScript keyCode, code, key, which và charCode. Hữu ích cho lập trình viên web.",
+  "keywords": ["tra cứu mã phím", "mã phím bàn phím", "javascript keyCode", "sự kiện bàn phím", "which charCode"],
+  "zone": {
+    "label": "Vùng phát hiện phím — nhấp vào đây rồi nhấn bất kỳ phím nào",
+    "prompt": "Nhấp vào đây, rồi nhấn bất kỳ phím nào"
+  },
+  "key": {
+    "space": "Dấu cách"
+  },
+  "label": {
+    "modifiers": "Phím bổ trợ",
+    "none": "Không có"
+  },
+  "history": {
+    "title": "Phím gần đây"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Sự kiện bàn phím JavaScript: key, code và keyCode",
+        "paragraphs": [
+          "Khi người dùng nhấn phím, trình duyệt kích hoạt ba sự kiện liên tiếp: keydown, keypress và keyup. Mỗi đối tượng sự kiện mang nhiều thuộc tính xác định phím được nhấn. Quan trọng nhất là: key (ký tự hoặc phím có tên như 'Enter'), code (vị trí vật lý của phím như 'KeyA' hay 'ArrowLeft'), và keyCode (số nguyên kế thừa, ví dụ 65 cho 'A' bất kể trạng thái Shift).",
+          "Các thuộc tính keyCode và which đã bị deprecated theo đặc tả W3C UI Events nhưng vẫn được sử dụng rộng rãi trong cơ sở mã cũ. Ứng dụng hiện đại nên ưu tiên key cho ý nghĩa ngữ nghĩa (phím tạo ra gì) và code cho vị trí vật lý (phím vật lý nào được nhấn). Ví dụ, phím 'A' tạo key='a' hoặc key='A' tùy thuộc vào Shift, nhưng luôn code='KeyA' bất kể trạng thái."
+        ]
+      },
+      {
+        "heading": "Thuộc tính location trong sự kiện bàn phím",
+        "paragraphs": [
+          "Thuộc tính location phân biệt các phím tồn tại ở nhiều vị trí trên bàn phím: Ctrl trái với Ctrl phải, Shift trái với Shift phải, và các phím số trên numpad so với hàng số trên cùng. Giá trị location là: 0 (chuẩn), 1 (bên trái), 2 (bên phải) và 3 (numpad). Điều này đặc biệt hữu ích để phát hiện người dùng nhấn phím Enter trên numpad hay phím Enter chính.",
+          "Các phím modifier (Ctrl, Alt, Shift, Meta) được theo dõi dưới dạng flag boolean trong mọi sự kiện bàn phím, không chỉ khi nhấn riêng lẻ. Điều này có nghĩa là bạn có thể phát hiện tổ hợp như Ctrl+C ngay cả khi bạn chủ yếu lắng nghe keyCode 67 (C). Phím Meta tương ứng với phím Windows trên bàn phím Windows và phím Command trên Mac."
+        ]
+      },
+      {
+        "heading": "Các trường hợp sử dụng thực tế của thuộc tính sự kiện bàn phím",
+        "paragraphs": [
+          "Phím tắt trong ứng dụng web sử dụng kết hợp code (phím vật lý) và flag modifier để phát hiện tổ hợp như Ctrl+S (lưu) hay Ctrl+Shift+P (bảng lệnh). Dùng code thay vì key đảm bảo phím tắt hoạt động bất kể ngôn ngữ bàn phím: trên bố cục AZERTY của Pháp, phím ở vị trí 'A' tạo ký tự khác, nhưng code luôn là 'KeyA'.",
+          "Điều khiển trong game thường dùng code để ánh xạ WASD hay phím mũi tên với chuyển động, vì vị trí vật lý mới quan trọng chứ không phải ký tự được tạo. Công cụ trợ năng có thể lắng nghe Tab (code='Tab') và Enter (code='Enter') để đảm bảo các phần tử tương tác có thể kích hoạt mà không cần chuột. Công cụ này cho phép bạn tra cứu nhanh giá trị chính xác của thuộc tính bất kỳ phím nào trước khi viết code xử lý sự kiện."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Nhấp vùng phát hiện", "text": "Nhấp hoặc chạm vào hộp nét đứt ở đầu công cụ để lấy tiêu điểm." },
+      { "name": "Nhấn phím bất kỳ", "text": "Nhấn bất kỳ phím nào trên bàn phím: chữ cái, số, phím chức năng, phím mũi tên hoặc phím đặc biệt như Enter và Escape." },
+      { "name": "Đọc các thuộc tính", "text": "Tất cả thuộc tính sự kiện bàn phím JavaScript (key, code, keyCode, which, charCode, location, modifier) xuất hiện ngay lập tức bên dưới vùng." },
+      { "name": "Kiểm tra tổ hợp modifier", "text": "Giữ Ctrl, Alt, Shift hoặc Meta trong khi nhấn phím để xem flag modifier thay đổi thế nào trong hàng Phím bổ trợ." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Sự khác nhau giữa keyCode và key là gì?",
+      "a": "keyCode là thuộc tính số nguyên đã deprecated, gán một số cho mỗi phím (ví dụ 65 cho 'A', 13 cho Enter). key là sự thay thế hiện đại trả về ký tự được tạo ('a' hoặc 'A') hoặc chuỗi phím có tên ('Enter', 'ArrowLeft'). Mã mới nên dùng key hoặc code thay vì keyCode."
+    },
+    {
+      "q": "Thuộc tính code là gì?",
+      "a": "code xác định phím vật lý được nhấn, bất kể bố cục bàn phím hay trạng thái modifier. 'KeyA' luôn chỉ phím ở vị trí 'A' trên bàn phím QWERTY, dù người dùng đã chuyển sang bố cục AZERTY nơi phím đó tạo 'Q'. Dùng code cho phím tắt bàn phím cần hoạt động bất kể locale."
+    },
+    {
+      "q": "Tại sao keyCode bị deprecated?",
+      "a": "keyCode không nhất quán trên các trình duyệt và hệ điều hành, có giá trị khác nhau cho cùng một phím và không xử lý tốt ký tự non-ASCII. Đặc tả W3C UI Events đã deprecated nó để ưu tiên key (cho ký tự/phím có tên) và code (cho vị trí vật lý). Cả keyCode lẫn which hiện được đánh dấu là legacy trong đặc tả."
+    },
+    {
+      "q": "Giá trị location có nghĩa gì?",
+      "a": "Location phân biệt các phím xuất hiện ở nhiều vị trí. 0 = chuẩn (khu vực chính), 1 = phím modifier trái (ví dụ Shift trái), 2 = phím modifier phải (ví dụ Ctrl phải), 3 = numpad. Điều này cho phép phân biệt 5 trên numpad (code='Numpad5', location=3) với 5 ở hàng trên (code='Digit5', location=0)."
+    },
+    {
+      "q": "Làm sao phát hiện Ctrl+S hay tổ hợp phím khác trong JavaScript?",
+      "a": "Lắng nghe sự kiện keydown và kiểm tra cả key/code lẫn flag modifier: `if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveDocument(); }`. Dùng e.key === 's' bắt cả chữ hoa lẫn chữ thường, vì trạng thái modifier không thay đổi giá trị key của các phím chữ cái."
+    },
+    {
+      "q": "Thuộc tính charCode là gì?",
+      "a": "charCode được trả về bởi sự kiện keypress kế thừa và cho biết code point Unicode của ký tự được gõ (ví dụ 65 cho 'A'). Hiện đã deprecated cùng với sự kiện keypress. Trong sự kiện keydown/keyup, charCode luôn là 0. Thay vào đó hãy dùng key hoặc inputType trên sự kiện input."
+    },
+    {
+      "q": "Làm sao phân biệt Enter trên numpad với bàn phím chính?",
+      "a": "Cả hai phím đều tạo key='Enter', nhưng khác nhau ở code: phím Enter chính là code='Enter' với location=0, còn Enter trên numpad là code='NumpadEnter' với location=3. Kiểm tra e.code === 'Enter' cho phím chính hoặc e.code === 'NumpadEnter' cho phiên bản numpad."
+    },
+    {
+      "q": "Phím Meta là gì?",
+      "a": "Phím Meta là phím Windows trên bàn phím Windows (⊞) và phím Command trên bàn phím Mac (⌘). Trong sự kiện bàn phím, nó được theo dõi bởi flag boolean metaKey và tạo key='Meta' khi nhấn riêng lẻ. code của nó là 'MetaLeft' hoặc 'MetaRight'."
+    }
+  ]
+}

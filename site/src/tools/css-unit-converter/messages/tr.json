@@ -1,0 +1,80 @@
+{
+  "title": "CSS Birim Dönüştürücü — px, rem, em, pt, % Online",
+  "shortDescription": "CSS birimlerini anında dönüştürün: px'i rem'e, rem'i px'e, em, pt ve %. Doğru rem ve em dönüşümleri için temel font boyutu ayarlayın. Responsive web tasarımı için vazgeçilmez.",
+  "description": "px, rem, em, pt veya % olarak herhangi bir CSS değeri girin ve diğer tüm birimlerdeki karşılığını anında görün. Doğru rem ve em dönüşümleri için özel bir temel font boyutu ayarlayın (varsayılan 16px). Tüm hesaplamalar sayfa yenilenmeden gerçek zamanlı olarak güncellenir.",
+  "metaDescription": "Ücretsiz CSS birim dönüştürücü: px'den rem'e, rem'den px'e, em, pt ve %. Responsive tasarım için doğru dönüşümlerde temel font boyutu ayarlayın. Anında, kayıt gerekmez.",
+  "keywords": ["px rem dönüştürücü", "css birim dönüştürücü", "rem px", "px em", "css birimleri"],
+  "input": {
+    "value": "Değer",
+    "base": "Temel font boyutu (px)",
+    "baseHint": "Genellikle 16px (tarayıcı varsayılanı)"
+  },
+  "note": {
+    "basePx": "Taban: {base}px. rem/em için, 1 birim = kök düzeyinde {base}px."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "CSS birimlerinin responsive tasarımda önemi",
+        "paragraphs": [
+          "CSS iki geniş uzunluk birimi kategorisi sunar: mutlak (px, pt, cm, mm) ve göreli (rem, em, %, vw, vh). Mutlak birimler bağlamdan bağımsız sabit fiziksel boyuta sahiptir; göreli birimler başka bir şeye göre ölçeklenir: kök font boyutu, üst elemanın font boyutu veya viewport boyutları. Doğru birim türünü seçmek, düzeninizin farklı ekran boyutlarına, kullanıcı font tercihlerine ve yakınlaştırma düzeylerine zarif biçimde uyum sağlayıp sağlamadığını belirler.",
+          "Piksel (px), tahmin edilebilir ve hassas olduğu için hâlâ en yaygın CSS birimidir, ancak kullanıcının tarayıcı font boyutu ayarına saygı göstermez. Erişilebilirlik nedeniyle varsayılan font boyutunu 20px'e yükseltmiş bir kullanıcı, px tabanlı metnin değişmediğini görürken rem tabanlı metin buna göre ölçeklenir. WCAG 2.1 Başarı Kriteri 1.4.4'ün (Metin Yeniden Boyutlandırma) font boyutları için rem gibi göreli birimler kullanılarak en kolay karşılandığının nedeni budur."
+        ]
+      },
+      {
+        "heading": "px vs rem vs em: her birini ne zaman kullanmalı",
+        "paragraphs": [
+          "rem (root em), kök elemanın font boyutuna göredir; tüm tarayıcılarda varsayılan olarak 16px'tir. rem tek bir sabit referans noktasına (<html> elemanına) bağlı olduğundan, em'in sahip olduğu bileşen etkisinden kaçınır. Kullanıcı font tercihleriyle ölçeklenmesi gereken font boyutları, bileşen boşlukları ve herhangi bir değer için rem kullanın. Tipik formül: rem = px ÷ taban, yani 24px ÷ 16 = 1,5rem.",
+          "em, mevcut elemanın font boyutuna göredir ve bu boyut em olarak ayarlanabilir, bileşik zincir oluşturur. Üst elemanın `font-size: 1.2em` olduğu bir yapıda çocuk elemana `font-size: 1.2em` uygulamak kök boyutun 1,44 katını verir (1,2 × 1,2). Bu, em'i yerel font boyutuyla ölçeklenmesi gereken boşluklar için (bir bileşen içindeki padding ve margin) kullanışlı kılarken genel düzen için öngörülmesi zordur. pt (punto), özellikle baskı için kullanışlıdır: 1pt = 1/72 inç, 72pt = 1 inç ≈ ekranda 96px."
+        ]
+      },
+      {
+        "heading": "Temel font boyutu seçme ve tasarım sistemleriyle çalışma",
+        "paragraphs": [
+          "Çoğu tarayıcı kök font boyutu için varsayılan olarak 16px kullanır; bu nedenle dönüştürücünün varsayılan ayarında 1rem = 16px'tir. Bazı geliştiriciler 1rem = 10px yapmak için `html { font-size: 62.5%; }` ayarlar ve zihinsel hesabı basitleştirir (24px = 2,4rem, 1,5rem yerine). Bu teknik tartışmalıdır çünkü font boyutlarının her yerde sıfırlanmasını gerektirir ve erişilebilirlik tercihlerini bozabilir.",
+          "Modern tasarım sistemleri (Material Design, Apple HIG, Tailwind CSS), aralık ve tipografi için genellikle 4px veya 8px katları olan modüler bir ölçek kullanır. Bu birimlerde çalışmak ve rem'e dönüştürmek, farklı bağlamlarda tutarlı görsel ritim sağlar. Tailwind'in varsayılan ölçeği örneğin 4px = 1 birim kullanır, bu nedenle 4 değeri (16px) 1rem'e eşittir. Şüphe durumunda tabanınızı 16px'te tutun ve zihinsel aritmetik olmadan kesin rem değerleri için bu dönüştürücüyü kullanın."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Bir değer girin", "text": "Giriş alanına herhangi bir CSS değeri yazın ve açılır menüden birimini (px, rem, em, pt veya %) seçin." },
+      { "name": "Temel font boyutunuzu ayarlayın", "text": "Projeniz varsayılan dışı bir kök font boyutu kullanıyorsa, Taban alanını değiştirin. Varsayılan 16px (tarayıcı standardı) dir." },
+      { "name": "Tüm dönüşümleri okuyun", "text": "Diğer birimlerdeki tüm eşdeğer değerler aşağıdaki ızgarada anında görünür. Herhangi bir düğmeye tıklamaya gerek yoktur." },
+      { "name": "Kopyalayın ve kullanın", "text": "Seçmek için herhangi bir değere tıklayın veya dokunun, ardından doğrudan CSS'inize kopyalayın." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "px'i rem'e nasıl dönüştürürüm?",
+      "a": "Piksel değerini kök font boyutuna bölün. Varsayılan 16px tabanıyla: rem = px ÷ 16. Yani 24px = 1,5rem, 32px = 2rem, 48px = 3rem. Kök font boyutunuz 10px ise (`html { font-size: 62.5%; }` ile), rem = px ÷ 10 olur."
+    },
+    {
+      "q": "Tarayıcının varsayılan font boyutu nedir?",
+      "a": "Tüm büyük tarayıcılar, kullanıcı tercihlerini değiştirmedikçe kök font boyutu için varsayılan olarak 16px kullanır. Bu, varsayılan yapılandırmada 1rem = 16px anlamına gelir. Bazı kullanıcılar erişilebilirlik için bunu artırır; metin için px yerine rem kullanmanın temel nedeni budur."
+    },
+    {
+      "q": "rem ile em arasındaki fark nedir?",
+      "a": "rem her zaman kök elemanın (<html>) font boyutuna göredir ve bu onu öngörülebilir kılar. em, kalıtım yoluyla değişebilecek mevcut elemanın font boyutuna göredir. Global değerler için rem (gövde font boyutu, sayfa düzeni) ve yerel bağlamla ölçeklenmesi gereken değerler için em kullanın (elemanın kendi font boyutuna göre padding)."
+    },
+    {
+      "q": "1rem kaç pikseldir?",
+      "a": "Varsayılan olarak, 1rem = 16px'tir. `html { font-size: 20px }` ayarlarsanız, 1rem = 20px olur. `html { font-size: 62.5% }` (varsayılan 16px'e göre) ayarlarsanız, 1rem = 10px olur. Bu dönüştürücüdeki Taban alanı varsayılan kök boyutunu değiştirmenize olanak tanır."
+    },
+    {
+      "q": "Font boyutları için rem mi yoksa px mi kullanmalıyım?",
+      "a": "Font boyutları için mümkün olduğunda rem kullanın. rem tabanlı metin, kullanıcının tarayıcı font boyutu tercihine saygı gösterir ve bu erişilebilirlik açısından önemlidir. Piksel tarayıcı ayarını görmezden gelir; yani daha büyük metne ihtiyaç duyan kullanıcı yakınlaştırmadan yararlanamaz (tarayıcı yakınlaştırması eklenmeden önce)."
+    },
+    {
+      "q": "px'i pt'ye nasıl dönüştürürüm?",
+      "a": "1 punto = 1/72 inç = ekranda 1,333 piksel. Dönüştürmek için: pt = px × 0,75. Yani 16px = 12pt. Punto, temel olarak baskı CSS'inde ve PDF veya baskı stil sayfaları gibi fiziksel medyaları hedeflerken kullanılır."
+    },
+    {
+      "q": "CSS birimlerinde % ne anlama gelir?",
+      "a": "CSS'deki yüzde bağlama göre değişir. font-size için, 100% = miras alınan font boyutu (1em ile aynı). width/height için, 100% = içeren bloğun boyutu. Bu dönüştürücüde % değerini temel font boyutunun yüzdesi olarak ele alırız, yani 100% = taban px ve 150% = 1,5 × taban."
+    },
+    {
+      "q": "%62.5 hilesi nedir?",
+      "a": "`html { font-size: 62.5%; }` ayarı 1rem = 10px yapar (varsayılan 16px'in %62,5'i = 10px). Bu rem hesaplamasını kolaylaştırır: 24px, 1,5rem yerine 2,4rem olur. Ancak CSS'in her yerinde font boyutlarının sıfırlanmasını gerektirir ve üçüncü taraf bileşenleri bozabilir. Modern tasarım belirteçleri ve araçlar bu hileyi daha az gerekli kılmaktadır."
+    }
+  ]
+}

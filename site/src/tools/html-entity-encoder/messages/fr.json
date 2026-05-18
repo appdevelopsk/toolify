@@ -1,0 +1,98 @@
+{
+  "title": "Encodeur et Décodeur d'Entités HTML",
+  "shortDescription": "Encodez des caractères spéciaux en entités HTML ou décodez des entités HTML en texte. Prend en charge les entités nommées (&amp;), numériques décimales (&#65;) et hexadécimales (&#x41;).",
+  "description": "Collez du texte pour encoder les caractères spéciaux en entités HTML, ou collez du HTML avec des entités pour les décoder en texte lisible. Choisissez entre les entités nommées (&amp;, &lt;, &copy;), numériques décimales (&#169;) ou hexadécimales (&#xA9;). Encodez optionnellement tous les caractères non-ASCII pour une compatibilité maximale.",
+  "metaDescription": "Encodeur et décodeur d'entités HTML gratuit. Convertissez des caractères en &amp; &lt; &gt; et entités nommées, numériques ou hex. Décodage instantané.",
+  "keywords": ["encodeur entités HTML", "entités HTML", "encoder HTML", "décoder entités HTML", "caractères spéciaux HTML"],
+  "mode": {
+    "encode": "Encoder",
+    "decode": "Décoder"
+  },
+  "encodeMode": {
+    "named": "Nommée (&amp;)",
+    "numeric": "Numérique (&#38;)",
+    "hex": "Hex (&#x26;)"
+  },
+  "option": {
+    "encodeAll": "Encoder tous les caractères non-ASCII"
+  },
+  "label": {
+    "inputText": "Texte d'entrée",
+    "inputEncoded": "HTML encodé",
+    "outputEncoded": "Sortie encodée",
+    "outputText": "Texte décodé"
+  },
+  "placeholder": {
+    "text": "Saisissez ou collez du texte avec des caractères spéciaux comme <, >, &, © …",
+    "encoded": "Collez du HTML avec des entités comme &amp;, &lt;, &#169; …"
+  },
+  "action": {
+    "copy": "Copier",
+    "swap": "Inverser"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Que sont les entités HTML ?",
+        "paragraphs": [
+          "Les entités HTML sont des codes texte spéciaux représentant des caractères qui ont une signification particulière en HTML ou qui ne peuvent pas être saisis directement. Les plus importantes sont les cinq caractères réservés dans la syntaxe HTML : & (esperluette) → &amp;, < (inférieur à) → &lt;, > (supérieur à) → &gt;, \" (guillemet double) → &quot; et ' (apostrophe) → &apos;. Si ces caractères apparaissent dans du contenu textuel sans encodage, le navigateur peut les interpréter comme du balisage HTML, provoquant des erreurs de rendu ou des failles de sécurité.",
+          "Les entités HTML se déclinent en trois formats : les entités nommées utilisent un nom descriptif (&copy; pour ©, &euro; pour €), les références numériques décimales de caractères utilisent un numéro de point de code (&#169; pour ©), et les références hexadécimales utilisent un code hex (&#xA9; pour ©). Les trois formats sont équivalents — le navigateur affiche le même caractère quel que soit le format utilisé. Les entités nommées sont les plus lisibles ; les entités numériques sont les plus universelles car elles fonctionnent pour n'importe quel caractère Unicode."
+        ]
+      },
+      {
+        "heading": "Quand encoder les entités HTML",
+        "paragraphs": [
+          "Vous devez encoder au minimum les cinq caractères HTML réservés (&, <, >, \", ') chaque fois qu'ils apparaissent dans du contenu textuel ou des valeurs d'attributs. Ne pas les encoder est une source de vulnérabilités Cross-Site Scripting (XSS) : si l'entrée utilisateur est insérée dans du HTML sans encodage, un attaquant peut injecter des balises script ou des gestionnaires d'événements. Les frameworks modernes comme React, Vue et Angular encodent automatiquement HTML par défaut — innerHTML est la principale exception où l'encodage manuel reste critique.",
+          "Au-delà des cinq caractères requis, vous souhaiterez peut-être aussi encoder les caractères non-ASCII pour les environnements qui ne gèrent pas fiablement UTF-8 : HTML d'e-mail, systèmes CMS anciens ou documents nécessitant une compatibilité maximale. L'option «Encoder tous les non-ASCII» convertit chaque caractère au-dessus du point de code 127 en entité numérique, garantissant que la sortie est du pur ASCII tout en préservant l'apparence visuelle au rendu. Pour les fichiers HTML UTF-8 modernes, encoder les non-ASCII est optionnel — déclarer correctement le charset est suffisant."
+        ]
+      },
+      {
+        "heading": "Entités HTML vs encodage d'URL vs Base64",
+        "paragraphs": [
+          "Les entités HTML, l'encodage d'URL (encodage en pourcentage) et Base64 sont trois schémas d'encodage différents pour des contextes distincts. Les entités HTML (comme &amp;) sont utilisées dans les documents HTML pour représenter des caractères en toute sécurité. L'encodage d'URL (comme %26 pour &) est utilisé dans les chaînes de requête et les URLs pour encoder les caractères ayant une signification spéciale dans une URL. Base64 encode des données binaires arbitraires en texte ASCII, utilisé pour les URIs de données et les pièces jointes d'e-mail.",
+          "Une erreur courante consiste à les confondre : encoder en URL du contenu HTML ou encoder en HTML des URLs. Par exemple, une esperluette dans une chaîne de requête URL nécessite un encodage en pourcentage (%26), pas un encodage d'entité HTML (&amp;). Si vous construisez une URL qui sera ensuite intégrée dans un attribut HTML, vous avez besoin des deux : la forme encodée en URL va dans l'attribut, et la valeur de l'attribut elle-même est encodée en HTML. Comprendre quel encodage s'applique dans quel contexte évite les bugs de double encodage et les problèmes de sécurité."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Encoder des caractères spéciaux", "text": "Sélectionnez le mode Encoder, collez votre texte dans la zone gauche. La sortie encodée apparaît à droite. Choisissez «Nommée» pour des entités lisibles (&amp;), «Numérique» pour du décimal universel (&#38;), ou «Hex» pour l'hexadécimal (&#x26;). Cochez «Encoder tous les non-ASCII» pour convertir chaque caractère non-ASCII en entité." },
+      { "name": "Décoder des entités HTML", "text": "Sélectionnez le mode Décoder, collez du HTML avec des entités dans la zone gauche. L'outil reconnaît les entités nommées (&amp;, &copy;), les entités numériques décimales (&#169;) et les entités hex (&#xA9;), les convertissant toutes en leurs caractères originaux." },
+      { "name": "Inverser l'encodage et le décodage", "text": "Cliquez sur le bouton «Inverser» pour déplacer la sortie vers l'entrée et changer de mode — utile pour vérifier un aller-retour ou inverser rapidement une conversion." },
+      { "name": "Copier le résultat", "text": "Cliquez sur «Copier» pour placer le résultat encodé ou décodé dans votre presse-papiers." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quelle est l'entité HTML pour l'esperluette (&) ?",
+      "a": "L'entité HTML pour l'esperluette est &amp; — littéralement les caractères &, a, m, p et point-virgule. Lorsque vous écrivez &amp; dans le code source HTML, le navigateur affiche un seul caractère &. Cet encodage est obligatoire dès qu'une esperluette apparaît dans du contenu textuel ou des valeurs d'attributs, car un & non encodé commence une séquence d'entité que l'analyseur tente d'interpréter."
+    },
+    {
+      "q": "Quelle est l'entité HTML pour le copyright (©) ?",
+      "a": "Le copyright © possède trois entités HTML équivalentes : la nommée &copy;, la numérique décimale &#169; et l'hexadécimale &#xA9;. Toutes affichent le même caractère ©. Les entités nommées sont l'option la plus lisible lorsqu'elles sont disponibles. Pour le HTML UTF-8 moderne, vous pouvez aussi taper le caractère © directement — sans entité — tant que votre fichier HTML déclare charset=utf-8."
+    },
+    {
+      "q": "Dois-je encoder les guillemets en HTML ?",
+      "a": "Les guillemets doubles (\") doivent être encodés en &quot; dans les attributs HTML délimités par des guillemets doubles : <input value=\"&quot;\">. Les guillemets simples (') doivent être encodés en &apos; ou &#39; dans les attributs à guillemets simples. Dans le contenu textuel des éléments (entre balises), les deux types de guillemets peuvent apparaître sans encodage, mais les encoder est sans danger. Encoder les deux de façon cohérente dans tous les contextes est l'approche la plus sûre."
+    },
+    {
+      "q": "Quelle est la différence entre entités nommées et numériques ?",
+      "a": "Les entités nommées utilisent un mot descriptif (&copy;, &euro;, &hearts;) et sont définies dans la spécification HTML — tous les caractères Unicode n'ont pas d'entité nommée. Les entités numériques utilisent le point de code Unicode, soit en décimal (&#8364; pour €) soit en hexadécimal (&#x20AC; pour €). Les entités numériques fonctionnent pour n'importe quel caractère Unicode, tandis que les nommées ne couvrent qu'un sous-ensemble. Les deux sont rendus de façon identique dans les navigateurs."
+    },
+    {
+      "q": "Dois-je encoder les caractères non-ASCII en HTML ?",
+      "a": "Généralement non. Si votre document HTML déclare l'encodage UTF-8 (meta charset=utf-8) et est enregistré en UTF-8, vous pouvez écrire des caractères non-ASCII directement : é, ñ, 中, 🎉. Les encoder en entités est optionnel et rend le code source plus difficile à lire. L'exception concerne l'envoi de HTML dans des contextes qui peuvent ne pas préserver l'encodage : messages e-mail, API anciennes ou systèmes qui altèrent les octets non-ASCII. Dans ces cas, encoder tous les non-ASCII en entités numériques garantit une sortie en pur ASCII sécurisé."
+    },
+    {
+      "q": "Qu'est-ce que XSS et comment les entités HTML le préviennent-elles ?",
+      "a": "Le Cross-Site Scripting (XSS) est une faille de sécurité où un attaquant injecte du JavaScript malveillant dans une page web en insérant du texte que le serveur reflète dans HTML sans encodage. Par exemple, si l'entrée utilisateur <script>alert('xss')</script> est insérée directement dans une page, le navigateur exécute le script. Si vous encodez correctement l'entrée — en convertissant < en &lt; et > en &gt; — le navigateur affiche le texte littéralement plutôt que de l'analyser comme une balise. L'encodage d'entités HTML est la principale défense contre les XSS réfléchis et stockés."
+    },
+    {
+      "q": "Pourquoi &nbsp; n'apparaît-il pas dans la liste de cet outil ?",
+      "a": "Cet outil encode les caractères qui ont des entités nommées. L'espace insécable (Unicode U+00A0) est encodé en &nbsp; lorsque vous tapez le caractère d'espace insécable réel (que vous pouvez insérer avec Alt+Espace sur certains systèmes ou copier depuis des tables de caractères). L'espace régulier (U+0020, la barre espace) n'est pas encodé car c'est un caractère ASCII sûr. Si vous avez spécifiquement besoin de &nbsp; dans votre sortie, saisissez ou collez un espace insécable dans l'entrée."
+    },
+    {
+      "q": "Puis-je l'utiliser pour prévenir l'injection HTML dans les entrées utilisateur ?",
+      "a": "Oui — encoder le texte fourni par l'utilisateur avant de l'insérer dans HTML est l'une des défenses principales contre l'injection HTML et XSS. Encodez au minimum les cinq caractères réservés : &, <, >, \", '. Cet outil encode les cinq. Cependant, l'encodage seul n'est pas une solution de sécurité complète : vous avez aussi besoin d'en-têtes Content Security Policy appropriés, d'une gestion prudente des URLs javascript: dans les attributs, et de protections au niveau du framework. Pour les applications en production, utilisez une bibliothèque côté serveur conçue pour la sécurité (OWASP Java Encoder, DOMPurify côté client, etc.) plutôt que l'encodage manuel."
+    }
+  ]
+}

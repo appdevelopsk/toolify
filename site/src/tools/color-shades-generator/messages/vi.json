@@ -1,0 +1,84 @@
+{
+  "title": "Công cụ tạo sắc độ màu — Phong cách Tailwind CSS",
+  "shortDescription": "Tạo 11 sắc độ sáng tối (50–950) cho bất kỳ màu nào theo kiểu thang màu Tailwind CSS. Nhấp vào sắc độ để sao chép mã hex hoặc xuất tất cả dưới dạng CSS custom properties.",
+  "description": "Chọn màu cơ sở bất kỳ để tức thì tạo ra bảng màu đầy đủ 11 bước (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950) theo thang màu của Tailwind CSS và Material Design. Mỗi sắc độ hiển thị đánh giá tương phản WCAG so với văn bản trắng hoặc đen. Nhấp vào bất kỳ mẫu màu nào để sao chép mã hex, hoặc nhấp Sao chép CSS để xuất tất cả sắc độ dưới dạng CSS custom properties.",
+  "metaDescription": "Công cụ tạo sắc độ màu miễn phí. Nhập màu hex bất kỳ để nhận 11 sắc độ theo thang Tailwind CSS. Sao chép mã hex hoặc biến CSS. Tương phản WCAG được hiển thị.",
+  "keywords": ["công cụ tạo sắc độ màu", "tông màu nhạt", "bảng màu Tailwind", "biến CSS màu sắc", "thang màu"],
+  "input": {
+    "picker": "Bộ chọn màu",
+    "hex": "Mã Hex"
+  },
+  "action": {
+    "copyCSS": "Sao chép CSS",
+    "copied": "Đã sao chép!",
+    "clickCopy": "Nhấp để sao chép mã hex"
+  },
+  "error": {
+    "invalid": "Nhập màu hex hợp lệ gồm 6 chữ số (ví dụ: #3B82F6)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cách thang màu sắc độ hoạt động",
+        "paragraphs": [
+          "Thang màu sắc độ là một chuỗi có hệ thống các biến thể sáng hơn và tối hơn của màu cơ sở, được dùng để tạo phân cấp trực quan và độ tương phản có thể tiếp cận trong thiết kế UI. Quy ước của Tailwind CSS sử dụng 11 bước được đánh số 50, 100, 200, 300, 400, 500, 600, 700, 800, 900 và 950. Số nhỏ hơn nghĩa là sáng hơn (độ sáng cao hơn trong HSL), trong khi số lớn hơn nghĩa là tối hơn. Bước 500 thường gần với màu cơ sở đã nhập.",
+          "Công cụ này tạo sắc độ bằng cách chuyển đổi hex đầu vào sang HSL (Hue, Saturation, Lightness), giữ nguyên hue và saturation trong khi ánh xạ mỗi bước đến một giá trị độ sáng được xác định trước. Bước 50 tương ứng khoảng 97% độ sáng (gần như trắng), bước 500 khoảng 52% (tầm trung) và bước 950 khoảng 12% (gần như đen). Cách tiếp cận này tạo ra các bảng màu nhất quán về mặt thị giác, giữ nguyên đặc tính của màu ở tất cả các mức độ sáng."
+        ]
+      },
+      {
+        "heading": "Đánh giá tương phản WCAG trong bảng màu",
+        "paragraphs": [
+          "Mỗi sắc độ trong bảng màu hiển thị đánh giá tương phản WCAG (Hướng dẫn Tiếp cận Nội dung Web) so với văn bản đen hoặc trắng — tùy cái nào dễ đọc hơn. Các đánh giá là: AAA (tỷ lệ tương phản ≥ 7:1, khả năng tiếp cận tốt nhất), AA (≥ 4,5:1, bắt buộc cho văn bản thông thường), AA Large (≥ 3:1, chấp nhận được chỉ cho văn bản lớn và thành phần UI), và Fail (< 3:1, không đủ cho văn bản). Tuân thủ WCAG 2.1 AA là yêu cầu pháp lý tối thiểu về khả năng tiếp cận ở nhiều khu vực pháp lý.",
+          "Khi xây dựng giao diện người dùng với bảng màu, hãy sử dụng các sắc độ có đánh giá AA hoặc AAA cho văn bản trên những nền đó. Thông thường, sắc độ 50–300 có độ tương phản mạnh với văn bản tối, trong khi sắc độ 700–950 có độ tương phản mạnh với văn bản trắng. Các sắc độ giữa (400–600) thường rơi vào hạng mục AA Large hoặc Fail cho văn bản nhỏ, khiến chúng phù hợp cho các thành phần trang trí, đường viền hoặc nền đằng sau văn bản trắng lớn, nhưng không phù hợp cho văn bản nội dung nhỏ."
+        ]
+      },
+      {
+        "heading": "Sử dụng bảng màu trong CSS và hệ thống thiết kế",
+        "paragraphs": [
+          "Nút Sao chép CSS xuất bảng màu của bạn dưới dạng CSS custom properties (biến CSS) trong một khối :root, sẵn sàng dán vào stylesheet của bạn. Ví dụ, biến blue-500 trở thành --color-500: #3b82f6 (hoặc màu bạn đã chọn). Bạn có thể đổi tên tiền tố biến để phù hợp với dự án: --brand-500, --primary-500, --blue-500, v.v. CSS custom properties có tính cascade và có thể bị ghi đè theo từng thành phần hoặc chủ đề.",
+          "Các hệ thống thiết kế như Tailwind CSS, Material Design, Ant Design và Chakra UI đều sử dụng thang sắc độ được đánh số cho hệ thống màu của họ. Có một thang màu nhất quán giúp bạn đưa ra lựa chọn tự tin: dùng 50 cho nền hover, 100 cho trạng thái hoạt động trong chủ đề sáng, 500 cho nút chính, 700 cho trạng thái hover trên nút và 900 cho nền tối. Giữ tất cả màu thương hiệu trên cùng một thang đánh số tạo ra tính dự đoán được và giảm các quyết định thiết kế ở cấp độ thành phần."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn màu cơ sở", "text": "Dùng bộ chọn màu để chọn màu trực quan, hoặc nhập mã hex 6 chữ số (như #3B82F6) vào ô hex. Bảng màu 11 bước được tạo ngay lập tức." },
+      { "name": "Đọc đánh giá WCAG", "text": "Mỗi sắc độ hiển thị đánh giá tương phản WCAG (AAA, AA, AA Large hoặc Fail). Sử dụng các sắc độ được đánh giá AA hoặc AAA cho văn bản và các thành phần tương tác để đáp ứng yêu cầu về khả năng tiếp cận." },
+      { "name": "Sao chép từng sắc độ", "text": "Nhấp vào bất kỳ mẫu sắc độ nào để sao chép mã hex vào clipboard. Dấu tích xác nhận đã sao chép." },
+      { "name": "Xuất dưới dạng biến CSS", "text": "Nhấp Sao chép CSS để nhận tất cả 11 sắc độ dưới dạng CSS custom properties trong khối :root, sẵn sàng dán vào stylesheet hoặc hệ thống thiết kế của bạn." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Số sắc độ (50–950) có nghĩa gì?",
+      "a": "Các số tuân theo quy ước thang màu của Tailwind CSS. Số nhỏ hơn sáng hơn: 50 gần như trắng, 100 rất sáng, 200 và 300 là các tông sáng. Giữa (500) là giá trị trung bình gần với màu gốc. Số lớn hơn tối hơn: 700 tối, 900 rất tối, 950 gần như đen. Thang màu không phải tuyến tính — nó được điều chỉnh để kích thước bước cảm thấy đều nhau về mặt nhận thức trên toàn dải."
+    },
+    {
+      "q": "Sự khác biệt giữa tint và shade là gì?",
+      "a": "Tint là màu pha trắng, làm cho nó sáng hơn. Shade là màu pha đen, làm cho nó tối hơn. Theo thuật ngữ HSL, tint có giá trị độ sáng cao hơn và shade có giá trị thấp hơn trong khi giữ nguyên hue. Các số 50–400 trong thang này là tint (sáng hơn màu cơ sở), trong khi 600–950 là shade (tối hơn màu cơ sở). Bước 500 xấp xỉ chính màu cơ sở."
+    },
+    {
+      "q": "Công cụ này tạo sắc độ như thế nào?",
+      "a": "Công cụ chuyển đổi màu hex của bạn sang HSL (Hue, Saturation, Lightness). Nó giữ hue và saturation không đổi trong khi ánh xạ từng số bước đến giá trị độ sáng mục tiêu: bước 50 → 97% độ sáng, bước 500 → 52%, bước 950 → 12%. Kết quả sau đó được chuyển lại thành hex. Phương pháp này bảo toàn đặc tính của màu (sự ấm áp, mát mẻ, sống động) ở tất cả các sắc độ."
+    },
+    {
+      "q": "WCAG là gì và tại sao sắc độ hiển thị đánh giá?",
+      "a": "WCAG (Hướng dẫn Tiếp cận Nội dung Web) xác định tỷ lệ tương phản tối thiểu cho văn bản có thể đọc được. AA yêu cầu tỷ lệ 4,5:1 cho văn bản thông thường; AAA yêu cầu 7:1. Đánh giá tương phản của mỗi sắc độ cho biết liệu văn bản đen hoặc trắng trên nền đó có đáp ứng tiêu chuẩn AA hoặc AAA không. Điều này giúp bạn chọn sắc độ nào an toàn cho văn bản và sắc độ nào chỉ nên dùng cho các thành phần trang trí."
+    },
+    {
+      "q": "Cách sử dụng bảng màu này trong Tailwind CSS?",
+      "a": "Tailwind cho phép bạn xác định màu tùy chỉnh trong tailwind.config.js. Thêm sắc độ dưới theme.extend.colors: colors: { brand: { 50: '#hex-50-của-bạn', 100: '#hex-100-của-bạn', ... } }. Sau đó bạn có thể dùng các lớp như bg-brand-100, text-brand-700, border-brand-300. Với Tailwind v4 cấu hình CSS-first, dán đầu ra biến CSS vào định nghĩa theme của bạn."
+    },
+    {
+      "q": "Tại sao sắc độ tại màu đã chọn không trông giống hệt như đầu vào của tôi?",
+      "a": "Công cụ nhắm đến các giá trị độ sáng cụ thể cho từng bước — bước 500 nhắm đến khoảng 52% độ sáng HSL. Nếu màu đầu vào của bạn có độ sáng khác (ví dụ: 70% nếu là màu sáng hơn), sắc độ ở bước 500 sẽ được điều chỉnh về hướng 52%. Điều này tạo ra thang màu nhất quán nhưng có nghĩa bước 500 có thể không giống hệt đầu vào ban đầu của bạn. Để có màu chính xác ở bước 500, bạn có thể điều chỉnh hex theo cách thủ công — thang màu sẽ được tạo tương đối với những gì bạn nhập."
+    },
+    {
+      "q": "Tôi có thể dùng với CSS custom properties không?",
+      "a": "Có — nhấp Sao chép CSS để có khối :root sẵn dùng với tất cả 11 sắc độ dưới dạng custom properties. Trong CSS của bạn, tham chiếu chúng là var(--color-500), var(--color-50), v.v. Bạn có thể đổi tên tiền tố --color- thành bất kỳ thứ gì phù hợp với dự án (--brand-, --primary-, --blue-). Custom properties có tính cascade và có thể giới hạn phạm vi vào một thành phần hoặc ghi đè trong media query cho chế độ tối."
+    },
+    {
+      "q": "Các sắc độ này khác với hàm CSS color-mix() như thế nào?",
+      "a": "Hàm CSS color-mix() (được hỗ trợ trong các trình duyệt hiện đại) pha trộn hai màu theo tỷ lệ phần trăm, tương tự như pha màu sơn. Công cụ này sử dụng thang độ sáng được xác định trước (dựa trên HSL), tạo ra thang hệ thống thiết kế được kiểm soát và dự đoán được hơn. color-mix() phù hợp hơn cho việc pha trộn một lần (ví dụ: pha màu thương hiệu với 20% trắng), trong khi công cụ này tạo ra bảng màu hệ thống thiết kế đầy đủ và có hệ thống. Cả hai cách tiếp cận đều có chỗ đứng tùy thuộc vào trường hợp sử dụng."
+    }
+  ]
+}

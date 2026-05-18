@@ -1,0 +1,59 @@
+{
+  "title": "JSON to YAML Converter — Bidirectional",
+  "shortDescription": "Convert JSON to YAML or YAML to JSON instantly. Edit either side and the other updates automatically. No libraries, fully browser-based.",
+  "description": "Paste JSON on the left and get YAML on the right — or do the reverse. Both panels are editable and sync automatically. Includes Format JSON, Swap, and Copy buttons. Conversion runs entirely in your browser with no data sent to any server.",
+  "metaDescription": "Free bidirectional JSON ↔ YAML converter. Edit either side and the other syncs automatically. Browser-only — your data never leaves the page.",
+  "keywords": ["json to yaml", "yaml to json", "json yaml converter", "convert json yaml", "online yaml converter"],
+  "label.json": "JSON",
+  "label.yaml": "YAML",
+  "action.copy": "Copy",
+  "action.copied": "Copied!",
+  "action.clear": "Clear",
+  "action.swap": "Sync from YAML",
+  "action.formatJson": "Format JSON",
+  "error.invalidJson": "Invalid JSON",
+  "error.invalidYaml": "Invalid or unsupported YAML",
+  "placeholder.json": "Paste JSON here…",
+  "placeholder.yaml": "Paste YAML here…",
+  "article": {
+    "sections": [
+      {
+        "heading": "JSON and YAML: a brief history",
+        "paragraphs": [
+          "JSON (JavaScript Object Notation) was introduced by Douglas Crockford in the early 2000s as a lightweight data interchange format derived from JavaScript's object literal syntax. Its strict grammar — double quotes, no trailing commas, no comments — makes it unambiguous and trivial to parse in any language. JSON quickly displaced XML for web APIs because of its brevity and native fit with JavaScript.",
+          "YAML (YAML Ain't Markup Language) was created in 2001 by Clark Evans and Ingy döt Net with the goal of being more human-friendly. YAML is technically a superset of JSON — every valid JSON document is valid YAML 1.2 — but YAML adds indentation-based structure, comments, multi-line strings, and type inference. This makes YAML more comfortable for humans to write and read, at the cost of a more complex parser."
+        ]
+      },
+      {
+        "heading": "When to use JSON vs YAML",
+        "paragraphs": [
+          "JSON excels wherever machines read the data: REST APIs, localStorage, database records, and inter-service communication. Its simplicity means virtually every programming language has a built-in JSON parser, and the strict syntax rules eliminate ambiguity. If the primary consumer is code, JSON is almost always the right choice.",
+          "YAML shines in configuration files edited by humans: Docker Compose, Kubernetes manifests, GitHub Actions workflows, Ansible playbooks, and many CI/CD tools default to YAML. Comments allow inline documentation, multi-line strings keep long values readable, and the lack of braces makes hierarchical config feel less cluttered. For config files that developers read and edit regularly, YAML's ergonomics pay off."
+        ]
+      },
+      {
+        "heading": "Common pitfalls when converting between formats",
+        "paragraphs": [
+          "YAML's indentation sensitivity is the most common source of errors. Unlike JSON brackets, a single misplaced space changes the structure. YAML also performs automatic type inference: a bare yes converts to boolean true, and 0755 may be parsed as an octal number. When converting JSON strings that look like numbers or booleans to YAML, this converter wraps them in quotes to preserve the original type.",
+          "Special characters present another challenge. JSON requires explicit escaping for quotes and backslashes inside strings; YAML uses quoting rules that differ between flow and block styles. Colons followed by a space, hash signs, and leading special characters must be quoted in YAML. This converter handles these cases, but complex YAML features like anchors, aliases, and multi-line block scalars are outside scope and will surface a clear error."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Paste your JSON or YAML", "text": "Click the JSON panel and paste your JSON, or click the YAML panel and paste your YAML. The opposite panel updates automatically." },
+      { "name": "Edit and iterate", "text": "Both panels are live editors. Change a value in JSON and YAML reflects it immediately, and vice versa." },
+      { "name": "Format and clean up", "text": "Use the Format JSON button to pretty-print messy JSON before converting, making it easier to spot errors." },
+      { "name": "Copy the result", "text": "Click the Copy button above either panel to put its content on your clipboard." }
+    ]
+  },
+  "faq": [
+    { "q": "Is YAML a superset of JSON?", "a": "Yes. YAML 1.2 is a strict superset of JSON, meaning every valid JSON document is valid YAML. Going the other way is not always true: YAML features like comments, anchors, and block scalars have no JSON equivalent." },
+    { "q": "What is YAML mainly used for?", "a": "YAML is most common in configuration files: Docker Compose (docker-compose.yml), Kubernetes manifests, GitHub Actions (.github/workflows), Ansible playbooks, and many static site generators. Its human-readable style suits files that developers edit manually." },
+    { "q": "Which is better for config files — JSON or YAML?", "a": "YAML generally wins for human-edited config because it supports comments and is less noisy. JSON is better for machine-generated or machine-consumed config because the format is stricter and all parsers behave identically. Many tools (ESLint, Prettier, tsconfig) accept both." },
+    { "q": "How does YAML handle special characters?", "a": "Strings containing colons followed by a space, leading special characters ({, [, #, etc.), or values that look like booleans or numbers must be quoted. Single quotes disable all escaping; double quotes use backslash escapes similar to JSON. This converter automatically adds quotes where needed." },
+    { "q": "Is a JSON-to-YAML conversion lossless?", "a": "For the data types JSON supports (strings, numbers, booleans, null, objects, arrays) the conversion is lossless. YAML round-trips correctly for these types. The only potential issue is YAML's type inference on bare values — which is why this converter quotes strings that could be misread." },
+    { "q": "How do I convert YAML to JSON in Python?", "a": "Use the PyYAML library: import yaml, json; data = yaml.safe_load(open('file.yaml')); print(json.dumps(data, indent=2)). The safe_load function avoids executing arbitrary YAML tags, which is important for security." },
+    { "q": "How do I convert JSON to YAML in Node.js?", "a": "With the js-yaml package: const yaml = require('js-yaml'); const fs = require('fs'); const obj = JSON.parse(fs.readFileSync('file.json')); console.log(yaml.dump(obj)). For a zero-dependency approach, write the YAML serializer manually — which is what this converter does." },
+    { "q": "What YAML features are not supported?", "a": "This converter intentionally skips advanced YAML: anchors (&anchor), aliases (*alias), type tags (!!int, !!str), multi-line block scalars (| and >), document separators (---), and flow-style mappings in complex nested positions. These cover under 5% of real-world YAML. For those cases, use a full YAML library." }
+  ]
+}

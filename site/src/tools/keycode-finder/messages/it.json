@@ -1,0 +1,86 @@
+{
+  "title": "Rilevatore di Codici Tasto — keyCode, code, key Properties",
+  "shortDescription": "Premi un tasto per vedere istantaneamente i valori JavaScript keyCode, code, key, which e charCode. Indispensabile per gli sviluppatori web che gestiscono eventi tastiera.",
+  "description": "Clicca sulla zona di rilevamento e premi un tasto per vedere subito le proprietà degli eventi JavaScript: key, code, keyCode, which, charCode e stato dei modificatori (Ctrl, Alt, Shift, Meta). Tutti i 17 valori si aggiornano in tempo reale. Perfetto per il debug dei gestori di eventi tastiera.",
+  "metaDescription": "Rilevatore gratuito di codici tasto. Premi un tasto per vedere i valori JavaScript keyCode, code, key, which e charCode. Ottimo per gli sviluppatori web.",
+  "keywords": ["rilevatore codice tasto", "codice tasto tastiera", "javascript keyCode", "evento tastiera", "which charCode"],
+  "zone": {
+    "label": "Zona di rilevamento — clicca qui e premi un tasto",
+    "prompt": "Clicca qui, poi premi un tasto qualsiasi"
+  },
+  "key": {
+    "space": "Spazio"
+  },
+  "label": {
+    "modifiers": "Modificatori",
+    "none": "Nessuno"
+  },
+  "history": {
+    "title": "Tasti recenti"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Eventi tastiera JavaScript: key, code e keyCode",
+        "paragraphs": [
+          "Quando un utente preme un tasto, il browser genera tre eventi in sequenza: keydown, keypress e keyup. Ogni oggetto evento contiene diverse proprietà che identificano il tasto premuto. Le più importanti sono: key (il carattere o un tasto con nome come 'Enter'), code (la posizione fisica del tasto come 'KeyA' o 'ArrowLeft') e keyCode (un intero legacy, ad es. 65 per 'A' indipendentemente dallo stato di Shift).",
+          "Le proprietà keyCode e which sono deprecate secondo la specifica W3C UI Events, ma sono ancora ampiamente usate nelle basi di codice più vecchie. Le applicazioni moderne dovrebbero preferire key per il significato semantico (cosa produce il tasto) e code per la posizione fisica (quale tasto fisico è stato premuto). Ad esempio, il tasto 'A' produce key='a' o key='A' in base allo Shift, ma sempre code='KeyA' indipendentemente dallo stato."
+        ]
+      },
+      {
+        "heading": "La proprietà location negli eventi tastiera",
+        "paragraphs": [
+          "La proprietà location distingue i tasti che esistono in più posizioni sulla tastiera: Ctrl sinistro vs Ctrl destro, Shift sinistro vs Shift destro, e tasti numerici del tastierino numerico vs cifre della riga superiore. I valori di location sono: 0 (standard), 1 (lato sinistro), 2 (lato destro) e 3 (tastierino numerico). È particolarmente utile per rilevare se l'utente ha premuto il tasto Invio del tastierino numerico o il tasto Invio principale.",
+          "I tasti modificatori (Ctrl, Alt, Shift, Meta) vengono tracciati come flag booleani in ogni evento tastiera, non solo quando queste vengono premute da sole. Questo significa che puoi rilevare combinazioni come Ctrl+C anche se stai principalmente ascoltando per keyCode 67 (C). Il tasto Meta corrisponde al tasto Windows sulle tastiere Windows e al tasto Command su Mac."
+        ]
+      },
+      {
+        "heading": "Casi d'uso pratici per le proprietà degli eventi tastiera",
+        "paragraphs": [
+          "Le scorciatoie da tastiera nelle web app usano una combinazione di code (tasto fisico) e flag modificatori per rilevare combinazioni come Ctrl+S (salva) o Ctrl+Shift+P (riquadro comandi). Usare code invece di key garantisce che la scorciatoia funzioni indipendentemente dal layout della tastiera: su un layout AZERTY francese, il tasto alla posizione 'A' produce un carattere diverso, ma code è sempre 'KeyA'.",
+          "I controlli di gioco tipicamente usano code per mappare WASD o i tasti freccia ai movimenti, dato che conta la posizione fisica e non il carattere prodotto. Gli strumenti di accessibilità possono ascoltare Tab (code='Tab') e Enter (code='Enter') per garantire che gli elementi interattivi possano essere attivati senza mouse. Questo strumento consente di cercare rapidamente i valori esatti delle proprietà per qualsiasi tasto prima di scrivere il codice del gestore di eventi."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Clicca la zona di rilevamento", "text": "Clicca o tocca all'interno del riquadro tratteggiato nella parte superiore dello strumento per metterlo a fuoco." },
+      { "name": "Premi un tasto qualsiasi", "text": "Premi un qualsiasi tasto sulla tastiera: lettere, numeri, tasti funzione, frecce o tasti speciali come Invio e Escape." },
+      { "name": "Leggi le proprietà", "text": "Tutte le proprietà dell'evento tastiera JavaScript (key, code, keyCode, which, charCode, location, modificatori) appaiono istantaneamente sotto la zona." },
+      { "name": "Controlla le combinazioni di modificatori", "text": "Tieni premuto Ctrl, Alt, Shift o Meta mentre premi un tasto per vedere come cambiano i flag modificatori nella riga Modificatori." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual è la differenza tra keyCode e key?",
+      "a": "keyCode è una proprietà intera deprecata che assegna un numero a ogni tasto (ad es. 65 per 'A', 13 per Invio). key è il sostituto moderno che restituisce il carattere prodotto ('a' o 'A') o una stringa tasto con nome ('Enter', 'ArrowLeft'). Il nuovo codice dovrebbe usare key o code invece di keyCode."
+    },
+    {
+      "q": "Cos'è la proprietà code?",
+      "a": "code identifica il tasto fisico premuto, indipendentemente dal layout della tastiera o dallo stato dei modificatori. 'KeyA' si riferisce sempre al tasto nella posizione 'A' su una tastiera QWERTY, anche se l'utente è passato a un layout AZERTY dove quel tasto produce 'Q'. Usa code per le scorciatoie da tastiera che devono funzionare indipendentemente dal locale."
+    },
+    {
+      "q": "Perché keyCode è deprecato?",
+      "a": "keyCode era incoerente tra browser e sistemi operativi, aveva valori diversi per gli stessi tasti e non gestiva bene i caratteri non ASCII. La specifica W3C UI Events lo ha deprecato a favore di key (per carattere/tasto con nome) e code (per posizione fisica). Sia keyCode che which sono ora contrassegnati come legacy nella specifica."
+    },
+    {
+      "q": "Cosa significa il valore di location?",
+      "a": "Location distingue i tasti che appaiono in più posizioni. 0 = standard (area principale), 1 = tasto modificatore sinistro (es. Shift sinistro), 2 = tasto modificatore destro (es. Ctrl destro), 3 = tastierino numerico. Questo consente di distinguere il 5 del tastierino numerico (code='Numpad5', location=3) dal 5 della riga superiore (code='Digit5', location=0)."
+    },
+    {
+      "q": "Come rilevo Ctrl+S o altre scorciatoie in JavaScript?",
+      "a": "Ascolta l'evento keydown e controlla sia key/code che i flag modificatori: `if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveDocument(); }`. Usare e.key === 's' cattura sia maiuscole che minuscole, poiché lo stato del modificatore non cambia il valore di key per i tasti letterali."
+    },
+    {
+      "q": "Cos'è la proprietà charCode?",
+      "a": "charCode veniva restituita dall'evento keypress legacy e forniva il punto di codice Unicode del carattere digitato (ad es. 65 per 'A'). È ora deprecata insieme all'evento keypress stesso. Negli eventi keydown/keyup, charCode è sempre 0. Usa invece key o inputType nell'evento input."
+    },
+    {
+      "q": "Come distinguo il tasto Invio del tastierino numerico da quello principale?",
+      "a": "Entrambi i tasti producono key='Enter', ma differiscono in code: il tasto Invio principale è code='Enter' con location=0, mentre quello del tastierino numerico è code='NumpadEnter' con location=3. Controlla e.code === 'Enter' per il tasto principale o e.code === 'NumpadEnter' per la versione del tastierino numerico."
+    },
+    {
+      "q": "Cos'è il tasto Meta?",
+      "a": "Il tasto Meta è il tasto Windows sulle tastiere Windows (⊞) e il tasto Command sulle tastiere Mac (⌘). Negli eventi tastiera, è tracciato dal flag booleano metaKey e produce key='Meta' quando premuto da solo. Il suo code è 'MetaLeft' o 'MetaRight'."
+    }
+  ]
+}

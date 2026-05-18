@@ -1,0 +1,101 @@
+{
+  "title": "CSS-Farbname-Finder — Nächste benannte Farbe aus Hex-Wert",
+  "shortDescription": "Geben Sie eine Hex-Farbe ein, um den nächsten CSS-Farbnamen zu finden. Zeigt die 5 nächsten benannten Farben mit exakten Hex-Werten und Distanzpunktzahl.",
+  "description": "Geben Sie einen Hex-Farbcode ein oder verwenden Sie den Farbwähler, um die nächste CSS4-Farbe mit Namen zu finden. Das Tool vergleicht Ihre Farbe mit allen 148 Standard-CSS-Farbnamen mittels wahrnehmungsbasierter Farbdistanz und listet die 5 nächsten auf. Ideal zum Finden lesbarer Farbnamen für Code und Dokumentation.",
+  "metaDescription": "Kostenloser CSS-Farbname-Finder. Geben Sie eine Hex-Farbe ein, um die nächsten CSS-Farbnamen zu finden. Exakte Hex-Werte und wahrnehmungsbasierte Distanz für die",
+  "keywords": [
+    "css farbname finder",
+    "nächster farbname",
+    "hex zu farbname",
+    "farbname aus hex",
+    "css benannte farben"
+  ],
+  "input": {
+    "picker": "Farbwähler",
+    "hex": "Hex-Farbe"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie eine gültige Hex-Farbe ein (z. B. #3B82F6)."
+  },
+  "result": {
+    "exact": "Genaue Übereinstimmung gefunden:",
+    "nearest": "5 nächste CSS-Farbnamen:"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "CSS-Farbnamen: Eine kurze Geschichte",
+        "paragraphs": [
+          "CSS-Farbnamen haben sich durch mehrere Spezifikationsversionen entwickelt. Das ursprüngliche CSS 1 (1996) definierte nur 16 Grundfarben: aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, purple, red, silver, teal, white und yellow. CSS 2 fügte orange hinzu. CSS 3 erweiterte die Liste auf 147 Farben basierend auf der X11-Farbliste, die selbst auf die X Window System-Farbdatenbank zurückgeht, die in den 1980er Jahren am MIT gepflegt wurde.",
+          "CSS Color Level 4 fügte einen weiteren Namen hinzu: rebeccapurple (#663399). Diese Farbe wurde zu Ehren von Rebecca Alissa Meyer hinzugefügt, der Tochter des Webentwicklers Eric Meyer, die 2014 im Alter von 6 Jahren an einem Hirntumor starb. Ihre Lieblingsfarbe war Lila, und die CSS-Arbeitsgruppe stimmte dafür, ihren Namen als Gedenkstein in den Standard aufzunehmen. Mit dieser Ergänzung definiert die CSS4-Spezifikation genau 148 benannte Farben, die vollständige Menge, die dieses Tool durchsucht."
+        ]
+      },
+      {
+        "heading": "Wie Farbdistanz berechnet wird",
+        "paragraphs": [
+          "Einfaches Vergleichen von RGB-Werten mit euklidischer Distanz entspricht nicht gut der menschlichen Wahrnehmung: Unsere Augen sind empfindlicher für Grünunterschiede als für Blau, und die Empfindlichkeit ändert sich im Helligkeitsbereich. Dieses Tool verwendet eine gewichtete euklidische Formel basierend auf der 'Colour metric' von Thiadmer Riemersma, die die Gewichte der R-, G- und B-Kanäle basierend auf dem mittleren Rotwert anpasst. Das Ergebnis ist viel näher daran, wie Menschen tatsächlich Farbunterschiede wahrnehmen.",
+          "Die Formel lautet: ΔE = √[(2 + R̄/256)·ΔR² + 4·ΔG² + (2 + (255-R̄)/256)·ΔB²], wobei R̄ die durchschnittliche Rotkomponente der beiden Farben ist. Dies ist eine vereinfachte Wahrnehmungsmetrik; die professionelle Farbwissenschaft verwendet CIELAB-ΔE-Berechnungen, die Helligkeit, Chroma und Farbton separat berücksichtigen, aber für praktische Benennungszwecke gibt die vereinfachte Metrik für die meisten Farben intuitive Ergebnisse."
+        ]
+      },
+      {
+        "heading": "Wann benannte Farben in CSS verwenden",
+        "paragraphs": [
+          "Benannte Farben sind am nützlichsten für schnelles Prototyping, Code-Lesbarkeit und Debugging. `color: tomato` zu schreiben ist schneller einzutippen und leichter zu merken als `color: #FF6347`. Sie sind auch in Bildungskontexten, Datenvisualisierung (wo ein semantischer Name hilft, Bedeutung zu vermitteln) und in Designsystemen nützlich, wo ein begrenzter Satz benannter Farben die Palette bildet. Das W3C empfiehlt die Verwendung benannter Farben in Beispielen und Tutorials zur Verbesserung der Lesbarkeit.",
+          "In Produktions-Designsystemen sind benannte Farben selten die primäre Palette: Benutzerdefinierte Hex-Werte, HSL oder Design-Token-Namen werden bevorzugt. Aber die nächste benannte Farbe zu einem benutzerdefinierten Wert zu kennen ist nützlich für Dokumentation, Farbkommentare in Code-Reviews und wenn Sie einen schnellen ungefähren Namen brauchen, um verbal über eine Farbe zu kommunizieren. Dieses Tool überbrückt die Lücke, indem es den CSS-Namen findet, der eine beliebige Hex-Farbe am besten beschreibt."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Farbe eingeben oder auswählen",
+        "text": "Verwenden Sie den Farbwähler oder geben Sie einen beliebigen Hex-Code (mit oder ohne #-Präfix) in das Eingabefeld ein."
+      },
+      {
+        "name": "Nächste Treffer lesen",
+        "text": "Das Tool zeigt die 5 nächsten CSS-Farbnamen nach wahrnehmungsbasierter Distanz geordnet. Das erste Ergebnis ist der beste Treffer."
+      },
+      {
+        "name": "Genau vs. Näherung prüfen",
+        "text": "Wenn Ihre Farbe eine exakte CSS-Farbe ist, erscheint eine spezielle 'Genaue Übereinstimmung'-Meldung. Andernfalls sehen Sie die nächsten Alternativen."
+      },
+      {
+        "name": "In Code verwenden",
+        "text": "Klicken Sie auf den Farbnamen, um ihn direkt in Ihrem CSS zu verwenden, oder nehmen Sie den exakten Hex-Wert neben jedem Farbmuster für präzise Farbsteuerung."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Wie viele benannte CSS-Farben gibt es?",
+      "a": "CSS Color Level 4 definiert 148 benannte Farben. Dazu gehören die ursprünglichen 16 Grundfarben aus CSS 1, orange aus CSS 2, 130 X11-basierte Farben aus CSS 3 und rebeccapurple, das in CSS 4 zu Ehren von Rebecca Meyer hinzugefügt wurde. Beachten Sie, dass aqua und cyan Aliasse sind (gleicher Hex #00FFFF), ebenso fuchsia und magenta (#FF00FF)."
+    },
+    {
+      "q": "Unterscheiden CSS-Farbnamen Groß- und Kleinschreibung?",
+      "a": "Nein. CSS-Farbnamen unterscheiden laut Spezifikation nicht zwischen Groß- und Kleinschreibung. 'Red', 'RED', 'red' und 'rEd' beziehen sich alle auf dieselbe Farbe. Konventionell ist Kleinschreibung der häufigste Stil im modernen CSS."
+    },
+    {
+      "q": "Was ist rebeccapurple?",
+      "a": "rebeccapurple (#663399) wurde CSS Color Level 4 zum Gedenken an Rebecca Alissa Meyer hinzugefügt, Tochter des CSS-Experten Eric Meyer, die 2014 im Alter von 6 Jahren an einem Hirntumor starb. Ihre Lieblingsfarbe war Lila, und die CSS-Arbeitsgruppe verewigte sie, indem sie die Farbe nach ihr benannte. Es war die einzige in CSS 4 hinzugefügte Farbe und die erste neue benannte Farbe seit CSS 2."
+    },
+    {
+      "q": "Warum decken benannte CSS-Farben nicht alle möglichen Farben ab?",
+      "a": "Die 148 benannten Farben sind ein kuratierter Satz basierend auf historischen X11-Farblisten. Sie decken häufige Farbtöne ab, lassen aber viele Farben unbenannt: Es gibt keinen CSS-Namen für die meisten Blaugrün-, Rosa-Orange- oder Braun-Rot-Schattierungen. Für präzise Designarbeit werden stattdessen Hex-Codes, rgb() oder hsl() verwendet."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen gray und grey in CSS?",
+      "a": "Beide Schreibweisen werden in CSS akzeptiert. 'gray' ist die offizielle amerikanisch-englische Schreibweise in der Spezifikation, aber 'grey' (britisches Englisch) ist auch ein gültiges Synonym für dieselbe Farbe (#808080). Ebenso sind 'lightgray'/'lightgrey', 'darkgray'/'darkgrey', 'dimgray'/'dimgrey', 'slategray'/'slategrey' und 'darkslategray'/'darkslategrey' alle gültig."
+    },
+    {
+      "q": "Wie genau ist die nächste Farbübereinstimmung?",
+      "a": "Die Übereinstimmung verwendet eine Wahrnehmungsdistanzformel, die RGB-Kanäle nach der Empfindlichkeit des menschlichen Auges gewichtet. Für die meisten alltäglichen Farben — gesättigte Rottöne, Blau, Grün — fühlt sich die nächste benannte Farbe intuitiv richtig an. Für sehr gedämpfte, dunkle oder bräunliche Farben ist die menschliche Wahrnehmung variabler, und die 'nächste' benannte Farbe kann subjektiv unpassend wirken. Der angezeigte Distanzwert (Δ) hilft Ihnen zu beurteilen, wie nah die Übereinstimmung ist: kleiner ist besser."
+    },
+    {
+      "q": "Kann ich dies verwenden, um zugängliche Farbnamen für Alt-Text zu finden?",
+      "a": "Ja. Dieses Tool ist nützlich zum Schreiben von Farbnamen in Alt-Text, Dokumentation oder Design-Kommentaren. Wenn Sie die Farbe eines UI-Elements einem Leser beschreiben müssen, der es nicht sehen kann, bietet die nächste CSS-Farbe einen weithin erkennbaren Namen. Für sehr spezifische Farbtöne kombinieren Sie den CSS-Namen mit einem Modifikator (z. B. 'Dunkles Blaugrün' für #008080)."
+    },
+    {
+      "q": "Welche Hex-Farben haben exakte CSS-Namens-Übereinstimmungen?",
+      "a": "Jede der 148 Standard-CSS-Farbnamen erzeugt eine exakte Übereinstimmung. Häufige Beispiele: red = #FF0000, blue = #0000FF, white = #FFFFFF, black = #000000, coral = #FF7F50, tomato = #FF6347, skyblue = #87CEEB. Sie können jeden Hex-Wert überprüfen, indem Sie ihn eingeben und nach der Meldung 'Genaue Übereinstimmung' suchen."
+    }
+  ]
+}

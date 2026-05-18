@@ -1,0 +1,86 @@
+{
+  "title": "キーコード確認ツール — keyCode, code, key プロパティ",
+  "shortDescription": "キーを押すだけでJavaScriptのkeyCode、code、key、which、charCodeの値を即座に表示。キーボードイベント処理に必須のツール。",
+  "description": "検出ゾーンをクリックしてキーを押すと、JavaScriptイベントプロパティ（key、code、keyCode、which、charCode、修飾キー状態）が即座に表示されます。17項目すべてがリアルタイムで更新されます。キーボードイベントハンドラのデバッグに最適です。",
+  "metaDescription": "キーボードキーコード確認ツール。キーを押してkeyCode、code、key、which、charCodeの値を確認。Web開発者に必須。",
+  "keywords": ["キーコード確認", "キーボード キーコード", "javascript keyCode", "キーイベント", "which charCode"],
+  "zone": {
+    "label": "キー検出ゾーン — ここをクリックしてからキーを押してください",
+    "prompt": "ここをクリックしてからキーを押してください"
+  },
+  "key": {
+    "space": "スペース"
+  },
+  "label": {
+    "modifiers": "修飾キー",
+    "none": "なし"
+  },
+  "history": {
+    "title": "最近のキー"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "JavaScriptのキーボードイベント：key、code、keyCode",
+        "paragraphs": [
+          "ユーザーがキーを押すと、ブラウザはkeydown、keypress、keyupの3つのイベントを順番に発火します。各イベントオブジェクトには、押されたキーを識別するためのプロパティが含まれています。主なものは：key（文字や「Enter」のような名前付きキー）、code（「KeyA」や「ArrowLeft」などの物理的なキー位置）、keyCode（Shiftキーの状態に関係なく「A」なら65を返すレガシーな整数値）の3つです。",
+          "keyCodeとwhichプロパティはW3C UIイベント仕様で非推奨となっていますが、古いコードベースではまだ広く使われています。モダンなアプリケーションでは、意味的な意味（キーが何を生成するか）にはkey、物理的な位置（どの物理キーが押されたか）にはcodeを使うことが推奨されます。例えば、「A」キーはShiftの状態によってkey='a'かkey='A'を生成しますが、code='KeyA'は常に変わりません。"
+        ]
+      },
+      {
+        "heading": "キーボードイベントのlocationプロパティ",
+        "paragraphs": [
+          "locationプロパティは、キーボード上に複数存在するキーを区別します。例えば左Ctrlと右Ctrl、左Shiftと右Shift、テンキーの数字キーと上段の数字キーなどです。値は0（標準）、1（左側）、2（右側）、3（テンキー）の4種類です。テンキーのEnterキーとメインのEnterキーを区別する際に特に便利です。",
+          "修飾キー（Ctrl、Alt、Shift、Meta）は、それらのキー単体が押されたときだけでなく、すべてのキーボードイベントでbooleanフラグとして追跡されます。つまり、keyCode 67（C）を主に監視している場合でも、Ctrl+Cのような組み合わせを検出できます。MetaキーはWindowsキーボードのWindowsキー（⊞）、Macキーボードのコマンドキー（⌘）に対応します。"
+        ]
+      },
+      {
+        "heading": "キーボードイベントプロパティの実践的な活用例",
+        "paragraphs": [
+          "Webアプリのキーボードショートカットでは、codeプロパティ（物理キー）と修飾フラグを組み合わせて、Ctrl+S（保存）やCtrl+Shift+P（コマンドパレット）などを検出します。keyではなくcodeを使うことで、キーボードロケールに関係なくショートカットが動作します。フランス語のAZERTYレイアウトでは「A」の位置のキーが異なる文字を生成しますが、codeは常に「KeyA」のままです。",
+          "ゲームのコントロールでは通常、文字よりも物理的な位置が重要なため、WASDや矢印キーへのマッピングにcodeを使います。アクセシビリティツールでは、マウスなしで操作できるようTab（code='Tab'）とEnter（code='Enter'）を監視することがあります。このツールを使えば、イベントハンドラを書く前に任意のキーのプロパティ値を素早く確認できます。"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "検出ゾーンをクリック", "text": "ツール上部の破線ボックスをクリックまたはタップしてフォーカスを当てます。" },
+      { "name": "キーを押す", "text": "文字、数字、ファンクションキー、矢印キー、EnterやEscapeなどの特殊キーなど、キーボードの任意のキーを押します。" },
+      { "name": "プロパティを確認", "text": "JavaScriptのキーボードイベントプロパティ（key、code、keyCode、which、charCode、location、修飾キー）がゾーンの下に即座に表示されます。" },
+      { "name": "修飾キーの組み合わせを確認", "text": "Ctrl、Alt、Shift、Metaを押しながらキーを押すと、修飾フラグがどのように変わるかを確認できます。" }
+    ]
+  },
+  "faq": [
+    {
+      "q": "keyCodeとkeyの違いは何ですか？",
+      "a": "keyCodeは非推奨の整数プロパティで、各キーに数値を割り当てます（例：「A」は65、Enterは13）。keyはその後継で、生成された文字（「a」または「A」）や名前付きキー文字列（「Enter」、「ArrowLeft」）を返します。新しいコードではkeyCodeの代わりにkeyまたはcodeを使うべきです。"
+    },
+    {
+      "q": "codeプロパティとは何ですか？",
+      "a": "codeはキーボードレイアウトや修飾キーの状態に関係なく、押された物理キーを識別します。「KeyA」は常にQWERTYキーボードの「A」の位置のキーを指します。ユーザーがAZERTYレイアウトに切り替えていても、そのキーが「Q」を生成していても同様です。ロケールに関係なく動作するキーボードショートカットにはcodeを使いましょう。"
+    },
+    {
+      "q": "keyCodeが非推奨になった理由は？",
+      "a": "keyCodeはブラウザやOSによって値が一貫せず、同じキーで異なる値が返ることがあり、非ASCII文字の処理も不十分でした。W3C UIイベント仕様では、文字・名前付きキー用にkey、物理位置用にcodeを優先し、keyCodeを非推奨としました。keyCodeとwhichの両方が仕様でレガシーとしてマークされています。"
+    },
+    {
+      "q": "locationの値はどういう意味ですか？",
+      "a": "locationは複数の位置に存在するキーを区別します。0=標準（メインエリア）、1=左側の修飾キー（例：左Shift）、2=右側の修飾キー（例：右Ctrl）、3=テンキーです。これにより、テンキーの5（code='Numpad5', location=3）と上段の5（code='Digit5', location=0）を区別できます。"
+    },
+    {
+      "q": "JavaScriptでCtrl+Sなどのショートカットを検出するには？",
+      "a": "keydownイベントを監視し、key/codeと修飾フラグの両方を確認します：`if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveDocument(); }`。e.key === 's'とすることで、大文字・小文字の両方をキャッチできます（修飾キーの状態は文字キーのkey値を変えないため）。"
+    },
+    {
+      "q": "charCodeプロパティとは何ですか？",
+      "a": "charCodeはレガシーなkeypress イベントが返すプロパティで、入力された文字のUnicodeコードポイントを返していました（例：「A」は65）。keypressイベント自体とともに非推奨となっています。keydown/keyupイベントではcharCodeは常に0です。代わりにkeyやinputイベントのinputTypeを使用してください。"
+    },
+    {
+      "q": "テンキーとメインキーボードのEnterを区別するには？",
+      "a": "どちらのキーもkey='Enter'を生成しますが、codeが異なります。メインEnterキーはcode='Enter'でlocation=0、テンキーのEnterキーはcode='NumpadEnter'でlocation=3です。メインキーにはe.code === 'Enter'、テンキー版にはe.code === 'NumpadEnter'を確認してください。"
+    },
+    {
+      "q": "Metaキーとは何ですか？",
+      "a": "MetaキーはWindowsキーボードのWindowsキー（⊞）、Macキーボードのコマンドキー（⌘）です。キーボードイベントでは、metaKeyというbooleanフラグで追跡され、単独で押された場合はkey='Meta'を返します。codeは「MetaLeft」または「MetaRight」のいずれかです。"
+    }
+  ]
+}

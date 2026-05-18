@@ -1,0 +1,94 @@
+{
+  "title": "Kalkulator Izin File Unix (chmod)",
+  "shortDescription": "Aktifkan izin baca/tulis/eksekusi untuk pemilik, grup, dan lainnya. Lihat seketika nilai oktal (755, 644…) dan notasi simbolik (rwxr-xr-x).",
+  "description": "Kalkulator chmod interaktif. Centang atau hilangkan centang bit izin untuk pemilik, grup, dan lainnya, lalu baca nomor oktal dan notasi simbolik secara real time. Atau ketik nomor oktal untuk mendekodenya.",
+  "metaDescription": "Kalkulator izin Unix gratis. Aktifkan baca/tulis/eksekusi untuk pemilik/grup/lainnya dan dapatkan nilai oktal (755, 644) serta notasi simbolik (rwxr-xr-x) secara instan.",
+  "keywords": ["kalkulator izin unix", "kalkulator chmod", "izin oktal", "izin file linux", "izin rwx"],
+  "input.octal": "Nilai oktal",
+  "input.symbolic": "Simbolik",
+  "label.owner": "Pemilik",
+  "label.group": "Grup",
+  "label.other": "Lainnya",
+  "label.read": "Baca (r)",
+  "label.write": "Tulis (w)",
+  "label.execute": "Eksekusi (x)",
+  "presets": "Preset Umum",
+  "error.invalidOctal": "Masukkan 1–3 digit oktal (hanya 0–7).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Asal-usul notasi oktal dalam izin Unix",
+        "paragraphs": [
+          "Izin file Unix dirancang oleh Ken Thompson pada 1969 sebagai bagian dari Unix orisinal di PDP-7. Setiap file menyimpan sembilan bit izin di inode-nya: tiga untuk pemilik, tiga untuk grup, dan tiga untuk semua pengguna lain. Mengelompokkan setiap tiga bit menjadi satu digit oktal (0–7) adalah pilihan yang paling alami: satu digit per entitas, tiga digit total. Konvensi oktal ini dikodifikasi dalam POSIX.1-1988 dan tidak berubah di semua sistem Linux, macOS, BSD, maupun sistem mirip Unix.",
+          "Bentuk simbolik (rwxr-xr-x) muncul dalam keluaran `ls -l` sejak distribusi Unix pertama dan menjadi pelengkap yang mudah dibaca dari angka oktal. POSIX mendefinisikan kedua representasi sebagai normatif. `chmod u+x file` menggunakan bentuk simbolik; `chmod 755 file` menggunakan bentuk oktal. Keduanya menghasilkan operasi kernel yang sama: mengatur bit tertentu di field mode inode."
+        ]
+      },
+      {
+        "heading": "Arti setiap bit izin",
+        "paragraphs": [
+          "Untuk file biasa: baca (r=4) mengizinkan membuka dan membaca isi file; tulis (w=2) mengizinkan mengubah atau memotong file; eksekusi (x=1) mengizinkan menjalankannya sebagai program. Setiap bit bersifat independen. Digit oktal setiap entitas adalah jumlah bit yang diaktifkan: rwx=7, r-x=5, r--=4.",
+          "Untuk direktori, maknanya berubah. Baca (r) mengizinkan membuat daftar isi direktori dengan `ls`. Eksekusi (x) — disebut juga 'search bit' — mengizinkan masuk dengan `cd` dan mengakses file berdasarkan nama. Tulis (w) mengizinkan membuat, menghapus, atau mengubah nama file di dalam direktori. Direktori dengan baca tanpa eksekusi hampir tidak berguna: nama file terlihat tapi tidak bisa dibuka. Direktori tipikal memiliki izin 755."
+        ]
+      },
+      {
+        "heading": "Pola izin umum dan pertimbangan keamanan",
+        "paragraphs": [
+          "644 (rw-r--r--) adalah standar untuk file konfigurasi, HTML, dan teks: pemilik dapat mengedit, yang lain hanya membaca. 755 (rwxr-xr-x) adalah standar untuk direktori dan skrip yang dapat dieksekusi: pemilik mengelola konten, yang lain dapat menjelajah dan membaca. 600 (rw-------) dan 700 (rwx------) membatasi akses hanya untuk pemilik — cocok untuk kunci SSH pribadi dan file kata sandi. Jangan pernah gunakan 777 pada file yang terekspos ke web; memberi akses tulis ke 'lainnya' berarti proses apa pun di sistem dapat menimpa file tersebut.",
+          "umask menentukan izin default untuk file dan direktori baru. umask 022 (umum di sebagian besar sistem) membuat file baru mendapat 644 dan direktori baru mendapat 755, karena bit umask dikurangi dari default 666 (file) dan 777 (direktori). Sistem yang dikeraskan keamanannya sering menggunakan umask 027 atau 077."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Centang kotak izin",
+        "text": "Klik kotak baca, tulis, atau eksekusi untuk pemilik, grup, atau lainnya. Nilai oktal dan string simbolik langsung diperbarui."
+      },
+      {
+        "name": "Ketik angka oktal untuk mendekode",
+        "text": "Klik kolom input oktal dan ketik angka 1–3 digit (0–7 per digit). Kotak centang diperbarui untuk menampilkan bit izin yang didekode."
+      },
+      {
+        "name": "Gunakan preset",
+        "text": "Klik salah satu tombol preset (755, 644, 600, 700, 777) untuk langsung beralih ke set izin yang sering digunakan."
+      },
+      {
+        "name": "Salin perintah chmod",
+        "text": "Perintah chmod di bagian bawah menampilkan sintaks tepat untuk menerapkan izin ini. Ganti 'filename' dengan jalur file atau direktori Anda yang sebenarnya."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apa arti 755?",
+      "a": "755 berarti pemilik memiliki baca+tulis+eksekusi (7=4+2+1), grup memiliki baca+eksekusi (5=4+1), dan lainnya memiliki baca+eksekusi (5=4+1). Ini adalah izin standar untuk direktori dan skrip yang dapat dieksekusi."
+    },
+    {
+      "q": "Apa arti 644?",
+      "a": "644 berarti pemilik memiliki baca+tulis (6=4+2), grup hanya membaca (4), dan lainnya hanya membaca (4). Ini adalah default untuk file biasa seperti konfigurasi, halaman web, dan dokumen teks."
+    },
+    {
+      "q": "Mengapa direktori memerlukan izin eksekusi?",
+      "a": "Untuk direktori, bit eksekusi adalah 'search bit'. Tanpanya, Anda tidak bisa cd ke direktori atau membuka file di dalamnya melalui jalur, meskipun memiliki bit baca. Direktori dengan baca tanpa eksekusi hampir tidak berguna dalam praktik."
+    },
+    {
+      "q": "Apa perbedaan pemilik, grup, dan lainnya?",
+      "a": "Pemilik adalah akun pengguna yang memiliki file (ditetapkan saat pembuatan atau diubah dengan chown). Grup adalah grup yang ditetapkan ke file (diubah dengan chgrp); pengguna mana pun dalam grup tersebut mendapatkan izin grup. Lainnya mencakup semua pengguna di sistem yang bukan pemilik maupun anggota grup."
+    },
+    {
+      "q": "Apa itu SUID dan SGID?",
+      "a": "SUID (Set User ID) dan SGID (Set Group ID) adalah bit izin khusus di luar sembilan bit standar. Saat SUID diatur pada file eksekusi, file tersebut berjalan dengan hak istimewa pemilik file, bukan pemanggil — digunakan oleh perintah seperti passwd dan sudo. SGID pada direktori membuat file baru mewarisi grup direktori. Dalam bentuk simbolik tampil sebagai 's' (contoh: rwsr-xr-x) dan menambahkan 4000 atau 2000 pada nilai oktal (contoh: 4755)."
+    },
+    {
+      "q": "Apakah chmod 777 berbahaya?",
+      "a": "Ya, terutama di sistem bersama atau server web. 777 memberikan baca, tulis, dan eksekusi penuh kepada semua pengguna di sistem. Proses apa pun — termasuk aplikasi web yang disusupi — dapat menimpa atau mengeksekusi file. Di server web, ini sering memungkinkan eksekusi kode sembarangan. Batasi izin hanya pada yang diperlukan."
+    },
+    {
+      "q": "Bagaimana cara menggunakan perintah chmod?",
+      "a": "Gunakan `chmod OKTAL jalur` untuk satu file, atau `chmod -R OKTAL direktori` untuk menerapkan secara rekursif. Contoh: `chmod 644 index.html` atau `chmod 755 /var/www`. Anda juga dapat menggunakan sintaks simbolik: `chmod u+x script.sh` menambahkan eksekusi untuk pemilik tanpa mengubah bit lainnya."
+    },
+    {
+      "q": "Apa itu umask dan bagaimana kaitannya dengan izin?",
+      "a": "umask adalah masker yang diterapkan pada izin default saat membuat file atau direktori baru. umask 022 menghapus tulis dari grup dan lainnya, sehingga file baru mendapat 644 dan direktori baru mendapat 755. Jalankan `umask` di shell untuk melihat pengaturan saat ini, dan `umask NILAI` untuk mengubahnya untuk sesi saat ini."
+    }
+  ]
+}

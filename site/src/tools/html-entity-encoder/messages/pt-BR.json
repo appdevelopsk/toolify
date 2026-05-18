@@ -1,0 +1,98 @@
+{
+  "title": "Codificador e Decodificador de Entidades HTML",
+  "shortDescription": "Codifique caracteres especiais em entidades HTML ou decodifique entidades HTML de volta em texto. Suporta entidades nomeadas (&amp;), numéricas decimais (&#65;) e hexadecimais (&#x41;).",
+  "description": "Cole texto para codificar caracteres especiais como entidades HTML, ou cole HTML com entidades para decodificá-las de volta em texto legível. Escolha entre entidades nomeadas (&amp;, &lt;, &copy;), numéricas decimais (&#169;) ou hexadecimais (&#xA9;). Opcionalmente, codifique todos os caracteres não-ASCII para máxima compatibilidade.",
+  "metaDescription": "Codificador e decodificador de entidades HTML gratuito. Converta caracteres em &amp; &lt; &gt; e entidades nomeadas, numéricas ou hex. Decodificação instantânea.",
+  "keywords": ["codificador de entidades HTML", "entidades HTML", "codificar HTML", "decodificar entidades HTML", "caracteres especiais HTML"],
+  "mode": {
+    "encode": "Codificar",
+    "decode": "Decodificar"
+  },
+  "encodeMode": {
+    "named": "Nomeada (&amp;)",
+    "numeric": "Numérica (&#38;)",
+    "hex": "Hex (&#x26;)"
+  },
+  "option": {
+    "encodeAll": "Codificar todos os não-ASCII"
+  },
+  "label": {
+    "inputText": "Texto de entrada",
+    "inputEncoded": "HTML codificado",
+    "outputEncoded": "Saída codificada",
+    "outputText": "Texto decodificado"
+  },
+  "placeholder": {
+    "text": "Digite ou cole texto com caracteres especiais como <, >, &, © …",
+    "encoded": "Cole HTML com entidades como &amp;, &lt;, &#169; …"
+  },
+  "action": {
+    "copy": "Copiar",
+    "swap": "Trocar"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "O que são entidades HTML?",
+        "paragraphs": [
+          "Entidades HTML são códigos de texto especiais usados para representar caracteres que têm significado especial em HTML ou que não podem ser digitados diretamente. Os mais importantes são os cinco caracteres reservados na sintaxe HTML: & (e comercial) → &amp;, < (menor que) → &lt;, > (maior que) → &gt;, \" (aspas duplas) → &quot; e ' (apóstrofo) → &apos;. Se esses caracteres aparecerem no conteúdo de texto sem codificação, o navegador pode interpretá-los como marcação HTML, causando erros de renderização ou vulnerabilidades de segurança.",
+          "Entidades HTML existem em três formatos: entidades nomeadas usam um nome descritivo (&copy; para ©, &euro; para €), referências numéricas decimais de caracteres usam um número de ponto de código (&#169; para ©), e referências hexadecimais de caracteres usam um código hex (&#xA9; para ©). Os três formatos são equivalentes — o navegador renderiza o mesmo caractere independentemente do formato usado. Entidades nomeadas são as mais legíveis; entidades numéricas são as mais universais pois funcionam para qualquer caractere Unicode."
+        ]
+      },
+      {
+        "heading": "Quando codificar entidades HTML",
+        "paragraphs": [
+          "Você deve codificar no mínimo os cinco caracteres HTML reservados (&, <, >, \", ') sempre que aparecerem em conteúdo de texto ou valores de atributos. Deixar de codificá-los é uma fonte de vulnerabilidades de Cross-Site Scripting (XSS): se a entrada do usuário for inserida em HTML sem codificação, um invasor pode injetar tags de script ou manipuladores de eventos. Frameworks modernos como React, Vue e Angular codificam HTML automaticamente por padrão — innerHTML é a principal exceção onde a codificação manual ainda é crítica.",
+          "Além dos cinco obrigatórios, você também pode querer codificar caracteres não-ASCII para ambientes que não lidam de forma confiável com UTF-8: HTML de e-mail, sistemas CMS legados ou documentos para máxima compatibilidade. A opção «Codificar todos os não-ASCII» converte cada caractere acima do ponto de código 127 em uma entidade numérica, garantindo que a saída seja ASCII puro enquanto preserva a aparência visual quando renderizada. Para arquivos HTML UTF-8 modernos, codificar não-ASCII é opcional — declarar o charset corretamente é suficiente."
+        ]
+      },
+      {
+        "heading": "Entidades HTML vs codificação de URL vs Base64",
+        "paragraphs": [
+          "Entidades HTML, codificação de URL (codificação percentual) e Base64 são três esquemas de codificação diferentes para contextos distintos. Entidades HTML (como &amp;) são usadas dentro de documentos HTML para representar caracteres com segurança. Codificação de URL (como %26 para &) é usada em strings de consulta e URLs para codificar caracteres com significado especial em uma URL. Base64 codifica dados binários arbitrários como texto ASCII, usado para URIs de dados e anexos de e-mail.",
+          "Um erro comum é misturá-los: codificar em URL conteúdo HTML ou codificar em HTML URLs. Por exemplo, um e comercial em uma string de consulta de URL precisa de codificação percentual (%26), não de codificação de entidade HTML (&amp;). Se você construir uma URL que depois é incorporada em um atributo HTML, você precisa de ambas: a forma codificada em URL vai no atributo, e o valor do atributo em si é codificado em HTML. Entender qual codificação se aplica em qual contexto evita bugs de dupla codificação e problemas de segurança."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Codificar caracteres especiais", "text": "Selecione o modo Codificar, cole seu texto na caixa esquerda. A saída codificada aparece à direita. Escolha «Nomeada» para entidades legíveis (&amp;), «Numérica» para decimal universal (&#38;), ou «Hex» para hexadecimal (&#x26;). Marque «Codificar todos os não-ASCII» para converter cada caractere não-ASCII em uma entidade." },
+      { "name": "Decodificar entidades HTML", "text": "Selecione o modo Decodificar, cole HTML com entidades na caixa esquerda. A ferramenta reconhece entidades nomeadas (&amp;, &copy;), entidades numéricas decimais (&#169;) e entidades hex (&#xA9;), convertendo todas de volta aos seus caracteres originais." },
+      { "name": "Trocar codificação e decodificação", "text": "Clique no botão «Trocar» para mover a saída para a entrada e trocar de modo — útil para verificar uma ida e volta ou reverter rapidamente uma conversão." },
+      { "name": "Copiar o resultado", "text": "Clique em «Copiar» para colocar o resultado codificado ou decodificado na área de transferência." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual é a entidade HTML para o e comercial (&)?",
+      "a": "A entidade HTML para o e comercial é &amp; — literalmente os caracteres &, a, m, p e ponto e vírgula. Quando você escreve &amp; no código-fonte HTML, o navegador exibe um único caractere &. Essa codificação é obrigatória sempre que um e comercial aparece no conteúdo de texto ou valores de atributos, porque um & não codificado inicia uma sequência de entidade que o analisador tenta interpretar."
+    },
+    {
+      "q": "Qual é a entidade HTML para copyright (©)?",
+      "a": "O copyright © tem três entidades HTML equivalentes: a nomeada &copy;, a numérica decimal &#169; e a hexadecimal &#xA9;. Todas renderizam o mesmo caractere ©. Entidades nomeadas são a opção mais legível quando disponíveis. Para HTML UTF-8 moderno, você também pode digitar o caractere © diretamente — sem entidade — desde que seu arquivo HTML declare charset=utf-8."
+    },
+    {
+      "q": "Preciso codificar aspas em HTML?",
+      "a": "Aspas duplas (\") devem ser codificadas como &quot; dentro de atributos HTML delimitados por aspas duplas: <input value=\"&quot;\">. Aspas simples (') devem ser codificadas como &apos; ou &#39; dentro de atributos com aspas simples. Dentro do conteúdo de texto de elementos (entre tags), ambos os caracteres de aspas podem aparecer sem codificação, mas codificá-los não causa dano. Codificar ambos de forma consistente em todos os contextos é a abordagem mais segura."
+    },
+    {
+      "q": "Qual é a diferença entre entidades nomeadas e numéricas?",
+      "a": "Entidades nomeadas usam uma palavra descritiva (&copy;, &euro;, &hearts;) e são definidas na especificação HTML — nem todo caractere Unicode tem uma entidade nomeada. Entidades numéricas usam o ponto de código Unicode, seja em decimal (&#8364; para €) ou hexadecimal (&#x20AC; para €). Entidades numéricas funcionam para qualquer caractere Unicode, enquanto nomeadas cobrem apenas um subconjunto. Ambas são renderizadas de forma idêntica nos navegadores."
+    },
+    {
+      "q": "Devo codificar caracteres não-ASCII em HTML?",
+      "a": "Geralmente não. Se seu documento HTML declara codificação UTF-8 (meta charset=utf-8) e está salvo como UTF-8, você pode escrever caracteres não-ASCII diretamente: é, ñ, 中, 🎉. Codificá-los como entidades é opcional e torna o código-fonte mais difícil de ler. A exceção é quando se envia HTML em contextos que podem não preservar a codificação: mensagens de e-mail, APIs legadas ou sistemas que corrompem bytes não-ASCII. Nesses casos, codificar todos os não-ASCII como entidades numéricas garante que a saída seja ASCII puro e seguro."
+    },
+    {
+      "q": "O que é XSS e como as entidades HTML o previnem?",
+      "a": "Cross-Site Scripting (XSS) é uma vulnerabilidade de segurança onde um invasor injeta JavaScript malicioso em uma página web inserindo texto que o servidor reflete em HTML sem codificação. Por exemplo, se a entrada do usuário <script>alert('xss')</script> for inserida diretamente em uma página, o navegador executa o script. Se você codificar corretamente a entrada — convertendo < em &lt; e > em &gt; — o navegador exibe o texto literalmente em vez de analisá-lo como uma tag. A codificação de entidades HTML é a principal defesa contra XSS refletido e armazenado."
+    },
+    {
+      "q": "Por que &nbsp; não aparece na lista desta ferramenta?",
+      "a": "Esta ferramenta codifica caracteres que têm entidades nomeadas. O espaço não separável (Unicode U+00A0) é codificado como &nbsp; quando você digita o caractere de espaço não separável real (que você pode inserir com Alt+Espaço em alguns sistemas ou copiar de mapas de caracteres). O espaço regular (U+0020, a barra de espaço) não é codificado porque é um caractere ASCII seguro. Se você precisar especificamente de &nbsp; na saída, digite ou cole um caractere de espaço não separável na entrada."
+    },
+    {
+      "q": "Posso usar isso para prevenir injeção HTML na entrada do usuário?",
+      "a": "Sim — codificar o texto fornecido pelo usuário antes de inseri-lo em HTML é uma das defesas principais contra injeção HTML e XSS. No mínimo, codifique os cinco caracteres reservados: &, <, >, \", '. Esta ferramenta codifica todos os cinco. No entanto, a codificação sozinha não é uma solução de segurança completa: você também precisa de cabeçalhos Content Security Policy adequados, tratamento cuidadoso de URLs javascript: em atributos e proteções no nível do framework. Para aplicações em produção, use uma biblioteca do lado do servidor projetada para segurança (OWASP Java Encoder, DOMPurify para o lado do cliente, etc.) em vez de codificação manual."
+    }
+  ]
+}

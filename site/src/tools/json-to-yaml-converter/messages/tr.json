@@ -1,0 +1,59 @@
+{
+  "title": "JSON ↔ YAML Dönüştürücü — Çift Yönlü",
+  "shortDescription": "JSON'u YAML'a veya YAML'ı JSON'a anında dönüştürün. Herhangi bir tarafı düzenleyin, diğer taraf otomatik senkronize olur.",
+  "description": "Sola JSON yapıştırın ve sağda YAML elde edin — ya da tam tersi. Her iki panel de gerçek zamanlı olarak düzenlenebilir ve otomatik senkronize olur. JSON Formatla, Değiştir ve Kopyala düğmeleri dahildir. Tüm dönüşümler tamamen tarayıcınızda çalışır, sunucuya veri gönderilmez.",
+  "metaDescription": "Ücretsiz çift yönlü JSON ↔ YAML dönüştürücü. Bir tarafı düzenleyin, diğeri otomatik senkronize olur. Yalnızca tarayıcı — verileriniz sayfayı asla terk etmez.",
+  "keywords": ["json yaml dönüştür", "json'dan yaml'a", "yaml'dan json'a", "online yaml dönüştürücü", "json yaml ücretsiz"],
+  "label.json": "JSON",
+  "label.yaml": "YAML",
+  "action.copy": "Kopyala",
+  "action.copied": "Kopyalandı!",
+  "action.clear": "Temizle",
+  "action.swap": "YAML'dan Senkronize Et",
+  "action.formatJson": "JSON Formatla",
+  "error.invalidJson": "Geçersiz JSON",
+  "error.invalidYaml": "Geçersiz veya desteklenmeyen YAML",
+  "placeholder.json": "JSON'u buraya yapıştırın…",
+  "placeholder.yaml": "YAML'ı buraya yapıştırın…",
+  "article": {
+    "sections": [
+      {
+        "heading": "JSON ve YAML'ın tarihi ve kullanım alanları",
+        "paragraphs": [
+          "JSON (JavaScript Object Notation), Douglas Crockford tarafından 2000'lerin başında JavaScript nesne literal sözdiziminden türetilen hafif bir veri değişim formatı olarak tanıtıldı. Katı dilbilgisi — çift tırnak, sonda virgül yok, yorum yok — onu belirsizlikten uzak ve herhangi bir dilde ayrıştırması kolay kılar. JSON, kısalığı ve JavaScript ile doğal uyumluluğu sayesinde web API'lerinde XML'in yerini hızla aldı.",
+          "YAML (YAML Ain't Markup Language), 2001 yılında Clark Evans ve Ingy döt Net tarafından insanlar için daha kullanışlı olma hedefiyle oluşturuldu. YAML 1.2, teknik olarak JSON'un bir üst kümesidir — her geçerli JSON belgesi geçerli YAML'dır — ancak YAML girinti tabanlı yapı, yorumlar, çok satırlı dizeler ve tür çıkarımı ekler; bu da onu elle düzenlenen yapılandırma dosyaları için daha uygun hale getirir."
+        ]
+      },
+      {
+        "heading": "JSON mu yoksa YAML mı kullanmalı",
+        "paragraphs": [
+          "JSON, makinelerin veri okuduğu durumlarda öne çıkar: REST API'leri, veritabanı kayıtları, servisler arası iletişim ve localStorage. Basitliği, neredeyse her programlama dilinin yerleşik bir JSON ayrıştırıcısına sahip olduğu anlamına gelir ve katı sözdizimi kuralları belirsizliği ortadan kaldırır. Birincil tüketici kod ise JSON hemen her zaman doğru seçimdir.",
+          "YAML, insanlar tarafından düzenlenen yapılandırma dosyalarında parlar: Docker Compose, Kubernetes manifestoları, GitHub Actions iş akışları ve Ansible playbookları varsayılan olarak YAML kullanır. Yorumlar satır içi belgelemeye olanak tanır, çok satırlı dizeler uzun değerleri okunabilir tutar ve süslü parantezlerin yokluğu hiyerarşik yapılandırmayı daha az karmaşık hale getirir."
+        ]
+      },
+      {
+        "heading": "Dönüştürmede sık karşılaşılan tuzaklar",
+        "paragraphs": [
+          "YAML'ın girinti duyarlılığı en yaygın hata kaynağıdır. JSON parantezlerinin aksine, yanlış yerleştirilmiş tek bir boşluk yapıyı değiştirir. YAML ayrıca otomatik tür çıkarımı yapar: tırnaksız yes, boolean true'ya dönüşür ve 0755 sekizli sayı olarak yorumlanabilir. Bu dönüştürücü, yanlış yorumlanabilecek dizelerin etrafına tırnak ekleyerek orijinal türü korur.",
+          "Özel karakterler başka bir zorluk teşkil eder. Boşluk içeren iki nokta üst üste (: ), diyez (#) ve başında özel karakter bulunan dizeler YAML'da tırnaklanmalıdır. Bu dönüştürücü bu durumları otomatik olarak ele alır, ancak çapa, takma ad ve çok satırlı blok skalar gibi gelişmiş YAML özellikleri kapsam dışındadır ve net bir hata mesajı gösterir."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "JSON veya YAML'ınızı yapıştırın", "text": "JSON paneline tıklayın ve JSON yapıştırın, ya da YAML paneline tıklayın ve YAML yapıştırın. Karşı panel otomatik olarak güncellenir." },
+      { "name": "Düzenleyin ve tekrarlayın", "text": "Her iki panel de gerçek zamanlı düzenleyicilerdir. JSON'da bir değeri değiştirin ve YAML hemen yansıtır, tersi de geçerlidir." },
+      { "name": "Biçimlendirin ve temizleyin", "text": "Dağınık JSON'u dönüştürmeden önce güzelleştirmek için JSON Formatla düğmesini kullanın; bu hataları bulmayı kolaylaştırır." },
+      { "name": "Sonucu kopyalayın", "text": "İçeriğini panoya yerleştirmek için herhangi bir panelin üzerindeki Kopyala düğmesine tıklayın." }
+    ]
+  },
+  "faq": [
+    { "q": "YAML, JSON'un üst kümesi midir?", "a": "Evet. YAML 1.2, JSON'un katı bir üst kümesidir; bu da her geçerli JSON belgesinin geçerli YAML olduğu anlamına gelir. Tersi her zaman doğru değildir: yorumlar, çapalar ve blok skalar gibi YAML özellikleri JSON'da karşılığı yoktur." },
+    { "q": "YAML esas olarak ne için kullanılır?", "a": "YAML en çok yapılandırma dosyalarında kullanılır: Docker Compose (docker-compose.yml), Kubernetes manifestoları, GitHub Actions (.github/workflows), Ansible playbookları. Okunabilir stili, geliştiricilerin elle düzenlediği dosyalara uygundur." },
+    { "q": "Yapılandırma dosyaları için JSON mu YAML mı daha iyi?", "a": "İnsan tarafından düzenlenen yapılandırma için YAML genellikle kazanır çünkü yorumları destekler ve görsel olarak daha az gürültülüdür. Makine tarafından üretilen veya tüketilen yapılandırma için JSON daha iyidir. Pek çok araç (ESLint, Prettier, tsconfig) her ikisini de kabul eder." },
+    { "q": "YAML özel karakterleri nasıl ele alır?", "a": "Boşluk içeren iki nokta üst üste, öndeki özel karakterler ({, [, #, vb.) veya boolean ya da sayı gibi görünen değerler içeren dizeler YAML'da tırnaklanmalıdır. Tek tırnak tüm kaçışları devre dışı bırakır; çift tırnak JSON'a benzer ters eğik çizgi kaçışlarını kullanır. Bu dönüştürücü gerektiğinde otomatik olarak tırnak ekler." },
+    { "q": "JSON'dan YAML'a dönüşüm kayıpsız mıdır?", "a": "JSON'un desteklediği türler için (dizeler, sayılar, boole değerleri, null, nesneler, diziler) dönüşüm kayıpsızdır. Tek potansiyel sorun, tırnaksız değerlerde YAML'ın tür çıkarımıdır; bu nedenle bu dönüştürücü yanlış yorumlanabilecek dizeleri tırnaklar." },
+    { "q": "Python'da YAML'ı JSON'a nasıl dönüştürebilirim?", "a": "PyYAML kütüphanesini kullanın: import yaml, json; data = yaml.safe_load(open('dosya.yaml')); print(json.dumps(data, indent=2)). safe_load fonksiyonu keyfi YAML etiketlerinin çalıştırılmasını engeller, bu güvenlik açısından önemlidir." },
+    { "q": "Node.js'te JSON'u YAML'a nasıl dönüştürebilirim?", "a": "js-yaml paketi ile: const yaml = require('js-yaml'); const obj = JSON.parse(fs.readFileSync('dosya.json')); console.log(yaml.dump(obj)). Bağımlılıksız bir yaklaşım için YAML serileştiriciyi elle yazın — bu dönüştürücünün yaptığı budur." },
+    { "q": "Hangi YAML özellikleri desteklenmez?", "a": "Bu dönüştürücü kasıtlı olarak gelişmiş YAML özelliklerini atlar: çapalar (&çapa), takma adlar (*takma ad), tür etiketleri (!!int, !!str), çok satırlı blok skaları (| ve >), belge ayırıcılar (---). Bunlar gerçek YAML'ın %5'inden azını kapsar. Bu durumlar için tam YAML kütüphanesi kullanın." }
+  ]
+}

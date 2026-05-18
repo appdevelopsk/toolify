@@ -1,0 +1,59 @@
+{
+  "title": "Chuyển đổi JSON ↔ YAML Hai Chiều",
+  "shortDescription": "Chuyển đổi JSON sang YAML hoặc YAML sang JSON tức thì. Chỉnh sửa một bên và bên còn lại tự động đồng bộ.",
+  "description": "Dán JSON vào bên trái để nhận YAML ở bên phải, hoặc ngược lại. Cả hai bảng đều có thể chỉnh sửa theo thời gian thực và tự động đồng bộ. Bao gồm các nút Định dạng JSON, Đổi chiều và Sao chép. Tất cả chuyển đổi chạy hoàn toàn trong trình duyệt, không gửi dữ liệu đến máy chủ.",
+  "metaDescription": "Công cụ chuyển đổi JSON ↔ YAML hai chiều miễn phí. Chỉnh sửa một bên, bên kia tự đồng bộ. Chỉ trình duyệt — dữ liệu không rời khỏi trang.",
+  "keywords": ["chuyển json sang yaml", "chuyển yaml sang json", "công cụ json yaml", "yaml trực tuyến", "json yaml miễn phí"],
+  "label.json": "JSON",
+  "label.yaml": "YAML",
+  "action.copy": "Sao chép",
+  "action.copied": "Đã sao chép!",
+  "action.clear": "Xóa",
+  "action.swap": "Đồng bộ từ YAML",
+  "action.formatJson": "Định dạng JSON",
+  "error.invalidJson": "JSON không hợp lệ",
+  "error.invalidYaml": "YAML không hợp lệ hoặc không được hỗ trợ",
+  "placeholder.json": "Dán JSON vào đây…",
+  "placeholder.yaml": "Dán YAML vào đây…",
+  "article": {
+    "sections": [
+      {
+        "heading": "Lịch sử và ứng dụng của JSON và YAML",
+        "paragraphs": [
+          "JSON (JavaScript Object Notation) được Douglas Crockford giới thiệu vào đầu những năm 2000 như một định dạng trao đổi dữ liệu nhẹ dựa trên cú pháp đối tượng literal của JavaScript. Ngữ pháp nghiêm ngặt — dấu ngoặc kép, không có dấu phẩy cuối, không có chú thích — làm cho nó rõ ràng và dễ phân tích cú pháp trong bất kỳ ngôn ngữ nào. JSON nhanh chóng thay thế XML trong các API web nhờ sự ngắn gọn và khả năng tương thích tự nhiên với JavaScript.",
+          "YAML (YAML Ain't Markup Language) được tạo ra vào năm 2001 bởi Clark Evans và Ingy döt Net với mục tiêu thân thiện hơn với con người. YAML 1.2 về mặt kỹ thuật là superset của JSON — mọi tài liệu JSON hợp lệ đều là YAML hợp lệ — nhưng YAML thêm cấu trúc dựa trên thụt lề, chú thích, chuỗi nhiều dòng và suy luận kiểu, làm cho nó thoải mái hơn cho các file cấu hình được chỉnh sửa thủ công."
+        ]
+      },
+      {
+        "heading": "Khi nào dùng JSON, khi nào dùng YAML",
+        "paragraphs": [
+          "JSON xuất sắc khi máy móc đọc dữ liệu: REST API, bản ghi cơ sở dữ liệu, giao tiếp giữa các dịch vụ và localStorage. Sự đơn giản của nó có nghĩa là hầu hết mọi ngôn ngữ lập trình đều có trình phân tích JSON tích hợp sẵn, và các quy tắc cú pháp nghiêm ngặt loại bỏ sự mơ hồ.",
+          "YAML tỏa sáng trong các file cấu hình được con người chỉnh sửa: Docker Compose, manifests Kubernetes, workflows GitHub Actions và playbooks Ansible mặc định sử dụng YAML. Chú thích cho phép tài liệu nội tuyến, chuỗi nhiều dòng giữ cho các giá trị dài dễ đọc, và sự vắng mặt của dấu ngoặc nhọn làm cho cấu hình phân cấp ít lộn xộn hơn."
+        ]
+      },
+      {
+        "heading": "Cạm bẫy thường gặp khi chuyển đổi",
+        "paragraphs": [
+          "Độ nhạy thụt lề của YAML là nguồn lỗi phổ biến nhất. Không giống như dấu ngoặc nhọn JSON, một dấu cách đặt sai chỗ thay đổi cấu trúc. YAML cũng thực hiện suy luận kiểu tự động: yes không có dấu ngoặc kép chuyển thành boolean true, và 0755 có thể được phân tích cú pháp là số bát phân. Công cụ này đặt dấu ngoặc kép quanh các chuỗi có thể bị hiểu sai để bảo toàn kiểu gốc.",
+          "Các ký tự đặc biệt cũng là thách thức. Dấu hai chấm theo sau dấu cách (: ), dấu thăng (#) và các ký tự đặc biệt ở đầu chuỗi phải được đặt trong dấu ngoặc kép trong YAML. Công cụ này xử lý các trường hợp này tự động, nhưng các tính năng YAML nâng cao như neo, bí danh và scalar khối nhiều dòng nằm ngoài phạm vi và sẽ hiển thị thông báo lỗi rõ ràng."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Dán JSON hoặc YAML của bạn", "text": "Nhấp vào bảng JSON và dán JSON, hoặc nhấp vào bảng YAML và dán YAML. Bảng đối diện sẽ tự động cập nhật." },
+      { "name": "Chỉnh sửa và lặp lại", "text": "Cả hai bảng đều là trình soạn thảo thời gian thực. Thay đổi một giá trị trong JSON và YAML phản ánh ngay lập tức, và ngược lại." },
+      { "name": "Định dạng và làm sạch", "text": "Sử dụng nút Định dạng JSON để làm đẹp JSON lộn xộn trước khi chuyển đổi, giúp dễ phát hiện lỗi hơn." },
+      { "name": "Sao chép kết quả", "text": "Nhấp vào nút Sao chép phía trên bảng nào đó để đặt nội dung của nó vào clipboard." }
+    ]
+  },
+  "faq": [
+    { "q": "YAML có phải là superset của JSON không?", "a": "Có. YAML 1.2 là superset nghiêm ngặt của JSON, nghĩa là mọi tài liệu JSON hợp lệ đều là YAML hợp lệ. Chiều ngược lại không phải lúc nào cũng đúng: các tính năng YAML như chú thích, neo và scalar khối không có tương đương trong JSON." },
+    { "q": "YAML chủ yếu được dùng cho gì?", "a": "YAML phổ biến nhất trong các file cấu hình: Docker Compose (docker-compose.yml), manifests Kubernetes, GitHub Actions (.github/workflows), playbooks Ansible. Phong cách dễ đọc phù hợp với các file mà developer chỉnh sửa thủ công." },
+    { "q": "Nên dùng JSON hay YAML cho file cấu hình?", "a": "YAML thường thắng cho cấu hình được con người chỉnh sửa vì nó hỗ trợ chú thích và ít ồn ào hơn về mặt thị giác. JSON tốt hơn cho cấu hình được tạo ra hoặc tiêu thụ bởi máy móc. Nhiều công cụ (ESLint, Prettier, tsconfig) chấp nhận cả hai." },
+    { "q": "YAML xử lý các ký tự đặc biệt như thế nào?", "a": "Chuỗi chứa dấu hai chấm theo sau dấu cách, các ký tự đặc biệt ở đầu ({, [, #) hoặc các giá trị trông giống boolean hoặc số phải được đặt trong dấu ngoặc kép. Dấu ngoặc đơn vô hiệu hóa tất cả escape; dấu ngoặc kép sử dụng escape dấu gạch chéo ngược tương tự JSON. Công cụ này tự động thêm dấu ngoặc kép khi cần thiết." },
+    { "q": "Chuyển đổi JSON sang YAML có mất dữ liệu không?", "a": "Đối với các kiểu mà JSON hỗ trợ (chuỗi, số, boolean, null, đối tượng, mảng), việc chuyển đổi không mất dữ liệu. Vấn đề tiềm ẩn duy nhất là suy luận kiểu của YAML trên các giá trị không có dấu ngoặc kép, đó là lý do tại sao công cụ này đặt dấu ngoặc kép quanh các chuỗi có thể bị hiểu sai." },
+    { "q": "Làm thế nào để chuyển YAML sang JSON trong Python?", "a": "Sử dụng thư viện PyYAML: import yaml, json; data = yaml.safe_load(open('file.yaml')); print(json.dumps(data, indent=2)). Hàm safe_load tránh thực thi các thẻ YAML tùy ý, điều này quan trọng cho bảo mật." },
+    { "q": "Làm thế nào để chuyển JSON sang YAML trong Node.js?", "a": "Với gói js-yaml: const yaml = require('js-yaml'); const obj = JSON.parse(fs.readFileSync('file.json')); console.log(yaml.dump(obj)). Với cách tiếp cận không phụ thuộc, hãy viết serializer YAML thủ công — đó là những gì công cụ này làm." },
+    { "q": "Các tính năng YAML nào không được hỗ trợ?", "a": "Công cụ này cố ý bỏ qua các tính năng YAML nâng cao: neo (&neo), bí danh (*bí danh), thẻ kiểu (!!int, !!str), scalar khối nhiều dòng (| và >), dấu phân cách tài liệu (---). Chúng bao gồm dưới 5% YAML thực tế. Đối với các trường hợp đó, hãy sử dụng thư viện YAML đầy đủ." }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "title": "Konverter Unit CSS — px, rem, em, pt, % Online",
+  "shortDescription": "Konversi unit CSS secara instan: px ke rem, rem ke px, em, pt, dan %. Atur ukuran font dasar untuk konversi rem dan em yang akurat. Penting untuk desain web responsif.",
+  "description": "Masukkan nilai CSS apa pun dalam px, rem, em, pt, atau % dan lihat secara instan nilai ekuivalennya dalam semua unit lain. Atur ukuran font dasar kustom (default 16px) untuk konversi rem dan em yang akurat. Semua perhitungan diperbarui secara real time tanpa perlu memuat ulang halaman.",
+  "metaDescription": "Konverter unit CSS gratis: px ke rem, rem ke px, em, pt, dan %. Atur ukuran font dasar untuk konversi desain responsif yang akurat. Instan, tanpa registrasi.",
+  "keywords": ["konverter px rem", "konverter unit css", "rem ke px", "px ke em", "unit css"],
+  "input": {
+    "value": "Nilai",
+    "base": "Ukuran font dasar (px)",
+    "baseHint": "Biasanya 16px (default browser)"
+  },
+  "note": {
+    "basePx": "Dasar: {base}px. Untuk rem/em, 1 unit = {base}px di tingkat root."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Mengapa unit CSS penting untuk desain responsif",
+        "paragraphs": [
+          "CSS menawarkan dua kategori besar unit panjang: absolut (px, pt, cm, mm) dan relatif (rem, em, %, vw, vh). Unit absolut memiliki ukuran fisik tetap terlepas dari konteks; unit relatif diskalakan relatif terhadap sesuatu yang lain: ukuran font root, ukuran font elemen induk, atau dimensi viewport. Memilih tipe unit yang tepat menentukan apakah tata letak Anda menyesuaikan diri dengan baik terhadap berbagai ukuran layar, preferensi font pengguna, dan tingkat zoom.",
+          "Piksel (px) tetap menjadi unit CSS yang paling umum karena dapat diprediksi dan presisi, tetapi tidak menghormati pengaturan ukuran font browser pengguna. Pengguna yang telah meningkatkan ukuran font default mereka ke 20px karena alasan aksesibilitas akan melihat teks berbasis px tetap tidak berubah, sementara teks berbasis rem akan diskalakan sesuai. Inilah mengapa Kriteria Keberhasilan 1.4.4 WCAG 2.1 (Mengubah Ukuran Teks) paling mudah dipenuhi menggunakan unit relatif seperti rem untuk ukuran font."
+        ]
+      },
+      {
+        "heading": "px vs rem vs em: kapan menggunakan masing-masing",
+        "paragraphs": [
+          "rem (root em) relatif terhadap ukuran font elemen root — secara default 16px di semua browser. Karena rem terhubung ke satu titik referensi tetap (elemen <html>), ia menghindari efek penggabungan yang dimiliki em. Gunakan rem untuk ukuran font, jarak komponen, dan nilai apa pun yang harus diskalakan dengan preferensi font pengguna. Rumus umumnya: rem = px ÷ dasar, jadi 24px ÷ 16 = 1,5rem.",
+          "em relatif terhadap ukuran font elemen saat ini, yang dapat diatur dalam em sendiri, menciptakan rantai penggabungan. `font-size: 1.2em` pada anak di dalam induk dengan `font-size: 1.2em` menghasilkan 1,44 kali ukuran root (1,2 × 1,2). Ini membuat em berguna untuk jarak yang harus diskalakan dengan ukuran font lokal (padding dan margin di dalam komponen), tetapi sulit diprediksi untuk tata letak global. pt (poin) terutama berguna untuk desain cetak: 1pt = 1/72 inci, dan 72pt = 1 inci ≈ 96px di layar."
+        ]
+      },
+      {
+        "heading": "Memilih ukuran font dasar dan bekerja dengan sistem desain",
+        "paragraphs": [
+          "Sebagian besar browser default ke 16px untuk ukuran font root, itulah mengapa 1rem = 16px dalam pengaturan konverter default. Beberapa developer menetapkan `html { font-size: 62.5%; }` untuk membuat 1rem = 10px, menyederhanakan kalkulasi mental (24px = 2,4rem bukan 1,5rem). Teknik ini kontroversial karena memerlukan pengaturan ulang ukuran font di mana-mana dan dapat bertentangan dengan preferensi aksesibilitas.",
+          "Sistem desain modern (Material Design, Apple HIG, Tailwind CSS) menggunakan skala modular untuk jarak dan tipografi — biasanya kelipatan 4px atau 8px. Bekerja dalam unit ini dan mengkonversi ke rem memastikan ritme visual yang konsisten di berbagai konteks. Skala default Tailwind misalnya menggunakan 4px = 1 unit, sehingga nilai 4 (16px) setara dengan 1rem. Jika ragu, pertahankan dasar Anda di 16px dan gunakan konverter ini untuk nilai rem yang tepat tanpa aritmetika mental."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Masukkan nilai", "text": "Ketik nilai CSS apa pun ke dalam kolom input dan pilih unitnya (px, rem, em, pt, atau %) dari dropdown." },
+      { "name": "Atur ukuran font dasar", "text": "Jika proyek Anda menggunakan ukuran font root non-default, ubah kolom Dasar. Default adalah 16px (standar browser)." },
+      { "name": "Baca semua konversi", "text": "Semua nilai ekuivalen dalam unit lain muncul secara instan di grid bawah. Tidak perlu mengklik tombol apa pun." },
+      { "name": "Salin dan gunakan", "text": "Klik atau ketuk nilai mana pun untuk memilihnya, lalu salin langsung ke CSS Anda." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Bagaimana cara mengkonversi px ke rem?",
+      "a": "Bagi nilai piksel dengan ukuran font root. Dengan dasar default 16px: rem = px ÷ 16. Jadi 24px = 1,5rem, 32px = 2rem, 48px = 3rem. Jika ukuran font root Anda adalah 10px (dari `html { font-size: 62.5%; }`), maka rem = px ÷ 10."
+    },
+    {
+      "q": "Berapa ukuran font default browser?",
+      "a": "Semua browser utama menggunakan 16px secara default untuk ukuran font root, kecuali pengguna mengubah preferensinya. Ini berarti 1rem = 16px dalam konfigurasi default. Beberapa pengguna meningkatkan ini untuk aksesibilitas — alasan utama menggunakan rem daripada px untuk teks."
+    },
+    {
+      "q": "Apa perbedaan antara rem dan em?",
+      "a": "rem selalu relatif terhadap ukuran font elemen root (<html>), membuatnya dapat diprediksi. em relatif terhadap ukuran font elemen saat ini, yang dapat berubah melalui pewarisan. Gunakan rem untuk nilai global (ukuran font body, tata letak halaman) dan em untuk nilai yang harus diskalakan dengan konteks lokal (padding relatif terhadap ukuran font elemen itu sendiri)."
+    },
+    {
+      "q": "Berapa piksel 1rem?",
+      "a": "Secara default, 1rem = 16px. Jika Anda mengatur `html { font-size: 20px }`, maka 1rem = 20px. Jika Anda mengatur `html { font-size: 62.5% }` (relatif terhadap default 16px), maka 1rem = 10px. Kolom Dasar dalam konverter ini memungkinkan Anda mengubah ukuran root yang diasumsikan."
+    },
+    {
+      "q": "Haruskah saya menggunakan rem atau px untuk ukuran font?",
+      "a": "Gunakan rem untuk ukuran font bila memungkinkan. Teks berbasis rem menghormati preferensi ukuran font browser pengguna, yang penting untuk aksesibilitas. Piksel mengabaikan pengaturan browser, artinya pengguna yang membutuhkan teks lebih besar tidak akan mendapat manfaat dari zoom (sebelum browser zoom diperkenalkan)."
+    },
+    {
+      "q": "Bagaimana cara mengkonversi px ke pt?",
+      "a": "1 poin = 1/72 inci = 1,333 piksel di layar. Untuk mengkonversi: pt = px × 0,75. Jadi 16px = 12pt. Poin terutama digunakan dalam CSS cetak dan saat menargetkan media fisik seperti PDF atau lembar gaya cetak."
+    },
+    {
+      "q": "Apa arti % dalam unit CSS?",
+      "a": "Persentase dalam CSS bergantung pada konteks. Untuk font-size, 100% = ukuran font yang diwarisi (sama dengan 1em). Untuk width/height, 100% = ukuran blok yang berisi. Dalam konverter ini, kami memperlakukan % sebagai persentase dari ukuran font dasar, jadi 100% = dasar px dan 150% = 1,5 × dasar."
+    },
+    {
+      "q": "Apa itu trik 62.5%?",
+      "a": "Mengatur `html { font-size: 62.5%; }` membuat 1rem = 10px (karena 62,5% dari default 16px = 10px). Ini menyederhanakan kalkulasi rem: 24px menjadi 2,4rem bukan 1,5rem. Namun, ini memerlukan pengaturan ulang ukuran font di seluruh CSS dan dapat merusak komponen pihak ketiga. Token desain dan alat modern membuat trik ini kurang diperlukan."
+    }
+  ]
+}

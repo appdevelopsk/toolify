@@ -1,0 +1,100 @@
+{
+  "title": "Calculadora de Permisos Unix (chmod)",
+  "shortDescription": "Activa los permisos de lectura/escritura/ejecución para propietario, grupo y otros. Ve al instante el valor octal (755, 644…) y la notación simbólica (rwxr-xr-x).",
+  "description": "Calculadora chmod interactiva. Marca o desmarca los bits de permiso para propietario, grupo y otros, y obtén el número octal y la notación simbólica en tiempo real. O escribe un número octal para decodificarlo.",
+  "metaDescription": "Calculadora de permisos Unix gratuita. Alterna lectura/escritura/ejecución para propietario/grupo/otros y obtén el valor octal (755, 644) y la notación simbólica",
+  "keywords": [
+    "calculadora permisos unix",
+    "calculadora chmod",
+    "permisos octales",
+    "permisos archivos linux",
+    "permisos rwx"
+  ],
+  "input.octal": "Valor octal",
+  "input.symbolic": "Simbólico",
+  "label.owner": "Propietario",
+  "label.group": "Grupo",
+  "label.other": "Otros",
+  "label.read": "Lectura (r)",
+  "label.write": "Escritura (w)",
+  "label.execute": "Ejecución (x)",
+  "presets": "Ajustes predefinidos",
+  "error.invalidOctal": "Introduce entre 1 y 3 dígitos octales (solo 0–7).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Origen de la notación octal en los permisos Unix",
+        "paragraphs": [
+          "Los permisos de archivos Unix fueron diseñados por Ken Thompson en 1969 como parte del Unix original en un PDP-7. Cada archivo almacena nueve bits de permiso en su inodo: tres para el propietario, tres para el grupo y tres para el resto. Agrupar cada trío de bits en un único dígito octal (0–7) fue la elección natural: un dígito por entidad, tres dígitos en total. Esta convención octal fue codificada en POSIX.1-1988 y permanece sin cambios en todos los sistemas Linux, macOS, BSD y similares a Unix.",
+          "La forma simbólica (rwxr-xr-x) apareció en la salida de `ls -l` desde las primeras distribuciones Unix y se convirtió en el complemento legible del número octal. POSIX define ambas representaciones como normativas. `chmod u+x archivo` usa la forma simbólica; `chmod 755 archivo` usa la forma octal. Ambas ejecutan la misma operación en el kernel: establecer bits específicos en el campo de modo del inodo."
+        ]
+      },
+      {
+        "heading": "Qué significa cada bit de permiso",
+        "paragraphs": [
+          "Para un archivo regular: lectura (r=4) permite abrir y leer el contenido; escritura (w=2) permite modificar o truncar el archivo; ejecución (x=1) permite ejecutarlo como programa. Cada bit es independiente. El dígito octal de cada entidad es la suma de los bits activos: rwx=7, r-x=5, r--=4.",
+          "Para un directorio, los significados cambian. Lectura (r) permite listar el directorio con `ls`. Ejecución (x) —el «bit de búsqueda»— permite entrar con `cd` y acceder a los archivos por nombre. Escritura (w) permite crear, borrar o renombrar archivos dentro del directorio. Un directorio con lectura pero sin ejecución es casi inútil: ves los nombres pero no puedes abrir ningún archivo. Los directorios típicos tienen permisos 755."
+        ]
+      },
+      {
+        "heading": "Patrones comunes y consideraciones de seguridad",
+        "paragraphs": [
+          "644 (rw-r--r--) es el estándar para archivos de configuración, HTML y texto: el propietario edita, los demás solo leen. 755 (rwxr-xr-x) es el estándar para directorios y scripts ejecutables: el propietario gestiona el contenido, los demás pueden navegar y leer. 600 (rw------) y 700 (rwx------) restringen el acceso al propietario, idóneos para claves privadas SSH y archivos de contraseñas. Nunca uses 777 en nada expuesto en web: dar escritura a «otros» permite que cualquier proceso del sistema sobreescriba el archivo.",
+          "El umask determina los permisos por defecto de los archivos y directorios nuevos. Un umask de 022 (común en la mayoría de sistemas) hace que los nuevos archivos obtengan 644 y los nuevos directorios 755, ya que los bits de umask se restan del valor por defecto 666 (archivos) y 777 (directorios). Los sistemas con seguridad reforzada suelen usar umask 027 o 077."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Activa las casillas de permisos",
+        "text": "Haz clic en las casillas de lectura, escritura o ejecución para propietario, grupo u otros. El valor octal y la cadena simbólica se actualizan al instante."
+      },
+      {
+        "name": "Escribe un número octal para decodificarlo",
+        "text": "Haz clic en el campo octal y escribe un número de 1 a 3 dígitos (0–7 por dígito). Las casillas se actualizan mostrando los bits decodificados."
+      },
+      {
+        "name": "Usa un ajuste predefinido",
+        "text": "Haz clic en uno de los botones de ajustes predefinidos (755, 644, 600, 700, 777) para saltar a un conjunto de permisos de uso frecuente."
+      },
+      {
+        "name": "Copia el comando chmod",
+        "text": "El comando chmod en la parte inferior muestra la sintaxis exacta para aplicar estos permisos. Sustituye 'filename' por la ruta real de tu archivo o directorio."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Qué significa 755?",
+      "a": "755 significa que el propietario tiene lectura+escritura+ejecución (7=4+2+1), el grupo tiene lectura+ejecución (5=4+1) y otros tienen lectura+ejecución (5=4+1). Es el permiso estándar para directorios y scripts ejecutables."
+    },
+    {
+      "q": "¿Qué significa 644?",
+      "a": "644 significa que el propietario tiene lectura+escritura (6=4+2), el grupo solo lectura (4) y otros solo lectura (4). Es el valor por defecto para archivos regulares como configuraciones, páginas web y documentos de texto."
+    },
+    {
+      "q": "¿Por qué un directorio necesita permiso de ejecución?",
+      "a": "En los directorios, el bit de ejecución es el 'bit de búsqueda'. Sin él no puedes hacer cd al directorio ni abrir archivos dentro por ruta, aunque tengas el bit de lectura. Un directorio con lectura pero sin ejecución es prácticamente inútil."
+    },
+    {
+      "q": "¿Cuál es la diferencia entre propietario, grupo y otros?",
+      "a": "El propietario es la cuenta de usuario que posee el archivo (establecida en la creación o cambiada con chown). El grupo es el grupo asignado al archivo (modificado con chgrp); cualquier usuario en ese grupo recibe los permisos de grupo. Otros abarca a todos los usuarios del sistema que no son ni el propietario ni están en el grupo."
+    },
+    {
+      "q": "¿Qué son SUID y SGID?",
+      "a": "SUID (Set User ID) y SGID (Set Group ID) son bits de permiso especiales más allá de los nueve estándar. Con SUID en un ejecutable, este se ejecuta con los privilegios del propietario del archivo en lugar del invocador, usado por comandos como passwd y sudo. SGID en un directorio hace que los nuevos archivos hereden el grupo del directorio. En la forma simbólica aparece como 's' (por ejemplo, rwsr-xr-x) y añade 4000 o 2000 al valor octal (por ejemplo, 4755)."
+    },
+    {
+      "q": "¿Es peligroso chmod 777?",
+      "a": "Sí, especialmente en un sistema compartido o servidor web. 777 otorga lectura, escritura y ejecución completas a todos los usuarios del sistema. Cualquier proceso, incluidas aplicaciones web comprometidas, puede sobrescribir o ejecutar el archivo. En servidores web esto suele habilitar la ejecución de código arbitrario. Limita los permisos a lo estrictamente necesario."
+    },
+    {
+      "q": "¿Cómo usar el comando chmod?",
+      "a": "Usa `chmod OCTAL ruta` para un único archivo, o `chmod -R OCTAL directorio` para aplicarlo de forma recursiva. Por ejemplo: `chmod 644 index.html` o `chmod 755 /var/www`. También puedes usar sintaxis simbólica: `chmod u+x script.sh` añade permiso de ejecución al propietario sin modificar los demás bits."
+    },
+    {
+      "q": "¿Qué es umask y cómo se relaciona con los permisos?",
+      "a": "umask es una máscara aplicada a los permisos por defecto cuando se crea un nuevo archivo o directorio. Un umask de 022 elimina la escritura del grupo y de otros, de modo que los archivos nuevos obtienen 644 y los directorios nuevos 755. Ejecuta `umask` en tu shell para ver la configuración actual y `umask VALOR` para cambiarla en la sesión actual."
+    }
+  ]
+}

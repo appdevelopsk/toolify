@@ -1,0 +1,90 @@
+{
+  "title": "Tabla ASCII — Decimal, Hex, Binario y Octal",
+  "shortDescription": "Tabla ASCII completa con los 128 códigos ASCII mostrando valores decimales, hexadecimales, octales y binarios. Filtra por caracteres imprimibles o de control y busca por número, hex o carácter.",
+  "description": "Consulta los 128 códigos ASCII (0–127) con sus representaciones decimal, hexadecimal, octal y binaria. Los caracteres de control (0–31, 127) aparecen resaltados con sus abreviaturas estándar y nombres completos. Filtra para mostrar solo caracteres imprimibles o solo códigos de control, y busca por número decimal, valor hex o carácter.",
+  "metaDescription": "Tabla ASCII gratuita con los 128 códigos ASCII. Muestra decimal, hex, octal, binario y carácter. Filtra imprimibles vs. control. Busca por número o valor.",
+  "keywords": ["tabla ASCII", "códigos ASCII", "tabla de caracteres ASCII", "hex decimal binario", "caracteres de control"],
+  "search": {
+    "placeholder": "Buscar por decimal, hex o carácter…",
+    "noResults": "No se encontraron caracteres coincidentes."
+  },
+  "filter": {
+    "all": "Todos",
+    "printable": "Imprimibles",
+    "control": "Control"
+  },
+  "col": {
+    "dec": "Dec",
+    "hex": "Hex",
+    "oct": "Oct",
+    "bin": "Binario",
+    "char": "Carác.",
+    "description": "Descripción"
+  },
+  "note": "Mostrando {count} de 128 códigos ASCII",
+  "article": {
+    "sections": [
+      {
+        "heading": "¿Qué es ASCII?",
+        "paragraphs": [
+          "ASCII (American Standard Code for Information Interchange) es un estándar de codificación de caracteres publicado originalmente en 1963. Define 128 caracteres: 33 caracteres de control no imprimibles (códigos 0–31 y 127) y 95 caracteres imprimibles (códigos 32–126), que incluyen letras mayúsculas y minúsculas en inglés, los dígitos 0–9 y los signos de puntuación más comunes. ASCII se convirtió en la base de prácticamente todas las codificaciones de texto modernas, incluido UTF-8, que es retrocompatible con ASCII para los primeros 128 puntos de código.",
+          "A cada carácter ASCII se le asigna un valor entero de 7 bits, razón por la cual la tabla termina en 127 (2⁷ − 1). Cuando se almacena en un byte de 8 bits, el bit más significativo suele ser 0 en ASCII estándar. El rango ASCII extendido (128–255) no está estandarizado por la especificación original y varía según la página de códigos — ISO 8859-1, Windows-1252 y codificaciones similares definen conjuntos de caracteres distintos para la mitad superior del byte."
+        ]
+      },
+      {
+        "heading": "Caracteres de control (0–31 y 127)",
+        "paragraphs": [
+          "Los primeros 32 códigos ASCII y el código 127 son caracteres de control no imprimibles heredados de las convenciones de las máquinas de teletipo. La mayoría son obsoletos en la informática moderna, pero algunos siguen siendo importantes: el código 9 (HT, tabulación horizontal), el código 10 (LF, avance de línea o salto de línea en Unix/Linux), el código 13 (CR, retorno de carro, usado en los finales de línea de Windows como CR+LF), el código 27 (ESC, Escape, usado en secuencias de escape de terminal) y el código 127 (DEL). Estos caracteres no se representan como glifos visibles.",
+          "En sistemas tipo Unix, puedes generar caracteres de control en un terminal manteniendo pulsada la tecla Ctrl y presionando la letra correspondiente: Ctrl+A = SOH (1), Ctrl+C = ETX (3, envía señal de interrupción), Ctrl+D = EOT (4, señala fin de entrada), Ctrl+J = LF (10), Ctrl+M = CR (13), Ctrl+Z = SUB (26, suspende un proceso en Unix). Comprender estos códigos es esencial para E/S de bajo nivel, secuencias de control de terminal e implementación de protocolos de red."
+        ]
+      },
+      {
+        "heading": "ASCII en programación y desarrollo web",
+        "paragraphs": [
+          "En JavaScript puedes obtener el código ASCII de un carácter usando charCodeAt(0): 'A'.charCodeAt(0) devuelve 65. Para la conversión inversa, String.fromCharCode(65) devuelve 'A'. En Python, ord('A') devuelve 65 y chr(65) devuelve 'A'. En C, los valores char son enteros y pueden usarse directamente en aritmética: 'A' + 1 equivale a 'B'.",
+          "Los valores ASCII son la base de muchos patrones de programación comunes. La diferencia entre letras mayúsculas y minúsculas es siempre 32: 'a' (97) = 'A' (65) + 32. Los dígitos 0–9 ocupan los códigos 48–57, por lo que restar 48 del valor ASCII de un carácter dígito da su valor numérico. La codificación de URL representa los caracteres no seguros para URL como %XX, donde XX es el código ASCII en hex, haciendo que esta tabla sea imprescindible para depurar cadenas codificadas en URL y cabeceras HTTP."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Explorar la tabla completa", "text": "Desplázate por los 128 códigos ASCII. Los caracteres de control (0–31, 127) aparecen resaltados en ámbar. Cada fila muestra decimal, hex (prefijo 0x), octal, binario, glifo del carácter y descripción." },
+      { "name": "Filtrar por tipo", "text": "Haz clic en «Imprimibles» para mostrar solo caracteres visibles (32–126), o en «Control» para mostrar solo códigos de control no imprimibles (0–31, 127)." },
+      { "name": "Buscar un carácter", "text": "Escribe un número decimal (p. ej., 65), un valor hex (p. ej., 41 o 0x41) o un carácter (p. ej., A) para ir directamente a esa entrada. También puedes buscar por nombre de código de control (p. ej., ESC o LF)." },
+      { "name": "Leer la representación binaria", "text": "La columna binaria muestra la representación de 8 bits de cada código ASCII. Por ejemplo, 'A' (65) = 01000001 en binario. Esto es útil al trabajar con operaciones a nivel de bit o para entender la codificación de caracteres a nivel de byte." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Cuál es el código ASCII para Enter / nueva línea?",
+      "a": "El carácter de nueva línea (salto de línea) es el código ASCII 10 (0x0A, LF). En Unix/Linux/macOS, una nueva línea se representa solo con LF. En Windows, se representa con CR+LF (códigos 13 y 10, es decir, 0x0D 0x0A). El carácter de retorno de carro es el código 13 (0x0D, CR). Al escribir código de procesamiento de texto multiplataforma, trata siempre ambos finales de línea: LF y CR+LF."
+    },
+    {
+      "q": "¿Cuál es el código ASCII del carácter espacio?",
+      "a": "El carácter espacio es el código ASCII 32 (0x20, SP). Es el primer carácter imprimible de ASCII. El espacio de no separación (usado en HTML como &nbsp;) no forma parte del ASCII de 7 bits estándar — es el código 160 (0xA0) en ISO 8859-1 y UTF-8 (codificado como 0xC2 0xA0 en UTF-8)."
+    },
+    {
+      "q": "¿Cuál es la diferencia entre ASCII, UTF-8 y Unicode?",
+      "a": "ASCII define 128 caracteres con códigos de 7 bits. Unicode es un estándar universal que define más de 140.000 caracteres con puntos de código de hasta U+10FFFF. UTF-8 es una codificación de ancho variable de Unicode: codifica los caracteres ASCII (0–127) en un solo byte, lo que lo hace retrocompatible con ASCII. Los caracteres más allá de 127 usan 2–4 bytes en UTF-8. Los sistemas de texto modernos usan UTF-8 o UTF-16, pero ASCII sigue siendo importante para cabeceras de protocolos, formatos de archivo y sistemas heredados."
+    },
+    {
+      "q": "¿Cómo obtengo el código ASCII de un carácter en JavaScript?",
+      "a": "Usa charCodeAt(0): 'A'.charCodeAt(0) devuelve 65. Para puntos de código Unicode superiores a 65535, usa codePointAt(0) en su lugar. Para convertir un código de vuelta a un carácter: String.fromCharCode(65) devuelve 'A'. Para soporte Unicode completo: String.fromCodePoint(128512) devuelve el emoji 😀."
+    },
+    {
+      "q": "¿Qué hace el código ASCII 0 (NUL)?",
+      "a": "NUL (código 0) es el carácter nulo. En C y muchos otros lenguajes se utiliza como terminador de cadena — una cadena 'Hello' se almacena en memoria como los bytes 72, 101, 108, 108, 111, 0. En bases de datos y formatos de archivo, NUL puede aparecer como separador de campo o byte de relleno. En la mayoría de los editores de texto y terminales, NUL es invisible e ignorado, pero puede causar problemas al leer archivos binarios como texto."
+    },
+    {
+      "q": "¿Qué es el carácter Escape (ASCII 27)?",
+      "a": "ESC (código 27, 0x1B) es el carácter Escape. Es el inicio de las secuencias de escape ANSI/VT100, que controlan los colores del terminal y el movimiento del cursor. Por ejemplo, la secuencia ESC[31m cambia el color del texto del terminal a rojo. En muchas aplicaciones, pulsar la tecla Escape envía este carácter. También se utiliza en varios formatos de datos y protocolos de comunicación."
+    },
+    {
+      "q": "¿Por qué la letra mayúscula A tiene el código ASCII 65 y la minúscula a tiene el 97?",
+      "a": "La tabla ASCII fue diseñada de modo que las letras mayúsculas (A=65, B=66, …, Z=90) y las minúsculas (a=97, b=98, …, z=122) difieren exactamente en 32. Esto permite convertir entre mayúsculas y minúsculas con una sola suma o resta. Para convertir mayúsculas a minúsculas en ASCII: suma 32 (o activa el bit 5). Para convertir minúsculas a mayúsculas: resta 32 (o borra el bit 5). Por eso funciona la conversión de mayúsculas/minúsculas a nivel de bits en C: char lower = upper | 0x20."
+    },
+    {
+      "q": "¿Cuál es la diferencia entre CR, LF y CRLF?",
+      "a": "CR (Carriage Return, código 13) y LF (Line Feed, código 10) se originaron en las convenciones de las máquinas de escribir y los teletipos. CR mueve el cabezal de impresión al inicio de la línea; LF avanza a la línea siguiente. Unix/Linux usa solo LF para los saltos de línea. Windows usa CR+LF (ambos juntos). El Mac OS clásico (antes de OS X) usaba solo CR. La mayoría de los analizadores modernos manejan los tres formatos, pero mezclar finales de línea en archivos fuente provoca problemas con las diferencias de control de versiones y algunos procesadores de texto."
+    }
+  ]
+}

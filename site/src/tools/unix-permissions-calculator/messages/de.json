@@ -1,0 +1,100 @@
+{
+  "title": "Unix-Dateiberechtigungen Rechner (chmod)",
+  "shortDescription": "Setze Lesen/Schreiben/Ausführen für Eigentümer, Gruppe und Andere. Erhalte sofort den Oktalwert (755, 644…) und die symbolische Darstellung (rwxr-xr-x).",
+  "description": "Interaktiver chmod-Rechner. Aktiviere oder deaktiviere Berechtigungsbits für Eigentümer, Gruppe und Andere, und lies die Oktalzahl und symbolische Notation in Echtzeit ab. Oder gib eine Oktalzahl ein, um sie zu dekodieren.",
+  "metaDescription": "Kostenloser Unix-Berechtigungsrechner. Setze Lesen/Schreiben/Ausführen für Eigentümer/Gruppe/Andere und erhalte sofort den Oktalwert (755, 644) und die symbolische",
+  "keywords": [
+    "unix berechtigungen rechner",
+    "chmod rechner",
+    "oktale berechtigungen",
+    "dateirechte linux",
+    "rwx berechtigungen"
+  ],
+  "input.octal": "Oktalwert",
+  "input.symbolic": "Symbolisch",
+  "label.owner": "Eigentümer",
+  "label.group": "Gruppe",
+  "label.other": "Andere",
+  "label.read": "Lesen (r)",
+  "label.write": "Schreiben (w)",
+  "label.execute": "Ausführen (x)",
+  "presets": "Häufige Voreinstellungen",
+  "error.invalidOctal": "Bitte 1–3 oktale Ziffern eingeben (nur 0–7).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Ursprung der Oktalnotation in Unix-Berechtigungen",
+        "paragraphs": [
+          "Unix-Dateiberechtigungen wurden 1969 von Ken Thompson bei der Entwicklung des ursprünglichen Unix auf einem PDP-7 entworfen. Jede Datei speichert neun Berechtigungsbits im Inode: drei für den Eigentümer, drei für die Gruppe und drei für alle anderen. Jede Dreiergruppe von Bits als einzelne Oktalziffer (0–7) darzustellen war die natürliche Wahl: eine Ziffer pro Entität, drei Ziffern insgesamt. Diese Oktalkonvention wurde in POSIX.1-1988 standardisiert und ist in allen Linux-, macOS-, BSD- und Unix-ähnlichen Systemen unverändert geblieben.",
+          "Die symbolische Form (rwxr-xr-x) erschien ab den ersten Unix-Distributionen in der Ausgabe von `ls -l` und wurde zur lesbaren Ergänzung der Oktalzahl. POSIX definiert beide Darstellungen als normativ. `chmod u+x datei` verwendet die symbolische Form; `chmod 755 datei` die Oktalform. Beide führen zur gleichen Kernel-Operation: bestimmte Bits im Modus-Feld des Inodes setzen."
+        ]
+      },
+      {
+        "heading": "Bedeutung der einzelnen Berechtigungsbits",
+        "paragraphs": [
+          "Für eine reguläre Datei: Lesen (r=4) erlaubt das Öffnen und Lesen des Inhalts; Schreiben (w=2) erlaubt das Ändern oder Kürzen der Datei; Ausführen (x=1) erlaubt das Starten als Programm. Jedes Bit ist unabhängig. Die Oktalziffer einer Entität ist die Summe der gesetzten Bits: rwx=7, r-x=5, r--=4.",
+          "Für ein Verzeichnis ändern sich die Bedeutungen. Lesen (r) erlaubt die Auflistung mit `ls`. Ausführen (x) — das 'Suchbit' — erlaubt den Wechsel mit `cd` und den Zugriff auf Dateien nach Name. Schreiben (w) erlaubt das Erstellen, Löschen oder Umbenennen von Dateien im Verzeichnis. Ein Verzeichnis mit Lesen aber ohne Ausführen ist fast nutzlos: Die Dateinamen sind sichtbar, aber keine Datei kann geöffnet werden. Typische Verzeichnisse haben die Berechtigung 755."
+        ]
+      },
+      {
+        "heading": "Häufige Berechtigungsmuster und Sicherheitsaspekte",
+        "paragraphs": [
+          "644 (rw-r--r--) ist der Standard für Konfigurationsdateien, HTML und Text: Der Eigentümer kann bearbeiten, alle anderen nur lesen. 755 (rwxr-xr-x) ist der Standard für Verzeichnisse und ausführbare Skripte: Der Eigentümer verwaltet den Inhalt, andere können nur browsen und lesen. 600 (rw-------) und 700 (rwx------) beschränken den Zugriff vollständig auf den Eigentümer — geeignet für SSH-Schlüssel und Passwortdateien. Verwende niemals 777 für web-exponierte Dateien; Schreibzugriff für 'Andere' bedeutet, dass jeder Prozess auf dem System die Datei überschreiben kann.",
+          "Die umask bestimmt die Standardberechtigungen neuer Dateien und Verzeichnisse. Eine umask von 022 (auf den meisten Systemen üblich) ergibt 644 für neue Dateien und 755 für neue Verzeichnisse, da die umask-Bits vom Standardwert 666 (Dateien) und 777 (Verzeichnisse) subtrahiert werden. Sicherheitsgehärtete Systeme verwenden oft umask 027 oder 077."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Berechtigungs-Checkboxen umschalten",
+        "text": "Klicke auf die Lesen-, Schreiben- oder Ausführen-Checkbox für Eigentümer, Gruppe oder Andere. Oktalwert und symbolische Zeichenkette werden sofort aktualisiert."
+      },
+      {
+        "name": "Oktalzahl zum Dekodieren eingeben",
+        "text": "Klicke auf das Oktal-Eingabefeld und gib eine 1- bis 3-stellige Oktalzahl (0–7 pro Ziffer) ein. Die Checkboxen zeigen die dekodierten Berechtigungsbits."
+      },
+      {
+        "name": "Voreinstellung verwenden",
+        "text": "Klicke auf einen der Voreinstellungsbuttons (755, 644, 600, 700, 777), um zu einem häufig verwendeten Berechtigungssatz zu wechseln."
+      },
+      {
+        "name": "chmod-Befehl kopieren",
+        "text": "Der chmod-Befehl unten zeigt die genaue Syntax zum Anwenden dieser Berechtigungen. Ersetze 'filename' durch den tatsächlichen Datei- oder Verzeichnispfad."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was bedeutet 755?",
+      "a": "755 bedeutet: Eigentümer hat Lesen+Schreiben+Ausführen (7=4+2+1), Gruppe hat Lesen+Ausführen (5=4+1), Andere haben Lesen+Ausführen (5=4+1). Es ist die Standardberechtigung für Verzeichnisse und ausführbare Skripte."
+    },
+    {
+      "q": "Was bedeutet 644?",
+      "a": "644 bedeutet: Eigentümer hat Lesen+Schreiben (6=4+2), Gruppe hat nur Lesen (4), Andere haben nur Lesen (4). Es ist der Standardwert für reguläre Dateien wie Konfigurationen, Webseiten und Textdokumente."
+    },
+    {
+      "q": "Warum benötigt ein Verzeichnis das Ausführ-Bit?",
+      "a": "Bei Verzeichnissen ist das Ausführ-Bit das 'Suchbit'. Ohne es kann man weder mit cd in das Verzeichnis wechseln noch Dateien darin über Pfadnamen öffnen – selbst wenn das Lese-Bit gesetzt ist. Ein Verzeichnis mit Lesen aber ohne Ausführen ist in der Praxis kaum nutzbar."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen Eigentümer, Gruppe und Anderen?",
+      "a": "Der Eigentümer ist das Benutzerkonto, dem die Datei gehört (festgelegt bei der Erstellung oder geändert mit chown). Die Gruppe ist die der Datei zugewiesene Gruppe (geändert mit chgrp); alle Benutzer in dieser Gruppe erhalten die Gruppenberechtigungen. Andere umfasst alle Benutzer des Systems, die weder Eigentümer noch Mitglied der Gruppe sind."
+    },
+    {
+      "q": "Was sind SUID und SGID?",
+      "a": "SUID (Set User ID) und SGID (Set Group ID) sind spezielle Berechtigungsbits über die neun Standard-Bits hinaus. Mit SUID auf einer ausführbaren Datei läuft diese mit den Rechten des Dateieigentümers statt des Aufrufers — verwendet von Befehlen wie passwd und sudo. SGID auf einem Verzeichnis lässt neue Dateien die Gruppe des Verzeichnisses erben. In der symbolischen Darstellung erscheint 's' (z. B. rwsr-xr-x), zum Oktalwert werden 4000 oder 2000 addiert (z. B. 4755)."
+    },
+    {
+      "q": "Ist chmod 777 gefährlich?",
+      "a": "Ja, besonders auf einem gemeinsam genutzten System oder Webserver. 777 gewährt allen Benutzern des Systems vollständiges Lesen, Schreiben und Ausführen. Jeder Prozess — einschließlich kompromittierter Webanwendungen — kann die Datei überschreiben oder ausführen. Auf Webservern ermöglicht das oft beliebige Codeausführung. Beschränke Berechtigungen auf das notwendige Minimum."
+    },
+    {
+      "q": "Wie verwende ich den chmod-Befehl?",
+      "a": "Verwende `chmod OKTAL Pfad` für eine einzelne Datei, oder `chmod -R OKTAL Verzeichnis` für rekursive Anwendung. Beispiele: `chmod 644 index.html` oder `chmod 755 /var/www`. Du kannst auch symbolische Syntax verwenden: `chmod u+x script.sh` fügt dem Eigentümer das Ausführ-Bit hinzu ohne andere Bits zu ändern."
+    },
+    {
+      "q": "Was ist umask und wie verhält es sich zu Berechtigungen?",
+      "a": "umask ist eine Maske, die beim Erstellen neuer Dateien oder Verzeichnisse auf die Standardberechtigungen angewendet wird. Eine umask von 022 entfernt Schreibzugriff für Gruppe und Andere, sodass neue Dateien 644 und neue Verzeichnisse 755 erhalten. Gib `umask` in deiner Shell ein, um die aktuelle Einstellung zu sehen, und `umask WERT` zum Ändern für die aktuelle Sitzung."
+    }
+  ]
+}

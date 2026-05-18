@@ -1,0 +1,101 @@
+{
+  "title": "CSS Renk Adı Bulucu — Hex Kodundan En Yakın Adlandırılmış Renk",
+  "shortDescription": "En yakın CSS renk adını bulmak için herhangi bir hex rengi girin. Tam hex değerleri ve mesafe puanıyla en yakın 5 adlandırılmış rengi görün.",
+  "description": "En yakın CSS4 renk adını bulmak için bir hex renk kodu girin veya renk seçiciyi kullanın. Araç, renginizi algısal renk mesafesi kullanarak tüm 148 standart CSS adlandırılmış rengiyle karşılaştırır ve en yakın 5'ini sıralar. Kod ve belgeleme için okunabilir renk adları bulmak için mükemmeldir.",
+  "metaDescription": "Ücretsiz CSS renk adı bulucu. En yakın CSS adlandırılmış renklerini bulmak için herhangi bir hex rengi girin. İlk 5 sonuç için tam hex değerlerini ve algısal mesafeyi",
+  "keywords": [
+    "css renk adı bulucu",
+    "en yakın renk adı",
+    "hex renk adına",
+    "hexten renk adı",
+    "css adlandırılmış renkler"
+  ],
+  "input": {
+    "picker": "Renk seçici",
+    "hex": "Hex renk"
+  },
+  "error": {
+    "invalid": "Lütfen geçerli bir hex rengi girin (örn. #3B82F6)."
+  },
+  "result": {
+    "exact": "Tam eşleşme bulundu:",
+    "nearest": "5 en yakın CSS adlandırılmış rengi:"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "CSS adlandırılmış renkleri: kısa bir tarih",
+        "paragraphs": [
+          "CSS adlandırılmış renkleri birkaç spesifikasyon sürümü boyunca gelişti. Orijinal CSS 1 (1996) yalnızca 16 temel rengi tanımladı: aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, purple, red, silver, teal, white ve yellow. CSS 2 orange'ı ekledi. CSS 3, 1980'lerde MIT'de tutulan X Window Sistemi renk veritabanına dayanan X11 renk listesine göre listeyi 147 renge genişletti.",
+          "CSS Color Level 4 bir renk daha ekledi: rebeccapurple (#663399). Bu renk, web geliştirici Eric Meyer'in kızı Rebecca Alissa Meyer'i onurlandırmak için eklendi; Rebecca, 2014 yılında 6 yaşında beyin kanserinden hayatını kaybetti. En sevdiği renk mordu ve CSS çalışma grubu adını bir anıt olarak standarda dahil etmek için oy kullandı. Bu eklemeyle birlikte CSS4 spesifikasyonu tam olarak 148 adlandırılmış renk tanımlar; bu aracın arama yaptığı tam koleksiyon budur."
+        ]
+      },
+      {
+        "heading": "Renk mesafesi nasıl hesaplanır",
+        "paragraphs": [
+          "RGB değerlerini yalnızca Öklid mesafesiyle karşılaştırmak insan algısıyla pek örtüşmez: gözlerimiz maviye kıyasla yeşildeki farklara daha duyarlıdır ve hassasiyet parlaklık aralığı boyunca değişir. Bu araç, Thiadmer Riemersma'nın 'Renk metriğine' dayalı ağırlıklı Öklid formülünü kullanır; bu formül ortalama kırmızı değere göre R, G ve B kanallarının ağırlıklarını ayarlar. Sonuç, insanların renk farklarını gerçekte nasıl algıladığına çok daha yakındır.",
+          "Formül şöyledir: ΔE = √[(2 + R̄/256)·ΔR² + 4·ΔG² + (2 + (255-R̄)/256)·ΔB²], burada R̄ iki rengin ortalama kırmızı bileşenidir. Bu basitleştirilmiş bir algısal metriktir; profesyonel renk bilimi, parlaklığı, kroma ve tonu ayrı ayrı hesaba katan CIELAB ΔE hesaplamalarını kullanır; ancak pratik adlandırma amaçları için basitleştirilmiş metrik çoğu renk için sezgisel sonuçlar verir."
+        ]
+      },
+      {
+        "heading": "CSS'de adlandırılmış renkler ne zaman kullanılır",
+        "paragraphs": [
+          "Adlandırılmış renkler hızlı prototipleme, kod okunabilirliği ve hata ayıklama için en kullanışlıdır. `color: tomato` yazmak, `color: #FF6347`'den daha hızlı yazılır ve daha kolay hatırlanır. Eğitim bağlamlarında, veri görselleştirmede (anlamsal bir adın anlam iletmeye yardımcı olduğu durumlarda) ve sınırlı adlandırılmış renk setinin paleti oluşturduğu tasarım sistemlerinde de kullanışlıdır. W3C, okunabilirliği artırmak için örnek ve öğreticilerde adlandırılmış renklerin kullanılmasını önerir.",
+          "Prodüksiyon tasarım sistemleri için adlandırılmış renkler nadiren birincil palet olur: özel hex değerleri, HSL veya tasarım token adları tercih edilir. Ancak özel bir değere en yakın adlandırılmış rengi bilmek, belgeler için, kod incelemelerinde renk yorumları için ve bir renk hakkında sözlü iletişim kurmak için hızlı yaklaşık bir ad istediğinizde kullanışlıdır. Bu araç, herhangi bir keyfi hex rengini en iyi açıklayan CSS adını bularak bu boşluğu kapatır."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Bir renk girin veya seçin",
+        "text": "Renk seçiciyi kullanın veya giriş alanına herhangi bir hex kodu (# önekiyle veya onsuz) yazın."
+      },
+      {
+        "name": "En yakın eşleşmeleri okuyun",
+        "text": "Araç, algısal mesafeye göre sıralanan 5 en yakın CSS adlandırılmış rengini gösterir. İlk sonuç en iyi eşleşmedir."
+      },
+      {
+        "name": "Tam ve yaklaşık olanı kontrol edin",
+        "text": "Renginiz tam bir CSS adlandırılmış rengiyse özel bir 'Tam eşleşme' mesajı görünür. Aksi hâlde en yakın alternatifleri görürsünüz."
+      },
+      {
+        "name": "Kodunuzda kullanın",
+        "text": "CSS'nizde doğrudan kullanmak için renk adına tıklayın ya da hassas renk kontrolü için her renk örneğinin yanında gösterilen tam hex değerini alın."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Kaç tane CSS adlandırılmış rengi var?",
+      "a": "CSS Color Level 4, 148 adlandırılmış rengi tanımlar. Bunlar CSS 1'den 16 temel renk, CSS 2'den orange, CSS 3'ten 130 X11 tabanlı renk ve Rebecca Meyer'i onurlandırmak için CSS 4'te eklenen rebeccapurple'dan oluşur. aqua ile cyan'ın takma ad olduğunu (aynı hex #00FFFF) ve fuchsia ile magenta'nın da aynı olduğunu (#FF00FF) unutmayın."
+    },
+    {
+      "q": "CSS renk adları büyük/küçük harf duyarlı mıdır?",
+      "a": "Hayır. CSS renk adları spesifikasyona göre büyük/küçük harf duyarsızdır. 'Red', 'RED', 'red' ve 'rEd' hepsi aynı renge atıfta bulunur. Geleneksel olarak, küçük harf modern CSS'de en yaygın stildir."
+    },
+    {
+      "q": "rebeccapurple nedir?",
+      "a": "rebeccapurple (#663399), CSS uzmanı Eric Meyer'in kızı Rebecca Alissa Meyer'in anısına CSS Color Level 4'e eklendi; Rebecca, 2014 yılında 6 yaşında beyin kanserinden hayatını kaybetti. En sevdiği renk mordu ve CSS çalışma grubu onu, rengi onun adıyla adlandırarak ölümsüzleştirdi. CSS 4'te eklenen tek renk ve CSS 2'den bu yana ilk yeni adlandırılmış renkti."
+    },
+    {
+      "q": "CSS adlandırılmış renkleri neden tüm olası renkleri kapsamıyor?",
+      "a": "148 adlandırılmış renk, tarihsel X11 renk listelerine dayalı derlenmiş bir kümedir. Yaygın tonları kapsar ancak pek çok rengi isimsiz bırakır: mavi-yeşil, pembe-turuncu veya kahverengi-kırmızının çoğu tonu için CSS adı yoktur. Hassas tasarım çalışmaları için hex kodları, rgb() veya hsl() kullanılır."
+    },
+    {
+      "q": "CSS'de gray ile grey arasındaki fark nedir?",
+      "a": "Her iki yazım da CSS'de kabul edilir. 'gray', spesifikasyondaki resmi Amerikan İngilizcesi yazımıdır; ancak 'grey' (Britanya İngilizcesi) de aynı renk (#808080) için geçerli bir eş anlamlıdır. Benzer şekilde, 'lightgray'/'lightgrey', 'darkgray'/'darkgrey', 'dimgray'/'dimgrey', 'slategray'/'slategrey' ve 'darkslategray'/'darkslategrey' hepsi geçerlidir."
+    },
+    {
+      "q": "En yakın renk eşleşmesi ne kadar doğru?",
+      "a": "Eşleşme, RGB kanallarını insan gözü hassasiyetine göre ağırlıklandıran algısal bir mesafe formülü kullanır. Çoğu günlük renk için — doygun kırmızılar, maviler, yeşiller — en yakın adlandırılmış renk sezgisel olarak doğru hissettirir. Çok soluk, koyu veya kahverengi tonlar için insan algısı daha değişkendir ve 'en yakın' adlandırılmış renk öznel olarak yanlış hissedebilir. Gösterilen mesafe puanı (Δ), eşleşmenin ne kadar yakın olduğunu değerlendirmenize yardımcı olur: ne kadar küçükse o kadar iyi."
+    },
+    {
+      "q": "Bunu alt metin için erişilebilir renk adları bulmak amacıyla kullanabilir miyim?",
+      "a": "Evet. Bu araç, alt metin, belgeleme veya tasarım yorumlarına renk adları yazmak için kullanışlıdır. Bir kullanıcı arayüzü öğesinin rengini göremeyecek bir okuyucuya açıklamanız gerektiğinde, en yakın CSS adlandırılmış rengi yaygın olarak tanınan bir ad sağlar. Çok özel tonlar için CSS adını bir niteleyiciyle birleştirin (örn. #008080 için 'koyu zümrüt yeşili')."
+    },
+    {
+      "q": "Hangi hex renkler CSS adlarıyla tam eşleşme sağlar?",
+      "a": "148 standart CSS adlandırılmış renginden herhangi biri tam eşleşme üretir. Yaygın örnekler: red = #FF0000, blue = #0000FF, white = #FFFFFF, black = #000000, coral = #FF7F50, tomato = #FF6347, skyblue = #87CEEB. Herhangi bir hex'i girerek ve 'Tam eşleşme' mesajını arayarak kontrol edebilirsiniz."
+    }
+  ]
+}

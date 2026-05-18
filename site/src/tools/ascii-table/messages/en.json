@@ -1,0 +1,90 @@
+{
+  "title": "ASCII Table — Decimal, Hex, Binary, Octal & Character Chart",
+  "shortDescription": "Complete ASCII character table showing decimal, hexadecimal, octal, and binary values for all 128 ASCII codes. Filter by printable or control characters and search by number, hex, or character.",
+  "description": "Browse all 128 ASCII codes (0–127) with their decimal, hexadecimal, octal, and binary representations. Control characters (0–31, 127) are highlighted and labeled with their standard abbreviations and full names. Filter to show only printable characters or only control codes, and search by decimal number, hex value, or character.",
+  "metaDescription": "Free ASCII table with all 128 ASCII codes. Shows decimal, hex, octal, binary, and character. Filter printable vs control characters. Search by number or value.",
+  "keywords": ["ASCII table", "ASCII codes", "ASCII chart", "hex decimal binary", "control characters"],
+  "search": {
+    "placeholder": "Search by decimal, hex, or character…",
+    "noResults": "No matching characters found."
+  },
+  "filter": {
+    "all": "All",
+    "printable": "Printable",
+    "control": "Control"
+  },
+  "col": {
+    "dec": "Dec",
+    "hex": "Hex",
+    "oct": "Oct",
+    "bin": "Binary",
+    "char": "Char",
+    "description": "Description"
+  },
+  "note": "Showing {count} of 128 ASCII codes",
+  "article": {
+    "sections": [
+      {
+        "heading": "What is ASCII?",
+        "paragraphs": [
+          "ASCII (American Standard Code for Information Interchange) is a character encoding standard originally published in 1963. It defines 128 characters: 33 non-printing control characters (codes 0–31 and 127) and 95 printable characters (codes 32–126), including uppercase and lowercase English letters, digits 0–9, and common punctuation marks. ASCII became the foundation for virtually every modern text encoding, including UTF-8, which is backward-compatible with ASCII for the first 128 code points.",
+          "Each ASCII character is assigned a 7-bit integer value, which is why the table stops at 127 (2⁷ − 1). When stored in an 8-bit byte, the leading bit is typically 0 for standard ASCII. The extended ASCII range (128–255) is not standardized by the original spec and varies by code page — ISO 8859-1, Windows-1252, and similar encodings each define a different set of characters for the upper half of the byte."
+        ]
+      },
+      {
+        "heading": "Control characters (0–31 and 127)",
+        "paragraphs": [
+          "The first 32 ASCII codes and code 127 are non-printing control characters inherited from teletype machine conventions. Most are obsolete in modern computing, but several remain important: code 9 (HT, horizontal tab), code 10 (LF, line feed or newline on Unix/Linux), code 13 (CR, carriage return, used in Windows line endings as CR+LF), code 27 (ESC, Escape, used in terminal escape sequences), and code 127 (DEL). These characters are not rendered as visible glyphs.",
+          "On Unix-like systems, you can generate control characters in a terminal by holding Ctrl and pressing the corresponding letter: Ctrl+A = SOH (1), Ctrl+C = ETX (3, sends interrupt signal), Ctrl+D = EOT (4, signals end of input), Ctrl+J = LF (10), Ctrl+M = CR (13), Ctrl+Z = SUB (26, suspends a process on Unix). Understanding these codes is essential for low-level I/O, terminal control sequences, and network protocol implementation."
+        ]
+      },
+      {
+        "heading": "ASCII in programming and web development",
+        "paragraphs": [
+          "In JavaScript, you can get the ASCII code of a character using charCodeAt(0): 'A'.charCodeAt(0) returns 65. To convert back, use String.fromCharCode(65) to get 'A'. In Python, ord('A') returns 65 and chr(65) returns 'A'. In C, char values are integers and can be used directly in arithmetic: 'A' + 1 equals 'B'.",
+          "ASCII values are the basis for many common programming patterns. The difference between uppercase and lowercase letters is always 32: 'a' (97) = 'A' (65) + 32. Digits 0–9 occupy codes 48–57, so subtracting 48 from a digit character's ASCII value gives its numeric value. URL encoding represents non-URL-safe characters as %XX where XX is the hex ASCII code, making this table essential for debugging URL-encoded strings and HTTP headers."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Browse the full table", "text": "Scroll through all 128 ASCII codes. Control characters (0–31, 127) are highlighted in amber. Each row shows decimal, hex (0x prefix), octal, binary, character glyph, and description." },
+      { "name": "Filter by type", "text": "Click Printable to show only visible characters (32–126), or Control to show only non-printing control codes (0–31, 127)." },
+      { "name": "Search for a character", "text": "Type a decimal number (e.g., 65), a hex value (e.g., 41 or 0x41), or a character (e.g., A) to jump directly to that entry. You can also search by control code name (e.g., ESC or LF)." },
+      { "name": "Read the binary representation", "text": "The binary column shows the 8-bit representation of each ASCII code. For example, 'A' (65) = 01000001 in binary. This is useful when working with bitwise operations or understanding character encoding at the byte level." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "What is the ASCII code for Enter / newline?",
+      "a": "The newline (line feed) character is ASCII code 10 (0x0A, LF). On Unix/Linux/macOS, a newline is represented by LF alone. On Windows, a newline is CR+LF (codes 13 and 10, or 0x0D 0x0A). The carriage return character is code 13 (0x0D, CR). When writing cross-platform text processing code, always handle both LF and CR+LF line endings."
+    },
+    {
+      "q": "What is the ASCII code for the space character?",
+      "a": "The space character is ASCII code 32 (0x20, SP). It is the first printable ASCII character. The non-breaking space (used in HTML as &nbsp;) is not part of standard 7-bit ASCII — it is code 160 (0xA0) in ISO 8859-1 and UTF-8 (encoded as 0xC2 0xA0 in UTF-8)."
+    },
+    {
+      "q": "What is the difference between ASCII, UTF-8, and Unicode?",
+      "a": "ASCII defines 128 characters with 7-bit codes. Unicode is a universal standard that defines over 140,000 characters with code points up to U+10FFFF. UTF-8 is a variable-width encoding of Unicode: it encodes ASCII characters (0–127) in a single byte, making it backward-compatible with ASCII. Characters beyond 127 use 2–4 bytes in UTF-8. Modern text systems use UTF-8 or UTF-16, but ASCII remains important for protocol headers, file formats, and legacy systems."
+    },
+    {
+      "q": "How do I find the ASCII code of a character in JavaScript?",
+      "a": "Use charCodeAt(0): 'A'.charCodeAt(0) returns 65. For Unicode code points beyond 65535, use codePointAt(0) instead. To convert a code back to a character: String.fromCharCode(65) returns 'A'. For full Unicode support: String.fromCodePoint(128512) returns the 😀 emoji."
+    },
+    {
+      "q": "What does ASCII code 0 (NUL) do?",
+      "a": "NUL (code 0) is the null character. In C and many other languages, it is used as a string terminator — a string 'Hello' is stored in memory as the bytes 72, 101, 108, 108, 111, 0. In databases and file formats, NUL can appear as a field separator or padding byte. In most text editors and terminals, NUL is invisible and ignored, but it can cause problems when reading binary files as text."
+    },
+    {
+      "q": "What is the Escape character (ASCII 27)?",
+      "a": "ESC (code 27, 0x1B) is the Escape character. It is the start of ANSI/VT100 escape sequences, which control terminal colors and cursor movement. For example, the sequence ESC[31m changes the terminal text color to red. In many applications, pressing the Escape key sends this character. It is also used in various data formats and communication protocols."
+    },
+    {
+      "q": "Why does uppercase A have ASCII code 65 and lowercase a have 97?",
+      "a": "The ASCII table was designed so that uppercase letters (A=65, B=66, ..., Z=90) and lowercase letters (a=97, b=98, ..., z=122) differ by exactly 32. This allows converting between cases with a single addition or subtraction. To convert uppercase to lowercase in ASCII: add 32 (or set bit 5). To convert lowercase to uppercase: subtract 32 (or clear bit 5). This is why bitwise case conversion works in C: char lower = upper | 0x20."
+    },
+    {
+      "q": "What is the difference between CR, LF, and CRLF?",
+      "a": "CR (Carriage Return, code 13) and LF (Line Feed, code 10) originated from typewriter/teletype conventions. CR moves the print head to the beginning of the line; LF advances to the next line. Unix/Linux uses LF alone for newlines. Windows uses CR+LF (both together). Classic Mac OS (before OS X) used CR alone. Most modern parsers handle all three, but mixing line endings in source files causes problems with version control diffs and some text processors."
+    }
+  ]
+}

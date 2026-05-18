@@ -1,0 +1,100 @@
+{
+  "title": "Conversor de Texto para Binário — Codificar e Decodificar",
+  "shortDescription": "Converta texto para código binário ou binário de volta para texto legível. Suporta saída separada por espaços, quebras de linha ou contínua. Troque entre codificação e decodificação com um clique.",
+  "description": "Digite qualquer texto para convertê-lo em binário (0s e 1s), ou cole código binário para decodificá-lo de volta em texto. Cada caractere é convertido usando seu valor ASCII/Unicode. Escolha saída separada por espaços, quebras de linha ou contínua. O botão Trocar inverte imediatamente a última conversão.",
+  "metaDescription": "Conversor gratuito de texto para binário. Codifique texto em 0s e 1s ou decodifique binário para texto. Separação por espaços ou contínua. Sem upload.",
+  "keywords": ["texto para binário", "binário para texto", "conversor binário", "codificar binário", "ASCII binário"],
+  "mode": {
+    "encode": "Text → Binary",
+    "decode": "Binary → Text"
+  },
+  "separator": {
+    "label": "Separador",
+    "space": "Espaço",
+    "newline": "Quebra de linha",
+    "none": "Nenhum"
+  },
+  "label": {
+    "inputText": "Texto de entrada",
+    "inputBinary": "Entrada binária",
+    "outputBinary": "Saída binária",
+    "outputText": "Texto decodificado"
+  },
+  "placeholder": {
+    "text": "Digite ou cole o texto aqui…",
+    "binary": "Cole o código binário aqui (ex.: 01001000 01100101 01101100 01101100 01101111)"
+  },
+  "action": {
+    "copy": "Copiar",
+    "swap": "Trocar"
+  },
+  "stat": {
+    "encoded": "{chars} caracteres → {bytes} bytes",
+    "decoded": "{chars} caracteres decodificados"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Como funciona a conversão de texto para binário",
+        "paragraphs": [
+          "Cada caractere em um computador é armazenado como um número. Para texto ASCII padrão, a letra 'A' é o número 65, 'B' é 66, o minúsculo 'a' é 97, um espaço é 32, e assim por diante. Para converter texto em binário, esta ferramenta busca o valor numérico (ponto de código ASCII/Unicode) de cada caractere e então escreve esse número em base 2 (binário), preenchido com zeros até 8 dígitos. Por exemplo: 'H' = 72 decimal = 01001000 binário, 'e' = 101 decimal = 01100101 binário, 'l' = 108 decimal = 01101100 binário.",
+          "O processo inverso (binário para texto) lê grupos de 8 bits, converte cada um de base 2 de volta para um número decimal e então busca o caractere com aquele ponto de código. Se você colar binário separado por espaços (como 01001000 01100101), a ferramenta divide nos espaços. Se você colar binário contínuo (como 0100100001100101), ele agrupa automaticamente em blocos de 8 bits. Cada grupo de 8 bits deve conter exatamente 8 uns e zeros — caso contrário a ferramenta mostra um erro identificando o byte inválido."
+        ]
+      },
+      {
+        "heading": "Binário vs. hexadecimal para representação de dados",
+        "paragraphs": [
+          "O binário (base 2) usa apenas 0 e 1, tornando-o a representação mais fundamental dos dados digitais — ele reflete diretamente como os bits são armazenados na memória do computador. Porém, é verboso: um único caractere ASCII precisa de 8 dígitos. O hexadecimal (base 16, usando dígitos 0–9 e A–F) é mais compacto: cada dígito hexadecimal representa exatamente 4 dígitos binários (um nibble), então um byte vira apenas 2 dígitos hexadecimais. 'H' = 0x48 em hex vs. 01001000 em binário.",
+          "A representação binária é mais útil quando você precisa ver ou manipular bits individuais — por exemplo, verificar flags em uma máscara de bits, entender como os pontos de código Unicode são codificados em bytes UTF-8, ou analisar estruturas de pacotes de rede no nível de bits. Para a maioria das tarefas de inspeção de dados, o hexadecimal oferece um bom equilíbrio entre compacidade e legibilidade. Muitos depuradores, editores hexadecimais e analisadores de protocolos mostram dados em hex, com visualização binária opcional para trabalho em nível de bits."
+        ]
+      },
+      {
+        "heading": "Além do ASCII: Unicode e caracteres multibyte",
+        "paragraphs": [
+          "O ASCII padrão cobre apenas 128 caracteres (7 bits, códigos 0–127), suficiente para texto em inglês, mas não para caracteres acentuados, escritas não latinas ou emojis. O texto moderno é codificado em Unicode, que define mais de 140.000 caracteres. Esta ferramenta usa o método embutido charCodeAt() do JavaScript, que retorna a unidade de código UTF-16 para cada caractere. Para os caracteres latinos básicos, isso equivale ao ponto de código Unicode, que também equivale ao código ASCII.",
+          "Para caracteres não ASCII como 'é' (233), 'ñ' (241), '中' (20013) ou '😀' (128512, que usa um par substituto UTF-16), a representação binária será mais longa ou dividida de maneira diferente. Se você precisar de codificação binária que corresponda à forma como o UTF-8 realmente armazena bytes no disco, precisaria primeiro codificar a string em UTF-8 e então converter cada byte resultante em binário. Para a maioria dos propósitos educacionais e de quebra-cabeças de codificação, a abordagem por caractere usada aqui é padrão."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Codificar texto em binário", "text": "Selecione o modo Text → Binary, digite ou cole seu texto na caixa à esquerda, e a saída binária aparece instantaneamente à direita. Escolha o separador preferido: Espaço coloca cada byte em um grupo separado por espaços, Quebra de linha coloca cada byte em sua própria linha, Nenhum produz uma string contínua de 0s e 1s." },
+      { "name": "Decodificar binário em texto", "text": "Selecione o modo Binary → Text, cole sua string binária (separada por espaços ou contínua) na caixa à esquerda, e o texto decodificado aparece à direita. Se algum grupo de 8 bits for inválido, uma mensagem de erro identifica o byte problemático." },
+      { "name": "Trocar codificação e decodificação", "text": "Clique no botão Trocar para mover a saída atual para a entrada e alternar automaticamente os modos — útil para verificar rapidamente uma conversão de ida e volta." },
+      { "name": "Copiar o resultado", "text": "Clique em Copiar para colocar o binário ou o texto decodificado na área de transferência para uso em outro aplicativo." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Como converter texto em binário?",
+      "a": "Cada caractere no texto é convertido para seu código numérico ASCII ou Unicode, que então é escrito em binário (base 2) preenchido com zeros até 8 bits. Por exemplo: 'A' = 65 decimal = 01000001 binário. 'Hello' torna-se 01001000 01100101 01101100 01101100 01101111. Esta ferramenta faz a conversão automaticamente — basta digitar seu texto na caixa à esquerda com o modo Text → Binary selecionado."
+    },
+    {
+      "q": "Como converter binário em texto?",
+      "a": "Selecione o modo Binary → Text e cole sua string binária. O binário deve estar em grupos de 8 bits (bytes). Se separado por espaços, cada grupo delimitado por espaço é um byte. Se contínuo (sem espaços), a ferramenta agrupa cada 8 dígitos como um byte. Cada byte é convertido de binário para número, depois consultado como um caractere ASCII/Unicode."
+    },
+    {
+      "q": "Por que cada grupo binário tem 8 dígitos?",
+      "a": "Um byte é 8 bits, e o ASCII usa códigos de 7 bits (0–127). Por convenção, os códigos ASCII são armazenados em um byte completo de 8 bits com um zero à esquerda, tornando todas as entradas exatamente 8 dígitos binários. Isso torna a análise inequívoca: a cada 8 dígitos = um caractere. Algumas representações mais antigas usam ASCII de 7 bits (sem o zero à esquerda), mas a codificação de 8 bits é o padrão moderno."
+    },
+    {
+      "q": "Qual é o binário de caracteres comuns?",
+      "a": "Espaço = 00100000, 'A' = 01000001, 'a' = 01100001, '0' = 00110000, Enter/nova linha (LF) = 00001010, ponto '.' = 00101110. O padrão é fácil de identificar: letras maiúsculas começam com 010, minúsculas começam com 011, e dígitos começam com 0011."
+    },
+    {
+      "q": "Esta ferramenta consegue lidar com caracteres não ingleses?",
+      "a": "Sim, para caracteres com pontos de código Unicode abaixo de 65.536 (a maioria dos caracteres latinos, gregos, cirílicos, CJK, árabes, hebraicos, etc.). Cada caractere é convertido para seu ponto de código Unicode em binário. Porém, como caracteres acima de 127 requerem mais de 8 bits, eles produzirão grupos binários mais longos que 8 dígitos. Para emojis e outros caracteres acima de U+FFFF, o JavaScript os divide em pares substitutos, o que pode produzir resultados inesperados."
+    },
+    {
+      "q": "O que o botão Trocar faz?",
+      "a": "Trocar pega a saída atual (a string binária se estiver codificando, ou o texto se estiver decodificando) e a move para a caixa de entrada, enquanto alterna o modo para a direção oposta. Isso permite verificar instantaneamente uma conversão de ida e volta: codifique algum texto, clique em Trocar e verifique se obtém o texto original de volta. Também é útil para explorar o que as strings binárias codificam."
+    },
+    {
+      "q": "O binário é o mesmo que o código Morse?",
+      "a": "Não. O binário usa exatamente 8 bits (0s e 1s) para representar cada caractere por seu valor numérico ASCII/Unicode. O código Morse usa pontos e traços de comprimento variável para representar letras e números, com sequências baseadas na frequência de letras em inglês (letras comuns como E e T têm códigos mais curtos). Os dois sistemas são esquemas de codificação completamente diferentes, embora ambos representem texto como uma série de símbolos."
+    },
+    {
+      "q": "Em que o binário difere do Base64?",
+      "a": "O binário mostra o padrão de bits real de cada caractere — os bits brutos armazenados na memória. Base64 é uma codificação de nível superior que converte dados binários arbitrários (qualquer arquivo ou sequência de bytes) em uma string de texto ASCII segura usando 64 caracteres imprimíveis. Base64 é usado quando você precisa incorporar dados binários em contextos que aceitam apenas texto (como anexos de e-mail ou URIs de dados). A representação binária é para inspeção humana de padrões de bits; Base64 é para transferência e armazenamento de dados."
+    }
+  ]
+}

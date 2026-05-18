@@ -1,0 +1,86 @@
+{
+  "title": "Keyboard Key Code Finder — keyCode, code, key Properties",
+  "shortDescription": "Press any key to instantly see its JavaScript keyCode, code, key, which, and charCode values. Essential for web developers handling keyboard events.",
+  "description": "Click the detection zone and press any keyboard key to instantly reveal its JavaScript event properties: key, code, keyCode, which, charCode, and modifier state (Ctrl, Alt, Shift, Meta). All 17 values update in real time. Perfect for debugging keyboard event handlers.",
+  "metaDescription": "Free keyboard key code finder. Press any key to see its JavaScript keyCode, code, key, which, and charCode values. Great for web developers.",
+  "keywords": ["keycode finder", "keyboard key code", "javascript keyCode", "key event", "which charCode"],
+  "zone": {
+    "label": "Key detection zone — click here then press any key",
+    "prompt": "Click here, then press any key"
+  },
+  "key": {
+    "space": "Space"
+  },
+  "label": {
+    "modifiers": "Modifiers",
+    "none": "None"
+  },
+  "history": {
+    "title": "Recent keys"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "JavaScript keyboard events: key, code, and keyCode",
+        "paragraphs": [
+          "When a user presses a key, the browser fires three events in sequence: keydown, keypress, and keyup. Each event object carries several properties that identify what was pressed. The most important are: key (the character or named key like 'Enter'), code (the physical key location like 'KeyA' or 'ArrowLeft'), and keyCode (a legacy integer, e.g., 65 for 'A' regardless of Shift state).",
+          "The keyCode and which properties are deprecated as of the W3C UI Events specification but still widely used in older codebases. Modern applications should prefer key for semantic meaning (what the key produces) and code for physical position (which physical key was pressed). For example, the 'A' key produces key='a' or key='A' depending on Shift, but always code='KeyA' regardless."
+        ]
+      },
+      {
+        "heading": "Understanding keyboard event location",
+        "paragraphs": [
+          "The location property distinguishes between keys that exist in multiple places on the keyboard: Left Ctrl vs Right Ctrl, Left Shift vs Right Shift, and numpad digit keys vs top-row digits. Location values are: 0 (standard), 1 (left side), 2 (right side), and 3 (numpad). This is particularly useful for detecting if the user pressed the numpad Enter key versus the main Enter key.",
+          "Modifier keys (Ctrl, Alt, Shift, Meta) are tracked as boolean flags on every keyboard event, not just when those keys are pressed alone. This means you can detect combinations like Ctrl+C even if you're primarily listening for keyCode 67 (C). The Meta key corresponds to the Windows key on Windows keyboards and the Command key on Mac."
+        ]
+      },
+      {
+        "heading": "Practical use cases for keyboard event properties",
+        "paragraphs": [
+          "Keyboard shortcuts in web apps use a combination of code (physical key) and modifier flags to detect combinations like Ctrl+S (save) or Ctrl+Shift+P (command palette). Using code rather than key ensures the shortcut works regardless of keyboard locale — on a French AZERTY layout, the key at the 'A' position produces a different character, but code is always 'KeyA'.",
+          "Game controls typically use code to map WASD or arrow keys to movement, since the physical position is what matters rather than the character produced. Accessibility tools may listen for Tab (code='Tab') and Enter (code='Enter') to ensure interactive elements can be activated without a mouse. This tool lets you quickly look up the exact property values for any key before writing event handler code."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Click the detection zone", "text": "Click or tap inside the dashed box at the top of the tool to focus it." },
+      { "name": "Press any key", "text": "Press any key on your keyboard — letters, numbers, function keys, arrow keys, or special keys like Enter and Escape." },
+      { "name": "Read the properties", "text": "All JavaScript keyboard event properties (key, code, keyCode, which, charCode, location, modifiers) appear instantly below the zone." },
+      { "name": "Check modifier combinations", "text": "Hold Ctrl, Alt, Shift, or Meta while pressing a key to see how modifier flags change in the Modifiers row." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "What is the difference between keyCode and key?",
+      "a": "keyCode is a deprecated integer property that gives a number for each key (e.g., 65 for 'A', 13 for Enter). key is the modern replacement that returns the character produced ('a' or 'A') or a named key string ('Enter', 'ArrowLeft'). New code should use key or code instead of keyCode."
+    },
+    {
+      "q": "What is the code property?",
+      "a": "code identifies the physical key that was pressed, independent of keyboard layout or modifier state. 'KeyA' always refers to the key in the 'A' position on a QWERTY keyboard, even if the user has switched to an AZERTY layout where that key produces 'Q'. Use code for keyboard shortcuts that should work regardless of locale."
+    },
+    {
+      "q": "Why is keyCode deprecated?",
+      "a": "keyCode was inconsistent across browsers and operating systems, had different values for the same keys, and did not handle non-ASCII characters well. The W3C UI Events specification deprecated it in favor of key (for character/named key) and code (for physical position). Both keyCode and which are now marked as legacy in the spec."
+    },
+    {
+      "q": "What does the location value mean?",
+      "a": "Location distinguishes keys that appear in multiple positions. 0 = standard (main area), 1 = left modifier key (e.g., Left Shift), 2 = right modifier key (e.g., Right Ctrl), 3 = numpad. This lets you distinguish numpad 5 (code='Numpad5', location=3) from the top-row 5 (code='Digit5', location=0)."
+    },
+    {
+      "q": "How do I detect Ctrl+S or other shortcuts in JavaScript?",
+      "a": "Listen for the keydown event and check both the key/code and the modifier flags: `if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveDocument(); }`. Using e.key === 's' catches both uppercase and lowercase, since modifier state doesn't change the key value for letter keys."
+    },
+    {
+      "q": "What is the charCode property?",
+      "a": "charCode was returned by the legacy keypress event and gave the Unicode code point of the character typed (e.g., 65 for 'A'). It is now deprecated along with the keypress event itself. In keydown/keyup events, charCode is always 0. Use key or inputType on the input event instead."
+    },
+    {
+      "q": "How do I detect the Enter key on the numpad vs the main keyboard?",
+      "a": "Both keys produce key='Enter', but they differ in code: the main Enter key is code='Enter' with location=0, while the numpad Enter key is code='NumpadEnter' with location=3. Check e.code === 'Enter' for the main key or e.code === 'NumpadEnter' for the numpad version."
+    },
+    {
+      "q": "What is the Meta key?",
+      "a": "The Meta key is the Windows key on Windows keyboards (⊞) and the Command key on Mac keyboards (⌘). In keyboard events, it is tracked by the metaKey boolean flag and produces key='Meta' when pressed alone. Its code is either 'MetaLeft' or 'MetaRight'."
+    }
+  ]
+}

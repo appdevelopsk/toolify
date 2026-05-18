@@ -1,0 +1,90 @@
+{
+  "title": "ASCII-Tabelle — Dezimal, Hex, Binär & Oktal",
+  "shortDescription": "Vollständige ASCII-Zeichentabelle mit Dezimal-, Hexadezimal-, Oktal- und Binärwerten für alle 128 ASCII-Codes. Filter nach druckbaren oder Steuerzeichen, Suche nach Zahl, Hex oder Zeichen.",
+  "description": "Durchsuchen Sie alle 128 ASCII-Codes (0–127) mit ihren Dezimal-, Hexadezimal-, Oktal- und Binärdarstellungen. Steuerzeichen (0–31, 127) sind hervorgehoben und mit Standardabkürzungen sowie vollständigen Namen beschriftet. Filtern Sie nach druckbaren Zeichen oder Steuercodes, und suchen Sie nach Dezimalzahl, Hex-Wert oder Zeichen.",
+  "metaDescription": "Kostenlose ASCII-Tabelle mit allen 128 ASCII-Codes. Zeigt Dezimal, Hex, Oktal, Binär und Zeichen. Filter für druckbare vs. Steuerzeichen. Suche nach Zahl oder Wert.",
+  "keywords": ["ASCII-Tabelle", "ASCII-Codes", "ASCII-Chart", "Hex Dezimal Binär", "Steuerzeichen"],
+  "search": {
+    "placeholder": "Nach Dezimal, Hex oder Zeichen suchen…",
+    "noResults": "Keine passenden Zeichen gefunden."
+  },
+  "filter": {
+    "all": "Alle",
+    "printable": "Druckbar",
+    "control": "Steuerzeichen"
+  },
+  "col": {
+    "dec": "Dez",
+    "hex": "Hex",
+    "oct": "Okt",
+    "bin": "Binär",
+    "char": "Zeichen",
+    "description": "Beschreibung"
+  },
+  "note": "{count} von 128 ASCII-Codes werden angezeigt",
+  "article": {
+    "sections": [
+      {
+        "heading": "Was ist ASCII?",
+        "paragraphs": [
+          "ASCII (American Standard Code for Information Interchange) ist ein Zeichenkodierungsstandard, der ursprünglich 1963 veröffentlicht wurde. Er definiert 128 Zeichen: 33 nicht druckbare Steuerzeichen (Codes 0–31 und 127) und 95 druckbare Zeichen (Codes 32–126), darunter englische Groß- und Kleinbuchstaben, die Ziffern 0–9 und gängige Satzzeichen. ASCII wurde zur Grundlage nahezu aller modernen Textkodierungen, einschließlich UTF-8, das für die ersten 128 Codepunkte abwärtskompatibel mit ASCII ist.",
+          "Jedem ASCII-Zeichen wird ein 7-Bit-Ganzzahlwert zugewiesen, weshalb die Tabelle bei 127 (2⁷ − 1) endet. Bei der Speicherung in einem 8-Bit-Byte ist das führende Bit für Standard-ASCII typischerweise 0. Der erweiterte ASCII-Bereich (128–255) ist durch die ursprüngliche Spezifikation nicht standardisiert und variiert je nach Codepage — ISO 8859-1, Windows-1252 und ähnliche Kodierungen definieren jeweils unterschiedliche Zeichensätze für die obere Hälfte des Bytes."
+        ]
+      },
+      {
+        "heading": "Steuerzeichen (0–31 und 127)",
+        "paragraphs": [
+          "Die ersten 32 ASCII-Codes und Code 127 sind nicht druckbare Steuerzeichen, die von Fernschreiber-Konventionen übernommen wurden. Die meisten sind in der modernen Datenverarbeitung veraltet, einige bleiben jedoch wichtig: Code 9 (HT, horizontaler Tabulator), Code 10 (LF, Zeilenvorschub oder Zeilenumbruch unter Unix/Linux), Code 13 (CR, Wagenrücklauf, bei Windows-Zeilenenden als CR+LF verwendet), Code 27 (ESC, Escape, für Terminal-Escapesequenzen) und Code 127 (DEL). Diese Zeichen werden nicht als sichtbare Glyphen dargestellt.",
+          "Auf Unix-ähnlichen Systemen können Steuerzeichen im Terminal durch Drücken von Strg und dem entsprechenden Buchstaben erzeugt werden: Strg+A = SOH (1), Strg+C = ETX (3, sendet Unterbrechungssignal), Strg+D = EOT (4, signalisiert Eingabeende), Strg+J = LF (10), Strg+M = CR (13), Strg+Z = SUB (26, hält einen Prozess unter Unix an). Das Verständnis dieser Codes ist essenziell für Low-Level-I/O, Terminal-Steuersequenzen und die Implementierung von Netzwerkprotokollen."
+        ]
+      },
+      {
+        "heading": "ASCII in der Programmierung und Webentwicklung",
+        "paragraphs": [
+          "In JavaScript erhalten Sie den ASCII-Code eines Zeichens mit charCodeAt(0): 'A'.charCodeAt(0) gibt 65 zurück. Zur Rückkonvertierung liefert String.fromCharCode(65) den Buchstaben 'A'. In Python gibt ord('A') den Wert 65 zurück, und chr(65) ergibt 'A'. In C sind char-Werte Ganzzahlen und können direkt in arithmetischen Ausdrücken verwendet werden: 'A' + 1 ergibt 'B'.",
+          "ASCII-Werte bilden die Grundlage für viele gängige Programmiermuster. Der Unterschied zwischen Groß- und Kleinbuchstaben beträgt stets 32: 'a' (97) = 'A' (65) + 32. Die Ziffern 0–9 belegen die Codes 48–57; zieht man 48 vom ASCII-Wert eines Ziffernzeichens ab, erhält man seinen numerischen Wert. URL-Kodierung stellt nicht URL-sichere Zeichen als %XX dar, wobei XX der hexadezimale ASCII-Code ist — diese Tabelle ist daher unverzichtbar beim Debuggen von URL-kodierten Zeichenketten und HTTP-Headern."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Die vollständige Tabelle durchsuchen", "text": "Scrollen Sie durch alle 128 ASCII-Codes. Steuerzeichen (0–31, 127) sind bernsteinfarben hervorgehoben. Jede Zeile zeigt Dezimal, Hex (0x-Präfix), Oktal, Binär, Zeichenglyph und Beschreibung." },
+      { "name": "Nach Typ filtern", "text": "Klicken Sie auf „Druckbar“, um nur sichtbare Zeichen (32–126) anzuzeigen, oder auf „Steuerzeichen“, um nur nicht druckbare Steuercodes (0–31, 127) anzuzeigen." },
+      { "name": "Nach einem Zeichen suchen", "text": "Geben Sie eine Dezimalzahl (z. B. 65), einen Hex-Wert (z. B. 41 oder 0x41) oder ein Zeichen (z. B. A) ein, um direkt zu diesem Eintrag zu springen. Sie können auch nach Steuercodenamen suchen (z. B. ESC oder LF)." },
+      { "name": "Die Binärdarstellung lesen", "text": "Die Binärspalte zeigt die 8-Bit-Darstellung jedes ASCII-Codes. Zum Beispiel: 'A' (65) = 01000001 in Binär. Dies ist nützlich beim Arbeiten mit bitweisen Operationen oder beim Verständnis der Zeichenkodierung auf Byte-Ebene." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was ist der ASCII-Code für Enter / Zeilenumbruch?",
+      "a": "Das Zeilenumbruchzeichen (Line Feed) ist ASCII-Code 10 (0x0A, LF). Unter Unix/Linux/macOS wird ein Zeilenumbruch ausschließlich durch LF dargestellt. Unter Windows wird er durch CR+LF (Codes 13 und 10, also 0x0D 0x0A) dargestellt. Das Wagenrücklaufzeichen ist Code 13 (0x0D, CR). Beim Schreiben von plattformübergreifendem Textverarbeitungscode sollten Sie stets beide Zeilenenden — LF und CR+LF — behandeln."
+    },
+    {
+      "q": "Was ist der ASCII-Code für das Leerzeichen?",
+      "a": "Das Leerzeichen ist ASCII-Code 32 (0x20, SP). Es ist das erste druckbare ASCII-Zeichen. Das geschützte Leerzeichen (in HTML als &nbsp; verwendet) ist kein Bestandteil des Standard-7-Bit-ASCII — es ist Code 160 (0xA0) in ISO 8859-1 und wird in UTF-8 als 0xC2 0xA0 (zwei Bytes) kodiert."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen ASCII, UTF-8 und Unicode?",
+      "a": "ASCII definiert 128 Zeichen mit 7-Bit-Codes. Unicode ist ein universeller Standard, der über 140.000 Zeichen mit Codepunkten bis U+10FFFF definiert. UTF-8 ist eine variable Kodierung von Unicode: ASCII-Zeichen (0–127) werden in einem einzelnen Byte kodiert, wodurch sie abwärtskompatibel mit ASCII ist. Zeichen jenseits von 127 verwenden in UTF-8 2–4 Bytes. Moderne Textsysteme verwenden UTF-8 oder UTF-16, doch ASCII bleibt für Protokollheader, Dateiformate und Legacy-Systeme wichtig."
+    },
+    {
+      "q": "Wie finde ich den ASCII-Code eines Zeichens in JavaScript?",
+      "a": "Verwenden Sie charCodeAt(0): 'A'.charCodeAt(0) gibt 65 zurück. Für Unicode-Codepunkte über 65535 verwenden Sie stattdessen codePointAt(0). Um einen Code zurück in ein Zeichen umzuwandeln: String.fromCharCode(65) gibt 'A' zurück. Für vollständige Unicode-Unterstützung: String.fromCodePoint(128512) gibt das Emoji 😀 zurück."
+    },
+    {
+      "q": "Was bewirkt ASCII-Code 0 (NUL)?",
+      "a": "NUL (Code 0) ist das Nullzeichen. In C und vielen anderen Sprachen wird es als Zeichenketten-Terminator verwendet — die Zeichenkette „Hello“ wird im Speicher als die Bytes 72, 101, 108, 108, 111, 0 gespeichert. In Datenbanken und Dateiformaten kann NUL als Feldtrenner oder Auffüllbyte vorkommen. In den meisten Texteditoren und Terminals ist NUL unsichtbar und wird ignoriert, kann jedoch Probleme verursachen, wenn Binärdateien als Text gelesen werden."
+    },
+    {
+      "q": "Was ist das Escape-Zeichen (ASCII 27)?",
+      "a": "ESC (Code 27, 0x1B) ist das Escape-Zeichen. Es leitet ANSI/VT100-Escapesequenzen ein, die Terminalfarben und Cursorbewegungen steuern. Die Sequenz ESC[31m beispielsweise ändert die Textfarbe des Terminals auf Rot. In vielen Anwendungen sendet das Drücken der Escape-Taste dieses Zeichen. Es wird auch in verschiedenen Datenformaten und Kommunikationsprotokollen verwendet."
+    },
+    {
+      "q": "Warum hat der Großbuchstabe A den ASCII-Code 65 und der Kleinbuchstabe a den Code 97?",
+      "a": "Die ASCII-Tabelle wurde so konzipiert, dass Großbuchstaben (A=65, B=66, …, Z=90) und Kleinbuchstaben (a=97, b=98, …, z=122) sich genau um 32 unterscheiden. Dies ermöglicht die Umwandlung zwischen Groß- und Kleinschreibung durch eine einzelne Addition oder Subtraktion. Um in ASCII Großbuchstaben in Kleinbuchstaben umzuwandeln: 32 addieren (oder Bit 5 setzen). Um Kleinbuchstaben in Großbuchstaben umzuwandeln: 32 subtrahieren (oder Bit 5 löschen). Daher funktioniert die bitweise Groß-/Kleinschreibungskonvertierung in C: char lower = upper | 0x20."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen CR, LF und CRLF?",
+      "a": "CR (Carriage Return, Code 13) und LF (Line Feed, Code 10) stammen aus den Konventionen von Schreibmaschinen und Fernschreibern. CR bewegt den Druckkopf an den Zeilenanfang; LF rückt zur nächsten Zeile vor. Unix/Linux verwendet ausschließlich LF für Zeilenumbrüche. Windows verwendet CR+LF (beide zusammen). Das klassische Mac OS (vor OS X) verwendete ausschließlich CR. Die meisten modernen Parser verarbeiten alle drei Varianten, aber das Mischen von Zeilenenden in Quelldateien verursacht Probleme bei Versionskontroll-Diffs und einigen Textverarbeitungsprogrammen."
+    }
+  ]
+}

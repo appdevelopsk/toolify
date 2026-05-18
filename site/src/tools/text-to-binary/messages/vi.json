@@ -1,0 +1,100 @@
+{
+  "title": "Chuyển đổi Văn bản sang Nhị phân — Mã hóa & Giải mã",
+  "shortDescription": "Chuyển đổi văn bản sang mã nhị phân hoặc nhị phân trở lại văn bản có thể đọc được. Hỗ trợ đầu ra phân tách bằng dấu cách, dòng mới hoặc liên tục. Hoán đổi mã hóa và giải mã chỉ với một cú nhấp.",
+  "description": "Nhập bất kỳ văn bản nào để chuyển đổi thành nhị phân (0 và 1), hoặc dán mã nhị phân để giải mã trở lại thành văn bản. Mỗi ký tự được chuyển đổi bằng giá trị ASCII/Unicode của nó. Chọn đầu ra phân tách bằng dấu cách, dòng mới hoặc liên tục. Nút Hoán đổi cho phép đảo ngược lần chuyển đổi cuối ngay lập tức.",
+  "metaDescription": "Công cụ chuyển văn bản sang nhị phân miễn phí. Mã hóa thành 0 và 1 hoặc giải mã nhị phân thành văn bản. Phân tách bằng dấu cách hoặc liên tục. Không tải lên.",
+  "keywords": ["chuyển văn bản sang nhị phân", "nhị phân sang văn bản", "bộ chuyển đổi nhị phân", "mã hóa nhị phân", "ASCII nhị phân"],
+  "mode": {
+    "encode": "Text → Binary",
+    "decode": "Binary → Text"
+  },
+  "separator": {
+    "label": "Dấu tách",
+    "space": "Dấu cách",
+    "newline": "Dòng mới",
+    "none": "Không có"
+  },
+  "label": {
+    "inputText": "Văn bản đầu vào",
+    "inputBinary": "Đầu vào nhị phân",
+    "outputBinary": "Đầu ra nhị phân",
+    "outputText": "Văn bản đã giải mã"
+  },
+  "placeholder": {
+    "text": "Nhập hoặc dán văn bản vào đây…",
+    "binary": "Dán mã nhị phân vào đây (ví dụ: 01001000 01100101 01101100 01101100 01101111)"
+  },
+  "action": {
+    "copy": "Sao chép",
+    "swap": "Hoán đổi"
+  },
+  "stat": {
+    "encoded": "{chars} ký tự → {bytes} byte",
+    "decoded": "{chars} ký tự đã giải mã"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cách chuyển đổi văn bản sang nhị phân hoạt động",
+        "paragraphs": [
+          "Mỗi ký tự trong máy tính được lưu trữ dưới dạng số. Với văn bản ASCII chuẩn, chữ cái 'A' là số 65, 'B' là 66, chữ thường 'a' là 97, dấu cách là 32, và cứ thế tiếp tục. Để chuyển đổi văn bản sang nhị phân, công cụ này tra cứu giá trị số (điểm mã ASCII/Unicode) của từng ký tự, rồi ghi số đó ở hệ cơ số 2 (nhị phân), được đệm thành 8 chữ số. Ví dụ: 'H' = 72 thập phân = 01001000 nhị phân, 'e' = 101 thập phân = 01100101 nhị phân, 'l' = 108 thập phân = 01101100 nhị phân.",
+          "Quá trình ngược lại (nhị phân sang văn bản) đọc các nhóm 8-bit, chuyển đổi từng nhóm từ cơ số 2 trở lại số thập phân, rồi tra cứu ký tự có điểm mã đó. Nếu bạn dán nhị phân phân tách bằng dấu cách (như 01001000 01100101), công cụ sẽ tách tại dấu cách. Nếu bạn dán nhị phân liên tục (như 0100100001100101), nó tự động nhóm thành các khối 8-bit. Mỗi nhóm 8-bit phải chứa chính xác 8 chữ số một và không — nếu không công cụ sẽ hiển thị lỗi xác định byte không hợp lệ."
+        ]
+      },
+      {
+        "heading": "Nhị phân so với thập lục phân trong biểu diễn dữ liệu",
+        "paragraphs": [
+          "Nhị phân (cơ số 2) chỉ sử dụng 0 và 1, khiến nó trở thành biểu diễn cơ bản nhất của dữ liệu kỹ thuật số — nó phản ánh trực tiếp cách các bit được lưu trữ trong bộ nhớ máy tính. Tuy nhiên, nó khá dài dòng: một ký tự ASCII duy nhất cần 8 chữ số. Thập lục phân (cơ số 16, sử dụng các chữ số 0–9 và A–F) gọn hơn: mỗi chữ số hex đại diện cho chính xác 4 chữ số nhị phân (một nibble), vì vậy một byte chỉ trở thành 2 chữ số hex. 'H' = 0x48 trong hex so với 01001000 trong nhị phân.",
+          "Biểu diễn nhị phân hữu ích nhất khi bạn cần xem hoặc thao tác các bit riêng lẻ — ví dụ, kiểm tra cờ trong một bitmask, hiểu cách các điểm mã Unicode mã hóa thành các byte UTF-8, hoặc phân tích cấu trúc gói mạng ở cấp độ bit. Đối với hầu hết các tác vụ kiểm tra dữ liệu, thập lục phân cung cấp sự cân bằng tốt giữa tính gọn nhẹ và khả năng đọc. Nhiều trình gỡ lỗi, trình soạn thảo hex và bộ phân tích giao thức hiển thị dữ liệu ở dạng hex, với chế độ xem nhị phân tùy chọn cho công việc ở cấp độ bit."
+        ]
+      },
+      {
+        "heading": "Vượt ra ngoài ASCII: Unicode và ký tự đa byte",
+        "paragraphs": [
+          "ASCII chuẩn chỉ bao gồm 128 ký tự (7 bit, mã 0–127), đủ cho văn bản tiếng Anh nhưng không đủ cho các ký tự có dấu phụ, chữ viết không phải Latin, hay biểu tượng cảm xúc. Văn bản hiện đại được mã hóa trong Unicode, định nghĩa hơn 140.000 ký tự. Công cụ này sử dụng charCodeAt() tích hợp của JavaScript, trả về đơn vị mã UTF-16 cho mỗi ký tự. Đối với các ký tự Latin cơ bản, giá trị này bằng điểm mã Unicode, cũng bằng mã ASCII.",
+          "Đối với các ký tự không phải ASCII như 'é' (233), 'ñ' (241), '中' (20013) hoặc '😀' (128512, sử dụng cặp thay thế UTF-16), biểu diễn nhị phân sẽ dài hơn hoặc được chia theo cách khác. Nếu bạn cần mã hóa nhị phân khớp với cách UTF-8 thực sự lưu trữ các byte trên đĩa, bạn cần mã hóa chuỗi trong UTF-8 trước, rồi chuyển đổi từng byte kết quả sang nhị phân. Đối với hầu hết các mục đích giáo dục và câu đố mã hóa, phương pháp theo từng ký tự được sử dụng ở đây là tiêu chuẩn."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Mã hóa văn bản thành nhị phân", "text": "Chọn chế độ Text → Binary, nhập hoặc dán văn bản vào ô bên trái, và đầu ra nhị phân xuất hiện ngay lập tức ở bên phải. Chọn dấu tách ưa thích: Dấu cách đặt mỗi byte vào một nhóm phân tách bằng dấu cách, Dòng mới đặt mỗi byte trên dòng riêng của nó, Không có tạo ra chuỗi liên tục gồm 0 và 1." },
+      { "name": "Giải mã nhị phân thành văn bản", "text": "Chọn chế độ Binary → Text, dán chuỗi nhị phân của bạn (phân tách bằng dấu cách hoặc liên tục) vào ô bên trái, và văn bản đã giải mã xuất hiện ở bên phải. Nếu bất kỳ nhóm 8-bit nào không hợp lệ, thông báo lỗi sẽ xác định byte có vấn đề." },
+      { "name": "Hoán đổi mã hóa và giải mã", "text": "Nhấp vào nút Hoán đổi để di chuyển đầu ra hiện tại sang đầu vào và tự động chuyển đổi chế độ — hữu ích để nhanh chóng xác minh chuyển đổi hai chiều." },
+      { "name": "Sao chép kết quả", "text": "Nhấp Sao chép để đưa nhị phân hoặc văn bản đã giải mã vào clipboard của bạn để sử dụng trong ứng dụng khác." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Làm thế nào để chuyển đổi văn bản sang nhị phân?",
+      "a": "Mỗi ký tự trong văn bản được chuyển đổi thành mã số ASCII hoặc Unicode của nó, sau đó được viết ở dạng nhị phân (cơ số 2) được đệm thành 8 bit. Ví dụ: 'A' = 65 thập phân = 01000001 nhị phân. 'Hello' trở thành 01001000 01100101 01101100 01101100 01101111. Công cụ này xử lý việc chuyển đổi tự động — chỉ cần nhập văn bản của bạn vào ô bên trái với chế độ Text → Binary được chọn."
+    },
+    {
+      "q": "Làm thế nào để chuyển đổi nhị phân sang văn bản?",
+      "a": "Chọn chế độ Binary → Text và dán chuỗi nhị phân của bạn. Nhị phân phải ở dạng nhóm 8-bit (byte). Nếu được phân tách bằng dấu cách, mỗi nhóm được phân tách bằng dấu cách là một byte. Nếu liên tục (không có dấu cách), công cụ sẽ nhóm mỗi 8 chữ số thành một byte. Mỗi byte được chuyển đổi từ nhị phân sang số, sau đó tra cứu như một ký tự ASCII/Unicode."
+    },
+    {
+      "q": "Tại sao mỗi nhóm nhị phân dài 8 chữ số?",
+      "a": "Một byte là 8 bit, và ASCII sử dụng mã 7-bit (0–127). Theo quy ước, mã ASCII được lưu trữ trong một byte 8-bit đầy đủ với số không đứng đầu, làm cho tất cả các mục nhập chính xác là 8 chữ số nhị phân. Điều này làm cho việc phân tích cú pháp không mơ hồ: mỗi 8 chữ số = một ký tự. Một số biểu diễn cũ hơn sử dụng ASCII 7-bit (bỏ số không đứng đầu), nhưng mã hóa 8-bit là tiêu chuẩn hiện đại."
+    },
+    {
+      "q": "Nhị phân của các ký tự phổ biến là gì?",
+      "a": "Dấu cách = 00100000, 'A' = 01000001, 'a' = 01100001, '0' = 00110000, Enter/dòng mới (LF) = 00001010, dấu chấm '.' = 00101110. Mẫu dễ nhận thấy: chữ hoa bắt đầu bằng 010, chữ thường bắt đầu bằng 011, và chữ số bắt đầu bằng 0011."
+    },
+    {
+      "q": "Công cụ này có thể xử lý các ký tự không phải tiếng Anh không?",
+      "a": "Có, đối với các ký tự có điểm mã Unicode dưới 65.536 (hầu hết các ký tự Latin, Hy Lạp, Cyrillic, CJK, Ả Rập, Do Thái, v.v.). Mỗi ký tự được chuyển đổi thành điểm mã Unicode của nó ở dạng nhị phân. Tuy nhiên, vì các ký tự trên 127 yêu cầu hơn 8 bit, chúng sẽ tạo ra các nhóm nhị phân dài hơn 8 chữ số. Đối với biểu tượng cảm xúc và các ký tự khác trên U+FFFF, JavaScript chia chúng thành các cặp thay thế, có thể tạo ra kết quả không mong đợi."
+    },
+    {
+      "q": "Nút Hoán đổi làm gì?",
+      "a": "Hoán đổi lấy đầu ra hiện tại (chuỗi nhị phân nếu đang mã hóa, hoặc văn bản nếu đang giải mã) và di chuyển nó vào ô đầu vào, đồng thời chuyển chế độ sang hướng ngược lại. Điều này cho phép bạn xác minh ngay lập tức một chuyển đổi hai chiều: mã hóa một số văn bản, nhấp Hoán đổi và kiểm tra xem bạn có nhận lại văn bản gốc không. Cũng hữu ích để khám phá những gì các chuỗi nhị phân mã hóa."
+    },
+    {
+      "q": "Nhị phân có giống mã Morse không?",
+      "a": "Không. Nhị phân sử dụng chính xác 8 bit (0 và 1) để biểu diễn mỗi ký tự bằng giá trị số ASCII/Unicode của nó. Mã Morse sử dụng các dấu chấm và gạch ngang có độ dài thay đổi để biểu diễn các chữ cái và số, với các chuỗi dựa trên tần suất chữ cái trong tiếng Anh (các chữ cái phổ biến như E và T có mã ngắn hơn). Hai hệ thống là các sơ đồ mã hóa hoàn toàn khác nhau, mặc dù cả hai đều biểu diễn văn bản như một loạt ký hiệu."
+    },
+    {
+      "q": "Nhị phân khác Base64 như thế nào?",
+      "a": "Nhị phân hiển thị mẫu bit thực tế của mỗi ký tự — các bit thô được lưu trữ trong bộ nhớ. Base64 là mã hóa cấp cao hơn chuyển đổi dữ liệu nhị phân tùy ý (bất kỳ tệp hoặc chuỗi byte nào) thành chuỗi văn bản ASCII an toàn sử dụng 64 ký tự có thể in. Base64 được sử dụng khi bạn cần nhúng dữ liệu nhị phân vào các ngữ cảnh chỉ chấp nhận văn bản (như tệp đính kèm email hoặc URI dữ liệu). Biểu diễn nhị phân là để con người kiểm tra các mẫu bit; Base64 dùng cho truyền và lưu trữ dữ liệu."
+    }
+  ]
+}

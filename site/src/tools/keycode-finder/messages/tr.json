@@ -1,0 +1,86 @@
+{
+  "title": "Klavye Tuş Kodu Bulucu — keyCode, code, key Properties",
+  "shortDescription": "Herhangi bir tuşa basın ve JavaScript keyCode, code, key, which ve charCode değerlerini anında görün. Klavye olaylarını işleyen web geliştiriciler için vazgeçilmez araç.",
+  "description": "Algılama bölgesine tıklayın ve herhangi bir tuşa basın; JavaScript olay özellikleri anında görüntülenir: key, code, keyCode, which, charCode ve değiştirici durum (Ctrl, Alt, Shift, Meta). 17 değerin tümü gerçek zamanlı güncellenir. Klavye olay işleyicilerinin hata ayıklaması için mükemmel.",
+  "metaDescription": "Ücretsiz klavye tuş kodu bulucu. Herhangi bir tuşa basın ve JavaScript keyCode, code, key, which ve charCode değerlerini görün. Web geliştiriciler için harika.",
+  "keywords": ["tuş kodu bulucu", "klavye tuş kodu", "javascript keyCode", "klavye olayı", "which charCode"],
+  "zone": {
+    "label": "Tuş algılama bölgesi — buraya tıklayın, ardından herhangi bir tuşa basın",
+    "prompt": "Buraya tıklayın, ardından herhangi bir tuşa basın"
+  },
+  "key": {
+    "space": "Boşluk"
+  },
+  "label": {
+    "modifiers": "Değiştiriciler",
+    "none": "Yok"
+  },
+  "history": {
+    "title": "Son tuşlar"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "JavaScript klavye olayları: key, code ve keyCode",
+        "paragraphs": [
+          "Kullanıcı bir tuşa bastığında, tarayıcı sırayla üç olay tetikler: keydown, keypress ve keyup. Her olay nesnesi, neye basıldığını tanımlayan çeşitli özellikler taşır. En önemlileri: key (karakter veya 'Enter' gibi adlandırılmış tuş), code ('KeyA' veya 'ArrowLeft' gibi fiziksel tuş konumu) ve keyCode (Shift durumuna bakılmaksızın 'A' için 65 gibi eski bir tamsayı).",
+          "keyCode ve which özellikleri W3C UI Events spesifikasyonuna göre kullanımdan kaldırılmış olsa da eski kod tabanlarında hâlâ yaygın olarak kullanılmaktadır. Modern uygulamalar anlamsal anlam için key'i (tuşun ne ürettiği) ve fiziksel konum için code'u (hangi fiziksel tuşa basıldığı) tercih etmelidir. Örneğin 'A' tuşu Shift durumuna göre key='a' veya key='A' üretir, ancak code='KeyA' her zaman değişmez."
+        ]
+      },
+      {
+        "heading": "Klavye olaylarında location özelliği",
+        "paragraphs": [
+          "location özelliği, klavyede birden fazla yerde bulunan tuşları birbirinden ayırt eder: Sol Ctrl ile sağ Ctrl, sol Shift ile sağ Shift ve rakam tuş takımı rakam tuşları ile üst sıra rakamları. Location değerleri: 0 (standart), 1 (sol taraf), 2 (sağ taraf) ve 3 (tuş takımı). Bu özellik, kullanıcının tuş takımındaki Enter'a mı yoksa ana Enter'a mı bastığını belirlemek için özellikle yararlıdır.",
+          "Değiştirici tuşlar (Ctrl, Alt, Shift, Meta), yalnızca bu tuşlar tek başına basıldığında değil, her klavye olayında boole bayrakları olarak takip edilir. Bu, ağırlıklı olarak keyCode 67 (C) dinliyor olsanız bile Ctrl+C gibi kombinasyonları algılayabileceğiniz anlamına gelir. Meta tuşu, Windows klavyelerindeki Windows tuşuna ve Mac'teki Command tuşuna karşılık gelir."
+        ]
+      },
+      {
+        "heading": "Klavye olayı özelliklerinin pratik kullanım alanları",
+        "paragraphs": [
+          "Web uygulamalarındaki klavye kısayolları, Ctrl+S (kaydet) veya Ctrl+Shift+P (komut paleti) gibi kombinasyonları algılamak için code (fiziksel tuş) ve değiştirici bayrakların bir kombinasyonunu kullanır. key yerine code kullanmak, kısayolun klavye yerel ayarından bağımsız çalışmasını sağlar: Fransız AZERTY düzeninde 'A' konumundaki tuş farklı bir karakter üretir, ancak code her zaman 'KeyA'dır.",
+          "Oyun kontrolleri genellikle WASD veya ok tuşlarını harekete eşlemek için code kullanır; çünkü önemli olan üretilen karakter değil fiziksel konumdur. Erişilebilirlik araçları, etkileşimli öğelerin fare olmadan etkinleştirilebilmesini sağlamak için Tab (code='Tab') ve Enter (code='Enter') dinleyebilir. Bu araç, olay işleyici kodu yazmadan önce herhangi bir tuş için kesin özellik değerlerini hızlıca aramanıza olanak tanır."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Algılama bölgesine tıklayın", "text": "Odaklamak için aracın üst kısmındaki kesik çizgili kutuya tıklayın veya dokunun." },
+      { "name": "Herhangi bir tuşa basın", "text": "Klavyenizdeki herhangi bir tuşa basın: harfler, rakamlar, fonksiyon tuşları, ok tuşları veya Enter ve Escape gibi özel tuşlar." },
+      { "name": "Özellikleri okuyun", "text": "Tüm JavaScript klavye olayı özellikleri (key, code, keyCode, which, charCode, location, değiştiriciler) bölgenin altında anında görünür." },
+      { "name": "Değiştirici kombinasyonları kontrol edin", "text": "Değiştiriciler satırındaki değiştirici bayrakların nasıl değiştiğini görmek için Ctrl, Alt, Shift veya Meta'yı basılı tutarken bir tuşa basın." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "keyCode ile key arasındaki fark nedir?",
+      "a": "keyCode, her tuşa bir sayı atayan kullanımdan kaldırılmış bir tamsayı özelliğidir (örn. 'A' için 65, Enter için 13). key, üretilen karakteri ('a' veya 'A') veya adlandırılmış tuş dizesini ('Enter', 'ArrowLeft') döndüren modern alternatiftir. Yeni kodlarda keyCode yerine key veya code kullanılmalıdır."
+    },
+    {
+      "q": "code özelliği nedir?",
+      "a": "code, klavye düzeninden veya değiştirici durumundan bağımsız olarak basılan fiziksel tuşu tanımlar. 'KeyA' her zaman QWERTY klavyedeki 'A' konumundaki tuşu ifade eder; kullanıcı o tuşun 'Q' ürettiği bir AZERTY düzenine geçmiş olsa bile. Yerel ayardan bağımsız çalışması gereken klavye kısayolları için code kullanın."
+    },
+    {
+      "q": "keyCode neden kullanımdan kaldırıldı?",
+      "a": "keyCode, tarayıcılar ve işletim sistemleri arasında tutarsızdı, aynı tuşlar için farklı değerler veriyordu ve ASCII dışı karakterleri iyi işlemiyordu. W3C UI Events spesifikasyonu, key (karakter/adlandırılmış tuş için) ve code (fiziksel konum için) lehine onu kullanımdan kaldırdı. Hem keyCode hem de which artık spesifikasyonda eski olarak işaretlenmiştir."
+    },
+    {
+      "q": "location değeri ne anlama gelir?",
+      "a": "Location, birden fazla konumda görünen tuşları ayırt eder. 0 = standart (ana alan), 1 = sol değiştirici tuş (örn. sol Shift), 2 = sağ değiştirici tuş (örn. sağ Ctrl), 3 = tuş takımı. Bu, tuş takımı 5'ini (code='Numpad5', location=3) üst sıra 5'inden (code='Digit5', location=0) ayırt etmeye yarar."
+    },
+    {
+      "q": "JavaScript'te Ctrl+S veya diğer kısayolları nasıl algılarım?",
+      "a": "keydown olayını dinleyin ve hem key/code hem de değiştirici bayrakları kontrol edin: `if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveDocument(); }`. e.key === 's' kullanmak hem büyük hem küçük harfi yakalar, çünkü değiştirici durumu harf tuşlarının key değerini değiştirmez."
+    },
+    {
+      "q": "charCode özelliği nedir?",
+      "a": "charCode, eski keypress olayı tarafından döndürülürdü ve yazılan karakterin Unicode kod noktasını verirdi (örn. 'A' için 65). Şimdi keypress olayının kendisiyle birlikte kullanımdan kaldırılmıştır. keydown/keyup olaylarında charCode her zaman 0'dır. Bunun yerine key veya input olayındaki inputType kullanın."
+    },
+    {
+      "q": "Tuş takımı Enter tuşunu ana klavye Enter'ından nasıl ayırt ederim?",
+      "a": "Her iki tuş da key='Enter' üretir, ancak code'da farklılaşırlar: ana Enter tuşu location=0 ile code='Enter'dır; tuş takımı Enter tuşu ise location=3 ile code='NumpadEnter'dır. Ana tuş için e.code === 'Enter', tuş takımı sürümü için e.code === 'NumpadEnter' kontrol edin."
+    },
+    {
+      "q": "Meta tuşu nedir?",
+      "a": "Meta tuşu, Windows klavyelerinde Windows tuşu (⊞) ve Mac klavyelerinde Command tuşu (⌘) dur. Klavye olaylarında metaKey boole bayrağıyla takip edilir ve tek başına basıldığında key='Meta' üretir. code'u 'MetaLeft' veya 'MetaRight' şeklindedir."
+    }
+  ]
+}

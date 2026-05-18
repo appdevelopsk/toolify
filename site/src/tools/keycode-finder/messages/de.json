@@ -1,0 +1,86 @@
+{
+  "title": "Tastaturcode-Finder — keyCode, code, key Properties",
+  "shortDescription": "Drücke eine beliebige Taste, um sofort die JavaScript-Werte keyCode, code, key, which und charCode zu sehen. Unverzichtbar für Webentwickler, die Tastaturereignisse verarbeiten.",
+  "description": "Klicke auf die Erkennungszone und drücke eine beliebige Taste, um die JavaScript-Ereigniseigenschaften sofort anzuzeigen: key, code, keyCode, which, charCode und Modifikatorzustand (Ctrl, Alt, Shift, Meta). Alle 17 Werte werden in Echtzeit aktualisiert. Ideal zum Debuggen von Tastaturereignis-Handlern.",
+  "metaDescription": "Kostenloser Tastaturcode-Finder. Drücke eine beliebige Taste, um die JavaScript-Werte keyCode, code, key, which und charCode zu sehen. Optimal für Webentwickler.",
+  "keywords": ["Tastaturcode Finder", "Tasten Code", "javascript keyCode", "Tastaturereignis", "which charCode"],
+  "zone": {
+    "label": "Tastenerkennung — hier klicken und dann eine Taste drücken",
+    "prompt": "Hier klicken, dann eine beliebige Taste drücken"
+  },
+  "key": {
+    "space": "Leertaste"
+  },
+  "label": {
+    "modifiers": "Modifikatoren",
+    "none": "Keine"
+  },
+  "history": {
+    "title": "Zuletzt gedrückte Tasten"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "JavaScript-Tastaturereignisse: key, code und keyCode",
+        "paragraphs": [
+          "Wenn ein Benutzer eine Taste drückt, löst der Browser drei Ereignisse in Folge aus: keydown, keypress und keyup. Jedes Ereignisobjekt enthält mehrere Eigenschaften, die die gedrückte Taste identifizieren. Die wichtigsten sind: key (das Zeichen oder eine benannte Taste wie 'Enter'), code (die physische Tastenposition wie 'KeyA' oder 'ArrowLeft') und keyCode (eine veraltete Ganzzahl, z.B. 65 für 'A' unabhängig vom Shift-Zustand).",
+          "Die Eigenschaften keyCode und which sind gemäß der W3C-UI-Events-Spezifikation veraltet, werden aber in älteren Codebasen noch weitgehend verwendet. Moderne Anwendungen sollten key für semantische Bedeutung (was die Taste erzeugt) und code für die physische Position (welche physische Taste gedrückt wurde) bevorzugen. Die Taste 'A' erzeugt key='a' oder key='A' je nach Shift-Zustand, aber immer code='KeyA' unabhängig davon."
+        ]
+      },
+      {
+        "heading": "Die location-Eigenschaft bei Tastaturereignissen",
+        "paragraphs": [
+          "Die Eigenschaft location unterscheidet Tasten, die an mehreren Stellen auf der Tastatur vorhanden sind: linkes Ctrl vs. rechtes Ctrl, linkes Shift vs. rechtes Shift sowie Numpad-Zifferntasten vs. Ziffern in der oberen Reihe. Location-Werte sind: 0 (Standard), 1 (linke Seite), 2 (rechte Seite) und 3 (Nummernblock). Dies ist besonders nützlich, um zu erkennen, ob der Benutzer die Enter-Taste des Nummernblocks oder die Haupt-Enter-Taste gedrückt hat.",
+          "Modifikatortasten (Ctrl, Alt, Shift, Meta) werden als boolesche Flags bei jedem Tastaturereignis verfolgt, nicht nur wenn diese Tasten alleine gedrückt werden. Das bedeutet, dass du Kombinationen wie Ctrl+C erkennen kannst, auch wenn du hauptsächlich auf keyCode 67 (C) hörst. Die Meta-Taste entspricht der Windows-Taste auf Windows-Tastaturen und der Command-Taste auf dem Mac."
+        ]
+      },
+      {
+        "heading": "Praktische Anwendungsfälle für Tastaturereignis-Eigenschaften",
+        "paragraphs": [
+          "Tastaturkürzel in Web-Apps verwenden eine Kombination aus code (physische Taste) und Modifikator-Flags, um Kombinationen wie Ctrl+S (Speichern) oder Ctrl+Shift+P (Befehlspalette) zu erkennen. Die Verwendung von code statt key stellt sicher, dass das Kürzel unabhängig vom Tastatur-Locale funktioniert: Auf einem französischen AZERTY-Layout erzeugt die Taste an der 'A'-Position ein anderes Zeichen, aber code ist immer 'KeyA'.",
+          "Spielsteuerungen verwenden normalerweise code, um WASD oder Pfeiltasten Bewegungen zuzuordnen, da die physische Position wichtiger ist als das erzeugte Zeichen. Barrierefreiheitswerkzeuge können Tab (code='Tab') und Enter (code='Enter') abhören, um sicherzustellen, dass interaktive Elemente ohne Maus aktiviert werden können. Mit diesem Tool kannst du schnell die genauen Eigenschaftswerte einer beliebigen Taste nachschlagen, bevor du Event-Handler-Code schreibst."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Erkennungszone anklicken", "text": "Klicke oder tippe in das gestrichelte Feld oben im Tool, um es zu fokussieren." },
+      { "name": "Beliebige Taste drücken", "text": "Drücke eine beliebige Taste auf der Tastatur: Buchstaben, Zahlen, Funktionstasten, Pfeiltasten oder Sondertasten wie Enter und Escape." },
+      { "name": "Eigenschaften ablesen", "text": "Alle JavaScript-Tastaturereignis-Eigenschaften (key, code, keyCode, which, charCode, location, Modifikatoren) erscheinen sofort unterhalb der Zone." },
+      { "name": "Modifikatorkombinationen prüfen", "text": "Halte Ctrl, Alt, Shift oder Meta gedrückt, während du eine Taste drückst, um zu sehen, wie sich die Modifikator-Flags in der Zeile Modifikatoren ändern." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was ist der Unterschied zwischen keyCode und key?",
+      "a": "keyCode ist eine veraltete Integer-Eigenschaft, die jeder Taste eine Zahl zuweist (z.B. 65 für 'A', 13 für Enter). key ist der moderne Ersatz, der das erzeugte Zeichen ('a' oder 'A') oder eine benannte Tastenzeichenkette ('Enter', 'ArrowLeft') zurückgibt. Neuer Code sollte key oder code anstelle von keyCode verwenden."
+    },
+    {
+      "q": "Was ist die code-Eigenschaft?",
+      "a": "code identifiziert die gedrückte physische Taste, unabhängig von Tastaturlayout oder Modifikatorzustand. 'KeyA' bezieht sich immer auf die Taste an der 'A'-Position einer QWERTY-Tastatur, auch wenn der Benutzer zu einem AZERTY-Layout gewechselt hat, wo diese Taste 'Q' erzeugt. Verwende code für Tastaturkürzel, die unabhängig vom Locale funktionieren sollen."
+    },
+    {
+      "q": "Warum ist keyCode veraltet?",
+      "a": "keyCode war in verschiedenen Browsern und Betriebssystemen inkonsistent, hatte unterschiedliche Werte für dieselben Tasten und behandelte Nicht-ASCII-Zeichen schlecht. Die W3C-UI-Events-Spezifikation hat es zugunsten von key (für Zeichen/benannte Taste) und code (für physische Position) veraltet. Sowohl keyCode als auch which sind in der Spezifikation jetzt als veraltet markiert."
+    },
+    {
+      "q": "Was bedeutet der location-Wert?",
+      "a": "Location unterscheidet Tasten, die an mehreren Positionen vorkommen. 0 = Standard (Hauptbereich), 1 = linke Modifikatortaste (z.B. linkes Shift), 2 = rechte Modifikatortaste (z.B. rechtes Ctrl), 3 = Nummernblock. Das ermöglicht es, den Nummernblock-5 (code='Numpad5', location=3) von der oberen Reihe-5 (code='Digit5', location=0) zu unterscheiden."
+    },
+    {
+      "q": "Wie erkenne ich Ctrl+S oder andere Kürzel in JavaScript?",
+      "a": "Höre auf das keydown-Ereignis und prüfe sowohl key/code als auch die Modifikator-Flags: `if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveDocument(); }`. Die Verwendung von e.key === 's' erfasst sowohl Groß- als auch Kleinbuchstaben, da der Modifikatorzustand den key-Wert für Buchstabentasten nicht ändert."
+    },
+    {
+      "q": "Was ist die charCode-Eigenschaft?",
+      "a": "charCode wurde vom veralteten keypress-Ereignis zurückgegeben und lieferte den Unicode-Codepunkt des getippten Zeichens (z.B. 65 für 'A'). Es ist jetzt zusammen mit dem keypress-Ereignis selbst veraltet. In keydown/keyup-Ereignissen ist charCode immer 0. Verwende stattdessen key oder inputType beim input-Ereignis."
+    },
+    {
+      "q": "Wie erkenne ich die Enter-Taste des Nummernblocks vs. der Haupttastatur?",
+      "a": "Beide Tasten erzeugen key='Enter', unterscheiden sich aber in code: Die Haupt-Enter-Taste ist code='Enter' mit location=0, während die Enter-Taste des Nummernblocks code='NumpadEnter' mit location=3 ist. Prüfe e.code === 'Enter' für die Haupttaste oder e.code === 'NumpadEnter' für die Nummernblock-Version."
+    },
+    {
+      "q": "Was ist die Meta-Taste?",
+      "a": "Die Meta-Taste ist die Windows-Taste auf Windows-Tastaturen (⊞) und die Command-Taste auf Mac-Tastaturen (⌘). In Tastaturereignissen wird sie durch das boolesche Flag metaKey verfolgt und erzeugt key='Meta', wenn sie alleine gedrückt wird. Ihr code ist entweder 'MetaLeft' oder 'MetaRight'."
+    }
+  ]
+}

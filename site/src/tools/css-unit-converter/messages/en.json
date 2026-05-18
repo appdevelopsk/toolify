@@ -1,0 +1,80 @@
+{
+  "title": "CSS Unit Converter — px, rem, em, pt, % Online",
+  "shortDescription": "Convert CSS units instantly: px to rem, rem to px, em, pt, and %. Set your base font size for accurate rem and em conversions. Essential for responsive web design.",
+  "description": "Enter any CSS value in px, rem, em, pt, or % and instantly see the equivalent in all other units. Set a custom base font size (default 16px) for accurate rem and em conversions. All calculations update in real time with no page reload needed.",
+  "metaDescription": "Free CSS unit converter: px to rem, rem to px, em, pt, and %. Set base font size for accurate responsive design conversions. Instant, no signup required.",
+  "keywords": ["px to rem converter", "css unit converter", "rem to px", "px to em", "css units"],
+  "input": {
+    "value": "Value",
+    "base": "Base font size (px)",
+    "baseHint": "Usually 16px (browser default)"
+  },
+  "note": {
+    "basePx": "Base: {base}px. For rem/em, 1 unit = {base}px at the root level."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Why CSS units matter for responsive design",
+        "paragraphs": [
+          "CSS offers two broad categories of length units: absolute (px, pt, cm, mm) and relative (rem, em, %, vw, vh). Absolute units have a fixed physical size regardless of context; relative units scale in relation to something else — the root font size, the parent element's font size, or the viewport dimensions. Choosing the right unit type determines whether your layout adapts gracefully to different screen sizes, user font preferences, and zoom levels.",
+          "Pixels (px) remain the most common CSS unit because they are predictable and precise, but they do not respect the user's browser font size setting. A user who has increased their default font size to 20px for accessibility reasons will see px-based text remain unchanged, while rem-based text will scale up accordingly. This is why WCAG 2.1 Success Criterion 1.4.4 (Resize Text) is most easily satisfied using relative units like rem for font sizes."
+        ]
+      },
+      {
+        "heading": "px vs rem vs em: when to use each",
+        "paragraphs": [
+          "rem (root em) is relative to the root element's font size — by default 16px in all browsers. Because rem is anchored to one fixed reference point (the <html> element), it avoids the compounding effect that em suffers. Use rem for font sizes, component spacing, and any value that should scale with user font preferences. The typical formula: rem = px ÷ base, so 24px ÷ 16 = 1.5rem.",
+          "em is relative to the current element's font size, which may itself be set in em — creating a compounding chain. `font-size: 1.2em` on a child inside a parent with `font-size: 1.2em` results in 1.44 times the root size (1.2 × 1.2). This makes em useful for spacing that should scale with the local font size (padding and margin inside a component), but difficult to predict for global layout. pt (points) is mainly useful when designing for print: 1pt = 1/72 inch, and 72pt = 1 inch ≈ 96px on screen."
+        ]
+      },
+      {
+        "heading": "Choosing a base font size and working with design systems",
+        "paragraphs": [
+          "Most browsers default to 16px for the root font size, which is why 1rem = 16px in the default converter setting. Some developers set `html { font-size: 62.5%; }` to make 1rem = 10px, simplifying mental math (24px = 2.4rem instead of 1.5rem). This technique is controversial because it requires resetting font sizes everywhere and can conflict with accessibility preferences.",
+          "Modern design systems (Material Design, Apple HIG, Tailwind CSS) use a modular scale for spacing and typography — typically multiples of 4px or 8px. Working in these units and converting to rem ensures consistent visual rhythm across different contexts. Tailwind's default scale, for example, uses 4px = 1 unit, so a value of 4 (16px) equals 1rem. When in doubt, keep your base at 16px and use this converter for precise rem values without mental arithmetic."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter a value", "text": "Type any CSS value into the input field and select its unit (px, rem, em, pt, or %) from the dropdown." },
+      { "name": "Set your base font size", "text": "If your project uses a non-default root font size, change the Base field. The default is 16px (browser standard)." },
+      { "name": "Read all conversions", "text": "All equivalent values in the other units appear instantly in the grid below. No button click needed." },
+      { "name": "Copy and use", "text": "Click or tap any value to select it, then copy it directly into your CSS." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "How do I convert px to rem?",
+      "a": "Divide the pixel value by the root font size. With the default 16px base: rem = px ÷ 16. So 24px = 1.5rem, 32px = 2rem, 48px = 3rem. If your root font size is 10px (from `html { font-size: 62.5%; }`), then rem = px ÷ 10."
+    },
+    {
+      "q": "What is the default browser font size?",
+      "a": "All major browsers default to 16px for the root font size unless the user has changed their preferences. This means 1rem = 16px in the default configuration. Some users increase this for accessibility — a key reason to use rem rather than px for text."
+    },
+    {
+      "q": "What is the difference between rem and em?",
+      "a": "rem is always relative to the root element (<html>) font size, making it predictable. em is relative to the current element's font size, which can change through inheritance. Use rem for global values (body font size, page layout) and em for values that should scale with local context (padding relative to the element's own font size)."
+    },
+    {
+      "q": "How many pixels is 1rem?",
+      "a": "By default, 1rem = 16px. If you set `html { font-size: 20px }`, then 1rem = 20px. If you set `html { font-size: 62.5% }` (relative to the default 16px), then 1rem = 10px. The Base field in this converter lets you change the assumed root size."
+    },
+    {
+      "q": "Should I use rem or px for font sizes?",
+      "a": "Use rem for font sizes whenever possible. Rem-based text respects the user's browser font size preference, which is important for accessibility. Pixels ignore the browser setting, meaning a user who needs larger text will not benefit from zooming (before browser zoom was introduced)."
+    },
+    {
+      "q": "How do I convert px to pt?",
+      "a": "1 point = 1/72 inch = 1.333 pixels on screen. To convert: pt = px × 0.75. So 16px = 12pt. Points are mainly used in print CSS and when targeting physical media like PDF or print stylesheets."
+    },
+    {
+      "q": "What does % mean in CSS units?",
+      "a": "Percentage in CSS depends on context. For font-size, 100% = the inherited font size (same as 1em). For width/height, 100% = the size of the containing block. For this converter, we treat % as a percentage of the base font size, so 100% = base px and 150% = 1.5 × base."
+    },
+    {
+      "q": "What is the 62.5% trick?",
+      "a": "Setting `html { font-size: 62.5%; }` makes 1rem = 10px (since 62.5% of the default 16px = 10px). This simplifies rem math: 24px becomes 2.4rem instead of 1.5rem. However, it requires resetting font sizes throughout the CSS and can break third-party components. Modern design tokens and tooling make this trick less necessary."
+    }
+  ]
+}

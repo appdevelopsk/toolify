@@ -1,0 +1,80 @@
+{
+  "title": "CSS-Einheiten-Konverter — px, rem, em, pt, % Online",
+  "shortDescription": "CSS-Einheiten sofort umrechnen: px zu rem, rem zu px, em, pt und %. Basis-Schriftgröße für präzise rem- und em-Umrechnungen einstellen. Unverzichtbar für responsives Webdesign.",
+  "description": "Gib einen beliebigen CSS-Wert in px, rem, em, pt oder % ein und sieh sofort den Äquivalentwert in allen anderen Einheiten. Stelle eine benutzerdefinierte Basis-Schriftgröße (Standard 16px) für präzise rem- und em-Umrechnungen ein. Alle Berechnungen werden in Echtzeit aktualisiert, ohne Seitenneuladung.",
+  "metaDescription": "Kostenloser CSS-Einheiten-Konverter: px zu rem, rem zu px, em, pt und %. Basis-Schriftgröße für präzise Responsive-Design-Umrechnungen. Sofort, ohne Registrierung.",
+  "keywords": ["px zu rem Konverter", "css einheiten konverter", "rem zu px", "px zu em", "css einheiten"],
+  "input": {
+    "value": "Wert",
+    "base": "Basis-Schriftgröße (px)",
+    "baseHint": "Normalerweise 16px (Browser-Standard)"
+  },
+  "note": {
+    "basePx": "Basis: {base}px. Für rem/em gilt: 1 Einheit = {base}px auf Root-Ebene."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Warum CSS-Einheiten für responsives Design wichtig sind",
+        "paragraphs": [
+          "CSS bietet zwei breite Kategorien von Längeneinheiten: absolute (px, pt, cm, mm) und relative (rem, em, %, vw, vh). Absolute Einheiten haben unabhängig vom Kontext eine feste physische Größe; relative Einheiten skalieren in Relation zu etwas anderem – der Root-Schriftgröße, der Schriftgröße des Elternelements oder den Viewport-Abmessungen. Die Wahl des richtigen Einheitentyps bestimmt, ob sich dein Layout harmonisch an verschiedene Bildschirmgrößen, Schriftpräferenzen und Zoomstufen anpasst.",
+          "Pixel (px) sind nach wie vor die gebräuchlichste CSS-Einheit, weil sie vorhersehbar und präzise sind, aber sie respektieren nicht die Schriftgrößeneinstellung des Browsers. Ein Benutzer, der seine Standard-Schriftgröße aus Barrierefreiheitsgründen auf 20px erhöht hat, sieht px-basiertem Text unverändert, während rem-basierter Text entsprechend vergrößert wird. Deshalb ist das WCAG-2.1-Erfolgskriterium 1.4.4 (Textgröße ändern) am einfachsten zu erfüllen, wenn relative Einheiten wie rem für Schriftgrößen verwendet werden."
+        ]
+      },
+      {
+        "heading": "px vs rem vs em: wann welche Einheit verwenden",
+        "paragraphs": [
+          "rem (root em) ist relativ zur Schriftgröße des Root-Elements – standardmäßig 16px in allen Browsern. Da rem an einen festen Referenzpunkt (das <html>-Element) gebunden ist, vermeidet es den Compound-Effekt, den em hat. Verwende rem für Schriftgrößen, Komponentenabstände und alle Werte, die mit den Schriftpräferenzen des Benutzers skalieren sollen. Die typische Formel: rem = px ÷ Basis, also 24px ÷ 16 = 1,5rem.",
+          "em ist relativ zur Schriftgröße des aktuellen Elements, die selbst in em gesetzt sein kann – eine zusammengesetzte Kette entsteht. `font-size: 1.2em` bei einem Kind innerhalb eines Elternteils mit `font-size: 1.2em` ergibt das 1,44-fache der Root-Größe (1,2 × 1,2). Das macht em nützlich für Abstände, die mit der lokalen Schriftgröße skalieren sollen (padding und margin in einem Komponenten), aber schwer vorhersehbar für das globale Layout. pt (Punkte) ist hauptsächlich für den Druck nützlich: 1pt = 1/72 Zoll, und 72pt = 1 Zoll ≈ 96px auf dem Bildschirm."
+        ]
+      },
+      {
+        "heading": "Eine Basis-Schriftgröße wählen und mit Design-Systemen arbeiten",
+        "paragraphs": [
+          "Die meisten Browser verwenden standardmäßig 16px als Root-Schriftgröße, deshalb gilt in der Standardeinstellung des Konverters 1rem = 16px. Manche Entwickler setzen `html { font-size: 62.5%; }` um 1rem = 10px zu erhalten und vereinfachen damit die Kopfrechnung (24px = 2,4rem statt 1,5rem). Diese Technik ist umstritten, weil sie Schriftgrößen überall zurücksetzen muss und mit Barrierefreiheitseinstellungen in Konflikt geraten kann.",
+          "Moderne Design-Systeme (Material Design, Apple HIG, Tailwind CSS) verwenden eine modulare Skala für Abstände und Typografie – typischerweise Vielfache von 4px oder 8px. In diesen Einheiten zu arbeiten und in rem umzurechnen stellt einen konsistenten visuellen Rhythmus in verschiedenen Kontexten sicher. Tailwinds Standardskala verwendet zum Beispiel 4px = 1 Einheit, daher entspricht ein Wert von 4 (16px) 1rem. Im Zweifel: Basis bei 16px belassen und diesen Konverter für präzise rem-Werte ohne Kopfrechnen nutzen."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Wert eingeben", "text": "Tippe einen beliebigen CSS-Wert in das Eingabefeld und wähle die Einheit (px, rem, em, pt oder %) aus dem Dropdown." },
+      { "name": "Basis-Schriftgröße einstellen", "text": "Wenn dein Projekt eine nicht standardmäßige Root-Schriftgröße verwendet, ändere das Basis-Feld. Der Standard ist 16px (Browser-Standard)." },
+      { "name": "Alle Umrechnungen ablesen", "text": "Alle Äquivalentwerte in den anderen Einheiten erscheinen sofort im unteren Raster. Es ist kein Klick auf einen Button nötig." },
+      { "name": "Kopieren und verwenden", "text": "Klicke oder tippe auf einen beliebigen Wert, um ihn auszuwählen, und kopiere ihn dann direkt in dein CSS." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Wie rechne ich px in rem um?",
+      "a": "Teile den Pixelwert durch die Root-Schriftgröße. Mit der Standard-Basis von 16px: rem = px ÷ 16. Also 24px = 1,5rem, 32px = 2rem, 48px = 3rem. Wenn deine Root-Schriftgröße 10px beträgt (durch `html { font-size: 62.5%; }`), dann gilt rem = px ÷ 10."
+    },
+    {
+      "q": "Was ist die Standard-Schriftgröße des Browsers?",
+      "a": "Alle gängigen Browser verwenden standardmäßig 16px für die Root-Schriftgröße, sofern der Benutzer seine Einstellungen nicht geändert hat. Das bedeutet, dass 1rem = 16px in der Standardkonfiguration gilt. Manche Benutzer erhöhen diese für Barrierefreiheit – ein wichtiger Grund, rem statt px für Text zu verwenden."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen rem und em?",
+      "a": "rem ist immer relativ zur Schriftgröße des Root-Elements (<html>) und damit vorhersehbar. em ist relativ zur Schriftgröße des aktuellen Elements, die sich durch Vererbung ändern kann. Verwende rem für globale Werte (Body-Schriftgröße, Seitenlayout) und em für Werte, die mit dem lokalen Kontext skalieren sollen (padding relativ zur eigenen Schriftgröße des Elements)."
+    },
+    {
+      "q": "Wie viele Pixel hat 1rem?",
+      "a": "Standardmäßig gilt 1rem = 16px. Mit `html { font-size: 20px }` gilt 1rem = 20px. Mit `html { font-size: 62.5% }` (relativ zum Standard von 16px) gilt 1rem = 10px. Das Basis-Feld in diesem Konverter ermöglicht es, die angenommene Root-Größe zu ändern."
+    },
+    {
+      "q": "Soll ich rem oder px für Schriftgrößen verwenden?",
+      "a": "Verwende rem für Schriftgrößen wann immer möglich. rem-basierter Text respektiert die Schriftgrößenpräferenz des Benutzers im Browser, was für Barrierefreiheit wichtig ist. Pixel ignorieren die Browsereinstellung, was bedeutet, dass ein Benutzer, der größeren Text benötigt, nicht vom Zoomen profitiert (bevor Browser-Zoom eingeführt wurde)."
+    },
+    {
+      "q": "Wie rechne ich px in pt um?",
+      "a": "1 Punkt = 1/72 Zoll = 1,333 Pixel auf dem Bildschirm. Zur Umrechnung: pt = px × 0,75. Also 16px = 12pt. Punkte werden hauptsächlich in Print-CSS und für physische Medien wie PDFs oder Druckstylesheets verwendet."
+    },
+    {
+      "q": "Was bedeutet % bei CSS-Einheiten?",
+      "a": "Prozentwerte in CSS hängen vom Kontext ab. Für font-size gilt: 100% = die vererbte Schriftgröße (entspricht 1em). Für width/height gilt: 100% = die Größe des enthaltenden Blocks. In diesem Konverter behandeln wir % als Prozentsatz der Basis-Schriftgröße, also 100% = Basis-px und 150% = 1,5 × Basis."
+    },
+    {
+      "q": "Was ist der 62.5%-Trick?",
+      "a": "`html { font-size: 62.5%; }` macht 1rem = 10px (da 62,5% des Standard-16px = 10px). Das vereinfacht rem-Rechnen: 24px wird 2,4rem statt 1,5rem. Allerdings müssen Schriftgrößen im gesamten CSS zurückgesetzt werden, und Drittanbieter-Komponenten können beeinträchtigt werden. Moderne Design-Tokens und Werkzeuge machen diesen Trick weniger notwendig."
+    }
+  ]
+}

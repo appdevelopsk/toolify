@@ -1,0 +1,104 @@
+{
+  "title": "Buscador de Código de Tecla — keyCode, code, key Properties",
+  "shortDescription": "Pressione qualquer tecla para ver instantaneamente os valores JavaScript keyCode, code, key, which e charCode. Essencial para desenvolvedores web que trabalham com eventos de teclado.",
+  "description": "Clique na zona de detecção e pressione qualquer tecla do teclado para revelar suas propriedades de eventos JavaScript: key, code, keyCode, which, charCode e estado dos modificadores (Ctrl, Alt, Shift, Meta). Todos os 17 valores são atualizados em tempo real. Perfeito para depurar manipuladores de eventos de teclado.",
+  "metaDescription": "Ferramenta gratuita para encontrar códigos de tecla. Pressione qualquer tecla para ver seus valores JavaScript keyCode, code, key, which e charCode.",
+  "keywords": [
+    "buscador código tecla",
+    "código tecla teclado",
+    "javascript keyCode",
+    "evento tecla",
+    "which charCode"
+  ],
+  "zone": {
+    "label": "Zona de detecção de teclas — clique aqui e pressione qualquer tecla",
+    "prompt": "Clique aqui e pressione qualquer tecla"
+  },
+  "key": {
+    "space": "Espaço"
+  },
+  "label": {
+    "modifiers": "Modificadores",
+    "none": "Nenhum"
+  },
+  "history": {
+    "title": "Teclas recentes"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Eventos de teclado no JavaScript: key, code e keyCode",
+        "paragraphs": [
+          "Quando um usuário pressiona uma tecla, o navegador dispara três eventos em sequência: keydown, keypress e keyup. Cada objeto de evento carrega diversas propriedades que identificam o que foi pressionado. As mais importantes são: key (o caractere ou tecla nomeada como 'Enter'), code (a localização física da tecla como 'KeyA' ou 'ArrowLeft') e keyCode (um inteiro legado, como 65 para 'A' independentemente do estado do Shift).",
+          "As propriedades keyCode e which estão obsoletas segundo a especificação W3C UI Events, mas ainda são amplamente utilizadas em bases de código antigas. Aplicações modernas devem preferir key para significado semântico (o que a tecla produz) e code para posição física (qual tecla física foi pressionada). Por exemplo, a tecla 'A' produz key='a' ou key='A' dependendo do Shift, mas sempre code='KeyA' independentemente do estado."
+        ]
+      },
+      {
+        "heading": "O atributo location em eventos de teclado",
+        "paragraphs": [
+          "A propriedade location distingue teclas que existem em vários lugares do teclado: Ctrl esquerdo vs Ctrl direito, Shift esquerdo vs Shift direito, e teclas numéricas do teclado numérico vs dígitos da fileira superior. Os valores de location são: 0 (padrão), 1 (lado esquerdo), 2 (lado direito) e 3 (teclado numérico). Isso é particularmente útil para detectar se o usuário pressionou a tecla Enter do teclado numérico ou a tecla Enter principal.",
+          "As teclas modificadoras (Ctrl, Alt, Shift, Meta) são rastreadas como flags booleanos em todos os eventos de teclado, não apenas quando essas teclas são pressionadas sozinhas. Isso significa que você pode detectar combinações como Ctrl+C mesmo que esteja principalmente ouvindo pelo keyCode 67 (C). A tecla Meta corresponde à tecla Windows em teclados Windows e à tecla Command em Mac."
+        ]
+      },
+      {
+        "heading": "Casos de uso práticos para propriedades de eventos de teclado",
+        "paragraphs": [
+          "Atalhos de teclado em aplicativos web usam uma combinação de code (tecla física) e flags modificadores para detectar combinações como Ctrl+S (salvar) ou Ctrl+Shift+P (paleta de comandos). Usar code em vez de key garante que o atalho funcione independentemente do locale do teclado: em um layout AZERTY francês, a tecla na posição 'A' produz um caractere diferente, mas code é sempre 'KeyA'.",
+          "Controles de jogos normalmente usam code para mapear WASD ou teclas de seta a movimentos, já que o que importa é a posição física e não o caractere produzido. Ferramentas de acessibilidade podem ouvir Tab (code='Tab') e Enter (code='Enter') para garantir que elementos interativos possam ser ativados sem mouse. Esta ferramenta permite verificar rapidamente os valores exatos de propriedades de qualquer tecla antes de escrever código de manipulador de eventos."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Clique na zona de detecção",
+        "text": "Clique ou toque dentro da caixa tracejada no topo da ferramenta para focá-la."
+      },
+      {
+        "name": "Pressione qualquer tecla",
+        "text": "Pressione qualquer tecla do teclado: letras, números, teclas de função, teclas de seta ou teclas especiais como Enter e Escape."
+      },
+      {
+        "name": "Leia as propriedades",
+        "text": "Todas as propriedades do evento de teclado JavaScript (key, code, keyCode, which, charCode, location, modificadores) aparecem instantaneamente abaixo da zona."
+      },
+      {
+        "name": "Verifique combinações de modificadores",
+        "text": "Mantenha Ctrl, Alt, Shift ou Meta pressionado enquanto pressiona uma tecla para ver como os flags de modificador mudam na linha Modificadores."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual é a diferença entre keyCode e key?",
+      "a": "keyCode é uma propriedade inteira obsoleta que atribui um número a cada tecla (por exemplo, 65 para 'A', 13 para Enter). key é o substituto moderno que retorna o caractere produzido ('a' ou 'A') ou uma string de tecla nomeada ('Enter', 'ArrowLeft'). Novos códigos devem usar key ou code em vez de keyCode."
+    },
+    {
+      "q": "O que é a propriedade code?",
+      "a": "code identifica a tecla física pressionada, independentemente do layout do teclado ou do estado dos modificadores. 'KeyA' sempre se refere à tecla na posição 'A' em um teclado QWERTY, mesmo que o usuário tenha mudado para um layout AZERTY onde essa tecla produz 'Q'. Use code para atalhos de teclado que devem funcionar independentemente do locale."
+    },
+    {
+      "q": "Por que keyCode está obsoleto?",
+      "a": "keyCode era inconsistente entre navegadores e sistemas operacionais, tinha valores diferentes para as mesmas teclas e não lidava bem com caracteres não ASCII. A especificação W3C UI Events o descontinuou em favor de key (para caractere/tecla nomeada) e code (para posição física). Tanto keyCode quanto which estão agora marcados como legados na especificação."
+    },
+    {
+      "q": "O que o valor de location significa?",
+      "a": "Location distingue teclas que aparecem em múltiplas posições. 0 = padrão (área principal), 1 = tecla modificadora esquerda (ex: Shift esquerdo), 2 = tecla modificadora direita (ex: Ctrl direito), 3 = teclado numérico. Isso permite distinguir o 5 do teclado numérico (code='Numpad5', location=3) do 5 da fileira superior (code='Digit5', location=0)."
+    },
+    {
+      "q": "Como detecto Ctrl+S ou outros atalhos no JavaScript?",
+      "a": "Ouça o evento keydown e verifique tanto o key/code quanto os flags de modificadores: `if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveDocument(); }`. Usar e.key === 's' captura tanto maiúsculas quanto minúsculas, já que o estado do modificador não muda o valor de key para teclas de letras."
+    },
+    {
+      "q": "O que é a propriedade charCode?",
+      "a": "charCode era retornado pelo evento keypress legado e fornecia o ponto de código Unicode do caractere digitado (por exemplo, 65 para 'A'). Agora está obsoleto junto com o próprio evento keypress. Em eventos keydown/keyup, charCode é sempre 0. Use key ou inputType no evento input em vez disso."
+    },
+    {
+      "q": "Como detecto a tecla Enter do teclado numérico vs o teclado principal?",
+      "a": "Ambas as teclas produzem key='Enter', mas diferem em code: a tecla Enter principal é code='Enter' com location=0, enquanto a do teclado numérico é code='NumpadEnter' com location=3. Verifique e.code === 'Enter' para a tecla principal ou e.code === 'NumpadEnter' para a versão do teclado numérico."
+    },
+    {
+      "q": "O que é a tecla Meta?",
+      "a": "A tecla Meta é a tecla Windows em teclados Windows (⊞) e a tecla Command em teclados Mac (⌘). Em eventos de teclado, ela é rastreada pelo flag booleano metaKey e produz key='Meta' quando pressionada sozinha. Seu code é 'MetaLeft' ou 'MetaRight'."
+    }
+  ]
+}

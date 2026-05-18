@@ -1,0 +1,90 @@
+{
+  "title": "Table ASCII — Décimal, Hex, Binaire et Octal",
+  "shortDescription": "Table ASCII complète affichant les valeurs décimales, hexadécimales, octales et binaires des 128 codes ASCII. Filtrez par caractères imprimables ou de contrôle, et recherchez par nombre, hex ou caractère.",
+  "description": "Parcourez les 128 codes ASCII (0–127) avec leurs représentations décimale, hexadécimale, octale et binaire. Les caractères de contrôle (0–31, 127) sont mis en surbrillance et étiquetés avec leurs abréviations standard et leurs noms complets. Filtrez pour n'afficher que les caractères imprimables ou les codes de contrôle, et recherchez par nombre décimal, valeur hex ou caractère.",
+  "metaDescription": "Table ASCII gratuite avec les 128 codes ASCII. Affiche décimal, hex, octal, binaire et caractère. Filtre imprimables vs contrôle. Recherche par nombre ou valeur.",
+  "keywords": ["table ASCII", "codes ASCII", "tableau ASCII", "hex décimal binaire", "caractères de contrôle"],
+  "search": {
+    "placeholder": "Rechercher par décimal, hex ou caractère…",
+    "noResults": "Aucun caractère correspondant trouvé."
+  },
+  "filter": {
+    "all": "Tous",
+    "printable": "Imprimables",
+    "control": "Contrôle"
+  },
+  "col": {
+    "dec": "Déc",
+    "hex": "Hex",
+    "oct": "Oct",
+    "bin": "Binaire",
+    "char": "Car.",
+    "description": "Description"
+  },
+  "note": "Affichage de {count} sur 128 codes ASCII",
+  "article": {
+    "sections": [
+      {
+        "heading": "Qu'est-ce que l'ASCII ?",
+        "paragraphs": [
+          "L'ASCII (American Standard Code for Information Interchange) est un standard de codage de caractères publié à l'origine en 1963. Il définit 128 caractères : 33 caractères de contrôle non imprimables (codes 0–31 et 127) et 95 caractères imprimables (codes 32–126), comprenant les lettres majuscules et minuscules anglaises, les chiffres 0–9 et les signes de ponctuation courants. L'ASCII est devenu le fondement de pratiquement tous les encodages de texte modernes, dont UTF-8, qui est rétrocompatible avec l'ASCII pour les 128 premiers points de code.",
+          "Chaque caractère ASCII se voit attribuer une valeur entière de 7 bits, ce qui explique pourquoi la table s'arrête à 127 (2⁷ − 1). Lorsqu'il est stocké dans un octet de 8 bits, le bit de poids fort est généralement 0 pour l'ASCII standard. La plage ASCII étendue (128–255) n'est pas standardisée par la spécification d'origine et varie selon la page de codes — ISO 8859-1, Windows-1252 et les encodages similaires définissent chacun un ensemble de caractères différent pour la moitié supérieure de l'octet."
+        ]
+      },
+      {
+        "heading": "Caractères de contrôle (0–31 et 127)",
+        "paragraphs": [
+          "Les 32 premiers codes ASCII et le code 127 sont des caractères de contrôle non imprimables hérités des conventions des machines télétypes. La plupart sont obsolètes en informatique moderne, mais certains restent importants : le code 9 (HT, tabulation horizontale), le code 10 (LF, saut de ligne ou retour à la ligne sous Unix/Linux), le code 13 (CR, retour chariot, utilisé dans les fins de ligne Windows sous la forme CR+LF), le code 27 (ESC, Échap, utilisé dans les séquences d'échappement de terminal) et le code 127 (DEL). Ces caractères ne sont pas rendus sous forme de glyphes visibles.",
+          "Sur les systèmes de type Unix, vous pouvez générer des caractères de contrôle dans un terminal en maintenant Ctrl et en appuyant sur la lettre correspondante : Ctrl+A = SOH (1), Ctrl+C = ETX (3, envoie un signal d'interruption), Ctrl+D = EOT (4, signale la fin de l'entrée), Ctrl+J = LF (10), Ctrl+M = CR (13), Ctrl+Z = SUB (26, suspend un processus sous Unix). La compréhension de ces codes est essentielle pour les E/S bas niveau, les séquences de contrôle de terminal et l'implémentation de protocoles réseau."
+        ]
+      },
+      {
+        "heading": "L'ASCII en programmation et développement web",
+        "paragraphs": [
+          "En JavaScript, vous pouvez obtenir le code ASCII d'un caractère avec charCodeAt(0) : 'A'.charCodeAt(0) renvoie 65. Pour la conversion inverse, String.fromCharCode(65) renvoie 'A'. En Python, ord('A') renvoie 65 et chr(65) renvoie 'A'. En C, les valeurs char sont des entiers et peuvent être utilisées directement dans des opérations arithmétiques : 'A' + 1 est égal à 'B'.",
+          "Les valeurs ASCII sont à la base de nombreux schémas de programmation courants. La différence entre les lettres majuscules et minuscules est toujours de 32 : 'a' (97) = 'A' (65) + 32. Les chiffres 0–9 occupent les codes 48–57, donc soustraire 48 de la valeur ASCII d'un chiffre donne sa valeur numérique. L'encodage d'URL représente les caractères non sûrs pour les URL sous la forme %XX, où XX est le code ASCII en hex, ce qui rend cette table indispensable pour déboguer les chaînes encodées en URL et les en-têtes HTTP."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Parcourir la table complète", "text": "Faites défiler les 128 codes ASCII. Les caractères de contrôle (0–31, 127) sont mis en surbrillance en ambre. Chaque ligne affiche le décimal, l'hex (préfixe 0x), l'octal, le binaire, le glyphe du caractère et la description." },
+      { "name": "Filtrer par type", "text": "Cliquez sur «Imprimables» pour n'afficher que les caractères visibles (32–126), ou sur «Contrôle» pour n'afficher que les codes de contrôle non imprimables (0–31, 127)." },
+      { "name": "Rechercher un caractère", "text": "Saisissez un nombre décimal (ex. 65), une valeur hex (ex. 41 ou 0x41) ou un caractère (ex. A) pour accéder directement à cette entrée. Vous pouvez également rechercher par nom de code de contrôle (ex. ESC ou LF)." },
+      { "name": "Lire la représentation binaire", "text": "La colonne binaire affiche la représentation sur 8 bits de chaque code ASCII. Par exemple, 'A' (65) = 01000001 en binaire. Cela est utile lorsque vous travaillez avec des opérations au niveau des bits ou pour comprendre l'encodage des caractères au niveau de l'octet." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quel est le code ASCII pour Entrée / nouvelle ligne ?",
+      "a": "Le caractère de nouvelle ligne (saut de ligne) est le code ASCII 10 (0x0A, LF). Sous Unix/Linux/macOS, une nouvelle ligne est représentée par LF seul. Sous Windows, elle est représentée par CR+LF (codes 13 et 10, soit 0x0D 0x0A). Le caractère retour chariot est le code 13 (0x0D, CR). Lorsque vous écrivez du code de traitement de texte multiplateforme, gérez toujours les deux types de fins de ligne : LF et CR+LF."
+    },
+    {
+      "q": "Quel est le code ASCII du caractère espace ?",
+      "a": "Le caractère espace est le code ASCII 32 (0x20, SP). C'est le premier caractère imprimable de l'ASCII. L'espace insécable (utilisé en HTML sous la forme &nbsp;) ne fait pas partie de l'ASCII standard 7 bits — il correspond au code 160 (0xA0) en ISO 8859-1 et en UTF-8 (encodé sous la forme 0xC2 0xA0 en UTF-8)."
+    },
+    {
+      "q": "Quelle est la différence entre ASCII, UTF-8 et Unicode ?",
+      "a": "L'ASCII définit 128 caractères avec des codes sur 7 bits. Unicode est un standard universel qui définit plus de 140 000 caractères avec des points de code allant jusqu'à U+10FFFF. UTF-8 est un encodage à largeur variable d'Unicode : il encode les caractères ASCII (0–127) sur un seul octet, le rendant rétrocompatible avec l'ASCII. Les caractères au-delà de 127 utilisent 2 à 4 octets en UTF-8. Les systèmes de texte modernes utilisent UTF-8 ou UTF-16, mais l'ASCII reste important pour les en-têtes de protocole, les formats de fichiers et les systèmes hérités."
+    },
+    {
+      "q": "Comment obtenir le code ASCII d'un caractère en JavaScript ?",
+      "a": "Utilisez charCodeAt(0) : 'A'.charCodeAt(0) renvoie 65. Pour les points de code Unicode supérieurs à 65535, utilisez codePointAt(0) à la place. Pour convertir un code en caractère : String.fromCharCode(65) renvoie 'A'. Pour une prise en charge Unicode complète : String.fromCodePoint(128512) renvoie l'emoji 😀."
+    },
+    {
+      "q": "Que fait le code ASCII 0 (NUL) ?",
+      "a": "NUL (code 0) est le caractère nul. En C et dans de nombreux autres langages, il est utilisé comme terminateur de chaîne — la chaîne «Hello» est stockée en mémoire sous la forme des octets 72, 101, 108, 108, 111, 0. Dans les bases de données et les formats de fichiers, NUL peut apparaître comme séparateur de champ ou octet de remplissage. Dans la plupart des éditeurs de texte et des terminaux, NUL est invisible et ignoré, mais il peut causer des problèmes lors de la lecture de fichiers binaires en tant que texte."
+    },
+    {
+      "q": "Qu'est-ce que le caractère Échap (ASCII 27) ?",
+      "a": "ESC (code 27, 0x1B) est le caractère Échappement. Il marque le début des séquences d'échappement ANSI/VT100, qui contrôlent les couleurs du terminal et le déplacement du curseur. Par exemple, la séquence ESC[31m change la couleur du texte du terminal en rouge. Dans de nombreuses applications, appuyer sur la touche Échap envoie ce caractère. Il est également utilisé dans divers formats de données et protocoles de communication."
+    },
+    {
+      "q": "Pourquoi la lettre majuscule A a-t-elle le code ASCII 65 et la minuscule a le code 97 ?",
+      "a": "La table ASCII a été conçue de sorte que les lettres majuscules (A=65, B=66, …, Z=90) et les minuscules (a=97, b=98, …, z=122) diffèrent exactement de 32. Cela permet de convertir entre majuscules et minuscules par une simple addition ou soustraction. Pour convertir des majuscules en minuscules en ASCII : ajouter 32 (ou activer le bit 5). Pour convertir des minuscules en majuscules : soustraire 32 (ou effacer le bit 5). C'est pourquoi la conversion de casse au niveau des bits fonctionne en C : char lower = upper | 0x20."
+    },
+    {
+      "q": "Quelle est la différence entre CR, LF et CRLF ?",
+      "a": "CR (Carriage Return, code 13) et LF (Line Feed, code 10) sont issus des conventions des machines à écrire et des téléscripteurs. CR ramène la tête d'impression au début de la ligne ; LF avance à la ligne suivante. Unix/Linux utilise uniquement LF pour les retours à la ligne. Windows utilise CR+LF (les deux ensemble). Le Mac OS classique (avant OS X) utilisait uniquement CR. La plupart des analyseurs modernes gèrent les trois formats, mais mélanger les fins de ligne dans les fichiers source pose des problèmes avec les diff de contrôle de version et certains processeurs de texte."
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "title": "Unix Dosya İzinleri Hesaplayıcı (chmod)",
+  "shortDescription": "Sahip, grup ve diğerleri için okuma/yazma/çalıştırma izinlerini açıp kapatın. Sekizlik değeri (755, 644…) ve sembolik gösterimi (rwxr-xr-x) anında görün.",
+  "description": "Etkileşimli chmod hesaplayıcı. Sahip, grup ve diğerleri için izin bitlerini işaretleyin veya kaldırın, sekizlik sayıyı ve sembolik gösterimi gerçek zamanlı olarak okuyun. Ya da bir sekizlik sayı girerek çözümleyin.",
+  "metaDescription": "Ücretsiz Unix izinleri hesaplayıcı. Sahip/grup/diğerleri için okuma/yazma/çalıştırma seçin ve sekizlik değeri (755, 644) ile sembolik gösterimi (rwxr-xr-x) anında alın.",
+  "keywords": ["unix izinleri hesaplayıcı", "chmod hesaplayıcı", "sekizlik izinler", "linux dosya izinleri", "rwx izinleri"],
+  "input.octal": "Sekizlik değer",
+  "input.symbolic": "Sembolik",
+  "label.owner": "Sahip",
+  "label.group": "Grup",
+  "label.other": "Diğerleri",
+  "label.read": "Okuma (r)",
+  "label.write": "Yazma (w)",
+  "label.execute": "Çalıştırma (x)",
+  "presets": "Yaygın Önayarlar",
+  "error.invalidOctal": "1–3 sekizlik basamak girin (yalnızca 0–7).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Unix izinlerinde sekizlik gösterimin kökeni",
+        "paragraphs": [
+          "Unix dosya izinleri, Ken Thompson tarafından 1969 yılında PDP-7 üzerindeki orijinal Unix'i tasarlarken oluşturuldu. Her dosya, inode'unda dokuz izin biti saklar: üçü sahip için, üçü grup için ve üçü geri kalan herkes için. Her üç biti tek bir sekizlik basamağa (0–7) dönüştürmek doğal bir tercihti: her varlık için bir basamak, toplamda üç basamak. Bu sekizlik kural POSIX.1-1988'de standartlaştırıldı ve tüm Linux, macOS, BSD ve Unix benzeri sistemlerde değişmeden kaldı.",
+          "Sembolik form (rwxr-xr-x), ilk Unix dağıtımlarından itibaren `ls -l` çıktısında yer aldı ve sekizlik sayının okunabilir tamamlayıcısı haline geldi. POSIX her iki gösterimi de normatif olarak tanımlar. `chmod u+x dosya` sembolik formu kullanır; `chmod 755 dosya` sekizlik formu kullanır. Her ikisi de aynı çekirdek işlemine ulaşır: inode'un mode alanında belirli bitleri ayarlamak."
+        ]
+      },
+      {
+        "heading": "Her izin bitinin anlamı",
+        "paragraphs": [
+          "Normal bir dosya için: okuma (r=4) içeriği açıp okumaya izin verir; yazma (w=2) dosyayı değiştirmeye veya kısaltmaya izin verir; çalıştırma (x=1) dosyayı program olarak çalıştırmaya izin verir. Her bit bağımsızdır. Her varlığın sekizlik basamağı, ayarlı bitlerin toplamıdır: rwx=7, r-x=5, r--=4.",
+          "Dizinler için anlamlar değişir. Okuma (r), `ls` ile dizin içeriğini listelemeye izin verir. Çalıştırma (x) — 'arama biti' de denir — `cd` ile dizine girmeye ve dosyalara ada göre erişmeye izin verir. Yazma (w), dizin içinde dosya oluşturmaya, silmeye veya yeniden adlandırmaya izin verir. Okuma izni olan ama çalıştırma izni olmayan bir dizin neredeyse işe yaramaz: dosya adlarını görebilirsiniz ama hiçbirini açamazsınız. Tipik dizinler 755 iznine sahiptir."
+        ]
+      },
+      {
+        "heading": "Yaygın izin desenleri ve güvenlik değerlendirmeleri",
+        "paragraphs": [
+          "644 (rw-r--r--), yapılandırma dosyaları, HTML ve metin için standarttır: sahip düzenleyebilir, diğerleri yalnızca okuyabilir. 755 (rwxr-xr-x), dizinler ve çalıştırılabilir komut dosyaları için standarttır: sahip içeriği yönetir, diğerleri gezinebilir ve okuyabilir. 600 (rw-------) ve 700 (rwx------) erişimi tamamen sahiple sınırlar — SSH özel anahtarları ve parola dosyaları için uygundur. Web'de açık olan hiçbir şey için 777 kullanmayın; 'diğerleri'ne yazma izni vermek, sistemdeki herhangi bir işlemin dosyayı üzerine yazabileceği anlamına gelir.",
+          "umask, yeni dosya ve dizinlere uygulanan varsayılan izinleri belirler. 022'lik bir umask (çoğu sistemde yaygın), yeni dosyaların 644, yeni dizinlerin 755 almasını sağlar; çünkü umask bitleri 666 (dosyalar) ve 777 (dizinler) varsayılan değerlerinden çıkarılır. Güvenlik güçlendirilmiş sistemler genellikle umask 027 veya 077 kullanır."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "İzin onay kutularını değiştirin",
+        "text": "Sahip, grup veya diğerleri için okuma, yazma veya çalıştırma onay kutusuna tıklayın. Sekizlik değer ve sembolik dize anında güncellenir."
+      },
+      {
+        "name": "Çözümlemek için sekizlik sayı girin",
+        "text": "Sekizlik giriş alanına tıklayın ve 1–3 basamaklı bir sayı girin (basamak başına 0–7). Onay kutuları, çözümlenen izin bitlerini gösterecek şekilde güncellenir."
+      },
+      {
+        "name": "Önayar kullanın",
+        "text": "Sık kullanılan bir izin kümesine geçmek için önayar düğmelerinden (755, 644, 600, 700, 777) birine tıklayın."
+      },
+      {
+        "name": "chmod komutunu kopyalayın",
+        "text": "Alttaki chmod komutu, bu izinleri uygulamak için tam sözdizimini gösterir. 'filename' yerine gerçek dosya veya dizin yolunuzu yazın."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "755 ne anlama gelir?",
+      "a": "755, sahibin okuma+yazma+çalıştırma (7=4+2+1), grubun okuma+çalıştırma (5=4+1) ve diğerlerinin okuma+çalıştırma (5=4+1) iznine sahip olduğu anlamına gelir. Dizinler ve çalıştırılabilir komut dosyaları için standart izindir."
+    },
+    {
+      "q": "644 ne anlama gelir?",
+      "a": "644, sahibin okuma+yazma (6=4+2), grubun yalnızca okuma (4) ve diğerlerinin yalnızca okuma (4) iznine sahip olduğu anlamına gelir. Yapılandırma dosyaları, web sayfaları ve metin belgeleri gibi normal dosyalar için varsayılandır."
+    },
+    {
+      "q": "Bir dizin neden çalıştırma iznine ihtiyaç duyar?",
+      "a": "Dizinlerde çalıştırma biti 'arama biti'dir. Bu bit olmadan, okuma bitiniz olsa bile `cd` ile dizine giremez veya içindeki dosyalara yol üzerinden erişemezsiniz. Çalıştırma izni olmayan bir okuma dizini pratikte neredeyse işe yaramaz."
+    },
+    {
+      "q": "Sahip, grup ve diğerleri arasındaki fark nedir?",
+      "a": "Sahip, dosyaya sahip olan kullanıcı hesabıdır (oluşturma sırasında ayarlanır veya chown ile değiştirilir). Grup, dosyaya atanan gruptur (chgrp ile değiştirilir); bu gruptaki herhangi bir kullanıcı grup izinlerini alır. Diğerleri, sistemdeki ne sahip ne de grupta olan tüm kullanıcıları kapsar."
+    },
+    {
+      "q": "SUID ve SGID nedir?",
+      "a": "SUID (Set User ID) ve SGID (Set Group ID), standart dokuz bitin ötesinde özel izin bitleridir. Çalıştırılabilir bir dosyada SUID ayarlıysa, çağıran kişinin değil dosya sahibinin ayrıcalıklarıyla çalışır — passwd ve sudo gibi komutlar tarafından kullanılır. Dizindeki SGID, yeni dosyaların dizinin grubunu devralmasını sağlar. Sembolik formda 's' olarak görünür (örn. rwsr-xr-x) ve sekizlik değere 4000 veya 2000 eklenir (örn. 4755)."
+    },
+    {
+      "q": "chmod 777 tehlikeli mi?",
+      "a": "Evet, özellikle paylaşımlı bir sistemde veya web sunucusunda. 777, sistemdeki tüm kullanıcılara tam okuma, yazma ve çalıştırma yetkisi verir. Tehlikeye girmiş web uygulamaları dahil herhangi bir işlem dosyayı üzerine yazabilir veya çalıştırabilir. Web sunucularında bu genellikle rastgele kod çalıştırmayı mümkün kılar. İzinleri yalnızca gerekli olana sınırlayın."
+    },
+    {
+      "q": "chmod komutu nasıl kullanılır?",
+      "a": "Tek bir dosya için `chmod SEKİZLİK yol`, bir dizine yinelemeli uygulamak için `chmod -R SEKİZLİK dizin` kullanın. Örnek: `chmod 644 index.html` veya `chmod 755 /var/www`. Sembolik sözdizimi de kullanabilirsiniz: `chmod u+x script.sh` diğer bitlere dokunmadan sahibe çalıştırma izni ekler."
+    },
+    {
+      "q": "umask nedir ve izinlerle ilişkisi nedir?",
+      "a": "umask, yeni bir dosya veya dizin oluşturulurken varsayılan izinlere uygulanan bir maskedir. 022'lik bir umask, grup ve diğerlerinden yazmayı kaldırarak yeni dosyaların 644, yeni dizinlerin 755 almasını sağlar. Mevcut ayarı görmek için kabuğunuzda `umask` komutunu çalıştırın, geçerli oturum için değiştirmek için `umask DEĞER` kullanın."
+    }
+  ]
+}

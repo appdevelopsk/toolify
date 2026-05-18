@@ -1,0 +1,98 @@
+{
+  "title": "Công cụ Mã hóa và Giải mã HTML Entity",
+  "shortDescription": "Mã hóa ký tự đặc biệt thành HTML entity hoặc giải mã HTML entity về dạng văn bản. Hỗ trợ entity đặt tên (&amp;), số thập phân (&#65;) và số thập lục phân (&#x41;).",
+  "description": "Dán văn bản để mã hóa ký tự đặc biệt thành HTML entity, hoặc dán HTML chứa entity để giải mã về văn bản có thể đọc được. Chọn giữa entity đặt tên (&amp;, &lt;, &copy;), số thập phân (&#169;) hoặc số thập lục phân (&#xA9;). Tùy chọn mã hóa tất cả ký tự không phải ASCII để đạt khả năng tương thích tối đa.",
+  "metaDescription": "Công cụ mã hóa và giải mã HTML entity miễn phí. Chuyển đổi ký tự đặc biệt thành &amp; &lt; &gt; và entity đặt tên, số hoặc hex. Giải mã tức thì.",
+  "keywords": ["mã hóa HTML entity", "HTML entity", "mã hóa HTML", "giải mã HTML entity", "ký tự đặc biệt HTML"],
+  "mode": {
+    "encode": "Mã hóa",
+    "decode": "Giải mã"
+  },
+  "encodeMode": {
+    "named": "Đặt tên (&amp;)",
+    "numeric": "Số thập phân (&#38;)",
+    "hex": "Hex (&#x26;)"
+  },
+  "option": {
+    "encodeAll": "Mã hóa tất cả ký tự không phải ASCII"
+  },
+  "label": {
+    "inputText": "Văn bản đầu vào",
+    "inputEncoded": "HTML đã mã hóa",
+    "outputEncoded": "Đầu ra đã mã hóa",
+    "outputText": "Văn bản đã giải mã"
+  },
+  "placeholder": {
+    "text": "Nhập hoặc dán văn bản có ký tự đặc biệt như <, >, &, © …",
+    "encoded": "Dán HTML có entity như &amp;, &lt;, &#169; …"
+  },
+  "action": {
+    "copy": "Sao chép",
+    "swap": "Hoán đổi"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "HTML entity là gì?",
+        "paragraphs": [
+          "HTML entity là các mã văn bản đặc biệt dùng để biểu diễn các ký tự có ý nghĩa đặc biệt trong HTML hoặc không thể nhập trực tiếp. Quan trọng nhất là năm ký tự được dành riêng trong cú pháp HTML: & (dấu và) → &amp;, < (nhỏ hơn) → &lt;, > (lớn hơn) → &gt;, \" (nháy kép) → &quot; và ' (nháy đơn) → &apos;. Nếu các ký tự này xuất hiện trong nội dung văn bản mà không được mã hóa, trình duyệt có thể diễn giải chúng là mã đánh dấu HTML, gây ra lỗi hiển thị hoặc lỗ hổng bảo mật.",
+          "HTML entity tồn tại ở ba định dạng: entity đặt tên sử dụng tên mô tả (&copy; cho ©, &euro; cho €), tham chiếu ký tự số thập phân sử dụng số code point (&#169; cho ©), và tham chiếu ký tự thập lục phân sử dụng mã hex (&#xA9; cho ©). Cả ba định dạng đều tương đương — trình duyệt hiển thị cùng một ký tự bất kể định dạng nào được sử dụng. Entity đặt tên dễ đọc nhất; entity số phổ quát nhất vì hoạt động với bất kỳ ký tự Unicode nào."
+        ]
+      },
+      {
+        "heading": "Khi nào cần mã hóa HTML entity",
+        "paragraphs": [
+          "Bạn phải mã hóa ít nhất năm ký tự HTML được dành riêng (&, <, >, \", ') bất cứ khi nào chúng xuất hiện trong nội dung văn bản hoặc giá trị thuộc tính. Không mã hóa chúng là nguồn gốc của các lỗ hổng Cross-Site Scripting (XSS): nếu đầu vào người dùng được chèn vào HTML mà không mã hóa, kẻ tấn công có thể chèn các thẻ script hoặc trình xử lý sự kiện. Các framework hiện đại như React, Vue và Angular mặc định tự động mã hóa HTML — innerHTML là ngoại lệ chính mà mã hóa thủ công vẫn rất quan trọng.",
+          "Ngoài năm ký tự bắt buộc, bạn có thể muốn mã hóa các ký tự không phải ASCII cho các môi trường không xử lý UTF-8 một cách đáng tin cậy: HTML trong email, hệ thống CMS cũ, hoặc tài liệu cần độ tương thích tối đa. Tùy chọn «Mã hóa tất cả không phải ASCII» chuyển đổi mỗi ký tự có code point trên 127 thành entity số, đảm bảo đầu ra là ASCII thuần túy trong khi vẫn bảo toàn giao diện trực quan khi hiển thị. Đối với các tệp HTML UTF-8 hiện đại, mã hóa ký tự không phải ASCII là tùy chọn — khai báo charset đúng cách là đủ."
+        ]
+      },
+      {
+        "heading": "HTML entity so với mã hóa URL so với Base64",
+        "paragraphs": [
+          "HTML entity, mã hóa URL (mã hóa phần trăm) và Base64 là ba sơ đồ mã hóa khác nhau cho các ngữ cảnh khác nhau. HTML entity (như &amp;) được dùng trong tài liệu HTML để biểu diễn ký tự một cách an toàn. Mã hóa URL (như %26 cho &) được dùng trong chuỗi truy vấn và URL để mã hóa các ký tự có ý nghĩa đặc biệt trong URL. Base64 mã hóa dữ liệu nhị phân tùy ý thành văn bản ASCII, dùng cho data URI và tệp đính kèm email.",
+          "Lỗi phổ biến là nhầm lẫn giữa chúng: dùng mã hóa URL cho nội dung HTML hoặc mã hóa HTML cho URL. Ví dụ, dấu và trong chuỗi truy vấn URL cần mã hóa phần trăm (%26), không phải mã hóa HTML entity (&amp;). Nếu bạn xây dựng URL sau đó được nhúng vào thuộc tính HTML, bạn cần cả hai: dạng mã hóa URL đi vào thuộc tính, và giá trị thuộc tính tự nó được mã hóa HTML. Hiểu mã hóa nào áp dụng trong ngữ cảnh nào giúp ngăn chặn lỗi mã hóa kép và các vấn đề bảo mật."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Mã hóa ký tự đặc biệt", "text": "Chọn chế độ Mã hóa, dán văn bản vào ô bên trái. Đầu ra đã mã hóa xuất hiện bên phải. Chọn «Đặt tên» cho entity dễ đọc (&amp;), «Số thập phân» cho số thập phân phổ quát (&#38;), hoặc «Hex» cho số thập lục phân (&#x26;). Đánh dấu «Mã hóa tất cả không phải ASCII» để chuyển đổi mỗi ký tự không phải ASCII thành entity." },
+      { "name": "Giải mã HTML entity", "text": "Chọn chế độ Giải mã, dán HTML có entity vào ô bên trái. Công cụ nhận biết entity đặt tên (&amp;, &copy;), entity số thập phân (&#169;) và entity hex (&#xA9;), chuyển đổi tất cả về ký tự gốc của chúng." },
+      { "name": "Hoán đổi mã hóa và giải mã", "text": "Nhấp vào nút «Hoán đổi» để chuyển đầu ra sang đầu vào và chuyển chế độ — hữu ích để xác minh chuyển đổi khứ hồi hoặc nhanh chóng đảo ngược một chuyển đổi." },
+      { "name": "Sao chép kết quả", "text": "Nhấp «Sao chép» để đặt kết quả đã mã hóa hoặc giải mã vào clipboard của bạn." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "HTML entity cho dấu và (&) là gì?",
+      "a": "HTML entity cho dấu và là &amp; — theo nghĩa đen là các ký tự &, a, m, p và dấu chấm phẩy. Khi bạn viết &amp; trong mã nguồn HTML, trình duyệt hiển thị một ký tự & duy nhất. Mã hóa này bắt buộc bất cứ khi nào dấu và xuất hiện trong nội dung văn bản hoặc giá trị thuộc tính, vì & không được mã hóa bắt đầu một chuỗi entity mà bộ phân tích cú pháp cố giải thích."
+    },
+    {
+      "q": "HTML entity cho ký hiệu bản quyền (©) là gì?",
+      "a": "Bản quyền © có ba HTML entity tương đương: đặt tên &copy;, số thập phân &#169; và số thập lục phân &#xA9;. Cả ba đều hiển thị cùng ký tự ©. Entity đặt tên là tùy chọn dễ đọc nhất khi có sẵn. Đối với HTML UTF-8 hiện đại, bạn cũng có thể gõ ký tự © trực tiếp — không cần entity — miễn là tệp HTML của bạn khai báo charset=utf-8."
+    },
+    {
+      "q": "Tôi có cần mã hóa dấu nháy trong HTML không?",
+      "a": "Dấu nháy kép (\") phải được mã hóa thành &quot; bên trong các thuộc tính HTML được phân cách bằng dấu nháy kép: <input value=\"&quot;\">. Dấu nháy đơn (') phải được mã hóa thành &apos; hoặc &#39; bên trong các thuộc tính có dấu nháy đơn. Bên trong nội dung văn bản phần tử (giữa các thẻ), cả hai ký tự nháy đều có thể xuất hiện mà không cần mã hóa, nhưng mã hóa chúng là vô hại. Mã hóa cả hai một cách nhất quán trong tất cả các ngữ cảnh là cách tiếp cận an toàn nhất."
+    },
+    {
+      "q": "Sự khác biệt giữa entity đặt tên và entity số là gì?",
+      "a": "Entity đặt tên sử dụng từ mô tả (&copy;, &euro;, &hearts;) và được định nghĩa trong đặc tả HTML — không phải mọi ký tự Unicode đều có entity đặt tên. Entity số sử dụng code point Unicode, dưới dạng thập phân (&#8364; cho €) hoặc thập lục phân (&#x20AC; cho €). Entity số hoạt động với bất kỳ ký tự Unicode nào, trong khi entity đặt tên chỉ bao gồm một tập hợp con. Cả hai được hiển thị giống hệt nhau trong trình duyệt."
+    },
+    {
+      "q": "Tôi có nên mã hóa các ký tự không phải ASCII trong HTML không?",
+      "a": "Thường thì không. Nếu tài liệu HTML của bạn khai báo mã hóa UTF-8 (meta charset=utf-8) và được lưu dưới dạng UTF-8, bạn có thể viết trực tiếp các ký tự không phải ASCII: é, ñ, 中, 🎉. Mã hóa chúng thành entity là tùy chọn và làm mã nguồn khó đọc hơn. Ngoại lệ là khi gửi HTML trong các ngữ cảnh có thể không bảo toàn mã hóa: tin nhắn email, API cũ hoặc hệ thống làm hỏng các byte không phải ASCII. Trong những trường hợp đó, mã hóa tất cả ký tự không phải ASCII thành entity số đảm bảo đầu ra là ASCII thuần túy an toàn."
+    },
+    {
+      "q": "XSS là gì và HTML entity ngăn chặn nó như thế nào?",
+      "a": "Cross-Site Scripting (XSS) là lỗ hổng bảo mật mà kẻ tấn công chèn JavaScript độc hại vào trang web bằng cách chèn văn bản mà máy chủ phản chiếu vào HTML mà không mã hóa. Ví dụ, nếu đầu vào người dùng <script>alert('xss')</script> được chèn trực tiếp vào trang, trình duyệt thực thi script đó. Nếu bạn mã hóa đầu vào đúng cách — chuyển đổi < thành &lt; và > thành &gt; — trình duyệt hiển thị văn bản theo nghĩa đen thay vì phân tích cú pháp như một thẻ. Mã hóa HTML entity là biện pháp phòng thủ chính chống lại XSS phản chiếu và lưu trữ."
+    },
+    {
+      "q": "Tại sao &nbsp; không xuất hiện trong danh sách của công cụ này?",
+      "a": "Công cụ này mã hóa các ký tự có entity đặt tên. Khoảng trắng không ngắt (Unicode U+00A0) được mã hóa thành &nbsp; khi bạn gõ ký tự khoảng trắng không ngắt thực sự (có thể chèn bằng Alt+Space trên một số hệ thống hoặc sao chép từ bảng ký tự). Khoảng trắng thông thường (U+0020, phím cách) không được mã hóa vì là ký tự ASCII an toàn. Nếu bạn đặc biệt cần &nbsp; trong đầu ra, hãy gõ hoặc dán ký tự khoảng trắng không ngắt vào đầu vào."
+    },
+    {
+      "q": "Tôi có thể dùng công cụ này để ngăn chặn HTML injection trong đầu vào người dùng không?",
+      "a": "Có — mã hóa văn bản do người dùng cung cấp trước khi chèn vào HTML là một trong những biện pháp phòng thủ cốt lõi chống lại HTML injection và XSS. Tối thiểu, hãy mã hóa năm ký tự được dành riêng: &, <, >, \", '. Công cụ này mã hóa cả năm. Tuy nhiên, mã hóa một mình không phải là giải pháp bảo mật hoàn chỉnh: bạn cũng cần các tiêu đề Content Security Policy phù hợp, xử lý cẩn thận URL javascript: trong thuộc tính và các biện pháp bảo vệ cấp framework. Đối với ứng dụng sản xuất, hãy sử dụng thư viện phía máy chủ được thiết kế cho bảo mật (OWASP Java Encoder, DOMPurify cho phía client, v.v.) thay vì mã hóa thủ công."
+    }
+  ]
+}

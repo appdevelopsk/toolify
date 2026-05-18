@@ -1,0 +1,100 @@
+{
+  "title": "Konverter Teks ke Biner — Encode dan Decode",
+  "shortDescription": "Konversi teks ke kode biner atau biner kembali ke teks yang dapat dibaca. Mendukung output dipisahkan spasi, baris baru, atau kontinu. Tukar encode dan decode dengan satu klik.",
+  "description": "Masukkan teks apa pun untuk mengonversinya ke biner (0 dan 1), atau tempel kode biner untuk mendekodenya kembali ke teks. Setiap karakter dikonversi menggunakan nilai ASCII/Unicode-nya. Pilih output dipisahkan spasi, baris baru, atau kontinu. Tombol Tukar memungkinkan Anda langsung membalik konversi terakhir.",
+  "metaDescription": "Konverter teks ke biner gratis. Encode teks ke 0 dan 1 atau decode biner kembali ke teks. Pemisah spasi atau kontinu. Bekerja di sisi klien, tidak ada upload.",
+  "keywords": ["teks ke biner", "biner ke teks", "konverter biner", "encode biner", "ASCII biner"],
+  "mode": {
+    "encode": "Text → Binary",
+    "decode": "Binary → Text"
+  },
+  "separator": {
+    "label": "Pemisah",
+    "space": "Spasi",
+    "newline": "Baris baru",
+    "none": "Tidak ada"
+  },
+  "label": {
+    "inputText": "Teks Input",
+    "inputBinary": "Input Biner",
+    "outputBinary": "Output Biner",
+    "outputText": "Teks Terdekode"
+  },
+  "placeholder": {
+    "text": "Ketik atau tempel teks di sini…",
+    "binary": "Tempel kode biner di sini (contoh: 01001000 01100101 01101100 01101100 01101111)"
+  },
+  "action": {
+    "copy": "Salin",
+    "swap": "Tukar"
+  },
+  "stat": {
+    "encoded": "{chars} karakter → {bytes} byte",
+    "decoded": "{chars} karakter terdekode"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara kerja konversi teks ke biner",
+        "paragraphs": [
+          "Setiap karakter dalam komputer disimpan sebagai angka. Untuk teks ASCII standar, huruf 'A' adalah angka 65, 'B' adalah 66, huruf kecil 'a' adalah 97, spasi adalah 32, dan seterusnya. Untuk mengonversi teks ke biner, alat ini mencari nilai numerik (titik kode ASCII/Unicode) dari setiap karakter, lalu menulis angka tersebut dalam basis 2 (biner), diisi hingga 8 digit. Misalnya: 'H' = 72 desimal = 01001000 biner, 'e' = 101 desimal = 01100101 biner, 'l' = 108 desimal = 01101100 biner.",
+          "Proses terbalik (biner ke teks) membaca kelompok 8-bit, mengonversi masing-masing dari basis 2 kembali ke angka desimal, lalu mencari karakter dengan titik kode tersebut. Jika Anda menempel biner yang dipisahkan spasi (seperti 01001000 01100101), alat memisahkan pada spasi. Jika Anda menempel biner kontinu (seperti 0100100001100101), secara otomatis mengelompokkan ke dalam blok 8-bit. Setiap kelompok 8-bit harus berisi tepat 8 angka satu dan nol — jika tidak, alat menampilkan kesalahan yang mengidentifikasi byte yang tidak valid."
+        ]
+      },
+      {
+        "heading": "Biner vs heksadesimal untuk representasi data",
+        "paragraphs": [
+          "Biner (basis 2) hanya menggunakan 0 dan 1, menjadikannya representasi paling mendasar dari data digital — ia langsung mencerminkan cara bit disimpan dalam memori komputer. Namun, ia bertele-tele: satu karakter ASCII membutuhkan 8 digit. Heksadesimal (basis 16, menggunakan digit 0–9 dan A–F) lebih ringkas: setiap digit heks mewakili tepat 4 digit biner (sebuah nibble), sehingga satu byte hanya menjadi 2 digit heks. 'H' = 0x48 dalam heks vs 01001000 dalam biner.",
+          "Representasi biner paling berguna ketika Anda perlu melihat atau memanipulasi bit individual — misalnya, memeriksa flag dalam bitmask, memahami cara titik kode Unicode dikodekan ke byte UTF-8, atau menganalisis struktur paket jaringan di tingkat bit. Untuk sebagian besar tugas inspeksi data, heksadesimal menawarkan keseimbangan yang baik antara kepadatan dan keterbacaan. Banyak debugger, editor heks, dan penganalisis protokol menampilkan data dalam heks, dengan tampilan biner opsional untuk pekerjaan tingkat bit."
+        ]
+      },
+      {
+        "heading": "Di luar ASCII: Unicode dan karakter multi-byte",
+        "paragraphs": [
+          "ASCII standar hanya mencakup 128 karakter (7 bit, kode 0–127), cukup untuk teks bahasa Inggris tetapi tidak untuk karakter beraksen, skrip non-Latin, atau emoji. Teks modern dikodekan dalam Unicode, yang mendefinisikan lebih dari 140.000 karakter. Alat ini menggunakan charCodeAt() bawaan JavaScript, yang mengembalikan unit kode UTF-16 untuk setiap karakter. Untuk karakter Latin dasar ini sama dengan titik kode Unicode, yang juga sama dengan kode ASCII.",
+          "Untuk karakter non-ASCII seperti 'é' (233), 'ñ' (241), '中' (20013), atau '😀' (128512, yang menggunakan pasangan surrogate UTF-16), representasi biner akan lebih panjang atau dibagi secara berbeda. Jika Anda memerlukan pengkodean biner yang sesuai dengan cara UTF-8 sebenarnya menyimpan byte di disk, Anda perlu mengkodekan string terlebih dahulu dalam UTF-8, lalu mengonversi setiap byte yang dihasilkan ke biner. Untuk sebagian besar tujuan pendidikan dan teka-teki pengkodean, pendekatan per-karakter yang digunakan di sini adalah standar."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Encode teks ke biner", "text": "Pilih mode Text → Binary, ketik atau tempel teks Anda di kotak kiri, dan output biner muncul seketika di kanan. Pilih pemisah yang diinginkan: Spasi menempatkan setiap byte dalam satu kelompok dipisahkan spasi, Baris baru menempatkan setiap byte di baris tersendiri, Tidak ada menghasilkan string kontinu dari 0 dan 1." },
+      { "name": "Decode biner ke teks", "text": "Pilih mode Binary → Text, tempel string biner Anda (dipisahkan spasi atau kontinu) ke kotak kiri, dan teks terdekode muncul di kanan. Jika kelompok 8-bit mana pun tidak valid, pesan kesalahan mengidentifikasi byte yang bermasalah." },
+      { "name": "Tukar encode dan decode", "text": "Klik tombol Tukar untuk memindahkan output saat ini ke input dan secara otomatis mengganti mode — berguna untuk memverifikasi dengan cepat konversi bolak-balik." },
+      { "name": "Salin hasilnya", "text": "Klik Salin untuk menempatkan biner atau teks terdekode ke clipboard Anda untuk digunakan di aplikasi lain." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Bagaimana cara mengonversi teks ke biner?",
+      "a": "Setiap karakter dalam teks dikonversi ke kode numerik ASCII atau Unicode-nya, yang kemudian ditulis dalam biner (basis 2) diisi hingga 8 bit. Misalnya: 'A' = 65 desimal = 01000001 biner. 'Hello' menjadi 01001000 01100101 01101100 01101100 01101111. Alat ini menangani konversi secara otomatis — cukup ketik teks Anda di kotak kiri dengan mode Text → Binary dipilih."
+    },
+    {
+      "q": "Bagaimana cara mengonversi biner ke teks?",
+      "a": "Pilih mode Binary → Text dan tempel string biner Anda. Biner harus dalam kelompok 8-bit (byte). Jika dipisahkan oleh spasi, setiap kelompok yang dibatasi spasi adalah satu byte. Jika kontinu (tanpa spasi), alat mengelompokkan setiap 8 digit sebagai satu byte. Setiap byte dikonversi dari biner ke angka, lalu dicari sebagai karakter ASCII/Unicode."
+    },
+    {
+      "q": "Mengapa setiap kelompok biner panjangnya 8 digit?",
+      "a": "Sebuah byte terdiri dari 8 bit, dan ASCII menggunakan kode 7-bit (0–127). Berdasarkan konvensi, kode ASCII disimpan dalam byte 8-bit penuh dengan nol di depan, sehingga semua entri tepat 8 digit biner. Ini membuat penguraian tidak ambigu: setiap 8 digit = satu karakter. Beberapa representasi lama menggunakan ASCII 7-bit (tanpa nol terdepan), tetapi pengkodean 8-bit adalah standar modern."
+    },
+    {
+      "q": "Apa biner untuk karakter umum?",
+      "a": "Spasi = 00100000, 'A' = 01000001, 'a' = 01100001, '0' = 00110000, Enter/baris baru (LF) = 00001010, titik '.' = 00101110. Polanya mudah dikenali: huruf besar dimulai dengan 010, huruf kecil dimulai dengan 011, dan digit dimulai dengan 0011."
+    },
+    {
+      "q": "Bisakah alat ini menangani karakter non-Inggris?",
+      "a": "Ya, untuk karakter dengan titik kode Unicode di bawah 65.536 (sebagian besar Latin, Yunani, Sirilik, CJK, Arab, Ibrani, dll.). Setiap karakter dikonversi ke titik kode Unicode-nya dalam biner. Namun, karena karakter di atas 127 memerlukan lebih dari 8 bit, mereka akan menghasilkan kelompok biner lebih panjang dari 8 digit. Untuk emoji dan karakter lain di atas U+FFFF, JavaScript membaginya menjadi pasangan surrogate, yang dapat menghasilkan hasil yang tidak terduga."
+    },
+    {
+      "q": "Apa yang dilakukan tombol Tukar?",
+      "a": "Tukar mengambil output saat ini (string biner saat encoding, atau teks saat decoding) dan memindahkannya ke kotak input, sambil mengganti mode ke arah berlawanan. Ini memungkinkan Anda memverifikasi seketika konversi bolak-balik: encode beberapa teks, klik Tukar, dan periksa bahwa Anda mendapatkan teks asli kembali. Juga berguna untuk mengeksplorasi apa yang dikodekan oleh string biner."
+    },
+    {
+      "q": "Apakah biner sama dengan kode Morse?",
+      "a": "Tidak. Biner menggunakan tepat 8 bit (0 dan 1) untuk mewakili setiap karakter berdasarkan nilai numerik ASCII/Unicode-nya. Kode Morse menggunakan titik dan garis dengan panjang bervariasi untuk mewakili huruf dan angka, dengan urutan berdasarkan frekuensi huruf dalam bahasa Inggris (huruf umum seperti E dan T memiliki kode yang lebih pendek). Kedua sistem ini adalah skema pengkodean yang sepenuhnya berbeda, meskipun keduanya mewakili teks sebagai rangkaian simbol."
+    },
+    {
+      "q": "Bagaimana biner berbeda dari Base64?",
+      "a": "Biner menunjukkan pola bit sebenarnya dari setiap karakter — bit mentah yang disimpan di memori. Base64 adalah pengkodean tingkat lebih tinggi yang mengubah data biner apa pun (file atau urutan byte apa pun) menjadi string teks ASCII yang aman menggunakan 64 karakter yang dapat dicetak. Base64 digunakan ketika Anda perlu menyematkan data biner dalam konteks yang hanya menerima teks (seperti lampiran email atau URI data). Representasi biner untuk inspeksi manusia atas pola bit; Base64 untuk transfer dan penyimpanan data."
+    }
+  ]
+}

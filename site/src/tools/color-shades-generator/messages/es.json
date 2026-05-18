@@ -1,0 +1,102 @@
+{
+  "title": "Generador de Tonos de Color — Estilo Tailwind",
+  "shortDescription": "Genera 11 tintes y sombras (50–950) para cualquier color, con el estilo de la escala Tailwind CSS. Haz clic en cualquier tono para copiar su código hex o exporta todos como propiedades personalizadas CSS.",
+  "description": "Elige cualquier color base para generar al instante una paleta completa de 11 tonos (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950), siguiendo la escala de Tailwind CSS y Material Design. Cada tono muestra su calificación de contraste WCAG frente a texto blanco o negro. Haz clic en cualquier muestra para copiar su código hex, o pulsa Copiar CSS para exportar todos los tonos como propiedades personalizadas CSS.",
+  "metaDescription": "Generador de tonos de color gratuito. Introduce cualquier color hex para obtener 11 tintes y sombras en la escala Tailwind CSS. Copia códigos hex o variables CSS.",
+  "keywords": [
+    "generador de tonos de color",
+    "tintes de color",
+    "paleta Tailwind",
+    "variables CSS de color",
+    "escala de colores"
+  ],
+  "input": {
+    "picker": "Selector de color",
+    "hex": "Código Hex"
+  },
+  "action": {
+    "copyCSS": "Copiar CSS",
+    "copied": "¡Copiado!",
+    "clickCopy": "Clic para copiar código hex"
+  },
+  "error": {
+    "invalid": "Introduce un color hex válido de 6 dígitos (p. ej. #3B82F6)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cómo funcionan las escalas de tonos de color",
+        "paragraphs": [
+          "Una escala de tonos de color es una serie sistemática de variaciones más claras y más oscuras de un color base, utilizada para crear jerarquía visual y contraste accesible en el diseño de interfaces. La convención de Tailwind CSS utiliza 11 pasos numerados 50, 100, 200, 300, 400, 500, 600, 700, 800, 900 y 950. Los números más bajos son más claros (mayor luminosidad en HSL), mientras que los números más altos son más oscuros. El paso 500 suele estar cerca del color base introducido.",
+          "Esta herramienta genera los tonos convirtiendo el hex de entrada a HSL (Matiz, Saturación, Luminosidad), preservando el matiz y la saturación mientras asigna cada paso a un valor de luminosidad predefinido. El paso 50 corresponde a aproximadamente un 97 % de luminosidad (casi blanco), el paso 500 a un 52 % (rango medio) y el paso 950 a un 12 % (casi negro). Este enfoque produce paletas visualmente consistentes que mantienen el carácter del color en todos los niveles de brillo."
+        ]
+      },
+      {
+        "heading": "Calificaciones de contraste WCAG en la paleta",
+        "paragraphs": [
+          "Cada tono de la paleta muestra su calificación de contraste WCAG (Pautas de Accesibilidad para el Contenido Web) frente a texto negro o blanco, según cuál sea más legible. Las calificaciones son: AAA (relación de contraste ≥ 7:1, mejor accesibilidad), AA (≥ 4,5:1, requerido para texto normal), AA Large (≥ 3:1, aceptable solo para texto grande y componentes UI) y Fail (< 3:1, insuficiente para texto). El cumplimiento de WCAG 2.1 AA es el requisito legal mínimo de accesibilidad en muchas jurisdicciones.",
+          "Al construir una interfaz con una paleta de colores, usa tonos con calificación AA o AAA para el texto sobre esos fondos. Típicamente, los tonos 50–300 tienen un fuerte contraste con texto oscuro, mientras que los tonos 700–950 tienen un fuerte contraste con texto blanco. Los tonos intermedios (400–600) frecuentemente caen en la categoría AA Large o Fail para texto pequeño, siendo adecuados para elementos decorativos, bordes o fondos detrás de texto blanco grande, pero no para cuerpo de texto pequeño."
+        ]
+      },
+      {
+        "heading": "Usar la paleta en CSS y sistemas de diseño",
+        "paragraphs": [
+          "El botón Copiar CSS exporta tu paleta como propiedades personalizadas CSS (variables CSS) en un bloque :root, listo para pegar en tu hoja de estilos. Por ejemplo, la variable blue-500 se convierte en --color-500: #3b82f6 (o el color que hayas elegido). Puedes renombrar el prefijo de la variable para que se adapte a tu proyecto: --brand-500, --primary-500, --blue-500, etc. Las propiedades personalizadas CSS se heredan y pueden sobreescribirse por componente o tema.",
+          "Los sistemas de diseño como Tailwind CSS, Material Design, Ant Design y Chakra UI utilizan escalas de tonos numeradas para sus sistemas de color. Contar con una escala consistente permite tomar decisiones con confianza: usa 50 para fondos de hover, 100 para estados activos en tema claro, 500 para botones primarios, 700 para estados hover en botones y 900 para fondos oscuros. Mantener todos los colores de marca en la misma escala numerada crea predictibilidad y reduce las decisiones de diseño a nivel de componente."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Elige tu color base",
+        "text": "Usa el selector de color para elegir visualmente un color, o escribe un código hex de 6 dígitos (como #3B82F6) en el campo hex. La paleta de 11 tonos se genera al instante."
+      },
+      {
+        "name": "Lee las calificaciones WCAG",
+        "text": "Cada tono muestra su calificación de contraste WCAG (AAA, AA, AA Large o Fail). Usa tonos con calificación AA o AAA para texto y elementos interactivos para cumplir los requisitos de accesibilidad."
+      },
+      {
+        "name": "Copia tonos individuales",
+        "text": "Haz clic en cualquier muestra de color para copiar su código hex al portapapeles. Una marca de verificación confirma la copia."
+      },
+      {
+        "name": "Exporta como variables CSS",
+        "text": "Haz clic en Copiar CSS para obtener los 11 tonos como propiedades personalizadas CSS en un bloque :root, listos para pegar en tu hoja de estilos o sistema de diseño."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Qué significan los números de tono (50–950)?",
+      "a": "Los números siguen la convención de la escala de colores de Tailwind CSS. Los números más bajos son más claros: 50 es casi blanco, 100 es muy claro, 200 y 300 son tintes claros. El valor medio (500) es un valor intermedio cercano al color original. Los números más altos son más oscuros: 700 es oscuro, 900 es muy oscuro, 950 es casi negro. La escala no es lineal — está ajustada para que los tamaños de los pasos se perciban uniformes en todo el rango."
+    },
+    {
+      "q": "¿Cuál es la diferencia entre un tinte y una sombra?",
+      "a": "Un tinte es un color mezclado con blanco, lo que lo hace más claro. Una sombra es un color mezclado con negro, lo que lo hace más oscuro. En términos de HSL, los tintes tienen valores de luminosidad más altos y las sombras tienen valores de luminosidad más bajos mientras mantienen el mismo matiz. Los números 50–400 en esta escala son tintes (más claros que la base), mientras que 600–950 son sombras (más oscuras que la base). El paso 500 es aproximadamente el color base en sí."
+    },
+    {
+      "q": "¿Cómo genera esta herramienta los tonos?",
+      "a": "La herramienta convierte tu color hex a HSL (Matiz, Saturación, Luminosidad). Mantiene el matiz y la saturación constantes mientras asigna cada número de paso a un valor de luminosidad objetivo: paso 50 → 97 % de luminosidad, paso 500 → 52 %, paso 950 → 12 %. El resultado se convierte de vuelta a hex. Este método preserva el carácter del color (calidez, frialdad, vivacidad) en todos los tonos."
+    },
+    {
+      "q": "¿Qué es WCAG y por qué los tonos muestran calificaciones?",
+      "a": "WCAG (Pautas de Accesibilidad para el Contenido Web) define relaciones de contraste mínimas para texto legible. AA requiere una relación de 4,5:1 para texto normal; AAA requiere 7:1. La calificación de contraste de cada tono indica si el texto negro o blanco sobre ese fondo cumple el estándar AA o AAA. Esto te ayuda a elegir qué tonos son seguros para texto y cuáles deben usarse solo para elementos decorativos."
+    },
+    {
+      "q": "¿Cómo uso esta paleta en Tailwind CSS?",
+      "a": "Tailwind te permite definir colores personalizados en tailwind.config.js. Añade los tonos bajo theme.extend.colors: colors: { brand: { 50: '#tu-hex-50', 100: '#tu-hex-100', ... } }. Luego puedes usar clases como bg-brand-100, text-brand-700, border-brand-300. Para Tailwind v4 con configuración CSS-first, pega la salida de variables CSS en tu definición de tema."
+    },
+    {
+      "q": "¿Por qué el tono de mi color elegido no se ve exactamente como mi entrada?",
+      "a": "La herramienta apunta a valores de luminosidad específicos para cada paso — el paso 500 apunta a aproximadamente 52 % de luminosidad HSL. Si tu color de entrada tiene una luminosidad diferente (p. ej., 70 % si es un color más claro), el tono en el paso 500 se ajustará hacia el 52 %. Esto crea una escala consistente, pero significa que el paso 500 puede no ser idéntico a tu entrada original. Para obtener tu color exacto en el paso 500, puedes ajustar el hex manualmente — la escala se generará relativa a lo que introduzcas."
+    },
+    {
+      "q": "¿Puedo usar esto con propiedades personalizadas CSS?",
+      "a": "Sí — haz clic en Copiar CSS para obtener un bloque :root listo para usar con los 11 tonos como propiedades personalizadas. En tu CSS, refiérelos como var(--color-500), var(--color-50), etc. Puedes renombrar el prefijo --color- a cualquier cosa que se adapte a tu proyecto (--brand-, --primary-, --blue-). Las propiedades personalizadas se heredan y pueden limitarse a un componente o sobreescribirse en una media query para modo oscuro."
+    },
+    {
+      "q": "¿En qué se diferencian estos tonos de la función CSS color-mix()?",
+      "a": "La función CSS color-mix() (compatible con navegadores modernos) mezcla dos colores por porcentaje, similar a mezclar pintura. Esta herramienta usa una escala de luminosidad predefinida (basada en HSL), que produce una escala de sistema de diseño más controlada y predecible. color-mix() es mejor para mezclas puntuales (p. ej., mezclar tu color de marca con un 20 % de blanco), mientras que esta herramienta genera una paleta de sistema de diseño completa y sistemática. Ambos enfoques tienen su lugar según el caso de uso."
+    }
+  ]
+}

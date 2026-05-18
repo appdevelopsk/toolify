@@ -1,0 +1,94 @@
+{
+  "title": "Unix फ़ाइल परमिशन कैलकुलेटर (chmod)",
+  "shortDescription": "Owner, Group और Other के लिए Read/Write/Execute परमिशन टॉगल करें। तुरंत Octal वैल्यू (755, 644…) और Symbolic नोटेशन (rwxr-xr-x) देखें।",
+  "description": "इंटरेक्टिव chmod कैलकुलेटर। Owner, Group और Other के परमिशन बिट्स चेक या अनचेक करें और रियल टाइम में Octal नंबर और Symbolic नोटेशन पढ़ें। या Octal नंबर टाइप करके उसे डीकोड करें।",
+  "metaDescription": "मुफ्त Unix परमिशन कैलकुलेटर। Read/Write/Execute टॉगल करें और तुरंत Octal वैल्यू (755, 644) और Symbolic नोटेशन (rwxr-xr-x) पाएं।",
+  "keywords": ["unix परमिशन कैलकुलेटर", "chmod कैलकुलेटर", "octal परमिशन", "linux फ़ाइल परमिशन", "rwx परमिशन"],
+  "input.octal": "Octal वैल्यू",
+  "input.symbolic": "Symbolic",
+  "label.owner": "Owner",
+  "label.group": "Group",
+  "label.other": "Other",
+  "label.read": "Read (r)",
+  "label.write": "Write (w)",
+  "label.execute": "Execute (x)",
+  "presets": "सामान्य Presets",
+  "error.invalidOctal": "1–3 Octal अंक दर्ज करें (केवल 0–7)।",
+  "article": {
+    "sections": [
+      {
+        "heading": "Unix परमिशन और Octal नोटेशन का इतिहास",
+        "paragraphs": [
+          "Unix फ़ाइल परमिशन Ken Thompson ने 1969 में PDP-7 पर मूल Unix बनाते समय डिज़ाइन किए थे। प्रत्येक फ़ाइल के inode में नौ परमिशन बिट्स स्टोर होते हैं: तीन Owner के लिए, तीन Group के लिए और तीन बाकी सबके लिए। हर तीन बिट्स को एक Octal अंक (0–7) में बदलना सबसे स्वाभाविक तरीका था: प्रति entity एक अंक, कुल तीन अंक। यह Octal परंपरा POSIX.1-1988 में मानकीकृत हुई और आज भी सभी Linux, macOS, BSD व Unix-जैसे सिस्टम्स में अपरिवर्तित है।",
+          "Symbolic रूप (rwxr-xr-x) शुरुआती Unix distributions के `ls -l` आउटपुट में दिखा और Octal नंबर का मानव-पठनीय पूरक बन गया। POSIX दोनों को मानक मानता है। `chmod u+x file` Symbolic रूप है, जबकि `chmod 755 file` Octal रूप है। दोनों एक ही kernel ऑपरेशन करते हैं: inode के mode field में विशिष्ट bits सेट करना।"
+        ]
+      },
+      {
+        "heading": "Read, Write और Execute का अर्थ",
+        "paragraphs": [
+          "सामान्य फ़ाइल के लिए: Read (r=4) फ़ाइल खोलने और पढ़ने की अनुमति देता है; Write (w=2) फ़ाइल बदलने या छोटा करने की; Execute (x=1) उसे प्रोग्राम की तरह चलाने की। हर bit स्वतंत्र है। प्रत्येक entity का Octal अंक सेट bits का योग है: rwx=7, r-x=5, r--=4।",
+          "Directory के लिए अर्थ बदल जाते हैं। Read (r) `ls` से directory सूची दिखाता है। Execute (x) — जिसे 'Search bit' भी कहते हैं — `cd` से अंदर जाने और नाम से files access करने की अनुमति देता है। Write (w) directory में files बनाने, हटाने या नाम बदलने की। Read-only Directory (बिना Execute) लगभग बेकार है: file names दिखेंगे पर कोई file नहीं खुलेगी। सामान्य directories में 755 परमिशन होती हैं।"
+        ]
+      },
+      {
+        "heading": "सामान्य परमिशन पैटर्न और सुरक्षा",
+        "paragraphs": [
+          "644 (rw-r--r--) config files, HTML और text के लिए मानक है: Owner edit कर सकता है, बाकी केवल read। 755 (rwxr-xr-x) directories और executable scripts का मानक है: Owner content manage करता है, बाकी browse और read कर सकते हैं। 600 (rw-------) और 700 (rwx------) access केवल Owner तक सीमित रखते हैं — SSH private keys और password files के लिए उपयुक्त। Web पर exposed किसी भी चीज़ में कभी 777 न दें; 'Other' को Write देने का मतलब है सिस्टम का कोई भी process फ़ाइल overwrite कर सकता है।",
+          "umask नई files और directories के default permissions निर्धारित करता है। umask 022 (अधिकांश systems पर सामान्य) नई files को 644 और नई directories को 755 देता है, क्योंकि umask bits को default 666 (files) और 777 (directories) से घटाया जाता है। Security-hardened systems अक्सर umask 027 या 077 उपयोग करते हैं।"
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "परमिशन Checkboxes टॉगल करें",
+        "text": "Owner, Group या Other के Read, Write या Execute Checkbox पर क्लिक करें। Octal वैल्यू और Symbolic string तुरंत अपडेट होंगी।"
+      },
+      {
+        "name": "Octal नंबर टाइप करके डीकोड करें",
+        "text": "Octal input field पर क्लिक करें और 1–3 अंक (प्रति अंक 0–7) टाइप करें। Checkboxes स्वतः डीकोड किए गए परमिशन बिट्स दिखाएंगी।"
+      },
+      {
+        "name": "Preset उपयोग करें",
+        "text": "Common Preset बटन (755, 644, 600, 700, 777) पर क्लिक करें और तुरंत उस परमिशन सेट पर जाएं।"
+      },
+      {
+        "name": "chmod Command कॉपी करें",
+        "text": "नीचे दिखाई गई chmod command सीधे उपयोग करें। 'filename' की जगह अपनी असली file या directory का path डालें।"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "755 का क्या अर्थ है?",
+      "a": "755 का अर्थ है: Owner को Read+Write+Execute (7=4+2+1), Group को Read+Execute (5=4+1), Others को Read+Execute (5=4+1)। Directories और executable scripts के लिए यह मानक परमिशन है।"
+    },
+    {
+      "q": "644 का क्या अर्थ है?",
+      "a": "644 का अर्थ है: Owner को Read+Write (6=4+2), Group को केवल Read (4), Others को केवल Read (4)। Config files, web pages और text documents जैसी सामान्य files के लिए यह default है।"
+    },
+    {
+      "q": "Directory को Execute परमिशन क्यों चाहिए?",
+      "a": "Directory में Execute bit 'Search bit' का काम करता है। इसके बिना Read permission होने पर भी `cd` से अंदर नहीं जा सकते और path से files नहीं खोल सकते। Execute बिना Read वाली Directory व्यावहारिक रूप से बेकार है।"
+    },
+    {
+      "q": "Owner, Group और Other में क्या फ़र्क है?",
+      "a": "Owner वह user account है जो file का मालिक है (बनाते समय सेट, chown से बदल सकते हैं)। Group वह group है जो file को असाइन है (chgrp से बदला जाता है); उस group के सभी users को group permissions मिलती हैं। Other में वे सभी users हैं जो न Owner हैं, न उस group के member।"
+    },
+    {
+      "q": "SUID और SGID क्या हैं?",
+      "a": "SUID (Set User ID) और SGID (Set Group ID) मानक नौ bits के अलावा विशेष परमिशन bits हैं। Executable पर SUID होने पर वह caller की नहीं बल्कि file owner की privileges से चलता है — passwd और sudo जैसे commands इसी तरह काम करते हैं। Directory पर SGID नई files को directory का group inherit कराता है। Symbolic form में 's' दिखता है (जैसे rwsr-xr-x) और Octal value में 4000 या 2000 जुड़ता है (जैसे 4755)।"
+    },
+    {
+      "q": "क्या chmod 777 खतरनाक है?",
+      "a": "हां, खासकर shared system या web server पर। 777 सिस्टम के सभी users को पूरा Read, Write और Execute अधिकार देता है। Compromised web applications सहित कोई भी process file overwrite या execute कर सकती है। Web servers पर यह अक्सर arbitrary code execution की सुविधा देता है। Permissions को आवश्यक minimum तक सीमित रखें।"
+    },
+    {
+      "q": "chmod command कैसे उपयोग करें?",
+      "a": "`chmod OCTAL path` एक file के लिए, `chmod -R OCTAL directory` recursive apply के लिए। उदाहरण: `chmod 644 index.html` या `chmod 755 /var/www`। Symbolic syntax भी चलती है: `chmod u+x script.sh` बाकी bits बदले बिना Owner को Execute जोड़ता है।"
+    },
+    {
+      "q": "umask क्या है और permissions से कैसे संबंधित है?",
+      "a": "umask वह mask है जो नई file या directory बनाते समय default permissions पर लागू होता है। umask 022 Group और Other से Write हटाता है, इसलिए नई files 644 और नई directories 755 बनती हैं। `umask` command से current setting देखें, `umask VALUE` से current session के लिए बदलें।"
+    }
+  ]
+}

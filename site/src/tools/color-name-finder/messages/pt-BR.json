@@ -1,0 +1,101 @@
+{
+  "title": "Localizador de nomes de cores CSS — Cor nomeada mais próxima do hex",
+  "shortDescription": "Insira qualquer cor em hex para encontrar o nome CSS mais próximo. Veja as 5 cores nomeadas mais próximas com seus valores hex exatos e pontuação de distância.",
+  "description": "Insira um código de cor em hex ou use o seletor de cores para encontrar o nome CSS4 mais próximo. A ferramenta compara sua cor com todas as 148 cores CSS nomeadas padrão usando distância de cor perceptual e classifica as 5 mais próximas. Perfeito para encontrar nomes de cores legíveis para código e documentação.",
+  "metaDescription": "Localizador gratuito de nomes de cores CSS. Insira qualquer cor hex para encontrar as cores CSS nomeadas mais próximas. Veja valores hex exatos e distância perceptual",
+  "keywords": [
+    "localizador nome cor css",
+    "nome cor mais próximo",
+    "hex para nome de cor",
+    "nome de cor do hex",
+    "cores css nomeadas"
+  ],
+  "input": {
+    "picker": "Seletor de cores",
+    "hex": "Cor hex"
+  },
+  "error": {
+    "invalid": "Por favor insira uma cor hex válida (ex. #3B82F6)."
+  },
+  "result": {
+    "exact": "Correspondência exata encontrada:",
+    "nearest": "5 cores CSS nomeadas mais próximas:"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cores nomeadas CSS: uma breve história",
+        "paragraphs": [
+          "As cores nomeadas CSS evoluíram através de várias versões de especificação. O CSS 1 original (1996) definia apenas 16 cores básicas: aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, purple, red, silver, teal, white e yellow. O CSS 2 adicionou orange. O CSS 3 expandiu a lista para 147 cores com base na lista de cores X11, que por sua vez remonta ao banco de dados de cores do sistema X Window mantido no MIT nos anos 80.",
+          "O CSS Color Level 4 adicionou mais um nome: rebeccapurple (#663399). Esta cor foi adicionada em homenagem a Rebecca Alissa Meyer, filha do desenvolvedor web Eric Meyer, que morreu de câncer cerebral em 2014 aos 6 anos de idade. Sua cor favorita era roxo, e o grupo de trabalho CSS votou para incluir seu nome no padrão como memorial. Com esta adição, a especificação CSS4 define exatamente 148 cores nomeadas, o conjunto completo que esta ferramenta pesquisa."
+        ]
+      },
+      {
+        "heading": "Como a distância de cor é calculada",
+        "paragraphs": [
+          "Simplesmente comparar valores RGB com distância euclidiana não corresponde bem à percepção humana: nossos olhos são mais sensíveis às diferenças em verde do que em azul, e a sensibilidade muda ao longo do intervalo de brilho. Esta ferramenta usa uma fórmula euclidiana ponderada baseada na 'métrica de cor' de Thiadmer Riemersma, que ajusta os pesos dos canais R, G e B com base no valor médio de vermelho. O resultado é muito mais próximo de como os humanos realmente percebem as diferenças de cor.",
+          "A fórmula usa: ΔE = √[(2 + R̄/256)·ΔR² + 4·ΔG² + (2 + (255-R̄)/256)·ΔB²], onde R̄ é o componente vermelho médio das duas cores. Esta é uma métrica perceptual simplificada; a ciência das cores profissional usa cálculos CIELAB ΔE que levam em conta luminosidade, croma e matiz separadamente, mas para fins práticos de nomenclatura, a métrica simplificada dá resultados intuitivos para a maioria das cores."
+        ]
+      },
+      {
+        "heading": "Quando usar cores nomeadas em CSS",
+        "paragraphs": [
+          "Cores nomeadas são mais úteis para prototipagem rápida, legibilidade do código e depuração. Escrever `color: tomato` é mais rápido de digitar e mais fácil de lembrar do que `color: #FF6347`. Também são úteis em contextos educacionais, visualização de dados (onde um nome semântico ajuda a comunicar significado) e em sistemas de design onde um conjunto limitado de cores nomeadas forma a paleta. O W3C recomenda usar cores nomeadas em exemplos e tutoriais para melhorar a legibilidade.",
+          "Para sistemas de design em produção, as cores nomeadas raramente são a paleta primária: valores hex personalizados, HSL ou nomes de tokens de design são preferidos. No entanto, saber a cor nomeada mais próxima de um valor personalizado é útil para documentação, comentários de cor em revisões de código e quando você quer um nome aproximado rápido para comunicar verbalmente sobre uma cor. Esta ferramenta preenche a lacuna encontrando o nome CSS que melhor descreve qualquer cor hex arbitrária."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Insira ou selecione uma cor",
+        "text": "Use o seletor de cores ou digite qualquer código hex (com ou sem o prefixo #) no campo de entrada."
+      },
+      {
+        "name": "Leia os resultados mais próximos",
+        "text": "A ferramenta mostra as 5 cores CSS nomeadas mais próximas classificadas por distância perceptual. O primeiro resultado é a melhor correspondência."
+      },
+      {
+        "name": "Verifique exato vs. aproximado",
+        "text": "Se sua cor é uma cor CSS nomeada exata, aparece uma mensagem especial de 'Correspondência exata'. Caso contrário, você vê as alternativas mais próximas."
+      },
+      {
+        "name": "Use no seu código",
+        "text": "Clique no nome da cor para usá-lo diretamente no seu CSS, ou use o valor hex exato mostrado ao lado de cada amostra para controle preciso de cor."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quantas cores CSS nomeadas existem?",
+      "a": "O CSS Color Level 4 define 148 cores nomeadas. Isso inclui as 16 cores básicas originais do CSS 1, orange do CSS 2, 130 cores baseadas em X11 do CSS 3 e rebeccapurple adicionado no CSS 4 para homenagear Rebecca Meyer. Observe que aqua e cyan são aliases (mesmo hex #00FFFF), assim como fuchsia e magenta (#FF00FF)."
+    },
+    {
+      "q": "Os nomes de cores CSS diferenciam maiúsculas e minúsculas?",
+      "a": "Não. Os nomes de cores CSS não diferenciam maiúsculas e minúsculas de acordo com a especificação. 'Red', 'RED', 'red' e 'rEd' se referem todos à mesma cor. Por convenção, minúsculas é o estilo mais comum no CSS moderno."
+    },
+    {
+      "q": "O que é rebeccapurple?",
+      "a": "rebeccapurple (#663399) foi adicionado ao CSS Color Level 4 em memória de Rebecca Alissa Meyer, filha do especialista em CSS Eric Meyer, que morreu de câncer cerebral em 2014 aos 6 anos. Sua cor favorita era roxo, e o grupo de trabalho CSS a imortalizou nomeando a cor após ela. Foi a única cor adicionada no CSS 4 e a primeira nova cor nomeada desde o CSS 2."
+    },
+    {
+      "q": "Por que as cores CSS nomeadas não cobrem todas as cores possíveis?",
+      "a": "As 148 cores nomeadas são um conjunto selecionado com base em listas de cores X11 históricas. Elas cobrem matizes comuns, mas deixam muitas cores sem nome: não há nome CSS para a maioria dos tons de azul-verde, rosa-laranja ou marrom-vermelho. Para trabalho de design preciso, são usados códigos hex, rgb() ou hsl()."
+    },
+    {
+      "q": "Qual é a diferença entre gray e grey no CSS?",
+      "a": "Ambas as grafias são aceitas no CSS. 'gray' é a ortografia oficial em inglês americano na especificação, mas 'grey' (inglês britânico) também é um sinônimo válido para a mesma cor (#808080). Da mesma forma, 'lightgray'/'lightgrey', 'darkgray'/'darkgrey', 'dimgray'/'dimgrey', 'slategray'/'slategrey' e 'darkslategray'/'darkslategrey' são todos válidos."
+    },
+    {
+      "q": "Quão precisa é a correspondência de cor mais próxima?",
+      "a": "A correspondência usa uma fórmula de distância perceptual que pondera os canais RGB pela sensibilidade do olho humano. Para a maioria das cores cotidianas — vermelhos, azuis, verdes saturados — a cor nomeada mais próxima parecerá intuitivamente correta. Para cores muito apagadas, escuras ou amarronzadas, a percepção humana é mais variável e a cor nomeada 'mais próxima' pode parecer subjetivamente incorreta. A pontuação de distância (Δ) mostrada ajuda a julgar quão próxima é a correspondência: quanto menor, melhor."
+    },
+    {
+      "q": "Posso usar isso para encontrar nomes de cores acessíveis para texto alternativo?",
+      "a": "Sim. Esta ferramenta é útil para escrever nomes de cores em texto alt, documentação ou comentários de design. Se você precisa descrever a cor de um elemento de UI para um leitor que não pode vê-la, a cor CSS nomeada mais próxima fornece um nome amplamente reconhecível. Para tonalidades altamente específicas, combine o nome CSS com um modificador (ex.: 'verde-azulado escuro' para #008080)."
+    },
+    {
+      "q": "Quais cores hex têm correspondências exatas com nomes CSS?",
+      "a": "Qualquer uma das 148 cores CSS nomeadas padrão produzirá uma correspondência exata. Exemplos comuns: red = #FF0000, blue = #0000FF, white = #FFFFFF, black = #000000, coral = #FF7F50, tomato = #FF6347, skyblue = #87CEEB. Você pode verificar qualquer hex inserindo-o e procurando a mensagem de 'Correspondência exata'."
+    }
+  ]
+}

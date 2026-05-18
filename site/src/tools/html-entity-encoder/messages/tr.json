@@ -1,0 +1,98 @@
+{
+  "title": "HTML Varlık Kodlayıcı ve Çözücü",
+  "shortDescription": "Özel karakterleri HTML varlıklarına kodlayın veya HTML varlıklarını metne geri çözün. Adlandırılmış varlıkları (&amp;), ondalık sayısal (&#65;) ve onaltılık (&#x41;) formatları destekler.",
+  "description": "Özel karakterleri HTML varlıkları olarak kodlamak için metin yapıştırın ya da HTML varlıklarını okunabilir metne çözmek için varlık içeren HTML yapıştırın. Adlandırılmış varlıklar (&amp;, &lt;, &copy;), ondalık sayısal (&#169;) veya onaltılık (&#xA9;) kodlama arasında seçin. Maksimum uyumluluk için tüm ASCII olmayan karakterleri isteğe bağlı olarak kodlayın.",
+  "metaDescription": "Ücretsiz HTML varlık kodlayıcı ve çözücü. Özel karakterleri &amp; &lt; &gt; ile adlandırılmış, sayısal veya hex varlıklara dönüştürün. Anında çözme de dahil.",
+  "keywords": ["HTML varlık kodlayıcı", "HTML varlıkları", "HTML kodlama", "HTML varlık çözme", "özel karakter HTML"],
+  "mode": {
+    "encode": "Kodla",
+    "decode": "Çöz"
+  },
+  "encodeMode": {
+    "named": "Adlandırılmış (&amp;)",
+    "numeric": "Sayısal (&#38;)",
+    "hex": "Hex (&#x26;)"
+  },
+  "option": {
+    "encodeAll": "Tüm ASCII olmayan karakterleri kodla"
+  },
+  "label": {
+    "inputText": "Giriş Metni",
+    "inputEncoded": "Kodlanmış HTML",
+    "outputEncoded": "Kodlanmış Çıktı",
+    "outputText": "Çözülmüş Metin"
+  },
+  "placeholder": {
+    "text": "<, >, &, © gibi özel karakterler içeren metin yazın veya yapıştırın",
+    "encoded": "&amp;, &lt;, &#169; gibi varlıklar içeren HTML yapıştırın"
+  },
+  "action": {
+    "copy": "Kopyala",
+    "swap": "Değiştir"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "HTML varlıkları nedir?",
+        "paragraphs": [
+          "HTML varlıkları, HTML'de özel anlamı olan veya doğrudan yazılamayan karakterleri temsil etmek için kullanılan özel metin kodlarıdır. En önemlileri HTML sözdiziminde ayrılmış beş karakterdir: & (ve işareti) → &amp;, < (küçüktür) → &lt;, > (büyüktür) → &gt;, \" (çift tırnak) → &quot; ve ' (tek tırnak) → &apos;. Bu karakterler kodlanmadan metin içeriğinde görünürse, tarayıcı bunları HTML işaretlemesi olarak yorumlayabilir ve bu durum işleme hatalarına veya güvenlik açıklarına yol açabilir.",
+          "HTML varlıkları üç biçimde gelir: adlandırılmış varlıklar açıklayıcı bir ad kullanır (&copy; © için, &euro; € için), ondalık sayısal karakter referansları bir kod noktası numarası kullanır (&#169; © için) ve onaltılık karakter referansları bir hex kodu kullanır (&#xA9; © için). Üç biçim de eşdeğerdir — tarayıcı, hangi biçim kullanılırsa kullanılsın aynı karakteri işler. Adlandırılmış varlıklar en okunabilir olanıdır; sayısal varlıklar, herhangi bir Unicode karakteri için çalıştıklarından en evrensel olanıdır."
+        ]
+      },
+      {
+        "heading": "HTML varlıkları ne zaman kodlanmalı",
+        "paragraphs": [
+          "Metin içeriğinde veya özellik değerlerinde göründüklerinde beş ayrılmış HTML karakterini (&, <, >, \", ') en azından kodlamanız gerekir. Bunları kodlamamak, Cross-Site Scripting (XSS) güvenlik açıklarının bir kaynağıdır: kullanıcı girişi kodlanmadan HTML'ye eklenirse, bir saldırgan script etiketleri veya olay işleyicileri enjekte edebilir. React, Vue ve Angular gibi modern çerçeveler varsayılan olarak HTML'yi otomatik olarak kodlar — innerHTML, manuel kodlamanın hâlâ kritik olduğu ana istisnadır.",
+          "Gerekli beş karakterin ötesinde, UTF-8'i güvenilir şekilde işlemeyen ortamlar için ASCII olmayan karakterleri de kodlamak isteyebilirsiniz: e-posta HTML'si, eski CMS sistemleri veya maksimum uyumluluk için belgeler. «Tüm ASCII olmayanları kodla» seçeneği, kod noktası 127'nin üzerindeki her karakteri bir sayısal varlığa dönüştürerek çıktının saf ASCII olmasını sağlarken işlendiğinde görsel görünümü korur. Modern UTF-8 HTML dosyaları için ASCII olmayan karakterleri kodlamak isteğe bağlıdır — charset'i doğru bildirmek yeterlidir."
+        ]
+      },
+      {
+        "heading": "HTML varlıkları vs URL kodlama vs Base64",
+        "paragraphs": [
+          "HTML varlıkları, URL kodlama (yüzde kodlama) ve Base64, farklı bağlamlar için üç farklı kodlama şemasıdır. HTML varlıkları (&amp; gibi) HTML belgelerinde karakterleri güvenli bir şekilde temsil etmek için kullanılır. URL kodlama (& için %26 gibi), URL'lerde özel anlam taşıyan karakterleri sorgu dizelerinde ve URL'lerde kodlamak için kullanılır. Base64, rastgele ikili verileri ASCII metni olarak kodlar ve veri URI'leri ile e-posta ekleri için kullanılır.",
+          "Yaygın bir hata, bunları karıştırmaktır: HTML içeriği için URL kodlaması veya URL'ler için HTML kodlaması kullanmak. Örneğin, URL sorgu dizesindeki bir ve işareti, HTML varlık kodlaması (&amp;) değil yüzde kodlama (%26) gerektirir. Bir HTML özelliğine gömülecek bir URL oluşturuyorsanız, ikisine de ihtiyacınız vardır: URL kodlamalı form özelliğe girer ve özellik değerinin kendisi HTML olarak kodlanır. Hangi bağlamda hangi kodlamanın uygulandığını anlamak, çift kodlama hatalarını ve güvenlik sorunlarını önler."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Özel karakterleri kodla", "text": "Kodla modunu seçin, metninizi sol kutuya yapıştırın. Kodlanmış çıktı sağda görünür. Okunabilir varlıklar için «Adlandırılmış» (&amp;), evrensel ondalık için «Sayısal» (&#38;) veya onaltılık için «Hex» (&#x26;) seçin. Her ASCII olmayan karakteri bir varlığa dönüştürmek için «Tüm ASCII olmayanları kodla» seçeneğini işaretleyin." },
+      { "name": "HTML varlıklarını çöz", "text": "Çöz modunu seçin, varlıklar içeren HTML'yi sol kutuya yapıştırın. Araç, adlandırılmış varlıkları (&amp;, &copy;), ondalık sayısal varlıkları (&#169;) ve hex varlıkları (&#xA9;) tanır ve tümünü orijinal karakterlerine dönüştürür." },
+      { "name": "Kodlama ve çözmeyi değiştir", "text": "Çıktıyı girişe taşımak ve modları değiştirmek için «Değiştir» düğmesine tıklayın — gidiş-dönüşü doğrulamak veya bir dönüşümü hızla tersine çevirmek için kullanışlıdır." },
+      { "name": "Sonucu kopyala", "text": "Kodlanmış veya çözülmüş sonucu panonuza koymak için «Kopyala» düğmesine tıklayın." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Ve işareti (&) için HTML varlığı nedir?",
+      "a": "Ve işareti için HTML varlığı &amp;'dir — kelime anlamıyla &, a, m, p ve noktalı virgül karakterleridir. HTML kaynağına &amp; yazdığınızda, tarayıcı tek bir & karakteri görüntüler. Bu kodlama, bir ve işareti metin içeriğinde veya özellik değerlerinde göründüğünde zorunludur; çünkü kodlanmamış bir &, ayrıştırıcının yorumlamaya çalıştığı bir varlık dizisini başlatır."
+    },
+    {
+      "q": "Telif hakkı (©) için HTML varlığı nedir?",
+      "a": "Telif hakkı © simgesinin üç eşdeğer HTML varlığı vardır: adlandırılmış &copy;, ondalık sayısal &#169; ve onaltılık &#xA9;. Hepsi aynı © karakterini işler. Adlandırılmış varlıklar, mevcut olduğunda en okunabilir seçenektir. Modern UTF-8 HTML için, HTML dosyanız charset=utf-8 bildirdiği sürece © karakterini doğrudan da yazabilirsiniz — varlık gerekmez."
+    },
+    {
+      "q": "HTML'de tırnakları kodlamam gerekiyor mu?",
+      "a": "Çift tırnaklar (\"), çift tırnaklarla ayrılmış HTML özelliklerinin içinde &quot; olarak kodlanmalıdır: <input value=\"&quot;\">. Tek tırnaklar ('), tek tırnaklı özellikler içinde &apos; veya &#39; olarak kodlanmalıdır. Eleman metin içeriğinde (etiketler arasında) her iki tırnak karakteri de kodlanmadan görünebilir, ancak kodlamak zararlı değildir. Her bağlamda her ikisini de tutarlı şekilde kodlamak en güvenli yaklaşımdır."
+    },
+    {
+      "q": "Adlandırılmış ve sayısal varlıklar arasındaki fark nedir?",
+      "a": "Adlandırılmış varlıklar açıklayıcı bir kelime kullanır (&copy;, &euro;, &hearts;) ve HTML spesifikasyonunda tanımlanmıştır — her Unicode karakterinin adlandırılmış bir varlığı yoktur. Sayısal varlıklar, Unicode kod noktasını ondalık (&#8364; € için) veya onaltılık (&#x20AC; € için) olarak kullanır. Sayısal varlıklar herhangi bir Unicode karakteri için çalışırken, adlandırılmış varlıklar yalnızca bir alt kümeyi kapsar. Her ikisi de tarayıcılarda aynı şekilde işlenir."
+    },
+    {
+      "q": "HTML'de ASCII olmayan karakterleri kodlamalı mıyım?",
+      "a": "Genellikle hayır. HTML belgeniz UTF-8 kodlamasını (meta charset=utf-8) bildiriyorsa ve UTF-8 olarak kaydedildiyse, ASCII olmayan karakterleri doğrudan yazabilirsiniz: é, ñ, 中, 🎉. Bunları varlık olarak kodlamak isteğe bağlıdır ve kaynağı okunması daha zor hale getirir. İstisna, kodlamayı koruyamayacak bağlamlarda HTML gönderildiği durumlardır: e-posta mesajları, eski API'ler veya ASCII olmayan baytları bozan sistemler. Bu durumlarda, tüm ASCII olmayanları sayısal varlıklar olarak kodlamak, çıktının saf güvenli ASCII olmasını sağlar."
+    },
+    {
+      "q": "XSS nedir ve HTML varlıkları bunu nasıl önler?",
+      "a": "Cross-Site Scripting (XSS), bir saldırganın sunucunun kodlamadan HTML'ye yansıttığı metin ekleyerek bir web sayfasına kötü amaçlı JavaScript enjekte ettiği bir güvenlik açığıdır. Örneğin, kullanıcı girişi <script>alert('xss')</script> doğrudan bir sayfaya eklenirse, tarayıcı betiği çalıştırır. Girişi düzgün şekilde kodlarsanız — < karakterini &lt;'ye ve > karakterini &gt;'ye dönüştürürseniz — tarayıcı metni bir etiket olarak ayrıştırmak yerine olduğu gibi görüntüler. HTML varlık kodlama, yansıtılan ve depolanan XSS'e karşı birincil savunmadır."
+    },
+    {
+      "q": "Neden &nbsp; bu aracın listesinde görünmüyor?",
+      "a": "Bu araç, adlandırılmış varlıklara sahip karakterleri kodlar. Kırılmaz boşluk (Unicode U+00A0), gerçek kırılmaz boşluk karakterini yazdığınızda &nbsp; olarak kodlanır (bazı sistemlerde Alt+Boşluk ile ekleyebilir veya karakter haritalarından kopyalayabilirsiniz). Normal boşluk (U+0020, boşluk tuşu), güvenli bir ASCII karakteri olduğu için kodlanmaz. Çıktınızda özellikle &nbsp; gerekiyorsa, girişe bir kırılmaz boşluk karakteri yazın veya yapıştırın."
+    },
+    {
+      "q": "Bunu kullanıcı girişinde HTML enjeksiyonunu önlemek için kullanabilir miyim?",
+      "a": "Evet — kullanıcı tarafından sağlanan metni HTML'ye eklemeden önce kodlamak, HTML enjeksiyonu ve XSS'e karşı temel savunmalardan biridir. En azından beş ayrılmış karakteri kodlayın: &, <, >, \", '. Bu araç beşini de kodlar. Ancak, yalnızca kodlama tam bir güvenlik çözümü değildir: uygun Content Security Policy başlıkları, özniteliklerdeki javascript: URL'lerinin dikkatli işlenmesi ve çerçeve düzeyinde korumalar da gereklidir. Üretim uygulamaları için, manuel kodlama yerine güvenlik için tasarlanmış sunucu tarafı bir kitaplık kullanın (OWASP Java Encoder, istemci tarafı için DOMPurify vb.)."
+    }
+  ]
+}

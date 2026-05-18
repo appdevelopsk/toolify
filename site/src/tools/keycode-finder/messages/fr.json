@@ -1,0 +1,104 @@
+{
+  "title": "Outil de détection de codes de touches — keyCode, code, key",
+  "shortDescription": "Appuyez sur n'importe quelle touche pour voir instantanément ses valeurs JavaScript keyCode, code, key, which et charCode. Indispensable pour les développeurs web gérant les événements clavier.",
+  "description": "Cliquez sur la zone de détection et appuyez sur n'importe quelle touche pour afficher ses propriétés d'événements JavaScript : key, code, keyCode, which, charCode et état des modificateurs (Ctrl, Alt, Shift, Meta). Les 17 valeurs se mettent à jour en temps réel. Idéal pour déboguer les gestionnaires d'événements clavier.",
+  "metaDescription": "Outil gratuit de détection de codes de touches clavier. Appuyez sur une touche pour voir ses valeurs JavaScript keyCode, code, key, which et charCode.",
+  "keywords": [
+    "détection code touche",
+    "code touche clavier",
+    "javascript keyCode",
+    "événement clavier",
+    "which charCode"
+  ],
+  "zone": {
+    "label": "Zone de détection — cliquez ici puis appuyez sur une touche",
+    "prompt": "Cliquez ici, puis appuyez sur n'importe quelle touche"
+  },
+  "key": {
+    "space": "Espace"
+  },
+  "label": {
+    "modifiers": "Modificateurs",
+    "none": "Aucun"
+  },
+  "history": {
+    "title": "Touches récentes"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Événements clavier JavaScript : key, code et keyCode",
+        "paragraphs": [
+          "Lorsqu'un utilisateur appuie sur une touche, le navigateur déclenche trois événements en séquence : keydown, keypress et keyup. Chaque objet d'événement contient plusieurs propriétés qui identifient la touche enfoncée. Les plus importantes sont : key (le caractère ou la touche nommée comme 'Enter'), code (l'emplacement physique de la touche comme 'KeyA' ou 'ArrowLeft') et keyCode (un entier hérité, par exemple 65 pour 'A' quel que soit l'état de Shift).",
+          "Les propriétés keyCode et which sont dépréciées selon la spécification W3C UI Events, mais restent largement utilisées dans les bases de code anciennes. Les applications modernes devraient préférer key pour la signification sémantique (ce que la touche produit) et code pour la position physique (quelle touche physique a été enfoncée). Par exemple, la touche 'A' produit key='a' ou key='A' selon Shift, mais toujours code='KeyA' quelle que soit la situation."
+        ]
+      },
+      {
+        "heading": "La propriété location dans les événements clavier",
+        "paragraphs": [
+          "La propriété location distingue les touches qui existent à plusieurs endroits du clavier : Ctrl gauche vs Ctrl droit, Shift gauche vs Shift droit, et les touches numériques du pavé numérique vs les chiffres de la rangée supérieure. Les valeurs de location sont : 0 (standard), 1 (côté gauche), 2 (côté droit) et 3 (pavé numérique). C'est particulièrement utile pour détecter si l'utilisateur a appuyé sur la touche Entrée du pavé numérique ou sur la touche Entrée principale.",
+          "Les touches de modification (Ctrl, Alt, Shift, Meta) sont suivies comme des indicateurs booléens dans chaque événement clavier, pas seulement lorsque ces touches sont enfoncées seules. Cela signifie que vous pouvez détecter des combinaisons comme Ctrl+C même si vous écoutez principalement le keyCode 67 (C). La touche Meta correspond à la touche Windows sur les claviers Windows et à la touche Command sur Mac."
+        ]
+      },
+      {
+        "heading": "Cas d'usage pratiques des propriétés d'événements clavier",
+        "paragraphs": [
+          "Les raccourcis clavier dans les applications web utilisent une combinaison de code (touche physique) et d'indicateurs de modificateurs pour détecter des combinaisons comme Ctrl+S (enregistrer) ou Ctrl+Shift+P (palette de commandes). Utiliser code plutôt que key garantit que le raccourci fonctionne indépendamment du locale du clavier : sur un clavier AZERTY français, la touche à la position 'A' produit un caractère différent, mais code est toujours 'KeyA'.",
+          "Les contrôles de jeux utilisent généralement code pour mapper les touches WASD ou les touches fléchées aux mouvements, car c'est la position physique qui compte, pas le caractère produit. Les outils d'accessibilité peuvent écouter Tab (code='Tab') et Enter (code='Enter') pour s'assurer que les éléments interactifs peuvent être activés sans souris. Cet outil vous permet de rechercher rapidement les valeurs exactes des propriétés pour n'importe quelle touche avant d'écrire le code du gestionnaire d'événements."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Cliquez sur la zone de détection",
+        "text": "Cliquez ou appuyez dans le cadre en pointillé en haut de l'outil pour le mettre en focus."
+      },
+      {
+        "name": "Appuyez sur n'importe quelle touche",
+        "text": "Appuyez sur n'importe quelle touche du clavier : lettres, chiffres, touches de fonction, touches fléchées ou touches spéciales comme Entrée et Échap."
+      },
+      {
+        "name": "Lisez les propriétés",
+        "text": "Toutes les propriétés d'événement clavier JavaScript (key, code, keyCode, which, charCode, location, modificateurs) apparaissent instantanément sous la zone."
+      },
+      {
+        "name": "Vérifiez les combinaisons de modificateurs",
+        "text": "Maintenez Ctrl, Alt, Shift ou Meta enfoncé en appuyant sur une touche pour voir comment les indicateurs de modificateurs changent dans la ligne Modificateurs."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quelle est la différence entre keyCode et key ?",
+      "a": "keyCode est une propriété entière dépréciée qui attribue un numéro à chaque touche (par exemple, 65 pour 'A', 13 pour Entrée). key est le remplaçant moderne qui renvoie le caractère produit ('a' ou 'A') ou une chaîne de touche nommée ('Enter', 'ArrowLeft'). Le nouveau code devrait utiliser key ou code au lieu de keyCode."
+    },
+    {
+      "q": "Qu'est-ce que la propriété code ?",
+      "a": "code identifie la touche physique enfoncée, indépendamment de la disposition du clavier ou de l'état des modificateurs. 'KeyA' fait toujours référence à la touche à la position 'A' sur un clavier QWERTY, même si l'utilisateur est passé à une disposition AZERTY où cette touche produit 'Q'. Utilisez code pour les raccourcis clavier qui doivent fonctionner indépendamment du locale."
+    },
+    {
+      "q": "Pourquoi keyCode est-il déprécié ?",
+      "a": "keyCode était incohérent selon les navigateurs et les systèmes d'exploitation, avait des valeurs différentes pour les mêmes touches et ne gérait pas bien les caractères non ASCII. La spécification W3C UI Events l'a déprécié au profit de key (pour caractère/touche nommée) et code (pour position physique). keyCode et which sont désormais marqués comme hérités dans la spécification."
+    },
+    {
+      "q": "Que signifie la valeur de location ?",
+      "a": "Location distingue les touches apparaissant à plusieurs positions. 0 = standard (zone principale), 1 = touche modificatrice gauche (par ex. Shift gauche), 2 = touche modificatrice droite (par ex. Ctrl droit), 3 = pavé numérique. Cela permet de distinguer le 5 du pavé numérique (code='Numpad5', location=3) du 5 de la rangée supérieure (code='Digit5', location=0)."
+    },
+    {
+      "q": "Comment détecter Ctrl+S ou d'autres raccourcis en JavaScript ?",
+      "a": "Écoutez l'événement keydown et vérifiez à la fois le key/code et les indicateurs de modificateurs : `if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveDocument(); }`. Utiliser e.key === 's' capture à la fois les majuscules et les minuscules, car l'état du modificateur ne change pas la valeur de key pour les touches alphabétiques."
+    },
+    {
+      "q": "Qu'est-ce que la propriété charCode ?",
+      "a": "charCode était renvoyée par l'événement keypress hérité et donnait le point de code Unicode du caractère tapé (par exemple, 65 pour 'A'). Elle est maintenant dépréciée avec l'événement keypress lui-même. Dans les événements keydown/keyup, charCode vaut toujours 0. Utilisez plutôt key ou inputType sur l'événement input."
+    },
+    {
+      "q": "Comment distinguer la touche Entrée du pavé numérique de celle du clavier principal ?",
+      "a": "Les deux touches produisent key='Enter', mais diffèrent en code : la touche Entrée principale est code='Enter' avec location=0, tandis que celle du pavé numérique est code='NumpadEnter' avec location=3. Vérifiez e.code === 'Enter' pour la touche principale ou e.code === 'NumpadEnter' pour la version du pavé numérique."
+    },
+    {
+      "q": "Qu'est-ce que la touche Meta ?",
+      "a": "La touche Meta est la touche Windows sur les claviers Windows (⊞) et la touche Command sur les claviers Mac (⌘). Dans les événements clavier, elle est suivie par l'indicateur booléen metaKey et produit key='Meta' lorsqu'elle est enfoncée seule. Son code est 'MetaLeft' ou 'MetaRight'."
+    }
+  ]
+}

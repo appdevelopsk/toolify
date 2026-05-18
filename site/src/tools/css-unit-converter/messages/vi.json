@@ -1,0 +1,98 @@
+{
+  "title": "Công cụ chuyển đổi đơn vị CSS — px, rem, em, pt, % trực tuyến",
+  "shortDescription": "Chuyển đổi đơn vị CSS ngay lập tức: px sang rem, rem sang px, em, pt và %. Đặt kích thước font cơ sở để chuyển đổi rem và em chính xác. Cần thiết cho thiết kế web responsive.",
+  "description": "Nhập bất kỳ giá trị CSS nào trong px, rem, em, pt hoặc % và xem ngay giá trị tương đương trong tất cả các đơn vị khác. Đặt kích thước font cơ sở tùy chỉnh (mặc định 16px) để chuyển đổi rem và em chính xác. Tất cả tính toán cập nhật theo thời gian thực mà không cần tải lại trang.",
+  "metaDescription": "Công cụ chuyển đổi đơn vị CSS miễn phí: px sang rem, rem sang px, em, pt và %. Đặt kích thước font cơ sở cho chuyển đổi thiết kế responsive chính xác.",
+  "keywords": [
+    "chuyển đổi px rem",
+    "chuyển đổi đơn vị css",
+    "rem sang px",
+    "px sang em",
+    "đơn vị css"
+  ],
+  "input": {
+    "value": "Giá trị",
+    "base": "Kích thước font cơ sở (px)",
+    "baseHint": "Thường là 16px (mặc định của trình duyệt)"
+  },
+  "note": {
+    "basePx": "Cơ sở: {base}px. Với rem/em, 1 đơn vị = {base}px ở cấp gốc."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Tại sao đơn vị CSS quan trọng với thiết kế responsive",
+        "paragraphs": [
+          "CSS cung cấp hai loại đơn vị độ dài rộng: tuyệt đối (px, pt, cm, mm) và tương đối (rem, em, %, vw, vh). Đơn vị tuyệt đối có kích thước vật lý cố định bất kể ngữ cảnh; đơn vị tương đối co giãn theo mối quan hệ với thứ khác: kích thước font gốc, kích thước font của phần tử cha hoặc kích thước viewport. Việc chọn loại đơn vị phù hợp quyết định liệu layout của bạn có thích nghi khéo léo với các kích thước màn hình khác nhau, tùy chọn font của người dùng và mức thu phóng hay không.",
+          "Pixel (px) vẫn là đơn vị CSS phổ biến nhất vì dễ đoán và chính xác, nhưng không tôn trọng cài đặt kích thước font trình duyệt của người dùng. Người dùng đã tăng kích thước font mặc định lên 20px vì lý do khả năng tiếp cận sẽ thấy văn bản theo px không thay đổi, trong khi văn bản theo rem sẽ co giãn tương ứng. Đó là lý do tại sao Tiêu chí Thành công 1.4.4 của WCAG 2.1 (Thay đổi kích thước văn bản) dễ đáp ứng nhất khi sử dụng đơn vị tương đối như rem cho kích thước font."
+        ]
+      },
+      {
+        "heading": "px vs rem vs em: khi nào dùng loại nào",
+        "paragraphs": [
+          "rem (root em) tương đối so với kích thước font của phần tử gốc, mặc định là 16px trong tất cả trình duyệt. Vì rem được neo vào một điểm tham chiếu cố định (phần tử <html>), nó tránh được hiệu ứng cộng dồn mà em có. Dùng rem cho kích thước font, khoảng cách thành phần và bất kỳ giá trị nào cần co giãn theo tùy chọn font người dùng. Công thức điển hình: rem = px ÷ cơ sở, vậy 24px ÷ 16 = 1,5rem.",
+          "em tương đối so với kích thước font của phần tử hiện tại, bản thân có thể được đặt bằng em, tạo ra chuỗi cộng dồn. `font-size: 1.2em` trên phần tử con bên trong phần tử cha có `font-size: 1.2em` cho kết quả bằng 1,44 lần kích thước gốc (1,2 × 1,2). Điều này làm em hữu ích cho khoảng cách cần co giãn theo kích thước font cục bộ (padding và margin bên trong thành phần), nhưng khó đoán cho layout tổng thể. pt (điểm) chủ yếu hữu ích cho thiết kế in: 1pt = 1/72 inch, và 72pt = 1 inch ≈ 96px trên màn hình."
+        ]
+      },
+      {
+        "heading": "Chọn kích thước font cơ sở và làm việc với design system",
+        "paragraphs": [
+          "Hầu hết trình duyệt mặc định 16px cho kích thước font gốc, đó là lý do 1rem = 16px trong cài đặt mặc định của công cụ chuyển đổi. Một số developer đặt `html { font-size: 62.5%; }` để 1rem = 10px, đơn giản hóa tính toán nhẩm (24px = 2,4rem thay vì 1,5rem). Kỹ thuật này gây tranh cãi vì cần đặt lại kích thước font ở mọi nơi và có thể xung đột với tùy chọn khả năng tiếp cận.",
+          "Các design system hiện đại (Material Design, Apple HIG, Tailwind CSS) dùng thang đo mô-đun cho khoảng cách và kiểu chữ, thường là bội số của 4px hoặc 8px. Làm việc với các đơn vị này và chuyển đổi sang rem đảm bảo nhịp điệu thị giác nhất quán trong các ngữ cảnh khác nhau. Thang mặc định của Tailwind, ví dụ, dùng 4px = 1 đơn vị, nên giá trị 4 (16px) bằng 1rem. Khi không chắc, giữ cơ sở ở 16px và dùng công cụ chuyển đổi này để lấy giá trị rem chính xác mà không cần tính nhẩm."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Nhập một giá trị",
+        "text": "Gõ bất kỳ giá trị CSS nào vào trường nhập liệu và chọn đơn vị của nó (px, rem, em, pt hoặc %) từ menu thả xuống."
+      },
+      {
+        "name": "Đặt kích thước font cơ sở",
+        "text": "Nếu dự án của bạn dùng kích thước font gốc không phải mặc định, thay đổi trường Cơ sở. Mặc định là 16px (tiêu chuẩn trình duyệt)."
+      },
+      {
+        "name": "Đọc tất cả chuyển đổi",
+        "text": "Tất cả giá trị tương đương trong các đơn vị khác xuất hiện ngay lập tức trong lưới bên dưới. Không cần nhấp vào bất kỳ nút nào."
+      },
+      {
+        "name": "Sao chép và sử dụng",
+        "text": "Nhấp hoặc chạm vào bất kỳ giá trị nào để chọn nó, sau đó sao chép trực tiếp vào CSS của bạn."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Làm thế nào để chuyển đổi px sang rem?",
+      "a": "Chia giá trị pixel cho kích thước font gốc. Với cơ sở mặc định 16px: rem = px ÷ 16. Vậy 24px = 1,5rem, 32px = 2rem, 48px = 3rem. Nếu kích thước font gốc của bạn là 10px (từ `html { font-size: 62.5%; }`), thì rem = px ÷ 10."
+    },
+    {
+      "q": "Kích thước font mặc định của trình duyệt là bao nhiêu?",
+      "a": "Tất cả trình duyệt chính mặc định 16px cho kích thước font gốc trừ khi người dùng đã thay đổi tùy chọn. Điều này nghĩa là 1rem = 16px trong cấu hình mặc định. Một số người dùng tăng điều này vì khả năng tiếp cận, lý do chính để dùng rem thay vì px cho văn bản."
+    },
+    {
+      "q": "Sự khác biệt giữa rem và em là gì?",
+      "a": "rem luôn tương đối so với kích thước font của phần tử gốc (<html>), giúp nó dự đoán được. em tương đối so với kích thước font của phần tử hiện tại, có thể thay đổi qua kế thừa. Dùng rem cho giá trị toàn cục (kích thước font body, layout trang) và em cho giá trị cần co giãn theo ngữ cảnh cục bộ (padding tương đối với kích thước font riêng của phần tử)."
+    },
+    {
+      "q": "1rem bằng bao nhiêu pixel?",
+      "a": "Mặc định, 1rem = 16px. Nếu đặt `html { font-size: 20px }`, thì 1rem = 20px. Nếu đặt `html { font-size: 62.5% }` (tương đối với 16px mặc định), thì 1rem = 10px. Trường Cơ sở trong công cụ chuyển đổi này cho phép bạn thay đổi kích thước gốc giả định."
+    },
+    {
+      "q": "Tôi nên dùng rem hay px cho kích thước font?",
+      "a": "Dùng rem cho kích thước font bất cứ khi nào có thể. Văn bản dựa trên rem tôn trọng tùy chọn kích thước font trình duyệt của người dùng, điều quan trọng cho khả năng tiếp cận. Pixel bỏ qua cài đặt trình duyệt, nghĩa là người dùng cần văn bản lớn hơn sẽ không được lợi từ thu phóng (trước khi zoom trình duyệt được giới thiệu)."
+    },
+    {
+      "q": "Làm thế nào để chuyển đổi px sang pt?",
+      "a": "1 điểm = 1/72 inch = 1,333 pixel trên màn hình. Để chuyển đổi: pt = px × 0,75. Vậy 16px = 12pt. Điểm chủ yếu được dùng trong CSS in ấn và khi nhắm đến phương tiện vật lý như PDF hoặc stylesheet in ấn."
+    },
+    {
+      "q": "% trong đơn vị CSS có nghĩa là gì?",
+      "a": "Phần trăm trong CSS phụ thuộc vào ngữ cảnh. Với font-size, 100% = kích thước font kế thừa (giống 1em). Với width/height, 100% = kích thước của khối chứa. Trong công cụ chuyển đổi này, chúng tôi coi % là phần trăm của kích thước font cơ sở, nên 100% = px cơ sở và 150% = 1,5 × cơ sở."
+    },
+    {
+      "q": "Thủ thuật 62.5% là gì?",
+      "a": "Đặt `html { font-size: 62.5%; }` làm 1rem = 10px (vì 62,5% của 16px mặc định = 10px). Điều này đơn giản hóa tính toán rem: 24px trở thành 2,4rem thay vì 1,5rem. Tuy nhiên, nó yêu cầu đặt lại kích thước font trong toàn bộ CSS và có thể phá vỡ các component bên thứ ba. Design token và công cụ hiện đại làm thủ thuật này ít cần thiết hơn."
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "title": "Metin-İkili Dönüştürücü — Kodlama ve Kod Çözme",
+  "shortDescription": "Metni ikili koda dönüştürün veya ikili kodu tekrar okunabilir metne çevirin. Boşluk, satır sonu veya sürekli çıkış desteklenir. Tek tıkla kodlama ve kod çözme arasında geçiş yapın.",
+  "description": "Herhangi bir metni ikili koda (0 ve 1) dönüştürmek için girin ya da ikili kodu yapıştırarak metne geri çözün. Her karakter ASCII/Unicode değeri kullanılarak dönüştürülür. Boşluk, satır sonu veya sürekli ikili çıkış seçeneklerinden birini seçin. Değiştir düğmesi son dönüşümü anında tersine çevirir.",
+  "metaDescription": "Ücretsiz metin-ikili dönüştürücü. Metni 0 ve 1'e kodlayın ya da ikiliyi metne çözün. Boşluklu veya sürekli ikili. İstemci tarafında çalışır, yükleme gerekmez.",
+  "keywords": ["metin ikili dönüştür", "ikili metin dönüştür", "ikili dönüştürücü", "ikili kodla", "ASCII ikili"],
+  "mode": {
+    "encode": "Text → Binary",
+    "decode": "Binary → Text"
+  },
+  "separator": {
+    "label": "Ayırıcı",
+    "space": "Boşluk",
+    "newline": "Satır sonu",
+    "none": "Yok"
+  },
+  "label": {
+    "inputText": "Giriş Metni",
+    "inputBinary": "İkili Giriş",
+    "outputBinary": "İkili Çıkış",
+    "outputText": "Çözülmüş Metin"
+  },
+  "placeholder": {
+    "text": "Buraya metin yazın veya yapıştırın…",
+    "binary": "İkili kodu buraya yapıştırın (örn. 01001000 01100101 01101100 01101100 01101111)"
+  },
+  "action": {
+    "copy": "Kopyala",
+    "swap": "Değiştir"
+  },
+  "stat": {
+    "encoded": "{chars} karakter → {bytes} bayt",
+    "decoded": "{chars} karakter çözüldü"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Metin-ikili dönüşümü nasıl çalışır",
+        "paragraphs": [
+          "Bilgisayardaki her karakter bir sayı olarak depolanır. Standart ASCII metinde 'A' harfi 65 sayısıdır, 'B' 66'dır, küçük 'a' 97'dir, boşluk 32'dir ve bu böyle devam eder. Metni ikili koda dönüştürmek için bu araç her karakterin sayısal değerini (ASCII/Unicode kod noktası) arar, ardından bu sayıyı 8 basamağa tamamlayarak taban 2 (ikili) biçiminde yazar. Örneğin: 'H' = 72 ondalık = 01001000 ikili, 'e' = 101 ondalık = 01100101 ikili, 'l' = 108 ondalık = 01101100 ikili.",
+          "Ters işlem (ikiliden metne) 8-bit grupları okur, her birini taban 2'den ondalık sayıya geri dönüştürür, ardından o kod noktasına sahip karakteri bulur. Boşlukla ayrılmış ikili yapıştırırsanız (01001000 01100101 gibi) araç boşluklarda böler. Sürekli ikili yapıştırırsanız (0100100001100101 gibi) otomatik olarak 8-bit bloklara gruplar. Her 8-bit grubun tam olarak 8 bir ve sıfır içermesi gerekir — aksi hâlde araç geçersiz baytı belirten bir hata gösterir."
+        ]
+      },
+      {
+        "heading": "Veri temsili için ikili ile onaltılık karşılaştırması",
+        "paragraphs": [
+          "İkili (taban 2) yalnızca 0 ve 1 kullanır; bu da onu dijital verinin en temel gösterimi yapar — bilgisayar belleğinde bitlerin nasıl depolandığını doğrudan yansıtır. Ancak ayrıntılıdır: Tek bir ASCII karakteri 8 basamak gerektirir. Onaltılık (taban 16, 0–9 ve A–F rakamları kullanılır) daha sıkıştırılmıştır: Her onaltılık basamak tam olarak 4 ikili basamağı (bir yarım bayt) temsil eder, dolayısıyla bir bayt yalnızca 2 onaltılık basamak olur. 'H' = onaltılıkta 0x48 ile ikilide 01001000.",
+          "İkili gösterim, tekil bitleri görmeniz veya değiştirmeniz gerektiğinde en kullanışlıdır — örneğin bir bit maskesindeki bayrakları denetlemek, Unicode kod noktalarının UTF-8 baytlarına nasıl kodlandığını anlamak ya da bit düzeyinde ağ paket yapılarını çözümlemek gibi durumlarda. Çoğu veri denetim görevi için onaltılık, sıkıştırma ile okunabilirlik arasında iyi bir denge sunar. Pek çok hata ayıklayıcı, onaltılık düzenleyici ve protokol çözümleyici verileri onaltılık olarak gösterir; bit düzeyinde çalışma için isteğe bağlı ikili görünüm de sunar."
+        ]
+      },
+      {
+        "heading": "ASCII'nin ötesinde: Unicode ve çok baytlı karakterler",
+        "paragraphs": [
+          "Standart ASCII yalnızca 128 karakteri kapsar (7 bit, kodlar 0–127); bu İngilizce metin için yeterlidir ancak aksanlı karakterler, Latin olmayan alfabeler veya emojiler için değildir. Modern metin, 140.000'den fazla karakteri tanımlayan Unicode'da kodlanır. Bu araç, her karakter için UTF-16 kod birimini döndüren JavaScript'in yerleşik charCodeAt() yöntemini kullanır. Temel Latin karakterleri için bu, ASCII koduyla da eşit olan Unicode kod noktasına eşittir.",
+          "'é' (233), 'ñ' (241), '中' (20013) veya '😀' (128512; UTF-16 vekil çifti kullanan) gibi ASCII dışı karakterler için ikili gösterim daha uzun olacak ya da farklı biçimde bölünecektir. UTF-8'in diskte baytları gerçekte depolama biçimiyle eşleşen ikili kodlama gerekiyorsa, önce dizeyi UTF-8'e kodlamanız, ardından her elde edilen baytı ikili biçime dönüştürmeniz gerekir. Çoğu eğitim ve kodlama bulmacası amacı için burada kullanılan karakter başına yaklaşım standarttır."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Metni ikili olarak kodla", "text": "Text → Binary modunu seçin, sol kutuya metninizi yazın ya da yapıştırın; ikili çıkış hemen sağda görünür. Tercih ettiğiniz ayırıcıyı seçin: Boşluk her baytı boşlukla ayrılmış bir gruba koyar, Satır sonu her baytı ayrı bir satıra yerleştirir, Yok ise 0 ve 1'lerden oluşan sürekli bir dize üretir." },
+      { "name": "İkili kodu metne çöz", "text": "Binary → Text modunu seçin, ikili dizenizi (boşlukla ayrılmış ya da sürekli) sol kutuya yapıştırın; çözülen metin sağda görünür. Herhangi bir 8-bit grup geçersizse, bir hata iletisi sorunlu baytı belirtir." },
+      { "name": "Kodlama ve kod çözmeyi değiştir", "text": "Değiştir düğmesine tıklayarak mevcut çıkışı girişe taşıyın ve modu otomatik olarak değiştirin — gidiş-dönüş dönüşümü hızla doğrulamak için kullanışlıdır." },
+      { "name": "Sonucu kopyala", "text": "Kopyala'ya tıklayarak ikili ya da çözülen metni başka bir uygulamada kullanmak üzere panonuza koyun." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Metni ikiliye nasıl dönüştürürüm?",
+      "a": "Metindeki her karakter ASCII veya Unicode sayısal koduna dönüştürülür; bu kod daha sonra 8 bite tamamlanmış ikili (taban 2) biçiminde yazılır. Örneğin: 'A' = 65 ondalık = 01000001 ikili. 'Hello' 01001000 01100101 01101100 01101100 01101111 olur. Bu araç dönüşümü otomatik olarak yapar — Text → Binary modu seçiliyken sol kutuya metninizi yazmanız yeterlidir."
+    },
+    {
+      "q": "İkiliyi metne nasıl dönüştürürüm?",
+      "a": "Binary → Text modunu seçin ve ikili dizenizi yapıştırın. İkili 8-bit gruplar (baytlar) biçiminde olmalıdır. Boşluklarla ayrılmışsa, her boşlukla sınırlanan grup bir bayttır. Sürekli ise (boşluk yok) araç her 8 basamağı tek bir bayt olarak gruplar. Her bayt ikiliden sayıya dönüştürülür, ardından ASCII/Unicode karakter olarak aranır."
+    },
+    {
+      "q": "Her ikili grup neden 8 basamak uzunluğunda?",
+      "a": "Bir bayt 8 bittir ve ASCII 7-bit kodlar (0–127) kullanır. Geleneksel olarak ASCII kodları başında sıfır bulunan tam 8-bit baytlarda depolanır; bu da tüm girişlerin tam olarak 8 ikili basamak olmasını sağlar. Bu, ayrıştırmayı belirsizlikten kurtarır: Her 8 basamak = bir karakter. Bazı eski gösterimler 7-bit ASCII (baştaki sıfır atlanarak) kullanır, ancak 8-bit kodlama modern standarttır."
+    },
+    {
+      "q": "Yaygın karakterlerin ikili değeri nedir?",
+      "a": "Boşluk = 00100000, 'A' = 01000001, 'a' = 01100001, '0' = 00110000, Enter/satır sonu (LF) = 00001010, nokta '.' = 00101110. Deseni kolayca fark edebilirsiniz: büyük harfler 010 ile başlar, küçük harfler 011 ile başlar, rakamlar ise 0011 ile başlar."
+    },
+    {
+      "q": "Bu araç İngilizce dışındaki karakterleri işleyebilir mi?",
+      "a": "Evet, Unicode kod noktası 65.536'nın altındaki karakterler için (Latin, Yunanca, Kiril, CJK, Arapça, İbranice vb. karakterlerin çoğu). Her karakter, Unicode kod noktasının ikili biçimine dönüştürülür. Ancak 127'nin üzerindeki karakterler 8 bitten fazla gerektirdiğinden, 8 basamaktan uzun ikili gruplar üretir. Emoji ve U+FFFF üzerindeki diğer karakterler için JavaScript bunları vekil çiftlere böler; bu da beklenmedik sonuçlara yol açabilir."
+    },
+    {
+      "q": "Değiştir düğmesi ne yapar?",
+      "a": "Değiştir, mevcut çıkışı (kodlarken ikili dize, kod çözerken metin) giriş kutusuna taşır ve modu ters yönde değiştirir. Bu, gidiş-dönüş dönüşümünü anında doğrulamanızı sağlar: Bir metni kodlayın, Değiştir'e tıklayın ve orijinal metni geri aldığınızı kontrol edin. İkili dizelerin neyi kodladığını keşfetmek için de kullanışlıdır."
+    },
+    {
+      "q": "İkili, Mors kodu ile aynı mı?",
+      "a": "Hayır. İkili, her karakteri sayısal ASCII/Unicode değeriyle tam olarak 8 bit (0 ve 1) kullanarak temsil eder. Mors kodu, harf ve rakamları temsil etmek için değişken uzunlukta nokta ve çizgiler kullanır; diziler İngilizce'deki harf sıklığına dayanır (E ve T gibi yaygın harfler daha kısa koda sahiptir). İki sistem tamamen farklı kodlama şemalarıdır; ancak her ikisi de metni bir dizi simge olarak temsil eder."
+    },
+    {
+      "q": "İkili, Base64'ten nasıl farklıdır?",
+      "a": "İkili, her karakterin gerçek bit desenini — bellekte depolanan ham bitleri — gösterir. Base64, rastgele ikili verileri (herhangi bir dosya ya da bayt dizisi) 64 yazdırılabilir karakter kullanarak güvenli bir ASCII metin dizesine dönüştüren üst düzey bir kodlamadır. Base64, yalnızca metin kabul eden bağlamlarda (e-posta ekleri veya veri URI'leri gibi) ikili veri gömmeniz gerektiğinde kullanılır. İkili gösterim bit desenlerinin insan tarafından incelenmesi içindir; Base64 veri aktarımı ve depolaması içindir."
+    }
+  ]
+}

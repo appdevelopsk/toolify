@@ -1,0 +1,98 @@
+{
+  "title": "Conversor de Unidades CSS — px, rem, em, pt, % Online",
+  "shortDescription": "Converta unidades CSS instantaneamente: px para rem, rem para px, em, pt e %. Defina o tamanho de fonte base para conversões precisas de rem e em. Essencial para design web responsivo.",
+  "description": "Digite qualquer valor CSS em px, rem, em, pt ou % e veja instantaneamente o equivalente em todas as outras unidades. Defina um tamanho de fonte base personalizado (padrão 16px) para conversões precisas de rem e em. Todos os cálculos são atualizados em tempo real sem recarregar a página.",
+  "metaDescription": "Conversor gratuito de unidades CSS: px para rem, rem para px, em, pt e %. Configure o tamanho de fonte base para conversões precisas em design responsivo.",
+  "keywords": [
+    "conversor px para rem",
+    "conversor unidades css",
+    "rem para px",
+    "px para em",
+    "unidades css"
+  ],
+  "input": {
+    "value": "Valor",
+    "base": "Tamanho de fonte base (px)",
+    "baseHint": "Normalmente 16px (padrão do navegador)"
+  },
+  "note": {
+    "basePx": "Base: {base}px. Para rem/em, 1 unidade = {base}px no nível raiz."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Por que as unidades CSS importam no design responsivo",
+        "paragraphs": [
+          "CSS oferece duas categorias amplas de unidades de comprimento: absolutas (px, pt, cm, mm) e relativas (rem, em, %, vw, vh). Unidades absolutas têm tamanho físico fixo independentemente do contexto; unidades relativas escalam em relação a algo mais: o tamanho de fonte raiz, o tamanho de fonte do elemento pai ou as dimensões do viewport. Escolher o tipo de unidade certo determina se o seu layout se adapta graciosamente a diferentes tamanhos de tela, preferências de fonte do usuário e níveis de zoom.",
+          "Pixels (px) continuam sendo a unidade CSS mais comum por serem previsíveis e precisos, mas não respeitam a configuração de tamanho de fonte do navegador do usuário. Um usuário que aumentou seu tamanho de fonte padrão para 20px por razões de acessibilidade verá o texto em px permanecer inalterado, enquanto o texto em rem será escalado adequadamente. É por isso que o Critério de Sucesso 1.4.4 da WCAG 2.1 (Redimensionar texto) é mais facilmente satisfeito usando unidades relativas como rem para tamanhos de fonte."
+        ]
+      },
+      {
+        "heading": "px vs rem vs em: quando usar cada um",
+        "paragraphs": [
+          "rem (root em) é relativo ao tamanho de fonte do elemento raiz, que é por padrão 16px em todos os navegadores. Como rem está ancorado a um ponto de referência fixo (o elemento <html>), evita o efeito de composição que em sofre. Use rem para tamanhos de fonte, espaçamento de componentes e qualquer valor que deva escalar com as preferências de fonte do usuário. A fórmula típica: rem = px ÷ base, então 24px ÷ 16 = 1,5rem.",
+          "em é relativo ao tamanho de fonte do elemento atual, que pode estar definido em em criando uma cadeia de composição. `font-size: 1.2em` em um filho dentro de um pai com `font-size: 1.2em` resulta em 1,44 vezes o tamanho raiz (1,2 × 1,2). Isso torna em útil para espaçamento que deve escalar com o tamanho de fonte local (padding e margin dentro de um componente), mas difícil de prever para layout global. pt (pontos) é principalmente útil ao projetar para impressão: 1pt = 1/72 polegadas, e 72pt = 1 polegada ≈ 96px na tela."
+        ]
+      },
+      {
+        "heading": "Escolhendo um tamanho de fonte base e trabalhando com sistemas de design",
+        "paragraphs": [
+          "A maioria dos navegadores tem como padrão 16px para o tamanho de fonte raiz, por isso 1rem = 16px na configuração padrão do conversor. Alguns desenvolvedores configuram `html { font-size: 62.5%; }` para fazer 1rem = 10px, simplificando o cálculo mental (24px = 2,4rem em vez de 1,5rem). Essa técnica é controversa porque requer redefinir tamanhos de fonte em todo lugar e pode conflitar com preferências de acessibilidade.",
+          "Sistemas de design modernos (Material Design, Apple HIG, Tailwind CSS) usam uma escala modular para espaçamento e tipografia, tipicamente múltiplos de 4px ou 8px. Trabalhar nessas unidades e converter para rem garante ritmo visual consistente em diferentes contextos. A escala padrão do Tailwind, por exemplo, usa 4px = 1 unidade, então um valor de 4 (16px) equivale a 1rem. Em caso de dúvida, mantenha sua base em 16px e use este conversor para valores rem precisos sem aritmética mental."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Digite um valor",
+        "text": "Digite qualquer valor CSS no campo de entrada e selecione sua unidade (px, rem, em, pt ou %) no menu suspenso."
+      },
+      {
+        "name": "Configure seu tamanho de fonte base",
+        "text": "Se seu projeto usa um tamanho de fonte raiz não padrão, altere o campo Base. O padrão é 16px (padrão do navegador)."
+      },
+      {
+        "name": "Leia todas as conversões",
+        "text": "Todos os valores equivalentes nas outras unidades aparecem instantaneamente na grade abaixo. Não é necessário clicar em nenhum botão."
+      },
+      {
+        "name": "Copie e use",
+        "text": "Clique ou toque em qualquer valor para selecioná-lo, depois copie diretamente para o seu CSS."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Como converter px para rem?",
+      "a": "Divida o valor em pixels pelo tamanho de fonte raiz. Com a base padrão de 16px: rem = px ÷ 16. Então 24px = 1,5rem, 32px = 2rem, 48px = 3rem. Se seu tamanho de fonte raiz for 10px (de `html { font-size: 62.5%; }`), então rem = px ÷ 10."
+    },
+    {
+      "q": "Qual é o tamanho de fonte padrão do navegador?",
+      "a": "Todos os principais navegadores têm como padrão 16px para o tamanho de fonte raiz, a menos que o usuário tenha alterado suas preferências. Isso significa que 1rem = 16px na configuração padrão. Alguns usuários aumentam isso para acessibilidade, uma razão fundamental para usar rem em vez de px para texto."
+    },
+    {
+      "q": "Qual é a diferença entre rem e em?",
+      "a": "rem é sempre relativo ao tamanho de fonte do elemento raiz (<html>), tornando-o previsível. em é relativo ao tamanho de fonte do elemento atual, que pode mudar por herança. Use rem para valores globais (tamanho de fonte do corpo, layout de página) e em para valores que devem escalar com o contexto local (padding relativo ao tamanho de fonte próprio do elemento)."
+    },
+    {
+      "q": "Quantos pixels tem 1rem?",
+      "a": "Por padrão, 1rem = 16px. Se você configurar `html { font-size: 20px }`, então 1rem = 20px. Se configurar `html { font-size: 62.5% }` (relativo ao padrão de 16px), então 1rem = 10px. O campo Base neste conversor permite alterar o tamanho raiz assumido."
+    },
+    {
+      "q": "Devo usar rem ou px para tamanhos de fonte?",
+      "a": "Use rem para tamanhos de fonte sempre que possível. O texto baseado em rem respeita a preferência de tamanho de fonte do navegador do usuário, o que é importante para acessibilidade. Pixels ignoram a configuração do navegador, o que significa que um usuário que precisa de texto maior não se beneficiará do zoom (antes de o zoom do navegador ser introduzido)."
+    },
+    {
+      "q": "Como converter px para pt?",
+      "a": "1 ponto = 1/72 polegadas = 1,333 pixels na tela. Para converter: pt = px × 0,75. Então 16px = 12pt. Pontos são usados principalmente em CSS de impressão e ao trabalhar com mídia física como PDF ou folhas de estilo de impressão."
+    },
+    {
+      "q": "O que significa % nas unidades CSS?",
+      "a": "Porcentagem em CSS depende do contexto. Para font-size, 100% = o tamanho de fonte herdado (mesmo que 1em). Para width/height, 100% = o tamanho do bloco contendo. Neste conversor, tratamos % como porcentagem do tamanho de fonte base, então 100% = base px e 150% = 1,5 × base."
+    },
+    {
+      "q": "O que é o truque do 62.5%?",
+      "a": "Configurar `html { font-size: 62.5%; }` faz 1rem = 10px (já que 62,5% do padrão de 16px = 10px). Isso simplifica o cálculo rem: 24px se torna 2,4rem em vez de 1,5rem. No entanto, requer redefinir tamanhos de fonte em todo o CSS e pode quebrar componentes de terceiros. Tokens de design modernos e ferramentas tornam esse truque menos necessário."
+    }
+  ]
+}

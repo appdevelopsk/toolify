@@ -1,0 +1,84 @@
+{
+  "title": "Gerador de Tons de Cor — Estilo Tailwind CSS",
+  "shortDescription": "Gere 11 tons e sombras (50–950) para qualquer cor, no estilo da escala Tailwind CSS. Clique em qualquer tom para copiar o código hex ou exporte todos como propriedades personalizadas CSS.",
+  "description": "Escolha uma cor base para gerar instantaneamente uma paleta completa de 11 tons (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950), seguindo a escala do Tailwind CSS e do Material Design. Cada tom exibe sua classificação de contraste WCAG em relação ao texto branco ou preto. Clique em qualquer amostra para copiar seu código hex, ou clique em Copiar CSS para exportar todos os tons como propriedades personalizadas CSS.",
+  "metaDescription": "Gerador gratuito de tons de cor. Insira um hex para obter 11 tons na escala Tailwind CSS. Copie códigos hex ou variáveis CSS. Contraste WCAG exibido.",
+  "keywords": ["gerador de tons de cor", "tintes de cor", "paleta Tailwind", "variáveis CSS de cor", "escala de cores"],
+  "input": {
+    "picker": "Seletor de cor",
+    "hex": "Código Hex"
+  },
+  "action": {
+    "copyCSS": "Copiar CSS",
+    "copied": "Copiado!",
+    "clickCopy": "Clique para copiar o código hex"
+  },
+  "error": {
+    "invalid": "Insira um código hex válido de 6 dígitos (ex.: #3B82F6)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Como funcionam as escalas de tons de cor",
+        "paragraphs": [
+          "Uma escala de tons de cor é uma série sistemática de variações mais claras e mais escuras de uma cor base, usada para criar hierarquia visual e contraste acessível no design de interfaces. A convenção do Tailwind CSS utiliza 11 etapas numeradas 50, 100, 200, 300, 400, 500, 600, 700, 800, 900 e 950. Números menores são mais claros (maior luminosidade em HSL), enquanto números maiores são mais escuros. A etapa 500 é tipicamente próxima da cor base inserida.",
+          "Esta ferramenta gera os tons convertendo o hex de entrada para HSL (Matiz, Saturação, Luminosidade), preservando o matiz e a saturação enquanto mapeia cada etapa para um valor de luminosidade predefinido. A etapa 50 corresponde a aproximadamente 97% de luminosidade (quase branco), a etapa 500 a cerca de 52% (faixa média) e a etapa 950 a cerca de 12% (quase preto). Essa abordagem produz paletas visualmente consistentes que mantêm o caráter da cor em todos os níveis de brilho."
+        ]
+      },
+      {
+        "heading": "Classificações de contraste WCAG na paleta",
+        "paragraphs": [
+          "Cada tom na paleta exibe sua classificação de contraste WCAG (Diretrizes de Acessibilidade para Conteúdo Web) em relação ao texto preto ou branco — o que for mais legível. As classificações são: AAA (relação de contraste ≥ 7:1, melhor acessibilidade), AA (≥ 4,5:1, exigido para texto normal), AA Large (≥ 3:1, aceitável apenas para texto grande e componentes de UI) e Fail (< 3:1, insuficiente para texto). A conformidade com o WCAG 2.1 AA é o requisito legal mínimo de acessibilidade em muitas jurisdições.",
+          "Ao construir uma interface com uma paleta de cores, use tons com classificação AA ou AAA para texto sobre esses fundos. Tipicamente, os tons 50–300 têm forte contraste com texto escuro, enquanto os tons 700–950 têm forte contraste com texto branco. Os tons intermediários (400–600) frequentemente se enquadram na categoria AA Large ou Fail para texto pequeno, sendo adequados para elementos decorativos, bordas ou fundos atrás de texto branco grande, mas não para corpo de texto pequeno."
+        ]
+      },
+      {
+        "heading": "Usando a paleta em CSS e sistemas de design",
+        "paragraphs": [
+          "O botão Copiar CSS exporta sua paleta como propriedades personalizadas CSS (variáveis CSS) em um bloco :root, pronto para colar na sua folha de estilos. Por exemplo, a variável blue-500 se torna --color-500: #3b82f6 (ou a cor que você escolheu). Você pode renomear o prefixo da variável para combinar com seu projeto: --brand-500, --primary-500, --blue-500, etc. As propriedades personalizadas CSS são herdadas em cascata e podem ser sobrescritas por componente ou tema.",
+          "Sistemas de design como Tailwind CSS, Material Design, Ant Design e Chakra UI usam escalas de tons numeradas para seus sistemas de cores. Ter uma escala consistente permite fazer escolhas com confiança: use 50 para fundos ao passar o mouse, 100 para estados ativos no tema claro, 500 para botões primários, 700 para estados de hover em botões e 900 para fundos escuros. Manter todas as cores da marca na mesma escala numerada cria previsibilidade e reduz as decisões de design no nível do componente."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escolha sua cor base", "text": "Use o seletor de cor para escolher visualmente uma cor, ou digite um código hex de 6 dígitos (como #3B82F6) no campo hex. A paleta de 11 tons é gerada instantaneamente." },
+      { "name": "Leia as classificações WCAG", "text": "Cada tom exibe sua classificação de contraste WCAG (AAA, AA, AA Large ou Fail). Use tons com classificação AA ou AAA para texto e elementos interativos para atender aos requisitos de acessibilidade." },
+      { "name": "Copie tons individuais", "text": "Clique em qualquer amostra de cor para copiar o código hex para a área de transferência. Uma marca de seleção confirma a cópia." },
+      { "name": "Exporte como variáveis CSS", "text": "Clique em Copiar CSS para obter todos os 11 tons como propriedades personalizadas CSS em um bloco :root, prontos para colar na sua folha de estilos ou sistema de design." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "O que significam os números dos tons (50–950)?",
+      "a": "Os números seguem a convenção da escala de cores do Tailwind CSS. Números menores são mais claros: 50 é quase branco, 100 é muito claro, 200 e 300 são tons claros. O valor do meio (500) é um valor médio próximo da cor original. Números maiores são mais escuros: 700 é escuro, 900 é muito escuro, 950 é quase preto. A escala não é linear — ela é ajustada para que os tamanhos dos passos pareçam perceptualmente uniformes em toda a faixa."
+    },
+    {
+      "q": "Qual é a diferença entre um tinte e uma sombra?",
+      "a": "Um tinte é uma cor misturada com branco, tornando-a mais clara. Uma sombra é uma cor misturada com preto, tornando-a mais escura. Em termos de HSL, os tintes têm valores de luminosidade mais altos e as sombras têm valores de luminosidade mais baixos, mantendo o mesmo matiz. Os números 50–400 nesta escala são tintes (mais claros que a base), enquanto 600–950 são sombras (mais escuras que a base). A etapa 500 é aproximadamente a cor base em si."
+    },
+    {
+      "q": "Como esta ferramenta gera os tons?",
+      "a": "A ferramenta converte sua cor hex para HSL (Matiz, Saturação, Luminosidade). Ela mantém o matiz e a saturação constantes enquanto mapeia cada número de etapa para um valor de luminosidade alvo: etapa 50 → 97% de luminosidade, etapa 500 → 52%, etapa 950 → 12%. O resultado é então convertido de volta para hex. Este método preserva o caráter da cor (calor, frescor, vivacidade) em todos os tons."
+    },
+    {
+      "q": "O que é WCAG e por que os tons exibem classificações?",
+      "a": "WCAG (Diretrizes de Acessibilidade para Conteúdo Web) define relações de contraste mínimas para texto legível. AA exige uma relação de 4,5:1 para texto normal; AAA exige 7:1. A classificação de contraste de cada tom indica se o texto preto ou branco sobre aquele fundo atende ao padrão AA ou AAA. Isso ajuda a escolher quais tons são seguros para texto e quais devem ser usados apenas para elementos decorativos."
+    },
+    {
+      "q": "Como uso esta paleta no Tailwind CSS?",
+      "a": "O Tailwind permite definir cores personalizadas no tailwind.config.js. Adicione os tons em theme.extend.colors: colors: { brand: { 50: '#seu-hex-50', 100: '#seu-hex-100', ... } }. Você pode então usar classes como bg-brand-100, text-brand-700, border-brand-300. Para o Tailwind v4 com configuração CSS-first, cole a saída de variáveis CSS na sua definição de tema."
+    },
+    {
+      "q": "Por que o tom da minha cor escolhida não parece exatamente igual à minha entrada?",
+      "a": "A ferramenta tem como alvo valores de luminosidade específicos para cada etapa — a etapa 500 tem como alvo aproximadamente 52% de luminosidade HSL. Se sua cor de entrada tiver uma luminosidade diferente (ex.: 70% se for uma cor mais clara), o tom na etapa 500 será ajustado em direção a 52%. Isso cria uma escala consistente, mas significa que a etapa 500 pode não ser idêntica à sua entrada original. Para obter sua cor exata na etapa 500, você pode ajustar manualmente o hex — a escala será gerada relativamente ao que você inserir."
+    },
+    {
+      "q": "Posso usar isso com propriedades personalizadas CSS?",
+      "a": "Sim — clique em Copiar CSS para obter um bloco :root pronto para uso com todos os 11 tons como propriedades personalizadas. No seu CSS, referencie-as como var(--color-500), var(--color-50), etc. Você pode renomear o prefixo --color- para qualquer coisa que se adapte ao seu projeto (--brand-, --primary-, --blue-). As propriedades personalizadas são herdadas em cascata e podem ser limitadas a um componente ou sobrescritas em uma media query para o modo escuro."
+    },
+    {
+      "q": "Como esses tons se diferem da função CSS color-mix()?",
+      "a": "A função CSS color-mix() (suportada em navegadores modernos) mistura duas cores por porcentagem, semelhante a misturar tinta. Esta ferramenta usa uma escala de luminosidade predefinida (baseada em HSL), que produz uma escala de sistema de design mais controlada e previsível. color-mix() é melhor para misturas pontuais (ex.: misturar sua cor de marca com 20% de branco), enquanto esta ferramenta gera uma paleta completa e sistemática para sistemas de design. Ambas as abordagens têm seu lugar dependendo do caso de uso."
+    }
+  ]
+}

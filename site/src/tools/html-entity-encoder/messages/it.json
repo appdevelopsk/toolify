@@ -1,0 +1,98 @@
+{
+  "title": "Codificatore e Decodificatore di Entità HTML",
+  "shortDescription": "Codifica caratteri speciali in entità HTML o decodifica entità HTML in testo. Supporta entità con nome (&amp;), numeriche decimali (&#65;) ed esadecimali (&#x41;).",
+  "description": "Incolla testo per codificare i caratteri speciali come entità HTML, o incolla HTML con entità per decodificarli in testo leggibile. Scegli tra entità con nome (&amp;, &lt;, &copy;), numeriche decimali (&#169;) o esadecimali (&#xA9;). Opzionalmente codifica tutti i caratteri non-ASCII per la massima compatibilità.",
+  "metaDescription": "Codificatore e decodificatore di entità HTML gratuito. Converti caratteri in &amp; &lt; &gt; ed entità con nome, numeriche o hex. Decodifica istantanea.",
+  "keywords": ["codificatore entità HTML", "entità HTML", "codificare HTML", "decodificare entità HTML", "caratteri speciali HTML"],
+  "mode": {
+    "encode": "Codifica",
+    "decode": "Decodifica"
+  },
+  "encodeMode": {
+    "named": "Con nome (&amp;)",
+    "numeric": "Numerica (&#38;)",
+    "hex": "Hex (&#x26;)"
+  },
+  "option": {
+    "encodeAll": "Codifica tutti i caratteri non-ASCII"
+  },
+  "label": {
+    "inputText": "Testo di input",
+    "inputEncoded": "HTML codificato",
+    "outputEncoded": "Output codificato",
+    "outputText": "Testo decodificato"
+  },
+  "placeholder": {
+    "text": "Digita o incolla testo con caratteri speciali come <, >, &, © …",
+    "encoded": "Incolla HTML con entità come &amp;, &lt;, &#169; …"
+  },
+  "action": {
+    "copy": "Copia",
+    "swap": "Scambia"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cosa sono le entità HTML?",
+        "paragraphs": [
+          "Le entità HTML sono codici di testo speciali utilizzati per rappresentare caratteri che hanno un significato particolare in HTML o che non possono essere digitati direttamente. I più importanti sono i cinque caratteri riservati nella sintassi HTML: & (e commerciale) → &amp;, < (minore di) → &lt;, > (maggiore di) → &gt;, \" (virgolette doppie) → &quot; e ' (apostrofo) → &apos;. Se questi caratteri compaiono nel contenuto di testo senza codifica, il browser potrebbe interpretarli come markup HTML, causando errori di rendering o vulnerabilità di sicurezza.",
+          "Le entità HTML esistono in tre formati: le entità con nome usano un nome descrittivo (&copy; per ©, &euro; per €), i riferimenti numerici decimali di caratteri usano un numero di punto di codice (&#169; per ©), e i riferimenti di caratteri esadecimali usano un codice hex (&#xA9; per ©). Tutti e tre i formati sono equivalenti — il browser renderizza lo stesso carattere indipendentemente dal formato utilizzato. Le entità con nome sono le più leggibili; le entità numeriche sono le più universali poiché funzionano per qualsiasi carattere Unicode."
+        ]
+      },
+      {
+        "heading": "Quando codificare le entità HTML",
+        "paragraphs": [
+          "Devi codificare almeno i cinque caratteri HTML riservati (&, <, >, \", ') ogni volta che compaiono nel contenuto di testo o nei valori degli attributi. Non codificarli è una fonte di vulnerabilità Cross-Site Scripting (XSS): se l'input dell'utente viene inserito in HTML senza codifica, un attaccante può iniettare tag script o gestori di eventi. I framework moderni come React, Vue e Angular codificano automaticamente HTML per impostazione predefinita — innerHTML è la principale eccezione in cui la codifica manuale è ancora critica.",
+          "Oltre ai cinque richiesti, potresti anche voler codificare i caratteri non-ASCII per ambienti che non gestiscono in modo affidabile UTF-8: HTML via email, sistemi CMS legacy o documenti per la massima compatibilità. L'opzione «Codifica tutti i non-ASCII» converte ogni carattere sopra il punto di codice 127 in un'entità numerica, garantendo che l'output sia ASCII puro preservando l'aspetto visivo durante il rendering. Per i file HTML UTF-8 moderni, codificare i non-ASCII è facoltativo — dichiarare correttamente il charset è sufficiente."
+        ]
+      },
+      {
+        "heading": "Entità HTML vs codifica URL vs Base64",
+        "paragraphs": [
+          "Le entità HTML, la codifica URL (codifica percentuale) e Base64 sono tre diversi schemi di codifica per contesti differenti. Le entità HTML (come &amp;) vengono utilizzate nei documenti HTML per rappresentare i caratteri in modo sicuro. La codifica URL (come %26 per &) viene utilizzata nelle stringhe di query e negli URL per codificare i caratteri con un significato speciale in un URL. Base64 codifica dati binari arbitrari come testo ASCII, usato per URI di dati e allegati email.",
+          "Un errore comune è confonderli: codificare in URL il contenuto HTML o codificare in HTML gli URL. Ad esempio, una e commerciale in una stringa di query URL necessita di codifica percentuale (%26), non di codifica di entità HTML (&amp;). Se costruisci un URL che viene poi incorporato in un attributo HTML, hai bisogno di entrambe: la forma codificata in URL va nell'attributo, e il valore dell'attributo stesso viene codificato in HTML. Capire quale codifica si applica in quale contesto previene bug di doppia codifica e problemi di sicurezza."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Codificare caratteri speciali", "text": "Seleziona la modalità Codifica, incolla il testo nel riquadro sinistro. L'output codificato appare a destra. Scegli «Con nome» per entità leggibili (&amp;), «Numerica» per decimale universale (&#38;), o «Hex» per esadecimale (&#x26;). Spunta «Codifica tutti i non-ASCII» per convertire ogni carattere non-ASCII in un'entità." },
+      { "name": "Decodificare entità HTML", "text": "Seleziona la modalità Decodifica, incolla HTML con entità nel riquadro sinistro. Lo strumento riconosce entità con nome (&amp;, &copy;), entità numeriche decimali (&#169;) ed entità hex (&#xA9;), convertendole tutte nei loro caratteri originali." },
+      { "name": "Scambiare codifica e decodifica", "text": "Fai clic sul pulsante «Scambia» per spostare l'output nell'input e cambiare modalità — utile per verificare un andata e ritorno o invertire rapidamente una conversione." },
+      { "name": "Copiare il risultato", "text": "Fai clic su «Copia» per mettere il risultato codificato o decodificato negli appunti." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual è l'entità HTML per la e commerciale (&)?",
+      "a": "L'entità HTML per la e commerciale è &amp; — letteralmente i caratteri &, a, m, p e punto e virgola. Quando scrivi &amp; nel sorgente HTML, il browser visualizza un singolo carattere &. Questa codifica è obbligatoria ogni volta che una e commerciale compare nel contenuto di testo o nei valori degli attributi, perché un & non codificato inizia una sequenza di entità che il parser tenta di interpretare."
+    },
+    {
+      "q": "Qual è l'entità HTML per il copyright (©)?",
+      "a": "Il copyright © ha tre entità HTML equivalenti: la con nome &copy;, la numerica decimale &#169; e l'esadecimale &#xA9;. Tutte renderizzano lo stesso carattere ©. Le entità con nome sono l'opzione più leggibile quando disponibili. Per l'HTML UTF-8 moderno, puoi anche digitare il carattere © direttamente — senza necessità di entità — purché il tuo file HTML dichiari charset=utf-8."
+    },
+    {
+      "q": "Devo codificare le virgolette in HTML?",
+      "a": "Le virgolette doppie (\") devono essere codificate come &quot; negli attributi HTML delimitati da virgolette doppie: <input value=\"&quot;\">. Le virgolette singole (') devono essere codificate come &apos; o &#39; negli attributi con virgolette singole. Nel contenuto di testo degli elementi (tra i tag), entrambi i caratteri di virgolette possono comparire senza codifica, ma codificarli non è dannoso. Codificare entrambi in modo coerente in tutti i contesti è l'approccio più sicuro."
+    },
+    {
+      "q": "Qual è la differenza tra entità con nome e numeriche?",
+      "a": "Le entità con nome usano una parola descrittiva (&copy;, &euro;, &hearts;) e sono definite nella specifica HTML — non tutti i caratteri Unicode hanno un'entità con nome. Le entità numeriche usano il punto di codice Unicode, sia in decimale (&#8364; per €) che in esadecimale (&#x20AC; per €). Le entità numeriche funzionano per qualsiasi carattere Unicode, mentre quelle con nome coprono solo un sottoinsieme. Entrambe vengono renderizzate in modo identico nei browser."
+    },
+    {
+      "q": "Devo codificare i caratteri non-ASCII in HTML?",
+      "a": "Di solito no. Se il tuo documento HTML dichiara la codifica UTF-8 (meta charset=utf-8) ed è salvato come UTF-8, puoi scrivere caratteri non-ASCII direttamente: é, ñ, 中, 🎉. Codificarli come entità è facoltativo e rende il sorgente più difficile da leggere. L'eccezione riguarda l'invio di HTML in contesti che potrebbero non preservare la codifica: messaggi email, API legacy o sistemi che alterano i byte non-ASCII. In questi casi, codificare tutti i non-ASCII come entità numeriche garantisce un output in ASCII puro e sicuro."
+    },
+    {
+      "q": "Cos'è XSS e come lo prevengono le entità HTML?",
+      "a": "Il Cross-Site Scripting (XSS) è una vulnerabilità di sicurezza in cui un attaccante inietta JavaScript malevolo in una pagina web inserendo testo che il server riflette in HTML senza codifica. Ad esempio, se l'input utente <script>alert('xss')</script> viene inserito direttamente in una pagina, il browser esegue lo script. Se codifichi correttamente l'input — convertendo < in &lt; e > in &gt; — il browser visualizza il testo letteralmente invece di analizzarlo come un tag. La codifica di entità HTML è la difesa principale contro XSS riflesso e memorizzato."
+    },
+    {
+      "q": "Perché &nbsp; non appare nell'elenco di questo strumento?",
+      "a": "Questo strumento codifica i caratteri che hanno entità con nome. Lo spazio unificatore (Unicode U+00A0) viene codificato come &nbsp; quando si digita il carattere spazio unificatore effettivo (che puoi inserire con Alt+Spazio su alcuni sistemi o copiare dalle mappe dei caratteri). Lo spazio normale (U+0020, la barra spaziatrice) non viene codificato perché è un carattere ASCII sicuro. Se hai specificamente bisogno di &nbsp; nell'output, digita o incolla un carattere spazio unificatore nell'input."
+    },
+    {
+      "q": "Posso usarlo per prevenire l'iniezione HTML nell'input utente?",
+      "a": "Sì — codificare il testo fornito dall'utente prima di inserirlo in HTML è una delle difese principali contro l'iniezione HTML e XSS. Codifica almeno i cinque caratteri riservati: &, <, >, \", '. Questo strumento codifica tutti e cinque. Tuttavia, la codifica da sola non è una soluzione di sicurezza completa: hai anche bisogno di intestazioni Content Security Policy appropriate, gestione attenta degli URL javascript: negli attributi e protezioni a livello di framework. Per le applicazioni in produzione, usa una libreria lato server progettata per la sicurezza (OWASP Java Encoder, DOMPurify lato client, ecc.) invece della codifica manuale."
+    }
+  ]
+}

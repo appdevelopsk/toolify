@@ -111,6 +111,7 @@ import stopwatch from "@/tools/stopwatch";
 import caesar from "@/tools/caesar-cipher";
 import jwtDec from "@/tools/jwt-decoder";
 import csvJson from "@/tools/csv-json-converter";
+import jsonToYaml from "@/tools/json-to-yaml-converter";
 import amortization from "@/tools/loan-amortization-schedule";
 import dti from "@/tools/debt-to-income-ratio-calculator";
 import lifeInsurance from "@/tools/life-insurance-needs-calculator";
@@ -126,6 +127,19 @@ import sleep from "@/tools/sleep-calculator";
 import numberToWords from "@/tools/number-to-words";
 import cookingUnit from "@/tools/cooking-unit-converter";
 import readingLevel from "@/tools/reading-level-checker";
+import typingSpeed from "@/tools/typing-speed-tester";
+import unixPermissions from "@/tools/unix-permissions-calculator";
+import keycodeFind from "@/tools/keycode-finder";
+import asciiTable from "@/tools/ascii-table";
+import textToBinary from "@/tools/text-to-binary";
+import htmlEntity from "@/tools/html-entity-encoder";
+import colorShades from "@/tools/color-shades-generator";
+import primeFactorization from "@/tools/prime-factorization";
+import cssUnit from "@/tools/css-unit-converter";
+import morseCode from "@/tools/morse-code-translator";
+import colorName from "@/tools/color-name-finder";
+import fireNumber from "@/tools/fire-number-calculator";
+import breakEven from "@/tools/break-even-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -244,6 +258,7 @@ export const TOOLS: ToolMeta[] = [
   caesar,
   jwtDec,
   csvJson,
+  jsonToYaml,
   amortization,
   dti,
   lifeInsurance,
@@ -258,6 +273,19 @@ export const TOOLS: ToolMeta[] = [
   sleep,
   cookingUnit,
   readingLevel,
+  typingSpeed,
+  unixPermissions,
+  keycodeFind,
+  cssUnit,
+  morseCode,
+  colorName,
+  fireNumber,
+  breakEven,
+  asciiTable,
+  textToBinary,
+  htmlEntity,
+  colorShades,
+  primeFactorization,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));

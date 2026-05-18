@@ -1,0 +1,100 @@
+{
+  "title": "Calculadora de Permissões Unix (chmod)",
+  "shortDescription": "Marque as permissões de leitura/escrita/execução para dono, grupo e outros. Veja instantaneamente o valor octal (755, 644…) e a notação simbólica (rwxr-xr-x).",
+  "description": "Calculadora chmod interativa. Ative ou desative os bits de permissão para dono, grupo e outros e obtenha o número octal e a notação simbólica em tempo real. Ou digite um número octal para decodificá-lo.",
+  "metaDescription": "Calculadora de permissões Unix gratuita. Alterne leitura/escrita/execução para dono/grupo/outros e obtenha o valor octal (755, 644) e a notação simbólica (rwxr-xr-x) na",
+  "keywords": [
+    "calculadora permissões unix",
+    "calculadora chmod",
+    "permissões octais",
+    "permissões arquivo linux",
+    "permissões rwx"
+  ],
+  "input.octal": "Valor octal",
+  "input.symbolic": "Simbólico",
+  "label.owner": "Dono",
+  "label.group": "Grupo",
+  "label.other": "Outros",
+  "label.read": "Leitura (r)",
+  "label.write": "Escrita (w)",
+  "label.execute": "Execução (x)",
+  "presets": "Predefinições comuns",
+  "error.invalidOctal": "Digite entre 1 e 3 dígitos octais (apenas 0–7).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Origem da notação octal nas permissões Unix",
+        "paragraphs": [
+          "As permissões de arquivos Unix foram criadas por Ken Thompson em 1969 como parte do Unix original num PDP-7. Cada arquivo armazena nove bits de permissão no inode: três para o dono, três para o grupo e três para os demais. Agrupar cada trio de bits num único dígito octal (0–7) foi a escolha natural: um dígito por entidade, três dígitos no total. Essa convenção octal foi codificada no POSIX.1-1988 e permanece inalterada em todos os sistemas Linux, macOS, BSD e similares ao Unix.",
+          "A forma simbólica (rwxr-xr-x) apareceu na saída de `ls -l` desde as primeiras distribuições Unix e tornou-se o complemento legível do número octal. O POSIX define ambas as representações como normativas. `chmod u+x arquivo` usa a forma simbólica; `chmod 755 arquivo` usa a forma octal. Ambas resultam na mesma operação no kernel: definir bits específicos no campo de modo do inode."
+        ]
+      },
+      {
+        "heading": "O que cada bit de permissão significa",
+        "paragraphs": [
+          "Para um arquivo regular: leitura (r=4) permite abrir e ler o conteúdo; escrita (w=2) permite modificar ou truncar o arquivo; execução (x=1) permite executá-lo como programa. Cada bit é independente. O dígito octal de cada entidade é a soma dos bits ativados: rwx=7, r-x=5, r--=4.",
+          "Para um diretório, os significados mudam. Leitura (r) permite listar o diretório com `ls`. Execução (x) — o \"bit de busca\" — permite entrar com `cd` e acessar arquivos por nome. Escrita (w) permite criar, excluir ou renomear arquivos dentro do diretório. Um diretório com leitura mas sem execução é quase inútil: você vê os nomes, mas não pode abrir nenhum arquivo. Diretórios típicos têm permissão 755."
+        ]
+      },
+      {
+        "heading": "Padrões comuns de permissão e segurança",
+        "paragraphs": [
+          "644 (rw-r--r--) é o padrão para arquivos de configuração, HTML e texto: o dono edita, os demais apenas leem. 755 (rwxr-xr-x) é o padrão para diretórios e scripts executáveis: o dono controla o conteúdo, os demais podem navegar e ler. 600 (rw-------) e 700 (rwx------) restringem o acesso apenas ao dono — adequados para chaves privadas SSH e arquivos de senha. Nunca use 777 em nada exposto na web; dar escrita a \"outros\" significa que qualquer processo no sistema pode sobrescrever o arquivo.",
+          "O umask determina as permissões padrão de novos arquivos e diretórios. Um umask 022 (comum na maioria dos sistemas) faz com que novos arquivos recebam 644 e novos diretórios 755, pois os bits do umask são subtraídos do padrão 666 (arquivos) e 777 (diretórios). Entender chmod e umask juntos dá controle total sobre a linha de base de permissões do sistema."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Marque as caixas de permissão",
+        "text": "Clique nas caixas de leitura, escrita ou execução para dono, grupo ou outros. O valor octal e a string simbólica se atualizam instantaneamente."
+      },
+      {
+        "name": "Digite um número octal para decodificar",
+        "text": "Clique no campo octal e digite um número de 1 a 3 dígitos (0–7 por dígito). As caixas se atualizam para mostrar os bits de permissão decodificados."
+      },
+      {
+        "name": "Use uma predefinição",
+        "text": "Clique em um dos botões de predefinições (755, 644, 600, 700, 777) para saltar para um conjunto de permissões frequentemente usado."
+      },
+      {
+        "name": "Copie o comando chmod",
+        "text": "O comando chmod no rodapé mostra a sintaxe exata para aplicar essas permissões. Substitua 'filename' pelo caminho real do seu arquivo ou diretório."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "O que significa 755?",
+      "a": "755 significa que o dono tem leitura+escrita+execução (7=4+2+1), o grupo tem leitura+execução (5=4+1) e outros têm leitura+execução (5=4+1). É a permissão padrão para diretórios e scripts executáveis."
+    },
+    {
+      "q": "O que significa 644?",
+      "a": "644 significa que o dono tem leitura+escrita (6=4+2), o grupo tem somente leitura (4) e outros têm somente leitura (4). É o padrão para arquivos regulares como configurações, páginas web e documentos de texto."
+    },
+    {
+      "q": "Por que um diretório precisa de permissão de execução?",
+      "a": "Para diretórios, o bit de execução é o 'bit de busca'. Sem ele você não pode fazer cd no diretório nem abrir arquivos dentro por caminho, mesmo que tenha o bit de leitura. Um diretório com leitura mas sem execução é praticamente inútil na prática."
+    },
+    {
+      "q": "Qual a diferença entre dono, grupo e outros?",
+      "a": "O dono é a conta de usuário que possui o arquivo (definida na criação ou alterada com chown). O grupo é o grupo atribuído ao arquivo (alterado com chgrp); qualquer usuário nesse grupo recebe as permissões do grupo. Outros abrange todos os usuários do sistema que não são o dono nem estão no grupo."
+    },
+    {
+      "q": "O que são SUID e SGID?",
+      "a": "SUID (Set User ID) e SGID (Set Group ID) são bits de permissão especiais além dos nove padrão. Com SUID em um executável, ele roda com os privilégios do dono do arquivo em vez do invocador — usado por comandos como passwd e sudo. SGID num diretório faz novos arquivos herdarem o grupo do diretório. Na forma simbólica aparece como 's' (ex: rwsr-xr-x) e adiciona 4000 ou 2000 ao valor octal (ex: 4755)."
+    },
+    {
+      "q": "chmod 777 é perigoso?",
+      "a": "Sim, especialmente em sistemas compartilhados ou servidores web. 777 concede leitura, escrita e execução completas a todos os usuários do sistema. Qualquer processo — incluindo aplicações web comprometidas — pode sobrescrever ou executar o arquivo. Em servidores web isso frequentemente habilita execução arbitrária de código. Limite as permissões ao mínimo necessário."
+    },
+    {
+      "q": "Como usar o comando chmod?",
+      "a": "Use `chmod OCTAL caminho` para um único arquivo, ou `chmod -R OCTAL diretório` para aplicar recursivamente. Por exemplo: `chmod 644 index.html` ou `chmod 755 /var/www`. Você também pode usar sintaxe simbólica: `chmod u+x script.sh` adiciona permissão de execução ao dono sem alterar os outros bits."
+    },
+    {
+      "q": "O que é umask e como se relaciona com as permissões?",
+      "a": "umask é uma máscara aplicada às permissões padrão ao criar novos arquivos ou diretórios. Um umask de 022 remove escrita do grupo e de outros, de modo que novos arquivos ficam com 644 e novos diretórios com 755. Execute `umask` no seu shell para ver a configuração atual e `umask VALOR` para alterar na sessão atual."
+    }
+  ]
+}

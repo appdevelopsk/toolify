@@ -1,0 +1,84 @@
+{
+  "title": "Color Shades Generator — Tailwind-Style Tints & Shades",
+  "shortDescription": "Generate 11 tints and shades (50–950) for any color, styled after the Tailwind CSS scale. Click any shade to copy its hex code or export all as CSS custom properties.",
+  "description": "Pick any base color to instantly generate a full 11-step shade palette (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950), matching the scale used by Tailwind CSS and Material Design. Each shade shows its WCAG contrast rating against white or black. Click any swatch to copy its hex code, or click Copy CSS to export all shades as CSS custom properties.",
+  "metaDescription": "Free color shades generator. Enter any hex color to get 11 tints and shades on the Tailwind CSS scale. Copy hex codes or CSS variables. WCAG contrast shown.",
+  "keywords": ["color shades generator", "color tints", "Tailwind color palette", "CSS color variables", "color scale"],
+  "input": {
+    "picker": "Color Picker",
+    "hex": "Hex Code"
+  },
+  "action": {
+    "copyCSS": "Copy CSS",
+    "copied": "Copied!",
+    "clickCopy": "Click to copy hex code"
+  },
+  "error": {
+    "invalid": "Enter a valid 6-digit hex color (e.g. #3B82F6)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How color shade scales work",
+        "paragraphs": [
+          "A color shade scale is a systematic series of lighter and darker variations of a base color, used to create visual hierarchy and accessible contrast in UI design. The Tailwind CSS convention uses 11 steps numbered 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, and 950. Lower numbers are lighter (higher lightness in HSL), while higher numbers are darker. Step 500 is typically close to the base color as entered.",
+          "This tool generates shades by converting the input hex to HSL (Hue, Saturation, Lightness), preserving the hue and saturation while mapping each step to a predefined lightness value. Step 50 maps to ~97% lightness (near white), step 500 to ~52% (mid-range), and step 950 to ~12% (near black). This approach produces visually consistent palettes that maintain the color's character across all brightness levels."
+        ]
+      },
+      {
+        "heading": "WCAG contrast ratings in the palette",
+        "paragraphs": [
+          "Each shade in the palette shows its WCAG (Web Content Accessibility Guidelines) contrast rating against either black or white text — whichever is more readable. The ratings are: AAA (contrast ratio ≥ 7:1, best accessibility), AA (≥ 4.5:1, required for normal text), AA Large (≥ 3:1, acceptable for large text and UI components only), and Fail (< 3:1, insufficient for text). WCAG 2.1 AA compliance is the minimum legal requirement for accessibility in many jurisdictions.",
+          "When building a UI with a color palette, use shades with AA or AAA ratings for text on those backgrounds. Typically, shades 50–300 have strong contrast with dark text, while shades 700–950 have strong contrast with white text. Middle shades (400–600) often fall into the AA Large or Fail category for small text, making them suitable for decorative elements, borders, or backgrounds behind white large text, but not for small body copy."
+        ]
+      },
+      {
+        "heading": "Using the palette in CSS and design systems",
+        "paragraphs": [
+          "The Copy CSS button exports your palette as CSS custom properties (CSS variables) in a :root block, ready to paste into your stylesheet. For example, the blue-500 variable becomes --color-500: #3b82f6 (or whatever color you chose). You can rename the variable prefix to match your project: --brand-500, --primary-500, --blue-500, etc. CSS custom properties cascade and can be overridden per component or theme.",
+          "Design systems like Tailwind CSS, Material Design, Ant Design, and Chakra UI all use numbered shade scales for their color systems. Having a consistent scale lets you make confident choices: use 50 for hover backgrounds, 100 for active states in light theme, 500 for primary buttons, 700 for hover states on buttons, and 900 for dark backgrounds. Keeping all your brand colors on the same numbered scale creates predictability and reduces design decisions at the component level."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick your base color", "text": "Use the color picker to visually select a color, or type a 6-digit hex code (like #3B82F6) in the hex input. The 11-step shade palette generates instantly." },
+      { "name": "Read the WCAG ratings", "text": "Each shade shows its WCAG contrast rating (AAA, AA, AA Large, or Fail). Use shades rated AA or AAA for text and interactive elements to meet accessibility requirements." },
+      { "name": "Copy individual shades", "text": "Click any shade swatch to copy its hex code to your clipboard. A checkmark confirms the copy." },
+      { "name": "Export as CSS variables", "text": "Click Copy CSS to get all 11 shades as CSS custom properties in a :root block, ready to paste into your stylesheet or design system." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "What do the shade numbers (50–950) mean?",
+      "a": "The numbers follow the Tailwind CSS color scale convention. Lower numbers are lighter: 50 is nearly white, 100 is very light, 200 and 300 are light tints. The middle (500) is a medium value close to the original color. Higher numbers are darker: 700 is dark, 900 is very dark, 950 is near black. The scale is not linear — it is tuned so that step sizes feel perceptually even across the range."
+    },
+    {
+      "q": "What is the difference between a tint and a shade?",
+      "a": "A tint is a color mixed with white, making it lighter. A shade is a color mixed with black, making it darker. In HSL terms, tints have higher lightness values and shades have lower lightness values while keeping the same hue. Numbers 50–400 in this scale are tints (lighter than the base), while 600–950 are shades (darker than the base). Step 500 is approximately the base color itself."
+    },
+    {
+      "q": "How does this tool generate the shades?",
+      "a": "The tool converts your hex color to HSL (Hue, Saturation, Lightness). It keeps the hue and saturation constant while mapping each step number to a target lightness value: step 50 → 97% lightness, step 500 → 52%, step 950 → 12%. The result is then converted back to hex. This method preserves the color's character (warmth, coolness, vibrancy) across all shades."
+    },
+    {
+      "q": "What is WCAG and why do the shades show ratings?",
+      "a": "WCAG (Web Content Accessibility Guidelines) defines minimum contrast ratios for readable text. AA requires a 4.5:1 ratio for normal text; AAA requires 7:1. Each shade's contrast rating shows whether black or white text on that background meets the AA or AAA standard. This helps you choose which shades are safe for text and which should be used only for decorative elements."
+    },
+    {
+      "q": "How do I use this palette in Tailwind CSS?",
+      "a": "Tailwind lets you define custom colors in tailwind.config.js. Add the shades under theme.extend.colors: colors: { brand: { 50: '#your-50-hex', 100: '#your-100-hex', ... } }. You can then use classes like bg-brand-100, text-brand-700, border-brand-300. For Tailwind v4 with CSS-first configuration, paste the CSS variable output into your theme definition."
+    },
+    {
+      "q": "Why does the shade at my chosen color not look exactly like my input?",
+      "a": "The tool targets specific lightness values for each step — step 500 targets approximately 52% HSL lightness. If your input color has a different lightness (e.g., 70% if it is a lighter color), the step 500 shade will be adjusted toward 52%. This creates a consistent scale but means step 500 may not be identical to your original input. To get your exact color at step 500, you can manually adjust the hex — the scale will be generated relative to whatever you enter."
+    },
+    {
+      "q": "Can I use this with CSS custom properties?",
+      "a": "Yes — click Copy CSS to get a ready-to-use :root block with all 11 shades as custom properties. In your CSS, reference them as var(--color-500), var(--color-50), etc. You can rename the --color- prefix to anything that fits your project (--brand-, --primary-, --blue-). Custom properties cascade and can be scoped to a component or overridden in a media query for dark mode."
+    },
+    {
+      "q": "How are these shades different from CSS color-mix()?",
+      "a": "The CSS color-mix() function (supported in modern browsers) blends two colors by a percentage, similar to mixing paint. This tool uses a predefined lightness scale (HSL-based), which produces a more controlled and predictable design system scale. color-mix() is better for one-off blending (e.g., mixing your brand color with 20% white), while this tool generates a full systematic design-system palette. Both approaches have their place depending on your use case."
+    }
+  ]
+}

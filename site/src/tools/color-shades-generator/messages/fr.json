@@ -1,0 +1,102 @@
+{
+  "title": "Générateur de Nuances de Couleur — Style Tailwind",
+  "shortDescription": "Générez 11 teintes et nuances (50–950) pour n'importe quelle couleur, dans le style Tailwind CSS. Cliquez sur une nuance pour copier son code hex ou exportez tout en propriétés CSS personnalisées.",
+  "description": "Choisissez une couleur de base pour générer instantanément une palette complète de 11 nuances (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950), correspondant à l'échelle utilisée par Tailwind CSS et Material Design. Chaque nuance affiche sa note de contraste WCAG par rapport au texte blanc ou noir. Cliquez sur un échantillon pour copier son code hex, ou cliquez sur Copier CSS pour exporter toutes les nuances en propriétés CSS personnalisées.",
+  "metaDescription": "Générateur de nuances de couleur gratuit. Saisissez un code hex pour obtenir 11 teintes sur l'échelle Tailwind CSS. Copiez les codes hex ou les variables CSS.",
+  "keywords": [
+    "générateur de nuances de couleur",
+    "teintes de couleur",
+    "palette Tailwind",
+    "variables CSS couleur",
+    "échelle de couleurs"
+  ],
+  "input": {
+    "picker": "Sélecteur de couleur",
+    "hex": "Code Hex"
+  },
+  "action": {
+    "copyCSS": "Copier CSS",
+    "copied": "Copié !",
+    "clickCopy": "Cliquer pour copier le code hex"
+  },
+  "error": {
+    "invalid": "Saisissez un code hex valide à 6 chiffres (ex. #3B82F6)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionnent les échelles de nuances de couleur",
+        "paragraphs": [
+          "Une échelle de nuances de couleur est une série systématique de variations plus claires et plus foncées d'une couleur de base, utilisée pour créer une hiérarchie visuelle et un contraste accessible dans la conception d'interfaces. La convention Tailwind CSS utilise 11 étapes numérotées 50, 100, 200, 300, 400, 500, 600, 700, 800, 900 et 950. Les nombres plus bas sont plus clairs (luminosité plus élevée en HSL), tandis que les nombres plus élevés sont plus sombres. L'étape 500 est généralement proche de la couleur de base telle qu'elle a été saisie.",
+          "Cet outil génère des nuances en convertissant le hex d'entrée en HSL (Teinte, Saturation, Luminosité), en préservant la teinte et la saturation tout en associant chaque étape à une valeur de luminosité prédéfinie. L'étape 50 correspond à environ 97 % de luminosité (presque blanc), l'étape 500 à environ 52 % (plage intermédiaire) et l'étape 950 à environ 12 % (presque noir). Cette approche produit des palettes visuellement cohérentes qui préservent le caractère de la couleur sur tous les niveaux de luminosité."
+        ]
+      },
+      {
+        "heading": "Notes de contraste WCAG dans la palette",
+        "paragraphs": [
+          "Chaque nuance de la palette affiche sa note de contraste WCAG (Directives pour l'accessibilité des contenus Web) par rapport au texte noir ou blanc, selon celui qui est le plus lisible. Les notes sont : AAA (rapport de contraste ≥ 7:1, meilleure accessibilité), AA (≥ 4,5:1, requis pour le texte normal), AA Large (≥ 3:1, acceptable uniquement pour le grand texte et les composants UI) et Fail (< 3:1, insuffisant pour le texte). La conformité WCAG 2.1 AA est l'exigence légale minimale en matière d'accessibilité dans de nombreuses juridictions.",
+          "Lors de la création d'une interface avec une palette de couleurs, utilisez des nuances avec la note AA ou AAA pour le texte sur ces arrière-plans. En règle générale, les nuances 50–300 ont un fort contraste avec le texte sombre, tandis que les nuances 700–950 ont un fort contraste avec le texte blanc. Les nuances intermédiaires (400–600) tombent souvent dans la catégorie AA Large ou Fail pour le petit texte, ce qui les rend adaptées aux éléments décoratifs, aux bordures ou aux arrière-plans derrière du grand texte blanc, mais pas pour le corps de texte de petite taille."
+        ]
+      },
+      {
+        "heading": "Utiliser la palette en CSS et dans les systèmes de conception",
+        "paragraphs": [
+          "Le bouton Copier CSS exporte votre palette en tant que propriétés CSS personnalisées (variables CSS) dans un bloc :root, prêt à coller dans votre feuille de style. Par exemple, la variable blue-500 devient --color-500: #3b82f6 (ou la couleur que vous avez choisie). Vous pouvez renommer le préfixe de la variable pour l'adapter à votre projet : --brand-500, --primary-500, --blue-500, etc. Les propriétés CSS personnalisées se cascadent et peuvent être remplacées par composant ou par thème.",
+          "Les systèmes de conception comme Tailwind CSS, Material Design, Ant Design et Chakra UI utilisent tous des échelles de nuances numérotées pour leurs systèmes de couleurs. Disposer d'une échelle cohérente permet de faire des choix assurés : utilisez 50 pour les arrière-plans au survol, 100 pour les états actifs en thème clair, 500 pour les boutons principaux, 700 pour les états de survol sur les boutons, et 900 pour les arrière-plans sombres. Maintenir toutes les couleurs de votre marque sur la même échelle numérotée crée de la prévisibilité et réduit les décisions de conception au niveau du composant."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisissez votre couleur de base",
+        "text": "Utilisez le sélecteur de couleur pour choisir visuellement une couleur, ou saisissez un code hex à 6 chiffres (comme #3B82F6) dans le champ hex. La palette de 11 nuances est générée instantanément."
+      },
+      {
+        "name": "Lisez les notes WCAG",
+        "text": "Chaque nuance affiche sa note de contraste WCAG (AAA, AA, AA Large ou Fail). Utilisez des nuances notées AA ou AAA pour le texte et les éléments interactifs afin de répondre aux exigences d'accessibilité."
+      },
+      {
+        "name": "Copiez des nuances individuelles",
+        "text": "Cliquez sur un échantillon de couleur pour copier son code hex dans le presse-papiers. Une coche confirme la copie."
+      },
+      {
+        "name": "Exportez en variables CSS",
+        "text": "Cliquez sur Copier CSS pour obtenir les 11 nuances en propriétés CSS personnalisées dans un bloc :root, prêt à coller dans votre feuille de style ou système de conception."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Que signifient les numéros de nuance (50–950) ?",
+      "a": "Les numéros suivent la convention d'échelle de couleurs de Tailwind CSS. Les numéros plus bas sont plus clairs : 50 est presque blanc, 100 est très clair, 200 et 300 sont des teintes claires. Le milieu (500) est une valeur moyenne proche de la couleur originale. Les numéros plus élevés sont plus sombres : 700 est sombre, 900 est très sombre, 950 est presque noir. L'échelle n'est pas linéaire — elle est calibrée pour que les tailles de pas paraissent perceptuellement uniformes sur toute la plage."
+    },
+    {
+      "q": "Quelle est la différence entre une teinte et une nuance ?",
+      "a": "Une teinte est une couleur mélangée avec du blanc, la rendant plus claire. Une nuance est une couleur mélangée avec du noir, la rendant plus foncée. En termes HSL, les teintes ont des valeurs de luminosité plus élevées et les nuances ont des valeurs de luminosité plus basses tout en conservant la même teinte. Les numéros 50–400 dans cette échelle sont des teintes (plus claires que la base), tandis que 600–950 sont des nuances (plus sombres que la base). L'étape 500 correspond approximativement à la couleur de base elle-même."
+    },
+    {
+      "q": "Comment cet outil génère-t-il les nuances ?",
+      "a": "L'outil convertit votre couleur hex en HSL (Teinte, Saturation, Luminosité). Il maintient la teinte et la saturation constantes tout en associant chaque numéro d'étape à une valeur de luminosité cible : étape 50 → 97 % de luminosité, étape 500 → 52 %, étape 950 → 12 %. Le résultat est ensuite reconverti en hex. Cette méthode préserve le caractère de la couleur (chaleur, fraîcheur, vivacité) sur toutes les nuances."
+    },
+    {
+      "q": "Qu'est-ce que WCAG et pourquoi les nuances affichent-elles des notes ?",
+      "a": "WCAG (Directives pour l'accessibilité des contenus Web) définit des rapports de contraste minimaux pour le texte lisible. AA exige un rapport de 4,5:1 pour le texte normal ; AAA exige 7:1. La note de contraste de chaque nuance indique si le texte noir ou blanc sur cet arrière-plan satisfait à la norme AA ou AAA. Cela vous aide à choisir quelles nuances sont sûres pour le texte et lesquelles ne doivent être utilisées que pour des éléments décoratifs."
+    },
+    {
+      "q": "Comment utiliser cette palette dans Tailwind CSS ?",
+      "a": "Tailwind vous permet de définir des couleurs personnalisées dans tailwind.config.js. Ajoutez les nuances sous theme.extend.colors : colors: { brand: { 50: '#votre-hex-50', 100: '#votre-hex-100', ... } }. Vous pouvez ensuite utiliser des classes comme bg-brand-100, text-brand-700, border-brand-300. Pour Tailwind v4 avec configuration CSS-first, collez la sortie des variables CSS dans votre définition de thème."
+    },
+    {
+      "q": "Pourquoi la nuance de ma couleur choisie ne ressemble pas exactement à ma saisie ?",
+      "a": "L'outil cible des valeurs de luminosité spécifiques pour chaque étape — l'étape 500 cible environ 52 % de luminosité HSL. Si votre couleur d'entrée a une luminosité différente (par ex. 70 % pour une couleur plus claire), la nuance à l'étape 500 sera ajustée vers 52 %. Cela crée une échelle cohérente, mais signifie que l'étape 500 peut ne pas être identique à votre saisie originale. Pour obtenir votre couleur exacte à l'étape 500, vous pouvez ajuster manuellement le hex — l'échelle sera générée relativement à ce que vous saisissez."
+    },
+    {
+      "q": "Puis-je l'utiliser avec des propriétés CSS personnalisées ?",
+      "a": "Oui — cliquez sur Copier CSS pour obtenir un bloc :root prêt à l'emploi avec les 11 nuances en tant que propriétés personnalisées. Dans votre CSS, référencez-les comme var(--color-500), var(--color-50), etc. Vous pouvez renommer le préfixe --color- en n'importe quoi qui convient à votre projet (--brand-, --primary-, --blue-). Les propriétés personnalisées se cascadent et peuvent être limitées à un composant ou remplacées dans une media query pour le mode sombre."
+    },
+    {
+      "q": "En quoi ces nuances diffèrent-elles de la fonction CSS color-mix() ?",
+      "a": "La fonction CSS color-mix() (prise en charge par les navigateurs modernes) mélange deux couleurs par pourcentage, comme mélanger de la peinture. Cet outil utilise une échelle de luminosité prédéfinie (basée sur HSL), qui produit une échelle de système de conception plus contrôlée et prévisible. color-mix() convient mieux aux mélanges ponctuels (par ex., mélanger votre couleur de marque avec 20 % de blanc), tandis que cet outil génère une palette de système de conception complète et systématique. Les deux approches ont leur place selon le cas d'utilisation."
+    }
+  ]
+}

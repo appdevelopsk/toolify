@@ -1,0 +1,90 @@
+{
+  "title": "Bảng ASCII — Thập phân, Hex, Nhị phân và Bát phân",
+  "shortDescription": "Bảng ký tự ASCII đầy đủ hiển thị giá trị thập phân, thập lục phân, bát phân và nhị phân của tất cả 128 mã ASCII. Lọc theo ký tự in được hoặc ký tự điều khiển, tìm kiếm theo số, hex hoặc ký tự.",
+  "description": "Duyệt tất cả 128 mã ASCII (0–127) với các biểu diễn thập phân, thập lục phân, bát phân và nhị phân. Các ký tự điều khiển (0–31, 127) được tô sáng và gán nhãn với chữ viết tắt chuẩn và tên đầy đủ. Lọc để chỉ hiển thị ký tự in được hoặc chỉ mã điều khiển, và tìm kiếm theo số thập phân, giá trị hex hoặc ký tự.",
+  "metaDescription": "Bảng ASCII miễn phí: 128 mã với thập phân, hex, nhị phân, bát phân. Lọc ký tự in được và điều khiển, hỗ trợ tìm kiếm.",
+  "keywords": ["bảng ASCII", "mã ASCII", "biểu đồ ASCII", "hex thập phân nhị phân", "ký tự điều khiển"],
+  "search": {
+    "placeholder": "Tìm kiếm theo thập phân, hex hoặc ký tự…",
+    "noResults": "Không tìm thấy ký tự nào khớp."
+  },
+  "filter": {
+    "all": "Tất cả",
+    "printable": "In được",
+    "control": "Điều khiển"
+  },
+  "col": {
+    "dec": "Thập phân",
+    "hex": "Hex",
+    "oct": "Bát phân",
+    "bin": "Nhị phân",
+    "char": "Ký tự",
+    "description": "Mô tả"
+  },
+  "note": "Đang hiển thị {count} trong số 128 mã ASCII",
+  "article": {
+    "sections": [
+      {
+        "heading": "ASCII là gì?",
+        "paragraphs": [
+          "ASCII (American Standard Code for Information Interchange — Mã tiêu chuẩn Mỹ để trao đổi thông tin) là tiêu chuẩn mã hóa ký tự được xuất bản lần đầu năm 1963. Tiêu chuẩn này định nghĩa 128 ký tự: 33 ký tự điều khiển không in được (mã 0–31 và 127) và 95 ký tự in được (mã 32–126), bao gồm chữ cái tiếng Anh hoa và thường, chữ số 0–9 và các dấu câu phổ biến. ASCII đã trở thành nền tảng của hầu hết các mã hóa văn bản hiện đại, bao gồm UTF-8 — tương thích ngược với ASCII cho 128 điểm mã đầu tiên.",
+          "Mỗi ký tự ASCII được gán một giá trị số nguyên 7 bit, đó là lý do tại sao bảng kết thúc ở 127 (2⁷ − 1). Khi lưu trong byte 8 bit, bit đầu tiên thường là 0 với ASCII chuẩn. Phạm vi ASCII mở rộng (128–255) không được chuẩn hóa bởi đặc tả gốc và thay đổi theo trang mã — ISO 8859-1, Windows-1252 và các mã hóa tương tự đều định nghĩa tập ký tự khác nhau cho nửa trên của byte."
+        ]
+      },
+      {
+        "heading": "Ký tự điều khiển (0–31 và 127)",
+        "paragraphs": [
+          "32 mã ASCII đầu tiên và mã 127 là các ký tự điều khiển không in được, được kế thừa từ quy ước máy điện báo. Hầu hết đã lỗi thời trong điện toán hiện đại, nhưng một số vẫn quan trọng: mã 9 (HT, tab ngang), mã 10 (LF, xuống dòng trên Unix/Linux), mã 13 (CR, về đầu dòng, dùng trong ký tự kết thúc dòng Windows dưới dạng CR+LF), mã 27 (ESC, Escape, dùng trong chuỗi thoát terminal) và mã 127 (DEL). Các ký tự này không được hiển thị dưới dạng ký hiệu hình ảnh.",
+          "Trên các hệ thống tương tự Unix, bạn có thể tạo ký tự điều khiển trong terminal bằng cách giữ Ctrl và nhấn chữ cái tương ứng: Ctrl+A = SOH (1), Ctrl+C = ETX (3, gửi tín hiệu ngắt), Ctrl+D = EOT (4, báo hiệu kết thúc đầu vào), Ctrl+J = LF (10), Ctrl+M = CR (13), Ctrl+Z = SUB (26, tạm dừng tiến trình trên Unix). Hiểu các mã này rất cần thiết cho I/O mức thấp, chuỗi điều khiển terminal và triển khai giao thức mạng."
+        ]
+      },
+      {
+        "heading": "ASCII trong lập trình và phát triển web",
+        "paragraphs": [
+          "Trong JavaScript, bạn có thể lấy mã ASCII của một ký tự bằng charCodeAt(0): 'A'.charCodeAt(0) trả về 65. Để chuyển ngược lại, dùng String.fromCharCode(65) để lấy 'A'. Trong Python, ord('A') trả về 65 và chr(65) trả về 'A'. Trong C, giá trị char là số nguyên và có thể dùng trực tiếp trong phép tính: 'A' + 1 bằng 'B'.",
+          "Giá trị ASCII là cơ sở của nhiều mẫu lập trình phổ biến. Hiệu giữa chữ hoa và chữ thường luôn là 32: 'a' (97) = 'A' (65) + 32. Các chữ số 0–9 chiếm mã 48–57, vì vậy trừ 48 từ giá trị ASCII của ký tự số sẽ cho ra giá trị số của nó. URL encoding biểu diễn các ký tự không an toàn cho URL dưới dạng %XX trong đó XX là mã ASCII hex, khiến bảng này không thể thiếu khi gỡ lỗi chuỗi URL-encoded và tiêu đề HTTP."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Duyệt bảng đầy đủ", "text": "Cuộn qua tất cả 128 mã ASCII. Các ký tự điều khiển (0–31, 127) được tô sáng màu hổ phách. Mỗi hàng hiển thị thập phân, hex (tiền tố 0x), bát phân, nhị phân, ký hiệu ký tự và mô tả." },
+      { "name": "Lọc theo loại", "text": "Nhấp «In được» để chỉ hiển thị ký tự có thể nhìn thấy (32–126), hoặc «Điều khiển» để chỉ hiển thị mã điều khiển không in được (0–31, 127)." },
+      { "name": "Tìm kiếm ký tự", "text": "Nhập số thập phân (ví dụ: 65), giá trị hex (ví dụ: 41 hoặc 0x41) hoặc ký tự (ví dụ: A) để chuyển thẳng đến mục đó. Bạn cũng có thể tìm kiếm theo tên mã điều khiển (ví dụ: ESC hoặc LF)." },
+      { "name": "Đọc biểu diễn nhị phân", "text": "Cột nhị phân hiển thị biểu diễn 8 bit của mỗi mã ASCII. Ví dụ, 'A' (65) = 01000001 ở dạng nhị phân. Điều này hữu ích khi làm việc với phép toán bitwise hoặc tìm hiểu mã hóa ký tự ở cấp byte." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Mã ASCII cho Enter / dòng mới là gì?",
+      "a": "Ký tự dòng mới (line feed) là mã ASCII 10 (0x0A, LF). Trên Unix/Linux/macOS, dòng mới được biểu diễn bởi LF đơn lẻ. Trên Windows, được biểu diễn bởi CR+LF (mã 13 và 10, tức 0x0D 0x0A). Ký tự carriage return là mã 13 (0x0D, CR). Khi viết mã xử lý văn bản đa nền tảng, hãy luôn xử lý cả ký tự kết thúc dòng LF lẫn CR+LF."
+    },
+    {
+      "q": "Mã ASCII của ký tự khoảng trắng là gì?",
+      "a": "Ký tự khoảng trắng là mã ASCII 32 (0x20, SP). Đây là ký tự in được đầu tiên trong ASCII. Khoảng trắng không ngắt (dùng trong HTML là &nbsp;) không thuộc ASCII 7 bit chuẩn — có mã 160 (0xA0) trong ISO 8859-1 và UTF-8 (được mã hóa thành 0xC2 0xA0 trong UTF-8)."
+    },
+    {
+      "q": "Sự khác biệt giữa ASCII, UTF-8 và Unicode là gì?",
+      "a": "ASCII định nghĩa 128 ký tự với mã 7 bit. Unicode là tiêu chuẩn toàn cầu định nghĩa hơn 140.000 ký tự với điểm mã lên đến U+10FFFF. UTF-8 là mã hóa độ rộng biến đổi của Unicode: mã hóa ký tự ASCII (0–127) trong một byte đơn, khiến nó tương thích ngược với ASCII. Các ký tự trên 127 dùng 2–4 byte trong UTF-8. Các hệ thống văn bản hiện đại dùng UTF-8 hoặc UTF-16, nhưng ASCII vẫn quan trọng cho tiêu đề giao thức, định dạng file và hệ thống cũ."
+    },
+    {
+      "q": "Làm thế nào để tìm mã ASCII của ký tự trong JavaScript?",
+      "a": "Dùng charCodeAt(0): 'A'.charCodeAt(0) trả về 65. Đối với các điểm mã Unicode vượt quá 65535, dùng codePointAt(0). Để chuyển mã ngược lại thành ký tự: String.fromCharCode(65) trả về 'A'. Để hỗ trợ Unicode đầy đủ: String.fromCodePoint(128512) trả về emoji 😀."
+    },
+    {
+      "q": "Mã ASCII 0 (NUL) làm gì?",
+      "a": "NUL (mã 0) là ký tự null. Trong C và nhiều ngôn ngữ khác, nó được dùng làm ký tự kết thúc chuỗi — chuỗi 'Hello' được lưu trong bộ nhớ dưới dạng các byte 72, 101, 108, 108, 111, 0. Trong cơ sở dữ liệu và định dạng file, NUL có thể xuất hiện làm ký tự phân tách trường hoặc byte đệm. Trong hầu hết các trình soạn thảo văn bản và terminal, NUL không nhìn thấy được và bị bỏ qua, nhưng có thể gây vấn đề khi đọc file nhị phân dưới dạng văn bản."
+    },
+    {
+      "q": "Ký tự Escape (ASCII 27) là gì?",
+      "a": "ESC (mã 27, 0x1B) là ký tự Escape. Đây là khởi đầu của các chuỗi thoát ANSI/VT100, điều khiển màu sắc terminal và chuyển động con trỏ. Ví dụ, chuỗi ESC[31m thay đổi màu văn bản terminal thành màu đỏ. Trong nhiều ứng dụng, nhấn phím Escape sẽ gửi ký tự này. Nó cũng được dùng trong nhiều định dạng dữ liệu và giao thức truyền thông khác nhau."
+    },
+    {
+      "q": "Tại sao chữ hoa A có mã ASCII 65 và chữ thường a có mã 97?",
+      "a": "Bảng ASCII được thiết kế sao cho chữ hoa (A=65, B=66, ..., Z=90) và chữ thường (a=97, b=98, ..., z=122) chênh lệch đúng 32. Điều này cho phép chuyển đổi giữa chữ hoa và thường bằng một phép cộng hoặc trừ đơn giản. Để chuyển chữ hoa sang thường trong ASCII: cộng thêm 32 (hoặc đặt bit 5). Để chuyển chữ thường sang hoa: trừ đi 32 (hoặc xóa bit 5). Đó là lý do tại sao phép chuyển đổi chữ hoa/thường theo bit hoạt động trong C: char lower = upper | 0x20."
+    },
+    {
+      "q": "Sự khác biệt giữa CR, LF và CRLF là gì?",
+      "a": "CR (Carriage Return, mã 13) và LF (Line Feed, mã 10) có nguồn gốc từ quy ước máy đánh chữ và điện báo. CR di chuyển đầu in về đầu dòng; LF tiến sang dòng tiếp theo. Unix/Linux dùng chỉ LF cho dòng mới. Windows dùng CR+LF (cả hai cùng nhau). Mac OS cổ điển (trước OS X) chỉ dùng CR. Hầu hết bộ phân tích cú pháp hiện đại xử lý cả ba loại, nhưng việc trộn lẫn ký tự kết thúc dòng trong các file nguồn gây ra vấn đề với diff kiểm soát phiên bản và một số bộ xử lý văn bản."
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "title": "鍵盤按鍵代碼查詢 — keyCode, code, key 屬性",
+  "shortDescription": "按下任意鍵即可查看其JavaScript keyCode、code、key、which和charCode值，Web開發鍵盤事件處理必備工具。",
+  "description": "點擊偵測區域並按下任意鍵，即可查看JavaScript事件屬性：key、code、keyCode、which、charCode及修飾鍵狀態（Ctrl、Alt、Shift、Meta）。全部17個值即時更新，非常適合除錯鍵盤事件處理程式。",
+  "metaDescription": "免費鍵盤按鍵代碼查詢工具。按下任意鍵查看keyCode、code、key、which和charCode值，專為Web開發者設計。",
+  "keywords": ["鍵盤代碼查詢", "按鍵代碼", "javascript keyCode", "鍵盤事件", "which charCode"],
+  "zone": {
+    "label": "按鍵偵測區域 — 點擊此處後按任意鍵",
+    "prompt": "點擊此處，然後按任意鍵"
+  },
+  "key": {
+    "space": "空白鍵"
+  },
+  "label": {
+    "modifiers": "修飾鍵",
+    "none": "無"
+  },
+  "history": {
+    "title": "最近按鍵"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "JavaScript鍵盤事件：key、code與keyCode",
+        "paragraphs": [
+          "使用者按下鍵時，瀏覽器依序觸發三個事件：keydown、keypress和keyup。每個事件物件攜帶多個識別按鍵的屬性。最重要的有：key（字元或命名鍵，如「Enter」）、code（實體鍵位置，如「KeyA」或「ArrowLeft」）和keyCode（舊式整數，例如無論Shift狀態如何「A」始終回傳65）。",
+          "keyCode和which屬性在W3C UI Events規格中已被棄用，但在舊程式碼中仍被廣泛使用。現代應用程式應優先使用key（語意含義：鍵產生什麼）和code（實體位置：按下了哪個實體鍵）。例如，「A」鍵根據Shift狀態產生key='a'或key='A'，但code='KeyA'始終不變。"
+        ]
+      },
+      {
+        "heading": "鍵盤事件的location屬性",
+        "paragraphs": [
+          "location屬性用於區分鍵盤上存在多處的鍵：左Ctrl與右Ctrl、左Shift與右Shift、數字鍵盤數字鍵與頂排數字鍵。location值為：0（標準）、1（左側）、2（右側）、3（數字鍵盤）。這在偵測使用者按下數字鍵盤Enter鍵還是主鍵盤Enter鍵時特別有用。",
+          "修飾鍵（Ctrl、Alt、Shift、Meta）作為布林旗標在每個鍵盤事件中被追蹤，而不僅僅是這些鍵單獨按下時。這意味著即使主要監聽keyCode 67（C），也能偵測Ctrl+C組合。Meta鍵對應Windows鍵盤上的Windows鍵和Mac鍵盤上的Command鍵。"
+        ]
+      },
+      {
+        "heading": "鍵盤事件屬性的實際應用場景",
+        "paragraphs": [
+          "Web應用中的鍵盤快捷鍵使用code（實體鍵）和修飾旗標的組合來偵測Ctrl+S（儲存）或Ctrl+Shift+P（命令面板）等組合。使用code而非key可確保快捷鍵在不同鍵盤語言環境下正常運作——法語AZERTY鍵盤中「A」位置的鍵產生不同字元，但code始終是「KeyA」。",
+          "遊戲控制通常使用code來對應WASD或方向鍵，因為重要的是實體位置而非產生的字元。無障礙工具可能監聽Tab（code='Tab'）和Enter（code='Enter'），確保互動元素無需滑鼠即可啟動。此工具讓您在撰寫事件處理程式碼前快速查詢任意鍵的確切屬性值。"
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "點擊偵測區域", "text": "點擊或輕觸工具頂部的虛線框以聚焦。" },
+      { "name": "按下任意鍵", "text": "按下鍵盤上的任意鍵——字母、數字、功能鍵、方向鍵，或Enter和Escape等特殊鍵。" },
+      { "name": "讀取屬性值", "text": "所有JavaScript鍵盤事件屬性（key、code、keyCode、which、charCode、location、修飾鍵）立即顯示在區域下方。" },
+      { "name": "檢查修飾鍵組合", "text": "按住Ctrl、Alt、Shift或Meta的同時按鍵，查看修飾鍵旗標如何在「修飾鍵」列中變化。" }
+    ]
+  },
+  "faq": [
+    {
+      "q": "keyCode和key有什麼區別？",
+      "a": "keyCode是已棄用的整數屬性，為每個鍵分配一個數字（如「A」為65，Enter為13）。key是現代替代品，回傳產生的字元（「a」或「A」）或命名鍵字串（「Enter」、「ArrowLeft」）。新程式碼應使用key或code代替keyCode。"
+    },
+    {
+      "q": "code屬性是什麼？",
+      "a": "code識別按下的實體鍵，與鍵盤佈局或修飾鍵狀態無關。「KeyA」始終指QWERTY鍵盤上「A」位置的鍵，即使使用者切換到AZERTY佈局使該鍵產生「Q」也是如此。對於不依賴語言環境的鍵盤快捷鍵，請使用code。"
+    },
+    {
+      "q": "為什麼keyCode被棄用？",
+      "a": "keyCode在不同瀏覽器和作業系統中不一致，同一鍵可能回傳不同值，且對非ASCII字元處理不佳。W3C UI Events規格將其棄用，推薦使用key（字元/命名鍵）和code（實體位置）。keyCode和which現在在規格中都標記為舊式屬性。"
+    },
+    {
+      "q": "location值是什麼意思？",
+      "a": "location區分在多個位置出現的鍵。0=標準（主區域），1=左修飾鍵（如左Shift），2=右修飾鍵（如右Ctrl），3=數字鍵盤。這讓您能區分數字鍵盤5（code='Numpad5', location=3）和頂排5（code='Digit5', location=0）。"
+    },
+    {
+      "q": "如何在JavaScript中偵測Ctrl+S等快捷鍵？",
+      "a": "監聽keydown事件並同時檢查key/code和修飾旗標：`if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveDocument(); }`。使用e.key === 's'可以捕獲大寫和小寫兩種情況，因為修飾鍵狀態不會改變字母鍵的key值。"
+    },
+    {
+      "q": "charCode屬性是什麼？",
+      "a": "charCode由舊版keypress事件回傳，給出輸入字元的Unicode碼點（如「A」為65）。它現在與keypress事件本身一起被棄用。在keydown/keyup事件中，charCode始終為0。請改用key或input事件上的inputType。"
+    },
+    {
+      "q": "如何區分數字鍵盤和主鍵盤的Enter鍵？",
+      "a": "兩個鍵都產生key='Enter'，但code不同：主Enter鍵為code='Enter'且location=0，數字鍵盤Enter鍵為code='NumpadEnter'且location=3。對主鍵盤檢查e.code === 'Enter'，對數字鍵盤版本檢查e.code === 'NumpadEnter'。"
+    },
+    {
+      "q": "Meta鍵是什麼？",
+      "a": "Meta鍵是Windows鍵盤上的Windows鍵（⊞）和Mac鍵盤上的Command鍵（⌘）。在鍵盤事件中，它由metaKey布林旗標追蹤，單獨按下時產生key='Meta'。其code為「MetaLeft」或「MetaRight」。"
+    }
+  ]
+}

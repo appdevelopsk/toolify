@@ -1,0 +1,100 @@
+{
+  "title": "Unix File Permissions Calculator (chmod)",
+  "shortDescription": "Toggle read/write/execute checkboxes for owner, group, and other. Instantly see the octal value (755, 644…) and symbolic string (rwxr-xr-x).",
+  "description": "Interactive chmod calculator. Check or uncheck permission bits for owner, group, and other, then read the octal number and symbolic notation in real time. Or type an octal number to decode it back into individual bits.",
+  "metaDescription": "Free Unix permissions calculator. Toggle read/write/execute for owner/group/other and instantly get the octal value (755, 644) and symbolic string (rwxr-xr-x).",
+  "keywords": [
+    "unix permissions calculator",
+    "chmod calculator",
+    "octal permissions",
+    "file permissions linux",
+    "rwx permissions"
+  ],
+  "input.octal": "Octal value",
+  "input.symbolic": "Symbolic",
+  "label.owner": "Owner",
+  "label.group": "Group",
+  "label.other": "Other",
+  "label.read": "Read (r)",
+  "label.write": "Write (w)",
+  "label.execute": "Execute (x)",
+  "presets": "Common Presets",
+  "error.invalidOctal": "Enter 1–3 octal digits (0–7 only).",
+  "article": {
+    "sections": [
+      {
+        "heading": "The origin of octal notation in Unix permissions",
+        "paragraphs": [
+          "Unix file permissions were designed by Ken Thompson in 1969 as part of the original Unix on a PDP-7. Each file stores nine permission bits — three for the owner, three for the group, and three for everyone else — packed into a 16-bit inode field alongside the file type. Grouping each trio of bits into a single octal digit (0–7) was the natural choice: one digit per entity, three digits total. The octal convention was codified in POSIX.1-1988 and has remained unchanged in every Linux, macOS, BSD, and Unix-like system ever since.",
+          "The symbolic form (rwxr-xr-x) appeared in `ls -l` output from the earliest Unix distributions and became the human-readable complement to the octal number. POSIX defines both representations as normative, meaning any conforming system must support them. When you run `chmod u+x file` you're using the symbolic form; `chmod 755 file` uses the octal form. Both arrive at the exact same kernel operation: setting specific bits in the inode's mode field."
+        ]
+      },
+      {
+        "heading": "What read, write, and execute each mean",
+        "paragraphs": [
+          "For a regular file: read (r=4) lets the entity open and read the file's contents. Write (w=2) lets it modify or truncate the file. Execute (x=1) lets it run the file as a program. Each is independent — you can have a file that is read-only (r--) or write-only (-w-), though that last combination is unusual. The octal digit for each entity is the sum of the bits that are set: rwx = 4+2+1 = 7, r-x = 4+0+1 = 5, r-- = 4+0+0 = 4.",
+          "For a directory, the meanings shift. Read (r) lets you list the directory with `ls`. Execute (x) — sometimes called the search bit — lets you enter the directory with `cd` and access files inside it by name. Write (w) lets you create, delete, or rename files inside the directory. A directory with r but without x is nearly useless: you can see the filenames but cannot open any of them. Typical directories are 755 (owner can create files; group and others can only traverse and read)."
+        ]
+      },
+      {
+        "heading": "Common permission patterns and security considerations",
+        "paragraphs": [
+          "644 (rw-r--r--) is the standard for regular files like configs, HTML, and text: the owner can edit, everyone else can read. 755 (rwxr-xr-x) is standard for directories and executable scripts: the owner controls the contents, everyone else can traverse and read. 600 (rw-------) and 700 (rwx------) restrict access entirely to the owner — appropriate for SSH private keys, password files, and personal scripts. Never use 777 on anything exposed to the web; giving write access to \"other\" means any process on the system can overwrite the file.",
+          "The umask setting determines the default permissions applied to newly created files and directories. A umask of 022 (common on most systems) means new files get 644 and new directories get 755, because the umask bits are subtracted from 666 (file default) and 777 (directory default). Security-hardened systems often use umask 027 or 077, making new files readable only by the owner or not readable at all by group/others. Understanding both chmod values and umask together gives full control over your system's permission baseline."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Toggle permission checkboxes",
+        "text": "Click the read, write, or execute checkbox for owner, group, or other. The octal value and symbolic string update instantly."
+      },
+      {
+        "name": "Type an octal number to decode",
+        "text": "Click the octal input field and type any 1–3 digit octal number (0–7 per digit). The checkboxes update to show the decoded permission bits."
+      },
+      {
+        "name": "Use a preset",
+        "text": "Click one of the common preset buttons (755, 644, 600, 700, 777) to jump to a frequently-used permission set."
+      },
+      {
+        "name": "Copy the chmod command",
+        "text": "The chmod command at the bottom shows the exact syntax to apply these permissions. Replace 'filename' with your actual file or directory path."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "What does 755 mean?",
+      "a": "755 means the owner has read+write+execute (7=4+2+1), group has read+execute (5=4+1), and others have read+execute (5=4+1). It is the standard permission for directories and executable scripts: the owner can modify, everyone else can read and traverse."
+    },
+    {
+      "q": "What does 644 mean?",
+      "a": "644 means the owner has read+write (6=4+2), group has read-only (4), and others have read-only (4). It is the default for regular files like config files, web pages, and text documents."
+    },
+    {
+      "q": "Why does a directory need execute permission?",
+      "a": "For directories, the execute bit is the 'search' bit. Without it you cannot cd into the directory or open files inside it by path, even if you can list its contents with the read bit. A directory with read but not execute is nearly useless in practice."
+    },
+    {
+      "q": "What is the difference between owner, group, and other?",
+      "a": "Owner is the user account that owns the file (set at creation or changed with chown). Group is the group assigned to the file (changed with chgrp); any user in that group gets the group permissions. Other covers every user on the system who is neither the owner nor in the group."
+    },
+    {
+      "q": "What are SUID and SGID?",
+      "a": "SUID (Set User ID) and SGID (Set Group ID) are special permission bits beyond the standard nine. When SUID is set on an executable, it runs with the file owner's privileges rather than the caller's — used by commands like passwd and sudo. SGID on a directory makes new files inherit the directory's group. These are represented by an 's' in the symbolic form (e.g., rwsr-xr-x) and add 4000 or 2000 to the octal value (e.g., 4755)."
+    },
+    {
+      "q": "Is chmod 777 dangerous?",
+      "a": "Yes, especially on a shared system or web server. 777 grants full read, write, and execute to every user on the machine. Any other process — including compromised web applications — can overwrite or execute the file. On web servers this often enables arbitrary code execution. Limit permissions to only what is necessary."
+    },
+    {
+      "q": "How do I use the chmod command?",
+      "a": "Use `chmod OCTAL path` for a single file, or `chmod -R OCTAL directory` to recursively apply to all files inside a directory. For example: `chmod 644 index.html` or `chmod 755 /var/www`. You can also use symbolic syntax: `chmod u+x script.sh` adds execute permission for the owner without touching the other bits."
+    },
+    {
+      "q": "What is umask and how does it relate to permissions?",
+      "a": "umask is a mask applied to the default permissions whenever a new file or directory is created. A umask of 022 removes write permission from group and other, so new files get 644 and new directories get 755. Run `umask` in your shell to see the current setting, and `umask VALUE` to change it for the current session."
+    }
+  ]
+}

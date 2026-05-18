@@ -1,0 +1,83 @@
+{
+  "title": "CSS Color Name Finder — Nearest Named Color from Hex",
+  "shortDescription": "Enter any hex color to find the closest CSS named color. See the 5 nearest named colors with their exact hex values and distance score.",
+  "description": "Enter a hex color code or use the color picker to find the closest CSS4 named color. The tool compares your color against all 148 standard CSS named colors using perceptual color distance and ranks the 5 nearest matches. Perfect for finding readable color names for code and documentation.",
+  "metaDescription": "Free CSS color name finder. Enter any hex color to find the nearest CSS named colors. See exact hex values and perceptual distance for the top 5 matches.",
+  "keywords": ["css color name finder", "nearest color name", "hex to color name", "color name from hex", "css named colors"],
+  "input": {
+    "picker": "Color picker",
+    "hex": "Hex color"
+  },
+  "error": {
+    "invalid": "Please enter a valid hex color (e.g. #3B82F6)."
+  },
+  "result": {
+    "exact": "Exact match found:",
+    "nearest": "5 nearest CSS named colors:"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "CSS named colors: a brief history",
+        "paragraphs": [
+          "CSS named colors have evolved through several specification versions. The original CSS 1 (1996) defined just 16 basic colors: aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, purple, red, silver, teal, white, and yellow. CSS 2 added orange. CSS 3 expanded the list to 147 colors based on the X11 color list, which itself traces back to the X Window System color database maintained at MIT in the 1980s.",
+          "CSS Color Level 4 added one more name: rebeccapurple (#663399). This color was added to honor Rebecca Alissa Meyer, daughter of web developer Eric Meyer, who died of brain cancer in 2014 at age 6. Her favorite color was purple, and the CSS working group voted to include her name in the standard as a memorial. With this addition, the CSS4 specification defines exactly 148 named colors, the full set this tool searches across."
+        ]
+      },
+      {
+        "heading": "How color distance is calculated",
+        "paragraphs": [
+          "Simply comparing RGB values with Euclidean distance does not match human perception well — our eyes are more sensitive to differences in green than in blue, and the sensitivity changes across the brightness range. This tool uses a weighted Euclidean formula based on the 'Colour metric' by Thiadmer Riemersma, which adjusts the weights of the R, G, and B channels based on the mean red value. The result is much closer to how humans actually perceive color differences.",
+          "The formula uses: ΔE = √[(2 + R̄/256)·ΔR² + 4·ΔG² + (2 + (255-R̄)/256)·ΔB²], where R̄ is the average red component of the two colors. This is a simplified perceptual metric — professional color science uses CIELAB ΔE calculations that account for lightness, chroma, and hue separately, but for practical naming purposes the simplified metric gives intuitive results for most colors."
+        ]
+      },
+      {
+        "heading": "When to use named colors in CSS",
+        "paragraphs": [
+          "Named colors are most useful for quick prototyping, code readability, and debugging. Writing `color: tomato` is faster to type and easier to remember than `color: #FF6347`. They are also useful in educational contexts, data visualization (where a semantic name helps communicate meaning), and in design systems where a limited set of named colors forms the palette. The W3C recommends using named colors in examples and tutorials to improve readability.",
+          "For production design systems, named colors are rarely the primary palette — custom hex values, HSL, or design token names are preferred. However, knowing the nearest named color to a custom value is useful for documentation, color commentary in code reviews, and when you want a quick approximate name to communicate about a color verbally. This tool bridges the gap by finding the CSS name that best describes any arbitrary hex color."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enter or pick a color", "text": "Use the color picker or type any hex code (with or without the # prefix) into the input field." },
+      { "name": "Read the nearest matches", "text": "The tool shows the 5 closest CSS named colors ranked by perceptual distance. The first result is the best match." },
+      { "name": "Check exact vs approximate", "text": "If your color is an exact CSS named color, a special 'Exact match' message appears. Otherwise, you see the nearest alternatives." },
+      { "name": "Use in your code", "text": "Click the color name to use it directly in your CSS — or take the exact hex value shown next to each swatch for precise color control." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "How many CSS named colors are there?",
+      "a": "CSS Color Level 4 defines 148 named colors. This includes the original 16 basic colors from CSS 1, orange from CSS 2, 130 X11-based colors from CSS 3, and rebeccapurple added in CSS 4 to honor Rebecca Meyer. Note that aqua and cyan are aliases (same hex #00FFFF), as are fuchsia and magenta (#FF00FF)."
+    },
+    {
+      "q": "Are CSS color names case-sensitive?",
+      "a": "No. CSS color names are case-insensitive according to the specification. 'Red', 'RED', 'red', and 'rEd' all refer to the same color. By convention, lowercase is the most common style in modern CSS."
+    },
+    {
+      "q": "What is rebeccapurple?",
+      "a": "rebeccapurple (#663399) was added to CSS Color Level 4 in memory of Rebecca Alissa Meyer, daughter of CSS expert Eric Meyer, who died of brain cancer in 2014 at age 6. Her favorite color was purple, and the CSS working group memorialized her by naming the color after her. It was the only color added in CSS 4 and the first new named color since CSS 2."
+    },
+    {
+      "q": "Why don't CSS named colors cover every possible color?",
+      "a": "The 148 named colors are a curated set based on historical X11 color lists. They cover common hues but leave many colors unnamed — there is no CSS name for most shades of blue-green, pink-orange, or brown-red. For precise design work, hex codes, rgb(), or hsl() are used instead."
+    },
+    {
+      "q": "What is the difference between gray and grey in CSS?",
+      "a": "Both spellings are accepted in CSS. 'gray' is the official American English spelling in the spec, but 'grey' (British English) is also a valid synonym for the same color (#808080). Similarly, both 'lightgray' and 'lightgrey' are valid, as are 'darkgray'/'darkgrey', 'dimgray'/'dimgrey', 'slategray'/'slategrey', and 'darkslategray'/'darkslategrey'."
+    },
+    {
+      "q": "How accurate is the nearest color match?",
+      "a": "The matching uses a perceptual distance formula that weights RGB channels by human eye sensitivity. For most everyday colors — saturated reds, blues, greens — the nearest named color will feel intuitively correct. For very muted, dark, or brownish colors, human perception is more variable and the 'nearest' named color may feel subjectively off. The distance score (Δ) shown helps you judge how close the match is — smaller is better."
+    },
+    {
+      "q": "Can I use this to find accessible color names for alt text?",
+      "a": "Yes. This tool is useful for writing color names in alt text, documentation, or design commentary. If you need to describe a UI element's color to a reader who cannot see it, the nearest CSS named color gives a broadly recognizable name. For highly specific shades, combine the CSS name with a modifier (e.g., 'dark teal' for #008080)."
+    },
+    {
+      "q": "Which hex colors have exact CSS name matches?",
+      "a": "Any of the 148 standard CSS named colors will produce an exact match. Common examples: red = #FF0000, blue = #0000FF, white = #FFFFFF, black = #000000, coral = #FF7F50, tomato = #FF6347, skyblue = #87CEEB. You can check any hex by entering it and looking for the 'Exact match' message."
+    }
+  ]
+}

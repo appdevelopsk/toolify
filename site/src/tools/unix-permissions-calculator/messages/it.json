@@ -1,0 +1,100 @@
+{
+  "title": "Calcolatore Permessi Unix (chmod)",
+  "shortDescription": "Attiva i permessi di lettura/scrittura/esecuzione per proprietario, gruppo e altri. Ottieni subito il valore ottale (755, 644…) e la notazione simbolica (rwxr-xr-x).",
+  "description": "Calcolatore chmod interattivo. Spunta o deseleziona i bit di permesso per proprietario, gruppo e altri, e leggi il numero ottale e la notazione simbolica in tempo reale. Oppure digita un numero ottale per decodificarlo.",
+  "metaDescription": "Calcolatore gratuito di permessi Unix. Alterna lettura/scrittura/esecuzione per proprietario/gruppo/altri e ottieni subito il valore ottale (755, 644) e la notazione",
+  "keywords": [
+    "calcolatore permessi unix",
+    "calcolatore chmod",
+    "permessi ottali",
+    "permessi file linux",
+    "permessi rwx"
+  ],
+  "input.octal": "Valore ottale",
+  "input.symbolic": "Simbolico",
+  "label.owner": "Proprietario",
+  "label.group": "Gruppo",
+  "label.other": "Altri",
+  "label.read": "Lettura (r)",
+  "label.write": "Scrittura (w)",
+  "label.execute": "Esecuzione (x)",
+  "presets": "Valori predefiniti",
+  "error.invalidOctal": "Inserisci da 1 a 3 cifre ottali (solo 0–7).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Origine della notazione ottale nei permessi Unix",
+        "paragraphs": [
+          "I permessi di file Unix furono progettati da Ken Thompson nel 1969 come parte dell'Unix originale su un PDP-7. Ogni file memorizza nove bit di permesso nel suo inode: tre per il proprietario, tre per il gruppo e tre per tutti gli altri. Raggruppare ogni trio di bit in una singola cifra ottale (0–7) fu la scelta naturale: una cifra per entità, tre cifre in totale. Questa convenzione ottale fu codificata in POSIX.1-1988 e rimane invariata in tutti i sistemi Linux, macOS, BSD e derivati da Unix.",
+          "La forma simbolica (rwxr-xr-x) apparve nell'output di `ls -l` fin dalle prime distribuzioni Unix e divenne il complemento leggibile del numero ottale. POSIX definisce entrambe le rappresentazioni come normative. `chmod u+x file` usa la forma simbolica; `chmod 755 file` usa la forma ottale. Entrambi portano alla stessa operazione nel kernel: impostare bit specifici nel campo mode dell'inode."
+        ]
+      },
+      {
+        "heading": "Significato di ogni bit di permesso",
+        "paragraphs": [
+          "Per un file regolare: lettura (r=4) consente di aprire e leggere il contenuto; scrittura (w=2) consente di modificare o troncare il file; esecuzione (x=1) consente di eseguirlo come programma. Ogni bit è indipendente. La cifra ottale di ciascuna entità è la somma dei bit impostati: rwx=7, r-x=5, r--=4.",
+          "Per una directory, i significati cambiano. La lettura (r) consente di elencare la directory con `ls`. L'esecuzione (x) — il 'bit di ricerca' — consente di entrarvi con `cd` e accedere ai file per nome. La scrittura (w) consente di creare, eliminare o rinominare file nella directory. Una directory con lettura ma senza esecuzione è quasi inutile: si vedono i nomi ma non si può aprire nessun file. Le directory tipiche hanno permessi 755."
+        ]
+      },
+      {
+        "heading": "Schemi di permessi comuni e sicurezza",
+        "paragraphs": [
+          "644 (rw-r--r--) è lo standard per file di configurazione, HTML e testo: il proprietario può modificare, gli altri possono solo leggere. 755 (rwxr-xr-x) è lo standard per directory e script eseguibili: il proprietario gestisce il contenuto, gli altri possono navigare e leggere. 600 (rw-------) e 700 (rwx------) limitano l'accesso al solo proprietario — adatti per chiavi private SSH e file di password. Non usare mai 777 su nulla esposto sul web; dare la scrittura ad 'altri' significa che qualsiasi processo del sistema può sovrascrivere il file.",
+          "La umask determina i permessi predefiniti di nuovi file e directory. Una umask di 022 (comune sulla maggior parte dei sistemi) fa sì che i nuovi file ottengano 644 e le nuove directory 755, poiché i bit della umask vengono sottratti dal valore predefinito 666 (file) e 777 (directory). I sistemi con sicurezza rafforzata usano spesso umask 027 o 077."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Attiva le caselle di permesso",
+        "text": "Clicca sulle caselle lettura, scrittura o esecuzione per proprietario, gruppo o altri. Il valore ottale e la stringa simbolica si aggiornano immediatamente."
+      },
+      {
+        "name": "Digita un numero ottale per decodificarlo",
+        "text": "Clicca nel campo ottale e digita un numero da 1 a 3 cifre (0–7 per cifra). Le caselle si aggiornano mostrando i bit di permesso decodificati."
+      },
+      {
+        "name": "Usa un valore predefinito",
+        "text": "Clicca su uno dei pulsanti predefiniti (755, 644, 600, 700, 777) per passare a un set di permessi di uso comune."
+      },
+      {
+        "name": "Copia il comando chmod",
+        "text": "Il comando chmod in fondo mostra la sintassi esatta per applicare questi permessi. Sostituisci 'filename' con il percorso reale del tuo file o directory."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Cosa significa 755?",
+      "a": "755 significa che il proprietario ha lettura+scrittura+esecuzione (7=4+2+1), il gruppo ha lettura+esecuzione (5=4+1) e gli altri hanno lettura+esecuzione (5=4+1). È il permesso standard per directory e script eseguibili."
+    },
+    {
+      "q": "Cosa significa 644?",
+      "a": "644 significa che il proprietario ha lettura+scrittura (6=4+2), il gruppo ha sola lettura (4) e gli altri hanno sola lettura (4). È il valore predefinito per file regolari come configurazioni, pagine web e documenti di testo."
+    },
+    {
+      "q": "Perché una directory ha bisogno del permesso di esecuzione?",
+      "a": "Per le directory, il bit di esecuzione è il 'bit di ricerca'. Senza di esso non è possibile fare cd nella directory né aprire file al suo interno tramite percorso, anche se si ha il bit di lettura. Una directory con lettura ma senza esecuzione è praticamente inutile."
+    },
+    {
+      "q": "Qual è la differenza tra proprietario, gruppo e altri?",
+      "a": "Il proprietario è l'account utente che possiede il file (impostato alla creazione o modificato con chown). Il gruppo è il gruppo assegnato al file (modificato con chgrp); qualsiasi utente in quel gruppo riceve i permessi del gruppo. Gli altri comprendono tutti gli utenti del sistema che non sono né il proprietario né nel gruppo."
+    },
+    {
+      "q": "Cosa sono SUID e SGID?",
+      "a": "SUID (Set User ID) e SGID (Set Group ID) sono bit di permesso speciali oltre ai nove standard. Con SUID su un eseguibile, questo viene eseguito con i privilegi del proprietario del file anziché del chiamante — usato da comandi come passwd e sudo. SGID su una directory fa ereditare il gruppo della directory ai nuovi file. Nella forma simbolica appare come 's' (es. rwsr-xr-x) e aggiunge 4000 o 2000 al valore ottale (es. 4755)."
+    },
+    {
+      "q": "chmod 777 è pericoloso?",
+      "a": "Sì, soprattutto su un sistema condiviso o server web. 777 concede lettura, scrittura ed esecuzione complete a tutti gli utenti del sistema. Qualsiasi processo — incluse applicazioni web compromesse — può sovrascrivere o eseguire il file. Sui server web questo spesso abilita l'esecuzione di codice arbitrario. Limita i permessi al minimo necessario."
+    },
+    {
+      "q": "Come si usa il comando chmod?",
+      "a": "Usa `chmod OTTALE percorso` per un singolo file, o `chmod -R OTTALE directory` per applicarlo ricorsivamente. Ad esempio: `chmod 644 index.html` o `chmod 755 /var/www`. Puoi anche usare la sintassi simbolica: `chmod u+x script.sh` aggiunge l'esecuzione al proprietario senza toccare gli altri bit."
+    },
+    {
+      "q": "Cos'è umask e come si relaziona ai permessi?",
+      "a": "umask è una maschera applicata ai permessi predefiniti quando si crea un nuovo file o directory. Una umask di 022 rimuove la scrittura da gruppo e altri, così i nuovi file ottengono 644 e le nuove directory 755. Esegui `umask` nella shell per vedere l'impostazione attuale e `umask VALORE` per modificarla nella sessione corrente."
+    }
+  ]
+}

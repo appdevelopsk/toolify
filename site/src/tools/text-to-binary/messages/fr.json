@@ -1,0 +1,100 @@
+{
+  "title": "Convertisseur Texte en Binaire — Encoder et Décoder",
+  "shortDescription": "Convertissez du texte en code binaire ou du binaire en texte lisible. Prend en charge la sortie séparée par espaces, sauts de ligne ou continue. Inversez l'encodage et le décodage en un clic.",
+  "description": "Saisissez n'importe quel texte pour le convertir en binaire (0 et 1), ou collez du code binaire pour le décoder en texte. Chaque caractère est converti selon sa valeur ASCII/Unicode. Choisissez une sortie séparée par espaces, sauts de ligne ou continue. Le bouton Inverser permet d'annuler immédiatement la dernière conversion.",
+  "metaDescription": "Convertisseur gratuit texte en binaire. Encodez du texte en 0 et 1 ou décodez du binaire en texte. Séparation par espaces ou continue. Sans téléchargement.",
+  "keywords": ["texte en binaire", "binaire en texte", "convertisseur binaire", "encoder binaire", "ASCII binaire"],
+  "mode": {
+    "encode": "Text → Binary",
+    "decode": "Binary → Text"
+  },
+  "separator": {
+    "label": "Séparateur",
+    "space": "Espace",
+    "newline": "Saut de ligne",
+    "none": "Aucun"
+  },
+  "label": {
+    "inputText": "Texte d'entrée",
+    "inputBinary": "Entrée binaire",
+    "outputBinary": "Sortie binaire",
+    "outputText": "Texte décodé"
+  },
+  "placeholder": {
+    "text": "Tapez ou collez du texte ici…",
+    "binary": "Collez le code binaire ici (ex. 01001000 01100101 01101100 01101100 01101111)"
+  },
+  "action": {
+    "copy": "Copier",
+    "swap": "Inverser"
+  },
+  "stat": {
+    "encoded": "{chars} caractères → {bytes} octets",
+    "decoded": "{chars} caractères décodés"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionne la conversion texte en binaire",
+        "paragraphs": [
+          "Chaque caractère dans un ordinateur est stocké sous forme de nombre. Pour du texte ASCII standard, la lettre « A » correspond au nombre 65, « B » à 66, le minuscule « a » à 97, un espace à 32, et ainsi de suite. Pour convertir du texte en binaire, cet outil recherche la valeur numérique (point de code ASCII/Unicode) de chaque caractère, puis écrit ce nombre en base 2 (binaire), complété à 8 chiffres. Par exemple : « H » = 72 décimal = 01001000 binaire, « e » = 101 décimal = 01100101 binaire, « l » = 108 décimal = 01101100 binaire.",
+          "Le processus inverse (binaire en texte) lit des groupes de 8 bits, convertit chacun de la base 2 en nombre décimal, puis recherche le caractère correspondant à ce point de code. Si vous collez du binaire séparé par des espaces (comme 01001000 01100101), l'outil divise sur les espaces. Si vous collez du binaire continu (comme 0100100001100101), il regroupe automatiquement en blocs de 8 bits. Chaque groupe de 8 bits doit contenir exactement 8 uns et zéros — sinon l'outil affiche une erreur identifiant l'octet invalide."
+        ]
+      },
+      {
+        "heading": "Binaire vs hexadécimal pour la représentation des données",
+        "paragraphs": [
+          "Le binaire (base 2) n'utilise que 0 et 1, ce qui en fait la représentation la plus fondamentale des données numériques — il reflète directement la façon dont les bits sont stockés dans la mémoire de l'ordinateur. Cependant, il est verbeux : un seul caractère ASCII nécessite 8 chiffres. L'hexadécimal (base 16, utilisant les chiffres 0–9 et A–F) est plus compact : chaque chiffre hexadécimal représente exactement 4 chiffres binaires (un quartet), donc un octet devient seulement 2 chiffres hexadécimaux. « H » = 0x48 en hex vs 01001000 en binaire.",
+          "La représentation binaire est la plus utile lorsque vous avez besoin de voir ou de manipuler des bits individuels — par exemple, vérifier des indicateurs dans un masque de bits, comprendre comment les points de code Unicode s'encodent en octets UTF-8, ou analyser les structures de paquets réseau au niveau des bits. Pour la plupart des tâches d'inspection de données, l'hexadécimal offre un bon équilibre entre compacité et lisibilité. De nombreux débogueurs, éditeurs hexadécimaux et analyseurs de protocoles affichent les données en hex, avec une vue binaire optionnelle pour le travail au niveau des bits."
+        ]
+      },
+      {
+        "heading": "Au-delà de l'ASCII : Unicode et caractères multi-octets",
+        "paragraphs": [
+          "L'ASCII standard ne couvre que 128 caractères (7 bits, codes 0–127), suffisant pour le texte anglais mais pas pour les caractères accentués, les écritures non latines ou les emojis. Le texte moderne est encodé en Unicode, qui définit plus de 140 000 caractères. Cet outil utilise la méthode intégrée charCodeAt() de JavaScript, qui renvoie l'unité de code UTF-16 pour chaque caractère. Pour les caractères latins de base, cela équivaut au point de code Unicode, qui équivaut également au code ASCII.",
+          "Pour les caractères non ASCII tels que « é » (233), « ñ » (241), « 中 » (20013) ou « 😀 » (128512, qui utilise une paire de substitution UTF-16), la représentation binaire sera plus longue ou divisée différemment. Si vous avez besoin d'un encodage binaire correspondant à la façon dont UTF-8 stocke réellement les octets sur disque, vous devrez d'abord encoder la chaîne en UTF-8, puis convertir chaque octet résultant en binaire. Pour la plupart des objectifs éducatifs et de puzzles d'encodage, l'approche par caractère utilisée ici est standard."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Encoder du texte en binaire", "text": "Sélectionnez le mode Text → Binary, tapez ou collez votre texte dans la boîte de gauche, et la sortie binaire apparaît instantanément à droite. Choisissez votre séparateur préféré : Espace place chaque octet dans un groupe séparé par des espaces, Saut de ligne place chaque octet sur sa propre ligne, Aucun produit une chaîne continue de 0 et de 1." },
+      { "name": "Décoder du binaire en texte", "text": "Sélectionnez le mode Binary → Text, collez votre chaîne binaire (séparée par espaces ou continue) dans la boîte de gauche, et le texte décodé apparaît à droite. Si un groupe de 8 bits est invalide, un message d'erreur identifie l'octet problématique." },
+      { "name": "Inverser l'encodage et le décodage", "text": "Cliquez sur le bouton Inverser pour déplacer la sortie actuelle vers l'entrée et changer automatiquement de mode — utile pour vérifier rapidement une conversion aller-retour." },
+      { "name": "Copier le résultat", "text": "Cliquez sur Copier pour mettre le binaire ou le texte décodé dans votre presse-papiers pour l'utiliser dans une autre application." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Comment convertir du texte en binaire ?",
+      "a": "Chaque caractère du texte est converti en son code numérique ASCII ou Unicode, qui est ensuite écrit en binaire (base 2) complété à 8 bits. Par exemple : « A » = 65 décimal = 01000001 binaire. « Hello » devient 01001000 01100101 01101100 01101100 01101111. Cet outil gère la conversion automatiquement — tapez simplement votre texte dans la boîte de gauche avec le mode Text → Binary sélectionné."
+    },
+    {
+      "q": "Comment convertir du binaire en texte ?",
+      "a": "Sélectionnez le mode Binary → Text et collez votre chaîne binaire. Le binaire doit être en groupes de 8 bits (octets). S'il est séparé par des espaces, chaque groupe délimité par des espaces est un octet. S'il est continu (sans espaces), l'outil regroupe chaque 8 chiffres comme un octet. Chaque octet est converti du binaire en nombre, puis recherché comme caractère ASCII/Unicode."
+    },
+    {
+      "q": "Pourquoi chaque groupe binaire fait-il 8 chiffres de long ?",
+      "a": "Un octet est 8 bits, et ASCII utilise des codes à 7 bits (0–127). Par convention, les codes ASCII sont stockés dans un octet complet de 8 bits avec un zéro initial, ce qui rend toutes les entrées exactement 8 chiffres binaires. Cela rend l'analyse non ambiguë : chaque 8 chiffres = un caractère. Certaines représentations plus anciennes utilisent l'ASCII à 7 bits (sans le zéro initial), mais l'encodage à 8 bits est la norme moderne."
+    },
+    {
+      "q": "Quel est le binaire des caractères courants ?",
+      "a": "Espace = 00100000, « A » = 01000001, « a » = 01100001, « 0 » = 00110000, Entrée/saut de ligne (LF) = 00001010, point « . » = 00101110. Le schéma est facile à repérer : les lettres majuscules commencent par 010, les minuscules par 011, et les chiffres commencent par 0011."
+    },
+    {
+      "q": "Cet outil peut-il gérer des caractères non anglais ?",
+      "a": "Oui, pour les caractères avec des points de code Unicode inférieurs à 65 536 (la plupart des caractères latins, grecs, cyrilliques, CJK, arabes, hébreux, etc.). Chaque caractère est converti en son point de code Unicode en binaire. Cependant, comme les caractères supérieurs à 127 nécessitent plus de 8 bits, ils produiront des groupes binaires plus longs que 8 chiffres. Pour les emojis et autres caractères au-dessus de U+FFFF, JavaScript les divise en paires de substitution, ce qui peut produire des résultats inattendus."
+    },
+    {
+      "q": "Que fait le bouton Inverser ?",
+      "a": "Inverser prend la sortie actuelle (la chaîne binaire lors de l'encodage, ou le texte lors du décodage) et la déplace dans la boîte d'entrée, tout en basculant le mode dans la direction opposée. Cela vous permet de vérifier instantanément un aller-retour : encodez du texte, cliquez sur Inverser et vérifiez que vous obtenez le texte original. C'est également utile pour explorer ce que les chaînes binaires encodent."
+    },
+    {
+      "q": "Le binaire est-il identique au code Morse ?",
+      "a": "Non. Le binaire utilise exactement 8 bits (0 et 1) pour représenter chaque caractère par sa valeur numérique ASCII/Unicode. Le code Morse utilise des points et des tirets de longueur variable pour représenter des lettres et des chiffres, avec des séquences basées sur la fréquence des lettres en anglais (les lettres courantes comme E et T ont des codes plus courts). Les deux systèmes sont des schémas d'encodage complètement différents, bien que tous deux représentent le texte comme une série de symboles."
+    },
+    {
+      "q": "En quoi le binaire diffère-t-il de Base64 ?",
+      "a": "Le binaire montre le schéma de bits réel de chaque caractère — les bits bruts stockés en mémoire. Base64 est un encodage de niveau supérieur qui convertit des données binaires arbitraires (n'importe quel fichier ou séquence d'octets) en une chaîne de texte ASCII sécurisée utilisant 64 caractères imprimables. Base64 est utilisé lorsque vous avez besoin d'intégrer des données binaires dans des contextes qui n'acceptent que du texte (comme les pièces jointes d'e-mail ou les URIs de données). La représentation binaire est destinée à l'inspection humaine des schémas de bits ; Base64 est destiné au transfert et au stockage de données."
+    }
+  ]
+}

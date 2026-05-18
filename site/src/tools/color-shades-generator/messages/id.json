@@ -1,0 +1,102 @@
+{
+  "title": "Generator Gradasi Warna — Gaya Tailwind CSS",
+  "shortDescription": "Buat 11 tint dan shade (50–950) untuk warna apa pun bergaya skala Tailwind CSS. Klik shade mana saja untuk menyalin kode hex-nya atau ekspor semua sebagai CSS custom properties.",
+  "description": "Pilih warna dasar apa pun untuk langsung menghasilkan palet 11 langkah yang lengkap (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950), sesuai skala yang digunakan Tailwind CSS dan Material Design. Setiap shade menampilkan penilaian kontras WCAG terhadap teks putih atau hitam. Klik sampel warna untuk menyalin kode hex-nya, atau klik Salin CSS untuk mengekspor semua shade sebagai CSS custom properties.",
+  "metaDescription": "Generator gradasi warna gratis. Masukkan hex warna apa pun untuk mendapatkan 11 shade pada skala Tailwind CSS. Salin kode hex atau variabel CSS. Rating kontras WCAG",
+  "keywords": [
+    "generator gradasi warna",
+    "tint warna",
+    "palet Tailwind",
+    "variabel CSS warna",
+    "skala warna"
+  ],
+  "input": {
+    "picker": "Pemilih Warna",
+    "hex": "Kode Hex"
+  },
+  "action": {
+    "copyCSS": "Salin CSS",
+    "copied": "Tersalin!",
+    "clickCopy": "Klik untuk menyalin kode hex"
+  },
+  "error": {
+    "invalid": "Masukkan warna hex 6 digit yang valid (contoh: #3B82F6)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara kerja skala gradasi warna",
+        "paragraphs": [
+          "Skala gradasi warna adalah serangkaian variasi yang lebih terang dan lebih gelap dari warna dasar secara sistematis, digunakan untuk menciptakan hierarki visual dan kontras yang aksesibel dalam desain UI. Konvensi Tailwind CSS menggunakan 11 langkah bernomor 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, dan 950. Angka lebih kecil berarti lebih terang (kecerahan lebih tinggi dalam HSL), sedangkan angka lebih besar berarti lebih gelap. Langkah 500 biasanya mendekati warna dasar yang dimasukkan.",
+          "Alat ini menghasilkan shade dengan mengonversi hex input ke HSL (Hue, Saturation, Lightness), mempertahankan hue dan saturation sambil memetakan setiap langkah ke nilai kecerahan yang sudah ditentukan. Langkah 50 dipetakan ke sekitar 97% kecerahan (mendekati putih), langkah 500 ke sekitar 52% (rentang tengah), dan langkah 950 ke sekitar 12% (mendekati hitam). Pendekatan ini menghasilkan palet yang konsisten secara visual dan mempertahankan karakter warna di semua tingkat kecerahan."
+        ]
+      },
+      {
+        "heading": "Rating kontras WCAG dalam palet",
+        "paragraphs": [
+          "Setiap shade dalam palet menampilkan rating kontras WCAG (Pedoman Aksesibilitas Konten Web) terhadap teks hitam atau putih — mana pun yang lebih mudah dibaca. Rating tersebut adalah: AAA (rasio kontras ≥ 7:1, aksesibilitas terbaik), AA (≥ 4,5:1, wajib untuk teks normal), AA Large (≥ 3:1, dapat diterima hanya untuk teks besar dan komponen UI), dan Fail (< 3:1, tidak memadai untuk teks). Kepatuhan WCAG 2.1 AA merupakan persyaratan hukum minimum untuk aksesibilitas di banyak yurisdiksi.",
+          "Saat membangun UI dengan palet warna, gunakan shade dengan rating AA atau AAA untuk teks pada latar belakang tersebut. Biasanya, shade 50–300 memiliki kontras kuat dengan teks gelap, sedangkan shade 700–950 memiliki kontras kuat dengan teks putih. Shade tengah (400–600) sering masuk kategori AA Large atau Fail untuk teks kecil, sehingga cocok untuk elemen dekoratif, border, atau latar belakang di belakang teks putih besar, tetapi tidak untuk teks isi kecil."
+        ]
+      },
+      {
+        "heading": "Menggunakan palet di CSS dan design system",
+        "paragraphs": [
+          "Tombol Salin CSS mengekspor palet Anda sebagai CSS custom properties (variabel CSS) dalam blok :root, siap ditempelkan ke stylesheet Anda. Misalnya, variabel blue-500 menjadi --color-500: #3b82f6 (atau warna yang Anda pilih). Anda dapat mengganti nama prefiks variabel agar sesuai dengan proyek Anda: --brand-500, --primary-500, --blue-500, dll. CSS custom properties bersifat cascade dan dapat ditimpa per komponen atau tema.",
+          "Design system seperti Tailwind CSS, Material Design, Ant Design, dan Chakra UI semuanya menggunakan skala shade bernomor untuk sistem warna mereka. Memiliki skala yang konsisten memungkinkan Anda membuat pilihan dengan percaya diri: gunakan 50 untuk latar belakang hover, 100 untuk status aktif di tema terang, 500 untuk tombol utama, 700 untuk status hover pada tombol, dan 900 untuk latar belakang gelap. Menjaga semua warna merek pada skala bernomor yang sama menciptakan prediktabilitas dan mengurangi keputusan desain di tingkat komponen."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Pilih warna dasar Anda",
+        "text": "Gunakan pemilih warna untuk memilih warna secara visual, atau ketik kode hex 6 digit (seperti #3B82F6) di input hex. Palet 11 langkah langsung dibuat."
+      },
+      {
+        "name": "Baca rating WCAG",
+        "text": "Setiap shade menampilkan rating kontras WCAG (AAA, AA, AA Large, atau Fail). Gunakan shade yang dinilai AA atau AAA untuk teks dan elemen interaktif guna memenuhi persyaratan aksesibilitas."
+      },
+      {
+        "name": "Salin shade individual",
+        "text": "Klik sampel shade mana pun untuk menyalin kode hex ke clipboard. Tanda centang mengonfirmasi penyalinan."
+      },
+      {
+        "name": "Ekspor sebagai variabel CSS",
+        "text": "Klik Salin CSS untuk mendapatkan semua 11 shade sebagai CSS custom properties dalam blok :root, siap ditempelkan ke stylesheet atau design system Anda."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apa arti nomor shade (50–950)?",
+      "a": "Angka-angka mengikuti konvensi skala warna Tailwind CSS. Angka lebih kecil berarti lebih terang: 50 hampir putih, 100 sangat terang, 200 dan 300 adalah tint terang. Tengah (500) adalah nilai sedang yang mendekati warna asli. Angka lebih besar berarti lebih gelap: 700 gelap, 900 sangat gelap, 950 hampir hitam. Skalanya tidak linier — dirancang agar ukuran langkah terasa merata secara perseptual di seluruh rentang."
+    },
+    {
+      "q": "Apa perbedaan antara tint dan shade?",
+      "a": "Tint adalah warna yang dicampur dengan putih sehingga menjadi lebih terang. Shade adalah warna yang dicampur dengan hitam sehingga menjadi lebih gelap. Dalam istilah HSL, tint memiliki nilai kecerahan lebih tinggi dan shade memiliki nilai kecerahan lebih rendah sambil mempertahankan hue yang sama. Nomor 50–400 dalam skala ini adalah tint (lebih terang dari dasar), sedangkan 600–950 adalah shade (lebih gelap dari dasar). Langkah 500 kira-kira merupakan warna dasar itu sendiri."
+    },
+    {
+      "q": "Bagaimana alat ini menghasilkan shade?",
+      "a": "Alat mengonversi warna hex Anda ke HSL (Hue, Saturation, Lightness). Hue dan saturation dijaga tetap konstan sementara setiap nomor langkah dipetakan ke nilai kecerahan target: langkah 50 → 97% kecerahan, langkah 500 → 52%, langkah 950 → 12%. Hasilnya kemudian dikonversi kembali ke hex. Metode ini mempertahankan karakter warna (kehangatan, kesejukan, kecemerlangan) di semua shade."
+    },
+    {
+      "q": "Apa itu WCAG dan mengapa shade menampilkan rating?",
+      "a": "WCAG (Pedoman Aksesibilitas Konten Web) mendefinisikan rasio kontras minimum untuk teks yang dapat dibaca. AA memerlukan rasio 4,5:1 untuk teks normal; AAA memerlukan 7:1. Rating kontras setiap shade menunjukkan apakah teks hitam atau putih pada latar belakang tersebut memenuhi standar AA atau AAA. Ini membantu Anda memilih shade mana yang aman untuk teks dan mana yang sebaiknya digunakan hanya untuk elemen dekoratif."
+    },
+    {
+      "q": "Bagaimana menggunakan palet ini di Tailwind CSS?",
+      "a": "Tailwind memungkinkan Anda mendefinisikan warna kustom di tailwind.config.js. Tambahkan shade di bawah theme.extend.colors: colors: { brand: { 50: '#hex-50-anda', 100: '#hex-100-anda', ... } }. Anda kemudian dapat menggunakan kelas seperti bg-brand-100, text-brand-700, border-brand-300. Untuk Tailwind v4 dengan konfigurasi CSS-first, tempelkan output variabel CSS ke definisi tema Anda."
+    },
+    {
+      "q": "Mengapa shade di warna yang saya pilih tidak terlihat persis seperti input saya?",
+      "a": "Alat menargetkan nilai kecerahan tertentu untuk setiap langkah — langkah 500 menargetkan sekitar 52% kecerahan HSL. Jika warna input Anda memiliki kecerahan berbeda (misalnya 70% jika merupakan warna yang lebih terang), shade di langkah 500 akan disesuaikan ke arah 52%. Ini menciptakan skala yang konsisten tetapi berarti langkah 500 mungkin tidak identik dengan input asli Anda. Untuk mendapatkan warna tepat di langkah 500, Anda dapat menyesuaikan hex secara manual — skala akan dibuat relatif terhadap apa pun yang Anda masukkan."
+    },
+    {
+      "q": "Bisakah saya menggunakannya dengan CSS custom properties?",
+      "a": "Ya — klik Salin CSS untuk mendapatkan blok :root yang siap digunakan dengan semua 11 shade sebagai custom properties. Di CSS Anda, referensikan sebagai var(--color-500), var(--color-50), dll. Anda dapat mengganti nama prefiks --color- menjadi apa pun yang sesuai dengan proyek Anda (--brand-, --primary-, --blue-). Custom properties bersifat cascade dan dapat dicakupkan ke komponen atau ditimpa dalam media query untuk mode gelap."
+    },
+    {
+      "q": "Apa bedanya shade ini dengan fungsi CSS color-mix()?",
+      "a": "Fungsi CSS color-mix() (didukung browser modern) memadukan dua warna berdasarkan persentase, mirip mencampur cat. Alat ini menggunakan skala kecerahan yang sudah ditentukan (berbasis HSL), yang menghasilkan skala design system yang lebih terkontrol dan dapat diprediksi. color-mix() lebih baik untuk pencampuran satu kali (misalnya mencampur warna merek dengan 20% putih), sedangkan alat ini menghasilkan palet design system yang lengkap dan sistematis. Kedua pendekatan memiliki tempatnya masing-masing tergantung kasus penggunaan."
+    }
+  ]
+}

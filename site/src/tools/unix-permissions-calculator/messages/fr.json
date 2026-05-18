@@ -1,0 +1,100 @@
+{
+  "title": "Calculateur de droits Unix (chmod)",
+  "shortDescription": "Activez les droits de lecture/écriture/exécution pour le propriétaire, le groupe et les autres. Obtenez instantanément la valeur octale (755, 644…) et la notation symbolique (rwxr-xr-x).",
+  "description": "Calculateur chmod interactif. Cochez ou décochez les bits de permission pour le propriétaire, le groupe et les autres, et obtenez le nombre octal et la notation symbolique en temps réel. Saisissez aussi un octal pour le décoder.",
+  "metaDescription": "Calculateur gratuit de droits Unix. Alternez lecture/écriture/exécution pour propriétaire/groupe/autres et obtenez immédiatement la valeur octale (755, 644) et la",
+  "keywords": [
+    "calculateur permissions unix",
+    "calculateur chmod",
+    "permissions octales",
+    "droits fichiers linux",
+    "permissions rwx"
+  ],
+  "input.octal": "Valeur octale",
+  "input.symbolic": "Symbolique",
+  "label.owner": "Propriétaire",
+  "label.group": "Groupe",
+  "label.other": "Autres",
+  "label.read": "Lecture (r)",
+  "label.write": "Écriture (w)",
+  "label.execute": "Exécution (x)",
+  "presets": "Valeurs prédéfinies",
+  "error.invalidOctal": "Saisissez entre 1 et 3 chiffres octaux (0–7 uniquement).",
+  "article": {
+    "sections": [
+      {
+        "heading": "Origine de la notation octale dans les droits Unix",
+        "paragraphs": [
+          "Les droits de fichiers Unix ont été conçus par Ken Thompson en 1969 lors de la création du Unix originel sur un PDP-7. Chaque fichier stocke neuf bits de permission dans son inœud : trois pour le propriétaire, trois pour le groupe et trois pour les autres. Regrouper chaque trio de bits en un seul chiffre octal (0–7) était le choix naturel : un chiffre par entité, trois chiffres au total. Cette convention octale a été codifiée dans POSIX.1-1988 et reste inchangée dans tous les systèmes Linux, macOS, BSD et apparentés à Unix.",
+          "La forme symbolique (rwxr-xr-x) est apparue dans la sortie de `ls -l` dès les premières distributions Unix et est devenue le complément lisible du nombre octal. POSIX définit les deux représentations comme normatives. `chmod u+x fichier` utilise la forme symbolique ; `chmod 755 fichier` utilise la forme octale. Les deux aboutissent à la même opération noyau : positionner des bits spécifiques dans le champ de mode de l'inœud."
+        ]
+      },
+      {
+        "heading": "Signification de chaque bit de permission",
+        "paragraphs": [
+          "Pour un fichier ordinaire : lecture (r=4) permet d'ouvrir et de lire le contenu ; écriture (w=2) permet de modifier ou de tronquer le fichier ; exécution (x=1) permet de l'exécuter comme programme. Chaque bit est indépendant. Le chiffre octal de chaque entité est la somme des bits activés : rwx=7, r-x=5, r--=4.",
+          "Pour un répertoire, les significations changent. La lecture (r) permet de lister le répertoire avec `ls`. L'exécution (x) — le « bit de recherche » — permet d'entrer avec `cd` et d'accéder aux fichiers par leur nom. L'écriture (w) permet de créer, supprimer ou renommer des fichiers dans le répertoire. Un répertoire avec lecture mais sans exécution est presque inutile : on voit les noms mais on ne peut ouvrir aucun fichier. Les répertoires typiques ont les droits 755."
+        ]
+      },
+      {
+        "heading": "Schémas courants et considérations de sécurité",
+        "paragraphs": [
+          "644 (rw-r--r--) est le standard pour les fichiers de configuration, HTML et texte : le propriétaire peut éditer, les autres ne peuvent que lire. 755 (rwxr-xr-x) est le standard pour les répertoires et scripts exécutables : le propriétaire gère le contenu, les autres peuvent parcourir et lire. 600 (rw-------) et 700 (rwx------) restreignent l'accès au seul propriétaire — appropriés pour les clés privées SSH et les fichiers de mots de passe. N'utilisez jamais 777 sur quoi que ce soit exposé au web ; donner l'écriture aux « autres » signifie que tout processus du système peut écraser le fichier.",
+          "Le umask détermine les droits par défaut des nouveaux fichiers et répertoires. Un umask de 022 (courant sur la plupart des systèmes) donne 644 aux nouveaux fichiers et 755 aux nouveaux répertoires, car les bits du umask sont soustraits du défaut 666 (fichiers) et 777 (répertoires). Les systèmes à sécurité renforcée utilisent souvent umask 027 ou 077."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Cochez les cases de permission",
+        "text": "Cliquez sur les cases lecture, écriture ou exécution pour le propriétaire, le groupe ou les autres. La valeur octale et la chaîne symbolique se mettent à jour instantanément."
+      },
+      {
+        "name": "Saisissez un nombre octal pour le décoder",
+        "text": "Cliquez sur le champ octal et saisissez un nombre de 1 à 3 chiffres (0–7 par chiffre). Les cases se mettent à jour pour afficher les bits de permission décodés."
+      },
+      {
+        "name": "Utilisez une valeur prédéfinie",
+        "text": "Cliquez sur l'un des boutons prédéfinis (755, 644, 600, 700, 777) pour accéder directement à un jeu de permissions fréquemment utilisé."
+      },
+      {
+        "name": "Copiez la commande chmod",
+        "text": "La commande chmod en bas affiche la syntaxe exacte pour appliquer ces droits. Remplacez 'filename' par le chemin réel de votre fichier ou répertoire."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Que signifie 755 ?",
+      "a": "755 signifie que le propriétaire a lecture+écriture+exécution (7=4+2+1), le groupe a lecture+exécution (5=4+1) et les autres ont lecture+exécution (5=4+1). C'est le droit standard pour les répertoires et les scripts exécutables."
+    },
+    {
+      "q": "Que signifie 644 ?",
+      "a": "644 signifie que le propriétaire a lecture+écriture (6=4+2), le groupe ne peut que lire (4) et les autres ne peuvent que lire (4). C'est la valeur par défaut pour les fichiers ordinaires comme les configurations, pages web et documents texte."
+    },
+    {
+      "q": "Pourquoi un répertoire a-t-il besoin du droit d'exécution ?",
+      "a": "Pour les répertoires, le bit exécution est le « bit de recherche ». Sans lui, vous ne pouvez pas faire cd dans le répertoire ni ouvrir les fichiers qu'il contient par leur chemin, même avec le bit de lecture. Un répertoire avec lecture mais sans exécution est pratiquement inutile."
+    },
+    {
+      "q": "Quelle est la différence entre propriétaire, groupe et autres ?",
+      "a": "Le propriétaire est le compte utilisateur qui possède le fichier (défini à la création ou modifié avec chown). Le groupe est le groupe assigné au fichier (modifié avec chgrp) ; tout utilisateur dans ce groupe bénéficie des droits du groupe. Les autres couvrent tous les utilisateurs du système qui ne sont ni le propriétaire ni dans le groupe."
+    },
+    {
+      "q": "Que sont SUID et SGID ?",
+      "a": "SUID (Set User ID) et SGID (Set Group ID) sont des bits de permission spéciaux au-delà des neuf standard. Avec SUID sur un exécutable, il s'exécute avec les privilèges du propriétaire du fichier plutôt que ceux de l'appelant — utilisé par des commandes comme passwd et sudo. SGID sur un répertoire fait hériter le groupe du répertoire aux nouveaux fichiers. La forme symbolique utilise 's' (ex. : rwsr-xr-x) et ajoute 4000 ou 2000 à la valeur octale (ex. : 4755)."
+    },
+    {
+      "q": "chmod 777 est-il dangereux ?",
+      "a": "Oui, surtout sur un système partagé ou un serveur web. 777 accorde lecture, écriture et exécution complètes à tous les utilisateurs du système. Tout processus — y compris des applications web compromises — peut écraser ou exécuter le fichier. Sur les serveurs web, cela permet souvent l'exécution de code arbitraire. Limitez les droits au strict nécessaire."
+    },
+    {
+      "q": "Comment utiliser la commande chmod ?",
+      "a": "Utilisez `chmod OCTAL chemin` pour un seul fichier, ou `chmod -R OCTAL répertoire` pour une application récursive. Par exemple : `chmod 644 index.html` ou `chmod 755 /var/www`. Vous pouvez aussi utiliser la syntaxe symbolique : `chmod u+x script.sh` ajoute l'exécution au propriétaire sans toucher aux autres bits."
+    },
+    {
+      "q": "Qu'est-ce que umask et quel est son lien avec les droits ?",
+      "a": "umask est un masque appliqué aux droits par défaut lors de la création d'un nouveau fichier ou répertoire. Un umask de 022 retire l'écriture au groupe et aux autres, de sorte que les nouveaux fichiers obtiennent 644 et les nouveaux répertoires 755. Exécutez `umask` dans votre shell pour voir le paramètre actuel et `umask VALEUR` pour le modifier dans la session en cours."
+    }
+  ]
+}

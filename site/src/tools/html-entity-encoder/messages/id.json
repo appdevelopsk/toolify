@@ -1,0 +1,98 @@
+{
+  "title": "Encoder dan Decoder Entitas HTML",
+  "shortDescription": "Enkode karakter khusus menjadi entitas HTML atau dekode entitas HTML kembali ke teks. Mendukung entitas bernama (&amp;), numerik desimal (&#65;), dan heksadesimal (&#x41;).",
+  "description": "Tempel teks untuk mengenkode karakter khusus sebagai entitas HTML, atau tempel HTML berisi entitas untuk mendekodenya kembali ke teks yang dapat dibaca. Pilih antara entitas bernama (&amp;, &lt;, &copy;), numerik desimal (&#169;), atau heksadesimal (&#xA9;). Optionally enkode semua karakter non-ASCII untuk kompatibilitas maksimum.",
+  "metaDescription": "Encoder dan decoder entitas HTML gratis. Konversi karakter ke &amp; &lt; &gt; serta entitas bernama, numerik, atau hex. Dekode instan tersedia.",
+  "keywords": ["encoder entitas HTML", "entitas HTML", "enkode HTML", "dekode entitas HTML", "karakter khusus HTML"],
+  "mode": {
+    "encode": "Enkode",
+    "decode": "Dekode"
+  },
+  "encodeMode": {
+    "named": "Bernama (&amp;)",
+    "numeric": "Numerik (&#38;)",
+    "hex": "Hex (&#x26;)"
+  },
+  "option": {
+    "encodeAll": "Enkode semua karakter non-ASCII"
+  },
+  "label": {
+    "inputText": "Teks Masukan",
+    "inputEncoded": "HTML Terenkode",
+    "outputEncoded": "Keluaran Terenkode",
+    "outputText": "Teks Terdekode"
+  },
+  "placeholder": {
+    "text": "Ketik atau tempel teks dengan karakter khusus seperti <, >, &, © …",
+    "encoded": "Tempel HTML berisi entitas seperti &amp;, &lt;, &#169; …"
+  },
+  "action": {
+    "copy": "Salin",
+    "swap": "Tukar"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa itu entitas HTML?",
+        "paragraphs": [
+          "Entitas HTML adalah kode teks khusus yang digunakan untuk merepresentasikan karakter yang memiliki makna khusus dalam HTML atau yang tidak dapat diketik langsung. Yang paling penting adalah lima karakter yang dicadangkan dalam sintaks HTML: & (ampersand) → &amp;, < (kurang dari) → &lt;, > (lebih dari) → &gt;, \" (tanda kutip ganda) → &quot;, dan ' (tanda kutip tunggal) → &apos;. Jika karakter-karakter ini muncul dalam konten teks tanpa pengodean, browser mungkin menafsirkannya sebagai markup HTML, menyebabkan kesalahan rendering atau kerentanan keamanan.",
+          "Entitas HTML hadir dalam tiga format: entitas bernama menggunakan nama deskriptif (&copy; untuk ©, &euro; untuk €), referensi karakter numerik desimal menggunakan nomor code point (&#169; untuk ©), dan referensi karakter heksadesimal menggunakan kode hex (&#xA9; untuk ©). Ketiga format ini setara — browser merender karakter yang sama terlepas dari format yang digunakan. Entitas bernama paling mudah dibaca; entitas numerik paling universal karena berfungsi untuk karakter Unicode apa pun."
+        ]
+      },
+      {
+        "heading": "Kapan harus mengenkode entitas HTML",
+        "paragraphs": [
+          "Anda harus mengenkode setidaknya lima karakter HTML yang dicadangkan (&, <, >, \", ') setiap kali muncul dalam konten teks atau nilai atribut. Gagal mengenkodenya adalah sumber kerentanan Cross-Site Scripting (XSS): jika input pengguna disisipkan ke HTML tanpa pengodean, penyerang dapat menyuntikkan tag script atau event handler. Framework modern seperti React, Vue, dan Angular mengenkode HTML secara otomatis secara default — innerHTML adalah pengecualian utama di mana pengodean manual masih kritis.",
+          "Di luar lima karakter yang wajib, Anda mungkin juga ingin mengenkode karakter non-ASCII untuk lingkungan yang tidak menangani UTF-8 secara andal: HTML email, sistem CMS lama, atau dokumen untuk kompatibilitas maksimum. Opsi «Enkode semua non-ASCII» mengonversi setiap karakter di atas code point 127 menjadi entitas numerik, memastikan keluaran berupa ASCII murni sambil mempertahankan tampilan visual saat dirender. Untuk file HTML UTF-8 modern, mengenkode non-ASCII bersifat opsional — mendeklarasikan charset dengan benar sudah cukup."
+        ]
+      },
+      {
+        "heading": "Entitas HTML vs enkoding URL vs Base64",
+        "paragraphs": [
+          "Entitas HTML, enkoding URL (persen-enkoding), dan Base64 adalah tiga skema enkoding berbeda untuk konteks yang berbeda. Entitas HTML (seperti &amp;) digunakan di dalam dokumen HTML untuk merepresentasikan karakter dengan aman. Enkoding URL (seperti %26 untuk &) digunakan dalam string kueri dan URL untuk mengenkode karakter yang memiliki makna khusus dalam URL. Base64 mengenkode data biner sembarang sebagai teks ASCII, digunakan untuk data URI dan lampiran email.",
+          "Kesalahan umum adalah mencampur adukkan ketiganya: menggunakan enkoding URL untuk konten HTML atau enkoding HTML untuk URL. Misalnya, ampersand dalam string kueri URL memerlukan persen-enkoding (%26), bukan enkoding entitas HTML (&amp;). Jika Anda membangun URL yang kemudian disematkan dalam atribut HTML, Anda memerlukan keduanya: bentuk terenkode URL masuk ke dalam atribut, dan nilai atribut itu sendiri dienkode HTML. Memahami enkoding mana yang berlaku dalam konteks mana mencegah bug enkoding ganda dan masalah keamanan."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Enkode karakter khusus", "text": "Pilih mode Enkode, tempel teks Anda ke kotak kiri. Keluaran terenkode muncul di kanan. Pilih «Bernama» untuk entitas yang mudah dibaca (&amp;), «Numerik» untuk desimal universal (&#38;), atau «Hex» untuk heksadesimal (&#x26;). Centang «Enkode semua non-ASCII» untuk mengonversi setiap karakter non-ASCII menjadi entitas." },
+      { "name": "Dekode entitas HTML", "text": "Pilih mode Dekode, tempel HTML berisi entitas ke kotak kiri. Alat ini mengenali entitas bernama (&amp;, &copy;), entitas numerik desimal (&#169;), dan entitas hex (&#xA9;), mengonversi semuanya kembali ke karakter aslinya." },
+      { "name": "Tukar enkode dan dekode", "text": "Klik tombol «Tukar» untuk memindahkan keluaran ke masukan dan beralih mode — berguna untuk memverifikasi bolak-balik atau dengan cepat membalik konversi." },
+      { "name": "Salin hasilnya", "text": "Klik «Salin» untuk meletakkan hasil terenkode atau terdekode ke clipboard Anda." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apa entitas HTML untuk ampersand (&)?",
+      "a": "Entitas HTML untuk ampersand adalah &amp; — secara harfiah karakter &, a, m, p, dan titik koma. Ketika Anda menulis &amp; dalam sumber HTML, browser menampilkan satu karakter &. Pengodean ini wajib setiap kali ampersand muncul dalam konten teks atau nilai atribut, karena & yang tidak dienkode memulai urutan entitas yang coba ditafsirkan oleh parser."
+    },
+    {
+      "q": "Apa entitas HTML untuk hak cipta (©)?",
+      "a": "Hak cipta © memiliki tiga entitas HTML yang setara: bernama &copy;, numerik desimal &#169;, dan heksadesimal &#xA9;. Ketiganya merender karakter © yang sama. Entitas bernama adalah pilihan paling mudah dibaca bila tersedia. Untuk HTML UTF-8 modern, Anda juga dapat mengetik karakter © langsung — tanpa entitas — selama file HTML Anda mendeklarasikan charset=utf-8."
+    },
+    {
+      "q": "Apakah saya perlu mengenkode tanda kutip dalam HTML?",
+      "a": "Tanda kutip ganda (\") harus dienkode sebagai &quot; di dalam atribut HTML yang dibatasi oleh tanda kutip ganda: <input value=\"&quot;\">. Tanda kutip tunggal (') harus dienkode sebagai &apos; atau &#39; di dalam atribut dengan tanda kutip tunggal. Di dalam konten teks elemen (di antara tag), kedua karakter tanda kutip dapat muncul tanpa dienkode, tetapi mengenkodenya tidak berbahaya. Mengenkode keduanya secara konsisten dalam semua konteks adalah pendekatan yang paling aman."
+    },
+    {
+      "q": "Apa perbedaan antara entitas bernama dan numerik?",
+      "a": "Entitas bernama menggunakan kata deskriptif (&copy;, &euro;, &hearts;) dan didefinisikan dalam spesifikasi HTML — tidak setiap karakter Unicode memiliki entitas bernama. Entitas numerik menggunakan code point Unicode, baik sebagai desimal (&#8364; untuk €) maupun heksadesimal (&#x20AC; untuk €). Entitas numerik berfungsi untuk karakter Unicode apa pun, sementara entitas bernama hanya mencakup sebagian. Keduanya dirender secara identik di browser."
+    },
+    {
+      "q": "Haruskah saya mengenkode karakter non-ASCII dalam HTML?",
+      "a": "Biasanya tidak. Jika dokumen HTML Anda mendeklarasikan enkoding UTF-8 (meta charset=utf-8) dan disimpan sebagai UTF-8, Anda dapat menulis karakter non-ASCII secara langsung: é, ñ, 中, 🎉. Mengenkodenya sebagai entitas bersifat opsional dan membuat sumber lebih sulit dibaca. Pengecualian adalah saat mengirim HTML dalam konteks yang mungkin tidak menjaga enkoding: pesan email, API lama, atau sistem yang merusak byte non-ASCII. Dalam kasus tersebut, mengenkode semua non-ASCII sebagai entitas numerik memastikan keluaran berupa ASCII murni yang aman."
+    },
+    {
+      "q": "Apa itu XSS dan bagaimana entitas HTML mencegahnya?",
+      "a": "Cross-Site Scripting (XSS) adalah kerentanan keamanan di mana penyerang menyuntikkan JavaScript berbahaya ke halaman web dengan menyisipkan teks yang dipantulkan server ke HTML tanpa pengodean. Misalnya, jika input pengguna <script>alert('xss')</script> disisipkan langsung ke halaman, browser mengeksekusi skrip tersebut. Jika Anda mengenkode input dengan benar — mengonversi < menjadi &lt; dan > menjadi &gt; — browser menampilkan teks secara harfiah alih-alih mengurainya sebagai tag. Enkoding entitas HTML adalah pertahanan utama terhadap XSS yang dipantulkan dan disimpan."
+    },
+    {
+      "q": "Mengapa &nbsp; tidak muncul dalam daftar alat ini?",
+      "a": "Alat ini mengenkode karakter yang memiliki entitas bernama. Spasi non-breaking (Unicode U+00A0) dienkode sebagai &nbsp; saat Anda mengetik karakter spasi non-breaking yang sebenarnya (yang dapat disisipkan dengan Alt+Spasi pada beberapa sistem atau disalin dari peta karakter). Spasi biasa (U+0020, tombol spasi) tidak dienkode karena merupakan karakter ASCII yang aman. Jika Anda secara khusus memerlukan &nbsp; dalam keluaran, ketik atau tempel karakter spasi non-breaking ke dalam masukan."
+    },
+    {
+      "q": "Bisakah saya menggunakan ini untuk mencegah injeksi HTML dalam input pengguna?",
+      "a": "Ya — mengenkode teks yang disediakan pengguna sebelum menyisipkannya ke HTML adalah salah satu pertahanan inti terhadap injeksi HTML dan XSS. Minimal, enkode lima karakter yang dicadangkan: &, <, >, \", '. Alat ini mengenkode kelimanya. Namun, pengodean saja bukan solusi keamanan yang lengkap: Anda juga memerlukan header Content Security Policy yang tepat, penanganan hati-hati atas URL javascript: dalam atribut, dan perlindungan tingkat framework. Untuk aplikasi produksi, gunakan pustaka sisi server yang dirancang untuk keamanan (OWASP Java Encoder, DOMPurify untuk sisi klien, dll.) daripada pengodean manual."
+    }
+  ]
+}
