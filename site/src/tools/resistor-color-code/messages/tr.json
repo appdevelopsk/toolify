@@ -1,0 +1,116 @@
+{
+  "title": "Direnç Renk Kodu Hesaplayıcı — Bant Renklerini Çöz ve Kodla",
+  "shortDescription": "Direnç değerini bulmak için renk bantlarını çözün veya renk bantlarını görmek için bir değer girin. 4 bantlı ve 5 bantlı dirençleri destekler.",
+  "description": "Direnç değerini çözmek için renk bantları seçin ya da renk kodunu bulmak için bir direnç değeri girin. 4 bantlı ve 5 bantlı dirençleri ohm, kilohm veya megaohm otomatik birim ölçeklendirmesiyle destekler.",
+  "metaDescription": "Ücretsiz direnç renk kodu hesaplayıcı. 4 bantlı veya 5 bantlı renk kodlarını direnç değerlerine çözün ya da anında renk bantlarını bulun.",
+  "keywords": ["direnç renk kodu", "direnç bant hesaplayıcı", "4 bantlı direnç", "5 bantlı direnç", "direnç değeri okuma"],
+  "mode": {
+    "decode": "Renk → Direnç",
+    "encode": "Direnç → Renk"
+  },
+  "band": {
+    "count4": "4 bantlı",
+    "count5": "5 bantlı"
+  },
+  "label": {
+    "digit1": "Rakam 1",
+    "digit2": "Rakam 2",
+    "digit3": "Rakam 3 (5 bantlı)",
+    "multiplier": "Çarpan",
+    "tolerance": "Tolerans"
+  },
+  "colors": {
+    "black": "Siyah",
+    "brown": "Kahverengi",
+    "red": "Kırmızı",
+    "orange": "Turuncu",
+    "yellow": "Sarı",
+    "green": "Yeşil",
+    "blue": "Mavi",
+    "violet": "Mor",
+    "gray": "Gri",
+    "white": "Beyaz",
+    "gold": "Altın",
+    "silver": "Gümüş",
+    "none": "Yok"
+  },
+  "result": {
+    "resistance": "Direnç",
+    "range": "Aralık",
+    "minVal": "Min",
+    "maxVal": "Maks"
+  },
+  "input": {
+    "value": "Direnç Değeri",
+    "unit": "Birim"
+  },
+  "error": {
+    "invalidValue": "Pozitif bir sayı girin.",
+    "noMatch": "Bu direnç için standart E24 değeri bulunamadı."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Direnç renk kodları nasıl çalışır",
+        "paragraphs": [
+          "Dirençler üzerine okunabilir rakam basmak için çok küçüktür; bu nedenle üreticiler renkli bantlar kullanır. Her renk bir rakama (0-9) karşılık gelir ve mnemonik sıra şöyledir: Siyah, Kahverengi, Kırmızı, Turuncu, Sarı, Yeşil, Mavi, Mor, Gri, Beyaz. 4 bantlı dirençte iki rakam bandı, bir çarpan bandı ve bir tolerans bandı vardır. 5 bantlı dirençte daha yüksek hassasiyet için üçüncü bir rakam bandı eklenir.",
+          "4 bantlı direnç okuma: ilk iki rengi iki basamaklı sayı olarak oku (örn. Kahverengi-Siyah = 10), üçüncü bandın çarpanıyla çarp (örn. Kırmızı = ×100) ve dördüncü band toleransı verir (örn. Altın = ±5%). Kahverengi-Siyah-Kırmızı-Altın = 10 × 100 = 1.000 Ω ±5% = 1 kΩ. 5 bantlı için üç rakam oku, sonra çarp, sonra tolerans."
+        ]
+      },
+      {
+        "heading": "Standart E24 direnç serisi",
+        "paragraphs": [
+          "Dirençler her mümkün değerde üretilmez. E24 serisi dekad başına 24 tercih edilen değer sunar: 10, 11, 12, 13, 15, 16, 18, 20, 22, 24, 27, 30, 33, 36, 39, 43, 47, 51, 56, 62, 68, 75, 82, 91. Bu değerler, ardışık değerlerin yaklaşık %10 farklılaşacağı şekilde aralıklıdır; bu da %5 içindeki herhangi bir istenen direncin elde edilebileceği anlamına gelir. Mühendisler, devre tasarımlarında en yakın E24 değerini seçer.",
+          "E12 serisi (dekad başına 12 değer, ±10% tolerans) ve E6 serisi (6 değer, ±20%) yüksek hassasiyet gerekmediğinde kullanılır. Hassas çalışmalar için E96 serisi, %1 toleranslı dirençlerle dekad başına 96 değer sunar — bunlar genellikle üç anlamlı basamaklı 5 bantlı kod kullanır."
+        ]
+      },
+      {
+        "heading": "Direnç okuma için pratik ipuçları",
+        "paragraphs": [
+          "Tolerans bandı (altın, gümüş veya yok) genellikle diğer bantlardan daha geniş aralıklıdır ve en son okunur. Şüphe durumunda direnci tolerans bandı sağda olacak şekilde yönlendirin. İlk rakam bandı standart bir dirençte hiçbir zaman siyah değildir (öndeki sıfır sıra dışıdır). Yön konusunda kararsızsanız her iki uçtan okumayı deneyin ve hangisinin makul bir aralıkta değer verdiğini görün.",
+          "Okumayı doğrulamak için multimetreyi direnç modunda kullanın. Yüzey montajlı dirençler (SMD) renk bantları yerine üç veya dört basamaklı sayı kodu kullanır. Örneğin '103', 10 × 10³ = 10.000 Ω = 10 kΩ demektir. SMD hassas dirençler farklı beş karakterli alfanumerik kod kullanır."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Çözme veya kodlama modunu seçin", "text": "Renk bantlarını okumak için 'Renkten Dirençe', bilinen değer için renk kodunu bulmak için 'Dirençten Renge' seçin." },
+      { "name": "4 bantlı veya 5 bantlı seçin", "text": "Yaygın dirençlerin çoğu 4 bantlıdır. Hassas dirençler (%1 tolerans) genellikle 5 bantlıdır." },
+      { "name": "Her renk bandını seçin", "text": "Çözme modunda, açılır menüleri kullanarak her band için rengi seçin. Direnç değeri otomatik olarak güncellenir." },
+      { "name": "Sonucu okuyun", "text": "Direnç, otomatik birim ölçeklendirmesiyle (ohm, kilohm veya megaohm) ve tolerans aralığıyla gösterilir." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Renk bantlarını hangi sırayla okurum?",
+      "a": "Soldan sağa okuyun. Tolerans bandı (altın veya gümüş) diğerlerinden daha uzakta olup her zaman sağda bulunur. İlk band, direnç gövdesinin bir ucuna yakın en soldaki renk bandıdır."
+    },
+    {
+      "q": "Dirençte Altın ne anlama gelir?",
+      "a": "Altın iki konumda görünür. Çarpan bandı olarak altın ×0,1 demektir (kesirli ohm dirençleri için kullanılır, örn. 4,7 Ω). Tolerans bandı (son band) olarak altın, gerçek direncin belirtilen değerin ±5% içinde olduğu anlamına gelir."
+    },
+    {
+      "q": "4 bantlı ve 5 bantlı dirençler arasındaki fark nedir?",
+      "a": "4 bantlı direnç iki anlamlı basamak kodlarken, 5 bantlı direnç üç anlamlı basamak kodlar. 5 bantlı dirençler, daha yüksek hassasiyet gereken %1 veya daha iyi tolerans için kullanılır. Ekstra rakam bandı, ifade edilebilen farklı değer sayısını artırır."
+    },
+    {
+      "q": "Yaygın dirençlerde siyah çarpan bandı neden yoktur?",
+      "a": "Çarpan olarak siyah ×1 demektir. Çok düşük dirençli değerler (tek basamaklı ohm) var olsa da standart sinyal devrelerinde nadirdir. Çoğu direnç onlarca veya yüzlerce ohm'dan başlar, dolayısıyla kahverengi (×10) pratikte karşılaşacağınız tipik en düşük çarpandır."
+    },
+    {
+      "q": "Tolerans nedir ve neden önemlidir?",
+      "a": "Tolerans, belirtilen dirençten maksimum yüzde sapmasıdır. 1 kΩ ±5% direnç gerçekte 950 Ω ile 1.050 Ω arasında ölçülür. Çoğu sinyal işleme ve güç devreleri için %5 veya %10 tolerans yeterlidir. Hassas analog devreler (voltaj referansları, filtreler) %1 veya %0,1 direnç gerektirebilir."
+    },
+    {
+      "q": "4700 ohm gibi standart olmayan bir değeri nasıl kodlarım?",
+      "a": "4700 Ω = 4,7 kΩ = 47 × 100. Renk kodu Sarı-Mor-Kırmızı (4, 7, ×100) artı tolerans bandınızdır. Bu çok yaygın bir E24 değeridir (4,7 kΩ seride mevcuttur). Kodlama modu otomatik olarak en yakın E24 eşleşmesini bulur."
+    },
+    {
+      "q": "E24 serisi nedir?",
+      "a": "E24 serisi, dekad başına 24 tercih edilen direnç değeri kümesidir (örn. 10, 11, 12, 13, 15 ... 82, 91, sonra 100, 110, 120...). Dirençler her mümkün sayı yerine bu değerlerde üretilir. Aralıklama, herhangi bir hedef değerin %5'inde her zaman bir direnç bulabileceğinizi garanti eder."
+    },
+    {
+      "q": "Bunu indüktörler veya kondansatörler için kullanabilir miyim?",
+      "a": "Aynı renk kodu şeması bazı kondansatörler ve indüktörler için de kullanılır (özellikle eksenel kablolu tipler), ancak birimler ve aralıklar farklıdır. Kondansatörler için değer pikofarad, indüktörler için mikrohenry cinsindendir. Bu hesaplayıcı dirençler için optimize edilmiştir, ancak renk-basamak eşlemesi aynıdır."
+    }
+  ]
+}

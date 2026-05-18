@@ -1,0 +1,122 @@
+{
+  "title": "Máy Tính Hình Học — Thể Tích và Diện Tích Bề Mặt",
+  "shortDescription": "Tính thể tích, diện tích bề mặt và các kích thước chính cho 6 hình 3D phổ biến: hình cầu, trụ, nón, lập phương, hộp chữ nhật và lăng trụ tam giác.",
+  "description": "Chọn hình 3D, nhập kích thước và nhận ngay thể tích, diện tích bề mặt toàn phần cùng các thuộc tính đặc trưng như diện tích xung quanh, đường sinh hay đường chéo không gian. Tất cả phép tính chạy trong trình duyệt với độ chính xác tới sáu chữ số thập phân.",
+  "metaDescription": "Máy tính hình học 3D miễn phí: tìm thể tích và diện tích bề mặt của hình cầu, trụ, nón, lập phương, hộp chữ nhật và lăng trụ tam giác kèm công thức từng bước.",
+  "keywords": [
+    "máy tính hình học",
+    "máy tính thể tích",
+    "máy tính diện tích bề mặt",
+    "tính toán hình 3D",
+    "thể tích hình cầu",
+    "thể tích hình trụ",
+    "diện tích hình nón"
+  ],
+  "shapeLabel": "Chọn Hình",
+  "shape": {
+    "sphere": "Hình Cầu",
+    "cylinder": "Hình Trụ",
+    "cone": "Hình Nón",
+    "cube": "Hình Lập Phương",
+    "rectangularPrism": "Hình Hộp Chữ Nhật",
+    "triangularPrism": "Lăng Trụ Tam Giác"
+  },
+  "input": {
+    "radius": "Bán kính (r)",
+    "height": "Chiều cao (h)",
+    "side": "Độ dài cạnh (s)",
+    "length": "Chiều dài (l)",
+    "width": "Chiều rộng (w)",
+    "triangleBase": "Đáy tam giác (b)",
+    "triangleHeight": "Chiều cao tam giác (h△)"
+  },
+  "result": {
+    "volume": "Thể Tích",
+    "surfaceArea": "Diện Tích Bề Mặt Toàn Phần",
+    "lateralArea": "Diện Tích Xung Quanh",
+    "slantHeight": "Đường Sinh (s)",
+    "diagonal": "Đường Chéo Không Gian",
+    "baseArea": "Diện Tích Đáy"
+  },
+  "empty": "Chọn hình và nhập kích thước của nó.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Công thức thể tích và diện tích bề mặt của các hình 3D phổ biến",
+        "paragraphs": [
+          "Mỗi hình 3D có hai phép đo cơ bản: thể tích — lượng không gian mà nó bao quanh — và diện tích bề mặt — tổng diện tích của tất cả các mặt. Hình cầu bán kính r có thể tích (4/3)πr³ và diện tích bề mặt 4πr². Hình trụ có bán kính đáy r và chiều cao h có thể tích πr²h, diện tích xung quanh 2πrh và diện tích toàn phần 2πr² + 2πrh. Hình nón thêm đường sinh s = √(r² + h²): thể tích (1/3)πr²h và diện tích toàn phần πr² + πrs.",
+          "Đối với đa diện: lập phương cạnh s có thể tích s³, diện tích bề mặt 6s² và đường chéo không gian s√3. Hộp chữ nhật kích thước l × w × h có thể tích lwh, diện tích bề mặt 2(lw + lh + wh) và đường chéo không gian √(l² + w² + h²). Lăng trụ tam giác có mặt cắt ngang cân — đáy b, chiều cao tam giác h△ và chiều dài lăng trụ l — có thể tích (1/2)bh△l và diện tích bề mặt toàn phần bằng diện tích xung quanh cộng hai mặt tam giác.",
+          "Máy tính này tính toán tất cả công thức bằng số học dấu phẩy động 64-bit của JavaScript, giữ nguyên độ chính xác đầy đủ IEEE 754 và làm tròn giá trị hiển thị tới sáu chữ số thập phân. Giữ tất cả đầu vào theo cùng đơn vị; máy tính không phụ thuộc vào đơn vị — milimet, centimét, inch hay mét đều hoạt động như nhau."
+        ]
+      },
+      {
+        "heading": "Ứng dụng thực tế trong đóng gói, kiến trúc và kỹ thuật",
+        "paragraphs": [
+          "Nhà thiết kế bao bì tính thể tích hộp (hộp chữ nhật) để xác định lượng sản phẩm chứa được, và diện tích bề mặt để ước tính lượng bìa hoặc màng cần dùng. Hộp ngũ cốc cao 30 cm, rộng 20 cm và sâu 8 cm chứa 30 × 20 × 8 = 4800 cm³ và cần 2(30×20 + 30×8 + 20×8) = 2000 cm² vật liệu.",
+          "Kỹ sư xây dựng sử dụng công thức hình cầu và hình trụ khi thiết kế bể chứa nước, silo và bình chứa áp lực. Bể hình trụ bán kính 2 m và chiều cao 5 m chứa π × 4 × 5 ≈ 62,83 m³ — khoảng 62.830 lít. Diện tích bề mặt xác định lượng vật liệu cách nhiệt hoặc lớp phủ chống ăn mòn cần thiết.",
+          "Trong kiến trúc, các hình nón và lăng trụ tam giác xuất hiện ở tháp nhọn, cửa sổ mái và vây trang trí. Biết diện tích xung quanh của tháp nhọn hình nón giúp thợ mái tính chính xác cần bao nhiêu tấm đồng hay đá phiến. Hình nón bán kính đáy 1,2 m và chiều cao 3 m có đường sinh √(1,44 + 9) ≈ 3,232 m và diện tích xung quanh π × 1,2 × 3,232 ≈ 12,18 m²."
+        ]
+      },
+      {
+        "heading": "Ảnh hưởng của việc thay đổi kích thước đến thể tích và diện tích bề mặt",
+        "paragraphs": [
+          "Nhân cả ba chiều của một hình với hệ số k sẽ nhân thể tích với k³ và diện tích bề mặt với k². Định luật bình phương-lập phương này có hệ quả thực tiễn sâu sắc. Gấp đôi cạnh lập phương (k = 2) thì thể tích tăng 8 lần, trong khi diện tích bề mặt chỉ tăng gấp 4. Đó là lý do tại sao các container lớn hiệu quả không gian trên đơn vị vật liệu cao hơn nhiều so với loại nhỏ.",
+          "Với hình cầu, nếu bạn gấp đôi bán kính, thể tích tăng từ (4/3)πr³ lên (4/3)π(2r)³ = 8 × (4/3)πr³ — tức là gấp tám lần. Diện tích bề mặt tăng gấp bốn từ 4πr² lên 4π(2r)² = 16πr². Tỉ lệ diện tích bề mặt trên thể tích, bằng 3/r với hình cầu, giảm một nửa — đó là lý do động vật lớn có diện tích bề mặt nhỏ hơn tương đối so với thể tích cơ thể, ảnh hưởng đến tỏa nhiệt và trao đổi chất.",
+          "Khi chỉ điều chỉnh một chiều, ảnh hưởng là tuyến tính cho thành phần đó. Gấp đôi chiều cao hình trụ sẽ gấp đôi thể tích nhưng tăng diện tích bề mặt toàn phần ít hơn gấp đôi (vì hai đáy tròn không đổi). Sự bất đối xứng này quan trọng khi tối ưu thiết kế hộp lon: với thể tích cố định, hình trụ tiết kiệm vật liệu nhất có chiều cao bằng đường kính."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Chọn hình 3D",
+        "text": "Nhấp vào một trong sáu nút hình — Hình Cầu, Hình Trụ, Hình Nón, Hình Lập Phương, Hộp Chữ Nhật hoặc Lăng Trụ Tam Giác — để chọn hình cần tính."
+      },
+      {
+        "name": "Nhập kích thước cần thiết",
+        "text": "Điền vào các ô nhập xuất hiện cho hình đã chọn. Tất cả giá trị phải là số dương cùng đơn vị (ví dụ: tất cả bằng centimét hoặc tất cả bằng inch)."
+      },
+      {
+        "name": "Đọc kết quả",
+        "text": "Thể tích và diện tích bề mặt toàn phần được làm nổi bật ở đầu trang. Cuộn xuống để xem các thuộc tính bổ sung như diện tích xung quanh, đường sinh, diện tích đáy hoặc đường chéo không gian tùy theo hình."
+      },
+      {
+        "name": "Thay đổi hình hoặc kích thước",
+        "text": "Chọn hình khác bất cứ lúc nào hoặc điều chỉnh bất kỳ kích thước nào — kết quả cập nhật tức thì mà không cần tải lại trang."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Thể tích và diện tích bề mặt khác nhau như thế nào?",
+      "a": "Thể tích đo lượng không gian ba chiều mà hình rắn bao quanh, tính bằng đơn vị lập phương (cm³, m³, in³). Diện tích bề mặt đo tổng diện tích tất cả các mặt ngoài, tính bằng đơn vị bình phương (cm², m², in²). Hãy nghĩ thể tích là lượng nước một vật chứa có thể đựng và diện tích bề mặt là lượng sơn cần để phủ mặt ngoài."
+    },
+    {
+      "q": "Đường sinh của hình nón khác chiều cao như thế nào?",
+      "a": "Chiều cao h là khoảng cách vuông góc từ đỉnh xuống tâm đáy. Đường sinh s là khoảng cách dọc theo bề mặt nghiêng từ đỉnh đến cạnh đáy. Hai đại lượng liên hệ nhau qua định lý Pythagore: s = √(r² + h²), trong đó r là bán kính đáy."
+    },
+    {
+      "q": "Tại sao máy tính lăng trụ tam giác giả định tam giác cân?",
+      "a": "Với mặt cắt tam giác tổng quát cần ba cạnh để tính chính xác chu vi. Máy tính này chỉ yêu cầu đáy và chiều cao nên giả định tam giác cân — hai cạnh bằng nhau mỗi cạnh dài √((b/2)² + h²). Với tam giác đều cạnh b, chiều cao là b√3/2, nhập giá trị đó sẽ cho kết quả đúng."
+    },
+    {
+      "q": "Nên dùng đơn vị nào?",
+      "a": "Bất kỳ đơn vị nhất quán nào cũng được — milimet, centimét, mét, inch hoặc foot. Máy tính không phụ thuộc vào đơn vị; nếu nhập bán kính bằng centimét, thể tích sẽ tính bằng centimét khối và diện tích bằng centimét vuông. Không được pha trộn đơn vị trong một lần tính."
+    },
+    {
+      "q": "Làm thế nào để tính thể tích hình cầu từ đường kính thay vì bán kính?",
+      "a": "Chia đường kính cho 2 để được bán kính rồi nhập giá trị đó. Ví dụ: hình cầu đường kính 10 cm có bán kính 5 cm, thể tích (4/3)π × 5³ ≈ 523,599 cm³."
+    },
+    {
+      "q": "Đường chéo không gian của hộp chữ nhật là gì?",
+      "a": "Đường chéo không gian là đoạn thẳng dài nhất bên trong hộp, nối hai góc đối diện qua phần bên trong. Độ dài √(l² + w² + h²). Với lập phương cạnh s, đơn giản hóa thành s√3. Đôi khi còn gọi là đường chéo chính hay đường chéo thân."
+    },
+    {
+      "q": "Gấp đôi bán kính ảnh hưởng thế nào đến thể tích hình cầu?",
+      "a": "Gấp đôi bán kính nhân thể tích với 2³ = 8. Suy ra từ công thức V = (4/3)πr³: thay r bằng 2r được (4/3)π(2r)³ = 8 × (4/3)πr³. Diện tích bề mặt tăng gấp bốn (hệ số 2² = 4) vì phụ thuộc vào r²."
+    },
+    {
+      "q": "Dữ liệu có được gửi đến máy chủ không?",
+      "a": "Không. Tất cả phép tính chạy hoàn toàn trong trình duyệt của bạn bằng JavaScript. Không có đầu vào hay kết quả nào được truyền đến bất kỳ máy chủ nào."
+    }
+  ]
+}

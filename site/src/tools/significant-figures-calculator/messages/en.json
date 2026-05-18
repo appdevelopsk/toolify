@@ -1,0 +1,120 @@
+{
+  "title": "Significant Figures Calculator — Count & Round Sig Figs",
+  "shortDescription": "Count significant figures in any number or round to a specified number of sig figs. Shows a digit-by-digit breakdown and scientific notation.",
+  "description": "Enter any number to instantly count its significant figures with a color-coded digit breakdown, or switch to rounding mode to express a value to exactly the number of sig figs you need. Supports integers, decimals, and scientific notation input. Explains which digits are significant and why.",
+  "metaDescription": "Free significant figures calculator. Count sig figs with a digit-by-digit explanation, or round any number to N significant figures. Supports scientific notation.",
+  "keywords": [
+    "significant figures calculator",
+    "sig figs calculator",
+    "significant figures counter",
+    "round to significant figures",
+    "sig fig rules"
+  ],
+  "empty": "Enter a number to count or round significant figures.",
+  "tab": {
+    "count": "Count Sig Figs",
+    "round": "Round to N Sig Figs"
+  },
+  "input": {
+    "number": "Number",
+    "numberPlaceholder": "e.g. 0.00420 or 1.23e4",
+    "numberHint": "Enter an integer, decimal, or scientific notation value",
+    "numberToRound": "Number to Round",
+    "numberToRoundPlaceholder": "e.g. 9876.5432",
+    "sigFigsTarget": "Significant Figures",
+    "sigFigsTargetHint": "Enter a value from 1 to 15"
+  },
+  "result": {
+    "sigFigCount": "Significant Figures",
+    "scientificNotation": "Scientific Notation",
+    "explanation": "Digit Breakdown",
+    "rounded": "Rounded Result",
+    "sigFigsUsed": "Sig Figs Applied",
+    "roundExplanation": "{input} rounded to {sigFigs} significant figures is {result}.",
+    "legendSignificant": "Significant",
+    "legendNotSignificant": "Not significant",
+    "legendAmbiguous": "Ambiguous",
+    "ambiguousNote": "Ambiguous trailing zeros",
+    "ambiguousNoteDetail": "Trailing zeros in a whole number without a decimal point are ambiguous. Add a decimal point (e.g. 1200.) or use scientific notation (1.2 × 10²) to make the precision explicit."
+  },
+  "error": {
+    "invalid": "Please enter a valid number (e.g. 0.00420, 6.02e23, or 1500.)."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "The 5 rules for counting significant figures",
+        "paragraphs": [
+          "Every measured or calculated value carries an implicit precision, and significant figures are how scientists communicate that precision. Understanding which digits count — and which do not — prevents reporting false precision or understating accuracy.",
+          "Rule 1: All non-zero digits (1–9) are always significant. The number 4.72 has three significant figures; 391 has three. Rule 2: Zeros sandwiched between non-zero digits — often called captive or embedded zeros — are always significant. 4.0072 has five significant figures; 3007 has four. Rule 3: Leading zeros that appear before the first non-zero digit are never significant; they only locate the decimal point. 0.0042 has two significant figures (4 and 2); 0.00100 has three (1, 0, 0 in the fractional part after the 1). Rule 4: Trailing zeros to the right of a decimal point are always significant because they reflect the precision of the measurement. 3.50 has three significant figures, and 100.0 has four. Rule 5: Trailing zeros in a whole number with no decimal point are ambiguous — they may or may not be significant. Writing 1200 leaves it unclear whether you mean 2, 3, or 4 significant figures. Resolve the ambiguity by adding a decimal point (1200.), by using scientific notation (1.2 × 10³), or by using an overline notation in formal work."
+        ]
+      },
+      {
+        "heading": "Why significant figures matter in science and measurement",
+        "paragraphs": [
+          "Every physical measurement has a limit of precision set by the instrument and the observer. A ruler marked in millimeters can reliably give readings to the nearest 0.5 mm or so; claiming a result of 14.2842 cm from that ruler overstates what is actually known. Significant figures encode that limit: reporting 14.3 cm (three sig figs) honestly represents the precision of the measurement tool.",
+          "The significance of precision propagates through calculations. When results computed from measured data are reported with too many figures, it suggests the answer is more certain than the raw data justify — a form of misleading communication. Conversely, rounding too aggressively loses real information. In pharmaceutical manufacturing, tolerances may be specified to four or five sig figs; being off by even a single figure in the wrong direction can mean a product is outside specification. In analytical chemistry, instrumental detection limits are carefully matched to the number of sig figs used in reporting concentrations. Even in everyday engineering — choosing a wire gauge, sizing a pipe, balancing a structural load — the number of significant figures in the design specification directly influences which grade of component is required."
+        ]
+      },
+      {
+        "heading": "Significant figures in arithmetic: addition and multiplication rules",
+        "paragraphs": [
+          "Significant figures follow different rules depending on the operation performed. For addition and subtraction, the result should be rounded to the same number of decimal places as the input with the fewest decimal places. If you add 12.11 + 18.0 + 1.013, the result from a calculator is 31.123, but since 18.0 has only one decimal place, the reported answer is 31.1. The rule reflects that you can only be as precise as your least-precise measurement in terms of the magnitude of uncertainty.",
+          "For multiplication and division, the result should contain the same number of significant figures as the input with the fewest significant figures. Multiplying 4.56 (3 sig figs) by 1.4 (2 sig figs) gives a raw result of 6.384, which rounds to 6.4 (2 sig figs). This is because the relative uncertainty of the least-precise factor sets the floor for the precision of the product. Mixed-operation calculations should apply the rounding rule at each step, or carry extra guard digits through intermediate steps and round only the final result — the latter approach minimizes accumulated rounding error."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Select the Count Sig Figs tab",
+        "text": "Click the Count Sig Figs tab at the top of the calculator to enter counting mode."
+      },
+      {
+        "name": "Type your number",
+        "text": "Enter any number in the text field — integers (1500), decimals (0.00420), or scientific notation (1.23e4). The calculator reads the raw string so leading and trailing zeros are preserved correctly."
+      },
+      {
+        "name": "Read the digit breakdown",
+        "text": "Each digit is highlighted: green for significant, grey for non-significant leading zeros, and yellow for ambiguous trailing zeros in whole numbers. The total count appears prominently at the top."
+      },
+      {
+        "name": "Switch to rounding mode when needed",
+        "text": "Click the Round to N Sig Figs tab, enter your number and the desired number of significant figures, and the calculator returns the rounded value along with its scientific notation form."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "How many significant figures does 0.00420 have?",
+      "a": "Three. The leading zeros (0.00) are not significant — they only show the position of the decimal point. The digits 4, 2, and the trailing 0 after the 2 are all significant. The trailing zero is significant because it appears after the decimal point and after a non-zero digit, indicating the measurement was made to that level of precision."
+    },
+    {
+      "q": "Are trailing zeros significant in a whole number like 1200?",
+      "a": "It is ambiguous without additional context. The number 1200 could have 2, 3, or 4 significant figures depending on the precision of the measurement. To remove ambiguity: write 1200. (with a decimal point) to indicate 4 sig figs, or use scientific notation: 1.2 × 10³ (2 sig figs), 1.20 × 10³ (3 sig figs), or 1.200 × 10³ (4 sig figs)."
+    },
+    {
+      "q": "How do I round 34567 to 3 significant figures?",
+      "a": "Identify the first 3 significant digits: 3, 4, 5. Look at the next digit (6) — it is 5 or more, so round up the 5 to 6. The result is 34600. In scientific notation that is 3.46 × 10⁴. Note that the trailing zeros in 34600 are not significant in this context; they are placeholders."
+    },
+    {
+      "q": "Does the number of significant figures change when converting units?",
+      "a": "No. Significant figures reflect measurement precision, which does not change when you change units. If a length is measured as 2.54 cm (3 sig figs), converting to meters gives 0.0254 m — still 3 sig figs. The leading zeros in the meters value are not significant; only the 2, 5, and 4 are."
+    },
+    {
+      "q": "What is the difference between significant figures and decimal places?",
+      "a": "Decimal places count digits to the right of the decimal point regardless of value. Significant figures count all meaningful digits starting from the first non-zero digit. The number 0.00420 has 5 decimal places but only 3 significant figures. The number 12300 has 0 decimal places but at least 3 significant figures (and possibly more, if the zeros are measured)."
+    },
+    {
+      "q": "How many significant figures should I use in my answer?",
+      "a": "For addition and subtraction, match the fewest decimal places of any value in the calculation. For multiplication and division, match the fewest significant figures of any value in the calculation. When combining both operations, apply each rule at the appropriate step. In general, report no more precision than your least-precise input justifies."
+    },
+    {
+      "q": "Is the number 10 one or two significant figures?",
+      "a": "Ambiguous — without a decimal point it is unclear. Writing 10 could mean you measured to the nearest 10 (1 sig fig) or the nearest 1 (2 sig figs). To indicate 2 sig figs explicitly, write 10. (with a decimal point) or 1.0 × 10¹. In most educational contexts, 10 is taken to have 2 sig figs, but scientific communication requires the notation to make it unambiguous."
+    },
+    {
+      "q": "What is scientific notation and how does it help with significant figures?",
+      "a": "Scientific notation expresses a number as a coefficient (1 ≤ |coefficient| < 10) multiplied by a power of 10. For example, 45600 becomes 4.56 × 10⁴. The coefficient contains only the significant digits, so the notation makes precision explicit: 4.56 × 10⁴ unambiguously has 3 sig figs, while 4.5600 × 10⁴ has 5. This is the standard way to eliminate the trailing-zero ambiguity in whole numbers."
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "title": "Matrizenrechner — Addition, Multiplikation, Determinante",
+  "shortDescription": "Berechnen Sie Addition, Subtraktion, Multiplikation, Transposition und Determinante von 2×2- oder 3×3-Matrizen direkt im Browser.",
+  "description": "Geben Sie die Werte von Matrix A (und B für binäre Operationen) ein und erhalten Sie das Ergebnis sofort. Unterstützt 2×2- und 3×3-Matrizen mit fünf Operationen: Addition, Subtraktion, Multiplikation, Transposition und Determinante.",
+  "metaDescription": "Kostenloser Online-Matrizenrechner. Addieren, subtrahieren, multiplizieren und transponieren Sie Matrizen der Größe 2×2 und 3×3, und berechnen Sie Determinanten…",
+  "keywords": [
+    "Matrizenrechner",
+    "Matrizenmultiplikation",
+    "Determinantenrechner",
+    "Matrizenaddition",
+    "3x3-Matrix"
+  ],
+  "empty": "Füllen Sie die Matrizenwerte oben aus, um zu berechnen.",
+  "input": {
+    "size": "Matrizengröße",
+    "operation": "Operation",
+    "matA": "Matrix A",
+    "matB": "Matrix B"
+  },
+  "result": {
+    "label": "Ergebnis"
+  },
+  "operations": {
+    "add": "Addieren (A + B)",
+    "subtract": "Subtrahieren (A − B)",
+    "multiply": "Multiplizieren (A × B)",
+    "transpose": "Transponieren (Aᵀ)",
+    "determinant": "Determinante (det A)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Was Matrizen sind und warum sie wichtig sind",
+        "paragraphs": [
+          "Eine Matrix ist ein rechteckiges Zahlenschema, das in Zeilen und Spalten angeordnet ist. Eine m×n-Matrix hat m Zeilen und n Spalten. Matrizen sind die grundlegenden Objekte der linearen Algebra, und die lineare Algebra ist die mathematische Sprache der Datenwissenschaft, Computergrafik, physikalischen Simulationen und technischen Optimierung.",
+          "Jedes Element einer Matrix wird durch seinen Zeilen- und Spaltenindex identifiziert. Das Element in Zeile i und Spalte j wird als aᵢⱼ geschrieben. In einer 2×2-Matrix ist a₁₁ das Element oben links, a₁₂ oben rechts, a₂₁ unten links und a₂₂ unten rechts. Quadratische Matrizen (gleiche Anzahl von Zeilen und Spalten) haben zusätzliche Eigenschaften wie Determinante und Spur, die für nicht-quadratische Matrizen nicht definiert sind.",
+          "Matrizen stellen lineare Transformationen dar: Funktionen, die Vektoren auf Vektoren abbilden und dabei Addition und skalare Multiplikation erhalten. Eine 2×2-Matrix repräsentiert jede Kombination aus Rotation, Skalierung, Spiegelung und Scherung in einer zweidimensionalen Ebene. Das Multiplizieren zweier Matrizen verknüpft ihre Transformationen: Wenn A um 45° dreht und B mit 2× skaliert, wendet AB zunächst die Rotation und dann die Skalierung an."
+        ]
+      },
+      {
+        "heading": "Matrizenoperationen erklärt",
+        "paragraphs": [
+          "Addition und Subtraktion erfordern, dass beide Matrizen dieselben Dimensionen haben. Entsprechende Elemente werden addiert oder subtrahiert: (A+B)ᵢⱼ = aᵢⱼ + bᵢⱼ. Die Addition ist kommutativ (A+B = B+A), die Subtraktion jedoch nicht (A−B ≠ B−A im Allgemeinen).",
+          "Die Matrizenmultiplikation ist komplexer und nicht kommutativ — im Allgemeinen gilt AB ≠ BA. Für zwei quadratische n×n-Matrizen ist das Element in Zeile i und Spalte j des Produkts das Skalarprodukt der i-ten Zeile von A mit der j-ten Spalte von B: (AB)ᵢⱼ = Σₖ aᵢₖ bₖⱼ. Für eine 2×2-Matrix sind dafür 8 Multiplikationen und 4 Additionen nötig.",
+          "Die Transponierte von Matrix A, geschrieben Aᵀ, entsteht durch Vertauschen von Zeilen und Spalten: (Aᵀ)ᵢⱼ = aⱼᵢ. Die erste Zeile von A wird zur ersten Spalte von Aᵀ. Die Transposition wird in der Kleinstquadrate-Regression (die Normalengleichungen enthalten AᵀA), der Hauptkomponentenanalyse und der Backpropagation in neuronalen Netzen umfangreich genutzt. Die Determinante ist ein skalarer Wert, der eine quadratische Matrix zusammenfasst. Für eine 2×2-Matrix [[a,b],[c,d]] gilt: det = ad − bc. Eine Matrix mit Determinante 0 heißt singulär und besitzt keine Inverse."
+        ]
+      },
+      {
+        "heading": "Reale Anwendungen von Matrizenberechnungen",
+        "paragraphs": [
+          "Die Computergrafik basiert vollständig auf Matrizenoperationen. Jede Rotation, Translation, Skalierung und Perspektivprojektion in einer 3D-Szene wird als Matrizenmultiplikation in homogenen Koordinaten dargestellt. Die Rendering-Pipeline multipliziert eine Folge von 4×4-Matrizen: Modell-, Ansichts- und Projektionsmatrizen werden zusammengesetzt (multipliziert), bevor sie auf jeden Eckpunkt angewendet werden. GPUs sind genau für diese Aufgabe optimiert.",
+          "Im maschinellen Lernen speichern neuronale Netze ihre Gewichte als Matrizen. Der Vorwärtsdurchlauf durch eine Schicht ist eine Matrizenmultiplikation zwischen dem Eingangsvektor (oder der Batch-Matrix) und der Gewichtsmatrix, gefolgt von einer nichtlinearen Aktivierungsfunktion. Große Sprachmodelle wie GPT führen pro Vorwärtsdurchlauf Milliarden von Matrizenmultiplikationen aus. Das Training mittels Backpropagation berechnet Gradienten mithilfe von Transponierten: δL/δW = xᵀ · δL/δy.",
+          "Lineare Gleichungssysteme lassen sich mithilfe von Matrizen schreiben und lösen. Das System ax + by = e, cx + dy = f entspricht der Matrizengleichung [[a,b],[c,d]] · [x,y]ᵀ = [e,f]ᵀ. Wenn die Determinante nicht null ist, lautet die eindeutige Lösung x = [x,y]ᵀ = A⁻¹[e,f]ᵀ. Diese Beziehung zwischen Determinanten, Inversen und Lösbarkeit ist zentral für numerische Analyse und wissenschaftliches Rechnen."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Matrizengröße wählen",
+        "text": "Wählen Sie 2×2 oder 3×3 entsprechend Ihren Matrizen."
+      },
+      {
+        "name": "Operation auswählen",
+        "text": "Wählen Sie aus Addition, Subtraktion, Multiplikation, Transposition oder Determinante."
+      },
+      {
+        "name": "Matrizenwerte eingeben",
+        "text": "Füllen Sie jede Zelle von Matrix A (und Matrix B für binäre Operationen) aus. Leere Zellen werden als 0 behandelt."
+      },
+      {
+        "name": "Ergebnis ablesen",
+        "text": "Das berechnete Ergebnis erscheint automatisch unten — eine Matrix für die meisten Operationen oder eine einzelne Zahl für die Determinante."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Warum ist die Matrizenmultiplikation nicht kommutativ?",
+      "a": "Die Matrizenmultiplikation entspricht dem Verknüpfen linearer Transformationen. Ebenso wie „zuerst drehen, dann skalieren“ ein anderes Ergebnis liefert als „zuerst skalieren, dann drehen“, unterscheiden sich AB und BA im Allgemeinen. Kommutativität gilt nur in Sonderfällen, etwa wenn beide Matrizen Diagonalmatrizen sind oder eine davon die Einheitsmatrix ist."
+    },
+    {
+      "q": "Was bedeutet eine Determinante von 0?",
+      "a": "Eine Determinante von 0 bedeutet, dass die Matrix singulär ist: Sie besitzt keine Inverse. Geometrisch gesehen kollabiert die Transformation mindestens eine Dimension (projiziert 2D auf eine Gerade oder 3D auf eine Ebene oder Gerade). Bei einem linearen Gleichungssystem bedeutet eine Determinante von 0, dass das System keine oder unendlich viele Lösungen hat."
+    },
+    {
+      "q": "Wie berechne ich die Inverse einer Matrix?",
+      "a": "Für eine 2×2-Matrix [[a,b],[c,d]] lautet die Inverse (1/det) × [[d,−b],[−c,a]], vorausgesetzt det = ad−bc ≠ 0. Für größere Matrizen verwendet man das Gaußsche Eliminationsverfahren oder die LU-Zerlegung. Dieses Tool berechnet derzeit Determinante und Transponierte; die Inverse ist eine natürliche Erweiterung."
+    },
+    {
+      "q": "Was ist die Einheitsmatrix?",
+      "a": "Die Einheitsmatrix I hat 1en auf der Hauptdiagonale und 0en an allen anderen Stellen. Sie ist das Matrizenäquivalent der Zahl 1: AI = IA = A für jede Matrix A geeigneter Größe. Die Multiplikation mit der Einheitsmatrix ändert eine Matrix nicht."
+    },
+    {
+      "q": "Kann ich Matrizen unterschiedlicher Größe multiplizieren?",
+      "a": "Ja, aber nur wenn die Spaltenanzahl von A gleich der Zeilenanzahl von B ist. Eine m×n-Matrix mal einer n×p-Matrix ergibt eine m×p-Matrix. Dieses Tool verarbeitet nur quadratische Matrizen (2×2 oder 3×3). Für nicht-quadratische Operationen ist ein speziellerer Rechner erforderlich."
+    },
+    {
+      "q": "Was ist die Spur einer Matrix?",
+      "a": "Die Spur ist die Summe der Diagonalelemente (a₁₁ + a₂₂ + … + aₙₙ). Sie entspricht der Summe der Eigenwerte und ist invariant unter Ähnlichkeitstransformationen (A und P⁻¹AP haben dieselbe Spur). Dieses Tool zeigt die Spur derzeit nicht an, aber Sie können sie berechnen, indem Sie die Diagonalwerte addieren."
+    },
+    {
+      "q": "Sind die Berechnungen exakt?",
+      "a": "Das Tool verwendet die standardmäßige 64-Bit-Gleitkomma-Arithmetik von JavaScript. Ergebnisse werden für die Anzeige auf 10 Dezimalstellen gerundet. Bei ganzzahligen Eingaben sind die meisten Ergebnisse exakt. Bei großen oder schlecht konditionierten Matrizen kann die Gleitkomma-Rundung in den letzten Stellen kleine Fehler verursachen."
+    },
+    {
+      "q": "Was bedeutet das „Transponieren“ geometrisch?",
+      "a": "Eine Matrix zu transponieren spiegelt sie an ihrer Hauptdiagonalen. Wenn A eine lineare Transformation darstellt, stellt Aᵀ die adjungierte Transformation dar. Bei Rotationsmatrizen (orthogonalen Matrizen) ist die Transponierte gleich der Inversen: Drehen um θ und dann um −θ macht die Rotation rückgängig."
+    }
+  ]
+}

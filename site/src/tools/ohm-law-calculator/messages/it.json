@@ -1,0 +1,111 @@
+{
+  "title": "Calcolatore Legge di Ohm — Tensione, Corrente, Resistenza e Potenza",
+  "shortDescription": "Calcola tensione, corrente, resistenza o potenza usando la Legge di Ohm (V=IR) e la formula della potenza (P=VI). Mostra tutti e quattro i valori con unità intelligenti.",
+  "description": "Seleziona la grandezza elettrica da calcolare, inserisci gli altri due valori e ottieni istantaneamente tensione (V), corrente (I), resistenza (R) e potenza (P). Supporta milliampere, microampere, kilohm, megaohm, milliwatt e kilowatt. La formula applicata viene mostrata con ogni risultato.",
+  "metaDescription": "Calcolatore gratuito della Legge di Ohm. Calcola tensione, corrente, resistenza o potenza con V=IR e P=VI. Supporta mA, kΩ, MΩ, mW. Risultati immediati.",
+  "keywords": ["calcolatore legge di ohm", "calcolatore tensione corrente resistenza", "calcolatore potenza elettronica", "calcolatore ohm", "calcolatore V=IR"],
+  "empty": "Seleziona cosa calcolare e inserisci gli altri due valori.",
+  "input": {
+    "solveLabel": "Calcola",
+    "voltage": "Tensione",
+    "voltagePlaceholder": "es. 12",
+    "current": "Corrente",
+    "currentPlaceholder": "es. 0.5",
+    "resistance": "Resistenza",
+    "resistancePlaceholder": "es. 100",
+    "power": "Potenza",
+    "powerPlaceholder": "es. 5",
+    "pairVI": "Tensione e Corrente",
+    "pairVR": "Tensione e Resistenza",
+    "pairIR": "Corrente e Resistenza"
+  },
+  "result": {
+    "voltage": "Tensione",
+    "current": "Corrente",
+    "resistance": "Resistenza",
+    "power": "Potenza",
+    "formula": "Formula utilizzata"
+  },
+  "error": {
+    "invalidInput": "Input non valido — inserisci numeri validi.",
+    "divisionByZero": "Divisione per zero — la resistenza o la corrente non possono essere zero.",
+    "needTwoValues": "Inserisci i due valori noti per calcolare l'incognita."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cos'è la Legge di Ohm?",
+        "paragraphs": [
+          "La Legge di Ohm afferma che la tensione ai capi di un conduttore è direttamente proporzionale alla corrente che lo attraversa, a condizione che la temperatura rimanga costante. Formulata dal fisico tedesco Georg Simon Ohm nel 1827, si esprime come V = I × R, dove V è la tensione in volt (V), I è la corrente in ampere (A) e R è la resistenza in ohm (Ω). Ohm derivò questa relazione sperimentando con fili di diversa lunghezza e spessore, osservando che raddoppiare la resistenza dimezzava la corrente a parità di tensione.",
+          "La Legge di Ohm si applica alla maggior parte dei conduttori metallici e a molti materiali resistivi a temperatura costante — questi sono detti materiali ohmici. Dispositivi non ohmici come diodi, transistori e lampadine a incandescenza non seguono una relazione lineare V-I, quindi la Legge di Ohm è solo un'approssimazione per loro. Nel progetto di circuiti, V = IR è l'equazione più usata: determina la sezione dei cavi, i valori delle resistenze, la caduta di tensione sui componenti e i limiti operativi di sicurezza."
+        ]
+      },
+      {
+        "heading": "La potenza nei circuiti elettrici",
+        "paragraphs": [
+          "La potenza elettrica è la velocità con cui l'energia viene trasferita o consumata, misurata in watt (W). Tre formule equivalenti collegano la potenza alle grandezze elettriche fondamentali: P = V × I (la potenza è uguale alla tensione per la corrente), P = I² × R (utile quando si conoscono corrente e resistenza) e P = V² / R (utile quando si conoscono tensione e resistenza). Tutte e tre derivano direttamente dalla Legge di Ohm e dalla definizione di potenza.",
+          "La dissipazione di potenza ha importanza pratica perché resistori, cavi e altri componenti convertono l'energia elettrica in calore. Ogni resistore ha una potenza nominale — tipicamente 0,125 W, 0,25 W, 0,5 W o 1 W per i tipi a foro passante comuni — e superare questa potenza causa il surriscaldamento e il guasto del componente. Per esempio, un resistore da 100 Ω in un circuito a 5 V porta I = 5/100 = 50 mA e dissipa P = 0,05² × 100 = 0,25 W, quindi un resistore da un quarto di watt è la scelta minima sicura. Aggiungi sempre un margine di sicurezza di almeno il 50%."
+        ]
+      },
+      {
+        "heading": "Circuiti in serie e in parallelo",
+        "paragraphs": [
+          "In un circuito in serie, i resistori sono collegati capo a capo e la stessa corrente scorre attraverso tutti. La resistenza totale è semplicemente la somma: R_totale = R1 + R2 + R3 + ... La tensione si divide su ciascun resistore in proporzione al suo valore (V_n = I × R_n), che è il principio dei partitori di tensione usati per impostare punti di polarizzazione o scalare uscite di sensori.",
+          "In un circuito in parallelo, i resistori condividono la stessa tensione ma la corrente si divide tra i rami. La resistenza totale segue la regola dei reciproci: 1/R_totale = 1/R1 + 1/R2 + 1/R3 + ... Per due resistori, la formula semplificata è R_totale = (R1 × R2) / (R1 + R2). Le combinazioni in parallelo producono sempre una resistenza totale inferiore al resistore individuale più piccolo. Capire entrambe le configurazioni ti permette di progettare circuiti che forniscano la tensione e la corrente corrette a ogni componente, dimensionare correttamente fusibili e cavi, e diagnosticare guasti in modo efficiente."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Scegli la grandezza incognita",
+        "text": "Fai clic su uno dei quattro pulsanti — Tensione (V), Corrente (I), Resistenza (R) o Potenza (P) — per selezionare cosa vuoi calcolare. I campi di input si aggiorneranno mostrando i due valori che devi fornire."
+      },
+      {
+        "name": "Inserisci i due valori noti",
+        "text": "Digita i valori noti nei campi di input. Usa i menu a discesa delle unità per selezionare la scala appropriata: milliampere (mA) o microampere (µA) per correnti piccole, kilohm (kΩ) o megaohm (MΩ) per resistenze grandi, e milliwatt (mW) o kilowatt (kW) per la potenza."
+      },
+      {
+        "name": "Leggi tutti e quattro i risultati",
+        "text": "Il calcolatore mostra istantaneamente tensione, corrente, resistenza e potenza. Il valore calcolato è evidenziato in blu. I valori inferiori a 0,001 vengono mostrati automaticamente con il prefisso milli o micro per facilitare la lettura."
+      },
+      {
+        "name": "Annota la formula applicata",
+        "text": "Il badge ambrato sopra i risultati mostra quale formula è stata usata — per esempio, V = I × R o P = V² / R. Questo ti aiuta a capire la relazione e a verificare il calcolo a mano."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Cos'è la Legge di Ohm in parole semplici?",
+      "a": "La Legge di Ohm dice che se aumenti la tensione che spinge l'elettricità attraverso un filo, scorre più corrente — e se aumenti la resistenza, scorre meno corrente. La relazione esatta è V = I × R: la tensione è uguale alla corrente moltiplicata per la resistenza. Conoscendo due di queste tre grandezze puoi calcolare la terza."
+    },
+    {
+      "q": "Quali unità si usano nella Legge di Ohm?",
+      "a": "La tensione si misura in volt (V), la corrente in ampere (A) e la resistenza in ohm (Ω). Queste unità sono definite in modo che 1 V = 1 A × 1 Ω. In pratica si usano spesso i milliampere (1 mA = 0,001 A) per correnti piccole, i kilohm (1 kΩ = 1.000 Ω) per resistenze maggiori e i megaohm (1 MΩ = 1.000.000 Ω) per resistenze molto alte, come quelle nei circuiti di protezione degli ingressi."
+    },
+    {
+      "q": "Come calcolo la tensione usando la Legge di Ohm?",
+      "a": "Moltiplica la corrente (in ampere) per la resistenza (in ohm): V = I × R. Per esempio, se 2 A scorrono attraverso un resistore da 50 Ω, la caduta di tensione ai suoi capi è 2 × 50 = 100 V. Se la tua corrente è in milliampere, converti prima: 200 mA = 0,2 A, quindi V = 0,2 × 50 = 10 V."
+    },
+    {
+      "q": "Come trovo la corrente quando conosco tensione e resistenza?",
+      "a": "Ricava dalla Legge di Ohm I = V / R. Se hai una batteria da 9 V collegata a un resistore da 470 Ω, la corrente è 9 / 470 ≈ 0,0191 A, ossia circa 19,1 mA. È la corrente che scorre nel resistore e determina la potenza che dissipa."
+    },
+    {
+      "q": "Qual è la relazione tra potenza e Legge di Ohm?",
+      "a": "La potenza (P) misura quanto velocemente l'energia viene consumata, in watt. Si collega alla Legge di Ohm attraverso tre formule equivalenti: P = V × I, P = I² × R e P = V² / R. Tutte e tre danno la stessa risposta; scegli quella che corrisponde alle grandezze che già conosci. Per un resistore che porta 0,1 A a 10 V: P = 10 × 0,1 = 1 W."
+    },
+    {
+      "q": "La Legge di Ohm vale per i circuiti in corrente alternata?",
+      "a": "La Legge di Ohm si applica ai resistori puri nei circuiti in corrente alternata proprio come in quelli in corrente continua. Tuttavia, i circuiti in AC contengono anche condensatori e induttori, che introducono la reattanza (opposizione alla corrente dipendente dalla frequenza). La generalizzazione per la CA usa l'impedenza (Z) invece della semplice resistenza: V = I × Z, dove Z è un numero complesso. Per lavori in audio, radio ed elettronica di potenza sono necessari calcoli di impedenza complessa che vanno oltre la Legge di Ohm di base."
+    },
+    {
+      "q": "Perché la resistenza genera calore?",
+      "a": "Quando la corrente scorre attraverso un resistore, gli elettroni urtano gli atomi del materiale, trasferendo energia cinetica sotto forma di calore. La potenza dissipata come calore è P = I² × R — questo si chiama effetto Joule. Corrente o resistenza più elevate significano più calore. Ecco perché i cablaggi ad alta corrente usano conduttori spessi e a bassa resistenza, e perché i resistori hanno potenze nominali per evitare il surriscaldamento."
+    },
+    {
+      "q": "Cosa succede se supero la potenza nominale di un resistore?",
+      "a": "Superare la potenza nominale causa il surriscaldamento del resistore. Con un sovraccarico moderato può derivare dal valore nominale o diventare inaffidabile. Con un sovraccarico severo il resistore può fumare, creparsi o prendere fuoco. Calcola sempre P = I² × R e scegli un resistore con una potenza nominale di almeno 1,5-2 volte la potenza prevista. Le potenze nominali comuni sono 0,1 W, 0,25 W, 0,5 W, 1 W e 2 W per i componenti a foro passante."
+    }
+  ]
+}

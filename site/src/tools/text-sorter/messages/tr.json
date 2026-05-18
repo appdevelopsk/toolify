@@ -1,0 +1,68 @@
+{
+  "title": "Metin Satırı Sıralama Aracı Online — A–Z, Z–A, Tekrarları Kaldır",
+  "shortDescription": "Herhangi bir liste yapıştırın, satırları A→Z veya Z→A sıralayın, tekrarları kaldırın ve sonucu anında kopyalayın.",
+  "description": "Metin satırlarını alfabetik veya ters sırayla sıralar; büyük-küçük harf duyarsız karşılaştırma, tekrar kaldırma, boş satır silme ve boşluk temizleme seçenekleri sunar. Her şey tarayıcınızda çalışır — hiçbir veri sunucuya gönderilmez.",
+  "metaDescription": "Ücretsiz online metin sıralama aracı. Satırları A-Z veya Z-A sıralayın, tekrarları kaldırın, boşlukları temizleyin — hepsi tarayıcınızda anında.",
+  "keywords": ["metin satırı sıralama online", "metin sıralayıcı", "alfabetik sıralama", "liste sıralama online", "yinelenen satırları kaldır", "satır sıralayıcı"],
+  "label": {
+    "input": "Giriş — satırları buraya yapıştırın",
+    "output": "Sıralanmış sonuç"
+  },
+  "option": {
+    "direction": "Sıra:",
+    "dirAsc": "A → Z (artan)",
+    "dirDesc": "Z → A (azalan)",
+    "caseSensitive": "Büyük-küçük harfe duyarlı",
+    "removeDups": "Tekrarları kaldır",
+    "removeEmpty": "Boş satırları kaldır",
+    "trim": "Boşlukları temizle"
+  },
+  "action": {
+    "copy": "Kopyala",
+    "copied": "Kopyalandı!"
+  },
+  "stat": {
+    "lines": "{count} satır"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Metin sıralaması nasıl çalışır",
+        "paragraphs": [
+          "Sıralama, metni ayrı satırlara böler, onları sözlüksel sıraya (lexicographic) göre düzenler ve yeniden birleştirir. Sözlüksel sıra, sözlüklerde kullanılan ilkeyle aynıdır: karakterler, Unicode kod noktaları kullanılarak soldan sağa tek tek karşılaştırılır.",
+          "Varsayılan olarak araç, büyük-küçük harf duyarsız karşılaştırma kullanır; bu da 'apple', 'Apple' ve 'APPLE'ın sıralama amacıyla özdeş kabul edildiği anlamına gelir. Büyük harflerin küçük harflerden önce gelmesini istediğinizde büyük-küçük harfe duyarlı modu etkinleştirin."
+        ]
+      },
+      {
+        "heading": "Yaygın kullanım senaryoları",
+        "paragraphs": [
+          "İsim listelerini, etiket bulutlarını veya CSV sütun değerlerini alfabetik sıraya koymak en yaygın görevlerdir. Geliştiriciler, kod incelemelerini kolaylaştırmak ve diff çıktılarını düzeltmek için import ifadelerini veya yapılandırma anahtarlarını sık sık sıralar.",
+          "Veri analistleri, dışa aktarılan listelerdeki yinelenen girişleri hızla tespit etmek veya manuel karşılaştırmadan önce iki veri kümesini hizalamak için satır sıralamayı kullanır. Tekrar kaldırma seçeneği, binlerce girişten oluşan bir listeyi tek tıklamayla yalnızca benzersiz değerlere indirger."
+        ]
+      },
+      {
+        "heading": "Sıralama algoritmaları: arka planda neler oluyor",
+        "paragraphs": [
+          "Modern JavaScript motorları, Array.prototype.sort yöntemi için TimSort'un (birleştirme sıralaması ve ekleme sıralamasının hibridi) optimize edilmiş bir varyantını kullanır. TimSort kararlıdır; yani eşit karşılaştırılan satırlar orijinal göreli sıralarını korur.",
+          "Karşılaşacağınız metin listelerinin büyük çoğunluğu için algoritma, on binlerce satırda bile tarayıcıda bir milisaniyenin çok altında tamamlanır. Yerel ayara duyarlı sıralama (örneğin Fransızca veya Almancadaki aksanlı karakterlerin doğru sıralanması) gerekiyorsa, kendi kodunuzda Intl.Collator kullanmayı düşünün."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Metninizi yapıştırın", "text": "Giriş alanına tıklayın ve sıralamak istediğiniz satırları yapıştırın veya yazın; her satıra bir öğe." },
+      { "name": "Sıralama yönü seçin", "text": "Artan sıra için 'A → Z'yi veya azalan sıra için 'Z → A'yı açılır menüden seçin." },
+      { "name": "İsteğe bağlı filtreleri etkinleştirin", "text": "Yalnızca benzersiz satırları korumak için 'Tekrarları kaldır', boş satırları silmek için 'Boş satırları kaldır' veya sıralamadan önce her satırın baş ve son boşluklarını kaldırmak için 'Boşlukları temizle'yi işaretleyin." },
+      { "name": "Sonucu kopyalayın", "text": "Sıralanmış sonuç sağda anında görünür. Panoya kopyalamak için 'Kopyala'ya tıklayın." }
+    ]
+  },
+  "faq": [
+    { "q": "Sıralama otomatik olarak gerçekleşiyor mu?", "a": "Evet. Yazdıkça veya herhangi bir seçeneği değiştirdikçe sonuç gerçek zamanlı olarak güncellenir — gönder düğmesi yoktur." },
+    { "q": "Sıralama varsayılan olarak büyük-küçük harfe duyarlı mı?", "a": "Hayır. Varsayılan olarak araç, büyük-küçük harf duyarsız sıralar; bu nedenle 'Apple' ve 'apple' birlikte sıralanır. Ham Unicode kod noktası sırası için 'Büyük-küçük harfe duyarlı' onay kutusunu etkinleştirin." },
+    { "q": "Satır olarak ne sayılır?", "a": "Her satır sonu karakteri (\\n) bir satırın sonunu işaretler. Elektronik tablodan veya Windows'tan (\\r\\n satır sonları) yapıştırılan metin de doğru şekilde işlenir." },
+    { "q": "Sayıları sıralayabilir miyim?", "a": "Araç, sayısal değil sözlüksel sıralar. Bu, '10'un '1' < '9' olduğu için '9'dan önce sıralanacağı anlamına gelir. Sayısal sıralama için yapıştırmadan önce sayıları baştaki sıfırlarla doldurun (örn. '09' ile '10')." },
+    { "q": "'Tekrarları kaldır' tam olarak ne yapar?", "a": "Her benzersiz satırın ilk geçişini korur ve ardından gelen özdeş olanları atar. Karşılaştırma, büyük-küçük harf ayarınıza saygı duyar." },
+    { "q": "Verilerim tarayıcımı terk ediyor mu?", "a": "Hayır. Tüm işlemler JavaScript'te yerel olarak gerçekleşir. Hiçbir şey herhangi bir sunucuya yüklenmez." },
+    { "q": "Satır sınırı var mı?", "a": "Bu araç katı bir sınır uygulamaz. Performans cihazınıza bağlıdır, ancak modern tarayıcılar yüz binlerce satırı fark edilir bir gecikme olmaksızın işler." },
+    { "q": "CSV sütununu nasıl sıralarım?", "a": "Sütun değerlerini elektronik tablo uygulamanızdan kopyalayıp giriş alanına yapıştırın (her satıra bir değer olarak yapıştırılır), seçeneklerinizi uygulayın, sıralanmış çıktıyı kopyalayın ve geri yapıştırın. Ardından diğer sütunlarınızı manuel olarak veya elektronik tablo formülüyle yeniden bağlayın." }
+  ]
+}

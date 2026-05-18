@@ -1,0 +1,108 @@
+{
+  "title": "Penghapus Baris Duplikat — Bersihkan Daftar Teks Seketika",
+  "shortDescription": "Hapus baris duplikat dari daftar teks apa pun. Mendukung pencocokan tanpa memperhatikan huruf besar-kecil, pemotongan spasi, dan kontrol simpan pertama atau terakhir.",
+  "description": "Tempelkan daftar baris apa pun dan alat ini menghapus semua duplikat, hanya menyimpan entri unik. Opsi memungkinkan Anda mengontrol sensitivitas huruf besar-kecil, memotong spasi awal dan akhir sebelum membandingkan, dan memilih apakah menyimpan kemunculan pertama atau terakhir dari setiap kelompok duplikat.",
+  "metaDescription": "Penghapus baris duplikat gratis secara online. Tempel teks, hapus baris duplikat seketika — tanpa bedakan huruf, potong spasi, simpan pertama atau terakhir. Berjalan…",
+  "keywords": [
+    "hapus baris duplikat",
+    "penghapus duplikat teks online",
+    "deduplikasi teks",
+    "baris unik",
+    "bersihkan daftar teks"
+  ],
+  "empty": "Tempelkan teks di atas untuk menghapus baris duplikat.",
+  "input": {
+    "text": "Teks masukan — satu item per baris",
+    "caseSensitive": "Perbandingan peka huruf besar-kecil",
+    "trimLines": "Potong spasi sebelum membandingkan",
+    "keepFirst": "Simpan kemunculan pertama (hapus centang untuk menyimpan yang terakhir)"
+  },
+  "result": {
+    "cleaned": "Keluaran terdeduplikasi",
+    "stats": "{removed} baris duplikat dihapus — {remaining} baris unik tersisa."
+  },
+  "button": {
+    "copy": "Salin hasil",
+    "copied": "Disalin!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Kapan baris duplikat benar-benar penting",
+        "paragraphs": [
+          "Baris duplikat tidak berbahaya dalam puisi, tetapi menimbulkan masalah nyata dalam data terstruktur. Dalam file CSV, baris duplikat diam-diam menggelembungkan jumlah rekaman, mendistorsi agregat, dan dapat menyebabkan pelanggaran kunci primer saat file diimpor ke basis data. Dalam file log server, entri log identik yang berulang dari proses yang crash dapat memenuhi disk dalam hitungan menit. Dalam file konfigurasi, kunci duplikat diam-diam ditimpa — atau lebih buruk, menyebabkan kesalahan parse — tergantung pada parser.",
+          "Repositori kode juga mengalami duplikasi baris yang tidak disengaja: kesalahan salin-tempel dalam daftar dependensi (requirements.txt, package.json), pernyataan impor yang berulang, atau entri duplikat di .gitignore. Pemeriksaan CI otomatis sering mendeteksinya, tetapi menempel dan mendeduplikasi dengan cepat sebelum commit lebih cepat daripada men-debug kegagalan pipeline.",
+          "Baris kosong perlu mendapat perhatian khusus. Dua baris kosong berturut-turut secara teknis adalah duplikat, tetapi banyak format teks (Markdown, sumber Python, isi email) menggunakan baris kosong ganda sebagai pemisah yang disengaja. Opsi 'potong spasi' alat ini menormalkan baris yang tampak kosong karena spasi yang tersesat, tanpa merusak baris kosong yang disengaja — hasilnya bergantung pada konten spesifik Anda, jadi tinjau keluarannya."
+        ]
+      },
+      {
+        "heading": "Sensitivitas huruf besar-kecil: kapan penting dan kapan tidak",
+        "paragraphs": [
+          "Secara default alat ini membandingkan baris tanpa memperhatikan huruf besar-kecil, sehingga 'Apple', 'apple', dan 'APPLE' semuanya dianggap sebagai baris yang sama dan hanya yang pertama disimpan. Ini adalah pengaturan yang tepat untuk daftar yang dapat dibaca manusia seperti tag cloud, daftar kata kunci, nama kota, dan alamat email di mana Anda ingin menggabungkan varian dari hal yang sama.",
+          "Mode peka huruf besar-kecil penting untuk kode. Dalam Python, import 'os' dan 'OS' secara teknis berbeda (meskipun 'OS' akan gagal saat runtime di sebagian besar sistem), dan nama variabel seperti 'Result' dan 'result' adalah pengenal yang berbeda. Kata kunci SQL tidak peka huruf secara konvensi, tetapi nama tabel peka huruf pada sistem file Linux. Saat mendeduplikasi cuplikan kode, kunci konfigurasi, atau jalur, selalu aktifkan mode peka huruf besar-kecil.",
+          "Titik tengah yang praktis adalah menjalankan alat dua kali: sekali secara tidak peka huruf untuk menemukan hampir-duplikat untuk ditinjau, dan sekali secara peka huruf untuk deduplikasi yang otoritatif. Pendekatan dua-pass ini menangkap kesalahan ketik dan kapitalisasi yang tidak konsisten yang hanya deduplikasi otomatis akan lewatkan."
+        ]
+      },
+      {
+        "heading": "Cara kerja penanganan baris kosong dan spasi",
+        "paragraphs": [
+          "Spasi akhir tidak terlihat di sebagian besar editor teks dan operasi salin-tempel, namun membuat baris dibandingkan sebagai tidak sama. 'apple  ' (dua spasi akhir) dan 'apple' adalah string yang berbeda, sehingga tanpa pemotongan diaktifkan Anda akan menyimpan keduanya — meninggalkan duplikat halus di keluaran. Opsi 'Potong spasi' menghapus spasi awal dan akhir dari setiap baris sebelum membandingkan, tanpa mengubah konten baris keluaran (teks yang dipotong ditulis ke hasil).",
+          "Spasi awal dalam kode indentasi atau daftar kerangka memiliki makna: memotongnya akan merusak hierarki indentasi. Untuk kode atau kerangka terstruktur, nonaktifkan pemotongan dan gunakan mode peka huruf besar-kecil untuk mempertahankan konten baris yang tepat. Untuk daftar teks datar seperti kata kunci, nama kota, atau jalur URL, pemotongan hampir selalu merupakan pilihan yang tepat.",
+          "Tombol 'simpan pertama vs simpan terakhir' paling penting ketika daftar Anda memiliki metadata yang terkait dengan posisi. Misalnya, log kejadian di mana entri selanjutnya mewakili status yang lebih baru — dalam skenario itu, menyimpan kemunculan terakhir (rekaman terbaru untuk setiap kunci) secara semantik benar, sementara menyimpan yang pertama akan mempertahankan data yang sudah ketinggalan zaman."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Tempel teks Anda",
+        "text": "Klik area masukan dan tempel daftar Anda. Setiap baris diperlakukan sebagai satu item — alat memisahkan pada karakter baris baru."
+      },
+      {
+        "name": "Konfigurasikan opsi",
+        "text": "Aktifkan 'Peka huruf' untuk kode atau jalur file. Aktifkan 'Potong spasi' untuk daftar kata kunci atau data CSV. Alihkan 'Simpan pertama' untuk memutuskan kemunculan mana yang bertahan saat duplikat ditemukan."
+      },
+      {
+        "name": "Tinjau statistiknya",
+        "text": "Area hasil menunjukkan berapa banyak duplikat yang dihapus dan berapa banyak baris unik yang tersisa, sehingga Anda dapat memverifikasi bahwa operasi sudah benar."
+      },
+      {
+        "name": "Salin hasilnya",
+        "text": "Klik 'Salin hasil' untuk menyalin teks yang telah dideduplikasi ke clipboard Anda, lalu tempel di mana pun Anda membutuhkannya."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apakah alat mempertahankan urutan baris?",
+      "a": "Ya. Baris tidak diurutkan — hanya duplikat yang dihapus. Urutan relatif baris yang tersisa identik dengan urutan masukan."
+    },
+    {
+      "q": "Apa yang dianggap sebagai duplikat?",
+      "a": "Dua baris adalah duplikat jika identik setelah menerapkan opsi yang dipilih (pelipatan huruf dan/atau pemotongan spasi). Hanya konten teks yang dibandingkan; nomor baris dan posisi tidak dipertimbangkan."
+    },
+    {
+      "q": "Apakah baris kosong akan dihapus?",
+      "a": "Baris kosong hanya dihapus jika merupakan duplikat satu sama lain. Jika teks Anda memiliki tiga baris kosong berturut-turut dan 'Simpan pertama' diaktifkan, hanya baris kosong pertama yang bertahan. Jika ingin menghapus semua baris kosong, gunakan penyorter teks dengan opsi 'hapus baris kosong'."
+    },
+    {
+      "q": "Apa fungsi 'Simpan kemunculan terakhir'?",
+      "a": "Ketika 'Simpan pertama' tidak dicentang, alat menyimpan kemunculan terakhir dari setiap kelompok duplikat, bukan yang pertama. Hasilnya tetap muncul dalam urutan dokumen asli — hanya instans yang bertahan yang berubah."
+    },
+    {
+      "q": "Bisakah saya menggunakan ini untuk mendeduplikasi daftar email?",
+      "a": "Ya. Tempel satu alamat email per baris. Gunakan mode tidak peka huruf (default) karena alamat email tidak peka huruf berdasarkan spesifikasi. Pemotongan spasi juga disarankan untuk data email yang disalin-tempel."
+    },
+    {
+      "q": "Apakah ada batas jumlah baris?",
+      "a": "Tidak ada batas yang diterapkan. Alat memproses semuanya di memori browser Anda. Secara praktis, browser modern menangani ratusan ribu baris tanpa jeda yang terlihat."
+    },
+    {
+      "q": "Apakah data saya meninggalkan browser?",
+      "a": "Tidak. Semua pemrosesan terjadi sepenuhnya di JavaScript pada perangkat Anda. Tidak ada yang diunggah ke server mana pun."
+    },
+    {
+      "q": "Bagaimana cara mendeduplikasi CSV berdasarkan kolom tertentu?",
+      "a": "Alat ini bekerja pada seluruh baris. Untuk mendeduplikasi berdasarkan satu kolom, pertama urutkan atau ekstrak kolom tersebut ke dalam daftar satu kolom, deduplikasi, lalu gabungkan kembali. Untuk dataset besar, alat khusus seperti pandas Python atau fungsi UNIQUE spreadsheet lebih presisi."
+    }
+  ]
+}

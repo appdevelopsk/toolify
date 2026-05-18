@@ -1,0 +1,116 @@
+{
+  "title": "Kalkulator Kode Warna Resistor — Decode dan Encode Pita Warna",
+  "shortDescription": "Dekode pita warna resistor untuk menemukan nilai resistansi, atau masukkan nilai untuk melihat pita warna yang sesuai. Mendukung resistor 4-pita dan 5-pita.",
+  "description": "Pilih pita warna untuk mendekode nilai resistor, atau masukkan resistansi untuk menemukan kode warnanya. Menangani resistor 4-pita dan 5-pita dengan penskalaan satuan otomatis ke ohm, kilohm, atau megaohm.",
+  "metaDescription": "Kalkulator kode warna resistor gratis. Dekode kode warna 4-pita atau 5-pita ke nilai resistansi, atau enkode resistansi untuk menemukan pita warnanya seketika.",
+  "keywords": ["kode warna resistor", "kalkulator pita warna resistor", "resistor 4-pita", "resistor 5-pita", "dekoder resistansi"],
+  "mode": {
+    "decode": "Warna → Resistansi",
+    "encode": "Resistansi → Warna"
+  },
+  "band": {
+    "count4": "4-pita",
+    "count5": "5-pita"
+  },
+  "label": {
+    "digit1": "Digit 1",
+    "digit2": "Digit 2",
+    "digit3": "Digit 3 (5-pita)",
+    "multiplier": "Pengali",
+    "tolerance": "Toleransi"
+  },
+  "colors": {
+    "black": "Hitam",
+    "brown": "Coklat",
+    "red": "Merah",
+    "orange": "Oranye",
+    "yellow": "Kuning",
+    "green": "Hijau",
+    "blue": "Biru",
+    "violet": "Ungu",
+    "gray": "Abu-abu",
+    "white": "Putih",
+    "gold": "Emas",
+    "silver": "Perak",
+    "none": "Tidak ada"
+  },
+  "result": {
+    "resistance": "Resistansi",
+    "range": "Rentang",
+    "minVal": "Min",
+    "maxVal": "Maks"
+  },
+  "input": {
+    "value": "Nilai Resistansi",
+    "unit": "Satuan"
+  },
+  "error": {
+    "invalidValue": "Masukkan angka positif.",
+    "noMatch": "Tidak ditemukan nilai E24 standar untuk resistansi ini."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara kerja kode warna resistor",
+        "paragraphs": [
+          "Resistor terlalu kecil untuk dicetak angka yang terbaca, sehingga produsen menggunakan pita berwarna sebagai gantinya. Setiap warna memetakan ke digit (0-9) mengikuti urutan mnemonik: Hitam, Coklat, Merah, Oranye, Kuning, Hijau, Biru, Ungu, Abu-abu, Putih. Resistor 4-pita memiliki dua pita digit, satu pita pengali, dan satu pita toleransi. Resistor 5-pita menambahkan pita digit ketiga untuk presisi lebih tinggi.",
+          "Cara membaca resistor 4-pita: baca dua warna pertama sebagai angka dua digit (mis., Coklat-Hitam = 10), kalikan dengan pengali pita ketiga (mis., Merah = ×100), dan pita keempat memberikan toleransi (mis., Emas = ±5%). Coklat-Hitam-Merah-Emas = 10 × 100 = 1.000 Ω ±5% = 1 kΩ. Untuk 5-pita, baca tiga digit, lalu kalikan, lalu toleransi."
+        ]
+      },
+      {
+        "heading": "Seri resistor standar E24",
+        "paragraphs": [
+          "Resistor tidak dibuat dalam setiap nilai yang mungkin. Seri E24 menyediakan 24 nilai yang lebih disukai per dekade: 10, 11, 12, 13, 15, 16, 18, 20, 22, 24, 27, 30, 33, 36, 39, 43, 47, 51, 56, 62, 68, 75, 82, 91. Nilai-nilai ini diatur sedemikian rupa sehingga nilai yang berurutan berbeda sekitar 10%, artinya resistansi yang diinginkan dalam 5% selalu dapat dicapai. Insinyur memilih nilai E24 terdekat untuk desain rangkaian mereka.",
+          "Seri E12 (12 nilai per dekade, toleransi ±10%) dan seri E6 (6 nilai, ±20%) digunakan ketika presisi tinggi tidak diperlukan. Untuk pekerjaan presisi, seri E96 menawarkan 96 nilai per dekade dengan resistor toleransi 1% — ini biasanya menggunakan kode 5-pita dengan tiga digit signifikan."
+        ]
+      },
+      {
+        "heading": "Tips praktis membaca resistor",
+        "paragraphs": [
+          "Pita toleransi (emas, perak, atau tidak ada) biasanya berjarak lebih jauh dari pita lainnya dan dibaca terakhir. Jika ragu, orientasikan resistor sehingga pita toleransi berada di sebelah kanan. Pita digit pertama tidak pernah hitam pada resistor standar (nol di depan tidak biasa). Jika Anda bingung tentang orientasi, coba baca dari kedua ujung dan lihat mana yang memberikan nilai dalam rentang yang masuk akal.",
+          "Gunakan multimeter dalam mode resistansi untuk memverifikasi pembacaan Anda. Resistor permukaan (SMD) menggunakan kode angka tiga atau empat digit sebagai pengganti pita warna. Misalnya, '103' berarti 10 × 10³ = 10.000 Ω = 10 kΩ. Resistor presisi SMD menggunakan kode alfanumerik lima karakter yang berbeda."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih mode dekode atau enkode", "text": "Pilih 'Warna ke Resistansi' untuk membaca pita warna, atau 'Resistansi ke Warna' untuk menemukan kode warna dari nilai yang diketahui." },
+      { "name": "Pilih 4-pita atau 5-pita", "text": "Kebanyakan resistor umum adalah 4-pita. Resistor presisi (toleransi 1%) biasanya memiliki 5 pita." },
+      { "name": "Pilih setiap pita warna", "text": "Untuk mode dekode, pilih warna untuk setiap pita menggunakan dropdown. Nilai resistansi diperbarui secara otomatis." },
+      { "name": "Baca hasilnya", "text": "Resistansi ditampilkan dengan penskalaan satuan otomatis (ohm, kilohm, atau megaohm) dan rentang toleransi." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Urutan apa untuk membaca pita warna?",
+      "a": "Baca dari kiri ke kanan. Pita toleransi (emas atau perak) berjarak lebih jauh dari yang lain dan selalu di sebelah kanan. Pita pertama adalah pita warna paling kiri dekat salah satu ujung badan resistor."
+    },
+    {
+      "q": "Apa arti Emas pada resistor?",
+      "a": "Emas muncul di dua posisi. Sebagai pita pengali, emas berarti ×0,1 (digunakan untuk resistor pecahan ohm, mis. 4,7 Ω). Sebagai pita toleransi (pita terakhir), emas berarti resistansi aktual berada dalam ±5% dari nilai yang dinyatakan."
+    },
+    {
+      "q": "Apa perbedaan antara resistor 4-pita dan 5-pita?",
+      "a": "Resistor 4-pita mengkodekan dua digit signifikan, sedangkan resistor 5-pita mengkodekan tiga digit signifikan. Resistor 5-pita digunakan untuk toleransi 1% atau lebih baik di mana presisi lebih tinggi diperlukan. Pita digit ekstra meningkatkan jumlah nilai berbeda yang dapat dinyatakan."
+    },
+    {
+      "q": "Mengapa tidak ada pita pengali hitam pada resistor umum?",
+      "a": "Hitam sebagai pengali berarti ×1. Nilai resistansi yang sangat rendah (satu digit ohm) memang ada tetapi jarang dalam rangkaian sinyal standar. Kebanyakan resistor mulai dari puluhan atau ratusan ohm, sehingga coklat (×10) biasanya merupakan pengali terendah yang Anda temui dalam praktik."
+    },
+    {
+      "q": "Apa itu toleransi dan mengapa penting?",
+      "a": "Toleransi adalah persentase penyimpangan maksimum dari resistansi yang dinyatakan. Resistor 1 kΩ ±5% sebenarnya mengukur antara 950 Ω dan 1.050 Ω. Untuk kebanyakan rangkaian pemrosesan sinyal dan daya, toleransi 5% atau 10% sudah cukup. Rangkaian analog presisi (referensi tegangan, filter) mungkin memerlukan resistor 1% atau 0,1%."
+    },
+    {
+      "q": "Bagaimana cara mengkodekan nilai non-standar seperti 4700 ohm?",
+      "a": "4700 Ω = 4,7 kΩ = 47 × 100. Jadi kode warnanya adalah Kuning-Ungu-Merah (4, 7, ×100) ditambah pita toleransi Anda. Ini adalah nilai E24 yang sangat umum (4,7 kΩ ada dalam seri). Mode enkode secara otomatis menemukan kecocokan E24 terdekat."
+    },
+    {
+      "q": "Apa itu seri E24?",
+      "a": "Seri E24 adalah kumpulan 24 nilai resistor yang disukai per dekade (mis., 10, 11, 12, 13, 15 ... 82, 91, lalu 100, 110, 120...). Resistor dibuat dalam nilai-nilai ini bukan setiap angka yang mungkin. Penjarakkan memastikan Anda selalu dapat menemukan resistor dalam 5% dari nilai target mana pun."
+    },
+    {
+      "q": "Bisakah saya menggunakannya untuk induktor atau kapasitor?",
+      "a": "Skema kode warna yang sama digunakan untuk beberapa kapasitor dan induktor (terutama tipe aksial-bertimbal), tetapi satuan dan rentangnya berbeda. Untuk kapasitor nilainya dalam pikofarad, dan untuk induktor dalam mikrohenry. Kalkulator ini dioptimalkan untuk resistor, tetapi pemetaan warna ke digit sama."
+    }
+  ]
+}

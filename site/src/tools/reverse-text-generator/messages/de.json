@@ -1,0 +1,69 @@
+{
+  "title": "Textumkehrer — Zeichen, Wörter oder Zeilen umkehren",
+  "shortDescription": "Kehren Sie beliebigen Text nach Zeichen, Wörtern oder Zeilen um. Verarbeitet Unicode, Emoji und Mehrbyte-Zeichen korrekt. Sofortiges Kopieren in die Zwischenablage.",
+  "description": "Geben Sie beliebigen Text ein, um ihn sofort umzukehren. Wählen Sie aus drei Modi: alle Zeichen der Zeichenkette umkehren, die Reihenfolge der Wörter umkehren und dabei Wörter intact lassen, oder die Reihenfolge der Zeilen umkehren. Das Tool verarbeitet korrekt Unicode-Emoji und CJK-Zeichen, die mehrere Code-Punkte umfassen.",
+  "metaDescription": "Kostenloser Textumkehrer. Text nach Zeichen, Wörtern oder Zeilen umkehren — Unicode und Emoji-sicher. Sofortiges Kopieren. Läuft komplett im Browser.",
+  "keywords": ["Textumkehrer", "Text online umkehren", "Wörter umkehren", "Zeichenkette umkehren", "Zeilen umkehren", "Spiegeltext"],
+  "empty": "Geben Sie oben Text ein, um das umgekehrte Ergebnis zu sehen.",
+  "input": {
+    "text": "Eingabetext",
+    "mode": "Umkehrmodus:"
+  },
+  "modes": {
+    "chars": "Zeichen umkehren",
+    "words": "Wörter umkehren",
+    "lines": "Zeilen umkehren"
+  },
+  "result": {
+    "reversed": "Umgekehrte Ausgabe"
+  },
+  "button": {
+    "copy": "Ergebnis kopieren",
+    "copied": "Kopiert!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Praktische Verwendungen von umgekehrtem Text",
+        "paragraphs": [
+          "Die bekannteste Verwendung der Zeichenumkehrung ist die Palindromerkennung: ein Wort oder ein Satz, der vorwärts und rückwärts gleich lautet, wie 'Rentner' oder 'Ein Neger mit Gazelle zagt im Regen nie'. Die Zeichenkette umzukehren und mit dem Original zu vergleichen — Leerzeichen und Satzzeichen ignorierend — ist der klassische algorithmische Test für Palindrome, und dieses Tool ermöglicht es Ihnen, dies in Sekunden manuell zu tun.",
+          "Rechts-nach-Links-Schriften wie Arabisch und Hebräisch werden in Unicode in logischer Links-nach-Rechts-Reihenfolge gespeichert, aber durch bidirektionale Textalgorithmen von rechts nach links gerendert. Beim Arbeiten mit reinem Text in Umgebungen ohne bidi-Unterstützung (manche Terminal-Emulatoren, veraltete Datenbanken, alte Tabellenkalkulationen) kann die Zeichenumkehrung als schnelle manuelle Lösung dienen, um den Text in der richtigen Leserichtung anzuzeigen.",
+          "In sozialen Medien, Spielen und kreativem Schreiben erzeugt umgekehrter Text absichtliche Verschleierung oder visuelles Interesse. Puzzle-Designer verwenden umgekehrte Wörter als einfache Verschlüsselung — 'Regal' rückwärts ergibt 'lageR', was einen interessanten semantischen Dreh hat. QR-Codes, Barcodes und andere maschinenlesbare Formate kodieren manchmal Daten in umgekehrter Reihenfolge als geringfügige Manipulationsschutzmaßnahme. Die Umkehrung der Wortreihenfolge ist auch in Experimenten zur natürlichen Sprachverarbeitung nützlich, um zu testen, ob ein Sprachmodell die Syntax wirklich versteht oder nur Muster erkennt.",
+          "Für Data Engineering ist die Umkehrung der Zeilenreihenfolge (der dritte Modus) praktisch, wenn ein Log oder eine Nur-Anhänge-Datei von neuesten zu ältesten Einträgen gelesen werden soll. Ein Kommandozeilen-Ingenieur würde auf Unix `tac` oder `tail -r` verwenden, aber bei der Arbeit in einem Browser oder einer No-Code-Umgebung bietet dieses Tool das gleiche Ergebnis ohne Shellzugang."
+        ]
+      },
+      {
+        "heading": "Wie Zeichenumkehrung funktioniert — und warum es komplizierter ist als es aussieht",
+        "paragraphs": [
+          "Eine Zeichenkette naiv umzukehren, indem man über ihre Bytes oder UTF-16-Codeeinheiten iteriert, bricht jedes Zeichen, das mehr als eine Einheit zur Darstellung benötigt. In JavaScript erzeugt `'😀'.split('').reverse().join('')` eine korrumpierte Sequenz, weil das Emoji als Surrogatpaar (zwei UTF-16-Codeeinheiten) gespeichert ist. Dieses Tool verwendet `Array.from()`, das korrekt über Unicode-Skalarwerte (Code-Punkte) iteriert, nicht über rohe Code-Einheiten, und stellt so sicher, dass Emoji und Zeichen in den ergänzenden Ebenen die Umkehrung unbeschadet überstehen.",
+          "Selbst die Code-Punkt-korrekte Umkehrung hat Randfälle: Kombinationszeichen wie Akzente und diakritische Zeichen sind separate Code-Punkte, die dem Basiszeichen folgen. 'café' nach Code-Punkten umzukehren setzt den kombinierenden Akut vor das 'e', das sich technisch an den Leerzeichen heftet — und 'éfac' produziert. Für die meisten praktischen Anwendungsfälle spielt das keine Rolle, aber es lohnt sich zu wissen, wenn Sie Text in Sprachen mit intensiver Verwendung von Kombinationszeichen (Vietnamesisch usw.) verarbeiten.",
+          "Wortumkehrung bewahrt Leerraumsequenzen zwischen Wörtern, anstatt sie zu einzelnen Leerzeichen zu reduzieren. Das bedeutet, wenn Ihre Eingabe doppelte Leerzeichen oder Tabulatoren zwischen Wörtern hat, hat die umgekehrte Ausgabe auch diese Abstände — nur in umgekehrten Positionen. Das ist beabsichtigt — es vermeidet unerwartete Änderungen des visuellen Layouts von tabellen- oder spaltenförmigem Text."
+        ]
+      },
+      {
+        "heading": "Zeilenumkehrung für Log-Analyse und Datenverarbeitung",
+        "paragraphs": [
+          "Nur-Anhänge-Logs, Ereignisströme und geordnete Exporte haben alle den neuesten Eintrag am Ende. Bei der Fehlersuche nach einem Absturz oder der Überprüfung der letzten Änderungen möchten Sie normalerweise die neuesten Einträge zuerst sehen. Zeilen umzukehren bringt das Ende der Datei an den Anfang ohne jedes Sortieren oder Timestamp-Parsing.",
+          "Dieser Modus ist auch nützlich, um aufsteigend geordnete Daten in absteigend geordnete Daten umzuwandeln, wenn das verarbeitende System eine Neueste-zuerst-Reihenfolge erwartet. Betrachten Sie einen CSV-Export aus einem Finanzsystem, bei dem Transaktionen in chronologischer Reihenfolge stehen — das Umkehren der Zeilen (ohne die Kopfzeile, die Sie separat handhaben müssten) bringt die neuesten Transaktionen nach oben für den Import in ein System, das Datensätze in der Reihenfolge verarbeitet, in der es ihnen begegnet.",
+          "Nummerierte Listen, die vom letzten auf den ersten Rang neu geordnet werden müssen, können ebenfalls von der Zeilenumkehrung profitieren. Eine rangierte Top-10-Liste wird nach der Umkehrung zu einer Bottom-10-Liste, mit Rang 10 zuerst und Rang 1 zuletzt — nützlich für umgekehrte Präsentationen, Countdowns oder ironisch gestaltete Inhalte."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Text eingeben oder einfügen", "text": "Geben Sie Text im linken Bereich ein. Die umgekehrte Ausgabe erscheint in Echtzeit im rechten Bereich." },
+      { "name": "Umkehrmodus wählen", "text": "Wählen Sie 'Zeichen umkehren', um jeden Charakter in der Zeichenkette zu kehren, 'Wörter umkehren', um die Wortreihenfolge zu tauschen und dabei jedes Wort intakt zu lassen, oder 'Zeilen umkehren', um die letzte Zeile an erste Stelle zu setzen." },
+      { "name": "Ergebnis überprüfen", "text": "Die Zeichenanzahl wird unter beiden Bereichen angezeigt. Überprüfen Sie, ob die Ausgabe Ihren Erwartungen entspricht, bevor Sie kopieren." },
+      { "name": "In Zwischenablage kopieren", "text": "Klicken Sie auf 'Ergebnis kopieren', um den umgekehrten Text zu kopieren. Der Button zeigt kurz 'Kopiert!' zur Bestätigung." }
+    ]
+  },
+  "faq": [
+    { "q": "Werden Emoji korrekt verarbeitet?", "a": "Ja. Das Tool verwendet Array.from() zur Iteration über Unicode-Code-Punkte statt rohe UTF-16-Codeeinheiten, daher kehren Emoji (einschließlich Multi-Code-Punkt-Sequenzen wie Flaggen-Emoji) ohne Beschädigung um." },
+    { "q": "Was ist der Unterschied zwischen Zeichen- und Wortumkehrung?", "a": "Die Zeichenumkehrung dreht die gesamte Zeichenkette so, dass das letzte Zeichen das erste wird. Die Wortumkehrung lässt jedes Wort intakt, aber das letzte Wort kommt zuerst. 'hallo welt' wird in Zeichenmodus zu 'tlet ollah' und in Wortmodus zu 'welt hallo'." },
+    { "q": "Beeinflusst die Wortumkehrung die an Wörter gebundene Interpunktion?", "a": "Interpunktion, die direkt an ein Wort angehängt ist (ohne Leerzeichen), wandert mit diesem Wort. 'Hallo, Welt!' wird im Wortumkehrmodus zu 'Welt! Hallo,' — das Komma bleibt bei 'Hallo' und das Ausrufezeichen bei 'Welt'." },
+    { "q": "Kann ich japanischen oder chinesischen Text umkehren?", "a": "Ja. Die Zeichenumkehrung funktioniert korrekt für CJK-Zeichen, da jedes Ideogramm ein einzelner Code-Punkt ist. Das Ergebnis liest sich Zeichen für Zeichen von rechts nach links, was je nach Inhalt sinnvoll sein kann oder nicht." },
+    { "q": "Gibt es eine Längenbeschränkung?", "a": "Keine erzwungene Begrenzung. Lange Texte werden vollständig im Speicher Ihres Browsers verarbeitet. Die Leistung ist auf moderner Hardware für Texte mit bis zu Millionen von Zeichen praktisch sofortig." },
+    { "q": "Wird mein Text an einen Server gesendet?", "a": "Nein. Alle Verarbeitung läuft lokal in JavaScript. Ihr Text verlässt niemals Ihren Browser." },
+    { "q": "Was macht 'Zeilen umkehren' mit abschließenden Zeilenumbrüchen?", "a": "Jedes Zeilenumbruchzeichen ist der Zeilentrenner. Ein abschließender Zeilenumbruch am Ende Ihrer Eingabe erzeugt eine führende Leerzeile am Anfang der umgekehrten Ausgabe. Löschen Sie einfach die zusätzliche Leerzeile, wenn sie nicht gewünscht ist." },
+    { "q": "Kann ich dies verwenden, um ein Palindrom zu erstellen?", "a": "Sie können prüfen, ob ein Wort ein Palindrom ist, indem Sie es einfügen und sehen, ob die umgekehrte Ausgabe mit der Eingabe übereinstimmt. Um ein Palindrom zu erstellen, verbinden Sie den Originaltext mit seiner zeichenumgekehrten Version (z.B. 'race' + 'ecar' = 'raceecar')." }
+  ]
+}

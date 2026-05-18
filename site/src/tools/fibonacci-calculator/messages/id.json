@@ -1,0 +1,87 @@
+{
+  "title": "Kalkulator Fibonacci — Suku ke-N dan Barisan",
+  "shortDescription": "Hitung angka Fibonacci mana pun hingga suku ke-100, atau tampilkan 50 suku pertama barisan. Mendukung angka besar secara akurat.",
+  "description": "Masukkan posisi N untuk mendapatkan angka Fibonacci tepat pada suku tersebut, atau beralih ke mode barisan untuk menampilkan N angka pertama dalam deret Fibonacci. Menggunakan bilangan bulat presisi arbitrer sehingga hasilnya selalu tepat.",
+  "metaDescription": "Kalkulator Fibonacci gratis. Temukan angka Fibonacci ke-N atau daftar N suku pertama secara instan — mendukung hingga F(100) dengan hasil tepat.",
+  "keywords": ["kalkulator fibonacci", "barisan fibonacci", "angka fibonacci", "suku ke-n fibonacci", "deret fibonacci"],
+  "empty": "Masukkan angka N di atas untuk menghitung.",
+  "input": {
+    "mode": "Mode",
+    "nthLabel": "Suku ke-N",
+    "sequenceLabel": "Barisan",
+    "n": "N (1 – {max})"
+  },
+  "result": {
+    "nthValue": "F({n})",
+    "sequence": "{n} angka Fibonacci pertama",
+    "term": "F({n})"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Barisan Fibonacci: definisi dan sejarah",
+        "paragraphs": [
+          "Barisan Fibonacci didefinisikan oleh dua aturan sederhana: dua suku pertama adalah 0 dan 1, dan setiap suku berikutnya adalah jumlah dua suku sebelumnya. Ini menghasilkan deret 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … Aturannya terkesan sederhana, namun angka-angka ini muncul dalam matematika, ilmu komputer, dan alam dengan cara yang telah mempesona para sarjana selama berabad-abad.",
+          "Barisan ini dinamai sesuai Leonardo dari Pisa, yang dikenal sebagai Fibonacci, yang memperkenalkannya ke Eropa Barat dalam bukunya tahun 1202 Liber Abaci sebagai model pertumbuhan populasi kelinci. Namun, barisan ini sebenarnya telah dideskripsikan berabad-abad sebelumnya oleh matematikawan India yang mempelajari prosodi Sansekerta — Virahanka, Gopala, dan Hemachandra semuanya mengidentifikasinya saat menghitung pola suku kata. Barisan ini karenanya merupakan salah satu barisan bilangan bulat tertua yang diketahui.",
+          "Rasio bilangan Fibonacci yang berurutan konvergen menuju rasio emas φ ≈ 1,61803…, sebuah bilangan irasional dengan hubungan mendalam terhadap geometri, seni, dan estetika. Seiring N membesar, F(N+1)/F(N) semakin mendekati φ. Konvergensi inilah yang menjelaskan mengapa spiral Fibonacci muncul pada susunan biji bunga matahari, spiral kerucut pinus, dan cangkang nautilus — bentuk-bentuk ini tumbuh dengan cara yang meminimalkan bahan sekaligus memaksimalkan efisiensi pengemasan."
+        ]
+      },
+      {
+        "heading": "Menghitung angka Fibonacci besar secara tepat",
+        "paragraphs": [
+          "Tipe Number standar JavaScript menyimpan nilai titik-mengambang 64-bit, yang hanya dapat merepresentasikan bilangan bulat secara tepat hingga 2^53 ≈ 9 kuadriliun. Angka Fibonacci tumbuh secara eksponensial — F(79) sudah melampaui 2^53 — sehingga aritmetika titik-mengambang biasa memberikan hasil yang salah untuk N besar. Alat ini menggunakan tipe BigInt bawaan JavaScript, yang mendukung bilangan bulat berukuran arbitrer yang hanya dibatasi oleh memori yang tersedia, memastikan setiap hasil dari F(1) hingga F(100) tepat.",
+          "F(100) adalah 354.224.848.179.261.915.075 — angka 21 digit. Sebagai perbandingan, perkiraan jumlah atom di alam semesta yang dapat diamati adalah sekitar 10^80, dan F(382) ≈ 10^79. Angka Fibonacci tumbuh kira-kira sebesar φ^N/√5, sehingga setiap suku sekitar 61,8% lebih besar dari suku sebelumnya.",
+          "Terdapat rumus bentuk tertutup untuk angka Fibonacci (rumus Binet menggunakan pangkat rasio emas), tetapi memerlukan aritmetika presisi arbitrer untuk tepat pada N besar karena φ adalah irasional. Metode iteratif yang digunakan alat ini — sekadar menjumlahkan suku-suku berurutan — sekaligus tepat dan efisien untuk N hingga beberapa ribu."
+        ]
+      },
+      {
+        "heading": "Penerapan angka Fibonacci",
+        "paragraphs": [
+          "Dalam ilmu komputer, angka Fibonacci muncul dalam analisis algoritma. Input kasus terburuk untuk algoritma Euclidean (komputasi GCD) adalah angka Fibonacci berurutan. Fibonacci heap, struktur data yang digunakan dalam algoritma jalur terpendek Dijkstra, dinamai demikian karena batas-batas strukturnya. Pencarian Fibonacci juga digunakan sebagai strategi pencarian bagi-dan-kuasai.",
+          "Dalam rekayasa perangkat lunak, angka Fibonacci banyak digunakan dalam pengembangan Agile sebagai skala poin cerita: 1, 2, 3, 5, 8, 13. Jarak tidak linier mencerminkan ketidakpastian yang meningkat dalam memperkirakan tugas yang lebih besar — selisih yang kentara antara angka Fibonacci yang berdekatan memaksa penaksir untuk memilih salah satu sisi dari pilihan yang ambigu, sehingga mengurangi presisi palsu.",
+          "Di alam, filotaksis — susunan daun, kelopak, dan biji pada tanaman — sering mengikuti angka Fibonacci. Bunga matahari biasanya memiliki 55 spiral searah jarum jam dan 89 berlawanan arah jarum jam; artichoke memiliki 8 dan 13. Susunan ini muncul dari pola pertumbuhan tanaman yang menambahkan organ baru pada sudut emas (≈ 137,5°) dari organ sebelumnya, yang berkaitan langsung dengan rasio emas φ."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih mode", "text": "Pilih 'Suku ke-N' untuk menemukan satu angka Fibonacci, atau 'Barisan' untuk mendaftar N suku pertama." },
+      { "name": "Masukkan N", "text": "Ketik posisi yang diinginkan. Maksimum 100 untuk mode Suku ke-N dan 50 untuk mode Barisan." },
+      { "name": "Baca hasilnya", "text": "Nilai Fibonacci yang tepat muncul di bawah. Untuk N besar, angkanya bisa sangat panjang — gulir secara horizontal jika diperlukan." },
+      { "name": "Salin nilainya", "text": "Pilih angka yang ditampilkan dan salin untuk digunakan dalam perhitungan Anda." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Berapa nilai F(0) — 0 atau 1?",
+      "a": "Menurut konvensi modern yang paling umum (digunakan di sini), F(0)=0, F(1)=1, F(2)=1, F(3)=2, … Beberapa teks lama memulai barisan dari F(1)=1, F(2)=1, yang menggeser semua indeks satu angka."
+    },
+    {
+      "q": "Mengapa alat ini dibatasi pada N=100?",
+      "a": "F(100) sudah merupakan angka 21 digit. Lebih dari 100, nilainya menjadi string yang sangat panjang dengan kegunaan praktis terbatas dalam konteks ini. Jika Anda membutuhkan nilai di luar F(100), logika BigInt iteratif dapat diperluas — algoritmanya sama."
+    },
+    {
+      "q": "Apakah hasilnya tepat untuk N besar?",
+      "a": "Ya. Alat ini menggunakan JavaScript BigInt, yang menangani bilangan bulat berukuran arbitrer tanpa kesalahan pembulatan titik-mengambang. Setiap hasil dari F(1) hingga F(100) secara matematis tepat."
+    },
+    {
+      "q": "Apa itu rasio emas dan bagaimana hubungannya dengan Fibonacci?",
+      "a": "Rasio emas φ ≈ 1,61803… adalah akar positif dari x²=x+1. Rasio angka Fibonacci berurutan F(N+1)/F(N) konvergen ke φ seiring N meningkat. F(20)/F(19)=6765/4181≈1,61803, sudah akurat hingga 5 tempat desimal."
+    },
+    {
+      "q": "Apakah barisan Fibonacci sama dengan bilangan Lucas?",
+      "a": "Tidak. Bilangan Lucas menggunakan rekurensi yang sama (setiap suku adalah jumlah dua suku sebelumnya) tetapi dimulai dengan L(0)=2 dan L(1)=1, memberikan 2, 1, 3, 4, 7, 11, 18, … Mereka berbagi banyak sifat dengan angka Fibonacci dan keduanya konvergen ke φ."
+    },
+    {
+      "q": "Di mana angka Fibonacci muncul di alam?",
+      "a": "Angka Fibonacci muncul pada hitungan spiral bunga matahari (biasanya 55 dan 89), kerucut pinus (biasanya 8 dan 13), dan nanas. Ini terjadi karena tanaman menambahkan organ baru pada sudut sekitar 137,5° (sudut emas), yang berasal dari φ dan menghasilkan pengemasan optimal."
+    },
+    {
+      "q": "Seberapa cepat angka Fibonacci bertumbuh?",
+      "a": "Angka Fibonacci tumbuh secara eksponensial, kira-kira sebesar φ^N/√5. Setiap suku sekitar 1,618 kali suku sebelumnya. F(10)=55, F(20)=6.765, F(50)=12.586.269.025, F(100)=354.224.848.179.261.915.075."
+    },
+    {
+      "q": "Mengapa angka Fibonacci digunakan sebagai poin cerita dalam pengembangan Agile?",
+      "a": "Skala Fibonacci (1, 2, 3, 5, 8, 13, 21) digunakan karena selisih antara nilai yang berdekatan semakin membesar, memaksa tim untuk membedakan tugas 'sedang' dari 'besar'. Jarak tidak linier ini mengurangi presisi palsu saat memperkirakan pekerjaan yang secara inheren tidak pasti."
+    }
+  ]
+}

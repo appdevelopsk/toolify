@@ -1,0 +1,111 @@
+{
+  "title": "Calculadora da Lei de Ohm — Tensão, Corrente, Resistência e Potência",
+  "shortDescription": "Calcule tensão, corrente, resistência ou potência usando a Lei de Ohm (V=IR) e a fórmula de potência (P=VI). Exibe os quatro valores com unidades inteligentes.",
+  "description": "Selecione a grandeza elétrica a calcular, insira os outros dois valores e obtenha instantaneamente a tensão (V), a corrente (I), a resistência (R) e a potência (P). Suporta miliampères, microampères, quiloohms, megaohms, miliwatts e quilowatts. A fórmula aplicada é exibida com cada resultado.",
+  "metaDescription": "Calculadora gratuita da Lei de Ohm. Calcule tensão, corrente, resistência ou potência com V=IR e P=VI. Suporta mA, kΩ, MΩ, mW. Resultados instantâneos.",
+  "keywords": ["calculadora lei de ohm", "calculadora tensão corrente resistência", "calculadora potência eletrônica", "calculadora ohm", "calculadora V=IR"],
+  "empty": "Selecione o que calcular e insira os outros dois valores.",
+  "input": {
+    "solveLabel": "Calcular",
+    "voltage": "Tensão",
+    "voltagePlaceholder": "ex.: 12",
+    "current": "Corrente",
+    "currentPlaceholder": "ex.: 0.5",
+    "resistance": "Resistência",
+    "resistancePlaceholder": "ex.: 100",
+    "power": "Potência",
+    "powerPlaceholder": "ex.: 5",
+    "pairVI": "Tensão e Corrente",
+    "pairVR": "Tensão e Resistência",
+    "pairIR": "Corrente e Resistência"
+  },
+  "result": {
+    "voltage": "Tensão",
+    "current": "Corrente",
+    "resistance": "Resistência",
+    "power": "Potência",
+    "formula": "Fórmula utilizada"
+  },
+  "error": {
+    "invalidInput": "Entrada inválida — insira números válidos.",
+    "divisionByZero": "Divisão por zero — a resistência ou a corrente não podem ser zero.",
+    "needTwoValues": "Insira os dois valores conhecidos para calcular o desconhecido."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "O que é a Lei de Ohm?",
+        "paragraphs": [
+          "A Lei de Ohm estabelece que a tensão nos terminais de um condutor é diretamente proporcional à corrente que o percorre, desde que a temperatura permaneça constante. Formulada pelo físico alemão Georg Simon Ohm em 1827, é expressa como V = I × R, onde V é a tensão em volts (V), I é a corrente em ampères (A) e R é a resistência em ohms (Ω). Ohm derivou essa relação experimentando com fios de diferentes comprimentos e espessuras, observando que dobrar a resistência reduzia a corrente à metade para uma tensão fixa.",
+          "A Lei de Ohm se aplica à maioria dos condutores metálicos e a muitos materiais resistivos em temperatura constante — esses são chamados de materiais ôhmicos. Dispositivos não ôhmicos como diodos, transistores e lâmpadas incandescentes não seguem uma relação linear V-I, portanto a Lei de Ohm é apenas uma aproximação para eles. No projeto de circuitos, V = IR é a equação mais usada: determina a seção dos fios, os valores de resistores, a queda de tensão nos componentes e os limites seguros de operação."
+        ]
+      },
+      {
+        "heading": "Potência em circuitos elétricos",
+        "paragraphs": [
+          "A potência elétrica é a taxa na qual a energia é transferida ou consumida, medida em watts (W). Três fórmulas equivalentes relacionam a potência às grandezas elétricas básicas: P = V × I (potência é igual a tensão vezes corrente), P = I² × R (útil quando corrente e resistência são conhecidas) e P = V² / R (útil quando tensão e resistência são conhecidas). As três derivam diretamente da Lei de Ohm e da definição de potência.",
+          "A dissipação de potência importa na prática porque resistores, fios e outros componentes convertem energia elétrica em calor. Todo resistor tem uma potência nominal — tipicamente 0,125 W, 0,25 W, 0,5 W ou 1 W para tipos de furo passante comuns — e exceder essa nominal causa superaquecimento e falha do componente. Por exemplo, um resistor de 100 Ω em um circuito de 5 V conduz I = 5/100 = 50 mA e dissipa P = 0,05² × 100 = 0,25 W, então um resistor de um quarto de watt é a escolha mínima segura. Sempre acrescente uma margem de segurança de pelo menos 50%."
+        ]
+      },
+      {
+        "heading": "Circuitos em série e em paralelo",
+        "paragraphs": [
+          "Em um circuito em série, os resistores são conectados ponta a ponta e a mesma corrente flui por todos eles. A resistência total é simplesmente a soma: R_total = R1 + R2 + R3 + ... A tensão se divide entre cada resistor em proporção à sua resistência (V_n = I × R_n), que é o princípio dos divisores de tensão usados para definir pontos de polarização ou escalar saídas de sensores.",
+          "Em um circuito em paralelo, os resistores compartilham a mesma tensão, mas a corrente se divide entre os ramos. A resistência total segue a regra dos recíprocos: 1/R_total = 1/R1 + 1/R2 + 1/R3 + ... Para dois resistores, o atalho é R_total = (R1 × R2) / (R1 + R2). Combinações em paralelo sempre produzem uma resistência total menor que o menor resistor individual. Entender ambas as configurações permite projetar circuitos que forneçam a tensão e a corrente corretas para cada componente, dimensionar fusíveis e fios corretamente e solucionar falhas com eficiência."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolha a grandeza desconhecida",
+        "text": "Clique em um dos quatro botões — Tensão (V), Corrente (I), Resistência (R) ou Potência (P) — para selecionar o que deseja calcular. Os campos de entrada serão atualizados para mostrar os dois valores que você precisa fornecer."
+      },
+      {
+        "name": "Insira os dois valores conhecidos",
+        "text": "Digite os valores conhecidos nos campos de entrada. Use os menus suspensos de unidades para selecionar a escala adequada: miliampères (mA) ou microampères (µA) para correntes pequenas, quiloohms (kΩ) ou megaohms (MΩ) para resistências grandes e miliwatts (mW) ou quilowatts (kW) para potência."
+      },
+      {
+        "name": "Leia os quatro resultados",
+        "text": "A calculadora exibe instantaneamente tensão, corrente, resistência e potência. O valor calculado é destacado em azul. Valores menores que 0,001 são exibidos automaticamente com prefixo mili ou micro para facilitar a leitura."
+      },
+      {
+        "name": "Verifique a fórmula aplicada",
+        "text": "O emblema âmbar acima dos resultados mostra qual fórmula foi usada — por exemplo, V = I × R ou P = V² / R. Isso ajuda a entender a relação e verificar o cálculo manualmente."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "O que é a Lei de Ohm em termos simples?",
+      "a": "A Lei de Ohm diz que se você aumentar a tensão que empurra a eletricidade por um fio, mais corrente flui — e se você aumentar a resistência, menos corrente flui. A relação exata é V = I × R: tensão é igual a corrente multiplicada pela resistência. Conhecendo dois desses três valores, você pode calcular o terceiro."
+    },
+    {
+      "q": "Quais unidades são usadas na Lei de Ohm?",
+      "a": "A tensão é medida em volts (V), a corrente em ampères (A) e a resistência em ohms (Ω). Essas unidades são definidas de forma que 1 V = 1 A × 1 Ω. Na prática, frequentemente se usa miliampères (1 mA = 0,001 A) para correntes pequenas, quiloohms (1 kΩ = 1.000 Ω) para resistências maiores e megaohms (1 MΩ = 1.000.000 Ω) para resistências muito altas, como as de circuitos de proteção de entradas."
+    },
+    {
+      "q": "Como calculo a tensão usando a Lei de Ohm?",
+      "a": "Multiplique a corrente (em ampères) pela resistência (em ohms): V = I × R. Por exemplo, se 2 A fluem por um resistor de 50 Ω, a queda de tensão é 2 × 50 = 100 V. Se a corrente estiver em miliampères, converta primeiro: 200 mA = 0,2 A, então V = 0,2 × 50 = 10 V."
+    },
+    {
+      "q": "Como encontro a corrente quando sei a tensão e a resistência?",
+      "a": "Reorganize a Lei de Ohm para I = V / R. Se você tem uma bateria de 9 V conectada a um resistor de 470 Ω, a corrente é 9 / 470 ≈ 0,0191 A, ou cerca de 19,1 mA. Essa é a corrente que flui pelo resistor e determina a potência que ele dissipa."
+    },
+    {
+      "q": "Qual é a relação entre potência e a Lei de Ohm?",
+      "a": "A potência (P) mede com que velocidade a energia é consumida, em watts. Ela se conecta à Lei de Ohm por três fórmulas equivalentes: P = V × I, P = I² × R e P = V² / R. As três fornecem a mesma resposta; escolha a que corresponde às grandezas que você já conhece. Para um resistor que conduz 0,1 A a 10 V: P = 10 × 0,1 = 1 W."
+    },
+    {
+      "q": "A Lei de Ohm funciona para circuitos de corrente alternada?",
+      "a": "A Lei de Ohm se aplica a resistores puros em circuitos de corrente alternada da mesma forma que em corrente contínua. No entanto, circuitos CA também contêm capacitores e indutores, que introduzem reatância (oposição à corrente dependente da frequência). A generalização para CA usa impedância (Z) em vez de resistência simples: V = I × Z, onde Z é um número complexo. Para trabalho em áudio, rádio e eletrônica de potência, são necessários cálculos de impedância complexa além da Lei de Ohm básica."
+    },
+    {
+      "q": "Por que a resistência gera calor?",
+      "a": "Quando a corrente flui por um resistor, os elétrons colidem com os átomos do material, transferindo energia cinética como calor. A potência dissipada como calor é P = I² × R — isso é chamado de efeito Joule. Maior corrente ou maior resistência significa mais calor. É por isso que fiações de alta corrente usam condutores grossos e de baixa resistência, e por isso os resistores têm potências nominais para evitar superaquecimento."
+    },
+    {
+      "q": "O que acontece se eu exceder a potência nominal de um resistor?",
+      "a": "Exceder a potência nominal causa o superaquecimento do resistor. Com sobrecarga moderada, ele pode se desviar do valor nominal ou se tornar não confiável. Com sobrecarga severa, o resistor pode soltar fumaça, rachar ou pegar fogo. Sempre calcule P = I² × R e escolha um resistor com potência nominal de pelo menos 1,5 a 2 vezes a potência esperada. As nominais comuns são 0,1 W, 0,25 W, 0,5 W, 1 W e 2 W para componentes de furo passante."
+    }
+  ]
+}

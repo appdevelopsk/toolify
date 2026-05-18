@@ -1,0 +1,108 @@
+{
+  "title": "Eliminador de líneas duplicadas — Limpia listas al instante",
+  "shortDescription": "Elimina líneas duplicadas de cualquier lista de texto. Compatible con coincidencia sin distinción de mayúsculas, recorte de espacios y control de conservar la primera o última.",
+  "description": "Pega cualquier lista de líneas y esta herramienta elimina todos los duplicados, conservando solo las entradas únicas. Las opciones permiten controlar la sensibilidad a mayúsculas, recortar los espacios iniciales y finales antes de comparar, y elegir si conservar la primera o la última aparición de cada grupo de duplicados.",
+  "metaDescription": "Eliminador de líneas duplicadas gratuito en línea. Pega texto, elimina líneas duplicadas al instante — sin distinción de mayúsculas, recorte de espacios, conserva la…",
+  "keywords": [
+    "eliminador de líneas duplicadas",
+    "eliminar líneas duplicadas online",
+    "deduplicar texto",
+    "líneas únicas",
+    "limpiar lista de texto"
+  ],
+  "empty": "Pega texto arriba para eliminar las líneas duplicadas.",
+  "input": {
+    "text": "Texto de entrada — un elemento por línea",
+    "caseSensitive": "Comparación con distinción de mayúsculas",
+    "trimLines": "Recortar espacios antes de comparar",
+    "keepFirst": "Conservar la primera aparición (desmarcar para conservar la última)"
+  },
+  "result": {
+    "cleaned": "Salida sin duplicados",
+    "stats": "Se eliminaron {removed} línea(s) duplicada(s) — quedan {remaining} línea(s) única(s)."
+  },
+  "button": {
+    "copy": "Copiar resultado",
+    "copied": "¡Copiado!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cuándo las líneas duplicadas realmente importan",
+        "paragraphs": [
+          "Las líneas duplicadas son inofensivas en la poesía, pero crean problemas reales en datos estructurados. En un archivo CSV, una fila duplicada infla silenciosamente el recuento de registros, sesga los agregados y puede provocar violaciones de clave primaria al importar el archivo a una base de datos. En archivos de registro del servidor, entradas de registro idénticas repetidas de un proceso que falla pueden llenar un disco en cuestión de minutos. En archivos de configuración, las claves duplicadas se sobrescriben silenciosamente — o peor aún, causan errores de análisis — dependiendo del analizador.",
+          "Los repositorios de código también sufren de duplicación accidental de líneas: errores de copiar y pegar en listas de dependencias (requirements.txt, package.json), declaraciones de importación repetidas o entradas duplicadas en .gitignore. Las comprobaciones automatizadas de CI a menudo las detectan, pero pegar y deduplicar rápidamente antes de confirmar es más rápido que depurar un fallo de pipeline.",
+          "Las líneas en blanco merecen atención especial. Dos líneas en blanco consecutivas son técnicamente duplicadas, pero muchos formatos de texto (Markdown, fuente Python, cuerpos de correo electrónico) usan líneas en blanco dobles como separadores intencionales. La opción 'recortar espacios' de esta herramienta normaliza las líneas que parecen estar en blanco debido a espacios extraviados, sin destruir las líneas en blanco intencionales — el resultado depende de tu contenido específico, así que revisa la salida."
+        ]
+      },
+      {
+        "heading": "Sensibilidad a mayúsculas: cuándo importa y cuándo no",
+        "paragraphs": [
+          "De forma predeterminada, esta herramienta compara líneas sin distinción de mayúsculas, por lo que 'Apple', 'apple' y 'APPLE' se consideran la misma línea y solo se conserva la primera. Esta es la configuración correcta para listas legibles por humanos como nubes de etiquetas, listas de palabras clave, nombres de ciudades y direcciones de correo electrónico donde deseas fusionar variantes de la misma cosa.",
+          "El modo sensible a mayúsculas es esencial para el código. En Python, los imports 'os' y 'OS' son técnicamente diferentes (aunque 'OS' fallaría en tiempo de ejecución en la mayoría de los sistemas), y los nombres de variables como 'Result' y 'result' son identificadores distintos. Las palabras clave de SQL son insensibles a mayúsculas por convención, pero los nombres de tablas son sensibles a mayúsculas en los sistemas de archivos de Linux. Al deduplicar fragmentos de código, claves de configuración o rutas, habilita siempre el modo sensible a mayúsculas.",
+          "Un punto intermedio práctico es ejecutar la herramienta dos veces: una vez sin distinción de mayúsculas para detectar duplicados casi idénticos para revisión, y una vez con distinción de mayúsculas para la deduplicación definitiva. Este enfoque de dos pasadas detecta errores tipográficos y capitalización inconsistente que la dedup automática por sí sola pasaría por alto."
+        ]
+      },
+      {
+        "heading": "Cómo funciona el manejo de líneas en blanco y espacios",
+        "paragraphs": [
+          "Los espacios finales son invisibles en la mayoría de los editores de texto y operaciones de copiar y pegar, pero hacen que las líneas se comparen como desiguales. 'apple  ' (dos espacios finales) y 'apple' son cadenas diferentes, por lo que sin el recorte habilitado conservarías ambas — dejando un duplicado sutil en la salida. La opción 'Recortar espacios' elimina los espacios iniciales y finales de cada línea antes de comparar, sin modificar el contenido de las líneas de salida (el texto recortado se escribe en el resultado).",
+          "Los espacios iniciales en código sangrado o listas esquemáticas son significativos: recortarlos destruiría la jerarquía de sangría. Para código o esquemas estructurados, deshabilita el recorte y usa el modo sensible a mayúsculas para preservar el contenido exacto de las líneas. Para listas de texto plano como palabras clave, nombres de ciudades o rutas de URL, el recorte es casi siempre la elección correcta.",
+          "El interruptor 'conservar primero vs conservar último' importa más cuando tu lista tiene metadatos adjuntos a posiciones. Por ejemplo, un registro de eventos donde las entradas posteriores representan estados más recientes — en ese escenario, conservar la última aparición (registro más reciente para cada clave) es semánticamente correcto, mientras que conservar la primera preservaría datos obsoletos."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Pega tu texto",
+        "text": "Haz clic en el área de entrada y pega tu lista. Cada línea se trata como un elemento — la herramienta divide por caracteres de nueva línea."
+      },
+      {
+        "name": "Configura las opciones",
+        "text": "Habilita 'Distingue mayúsculas' para código o rutas de archivo. Habilita 'Recortar espacios' para listas de palabras clave o datos CSV. Activa 'Conservar primera' para decidir qué aparición sobrevive cuando se encuentran duplicados."
+      },
+      {
+        "name": "Revisa las estadísticas",
+        "text": "El área de resultados muestra cuántos duplicados se eliminaron y cuántas líneas únicas quedan, para que puedas verificar que la operación fue correcta."
+      },
+      {
+        "name": "Copia el resultado",
+        "text": "Haz clic en 'Copiar resultado' para copiar el texto deduplicado al portapapeles y luego pégalo donde lo necesites."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿La herramienta preserva el orden de las líneas?",
+      "a": "Sí. Las líneas no se ordenan — solo se eliminan los duplicados. El orden relativo de las líneas supervivientes es idéntico al orden de entrada."
+    },
+    {
+      "q": "¿Qué se considera un duplicado?",
+      "a": "Dos líneas son duplicadas si son idénticas después de aplicar las opciones elegidas (cambio de mayúsculas y/o recorte de espacios). Solo se compara el contenido del texto; los números de línea y las posiciones no se consideran."
+    },
+    {
+      "q": "¿Se eliminarán las líneas en blanco?",
+      "a": "Las líneas en blanco solo se eliminan si son duplicadas entre sí. Si tu texto tiene tres líneas en blanco consecutivas y tienes 'Conservar primera' habilitada, solo sobrevive la primera línea en blanco. Si quieres eliminar todas las líneas en blanco, usa un clasificador de texto con la opción 'eliminar líneas vacías'."
+    },
+    {
+      "q": "¿Qué hace 'Conservar la última aparición'?",
+      "a": "Cuando 'Conservar primera' está desmarcada, la herramienta conserva la última aparición de cada grupo de duplicados en lugar de la primera. El resultado sigue apareciendo en el orden del documento original — solo cambia la instancia que sobrevive."
+    },
+    {
+      "q": "¿Puedo usar esto para deduplicar listas de correo electrónico?",
+      "a": "Sí. Pega una dirección de correo electrónico por línea. Usa el modo insensible a mayúsculas (el predeterminado) ya que las direcciones de correo electrónico no distinguen mayúsculas por especificación. El recorte de espacios también se recomienda para datos de correo electrónico copiados y pegados."
+    },
+    {
+      "q": "¿Hay un límite de líneas?",
+      "a": "No hay límite forzado. La herramienta procesa todo en la memoria de tu navegador. En la práctica, los navegadores modernos manejan cientos de miles de líneas sin retrasos notables."
+    },
+    {
+      "q": "¿Mis datos abandonan el navegador?",
+      "a": "No. Todo el procesamiento ocurre completamente en JavaScript en tu dispositivo. Nada se carga en ningún servidor."
+    },
+    {
+      "q": "¿Cómo deduplico un CSV por una columna específica?",
+      "a": "Esta herramienta funciona en líneas completas. Para deduplicar por una sola columna, primero ordena o extrae esa columna en una lista de una sola columna, deduplica y luego vuelve a unir. Para conjuntos de datos grandes, una herramienta dedicada como pandas de Python o la función UNIQUE de una hoja de cálculo es más precisa."
+    }
+  ]
+}

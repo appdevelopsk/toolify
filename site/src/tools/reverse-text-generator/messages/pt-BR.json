@@ -1,0 +1,69 @@
+{
+  "title": "Gerador de texto invertido — Inverta caracteres, palavras ou linhas",
+  "shortDescription": "Inverta qualquer texto por caracteres, palavras ou linhas. Lida corretamente com Unicode, emoji e caracteres multibyte. Cópia instantânea para a área de transferência.",
+  "description": "Digite qualquer texto para invertê-lo instantaneamente. Escolha entre três modos: inverter todos os caracteres da string, inverter a ordem das palavras mantendo-as intactas, ou inverter a ordem das linhas. A ferramenta lida corretamente com emoji Unicode e caracteres CJK que abrangem múltiplos pontos de código.",
+  "metaDescription": "Gerador de texto invertido gratuito. Inverta texto por caracteres, palavras ou linhas — compatível com Unicode e emoji. Cópia instantânea. Roda no navegador.",
+  "keywords": ["gerador de texto invertido", "inverter texto online", "inverter palavras", "inverter string", "inverter linhas", "texto espelho"],
+  "empty": "Digite texto acima para ver o resultado invertido.",
+  "input": {
+    "text": "Texto de entrada",
+    "mode": "Modo de inversão:"
+  },
+  "modes": {
+    "chars": "Inverter caracteres",
+    "words": "Inverter palavras",
+    "lines": "Inverter linhas"
+  },
+  "result": {
+    "reversed": "Saída invertida"
+  },
+  "button": {
+    "copy": "Copiar resultado",
+    "copied": "Copiado!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Usos práticos do texto invertido",
+        "paragraphs": [
+          "O uso mais conhecido da inversão de caracteres é a detecção de palíndromos: uma palavra ou frase que se lê da mesma forma de frente para trás e de trás para frente, como 'arara' ou 'A man a plan a canal Panama'. Inverter a string e compará-la com o original — ignorando espaços e pontuação — é o teste algorítmico clássico para palíndromos, e esta ferramenta permite fazê-lo manualmente em segundos.",
+          "Scripts da direita para a esquerda como o árabe e o hebraico são armazenados em ordem lógica da esquerda para a direita em Unicode, mas renderizados da direita para a esquerda por algoritmos de texto bidirecional. Ao trabalhar com texto simples em ambientes que não têm suporte bidi (alguns emuladores de terminal, bancos de dados legados, planilhas antigas), a inversão de caracteres pode servir como uma solução manual rápida para fazer o texto ser exibido na direção de leitura correta.",
+          "Nas redes sociais, jogos e escrita criativa, o texto invertido cria ofuscação deliberada ou interesse visual. Designers de enigmas usam palavras invertidas como cifra simples — inverter uma palavra como 'amor' dá 'roma', que tem um toque semântico satisfatório. Códigos QR, códigos de barras e outros formatos legíveis por máquina às vezes codificam dados em ordem invertida como medida menor contra adulteração. A inversão da ordem das palavras também é útil em experimentos de processamento de linguagem natural, como testar se um modelo de linguagem realmente entende a sintaxe ou apenas faz correspondência de padrões.",
+          "Para engenharia de dados, a inversão da ordem das linhas (o terceiro modo) é prática quando um log ou arquivo somente-acréscimo precisa ser lido do mais novo para o mais antigo. Um engenheiro de linha de comando usaria `tac` ou `tail -r` no Unix, mas ao trabalhar em um navegador ou ambiente sem código, esta ferramenta fornece o mesmo resultado sem nenhum acesso ao shell."
+        ]
+      },
+      {
+        "heading": "Como funciona a inversão de caracteres — e por que é mais complicada do que parece",
+        "paragraphs": [
+          "Inverter ingenuamente uma string iterando sobre seus bytes ou unidades de código UTF-16 quebra qualquer caractere que precise de mais de uma unidade para ser representado. Em JavaScript, `'😀'.split('').reverse().join('')` produz uma sequência corrompida porque o emoji é armazenado como um par substituto (duas unidades de código UTF-16). Esta ferramenta usa `Array.from()` que itera corretamente sobre valores escalares Unicode (pontos de código), não unidades de código brutas, garantindo que emojis e caracteres nos planos suplementares sobrevivam à inversão intactos.",
+          "Mesmo a inversão correta no nível de ponto de código tem casos extremos: caracteres de combinação como acentos e marcas diacríticas são pontos de código separados que seguem o caractere base. Inverter 'café' por pontos de código coloca o acento agudo de combinação antes do 'e', que tecnicamente se prende ao espaço — produzindo 'éfac'. Para a maioria dos casos de uso práticos isso não importa, mas vale saber se você está processando texto em idiomas com uso intenso de marcas de combinação.",
+          "A inversão de palavras preserva as sequências de espaços em branco entre as palavras em vez de colapsá-las em espaços únicos. Isso significa que se sua entrada tiver espaços duplos ou tabulações entre palavras, a saída invertida também terá essas sequências de espaçamento, apenas nas posições invertidas. Isso é intencional — evita alterar inesperadamente o layout visual do texto tabular ou colunar."
+        ]
+      },
+      {
+        "heading": "Inversão de linhas para análise de logs e processamento de dados",
+        "paragraphs": [
+          "Logs somente-acréscimo, fluxos de eventos e exportações ordenadas têm todas a entrada mais recente no final. Ao solucionar uma falha ou revisar as últimas alterações, normalmente você quer as entradas mais recentes primeiro. Inverter linhas leva o final do arquivo ao topo sem nenhuma ordenação ou análise de timestamp.",
+          "Este modo também é útil para converter dados em ordem crescente para ordem decrescente quando o sistema consumidor espera ordenação do mais novo para o mais antigo. Considere uma exportação CSV de um sistema financeiro onde as transações estão em ordem cronológica — inverter as linhas (excluindo o cabeçalho, que você precisaria lidar separadamente) coloca as transações mais recentes no topo para importação em um sistema que processa registros na ordem em que os encontra.",
+          "Listas numeradas que precisam ser reclassificadas de última para primeira também podem se beneficiar da inversão de linhas. Uma lista classificada de top-10 se torna uma lista de bottom-10 após a inversão, com a posição 10 primeiro e a posição 1 por último — útil para apresentações invertidas, contagens regressivas ou conteúdo com temática irônica."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Digite ou cole seu texto", "text": "Digite texto no painel esquerdo. A saída invertida aparece no painel direito em tempo real." },
+      { "name": "Escolha um modo de inversão", "text": "Selecione 'Inverter caracteres' para virar todos os caracteres da string, 'Inverter palavras' para trocar a ordem das palavras mantendo cada palavra intacta, ou 'Inverter linhas' para colocar a última linha primeiro." },
+      { "name": "Revise o resultado", "text": "A contagem de caracteres é mostrada abaixo de ambos os painéis. Verifique se a saída é o que você esperava antes de copiar." },
+      { "name": "Copiar para a área de transferência", "text": "Clique em 'Copiar resultado' para copiar o texto invertido. O botão exibe brevemente 'Copiado!' para confirmar." }
+    ]
+  },
+  "faq": [
+    { "q": "Ele lida com emojis corretamente?", "a": "Sim. A ferramenta usa Array.from() para iterar sobre pontos de código Unicode em vez de unidades de código UTF-16 brutas, então emojis (incluindo sequências de múltiplos pontos de código como emojis de bandeiras) se invertem sem corrupção." },
+    { "q": "Qual é a diferença entre inverter caracteres e inverter palavras?", "a": "A inversão de caracteres vira toda a string para que o último caractere se torne o primeiro. A inversão de palavras mantém cada palavra intacta, mas coloca a última palavra primeiro. 'olá mundo' se torna 'odnum álo' no modo de caracteres e 'mundo olá' no modo de palavras." },
+    { "q": "A inversão de palavras afeta a pontuação ligada às palavras?", "a": "A pontuação que está diretamente ligada a uma palavra (sem espaço) viaja com essa palavra. 'Olá, mundo!' se torna 'mundo! Olá,' no modo de inversão de palavras — a vírgula permanece com 'Olá' e o ponto de exclamação permanece com 'mundo'." },
+    { "q": "Posso inverter texto em japonês ou chinês?", "a": "Sim. A inversão de caracteres funciona corretamente para caracteres CJK, pois cada ideograma é um único ponto de código. O resultado se lê da direita para a esquerda caractere por caractere, o que pode ou não ter significado dependendo do conteúdo." },
+    { "q": "Há um limite de comprimento?", "a": "Nenhum limite imposto. Textos longos são processados inteiramente na memória do seu navegador. O desempenho é efetivamente instantâneo para textos de até milhões de caracteres em hardware moderno." },
+    { "q": "Meu texto é enviado para um servidor?", "a": "Não. Todo o processamento é executado localmente em JavaScript. Seu texto nunca sai do seu navegador." },
+    { "q": "O que 'Inverter linhas' faz com novas linhas no final?", "a": "Cada caractere de nova linha é o separador de linhas. Uma nova linha ao final da sua entrada produzirá uma linha vazia no início da saída invertida. Simplesmente exclua a linha em branco extra se não for desejada." },
+    { "q": "Posso usar isso para criar um palíndromo?", "a": "Você pode verificar se uma palavra é um palíndromo colando-a e vendo se a saída invertida corresponde à entrada. Para criar um palíndromo, concatene o texto original com sua versão de caracteres invertidos (ex.: 'amor' + 'roma' = 'amorroma')." }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "title": "Ters Metin Oluşturucu — Karakter, Kelime veya Satır Çevir",
+  "shortDescription": "Herhangi bir metni karakter, kelime veya satır bazında tersine çevirin. Unicode, emoji ve çok baytlı karakterleri doğru işler. Anında panoya kopyalama.",
+  "description": "Herhangi bir metni girerekte anında tersine çevirin. Üç moddan birini seçin: dizideki tüm karakterleri tersine çevir, kelimeleri koruyarak kelime sırasını tersine çevir veya satır sırasını tersine çevir. Bu araç, birden fazla kod noktasına yayılan Unicode emoji ve CJK karakterlerini doğru biçimde işler.",
+  "metaDescription": "Ücretsiz ters metin oluşturucu. Metni karakter, kelime veya satır bazında çevirin — Unicode ve emoji güvenli. Anında kopyalama. Tarayıcınızda çalışır.",
+  "keywords": ["ters metin oluşturucu", "metni çevir online", "kelimeleri tersine çevir", "dizeyi tersine çevir", "satırları tersine çevir", "ayna metni"],
+  "empty": "Tersine çevrilmiş sonucu görmek için yukarıya metin girin.",
+  "input": {
+    "text": "Giriş metni",
+    "mode": "Tersine çevirme modu:"
+  },
+  "modes": {
+    "chars": "Karakterleri tersine çevir",
+    "words": "Kelimeleri tersine çevir",
+    "lines": "Satırları tersine çevir"
+  },
+  "result": {
+    "reversed": "Tersine çevrilmiş çıktı"
+  },
+  "button": {
+    "copy": "Sonucu kopyala",
+    "copied": "Kopyalandı!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Tersine çevrilmiş metnin pratik kullanımları",
+        "paragraphs": [
+          "Karakter tersine çevirmenin en bilinen kullanımı palindrom tespititidir: «kayak» veya «Arda Nada Adana dara» gibi önden ve arkadan aynı okunan bir kelime veya cümle. Dizeyi tersine çevirip orijinaliyle karşılaştırmak — boşlukları ve noktalama işaretlerini görmezden gelerek — palindromlar için klasik algoritmik testtir ve bu araç bunu saniyeler içinde manuel olarak yapmanızı sağlar.",
+          "Sosyal medyada, oyunlarda ve yaratıcı yazarlıkta, tersine çevrilmiş metin kasıtlı gizleme veya görsel ilgi yaratır. Bulmaca tasarımcıları tersine çevrilmiş kelimeleri basit bir şifre olarak kullanır — «stres» kelimesini tersine çevirmek «serts» verir. Türkçede «kaz» tersine çevrildiğinde «zak» olur, bu tür kelime oyunları hem eğlenceli hem de öğreticidir.",
+          "Veri mühendisliği açısından, satır sırası tersine çevirme (üçüncü mod), bir log veya yalnızca eklenebilir dosyanın en yeniden en eskiye doğru okunması gerektiğinde pratiktir. Unix'te `tac` veya `tail -r` kullanılabilir, ancak tarayıcıda veya kodsuz ortamda çalışırken bu araç shell erişimi gerektirmeden aynı sonucu sağlar.",
+          "Kelime sırası tersine çevirme, bir dil modelinin sözdizimini gerçekten anlayıp anlamadığını yoksa yalnızca örüntü eşleştirme yapıp yapmadığını test etmek gibi doğal dil işleme deneylerinde de kullanışlıdır."
+        ]
+      },
+      {
+        "heading": "Karakter tersine çevirme nasıl çalışır — ve neden göründüğünden daha zordur",
+        "paragraphs": [
+          "Bir dizeyi byte'ları veya UTF-16 kod birimleri üzerinde iterasyon yaparak naif biçimde tersine çevirmek, birden fazla birim gerektiren karakterleri bozar. JavaScript'te `'😀'.split('').reverse().join('')`, emoji bir vekil çift (iki UTF-16 kod birimi) olarak depolandığı için bozuk bir dizi üretir. Bu araç, ham kod birimleri yerine Unicode skaler değerleri (kod noktaları) üzerinde doğru biçimde iterasyon yapan `Array.from()` kullanır; böylece emoji ve tamamlayıcı düzlemlerdeki karakterler tersine çevirmeden sonra sağlam kalır.",
+          "Türkçe, noktalı-i (İ, i) ve çeşitli özel karakterler içerir. Bunlar tek kod noktası olarak temsil edildiğinden karakter tersine çevirme genellikle sorunsuz çalışır. Türkçe metindeki ş, ğ, ü, ö, ç gibi karakterler birer kod noktası olduğundan doğru işlenir.",
+          "Kelime tersine çevirme, kelimeler arasındaki boşluk dizilerini tek boşluğa indirgeyerek daraltmak yerine olduğu gibi korur. Bu, girişinizde kelimeler arasında çift boşluk veya sekme varsa, tersine çevrilmiş çıktının da bu boşluk dizilerine sahip olacağı, ancak tersine çevrilmiş konumlarda olacağı anlamına gelir. Bu kasıtlıdır — tablo veya sütun hizalı metnin görsel düzenini beklenmedik biçimde değiştirmekten kaçınmak için."
+        ]
+      },
+      {
+        "heading": "Log analizi ve veri işleme için satırları tersine çevirme",
+        "paragraphs": [
+          "Yalnızca ekleme yapılabilen loglar, olay akışları ve sıralı dışa aktarmalar en yeni girişi en altta bulundurur. Bir çöküşü giderirken veya son birkaç değişikliği gözden geçirirken, genellikle en yeni girişleri önce görmek istersiniz. Satırları tersine çevirmek, herhangi bir sıralama veya zaman damgası ayrıştırması olmadan dosyanın sonunu başa getirir.",
+          "Bu mod aynı zamanda artan sıralı verileri azalan sıraya dönüştürmek için de kullanışlıdır; tüketici sistem en yeni-önce sıralama beklediğinde. Bir finans sisteminden işlemlerin kronolojik sırada yer aldığı CSV dışa aktarmasını düşünün — satırları tersine çevirmek (ayrıca işlenmesi gereken başlık hariç) en son işlemleri üste yerleştirir.",
+          "Son sıradan ilk sıraya yeniden sıralanması gereken numaralı listeler de satır tersine çevirmeden yararlanabilir. Bir ilk-10 listesi tersine çevirme sonrasında bir-son-10 listesi haline gelir; 10. sıra ilk, 1. sıra son olur — tersine sunumlar, geri sayımlar veya ironik içerikler için kullanışlıdır."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Metninizi yazın veya yapıştırın", "text": "Sol panele metin girin. Tersine çevrilmiş çıktı sağ panelde gerçek zamanlı görünür." },
+      { "name": "Tersine çevirme modunu seçin", "text": "Dizedeki her karakteri çevirmek için «Karakterleri tersine çevir», her kelimeyi koruyarak kelime sırasını değiştirmek için «Kelimeleri tersine çevir» veya son satırı başa almak için «Satırları tersine çevir» seçeneğini seçin." },
+      { "name": "Sonucu inceleyin", "text": "Her iki panelin altında karakter sayısı gösterilir. Kopyalamadan önce çıktının beklediğiniz şey olduğunu doğrulayın." },
+      { "name": "Panoya kopyalayın", "text": "Tersine çevrilmiş metni kopyalamak için «Sonucu kopyala» düğmesine tıklayın. Düğme onaylamak için kısa süre «Kopyalandı!» gösterir." }
+    ]
+  },
+  "faq": [
+    { "q": "Emoji'ler doğru işleniyor mu?", "a": "Evet. Araç, ham UTF-16 kod birimler yerine Unicode kod noktaları üzerinde iterasyon yapmak için Array.from() kullanır; bu nedenle emoji'ler (bayrak emoji'leri gibi çok kod noktalı diziler dahil) bozulmadan tersine çevrilir." },
+    { "q": "Karakterleri tersine çevirme ve kelimeleri tersine çevirme arasındaki fark nedir?", "a": "Karakter tersine çevirme, son karakter ilk olacak şekilde tüm dizeyi çevirir. Kelime tersine çevirme her kelimeyi sağlam tutar ancak son kelimeyi başa koyar. «merhaba dünya» karakter modunda «aynüd abahrem» olur ve kelime modunda «dünya merhaba» olur." },
+    { "q": "Kelime tersine çevirme, kelimelere yapışık noktalama işaretlerini etkiler mi?", "a": "Doğrudan bir kelimeye yapışık noktalama işaretleri (boşluk olmadan) o kelimeyle birlikte taşınır. «Merhaba, dünya!» kelime tersine çevirme modunda «dünya! Merhaba,» olur — virgül «Merhaba» ile kalır ve ünlem işareti «dünya» ile kalır." },
+    { "q": "Japonca veya Çince metni tersine çevirebilir miyim?", "a": "Evet. Her ideograf tek bir kod noktası olduğundan karakter tersine çevirme CJK karakterler için doğru çalışır. Sonuç karaktere göre sağdan sola okunur; bunun anlamlı olup olmadığı içeriğe bağlıdır." },
+    { "q": "Uzunluk sınırı var mı?", "a": "Zorunlu sınır yok. Uzun metinler tamamen tarayıcınızın belleğinde işlenir. Modern donanımda milyonlarca karaktere kadar olan metinler için performans pratik olarak anında gerçekleşir." },
+    { "q": "Metnim sunucuya gönderilir mi?", "a": "Hayır. Tüm işlemler JavaScript'te yerel olarak çalışır. Metniniz asla tarayıcınızı terk etmez." },
+    { "q": "«Satırları tersine çevir» sondaki satır sonlarını nasıl ele alır?", "a": "Her satır sonu karakteri satır ayırıcıdır. Girişinizin en sonundaki bir satır sonu, tersine çevrilmiş çıktının başlangıcında baştaki boş bir satır üretir. İstenilmiyorsa fazladan boş satırı silin." },
+    { "q": "Palindrom oluşturmak için bunu kullanabilir miyim?", "a": "Bir kelimenin palindrom olup olmadığını, onu yapıştırıp tersine çevrilmiş çıktının girişle eşleşip eşleşmediğine bakarak kontrol edebilirsiniz. Palindrom oluşturmak için orijinal metni karakter tersine çevrilmiş versiyonuyla birleştirin (örn. «race» + «ecar» = «raceecar»)." }
+  ]
+}

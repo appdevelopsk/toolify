@@ -1,0 +1,108 @@
+{
+  "title": "Rimozione righe duplicate — Pulisci liste di testo all'istante",
+  "shortDescription": "Rimuovi le righe duplicate da qualsiasi lista di testo. Supporta la corrispondenza senza distinzione di maiuscole, il taglio degli spazi e il controllo per mantenere la prima o l'ultima occorrenza.",
+  "description": "Incolla qualsiasi lista di righe e questo strumento rimuove tutti i duplicati, conservando solo le voci uniche. Le opzioni permettono di controllare la sensibilità alle maiuscole, tagliare gli spazi iniziali e finali prima del confronto e scegliere se mantenere la prima o l'ultima occorrenza di ogni gruppo di duplicati.",
+  "metaDescription": "Rimozione gratuita di righe duplicate online. Incolla testo, rimuovi i duplicati all'istante — senza distinzione di maiuscole, taglio spazi, mantieni la prima o…",
+  "keywords": [
+    "rimozione righe duplicate",
+    "eliminare righe duplicate online",
+    "deduplicare testo",
+    "righe uniche",
+    "pulire lista di testo"
+  ],
+  "empty": "Incolla il testo sopra per rimuovere le righe duplicate.",
+  "input": {
+    "text": "Testo di input — un elemento per riga",
+    "caseSensitive": "Confronto con distinzione di maiuscole",
+    "trimLines": "Taglia gli spazi prima del confronto",
+    "keepFirst": "Mantieni la prima occorrenza (deseleziona per mantenere l'ultima)"
+  },
+  "result": {
+    "cleaned": "Output deduplicato",
+    "stats": "Rimosse {removed} riga/e duplicata/e — {remaining} riga/e unica/e rimaste."
+  },
+  "button": {
+    "copy": "Copia risultato",
+    "copied": "Copiato!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Quando le righe duplicate rappresentano davvero un problema",
+        "paragraphs": [
+          "Le righe duplicate sono innocue nella poesia, ma creano problemi reali nei dati strutturati. In un file CSV, una riga duplicata gonfia silenziosamente il conteggio dei record, distorce le aggregazioni e può causare violazioni di chiave primaria quando il file viene importato in un database. Nei file di log del server, le voci di log identiche ripetute da un processo in crash possono riempire un disco in pochi minuti. Nei file di configurazione, le chiavi duplicate vengono silenziosamente sovrascritte — o peggio, causano errori di analisi — a seconda del parser.",
+          "Anche i repository di codice soffrono di duplicazione accidentale delle righe: errori di copia-incolla nelle liste di dipendenze (requirements.txt, package.json), dichiarazioni di importazione ripetute o voci duplicate in .gitignore. I controlli CI automatizzati spesso le rilevano, ma incollare e deduplicare rapidamente prima di fare il commit è più veloce che fare il debug di un fallimento della pipeline.",
+          "Le righe vuote meritano attenzione particolare. Due righe vuote consecutive sono tecnicamente duplicati, ma molti formati di testo (Markdown, codice sorgente Python, corpi di email) usano le doppie righe vuote come separatori intenzionali. L'opzione 'taglia spazi' di questo strumento normalizza le righe che sembrano vuote a causa di spazi vaganti, senza distruggere le righe vuote intenzionali — il risultato dipende dal tuo contenuto specifico, quindi controlla l'output."
+        ]
+      },
+      {
+        "heading": "Sensibilità alle maiuscole: quando conta e quando no",
+        "paragraphs": [
+          "Per impostazione predefinita, questo strumento confronta le righe senza distinzione di maiuscole, quindi 'Apple', 'apple' e 'APPLE' contano tutti come la stessa riga e viene mantenuto solo il primo. Questa è l'impostazione corretta per le liste leggibili dall'uomo come le nuvole di tag, le liste di parole chiave, i nomi di città e gli indirizzi email dove vuoi comprimere le varianti della stessa cosa.",
+          "La modalità con distinzione di maiuscole è essenziale per il codice. In Python, gli import 'os' e 'OS' sono tecnicamente diversi (sebbene 'OS' fallirebbe a runtime sulla maggior parte dei sistemi), e i nomi di variabili come 'Result' e 'result' sono identificatori distinti. Le parole chiave SQL sono insensibili alle maiuscole per convenzione, ma i nomi di tabelle sono sensibili alle maiuscole sui file system Linux. Quando si deduplicano snippet di codice, chiavi di configurazione o percorsi, abilitare sempre la modalità con distinzione di maiuscole.",
+          "Un pratico compromesso è eseguire lo strumento due volte: una volta senza distinzione di maiuscole per individuare quasi-duplicati da esaminare, e una volta con distinzione di maiuscole per la deduplicazione definitiva. Questo approccio a due passate rileva errori di battitura e capitalizzazione inconsistente che la dedup automatica da sola mancherebbe."
+        ]
+      },
+      {
+        "heading": "Come funziona la gestione delle righe vuote e degli spazi",
+        "paragraphs": [
+          "Gli spazi finali sono invisibili nella maggior parte degli editor di testo e nelle operazioni di copia-incolla, eppure fanno confrontare le righe come diseguali. 'apple  ' (due spazi finali) e 'apple' sono stringhe diverse, quindi senza il taglio abilitato si terrebbero entrambe — lasciando un duplicato sottile nell'output. L'opzione 'Taglia spazi' rimuove gli spazi iniziali e finali da ogni riga prima del confronto, senza modificare il contenuto delle righe di output (il testo tagliato viene scritto nel risultato).",
+          "Gli spazi iniziali nel codice indentato o nelle liste di struttura hanno significato: tagliarli distruggerebbe la gerarchia di indentazione. Per codice o strutture organizzate, disabilita il taglio e usa la modalità con distinzione di maiuscole per preservare il contenuto esatto delle righe. Per le liste di testo semplice come parole chiave, nomi di città o percorsi URL, il taglio è quasi sempre la scelta giusta.",
+          "Il toggle 'mantieni primo vs mantieni ultimo' è più importante quando la tua lista ha metadati collegati alle posizioni. Ad esempio, un log di eventi in cui le voci successive rappresentano stati più recenti — in quello scenario, mantenere l'ultima occorrenza (record più recente per ogni chiave) è semanticamente corretto, mentre mantenere la prima conserverebbe dati obsoleti."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Incolla il testo",
+        "text": "Clicca sull'area di input e incolla la tua lista. Ogni riga è trattata come un elemento — lo strumento divide sui caratteri di nuova riga."
+      },
+      {
+        "name": "Configura le opzioni",
+        "text": "Abilita 'Distinzione maiuscole' per codice o percorsi di file. Abilita 'Taglia spazi' per liste di parole chiave o dati CSV. Attiva 'Mantieni prima' per decidere quale occorrenza sopravvive quando si trovano duplicati."
+      },
+      {
+        "name": "Controlla le statistiche",
+        "text": "L'area dei risultati mostra quanti duplicati sono stati rimossi e quante righe uniche rimangono, così puoi verificare che l'operazione sia stata corretta."
+      },
+      {
+        "name": "Copia il risultato",
+        "text": "Clicca su 'Copia risultato' per copiare il testo deduplicato negli appunti, poi incollalo dove ne hai bisogno."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Lo strumento preserva l'ordine delle righe?",
+      "a": "Sì. Le righe non vengono ordinate — vengono rimossi solo i duplicati. L'ordine relativo delle righe rimanenti è identico all'ordine di input."
+    },
+    {
+      "q": "Cosa conta come duplicato?",
+      "a": "Due righe sono duplicati se sono identiche dopo aver applicato le opzioni scelte (normalizzazione maiuscole e/o taglio degli spazi). Viene confrontato solo il contenuto del testo; i numeri di riga e le posizioni non vengono considerati."
+    },
+    {
+      "q": "Le righe vuote verranno rimosse?",
+      "a": "Le righe vuote vengono rimosse solo se sono duplicati l'una dell'altra. Se il tuo testo ha tre righe vuote consecutive e hai 'Mantieni prima' abilitata, sopravvive solo la prima riga vuota. Se vuoi rimuovere tutte le righe vuote, usa un ordinatore di testo con l'opzione 'rimuovi righe vuote'."
+    },
+    {
+      "q": "Cosa fa 'Mantieni l'ultima occorrenza'?",
+      "a": "Quando 'Mantieni prima' è deselezionata, lo strumento mantiene l'ultima occorrenza di ogni gruppo di duplicati invece della prima. Il risultato appare ancora nell'ordine originale del documento — cambia solo l'istanza che sopravvive."
+    },
+    {
+      "q": "Posso usarlo per deduplicare liste di email?",
+      "a": "Sì. Incolla un indirizzo email per riga. Usa la modalità senza distinzione di maiuscole (predefinita) poiché gli indirizzi email sono insensibili alle maiuscole per specifica. Il taglio degli spazi è consigliato anche per i dati email copiati e incollati."
+    },
+    {
+      "q": "C'è un limite di righe?",
+      "a": "Non c'è limite imposto. Lo strumento elabora tutto nella memoria del tuo browser. In pratica, i browser moderni gestiscono centinaia di migliaia di righe senza ritardi notevoli."
+    },
+    {
+      "q": "I miei dati lasciano il browser?",
+      "a": "No. Tutta l'elaborazione avviene completamente in JavaScript sul tuo dispositivo. Nulla viene caricato su alcun server."
+    },
+    {
+      "q": "Come deduplico un CSV per una colonna specifica?",
+      "a": "Questo strumento lavora su righe intere. Per deduplicare per una singola colonna, prima ordina o estrai quella colonna in una lista a colonna singola, deduplicala e poi riuniscila. Per set di dati grandi, uno strumento dedicato come pandas di Python o la funzione UNIQUE di un foglio di calcolo è più preciso."
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "title": "Calcolatore di Matrici — Somma, Moltiplicazione, Determinante",
+  "shortDescription": "Esegui addizione, sottrazione, moltiplicazione, trasposizione e determinante di matrici 2×2 o 3×3 direttamente nel browser.",
+  "description": "Inserisci i valori della matrice A (e B per operazioni binarie) e calcola il risultato all'istante. Supporta matrici 2×2 e 3×3 con cinque operazioni: addizione, sottrazione, moltiplicazione, trasposizione e determinante.",
+  "metaDescription": "Calcolatore di matrici gratuito online. Addiziona, sottrai, moltiplica, trasponi e calcola il determinante di matrici 2×2 e 3×3 all'istante nel browser.",
+  "keywords": ["calcolatore di matrici", "moltiplicazione di matrici", "calcolatore di determinanti", "addizione di matrici", "matrice 3x3"],
+  "empty": "Inserisci i valori della matrice sopra per calcolare.",
+  "input": {
+    "size": "Dimensione della matrice",
+    "operation": "Operazione",
+    "matA": "Matrice A",
+    "matB": "Matrice B"
+  },
+  "result": {
+    "label": "Risultato"
+  },
+  "operations": {
+    "add": "Addizionare (A + B)",
+    "subtract": "Sottrarre (A − B)",
+    "multiply": "Moltiplicare (A × B)",
+    "transpose": "Trasporre (Aᵀ)",
+    "determinant": "Determinante (det A)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cosa sono le matrici e perché sono importanti",
+        "paragraphs": [
+          "Una matrice è un array rettangolare di numeri disposti in righe e colonne. Una matrice m×n ha m righe e n colonne. Le matrici sono gli oggetti fondamentali dell'algebra lineare, e l'algebra lineare è il linguaggio matematico della data science, della computer grafica, delle simulazioni fisiche e dell'ottimizzazione ingegneristica.",
+          "Ogni elemento di una matrice è identificato dal suo indice di riga e colonna. L'elemento alla riga i e colonna j è scritto aᵢⱼ. In una matrice 2×2, a₁₁ è l'elemento in alto a sinistra, a₁₂ in alto a destra, a₂₁ in basso a sinistra e a₂₂ in basso a destra. Le matrici quadrate (stesso numero di righe e colonne) hanno proprietà aggiuntive come il determinante e la traccia che non sono definite per le matrici non quadrate.",
+          "Le matrici rappresentano trasformazioni lineari: funzioni che mappano vettori su vettori preservando addizione e moltiplicazione scalare. Una matrice 2×2 rappresenta qualsiasi combinazione di rotazione, ridimensionamento, riflessione e taglio in un piano bidimensionale. Moltiplicare due matrici compone le loro trasformazioni: se A ruota di 45° e B scala di 2×, allora AB applica prima la rotazione e poi il ridimensionamento."
+        ]
+      },
+      {
+        "heading": "Operazioni sulle matrici spiegate",
+        "paragraphs": [
+          "Addizione e sottrazione richiedono che entrambe le matrici abbiano le stesse dimensioni. Si sommano o sottraggono gli elementi corrispondenti: (A+B)ᵢⱼ = aᵢⱼ + bᵢⱼ. L'addizione è commutativa (A+B = B+A) ma la sottrazione no (A−B ≠ B−A in generale).",
+          "La moltiplicazione di matrici è più complessa e non commutativa — in generale AB ≠ BA. Per due matrici quadrate n×n, l'elemento alla riga i e colonna j del prodotto è il prodotto scalare della riga i di A con la colonna j di B: (AB)ᵢⱼ = Σₖ aᵢₖ bₖⱼ. Per una matrice 2×2 servono 8 moltiplicazioni e 4 addizioni.",
+          "La trasposta di una matrice A, scritta Aᵀ, si ottiene scambiando righe e colonne: (Aᵀ)ᵢⱼ = aⱼᵢ. La prima riga di A diventa la prima colonna di Aᵀ. La trasposizione è ampiamente usata nella regressione ai minimi quadrati (le equazioni normali coinvolgono AᵀA), nell'analisi delle componenti principali e nella retropropagazione nelle reti neurali. Il determinante è un valore scalare che riassume una matrice quadrata. Per una matrice 2×2 [[a,b],[c,d]], det = ad − bc. Una matrice con determinante 0 è detta singolare e non ha inversa."
+        ]
+      },
+      {
+        "heading": "Applicazioni reali del calcolo matriciale",
+        "paragraphs": [
+          "La computer grafica dipende interamente dalle operazioni matriciali. Ogni rotazione, traslazione, ridimensionamento e proiezione prospettica applicata a una scena 3D è rappresentata come moltiplicazione di matrici in coordinate omogenee. La pipeline di rendering moltiplica una sequenza di matrici 4×4: le matrici modello, vista e proiezione vengono composte prima di essere applicate a ogni vertice. Le GPU sono ottimizzate specificamente per questo carico di lavoro.",
+          "Nel machine learning, le reti neurali memorizzano i pesi come matrici. Il passo in avanti attraverso uno strato è una moltiplicazione di matrici tra il vettore di input (o la matrice di batch) e la matrice dei pesi, seguita da una funzione di attivazione non lineare. I grandi modelli linguistici come GPT eseguono miliardi di moltiplicazioni di matrici per ogni passo in avanti. L'addestramento tramite retropropagazione calcola i gradienti usando le trasposte: δL/δW = xᵀ · δL/δy.",
+          "I sistemi di equazioni lineari possono essere scritti e risolti usando le matrici. Il sistema ax + by = e, cx + dy = f è equivalente all'equazione matriciale [[a,b],[c,d]] · [x,y]ᵀ = [e,f]ᵀ. Se il determinante è non nullo, la soluzione unica è x = [x,y]ᵀ = A⁻¹[e,f]ᵀ. Questa relazione tra determinanti, inverse e risolubilità è centrale nell'analisi numerica e nel calcolo scientifico."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Scegli la dimensione della matrice", "text": "Seleziona 2×2 o 3×3 in base alle tue matrici." },
+      { "name": "Seleziona l'operazione", "text": "Scegli tra addizione, sottrazione, moltiplicazione, trasposizione o determinante." },
+      { "name": "Inserisci i valori della matrice", "text": "Compila ogni cella della Matrice A (e Matrice B per operazioni binarie). Le celle vuote hanno valore 0 di default." },
+      { "name": "Leggi il risultato", "text": "Il risultato calcolato appare in basso automaticamente — una matrice per la maggior parte delle operazioni, o un numero per il determinante." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Perché la moltiplicazione di matrici non è commutativa?",
+      "a": "La moltiplicazione di matrici rappresenta la composizione di trasformazioni lineari. Proprio come ruotare e poi scalare dà un risultato diverso che scalare e poi ruotare, AB e BA differiscono in generale. La commutatività vale solo in casi speciali, ad esempio quando entrambe le matrici sono diagonali o una di esse è la matrice identità."
+    },
+    {
+      "q": "Cosa significa un determinante uguale a 0?",
+      "a": "Un determinante nullo significa che la matrice è singolare: non ha inversa. Geometricamente, la trasformazione collassa almeno una dimensione (proietta 2D su una retta, o 3D su un piano o retta). Per un sistema di equazioni lineari, un determinante nullo implica che il sistema non ha soluzione o ne ha infinite."
+    },
+    {
+      "q": "Come calcolo l'inversa di una matrice?",
+      "a": "Per una matrice 2×2 [[a,b],[c,d]], l'inversa è (1/det) × [[d,−b],[−c,a]], a condizione che det = ad−bc ≠ 0. Per matrici più grandi si usa l'eliminazione di Gauss o la decomposizione LU. Questo strumento calcola attualmente il determinante e la trasposta; l'inversa è un'estensione naturale."
+    },
+    {
+      "q": "Cos'è la matrice identità?",
+      "a": "La matrice identità I ha 1 sulla diagonale principale e 0 in tutti gli altri posti. È l'equivalente matriciale del numero 1: AI = IA = A per qualsiasi matrice A di dimensione compatibile. Moltiplicare per l'identità non modifica la matrice."
+    },
+    {
+      "q": "Posso moltiplicare matrici di dimensioni diverse?",
+      "a": "Sì, ma solo se il numero di colonne di A è uguale al numero di righe di B. Una matrice m×n per una n×p dà una m×p. Questo strumento gestisce solo matrici quadrate (2×2 o 3×3). Per operazioni con matrici non quadrate è necessaria una calcolatrice più specializzata."
+    },
+    {
+      "q": "Cos'è la traccia di una matrice?",
+      "a": "La traccia è la somma degli elementi della diagonale principale (a₁₁ + a₂₂ + … + aₙₙ). È uguale alla somma degli autovalori e invariante per trasformazioni di similarità (A e P⁻¹AP hanno la stessa traccia). Questo strumento non mostra attualmente la traccia, ma puoi calcolarla sommando i valori diagonali."
+    },
+    {
+      "q": "I calcoli sono esatti?",
+      "a": "Lo strumento usa la standard aritmetica in virgola mobile a 64 bit di JavaScript. I risultati sono arrotondati a 10 cifre decimali per la visualizzazione. Per input interi, la maggior parte dei risultati è esatta. Per matrici grandi o mal condizionate, l'arrotondamento in virgola mobile può introdurre piccoli errori nelle ultime cifre."
+    },
+    {
+      "q": "Cosa significa la trasposta geometricamente?",
+      "a": "Trasporre una matrice la riflette rispetto alla sua diagonale principale. Se A rappresenta una trasformazione lineare, Aᵀ rappresenta la trasformazione aggiunta. Per le matrici di rotazione (matrici ortogonali), la trasposta è uguale all'inversa: ruotare di θ e poi di −θ annulla la rotazione."
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "title": "Probability Calculator — Basic, Permutations, Combinations, Dice",
+  "shortDescription": "Calculate probabilities, permutations (nPr), combinations (nCr), and dice roll outcomes. Four dedicated tabs cover every common probability problem.",
+  "description": "Four modes in one tool: basic probability from favorable and total outcomes, permutations nPr, combinations nCr, and the probability of rolling a specific sum with multiple dice. Results include fractions, decimals, percentages, and odds.",
+  "metaDescription": "Free probability calculator: basic probability, permutations nPr, combinations nCr, and dice probability. Results as fraction, decimal, percentage, and odds.",
+  "keywords": ["probability calculator", "combinations calculator", "permutations calculator", "nCr calculator", "nPr calculator", "dice probability", "odds calculator"],
+  "tab": {
+    "basic": "Basic Probability",
+    "permutation": "Permutations (nPr)",
+    "combination": "Combinations (nCr)",
+    "dice": "Dice Probability"
+  },
+  "input": {
+    "favorable": "Favorable Outcomes",
+    "total": "Total Outcomes",
+    "n": "n (total items)",
+    "r": "r (items chosen)",
+    "numDice": "Number of Dice",
+    "target": "Target Sum",
+    "sides": "Dice Sides"
+  },
+  "result": {
+    "probability": "Probability",
+    "fraction": "Fraction",
+    "decimal": "Decimal",
+    "percent": "Percentage",
+    "oddsFor": "Odds For",
+    "oddsAgainst": "Odds Against",
+    "permutations": "Permutations (nPr)",
+    "combinations": "Combinations (nCr)"
+  },
+  "empty": "Enter values to calculate.",
+  "error": {
+    "invalid": "Invalid input: check that all values are non-negative integers and r ≤ n.",
+    "overflow": "n must be ≤ 170 (JavaScript factorial limit).",
+    "noOutcomes": "Total outcomes must be greater than zero.",
+    "favorableExceedsTotal": "Favorable outcomes cannot exceed total outcomes.",
+    "diceRange": "Target sum is outside the possible range for these dice."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Basic probability, odds, and how they differ",
+        "paragraphs": [
+          "Probability is the ratio of favorable outcomes to total equally likely outcomes: P = favorable / total. It ranges from 0 (impossible) to 1 (certain) and is often expressed as a percentage. For a fair six-sided die, the probability of rolling a 4 is 1/6 ≈ 16.667%.",
+          "Odds are a different way to express the same information. Odds FOR an event are favorable : unfavorable, so rolling a 4 has odds of 1:5. Odds AGAINST are the reverse: 5:1. Odds are common in sports betting and card games; probability is more common in statistics and science.",
+          "This calculator simplifies the fraction to lowest terms automatically and shows decimal and percentage forms side by side, making it easy to convert between representations."
+        ]
+      },
+      {
+        "heading": "Permutations vs. combinations",
+        "paragraphs": [
+          "Both deal with selecting r items from a set of n, but order matters in permutations and does not in combinations. Permutations nPr = n! / (n − r)! counts ordered arrangements. Combinations nCr = n! / (r! × (n − r)!) counts unordered subsets.",
+          "Example: choosing 2 letters from {A, B, C}. Permutations: AB, BA, AC, CA, BC, CB — 6 ordered pairs. nPr = 3! / 1! = 6. Combinations: AB, AC, BC — 3 unordered subsets. nCr = 3! / (2! × 1!) = 3. Because every combination gives r! permutations, nPr = nCr × r! always.",
+          "The maximum supported n is 170. Beyond that, n! exceeds JavaScript’s floating-point range (about 1.8 × 10³°⁸). For very large n or r, consider logarithmic calculation or symbolic libraries."
+        ]
+      },
+      {
+        "heading": "Dice probability and the multiplication rule",
+        "paragraphs": [
+          "When rolling multiple identical dice, each die is independent. The total number of outcomes is sides^numDice. The number of ways to reach a specific sum is found by counting compositions: distributing the sum across all dice such that each die shows a value between 1 and sides.",
+          "This calculator uses dynamic programming to count the exact number of compositions for the given target sum. For example, rolling 2d6 (two six-sided dice) and getting a sum of 7: there are 6 ways (1+6, 2+5, 3+4, 4+3, 5+2, 6+1) out of 36 total, giving probability 6/36 = 1/6 ≈ 16.667%.",
+          "Supported dice types: d4, d6, d8, d10, d12, and d20 (standard tabletop RPG dice). The number of dice ranges from 1 to 6. The target sum must be between numDice (all ones) and numDice × sides (all maximums)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choose a tab", "text": "Select Basic Probability, Permutations, Combinations, or Dice Probability depending on your problem." },
+      { "name": "Enter the inputs", "text": "For basic probability, provide favorable and total outcomes. For nPr/nCr, enter n and r. For dice, pick number of dice, target sum, and sides." },
+      { "name": "Read the results", "text": "Results appear instantly as a fraction, decimal, percentage, and odds (for basic probability)." },
+      { "name": "Check for errors", "text": "If inputs are invalid (r > n, total = 0, or sum out of range), a clear error message explains what to fix." }
+    ]
+  },
+  "faq": [
+    { "q": "What is the difference between permutations and combinations?", "a": "Permutations count ordered arrangements (AB ≠ BA); combinations count unordered subsets (AB = BA). nPr = n! / (n−r)!; nCr = n! / (r! × (n−r)!). Always nPr ≥ nCr for r > 1." },
+    { "q": "Why is n limited to 170?", "a": "JavaScript uses 64-bit IEEE 754 floating-point. 170! ≈ 7.26 × 10³°⁶ fits in a double; 171! overflows to Infinity. If you need larger factorials, use BigInt or a logarithm-based approach." },
+    { "q": "How are odds different from probability?", "a": "Probability P = favorable / total. Odds For = favorable : unfavorable = P : (1−P). Odds Against = unfavorable : favorable. A 25% probability corresponds to odds of 1:3 (for) or 3:1 (against)." },
+    { "q": "What does 0! equal?", "a": "By convention, 0! = 1. This keeps the formulas for nCr and nPr consistent when r = 0 or r = n." },
+    { "q": "Can I calculate the probability of rolling at least a certain sum?", "a": "Not directly with this tool. For at-least probabilities, sum the exact probabilities for all target values from your minimum to the maximum (numDice × sides). The dice tab gives the exact probability for each specific sum." },
+    { "q": "What is nC0 or nCn?", "a": "Both equal 1. There is exactly one way to choose nothing (the empty set) and exactly one way to choose all items." },
+    { "q": "Is this calculator accurate for large factorials?", "a": "For n up to 170 the results are accurate within the floating-point representation. For n near 170, results may have small relative errors in the last few digits due to floating-point rounding in division." },
+    { "q": "Does any data leave my browser?", "a": "No. All calculations run locally in JavaScript. Nothing is transmitted to a server." }
+  ]
+}

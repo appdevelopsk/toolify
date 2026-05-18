@@ -1,0 +1,120 @@
+{
+  "title": "Calculadora de Cifras Significativas — Contar y Redondear",
+  "shortDescription": "Cuenta las cifras significativas de cualquier número o redondea a un número específico de cifras sig. Muestra un desglose dígito por dígito y notación científica.",
+  "description": "Ingresa cualquier número para contar instantáneamente sus cifras significativas con un desglose dígito por dígito codificado por colores, o cambia al modo de redondeo para expresar un valor con exactamente el número de cifras significativas que necesitas. Compatible con enteros, decimales y notación científica. Explica qué dígitos son significativos y por qué.",
+  "metaDescription": "Calculadora gratuita de cifras significativas. Cuenta cifras sig con una explicación dígito por dígito, o redondea cualquier número a N cifras significativas. Compatible…",
+  "keywords": [
+    "calculadora cifras significativas",
+    "calculadora cifras sig",
+    "contador cifras significativas",
+    "redondear cifras significativas",
+    "reglas cifras significativas"
+  ],
+  "empty": "Ingresa un número para contar o redondear cifras significativas.",
+  "tab": {
+    "count": "Contar Cifras Sig",
+    "round": "Redondear a N Cifras Sig"
+  },
+  "input": {
+    "number": "Número",
+    "numberPlaceholder": "p. ej. 0.00420 o 1.23e4",
+    "numberHint": "Ingresa un entero, decimal o valor en notación científica",
+    "numberToRound": "Número a Redondear",
+    "numberToRoundPlaceholder": "p. ej. 9876.5432",
+    "sigFigsTarget": "Cifras Significativas",
+    "sigFigsTargetHint": "Ingresa un valor del 1 al 15"
+  },
+  "result": {
+    "sigFigCount": "Cifras Significativas",
+    "scientificNotation": "Notación Científica",
+    "explanation": "Desglose de Dígitos",
+    "rounded": "Resultado Redondeado",
+    "sigFigsUsed": "Cifras Sig Aplicadas",
+    "roundExplanation": "{input} redondeado a {sigFigs} cifras significativas es {result}.",
+    "legendSignificant": "Significativo",
+    "legendNotSignificant": "No significativo",
+    "legendAmbiguous": "Ambiguo",
+    "ambiguousNote": "Ceros finales ambiguos",
+    "ambiguousNoteDetail": "Los ceros finales en un número entero sin punto decimal son ambiguos. Agrega un punto decimal (p. ej. 1200.) o usa notación científica (1.2 × 10²) para hacer explícita la precisión."
+  },
+  "error": {
+    "invalid": "Por favor ingresa un número válido (p. ej. 0.00420, 6.02e23 o 1500.)."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Las 5 reglas para contar cifras significativas",
+        "paragraphs": [
+          "Todo valor medido o calculado lleva una precisión implícita, y las cifras significativas son la forma en que los científicos comunican esa precisión. Entender qué dígitos cuentan y cuáles no evita reportar una falsa precisión o subestimar la exactitud.",
+          "Regla 1: Todos los dígitos distintos de cero (1–9) son siempre significativos. El número 4,72 tiene tres cifras significativas; 391 tiene tres. Regla 2: Los ceros intercalados entre dígitos distintos de cero, a menudo llamados ceros cautivos o incrustados, son siempre significativos. 4,0072 tiene cinco cifras significativas; 3007 tiene cuatro. Regla 3: Los ceros a la izquierda que aparecen antes del primer dígito distinto de cero nunca son significativos; solo ubican el punto decimal. 0,0042 tiene dos cifras significativas (4 y 2); 0,00100 tiene tres (1, 0, 0 en la parte fraccionaria después del 1). Regla 4: Los ceros finales a la derecha de un punto decimal son siempre significativos porque reflejan la precisión de la medición. 3,50 tiene tres cifras significativas, y 100,0 tiene cuatro. Regla 5: Los ceros finales en un número entero sin punto decimal son ambiguos: pueden ser o no significativos. Escribir 1200 deja sin aclarar si se quieren decir 2, 3 o 4 cifras significativas. Resuelve la ambigüedad agregando un punto decimal (1200.), usando notación científica (1,2 × 10³), o usando notación con barra superior en trabajos formales."
+        ]
+      },
+      {
+        "heading": "Por qué importan las cifras significativas en ciencia y medición",
+        "paragraphs": [
+          "Toda medición física tiene un límite de precisión determinado por el instrumento y el observador. Una regla marcada en milímetros puede dar lecturas confiables hasta el 0,5 mm aproximadamente; afirmar un resultado de 14,2842 cm con esa regla exagera lo que realmente se conoce. Las cifras significativas codifican ese límite: reportar 14,3 cm (tres cifras sig) representa honestamente la precisión del instrumento de medición.",
+          "La importancia de la precisión se propaga a través de los cálculos. Cuando los resultados calculados a partir de datos medidos se reportan con demasiados dígitos, sugiere que la respuesta es más segura de lo que los datos brutos justifican, una forma de comunicación engañosa. Por el contrario, redondear demasiado agresivamente pierde información real. En la fabricación farmacéutica, las tolerancias pueden especificarse hasta cuatro o cinco cifras sig; desviarse incluso una cifra en la dirección equivocada puede significar que un producto esté fuera de especificación. En química analítica, los límites de detección instrumental se ajustan cuidadosamente al número de cifras sig utilizadas para reportar concentraciones. Incluso en la ingeniería cotidiana, el número de cifras significativas en la especificación de diseño influye directamente en qué grado de componente se requiere."
+        ]
+      },
+      {
+        "heading": "Cifras significativas en aritmética: reglas para suma y multiplicación",
+        "paragraphs": [
+          "Las cifras significativas siguen diferentes reglas según la operación realizada. Para la suma y la resta, el resultado debe redondearse al mismo número de decimales que la entrada con menos decimales. Si sumas 12,11 + 18,0 + 1,013, el resultado de la calculadora es 31,123, pero como 18,0 tiene solo un decimal, la respuesta reportada es 31,1. La regla refleja que solo puedes ser tan preciso como tu medición menos precisa en términos de la magnitud de la incertidumbre.",
+          "Para la multiplicación y la división, el resultado debe contener el mismo número de cifras significativas que la entrada con menos cifras significativas. Multiplicar 4,56 (3 cifras sig) por 1,4 (2 cifras sig) da un resultado bruto de 6,384, que se redondea a 6,4 (2 cifras sig). Esto se debe a que la incertidumbre relativa del factor menos preciso establece el piso de la precisión del producto. Los cálculos con operaciones mixtas deben aplicar la regla de redondeo en cada paso, o llevar dígitos de guarda adicionales a través de los pasos intermedios y redondear solo el resultado final: este último enfoque minimiza el error de redondeo acumulado."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Seleccionar la pestaña Contar Cifras Sig",
+        "text": "Haz clic en la pestaña Contar Cifras Sig en la parte superior de la calculadora para entrar en modo de conteo."
+      },
+      {
+        "name": "Escribe tu número",
+        "text": "Ingresa cualquier número en el campo de texto: enteros (1500), decimales (0,00420) o notación científica (1,23e4). La calculadora lee la cadena sin procesar, por lo que los ceros iniciales y finales se conservan correctamente."
+      },
+      {
+        "name": "Lee el desglose de dígitos",
+        "text": "Cada dígito se resalta: verde para significativo, gris para ceros iniciales no significativos, y amarillo para ceros finales ambiguos en números enteros. El recuento total aparece de manera prominente en la parte superior."
+      },
+      {
+        "name": "Cambiar al modo de redondeo cuando sea necesario",
+        "text": "Haz clic en la pestaña Redondear a N Cifras Sig, ingresa tu número y el número deseado de cifras significativas, y la calculadora devuelve el valor redondeado junto con su forma en notación científica."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Cuántas cifras significativas tiene 0,00420?",
+      "a": "Tres. Los ceros iniciales (0,00) no son significativos: solo muestran la posición del punto decimal. Los dígitos 4, 2 y el cero final después del 2 son todos significativos. El cero final es significativo porque aparece después del punto decimal y después de un dígito distinto de cero, indicando que la medición se realizó con ese nivel de precisión."
+    },
+    {
+      "q": "¿Son significativos los ceros finales en un número entero como 1200?",
+      "a": "Es ambiguo sin contexto adicional. El número 1200 podría tener 2, 3 o 4 cifras significativas dependiendo de la precisión de la medición. Para eliminar la ambigüedad: escribe 1200. (con punto decimal) para indicar 4 cifras sig, o usa notación científica: 1,2 × 10³ (2 cifras sig), 1,20 × 10³ (3 cifras sig) o 1,200 × 10³ (4 cifras sig)."
+    },
+    {
+      "q": "¿Cómo redondeo 34567 a 3 cifras significativas?",
+      "a": "Identifica las primeras 3 cifras significativas: 3, 4, 5. Mira el siguiente dígito (6): es 5 o más, así que sube el 5 a 6. El resultado es 34600. En notación científica es 3,46 × 10⁴. Los ceros finales en 34600 no son significativos en este contexto; son marcadores de posición."
+    },
+    {
+      "q": "¿Cambia el número de cifras significativas al convertir unidades?",
+      "a": "No. Las cifras significativas reflejan la precisión de la medición, que no cambia al cambiar de unidades. Si una longitud se mide como 2,54 cm (3 cifras sig), convertirla a metros da 0,0254 m, que sigue teniendo 3 cifras sig. Los ceros iniciales en el valor en metros no son significativos; solo lo son el 2, el 5 y el 4."
+    },
+    {
+      "q": "¿Cuál es la diferencia entre cifras significativas y decimales?",
+      "a": "Los decimales cuentan los dígitos a la derecha del punto decimal independientemente del valor. Las cifras significativas cuentan todos los dígitos significativos comenzando desde el primer dígito distinto de cero. El número 0,00420 tiene 5 decimales pero solo 3 cifras significativas. El número 12300 tiene 0 decimales pero al menos 3 cifras significativas (y posiblemente más si los ceros están medidos)."
+    },
+    {
+      "q": "¿Cuántas cifras significativas debo usar en mi respuesta?",
+      "a": "Para la suma y la resta, iguala el menor número de decimales de cualquier valor en el cálculo. Para la multiplicación y la división, iguala el menor número de cifras significativas de cualquier valor en el cálculo. Al combinar ambas operaciones, aplica cada regla en el paso apropiado. En general, no reportes más precisión de la que justifica tu entrada menos precisa."
+    },
+    {
+      "q": "¿El número 10 tiene una o dos cifras significativas?",
+      "a": "Es ambiguo: sin punto decimal no está claro. Escribir 10 podría significar que mediste hasta el 10 más cercano (1 cifra sig) o hasta el 1 más cercano (2 cifras sig). Para indicar 2 cifras sig explícitamente, escribe 10. (con punto decimal) o 1,0 × 10¹. En la mayoría de los contextos educativos, se asume que 10 tiene 2 cifras sig, pero la comunicación científica requiere que la notación lo aclare."
+    },
+    {
+      "q": "¿Qué es la notación científica y cómo ayuda con las cifras significativas?",
+      "a": "La notación científica expresa un número como un coeficiente (1 ≤ |coeficiente| < 10) multiplicado por una potencia de 10. Por ejemplo, 45600 se convierte en 4,56 × 10⁴. El coeficiente contiene solo los dígitos significativos, por lo que la notación hace explícita la precisión: 4,56 × 10⁴ tiene inequívocamente 3 cifras sig, mientras que 4,5600 × 10⁴ tiene 5. Esta es la forma estándar de eliminar la ambigüedad de los ceros finales en números enteros."
+    }
+  ]
+}

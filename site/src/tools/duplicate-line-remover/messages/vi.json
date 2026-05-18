@@ -1,0 +1,108 @@
+{
+  "title": "Công cụ xóa dòng trùng lặp — Làm sạch danh sách văn bản ngay lập tức",
+  "shortDescription": "Xóa các dòng trùng lặp khỏi bất kỳ danh sách văn bản nào. Hỗ trợ khớp không phân biệt hoa thường, cắt khoảng trắng, và điều khiển giữ mục đầu tiên hoặc cuối cùng.",
+  "description": "Dán bất kỳ danh sách dòng nào và công cụ này sẽ xóa tất cả các dòng trùng lặp, chỉ giữ lại các mục duy nhất. Các tùy chọn cho phép bạn kiểm soát độ nhạy chữ hoa chữ thường, cắt khoảng trắng đầu và cuối trước khi so sánh, và chọn giữ lần xuất hiện đầu tiên hay cuối cùng của mỗi nhóm trùng lặp.",
+  "metaDescription": "Công cụ xóa dòng trùng lặp miễn phí trực tuyến. Dán văn bản, xóa dòng trùng lặp ngay — không phân biệt hoa thường, cắt khoảng trắng, giữ đầu hoặc cuối. Chạy trên…",
+  "keywords": [
+    "xóa dòng trùng lặp",
+    "công cụ xóa dòng trùng online",
+    "loại trùng lặp văn bản",
+    "dòng duy nhất",
+    "làm sạch danh sách văn bản"
+  ],
+  "empty": "Dán văn bản vào phía trên để xóa các dòng trùng lặp.",
+  "input": {
+    "text": "Văn bản đầu vào — một mục trên mỗi dòng",
+    "caseSensitive": "So sánh phân biệt hoa thường",
+    "trimLines": "Cắt khoảng trắng trước khi so sánh",
+    "keepFirst": "Giữ lần xuất hiện đầu tiên (bỏ chọn để giữ lần cuối)"
+  },
+  "result": {
+    "cleaned": "Đầu ra sau khi loại trùng lặp",
+    "stats": "Đã xóa {removed} dòng trùng lặp — còn lại {remaining} dòng duy nhất."
+  },
+  "button": {
+    "copy": "Sao chép kết quả",
+    "copied": "Đã sao chép!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Khi nào các dòng trùng lặp thực sự gây vấn đề",
+        "paragraphs": [
+          "Các dòng trùng lặp không gây hại trong thơ, nhưng tạo ra vấn đề thực sự trong dữ liệu có cấu trúc. Trong file CSV, một hàng trùng lặp sẽ âm thầm thổi phồng số lượng bản ghi, làm méo các giá trị tổng hợp, và có thể gây vi phạm khóa chính khi nhập file vào cơ sở dữ liệu. Trong file log máy chủ, các mục log giống nhau lặp đi lặp lại từ một tiến trình bị lỗi có thể lấp đầy đĩa cứng trong vài phút. Trong file cấu hình, các khóa trùng lặp sẽ bị ghi đè âm thầm — hoặc tệ hơn, gây lỗi phân tích cú pháp — tùy thuộc vào trình phân tích.",
+          "Các kho mã nguồn cũng gặp vấn đề với việc trùng lặp dòng vô tình: lỗi sao chép-dán trong danh sách phụ thuộc (requirements.txt, package.json), các câu lệnh import lặp lại, hoặc các mục trùng lặp trong .gitignore. Các kiểm tra CI tự động thường phát hiện ra những điều này, nhưng dán và loại trùng lặp nhanh trước khi commit nhanh hơn so với việc gỡ lỗi một pipeline thất bại.",
+          "Các dòng trống xứng đáng được chú ý đặc biệt. Hai dòng trống liên tiếp về mặt kỹ thuật là trùng lặp, nhưng nhiều định dạng văn bản (Markdown, mã nguồn Python, nội dung email) sử dụng các dòng trống đôi như các dấu phân cách có chủ ý. Tùy chọn 'cắt khoảng trắng' của công cụ này chuẩn hóa các dòng có vẻ trống do có khoảng trắng lạc, mà không phá hủy các dòng trống có chủ ý — kết quả phụ thuộc vào nội dung cụ thể của bạn, vì vậy hãy xem lại đầu ra."
+        ]
+      },
+      {
+        "heading": "Phân biệt hoa thường: khi nào quan trọng và khi nào không",
+        "paragraphs": [
+          "Mặc định công cụ này so sánh các dòng không phân biệt hoa thường, vì vậy 'Apple', 'apple' và 'APPLE' đều được tính là cùng một dòng và chỉ giữ dòng đầu tiên. Đây là cài đặt phù hợp cho các danh sách mà con người đọc như đám mây thẻ, danh sách từ khóa, tên thành phố và địa chỉ email nơi bạn muốn gộp các biến thể của cùng một thứ.",
+          "Chế độ phân biệt hoa thường là thiết yếu cho mã. Trong Python, import 'os' và 'OS' về mặt kỹ thuật là khác nhau (mặc dù 'OS' sẽ thất bại khi chạy trên hầu hết các hệ thống), và các tên biến như 'Result' và 'result' là các định danh riêng biệt. Các từ khóa SQL không phân biệt hoa thường theo quy ước, nhưng tên bảng phân biệt hoa thường trên hệ thống tệp Linux. Khi loại trùng lặp các đoạn mã, khóa cấu hình hoặc đường dẫn, hãy luôn bật chế độ phân biệt hoa thường.",
+          "Một điểm cân bằng thực tế là chạy công cụ hai lần: một lần không phân biệt hoa thường để phát hiện các mục gần trùng lặp để xem xét, và một lần phân biệt hoa thường cho việc loại trùng lặp dứt khoát. Phương pháp hai lần này phát hiện các lỗi đánh máy và viết hoa không nhất quán mà tính năng tự động loại trùng lặp đơn thuần sẽ bỏ sót."
+        ]
+      },
+      {
+        "heading": "Cách xử lý dòng trống và khoảng trắng",
+        "paragraphs": [
+          "Khoảng trắng cuối dòng vô hình trong hầu hết các trình soạn thảo văn bản và các thao tác sao chép-dán, nhưng chúng khiến các dòng so sánh không bằng nhau. 'apple  ' (hai khoảng trắng cuối) và 'apple' là các chuỗi khác nhau, vì vậy nếu không bật tính năng cắt bạn sẽ giữ cả hai — để lại một dòng trùng lặp tinh vi trong đầu ra. Tùy chọn 'Cắt khoảng trắng' loại bỏ các khoảng trắng đầu và cuối khỏi mỗi dòng trước khi so sánh, mà không sửa đổi nội dung của các dòng đầu ra (văn bản đã cắt được ghi vào kết quả).",
+          "Khoảng trắng đầu trong mã có thụt đầu dòng hoặc danh sách phân cấp có ý nghĩa: việc cắt sẽ phá hủy cấu trúc phân cấp thụt đầu dòng. Đối với mã hoặc phác thảo có cấu trúc, hãy tắt tính năng cắt và sử dụng chế độ phân biệt hoa thường để bảo toàn nội dung dòng chính xác. Đối với các danh sách văn bản thuần túy như từ khóa, tên thành phố hoặc đường dẫn URL, việc cắt hầu như luôn là lựa chọn đúng.",
+          "Nút chuyển 'giữ đầu tiên so với giữ cuối cùng' quan trọng nhất khi danh sách của bạn có siêu dữ liệu gắn với các vị trí. Ví dụ, nhật ký sự kiện nơi các mục sau này đại diện cho các trạng thái gần đây hơn — trong tình huống đó, việc giữ lần xuất hiện cuối cùng (bản ghi gần đây nhất cho mỗi khóa) là đúng về mặt ngữ nghĩa, trong khi giữ lần đầu tiên sẽ bảo toàn dữ liệu cũ."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Dán văn bản của bạn",
+        "text": "Nhấp vào vùng nhập và dán danh sách của bạn. Mỗi dòng được coi là một mục — công cụ tách theo ký tự xuống dòng."
+      },
+      {
+        "name": "Cấu hình tùy chọn",
+        "text": "Bật 'Phân biệt hoa thường' cho mã hoặc đường dẫn file. Bật 'Cắt khoảng trắng' cho danh sách từ khóa hoặc dữ liệu CSV. Chuyển đổi 'Giữ đầu tiên' để quyết định lần xuất hiện nào sẽ tồn tại khi tìm thấy trùng lặp."
+      },
+      {
+        "name": "Xem lại thống kê",
+        "text": "Vùng kết quả hiển thị bao nhiêu mục trùng lặp đã được xóa và bao nhiêu dòng duy nhất còn lại, để bạn có thể xác minh rằng thao tác đã đúng."
+      },
+      {
+        "name": "Sao chép kết quả",
+        "text": "Nhấp 'Sao chép kết quả' để sao chép văn bản đã loại trùng lặp vào clipboard, sau đó dán vào nơi bạn cần."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Công cụ có giữ thứ tự dòng không?",
+      "a": "Có. Các dòng không được sắp xếp — chỉ xóa các dòng trùng lặp. Thứ tự tương đối của các dòng còn lại giống hệt với thứ tự đầu vào."
+    },
+    {
+      "q": "Điều gì được coi là trùng lặp?",
+      "a": "Hai dòng là trùng lặp nếu chúng giống nhau sau khi áp dụng các tùy chọn đã chọn (gập chữ hoa/thường và/hoặc cắt khoảng trắng). Chỉ so sánh nội dung văn bản; số dòng và vị trí không được xét đến."
+    },
+    {
+      "q": "Các dòng trống có bị xóa không?",
+      "a": "Các dòng trống chỉ bị xóa nếu chúng là bản sao của nhau. Nếu văn bản có ba dòng trống liên tiếp và bạn đã bật 'Giữ đầu tiên', chỉ dòng trống đầu tiên tồn tại. Nếu bạn muốn xóa tất cả các dòng trống, hãy sử dụng công cụ sắp xếp văn bản với tùy chọn 'xóa dòng trống'."
+    },
+    {
+      "q": "'Giữ lần xuất hiện cuối cùng' làm gì?",
+      "a": "Khi 'Giữ đầu tiên' không được chọn, công cụ giữ lần xuất hiện cuối cùng của mỗi nhóm trùng lặp thay vì lần đầu tiên. Kết quả vẫn xuất hiện theo thứ tự tài liệu gốc — chỉ thay đổi phiên bản nào tồn tại."
+    },
+    {
+      "q": "Tôi có thể sử dụng công cụ này để loại trùng lặp danh sách email không?",
+      "a": "Có. Dán một địa chỉ email mỗi dòng. Sử dụng chế độ không phân biệt hoa thường (mặc định) vì địa chỉ email không phân biệt hoa thường theo thông số kỹ thuật. Cắt khoảng trắng cũng được khuyến nghị cho dữ liệu email được sao chép-dán."
+    },
+    {
+      "q": "Có giới hạn số dòng không?",
+      "a": "Không có giới hạn bắt buộc. Công cụ xử lý mọi thứ trong bộ nhớ trình duyệt của bạn. Thực tế, các trình duyệt hiện đại xử lý hàng trăm nghìn dòng mà không có độ trễ đáng chú ý."
+    },
+    {
+      "q": "Dữ liệu của tôi có rời khỏi trình duyệt không?",
+      "a": "Không. Tất cả quá trình xử lý xảy ra hoàn toàn trong JavaScript trên thiết bị của bạn. Không có gì được tải lên bất kỳ máy chủ nào."
+    },
+    {
+      "q": "Làm thế nào để loại trùng lặp CSV theo một cột cụ thể?",
+      "a": "Công cụ này hoạt động trên toàn bộ dòng. Để loại trùng lặp theo một cột duy nhất, trước tiên hãy sắp xếp hoặc trích xuất cột đó thành danh sách một cột, loại trùng lặp, sau đó ghép lại. Với tập dữ liệu lớn, một công cụ chuyên dụng như pandas của Python hoặc hàm UNIQUE trong bảng tính sẽ chính xác hơn."
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "title": "Suppression de lignes en double — Nettoyez vos listes instantanément",
+  "shortDescription": "Supprimez les lignes en double de toute liste de texte. Prise en charge de la correspondance insensible à la casse, du rognage des espaces et du choix entre la première ou la dernière occurrence.",
+  "description": "Collez n'importe quelle liste de lignes et cet outil supprime tous les doublons, ne conservant que les entrées uniques. Les options vous permettent de contrôler la sensibilité à la casse, de rogner les espaces de début et de fin avant la comparaison, et de choisir si vous conservez la première ou la dernière occurrence de chaque groupe de doublons.",
+  "metaDescription": "Suppresseur de lignes en double gratuit en ligne. Collez du texte, supprimez les doublons instantanément — insensible à la casse, rognage d'espaces, conserver le…",
+  "keywords": [
+    "suppression lignes en double",
+    "supprimer lignes dupliquées en ligne",
+    "dédupliquer texte",
+    "lignes uniques",
+    "nettoyer liste texte"
+  ],
+  "empty": "Collez du texte ci-dessus pour supprimer les lignes en double.",
+  "input": {
+    "text": "Texte d'entrée — un élément par ligne",
+    "caseSensitive": "Comparaison sensible à la casse",
+    "trimLines": "Rogner les espaces avant la comparaison",
+    "keepFirst": "Conserver la première occurrence (décocher pour conserver la dernière)"
+  },
+  "result": {
+    "cleaned": "Sortie dédupliquée",
+    "stats": "{removed} ligne(s) en double supprimée(s) — {remaining} ligne(s) unique(s) restante(s)."
+  },
+  "button": {
+    "copy": "Copier le résultat",
+    "copied": "Copié !"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Quand les lignes en double posent vraiment problème",
+        "paragraphs": [
+          "Les lignes en double sont inoffensives dans la poésie, mais elles créent de vrais problèmes dans les données structurées. Dans un fichier CSV, une ligne dupliquée gonfle silencieusement le nombre d'enregistrements, fausse les agrégats et peut provoquer des violations de clé primaire lors de l'importation dans une base de données. Dans les fichiers journaux de serveur, des entrées identiques répétées d'un processus défaillant peuvent remplir un disque en quelques minutes. Dans les fichiers de configuration, les clés dupliquées sont silencieusement écrasées — ou pire, provoquent des erreurs d'analyse — selon l'analyseur.",
+          "Les dépôts de code souffrent également de la duplication accidentelle de lignes : erreurs de copier-coller dans les listes de dépendances (requirements.txt, package.json), déclarations d'importation répétées ou entrées dupliquées dans .gitignore. Les vérifications CI automatisées les détectent souvent, mais coller et dédupliquer rapidement avant de valider est plus rapide que de déboguer un échec de pipeline.",
+          "Les lignes vides méritent une attention particulière. Deux lignes vides consécutives sont techniquement des doublons, mais de nombreux formats de texte (Markdown, source Python, corps d'e-mail) utilisent des doubles lignes vides comme séparateurs intentionnels. L'option 'rogner les espaces' de cet outil normalise les lignes qui semblent vides à cause d'espaces parasites, sans détruire les lignes vides intentionnelles — le résultat dépend de votre contenu spécifique, vérifiez donc la sortie."
+        ]
+      },
+      {
+        "heading": "Sensibilité à la casse : quand elle compte et quand elle ne compte pas",
+        "paragraphs": [
+          "Par défaut, cet outil compare les lignes sans tenir compte de la casse, donc 'Apple', 'apple' et 'APPLE' comptent tous comme la même ligne et seul le premier est conservé. C'est le bon réglage pour les listes lisibles par l'humain comme les nuages de tags, les listes de mots-clés, les noms de villes et les adresses e-mail où vous souhaitez fusionner les variantes d'une même chose.",
+          "Le mode sensible à la casse est essentiel pour le code. En Python, les imports 'os' et 'OS' sont techniquement différents (bien que 'OS' échouerait à l'exécution sur la plupart des systèmes), et les noms de variables comme 'Result' et 'result' sont des identifiants distincts. Les mots-clés SQL sont insensibles à la casse par convention, mais les noms de tables sont sensibles à la casse sur les systèmes de fichiers Linux. Lors de la déduplication de fragments de code, de clés de configuration ou de chemins, activez toujours le mode sensible à la casse.",
+          "Un juste milieu pratique consiste à exécuter l'outil deux fois : une fois de manière insensible à la casse pour repérer les quasi-doublons à examiner, et une fois de manière sensible à la casse pour la déduplication officielle. Cette approche en deux passes détecte les fautes de frappe et les capitalisations incohérentes qu'une dédup automatique seule manquerait."
+        ]
+      },
+      {
+        "heading": "Fonctionnement du traitement des lignes vides et des espaces",
+        "paragraphs": [
+          "Les espaces de fin de ligne sont invisibles dans la plupart des éditeurs de texte et lors des copier-coller, mais ils font que les lignes sont comparées comme inégales. 'apple  ' (deux espaces en fin) et 'apple' sont des chaînes différentes, donc sans rognage activé vous garderiez les deux — laissant un doublon subtil dans la sortie. L'option 'Rogner les espaces' supprime les espaces de début et de fin de chaque ligne avant la comparaison, sans modifier le contenu des lignes de sortie (le texte rogné est écrit dans le résultat).",
+          "Les espaces de début dans le code indenté ou les listes hiérarchiques sont significatifs : les rogner détruirait la hiérarchie d'indentation. Pour le code ou les plans structurés, désactivez le rognage et utilisez le mode sensible à la casse pour préserver le contenu exact des lignes. Pour les listes de texte brut comme les mots-clés, les noms de villes ou les chemins d'URL, le rognage est presque toujours le bon choix.",
+          "Le bouton 'conserver le premier vs conserver le dernier' est le plus important quand votre liste contient des métadonnées liées aux positions. Par exemple, un journal d'événements où les entrées ultérieures représentent des états plus récents — dans ce scénario, conserver la dernière occurrence (enregistrement le plus récent pour chaque clé) est sémantiquement correct, tandis que conserver la première préserverait des données obsolètes."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Collez votre texte",
+        "text": "Cliquez sur la zone de saisie et collez votre liste. Chaque ligne est traitée comme un élément — l'outil divise sur les caractères de nouvelle ligne."
+      },
+      {
+        "name": "Configurez les options",
+        "text": "Activez 'Sensible à la casse' pour le code ou les chemins de fichiers. Activez 'Rogner les espaces' pour les listes de mots-clés ou les données CSV. Basculez 'Conserver le premier' pour décider quelle occurrence survit quand des doublons sont trouvés."
+      },
+      {
+        "name": "Vérifiez les statistiques",
+        "text": "La zone de résultat indique combien de doublons ont été supprimés et combien de lignes uniques restent, pour que vous puissiez vérifier que l'opération s'est déroulée correctement."
+      },
+      {
+        "name": "Copiez le résultat",
+        "text": "Cliquez sur 'Copier le résultat' pour copier le texte dédupliqué dans votre presse-papiers, puis collez-le là où vous en avez besoin."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "L'outil préserve-t-il l'ordre des lignes ?",
+      "a": "Oui. Les lignes ne sont pas triées — seuls les doublons sont supprimés. L'ordre relatif des lignes survivantes est identique à l'ordre d'entrée."
+    },
+    {
+      "q": "Qu'est-ce qui compte comme doublon ?",
+      "a": "Deux lignes sont des doublons si elles sont identiques après application de vos options choisies (normalisation de casse et/ou rognage des espaces). Seul le contenu textuel est comparé ; les numéros de ligne et les positions ne sont pas pris en compte."
+    },
+    {
+      "q": "Les lignes vides seront-elles supprimées ?",
+      "a": "Les lignes vides ne sont supprimées que si elles sont des doublons les unes des autres. Si votre texte contient trois lignes vides consécutives et que 'Conserver le premier' est activé, seule la première ligne vide survit. Si vous souhaitez supprimer toutes les lignes vides, utilisez un trieur de texte avec l'option 'supprimer les lignes vides'."
+    },
+    {
+      "q": "Que fait 'Conserver la dernière occurrence' ?",
+      "a": "Lorsque 'Conserver le premier' est décoché, l'outil conserve la dernière occurrence de chaque groupe de doublons plutôt que la première. Le résultat apparaît toujours dans l'ordre original du document — seule l'instance survivante change."
+    },
+    {
+      "q": "Puis-je utiliser ceci pour dédupliquer des listes d'e-mails ?",
+      "a": "Oui. Collez une adresse e-mail par ligne. Utilisez le mode insensible à la casse (le défaut) car les adresses e-mail sont insensibles à la casse par spécification. Le rognage des espaces est également recommandé pour les données d'e-mail copiées-collées."
+    },
+    {
+      "q": "Y a-t-il une limite de lignes ?",
+      "a": "Il n'y a pas de limite imposée. L'outil traite tout dans la mémoire de votre navigateur. En pratique, les navigateurs modernes gèrent des centaines de milliers de lignes sans délai notable."
+    },
+    {
+      "q": "Mes données quittent-elles le navigateur ?",
+      "a": "Non. Tout le traitement se déroule entièrement en JavaScript sur votre appareil. Rien n'est téléchargé vers un serveur."
+    },
+    {
+      "q": "Comment dédupliquer un CSV par une colonne spécifique ?",
+      "a": "Cet outil fonctionne sur des lignes entières. Pour dédupliquer par une seule colonne, extrayez d'abord cette colonne dans une liste à une seule colonne, dédupliquez, puis rejoignez. Pour les grands ensembles de données, un outil dédié comme pandas de Python ou la fonction UNIQUE d'un tableur est plus précis."
+    }
+  ]
+}

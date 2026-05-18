@@ -1,0 +1,93 @@
+{
+  "title": "Máy tính Ma trận — Cộng, Nhân, Định thức",
+  "shortDescription": "Thực hiện cộng, trừ, nhân, chuyển vị và định thức trên ma trận 2×2 hoặc 3×3 — tất cả trong trình duyệt của bạn.",
+  "description": "Nhập giá trị cho ma trận A (và B cho các phép toán nhị phân) và tính toán kết quả ngay lập tức. Hỗ trợ ma trận 2×2 và 3×3 với năm phép toán: cộng, trừ, nhân, chuyển vị và định thức.",
+  "metaDescription": "Máy tính ma trận online miễn phí. Cộng, trừ, nhân, chuyển vị và tìm định thức ma trận 2×2 và 3×3 ngay lập tức trong trình duyệt.",
+  "keywords": ["máy tính ma trận", "nhân ma trận", "máy tính định thức", "cộng ma trận", "ma trận 3x3"],
+  "empty": "Điền giá trị ma trận ở trên để tính toán.",
+  "input": {
+    "size": "Kích thước ma trận",
+    "operation": "Phép toán",
+    "matA": "Ma trận A",
+    "matB": "Ma trận B"
+  },
+  "result": {
+    "label": "Kết quả"
+  },
+  "operations": {
+    "add": "Cộng (A + B)",
+    "subtract": "Trừ (A − B)",
+    "multiply": "Nhân (A × B)",
+    "transpose": "Chuyển vị (Aᵀ)",
+    "determinant": "Định thức (det A)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ma trận là gì và tại sao quan trọng",
+        "paragraphs": [
+          "Ma trận là mảng số hình chữ nhật được sắp xếp theo hàng và cột. Ma trận m×n có m hàng và n cột. Ma trận là đối tượng cơ bản trong đại số tuyến tính, và đại số tuyến tính là ngôn ngữ toán học của khoa học dữ liệu, đồ họa máy tính, mô phỏng vật lý và tối ưu hóa kỹ thuật.",
+          "Mỗi phần tử trong ma trận được xác định bởi chỉ số hàng và cột của nó. Phần tử tại hàng i và cột j được ký hiệu là aᵢⱼ. Với ma trận 2×2, a₁₁ là phần tử trên-trái, a₁₂ là trên-phải, a₂₁ là dưới-trái và a₂₂ là dưới-phải. Ma trận vuông (số hàng và cột bằng nhau) có các tính chất bổ sung như định thức và vết mà không được định nghĩa cho ma trận không vuông.",
+          "Ma trận đại diện cho các phép biến đổi tuyến tính — các hàm ánh xạ vectơ thành vectơ trong khi bảo toàn phép cộng và nhân vô hướng. Ma trận 2×2 đại diện cho bất kỳ tổ hợp nào của quay, co giãn, phản chiếu và cắt lệch trong mặt phẳng hai chiều. Nhân hai ma trận tổ hợp các phép biến đổi tương ứng của chúng: nếu A quay 45° và B co giãn 2×, thì AB áp dụng quay rồi co giãn."
+        ]
+      },
+      {
+        "heading": "Các phép toán ma trận được giải thích",
+        "paragraphs": [
+          "Phép cộng và trừ yêu cầu cả hai ma trận có cùng kích thước. Các phần tử tương ứng được cộng hoặc trừ: (A+B)ᵢⱼ = aᵢⱼ + bᵢⱼ. Cả hai đều giao hoán cho phép cộng (A+B = B+A) nhưng phép trừ thì không (A−B ≠ B−A nói chung).",
+          "Phép nhân ma trận phức tạp hơn và không giao hoán — AB ≠ BA nói chung. Với hai ma trận vuông n×n, phần tử tại hàng i và cột j của tích là tích vô hướng của hàng i của A với cột j của B: (AB)ᵢⱼ = Σₖ aᵢₖ bₖⱼ. Với ma trận 2×2, điều này cần 8 phép nhân và 4 phép cộng.",
+          "Chuyển vị của ma trận A, ký hiệu Aᵀ, được thu bằng cách lật hàng và cột: (Aᵀ)ᵢⱼ = aⱼᵢ. Hàng đầu tiên của A trở thành cột đầu tiên của Aᵀ. Chuyển vị được sử dụng rộng rãi trong hồi quy bình phương nhỏ nhất (các phương trình chuẩn liên quan đến AᵀA), phân tích thành phần chính và lan truyền ngược của mạng nơ-ron.",
+          "Định thức là giá trị vô hướng tóm tắt ma trận vuông. Với ma trận 2×2 [[a,b],[c,d]], det = ad − bc. Với ma trận 3×3, nó được tính bằng khai triển đồng nhân tử theo hàng đầu tiên. Ma trận có định thức bằng 0 được gọi là suy biến — không có nghịch đảo, nghĩa là phép biến đổi tuyến tính liên quan làm thu gọn không gian xuống chiều thấp hơn."
+        ]
+      },
+      {
+        "heading": "Ứng dụng thực tế của tính toán ma trận",
+        "paragraphs": [
+          "Đồ họa máy tính hoàn toàn phụ thuộc vào các phép toán ma trận. Mỗi phép quay, tịnh tiến, co giãn và chiếu phối cảnh áp dụng cho cảnh 3D được biểu diễn là phép nhân ma trận trên tọa độ thuần nhất. Một pipeline kết xuất nhân một chuỗi ma trận 4×4: ma trận mô hình, nhìn và chiếu được hợp thành (nhân cùng nhau) trước khi áp dụng cho mỗi đỉnh. GPU được tối ưu hóa đặc biệt cho khối lượng công việc này.",
+          "Trong học máy, mạng nơ-ron lưu trữ các trọng số dưới dạng ma trận. Lần truyền thuận qua một lớp là phép nhân ma trận giữa vectơ đầu vào (hoặc ma trận lô) và ma trận trọng số, theo sau là hàm kích hoạt phi tuyến. Quá trình huấn luyện qua lan truyền ngược tính gradient bằng cách sử dụng chuyển vị: δL/δW = xᵀ · δL/δy. Các mô hình ngôn ngữ lớn như GPT thực hiện hàng tỷ phép nhân ma trận mỗi lần truyền thuận.",
+          "Hệ phương trình tuyến tính có thể được viết và giải bằng ma trận. Hệ ax + by = e, cx + dy = f tương đương với phương trình ma trận [[a,b],[c,d]] · [x,y]ᵀ = [e,f]ᵀ. Nếu định thức khác không, nghiệm duy nhất là x = [x,y]ᵀ = A⁻¹[e,f]ᵀ. Mối quan hệ giữa định thức, nghịch đảo và khả năng giải được nằm ở trung tâm của phân tích số và tính toán khoa học."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn kích thước ma trận", "text": "Chọn 2×2 hoặc 3×3 tùy theo ma trận của bạn." },
+      { "name": "Chọn phép toán", "text": "Chọn từ cộng, trừ, nhân, chuyển vị hoặc định thức." },
+      { "name": "Nhập giá trị ma trận", "text": "Điền vào từng ô của Ma trận A (và Ma trận B cho các phép toán nhị phân). Ô trống mặc định là 0." },
+      { "name": "Đọc kết quả", "text": "Kết quả tính toán xuất hiện tự động bên dưới — ma trận cho hầu hết các phép toán, hoặc một số duy nhất cho định thức." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Tại sao phép nhân ma trận không giao hoán?",
+      "a": "Phép nhân ma trận đại diện cho việc hợp thành các phép biến đổi tuyến tính. Giống như quay rồi co giãn cho kết quả khác với co giãn rồi quay, AB và BA nói chung khác nhau. Tính giao hoán chỉ xảy ra trong các trường hợp đặc biệt, chẳng hạn khi cả hai ma trận đều là đường chéo, hoặc một trong số đó là ma trận đơn vị."
+    },
+    {
+      "q": "Định thức bằng 0 có nghĩa là gì?",
+      "a": "Định thức bằng không có nghĩa là ma trận suy biến — không có nghịch đảo. Về mặt hình học, phép biến đổi thu gọn ít nhất một chiều (ánh xạ 2D thành đường thẳng, hoặc 3D thành mặt phẳng hoặc đường thẳng). Với hệ phương trình tuyến tính, định thức bằng không có nghĩa là hệ không có nghiệm hoặc có vô số nghiệm."
+    },
+    {
+      "q": "Làm thế nào để tính nghịch đảo của ma trận?",
+      "a": "Với ma trận 2×2 [[a,b],[c,d]], nghịch đảo là (1/det) × [[d,−b],[−c,a]], với điều kiện det = ad−bc ≠ 0. Với ma trận lớn hơn, phép khử Gauss hoặc phân tích LU được sử dụng. Công cụ này hiện tính định thức và chuyển vị; nghịch đảo là một phần mở rộng tự nhiên."
+    },
+    {
+      "q": "Ma trận đơn vị là gì?",
+      "a": "Ma trận đơn vị I có số 1 trên đường chéo chính và 0 ở tất cả các nơi khác. Nó là tương đương ma trận của số 1: AI = IA = A với bất kỳ ma trận A nào có kích thước phù hợp. Nhân với ma trận đơn vị để nguyên ma trận."
+    },
+    {
+      "q": "Có thể nhân ma trận có kích thước khác nhau không?",
+      "a": "Có, nhưng chỉ khi số cột của A bằng số hàng của B. Ma trận m×n nhân ma trận n×p cho kết quả m×p. Công cụ này chỉ xử lý ma trận vuông (2×2 hoặc 3×3). Với các phép toán không vuông, cần máy tính chuyên dụng hơn."
+    },
+    {
+      "q": "Vết của ma trận là gì?",
+      "a": "Vết là tổng các phần tử đường chéo (a₁₁ + a₂₂ + … + aₙₙ). Nó bằng tổng các giá trị riêng và bất biến dưới phép biến đổi đồng dạng (A và P⁻¹AP có cùng vết). Công cụ này hiện không hiển thị vết, nhưng bạn có thể tính bằng cách cộng các giá trị đường chéo."
+    },
+    {
+      "q": "Các phép tính có chính xác không?",
+      "a": "Công cụ sử dụng số học dấu phẩy động 64-bit JavaScript tiêu chuẩn. Kết quả được làm tròn đến 10 chữ số thập phân để hiển thị. Với đầu vào số nguyên, hầu hết kết quả là chính xác. Với ma trận lớn hoặc xấu điều kiện, làm tròn dấu phẩy động có thể đưa vào lỗi nhỏ ở các chữ số cuối."
+    },
+    {
+      "q": "'Chuyển vị' có nghĩa là gì về mặt hình học?",
+      "a": "Chuyển vị ma trận phản chiếu nó qua đường chéo chính. Nếu A đại diện cho phép biến đổi tuyến tính, Aᵀ đại diện cho phép biến đổi phụ. Với ma trận quay (ma trận trực giao), chuyển vị bằng nghịch đảo — quay bởi θ rồi bởi −θ hủy bỏ phép quay."
+    }
+  ]
+}

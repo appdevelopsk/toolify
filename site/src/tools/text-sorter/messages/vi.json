@@ -1,0 +1,68 @@
+{
+  "title": "Sắp Xếp Dòng Văn Bản Trực Tuyến — A–Z, Z–A, Xóa Trùng Lặp",
+  "shortDescription": "Dán bất kỳ danh sách nào, sắp xếp dòng A→Z hoặc Z→A, xóa trùng lặp và sao chép kết quả ngay lập tức.",
+  "description": "Sắp xếp các dòng văn bản theo thứ tự bảng chữ cái hoặc ngược lại, với tùy chọn so sánh không phân biệt chữ hoa-thường, xóa bản sao, xóa dòng trống và cắt khoảng trắng. Tất cả chạy trong trình duyệt — không có dữ liệu nào được gửi đến máy chủ.",
+  "metaDescription": "Công cụ sắp xếp văn bản trực tuyến miễn phí. Sắp xếp dòng A-Z hoặc Z-A, xóa trùng lặp, cắt khoảng trắng và xóa dòng trống ngay trong trình duyệt.",
+  "keywords": ["sắp xếp dòng văn bản trực tuyến", "công cụ sắp xếp văn bản", "sắp xếp bảng chữ cái", "sắp xếp danh sách trực tuyến", "xóa dòng trùng lặp", "sắp xếp dòng"],
+  "label": {
+    "input": "Đầu vào — dán các dòng tại đây",
+    "output": "Kết quả đã sắp xếp"
+  },
+  "option": {
+    "direction": "Thứ tự:",
+    "dirAsc": "A → Z (tăng dần)",
+    "dirDesc": "Z → A (giảm dần)",
+    "caseSensitive": "Phân biệt chữ hoa-thường",
+    "removeDups": "Xóa trùng lặp",
+    "removeEmpty": "Xóa dòng trống",
+    "trim": "Cắt khoảng trắng đầu-cuối"
+  },
+  "action": {
+    "copy": "Sao chép",
+    "copied": "Đã sao chép!"
+  },
+  "stat": {
+    "lines": "{count} dòng"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cách sắp xếp văn bản hoạt động",
+        "paragraphs": [
+          "Sắp xếp chia văn bản thành các dòng riêng lẻ, sắp xếp chúng theo thứ tự từ điển (lexicographic) rồi ghép lại. Thứ tự từ điển dùng nguyên tắc giống như từ điển: các ký tự được so sánh từng ký tự một từ trái sang phải theo giá trị điểm mã Unicode.",
+          "Mặc định, công cụ sử dụng so sánh không phân biệt chữ hoa-thường, nghĩa là 'apple', 'Apple' và 'APPLE' được coi là giống nhau để sắp xếp. Bật chế độ phân biệt chữ hoa-thường khi cần chữ hoa xuất hiện trước chữ thường."
+        ]
+      },
+      {
+        "heading": "Các trường hợp sử dụng phổ biến",
+        "paragraphs": [
+          "Sắp xếp danh sách tên, đám mây thẻ hoặc giá trị cột CSV theo bảng chữ cái là những tác vụ phổ biến nhất. Các nhà phát triển thường sắp xếp các câu lệnh import hoặc khóa cấu hình để dễ xem xét mã và làm cho đầu ra diff gọn hơn.",
+          "Các nhà phân tích dữ liệu dùng sắp xếp dòng để nhanh chóng phát hiện các mục nhập trùng lặp trong danh sách xuất hoặc để căn chỉnh hai tập dữ liệu trước khi so sánh thủ công. Tùy chọn xóa trùng lặp nén danh sách hàng nghìn mục chỉ còn các giá trị duy nhất bằng một cú nhấp."
+        ]
+      },
+      {
+        "heading": "Thuật toán sắp xếp: điều gì xảy ra bên dưới",
+        "paragraphs": [
+          "Các JavaScript engine hiện đại sử dụng biến thể được tối ưu hóa của TimSort (kết hợp giữa merge sort và insertion sort) cho phương thức Array.prototype.sort. TimSort ổn định, nghĩa là các dòng so sánh bằng nhau giữ nguyên thứ tự tương đối ban đầu.",
+          "Với hầu hết các danh sách văn bản, thuật toán hoàn thành trong chưa đến một mili giây trên trình duyệt, ngay cả với hàng chục nghìn dòng. Nếu cần sắp xếp theo locale (ví dụ: ký tự có dấu trong tiếng Pháp hoặc Đức), hãy dùng Intl.Collator trong mã của bạn."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Dán văn bản", "text": "Nhấp vào khu vực nhập và dán hoặc gõ các dòng muốn sắp xếp, mỗi dòng một mục." },
+      { "name": "Chọn chiều sắp xếp", "text": "Chọn 'A → Z' để sắp xếp tăng dần hoặc 'Z → A' để sắp xếp giảm dần từ menu thả xuống." },
+      { "name": "Bật bộ lọc tùy chọn", "text": "Đánh dấu 'Xóa trùng lặp' để chỉ giữ các dòng duy nhất, 'Xóa dòng trống' để loại bỏ các hàng trống, hoặc 'Cắt khoảng trắng' để xóa khoảng trắng đầu và cuối mỗi dòng trước khi sắp xếp." },
+      { "name": "Sao chép kết quả", "text": "Kết quả đã sắp xếp xuất hiện ngay lập tức ở bên phải. Nhấp 'Sao chép' để sao chép vào clipboard." }
+    ]
+  },
+  "faq": [
+    { "q": "Sắp xếp có tự động xảy ra không?", "a": "Có. Kết quả cập nhật theo thời gian thực khi bạn gõ hoặc thay đổi bất kỳ tùy chọn nào — không có nút gửi." },
+    { "q": "Mặc định có phân biệt chữ hoa-thường không?", "a": "Không. Mặc định công cụ sắp xếp không phân biệt chữ hoa-thường, nên 'Apple' và 'apple' được xếp cùng nhau. Bật hộp kiểm 'Phân biệt chữ hoa-thường' để dùng thứ tự điểm mã Unicode thô." },
+    { "q": "Điều gì được tính là một dòng?", "a": "Mỗi ký tự xuống dòng (\\n) đánh dấu kết thúc một dòng. Văn bản dán từ bảng tính hoặc Windows (\\r\\n) cũng được xử lý chính xác." },
+    { "q": "Tôi có thể sắp xếp số không?", "a": "Công cụ sắp xếp theo từ điển, không phải theo số. Nghĩa là '10' xếp trước '9' vì '1' < '9'. Để sắp xếp số, thêm số 0 đứng đầu (ví dụ '09' so với '10') trước khi dán." },
+    { "q": "'Xóa trùng lặp' làm gì chính xác?", "a": "Giữ lần xuất hiện đầu tiên của mỗi dòng duy nhất và loại bỏ những dòng giống nhau tiếp theo. So sánh tuân theo cài đặt phân biệt chữ hoa-thường của bạn." },
+    { "q": "Dữ liệu của tôi có rời khỏi trình duyệt không?", "a": "Không. Tất cả xử lý diễn ra cục bộ trong JavaScript. Không có gì được tải lên bất kỳ máy chủ nào." },
+    { "q": "Có giới hạn số dòng không?", "a": "Công cụ này không áp đặt giới hạn cứng. Hiệu suất phụ thuộc vào thiết bị của bạn, nhưng các trình duyệt hiện đại xử lý hàng trăm nghìn dòng mà không có độ trễ đáng kể." },
+    { "q": "Làm thế nào để sắp xếp cột CSV?", "a": "Sao chép giá trị cột từ ứng dụng bảng tính vào khu vực nhập (dán thành một giá trị mỗi dòng), áp dụng tùy chọn, sao chép kết quả đã sắp xếp và dán lại. Sau đó kết nối lại các cột khác thủ công hoặc bằng công thức bảng tính." }
+  ]
+}

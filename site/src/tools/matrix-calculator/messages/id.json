@@ -1,0 +1,93 @@
+{
+  "title": "Kalkulator Matriks — Penjumlahan, Perkalian, Determinan",
+  "shortDescription": "Lakukan penjumlahan, pengurangan, perkalian, transpos, dan determinan pada matriks 2×2 atau 3×3 — semua di browser Anda.",
+  "description": "Masukkan nilai untuk matriks A (dan B untuk operasi biner) dan segera hitung hasilnya. Mendukung matriks 2×2 dan 3×3 dengan lima operasi: penjumlahan, pengurangan, perkalian, transpos, dan determinan.",
+  "metaDescription": "Kalkulator matriks online gratis. Jumlahkan, kurangkan, kalikan, transpos, dan cari determinan matriks 2×2 dan 3×3 secara instan di browser Anda.",
+  "keywords": ["kalkulator matriks", "perkalian matriks", "kalkulator determinan", "penjumlahan matriks", "matriks 3x3"],
+  "empty": "Isi nilai matriks di atas untuk menghitung.",
+  "input": {
+    "size": "Ukuran matriks",
+    "operation": "Operasi",
+    "matA": "Matriks A",
+    "matB": "Matriks B"
+  },
+  "result": {
+    "label": "Hasil"
+  },
+  "operations": {
+    "add": "Tambah (A + B)",
+    "subtract": "Kurang (A − B)",
+    "multiply": "Kali (A × B)",
+    "transpose": "Transpos (Aᵀ)",
+    "determinant": "Determinan (det A)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa itu matriks dan mengapa penting",
+        "paragraphs": [
+          "Matriks adalah larik angka persegi panjang yang disusun dalam baris dan kolom. Matriks m×n memiliki m baris dan n kolom. Matriks adalah objek fundamental dalam aljabar linear, dan aljabar linear adalah bahasa matematika dari ilmu data, grafis komputer, simulasi fisika, dan optimasi rekayasa.",
+          "Setiap elemen dalam matriks diidentifikasi oleh indeks baris dan kolomnya. Elemen pada baris i dan kolom j ditulis aᵢⱼ. Untuk matriks 2×2, a₁₁ adalah elemen kiri-atas, a₁₂ adalah kanan-atas, a₂₁ adalah kiri-bawah, dan a₂₂ adalah kanan-bawah. Matriks persegi (jumlah baris dan kolom sama) memiliki properti tambahan seperti determinan dan jejak yang tidak didefinisikan untuk matriks tidak persegi.",
+          "Matriks merepresentasikan transformasi linear — fungsi yang memetakan vektor ke vektor sambil mempertahankan penjumlahan dan perkalian skalar. Matriks 2×2 merepresentasikan semua kombinasi rotasi, penskalaan, refleksi, dan geseran dalam bidang dua dimensi. Mengalikan dua matriks menyusun transformasi yang sesuai: jika A merotasi 45° dan B menskalakan 2×, maka AB menerapkan rotasi diikuti penskalaan."
+        ]
+      },
+      {
+        "heading": "Operasi matriks dijelaskan",
+        "paragraphs": [
+          "Penjumlahan dan pengurangan memerlukan kedua matriks memiliki dimensi yang sama. Elemen yang bersesuaian dijumlahkan atau dikurangkan: (A+B)ᵢⱼ = aᵢⱼ + bᵢⱼ. Keduanya komutatif untuk penjumlahan (A+B = B+A) tetapi pengurangan tidak (A−B ≠ B−A pada umumnya).",
+          "Perkalian matriks lebih kompleks dan tidak komutatif — AB ≠ BA pada umumnya. Untuk dua matriks persegi n×n, elemen pada baris i dan kolom j dari hasil kali adalah perkalian titik dari baris i matriks A dengan kolom j matriks B: (AB)ᵢⱼ = Σₖ aᵢₖ bₖⱼ. Untuk matriks 2×2, ini memerlukan 8 perkalian dan 4 penjumlahan.",
+          "Transpos matriks A, ditulis Aᵀ, diperoleh dengan membalik baris dan kolom: (Aᵀ)ᵢⱼ = aⱼᵢ. Baris pertama A menjadi kolom pertama Aᵀ. Transpos digunakan secara ekstensif dalam regresi kuadrat terkecil (persamaan normal melibatkan AᵀA), analisis komponen utama, dan backpropagation jaringan saraf.",
+          "Determinan adalah nilai skalar yang merangkum matriks persegi. Untuk matriks 2×2 [[a,b],[c,d]], det = ad − bc. Untuk matriks 3×3, dihitung dengan perluasan kofaktor sepanjang baris pertama. Matriks dengan determinan 0 disebut singular — tidak memiliki invers, artinya transformasi linear yang terkait meruntuhkan ruang ke dimensi yang lebih rendah."
+        ]
+      },
+      {
+        "heading": "Aplikasi nyata perhitungan matriks",
+        "paragraphs": [
+          "Grafis komputer sepenuhnya bergantung pada operasi matriks. Setiap rotasi, translasi, penskalaan, dan proyeksi perspektif yang diterapkan pada adegan 3D direpresentasikan sebagai perkalian matriks pada koordinat homogen. Pipeline rendering mengalikan serangkaian matriks 4×4: matriks model, tampilan, dan proyeksi digabungkan (dikalikan bersama) sebelum diterapkan ke setiap titik sudut. GPU dioptimalkan khusus untuk beban kerja ini.",
+          "Dalam pembelajaran mesin, jaringan saraf menyimpan bobot sebagai matriks. Pass maju melalui sebuah lapisan adalah perkalian matriks antara vektor input (atau matriks batch) dan matriks bobot, diikuti oleh fungsi aktivasi nonlinear. Pelatihan melalui backpropagation menghitung gradien menggunakan transpos: δL/δW = xᵀ · δL/δy. Model bahasa besar seperti GPT melakukan miliaran perkalian matriks per pass maju.",
+          "Sistem persamaan linear dapat ditulis dan diselesaikan menggunakan matriks. Sistem ax + by = e, cx + dy = f setara dengan persamaan matriks [[a,b],[c,d]] · [x,y]ᵀ = [e,f]ᵀ. Jika determinannya bukan nol, solusi uniknya adalah x = [x,y]ᵀ = A⁻¹[e,f]ᵀ. Hubungan antara determinan, invers, dan kemampuan solusi ini adalah inti dari analisis numerik dan komputasi ilmiah."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih ukuran matriks", "text": "Pilih 2×2 atau 3×3 tergantung pada matriks Anda." },
+      { "name": "Pilih operasi", "text": "Pilih dari tambah, kurang, kali, transpos, atau determinan." },
+      { "name": "Masukkan nilai matriks", "text": "Isi setiap sel Matriks A (dan Matriks B untuk operasi biner). Sel kosong default ke 0." },
+      { "name": "Baca hasilnya", "text": "Hasil yang dihitung muncul secara otomatis di bawah — matriks untuk sebagian besar operasi, atau satu angka untuk determinan." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Mengapa perkalian matriks tidak komutatif?",
+      "a": "Perkalian matriks merepresentasikan komposisi transformasi linear. Seperti merotasi lalu menskalakan memberikan hasil berbeda dari menskalakan lalu merotasi, AB dan BA umumnya berbeda. Komutatif hanya berlaku dalam kasus khusus, seperti ketika kedua matriks diagonal, atau salah satunya adalah matriks identitas."
+    },
+    {
+      "q": "Apa arti determinan 0?",
+      "a": "Determinan nol berarti matriks adalah singular — tidak memiliki invers. Secara geometris, transformasi meruntuhkan setidaknya satu dimensi (memetakan 2D ke garis, atau 3D ke bidang atau garis). Untuk sistem persamaan linear, determinan nol berarti sistem tidak memiliki solusi atau memiliki solusi tak terhingga."
+    },
+    {
+      "q": "Bagaimana cara menghitung invers matriks?",
+      "a": "Untuk matriks 2×2 [[a,b],[c,d]], inversnya adalah (1/det) × [[d,−b],[−c,a]], dengan syarat det = ad−bc ≠ 0. Untuk matriks yang lebih besar, eliminasi Gauss atau dekomposisi LU digunakan. Alat ini saat ini menghitung determinan dan transpos; invers adalah ekstensi alami."
+    },
+    {
+      "q": "Apa itu matriks identitas?",
+      "a": "Matriks identitas I memiliki angka 1 pada diagonal utama dan 0 di tempat lain. Ini adalah ekivalen matriks dari angka 1: AI = IA = A untuk sembarang matriks A berukuran kompatibel. Mengalikan dengan identitas membiarkan matriks tidak berubah."
+    },
+    {
+      "q": "Bisakah saya mengalikan matriks berbeda ukuran?",
+      "a": "Ya, tetapi hanya jika jumlah kolom A sama dengan jumlah baris B. Matriks m×n dikali matriks n×p menghasilkan matriks m×p. Alat ini hanya menangani matriks persegi (2×2 atau 3×3). Untuk operasi non-persegi, kalkulator yang lebih khusus diperlukan."
+    },
+    {
+      "q": "Apa itu jejak matriks?",
+      "a": "Jejak adalah jumlah elemen diagonal (a₁₁ + a₂₂ + … + aₙₙ). Ini sama dengan jumlah nilai eigen dan tidak berubah di bawah transformasi kemiripan (A dan P⁻¹AP memiliki jejak yang sama). Alat ini saat ini tidak menampilkan jejak, tetapi Anda dapat menghitungnya dengan menjumlahkan nilai diagonal."
+    },
+    {
+      "q": "Apakah perhitungannya tepat?",
+      "a": "Alat ini menggunakan aritmetika titik mengambang 64-bit JavaScript standar. Hasil dibulatkan ke 10 tempat desimal untuk tampilan. Untuk input bilangan bulat, sebagian besar hasil tepat. Untuk matriks besar atau bermasalah, pembulatan titik mengambang dapat menimbulkan kesalahan kecil pada digit terakhir."
+    },
+    {
+      "q": "Apa arti 'transpos' secara geometris?",
+      "a": "Mentranspos matriks mencerminkannya pada diagonal utamanya. Jika A merepresentasikan transformasi linear, Aᵀ merepresentasikan transformasi adjoin. Untuk matriks rotasi (matriks ortogonal), transpos sama dengan invers — merotasi sebesar θ dan kemudian sebesar −θ membatalkan rotasi."
+    }
+  ]
+}

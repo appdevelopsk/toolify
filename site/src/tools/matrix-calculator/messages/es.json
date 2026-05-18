@@ -1,0 +1,92 @@
+{
+  "title": "Calculadora de Matrices — Suma, Multiplicación y Determinante",
+  "shortDescription": "Realiza suma, resta, multiplicación, transpuesta y determinante de matrices 2×2 o 3×3 directamente en tu navegador.",
+  "description": "Introduce los valores de la matriz A (y B para operaciones binarias) y calcula el resultado al instante. Admite matrices 2×2 y 3×3 con cinco operaciones: suma, resta, multiplicación, transpuesta y determinante.",
+  "metaDescription": "Calculadora de matrices gratis en línea. Suma, resta, multiplica, transpone y calcula el determinante de matrices 2×2 y 3×3 al instante en tu navegador.",
+  "keywords": ["calculadora de matrices", "multiplicación de matrices", "calculadora de determinantes", "suma de matrices", "matriz 3x3"],
+  "empty": "Rellena los valores de la matriz para calcular.",
+  "input": {
+    "size": "Tamaño de la matriz",
+    "operation": "Operación",
+    "matA": "Matriz A",
+    "matB": "Matriz B"
+  },
+  "result": {
+    "label": "Resultado"
+  },
+  "operations": {
+    "add": "Sumar (A + B)",
+    "subtract": "Restar (A − B)",
+    "multiply": "Multiplicar (A × B)",
+    "transpose": "Transponer (Aᵀ)",
+    "determinant": "Determinante (det A)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Qué son las matrices y por qué importan",
+        "paragraphs": [
+          "Una matriz es un arreglo rectangular de números organizados en filas y columnas. Una matriz m×n tiene m filas y n columnas. Las matrices son los objetos fundamentales del álgebra lineal, y el álgebra lineal es el lenguaje matemático de la ciencia de datos, los gráficos por computadora, las simulaciones físicas y la optimización en ingeniería.",
+          "Cada elemento de una matriz se identifica por su índice de fila y columna. El elemento en la fila i y columna j se escribe aᵢⱼ. En una matriz 2×2, a₁₁ es el elemento superior izquierdo, a₁₂ el superior derecho, a₂₁ el inferior izquierdo y a₂₂ el inferior derecho. Las matrices cuadradas (mismo número de filas y columnas) tienen propiedades adicionales como el determinante y la traza que no están definidas para matrices no cuadradas.",
+          "Las matrices representan transformaciones lineales: funciones que mapean vectores en vectores preservando la suma y la multiplicación escalar. Una matriz 2×2 representa cualquier combinación de rotación, escalado, reflexión y cizallamiento en un plano bidimensional. Multiplicar dos matrices compone sus transformaciones: si A rota 45° y B escala por 2×, entonces AB aplica primero la rotación y luego el escalado."
+        ]
+      },
+      {
+        "heading": "Operaciones matriciales explicadas",
+        "paragraphs": [
+          "La suma y la resta requieren que ambas matrices tengan las mismas dimensiones. Se suman o restan los elementos correspondientes: (A+B)ᵢⱼ = aᵢⱼ + bᵢⱼ. La suma es conmutativa (A+B = B+A) pero la resta no (A−B ≠ B−A en general).",
+          "La multiplicación de matrices es más compleja y no es conmutativa: AB ≠ BA en general. Para dos matrices cuadradas n×n, el elemento en la fila i y columna j del producto es el producto punto de la fila i de A con la columna j de B: (AB)ᵢⱼ = Σₖ aᵢₖ bₖⱼ. Para una matriz 2×2 se requieren 8 multiplicaciones y 4 sumas.",
+          "La transpuesta de una matriz A, escrita Aᵀ, se obtiene intercambiando filas y columnas: (Aᵀ)ᵢⱼ = aⱼᵢ. La primera fila de A se convierte en la primera columna de Aᵀ. La transpuesta se usa ampliamente en regresión por mínimos cuadrados (las ecuaciones normales implican AᵀA), análisis de componentes principales y retropropagación en redes neuronales. El determinante es un valor escalar que resume una matriz cuadrada. Para una matriz 2×2 [[a,b],[c,d]], det = ad − bc. Una matriz con determinante 0 se llama singular y no tiene inversa."
+        ]
+      },
+      {
+        "heading": "Aplicaciones reales del cálculo matricial",
+        "paragraphs": [
+          "Los gráficos por computadora dependen completamente de las operaciones matriciales. Cada rotación, traslación, escalado y proyección en perspectiva aplicado a una escena 3D se representa como multiplicación de matrices en coordenadas homogéneas. El pipeline de renderizado multiplica una secuencia de matrices 4×4: las matrices de modelo, vista y proyección se componen antes de aplicarse a cada vértice. Las GPU están optimizadas específicamente para esta tarea.",
+          "En machine learning, las redes neuronales almacenan sus pesos como matrices. El paso hacia adelante a través de una capa es una multiplicación de matrices entre el vector de entrada (o la matriz de lote) y la matriz de pesos, seguida de una función de activación no lineal. Los modelos de lenguaje de gran escala como GPT realizan miles de millones de multiplicaciones de matrices por paso hacia adelante. El entrenamiento mediante retropropagación calcula gradientes usando transpuestas: δL/δW = xᵀ · δL/δy.",
+          "Los sistemas de ecuaciones lineales se pueden escribir y resolver con matrices. El sistema ax + by = e, cx + dy = f equivale a la ecuación matricial [[a,b],[c,d]] · [x,y]ᵀ = [e,f]ᵀ. Si el determinante es no nulo, la solución única es x = [x,y]ᵀ = A⁻¹[e,f]ᵀ. Esta relación entre determinantes, inversas y resolubilidad es central en el análisis numérico y la computación científica."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Elige el tamaño de la matriz", "text": "Selecciona 2×2 o 3×3 según tus matrices." },
+      { "name": "Selecciona la operación", "text": "Elige entre sumar, restar, multiplicar, transponer o determinante." },
+      { "name": "Introduce los valores de la matriz", "text": "Rellena cada celda de la Matriz A (y Matriz B para operaciones binarias). Las celdas vacías se tratan como 0." },
+      { "name": "Lee el resultado", "text": "El resultado calculado aparece abajo automáticamente: una matriz para la mayoría de operaciones, o un número para el determinante." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Por qué la multiplicación de matrices no es conmutativa?",
+      "a": "La multiplicación de matrices representa la composición de transformaciones lineales. Al igual que rotar y luego escalar da un resultado diferente que escalar y luego rotar, AB y BA generalmente difieren. La conmutatividad solo se da en casos especiales, como cuando ambas matrices son diagonales o una de ellas es la matriz identidad."
+    },
+    {
+      "q": "¿Qué significa un determinante igual a 0?",
+      "a": "Un determinante cero significa que la matriz es singular: no tiene inversa. Geométricamente, la transformación colapsa al menos una dimensión (proyecta 2D en una línea, o 3D en un plano o línea). Para un sistema de ecuaciones lineales, un determinante cero implica que el sistema no tiene solución o tiene infinitas soluciones."
+    },
+    {
+      "q": "¿Cómo calculo la inversa de una matriz?",
+      "a": "Para una matriz 2×2 [[a,b],[c,d]], la inversa es (1/det) × [[d,−b],[−c,a]], siempre que det = ad−bc ≠ 0. Para matrices más grandes se usa la eliminación de Gauss o la descomposición LU. Esta herramienta calcula actualmente el determinante y la transpuesta; la inversa es una extensión natural."
+    },
+    {
+      "q": "¿Qué es la matriz identidad?",
+      "a": "La matriz identidad I tiene 1s en la diagonal principal y 0s en el resto. Es el equivalente matricial del número 1: AI = IA = A para cualquier matriz A de tamaño compatible. Multiplicar por la identidad no cambia la matriz."
+    },
+    {
+      "q": "¿Puedo multiplicar matrices de diferentes tamaños?",
+      "a": "Sí, pero solo si el número de columnas de A es igual al número de filas de B. Una matriz m×n por una matriz n×p da como resultado una matriz m×p. Esta herramienta solo maneja matrices cuadradas (2×2 o 3×3). Para operaciones con matrices no cuadradas se necesita una calculadora más especializada."
+    },
+    {
+      "q": "¿Qué es la traza de una matriz?",
+      "a": "La traza es la suma de los elementos de la diagonal principal (a₁₁ + a₂₂ + … + aₙₙ). Es igual a la suma de los valores propios e invariante bajo transformaciones de similitud (A y P⁻¹AP tienen la misma traza). Esta herramienta no muestra la traza, pero puedes calcularla sumando los valores diagonales."
+    },
+    {
+      "q": "¿Los cálculos son exactos?",
+      "a": "La herramienta usa aritmética estándar de punto flotante de 64 bits de JavaScript. Los resultados se redondean a 10 decimales para su visualización. Para entradas enteras, la mayoría de los resultados son exactos. Para matrices grandes o mal condicionadas, el redondeo de punto flotante puede introducir pequeños errores en los últimos dígitos."
+    },
+    {
+      "q": "¿Qué significa la transpuesta geométricamente?",
+      "a": "Transponer una matriz la refleja a través de su diagonal principal. Si A representa una transformación lineal, Aᵀ representa la transformación adjunta. Para matrices de rotación (matrices ortogonales), la transpuesta equivale a la inversa: rotar θ y luego −θ deshace la rotación."
+    }
+  ]
+}

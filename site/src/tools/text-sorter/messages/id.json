@@ -1,0 +1,68 @@
+{
+  "title": "Pengurut Baris Teks Online — A–Z, Z–A, Hapus Duplikat",
+  "shortDescription": "Tempel daftar apa saja, urutkan baris A→Z atau Z→A, hapus duplikat, dan salin hasilnya seketika.",
+  "description": "Urutkan baris teks secara alfabetis atau terbalik, dengan perbandingan opsional tanpa memperhatikan huruf besar-kecil, penghapusan duplikat, penghapusan baris kosong, dan pemotongan spasi awal-akhir. Semua berjalan di browser Anda — tidak ada data yang dikirim ke server.",
+  "metaDescription": "Pengurut teks gratis secara online. Urutkan baris A-Z atau Z-A, hapus duplikat, potong spasi, dan hapus baris kosong — semua di browser Anda secara instan.",
+  "keywords": ["pengurut baris teks online", "pengurut teks", "urutan alfabetis", "urutkan daftar online", "hapus baris duplikat", "pengurut baris"],
+  "label": {
+    "input": "Masukan — tempel baris di sini",
+    "output": "Hasil urutan"
+  },
+  "option": {
+    "direction": "Urutan:",
+    "dirAsc": "A → Z (naik)",
+    "dirDesc": "Z → A (turun)",
+    "caseSensitive": "Peka huruf besar-kecil",
+    "removeDups": "Hapus duplikat",
+    "removeEmpty": "Hapus baris kosong",
+    "trim": "Potong spasi awal-akhir"
+  },
+  "action": {
+    "copy": "Salin",
+    "copied": "Tersalin!"
+  },
+  "stat": {
+    "lines": "{count} baris"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cara kerja pengurutan teks",
+        "paragraphs": [
+          "Pengurutan memisahkan teks menjadi baris-baris individual, mengurutkannya secara leksikografis, lalu menggabungkannya kembali. Urutan leksikografis adalah prinsip yang sama dengan yang digunakan dalam kamus: karakter dibandingkan satu per satu dari kiri ke kanan menggunakan titik kode Unicode-nya.",
+          "Secara default, alat ini menggunakan perbandingan tanpa memperhatikan huruf besar-kecil, sehingga 'apple', 'Apple', dan 'APPLE' dianggap identik untuk tujuan pengurutan. Aktifkan mode peka huruf besar-kecil jika Anda memerlukan huruf kapital muncul sebelum huruf kecil."
+        ]
+      },
+      {
+        "heading": "Kasus penggunaan umum",
+        "paragraphs": [
+          "Mengurutkan daftar nama, awan tag, atau nilai kolom CSV secara alfabetis adalah tugas yang paling umum. Para pengembang sering mengurutkan pernyataan impor atau kunci konfigurasi agar tinjauan kode lebih mudah dan keluaran diff lebih bersih.",
+          "Analis data menggunakan pengurutan baris untuk cepat menemukan entri duplikat dalam daftar yang diekspor atau untuk menyelaraskan dua kumpulan data sebelum perbandingan manual. Opsi penghapusan duplikat memampatkan daftar ribuan entri hanya menjadi nilai unik dengan satu klik."
+        ]
+      },
+      {
+        "heading": "Algoritma pengurutan: apa yang terjadi di balik layar",
+        "paragraphs": [
+          "Mesin JavaScript modern menggunakan varian yang dioptimalkan dari TimSort (hibrida merge sort dan insertion sort) untuk metode Array.prototype.sort. TimSort bersifat stabil, artinya baris yang dibandingkan sama mempertahankan urutan relatif aslinya — berguna saat Anda mengurutkan daftar yang telah dihapus duplikatnya.",
+          "Untuk sebagian besar daftar teks, algoritme selesai dalam jauh kurang dari satu milidetik di browser, bahkan untuk puluhan ribu baris. Jika Anda memerlukan pengurutan yang sadar lokal (misalnya karakter beraksen dalam bahasa Prancis atau Jerman), pertimbangkan menggunakan Intl.Collator dalam kode Anda sendiri."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Tempel teks Anda", "text": "Klik area masukan dan tempel atau ketik baris yang ingin Anda urutkan, satu item per baris." },
+      { "name": "Pilih arah pengurutan", "text": "Pilih 'A → Z' untuk urutan naik atau 'Z → A' untuk urutan turun menggunakan menu tarik-turun." },
+      { "name": "Aktifkan filter opsional", "text": "Centang 'Hapus duplikat' untuk hanya menyimpan baris unik, 'Hapus baris kosong' untuk menghilangkan baris kosong, atau 'Potong spasi' untuk menghapus spasi di awal dan akhir setiap baris sebelum pengurutan." },
+      { "name": "Salin hasilnya", "text": "Hasil yang diurutkan muncul seketika di sebelah kanan. Klik 'Salin' untuk menyalinnya ke clipboard." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah pengurutan terjadi secara otomatis?", "a": "Ya. Hasilnya diperbarui secara real-time saat Anda mengetik atau mengubah opsi apa pun — tidak ada tombol kirim." },
+    { "q": "Apakah pengurutan peka huruf besar-kecil secara default?", "a": "Tidak. Secara default alat ini mengurutkan tanpa memperhatikan huruf besar-kecil sehingga 'Apple' dan 'apple' diurutkan bersama. Aktifkan kotak centang 'Peka huruf besar-kecil' untuk menggunakan urutan titik kode Unicode mentah." },
+    { "q": "Apa yang dihitung sebagai baris?", "a": "Setiap karakter baris baru (\\n) menandai akhir sebuah baris. Teks yang ditempel dari spreadsheet atau Windows (akhiran baris \\r\\n) juga ditangani dengan benar." },
+    { "q": "Bisakah saya mengurutkan angka?", "a": "Alat ini mengurutkan secara leksikografis, bukan numerik. Artinya '10' diurutkan sebelum '9' karena '1' < '9'. Untuk pengurutan numerik, tambahkan nol di depan angka (misalnya '09' vs '10') sebelum menempel." },
+    { "q": "Apa yang dilakukan 'Hapus duplikat' secara tepat?", "a": "Mempertahankan kemunculan pertama setiap baris unik dan membuang yang identik berikutnya. Perbandingan menghormati pengaturan huruf besar-kecil Anda." },
+    { "q": "Apakah data saya meninggalkan browser?", "a": "Tidak. Semua pemrosesan terjadi secara lokal di JavaScript. Tidak ada yang diunggah ke server mana pun." },
+    { "q": "Apakah ada batas baris?", "a": "Alat ini tidak memberlakukan batas yang ketat. Performa bergantung pada perangkat Anda, tetapi browser modern menangani ratusan ribu baris tanpa jeda yang terlihat." },
+    { "q": "Bagaimana cara mengurutkan kolom CSV?", "a": "Salin nilai kolom dari aplikasi spreadsheet ke area masukan (ditempel sebagai satu nilai per baris), terapkan opsi Anda, salin keluaran yang diurutkan, dan tempelkan kembali. Lalu sambungkan kolom lain secara manual atau dengan rumus spreadsheet." }
+  ]
+}

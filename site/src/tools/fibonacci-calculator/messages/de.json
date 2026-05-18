@@ -1,0 +1,87 @@
+{
+  "title": "Fibonacci-Rechner — N-ter Term und Folge",
+  "shortDescription": "Berechnen Sie jede Fibonacci-Zahl bis zum 100. Term oder listen Sie die ersten 50 Terme der Folge auf. Unterstützt große Zahlen exakt.",
+  "description": "Geben Sie eine Position N ein, um die genaue Fibonacci-Zahl an diesem Term zu erhalten, oder wechseln Sie in den Folge-Modus, um die ersten N Zahlen der Fibonacci-Reihe anzuzeigen. Verwendet ganzzahlige Arithmetik beliebiger Genauigkeit für stets exakte Ergebnisse.",
+  "metaDescription": "Kostenloser Fibonacci-Rechner. Die N-te Fibonacci-Zahl oder die ersten N Terme sofort berechnen — bis F(100) mit exakten Ergebnissen.",
+  "keywords": ["fibonacci rechner", "fibonacci folge", "fibonacci zahl", "n-ter fibonacci term", "fibonacci reihe"],
+  "empty": "Geben Sie oben eine Zahl N ein, um zu berechnen.",
+  "input": {
+    "mode": "Modus",
+    "nthLabel": "N-ter Term",
+    "sequenceLabel": "Folge",
+    "n": "N (1 – {max})"
+  },
+  "result": {
+    "nthValue": "F({n})",
+    "sequence": "Erste {n} Fibonacci-Zahlen",
+    "term": "F({n})"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Die Fibonacci-Folge: Definition und Geschichte",
+        "paragraphs": [
+          "Die Fibonacci-Folge ist durch zwei einfache Regeln definiert: Die ersten beiden Terme sind 0 und 1, und jeder folgende Term ist die Summe der beiden vorhergehenden. Dies ergibt die Reihe 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … Die Regel ist täuschend einfach, doch diese Zahlen erscheinen in der Mathematik, Informatik und Natur auf Weisen, die Wissenschaftler seit Jahrhunderten faszinieren.",
+          "Die Folge ist nach Leonardo von Pisa, bekannt als Fibonacci, benannt, der sie im Jahr 1202 in seinem Buch Liber Abaci als Modell für das Wachstum einer Kaninchenpopulation in Westeuropa einführte. Die Folge war jedoch bereits Jahrhunderte zuvor von indischen Mathematikern beschrieben worden, die die Sanskrit-Verslehre untersuchten — Virahanka, Gopala und Hemachandra identifizierten sie alle beim Zählen von Silbenmustern. Die Folge ist daher eine der ältesten bekannten ganzzahligen Folgen.",
+          "Das Verhältnis aufeinanderfolgender Fibonacci-Zahlen konvergiert gegen den Goldenen Schnitt φ ≈ 1,61803…, eine irrationale Zahl mit tiefen Verbindungen zu Geometrie, Kunst und Ästhetik. Mit wachsendem N nähert sich F(N+1)/F(N) immer genauer φ an. Diese Konvergenz erklärt, warum Fibonacci-Spiralen in Sonnenblumenkernmustern, Tannenzapfenspiralen und Nautilusschalen erscheinen — diese Formen wachsen so, dass sie Material minimieren und gleichzeitig die Packungseffizienz maximieren."
+        ]
+      },
+      {
+        "heading": "Große Fibonacci-Zahlen exakt berechnen",
+        "paragraphs": [
+          "JavaScripts standardmäßiger Number-Typ speichert 64-Bit-Gleitkommazahlen, die ganze Zahlen nur bis zu 2^53 ≈ 9 Billiarden exakt darstellen können. Fibonacci-Zahlen wachsen exponentiell — F(79) übersteigt bereits 2^53 —, sodass gewöhnliche Gleitkomma-Arithmetik für große N falsche Ergebnisse liefert. Dieses Tool verwendet JavaScripts eingebauten BigInt-Typ, der ganze Zahlen beliebiger Größe unterstützt, begrenzt nur durch den verfügbaren Speicher, und stellt sicher, dass jedes Ergebnis von F(1) bis F(100) exakt ist.",
+          "F(100) ist 354.224.848.179.261.915.075 — eine 21-stellige Zahl. Zum Vergleich: Die geschätzte Anzahl von Atomen im beobachtbaren Universum beträgt etwa 10^80, und F(382) ≈ 10^79. Fibonacci-Zahlen wachsen ungefähr wie φ^N/√5, sodass jeder Term etwa 61,8 % größer ist als der vorherige.",
+          "Es gibt Formeln in geschlossener Form für Fibonacci-Zahlen (Binets Formel verwendet Potenzen des Goldenen Schnitts), aber sie erfordern Arithmetik beliebiger Genauigkeit, um für große N exakt zu sein, weil φ irrational ist. Die iterative Methode, die dieses Tool verwendet — einfaches Addieren aufeinanderfolgender Terme — ist sowohl exakt als auch effizient für N bis zu einigen Tausend."
+        ]
+      },
+      {
+        "heading": "Anwendungen der Fibonacci-Zahlen",
+        "paragraphs": [
+          "In der Informatik erscheinen Fibonacci-Zahlen in der Algorithmenanalyse. Die ungünstigste Eingabe für den Euklidischen Algorithmus (GCD-Berechnung) sind aufeinanderfolgende Fibonacci-Zahlen. Fibonacci-Heaps, eine Datenstruktur in Dijkstras Kürzeste-Wege-Algorithmus, sind nach der Folge benannt, da ihre strukturellen Schranken mit ihr zusammenhängen. Die Fibonacci-Suche wird auch als Teile-und-Herrsche-Suchstrategie eingesetzt.",
+          "Im Software-Engineering werden Fibonacci-Zahlen weitverbreitet in der agilen Entwicklung als Story-Point-Skalen verwendet: 1, 2, 3, 5, 8, 13. Der nichtlineare Abstand spiegelt die zunehmende Unsicherheit bei der Schätzung größerer Aufgaben wider — der deutliche Unterschied zwischen benachbarten Fibonacci-Zahlen zwingt Schätzer dazu, sich bei einer mehrdeutigen Entscheidung für eine Seite zu entscheiden, was falsche Präzision reduziert.",
+          "In der Natur folgt die Phyllotaxis — die Anordnung von Blättern, Blütenblättern und Samen an einer Pflanze — häufig Fibonacci-Zahlen. Sonnenblumen haben typischerweise 55 Spiralen im Uhrzeigersinn und 89 gegen den Uhrzeigersinn; Artischocken haben 8 und 13. Diese Anordnung entsteht aus dem Wachstumsmuster der Pflanze, bei dem neue Organe im Goldenen Winkel (≈ 137,5°) vom vorherigen hinzugefügt werden, was direkt mit dem Goldenen Schnitt φ zusammenhängt."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Modus wählen", "text": "Wählen Sie 'N-ter Term', um eine einzelne Fibonacci-Zahl zu finden, oder 'Folge', um die ersten N Terme aufzulisten." },
+      { "name": "N eingeben", "text": "Geben Sie die gewünschte Position ein. Maximum ist 100 im N-ter-Term-Modus und 50 im Folge-Modus." },
+      { "name": "Ergebnis ablesen", "text": "Der exakte Fibonacci-Wert erscheint unten. Bei großem N kann die Zahl sehr lang sein — scrollen Sie bei Bedarf horizontal." },
+      { "name": "Wert kopieren", "text": "Markieren Sie die angezeigte Zahl und kopieren Sie sie zur Verwendung in Ihren Berechnungen." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was ist F(0) — 0 oder 1?",
+      "a": "Nach der gebräuchlichsten modernen Konvention (hier verwendet) gilt F(0)=0, F(1)=1, F(2)=1, F(3)=2, … Einige ältere Texte beginnen die Folge bei F(1)=1, F(2)=1, was alle Indizes um eins verschiebt."
+    },
+    {
+      "q": "Warum ist dieses Tool auf N=100 begrenzt?",
+      "a": "F(100) ist bereits eine 21-stellige Zahl. Jenseits von 100 werden die Werte sehr lange Zeichenketten mit begrenztem praktischen Nutzen in diesem Kontext. Wenn Sie Werte über F(100) benötigen, kann die iterative BigInt-Logik erweitert werden — der Algorithmus ist derselbe."
+    },
+    {
+      "q": "Sind die Ergebnisse für große N exakt?",
+      "a": "Ja. Das Tool verwendet JavaScript BigInt, das ganze Zahlen beliebiger Größe ohne Gleitkomma-Rundungsfehler verarbeitet. Jedes Ergebnis von F(1) bis F(100) ist mathematisch exakt."
+    },
+    {
+      "q": "Was ist der Goldene Schnitt und wie hängt er mit Fibonacci zusammen?",
+      "a": "Der Goldene Schnitt φ ≈ 1,61803… ist die positive Wurzel von x²=x+1. Das Verhältnis aufeinanderfolgender Fibonacci-Zahlen F(N+1)/F(N) konvergiert gegen φ, wenn N zunimmt. F(20)/F(19)=6765/4181≈1,61803, bereits auf 5 Dezimalstellen genau."
+    },
+    {
+      "q": "Sind die Fibonacci-Folge und die Lucas-Zahlen identisch?",
+      "a": "Nein. Lucas-Zahlen verwenden dieselbe Rekurrenz (jeder Term ist die Summe der beiden vorherigen), beginnen aber mit L(0)=2 und L(1)=1 und ergeben 2, 1, 3, 4, 7, 11, 18, … Sie teilen viele Eigenschaften mit Fibonacci-Zahlen und konvergieren beide gegen φ."
+    },
+    {
+      "q": "Wo erscheinen Fibonacci-Zahlen in der Natur?",
+      "a": "Fibonacci-Zahlen erscheinen in den Spiralzählungen von Sonnenblumen (typischerweise 55 und 89), Tannenzapfen (typischerweise 8 und 13) und Ananas. Dies liegt daran, dass Pflanzen neue Organe in einem Winkel von etwa 137,5° (dem Goldenen Winkel) hinzufügen, der aus φ abgeleitet wird und optimale Packung erzeugt."
+    },
+    {
+      "q": "Wie schnell wachsen Fibonacci-Zahlen?",
+      "a": "Fibonacci-Zahlen wachsen exponentiell, ungefähr wie φ^N/√5. Jeder Term ist etwa das 1,618-fache des vorherigen. F(10)=55, F(20)=6.765, F(50)=12.586.269.025, F(100)=354.224.848.179.261.915.075."
+    },
+    {
+      "q": "Warum werden Fibonacci-Zahlen bei agilen Story Points verwendet?",
+      "a": "Die Fibonacci-Skala (1, 2, 3, 5, 8, 13, 21) wird verwendet, weil die Abstände zwischen benachbarten Werten wachsen und Teams zwingen, 'mittlere' von 'großen' Aufgaben zu unterscheiden. Dieser nichtlineare Abstand reduziert falsche Präzision bei der Schätzung von Arbeit, die von Natur aus unsicher ist."
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "title": "Calculadora de erro percentual — experimental vs teórico",
+  "shortDescription": "Calcule o erro percentual entre um valor experimental (medido) e um valor teórico (aceito). Exibe erro com sinal, erro absoluto e a diferença.",
+  "description": "Insira uma medição experimental e o valor teórico (aceito) para calcular o erro percentual. Exibe o erro percentual com sinal, o erro percentual absoluto e a diferença numérica bruta. Ative o modo absoluto para ignorar o sinal.",
+  "metaDescription": "Calculadora de erro percentual gratuita. Insira os valores experimental e teórico para obter o erro com sinal, erro percentual absoluto e a diferença numérica.",
+  "keywords": ["calculadora erro percentual", "percentagem de erro", "erro experimental", "valor teórico", "calculadora de erro de medição"],
+  "empty": "Insira os valores experimental e teórico para calcular.",
+  "input": {
+    "experimental": "Valor experimental (medido)",
+    "experimentalPlaceholder": "Seu resultado medido",
+    "experimentalHint": "O valor que você mediu ou observou",
+    "theoretical": "Valor teórico (aceito)",
+    "theoreticalPlaceholder": "O valor verdadeiro ou esperado",
+    "theoreticalHint": "O valor correto ou aceito conhecido",
+    "absoluteLabel": "Mostrar erro percentual absoluto (ignorar sinal)"
+  },
+  "result": {
+    "percentError": "Erro percentual",
+    "absoluteError": "Erro percentual absoluto",
+    "signedError": "Erro com sinal",
+    "absoluteErrorVal": "Erro absoluto",
+    "absoluteDiff": "Diferença",
+    "formula": "Fórmula"
+  },
+  "error": {
+    "zeroTheoretical": "O valor teórico não pode ser zero — a divisão por zero não está definida."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "O que é erro percentual?",
+        "paragraphs": [
+          "O erro percentual mede o quanto um valor experimental (medido) se desvia de um valor teórico (aceito ou verdadeiro), expresso como porcentagem do valor teórico. A fórmula é: Erro percentual = ((Experimental − Teórico) / |Teórico|) × 100%. Um resultado positivo significa que o valor experimental é maior que o teórico; um resultado negativo significa que é menor.",
+          "O erro percentual absoluto ignora o sinal e mede apenas a magnitude da discrepância. Cientistas usam o erro com sinal quando a direção importa (viés sistemático, como uma balança que sempre marca a mais) e o erro absoluto quando apenas a exatidão importa (como ao avaliar uma técnica de medição)."
+        ]
+      },
+      {
+        "heading": "Fontes de erro experimental",
+        "paragraphs": [
+          "Erros sistemáticos deslocam todas as medições na mesma direção: instrumento mal calibrado, erros de técnica consistentes ou fatores ambientais como temperatura afetando uma reação química. Eles produzem um erro percentual com sinal diferente de zero. Erros aleatórios dispersam as medições ao redor do valor verdadeiro e se cancelam com muitas repetições. Precisão refere-se à consistência; exatidão, à proximidade do valor verdadeiro.",
+          "O erro percentual aceitável depende muito da área e do tipo de medição. Em laboratórios de química, erros abaixo de 5% são geralmente aceitáveis para procedimentos padrão; abaixo de 1% para química analítica. Em engenharia, tolerâncias tão rigorosas quanto 0,001% são necessárias para peças de precisão. Em demonstrações de física, erros de 5–10% são comuns dadas as limitações dos equipamentos. Sempre defina o limite de erro aceitável antes de tomar as medições."
+        ]
+      },
+      {
+        "heading": "Erro percentual vs. diferença percentual vs. erro relativo",
+        "paragraphs": [
+          "O erro percentual compara um valor com uma referência conhecida (teórica). A diferença percentual compara dois valores medidos quando nenhum deles é o padrão aceito: Diferença percentual = |A − B| / ((A + B) / 2) × 100%. Use a diferença percentual ao comparar dois resultados experimentais sem um valor verdadeiro conhecido.",
+          "O erro relativo é a razão entre o erro absoluto e o valor verdadeiro (sem multiplicar por 100): Erro relativo = |Experimental − Teórico| / |Teórico|. É adimensional e expressa o erro como uma fração. Multiplicar o erro relativo por 100 fornece o erro percentual absoluto. Esses termos são usados de forma intercambiável em alguns contextos, então verifique as convenções do seu livro didático ou área."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Insira o valor experimental", "text": "Digite o valor que você mediu ou calculou experimentalmente — o resultado da sua observação ou experimento." },
+      { "name": "Insira o valor teórico", "text": "Digite o valor aceito, conhecido ou teórico — por exemplo, uma constante de uma tabela de referência, a especificação do fabricante ou um valor de livro didático." },
+      { "name": "Leia o erro percentual", "text": "O erro percentual com sinal mostra a direção: positivo significa que sua medição está acima; negativo, abaixo. Um valor próximo a 0% indica alta exatidão." },
+      { "name": "Ative o modo absoluto", "text": "Marque a caixa “erro percentual absoluto” para ver apenas a magnitude, sem sinal — útil quando você se preocupa com a exatidão, mas não com a direção." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual é a fórmula do erro percentual?",
+      "a": "Erro percentual = ((Valor experimental − Valor teórico) / |Valor teórico|) × 100%. O valor absoluto no denominador garante que um valor teórico negativo não inverta o sinal do resultado de forma inesperada. Para o erro percentual absoluto, aplique também o valor absoluto ao numerador."
+    },
+    {
+      "q": "O que significa um erro percentual negativo?",
+      "a": "Um erro percentual negativo significa que seu valor experimental é menor que o valor teórico. Por exemplo, se você mediu a densidade da água como 0,95 g/mL em vez do valor aceito de 1,00 g/mL: erro = (0,95 − 1,00) / 1,00 × 100% = −5%. Sua medição subestima o valor real em 5%."
+    },
+    {
+      "q": "Qual erro percentual é aceitável em um laboratório de química?",
+      "a": "Depende do experimento e do nível de precisão exigido. Para um laboratório de química do primeiro ano, abaixo de 5% é geralmente considerado aceitável. Para química analítica quantitativa (titulometria, análise gravimétrica), espera-se abaixo de 1% ou até 0,5%. Para constantes físicas medidas com equipamentos especializados, erros abaixo de 0,01% são possíveis."
+    },
+    {
+      "q": "O valor teórico pode ser zero?",
+      "a": "Não — a fórmula requer divisão pelo valor teórico, então divisão por zero não está definida. Se o valor teórico for zero, o conceito de erro percentual não se aplica. Nesses casos, use o erro absoluto (a diferença bruta)."
+    },
+    {
+      "q": "Qual é a diferença entre precisão e exatidão?",
+      "a": "Exatidão mede o quão próxima uma medição está do valor verdadeiro — um erro percentual pequeno significa alta exatidão. Precisão mede o quão consistentes são as medições repetidas entre si, independentemente de estarem próximas do valor verdadeiro. Você pode ser preciso, mas inexato (erro sistemático), ou exato, mas impreciso (dispersão aleatória). O ideal é que as medições sejam as duas coisas."
+    },
+    {
+      "q": "Por que usamos o valor absoluto no denominador?",
+      "a": "O valor absoluto |Teórico| no denominador trata os casos em que o valor teórico é negativo. Sem ele, um valor teórico negativo inverteria o sinal do erro de forma potencialmente confusa. Por exemplo, se teórico = −10 e experimental = −9, o erro deveria ser positivo (o experimental é 10% maior que o teórico), o que o valor absoluto garante."
+    },
+    {
+      "q": "Para que serve o erro percentual na vida real?",
+      "a": "Cientistas o usam para avaliar a qualidade da técnica experimental. Engenheiros o usam para verificar se peças fabricadas estão dentro das especificações. O controle de qualidade o usa para auditar a consistência da produção. Estudantes o usam para avaliar resultados de laboratório. Analistas o usam para comparar previsões de modelos com dados reais — por exemplo, verificar se uma previsão econômica ficou dentro de 3% do crescimento real do PIB."
+    },
+    {
+      "q": "Como o erro percentual difere da variação percentual?",
+      "a": "A variação percentual compara dois valores ao longo do tempo: Variação percentual = (Novo − Antigo) / |Antigo| × 100%. O erro percentual compara uma medição com uma verdade de referência. As fórmulas são quase idênticas, mas servem a propósitos diferentes: a variação percentual rastreia mudanças (o preço da ação subiu +12%); o erro percentual avalia a exatidão (a medição teve desvio de 3,5%)."
+    }
+  ]
+}

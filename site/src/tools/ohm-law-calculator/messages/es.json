@@ -1,0 +1,111 @@
+{
+  "title": "Calculadora Ley de Ohm — Tensión, Corriente, Resistencia y Potencia",
+  "shortDescription": "Calcula tensión, corriente, resistencia o potencia usando la Ley de Ohm (V=IR) y la fórmula de potencia (P=VI). Muestra los cuatro valores con unidades inteligentes.",
+  "description": "Selecciona la magnitud eléctrica a calcular, introduce los otros dos valores y obtén al instante la tensión (V), la corriente (I), la resistencia (R) y la potencia (P). Compatible con miliamperios, microamperios, kiloohmios, megaohmios, milivatios y kilovatios. La fórmula aplicada se muestra junto a cada resultado.",
+  "metaDescription": "Calculadora gratuita de la Ley de Ohm. Calcula tensión, corriente, resistencia o potencia usando V=IR y P=VI. Compatible con mA, kΩ, MΩ, mW. Resultados instantáneos.",
+  "keywords": ["calculadora ley de ohm", "calculadora tensión corriente resistencia", "calculadora potencia electrónica", "calculadora ohm", "calculadora V=IR"],
+  "empty": "Selecciona qué calcular e introduce los otros dos valores.",
+  "input": {
+    "solveLabel": "Calcular",
+    "voltage": "Tensión",
+    "voltagePlaceholder": "p. ej. 12",
+    "current": "Corriente",
+    "currentPlaceholder": "p. ej. 0.5",
+    "resistance": "Resistencia",
+    "resistancePlaceholder": "p. ej. 100",
+    "power": "Potencia",
+    "powerPlaceholder": "p. ej. 5",
+    "pairVI": "Tensión y Corriente",
+    "pairVR": "Tensión y Resistencia",
+    "pairIR": "Corriente y Resistencia"
+  },
+  "result": {
+    "voltage": "Tensión",
+    "current": "Corriente",
+    "resistance": "Resistencia",
+    "power": "Potencia",
+    "formula": "Fórmula utilizada"
+  },
+  "error": {
+    "invalidInput": "Entrada no válida — introduce números válidos.",
+    "divisionByZero": "División por cero — la resistencia o la corriente no pueden ser cero.",
+    "needTwoValues": "Introduce los dos valores conocidos para calcular el desconocido."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "¿Qué es la Ley de Ohm?",
+        "paragraphs": [
+          "La Ley de Ohm establece que la tensión en los extremos de un conductor es directamente proporcional a la corriente que lo atraviesa, siempre que la temperatura permanezca constante. Formulada por el físico alemán Georg Simon Ohm en 1827, se expresa como V = I × R, donde V es la tensión en voltios (V), I es la corriente en amperios (A) y R es la resistencia en ohmios (Ω). Ohm obtuvo esta relación experimentando con cables de diferentes longitudes y grosores, observando que al doblar la resistencia la corriente se reducía a la mitad para una tensión fija.",
+          "La Ley de Ohm se aplica a la mayoría de conductores metálicos y a muchos materiales resistivos a temperatura constante — estos se denominan materiales óhmicos. Los dispositivos no óhmicos como diodos, transistores y bombillas incandescentes no siguen una relación lineal V-I, por lo que la Ley de Ohm solo es una aproximación para ellos. En el diseño de circuitos, V = IR es la ecuación más utilizada: determina la sección de los cables, los valores de resistencia, la caída de tensión en los componentes y los límites seguros de funcionamiento."
+        ]
+      },
+      {
+        "heading": "Potencia en los circuitos eléctricos",
+        "paragraphs": [
+          "La potencia eléctrica es la tasa a la que se transfiere o consume energía, medida en vatios (W). Tres fórmulas equivalentes relacionan la potencia con las magnitudes eléctricas básicas: P = V × I (la potencia es igual a la tensión por la corriente), P = I² × R (útil cuando se conocen la corriente y la resistencia) y P = V² / R (útil cuando se conocen la tensión y la resistencia). Las tres se derivan directamente de la Ley de Ohm y la definición de potencia.",
+          "La disipación de potencia tiene importancia práctica porque las resistencias, los cables y otros componentes convierten la energía eléctrica en calor. Toda resistencia tiene una potencia nominal — típicamente 0,125 W, 0,25 W, 0,5 W o 1 W para tipos de montaje en orificio pasante habituales — y superar esta nominal provoca el sobrecalentamiento y la avería del componente. Por ejemplo, una resistencia de 100 Ω en un circuito de 5 V conduce I = 5/100 = 50 mA y disipa P = 0,05² × 100 = 0,25 W, por lo que una resistencia de un cuarto de vatio es la elección mínima segura. Añade siempre un margen de seguridad de al menos el 50%."
+        ]
+      },
+      {
+        "heading": "Circuitos en serie y en paralelo",
+        "paragraphs": [
+          "En un circuito en serie, las resistencias se conectan extremo con extremo y la misma corriente circula por todas ellas. La resistencia total es simplemente la suma: R_total = R1 + R2 + R3 + ... La tensión se distribuye entre cada resistencia en proporción a su valor (V_n = I × R_n), que es el principio de los divisores de tensión usados para fijar puntos de polarización o escalar señales de sensores.",
+          "En un circuito en paralelo, las resistencias comparten la misma tensión pero la corriente se divide entre las ramas. La resistencia total sigue la regla de los recíprocos: 1/R_total = 1/R1 + 1/R2 + 1/R3 + ... Para dos resistencias, el método abreviado es R_total = (R1 × R2) / (R1 + R2). Las combinaciones en paralelo producen siempre una resistencia total menor que la resistencia individual más pequeña. Comprender ambas configuraciones te permite diseñar circuitos que suministren la tensión y la corriente correctas a cada componente, dimensionar fusibles y cables correctamente, y detectar averías con eficiencia."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Elige la magnitud desconocida",
+        "text": "Haz clic en uno de los cuatro botones — Tensión (V), Corriente (I), Resistencia (R) o Potencia (P) — para seleccionar qué quieres calcular. Los campos de entrada se actualizarán para mostrar los dos valores que debes introducir."
+      },
+      {
+        "name": "Introduce los dos valores conocidos",
+        "text": "Escribe los valores conocidos en los campos de entrada. Usa los desplegables de unidades para seleccionar la escala adecuada: miliamperios (mA) o microamperios (µA) para corrientes pequeñas, kiloohmios (kΩ) o megaohmios (MΩ) para resistencias grandes, y milivatios (mW) o kilovatios (kW) para la potencia."
+      },
+      {
+        "name": "Lee los cuatro resultados",
+        "text": "La calculadora muestra al instante la tensión, la corriente, la resistencia y la potencia. El valor calculado aparece resaltado en azul. Los valores menores de 0,001 se muestran automáticamente con prefijo mili o micro para facilitar la lectura."
+      },
+      {
+        "name": "Comprueba la fórmula aplicada",
+        "text": "El distintivo ámbar sobre los resultados muestra la fórmula utilizada, por ejemplo, V = I × R o P = V² / R. Esto te ayuda a entender la relación y verificar el cálculo manualmente."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Qué es la Ley de Ohm en términos simples?",
+      "a": "La Ley de Ohm dice que si aumentas la tensión que empuja la electricidad por un cable, circula más corriente; y si aumentas la resistencia, circula menos corriente. La relación exacta es V = I × R: la tensión es igual a la corriente multiplicada por la resistencia. Conociendo dos de estas tres magnitudes puedes calcular la tercera."
+    },
+    {
+      "q": "¿Qué unidades se usan en la Ley de Ohm?",
+      "a": "La tensión se mide en voltios (V), la corriente en amperios (A) y la resistencia en ohmios (Ω). Estas unidades se definen de manera que 1 V = 1 A × 1 Ω. En la práctica suelen usarse miliamperios (1 mA = 0,001 A) para corrientes pequeñas, kiloohmios (1 kΩ = 1.000 Ω) para resistencias mayores y megaohmios (1 MΩ = 1.000.000 Ω) para resistencias muy altas, como las de los circuitos de protección de entradas."
+    },
+    {
+      "q": "¿Cómo calculo la tensión usando la Ley de Ohm?",
+      "a": "Multiplica la corriente (en amperios) por la resistencia (en ohmios): V = I × R. Por ejemplo, si 2 A circulan por una resistencia de 50 Ω, la caída de tensión es 2 × 50 = 100 V. Si la corriente está en miliamperios, convierte primero: 200 mA = 0,2 A, por lo que V = 0,2 × 50 = 10 V."
+    },
+    {
+      "q": "¿Cómo calculo la corriente cuando conozco la tensión y la resistencia?",
+      "a": "Despeja la Ley de Ohm para obtener I = V / R. Si tienes una batería de 9 V conectada a una resistencia de 470 Ω, la corriente es 9 / 470 ≈ 0,0191 A, aproximadamente 19,1 mA. Esta es la corriente que circula por la resistencia y determina la potencia que disipa."
+    },
+    {
+      "q": "¿Cuál es la relación entre la potencia y la Ley de Ohm?",
+      "a": "La potencia (P) mide la rapidez con que se consume energía, en vatios. Se relaciona con la Ley de Ohm mediante tres fórmulas equivalentes: P = V × I, P = I² × R y P = V² / R. Las tres dan el mismo resultado; elige la que corresponda a las magnitudes que ya conoces. Para una resistencia que conduce 0,1 A a 10 V: P = 10 × 0,1 = 1 W."
+    },
+    {
+      "q": "¿Funciona la Ley de Ohm en circuitos de corriente alterna?",
+      "a": "La Ley de Ohm se aplica a las resistencias puras en circuitos de alterna igual que en los de continua. Sin embargo, los circuitos de alterna también contienen condensadores e inductores, que introducen reactancia (oposición a la corriente dependiente de la frecuencia). La generalización para alterna usa la impedancia (Z) en lugar de la resistencia simple: V = I × Z, donde Z es un número complejo. Para trabajo de audio, radio y electrónica de potencia se necesitan cálculos de impedancia compleja que van más allá de la Ley de Ohm básica."
+    },
+    {
+      "q": "¿Por qué la resistencia produce calor?",
+      "a": "Cuando la corriente circula por una resistencia, los electrones chocan con los átomos del material y transfieren energía cinética en forma de calor. La potencia disipada como calor es P = I² × R — esto se denomina efecto Joule. A mayor corriente o mayor resistencia, más calor se genera. Por eso el cableado de alta corriente usa conductores gruesos y de baja resistencia, y por eso las resistencias tienen potencias nominales para evitar el sobrecalentamiento."
+    },
+    {
+      "q": "¿Qué ocurre si supero la potencia nominal de una resistencia?",
+      "a": "Superar la potencia nominal provoca el sobrecalentamiento de la resistencia. Con una sobrecarga moderada puede variar su valor o volverse poco fiable. Con una sobrecarga grave, la resistencia puede humear, agrietarse o incendiarse. Calcula siempre P = I² × R y elige una resistencia con una potencia nominal de al menos 1,5 a 2 veces la potencia esperada. Las nominales habituales son 0,1 W, 0,25 W, 0,5 W, 1 W y 2 W para componentes de montaje en orificio pasante."
+    }
+  ]
+}

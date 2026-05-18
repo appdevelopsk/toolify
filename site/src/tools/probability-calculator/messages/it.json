@@ -1,0 +1,128 @@
+{
+  "title": "Calcolatrice di probabilità — Base, Permutazioni, Combinazioni, Dadi",
+  "shortDescription": "Calcola probabilità, permutazioni (nPr), combinazioni (nCr) e risultati dei lanci di dadi. Quattro schede dedicate coprono tutti i problemi comuni di probabilità.",
+  "description": "Quattro modalità in un unico strumento: probabilità di base da esiti favorevoli e totali, permutazioni nPr, combinazioni nCr e la probabilità di ottenere una somma specifica con più dadi. I risultati includono frazione, decimale, percentuale e quote.",
+  "metaDescription": "Calcolatrice di probabilità gratuita: probabilità di base, permutazioni nPr, combinazioni nCr e probabilità dei dadi. Risultati come frazione, decimale, percentuale e",
+  "keywords": [
+    "calcolatrice probabilità",
+    "calcolatrice combinazioni",
+    "calcolatrice permutazioni",
+    "calcolatore nCr",
+    "calcolatore nPr",
+    "probabilità dadi",
+    "calcolatore quote"
+  ],
+  "tab": {
+    "basic": "Probabilità base",
+    "permutation": "Permutazioni (nPr)",
+    "combination": "Combinazioni (nCr)",
+    "dice": "Probabilità dadi"
+  },
+  "input": {
+    "favorable": "Esiti favorevoli",
+    "total": "Esiti totali",
+    "n": "n (elementi totali)",
+    "r": "r (elementi scelti)",
+    "numDice": "Numero di dadi",
+    "target": "Somma obiettivo",
+    "sides": "Facce del dado"
+  },
+  "result": {
+    "probability": "Probabilità",
+    "fraction": "Frazione",
+    "decimal": "Decimale",
+    "percent": "Percentuale",
+    "oddsFor": "Quote a favore",
+    "oddsAgainst": "Quote contro",
+    "permutations": "Permutazioni (nPr)",
+    "combinations": "Combinazioni (nCr)"
+  },
+  "empty": "Inserisci valori per calcolare.",
+  "error": {
+    "invalid": "Input non valido: verifica che tutti i valori siano interi non negativi e che r ≤ n.",
+    "overflow": "n deve essere ≤ 170 (limite del fattoriale in JavaScript).",
+    "noOutcomes": "Il numero totale di esiti deve essere maggiore di zero.",
+    "favorableExceedsTotal": "Gli esiti favorevoli non possono superare gli esiti totali.",
+    "diceRange": "La somma obiettivo è fuori dall'intervallo possibile per questi dadi."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Probabilità di base, quote e differenze",
+        "paragraphs": [
+          "La probabilità è il rapporto tra gli esiti favorevoli e gli esiti totali ugualmente probabili: P = favorevoli / totale. Va da 0 (impossibile) a 1 (certo) e si esprime spesso come percentuale. Per un dado equo a sei facce, la probabilità di ottenere un 4 è 1/6 ≈ 16,667%.",
+          "Le quote sono un altro modo di esprimere la stessa informazione. Le quote A FAVORE di un evento sono favorevoli : sfavorevoli, quindi ottenere un 4 ha quote 1:5. Le quote CONTRO sono l'inverso: 5:1. Le quote sono comuni nelle scommesse sportive e nei giochi di carte; la probabilità è più comune in statistica e scienze.",
+          "Questa calcolatrice semplifica automaticamente la frazione ai minimi termini e mostra le forme decimale e percentuale affiancate, rendendo facile la conversione tra le rappresentazioni."
+        ]
+      },
+      {
+        "heading": "Permutazioni vs. combinazioni",
+        "paragraphs": [
+          "Entrambe riguardano la selezione di r elementi da un insieme di n, ma nelle permutazioni l'ordine conta, nelle combinazioni no. Permutazioni nPr = n! / (n − r)! conta le disposizioni ordinate. Combinazioni nCr = n! / (r! × (n − r)!) conta i sottoinsiemi non ordinati.",
+          "Esempio: scegliere 2 lettere da {A, B, C}. Permutazioni: AB, BA, AC, CA, BC, CB — 6 coppie ordinate, nPr = 3! / 1! = 6. Combinazioni: AB, AC, BC — 3 sottoinsiemi non ordinati, nCr = 3! / (2! × 1!) = 3. Poiché ogni combinazione genera r! permutazioni, vale sempre nPr = nCr × r!.",
+          "Il massimo n supportato è 170. Oltre tale valore, n! supera il range in virgola mobile di JavaScript (circa 1,8 × 10³⁰⁸). Per n o r molto grandi, considera calcoli logaritmici o librerie simboliche."
+        ]
+      },
+      {
+        "heading": "Probabilità dei dadi e la regola della moltiplicazione",
+        "paragraphs": [
+          "Quando si lanciano più dadi identici, ogni dado è indipendente. Il numero totale di risultati è facceNumeroDadi. Il numero di modi per ottenere una somma specifica si trova contando le composizioni: distribuire la somma su tutti i dadi in modo che ciascuno mostri un valore tra 1 e il numero di facce.",
+          "Questa calcolatrice usa la programmazione dinamica per contare il numero esatto di composizioni per la somma obiettivo data. Per esempio, lanciare 2d6 (due dadi a sei facce) e ottenere una somma di 7: ci sono 6 modi (1+6, 2+5, 3+4, 4+3, 5+2, 6+1) su 36 totali, per una probabilità di 6/36 = 1/6 ≈ 16,667%.",
+          "Tipi di dado supportati: d4, d6, d8, d10, d12 e d20 (dadi standard per GdR da tavolo). Il numero di dadi va da 1 a 6. La somma obiettivo deve essere compresa tra il numero di dadi (tutti a 1) e il numero di dadi × facce (tutti al massimo)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Scegli una scheda",
+        "text": "Seleziona «Probabilità base», «Permutazioni», «Combinazioni» o «Probabilità dadi» in base al tuo problema."
+      },
+      {
+        "name": "Inserisci gli input",
+        "text": "Per la probabilità di base, inserisci esiti favorevoli e totali. Per nPr/nCr, inserisci n e r. Per i dadi, scegli numero di dadi, somma obiettivo e facce."
+      },
+      {
+        "name": "Leggi i risultati",
+        "text": "I risultati appaiono istantaneamente come frazione, decimale, percentuale e quote (per la probabilità di base)."
+      },
+      {
+        "name": "Verifica gli errori",
+        "text": "Se gli input sono invalidi (r > n, totale = 0 o somma fuori intervallo), un messaggio chiaro spiega cosa correggere."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual è la differenza tra permutazioni e combinazioni?",
+      "a": "Le permutazioni contano le disposizioni ordinate (AB ≠ BA); le combinazioni contano i sottoinsiemi non ordinati (AB = BA). nPr = n! / (n−r)!; nCr = n! / (r! × (n−r)!). Per r > 1, vale sempre nPr ≥ nCr."
+    },
+    {
+      "q": "Perché n è limitato a 170?",
+      "a": "JavaScript usa numeri in virgola mobile IEEE 754 a 64 bit. 170! ≈ 7,26 × 10³⁰⁶ rientra in un double; 171! va in overflow verso Infinity. Per fattoriali più grandi, usa BigInt o un approccio basato sui logaritmi."
+    },
+    {
+      "q": "In che modo le quote differiscono dalla probabilità?",
+      "a": "Probabilità P = favorevoli / totale. Quote a favore = favorevoli : sfavorevoli = P : (1−P). Quote contro = sfavorevoli : favorevoli. Una probabilità del 25% corrisponde a quote di 1:3 (a favore) o 3:1 (contro)."
+    },
+    {
+      "q": "Quanto vale 0!?",
+      "a": "Per convenzione, 0! = 1. Questo mantiene la coerenza delle formule per nCr e nPr quando r = 0 o r = n."
+    },
+    {
+      "q": "Posso calcolare la probabilità di ottenere almeno una certa somma?",
+      "a": "Non direttamente con questo strumento. Per probabilità «almeno», somma le probabilità esatte per tutti i valori obiettivo dal tuo minimo al massimo (numero di dadi × facce). La scheda dadi fornisce la probabilità esatta per ogni somma specifica."
+    },
+    {
+      "q": "Quanto valgono nC0 o nCn?",
+      "a": "Entrambi valgono 1. C'è esattamente un modo per non scegliere nulla (insieme vuoto) e esattamente un modo per scegliere tutto."
+    },
+    {
+      "q": "Questa calcolatrice è precisa per grandi fattoriali?",
+      "a": "Per n fino a 170, i risultati sono accurati nella rappresentazione in virgola mobile. Per n vicino a 170, potrebbero esserci piccoli errori relativi nelle ultime cifre a causa degli arrotondamenti in virgola mobile nella divisione."
+    },
+    {
+      "q": "I dati escono dal mio browser?",
+      "a": "No. Tutti i calcoli vengono eseguiti localmente in JavaScript. Nulla viene trasmesso a un server."
+    }
+  ]
+}

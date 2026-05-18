@@ -1,0 +1,141 @@
+{
+  "title": "Wind Chill Calculator — Feels Like Temperature",
+  "shortDescription": "Calculate the wind chill index and see how cold it feels with current temperature and wind speed.",
+  "description": "Enter the air temperature and wind speed to compute the official wind chill index used by meteorologists in Canada and the US. The result shows the apparent temperature your exposed skin experiences, along with frostbite risk and recommended exposure limits.",
+  "metaDescription": "Free wind chill calculator using the NWS/MSC formula. Enter temperature and wind speed to find the feels-like temperature and frostbite risk.",
+  "keywords": [
+    "wind chill calculator",
+    "feels like temperature calculator",
+    "wind chill factor",
+    "wind chill index",
+    "apparent temperature calculator"
+  ],
+  "unitToggle": {
+    "label": "Unit system",
+    "metric": "Metric (°C, km/h)",
+    "imperial": "Imperial (°F, mph)"
+  },
+  "input": {
+    "temperature": "Air Temperature",
+    "temperaturePlaceholder": "e.g. −5",
+    "windSpeed": "Wind Speed",
+    "windSpeedPlaceholder": "e.g. 30"
+  },
+  "result": {
+    "windChill": "Wind Chill",
+    "feelsLike": "Feels Like",
+    "difference": "Colder than actual",
+    "frostbiteRisk": "Frostbite Risk",
+    "exposure": "Max safe exposure"
+  },
+  "risk": {
+    "safe": "No significant risk",
+    "watch": "Watch — limit extended exposure",
+    "warning": "Warning — frostbite in 30 min",
+    "danger": "Danger — frostbite in 10 min",
+    "critical": "Critical — frostbite in 5 min",
+    "extremeDanger": "Extreme Danger — frostbite in 2 min"
+  },
+  "exposure": {
+    "safe": "No limit (dress appropriately)",
+    "watch": "30 min or more",
+    "warning": "Under 30 min",
+    "danger": "Under 10 min",
+    "critical": "Under 5 min",
+    "extremeDanger": "Under 2 min"
+  },
+  "info": {
+    "outOfRange": "Wind chill does not apply when the temperature is above 10°C (50°F) or wind speed is below 4.8 km/h (3 mph). The formula is only valid in those conditions.",
+    "noWindChill": "No wind chill effect — feels like the actual temperature.",
+    "empty": "Enter temperature and wind speed to calculate wind chill."
+  },
+  "units": {
+    "celsius": "°C",
+    "fahrenheit": "°F",
+    "kmh": "km/h",
+    "mph": "mph"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What is wind chill and where did the formula come from?",
+        "paragraphs": [
+          "Wind chill (also called the wind chill index or feels-like temperature) is a measure of how quickly exposed human skin loses heat in cold, windy conditions. Still air forms a thin insulating layer around your body; wind strips that layer away, accelerating heat loss and making the air feel colder than the thermometer reads.",
+          "The first wind chill index was developed in 1945 by Antarctic explorers Paul Siple and Charles Passel, who measured how long it took a plastic bottle of water to freeze under different temperature and wind combinations. Their formula was widely used for decades but criticised for overpredicting the cold sensation.",
+          "In November 2001 the US National Weather Service (NWS) and Environment and Climate Change Canada (ECCC, formerly MSC) jointly adopted a new formula derived from human volunteer trials at the Defence Research and Development Canada facility. Participants walked on treadmills in climate-controlled chambers, and facial-skin heat-transfer sensors measured actual cooling rates. The result is the formula used today: WC = 13.12 + 0.6215T − 11.37V^0.16 + 0.3965T×V^0.16 (Celsius/km·h), with an imperial equivalent in °F and mph.",
+          "The formula is only physically meaningful when air temperature is at or below 10°C (50°F) and wind speed is above 4.8 km/h (3 mph). Below those thresholds the model breaks down: calm air produces no wind chill, and warm air means heat gain rather than increased heat loss."
+        ]
+      },
+      {
+        "heading": "Frostbite risk and cold-weather safety",
+        "paragraphs": [
+          "Frostbite occurs when skin tissue freezes. Wind chill accelerates the process dramatically: at −27°C wind chill, exposed skin can develop frostbite within 30 minutes. At −35°C that window shrinks to 10 minutes. At −45°C it is 5 minutes, and at −55°C or below, frostbite can set in within 2 minutes.",
+          "The risk thresholds used by Environment Canada and the NWS are: no particular risk above −27°C WC; frostbite watch from −27°C to −35°C; warning from −35°C to −45°C; danger from −45°C to −55°C; and extreme danger below −55°C. These are the same thresholds shown in this calculator.",
+          "Key protective measures include covering all exposed skin (especially cheeks, nose, ears, fingers, and toes), staying dry (wet clothing loses about 90% of its insulating value), layering to trap warm air, and telling someone your planned route and return time. Children and the elderly are more vulnerable to frostbite because their thermoregulatory systems are less efficient.",
+          "Wind chill does not affect inanimate objects the same way. Your car engine, a frozen pipe, or a bottle of water will not cool below the actual air temperature — wind chill is specific to objects that generate their own heat (like the human body). A car parked outdoors will reach the ambient air temperature but no lower, regardless of wind speed."
+        ]
+      },
+      {
+        "heading": "Wind chill vs heat index: the two sides of apparent temperature",
+        "paragraphs": [
+          "Apparent temperature is the umbrella concept: it describes the temperature a person feels, accounting for the interaction of air temperature with humidity (heat index) or wind (wind chill). The two formulas work in opposite seasons and are never applied simultaneously.",
+          "The heat index (also called humidex in Canada) applies when temperatures are above roughly 27°C (80°F). High humidity slows the evaporation of sweat, reducing the body's primary cooling mechanism and making the air feel hotter than the thermometer suggests. The NWS heat index formula, based on Rothfusz (1990), uses a regression equation with temperature and relative humidity as inputs.",
+          "Wind chill, by contrast, is a winter metric: it applies below 10°C (50°F). Rather than blocking cooling like humidity does in summer, wind accelerates cooling by disrupting the boundary layer of warm air around the skin.",
+          "Together the heat index and wind chill give meteorologists a complete picture of outdoor thermal comfort across the full range of weather conditions. Both are advisory metrics, not direct physiological measurements — individual factors like fitness level, clothing, body composition, and acclimatisation all affect how a given person actually perceives the temperature."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Select your unit system",
+        "text": "Choose Metric (°C and km/h) or Imperial (°F and mph) depending on the weather report you have."
+      },
+      {
+        "name": "Enter the air temperature",
+        "text": "Type the current air temperature. The formula is valid at or below 10°C (50°F)."
+      },
+      {
+        "name": "Enter the wind speed",
+        "text": "Type the sustained wind speed. Must be above 4.8 km/h (3 mph) for the formula to apply."
+      },
+      {
+        "name": "Read the result",
+        "text": "The calculated wind chill temperature, how much colder it feels versus the actual air temperature, and the frostbite risk level are shown instantly below the inputs."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "What is wind chill?",
+      "a": "Wind chill is the apparent temperature felt on exposed human skin due to the combination of cold air and wind. Wind strips away the thin layer of warm air that normally sits against your skin, increasing the rate of heat loss and making you feel colder than the thermometer indicates."
+    },
+    {
+      "q": "What formula does this calculator use?",
+      "a": "It uses the official NWS/Environment Canada formula adopted in 2001. Metric: WC = 13.12 + 0.6215T − 11.37V^0.16 + 0.3965T×V^0.16, where T is in °C and V in km/h. Imperial: WC = 35.74 + 0.6215T − 35.75V^0.16 + 0.4275T×V^0.16, where T is in °F and V in mph. The formula was validated with human subjects and replaced the older Siple–Passel model."
+    },
+    {
+      "q": "Why does wind chill not apply above 10°C (50°F)?",
+      "a": "Above 10°C the wind-chill model predicts a value higher than the actual air temperature for moderate winds, which is physically misleading. The NWS chose 10°C as the upper boundary where the formula reliably represents human heat loss. In warm weather, humidity (not wind speed) is the dominant factor in perceived temperature."
+    },
+    {
+      "q": "Why does wind chill not apply below 4.8 km/h (3 mph)?",
+      "a": "At very low wind speeds the formula becomes unreliable because the mathematical term V^0.16 approaches 1 and the equation degenerates. Calm or near-calm conditions are handled by reporting the actual air temperature as the apparent temperature."
+    },
+    {
+      "q": "Does wind chill affect how quickly my car or pipes freeze?",
+      "a": "No. Wind chill only describes heat loss from objects that produce their own body heat — it does not lower the ambient air temperature. An engine block, water pipe, or fuel line will eventually reach the actual air temperature but will never go below it due to wind."
+    },
+    {
+      "q": "How quickly can frostbite occur?",
+      "a": "At a wind chill of −27°C (−17°F), frostbite on exposed skin can occur in 30 minutes. At −35°C (−31°F) the window is about 10 minutes, at −45°C (−49°F) it drops to 5 minutes, and at −55°C (−67°F) or lower frostbite can develop within 2 minutes. These thresholds come from the NWS/Environment Canada advisory chart."
+    },
+    {
+      "q": "Is wind chill the same as humidex or heat index?",
+      "a": "No. Humidex and heat index are summer metrics that account for humidity making hot weather feel hotter. Wind chill is a winter metric accounting for wind making cold weather feel colder. The two are never applied at the same time."
+    },
+    {
+      "q": "What should I wear when the wind chill is in the warning range?",
+      "a": "Cover all exposed skin: wear a balaclava or face mask, insulated gloves, and waterproof outer layers. Dress in moisture-wicking base layers to stay dry — wet clothing loses up to 90% of its insulating value. Limit outdoor exposure to under 30 minutes and check back in with someone if you are heading outdoors in warning or danger conditions."
+    }
+  ]
+}

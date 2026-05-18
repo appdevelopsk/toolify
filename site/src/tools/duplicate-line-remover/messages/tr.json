@@ -1,0 +1,108 @@
+{
+  "title": "Yinelenen Satır Kaldırıcı — Metin Listelerini Anında Temizle",
+  "shortDescription": "Herhangi bir metin listesinden yinelenen satırları kaldırın. Büyük/küçük harf duyarsız eşleştirme, boşluk kırpma ve ilk ya da son kaydı tutma seçeneklerini destekler.",
+  "description": "Herhangi bir satır listesini yapıştırın; bu araç tüm tekrarlananları kaldırarak yalnızca benzersiz girişleri tutar. Seçenekler büyük/küçük harf duyarlılığını, karşılaştırmadan önce baştaki/sondaki boşlukların kırpılmasını ve her yinelenen grubun ilk mi son mu oluşumunun korunacağını kontrol etmenizi sağlar.",
+  "metaDescription": "Ücretsiz çevrimiçi yinelenen satır kaldırıcı. Metin yapıştırın, yinelenen satırları anında kaldırın — büyük/küçük harfe duyarsız, boşluk kırp, ilk veya son tut.…",
+  "keywords": [
+    "yinelenen satır kaldırıcı",
+    "tekrar eden satırları sil",
+    "metin tekilleştirme",
+    "benzersiz satırlar",
+    "metin listesi temizle"
+  ],
+  "empty": "Yinelenen satırları kaldırmak için yukarıya metin yapıştırın.",
+  "input": {
+    "text": "Giriş metni — satır başına bir öğe",
+    "caseSensitive": "Büyük/küçük harfe duyarlı karşılaştırma",
+    "trimLines": "Karşılaştırmadan önce boşlukları kırp",
+    "keepFirst": "İlk oluşumu koru (son oluşumu korumak için işareti kaldırın)"
+  },
+  "result": {
+    "cleaned": "Tekilleştirilmiş çıktı",
+    "stats": "{removed} yinelenen satır kaldırıldı — {remaining} benzersiz satır kaldı."
+  },
+  "button": {
+    "copy": "Sonucu kopyala",
+    "copied": "Kopyalandı!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Yinelenen satırların gerçekten önem kazandığı durumlar",
+        "paragraphs": [
+          "Yinelenen satırlar şiirde zararsızdır, ancak yapılandırılmış verilerde gerçek sorunlar yaratır. CSV dosyasında yinelenen bir satır kayıt sayısını sessizce şişirir, toplamları çarpıtır ve dosya bir veritabanına aktarıldığında birincil anahtar ihlallerine neden olabilir. Sunucu log dosyalarında, çöken bir işlemin tekrarlayan özdeş log girdileri dakikalar içinde diski doldurabilir. Yapılandırma dosyalarında yinelenen anahtarlar ayrıştırıcıya bağlı olarak sessizce üzerine yazılır — ya da daha kötüsü, ayrıştırma hatalarına yol açar.",
+          "Kod depoları da kaza yoluyla oluşan satır yinelemelerinden nasibini alır: bağımlılık listelerinde (requirements.txt, package.json) kopyala-yapıştır hataları, yinelenen import ifadeleri veya .gitignore'daki yinelenen girişler. Otomatik CI kontrolleri bunları genellikle yakalar, ancak commit öncesi hızlı yapıştır-ve-tekilleştir, bir pipeline hatasını ayıklamaktan çok daha hızlıdır.",
+          "Boş satırlar özel dikkat gerektirir. Arka arkaya iki boş satır teknik olarak yinelenmiştir, ancak birçok metin biçimi (Markdown, Python kaynak kodu, e-posta gövdeleri) çift boş satırları kasıtlı ayraç olarak kullanır. Bu aracın \"Boşlukları kırp\" seçeneği, başıboş boşluklar nedeniyle boş görünen satırları normalleştirir; kasıtlı boş satırları yok etmez — sonuç içeriğinize göre değişir, bu nedenle çıktıyı gözden geçirin."
+        ]
+      },
+      {
+        "heading": "Büyük/küçük harf duyarlılığı: ne zaman önemli, ne zaman değil",
+        "paragraphs": [
+          "Bu araç varsayılan olarak satırları büyük/küçük harfe duyarsız karşılaştırır; bu nedenle \"Elma\", \"elma\" ve \"ELMA\" aynı satır sayılır ve yalnızca ilki tutulur. Bu, aynı şeyin varyantlarını birleştirmek istediğiniz etiket bulutları, anahtar kelime listeleri, şehir adları ve e-posta adresleri gibi insan tarafından okunabilir listeler için doğru ayardır.",
+          "Büyük/küçük harfe duyarlı mod kod için zorunludur. Python'da 'os' ve 'OS' teknik olarak farklıdır (ancak 'OS' çalışma zamanında çoğu sistemde başarısız olur) ve 'Result' ile 'result' gibi değişken adları farklı tanımlayıcılardır. SQL anahtar sözcükleri kural olarak büyük/küçük harfe duyarsızdır, ancak Linux dosya sistemlerinde tablo adları duyarlıdır. Kod parçacıklarını, yapılandırma anahtarlarını veya yolları tekilleştirirken her zaman büyük/küçük harfe duyarlı modu etkinleştirin.",
+          "Pratik bir orta yol, aracı iki kez çalıştırmaktır: inceleme için yakın yinelenenleri tespit etmek amacıyla bir kez büyük/küçük harfe duyarsız, yetkili tekilleştirme için bir kez duyarlı. Bu iki geçişli yaklaşım, yalnızca otomatik tekilleştirmenin kaçıracağı yazım hatalarını ve tutarsız büyük/küçük harf kullanımını yakalar."
+        ]
+      },
+      {
+        "heading": "Boş satır ve boşluk işlemenin çalışma biçimi",
+        "paragraphs": [
+          "Sondaki boşluklar çoğu metin düzenleyicide ve kopyala-yapıştır işlemlerinde görünmez, ancak satırların eşit olmamasına neden olur. \"elma  \" (iki sondaki boşluk) ve \"elma\" farklı dizelerdir; bu nedenle kırpma etkin olmadan ikisini de tutarsınız — çıktıda gizli bir yinelenen bırakırsınız. \"Boşlukları kırp\" seçeneği karşılaştırmadan önce her satırın baş ve son boşluklarını kaldırır; çıktı satırlarının içeriğini değiştirmez (kırpılmış metin sonuca yazılır).",
+          "Girintili kodda veya anahat listelerinde öndeki boşluklar anlamlıdır: kırpma girinti hiyerarşisini bozar. Kod veya yapılandırılmış anahatlar için kırpmayı devre dışı bırakın ve tam satır içeriğini korumak amacıyla büyük/küçük harfe duyarlı modu kullanın. Anahtar kelimeler, şehir adları veya URL yolları gibi düz metin listeleri için kırpma neredeyse her zaman doğru seçimdir.",
+          "\"İlk mi son mu tut\" geçişi, listenizde konumlara bağlı meta veriler olduğunda en çok önem kazanır. Örneğin, sonraki girişlerin daha yeni durumları temsil ettiği bir etkinlik günlüğünde — bu senaryoda son oluşumu tutmak (her anahtar için en güncel kayıt) anlamsal olarak doğrudur; ilkini tutmak ise eski verileri korur."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Metninizi yapıştırın",
+        "text": "Giriş alanına tıklayın ve listenizi yapıştırın. Her satır bir öğe olarak işlenir — araç yeni satır karakterlerine göre böler."
+      },
+      {
+        "name": "Seçenekleri yapılandırın",
+        "text": "Kod veya dosya yolları için \"Büyük/küçük harfe duyarlı\" seçeneğini etkinleştirin. Anahtar kelime listeleri veya CSV verileri için \"Boşlukları kırp\" seçeneğini etkinleştirin. Yinelenenler bulunduğunda hangi oluşumun hayatta kalacağına karar vermek için \"İlki koru\" seçeneğini değiştirin."
+      },
+      {
+        "name": "İstatistikleri inceleyin",
+        "text": "Sonuç alanı kaç yinelenin kaldırıldığını ve kaç benzersiz satır kaldığını gösterir; böylece işlemin doğru olduğunu doğrulayabilirsiniz."
+      },
+      {
+        "name": "Sonucu kopyalayın",
+        "text": "Tekilleştirilmiş metni panonuza kopyalamak için \"Sonucu kopyala\" düğmesine tıklayın, ardından ihtiyaç duyduğunuz yere yapıştırın."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Araç satır sırasını korur mu?",
+      "a": "Evet. Satırlar sıralanmaz — yalnızca yinelenenler kaldırılır. Korunan satırların göreli sırası girdi sırasıyla özdeştir."
+    },
+    {
+      "q": "Yinelenen neye denir?",
+      "a": "Seçilen seçenekler (büyük/küçük harf katlama ve/veya boşluk kırpma) uygulandıktan sonra iki satır özdeş ise yinelenmiş sayılır. Yalnızca metin içeriği karşılaştırılır; satır numaraları ve konumlar dikkate alınmaz."
+    },
+    {
+      "q": "Boş satırlar kaldırılır mı?",
+      "a": "Boş satırlar yalnızca birbirinin yinelemesiyse kaldırılır. Metninizde arka arkaya üç boş satır varsa ve \"İlki koru\" etkinse yalnızca ilk boş satır korunur. Tüm boş satırları kaldırmak istiyorsanız \"boş satırları kaldır\" seçeneği olan bir metin sıralayıcı kullanın."
+    },
+    {
+      "q": "\"Son oluşumu koru\" ne yapar?",
+      "a": "\"İlki koru\" işareti kaldırıldığında araç, her yinelenen grubun ilki yerine sonuncusunu korur. Sonuç hâlâ orijinal belge sırasında görünür — yalnızca hayatta kalan örnek değişir."
+    },
+    {
+      "q": "Bu araçla e-posta listelerini tekilleştirebilir miyim?",
+      "a": "Evet. Her satıra bir e-posta adresi yapıştırın. E-posta adresleri spesifikasyon gereği büyük/küçük harfe duyarsız olduğundan büyük/küçük harfe duyarsız modu (varsayılan) kullanın. Kopyala-yapıştır e-posta verileri için boşluk kırpma da önerilir."
+    },
+    {
+      "q": "Satır sayısı sınırı var mı?",
+      "a": "Zorunlu bir sınır yoktur. Araç her şeyi tarayıcınızın belleğinde işler. Pratikte modern tarayıcılar fark edilir gecikme olmaksızın yüz binlerce satırı işler."
+    },
+    {
+      "q": "Verilerim tarayıcımı terk ediyor mu?",
+      "a": "Hayır. Tüm işlem cihazınızdaki JavaScript'te tamamen gerçekleşir. Hiçbir şey herhangi bir sunucuya yüklenmez."
+    },
+    {
+      "q": "Belirli bir sütuna göre CSV'yi nasıl tekilleştiririm?",
+      "a": "Bu araç satırların tamamı üzerinde çalışır. Tek bir sütuna göre tekilleştirmek için önce o sütunu tek sütunlu bir listeye sıralayın veya çıkarın, tekilleştirin, ardından yeniden birleştirin. Büyük veri kümeleri için Python'un pandas kitaplığı veya elektronik tablodaki UNIQUE işlevi daha kesindir."
+    }
+  ]
+}

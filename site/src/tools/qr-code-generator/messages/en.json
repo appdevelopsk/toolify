@@ -1,0 +1,90 @@
+{
+  "title": "QR Code Generator — Free, No Login Required",
+  "shortDescription": "Create a QR code from any text or URL and download it as a PNG — no account needed, runs entirely in your browser.",
+  "description": "Enter any text, URL, phone number, or Wi-Fi credentials and generate a scannable QR code instantly. Choose error correction level and output size, then download the PNG for print or digital use.",
+  "metaDescription": "Free QR code generator. Enter any text or URL and download a QR code image instantly — no login, no watermark, runs in your browser.",
+  "keywords": ["qr code generator", "create qr code", "qr code maker", "free qr code", "qr code download"],
+  "empty": "Enter text or a URL above to generate your QR code.",
+  "input": {
+    "text": "Text or URL",
+    "errorLevel": "Error correction",
+    "size": "Size (px)"
+  },
+  "errorLevel": {
+    "L": "Low (7%)",
+    "M": "Medium (15%)",
+    "Q": "Quartile (25%)",
+    "H": "High (30%)"
+  },
+  "result": {
+    "download": "Download PNG"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What QR codes are and how they work",
+        "paragraphs": [
+          "A QR (Quick Response) code is a two-dimensional barcode that encodes data as a grid of black and white squares. Unlike a traditional 1D barcode that stores only a few dozen characters, a QR code can hold up to 3,000 alphanumeric characters or about 7,000 numeric digits in a small printed area. The data is arranged in rows and columns, surrounded by finder patterns in three corners that tell a scanner which way to orient the image.",
+          "QR codes were invented by Denso Wave, a Toyota subsidiary, in 1994 to track automotive parts during manufacturing. The format was released royalty-free, which led to its explosive adoption worldwide. Today smartphones scan them natively without any app, making QR codes a universal bridge between physical media and digital destinations.",
+          "The error correction system built into QR codes means they can still be read even when partially obscured — by dirt, damage, or a logo placed in the center. The four correction levels (L, M, Q, H) let you trade off data density for resilience: Level H can recover from 30% damage, while Level L packs data more densely and is fine for clean printing environments."
+        ]
+      },
+      {
+        "heading": "Choosing the right error correction level",
+        "paragraphs": [
+          "Level L (Low, 7%) produces the smallest, densest QR code. Use it when the code will be printed cleanly and scanned in good lighting — for example, on a website display or an office document. The code contains less redundant data, so the resulting image has more readable cells per square inch.",
+          "Level M (Medium, 15%) is the standard default and the right choice for most business cards, posters, and product labels. It balances size with enough redundancy to survive minor scuffs or printing artifacts.",
+          "Levels Q (25%) and H (30%) are best when you plan to overlay a logo on the QR code, when the surface may get dirty (restaurant menus, outdoor signage, packaging), or when the print quality is uncertain. They produce larger codes but can still decode even with significant visual damage. If you want to place your brand logo in the center of the code, use Level H."
+        ]
+      },
+      {
+        "heading": "Practical use cases and what to encode",
+        "paragraphs": [
+          "URLs are the most common payload: encoding a full HTTPS address like https://example.com takes only a fraction of the available capacity. QR codes also support plain text, email addresses (mailto: prefix), phone numbers (tel: prefix), SMS messages (smsto: prefix), geographic coordinates, and Wi-Fi credentials. The Wi-Fi format — WIFI:T:WPA;S:MyNetwork;P:mypassword;; — lets guests join a network by scanning instead of typing a long passphrase.",
+          "For print and signage, 300 px or 400 px output gives enough resolution for A4 / letter printing without needing to scale up in a vector editor. For digital-only use (websites, presentations, email signatures), 200 px is sufficient since screens zoom losslessly. PNG is the right format for QR codes because it is lossless — JPEG compression can introduce artifacts that make cells ambiguous and cause scan failures.",
+          "If you are encoding a long URL, consider using a URL shortener first to reduce the number of modules (cells) in the code. Fewer modules means each cell is larger relative to the total image size, which improves scan reliability, especially from a distance or on small printed areas like stickers or business cards."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type or paste your content", "text": "Enter the URL, text, phone number, or other payload you want to encode in the text box." },
+      { "name": "Choose error correction", "text": "Pick Low for clean digital use, Medium for most printing, or High if you plan to add a logo or print on rough surfaces." },
+      { "name": "Select output size", "text": "200 px for screens, 300 px for normal print, 400 px for larger formats like posters." },
+      { "name": "Download the PNG", "text": "Click 'Download PNG' to save the file, then embed or print it wherever you need." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Does this tool send my data to a server?",
+      "a": "No. The QR code is generated entirely in your browser using the open-source qrcode library. Your text never leaves your device."
+    },
+    {
+      "q": "Can I put a logo in the center of the QR code?",
+      "a": "Yes, but you need to do it in a separate image editor after downloading. Set error correction to High (H) first — this reserves enough redundancy so the code remains scannable even with the central area covered."
+    },
+    {
+      "q": "What is the maximum amount of text I can encode?",
+      "a": "The practical limit depends on the error correction level. At Level L with numeric-only data, a QR code can hold about 7,000 digits; at Level H with alphanumeric text it drops to around 1,800 characters. For most use cases (a URL, a short message) you are well within limits."
+    },
+    {
+      "q": "Why does my QR code look blurry when printed?",
+      "a": "Download at 400 px and then scale it up using a vector graphic or high-DPI export in your design software. Do not use JPEG — always use PNG for QR codes to avoid compression artifacts."
+    },
+    {
+      "q": "Can QR codes expire?",
+      "a": "A QR code image itself never expires; it permanently encodes whatever text you put in it. However, if you encoded a URL, that URL can expire or change independently. Static QR codes (like the ones this tool generates) are permanent."
+    },
+    {
+      "q": "Do I need a special app to scan QR codes?",
+      "a": "No. Modern iOS (Camera app) and Android (Google Lens or native camera) scan QR codes natively without any extra app. Just point your camera at the code."
+    },
+    {
+      "q": "What is the difference between a QR code and a barcode?",
+      "a": "A traditional 1D barcode encodes data in a single row of lines and can hold only about 20 characters. A 2D QR code uses a grid of squares and can hold thousands of characters, plus it supports error correction so it still scans when partially damaged."
+    },
+    {
+      "q": "Why is the QR code larger when I choose High error correction?",
+      "a": "Higher error correction adds more redundant data modules to the grid, which requires more cells. The physical size of a QR code scales with the amount of data it encodes, so codes with more error correction capacity are inherently denser or larger."
+    }
+  ]
+}

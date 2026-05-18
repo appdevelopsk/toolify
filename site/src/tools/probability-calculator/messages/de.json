@@ -1,0 +1,128 @@
+{
+  "title": "Wahrscheinlichkeitsrechner — Grundwahrscheinlichkeit, Permutationen",
+  "shortDescription": "Wahrscheinlichkeiten, Permutationen (nPr), Kombinationen (nCr) und Würfelergebnisse berechnen. Vier spezielle Registerkarten für alle gängigen Wahrscheinlichkeitsaufgaben.",
+  "description": "Vier Modi in einem Werkzeug: Grundwahrscheinlichkeit aus günstigen und Gesamtereignissen, Permutationen nPr, Kombinationen nCr und die Wahrscheinlichkeit einer bestimmten Augensumme mit mehreren Würfeln. Ergebnisse als Bruch, Dezimalzahl, Prozentsatz und Odds.",
+  "metaDescription": "Kostenloser Wahrscheinlichkeitsrechner: Grundwahrscheinlichkeit, Permutationen nPr, Kombinationen nCr und Würfelwahrscheinlichkeit. Ergebnisse als Bruch, Dezimal",
+  "keywords": [
+    "Wahrscheinlichkeitsrechner",
+    "Kombinationen berechnen",
+    "Permutationen berechnen",
+    "nCr Rechner",
+    "nPr Rechner",
+    "Würfelwahrscheinlichkeit",
+    "Odds Rechner"
+  ],
+  "tab": {
+    "basic": "Grundwahrscheinlichkeit",
+    "permutation": "Permutationen (nPr)",
+    "combination": "Kombinationen (nCr)",
+    "dice": "Würfelwahrscheinlichkeit"
+  },
+  "input": {
+    "favorable": "Günstige Ereignisse",
+    "total": "Gesamtereignisse",
+    "n": "n (Gesamtanzahl der Elemente)",
+    "r": "r (Anzahl der gewählten Elemente)",
+    "numDice": "Anzahl der Würfel",
+    "target": "Zielsumme",
+    "sides": "Würfelseiten"
+  },
+  "result": {
+    "probability": "Wahrscheinlichkeit",
+    "fraction": "Bruch",
+    "decimal": "Dezimalzahl",
+    "percent": "Prozentsatz",
+    "oddsFor": "Odds für",
+    "oddsAgainst": "Odds gegen",
+    "permutations": "Permutationen (nPr)",
+    "combinations": "Kombinationen (nCr)"
+  },
+  "empty": "Werte eingeben, um zu berechnen.",
+  "error": {
+    "invalid": "Ungültige Eingabe: Alle Werte müssen nichtnegative ganze Zahlen sein und r ≤ n gelten.",
+    "overflow": "n muss ≤ 170 sein (JavaScript-Faktoriallimit).",
+    "noOutcomes": "Die Gesamtanzahl der Ereignisse muss größer als null sein.",
+    "favorableExceedsTotal": "Die günstigen Ereignisse dürfen die Gesamtereignisse nicht überschreiten.",
+    "diceRange": "Die Zielsumme liegt außerhalb des möglichen Bereichs für diese Würfel."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Grundwahrscheinlichkeit, Odds und ihr Unterschied",
+        "paragraphs": [
+          "Wahrscheinlichkeit ist das Verhältnis günstiger Ereignisse zu gleichwahrscheinlichen Gesamtereignissen: P = günstig / gesamt. Der Bereich reicht von 0 (unmöglich) bis 1 (sicher) und wird oft als Prozentsatz ausgedrückt. Bei einem fairen sechsseitigen Würfel beträgt die Wahrscheinlichkeit, eine 4 zu würfeln, 1/6 ≈ 16,667 %.",
+          "Odds sind eine andere Art, dieselbe Information auszudrücken. Die Odds FÜR ein Ereignis sind günstig : ungünstig, also hat das Würfeln einer 4 Odds von 1:5. Die Odds GEGEN sind umgekehrt: 5:1. Odds sind in Sportwetten und Kartenspielen üblich; Wahrscheinlichkeiten in Statistik und Wissenschaft.",
+          "Dieser Rechner kürzt den Bruch automatisch auf die kleinsten Terme und zeigt Dezimalzahl und Prozentwert nebeneinander an, sodass die Darstellungen leicht umgerechnet werden können."
+        ]
+      },
+      {
+        "heading": "Permutationen vs. Kombinationen",
+        "paragraphs": [
+          "Beide befassen sich mit der Auswahl von r Elementen aus einer Menge von n, aber bei Permutationen spielt die Reihenfolge eine Rolle, bei Kombinationen nicht. Permutationen nPr = n! / (n − r)! zählt geordnete Anordnungen. Kombinationen nCr = n! / (r! × (n − r)!) zählt ungeordnete Teilmengen.",
+          "Beispiel: 2 Buchstaben aus {A, B, C} wählen. Permutationen: AB, BA, AC, CA, BC, CB — 6 geordnete Paare, nPr = 3! / 1! = 6. Kombinationen: AB, AC, BC — 3 ungeordnete Teilmengen, nCr = 3! / (2! × 1!) = 3. Da jede Kombination r! Permutationen ergibt, gilt stets nPr = nCr × r!.",
+          "Das maximale unterstützte n beträgt 170. Darüber überschreitet n! den Gleitkommabereich von JavaScript (ca. 1,8 × 10³⁰⁸). Bei sehr großen n oder r sind logarithmische Berechnungen oder symbolische Bibliotheken zu empfehlen."
+        ]
+      },
+      {
+        "heading": "Würfelwahrscheinlichkeit und der Multiplikationssatz",
+        "paragraphs": [
+          "Beim Werfen mehrerer gleicher Würfel ist jeder Würfel unabhängig. Die Gesamtzahl der Ergebnisse ist SeitenAnzahlWürfel. Die Anzahl der Möglichkeiten, eine bestimmte Summe zu erreichen, wird durch Zählen der Kompositionen ermittelt: Die Summe wird so auf alle Würfel verteilt, dass jeder Würfel einen Wert zwischen 1 und der Seitenzahl zeigt.",
+          "Dieser Rechner verwendet dynamische Programmierung, um die genaue Anzahl von Kompositionen für die angegebene Zielsumme zu bestimmen. Beispiel: 2d6 (zwei sechsseitige Würfel) mit Summe 7 — es gibt 6 Möglichkeiten (1+6, 2+5, 3+4, 4+3, 5+2, 6+1) von insgesamt 36, was eine Wahrscheinlichkeit von 6/36 = 1/6 ≈ 16,667 % ergibt.",
+          "Unterstützte Würfeltypen: d4, d6, d8, d10, d12 und d20 (Standard-Tabletop-RPG-Würfel). Die Anzahl der Würfel reicht von 1 bis 6. Die Zielsumme muss zwischen der Würfelanzahl (alle Einsen) und Würfelanzahl × Seitenanzahl (alle Maxima) liegen."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Registerkarte wählen",
+        "text": "Je nach Aufgabe „Grundwahrscheinlichkeit“, „Permutationen“, „Kombinationen“ oder „Würfelwahrscheinlichkeit“ auswählen."
+      },
+      {
+        "name": "Eingaben vornehmen",
+        "text": "Für Grundwahrscheinlichkeit günstige und Gesamtereignisse eingeben. Für nPr/nCr n und r eingeben. Für Würfel Anzahl, Zielsumme und Seitenanzahl wählen."
+      },
+      {
+        "name": "Ergebnisse ablesen",
+        "text": "Die Ergebnisse erscheinen sofort als Bruch, Dezimalzahl, Prozentsatz und Odds (bei Grundwahrscheinlichkeit)."
+      },
+      {
+        "name": "Fehler prüfen",
+        "text": "Bei ungültigen Eingaben (r > n, Gesamt = 0 oder Summe außerhalb des Bereichs) erklärt eine klare Fehlermeldung, was zu korrigieren ist."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was ist der Unterschied zwischen Permutationen und Kombinationen?",
+      "a": "Permutationen zählen geordnete Anordnungen (AB ≠ BA); Kombinationen zählen ungeordnete Teilmengen (AB = BA). nPr = n! / (n−r)!; nCr = n! / (r! × (n−r)!). Für r > 1 gilt stets nPr ≥ nCr."
+    },
+    {
+      "q": "Warum ist n auf 170 begrenzt?",
+      "a": "JavaScript verwendet 64-Bit IEEE 754 Gleitkommazahlen. 170! ≈ 7,26 × 10³⁰⁶ passt in einen Double; 171! läuft zu Infinity über. Für größere Fakultäten BigInt oder einen logarithmischen Ansatz verwenden."
+    },
+    {
+      "q": "Wie unterscheiden sich Odds von Wahrscheinlichkeit?",
+      "a": "Wahrscheinlichkeit P = günstig / gesamt. Odds für = günstig : ungünstig = P : (1−P). Odds gegen = ungünstig : günstig. Eine Wahrscheinlichkeit von 25 % entspricht Odds von 1:3 (für) oder 3:1 (gegen)."
+    },
+    {
+      "q": "Was ist 0!?",
+      "a": "Per Konvention gilt 0! = 1. Damit bleiben die Formeln für nCr und nPr konsistent, wenn r = 0 oder r = n ist."
+    },
+    {
+      "q": "Kann ich die Wahrscheinlichkeit für mindestens eine bestimmte Summe berechnen?",
+      "a": "Mit diesem Werkzeug nicht direkt. Für Mindest-Wahrscheinlichkeiten die genauen Einzelwahrscheinlichkeiten von der Mindestsumme bis zum Maximum (Würfelanzahl × Seitenanzahl) addieren. Der Würfel-Tab liefert die exakte Wahrscheinlichkeit für jede spezifische Summe."
+    },
+    {
+      "q": "Was ist nC0 oder nCn?",
+      "a": "Beide sind gleich 1. Es gibt genau eine Möglichkeit, nichts auszuwählen (leere Menge), und genau eine Möglichkeit, alle Elemente auszuwählen."
+    },
+    {
+      "q": "Ist dieser Rechner bei großen Fakultäten genau?",
+      "a": "Für n bis 170 sind die Ergebnisse im Rahmen der Gleitkommadarstellung genau. Für n nahe 170 können in den letzten Stellen kleine relative Fehler durch Gleitkommarundung bei der Division auftreten."
+    },
+    {
+      "q": "Verlassen Daten meinen Browser?",
+      "a": "Nein. Alle Berechnungen laufen lokal in JavaScript. Es werden keine Daten an einen Server übertragen."
+    }
+  ]
+}

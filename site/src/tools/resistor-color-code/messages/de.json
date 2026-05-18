@@ -1,0 +1,116 @@
+{
+  "title": "Widerstandsfarbcode-Rechner — Farbcodes ablesen und kodieren",
+  "shortDescription": "Farbcodes von Widerständen in Widerstandswerte umrechnen oder einen Wert eingeben, um die passenden Farbbänder zu ermitteln. Unterstützt 4-Ring- und 5-Ring-Widerstände.",
+  "description": "Farbbänder auswählen, um einen Widerstandswert abzulesen, oder einen Widerstandswert eingeben, um den Farbcode zu finden. Unterstützt 4-Ring- und 5-Ring-Widerstände mit automatischer Einheitenskalierung in Ohm, Kiloohm oder Megaohm.",
+  "metaDescription": "Kostenloser Widerstandsfarbcode-Rechner. 4- oder 5-Ring-Farbcodes in Widerstandswerte umrechnen oder einen Wert direkt in Farbbänder kodieren.",
+  "keywords": ["Widerstandsfarbcode", "Widerstandsfarbband-Rechner", "4-Ring-Widerstand", "5-Ring-Widerstand", "Widerstand ablesen"],
+  "mode": {
+    "decode": "Farbe → Widerstand",
+    "encode": "Widerstand → Farbe"
+  },
+  "band": {
+    "count4": "4-Ring",
+    "count5": "5-Ring"
+  },
+  "label": {
+    "digit1": "Ziffer 1",
+    "digit2": "Ziffer 2",
+    "digit3": "Ziffer 3 (5-Ring)",
+    "multiplier": "Multiplikator",
+    "tolerance": "Toleranz"
+  },
+  "colors": {
+    "black": "Schwarz",
+    "brown": "Braun",
+    "red": "Rot",
+    "orange": "Orange",
+    "yellow": "Gelb",
+    "green": "Grün",
+    "blue": "Blau",
+    "violet": "Violett",
+    "gray": "Grau",
+    "white": "Weiß",
+    "gold": "Gold",
+    "silver": "Silber",
+    "none": "Keiner"
+  },
+  "result": {
+    "resistance": "Widerstand",
+    "range": "Bereich",
+    "minVal": "Min",
+    "maxVal": "Max"
+  },
+  "input": {
+    "value": "Widerstandswert",
+    "unit": "Einheit"
+  },
+  "error": {
+    "invalidValue": "Bitte eine positive Zahl eingeben.",
+    "noMatch": "Kein E24-Standardwert für diesen Widerstand gefunden."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie Widerstandsfarbcodes funktionieren",
+        "paragraphs": [
+          "Widerstände sind zu klein, um Zahlen lesbar aufzudrucken. Deshalb verwenden Hersteller farbige Ringe. Jede Farbe entspricht einer Ziffer (0–9) in einer festen Reihenfolge: Schwarz, Braun, Rot, Orange, Gelb, Grün, Blau, Violett, Grau, Weiß. Ein 4-Ring-Widerstand besitzt zwei Ziffernringe, einen Multiplikatorring und einen Toleranzring. Ein 5-Ring-Widerstand hat einen dritten Ziffernring für höhere Genauigkeit.",
+          "So liest man einen 4-Ring-Widerstand: Die ersten beiden Farben ergeben eine zweistellige Zahl (z. B. Braun-Schwarz = 10), multipliziert mit dem Multiplikator des dritten Rings (z. B. Rot = ×100). Der vierte Ring gibt die Toleranz an (z. B. Gold = ±5 %). Braun-Schwarz-Rot-Gold = 10 × 100 = 1.000 Ω ±5 % = 1 kΩ. Bei 5 Ringen werden drei Ziffern gelesen, dann Multiplikator und Toleranz."
+        ]
+      },
+      {
+        "heading": "Die E24-Normreihe für Widerstände",
+        "paragraphs": [
+          "Widerstände werden nicht für jeden möglichen Wert hergestellt. Die E24-Reihe bietet 24 bevorzugte Werte pro Dekade: 10, 11, 12, 13, 15, 16, 18, 20, 22, 24, 27, 30, 33, 36, 39, 43, 47, 51, 56, 62, 68, 75, 82, 91. Die Abstände sind so gewählt, dass aufeinanderfolgende Werte um ca. 10 % abweichen — damit lässt sich jeder Zielwert mit maximal 5 % Abweichung erreichen. Ingenieure wählen für ihre Schaltung den nächstgelegenen E24-Wert.",
+          "Die E12-Reihe (12 Werte pro Dekade, ±10 % Toleranz) und die E6-Reihe (6 Werte, ±20 %) werden verwendet, wenn keine hohe Präzision erforderlich ist. Für Präzisionsanwendungen bietet die E96-Reihe 96 Werte pro Dekade mit 1 % Toleranz — diese Widerstände verwenden typischerweise einen 5-Ring-Code mit drei signifikanten Stellen."
+        ]
+      },
+      {
+        "heading": "Praktische Tipps zum Ablesen von Widerständen",
+        "paragraphs": [
+          "Der Toleranzring (Gold, Silber oder fehlend) ist meist weiter von den anderen Ringen entfernt und wird zuletzt gelesen. Im Zweifelsfall den Widerstand so ausrichten, dass der Toleranzring rechts liegt. Der erste Ziffernring ist bei Standardwiderständen nie schwarz (eine führende Null wäre unüblich). Bei Unsicherheit über die Ausrichtung den Widerstand von beiden Seiten ablesen und prüfen, welcher Wert plausibel ist.",
+          "Mit einem Multimeter im Widerstandsmessmodus lässt sich der abgelesene Wert überprüfen. SMD-Widerstände verwenden statt Farbringen einen drei- oder vierstelligen Zahlencode. „103“ steht z. B. für 10 × 10³ = 10.000 Ω = 10 kΩ. Präzisions-SMD-Widerstände verwenden einen anderen fünfstelligen alphanumerischen Code."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Dekodier- oder Kodiermodus wählen", "text": "„Farbe → Widerstand“ auswählen, um Farbringe abzulesen, oder „Widerstand → Farbe“, um den Farbcode für einen bekannten Wert zu ermitteln." },
+      { "name": "4-Ring oder 5-Ring auswählen", "text": "Die meisten gängigen Widerstände sind 4-Ring-Widerstände. Präzisionswiderstände (1 % Toleranz) haben meist 5 Ringe." },
+      { "name": "Farbe jedes Rings auswählen", "text": "Im Dekodiermodus die Farbe jedes Rings über die Dropdown-Menüs auswählen. Der Widerstandswert wird automatisch aktualisiert." },
+      { "name": "Ergebnis ablesen", "text": "Der Widerstand wird mit automatischer Einheitenskalierung (Ohm, Kiloohm oder Megaohm) und dem Toleranzbereich angezeigt." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "In welcher Reihenfolge lese ich die Farbringe ab?",
+      "a": "Von links nach rechts. Der Toleranzring (Gold oder Silber) hat einen größeren Abstand zu den übrigen Ringen und befindet sich immer rechts. Der erste Ring ist der am weitesten links liegende Farbring nahe einem Ende des Widerstandskörpers."
+    },
+    {
+      "q": "Was bedeutet Gold bei einem Widerstand?",
+      "a": "Gold erscheint an zwei Positionen. Als Multiplikatorring steht Gold für ×0,1 (für Bruchteile von Ohm, z. B. 4,7 Ω). Als Toleranzring (letzter Ring) bedeutet Gold, dass der tatsächliche Widerstand innerhalb von ±5 % des angegebenen Werts liegt."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen 4-Ring- und 5-Ring-Widerständen?",
+      "a": "Ein 4-Ring-Widerstand kodiert zwei signifikante Stellen, ein 5-Ring-Widerstand drei. 5-Ring-Widerstände werden bei Toleranzen von 1 % oder besser eingesetzt, wo höhere Genauigkeit erforderlich ist. Der zusätzliche Ziffernring erhöht die Anzahl der darstellbaren Werte."
+    },
+    {
+      "q": "Warum gibt es bei gängigen Widerständen keinen schwarzen Multiplikatorring?",
+      "a": "Schwarz als Multiplikator bedeutet ×1. Sehr niedrige Widerstandswerte (einstelliger Ohm-Bereich) existieren zwar, sind aber in normalen Signalschaltungen selten. Die meisten Widerstände beginnen bei Zehnern oder Hunderten von Ohm, daher ist Braun (×10) in der Praxis der kleinste vorkommende Multiplikator."
+    },
+    {
+      "q": "Was ist Toleranz und warum ist sie wichtig?",
+      "a": "Die Toleranz gibt die maximale prozentuale Abweichung vom angegebenen Widerstandswert an. Ein 1 kΩ ±5 %-Widerstand misst tatsächlich zwischen 950 Ω und 1.050 Ω. Für die meisten Signal- und Leistungsschaltungen sind 5 % oder 10 % Toleranz ausreichend. Präzisions-Analogschaltungen (Spannungsreferenzen, Filter) benötigen möglicherweise 1 % oder 0,1 %-Widerstände."
+    },
+    {
+      "q": "Wie kodiere ich einen Nicht-Standardwert wie 4700 Ohm?",
+      "a": "4700 Ω = 4,7 kΩ = 47 × 100. Der Farbcode lautet also Gelb-Violett-Rot (4, 7, ×100) plus Toleranzring. Dies ist ein sehr gebräuchlicher E24-Wert (4,7 kΩ ist in der Reihe enthalten). Der Kodiermodus findet automatisch die nächste E24-Entsprechung."
+    },
+    {
+      "q": "Was ist die E24-Reihe?",
+      "a": "Die E24-Reihe ist ein Satz von 24 bevorzugten Widerstandswerten pro Dekade (z. B. 10, 11, 12, 13, 15 … 82, 91, dann 100, 110, 120 …). Widerstände werden nach diesen Werten gefertigt, nicht für jeden beliebigen Wert. Die Abstände stellen sicher, dass immer ein Widerstand innerhalb von 5 % des Zielwerts gefunden werden kann."
+    },
+    {
+      "q": "Kann ich diesen Rechner auch für Kondensatoren oder Spulen verwenden?",
+      "a": "Das gleiche Farbcodesystem wird für einige Kondensatoren und Spulen (insbesondere axiale Bauformen) verwendet, aber Einheiten und Wertebereiche unterscheiden sich. Bei Kondensatoren ist der Wert in Pikofarad, bei Spulen in Mikrohenry angegeben. Dieser Rechner ist für Widerstände optimiert, aber die Farb-zu-Ziffer-Zuordnung ist identisch."
+    }
+  ]
+}

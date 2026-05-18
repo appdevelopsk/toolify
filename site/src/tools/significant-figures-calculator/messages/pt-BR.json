@@ -1,0 +1,120 @@
+{
+  "title": "Calculadora de Algarismos Significativos — Contar e Arredondar",
+  "shortDescription": "Conte os algarismos significativos de qualquer número ou arredonde para um número específico de alg. sig. Mostra uma análise dígito a dígito e notação científica.",
+  "description": "Insira qualquer número para contar instantaneamente seus algarismos significativos com uma análise dígito a dígito codificada por cores, ou mude para o modo de arredondamento para expressar um valor com exatamente o número de algarismos significativos que você precisa. Suporta inteiros, decimais e notação científica. Explica quais dígitos são significativos e por quê.",
+  "metaDescription": "Calculadora gratuita de algarismos significativos. Conte alg. sig. com uma explicação dígito a dígito, ou arredonde qualquer número para N algarismos significativos. Sup…",
+  "keywords": [
+    "calculadora algarismos significativos",
+    "calculadora alg sig",
+    "contador algarismos significativos",
+    "arredondar algarismos significativos",
+    "regras algarismos significativos"
+  ],
+  "empty": "Insira um número para contar ou arredondar algarismos significativos.",
+  "tab": {
+    "count": "Contar Alg. Sig.",
+    "round": "Arredondar para N Alg. Sig."
+  },
+  "input": {
+    "number": "Número",
+    "numberPlaceholder": "ex. 0,00420 ou 1,23e4",
+    "numberHint": "Insira um inteiro, decimal ou valor em notação científica",
+    "numberToRound": "Número a Arredondar",
+    "numberToRoundPlaceholder": "ex. 9876,5432",
+    "sigFigsTarget": "Algarismos Significativos",
+    "sigFigsTargetHint": "Insira um valor de 1 a 15"
+  },
+  "result": {
+    "sigFigCount": "Algarismos Significativos",
+    "scientificNotation": "Notação Científica",
+    "explanation": "Análise dos Dígitos",
+    "rounded": "Resultado Arredondado",
+    "sigFigsUsed": "Alg. Sig. Aplicados",
+    "roundExplanation": "{input} arredondado para {sigFigs} algarismos significativos é {result}.",
+    "legendSignificant": "Significativo",
+    "legendNotSignificant": "Não significativo",
+    "legendAmbiguous": "Ambíguo",
+    "ambiguousNote": "Zeros finais ambíguos",
+    "ambiguousNoteDetail": "Zeros finais em um número inteiro sem ponto decimal são ambíguos. Adicione um ponto decimal (ex. 1200.) ou use notação científica (1,2 × 10²) para tornar a precisão explícita."
+  },
+  "error": {
+    "invalid": "Por favor insira um número válido (ex. 0,00420, 6,02e23 ou 1500.)."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "As 5 regras para contar algarismos significativos",
+        "paragraphs": [
+          "Todo valor medido ou calculado carrega uma precisão implícita, e os algarismos significativos são a forma como os cientistas comunicam essa precisão. Entender quais dígitos contam e quais não contam evita reportar falsa precisão ou subestimar a exatidão.",
+          "Regra 1: Todos os algarismos diferentes de zero (1–9) são sempre significativos. O número 4,72 tem três algarismos significativos; 391 tem três. Regra 2: Zeros intercalados entre algarismos diferentes de zero, muitas vezes chamados de zeros cativos ou incorporados, são sempre significativos. 4,0072 tem cinco algarismos significativos; 3007 tem quatro. Regra 3: Zeros à esquerda que aparecem antes do primeiro algarismo diferente de zero nunca são significativos; eles apenas localizam o ponto decimal. 0,0042 tem dois algarismos significativos (4 e 2); 0,00100 tem três (1, 0, 0 na parte fracionária após o 1). Regra 4: Zeros finais à direita de um ponto decimal são sempre significativos porque refletem a precisão da medição. 3,50 tem três algarismos significativos, e 100,0 tem quatro. Regra 5: Zeros finais em um número inteiro sem ponto decimal são ambíguos: podem ou não ser significativos. Escrever 1200 deixa incerto se você quis dizer 2, 3 ou 4 algarismos significativos. Resolva a ambiguidade adicionando um ponto decimal (1200.), usando notação científica (1,2 × 10³) ou usando notação com barra superior em trabalhos formais."
+        ]
+      },
+      {
+        "heading": "Por que algarismos significativos importam em ciência e medição",
+        "paragraphs": [
+          "Toda medição física tem um limite de precisão definido pelo instrumento e pelo observador. Uma régua marcada em milímetros pode dar leituras confiáveis até aproximadamente 0,5 mm; afirmar um resultado de 14,2842 cm com essa régua exagera o que é realmente conhecido. Os algarismos significativos codificam esse limite: reportar 14,3 cm (três alg. sig.) representa honestamente a precisão do instrumento de medição.",
+          "A importância da precisão se propaga pelos cálculos. Quando os resultados calculados a partir de dados medidos são reportados com muitos algarismos, sugere que a resposta é mais certa do que os dados brutos justificam, uma forma de comunicação enganosa. Por outro lado, arredondar de forma muito agressiva perde informações reais. Na fabricação farmacêutica, as tolerâncias podem ser especificadas com quatro ou cinco alg. sig.; desviar mesmo um único algarismo na direção errada pode significar que um produto está fora de especificação. Na química analítica, os limites de detecção instrumental são cuidadosamente ajustados ao número de alg. sig. usados para reportar concentrações. Mesmo na engenharia cotidiana, o número de algarismos significativos na especificação de projeto influencia diretamente qual grau de componente é necessário."
+        ]
+      },
+      {
+        "heading": "Algarismos significativos na aritmética: regras para adição e multiplicação",
+        "paragraphs": [
+          "Os algarismos significativos seguem regras diferentes dependendo da operação realizada. Para adição e subtração, o resultado deve ser arredondado para o mesmo número de casas decimais que a entrada com menos casas decimais. Se você somar 12,11 + 18,0 + 1,013, o resultado da calculadora é 31,123, mas como 18,0 tem apenas uma casa decimal, a resposta reportada é 31,1. A regra reflete que você só pode ser tão preciso quanto sua medição menos precisa em termos da magnitude da incerteza.",
+          "Para multiplicação e divisão, o resultado deve conter o mesmo número de algarismos significativos que a entrada com menos algarismos significativos. Multiplicar 4,56 (3 alg. sig.) por 1,4 (2 alg. sig.) dá um resultado bruto de 6,384, que arredonda para 6,4 (2 alg. sig.). Isso ocorre porque a incerteza relativa do fator menos preciso define o limite mínimo para a precisão do produto. Cálculos com operações mistas devem aplicar a regra de arredondamento em cada etapa, ou manter dígitos de guarda adicionais nas etapas intermediárias e arredondar apenas o resultado final, pois esta última abordagem minimiza o erro de arredondamento acumulado."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Selecionar a aba Contar Alg. Sig.",
+        "text": "Clique na aba Contar Alg. Sig. na parte superior da calculadora para entrar no modo de contagem."
+      },
+      {
+        "name": "Digite seu número",
+        "text": "Insira qualquer número no campo de texto: inteiros (1500), decimais (0,00420) ou notação científica (1,23e4). A calculadora lê a string bruta, então zeros iniciais e finais são preservados corretamente."
+      },
+      {
+        "name": "Leia a análise dos dígitos",
+        "text": "Cada dígito é destacado: verde para significativo, cinza para zeros iniciais não significativos e amarelo para zeros finais ambíguos em números inteiros. O total aparece de forma destacada na parte superior."
+      },
+      {
+        "name": "Mudar para o modo de arredondamento quando necessário",
+        "text": "Clique na aba Arredondar para N Alg. Sig., insira seu número e o número desejado de algarismos significativos, e a calculadora retorna o valor arredondado com sua forma em notação científica."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quantos algarismos significativos tem 0,00420?",
+      "a": "Três. Os zeros à esquerda (0,00) não são significativos: apenas mostram a posição do ponto decimal. Os dígitos 4, 2 e o zero final após o 2 são todos significativos. O zero final é significativo porque aparece após o ponto decimal e após um algarismo diferente de zero, indicando que a medição foi feita com esse nível de precisão."
+    },
+    {
+      "q": "Zeros finais são significativos em um número inteiro como 1200?",
+      "a": "É ambíguo sem contexto adicional. O número 1200 poderia ter 2, 3 ou 4 algarismos significativos dependendo da precisão da medição. Para remover a ambiguidade: escreva 1200. (com ponto decimal) para indicar 4 alg. sig., ou use notação científica: 1,2 × 10³ (2 alg. sig.), 1,20 × 10³ (3 alg. sig.) ou 1,200 × 10³ (4 alg. sig.)."
+    },
+    {
+      "q": "Como arredondo 34567 para 3 algarismos significativos?",
+      "a": "Identifique os primeiros 3 algarismos significativos: 3, 4, 5. Veja o próximo dígito (6): é 5 ou mais, então arredonde o 5 para 6. O resultado é 34600. Em notação científica é 3,46 × 10⁴. Os zeros finais em 34600 não são significativos neste contexto; são marcadores de posição."
+    },
+    {
+      "q": "O número de algarismos significativos muda ao converter unidades?",
+      "a": "Não. Algarismos significativos refletem a precisão da medição, que não muda ao mudar de unidades. Se um comprimento é medido como 2,54 cm (3 alg. sig.), converter para metros dá 0,0254 m, ainda com 3 alg. sig. Os zeros iniciais no valor em metros não são significativos; apenas o 2, o 5 e o 4 são."
+    },
+    {
+      "q": "Qual é a diferença entre algarismos significativos e casas decimais?",
+      "a": "Casas decimais contam os dígitos à direita do ponto decimal independentemente do valor. Algarismos significativos contam todos os dígitos significativos a partir do primeiro algarismo diferente de zero. O número 0,00420 tem 5 casas decimais mas apenas 3 algarismos significativos. O número 12300 tem 0 casas decimais mas pelo menos 3 algarismos significativos (e possivelmente mais, se os zeros forem medidos)."
+    },
+    {
+      "q": "Quantos algarismos significativos devo usar na minha resposta?",
+      "a": "Para adição e subtração, iguale o menor número de casas decimais de qualquer valor no cálculo. Para multiplicação e divisão, iguale o menor número de algarismos significativos de qualquer valor no cálculo. Ao combinar ambas as operações, aplique cada regra na etapa apropriada. Em geral, não reporte mais precisão do que sua entrada menos precisa justifica."
+    },
+    {
+      "q": "O número 10 tem um ou dois algarismos significativos?",
+      "a": "Ambíguo: sem ponto decimal não está claro. Escrever 10 poderia significar que você mediu até o 10 mais próximo (1 alg. sig.) ou até o 1 mais próximo (2 alg. sig.). Para indicar 2 alg. sig. explicitamente, escreva 10. (com ponto decimal) ou 1,0 × 10¹. Na maioria dos contextos educacionais, 10 é considerado com 2 alg. sig., mas a comunicação científica requer que a notação torne isso inequívoco."
+    },
+    {
+      "q": "O que é notação científica e como ela ajuda com algarismos significativos?",
+      "a": "A notação científica expressa um número como um coeficiente (1 ≤ |coeficiente| < 10) multiplicado por uma potência de 10. Por exemplo, 45600 se torna 4,56 × 10⁴. O coeficiente contém apenas os algarismos significativos, então a notação torna a precisão explícita: 4,56 × 10⁴ inequivocamente tem 3 alg. sig., enquanto 4,5600 × 10⁴ tem 5. Esta é a forma padrão de eliminar a ambiguidade dos zeros finais em números inteiros."
+    }
+  ]
+}

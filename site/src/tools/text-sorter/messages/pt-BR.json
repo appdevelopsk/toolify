@@ -1,0 +1,111 @@
+{
+  "title": "Ordenador de Linhas de Texto Online — A–Z, Z–A, Remover Duplicatas",
+  "shortDescription": "Cole qualquer lista, ordene linhas de A a Z ou de Z a A, remova duplicatas e copie o resultado instantaneamente.",
+  "description": "Ordene linhas de texto em ordem alfabética ou inversa, com comparação opcional sem distinção de maiúsculas, remoção de duplicatas, eliminação de linhas vazias e corte de espaços em branco. Tudo é executado no seu navegador — nenhum dado é enviado a um servidor.",
+  "metaDescription": "Ordenador de texto gratuito online. Ordene linhas A-Z ou Z-A, remova duplicatas, corte espaços em branco e elimine linhas vazias, tudo no seu navegador de forma",
+  "keywords": [
+    "ordenar linhas de texto online",
+    "ordenador de texto",
+    "ordenar lista online",
+    "remover linhas duplicadas",
+    "ferramenta de ordenação",
+    "ordenar alfabeticamente"
+  ],
+  "label": {
+    "input": "Entrada — cole as linhas aqui",
+    "output": "Resultado ordenado"
+  },
+  "option": {
+    "direction": "Ordem:",
+    "dirAsc": "A → Z (crescente)",
+    "dirDesc": "Z → A (decrescente)",
+    "caseSensitive": "Diferenciar maiúsculas",
+    "removeDups": "Remover duplicatas",
+    "removeEmpty": "Remover linhas vazias",
+    "trim": "Cortar espaços em branco"
+  },
+  "action": {
+    "copy": "Copiar",
+    "copied": "Copiado!"
+  },
+  "stat": {
+    "lines": "{count} linhas"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Como funciona a ordenação de texto",
+        "paragraphs": [
+          "A ordenação divide o texto em linhas individuais, organiza-as lexicograficamente e as une novamente. A ordem lexicográfica é o mesmo princípio usado em dicionários: os caracteres são comparados um a um, da esquerda para a direita, usando seus pontos de código Unicode.",
+          "Por padrão, a ferramenta usa comparação sem distinção de maiúsculas, o que significa que 'apple', 'Apple' e 'APPLE' são tratados como idênticos para fins de ordenação. Ative o modo com distinção de maiúsculas quando precisar que as letras maiúsculas apareçam antes das minúsculas (por exemplo, 'Z' antes de 'a' na ordem ASCII)."
+        ]
+      },
+      {
+        "heading": "Casos de uso comuns",
+        "paragraphs": [
+          "Ordenar listas de nomes, nuvens de tags ou valores de colunas CSV são as tarefas mais comuns. Desenvolvedores frequentemente ordenam instruções de importação ou chaves de configuração para facilitar revisões de código e tornar as saídas de diff mais limpas.",
+          "Analistas de dados usam a ordenação de linhas para detectar rapidamente entradas duplicadas em listas exportadas ou para alinhar dois conjuntos de dados antes de uma comparação manual. A opção de remoção de duplicatas condensa uma lista com milhares de entradas para apenas os valores únicos com um clique."
+        ]
+      },
+      {
+        "heading": "Algoritmos de ordenação: o que acontece internamente",
+        "paragraphs": [
+          "Os motores JavaScript modernos usam uma variante otimizada do TimSort (um híbrido de ordenação por fusão e inserção) para o método Array.prototype.sort. O TimSort é estável, o que significa que as linhas comparadas como iguais preservam sua ordem relativa original — útil quando você ordena uma lista sem duplicatas e quer um comportamento consistente.",
+          "Para a grande maioria das listas de texto que você encontrará, o algoritmo termina em bem menos de um milissegundo no navegador, mesmo com dezenas de milhares de linhas. Se precisar de ordenação sensível ao idioma (por exemplo, caracteres acentuados em francês ou alemão ordenados corretamente), considere usar Intl.Collator no seu próprio código, pois esta ferramenta usa comparação simples de pontos de código Unicode para máxima velocidade."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Cole seu texto",
+        "text": "Clique na área de entrada e cole ou digite as linhas que deseja ordenar, um item por linha."
+      },
+      {
+        "name": "Escolha uma direção de ordenação",
+        "text": "Selecione 'A → Z' para ordem crescente ou 'Z → A' para ordem decrescente usando o menu suspenso."
+      },
+      {
+        "name": "Ative filtros opcionais",
+        "text": "Marque 'Remover duplicatas' para manter apenas linhas únicas, 'Remover linhas vazias' para eliminar linhas em branco, ou 'Cortar espaços' para remover espaços no início e no fim de cada linha antes de ordenar."
+      },
+      {
+        "name": "Copie o resultado",
+        "text": "O resultado ordenado aparece instantaneamente à direita. Clique em 'Copiar' para copiá-lo para a área de transferência."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "A ordenação acontece automaticamente?",
+      "a": "Sim. O resultado é atualizado em tempo real conforme você digita ou altera qualquer opção — não há botão de envio."
+    },
+    {
+      "q": "A ordenação diferencia maiúsculas por padrão?",
+      "a": "Não. Por padrão, a ferramenta ordena sem distinção de maiúsculas, de modo que 'Apple' e 'apple' são ordenados juntos. Ative a caixa de seleção 'Diferenciar maiúsculas' para usar a ordem bruta de pontos de código Unicode."
+    },
+    {
+      "q": "O que conta como uma linha?",
+      "a": "Cada caractere de nova linha (\\n) marca o fim de uma linha. Se você colar texto de uma planilha ou do Windows (finais de linha \\r\\n), a ferramenta lida com isso corretamente e ordena por linhas lógicas."
+    },
+    {
+      "q": "Posso ordenar números?",
+      "a": "A ferramenta ordena lexicograficamente, não numericamente. Isso significa que '10' é ordenado antes de '9' porque '1' < '9'. Para ordenação numérica, preencha os números com zeros à esquerda (por exemplo, '09' vs '10') antes de colar."
+    },
+    {
+      "q": "O que 'Remover duplicatas' faz exatamente?",
+      "a": "Mantém a primeira ocorrência de cada linha única e descarta as subsequentes idênticas. A comparação respeita sua configuração de maiúsculas, portanto 'Apple' e 'apple' são tratados como a mesma linha apenas no modo sem distinção de maiúsculas."
+    },
+    {
+      "q": "Meus dados saem do meu navegador?",
+      "a": "Não. Todo o processamento ocorre localmente em JavaScript. Nada é enviado a qualquer servidor."
+    },
+    {
+      "q": "Há um limite de linhas?",
+      "a": "Esta ferramenta não impõe nenhum limite estrito. O desempenho depende do seu dispositivo, mas os navegadores modernos lidam com centenas de milhares de linhas sem atraso perceptível."
+    },
+    {
+      "q": "Como ordeno uma coluna CSV?",
+      "a": "Copie os valores da coluna do seu aplicativo de planilha para a área de entrada (eles são colados como um valor por linha), aplique suas opções, copie o resultado ordenado e cole-o de volta. Em seguida, reconecte suas outras colunas manualmente ou em uma fórmula de planilha."
+    }
+  ]
+}

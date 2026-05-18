@@ -1,0 +1,84 @@
+{
+  "title": "Olasılık Hesaplayıcı — Temel, Permütasyon, Kombinasyon, Zar",
+  "shortDescription": "Olasılık, permütasyon (nPr), kombinasyon (nCr) ve zar atma sonuçlarını hesaplayın. Dört sekme her yaygın olasılık problemini kapsar.",
+  "description": "Tek araçta dört mod: elverişli ve toplam sonuçlardan temel olasılık, permütasyon nPr, kombinasyon nCr ve birden fazla zarla belirli bir toplam atma olasılığı. Sonuçlar kesir, ondalık, yüzde ve oran içerir.",
+  "metaDescription": "Ücretsiz olasılık hesaplayıcı: temel olasılık, permütasyon nPr, kombinasyon nCr ve zar olasılığı. Kesir, ondalık, yüzde ve oran olarak sonuçlar.",
+  "keywords": ["olasılık hesaplayıcı", "kombinasyon hesaplayıcı", "permütasyon hesaplayıcı", "nCr hesaplama", "nPr hesaplama", "zar olasılığı", "oran hesaplayıcı"],
+  "tab": {
+    "basic": "Temel Olasılık",
+    "permutation": "Permütasyon (nPr)",
+    "combination": "Kombinasyon (nCr)",
+    "dice": "Zar Olasılığı"
+  },
+  "input": {
+    "favorable": "Elverişli Sonuçlar",
+    "total": "Toplam Sonuçlar",
+    "n": "n (toplam öğe sayısı)",
+    "r": "r (seçilen öğe sayısı)",
+    "numDice": "Zar Sayısı",
+    "target": "Hedef Toplam",
+    "sides": "Zar Yüzü"
+  },
+  "result": {
+    "probability": "Olasılık",
+    "fraction": "Kesir",
+    "decimal": "Ondalık",
+    "percent": "Yüzde",
+    "oddsFor": "Lehte Oran",
+    "oddsAgainst": "Aleyhte Oran",
+    "permutations": "Permütasyon (nPr)",
+    "combinations": "Kombinasyon (nCr)"
+  },
+  "empty": "Hesaplamak için değerleri girin.",
+  "error": {
+    "invalid": "Geçersiz giriş: tüm değerlerin negatif olmayan tam sayı ve r ≤ n olduğunu kontrol edin.",
+    "overflow": "n ≤ 170 olmalıdır (JavaScript faktöriyel sınırı).",
+    "noOutcomes": "Toplam sonuç sıfırdan büyük olmalıdır.",
+    "favorableExceedsTotal": "Elverişli sonuçlar toplam sonuçları geçemez.",
+    "diceRange": "Hedef toplam bu zarlar için mümkün aralığın dışındadır."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Temel olasılık, oranlar ve aralarındaki fark",
+        "paragraphs": [
+          "Olasılık, elverişli sonuçların eşit derecede olası toplam sonuçlara oranıdır: P = elverişli / toplam. 0 (imkânsız) ile 1 (kesin) arasında değişir ve genellikle yüzde olarak ifade edilir. Adil altı yüzlü bir zarla 4 atma olasılığı 1/6 ≈ 16,667%'dir.",
+          "Oranlar aynı bilgiyi ifade etmenin farklı bir yoludur. Bir olay için LEHTE oran elverişli : elverişsiz şeklindedir; dolayısıyla 4 atma oranı 1:5'tir. ALEYHTe oran ise tersidir: 5:1. Oranlar spor bahislerinde ve kart oyunlarında yaygındır; olasılık istatistik ve bilimde daha yaygındır.",
+          "Bu hesaplayıcı kesri otomatik olarak en küçük terimlere indirger ve ondalık ile yüzde formlarını yan yana göstererek temsillar arasında kolayca dönüştürmeyi sağlar."
+        ]
+      },
+      {
+        "heading": "Permütasyon ve kombinasyon",
+        "paragraphs": [
+          "Her ikisi de n elemanlı bir kümeden r eleman seçmeyle ilgilidir; ancak permütasyonda sıra önemlidir, kombinasyonda önemli değildir. Permütasyon nPr = n! / (n − r)! sıralı düzenlemeleri sayar. Kombinasyon nCr = n! / (r! × (n − r)!) sırasız alt kümeleri sayar.",
+          "Örnek: {A, B, C}'den 2 harf seçme. Permütasyonlar: AB, BA, AC, CA, BC, CB — 6 sıralı çift. nPr = 3! / 1! = 6. Kombinasyonlar: AB, AC, BC — 3 sırasız alt küme. nCr = 3! / (2! × 1!) = 3. Her kombinasyon r! permütasyon ürettiğinden nPr = nCr × r! her zaman geçerlidir.",
+          "Desteklenen maksimum n değeri 170'tir. Bunun ötesinde n!, JavaScript'in kayan nokta aralığını (yaklaşık 1,8 × 10³⁰⁸) aşar. Çok büyük n veya r için logaritmik hesaplama veya sembolik kütüphaneler kullanmayı düşünün."
+        ]
+      },
+      {
+        "heading": "Zar olasılığı ve çarpma kuralı",
+        "paragraphs": [
+          "Birden fazla özdeş zar atılırken her zar bağımsızdır. Toplam sonuç sayısı yüz^zarSayısı'dır. Belirli bir toplamı elde etmenin kaç yolu olduğu, toplamı tüm zarlar arasında her zarın 1 ile yüz arasında bir değer gösterecek şekilde dağıtarak bulunur.",
+          "Bu hesaplayıcı, verilen hedef toplam için tam bileşim sayısını saymak üzere dinamik programlama kullanır. Örneğin, 2d6 (iki altı yüzlü zar) atıp 7 toplamı elde etme: 36 toplamdan 6 yol vardır (1+6, 2+5, 3+4, 4+3, 5+2, 6+1), olasılık 6/36 = 1/6 ≈ 16,667%.",
+          "Desteklenen zar türleri: d4, d6, d8, d10, d12 ve d20 (standart masa üstü RPG zarları). Zar sayısı 1 ile 6 arasında değişir. Hedef toplam, zarSayısı (hepsi bir) ile zarSayısı × yüz (hepsi maksimum) arasında olmalıdır."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Sekme seçin", "text": "Probleminize göre Temel Olasılık, Permütasyon, Kombinasyon veya Zar Olasılığı'nı seçin." },
+      { "name": "Girişleri doldurun", "text": "Temel olasılık için elverişli ve toplam sonuçları girin. nPr/nCr için n ve r'yi girin. Zar için zar sayısı, hedef toplam ve yüz sayısını seçin." },
+      { "name": "Sonuçları okuyun", "text": "Sonuçlar anında kesir, ondalık, yüzde ve oran (temel olasılık için) olarak görünür." },
+      { "name": "Hataları kontrol edin", "text": "Girişler geçersizse (r > n, toplam = 0 veya toplam aralık dışında), açık bir hata mesajı neyin düzeltilmesi gerektiğini açıklar." }
+    ]
+  },
+  "faq": [
+    { "q": "Permütasyon ile kombinasyon arasındaki fark nedir?", "a": "Permütasyon sıralı düzenlemeleri sayar (AB ≠ BA); kombinasyon sırasız alt kümeleri sayar (AB = BA). nPr = n! / (n−r)!; nCr = n! / (r! × (n−r)!). r > 1 için her zaman nPr ≥ nCr'dir." },
+    { "q": "Neden n 170 ile sınırlıdır?", "a": "JavaScript 64 bit IEEE 754 kayan nokta kullanır. 170! ≈ 7,26 × 10³⁰⁶ double içine sığar; 171! Infinity'ye taşar. Daha büyük faktöriyeller için BigInt veya logaritma tabanlı yaklaşım kullanın." },
+    { "q": "Oranlar olasılıktan nasıl farklıdır?", "a": "Olasılık P = elverişli / toplam. Lehte Oran = elverişli : elverişsiz = P : (1−P). Aleyhte Oran = elverişsiz : elverişli. %25 olasılık 1:3 (lehte) veya 3:1 (aleyhte) oranına karşılık gelir." },
+    { "q": "0! neye eşittir?", "a": "Konvansiyona göre 0! = 1. Bu, r = 0 veya r = n olduğunda nCr ve nPr formüllerini tutarlı tutar." },
+    { "q": "En az belirli bir toplam atma olasılığını hesaplayabilir miyim?", "a": "Bu araçla doğrudan değil. En az olasılıkları için, minimuminuzdan maksimumdaki (zarSayısı × yüz) tüm hedef değerler için tam olasılıkları toplayın. Zar sekmesi her belirli toplam için tam olasılığı verir." },
+    { "q": "nC0 veya nCn nedir?", "a": "Her ikisi de 1'e eşittir. Hiçbir şey seçmemenin (boş küme) tam olarak bir yolu vardır ve tüm öğeleri seçmenin de tam olarak bir yolu vardır." },
+    { "q": "Bu hesaplayıcı büyük faktöriyeller için doğru mu?", "a": "n 170'e kadar sonuçlar kayan nokta gösterimi içinde doğrudur. n 170'e yakınsa, bölmede kayan nokta yuvarlama nedeniyle son birkaç basamakta küçük göreli hatalar olabilir." },
+    { "q": "Tarayıcımdan veri gönderilir mi?", "a": "Hayır. Tüm hesaplamalar JavaScript'te yerel olarak çalışır. Sunucuya hiçbir şey iletilmez." }
+  ]
+}

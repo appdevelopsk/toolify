@@ -1,0 +1,141 @@
+{
+  "title": "Calcolatore di temperatura percepita dal vento",
+  "shortDescription": "Calcola l'indice di raffreddamento eolico e scopri quanto freddo si sente con la temperatura e la velocità del vento attuali.",
+  "description": "Inserisci la temperatura dell'aria e la velocità del vento per calcolare l'indice ufficiale di raffreddamento eolico usato dai meteorologi in Canada e negli USA. Il risultato mostra la temperatura apparente percepita dalla pelle esposta, con il rischio di congelamento e i limiti di esposizione raccomandati.",
+  "metaDescription": "Calcolatore gratuito di raffreddamento eolico con la formula NWS/MSC. Inserisci temperatura e velocità del vento per ottenere la temperatura percepita e il rischio di co…",
+  "keywords": [
+    "calcolatore raffreddamento eolico",
+    "temperatura percepita calcolatore",
+    "indice wind chill",
+    "temperatura apparente vento",
+    "calcolatore temperatura sentita"
+  ],
+  "unitToggle": {
+    "label": "Sistema di unità",
+    "metric": "Metrico (°C, km/h)",
+    "imperial": "Imperiale (°F, mph)"
+  },
+  "input": {
+    "temperature": "Temperatura dell'aria",
+    "temperaturePlaceholder": "es. −5",
+    "windSpeed": "Velocità del vento",
+    "windSpeedPlaceholder": "es. 30"
+  },
+  "result": {
+    "windChill": "Raffreddamento eolico",
+    "feelsLike": "Temperatura percepita",
+    "difference": "Più freddo della temperatura reale",
+    "frostbiteRisk": "Rischio di congelamento",
+    "exposure": "Esposizione sicura massima"
+  },
+  "risk": {
+    "safe": "Nessun rischio significativo",
+    "watch": "Attenzione — limitare l'esposizione prolungata",
+    "warning": "Avviso — congelamento in 30 min",
+    "danger": "Pericolo — congelamento in 10 min",
+    "critical": "Critico — congelamento in 5 min",
+    "extremeDanger": "Pericolo estremo — congelamento in 2 min"
+  },
+  "exposure": {
+    "safe": "Nessun limite (vestirsi adeguatamente)",
+    "watch": "30 minuti o più",
+    "warning": "Meno di 30 minuti",
+    "danger": "Meno di 10 minuti",
+    "critical": "Meno di 5 minuti",
+    "extremeDanger": "Meno di 2 minuti"
+  },
+  "info": {
+    "outOfRange": "Il raffreddamento eolico non si applica quando la temperatura supera 10°C (50°F) o la velocità del vento è inferiore a 4,8 km/h (3 mph). La formula è valida solo in quelle condizioni.",
+    "noWindChill": "Nessun effetto di raffreddamento eolico — la temperatura percepita è uguale a quella reale.",
+    "empty": "Inserisci temperatura e velocità del vento per calcolare il raffreddamento eolico."
+  },
+  "units": {
+    "celsius": "°C",
+    "fahrenheit": "°F",
+    "kmh": "km/h",
+    "mph": "mph"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cos'è il raffreddamento eolico e qual è l'origine della formula?",
+        "paragraphs": [
+          "Il raffreddamento eolico (detto anche indice di wind chill o temperatura apparente) misura la velocità con cui la pelle umana esposta perde calore in condizioni di freddo e vento. L'aria ferma forma un sottile strato isolante attorno al corpo; il vento rimuove questo strato, accelerando la perdita di calore e facendo sembrare l'aria più fredda di quanto indichi il termometro.",
+          "Il primo indice di raffreddamento eolico fu sviluppato nel 1945 dagli esploratori antartici Paul Siple e Charles Passel, che misurarono quanto tempo impiegasse una bottiglia di plastica piena d'acqua a congelare in diverse combinazioni di temperatura e vento. La loro formula fu ampiamente usata per decenni, ma criticata per aver sovrastimato la sensazione di freddo.",
+          "Nel novembre 2001, il National Weather Service (NWS) degli USA e Environment and Climate Change Canada (ECCC) adottarono congiuntamente una nuova formula derivata da prove su volontari umani. I partecipanti camminavano su tapis roulant in camere a clima controllato e sensori di trasferimento del calore sulla pelle del viso misuravano le velocità di raffreddamento reali. La formula attualmente usata è: WC = 13,12 + 0,6215T − 11,37V^0,16 + 0,3965T×V^0,16 (Celsius/km·h), con un equivalente imperiale in °F e mph.",
+          "La formula è fisicamente significativa solo quando la temperatura dell'aria è pari o inferiore a 10°C (50°F) e la velocità del vento supera 4,8 km/h (3 mph). Al di fuori di tali soglie il modello si degrada: l'aria calma non produce raffreddamento eolico e l'aria calda significa guadagno di calore anziché aumento della perdita di calore."
+        ]
+      },
+      {
+        "heading": "Rischio di congelamento e sicurezza al freddo",
+        "paragraphs": [
+          "Il congelamento si verifica quando il tessuto cutaneo gela. Il raffreddamento eolico accelera notevolmente il processo: con un wind chill di −27°C, la pelle esposta può sviluppare congelamenti entro 30 minuti. A −35°C questa finestra si riduce a 10 minuti. A −45°C sono 5 minuti e a −55°C o meno il congelamento può sopraggiungere entro 2 minuti.",
+          "Le soglie di rischio usate da Environment Canada e dal NWS sono: nessun rischio particolare sopra −27°C WC; allerta congelamento da −27°C a −35°C; avviso da −35°C a −45°C; pericolo da −45°C a −55°C; e pericolo estremo sotto −55°C. Queste coincidono con le soglie mostrate in questo calcolatore.",
+          "Le principali misure di protezione includono coprire tutta la pelle esposta (specialmente guance, naso, orecchie, dita delle mani e dei piedi), rimanere asciutti (i vestiti bagnati perdono circa il 90% del loro valore isolante), vestirsi a strati per trattenere l'aria calda e avvisare qualcuno del percorso pianificato e dell'orario di rientro. I bambini e gli anziani sono più vulnerabili ai congelamenti perché i loro sistemi di termoregolazione sono meno efficienti.",
+          "Il raffreddamento eolico non influisce sugli oggetti inanimati nello stesso modo. Il motore della tua auto, un tubo ghiacciato o una bottiglia d'acqua non si raffredderanno al di sotto della temperatura reale dell'aria — il raffreddamento eolico è specifico per gli oggetti che generano il proprio calore (come il corpo umano). Un'auto parcheggiata all'aperto raggiungerà la temperatura ambientale, ma non scenderà al di sotto di essa, indipendentemente dalla velocità del vento."
+        ]
+      },
+      {
+        "heading": "Raffreddamento eolico vs indice di calore: le due facce della temperatura percepita",
+        "paragraphs": [
+          "La temperatura apparente è il concetto generale: descrive la temperatura percepita da una persona, tenendo conto dell'interazione tra la temperatura dell'aria e l'umidità (indice di calore) o il vento (raffreddamento eolico). Le due formule funzionano in stagioni opposte e non vengono mai applicate contemporaneamente.",
+          "L'indice di calore (chiamato humidex in Canada) si applica quando le temperature superano circa 27°C (80°F). L'alta umidità rallenta l'evaporazione del sudore, riducendo il principale meccanismo di raffreddamento del corpo e facendo sembrare l'aria più calda di quanto indichi il termometro.",
+          "Il raffreddamento eolico, al contrario, è una misura invernale: si applica sotto i 10°C (50°F). Anziché bloccare il raffreddamento come fa l'umidità in estate, il vento accelera il raffreddamento perturbando lo strato limite di aria calda attorno alla pelle.",
+          "Insieme, l'indice di calore e il raffreddamento eolico offrono ai meteorologi un quadro completo del comfort termico all'aperto in tutta la gamma delle condizioni meteorologiche. Entrambe sono metriche indicative, non misure fisiologiche dirette: fattori individuali come il livello di forma fisica, l'abbigliamento, la composizione corporea e l'acclimatazione influenzano tutti come una determinata persona percepisce effettivamente la temperatura."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Seleziona il sistema di unità",
+        "text": "Scegli Metrico (°C e km/h) o Imperiale (°F e mph) in base al bollettino meteorologico che hai."
+      },
+      {
+        "name": "Inserisci la temperatura dell'aria",
+        "text": "Digita la temperatura dell'aria attuale. La formula è valida a 10°C (50°F) o inferiore."
+      },
+      {
+        "name": "Inserisci la velocità del vento",
+        "text": "Digita la velocità del vento sostenuta. Deve essere superiore a 4,8 km/h (3 mph) affinché la formula si applichi."
+      },
+      {
+        "name": "Leggi il risultato",
+        "text": "La temperatura di raffreddamento eolico calcolata, quanto più freddo si percepisce rispetto alla temperatura reale dell'aria e il livello di rischio di congelamento vengono visualizzati istantaneamente sotto i campi di input."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Cos'è il raffreddamento eolico?",
+      "a": "Il raffreddamento eolico è la temperatura apparente percepita dalla pelle umana esposta a causa della combinazione di aria fredda e vento. Il vento rimuove il sottile strato di aria calda che normalmente si trova contro la pelle, aumentando il tasso di perdita di calore e facendoti sentire più freddo di quanto indichi il termometro."
+    },
+    {
+      "q": "Quale formula usa questo calcolatore?",
+      "a": "Utilizza la formula ufficiale NWS/Environment Canada adottata nel 2001. Metrico: WC = 13,12 + 0,6215T − 11,37V^0,16 + 0,3965T×V^0,16, con T in °C e V in km/h. Imperiale: WC = 35,74 + 0,6215T − 35,75V^0,16 + 0,4275T×V^0,16, con T in °F e V in mph. La formula è stata validata su soggetti umani e ha sostituito il vecchio modello Siple–Passel."
+    },
+    {
+      "q": "Perché il raffreddamento eolico non si applica sopra 10°C (50°F)?",
+      "a": "Sopra 10°C il modello di raffreddamento eolico prevede un valore superiore alla temperatura reale dell'aria per venti moderati, il che è fisicamente fuorviante. Il NWS ha scelto 10°C come limite superiore in cui la formula rappresenta in modo affidabile la perdita di calore umana. Con tempo caldo, l'umidità (non la velocità del vento) è il fattore dominante nella temperatura percepita."
+    },
+    {
+      "q": "Perché il raffreddamento eolico non si applica sotto 4,8 km/h (3 mph)?",
+      "a": "A velocità del vento molto basse la formula diventa inaffidabile perché il termine matematico V^0,16 si avvicina a 1 e l'equazione degenera. Le condizioni di calma o quasi calma vengono gestite riportando la temperatura reale dell'aria come temperatura apparente."
+    },
+    {
+      "q": "Il raffreddamento eolico influisce sulla velocità con cui la mia auto o i tubi si congelano?",
+      "a": "No. Il raffreddamento eolico descrive solo la perdita di calore degli oggetti che producono il proprio calore corporeo — non abbassa la temperatura reale dell'aria. Un blocco motore, un tubo dell'acqua o una conduttura del carburante raggiungeranno alla fine la temperatura reale dell'aria, ma non scenderanno mai al di sotto di essa a causa del vento."
+    },
+    {
+      "q": "Con quale rapidità possono verificarsi i congelamenti?",
+      "a": "Con un raffreddamento eolico di −27°C (−17°F), i congelamenti sulla pelle esposta possono verificarsi in 30 minuti. A −35°C (−31°F) la finestra è di circa 10 minuti; a −45°C (−49°F) scende a 5 minuti, e a −55°C (−67°F) o inferiore, il congelamento può svilupparsi in 2 minuti. Queste soglie provengono dal grafico di allerta NWS/Environment Canada."
+    },
+    {
+      "q": "Il raffreddamento eolico è uguale all'humidex o all'indice di calore?",
+      "a": "No. L'humidex e l'indice di calore sono metriche estive che tengono conto dell'umidità che rende il caldo afoso ancora più opprimente. Il raffreddamento eolico è una metrica invernale che tiene conto del vento che rende il freddo ancora più pungente. Le due non vengono mai applicate contemporaneamente."
+    },
+    {
+      "q": "Cosa devo indossare quando il raffreddamento eolico è nella zona di avviso?",
+      "a": "Copri tutta la pelle esposta: indossa un passamontagna o una maschera facciale, guanti isolanti e strati esterni impermeabili. Vesti con strati base traspiranti per rimanere asciutto — i vestiti bagnati perdono fino al 90% del loro valore isolante. Limita l'esposizione all'aperto a meno di 30 minuti e avvisa qualcuno se esci in condizioni di avviso o pericolo."
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "title": "Ohm Yasası Hesaplayıcı — Voltaj, Akım, Direnç ve Güç",
+  "shortDescription": "Ohm Yasası (V=IR) ve güç formülünü (P=VI) kullanarak voltaj, akım, direnç veya gücü hesaplayın. Dört değerin tamamını akıllı birim gösterimiyle gösterir.",
+  "description": "Hesaplamak istediğiniz elektriksel büyüklüğü seçin, diğer iki değeri girin ve voltaj (V), akım (I), direnç (R) ile gücü (P) anında alın. Miliamper, mikroamper, kiloom, megaom, miliwatt ve kilowatt desteklenmektedir. Kullanılan formül her sonuçla birlikte gösterilir.",
+  "metaDescription": "Ücretsiz Ohm Yasası hesaplayıcı. V=IR ve P=VI ile voltaj, akım, direnç veya güç hesaplayın. mA, kΩ, MΩ, mW desteği. Anında sonuç.",
+  "keywords": ["ohm yasası hesaplayıcı", "voltaj akım direnç hesaplayıcı", "elektronik güç hesaplayıcı", "ohm hesaplayıcı", "V=IR hesaplayıcı"],
+  "empty": "Ne hesaplanacağını seçin ve diğer iki değeri girin.",
+  "input": {
+    "solveLabel": "Hesapla",
+    "voltage": "Voltaj",
+    "voltagePlaceholder": "örn. 12",
+    "current": "Akım",
+    "currentPlaceholder": "örn. 0.5",
+    "resistance": "Direnç",
+    "resistancePlaceholder": "örn. 100",
+    "power": "Güç",
+    "powerPlaceholder": "örn. 5",
+    "pairVI": "Voltaj ve Akım",
+    "pairVR": "Voltaj ve Direnç",
+    "pairIR": "Akım ve Direnç"
+  },
+  "result": {
+    "voltage": "Voltaj",
+    "current": "Akım",
+    "resistance": "Direnç",
+    "power": "Güç",
+    "formula": "Kullanılan formül"
+  },
+  "error": {
+    "invalidInput": "Geçersiz giriş — lütfen geçerli sayılar girin.",
+    "divisionByZero": "Sıfıra bölme — direnç veya akım sıfır olamaz.",
+    "needTwoValues": "Bilinmeyeni hesaplamak için iki bilinen değeri girin."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ohm Yasası Nedir?",
+        "paragraphs": [
+          "Ohm Yasası, sıcaklık sabit kaldığı sürece bir iletkenin uçlarındaki voltajın, içinden geçen akımla doğru orantılı olduğunu belirtir. Alman fizikçi Georg Simon Ohm tarafından 1827'de formüle edilen yasa, V = I × R olarak ifade edilir; burada V voltajı volt (V) cinsinden, I akımı amper (A) cinsinden ve R direnci om (Ω) cinsinden temsil eder. Ohm, farklı uzunluk ve kalınlıklardaki tellerle yaptığı deneylerle bu ilişkiyi keşfetti; sabit voltajda direncin iki katına çıkmasının akımı yarıya indirdiğini fark etti.",
+          "Ohm Yasası, sabit sıcaklıkta metal iletkenlerin ve birçok dirençli malzemenin büyük çoğunluğuna uygulanır — bunlar omik malzemeler olarak adlandırılır. Diyot, transistör ve akkor lambalar gibi omik olmayan aygıtlar doğrusal bir V-I ilişkisi göstermediğinden Ohm Yasası bunlar için yalnızca bir yaklaşımdır. Devre tasarımında V = IR en sık kullanılan denklemdir: kablo kesitini, direnç değerlerini, bileşenler üzerindeki voltaj düşümünü ve güvenli çalışma sınırlarını belirler."
+        ]
+      },
+      {
+        "heading": "Elektrik devrelerinde güç",
+        "paragraphs": [
+          "Elektrik gücü, enerjinin aktarılma veya tüketilme hızıdır; watt (W) cinsinden ölçülür. Gücü temel elektriksel büyüklüklerle ilişkilendiren üç eşdeğer formül vardır: P = V × I (güç, voltaj çarpı akıma eşittir), P = I² × R (akım ve direnç bilindiğinde kullanışlıdır) ve P = V² / R (voltaj ve direnç bilindiğinde kullanışlıdır). Üçü de doğrudan Ohm Yasası'ndan ve güç tanımından türetilmiştir.",
+          "Güç kaybı pratikte önemlidir çünkü dirençler, kablolar ve diğer bileşenler elektrik enerjisini ısıya dönüştürür. Her direncin bir güç değerlendirmesi vardır — yaygın delikli tipler için genellikle 0,125 W, 0,25 W, 0,5 W veya 1 W — ve bu değeri aşmak bileşenin aşırı ısınmasına ve arızalanmasına neden olur. Örneğin 5 V devresindeki 100 Ω direnç I = 5/100 = 50 mA iletir ve P = 0,05² × 100 = 0,25 W güç tüketir; dolayısıyla çeyrek watt direnç minimum güvenli seçimdir. Her zaman en az %50 güvenlik payı ekleyin."
+        ]
+      },
+      {
+        "heading": "Seri ve paralel devreler",
+        "paragraphs": [
+          "Seri devrede dirençler uç uca bağlanır ve tümünden aynı akım geçer. Toplam direnç basitçe toplamıdır: R_toplam = R1 + R2 + R3 + ... Voltaj, her dirençte değeriyle orantılı olarak bölünür (V_n = I × R_n). Bu, önyükleme noktalarını ayarlamak veya sensör çıkışlarını ölçeklemek için kullanılan voltaj bölücü devrelerin temelidir.",
+          "Paralel devrede dirençler aynı voltajı paylaşır ancak akım dallar arasında bölünür. Toplam direnç, ters değer kuralına uyar: 1/R_toplam = 1/R1 + 1/R2 + 1/R3 + ... İki direnç için kısayol R_toplam = (R1 × R2) / (R1 + R2)'dir. Paralel kombinasyonlar her zaman en küçük tek dirençten daha düşük toplam direnç üretir. Her iki konfigürasyonu anlamak, her bileşene doğru voltaj ve akımı sağlayan devreler tasarlamanıza, sigorta ve kabloları doğru boyutlandırmanıza ve arızaları verimli şekilde gidermenize olanak tanır."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Bilinmeyen büyüklüğü seçin",
+        "text": "Ne hesaplamak istediğinizi seçmek için dört düğmeden birine — Voltaj (V), Akım (I), Direnç (R) veya Güç (P) — tıklayın. Giriş alanları güncellenerek girmeniz gereken iki değeri gösterir."
+      },
+      {
+        "name": "İki bilinen değeri girin",
+        "text": "Bilinen değerleri giriş alanlarına yazın. Uygun ölçeği seçmek için birim açılır menüsünü kullanın: küçük akımlar için miliamper (mA) veya mikroamper (µA), büyük dirençler için kiloom (kΩ) veya megaom (MΩ) ve güç için miliwatt (mW) veya kilowatt (kW)."
+      },
+      {
+        "name": "Dört sonucun tamamını okuyun",
+        "text": "Hesaplayıcı voltajı, akımı, direnci ve gücü anında birlikte gösterir. Hesaplanan değer maviye vurgulanır. 0,001'den küçük değerler okunabilirlik için otomatik olarak mili veya mikro önekiyle gösterilir."
+      },
+      {
+        "name": "Uygulanan formülü not edin",
+        "text": "Sonuçların üzerindeki amber rozet kullanılan formülü gösterir — örneğin V = I × R veya P = V² / R. Bu, ilişkiyi anlamanıza ve hesabı elle doğrulamanıza yardımcı olur."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Ohm Yasası basit ifadeyle ne demektir?",
+      "a": "Ohm Yasası, bir telden elektrik geçiren voltajı artırırsanız daha fazla akımın aktığını — direnci artırırsanız daha az akımın aktığını söyler. Kesin ilişki V = I × R'dir: voltaj, akım çarpı dirençe eşittir. Bu üç büyüklükten herhangi ikisini bilmek üçüncüsünü hesaplamanıza olanak tanır."
+    },
+    {
+      "q": "Ohm Yasasında hangi birimler kullanılır?",
+      "a": "Voltaj volt (V), akım amper (A) ve direnç om (Ω) cinsinden ölçülür. Bu birimler 1 V = 1 A × 1 Ω olacak şekilde tanımlanmıştır. Pratikte küçük akımlar için miliamper (1 mA = 0,001 A), daha büyük dirençler için kiloom (1 kΩ = 1.000 Ω) ve giriş koruma devreleri gibi çok yüksek dirençler için megaom (1 MΩ = 1.000.000 Ω) sıkça kullanılır."
+    },
+    {
+      "q": "Ohm Yasasını kullanarak voltaj nasıl hesaplanır?",
+      "a": "Akımı (amper cinsinden) dirençle (om cinsinden) çarpın: V = I × R. Örneğin, 50 Ω'luk bir dirençten 2 A akıyorsa üzerindeki voltaj düşümü 2 × 50 = 100 V'dur. Akımınız miliamper cinsindense önce dönüştürün: 200 mA = 0,2 A, dolayısıyla V = 0,2 × 50 = 10 V."
+    },
+    {
+      "q": "Voltaj ve direnç bilindiğinde akım nasıl bulunur?",
+      "a": "Ohm Yasasını düzenleyerek I = V / R elde edin. 470 Ω'luk bir dirençle bağlı 9 V'luk bir pil varsa akım 9 / 470 ≈ 0,0191 A, yani yaklaşık 19,1 mA'dır. Bu, dirençten geçen akım olup tükettiği gücü de belirler."
+    },
+    {
+      "q": "Güç ile Ohm Yasası arasındaki ilişki nedir?",
+      "a": "Güç (P), enerjinin ne kadar hızlı tüketildiğini watt cinsinden ölçer. Ohm Yasasıyla üç eşdeğer formül aracılığıyla bağlanır: P = V × I, P = I² × R ve P = V² / R. Üçü de aynı sonucu verir; zaten bildiğiniz büyüklüklere uyanı seçin. 10 V'da 0,1 A ileten bir direnç için: P = 10 × 0,1 = 1 W."
+    },
+    {
+      "q": "Ohm Yasası AC devreler için de geçerli midir?",
+      "a": "Ohm Yasası, AC devrelerdeki saf dirençlere DC devrelerinde olduğu gibi uygulanır. Ancak AC devreleri aynı zamanda kondansatörler ve bobinler de içerir; bunlar reaktans (frekansa bağlı akım direnci) ekler. AC için genelleştirme, basit direnç yerine empedans (Z) kullanır: V = I × Z; burada Z karmaşık bir sayıdır. Ses, radyo ve güç elektroniği çalışmalarında temel Ohm Yasasının ötesinde karmaşık empedans hesaplamaları gereklidir."
+    },
+    {
+      "q": "Direnç neden ısınmaya neden olur?",
+      "a": "Akım bir dirençten geçtiğinde elektronlar malzemenin atomlarıyla çarpışır ve kinetik enerjiyi ısı olarak aktarır. Isı olarak yayılan güç P = I² × R'ye eşittir — buna Joule ısısı denir. Daha yüksek akım veya direnç daha fazla ısı anlamına gelir. Bu nedenle yüksek akım kabloları kalın, düşük dirençli iletkenler kullanır ve dirençlerin aşırı ısınmayı önleyen güç değerlendirmeleri vardır."
+    },
+    {
+      "q": "Bir direncin güç değerlendirmesini aşarsam ne olur?",
+      "a": "Güç değerlendirmesini aşmak direncin aşırı ısınmasına neden olur. Orta düzeyde aşırı yükte değerinden sapabilir veya güvenilmez hale gelebilir. Şiddetli aşırı yükte direnç duman çıkarabilir, çatlayabilir veya alev alabilir. Her zaman P = I² × R hesaplayın ve beklenen gücün en az 1,5 ila 2 katı güç değerlendirmesine sahip bir direnç seçin. Yaygın değerlendirmeler delikli bileşenler için 0,1 W, 0,25 W, 0,5 W, 1 W ve 2 W'dir."
+    }
+  ]
+}

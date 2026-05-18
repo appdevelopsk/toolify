@@ -1,0 +1,115 @@
+{
+  "title": "Mathematischer Ausdrucksrechner — beliebige Formeln online berechnen",
+  "shortDescription": "Geben Sie einen mathematischen Ausdruck ein und erhalten Sie sofort das Ergebnis. Unterstützt Arithmetik, Potenzen, Wurzeln, Trigonometrie, Logarithmen und mehr.",
+  "description": "Geben Sie einen mathematischen Ausdruck mit +, -, *, /, ^, %, Klammern und Funktionen wie sqrt, sin, cos, log ein. Die Ergebnisse erscheinen sofort während der Eingabe. Keine externen Bibliotheken — der Parser läuft vollständig in Ihrem Browser, ohne Daten an einen Server zu senden.",
+  "metaDescription": "Kostenloser Online-Rechner für mathematische Ausdrücke. Unterstützt Arithmetik, Potenzen, sqrt, Trigonometrie (Grad), log und mehr. Beliebige Formel eingeben und sofort",
+  "keywords": [
+    "mathematischer Ausdrucksrechner",
+    "Formelrechner online",
+    "Ausdrucksauswertung",
+    "wissenschaftlicher Rechner",
+    "Mathematik-Parser"
+  ],
+  "input": {
+    "label": "Ausdruck",
+    "hint": "z. B. 2^10 + sqrt(16)"
+  },
+  "result": {
+    "label": "Ergebnis",
+    "empty": "Geben Sie oben einen mathematischen Ausdruck ein, um das Ergebnis zu sehen."
+  },
+  "examples": {
+    "label": "Beispiele — klicken zum Laden",
+    "list": [
+      "2^10 + sqrt(16)",
+      "sin(45) * cos(30)",
+      "(3 + 5) * 2^3 / 4",
+      "log10(1000) + log2(8)",
+      "sqrt(3^2 + 4^2)",
+      "floor(pi * 100) / 100"
+    ]
+  },
+  "error": {
+    "invalid": "Ungültiger Ausdruck — prüfen Sie Klammern, Operatoren und Funktionsnamen."
+  },
+  "note": {
+    "degrees": "Trigonometrische Funktionen (sin, cos, tan) verwenden Grad."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Unterstützte Operationen und Funktionen",
+        "paragraphs": [
+          "Der Rechner verarbeitet die vier grundlegenden Rechenoperatoren (+, -, *, /) sowie Potenzierung (^) und Modulo (%). Klammern lassen sich beliebig tief verschachteln.",
+          "Die integrierten Funktionen decken die häufigsten mathematischen Anforderungen ab: sqrt(x) und cbrt(x) für Quadrat- und Kubikwurzel; abs(x) für den Absolutbetrag; sin(x), cos(x), tan(x) für Trigonometrie in Grad; log(x) für den natürlichen Logarithmus, log2(x) und log10(x) für Logarithmen zur Basis 2 und 10; sowie floor(x), ceil(x), round(x) zum Runden. Die Konstanten pi und e sind über ihren Namen verfügbar."
+        ]
+      },
+      {
+        "heading": "Praktische Einsatzmöglichkeiten der Ausdrucksauswertung",
+        "paragraphs": [
+          "Schnelle Berechnungsketten sind die Stärke von Ausdrucksrechnern. Statt Zahlen Schritt für Schritt in einen Taschenrechner einzutippen — und möglicherweise ein Zwischenergebnis zu vergessen — können Sie die gesamte Kette als einen einzigen Ausdruck eingeben und die Antwort auf einmal sehen.",
+          "Ingenieur- und wissenschaftliche Aufgaben wie Einheitenumrechnungen, Spannungsberechnungen oder statistische Formeln erfordern oft Kombinationen aus Quadratwurzeln, Potenzen und Logarithmen. Die vollständige Formel hier einzugeben hinterlässt einen nachvollziehbaren Berechnungsnachweis, anders als eine Folge von Tastendrücken auf einem physischen Rechner."
+        ]
+      },
+      {
+        "heading": "Vorrangregeln (Operatorenreihenfolge)",
+        "paragraphs": [
+          "Der Parser folgt der mathematischen Standardreihenfolge: zuerst Klammern, dann Potenzierung (rechtsassoziativ), dann Multiplikation/Division/Modulo (links nach rechts), dann Addition und Subtraktion (links nach rechts). Das entspricht den BODMAS/PEMDAS-Regeln aus der Schule.",
+          "Das unäre Minus wird unterstützt (z. B. wird -3^2 als -(3^2) = -9 ausgewertet, was der üblichen mathematischen Notation entspricht). Wenn Sie (-3)^2 = 9 benötigen, fügen Sie explizite Klammern hinzu. Im Zweifelsfall großzügig Klammern setzen — sie verbessern die Lesbarkeit und schaden nie."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Ausdruck eingeben",
+        "text": "Klicken Sie auf das Eingabefeld und tippen Sie Ihre Formel. Verwenden Sie * für Multiplikation und ^ für Potenzierung."
+      },
+      {
+        "name": "Funktionen und Konstanten nutzen",
+        "text": "Fügen Sie Funktionen wie sqrt(25) oder sin(45) hinzu. Verwenden Sie pi und e als numerische Konstanten."
+      },
+      {
+        "name": "Beispiel ausprobieren",
+        "text": "Klicken Sie auf einen der Beispiel-Buttons, um einen vorgefertigten Ausdruck zu laden und die Syntax kennenzulernen."
+      },
+      {
+        "name": "Ergebnis ablesen",
+        "text": "Die Antwort erscheint sofort unterhalb des Eingabefelds. Bei einem ungültigen Ausdruck erklärt eine Fehlermeldung den Grund."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Warum verwenden Winkelfunktionen Grad statt Bogenmaß?",
+      "a": "Grad sind für den Alltag intuitiver — die meisten Menschen denken bei Winkeln an 0 bis 360, nicht an 0 bis 2π. Der Parser konvertiert intern, sodass sin(90) = 1 wie erwartet gilt. Wenn Sie Bogenmaß benötigen, multiplizieren Sie mit pi/180: sin(1.5708) liefert dasselbe Ergebnis wie sin(90)."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen log und log10?",
+      "a": "log(x) berechnet den natürlichen Logarithmus (Basis e ≈ 2,718). log10(x) verwendet Basis 10, was die meisten Menschen meinen, wenn sie 'log' außerhalb der Analysis schreiben. log2(x) verwendet Basis 2, gebräuchlich in der Informationstheorie und Informatik."
+    },
+    {
+      "q": "Bedeutet ^ Potenzierung oder bitweises XOR?",
+      "a": "In diesem Rechner bedeutet ^ immer Potenzierung, nicht bitweises XOR. Also gilt 2^10 = 1024. Für Bitoperationen wäre ein anderes Werkzeug nötig."
+    },
+    {
+      "q": "Kann ich Leerzeichen in Ausdrücken verwenden?",
+      "a": "Ja. Leerzeichen werden vom Parser ignoriert, daher ist '2 ^ 10 + sqrt( 16 )' äquivalent zu '2^10+sqrt(16)'. Leerzeichen überall dort einfügen, wo sie die Lesbarkeit verbessern."
+    },
+    {
+      "q": "Was passiert, wenn ich durch null dividiere?",
+      "a": "Der Rechner erkennt die Division durch null und zeigt eine Fehlermeldung an, anstatt Infinity oder NaN darzustellen. Ausdruck korrigieren und erneut versuchen."
+    },
+    {
+      "q": "Wie viele Nachkommastellen zeigt das Ergebnis?",
+      "a": "Bis zu 10 signifikante Nachkommastellen, formatiert im Zahlenformat Ihrer Region. Kleine Rundungsfehler bei Gleitkommazahlen (wie 0,9999999999 statt 1) sind eine normale Folge der binären Gleitkommaarithmetik."
+    },
+    {
+      "q": "Ist das sicherer als eval() in JavaScript?",
+      "a": "Ja. Dieses Tool verwendet einen handgeschriebenen rekursiven Abstiegs-Parser, der nur die aufgelisteten Operatoren und Funktionen erkennt. Es wird nie eval() oder ein Äquivalent aufgerufen, daher kann kein beliebiger Code injiziert oder ausgeführt werden."
+    },
+    {
+      "q": "Verlässt mein Ausdruck meinen Browser?",
+      "a": "Nein. Der Parser läuft vollständig in Ihrem Browser. Nichts, was Sie eingeben, wird an einen Server gesendet oder irgendwo protokolliert."
+    }
+  ]
+}

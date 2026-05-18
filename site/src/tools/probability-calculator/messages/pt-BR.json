@@ -1,0 +1,128 @@
+{
+  "title": "Calculadora de Probabilidade — Básica, Permutações, Combinações, Dados",
+  "shortDescription": "Calcule probabilidades, permutações (nPr), combinações (nCr) e resultados de rolagem de dados. Quatro abas dedicadas cobrem todos os problemas comuns de probabilidade.",
+  "description": "Quatro modos em uma única ferramenta: probabilidade básica a partir de resultados favoráveis e totais, permutações nPr, combinações nCr e a probabilidade de obter uma soma específica com múltiplos dados. Resultados em fração, decimal, porcentagem e odds.",
+  "metaDescription": "Calculadora de probabilidade gratuita: probabilidade básica, permutações nPr, combinações nCr e probabilidade de dados. Resultados como fração, decimal, porcentagem e",
+  "keywords": [
+    "calculadora de probabilidade",
+    "calculadora de combinações",
+    "calculadora de permutações",
+    "calculadora nCr",
+    "calculadora nPr",
+    "probabilidade de dados",
+    "calculadora de odds"
+  ],
+  "tab": {
+    "basic": "Probabilidade Básica",
+    "permutation": "Permutações (nPr)",
+    "combination": "Combinações (nCr)",
+    "dice": "Probabilidade de Dados"
+  },
+  "input": {
+    "favorable": "Resultados Favoráveis",
+    "total": "Resultados Totais",
+    "n": "n (total de itens)",
+    "r": "r (itens escolhidos)",
+    "numDice": "Número de Dados",
+    "target": "Soma Alvo",
+    "sides": "Faces do Dado"
+  },
+  "result": {
+    "probability": "Probabilidade",
+    "fraction": "Fração",
+    "decimal": "Decimal",
+    "percent": "Porcentagem",
+    "oddsFor": "Odds a Favor",
+    "oddsAgainst": "Odds Contra",
+    "permutations": "Permutações (nPr)",
+    "combinations": "Combinações (nCr)"
+  },
+  "empty": "Insira valores para calcular.",
+  "error": {
+    "invalid": "Entrada inválida: verifique se todos os valores são inteiros não negativos e r ≤ n.",
+    "overflow": "n deve ser ≤ 170 (limite de fatorial do JavaScript).",
+    "noOutcomes": "O número total de resultados deve ser maior que zero.",
+    "favorableExceedsTotal": "Os resultados favoráveis não podem exceder os resultados totais.",
+    "diceRange": "A soma alvo está fora do intervalo possível para esses dados."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Probabilidade básica, odds e suas diferenças",
+        "paragraphs": [
+          "Probabilidade é a razão entre os resultados favoráveis e os resultados totais igualmente prováveis: P = favoráveis / total. Varia de 0 (impossível) a 1 (certo) e frequentemente é expressa como porcentagem. Para um dado justo de seis faces, a probabilidade de rolar um 4 é 1/6 ≈ 16,667%.",
+          "Odds são outra forma de expressar a mesma informação. Os odds A FAVOR de um evento são favoráveis : desfavoráveis, então rolar um 4 tem odds de 1:5. Os odds CONTRA são o inverso: 5:1. Odds são comuns em apostas esportivas e jogos de cartas; probabilidade é mais comum em estatística e ciências.",
+          "Esta calculadora simplifica a fração automaticamente para os menores termos e mostra as formas decimal e percentual lado a lado, facilitando a conversão entre representações."
+        ]
+      },
+      {
+        "heading": "Permutações vs. combinações",
+        "paragraphs": [
+          "Ambas envolvem a seleção de r itens de um conjunto de n, mas a ordem importa nas permutações e não nas combinações. Permutações nPr = n! / (n − r)! conta arranjos ordenados. Combinações nCr = n! / (r! × (n − r)!) conta subconjuntos não ordenados.",
+          "Exemplo: escolher 2 letras de {A, B, C}. Permutações: AB, BA, AC, CA, BC, CB — 6 pares ordenados, nPr = 3! / 1! = 6. Combinações: AB, AC, BC — 3 subconjuntos não ordenados, nCr = 3! / (2! × 1!) = 3. Como cada combinação gera r! permutações, nPr = nCr × r! é sempre válido.",
+          "O máximo n suportado é 170. Acima disso, n! excede o intervalo de ponto flutuante do JavaScript (aprox. 1,8 × 10³⁰⁸). Para n ou r muito grandes, considere cálculos logarítmicos ou bibliotecas simbólicas."
+        ]
+      },
+      {
+        "heading": "Probabilidade de dados e a regra da multiplicação",
+        "paragraphs": [
+          "Ao rolar múltiplos dados idênticos, cada dado é independente. O número total de resultados é facesNúmeroDados. O número de formas de atingir uma soma específica é encontrado contando composições: distribuir a soma por todos os dados de forma que cada um mostre um valor entre 1 e o número de faces.",
+          "Esta calculadora usa programação dinâmica para contar o número exato de composições para a soma alvo fornecida. Por exemplo, rolar 2d6 (dois dados de seis faces) e obter soma 7: há 6 formas (1+6, 2+5, 3+4, 4+3, 5+2, 6+1) de 36 totais, resultando em probabilidade 6/36 = 1/6 ≈ 16,667%.",
+          "Tipos de dados suportados: d4, d6, d8, d10, d12 e d20 (dados padrão de RPG de mesa). O número de dados vai de 1 a 6. A soma alvo deve estar entre o número de dados (todos em 1) e número de dados × faces (todos no máximo)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolha uma aba",
+        "text": "Selecione «Probabilidade Básica», «Permutações», «Combinações» ou «Probabilidade de Dados» conforme o seu problema."
+      },
+      {
+        "name": "Insira os valores",
+        "text": "Para probabilidade básica, informe resultados favoráveis e totais. Para nPr/nCr, insira n e r. Para dados, escolha número de dados, soma alvo e faces."
+      },
+      {
+        "name": "Leia os resultados",
+        "text": "Os resultados aparecem instantaneamente como fração, decimal, porcentagem e odds (para probabilidade básica)."
+      },
+      {
+        "name": "Verifique os erros",
+        "text": "Se os dados forem inválidos (r > n, total = 0 ou soma fora do intervalo), uma mensagem clara explica o que corrigir."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual é a diferença entre permutações e combinações?",
+      "a": "Permutações contam arranjos ordenados (AB ≠ BA); combinações contam subconjuntos não ordenados (AB = BA). nPr = n! / (n−r)!; nCr = n! / (r! × (n−r)!). Para r > 1, sempre nPr ≥ nCr."
+    },
+    {
+      "q": "Por que n é limitado a 170?",
+      "a": "JavaScript usa ponto flutuante IEEE 754 de 64 bits. 170! ≈ 7,26 × 10³⁰⁶ cabe em um double; 171! transborda para Infinity. Para fatoriais maiores, use BigInt ou uma abordagem baseada em logaritmo."
+    },
+    {
+      "q": "Como odds diferem de probabilidade?",
+      "a": "Probabilidade P = favoráveis / total. Odds A Favor = favoráveis : desfavoráveis = P : (1−P). Odds Contra = desfavoráveis : favoráveis. Uma probabilidade de 25% corresponde a odds de 1:3 (a favor) ou 3:1 (contra)."
+    },
+    {
+      "q": "Quanto vale 0!?",
+      "a": "Por convenção, 0! = 1. Isso mantém a consistência das fórmulas para nCr e nPr quando r = 0 ou r = n."
+    },
+    {
+      "q": "Posso calcular a probabilidade de obter pelo menos uma soma específica?",
+      "a": "Não diretamente com esta ferramenta. Para probabilidades «pelo menos», some as probabilidades exatas para todos os valores alvo do seu mínimo até o máximo (número de dados × faces). A aba de dados fornece a probabilidade exata para cada soma específica."
+    },
+    {
+      "q": "Quanto valem nC0 ou nCn?",
+      "a": "Ambos valem 1. Há exatamente uma forma de escolher nada (conjunto vazio) e exatamente uma de escolher tudo."
+    },
+    {
+      "q": "Esta calculadora é precisa para fatoriais grandes?",
+      "a": "Para n até 170, os resultados são precisos na representação de ponto flutuante. Para n próximo de 170, pequenos erros relativos nos últimos dígitos podem ocorrer devido ao arredondamento em ponto flutuante na divisão."
+    },
+    {
+      "q": "Algum dado sai do meu navegador?",
+      "a": "Não. Todos os cálculos são executados localmente em JavaScript. Nada é transmitido a nenhum servidor."
+    }
+  ]
+}

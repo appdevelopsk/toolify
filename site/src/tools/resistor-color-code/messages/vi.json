@@ -1,0 +1,116 @@
+{
+  "title": "Máy Tính Mã Màu Điện Trở — Giải Mã và Mã Hóa Vạch Màu",
+  "shortDescription": "Giải mã vạch màu điện trở để tìm giá trị điện trở, hoặc nhập giá trị để xem các vạch màu tương ứng. Hỗ trợ điện trở 4 vạch và 5 vạch.",
+  "description": "Chọn vạch màu để giải mã giá trị điện trở, hoặc nhập điện trở để tìm mã màu. Xử lý điện trở 4 vạch và 5 vạch với tự động chuyển đổi đơn vị sang ohm, kilohm hoặc megaohm.",
+  "metaDescription": "Máy tính mã màu điện trở miễn phí. Giải mã mã màu 4 hoặc 5 vạch thành giá trị điện trở, hoặc mã hóa điện trở để tìm vạch màu tương ứng ngay lập tức.",
+  "keywords": ["mã màu điện trở", "tính mã màu điện trở", "điện trở 4 vạch", "điện trở 5 vạch", "đọc mã điện trở"],
+  "mode": {
+    "decode": "Màu → Điện Trở",
+    "encode": "Điện Trở → Màu"
+  },
+  "band": {
+    "count4": "4 vạch",
+    "count5": "5 vạch"
+  },
+  "label": {
+    "digit1": "Chữ số 1",
+    "digit2": "Chữ số 2",
+    "digit3": "Chữ số 3 (5 vạch)",
+    "multiplier": "Hệ số nhân",
+    "tolerance": "Dung sai"
+  },
+  "colors": {
+    "black": "Đen",
+    "brown": "Nâu",
+    "red": "Đỏ",
+    "orange": "Cam",
+    "yellow": "Vàng",
+    "green": "Xanh lá",
+    "blue": "Xanh dương",
+    "violet": "Tím",
+    "gray": "Xám",
+    "white": "Trắng",
+    "gold": "Vàng kim",
+    "silver": "Bạc",
+    "none": "Không có"
+  },
+  "result": {
+    "resistance": "Điện Trở",
+    "range": "Khoảng",
+    "minVal": "Min",
+    "maxVal": "Max"
+  },
+  "input": {
+    "value": "Giá Trị Điện Trở",
+    "unit": "Đơn Vị"
+  },
+  "error": {
+    "invalidValue": "Nhập một số dương.",
+    "noMatch": "Không tìm thấy giá trị E24 chuẩn cho điện trở này."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Cách mã màu điện trở hoạt động",
+        "paragraphs": [
+          "Điện trở quá nhỏ để in số đọc được, vì vậy nhà sản xuất dùng các vạch màu. Mỗi màu tương ứng một chữ số (0-9) theo thứ tự ghi nhớ: Đen, Nâu, Đỏ, Cam, Vàng, Xanh lá, Xanh dương, Tím, Xám, Trắng. Điện trở 4 vạch có hai vạch chữ số, một vạch hệ số nhân và một vạch dung sai. Điện trở 5 vạch thêm vạch chữ số thứ ba để có độ chính xác cao hơn.",
+          "Cách đọc điện trở 4 vạch: đọc hai màu đầu tiên là số hai chữ số (ví dụ: Nâu-Đen = 10), nhân với hệ số nhân của vạch thứ ba (ví dụ: Đỏ = ×100), và vạch thứ tư cho dung sai (ví dụ: Vàng kim = ±5%). Nâu-Đen-Đỏ-Vàng kim = 10 × 100 = 1.000 Ω ±5% = 1 kΩ. Với 5 vạch, đọc ba chữ số, rồi nhân, rồi dung sai."
+        ]
+      },
+      {
+        "heading": "Dãy điện trở chuẩn E24",
+        "paragraphs": [
+          "Điện trở không được sản xuất với mọi giá trị có thể. Dãy E24 cung cấp 24 giá trị ưu tiên mỗi thập kỷ: 10, 11, 12, 13, 15, 16, 18, 20, 22, 24, 27, 30, 33, 36, 39, 43, 47, 51, 56, 62, 68, 75, 82, 91. Các giá trị này được khoảng cách sao cho các giá trị liên tiếp chênh nhau khoảng 10%, nghĩa là điện trở mong muốn trong 5% luôn đạt được. Kỹ sư chọn giá trị E24 gần nhất cho thiết kế mạch của họ.",
+          "Dãy E12 (12 giá trị mỗi thập kỷ, dung sai ±10%) và dãy E6 (6 giá trị, ±20%) được dùng khi không cần độ chính xác cao. Cho công việc chính xác, dãy E96 cung cấp 96 giá trị mỗi thập kỷ với điện trở dung sai 1% — thường dùng mã 5 vạch với ba chữ số có nghĩa."
+        ]
+      },
+      {
+        "heading": "Mẹo thực tế đọc điện trở",
+        "paragraphs": [
+          "Vạch dung sai (vàng kim, bạc hoặc không có) thường cách xa các vạch kia và được đọc cuối cùng. Khi nghi ngờ, đặt điện trở sao cho vạch dung sai ở bên phải. Vạch chữ số đầu tiên không bao giờ là đen trong điện trở chuẩn (số không đứng đầu bất thường). Nếu bạn nhầm về hướng, hãy thử đọc từ cả hai đầu và xem cái nào cho giá trị trong phạm vi hợp lý.",
+          "Dùng đồng hồ vạn năng ở chế độ điện trở để xác minh số đọc của bạn. Điện trở dán bề mặt (SMD) dùng mã số ba hoặc bốn chữ số thay vì vạch màu. Ví dụ, '103' nghĩa là 10 × 10³ = 10.000 Ω = 10 kΩ. Điện trở chính xác SMD dùng mã chữ và số năm ký tự khác nhau."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn chế độ giải mã hoặc mã hóa", "text": "Chọn 'Màu sang Điện Trở' để đọc vạch màu, hoặc 'Điện Trở sang Màu' để tìm mã màu cho giá trị đã biết." },
+      { "name": "Chọn 4 vạch hay 5 vạch", "text": "Hầu hết điện trở phổ biến là 4 vạch. Điện trở chính xác (dung sai 1%) thường có 5 vạch." },
+      { "name": "Chọn từng vạch màu", "text": "Trong chế độ giải mã, chọn màu cho từng vạch dùng menu thả xuống. Giá trị điện trở tự động cập nhật." },
+      { "name": "Đọc kết quả", "text": "Điện trở hiển thị với tự động chuyển đổi đơn vị (ohm, kilohm hoặc megaohm) và khoảng dung sai." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Đọc vạch màu theo thứ tự nào?",
+      "a": "Đọc từ trái sang phải. Vạch dung sai (vàng kim hoặc bạc) cách xa phần còn lại và luôn ở bên phải. Vạch đầu tiên là vạch màu ngoài cùng bên trái gần một đầu thân điện trở."
+    },
+    {
+      "q": "Vàng kim trên điện trở có nghĩa gì?",
+      "a": "Vàng kim xuất hiện ở hai vị trí. Làm vạch hệ số nhân, vàng kim nghĩa là ×0,1 (dùng cho điện trở phần nhỏ ohm, ví dụ 4,7 Ω). Làm vạch dung sai (vạch cuối), vàng kim nghĩa là điện trở thực tế nằm trong ±5% giá trị đã công bố."
+    },
+    {
+      "q": "Sự khác biệt giữa điện trở 4 vạch và 5 vạch là gì?",
+      "a": "Điện trở 4 vạch mã hóa hai chữ số có nghĩa, còn điện trở 5 vạch mã hóa ba chữ số có nghĩa. Điện trở 5 vạch dùng cho dung sai 1% hoặc tốt hơn khi cần độ chính xác cao. Vạch chữ số thêm tăng số giá trị khác nhau có thể biểu thị."
+    },
+    {
+      "q": "Tại sao không có vạch hệ số nhân màu đen trên điện trở phổ biến?",
+      "a": "Đen làm hệ số nhân nghĩa là ×1. Điện trở giá trị rất thấp (một chữ số ohm) tồn tại nhưng hiếm trong mạch tín hiệu chuẩn. Hầu hết điện trở bắt đầu từ hàng chục hay hàng trăm ohm, nên nâu (×10) thường là hệ số nhân thấp nhất bạn gặp trong thực tế."
+    },
+    {
+      "q": "Dung sai là gì và tại sao quan trọng?",
+      "a": "Dung sai là phần trăm sai lệch tối đa so với điện trở đã công bố. Điện trở 1 kΩ ±5% thực tế đo trong khoảng 950 Ω đến 1.050 Ω. Với hầu hết mạch xử lý tín hiệu và nguồn điện, dung sai 5% hoặc 10% là đủ. Mạch analog chính xác (tham chiếu điện áp, bộ lọc) có thể cần điện trở 1% hoặc 0,1%."
+    },
+    {
+      "q": "Làm thế nào để mã hóa giá trị không chuẩn như 4700 ohm?",
+      "a": "4700 Ω = 4,7 kΩ = 47 × 100. Mã màu là Vàng-Tím-Đỏ (4, 7, ×100) cộng vạch dung sai. Đây là giá trị E24 rất phổ biến (4,7 kΩ có trong dãy). Chế độ mã hóa tự động tìm giá trị E24 gần nhất."
+    },
+    {
+      "q": "Dãy E24 là gì?",
+      "a": "Dãy E24 là tập 24 giá trị điện trở ưu tiên mỗi thập kỷ (ví dụ: 10, 11, 12, 13, 15 ... 82, 91, rồi 100, 110, 120...). Điện trở được sản xuất theo các giá trị này chứ không phải mọi số có thể. Khoảng cách đảm bảo bạn luôn tìm được điện trở trong 5% của bất kỳ giá trị mục tiêu nào."
+    },
+    {
+      "q": "Tôi có thể dùng cho cuộn cảm hoặc tụ điện không?",
+      "a": "Cùng sơ đồ mã màu được dùng cho một số tụ điện và cuộn cảm (đặc biệt loại dây dẫn trục), nhưng đơn vị và phạm vi khác nhau. Tụ điện tính bằng picofarad, cuộn cảm tính bằng microhenry. Máy tính này được tối ưu cho điện trở, nhưng ánh xạ màu sang chữ số là giống nhau."
+    }
+  ]
+}

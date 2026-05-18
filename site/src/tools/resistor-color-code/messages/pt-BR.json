@@ -1,0 +1,134 @@
+{
+  "title": "Calculadora de código de cores de resistores — Decodificar e",
+  "shortDescription": "Decodifique as faixas coloridas de um resistor para encontrar seu valor, ou insira um valor para ver as faixas correspondentes. Suporta resistores de 4 e 5 faixas.",
+  "description": "Selecione as faixas de cores para decodificar o valor de um resistor, ou insira uma resistência para encontrar seu código de cores. Suporta resistores de 4 e 5 faixas com escalonamento automático de unidades em ohms, quiloohms ou megaohms.",
+  "metaDescription": "Calculadora gratuita de código de cores de resistores. Decodifique códigos de 4 ou 5 faixas em valores de resistência, ou codifique uma resistência em faixas de cor",
+  "keywords": [
+    "código de cores resistor",
+    "calculadora faixas resistor",
+    "resistor 4 faixas",
+    "resistor 5 faixas",
+    "decodificador de resistores"
+  ],
+  "mode": {
+    "decode": "Cor → Resistência",
+    "encode": "Resistência → Cor"
+  },
+  "band": {
+    "count4": "4 faixas",
+    "count5": "5 faixas"
+  },
+  "label": {
+    "digit1": "Dígito 1",
+    "digit2": "Dígito 2",
+    "digit3": "Dígito 3 (5 faixas)",
+    "multiplier": "Multiplicador",
+    "tolerance": "Tolerância"
+  },
+  "colors": {
+    "black": "Preto",
+    "brown": "Marrom",
+    "red": "Vermelho",
+    "orange": "Laranja",
+    "yellow": "Amarelo",
+    "green": "Verde",
+    "blue": "Azul",
+    "violet": "Violeta",
+    "gray": "Cinza",
+    "white": "Branco",
+    "gold": "Ouro",
+    "silver": "Prata",
+    "none": "Nenhum"
+  },
+  "result": {
+    "resistance": "Resistência",
+    "range": "Faixa",
+    "minVal": "Mín",
+    "maxVal": "Máx"
+  },
+  "input": {
+    "value": "Valor de resistência",
+    "unit": "Unidade"
+  },
+  "error": {
+    "invalidValue": "Insira um número positivo.",
+    "noMatch": "Nenhum valor E24 padrão encontrado para esta resistência."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Como funcionam os códigos de cores dos resistores",
+        "paragraphs": [
+          "Os resistores são pequenos demais para imprimir números de forma legível, então os fabricantes usam faixas coloridas. Cada cor corresponde a um dígito (0–9) seguindo uma ordem mnemônica: Preto, Marrom, Vermelho, Laranja, Amarelo, Verde, Azul, Violeta, Cinza, Branco. Um resistor de 4 faixas tem duas faixas de dígito, uma faixa multiplicadora e uma faixa de tolerância. Um resistor de 5 faixas adiciona uma terceira faixa de dígito para maior precisão.",
+          "Para ler um resistor de 4 faixas: as duas primeiras cores formam um número de dois dígitos (ex.: Marrom-Preto = 10), multiplicado pelo multiplicador da terceira faixa (ex.: Vermelho = ×100), e a quarta faixa indica a tolerância (ex.: Ouro = ±5 %). Marrom-Preto-Vermelho-Ouro = 10 × 100 = 1.000 Ω ±5 % = 1 kΩ. Com 5 faixas, leem-se três dígitos, depois o multiplicador e a tolerância."
+        ]
+      },
+      {
+        "heading": "A série padronizada E24",
+        "paragraphs": [
+          "Os resistores não são fabricados para todos os valores possíveis. A série E24 fornece 24 valores preferidos por década: 10, 11, 12, 13, 15, 16, 18, 20, 22, 24, 27, 30, 33, 36, 39, 43, 47, 51, 56, 62, 68, 75, 82, 91. Esses valores são espaçados de forma que valores consecutivos difiram em cerca de 10 %, garantindo que qualquer resistência desejada possa ser obtida com menos de 5 % de erro. Engenheiros escolhem o valor E24 mais próximo para seu projeto de circuito.",
+          "A série E12 (12 valores por década, tolerância ±10 %) e a série E6 (6 valores, ±20 %) são usadas quando alta precisão não é necessária. Para aplicações de precisão, a série E96 oferece 96 valores por década com tolerância de 1 % — esses resistores tipicamente usam um código de 5 faixas com três dígitos significativos."
+        ]
+      },
+      {
+        "heading": "Dicas práticas para ler resistores",
+        "paragraphs": [
+          "A faixa de tolerância (ouro, prata ou nenhuma) geralmente está mais afastada das outras e é lida por último. Em caso de dúvida, oriente o resistor com a faixa de tolerância à direita. A primeira faixa de dígito nunca é preta em um resistor padrão (um zero à esquerda seria incomum). Se não tiver certeza da orientação, tente ler pelos dois lados e veja qual valor é mais plausível.",
+          "Use um multímetro no modo resistência para verificar sua leitura. Resistores SMD (montagem em superfície) usam um código numérico de três ou quatro dígitos em vez de faixas coloridas. Por exemplo, «103» significa 10 × 10³ = 10.000 Ω = 10 kΩ. Resistores SMD de precisão usam um código alfanumérico diferente de cinco caracteres."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Escolher o modo decodificação ou codificação",
+        "text": "Selecione «Cor → Resistência» para ler faixas coloridas, ou «Resistência → Cor» para encontrar o código de cores de um valor conhecido."
+      },
+      {
+        "name": "Selecionar 4 faixas ou 5 faixas",
+        "text": "A maioria dos resistores comuns tem 4 faixas. Resistores de precisão (tolerância 1 %) geralmente têm 5 faixas."
+      },
+      {
+        "name": "Escolher a cor de cada faixa",
+        "text": "No modo decodificação, selecione a cor de cada faixa pelos menus suspensos. O valor de resistência é atualizado automaticamente."
+      },
+      {
+        "name": "Ler o resultado",
+        "text": "A resistência é exibida com escalonamento automático de unidade (ohms, quiloohms ou megaohms) e o intervalo de tolerância."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Em qual ordem leio as faixas coloridas?",
+      "a": "Da esquerda para a direita. A faixa de tolerância (ouro ou prata) está mais afastada das demais e fica sempre à direita. A primeira faixa é a mais à esquerda, próxima a uma extremidade do corpo do resistor."
+    },
+    {
+      "q": "O que significa a cor ouro em um resistor?",
+      "a": "O ouro aparece em duas posições. Como faixa multiplicadora, ouro significa ×0,1 (para resistores de valor fracionário em ohms, ex.: 4,7 Ω). Como faixa de tolerância (última faixa), ouro indica que a resistência real está dentro de ±5 % do valor declarado."
+    },
+    {
+      "q": "Qual é a diferença entre um resistor de 4 faixas e um de 5 faixas?",
+      "a": "Um resistor de 4 faixas codifica dois dígitos significativos, enquanto um de 5 faixas codifica três. Resistores de 5 faixas são usados para tolerâncias de 1 % ou melhores, onde maior precisão é necessária. A faixa de dígito extra aumenta o número de valores distintos que podem ser expressos."
+    },
+    {
+      "q": "Por que não há faixa multiplicadora preta em resistores comuns?",
+      "a": "Preto como multiplicador significa ×1. Valores de resistência muito baixos (poucos ohms) existem, mas são raros em circuitos de sinal padrão. A maioria dos resistores começa em dezenas ou centenas de ohms, então o marrom (×10) é geralmente o multiplicador mais baixo encontrado na prática."
+    },
+    {
+      "q": "O que é tolerância e por que ela é importante?",
+      "a": "A tolerância é o desvio percentual máximo em relação ao valor nominal. Um resistor de 1 kΩ ±5 % mede na prática entre 950 Ω e 1.050 Ω. Para a maioria dos circuitos de sinal e potência, uma tolerância de 5 % ou 10 % é suficiente. Circuitos analógicos de precisão (referências de tensão, filtros) podem precisar de resistores de 1 % ou 0,1 %."
+    },
+    {
+      "q": "Como codifico um valor não padrão como 4700 ohms?",
+      "a": "4700 Ω = 4,7 kΩ = 47 × 100. O código de cores é Amarelo-Violeta-Vermelho (4, 7, ×100) mais a faixa de tolerância. Este é um valor E24 muito comum (4,7 kΩ está na série). O modo codificação encontra automaticamente a correspondência E24 mais próxima."
+    },
+    {
+      "q": "O que é a série E24?",
+      "a": "A série E24 é um conjunto de 24 valores preferidos de resistores por década (ex.: 10, 11, 12, 13, 15 … 82, 91, depois 100, 110, 120 …). Resistores são fabricados nesses valores em vez de qualquer número possível. O espaçamento garante que sempre há um resistor dentro de 5 % de qualquer valor alvo."
+    },
+    {
+      "q": "Posso usar esta calculadora para capacitores ou indutores?",
+      "a": "O mesmo esquema de código de cores é usado para alguns capacitores e indutores (especialmente os tipos axiais), mas as unidades e faixas diferem. Para capacitores, o valor está em picofarads, e para indutores em microhenries. Esta calculadora é otimizada para resistores, mas o mapeamento cor-dígito é idêntico."
+    }
+  ]
+}

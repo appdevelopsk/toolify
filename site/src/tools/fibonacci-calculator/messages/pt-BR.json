@@ -1,0 +1,87 @@
+{
+  "title": "Calculadora de Fibonacci — N-ésimo Termo e Sequência",
+  "shortDescription": "Calcule qualquer número de Fibonacci até o 100º termo, ou liste os primeiros 50 termos da sequência. Suporta números grandes com precisão.",
+  "description": "Insira uma posição N para obter o número de Fibonacci exato naquele termo, ou mude para o modo sequência para exibir os primeiros N números da série de Fibonacci. Usa inteiros de precisão arbitrária para que os resultados sejam sempre exatos.",
+  "metaDescription": "Calculadora de Fibonacci gratuita. Encontre o N-ésimo número de Fibonacci ou liste os primeiros N termos da sequência — suporta até F(100) com resultados exatos.",
+  "keywords": ["calculadora fibonacci", "sequência fibonacci", "número fibonacci", "enésimo termo fibonacci", "série fibonacci"],
+  "empty": "Insira um número N acima para calcular.",
+  "input": {
+    "mode": "Modo",
+    "nthLabel": "N-ésimo Termo",
+    "sequenceLabel": "Sequência",
+    "n": "N (1 – {max})"
+  },
+  "result": {
+    "nthValue": "F({n})",
+    "sequence": "Primeiros {n} números de Fibonacci",
+    "term": "F({n})"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "A sequência de Fibonacci: definição e história",
+        "paragraphs": [
+          "A sequência de Fibonacci é definida por duas regras simples: os dois primeiros termos são 0 e 1, e cada termo seguinte é a soma dos dois anteriores. Isso gera a série 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … A regra parece simples, mas esses números aparecem em matemática, ciência da computação e na natureza de formas que têm fascinado estudiosos por séculos.",
+          "A sequência recebe o nome de Leonardo de Pisa, conhecido como Fibonacci, que a introduziu na Europa Ocidental em seu livro de 1202 Liber Abaci como modelo para o crescimento de uma população de coelhos. No entanto, a sequência já havia sido descrita séculos antes por matemáticos indianos que estudavam a prosódia sânscrita — Virahanka, Gopala e Hemachandra a identificaram ao contar padrões de sílabas. A sequência é, portanto, uma das séries de inteiros mais antigas conhecidas.",
+          "A razão entre números de Fibonacci consecutivos converge para a proporção áurea φ ≈ 1,61803…, um número irracional com profundas conexões com geometria, arte e estética. À medida que N cresce, F(N+1)/F(N) se aproxima cada vez mais de φ. Essa convergência explica por que espirais de Fibonacci aparecem no arranjo de sementes de girassóis, espirais de pinhas e conchas de náutilo — essas formas crescem de maneira que minimizam material enquanto maximizam a eficiência de empacotamento."
+        ]
+      },
+      {
+        "heading": "Calculando grandes números de Fibonacci com exatidão",
+        "paragraphs": [
+          "O tipo Number padrão do JavaScript armazena valores em ponto flutuante de 64 bits, que podem representar inteiros exatamente apenas até 2^53 ≈ 9 quadrilhões. Os números de Fibonacci crescem exponencialmente — F(79) já ultrapassa 2^53 — então a aritmética de ponto flutuante comum produz resultados incorretos para N grande. Esta ferramenta usa o tipo BigInt embutido do JavaScript, que suporta inteiros de tamanho arbitrário limitados apenas pela memória disponível, garantindo que cada resultado de F(1) a F(100) seja exato.",
+          "F(100) é 354.224.848.179.261.915.075 — um número de 21 dígitos. Para comparação, o número estimado de átomos no universo observável é aproximadamente 10^80, e F(382) ≈ 10^79. Os números de Fibonacci crescem aproximadamente como φ^N/√5, portanto cada termo é cerca de 61,8% maior que o anterior.",
+          "Existem fórmulas fechadas para os números de Fibonacci (a fórmula de Binet usa potências da proporção áurea), mas elas exigem aritmética de precisão arbitrária para serem exatas para N grande porque φ é irracional. O método iterativo que esta ferramenta usa — simplesmente somando termos consecutivos — é ao mesmo tempo exato e eficiente para N de até alguns milhares."
+        ]
+      },
+      {
+        "heading": "Aplicações dos números de Fibonacci",
+        "paragraphs": [
+          "Em ciência da computação, os números de Fibonacci aparecem na análise de algoritmos. A entrada de pior caso para o algoritmo euclidiano (computação de MDC) são números de Fibonacci consecutivos. Os heaps de Fibonacci, uma estrutura de dados usada no algoritmo de caminho mais curto de Dijkstra, recebem esse nome pelas limitações em sua estrutura. A busca de Fibonacci também é usada como estratégia de busca por divisão e conquista.",
+          "Em engenharia de software, os números de Fibonacci são amplamente usados no desenvolvimento ágil como escalas de pontos de história: 1, 2, 3, 5, 8, 13. O espaçamento não linear reflete a incerteza crescente ao estimar tarefas maiores — a diferença notável entre números de Fibonacci adjacentes força os estimadores a se comprometerem com um lado de uma escolha ambígua, reduzindo a falsa precisão.",
+          "Na natureza, a fitotaxia — o arranjo de folhas, pétalas e sementes em uma planta — frequentemente segue os números de Fibonacci. Girassóis tipicamente têm 55 espirais no sentido horário e 89 no sentido anti-horário; alcachofras têm 8 e 13. Esse arranjo emerge do padrão de crescimento da planta ao adicionar novos órgãos no ângulo áureo (≈ 137,5°) em relação ao anterior, que está diretamente relacionado com a proporção áurea φ."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escolha um modo", "text": "Selecione 'N-ésimo Termo' para encontrar um único número de Fibonacci, ou 'Sequência' para listar os primeiros N termos." },
+      { "name": "Insira N", "text": "Digite a posição desejada. O máximo é 100 para o modo N-ésimo Termo e 50 para o modo Sequência." },
+      { "name": "Leia o resultado", "text": "O valor exato de Fibonacci aparece abaixo. Para N grande, o número pode ser muito longo — role horizontalmente se necessário." },
+      { "name": "Copie o valor", "text": "Selecione o número exibido e copie-o para uso em seus cálculos." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "O que é F(0) — é 0 ou 1?",
+      "a": "Pela convenção moderna mais comum (usada aqui), F(0)=0, F(1)=1, F(2)=1, F(3)=2, … Alguns textos mais antigos começam a sequência em F(1)=1, F(2)=1, deslocando todos os índices em um."
+    },
+    {
+      "q": "Por que esta ferramenta limita a N=100?",
+      "a": "F(100) já é um número de 21 dígitos. Além de 100, os valores se tornam strings muito longas com uso prático limitado neste contexto. Se precisar de valores além de F(100), a lógica iterativa com BigInt pode ser estendida — o algoritmo é o mesmo."
+    },
+    {
+      "q": "Os resultados são exatos para N grande?",
+      "a": "Sim. A ferramenta usa JavaScript BigInt, que lida com inteiros de tamanho arbitrário sem erros de arredondamento de ponto flutuante. Cada resultado de F(1) a F(100) é matematicamente exato."
+    },
+    {
+      "q": "O que é a proporção áurea e como ela se relaciona com Fibonacci?",
+      "a": "A proporção áurea φ ≈ 1,61803… é a raiz positiva de x²=x+1. A razão entre números de Fibonacci consecutivos F(N+1)/F(N) converge para φ conforme N aumenta. F(20)/F(19)=6765/4181≈1,61803, já preciso até 5 casas decimais."
+    },
+    {
+      "q": "A sequência de Fibonacci é a mesma que os números de Lucas?",
+      "a": "Não. Os números de Lucas usam a mesma recorrência (cada termo é a soma dos dois anteriores) mas começam com L(0)=2 e L(1)=1, dando 2, 1, 3, 4, 7, 11, 18, … Compartilham muitas propriedades com os números de Fibonacci e ambos convergem para φ."
+    },
+    {
+      "q": "Onde os números de Fibonacci aparecem na natureza?",
+      "a": "Os números de Fibonacci aparecem nas contagens de espirais de girassóis (tipicamente 55 e 89), pinhas (tipicamente 8 e 13) e abacaxis. Isso ocorre porque as plantas adicionam novos órgãos em um ângulo de aproximadamente 137,5° (o ângulo áureo), derivado de φ e que produz empacotamento ótimo."
+    },
+    {
+      "q": "Com que rapidez os números de Fibonacci crescem?",
+      "a": "Os números de Fibonacci crescem exponencialmente, aproximadamente como φ^N/√5. Cada termo é cerca de 1,618 vezes o anterior. F(10)=55, F(20)=6.765, F(50)=12.586.269.025, F(100)=354.224.848.179.261.915.075."
+    },
+    {
+      "q": "Por que os números de Fibonacci são usados em pontos de história no desenvolvimento ágil?",
+      "a": "A escala de Fibonacci (1, 2, 3, 5, 8, 13, 21) é usada porque as diferenças entre valores adjacentes crescem, forçando equipes a distinguir tarefas 'médias' de 'grandes'. Esse espaçamento não linear reduz a falsa precisão ao estimar trabalho que é inerentemente incerto."
+    }
+  ]
+}

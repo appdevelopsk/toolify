@@ -140,6 +140,39 @@ import morseCode from "@/tools/morse-code-translator";
 import colorName from "@/tools/color-name-finder";
 import fireNumber from "@/tools/fire-number-calculator";
 import breakEven from "@/tools/break-even-calculator";
+import textSorter from "@/tools/text-sorter";
+import bloodPressure from "@/tools/blood-pressure-checker";
+import exerciseCalorie from "@/tools/exercise-calorie-calculator";
+import expressionEval from "@/tools/expression-evaluator";
+import resistorColorCode from "@/tools/resistor-color-code";
+import numberSequenceGen from "@/tools/number-sequence-generator";
+import circleCalc from "@/tools/circle-calculator";
+import probabilityCalc from "@/tools/probability-calculator";
+import electricityCost from "@/tools/electricity-cost-calculator";
+import percentError from "@/tools/percent-error-calculator";
+import qrCode from "@/tools/qr-code-generator";
+import fibonacci from "@/tools/fibonacci-calculator";
+import matrix from "@/tools/matrix-calculator";
+import dupLineRemover from "@/tools/duplicate-line-remover";
+import reverseText from "@/tools/reverse-text-generator";
+import stepsToDistance from "@/tools/steps-to-distance-calculator";
+import pixelDensity from "@/tools/pixel-density-calculator";
+import meetingCost from "@/tools/meeting-cost-calculator";
+import paycheck from "@/tools/paycheck-calculator";
+import currencyConv from "@/tools/currency-converter";
+import gradeCalc from "@/tools/grade-calculator";
+import pythagorean from "@/tools/pythagorean-theorem-calculator";
+import ohmLaw from "@/tools/ohm-law-calculator";
+import debtPayoff from "@/tools/debt-payoff-calculator";
+import calorieDeficit from "@/tools/calorie-deficit-calculator";
+import windChill from "@/tools/wind-chill-calculator";
+import heatIndex from "@/tools/heat-index-calculator";
+import billSplit from "@/tools/bill-split-calculator";
+import sigFigs from "@/tools/significant-figures-calculator";
+import geoShapes from "@/tools/geometric-shapes-calculator";
+import percentageChange from "@/tools/percentage-change-calculator";
+import hoursCalc from "@/tools/hours-calculator";
+import houseAffordability from "@/tools/house-affordability-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -286,6 +319,39 @@ export const TOOLS: ToolMeta[] = [
   htmlEntity,
   colorShades,
   primeFactorization,
+  textSorter,
+  bloodPressure,
+  exerciseCalorie,
+  expressionEval,
+  resistorColorCode,
+  numberSequenceGen,
+  circleCalc,
+  probabilityCalc,
+  electricityCost,
+  percentError,
+  qrCode,
+  fibonacci,
+  matrix,
+  dupLineRemover,
+  reverseText,
+  stepsToDistance,
+  pixelDensity,
+  meetingCost,
+  paycheck,
+  currencyConv,
+  gradeCalc,
+  pythagorean,
+  ohmLaw,
+  debtPayoff,
+  calorieDeficit,
+  windChill,
+  heatIndex,
+  billSplit,
+  sigFigs,
+  geoShapes,
+  percentageChange,
+  hoursCalc,
+  houseAffordability,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));

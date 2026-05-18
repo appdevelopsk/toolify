@@ -1,0 +1,69 @@
+{
+  "title": "Générateur de texte inversé — Retournez caractères, mots ou lignes",
+  "shortDescription": "Inversez n'importe quel texte par caractères, mots ou lignes. Gère correctement Unicode, les emoji et les caractères multi-octets. Copie instantanée dans le presse-papiers.",
+  "description": "Entrez n'importe quel texte pour l'inverser instantanément. Choisissez parmi trois modes : inverser tous les caractères de la chaîne, inverser l'ordre des mots en conservant les mots intacts, ou inverser l'ordre des lignes. L'outil gère correctement les emoji Unicode et les caractères CJK couvrant plusieurs points de code.",
+  "metaDescription": "Générateur de texte inversé gratuit. Retournez le texte par caractères, mots ou lignes — compatible Unicode et emoji. Copie instantanée. Fonctionne dans le navigateur.",
+  "keywords": ["générateur texte inversé", "inverser texte en ligne", "inverser mots", "inverser chaîne", "inverser lignes", "texte miroir"],
+  "empty": "Entrez du texte ci-dessus pour voir le résultat inversé.",
+  "input": {
+    "text": "Texte d'entrée",
+    "mode": "Mode d'inversion :"
+  },
+  "modes": {
+    "chars": "Inverser les caractères",
+    "words": "Inverser les mots",
+    "lines": "Inverser les lignes"
+  },
+  "result": {
+    "reversed": "Sortie inversée"
+  },
+  "button": {
+    "copy": "Copier le résultat",
+    "copied": "Copié !"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Utilisations pratiques du texte inversé",
+        "paragraphs": [
+          "L'usage le plus connu de l'inversion de caractères est la détection de palindromes : un mot ou une phrase qui se lit de la même façon dans les deux sens, comme 'kayak' ou 'Elu par cette crapule'. Inverser la chaîne et la comparer à l'original — en ignorant les espaces et la ponctuation — est le test algorithmique classique des palindromes, et cet outil vous permet de le faire manuellement en quelques secondes.",
+          "Les scripts de droite à gauche comme l'arabe et l'hébreu sont stockés dans l'ordre logique de gauche à droite en Unicode mais rendus de droite à gauche par des algorithmes de texte bidirectionnel. Lorsqu'on travaille avec du texte brut dans des environnements dépourvus de support bidi (certains émulateurs de terminaux, bases de données héritées, anciens tableurs), l'inversion de caractères peut servir de contournement manuel rapide pour afficher le texte dans la bonne direction de lecture.",
+          "Sur les réseaux sociaux, dans les jeux et l'écriture créative, le texte inversé crée une obfuscation délibérée ou un intérêt visuel. Les concepteurs de puzzles utilisent des mots inversés comme chiffrement simple — inverser un mot comme 'desserts' donne 'stressed', un retournement sémantique savoureux. Les codes QR, codes-barres et autres formats lisibles par machine encodent parfois des données en ordre inverse comme mesure légère anti-manipulation. L'inversion de l'ordre des mots est aussi utile dans les expériences de traitement du langage naturel, comme tester si un modèle de langage comprend vraiment la syntaxe ou se contente de la correspondance de motifs.",
+          "Pour l'ingénierie des données, l'inversion de l'ordre des lignes (le troisième mode) est pratique quand un log ou un fichier en ajout seul doit être lu du plus récent au plus ancien. Un ingénieur en ligne de commande utiliserait `tac` ou `tail -r` sur Unix, mais dans un navigateur ou un environnement sans code, cet outil fournit le même résultat sans aucun accès au shell."
+        ]
+      },
+      {
+        "heading": "Le fonctionnement de l'inversion de caractères — et pourquoi c'est plus complexe qu'il n'y paraît",
+        "paragraphs": [
+          "Inverser naïvement une chaîne en itérant sur ses octets ou unités de code UTF-16 casse tout caractère nécessitant plus d'une unité pour être représenté. En JavaScript, `'😀'.split('').reverse().join('')` produit une séquence corrompue car l'emoji est stocké comme une paire de substitution (deux unités de code UTF-16). Cet outil utilise `Array.from()` qui itère correctement sur les valeurs scalaires Unicode (points de code), pas les unités de code brutes, garantissant que les emoji et les caractères des plans supplémentaires survivent à l'inversion intacts.",
+          "Même l'inversion correcte au niveau du point de code présente des cas limites : les caractères de combinaison comme les accents et les signes diacritiques sont des points de code séparés qui suivent le caractère de base. Inverser 'café' par points de code place l'accent aigu combinant avant le 'e', qui s'attache techniquement à l'espace — produisant 'éfac'. Pour la plupart des cas d'usage pratiques cela n'a pas d'importance, mais ça vaut la peine de le savoir si vous traitez du texte dans des langues à usage intensif de marques combinantes.",
+          "L'inversion de mots préserve les séquences d'espaces blancs entre les mots plutôt que de les réduire à des espaces simples. Cela signifie que si votre entrée a des doubles espaces ou des tabulations entre les mots, la sortie inversée a également ces séquences d'espacement, juste dans les positions inversées. C'est intentionnel — cela évite de modifier inopinément la mise en page visuelle d'un texte tabulaire ou en colonnes."
+        ]
+      },
+      {
+        "heading": "Inversion de lignes pour l'analyse de logs et le traitement de données",
+        "paragraphs": [
+          "Les logs en ajout seul, les flux d'événements et les exports ordonnés ont tous l'entrée la plus récente en bas. Lors de la résolution d'un plantage ou de la révision des dernières modifications, vous voulez généralement les entrées les plus récentes en premier. L'inversion des lignes amène la fin du fichier au sommet sans aucun tri ni analyse de timestamp.",
+          "Ce mode est aussi utile pour convertir des données en ordre croissant en ordre décroissant quand le système consommateur attend un ordre du plus récent au plus ancien. Imaginez un export CSV d'un système financier où les transactions sont en ordre chronologique — inverser les lignes (en excluant l'en-tête, à traiter séparément) place les transactions les plus récentes en tête pour l'import dans un système qui traite les enregistrements dans l'ordre où ils sont rencontrés.",
+          "Les listes numérotées qui doivent être reclassées du dernier au premier peuvent aussi bénéficier de l'inversion de lignes. Une liste classée des 10 premiers devient une liste des 10 derniers après inversion, avec le rang 10 en premier et le rang 1 en dernier — utile pour des présentations inversées, des comptes à rebours ou du contenu à thème ironique."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Saisissez ou collez votre texte", "text": "Entrez du texte dans le panneau gauche. La sortie inversée apparaît dans le panneau droit en temps réel." },
+      { "name": "Choisissez un mode d'inversion", "text": "Sélectionnez 'Inverser les caractères' pour retourner chaque caractère de la chaîne, 'Inverser les mots' pour échanger l'ordre des mots tout en conservant chaque mot intact, ou 'Inverser les lignes' pour mettre la dernière ligne en premier." },
+      { "name": "Vérifiez le résultat", "text": "Le nombre de caractères est affiché sous les deux panneaux. Vérifiez que la sortie est bien ce que vous attendiez avant de copier." },
+      { "name": "Copier dans le presse-papiers", "text": "Cliquez sur 'Copier le résultat' pour copier le texte inversé. Le bouton affiche brièvement 'Copié !' pour confirmer." }
+    ]
+  },
+  "faq": [
+    { "q": "L'outil gère-t-il correctement les emoji ?", "a": "Oui. L'outil utilise Array.from() pour itérer sur les points de code Unicode plutôt que sur les unités de code UTF-16 brutes, donc les emoji (y compris les séquences de plusieurs points de code comme les emoji de drapeaux) s'inversent sans corruption." },
+    { "q": "Quelle est la différence entre inverser les caractères et inverser les mots ?", "a": "L'inversion de caractères retourne toute la chaîne pour que le dernier caractère devienne le premier. L'inversion de mots conserve chaque mot intact mais place le dernier mot en premier. 'bonjour monde' devient 'ednom ruojnob' en mode caractères et 'monde bonjour' en mode mots." },
+    { "q": "L'inversion de mots affecte-t-elle la ponctuation attachée aux mots ?", "a": "La ponctuation directement attachée à un mot (sans espace) voyage avec ce mot. 'Bonjour, monde !' devient 'monde ! Bonjour,' en mode inversion de mots — la virgule reste avec 'Bonjour' et le point d'exclamation avec 'monde'." },
+    { "q": "Puis-je inverser du texte en japonais ou en chinois ?", "a": "Oui. L'inversion de caractères fonctionne correctement pour les caractères CJK puisque chaque idéogramme est un seul point de code. Le résultat se lit de droite à gauche caractère par caractère, ce qui peut ou non avoir du sens selon le contenu." },
+    { "q": "Y a-t-il une limite de longueur ?", "a": "Aucune limite imposée. Les longs textes sont traités entièrement dans la mémoire de votre navigateur. Les performances sont pratiquement instantanées pour des textes allant jusqu'à des millions de caractères sur du matériel moderne." },
+    { "q": "Mon texte est-il envoyé à un serveur ?", "a": "Non. Tout le traitement s'exécute localement en JavaScript. Votre texte ne quitte jamais votre navigateur." },
+    { "q": "Que fait 'Inverser les lignes' avec les sauts de ligne en fin ?", "a": "Chaque caractère de nouvelle ligne est le séparateur de lignes. Un saut de ligne à la toute fin de votre entrée produira une ligne vide au début de la sortie inversée. Supprimez simplement la ligne vide supplémentaire si elle n'est pas souhaitée." },
+    { "q": "Puis-je utiliser ceci pour créer un palindrome ?", "a": "Vous pouvez vérifier si un mot est un palindrome en le collant et en voyant si la sortie inversée correspond à l'entrée. Pour créer un palindrome, concaténez le texte original avec sa version inversée de caractères (par ex. 'race' + 'ecar' = 'raceecar')." }
+  ]
+}

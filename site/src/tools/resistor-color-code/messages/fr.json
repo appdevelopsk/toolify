@@ -1,0 +1,134 @@
+{
+  "title": "Calculateur de code couleur de résistance — Décoder et encoder les",
+  "shortDescription": "Décodez les bandes colorées d'une résistance pour trouver sa valeur, ou entrez une valeur pour obtenir le code couleur correspondant. Supporte les résistances 4 et 5 bandes.",
+  "description": "Sélectionnez les bandes de couleur pour décoder une résistance, ou entrez une valeur ohmique pour trouver son code couleur. Gère les résistances 4 et 5 bandes avec mise à l'échelle automatique en ohms, kilohms ou mégaohms.",
+  "metaDescription": "Calculateur gratuit de code couleur de résistance. Décodez des codes 4 ou 5 bandes en valeurs ohmiques, ou encodez une résistance en bandes couleur instantanément.",
+  "keywords": [
+    "code couleur résistance",
+    "calculateur bande résistance",
+    "résistance 4 bandes",
+    "résistance 5 bandes",
+    "décodeur résistance"
+  ],
+  "mode": {
+    "decode": "Couleur → Résistance",
+    "encode": "Résistance → Couleur"
+  },
+  "band": {
+    "count4": "4 bandes",
+    "count5": "5 bandes"
+  },
+  "label": {
+    "digit1": "Chiffre 1",
+    "digit2": "Chiffre 2",
+    "digit3": "Chiffre 3 (5 bandes)",
+    "multiplier": "Multiplicateur",
+    "tolerance": "Tolérance"
+  },
+  "colors": {
+    "black": "Noir",
+    "brown": "Marron",
+    "red": "Rouge",
+    "orange": "Orange",
+    "yellow": "Jaune",
+    "green": "Vert",
+    "blue": "Bleu",
+    "violet": "Violet",
+    "gray": "Gris",
+    "white": "Blanc",
+    "gold": "Or",
+    "silver": "Argent",
+    "none": "Aucune"
+  },
+  "result": {
+    "resistance": "Résistance",
+    "range": "Plage",
+    "minVal": "Min",
+    "maxVal": "Max"
+  },
+  "input": {
+    "value": "Valeur de résistance",
+    "unit": "Unité"
+  },
+  "error": {
+    "invalidValue": "Entrez un nombre positif.",
+    "noMatch": "Aucune valeur E24 standard trouvée pour cette résistance."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Comment fonctionnent les codes couleur des résistances",
+        "paragraphs": [
+          "Les résistances sont trop petites pour y imprimer des chiffres lisibles, c'est pourquoi les fabricants utilisent des bandes colorées. Chaque couleur correspond à un chiffre (0–9) selon un ordre mnémotechnique : Noir, Marron, Rouge, Orange, Jaune, Vert, Bleu, Violet, Gris, Blanc. Une résistance 4 bandes comprend deux bandes chiffres, une bande multiplicateur et une bande tolérance. Une résistance 5 bandes ajoute une troisième bande chiffre pour une meilleure précision.",
+          "Pour lire une résistance 4 bandes : les deux premières couleurs forment un nombre à deux chiffres (ex. Marron-Noir = 10), multiplié par le multiplicateur de la troisième bande (ex. Rouge = ×100), et la quatrième bande donne la tolérance (ex. Or = ±5 %). Marron-Noir-Rouge-Or = 10 × 100 = 1 000 Ω ±5 % = 1 kΩ. Pour 5 bandes, on lit trois chiffres, puis le multiplicateur, puis la tolérance."
+        ]
+      },
+      {
+        "heading": "La série normalisée E24",
+        "paragraphs": [
+          "Les résistances ne sont pas fabriquées pour toutes les valeurs possibles. La série E24 fournit 24 valeurs préférées par décade : 10, 11, 12, 13, 15, 16, 18, 20, 22, 24, 27, 30, 33, 36, 39, 43, 47, 51, 56, 62, 68, 75, 82, 91. Ces valeurs sont espacées de façon que deux valeurs consécutives diffèrent d'environ 10 %, garantissant qu'on peut toujours trouver une résistance à 5 % près de n'importe quelle cible. Les ingénieurs choisissent la valeur E24 la plus proche pour leurs schémas.",
+          "La série E12 (12 valeurs par décade, tolérance ±10 %) et la série E6 (6 valeurs, ±20 %) sont utilisées quand la précision n'est pas critique. Pour les applications de précision, la série E96 offre 96 valeurs par décade avec une tolérance de 1 % — ces résistances utilisent généralement un code 5 bandes avec trois chiffres significatifs."
+        ]
+      },
+      {
+        "heading": "Conseils pratiques pour lire les résistances",
+        "paragraphs": [
+          "La bande de tolérance (or, argent ou absente) est généralement plus espacée des autres bandes et se lit en dernier. En cas de doute, orientez la résistance de sorte que la bande de tolérance soit à droite. La première bande chiffre n'est jamais noire sur une résistance standard (un zéro initial serait inhabituel). Si l'orientation reste incertaine, essayez de lire depuis les deux extrémités et vérifiez quelle valeur est plausible.",
+          "Utilisez un multimètre en mode résistance pour vérifier votre lecture. Les résistances CMS (montage en surface) utilisent un code numérique à trois ou quatre chiffres au lieu de bandes colorées. Par exemple, «103» signifie 10 × 10³ = 10 000 Ω = 10 kΩ. Les résistances CMS de précision utilisent un code alphanumérique différent à cinq caractères."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisir le mode décodage ou encodage",
+        "text": "Sélectionnez «Couleur → Résistance» pour lire des bandes de couleur, ou «Résistance → Couleur» pour trouver le code couleur d'une valeur connue."
+      },
+      {
+        "name": "Sélectionner 4 bandes ou 5 bandes",
+        "text": "La plupart des résistances courantes sont à 4 bandes. Les résistances de précision (tolérance 1 %) ont généralement 5 bandes."
+      },
+      {
+        "name": "Choisir la couleur de chaque bande",
+        "text": "En mode décodage, sélectionnez la couleur de chaque bande via les listes déroulantes. La valeur de résistance se met à jour automatiquement."
+      },
+      {
+        "name": "Lire le résultat",
+        "text": "La résistance s'affiche avec mise à l'échelle automatique (ohms, kilohms ou mégaohms) et la plage de tolérance."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Dans quel ordre lit-on les bandes de couleur ?",
+      "a": "De gauche à droite. La bande de tolérance (or ou argent) est plus espacée des autres et se trouve toujours à droite. La première bande est la bande colorée la plus à gauche, près d'une extrémité du corps de la résistance."
+    },
+    {
+      "q": "Que signifie la couleur or sur une résistance ?",
+      "a": "L'or apparaît à deux positions. Comme bande multiplicateur, l'or signifie ×0,1 (pour les résistances en fractions d'ohm, ex. 4,7 Ω). Comme bande de tolérance (dernière bande), l'or signifie que la résistance réelle est dans ±5 % de la valeur nominale."
+    },
+    {
+      "q": "Quelle est la différence entre une résistance 4 bandes et 5 bandes ?",
+      "a": "Une résistance 4 bandes code deux chiffres significatifs, tandis qu'une résistance 5 bandes en code trois. Les résistances 5 bandes sont utilisées pour une tolérance de 1 % ou mieux, où une précision plus élevée est nécessaire. La bande chiffre supplémentaire augmente le nombre de valeurs distinctes pouvant être exprimées."
+    },
+    {
+      "q": "Pourquoi n'y a-t-il pas de bande multiplicateur noire sur les résistances courantes ?",
+      "a": "Le noir comme multiplicateur signifie ×1. Les valeurs de résistance très basses (quelques ohms) existent mais sont rares dans les circuits de signal standard. La plupart des résistances commencent à des dizaines ou centaines d'ohms, donc le marron (×10) est généralement le multiplicateur le plus bas rencontré en pratique."
+    },
+    {
+      "q": "Qu'est-ce que la tolérance et pourquoi est-elle importante ?",
+      "a": "La tolérance est l'écart maximum en pourcentage par rapport à la valeur nominale. Une résistance 1 kΩ ±5 % mesure en réalité entre 950 Ω et 1 050 Ω. Pour la plupart des circuits de signal et de puissance, une tolérance de 5 % ou 10 % suffit. Les circuits analogiques de précision (références de tension, filtres) peuvent nécessiter des résistances à 1 % ou 0,1 %."
+    },
+    {
+      "q": "Comment encoder une valeur non standard comme 4700 ohms ?",
+      "a": "4700 Ω = 4,7 kΩ = 47 × 100. Le code couleur est donc Jaune-Violet-Rouge (4, 7, ×100) plus la bande de tolérance. C'est une valeur E24 très courante (4,7 kΩ figure dans la série). Le mode encodage trouve automatiquement la valeur E24 la plus proche."
+    },
+    {
+      "q": "Qu'est-ce que la série E24 ?",
+      "a": "La série E24 est un ensemble de 24 valeurs préférées de résistances par décade (ex. 10, 11, 12, 13, 15 … 82, 91, puis 100, 110, 120 …). Les résistances sont fabriquées selon ces valeurs plutôt que pour tout nombre possible. L'espacement garantit que l'on peut toujours trouver une résistance à 5 % près de n'importe quelle valeur cible."
+    },
+    {
+      "q": "Puis-je utiliser ce calculateur pour des condensateurs ou des inductances ?",
+      "a": "Le même code couleur est utilisé pour certains condensateurs et inductances (notamment les types axiaux), mais les unités et plages diffèrent. Pour les condensateurs, la valeur est en picofarads, et pour les inductances en microhenrys. Ce calculateur est optimisé pour les résistances, mais la correspondance couleur-chiffre est identique."
+    }
+  ]
+}

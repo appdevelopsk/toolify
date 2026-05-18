@@ -1,0 +1,128 @@
+{
+  "title": "Calculadora de probabilidad — Básica, Permutaciones, Combinaciones",
+  "shortDescription": "Calcula probabilidades, permutaciones (nPr), combinaciones (nCr) y resultados de tiradas de dados. Cuatro pestañas cubren todos los problemas habituales de probabilidad.",
+  "description": "Cuatro modos en una sola herramienta: probabilidad básica a partir de resultados favorables y totales, permutaciones nPr, combinaciones nCr y la probabilidad de obtener una suma específica con varios dados. Los resultados incluyen fracción, decimal, porcentaje y cuotas.",
+  "metaDescription": "Calculadora de probabilidad gratuita: probabilidad básica, permutaciones nPr, combinaciones nCr y probabilidad de dados. Resultados en fracción, decimal, porcentaje y",
+  "keywords": [
+    "calculadora de probabilidad",
+    "calculadora de combinaciones",
+    "calculadora de permutaciones",
+    "calculadora nCr",
+    "calculadora nPr",
+    "probabilidad de dados",
+    "calculadora de cuotas"
+  ],
+  "tab": {
+    "basic": "Probabilidad básica",
+    "permutation": "Permutaciones (nPr)",
+    "combination": "Combinaciones (nCr)",
+    "dice": "Probabilidad de dados"
+  },
+  "input": {
+    "favorable": "Resultados favorables",
+    "total": "Resultados totales",
+    "n": "n (total de elementos)",
+    "r": "r (elementos elegidos)",
+    "numDice": "Número de dados",
+    "target": "Suma objetivo",
+    "sides": "Caras del dado"
+  },
+  "result": {
+    "probability": "Probabilidad",
+    "fraction": "Fracción",
+    "decimal": "Decimal",
+    "percent": "Porcentaje",
+    "oddsFor": "Cuotas a favor",
+    "oddsAgainst": "Cuotas en contra",
+    "permutations": "Permutaciones (nPr)",
+    "combinations": "Combinaciones (nCr)"
+  },
+  "empty": "Introduce valores para calcular.",
+  "error": {
+    "invalid": "Entrada no válida: comprueba que todos los valores sean enteros no negativos y que r ≤ n.",
+    "overflow": "n debe ser ≤ 170 (límite de factorial en JavaScript).",
+    "noOutcomes": "El número total de resultados debe ser mayor que cero.",
+    "favorableExceedsTotal": "Los resultados favorables no pueden superar los resultados totales.",
+    "diceRange": "La suma objetivo está fuera del rango posible para estos dados."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Probabilidad básica, cuotas y sus diferencias",
+        "paragraphs": [
+          "La probabilidad es el cociente entre los resultados favorables y los resultados totales igualmente probables: P = favorables / total. Va de 0 (imposible) a 1 (seguro) y suele expresarse como porcentaje. Para un dado estándar de seis caras, la probabilidad de sacar un 4 es 1/6 ≈ 16,667 %.",
+          "Las cuotas son otra forma de expresar la misma información. Las cuotas A FAVOR de un evento son favorables : desfavorables, por lo que sacar un 4 tiene cuotas de 1:5. Las cuotas EN CONTRA son al revés: 5:1. Las cuotas son habituales en apuestas deportivas y juegos de cartas; la probabilidad lo es en estadística y ciencias.",
+          "Esta calculadora simplifica la fracción automáticamente a su mínima expresión y muestra los formatos decimal y porcentaje uno al lado del otro, lo que facilita cambiar entre representaciones."
+        ]
+      },
+      {
+        "heading": "Permutaciones vs. combinaciones",
+        "paragraphs": [
+          "Ambas implican seleccionar r elementos de un conjunto de n, pero el orden importa en las permutaciones y no en las combinaciones. Permutaciones nPr = n! / (n − r)! cuenta disposiciones ordenadas. Combinaciones nCr = n! / (r! × (n − r)!) cuenta subconjuntos no ordenados.",
+          "Ejemplo: elegir 2 letras de {A, B, C}. Permutaciones: AB, BA, AC, CA, BC, CB — 6 pares ordenados, nPr = 3! / 1! = 6. Combinaciones: AB, AC, BC — 3 subconjuntos no ordenados, nCr = 3! / (2! × 1!) = 3. Como cada combinación genera r! permutaciones, siempre se cumple nPr = nCr × r!.",
+          "El máximo n soportado es 170. Por encima de ese valor, n! excede el rango en punto flotante de JavaScript (aprox. 1,8 × 10³⁰⁸). Para n o r muy grandes, considera cálculos logarítmicos o librerías simbólicas."
+        ]
+      },
+      {
+        "heading": "Probabilidad de dados y la regla de la multiplicación",
+        "paragraphs": [
+          "Al lanzar varios dados idénticos, cada dado es independiente. El número total de resultados es caras elevado al número de dados. El número de formas de alcanzar una suma concreta se encuentra contando composiciones: distribuir la suma entre todos los dados de modo que cada uno muestre un valor entre 1 y el número de caras.",
+          "Esta calculadora usa programación dinámica para contar el número exacto de composiciones para la suma objetivo dada. Por ejemplo, lanzar 2d6 (dos dados de seis caras) y obtener una suma de 7: hay 6 formas (1+6, 2+5, 3+4, 4+3, 5+2, 6+1) de 36 posibles, lo que da una probabilidad de 6/36 = 1/6 ≈ 16,667 %.",
+          "Tipos de dado compatibles: d4, d6, d8, d10, d12 y d20 (dados estándar de RPG de mesa). El número de dados va de 1 a 6. La suma objetivo debe estar entre el número de dados (todos en 1) y número de dados × caras (todos en el máximo)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Elige una pestaña",
+        "text": "Selecciona «Probabilidad básica», «Permutaciones», «Combinaciones» o «Probabilidad de dados» según tu problema."
+      },
+      {
+        "name": "Introduce los datos",
+        "text": "Para probabilidad básica, escribe resultados favorables y totales. Para nPr/nCr, introduce n y r. Para dados, elige número de dados, suma objetivo y caras."
+      },
+      {
+        "name": "Lee los resultados",
+        "text": "Los resultados aparecen al instante como fracción, decimal, porcentaje y cuotas (para probabilidad básica)."
+      },
+      {
+        "name": "Revisa los errores",
+        "text": "Si los datos son incorrectos (r > n, total = 0 o suma fuera de rango), un mensaje claro indica qué corregir."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Cuál es la diferencia entre permutaciones y combinaciones?",
+      "a": "Las permutaciones cuentan disposiciones ordenadas (AB ≠ BA); las combinaciones cuentan subconjuntos no ordenados (AB = BA). nPr = n! / (n−r)!; nCr = n! / (r! × (n−r)!). Para r > 1, siempre nPr ≥ nCr."
+    },
+    {
+      "q": "¿Por qué n está limitado a 170?",
+      "a": "JavaScript usa punto flotante IEEE 754 de 64 bits. 170! ≈ 7,26 × 10³⁰⁶ cabe en un double; 171! desborda a Infinity. Para factoriales mayores, usa BigInt o un enfoque basado en logaritmos."
+    },
+    {
+      "q": "¿En qué se diferencian las cuotas de la probabilidad?",
+      "a": "Probabilidad P = favorables / total. Cuotas a favor = favorables : desfavorables = P : (1−P). Cuotas en contra = desfavorables : favorables. Una probabilidad del 25 % equivale a cuotas de 1:3 (a favor) o 3:1 (en contra)."
+    },
+    {
+      "q": "¿Cuánto vale 0!?",
+      "a": "Por convenio, 0! = 1. Esto mantiene la coherencia de las fórmulas de nCr y nPr cuando r = 0 o r = n."
+    },
+    {
+      "q": "¿Puedo calcular la probabilidad de obtener al menos una suma concreta?",
+      "a": "No directamente con esta herramienta. Para probabilidades «al menos», suma las probabilidades exactas de todos los valores objetivo desde el mínimo hasta el máximo (número de dados × caras). La pestaña de dados da la probabilidad exacta para cada suma específica."
+    },
+    {
+      "q": "¿Cuánto valen nC0 o nCn?",
+      "a": "Ambos valen 1. Hay exactamente una forma de no elegir nada (el conjunto vacío) y exactamente una de elegirlo todo."
+    },
+    {
+      "q": "¿Es precisa esta calculadora para factoriales grandes?",
+      "a": "Para n hasta 170, los resultados son exactos dentro de la representación en punto flotante. Para n cercano a 170, puede haber pequeños errores relativos en los últimos dígitos por el redondeo en punto flotante de la división."
+    },
+    {
+      "q": "¿Salen datos de mi navegador?",
+      "a": "No. Todos los cálculos se ejecutan localmente en JavaScript. No se transmite nada a ningún servidor."
+    }
+  ]
+}

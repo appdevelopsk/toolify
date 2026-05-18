@@ -1,0 +1,73 @@
+{
+  "title": "Math Expression Calculator — evaluate any formula online",
+  "shortDescription": "Type any math expression and get an instant result. Supports arithmetic, powers, roots, trig, logs, and more.",
+  "description": "Enter a mathematical expression using +, -, *, /, ^, %, parentheses, and functions like sqrt, sin, cos, log. Results appear instantly as you type. No external libraries — the parser runs entirely in your browser with no data sent to a server.",
+  "metaDescription": "Free online math expression calculator. Supports arithmetic, powers, sqrt, trig (degrees), log, and more. Type any formula and get an instant result in your browser.",
+  "keywords": ["math expression calculator", "formula calculator online", "expression evaluator", "scientific calculator", "math parser"],
+  "input": {
+    "label": "Expression",
+    "hint": "e.g. 2^10 + sqrt(16)"
+  },
+  "result": {
+    "label": "Result",
+    "empty": "Type a math expression above to see the result."
+  },
+  "examples": {
+    "label": "Examples — click to load",
+    "list": [
+      "2^10 + sqrt(16)",
+      "sin(45) * cos(30)",
+      "(3 + 5) * 2^3 / 4",
+      "log10(1000) + log2(8)",
+      "sqrt(3^2 + 4^2)",
+      "floor(pi * 100) / 100"
+    ]
+  },
+  "error": {
+    "invalid": "Invalid expression — check parentheses, operators, and function names."
+  },
+  "note": {
+    "degrees": "Trigonometric functions (sin, cos, tan) use degrees."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Supported operations and functions",
+        "paragraphs": [
+          "The calculator handles the four basic arithmetic operators (+, -, *, /) plus exponentiation (^) and modulo (%). You can nest parentheses to any depth.",
+          "Built-in functions cover the most common mathematical needs: sqrt(x) and cbrt(x) for square and cube roots; abs(x) for absolute value; sin(x), cos(x), tan(x) for trigonometry in degrees; log(x) for the natural logarithm, log2(x) and log10(x) for base-2 and base-10 logarithms; and floor(x), ceil(x), round(x) for rounding. The constants pi and e are available by name."
+        ]
+      },
+      {
+        "heading": "Practical uses for expression evaluation",
+        "paragraphs": [
+          "Quick calculation chains are where expression evaluators shine. Instead of punching numbers into a phone calculator one step at a time — and possibly forgetting an intermediate result — you can type the whole chain as a single expression and see the answer at once.",
+          "Engineering and science tasks such as unit conversions, stress calculations, or statistical formulas often require combinations of square roots, powers, and logarithms. Typing the full formula here gives you a traceable record of what you computed, unlike a sequence of button presses on a physical calculator."
+        ]
+      },
+      {
+        "heading": "Order of operations",
+        "paragraphs": [
+          "The parser follows standard mathematical precedence: parentheses first, then exponentiation (right-associative), then multiplication/division/modulo (left-to-right), then addition and subtraction (left-to-right). This matches the BODMAS/PEMDAS rules taught in school.",
+          "Unary minus is supported (e.g., -3^2 evaluates as -(3^2) = -9, which matches conventional mathematical notation). If you need (-3)^2 = 9, add explicit parentheses. When in doubt, use parentheses liberally — they never hurt readability."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type your expression", "text": "Click the input field and type your formula. Use * for multiplication and ^ for exponentiation." },
+      { "name": "Use functions and constants", "text": "Add functions like sqrt(25) or sin(45). Use pi and e as numeric constants." },
+      { "name": "Try an example", "text": "Click any example button to load a pre-built expression and see how the syntax works." },
+      { "name": "Read the result", "text": "The answer appears instantly below the input. If the expression is invalid, an error message explains why." }
+    ]
+  },
+  "faq": [
+    { "q": "Why are trig functions in degrees rather than radians?", "a": "Degrees are more intuitive for everyday use — most people think of angles as 0 to 360, not 0 to 2π. The parser converts internally, so sin(90) = 1 as expected. If you need radians, multiply by pi/180: sin(1.5708) gives the same result as sin(90)." },
+    { "q": "What is the difference between log and log10?", "a": "log(x) computes the natural logarithm (base e ≈ 2.718). log10(x) uses base 10, which is what most people mean when they write 'log' in a non-calculus context. log2(x) uses base 2, common in information theory and computer science." },
+    { "q": "Does ^ mean exponentiation or XOR?", "a": "In this calculator ^ always means exponentiation (power), not bitwise XOR. So 2^10 = 1024. For bitwise operations you would need a different tool." },
+    { "q": "Can I use spaces in expressions?", "a": "Yes. Spaces are ignored by the parser, so '2 ^ 10 + sqrt( 16 )' is equivalent to '2^10+sqrt(16)'. Add spaces wherever they improve readability." },
+    { "q": "What happens if I divide by zero?", "a": "The calculator catches division by zero and displays an error message rather than showing Infinity or NaN. Fix the expression and try again." },
+    { "q": "How many decimal places does the result show?", "a": "Up to 10 significant decimal places, formatted with your locale's number style. Very small floating-point rounding errors (like 0.9999999999 instead of 1) are a normal consequence of binary floating-point arithmetic." },
+    { "q": "Is this safer than using eval() in JavaScript?", "a": "Yes. This tool uses a hand-written recursive descent parser that only recognises the listed operators and functions. It never calls eval() or any equivalent, so arbitrary code cannot be injected or executed." },
+    { "q": "Does my expression leave my browser?", "a": "No. The parser runs entirely in your browser. Nothing you type is sent to a server or logged anywhere." }
+  ]
+}

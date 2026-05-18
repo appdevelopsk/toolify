@@ -1,0 +1,92 @@
+{
+  "title": "Calculatrice de Matrices — Addition, Multiplication, Déterminant",
+  "shortDescription": "Effectuez additions, soustractions, multiplications, transposées et déterminants de matrices 2×2 ou 3×3 directement dans votre navigateur.",
+  "description": "Saisissez les valeurs de la matrice A (et B pour les opérations binaires) pour calculer le résultat instantanément. Prend en charge les matrices 2×2 et 3×3 avec cinq opérations : addition, soustraction, multiplication, transposition et déterminant.",
+  "metaDescription": "Calculatrice de matrices gratuite en ligne. Additionnez, soustrayez, multipliez, transposez et calculez le déterminant de matrices 2×2 et 3×3 instantanément.",
+  "keywords": ["calculatrice de matrices", "multiplication de matrices", "calculatrice de déterminant", "addition de matrices", "matrice 3x3"],
+  "empty": "Remplissez les valeurs de la matrice ci-dessus pour calculer.",
+  "input": {
+    "size": "Taille de la matrice",
+    "operation": "Opération",
+    "matA": "Matrice A",
+    "matB": "Matrice B"
+  },
+  "result": {
+    "label": "Résultat"
+  },
+  "operations": {
+    "add": "Additionner (A + B)",
+    "subtract": "Soustraire (A − B)",
+    "multiply": "Multiplier (A × B)",
+    "transpose": "Transposer (Aᵀ)",
+    "determinant": "Déterminant (det A)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Ce que sont les matrices et pourquoi elles comptent",
+        "paragraphs": [
+          "Une matrice est un tableau rectangulaire de nombres organisés en lignes et en colonnes. Une matrice m×n possède m lignes et n colonnes. Les matrices sont les objets fondamentaux de l'algèbre linéaire, qui est le langage mathématique de la science des données, de l'infographie, des simulations physiques et de l'optimisation en ingénierie.",
+          "Chaque élément d'une matrice est identifié par son indice de ligne et de colonne. L'élément situé à la ligne i et à la colonne j est noté aᵢⱼ. Dans une matrice 2×2, a₁₁ est l'élément en haut à gauche, a₁₂ en haut à droite, a₂₁ en bas à gauche et a₂₂ en bas à droite. Les matrices carrées (même nombre de lignes et de colonnes) ont des propriétés supplémentaires comme le déterminant et la trace, qui ne sont pas définies pour les matrices non carrées.",
+          "Les matrices représentent des transformations linéaires : des fonctions qui mappent des vecteurs sur des vecteurs en préservant l'addition et la multiplication scalaire. Une matrice 2×2 représente toute combinaison de rotation, mise à l'échelle, réflexion et cisaillement dans un plan à deux dimensions. Multiplier deux matrices compose leurs transformations : si A effectue une rotation de 45° et B un agrandissement de 2×, alors AB applique la rotation puis la mise à l'échelle."
+        ]
+      },
+      {
+        "heading": "Les opérations matricielles expliquées",
+        "paragraphs": [
+          "L'addition et la soustraction exigent que les deux matrices aient les mêmes dimensions. On additionne ou soustrait les éléments correspondants : (A+B)ᵢⱼ = aᵢⱼ + bᵢⱼ. L'addition est commutative (A+B = B+A), mais pas la soustraction (A−B ≠ B−A en général).",
+          "La multiplication de matrices est plus complexe et non commutative : AB ≠ BA en général. Pour deux matrices carrées n×n, l'élément à la ligne i et à la colonne j du produit est le produit scalaire de la ligne i de A avec la colonne j de B : (AB)ᵢⱼ = Σₖ aᵢₖ bₖⱼ. Pour une matrice 2×2, cela nécessite 8 multiplications et 4 additions.",
+          "La transposée d'une matrice A, notée Aᵀ, est obtenue en échangeant lignes et colonnes : (Aᵀ)ᵢⱼ = aⱼᵢ. La première ligne de A devient la première colonne de Aᵀ. La transposition est largement utilisée en régression par moindres carrés (les équations normales font intervenir AᵀA), en analyse en composantes principales et en rétropropagation dans les réseaux de neurones. Le déterminant est une valeur scalaire qui résume une matrice carrée. Pour une matrice 2×2 [[a,b],[c,d]], det = ad − bc. Une matrice de déterminant 0 est dite singulière : elle n'a pas d'inverse."
+        ]
+      },
+      {
+        "heading": "Applications réelles du calcul matriciel",
+        "paragraphs": [
+          "L'infographie repose entièrement sur les opérations matricielles. Chaque rotation, translation, mise à l'échelle et projection en perspective appliquée à une scène 3D est représentée par une multiplication de matrices en coordonnées homogènes. Le pipeline de rendu multiplie une séquence de matrices 4×4 : les matrices de modèle, de vue et de projection sont composées avant d'être appliquées à chaque sommet. Les GPU sont spécifiquement optimisés pour cette charge de travail.",
+          "En apprentissage automatique, les réseaux de neurones stockent leurs poids sous forme de matrices. La passe avant à travers une couche est une multiplication de matrices entre le vecteur d'entrée (ou la matrice de lot) et la matrice de poids, suivie d'une fonction d'activation non linéaire. Les grands modèles de langage comme GPT effectuent des milliards de multiplications de matrices par passe avant. L'entraînement par rétropropagation calcule les gradients à l'aide de transposées : δL/δW = xᵀ · δL/δy.",
+          "Les systèmes d'équations linéaires peuvent être écrits et résolus à l'aide de matrices. Le système ax + by = e, cx + dy = f est équivalent à l'équation matricielle [[a,b],[c,d]] · [x,y]ᵀ = [e,f]ᵀ. Si le déterminant est non nul, la solution unique est x = [x,y]ᵀ = A⁻¹[e,f]ᵀ. Cette relation entre déterminants, inverses et résolubilité est au cœur de l'analyse numérique et du calcul scientifique."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choisissez la taille de la matrice", "text": "Sélectionnez 2×2 ou 3×3 selon vos matrices." },
+      { "name": "Sélectionnez l'opération", "text": "Choisissez parmi addition, soustraction, multiplication, transposition ou déterminant." },
+      { "name": "Entrez les valeurs de la matrice", "text": "Remplissez chaque cellule de la Matrice A (et Matrice B pour les opérations binaires). Les cellules vides ont la valeur 0 par défaut." },
+      { "name": "Lisez le résultat", "text": "Le résultat calculé s'affiche automatiquement en dessous : une matrice pour la plupart des opérations, ou un nombre pour le déterminant." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Pourquoi la multiplication de matrices n'est-elle pas commutative ?",
+      "a": "La multiplication de matrices représente la composition de transformations linéaires. Tout comme faire une rotation puis un agrandissement donne un résultat différent de l'ordre inverse, AB et BA diffèrent en général. La commutativité ne s'applique que dans des cas particuliers, par exemple quand les deux matrices sont diagonales ou que l'une d'elles est la matrice identité."
+    },
+    {
+      "q": "Que signifie un déterminant égal à 0 ?",
+      "a": "Un déterminant nul signifie que la matrice est singulière : elle n'a pas d'inverse. Géométriquement, la transformation fait s'effondrer au moins une dimension (projette un plan sur une droite, ou l'espace sur un plan ou une droite). Pour un système d'équations linéaires, un déterminant nul indique que le système n'a aucune solution ou en a une infinité."
+    },
+    {
+      "q": "Comment calculer l'inverse d'une matrice ?",
+      "a": "Pour une matrice 2×2 [[a,b],[c,d]], l'inverse est (1/det) × [[d,−b],[−c,a]], à condition que det = ad−bc ≠ 0. Pour les matrices de plus grande taille, on utilise l'élimination de Gauss ou la décomposition LU. Cet outil calcule actuellement le déterminant et la transposée ; l'inverse en est l'extension naturelle."
+    },
+    {
+      "q": "Qu'est-ce que la matrice identité ?",
+      "a": "La matrice identité I contient des 1 sur la diagonale principale et des 0 partout ailleurs. C'est l'équivalent matriciel du nombre 1 : AI = IA = A pour toute matrice A de taille compatible. Multiplier par l'identité ne modifie pas la matrice."
+    },
+    {
+      "q": "Puis-je multiplier des matrices de tailles différentes ?",
+      "a": "Oui, mais seulement si le nombre de colonnes de A est égal au nombre de lignes de B. Une matrice m×n multipliée par une n×p donne une m×p. Cet outil ne prend en charge que les matrices carrées (2×2 ou 3×3). Pour les opérations avec des matrices non carrées, une calculatrice plus spécialisée est nécessaire."
+    },
+    {
+      "q": "Qu'est-ce que la trace d'une matrice ?",
+      "a": "La trace est la somme des éléments de la diagonale principale (a₁₁ + a₂₂ + … + aₙₙ). Elle est égale à la somme des valeurs propres et invariante par transformations de similitude (A et P⁻¹AP ont la même trace). Cet outil n'affiche pas encore la trace, mais vous pouvez la calculer en additionnant les valeurs diagonales."
+    },
+    {
+      "q": "Les calculs sont-ils exacts ?",
+      "a": "L'outil utilise l'arithmétique standard en virgule flottante 64 bits de JavaScript. Les résultats sont arrondis à 10 décimales pour l'affichage. Pour des entrées entières, la plupart des résultats sont exacts. Pour des matrices grandes ou mal conditionnées, l'arrondi en virgule flottante peut introduire de petites erreurs dans les derniers chiffres."
+    },
+    {
+      "q": "Que signifie la transposée géométriquement ?",
+      "a": "Transposer une matrice la réfléchit par rapport à sa diagonale principale. Si A représente une transformation linéaire, Aᵀ représente la transformation adjointe. Pour les matrices de rotation (matrices orthogonales), la transposée est égale à l'inverse : une rotation de θ suivie de −θ annule la rotation."
+    }
+  ]
+}

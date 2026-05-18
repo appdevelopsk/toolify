@@ -1,0 +1,108 @@
+{
+  "title": "Duplikate Zeilen entfernen — Textlisten sofort bereinigen",
+  "shortDescription": "Entfernen Sie doppelte Zeilen aus beliebigen Textlisten. Unterstützt Groß-/Kleinschreibung-unabhängiges Matching, Leerzeichen-Trim und Behalten der ersten oder letzten Zeile.",
+  "description": "Fügen Sie eine beliebige Zeilenliste ein und dieses Tool entfernt alle Duplikate und behält nur einzigartige Einträge. Optionen ermöglichen die Kontrolle über Groß-/Kleinschreibungssensitivität, das Trimmen von führenden/nachfolgenden Leerzeichen vor dem Vergleich und die Wahl, ob die erste oder letzte Instanz jeder Duplikatgruppe beibehalten wird.",
+  "metaDescription": "Kostenloser Online-Duplikatzeilen-Entferner. Text einfügen, doppelte Zeilen sofort entfernen — Groß-/Kleinschreibung egal, Leerzeichen trimmen, erste oder letzte…",
+  "keywords": [
+    "doppelte Zeilen entfernen",
+    "Duplikate aus Text entfernen",
+    "Text deduplizieren",
+    "einzigartige Zeilen",
+    "Textliste bereinigen"
+  ],
+  "empty": "Fügen Sie oben Text ein, um doppelte Zeilen zu entfernen.",
+  "input": {
+    "text": "Eingabetext — ein Element pro Zeile",
+    "caseSensitive": "Groß-/Kleinschreibung beachten",
+    "trimLines": "Leerzeichen vor dem Vergleich trimmen",
+    "keepFirst": "Erste Instanz behalten (abwählen, um letzte zu behalten)"
+  },
+  "result": {
+    "cleaned": "Deduplizierte Ausgabe",
+    "stats": "{removed} doppelte Zeile(n) entfernt — {remaining} einzigartige Zeile(n) verbleiben."
+  },
+  "button": {
+    "copy": "Ergebnis kopieren",
+    "copied": "Kopiert!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wann doppelte Zeilen wirklich ein Problem sind",
+        "paragraphs": [
+          "Doppelte Zeilen sind in der Lyrik harmlos, aber in strukturierten Daten verursachen sie echte Probleme. In einer CSV-Datei bläht eine duplizierte Zeile stillschweigend die Datensatzanzahl auf, verzerrt Aggregate und kann beim Import in eine Datenbank zu Primärschlüsselverletzungen führen. In Server-Log-Dateien können sich wiederholende identische Logeinträge von einem abstürzenden Prozess eine Festplatte in Minuten füllen. In Konfigurationsdateien werden doppelte Schlüssel stillschweigend überschrieben — oder schlimmer noch, sie verursachen Analysefehler — je nach Parser.",
+          "Code-Repositories leiden ebenfalls unter versehentlicher Zeilenduplizierung: Kopier-Einfüge-Fehler in Abhängigkeitslisten (requirements.txt, package.json), wiederholte Import-Anweisungen oder doppelte Einträge in .gitignore. Automatisierte CI-Prüfungen erkennen diese häufig, aber ein schnelles Einfügen und Deduplizieren vor dem Commit ist schneller als das Debuggen eines Pipeline-Fehlers.",
+          "Leerzeilen verdienen besondere Aufmerksamkeit. Zwei aufeinanderfolgende Leerzeilen sind technisch Duplikate, aber viele Textformate (Markdown, Python-Quellcode, E-Mail-Texte) verwenden doppelte Leerzeilen als beabsichtigte Trennzeichen. Die Option 'Leerzeichen trimmen' dieses Tools normalisiert Zeilen, die aufgrund von verirrten Leerzeichen leer erscheinen, ohne beabsichtigte Leerzeilen zu zerstören — das Ergebnis hängt von Ihrem spezifischen Inhalt ab, prüfen Sie also die Ausgabe."
+        ]
+      },
+      {
+        "heading": "Groß-/Kleinschreibung: wann sie wichtig ist und wann nicht",
+        "paragraphs": [
+          "Standardmäßig vergleicht dieses Tool Zeilen ohne Beachtung der Groß-/Kleinschreibung, so dass 'Apple', 'apple' und 'APPLE' alle als dieselbe Zeile zählen und nur die erste beibehalten wird. Dies ist die richtige Einstellung für von Menschen lesbare Listen wie Tag-Clouds, Schlüsselwortlisten, Städtenamen und E-Mail-Adressen, bei denen Sie Varianten desselben Dings zusammenfassen möchten.",
+          "Der Groß-/Kleinschreibungs-sensitive Modus ist für Code unerlässlich. In Python sind die Imports 'os' und 'OS' technisch unterschiedlich (obwohl 'OS' zur Laufzeit auf den meisten Systemen scheitern würde), und Variablennamen wie 'Result' und 'result' sind unterschiedliche Bezeichner. SQL-Schlüsselwörter sind konventionell groß-/kleinschreibungsunabhängig, aber Tabellennamen sind auf Linux-Dateisystemen groß-/kleinschreibungssensitiv. Beim Deduplizieren von Code-Snippets, Konfigurationsschlüsseln oder Pfaden immer den groß-/kleinschreibungssensitiven Modus aktivieren.",
+          "Ein praktischer Mittelweg besteht darin, das Tool zweimal auszuführen: einmal ohne Berücksichtigung der Groß-/Kleinschreibung, um Beinahe-Duplikate zur Überprüfung zu finden, und einmal mit Beachtung der Groß-/Kleinschreibung für die maßgebliche Deduplizierung. Dieser Zwei-Durchlauf-Ansatz erkennt Tippfehler und inkonsistente Großschreibung, die die automatische Deduplizierung allein übersehen würde."
+        ]
+      },
+      {
+        "heading": "Wie die Behandlung von Leerzeilen und Leerzeichen funktioniert",
+        "paragraphs": [
+          "Nachfolgende Leerzeichen sind in den meisten Texteditoren und Kopier-Einfüge-Vorgängen unsichtbar, machen aber Zeilen beim Vergleich ungleich. 'apple  ' (zwei nachfolgende Leerzeichen) und 'apple' sind verschiedene Zeichenfolgen, daher würden Sie ohne aktiviertes Trimmen beide behalten — ein subtiles Duplikat in der Ausgabe hinterlassend. Die Option 'Leerzeichen trimmen' entfernt führende und nachfolgende Leerzeichen aus jeder Zeile vor dem Vergleich, ohne den Inhalt der Ausgabezeilen zu ändern (der getrimmte Text wird in das Ergebnis geschrieben).",
+          "Führende Leerzeichen in eingerücktem Code oder Gliederungslisten sind bedeutungsvoll: Trimmen würde die Einrückungshierarchie zerstören. Für Code oder strukturierte Gliederungen deaktivieren Sie das Trimmen und verwenden Sie den groß-/kleinschreibungssensitiven Modus, um den genauen Zeileninhalt beizubehalten. Für flache Textlisten wie Schlüsselwörter, Städtenamen oder URL-Pfade ist Trimmen fast immer die richtige Wahl.",
+          "Der Schalter 'erste vs. letzte behalten' ist am wichtigsten, wenn Ihre Liste Metadaten enthält, die an Positionen gebunden sind. Beispielsweise ein Ereignisprotokoll, bei dem spätere Einträge neuere Zustände darstellen — in diesem Szenario ist das Behalten der letzten Instanz (neuester Datensatz für jeden Schlüssel) semantisch korrekt, während das Behalten der ersten veraltete Daten bewahren würde."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Text einfügen",
+        "text": "Klicken Sie auf den Eingabebereich und fügen Sie Ihre Liste ein. Jede Zeile wird als ein Element behandelt — das Tool trennt nach Zeilenumbruchzeichen."
+      },
+      {
+        "name": "Optionen konfigurieren",
+        "text": "Aktivieren Sie 'Groß-/Kleinschreibung beachten' für Code oder Dateipfade. Aktivieren Sie 'Leerzeichen trimmen' für Schlüsselwortlisten oder CSV-Daten. Schalten Sie 'Erste behalten' um, um zu entscheiden, welche Instanz überlebt, wenn Duplikate gefunden werden."
+      },
+      {
+        "name": "Statistiken prüfen",
+        "text": "Der Ergebnisbereich zeigt, wie viele Duplikate entfernt wurden und wie viele einzigartige Zeilen verbleiben, damit Sie überprüfen können, ob der Vorgang korrekt war."
+      },
+      {
+        "name": "Ergebnis kopieren",
+        "text": "Klicken Sie auf 'Ergebnis kopieren', um den deduplizierten Text in die Zwischenablage zu kopieren, und fügen Sie ihn dann an der gewünschten Stelle ein."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Behält das Tool die Zeilenreihenfolge bei?",
+      "a": "Ja. Zeilen werden nicht sortiert — nur Duplikate werden entfernt. Die relative Reihenfolge der verbleibenden Zeilen ist identisch mit der Eingabereihenfolge."
+    },
+    {
+      "q": "Was gilt als Duplikat?",
+      "a": "Zwei Zeilen sind Duplikate, wenn sie nach Anwendung der gewählten Optionen (Groß-/Kleinschreibungsanpassung und/oder Leerzeichen-Trimmen) identisch sind. Nur der Textinhalt wird verglichen; Zeilennummern und Positionen werden nicht berücksichtigt."
+    },
+    {
+      "q": "Werden Leerzeilen entfernt?",
+      "a": "Leerzeilen werden nur entfernt, wenn sie Duplikate voneinander sind. Wenn Ihr Text drei aufeinanderfolgende Leerzeilen hat und 'Erste behalten' aktiviert ist, überlebt nur die erste Leerzeile. Wenn Sie alle Leerzeilen entfernen möchten, verwenden Sie einen Textsortierungs-Tool mit der Option 'leere Zeilen entfernen'."
+    },
+    {
+      "q": "Was bewirkt 'Letzte Instanz behalten'?",
+      "a": "Wenn 'Erste behalten' deaktiviert ist, behält das Tool die letzte Instanz jeder Duplikatgruppe statt der ersten. Das Ergebnis erscheint weiterhin in der ursprünglichen Dokumentreihenfolge — nur die überlebende Instanz ändert sich."
+    },
+    {
+      "q": "Kann ich das zum Deduplizieren von E-Mail-Listen verwenden?",
+      "a": "Ja. Fügen Sie eine E-Mail-Adresse pro Zeile ein. Verwenden Sie den Groß-/Kleinschreibungs-unabhängigen Modus (Standard), da E-Mail-Adressen laut Spezifikation groß-/kleinschreibungsunabhängig sind. Das Trimmen von Leerzeichen wird auch für kopierte/eingefügte E-Mail-Daten empfohlen."
+    },
+    {
+      "q": "Gibt es ein Zeilenlimit?",
+      "a": "Es gibt kein erzwungenes Limit. Das Tool verarbeitet alles im Speicher Ihres Browsers. In der Praxis verarbeiten moderne Browser Hunderttausende von Zeilen ohne merkliche Verzögerung."
+    },
+    {
+      "q": "Verlassen meine Daten den Browser?",
+      "a": "Nein. Alle Verarbeitung erfolgt vollständig in JavaScript auf Ihrem Gerät. Nichts wird auf einen Server hochgeladen."
+    },
+    {
+      "q": "Wie dedupliziere ich eine CSV nach einer bestimmten Spalte?",
+      "a": "Dieses Tool arbeitet auf ganzen Zeilen. Um nach einer einzelnen Spalte zu deduplizieren, sortieren oder extrahieren Sie zuerst diese Spalte in eine einspaktige Liste, deduplizieren Sie, und fügen Sie dann wieder zusammen. Für große Datensätze ist ein dediziertes Tool wie Pythons pandas oder die UNIQUE-Funktion einer Tabellenkalkulation präziser."
+    }
+  ]
+}

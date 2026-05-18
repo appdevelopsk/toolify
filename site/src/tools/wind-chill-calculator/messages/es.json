@@ -1,0 +1,141 @@
+{
+  "title": "Calculadora de sensación térmica por viento",
+  "shortDescription": "Calcula el índice de sensación térmica por viento y descubre qué tan frío se siente con la temperatura y velocidad del viento actuales.",
+  "description": "Ingresa la temperatura del aire y la velocidad del viento para calcular el índice oficial de sensación térmica utilizado por meteorólogos en Canadá y Estados Unidos. El resultado muestra la temperatura aparente que siente tu piel expuesta, junto con el riesgo de congelación y los límites de exposición recomendados.",
+  "metaDescription": "Calculadora gratuita de sensación térmica usando la fórmula NWS/MSC. Ingresa temperatura y velocidad del viento para obtener la temperatura aparente y el riesgo de conge…",
+  "keywords": [
+    "calculadora sensación térmica viento",
+    "calculadora temperatura aparente",
+    "índice de sensación térmica",
+    "factor de enfriamiento por viento",
+    "calculadora temperatura real sentida"
+  ],
+  "unitToggle": {
+    "label": "Sistema de unidades",
+    "metric": "Métrico (°C, km/h)",
+    "imperial": "Imperial (°F, mph)"
+  },
+  "input": {
+    "temperature": "Temperatura del aire",
+    "temperaturePlaceholder": "p.ej. −5",
+    "windSpeed": "Velocidad del viento",
+    "windSpeedPlaceholder": "p.ej. 30"
+  },
+  "result": {
+    "windChill": "Sensación térmica",
+    "feelsLike": "Se siente como",
+    "difference": "Más frío que la temperatura real",
+    "frostbiteRisk": "Riesgo de congelación",
+    "exposure": "Exposición segura máxima"
+  },
+  "risk": {
+    "safe": "Sin riesgo significativo",
+    "watch": "Atención — limitar exposición prolongada",
+    "warning": "Advertencia — congelación en 30 min",
+    "danger": "Peligro — congelación en 10 min",
+    "critical": "Crítico — congelación en 5 min",
+    "extremeDanger": "Peligro extremo — congelación en 2 min"
+  },
+  "exposure": {
+    "safe": "Sin límite (vestirse adecuadamente)",
+    "watch": "30 minutos o más",
+    "warning": "Menos de 30 minutos",
+    "danger": "Menos de 10 minutos",
+    "critical": "Menos de 5 minutos",
+    "extremeDanger": "Menos de 2 minutos"
+  },
+  "info": {
+    "outOfRange": "La sensación térmica no aplica cuando la temperatura supera 10°C (50°F) o la velocidad del viento es inferior a 4,8 km/h (3 mph). La fórmula sólo es válida en esas condiciones.",
+    "noWindChill": "Sin efecto de sensación térmica — se siente igual que la temperatura real.",
+    "empty": "Ingresa la temperatura y la velocidad del viento para calcular la sensación térmica."
+  },
+  "units": {
+    "celsius": "°C",
+    "fahrenheit": "°F",
+    "kmh": "km/h",
+    "mph": "mph"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "¿Qué es la sensación térmica por viento y cuál es el origen de la fórmula?",
+        "paragraphs": [
+          "La sensación térmica por viento (también llamada índice de enfriamiento por viento o temperatura aparente) mide con qué rapidez la piel humana expuesta pierde calor en condiciones de frío y viento. El aire en calma forma una delgada capa aislante alrededor del cuerpo; el viento elimina esa capa, acelerando la pérdida de calor y haciendo que el aire se sienta más frío de lo que marca el termómetro.",
+          "El primer índice de sensación térmica por viento fue desarrollado en 1945 por los exploradores antárticos Paul Siple y Charles Passel, quienes midieron cuánto tardaba en congelarse una botella de plástico con agua bajo diferentes combinaciones de temperatura y viento. Su fórmula fue ampliamente usada durante décadas, pero fue criticada por sobreestimar la sensación de frío.",
+          "En noviembre de 2001, el Servicio Meteorológico Nacional de Estados Unidos (NWS) y Environment and Climate Change Canada (ECCC) adoptaron conjuntamente una nueva fórmula derivada de ensayos con voluntarios humanos. Los participantes caminaron en cintas ergométricas en cámaras de clima controlado, y sensores de transferencia de calor en la piel facial midieron las tasas de enfriamiento reales. La fórmula resultante es: SC = 13,12 + 0,6215T − 11,37V^0,16 + 0,3965T×V^0,16 (Celsius/km·h), con un equivalente imperial en °F y mph.",
+          "La fórmula sólo tiene sentido físico cuando la temperatura del aire es igual o inferior a 10°C (50°F) y la velocidad del viento supera 4,8 km/h (3 mph). Fuera de esos umbrales el modelo se degrada: el aire en calma no produce sensación térmica, y el aire cálido implica ganancia de calor en lugar de mayor pérdida de calor."
+        ]
+      },
+      {
+        "heading": "Riesgo de congelación y seguridad en el frío",
+        "paragraphs": [
+          "La congelación ocurre cuando el tejido de la piel se congela. La sensación térmica por viento acelera drásticamente el proceso: con una sensación térmica de −27°C, la piel expuesta puede sufrir congelación en 30 minutos. A −35°C ese margen se reduce a 10 minutos. A −45°C son 5 minutos, y a −55°C o menos, la congelación puede producirse en 2 minutos.",
+          "Los umbrales de riesgo utilizados por Environment Canada y el NWS son: sin riesgo particular por encima de −27°C; alerta de congelación de −27°C a −35°C; advertencia de −35°C a −45°C; peligro de −45°C a −55°C; y peligro extremo por debajo de −55°C. Estos son los mismos umbrales que se muestran en esta calculadora.",
+          "Las medidas de protección clave incluyen cubrir toda la piel expuesta (especialmente mejillas, nariz, orejas, dedos de las manos y de los pies), mantenerse seco (la ropa mojada pierde alrededor del 90% de su valor aislante), vestir en capas para atrapar el aire caliente, e informar a alguien de la ruta planificada y la hora de regreso. Los niños y los ancianos son más vulnerables a la congelación porque sus sistemas de termorregulación son menos eficientes.",
+          "La sensación térmica no afecta a los objetos inanimados de la misma manera. El motor de tu coche, una tubería congelada o una botella de agua no se enfriarán por debajo de la temperatura real del aire; la sensación térmica es específica de los objetos que generan su propio calor (como el cuerpo humano). Un coche aparcado al aire libre alcanzará la temperatura ambiente pero no más baja, independientemente de la velocidad del viento."
+        ]
+      },
+      {
+        "heading": "Sensación térmica por viento vs índice de calor: las dos caras de la temperatura aparente",
+        "paragraphs": [
+          "La temperatura aparente es el concepto general: describe la temperatura que siente una persona, teniendo en cuenta la interacción de la temperatura del aire con la humedad (índice de calor) o el viento (sensación térmica). Las dos fórmulas funcionan en estaciones opuestas y nunca se aplican simultáneamente.",
+          "El índice de calor (llamado humidex en Canadá) se aplica cuando las temperaturas superan aproximadamente 27°C (80°F). La alta humedad ralentiza la evaporación del sudor, reduciendo el principal mecanismo de enfriamiento del cuerpo y haciendo que el aire se sienta más caliente de lo que indica el termómetro.",
+          "La sensación térmica por viento, en contraste, es una medida invernal: se aplica por debajo de 10°C (50°F). En lugar de bloquear el enfriamiento como lo hace la humedad en verano, el viento acelera el enfriamiento al alterar la capa límite de aire caliente alrededor de la piel.",
+          "Juntos, el índice de calor y la sensación térmica ofrecen a los meteorólogos una imagen completa del confort térmico exterior en todo el rango de condiciones meteorológicas. Ambas son métricas de asesoramiento, no medidas fisiológicas directas; factores individuales como el nivel de forma física, la ropa, la composición corporal y la aclimatación influyen en cómo cada persona percibe realmente la temperatura."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Selecciona tu sistema de unidades",
+        "text": "Elige Métrico (°C y km/h) o Imperial (°F y mph) según el informe meteorológico que tengas."
+      },
+      {
+        "name": "Ingresa la temperatura del aire",
+        "text": "Escribe la temperatura del aire actual. La fórmula es válida a 10°C (50°F) o por debajo."
+      },
+      {
+        "name": "Ingresa la velocidad del viento",
+        "text": "Escribe la velocidad del viento sostenida. Debe ser superior a 4,8 km/h (3 mph) para que la fórmula aplique."
+      },
+      {
+        "name": "Lee el resultado",
+        "text": "La temperatura de sensación térmica calculada, cuánto más frío se siente en comparación con la temperatura real del aire y el nivel de riesgo de congelación se muestran instantáneamente debajo de los campos de entrada."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Qué es la sensación térmica por viento?",
+      "a": "La sensación térmica por viento es la temperatura aparente que siente la piel humana expuesta debido a la combinación de aire frío y viento. El viento elimina la delgada capa de aire caliente que normalmente se encuentra contra tu piel, aumentando la tasa de pérdida de calor y haciéndote sentir más frío de lo que indica el termómetro."
+    },
+    {
+      "q": "¿Qué fórmula utiliza esta calculadora?",
+      "a": "Utiliza la fórmula oficial NWS/Environment Canada adoptada en 2001. Métrico: SC = 13,12 + 0,6215T − 11,37V^0,16 + 0,3965T×V^0,16, donde T está en °C y V en km/h. Imperial: SC = 35,74 + 0,6215T − 35,75V^0,16 + 0,4275T×V^0,16, donde T está en °F y V en mph. La fórmula fue validada con sujetos humanos y reemplazó al modelo Siple–Passel."
+    },
+    {
+      "q": "¿Por qué la sensación térmica no aplica por encima de 10°C (50°F)?",
+      "a": "Por encima de 10°C el modelo de sensación térmica predice un valor superior a la temperatura real para vientos moderados, lo cual es físicamente engañoso. El NWS eligió 10°C como límite superior donde la fórmula representa de forma fiable la pérdida de calor humana. En clima cálido, la humedad (no la velocidad del viento) es el factor dominante en la temperatura percibida."
+    },
+    {
+      "q": "¿Por qué la sensación térmica no aplica por debajo de 4,8 km/h (3 mph)?",
+      "a": "A velocidades de viento muy bajas la fórmula se vuelve poco fiable porque el término matemático V^0,16 se aproxima a 1 y la ecuación degenera. Las condiciones de calma o casi calma se manejan reportando la temperatura real del aire como temperatura aparente."
+    },
+    {
+      "q": "¿Afecta la sensación térmica a la velocidad a la que se congela mi coche o las tuberías?",
+      "a": "No. La sensación térmica solo describe la pérdida de calor de los objetos que producen su propio calor corporal; no reduce la temperatura real del aire. Un bloque de motor, una tubería de agua o una línea de combustible eventualmente alcanzarán la temperatura real del aire pero nunca bajarán de ella por efecto del viento."
+    },
+    {
+      "q": "¿Con qué rapidez puede producirse la congelación?",
+      "a": "Con una sensación térmica de −27°C (−17°F), la congelación en la piel expuesta puede ocurrir en 30 minutos. A −35°C (−31°F) el margen es de unos 10 minutos; a −45°C (−49°F) baja a 5 minutos, y a −55°C (−67°F) o menos, la congelación puede desarrollarse en 2 minutos. Estos umbrales provienen del cuadro de alertas del NWS/Environment Canada."
+    },
+    {
+      "q": "¿La sensación térmica es igual que el humidex o el índice de calor?",
+      "a": "No. El humidex y el índice de calor son métricas de verano que tienen en cuenta la humedad que hace que el calor se sienta más intenso. La sensación térmica por viento es una métrica invernal que tiene en cuenta el viento que hace que el frío se sienta más intenso. Las dos nunca se aplican al mismo tiempo."
+    },
+    {
+      "q": "¿Qué debo usar cuando la sensación térmica está en zona de advertencia?",
+      "a": "Cubre toda la piel expuesta: usa pasamontañas o protector facial, guantes aislantes y capas exteriores impermeables. Viste con capas base que transpiren para mantenerte seco, ya que la ropa mojada pierde hasta el 90% de su valor aislante. Limita la exposición al aire libre a menos de 30 minutos e informa a alguien si sales en condiciones de advertencia o peligro."
+    }
+  ]
+}

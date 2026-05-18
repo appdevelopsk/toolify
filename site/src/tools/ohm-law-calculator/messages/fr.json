@@ -1,0 +1,111 @@
+{
+  "title": "Calculateur loi d'Ohm — Tension, Courant, Résistance et Puissance",
+  "shortDescription": "Calculez la tension, le courant, la résistance ou la puissance à l'aide de la loi d'Ohm (V=IR) et de la formule de puissance (P=VI). Affiche les quatre valeurs avec des unités intelligentes.",
+  "description": "Sélectionnez la grandeur électrique à calculer, entrez les deux autres valeurs et obtenez instantanément la tension (V), le courant (I), la résistance (R) et la puissance (P). Compatible avec les milliampères, microampères, kilohms, mégaohms, milliwatts et kilowatts. La formule appliquée est affichée avec chaque résultat.",
+  "metaDescription": "Calculateur gratuit de la loi d'Ohm. Calculez tension, courant, résistance ou puissance avec V=IR et P=VI. Compatible mA, kΩ, MΩ, mW. Résultats instantanés.",
+  "keywords": ["calculateur loi d'ohm", "calculateur tension courant résistance", "calculateur puissance électronique", "calculateur ohm", "calculateur V=IR"],
+  "empty": "Sélectionnez ce que vous souhaitez calculer et entrez les deux autres valeurs.",
+  "input": {
+    "solveLabel": "Calculer",
+    "voltage": "Tension",
+    "voltagePlaceholder": "ex. 12",
+    "current": "Courant",
+    "currentPlaceholder": "ex. 0.5",
+    "resistance": "Résistance",
+    "resistancePlaceholder": "ex. 100",
+    "power": "Puissance",
+    "powerPlaceholder": "ex. 5",
+    "pairVI": "Tension & Courant",
+    "pairVR": "Tension & Résistance",
+    "pairIR": "Courant & Résistance"
+  },
+  "result": {
+    "voltage": "Tension",
+    "current": "Courant",
+    "resistance": "Résistance",
+    "power": "Puissance",
+    "formula": "Formule utilisée"
+  },
+  "error": {
+    "invalidInput": "Entrée invalide — veuillez saisir des nombres valides.",
+    "divisionByZero": "Division par zéro — la résistance ou le courant ne peuvent pas être nuls.",
+    "needTwoValues": "Entrez les deux valeurs connues pour calculer l'inconnue."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Qu'est-ce que la loi d'Ohm ?",
+        "paragraphs": [
+          "La loi d'Ohm stipule que la tension aux bornes d'un conducteur est directement proportionnelle au courant qui le traverse, à condition que la température reste constante. Formulée par le physicien allemand Georg Simon Ohm en 1827, elle s'exprime par V = I × R, où V est la tension en volts (V), I est le courant en ampères (A) et R est la résistance en ohms (Ω). Ohm a déduit cette relation en expérimentant avec des fils de différentes longueurs et épaisseurs, constatant que doubler la résistance divisait le courant par deux pour une tension fixe.",
+          "La loi d'Ohm s'applique à la plupart des conducteurs métalliques et à de nombreux matériaux résistifs à température constante — on les appelle matériaux ohmiques. Les composants non ohmiques comme les diodes, les transistors et les ampoules à incandescence ne suivent pas une relation linéaire V-I, de sorte que la loi d'Ohm n'est qu'une approximation pour eux. En conception de circuits, V = IR est l'équation la plus utilisée : elle détermine la section des fils, les valeurs de résistances, la chute de tension aux bornes des composants et les limites de fonctionnement en sécurité."
+        ]
+      },
+      {
+        "heading": "La puissance dans les circuits électriques",
+        "paragraphs": [
+          "La puissance électrique est le taux auquel l'énergie est transférée ou consommée, mesurée en watts (W). Trois formules équivalentes relient la puissance aux grandeurs électriques de base : P = V × I (la puissance est égale à la tension multipliée par le courant), P = I² × R (utile quand le courant et la résistance sont connus) et P = V² / R (utile quand la tension et la résistance sont connues). Toutes trois découlent directement de la loi d'Ohm et de la définition de la puissance.",
+          "La dissipation de puissance a une importance pratique car les résistances, les fils et les autres composants convertissent l'énergie électrique en chaleur. Chaque résistance possède une puissance nominale — typiquement 0,125 W, 0,25 W, 0,5 W ou 1 W pour les types traversants courants — et dépasser cette valeur provoque la surchauffe et la défaillance du composant. Par exemple, une résistance de 100 Ω dans un circuit 5 V fait circuler I = 5/100 = 50 mA et dissipe P = 0,05² × 100 = 0,25 W, donc une résistance quart de watt est le choix minimal sûr. Ajoutez toujours une marge de sécurité d'au moins 50 %."
+        ]
+      },
+      {
+        "heading": "Circuits en série et en parallèle",
+        "paragraphs": [
+          "Dans un circuit en série, les résistances sont connectées bout à bout et le même courant les traverse toutes. La résistance totale est simplement la somme : R_total = R1 + R2 + R3 + ... La tension se répartit sur chaque résistance proportionnellement à sa valeur (V_n = I × R_n), ce qui est le principe des diviseurs de tension utilisés pour fixer des points de polarisation ou mettre à l'échelle les sorties de capteurs.",
+          "Dans un circuit en parallèle, les résistances partagent la même tension mais le courant se divise entre les branches. La résistance totale suit la règle des inverses : 1/R_total = 1/R1 + 1/R2 + 1/R3 + ... Pour deux résistances, le raccourci est R_total = (R1 × R2) / (R1 + R2). Les combinaisons en parallèle produisent toujours une résistance totale inférieure à la plus petite résistance individuelle. Comprendre les deux configurations vous permet de concevoir des circuits fournissant la tension et le courant corrects à chaque composant, de dimensionner correctement les fusibles et les fils, et de diagnostiquer les pannes efficacement."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisissez la grandeur inconnue",
+        "text": "Cliquez sur l'un des quatre boutons — Tension (V), Courant (I), Résistance (R) ou Puissance (P) — pour sélectionner ce que vous souhaitez calculer. Les champs de saisie se mettront à jour pour indiquer les deux valeurs que vous devez fournir."
+      },
+      {
+        "name": "Entrez les deux valeurs connues",
+        "text": "Tapez les valeurs connues dans les champs de saisie. Utilisez les listes déroulantes d'unités pour sélectionner l'échelle appropriée : milliampères (mA) ou microampères (µA) pour les faibles courants, kilohms (kΩ) ou mégaohms (MΩ) pour les grandes résistances, et milliwatts (mW) ou kilowatts (kW) pour la puissance."
+      },
+      {
+        "name": "Lisez les quatre résultats",
+        "text": "Le calculateur affiche instantanément la tension, le courant, la résistance et la puissance. La valeur calculée est mise en évidence en bleu. Les valeurs inférieures à 0,001 sont automatiquement affichées avec un préfixe milli ou micro pour faciliter la lecture."
+      },
+      {
+        "name": "Notez la formule appliquée",
+        "text": "Le badge ambré au-dessus des résultats indique la formule utilisée — par exemple, V = I × R ou P = V² / R. Cela vous aide à comprendre la relation et à vérifier le calcul manuellement."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qu'est-ce que la loi d'Ohm en termes simples ?",
+      "a": "La loi d'Ohm dit que si vous augmentez la tension qui pousse l'électricité dans un fil, plus de courant circule — et si vous augmentez la résistance, moins de courant circule. La relation exacte est V = I × R : la tension est égale au courant multiplié par la résistance. Connaître deux de ces trois grandeurs vous permet de calculer la troisième."
+    },
+    {
+      "q": "Quelles unités sont utilisées dans la loi d'Ohm ?",
+      "a": "La tension se mesure en volts (V), le courant en ampères (A) et la résistance en ohms (Ω). Ces unités sont définies de sorte que 1 V = 1 A × 1 Ω. En pratique, on utilise souvent les milliampères (1 mA = 0,001 A) pour les faibles courants, les kilohms (1 kΩ = 1 000 Ω) pour les résistances plus élevées et les mégaohms (1 MΩ = 1 000 000 Ω) pour les résistances très élevées, comme celles des circuits de protection d'entrée."
+    },
+    {
+      "q": "Comment calculer la tension avec la loi d'Ohm ?",
+      "a": "Multipliez le courant (en ampères) par la résistance (en ohms) : V = I × R. Par exemple, si 2 A circulent dans une résistance de 50 Ω, la chute de tension à ses bornes est 2 × 50 = 100 V. Si votre courant est en milliampères, convertissez d'abord : 200 mA = 0,2 A, donc V = 0,2 × 50 = 10 V."
+    },
+    {
+      "q": "Comment trouver le courant quand je connais la tension et la résistance ?",
+      "a": "Réarrangez la loi d'Ohm pour obtenir I = V / R. Si vous avez une pile de 9 V connectée à une résistance de 470 Ω, le courant est 9 / 470 ≈ 0,0191 A, soit environ 19,1 mA. C'est le courant qui circule dans la résistance et qui détermine la puissance qu'elle dissipe."
+    },
+    {
+      "q": "Quelle est la relation entre la puissance et la loi d'Ohm ?",
+      "a": "La puissance (P) mesure la vitesse à laquelle l'énergie est consommée, en watts. Elle se relie à la loi d'Ohm par trois formules équivalentes : P = V × I, P = I² × R et P = V² / R. Toutes trois donnent le même résultat ; choisissez celle qui correspond aux grandeurs que vous connaissez déjà. Pour une résistance portant 0,1 A sous 10 V : P = 10 × 0,1 = 1 W."
+    },
+    {
+      "q": "La loi d'Ohm s'applique-t-elle aux circuits en courant alternatif ?",
+      "a": "La loi d'Ohm s'applique aux résistances pures dans les circuits alternatifs, tout comme dans les circuits continus. Cependant, les circuits alternatifs contiennent aussi des condensateurs et des inductances, qui introduisent la réactance (opposition au courant dépendant de la fréquence). La généralisation en alternatif utilise l'impédance (Z) au lieu de la résistance simple : V = I × Z, où Z est un nombre complexe. Pour le travail en audio, radio et électronique de puissance, des calculs d'impédance complexe au-delà de la loi d'Ohm de base sont nécessaires."
+    },
+    {
+      "q": "Pourquoi la résistance produit-elle de la chaleur ?",
+      "a": "Lorsque le courant traverse une résistance, les électrons entrent en collision avec les atomes du matériau et lui transfèrent de l'énergie cinétique sous forme de chaleur. La puissance dissipée sous forme de chaleur est P = I² × R — c'est l'effet Joule. Plus le courant ou la résistance est élevé, plus la chaleur produite est importante. C'est pourquoi le câblage à fort courant utilise des conducteurs épais et de faible résistance, et pourquoi les résistances ont des puissances nominales pour éviter la surchauffe."
+    },
+    {
+      "q": "Que se passe-t-il si je dépasse la puissance nominale d'une résistance ?",
+      "a": "Dépasser la puissance nominale provoque la surchauffe de la résistance. Avec une surcharge modérée, elle peut dériver de sa valeur ou devenir peu fiable. Avec une surcharge sévère, la résistance peut fumer, se fissurer ou prendre feu. Calculez toujours P = I² × R et choisissez une résistance dont la puissance nominale est au moins 1,5 à 2 fois la puissance prévue. Les puissances nominales courantes sont 0,1 W, 0,25 W, 0,5 W, 1 W et 2 W pour les composants traversants."
+    }
+  ]
+}

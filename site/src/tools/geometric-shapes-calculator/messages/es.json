@@ -1,0 +1,122 @@
+{
+  "title": "Calculadora de Figuras Geométricas — Volumen y Área",
+  "shortDescription": "Calcula volumen, área de superficie y dimensiones clave para 6 sólidos 3D comunes: esfera, cilindro, cono, cubo, prisma rectangular y prisma triangular.",
+  "description": "Selecciona una figura 3D, ingresa sus dimensiones y obtén al instante el volumen, el área de superficie total y propiedades específicas como área lateral, generatriz o diagonal espacial. Todos los cálculos se ejecutan en tu navegador con hasta seis decimales de precisión.",
+  "metaDescription": "Calculadora gratuita de geometría 3D: calcula volumen y área de superficie de esferas, cilindros, conos, cubos, prismas rectangulares y triangulares con fórmulas.",
+  "keywords": [
+    "calculadora de figuras geométricas",
+    "calculadora de volumen",
+    "calculadora de área de superficie",
+    "calculadora de sólidos 3D",
+    "volumen de la esfera",
+    "volumen del cilindro",
+    "área del cono"
+  ],
+  "shapeLabel": "Selecciona una figura",
+  "shape": {
+    "sphere": "Esfera",
+    "cylinder": "Cilindro",
+    "cone": "Cono",
+    "cube": "Cubo",
+    "rectangularPrism": "Prisma Rectangular",
+    "triangularPrism": "Prisma Triangular"
+  },
+  "input": {
+    "radius": "Radio (r)",
+    "height": "Altura (h)",
+    "side": "Longitud del lado (s)",
+    "length": "Longitud (l)",
+    "width": "Ancho (w)",
+    "triangleBase": "Base del triángulo (b)",
+    "triangleHeight": "Altura del triángulo (h△)"
+  },
+  "result": {
+    "volume": "Volumen",
+    "surfaceArea": "Área de Superficie Total",
+    "lateralArea": "Área Lateral",
+    "slantHeight": "Generatriz (s)",
+    "diagonal": "Diagonal Espacial",
+    "baseArea": "Área de la Base"
+  },
+  "empty": "Selecciona una figura e ingresa sus dimensiones.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Fórmulas de volumen y área de superficie para sólidos 3D comunes",
+        "paragraphs": [
+          "Cada figura 3D tiene dos medidas fundamentales: el volumen —la cantidad de espacio que encierra— y el área de superficie —el área total de todas sus caras—. Una esfera de radio r tiene volumen (4/3)πr³ y área de superficie 4πr². Un cilindro con radio de base r y altura h tiene volumen πr²h, área lateral 2πrh y área de superficie total 2πr² + 2πrh. Un cono añade una generatriz s = √(r² + h²): su volumen es (1/3)πr²h y el área de superficie total es πr² + πrs.",
+          "Para los poliedros, un cubo de lado s tiene volumen s³, área de superficie 6s² y diagonal espacial s√3. Un prisma rectangular (paralelepípedo) con dimensiones l × w × h tiene volumen lwh, área de superficie 2(lw + lh + wh) y diagonal espacial √(l² + w² + h²). Un prisma triangular con sección transversal isósceles —base b, altura del triángulo h△ y longitud del prisma l— tiene volumen (1/2)bh△l y área de superficie total igual al área lateral más las dos caras triangulares.",
+          "Esta calculadora evalúa todas estas fórmulas con la aritmética de punto flotante de 64 bits de JavaScript, siguiendo la precisión completa del estándar IEEE 754 y redondeando los valores mostrados a seis decimales. Mantén todas las entradas en la misma unidad; la calculadora es independiente de las unidades —milímetros, centímetros, pulgadas o metros funcionan de forma idéntica."
+        ]
+      },
+      {
+        "heading": "Aplicaciones reales en embalaje, arquitectura e ingeniería",
+        "paragraphs": [
+          "Los diseñadores de embalaje calculan el volumen de una caja (prisma rectangular) para determinar cuánto producto cabe, y el área de superficie para estimar cuánto cartón o film se necesita. Una caja de cereales de 30 cm de alto, 20 cm de ancho y 8 cm de profundidad tiene volumen 30 × 20 × 8 = 4800 cm³ y necesita 2(30×20 + 30×8 + 20×8) = 2000 cm² de material.",
+          "Los ingenieros civiles usan las fórmulas de esfera y cilindro para dimensionar tanques de almacenamiento de agua, silos y recipientes a presión. Un tanque cilíndrico de 2 m de radio y 5 m de altura almacena π × 4 × 5 ≈ 62,83 m³ —unos 62.830 litros—. El área de superficie determina la cantidad de aislamiento o recubrimiento anticorrosión necesario.",
+          "En arquitectura, las formas cónicas y prismáticas triangulares aparecen en chapiteles, buhardillas y aletas decorativas. Conocer el área lateral de un chapitel cónico permite calcular exactamente cuánta lámina de cobre o pizarra se debe pedir. Un cono con radio de base 1,2 m y altura 3 m tiene generatriz √(1,44 + 9) ≈ 3,232 m y área lateral π × 1,2 × 3,232 ≈ 12,18 m²."
+        ]
+      },
+      {
+        "heading": "Cómo el escalado de dimensiones afecta al volumen y al área de superficie",
+        "paragraphs": [
+          "Escalar las tres dimensiones de un sólido por un factor k multiplica su volumen por k³ y su área de superficie por k². Esta ley cuadrado-cubo tiene consecuencias prácticas profundas. Duplica el lado de un cubo (k = 2) y su volumen crece por un factor de 8, mientras que su área de superficie solo se cuadruplica. Por eso los contenedores de gran tamaño son mucho más eficientes en espacio por unidad de material que los pequeños.",
+          "Para una esfera, si duplicas el radio, el volumen aumenta ocho veces de (4/3)πr³ a (4/3)π(2r)³ = 8 × (4/3)πr³. El área de superficie se cuadruplica de 4πr² a 4π(2r)² = 16πr². La razón superficie-volumen, 3/r para una esfera, se reduce a la mitad —por eso los animales grandes tienen proporcionalmente menos área de superficie relativa a su volumen corporal, lo que afecta la disipación de calor y el metabolismo.",
+          "Cuando solo se escala una dimensión, el efecto es lineal para ese componente. Duplicar la altura de un cilindro duplica su volumen, pero aumenta el área de superficie total en menos del doble (porque las dos tapas circulares no cambian). Esta asimetría importa al optimizar el diseño de latas: para un volumen fijo, el cilindro más eficiente en material tiene la altura igual a su diámetro."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Elige una figura 3D",
+        "text": "Haz clic en uno de los seis botones de figura —Esfera, Cilindro, Cono, Cubo, Prisma Rectangular o Prisma Triangular— para seleccionar la figura que deseas calcular."
+      },
+      {
+        "name": "Ingresa las dimensiones requeridas",
+        "text": "Completa los campos de entrada que aparecen para la figura elegida. Todos los valores deben ser números positivos en la misma unidad (p. ej., todos en centímetros o todos en pulgadas)."
+      },
+      {
+        "name": "Lee los resultados",
+        "text": "El volumen y el área de superficie total se destacan en la parte superior. Desplázate hacia abajo para ver propiedades adicionales como área lateral, generatriz, área de la base o diagonal espacial según la figura."
+      },
+      {
+        "name": "Cambia la figura o las dimensiones",
+        "text": "Selecciona una figura diferente en cualquier momento o ajusta cualquier dimensión: los resultados se actualizan al instante sin recargar la página."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Cuál es la diferencia entre volumen y área de superficie?",
+      "a": "El volumen mide el espacio tridimensional que encierra un sólido, expresado en unidades cúbicas (cm³, m³, in³). El área de superficie mide el área total de todas las caras exteriores, expresada en unidades cuadradas (cm², m², in²). Piensa en el volumen como cuánta agua cabe en un recipiente y en el área de superficie como cuánta pintura necesitas para cubrir el exterior."
+    },
+    {
+      "q": "¿En qué se diferencia la generatriz de un cono de su altura?",
+      "a": "La altura h de un cono es la distancia perpendicular desde el vértice hasta el centro de la base. La generatriz s es la distancia a lo largo de la superficie inclinada desde el vértice hasta el borde de la base. Se relacionan mediante el teorema de Pitágoras: s = √(r² + h²), donde r es el radio de la base."
+    },
+    {
+      "q": "¿Por qué la calculadora de prisma triangular asume un triángulo isósceles?",
+      "a": "Para una sección transversal triangular general se necesitan los tres lados para calcular el perímetro con exactitud. Esta calculadora solo pide base y altura, por lo que asume un triángulo isósceles —dos lados iguales de longitud √((b/2)² + h²) cada uno—. Para triángulos equiláteros de lado b, la altura es b√3/2, que da el resultado correcto cuando introduces ese valor."
+    },
+    {
+      "q": "¿Qué unidades debo usar?",
+      "a": "Cualquier unidad coherente funciona: milímetros, centímetros, metros, pulgadas o pies. La calculadora es independiente de las unidades; si introduces el radio en centímetros, el volumen estará en centímetros cúbicos y el área de superficie en centímetros cuadrados. No mezcles unidades dentro de un mismo cálculo."
+    },
+    {
+      "q": "¿Cómo calculo el volumen de una esfera con el diámetro en lugar del radio?",
+      "a": "Divide el diámetro entre 2 para obtener el radio y luego introduce ese valor. Por ejemplo, una esfera con diámetro 10 cm tiene radio 5 cm, lo que da un volumen de (4/3)π × 5³ ≈ 523,599 cm³."
+    },
+    {
+      "q": "¿Qué es la diagonal espacial de un prisma rectangular?",
+      "a": "La diagonal espacial es la línea recta más larga dentro del prisma, que conecta dos esquinas opuestas a través del interior. Su longitud es √(l² + w² + h²). Para un cubo de lado s, esto se simplifica a s√3. A veces se llama diagonal principal o diagonal del sólido."
+    },
+    {
+      "q": "¿Cómo afecta al volumen duplicar el radio de una esfera?",
+      "a": "Duplicar el radio multiplica el volumen por 2³ = 8. Esto se deduce de la fórmula V = (4/3)πr³: sustituye r por 2r y obtienes (4/3)π(2r)³ = 8 × (4/3)πr³. El área de superficie se cuadruplica (factor de 2² = 4) porque depende de r²."
+    },
+    {
+      "q": "¿Se envían datos a algún servidor?",
+      "a": "No. Todos los cálculos se ejecutan completamente en tu navegador usando JavaScript. Ninguna entrada ni resultado se transmite a ningún servidor."
+    }
+  ]
+}

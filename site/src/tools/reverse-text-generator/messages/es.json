@@ -1,0 +1,69 @@
+{
+  "title": "Generador de texto invertido — Voltea caracteres, palabras o líneas",
+  "shortDescription": "Invierte cualquier texto por caracteres, palabras o líneas. Maneja correctamente Unicode, emoji y caracteres multibyte. Copia al portapapeles al instante.",
+  "description": "Introduce cualquier texto para invertirlo al instante. Elige entre tres modos: invertir todos los caracteres de la cadena, invertir el orden de las palabras manteniendo las palabras intactas, o invertir el orden de las líneas. La herramienta maneja correctamente los emoji Unicode y los caracteres CJK que abarcan múltiples puntos de código.",
+  "metaDescription": "Generador de texto invertido gratuito. Voltea texto por caracteres, palabras o líneas — compatible con Unicode y emoji. Copia instantánea. Funciona en el navegador.",
+  "keywords": ["generador de texto invertido", "invertir texto online", "invertir palabras", "invertir cadena", "invertir líneas", "texto espejo"],
+  "empty": "Introduce texto arriba para ver el resultado invertido.",
+  "input": {
+    "text": "Texto de entrada",
+    "mode": "Modo de inversión:"
+  },
+  "modes": {
+    "chars": "Invertir caracteres",
+    "words": "Invertir palabras",
+    "lines": "Invertir líneas"
+  },
+  "result": {
+    "reversed": "Salida invertida"
+  },
+  "button": {
+    "copy": "Copiar resultado",
+    "copied": "¡Copiado!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Usos prácticos del texto invertido",
+        "paragraphs": [
+          "El uso más conocido de la inversión de caracteres es la detección de palíndromos: una palabra o frase que se lee igual hacia adelante que hacia atrás, como 'radar' o 'A man a plan a canal Panama'. Invertir la cadena y compararla con el original — ignorando espacios y puntuación — es la prueba algorítmica canónica para palíndromos, y esta herramienta te permite hacerlo manualmente en segundos.",
+          "Los scripts de derecha a izquierda como el árabe y el hebreo se almacenan en orden lógico de izquierda a derecha en Unicode pero se renderizan de derecha a izquierda mediante algoritmos de texto bidireccional. Cuando se trabaja con texto plano en entornos que carecen de soporte bidi (algunos emuladores de terminal, bases de datos antiguas, hojas de cálculo desactualizadas), la inversión de caracteres puede servir como una solución manual rápida para hacer que el texto se muestre en la dirección de lectura correcta.",
+          "En las redes sociales, juegos y escritura creativa, el texto invertido crea ofuscación deliberada o interés visual. Los diseñadores de acertijos usan palabras invertidas como cifrado simple — rotar una palabra como 'stressed' da 'desserts', que tiene un giro semántico satisfactorio. Los códigos QR, códigos de barras y otros formatos legibles por máquina a veces codifican datos en orden invertido como medida menor contra la manipulación. La inversión del orden de palabras también es útil en experimentos de procesamiento de lenguaje natural, como probar si un modelo de lenguaje realmente entiende la sintaxis o simplemente hace coincidencia de patrones.",
+          "Para ingeniería de datos, la inversión del orden de líneas (el tercer modo) es práctica cuando un log o un archivo de solo-adición necesita leerse de más nuevo a más antiguo. Un ingeniero de línea de comandos usaría `tac` o `tail -r` en Unix, pero cuando se trabaja en un navegador o un entorno sin código, esta herramienta proporciona el mismo resultado sin ningún acceso a la shell."
+        ]
+      },
+      {
+        "heading": "Cómo funciona la inversión de caracteres — y por qué es más complicado de lo que parece",
+        "paragraphs": [
+          "Invertir ingenuamente una cadena iterando sobre sus bytes o unidades de código UTF-16 rompe cualquier carácter que necesite más de una unidad para representarse. En JavaScript, `'😀'.split('').reverse().join('')` produce una secuencia corrupta porque el emoji se almacena como un par sustituto (dos unidades de código UTF-16). Esta herramienta usa `Array.from()` que itera correctamente sobre valores escalares Unicode (puntos de código), no unidades de código sin procesar, asegurando que los emoji y los caracteres en los planos suplementarios sobrevivan la inversión intactos.",
+          "Incluso la inversión correcta a nivel de punto de código tiene casos extremos: los caracteres combinados como acentos y marcas diacríticas son puntos de código separados que siguen al carácter base. Invertir 'café' por puntos de código coloca el acento agudo combinado antes de la 'e', que técnicamente se adjunta al espacio — produciendo 'éfac'. Para la mayoría de los casos de uso prácticos esto no importa, pero vale la pena saberlo si procesas texto en idiomas con uso intensivo de marcas combinadas.",
+          "La inversión de palabras conserva las secuencias de espacios en blanco entre palabras en lugar de colapsarlas en espacios simples. Esto significa que si tu entrada tiene dobles espacios o tabulaciones entre palabras, la salida invertida también tiene esas secuencias de espaciado, solo en posiciones invertidas. Esto es intencional — evita cambiar inesperadamente el diseño visual del texto tabular o en columnas."
+        ]
+      },
+      {
+        "heading": "Inversión de líneas para análisis de logs y procesamiento de datos",
+        "paragraphs": [
+          "Los logs de solo-adición, flujos de eventos y exportaciones ordenadas tienen todos la entrada más reciente al final. Al solucionar un fallo o revisar los últimos cambios, normalmente quieres las entradas más recientes primero. Invertir líneas lleva el final del archivo al principio sin ningún orden o análisis de marcas de tiempo.",
+          "Este modo también es útil para convertir datos en orden ascendente a orden descendente cuando el sistema consumidor espera un orden de más nuevo a más antiguo. Considera una exportación CSV de un sistema financiero donde las transacciones están en orden cronológico — invertir las líneas (excluyendo el encabezado, que deberías manejar por separado) coloca las transacciones más recientes al principio para importarlas en un sistema que procesa registros en el orden en que los encuentra.",
+          "Las listas numeradas que necesitan reordenarse de último a primero también pueden beneficiarse de la inversión de líneas. Una lista clasificada de los 10 primeros se convierte en una lista de los 10 últimos después de la inversión, con el rango 10 primero y el rango 1 último — útil para presentaciones invertidas, cuenta regresiva o contenido con temática irónica."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escribe o pega tu texto", "text": "Introduce texto en el panel izquierdo. La salida invertida aparece en el panel derecho en tiempo real." },
+      { "name": "Elige un modo de inversión", "text": "Selecciona 'Invertir caracteres' para voltear cada carácter de la cadena, 'Invertir palabras' para intercambiar el orden de las palabras manteniendo cada palabra intacta, o 'Invertir líneas' para poner la última línea primera." },
+      { "name": "Revisa el resultado", "text": "El recuento de caracteres se muestra debajo de ambos paneles. Verifica que la salida es lo que esperabas antes de copiar." },
+      { "name": "Copiar al portapapeles", "text": "Haz clic en 'Copiar resultado' para copiar el texto invertido. El botón muestra brevemente '¡Copiado!' para confirmar." }
+    ]
+  },
+  "faq": [
+    { "q": "¿Maneja los emoji correctamente?", "a": "Sí. La herramienta usa Array.from() para iterar sobre puntos de código Unicode en lugar de unidades de código UTF-16 sin procesar, por lo que los emoji (incluidas secuencias de múltiples puntos de código como los emoji de banderas) se invierten sin corrupción." },
+    { "q": "¿Cuál es la diferencia entre invertir caracteres e invertir palabras?", "a": "La inversión de caracteres voltea toda la cadena para que el último carácter sea el primero. La inversión de palabras mantiene cada palabra intacta pero coloca la última palabra primero. 'hola mundo' se convierte en 'odnum aloh' en modo de caracteres y en 'mundo hola' en modo de palabras." },
+    { "q": "¿La inversión de palabras afecta la puntuación adjunta a las palabras?", "a": "La puntuación que está directamente adjunta a una palabra (sin espacio) viaja con esa palabra. '¡Hola, mundo!' se convierte en 'mundo! ¡Hola,' en modo de inversión de palabras — la coma se queda con 'Hola' y el signo de exclamación con 'mundo'." },
+    { "q": "¿Puedo invertir texto en japonés o chino?", "a": "Sí. La inversión de caracteres funciona correctamente para caracteres CJK ya que cada ideograma es un único punto de código. El resultado se lee de derecha a izquierda carácter por carácter, lo que puede o no tener sentido dependiendo del contenido." },
+    { "q": "¿Hay un límite de longitud?", "a": "Sin límite impuesto. Los textos largos se procesan completamente en la memoria de tu navegador. El rendimiento es prácticamente instantáneo para textos de hasta millones de caracteres en hardware moderno." },
+    { "q": "¿Mi texto se envía a un servidor?", "a": "No. Todo el procesamiento se ejecuta localmente en JavaScript. Tu texto nunca sale de tu navegador." },
+    { "q": "¿Qué hace 'Invertir líneas' con los saltos de línea al final?", "a": "Cada carácter de nueva línea es el separador de líneas. Un salto de línea al final de tu entrada producirá una línea vacía al principio de la salida invertida. Simplemente elimina la línea en blanco extra si no la necesitas." },
+    { "q": "¿Puedo usar esto para crear un palíndromo?", "a": "Puedes comprobar si una palabra es un palíndromo pegándola y viendo si la salida invertida coincide con la entrada. Para crear un palíndromo, concatena el texto original con su versión invertida de caracteres (p. ej., 'carr' + 'rrac' = 'carrrrac')." }
+  ]
+}

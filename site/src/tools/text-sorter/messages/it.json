@@ -1,0 +1,68 @@
+{
+  "title": "Ordinatore di Righe di Testo Online — A–Z, Z–A, Rimuovi Duplicati",
+  "shortDescription": "Incolla qualsiasi elenco, ordina le righe da A a Z o da Z ad A, rimuovi i duplicati e copia il risultato immediatamente.",
+  "description": "Ordina le righe di testo in ordine alfabetico o inverso, con confronto opzionale senza distinzione tra maiuscole e minuscole, rimozione dei duplicati, eliminazione delle righe vuote e rimozione degli spazi iniziali e finali. Tutto viene eseguito nel tuo browser: nessun dato viene inviato a un server.",
+  "metaDescription": "Ordinatore di testo gratis online. Ordina righe A-Z o Z-A, rimuovi duplicati, spazi e righe vuote — tutto nel browser, istantaneamente.",
+  "keywords": ["ordinare righe di testo online", "ordinatore di testo", "ordinamento alfabetico", "ordina lista online", "rimuovi righe duplicate", "ordinatore di righe"],
+  "label": {
+    "input": "Input — incolla le righe qui",
+    "output": "Risultato ordinato"
+  },
+  "option": {
+    "direction": "Ordine:",
+    "dirAsc": "A → Z (crescente)",
+    "dirDesc": "Z → A (decrescente)",
+    "caseSensitive": "Distingui maiuscole/minuscole",
+    "removeDups": "Rimuovi duplicati",
+    "removeEmpty": "Rimuovi righe vuote",
+    "trim": "Rimuovi spazi iniziali/finali"
+  },
+  "action": {
+    "copy": "Copia",
+    "copied": "Copiato!"
+  },
+  "stat": {
+    "lines": "{count} righe"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Come funziona l'ordinamento del testo",
+        "paragraphs": [
+          "L'ordinamento divide il testo in singole righe, le ordina lessicograficamente e le riassembla. L'ordine lessicografico è lo stesso principio usato nei dizionari: i caratteri vengono confrontati uno alla volta da sinistra a destra usando i loro punti di codice Unicode.",
+          "Per impostazione predefinita, lo strumento utilizza un confronto senza distinzione tra maiuscole e minuscole, il che significa che 'apple', 'Apple' e 'APPLE' sono trattati come identici ai fini dell'ordinamento. Attiva la modalità con distinzione tra maiuscole e minuscole quando hai bisogno che le lettere maiuscole precedano quelle minuscole (ad esempio, 'Z' prima di 'a' nell'ordine ASCII)."
+        ]
+      },
+      {
+        "heading": "Casi d'uso comuni",
+        "paragraphs": [
+          "L'ordinamento alfabetico di elenchi di nomi, nuvole di tag o valori di colonne CSV sono le attività più comuni. Gli sviluppatori spesso ordinano le istruzioni di importazione o le chiavi di configurazione per semplificare le revisioni del codice e rendere più puliti gli output diff.",
+          "Gli analisti di dati usano l'ordinamento delle righe per individuare rapidamente voci duplicate negli elenchi esportati o per allineare due set di dati prima di un confronto manuale. L'opzione di rimozione dei duplicati condensa un elenco con migliaia di voci ai soli valori univoci con un clic."
+        ]
+      },
+      {
+        "heading": "Algoritmi di ordinamento: cosa succede sotto il cofano",
+        "paragraphs": [
+          "I motori JavaScript moderni utilizzano una variante ottimizzata di TimSort (un ibrido di merge sort e insertion sort) per il metodo Array.prototype.sort. TimSort è stabile, il che significa che le righe che si confrontano come uguali conservano il loro ordine relativo originale — utile quando si ordina un elenco deduplicato e si vuole un comportamento coerente.",
+          "Per la grande maggioranza degli elenchi di testo che incontrerai, l'algoritmo termina in ben meno di un millisecondo nel browser, anche con decine di migliaia di righe. Se hai bisogno di un ordinamento consapevole delle impostazioni locali (ad esempio, caratteri accentati in francese o tedesco ordinati correttamente), considera di usare Intl.Collator nel tuo codice, poiché questo strumento usa un semplice confronto di punti di codice Unicode per la massima velocità."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Incolla il tuo testo", "text": "Fai clic sull'area di input e incolla o digita le righe che desideri ordinare, un elemento per riga." },
+      { "name": "Scegli una direzione di ordinamento", "text": "Seleziona 'A → Z' per l'ordine crescente o 'Z → A' per l'ordine decrescente usando il menu a discesa." },
+      { "name": "Attiva i filtri opzionali", "text": "Spunta 'Rimuovi duplicati' per mantenere solo le righe uniche, 'Rimuovi righe vuote' per eliminare le righe vuote, o 'Rimuovi spazi' per eliminare gli spazi iniziali e finali da ogni riga prima dell'ordinamento." },
+      { "name": "Copia il risultato", "text": "Il risultato ordinato appare istantaneamente a destra. Fai clic su 'Copia' per copiarlo negli appunti." }
+    ]
+  },
+  "faq": [
+    { "q": "L'ordinamento avviene automaticamente?", "a": "Sì. Il risultato si aggiorna in tempo reale mentre digiti o modifichi qualsiasi opzione — non c'è nessun pulsante di invio." },
+    { "q": "L'ordinamento distingue le maiuscole per impostazione predefinita?", "a": "No. Per impostazione predefinita, lo strumento ordina senza distinzione tra maiuscole e minuscole, quindi 'Apple' e 'apple' vengono ordinati insieme. Attiva la casella 'Distingui maiuscole/minuscole' per usare l'ordine grezzo dei punti di codice Unicode." },
+    { "q": "Cosa conta come riga?", "a": "Ogni carattere di nuova riga (\\n) segna la fine di una riga. Se incolli testo da un foglio di calcolo o da Windows (fine riga \\r\\n), lo strumento lo gestisce correttamente e ordina per righe logiche." },
+    { "q": "Posso ordinare i numeri?", "a": "Lo strumento ordina lessicograficamente, non numericamente. Ciò significa che '10' viene ordinato prima di '9' perché '1' < '9'. Per l'ordinamento numerico, completa i numeri con zeri iniziali (ad esempio, '09' vs '10') prima di incollare." },
+    { "q": "Cosa fa esattamente 'Rimuovi duplicati'?", "a": "Mantiene la prima occorrenza di ogni riga univoca e scarta quelle identiche successive. Il confronto rispetta la tua impostazione per le maiuscole, quindi 'Apple' e 'apple' sono trattati come la stessa riga solo in modalità senza distinzione tra maiuscole e minuscole." },
+    { "q": "I miei dati lasciano il mio browser?", "a": "No. Tutta l'elaborazione avviene localmente in JavaScript. Nulla viene caricato su alcun server." },
+    { "q": "C'è un limite di righe?", "a": "Questo strumento non impone alcun limite rigido. Le prestazioni dipendono dal tuo dispositivo, ma i browser moderni gestiscono centinaia di migliaia di righe senza ritardi apprezzabili." },
+    { "q": "Come ordino una colonna CSV?", "a": "Copia i valori della colonna dall'applicazione foglio di calcolo nell'area di input (vengono incollati come un valore per riga), applica le tue opzioni, copia il risultato ordinato e incollalo di nuovo. Poi riallega le altre colonne manualmente o in una formula del foglio di calcolo." }
+  ]
+}

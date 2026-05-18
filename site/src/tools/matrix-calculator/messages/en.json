@@ -1,0 +1,93 @@
+{
+  "title": "Matrix Calculator — Add, Multiply, Determinant",
+  "shortDescription": "Perform matrix addition, subtraction, multiplication, transpose, and determinant on 2×2 or 3×3 matrices — all in your browser.",
+  "description": "Enter values for matrix A (and B for binary operations) and instantly compute the result. Supports 2×2 and 3×3 matrices with five operations: addition, subtraction, multiplication, transpose, and determinant.",
+  "metaDescription": "Free online matrix calculator. Add, subtract, multiply, transpose, and find the determinant of 2×2 and 3×3 matrices instantly in your browser.",
+  "keywords": ["matrix calculator", "matrix multiplication", "determinant calculator", "matrix addition", "3x3 matrix"],
+  "empty": "Fill in the matrix values above to compute.",
+  "input": {
+    "size": "Matrix size",
+    "operation": "Operation",
+    "matA": "Matrix A",
+    "matB": "Matrix B"
+  },
+  "result": {
+    "label": "Result"
+  },
+  "operations": {
+    "add": "Add (A + B)",
+    "subtract": "Subtract (A − B)",
+    "multiply": "Multiply (A × B)",
+    "transpose": "Transpose (Aᵀ)",
+    "determinant": "Determinant (det A)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What matrices are and why they matter",
+        "paragraphs": [
+          "A matrix is a rectangular array of numbers arranged in rows and columns. An m×n matrix has m rows and n columns. Matrices are the fundamental objects in linear algebra, and linear algebra is the mathematical language of data science, computer graphics, physics simulations, and engineering optimization.",
+          "Each element in a matrix is identified by its row and column index. The element at row i and column j is written aᵢⱼ. For a 2×2 matrix, a₁₁ is the top-left element, a₁₂ is the top-right, a₂₁ is the bottom-left, and a₂₂ is the bottom-right. Square matrices (same number of rows and columns) have additional properties like determinant and trace that are not defined for non-square matrices.",
+          "Matrices represent linear transformations — functions that map vectors to vectors while preserving addition and scalar multiplication. A 2×2 matrix represents any combination of rotation, scaling, reflection, and shear in a two-dimensional plane. Multiplying two matrices composes their corresponding transformations: if A rotates by 45° and B scales by 2×, then AB applies rotation followed by scaling."
+        ]
+      },
+      {
+        "heading": "Matrix operations explained",
+        "paragraphs": [
+          "Addition and subtraction require both matrices to have the same dimensions. You add or subtract corresponding elements: (A+B)ᵢⱼ = aᵢⱼ + bᵢⱼ. Both operations are commutative for addition (A+B = B+A) but subtraction is not (A−B ≠ B−A in general).",
+          "Matrix multiplication is more complex and not commutative — AB ≠ BA in general. For two n×n square matrices, the element at row i and column j of the product is the dot product of row i of A with column j of B: (AB)ᵢⱼ = Σₖ aᵢₖ bₖⱼ. For a 2×2 matrix, this requires 8 multiplications and 4 additions.",
+          "The transpose of a matrix A, written Aᵀ, is obtained by flipping rows and columns: (Aᵀ)ᵢⱼ = aⱼᵢ. The first row of A becomes the first column of Aᵀ. Transposing is used extensively in least-squares regression (the normal equations involve AᵀA), principal component analysis, and neural network backpropagation.",
+          "The determinant is a scalar value that summarizes a square matrix. For a 2×2 matrix [[a,b],[c,d]], det = ad − bc. For a 3×3 matrix, it is computed by cofactor expansion along the first row. A matrix with determinant 0 is called singular — it has no inverse, meaning the associated linear transformation collapses space to a lower dimension."
+        ]
+      },
+      {
+        "heading": "Real-world applications of matrix calculations",
+        "paragraphs": [
+          "Computer graphics relies entirely on matrix operations. Every rotation, translation, scaling, and perspective projection applied to a 3D scene is represented as matrix multiplication on homogeneous coordinates. A rendering pipeline multiplies a sequence of 4×4 matrices: model, view, and projection matrices are composed (multiplied together) before being applied to each vertex. GPUs are optimized specifically for this workload.",
+          "In machine learning, neural networks store weights as matrices. The forward pass through a layer is a matrix multiplication between the input vector (or batch matrix) and the weight matrix, followed by a nonlinear activation function. Training via backpropagation computes gradients using transposes: δL/δW = xᵀ · δL/δy. Large language models like GPT perform billions of matrix multiplications per forward pass.",
+          "Systems of linear equations can be written and solved using matrices. The system ax + by = e, cx + dy = f is equivalent to the matrix equation [[a,b],[c,d]] · [x,y]ᵀ = [e,f]ᵀ. If the determinant is nonzero, the unique solution is x = [x,y]ᵀ = A⁻¹[e,f]ᵀ. This relationship between determinants, inverses, and solvability is central to numerical analysis and scientific computing."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choose matrix size", "text": "Select 2×2 or 3×3 depending on your matrices." },
+      { "name": "Select the operation", "text": "Pick from add, subtract, multiply, transpose, or determinant." },
+      { "name": "Enter matrix values", "text": "Fill in each cell of Matrix A (and Matrix B for binary operations). Leave blank cells default to 0." },
+      { "name": "Read the result", "text": "The computed result appears below automatically — a matrix for most operations, or a single number for determinant." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Why is matrix multiplication not commutative?",
+      "a": "Matrix multiplication represents composing linear transformations. Just like rotating then scaling gives a different result from scaling then rotating, AB and BA generally differ. Commutativity holds only in special cases, such as when both matrices are diagonal, or one is the identity matrix."
+    },
+    {
+      "q": "What does a determinant of 0 mean?",
+      "a": "A zero determinant means the matrix is singular — it has no inverse. Geometrically, the transformation collapses at least one dimension (maps 2D to a line, or 3D to a plane or line). For a system of linear equations, a zero determinant means the system has either no solution or infinitely many solutions."
+    },
+    {
+      "q": "How do I compute the inverse of a matrix?",
+      "a": "For a 2×2 matrix [[a,b],[c,d]], the inverse is (1/det) × [[d,−b],[−c,a]], provided det = ad−bc ≠ 0. For larger matrices, Gaussian elimination or LU decomposition is used. This tool currently computes determinant and transpose; inverse is a natural extension."
+    },
+    {
+      "q": "What is the identity matrix?",
+      "a": "The identity matrix I has 1s on the main diagonal and 0s everywhere else. It is the matrix equivalent of the number 1: AI = IA = A for any matrix A of compatible size. Multiplying by the identity leaves a matrix unchanged."
+    },
+    {
+      "q": "Can I multiply matrices of different sizes?",
+      "a": "Yes, but only if the number of columns in A equals the number of rows in B. An m×n matrix times an n×p matrix gives an m×p result. This tool handles only square matrices (2×2 or 3×3). For non-square operations, a more specialized calculator is needed."
+    },
+    {
+      "q": "What is the trace of a matrix?",
+      "a": "The trace is the sum of the diagonal elements (a₁₁ + a₂₂ + … + aₙₙ). It equals the sum of eigenvalues and is invariant under similarity transformations (A and P⁻¹AP have the same trace). This tool does not currently display the trace, but you can compute it by adding the diagonal values."
+    },
+    {
+      "q": "Are the calculations exact?",
+      "a": "The tool uses standard JavaScript 64-bit floating-point arithmetic. Results are rounded to 10 decimal places for display. For integer inputs, most results are exact. For large or ill-conditioned matrices, floating-point rounding may introduce small errors in the last digits."
+    },
+    {
+      "q": "What does 'transpose' mean geometrically?",
+      "a": "Transposing a matrix reflects it across its main diagonal. If A represents a linear transformation, Aᵀ represents the adjoint transformation. For rotation matrices (orthogonal matrices), the transpose equals the inverse — rotating by θ and then by −θ undoes the rotation."
+    }
+  ]
+}

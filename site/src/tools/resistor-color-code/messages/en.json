@@ -1,0 +1,116 @@
+{
+  "title": "Resistor Color Code Calculator — Decode and Encode Band Colors",
+  "shortDescription": "Decode resistor color bands to find resistance values, or enter a value to see the matching color bands. Supports 4-band and 5-band resistors.",
+  "description": "Select color bands to decode a resistor value, or enter a resistance to find its color code. Handles 4-band and 5-band resistors with automatic unit scaling to ohms, kilohms, or megaohms.",
+  "metaDescription": "Free resistor color code calculator. Decode 4-band or 5-band color codes to resistance values, or encode a resistance to find its color bands instantly.",
+  "keywords": ["resistor color code", "resistor color band calculator", "4-band resistor", "5-band resistor", "resistance decoder"],
+  "mode": {
+    "decode": "Color → Resistance",
+    "encode": "Resistance → Color"
+  },
+  "band": {
+    "count4": "4-band",
+    "count5": "5-band"
+  },
+  "label": {
+    "digit1": "Digit 1",
+    "digit2": "Digit 2",
+    "digit3": "Digit 3 (5-band)",
+    "multiplier": "Multiplier",
+    "tolerance": "Tolerance"
+  },
+  "colors": {
+    "black": "Black",
+    "brown": "Brown",
+    "red": "Red",
+    "orange": "Orange",
+    "yellow": "Yellow",
+    "green": "Green",
+    "blue": "Blue",
+    "violet": "Violet",
+    "gray": "Gray",
+    "white": "White",
+    "gold": "Gold",
+    "silver": "Silver",
+    "none": "None"
+  },
+  "result": {
+    "resistance": "Resistance",
+    "range": "Range",
+    "minVal": "Min",
+    "maxVal": "Max"
+  },
+  "input": {
+    "value": "Resistance Value",
+    "unit": "Unit"
+  },
+  "error": {
+    "invalidValue": "Enter a positive number.",
+    "noMatch": "No standard E24 value found for this resistance."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How resistor color codes work",
+        "paragraphs": [
+          "Resistors are too small to print numbers on legibly, so manufacturers use colored bands instead. Each color maps to a digit (0-9) following a mnemonic order: Black, Brown, Red, Orange, Yellow, Green, Blue, Violet, Gray, White. A 4-band resistor has two digit bands, one multiplier band, and one tolerance band. A 5-band resistor adds a third digit band for higher precision.",
+          "To read a 4-band resistor: read the first two colors as two-digit numbers (e.g., Brown-Black = 10), multiply by the third band's multiplier (e.g., Red = ×100), and the fourth band gives tolerance (e.g., Gold = ±5%). Brown-Black-Red-Gold = 10 × 100 = 1,000 Ω ±5% = 1 kΩ. For 5-band, read three digits, then multiply, then tolerance."
+        ]
+      },
+      {
+        "heading": "Standard E24 resistor series",
+        "paragraphs": [
+          "Resistors are not made in every possible value. The E24 series provides 24 preferred values per decade: 10, 11, 12, 13, 15, 16, 18, 20, 22, 24, 27, 30, 33, 36, 39, 43, 47, 51, 56, 62, 68, 75, 82, 91. These values are spaced so consecutive values differ by about 10%, meaning any desired resistance within 5% can be achieved. Engineers select the nearest E24 value for their circuit design.",
+          "The E12 series (12 values per decade, ±10% tolerance) and E6 series (6 values, ±20%) are used when high precision is not needed. For precision work, the E96 series offers 96 values per decade with 1% tolerance resistors — these typically use a 5-band code with three significant digits."
+        ]
+      },
+      {
+        "heading": "Practical tips for reading resistors",
+        "paragraphs": [
+          "The tolerance band (gold, silver, or none) is usually wider-spaced from the other bands and is read last. When in doubt, orient the resistor so the tolerance band is on the right. The first digit band is never black in a standard resistor (a leading zero would be unusual). If you are confused about orientation, simply try reading from both ends and see which gives a value in a plausible range.",
+          "Use a multimeter in resistance mode to verify your reading. Surface-mount resistors (SMD) use a three or four-digit number code instead of color bands. For example, '103' means 10 × 10³ = 10,000 Ω = 10 kΩ. SMD precision resistors use a different five-character alphanumeric code."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choose decode or encode mode", "text": "Select 'Color to Resistance' to read color bands, or 'Resistance to Color' to find the color code for a known value." },
+      { "name": "Select 4-band or 5-band", "text": "Most common resistors are 4-band. Precision resistors (1% tolerance) usually have 5 bands." },
+      { "name": "Pick each color band", "text": "For decode mode, select the color for each band using the dropdowns. The resistance value updates automatically." },
+      { "name": "Read the result", "text": "The resistance is shown with automatic unit scaling (ohms, kilohms, or megaohms) and the tolerance range." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "What order do I read the color bands?",
+      "a": "Read from left to right. The tolerance band (gold or silver) is spaced farther from the rest and always goes on the right. The first band is the leftmost color band near one end of the resistor body."
+    },
+    {
+      "q": "What does Gold mean on a resistor?",
+      "a": "Gold appears in two positions. As a multiplier band, gold means ×0.1 (used for fractional-ohm resistors, e.g., 4.7 Ω). As a tolerance band (the last band), gold means the actual resistance is within ±5% of the stated value."
+    },
+    {
+      "q": "What is the difference between 4-band and 5-band resistors?",
+      "a": "A 4-band resistor encodes two significant digits, while a 5-band resistor encodes three significant digits. 5-band resistors are used for 1% or better tolerance where higher precision is needed. The extra digit band increases the number of distinct values that can be expressed."
+    },
+    {
+      "q": "Why is there no black multiplier band on common resistors?",
+      "a": "Black as a multiplier means ×1. Very low resistance values (single-digit ohms) do exist but are rare in standard signal circuits. Most resistors start at tens or hundreds of ohms, so brown (×10) is typically the lowest multiplier you encounter in practice."
+    },
+    {
+      "q": "What is tolerance and why does it matter?",
+      "a": "Tolerance is the maximum percentage deviation from the stated resistance. A 1 kΩ ±5% resistor actually measures somewhere between 950 Ω and 1,050 Ω. For most signal-processing and power circuits, 5% or 10% tolerance is fine. Precision analog circuits (voltage references, filters) may need 1% or 0.1% resistors."
+    },
+    {
+      "q": "How do I encode a non-standard value like 4700 ohms?",
+      "a": "4700 Ω = 4.7 kΩ = 47 × 100. So the color code is Yellow-Violet-Red (4, 7, ×100) plus your tolerance band. This is a very common E24 value (4.7 kΩ is in the series). The encode mode finds the nearest E24 match automatically."
+    },
+    {
+      "q": "What is the E24 series?",
+      "a": "The E24 series is a set of 24 preferred resistor values per decade (e.g., 10, 11, 12, 13, 15 ... 82, 91, then 100, 110, 120...). Resistors are manufactured to these values rather than every possible number. The spacing ensures you can always find a resistor within 5% of any target value."
+    },
+    {
+      "q": "Can I use this for inductors or capacitors?",
+      "a": "The same color-code scheme is used for some capacitors and inductors (especially axial-leaded types), but the units and ranges differ. For capacitors the value is in picofarads, and for inductors in microhenries. This calculator is optimized for resistors, but the color-to-digit mapping is identical."
+    }
+  ]
+}

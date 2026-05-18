@@ -1,0 +1,122 @@
+{
+  "title": "Calcolatore di Figure Geometriche — Volume e Superficie",
+  "shortDescription": "Calcola volume, area della superficie e dimensioni chiave per 6 solidi 3D comuni: sfera, cilindro, cono, cubo, parallelepipedo e prisma triangolare.",
+  "description": "Seleziona una figura 3D, inserisci le sue dimensioni e ottieni immediatamente volume, area totale della superficie e proprietà specifiche come area laterale, apotema della superficie laterale o diagonale spaziale. Tutti i calcoli vengono eseguiti nel browser con fino a sei cifre decimali di precisione.",
+  "metaDescription": "Calcolatore gratuito di geometria 3D: trova volume e superficie di sfere, cilindri, coni, cubi, parallelepipedi e prismi triangolari con formule passo dopo passo.",
+  "keywords": [
+    "calcolatore figure geometriche",
+    "calcolatore volume",
+    "calcolatore area superficie",
+    "calcolatore solidi 3D",
+    "volume della sfera",
+    "volume del cilindro",
+    "area del cono"
+  ],
+  "shapeLabel": "Seleziona una figura",
+  "shape": {
+    "sphere": "Sfera",
+    "cylinder": "Cilindro",
+    "cone": "Cono",
+    "cube": "Cubo",
+    "rectangularPrism": "Parallelepipedo",
+    "triangularPrism": "Prisma Triangolare"
+  },
+  "input": {
+    "radius": "Raggio (r)",
+    "height": "Altezza (h)",
+    "side": "Lunghezza del lato (s)",
+    "length": "Lunghezza (l)",
+    "width": "Larghezza (w)",
+    "triangleBase": "Base del triangolo (b)",
+    "triangleHeight": "Altezza del triangolo (h△)"
+  },
+  "result": {
+    "volume": "Volume",
+    "surfaceArea": "Area Totale della Superficie",
+    "lateralArea": "Area Laterale",
+    "slantHeight": "Generatrice (s)",
+    "diagonal": "Diagonale Spaziale",
+    "baseArea": "Area della Base"
+  },
+  "empty": "Seleziona una figura e inserisci le sue dimensioni.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Formule di volume e area della superficie per i solidi 3D comuni",
+        "paragraphs": [
+          "Ogni solido 3D ha due misure fondamentali: il volume — la quantità di spazio che racchiude — e l'area della superficie — l'area totale di tutte le sue facce. Una sfera di raggio r ha volume (4/3)πr³ e superficie 4πr². Un cilindro con raggio della base r e altezza h ha volume πr²h, area laterale 2πrh e superficie totale 2πr² + 2πrh. Un cono aggiunge una generatrice s = √(r² + h²): il suo volume è (1/3)πr²h e la superficie totale è πr² + πrs.",
+          "Per i poliedri, un cubo con lato s ha volume s³, superficie 6s² e diagonale spaziale s√3. Un parallelepipedo con dimensioni l × w × h ha volume lwh, superficie 2(lw + lh + wh) e diagonale spaziale √(l² + w² + h²). Un prisma triangolare con sezione trasversale isoscele — base b, altezza del triangolo h△ e lunghezza del prisma l — ha volume (1/2)bh△l e superficie totale pari all'area laterale più le due facce triangolari.",
+          "Questo calcolatore valuta tutte queste formule con l'aritmetica a virgola mobile a 64 bit di JavaScript, mantenendo la piena precisione IEEE 754 e arrotondando i valori visualizzati a sei cifre decimali. Utilizza la stessa unità per tutti gli input; il calcolatore è indipendente dalle unità — millimetri, centimetri, pollici o metri funzionano in modo identico."
+        ]
+      },
+      {
+        "heading": "Applicazioni pratiche in imballaggio, architettura e ingegneria",
+        "paragraphs": [
+          "I designer di imballaggi calcolano il volume di una scatola (parallelepipedo) per determinare quanto prodotto contiene, e l'area della superficie per stimare quanta carta o pellicola è necessaria. Una scatola di cereali alta 30 cm, larga 20 cm e profonda 8 cm ha un volume di 30 × 20 × 8 = 4800 cm³ e necessita di 2(30×20 + 30×8 + 20×8) = 2000 cm² di materiale.",
+          "Gli ingegneri civili usano le formule della sfera e del cilindro per dimensionare serbatoi d'acqua, silos e recipienti a pressione. Un serbatoio cilindrico di 2 m di raggio e 5 m di altezza contiene π × 4 × 5 ≈ 62,83 m³ — circa 62.830 litri. L'area della superficie determina la quantità di isolamento o rivestimento anticorrosione necessario.",
+          "In architettura, le forme coniche e prismatiche triangolari compaiono in guglie, abbaini e alette decorative. Conoscere l'area laterale di una guglia conica consente al carpentiere di calcolare esattamente quanto rame o ardesia ordinare. Un cono con raggio della base 1,2 m e altezza 3 m ha generatrice √(1,44 + 9) ≈ 3,232 m e area laterale π × 1,2 × 3,232 ≈ 12,18 m²."
+        ]
+      },
+      {
+        "heading": "Come la scalatura delle dimensioni influenza volume e superficie",
+        "paragraphs": [
+          "Scalare tutte e tre le dimensioni di un solido per un fattore k moltiplica il volume per k³ e la superficie per k². Questa legge quadrato-cubo ha profonde conseguenze pratiche. Raddoppia il lato di un cubo (k = 2) e il suo volume cresce di un fattore 8, mentre la sua superficie si quadruplica soltanto. Ecco perché i grandi container di spedizione sono molto più efficienti in termini di spazio per unità di materiale rispetto a quelli piccoli.",
+          "Per una sfera, se raddoppi il raggio, il volume aumenta di otto volte da (4/3)πr³ a (4/3)π(2r)³ = 8 × (4/3)πr³. La superficie quadruplica da 4πr² a 4π(2r)² = 16πr². Il rapporto superficie-volume, 3/r per una sfera, si dimezza — ecco perché gli animali grandi hanno proporzionalmente meno superficie rispetto al loro volume corporeo, influenzando la dissipazione del calore e il metabolismo.",
+          "Quando si scala una sola dimensione, l'effetto è lineare per quella componente. Raddoppiare l'altezza di un cilindro raddoppia il volume, ma aumenta la superficie totale di meno del doppio (perché le due basi circolari rimangono invariate). Questa asimmetria è importante nell'ottimizzazione del design delle lattine: per un volume fisso, il cilindro più efficiente in materiale ha l'altezza uguale al diametro."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Scegli un solido 3D",
+        "text": "Clicca su uno dei sei pulsanti delle figure — Sfera, Cilindro, Cono, Cubo, Parallelepipedo o Prisma Triangolare — per selezionare la figura che vuoi calcolare."
+      },
+      {
+        "name": "Inserisci le dimensioni richieste",
+        "text": "Compila i campi di input che appaiono per la figura scelta. Tutti i valori devono essere numeri positivi nella stessa unità (ad es., tutti in centimetri o tutti in pollici)."
+      },
+      {
+        "name": "Leggi i risultati",
+        "text": "Volume e area totale della superficie sono evidenziati in cima. Scorri verso il basso per visualizzare proprietà aggiuntive come area laterale, generatrice, area della base o diagonale spaziale in base alla figura."
+      },
+      {
+        "name": "Cambia figura o dimensioni",
+        "text": "Seleziona una figura diversa in qualsiasi momento o modifica qualsiasi dimensione — i risultati si aggiornano istantaneamente senza ricaricare la pagina."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qual è la differenza tra volume e area della superficie?",
+      "a": "Il volume misura lo spazio tridimensionale che un solido racchiude, espresso in unità cubiche (cm³, m³, in³). L'area della superficie misura l'area totale di tutte le facce esterne, espressa in unità quadrate (cm², m², in²). Pensa al volume come alla quantità d'acqua che un contenitore può contenere e alla superficie come alla quantità di vernice necessaria per rivestire l'esterno."
+    },
+    {
+      "q": "Come si differenzia la generatrice di un cono dalla sua altezza?",
+      "a": "L'altezza h di un cono è la distanza perpendicolare dal vertice fino al centro della base. La generatrice s è la distanza lungo la superficie inclinata dal vertice al bordo della base. Sono legate dal teorema di Pitagora: s = √(r² + h²), dove r è il raggio della base."
+    },
+    {
+      "q": "Perché il calcolatore del prisma triangolare assume un triangolo isoscele?",
+      "a": "Per una sezione trasversale triangolare generale occorrono tutti e tre i lati per calcolare il perimetro con esattezza. Questo calcolatore richiede solo base e altezza, quindi assume un triangolo isoscele — due lati uguali di lunghezza √((b/2)² + h²) ciascuno. Per triangoli equilateri con lato b, l'altezza è b√3/2, che fornisce il risultato corretto quando si inserisce tale valore."
+    },
+    {
+      "q": "Quali unità devo usare?",
+      "a": "Qualsiasi unità coerente va bene — millimetri, centimetri, metri, pollici o piedi. Il calcolatore è indipendente dalle unità; se inserisci il raggio in centimetri, il volume sarà in centimetri cubi e la superficie in centimetri quadrati. Non mescolare unità all'interno di un singolo calcolo."
+    },
+    {
+      "q": "Come trovo il volume di una sfera con il diametro anziché il raggio?",
+      "a": "Dividi il diametro per 2 per ottenere il raggio, poi inserisci quel valore. Ad esempio, una sfera con diametro 10 cm ha raggio 5 cm, con volume (4/3)π × 5³ ≈ 523,599 cm³."
+    },
+    {
+      "q": "Cos'è la diagonale spaziale di un parallelepipedo?",
+      "a": "La diagonale spaziale è la retta più lunga all'interno del parallelepipedo, che collega due angoli opposti attraverso l'interno. La sua lunghezza è √(l² + w² + h²). Per un cubo con lato s, si semplifica in s√3. È chiamata anche diagonale principale o diagonale del corpo."
+    },
+    {
+      "q": "Come influisce il raddoppio del raggio sul volume di una sfera?",
+      "a": "Raddoppiare il raggio moltiplica il volume per 2³ = 8. Ciò deriva dalla formula V = (4/3)πr³: sostituisci r con 2r e ottieni (4/3)π(2r)³ = 8 × (4/3)πr³. La superficie quadruplica (fattore 2² = 4) perché dipende da r²."
+    },
+    {
+      "q": "I dati vengono inviati a un server?",
+      "a": "No. Tutti i calcoli vengono eseguiti interamente nel tuo browser usando JavaScript. Nessun input o risultato viene trasmesso ad alcun server."
+    }
+  ]
+}

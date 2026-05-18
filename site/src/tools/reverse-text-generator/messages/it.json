@@ -1,0 +1,69 @@
+{
+  "title": "Generatore di testo invertito — Ribalta caratteri, parole o righe",
+  "shortDescription": "Inverti qualsiasi testo per caratteri, parole o righe. Gestisce correttamente Unicode, emoji e caratteri multibyte. Copia istantanea negli appunti.",
+  "description": "Inserisci qualsiasi testo per invertirlo istantaneamente. Scegli tra tre modalità: invertire tutti i caratteri della stringa, invertire l'ordine delle parole mantenendo le parole intatte, oppure invertire l'ordine delle righe. Lo strumento gestisce correttamente gli emoji Unicode e i caratteri CJK che si estendono su più punti di codice.",
+  "metaDescription": "Generatore di testo invertito gratuito. Ribalta il testo per caratteri, parole o righe — compatibile con Unicode ed emoji. Copia istantanea. Funziona nel browser.",
+  "keywords": ["generatore testo invertito", "invertire testo online", "invertire parole", "invertire stringa", "invertire righe", "testo specchio"],
+  "empty": "Inserisci testo sopra per vedere il risultato invertito.",
+  "input": {
+    "text": "Testo di input",
+    "mode": "Modalità di inversione:"
+  },
+  "modes": {
+    "chars": "Inverti caratteri",
+    "words": "Inverti parole",
+    "lines": "Inverti righe"
+  },
+  "result": {
+    "reversed": "Output invertito"
+  },
+  "button": {
+    "copy": "Copia risultato",
+    "copied": "Copiato!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Usi pratici del testo invertito",
+        "paragraphs": [
+          "L'uso più noto dell'inversione di caratteri è il rilevamento dei palindromi: una parola o frase che si legge allo stesso modo in entrambe le direzioni, come 'radar' o 'A man a plan a canal Panama'. Invertire la stringa e confrontarla con l'originale — ignorando spazi e punteggiatura — è il test algoritmico canonico per i palindromi, e questo strumento ti permette di farlo manualmente in pochi secondi.",
+          "I sistemi di scrittura da destra a sinistra come l'arabo e l'ebraico sono memorizzati in Unicode nell'ordine logico da sinistra a destra, ma resi da destra a sinistra dagli algoritmi di testo bidirezionale. Quando si lavora con testo normale in ambienti privi di supporto bidi (alcuni emulatori di terminale, database legacy, fogli di calcolo vecchi), l'inversione dei caratteri può servire come rapida soluzione manuale per far sì che il testo venga visualizzato nella direzione di lettura corretta.",
+          "Nei social media, nei giochi e nella scrittura creativa, il testo invertito crea offuscamento deliberato o interesse visivo. I designer di enigmi usano le parole invertite come cifrario semplice — invertire 'amore' dà 'erOma', un gioco semantico piacevole. I codici QR, i codici a barre e altri formati leggibili dalle macchine a volte codificano i dati in ordine inverso come piccola misura anti-manomissione. L'inversione dell'ordine delle parole è utile anche negli esperimenti di elaborazione del linguaggio naturale, come verificare se un modello linguistico comprende davvero la sintassi o si limita a trovare corrispondenze di pattern.",
+          "Per l'ingegneria dei dati, l'inversione dell'ordine delle righe (la terza modalità) è pratica quando un log o un file di solo-accodamento deve essere letto dal più recente al più vecchio. Un ingegnere da riga di comando userebbe `tac` o `tail -r` su Unix, ma quando si lavora in un browser o in un ambiente no-code, questo strumento fornisce lo stesso risultato senza alcun accesso alla shell."
+        ]
+      },
+      {
+        "heading": "Come funziona l'inversione dei caratteri — e perché è più complessa di quanto sembra",
+        "paragraphs": [
+          "Invertire ingenuamente una stringa iterando sui suoi byte o sulle unità di codice UTF-16 rompe qualsiasi carattere che necessiti di più di un'unità per essere rappresentato. In JavaScript, `'😀'.split('').reverse().join('')` produce una sequenza corrotta perché l'emoji è memorizzato come coppia surrogato (due unità di codice UTF-16). Questo strumento usa `Array.from()` che itera correttamente sui valori scalari Unicode (punti di codice), non sulle unità di codice grezze, assicurando che emoji e caratteri nei piani supplementari sopravvivano all'inversione intatti.",
+          "Anche l'inversione corretta a livello di punto di codice presenta casi limite: i caratteri combinanti come accenti e segni diacritici sono punti di codice separati che seguono il carattere base. Invertire 'café' per punti di codice mette l'accento acuto combinante prima della 'e', che tecnicamente si attacca allo spazio — producendo 'éfac'. Per la maggior parte dei casi d'uso pratici non è importante, ma vale la pena saperlo se si elabora testo in lingue con uso intenso di segni combinanti.",
+          "L'inversione delle parole preserva le sequenze di spazi bianchi tra le parole piuttosto che ridurle a spazi singoli. Ciò significa che se l'input ha doppi spazi o tabulazioni tra le parole, anche l'output invertito ha queste sequenze di spaziatura, solo nelle posizioni invertite. È intenzionale — evita di modificare inaspettatamente il layout visivo del testo tabulare o a colonne."
+        ]
+      },
+      {
+        "heading": "Inversione delle righe per l'analisi dei log e l'elaborazione dei dati",
+        "paragraphs": [
+          "I log di solo-accodamento, i flussi di eventi e le esportazioni ordinate hanno tutti l'elemento più recente in fondo. Quando si risolve un crash o si revisionano le ultime modifiche, di solito si vogliono le voci più recenti per prime. Invertire le righe porta la coda del file in cima senza alcun ordinamento o analisi del timestamp.",
+          "Questa modalità è utile anche per convertire dati in ordine crescente in ordine decrescente quando il sistema di destinazione si aspetta un ordinamento dal più recente al più vecchio. Considera un'esportazione CSV da un sistema finanziario in cui le transazioni sono in ordine cronologico — invertire le righe (escludendo l'intestazione, che dovresti gestire separatamente) mette le transazioni più recenti in cima per l'importazione in un sistema che elabora i record nell'ordine in cui li incontra.",
+          "Anche le liste numerate che devono essere riordinate dall'ultimo al primo possono beneficiare dell'inversione delle righe. Una lista classificata delle top-10 diventa una lista delle ultime-10 dopo l'inversione, con il rango 10 primo e il rango 1 ultimo — utile per presentazioni invertite, countdown o contenuti a tema ironico."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Digita o incolla il tuo testo", "text": "Inserisci il testo nel pannello sinistro. L'output invertito appare nel pannello destro in tempo reale." },
+      { "name": "Scegli una modalità di inversione", "text": "Seleziona 'Inverti caratteri' per capovolgere ogni carattere nella stringa, 'Inverti parole' per scambiare l'ordine delle parole mantenendo ogni parola intatta, o 'Inverti righe' per mettere l'ultima riga prima." },
+      { "name": "Controlla il risultato", "text": "Il conteggio dei caratteri è mostrato sotto entrambi i pannelli. Verifica che l'output sia quello che ti aspettavi prima di copiare." },
+      { "name": "Copia negli appunti", "text": "Clicca su 'Copia risultato' per copiare il testo invertito. Il pulsante mostra brevemente 'Copiato!' per confermare." }
+    ]
+  },
+  "faq": [
+    { "q": "Gestisce correttamente gli emoji?", "a": "Sì. Lo strumento usa Array.from() per iterare sui punti di codice Unicode piuttosto che sulle unità di codice UTF-16 grezze, quindi gli emoji (comprese le sequenze a più punti di codice come gli emoji delle bandiere) si invertono senza corruzione." },
+    { "q": "Qual è la differenza tra invertire i caratteri e invertire le parole?", "a": "L'inversione dei caratteri capovolge l'intera stringa in modo che l'ultimo carattere diventi il primo. L'inversione delle parole mantiene ogni parola intatta ma mette l'ultima parola prima. 'ciao mondo' diventa 'odnom oaic' in modalità caratteri e 'mondo ciao' in modalità parole." },
+    { "q": "L'inversione delle parole influenza la punteggiatura attaccata alle parole?", "a": "La punteggiatura direttamente attaccata a una parola (senza spazio) viaggia con quella parola. 'Ciao, mondo!' diventa 'mondo! Ciao,' in modalità inversione parole — la virgola rimane con 'Ciao' e il punto esclamativo con 'mondo'." },
+    { "q": "Posso invertire testo in giapponese o cinese?", "a": "Sì. L'inversione dei caratteri funziona correttamente per i caratteri CJK poiché ogni ideogramma è un singolo punto di codice. Il risultato si legge da destra a sinistra carattere per carattere, il che può o non può avere senso a seconda del contenuto." },
+    { "q": "C'è un limite di lunghezza?", "a": "Nessun limite imposto. I testi lunghi vengono elaborati interamente nella memoria del browser. Le prestazioni sono praticamente istantanee per testi fino a milioni di caratteri su hardware moderno." },
+    { "q": "Il mio testo viene inviato a un server?", "a": "No. Tutta l'elaborazione avviene localmente in JavaScript. Il tuo testo non lascia mai il browser." },
+    { "q": "Cosa fa 'Inverti righe' con i caratteri di nuova riga finali?", "a": "Ogni carattere di nuova riga è il separatore di righe. Un carattere di nuova riga alla fine dell'input produrrà una riga vuota iniziale all'inizio dell'output invertito. Elimina semplicemente la riga vuota extra se non è desiderata." },
+    { "q": "Posso usarlo per creare un palindromo?", "a": "Puoi controllare se una parola è un palindromo incollandola e vedendo se l'output invertito corrisponde all'input. Per creare un palindromo, concatena il testo originale con la sua versione a caratteri invertiti (es. 'race' + 'ecar' = 'raceecar')." }
+  ]
+}

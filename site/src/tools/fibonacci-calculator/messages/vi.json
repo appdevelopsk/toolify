@@ -1,0 +1,87 @@
+{
+  "title": "Máy Tính Fibonacci — Số Hạng Thứ N và Dãy Số",
+  "shortDescription": "Tính bất kỳ số Fibonacci nào đến hạng thứ 100, hoặc liệt kê 50 số hạng đầu tiên. Hỗ trợ số lớn chính xác.",
+  "description": "Nhập vị trí N để lấy số Fibonacci chính xác tại hạng đó, hoặc chuyển sang chế độ dãy số để hiển thị N số đầu tiên trong dãy Fibonacci. Sử dụng số nguyên độ chính xác tùy ý để kết quả luôn chính xác.",
+  "metaDescription": "Máy tính Fibonacci miễn phí. Tìm số Fibonacci thứ N hoặc liệt kê N số hạng đầu tiên ngay lập tức — hỗ trợ đến F(100) với kết quả chính xác.",
+  "keywords": ["máy tính fibonacci", "dãy số fibonacci", "số fibonacci", "số hạng thứ n fibonacci", "chuỗi fibonacci"],
+  "empty": "Nhập số N ở trên để tính toán.",
+  "input": {
+    "mode": "Chế độ",
+    "nthLabel": "Số hạng thứ N",
+    "sequenceLabel": "Dãy số",
+    "n": "N (1 – {max})"
+  },
+  "result": {
+    "nthValue": "F({n})",
+    "sequence": "{n} số Fibonacci đầu tiên",
+    "term": "F({n})"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Dãy Fibonacci: định nghĩa và lịch sử",
+        "paragraphs": [
+          "Dãy Fibonacci được định nghĩa bởi hai quy tắc đơn giản: hai số hạng đầu tiên là 0 và 1, và mỗi số hạng tiếp theo là tổng của hai số hạng trước đó. Điều này tạo ra dãy 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … Quy tắc có vẻ đơn giản, nhưng các con số này xuất hiện trong toán học, khoa học máy tính và tự nhiên theo những cách làm các học giả say mê hàng thế kỷ.",
+          "Dãy số được đặt theo tên Leonardo of Pisa, còn gọi là Fibonacci, người đã giới thiệu nó cho Tây Âu trong cuốn sách Liber Abaci năm 1202 như một mô hình tăng trưởng quần thể thỏ. Tuy nhiên, dãy số này đã được các nhà toán học Ấn Độ mô tả hàng thế kỷ trước đó khi nghiên cứu về vần điệu Sanskrit — Virahanka, Gopala và Hemachandra đều phát hiện ra khi đếm các mẫu âm tiết.",
+          "Tỷ lệ của các số Fibonacci liên tiếp hội tụ về tỷ lệ vàng φ ≈ 1,61803…, một số vô tỷ có mối liên hệ sâu sắc với hình học, nghệ thuật và thẩm mỹ. Khi N tăng, F(N+1)/F(N) ngày càng tiếp cận φ hơn. Sự hội tụ này giải thích tại sao vòng xoắn Fibonacci xuất hiện trong cách xếp hạt hướng dương, vỏ nón thông và vỏ ốc nautilus."
+        ]
+      },
+      {
+        "heading": "Tính toán chính xác các số Fibonacci lớn",
+        "paragraphs": [
+          "Kiểu Number chuẩn của JavaScript lưu trữ giá trị dấu phẩy động 64-bit, chỉ biểu diễn chính xác số nguyên đến 2^53. Số Fibonacci tăng theo cấp số nhân — F(79) đã vượt quá 2^53 — vì vậy phép toán dấu phẩy động thông thường cho kết quả sai với N lớn. Công cụ này sử dụng kiểu BigInt tích hợp của JavaScript, hỗ trợ số nguyên có kích thước tùy ý, đảm bảo mọi kết quả từ F(1) đến F(100) đều chính xác.",
+          "F(100) = 354.224.848.179.261.915.075 — một số có 21 chữ số. Số Fibonacci tăng xấp xỉ φ^N / √5, vì vậy mỗi số hạng lớn hơn số trước khoảng 61,8%.",
+          "Có các công thức dạng đóng cho số Fibonacci (công thức Binet dùng lũy thừa của tỷ lệ vàng), nhưng cần phép toán độ chính xác tùy ý để chính xác với N lớn vì φ là số vô tỷ. Phương pháp lặp mà công cụ này sử dụng — chỉ đơn giản là cộng các số hạng liên tiếp — vừa chính xác vừa hiệu quả với N đến vài nghìn."
+        ]
+      },
+      {
+        "heading": "Ứng dụng của số Fibonacci",
+        "paragraphs": [
+          "Trong khoa học máy tính, số Fibonacci xuất hiện trong phân tích thuật toán. Đầu vào trường hợp xấu nhất cho thuật toán Euclid (tính GCD) là các số Fibonacci liên tiếp. Fibonacci heap, cấu trúc dữ liệu dùng trong thuật toán đường đi ngắn nhất Dijkstra, được đặt theo dãy này do giới hạn cấu trúc của nó.",
+          "Trong kỹ thuật phần mềm, số Fibonacci được sử dụng rộng rãi trong phát triển Agile như thang điểm story point: 1, 2, 3, 5, 8, 13. Khoảng cách phi tuyến phản ánh sự không chắc chắn ngày càng tăng khi ước tính các tác vụ lớn hơn — khoảng cách đáng chú ý giữa các số Fibonacci liền kề buộc người ước tính phải chọn một phía của lựa chọn mơ hồ, giảm thiểu độ chính xác giả tạo.",
+          "Trong tự nhiên, phyllotaxis — sự sắp xếp của lá, cánh hoa và hạt trên thực vật — thường theo dãy Fibonacci. Hướng dương thường có 55 vòng xoắn theo chiều kim đồng hồ và 89 vòng ngược chiều kim đồng hồ. Sự sắp xếp này xuất phát từ mô hình tăng trưởng của thực vật khi thêm cơ quan mới ở góc vàng (≈ 137,5°) so với cơ quan trước đó."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn chế độ", "text": "Chọn 'Số hạng thứ N' để tìm một số Fibonacci đơn lẻ, hoặc 'Dãy số' để liệt kê N số hạng đầu tiên." },
+      { "name": "Nhập N", "text": "Gõ vị trí bạn muốn. Tối đa là 100 cho chế độ Số hạng thứ N và 50 cho chế độ Dãy số." },
+      { "name": "Đọc kết quả", "text": "Giá trị Fibonacci chính xác hiển thị bên dưới. Với N lớn, số có thể rất dài — cuộn ngang nếu cần." },
+      { "name": "Sao chép giá trị", "text": "Chọn số được hiển thị và sao chép để dùng trong các phép tính của bạn." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "F(0) là gì — 0 hay 1?",
+      "a": "Theo quy ước hiện đại phổ biến nhất (dùng ở đây), F(0) = 0, F(1) = 1, F(2) = 1, F(3) = 2, … Một số sách cũ bắt đầu dãy từ F(1) = 1, F(2) = 1, dịch chuyển tất cả chỉ số lên một."
+    },
+    {
+      "q": "Tại sao công cụ này giới hạn ở N = 100?",
+      "a": "F(100) đã là số có 21 chữ số. Vượt quá 100, các giá trị trở thành chuỗi rất dài với ứng dụng thực tế hạn chế trong ngữ cảnh này."
+    },
+    {
+      "q": "Kết quả có chính xác với N lớn không?",
+      "a": "Có. Công cụ sử dụng JavaScript BigInt, xử lý số nguyên kích thước tùy ý mà không có lỗi làm tròn dấu phẩy động. Mọi kết quả từ F(1) đến F(100) đều chính xác về mặt toán học."
+    },
+    {
+      "q": "Tỷ lệ vàng là gì và liên quan đến Fibonacci như thế nào?",
+      "a": "Tỷ lệ vàng φ ≈ 1,61803… là nghiệm dương của phương trình x² = x + 1. Tỷ lệ của các số Fibonacci liên tiếp F(N+1)/F(N) hội tụ về φ khi N tăng. F(20)/F(19) = 6765/4181 ≈ 1,61803, đã chính xác đến 5 chữ số thập phân."
+    },
+    {
+      "q": "Dãy Fibonacci có giống số Lucas không?",
+      "a": "Không. Số Lucas dùng cùng công thức đệ quy nhưng bắt đầu với L(0) = 2 và L(1) = 1, cho 2, 1, 3, 4, 7, 11, 18, … Chúng có nhiều tính chất chung với số Fibonacci và cả hai đều hội tụ về φ."
+    },
+    {
+      "q": "Số Fibonacci xuất hiện ở đâu trong tự nhiên?",
+      "a": "Số Fibonacci xuất hiện trong số vòng xoắn của hướng dương (thường là 55 và 89), nón thông (thường là 8 và 13) và dứa. Điều này xảy ra vì thực vật thêm cơ quan mới ở góc xấp xỉ 137,5° (góc vàng), được suy ra từ φ."
+    },
+    {
+      "q": "Số Fibonacci tăng nhanh như thế nào?",
+      "a": "Số Fibonacci tăng theo cấp số nhân, xấp xỉ φ^N / √5. Mỗi số hạng lớn hơn số trước khoảng 1,618 lần. F(10) = 55, F(20) = 6.765, F(50) = 12.586.269.025, F(100) = 354.224.848.179.261.915.075."
+    },
+    {
+      "q": "Tại sao số Fibonacci được dùng trong story point Agile?",
+      "a": "Thang Fibonacci (1, 2, 3, 5, 8, 13, 21) được dùng vì khoảng cách giữa các giá trị liền kề tăng dần, buộc các nhóm phân biệt tác vụ 'trung bình' với 'lớn'. Khoảng cách phi tuyến này giảm thiểu độ chính xác giả tạo khi ước tính công việc vốn dĩ không chắc chắn."
+    }
+  ]
+}

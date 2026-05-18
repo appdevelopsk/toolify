@@ -1,0 +1,84 @@
+{
+  "title": "Kalkulator Probabilitas — Dasar, Permutasi, Kombinasi, Dadu",
+  "shortDescription": "Hitung probabilitas, permutasi (nPr), kombinasi (nCr), dan hasil lemparan dadu. Empat tab khusus mencakup setiap masalah probabilitas umum.",
+  "description": "Empat mode dalam satu alat: probabilitas dasar dari hasil yang menguntungkan dan total hasil, permutasi nPr, kombinasi nCr, dan probabilitas melempar angka tertentu dengan beberapa dadu. Hasil mencakup pecahan, desimal, persentase, dan peluang.",
+  "metaDescription": "Kalkulator probabilitas gratis: probabilitas dasar, permutasi nPr, kombinasi nCr, dan probabilitas dadu. Hasil berupa pecahan, desimal, persentase, dan peluang.",
+  "keywords": ["kalkulator probabilitas", "kalkulator kombinasi", "kalkulator permutasi", "kalkulator nCr", "kalkulator nPr", "probabilitas dadu", "kalkulator peluang"],
+  "tab": {
+    "basic": "Probabilitas Dasar",
+    "permutation": "Permutasi (nPr)",
+    "combination": "Kombinasi (nCr)",
+    "dice": "Probabilitas Dadu"
+  },
+  "input": {
+    "favorable": "Hasil yang Menguntungkan",
+    "total": "Total Hasil",
+    "n": "n (total item)",
+    "r": "r (item yang dipilih)",
+    "numDice": "Jumlah Dadu",
+    "target": "Jumlah Target",
+    "sides": "Sisi Dadu"
+  },
+  "result": {
+    "probability": "Probabilitas",
+    "fraction": "Pecahan",
+    "decimal": "Desimal",
+    "percent": "Persentase",
+    "oddsFor": "Peluang Untuk",
+    "oddsAgainst": "Peluang Melawan",
+    "permutations": "Permutasi (nPr)",
+    "combinations": "Kombinasi (nCr)"
+  },
+  "empty": "Masukkan nilai untuk menghitung.",
+  "error": {
+    "invalid": "Input tidak valid: pastikan semua nilai adalah bilangan bulat non-negatif dan r ≤ n.",
+    "overflow": "n harus ≤ 170 (batas faktorial JavaScript).",
+    "noOutcomes": "Total hasil harus lebih besar dari nol.",
+    "favorableExceedsTotal": "Hasil yang menguntungkan tidak boleh melebihi total hasil.",
+    "diceRange": "Jumlah target di luar rentang yang mungkin untuk dadu ini."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Probabilitas dasar, peluang, dan perbedaannya",
+        "paragraphs": [
+          "Probabilitas adalah rasio hasil yang menguntungkan terhadap total hasil yang sama kemungkinannya: P = menguntungkan / total. Nilainya berkisar dari 0 (mustahil) hingga 1 (pasti) dan sering dinyatakan sebagai persentase. Untuk dadu enam sisi yang adil, probabilitas melempar angka 4 adalah 1/6 ≈ 16,667%.",
+          "Peluang adalah cara berbeda untuk mengungkapkan informasi yang sama. Peluang UNTUK suatu kejadian adalah menguntungkan : tidak menguntungkan, sehingga melempar angka 4 memiliki peluang 1:5. Peluang MELAWAN adalah kebalikannya: 5:1. Peluang umum dalam taruhan olahraga dan permainan kartu; probabilitas lebih umum dalam statistik dan sains.",
+          "Kalkulator ini menyederhanakan pecahan ke bentuk paling sederhana secara otomatis dan menampilkan bentuk desimal dan persentase secara berdampingan, memudahkan konversi antar representasi."
+        ]
+      },
+      {
+        "heading": "Permutasi vs. kombinasi",
+        "paragraphs": [
+          "Keduanya berkaitan dengan pemilihan r item dari himpunan n, namun urutan penting dalam permutasi dan tidak dalam kombinasi. Permutasi nPr = n! / (n − r)! menghitung susunan berurutan. Kombinasi nCr = n! / (r! × (n − r)!) menghitung subset tidak berurutan.",
+          "Contoh: memilih 2 huruf dari {A, B, C}. Permutasi: AB, BA, AC, CA, BC, CB — 6 pasang berurutan. nPr = 3! / 1! = 6. Kombinasi: AB, AC, BC — 3 subset tidak berurutan. nCr = 3! / (2! × 1!) = 3. Karena setiap kombinasi menghasilkan r! permutasi, maka nPr = nCr × r! selalu berlaku.",
+          "Nilai n maksimum yang didukung adalah 170. Lebih dari itu, n! melebihi rentang floating-point JavaScript (sekitar 1,8 × 10³⁰⁸). Untuk n atau r yang sangat besar, pertimbangkan perhitungan logaritmik atau pustaka simbolis."
+        ]
+      },
+      {
+        "heading": "Probabilitas dadu dan aturan perkalian",
+        "paragraphs": [
+          "Saat melempar beberapa dadu yang identik, setiap dadu bersifat independen. Total jumlah hasil adalah sisi^jumlahDadu. Jumlah cara untuk mencapai jumlah tertentu ditemukan dengan menghitung komposisi: mendistribusikan jumlah ke semua dadu sedemikian rupa sehingga setiap dadu menunjukkan nilai antara 1 dan sisi.",
+          "Kalkulator ini menggunakan pemrograman dinamis untuk menghitung jumlah komposisi yang tepat untuk jumlah target yang diberikan. Misalnya, melempar 2d6 (dua dadu enam sisi) dan mendapatkan jumlah 7: ada 6 cara (1+6, 2+5, 3+4, 4+3, 5+2, 6+1) dari 36 total, memberikan probabilitas 6/36 = 1/6 ≈ 16,667%.",
+          "Jenis dadu yang didukung: d4, d6, d8, d10, d12, dan d20 (dadu RPG tabletop standar). Jumlah dadu berkisar dari 1 hingga 6. Jumlah target harus antara jumlahDadu (semua satu) dan jumlahDadu × sisi (semua maksimum)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih tab", "text": "Pilih Probabilitas Dasar, Permutasi, Kombinasi, atau Probabilitas Dadu sesuai masalah Anda." },
+      { "name": "Masukkan input", "text": "Untuk probabilitas dasar, berikan hasil yang menguntungkan dan total hasil. Untuk nPr/nCr, masukkan n dan r. Untuk dadu, pilih jumlah dadu, jumlah target, dan sisi." },
+      { "name": "Baca hasilnya", "text": "Hasil muncul seketika sebagai pecahan, desimal, persentase, dan peluang (untuk probabilitas dasar)." },
+      { "name": "Periksa kesalahan", "text": "Jika input tidak valid (r > n, total = 0, atau jumlah di luar rentang), pesan kesalahan yang jelas menjelaskan apa yang perlu diperbaiki." }
+    ]
+  },
+  "faq": [
+    { "q": "Apa perbedaan antara permutasi dan kombinasi?", "a": "Permutasi menghitung susunan berurutan (AB ≠ BA); kombinasi menghitung subset tidak berurutan (AB = BA). nPr = n! / (n−r)!; nCr = n! / (r! × (n−r)!). Selalu nPr ≥ nCr untuk r > 1." },
+    { "q": "Mengapa n dibatasi hingga 170?", "a": "JavaScript menggunakan floating-point IEEE 754 64-bit. 170! ≈ 7,26 × 10³⁰⁶ muat dalam double; 171! meluap menjadi Infinity. Jika Anda memerlukan faktorial yang lebih besar, gunakan BigInt atau pendekatan berbasis logaritma." },
+    { "q": "Bagaimana peluang berbeda dari probabilitas?", "a": "Probabilitas P = menguntungkan / total. Peluang Untuk = menguntungkan : tidak menguntungkan = P : (1−P). Peluang Melawan = tidak menguntungkan : menguntungkan. Probabilitas 25% sesuai dengan peluang 1:3 (untuk) atau 3:1 (melawan)." },
+    { "q": "Berapa nilai 0!?", "a": "Berdasarkan konvensi, 0! = 1. Ini menjaga konsistensi rumus nCr dan nPr ketika r = 0 atau r = n." },
+    { "q": "Bisakah saya menghitung probabilitas melempar setidaknya jumlah tertentu?", "a": "Tidak langsung dengan alat ini. Untuk probabilitas minimal, jumlahkan probabilitas tepat untuk semua nilai target dari minimum Anda hingga maksimum (jumlahDadu × sisi). Tab dadu memberikan probabilitas tepat untuk setiap jumlah tertentu." },
+    { "q": "Apa itu nC0 atau nCn?", "a": "Keduanya sama dengan 1. Hanya ada satu cara untuk memilih tidak ada (himpunan kosong) dan hanya satu cara untuk memilih semua item." },
+    { "q": "Apakah kalkulator ini akurat untuk faktorial besar?", "a": "Untuk n hingga 170, hasilnya akurat dalam representasi floating-point. Untuk n mendekati 170, hasil mungkin memiliki kesalahan relatif kecil pada beberapa digit terakhir karena pembulatan floating-point dalam pembagian." },
+    { "q": "Apakah ada data yang meninggalkan browser saya?", "a": "Tidak. Semua perhitungan berjalan secara lokal di JavaScript. Tidak ada yang dikirim ke server." }
+  ]
+}

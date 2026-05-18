@@ -1,0 +1,68 @@
+{
+  "title": "Text Sorter — Sort Lines Online (A–Z, Z–A, Deduplicate)",
+  "shortDescription": "Paste any list, sort lines A–Z or Z–A, remove duplicates, and copy the result instantly.",
+  "description": "Sort lines of text alphabetically or in reverse order, with optional case-insensitive matching, duplicate removal, empty-line stripping, and whitespace trimming. Everything runs in your browser — no data is sent to a server.",
+  "metaDescription": "Free online text sorter. Sort lines A-Z or Z-A, remove duplicates, trim whitespace, and strip empty lines — all in your browser, instantly.",
+  "keywords": ["sort lines of text online", "text sorter", "alphabetical sorter", "sort list online", "remove duplicate lines", "line sorter"],
+  "label": {
+    "input": "Input — paste lines here",
+    "output": "Sorted output"
+  },
+  "option": {
+    "direction": "Order:",
+    "dirAsc": "A → Z (ascending)",
+    "dirDesc": "Z → A (descending)",
+    "caseSensitive": "Case-sensitive",
+    "removeDups": "Remove duplicates",
+    "removeEmpty": "Remove empty lines",
+    "trim": "Trim whitespace"
+  },
+  "action": {
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "stat": {
+    "lines": "{count} lines"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "How text sorting works",
+        "paragraphs": [
+          "Sorting splits your text into individual lines, orders them lexicographically, and joins them back together. Lexicographic order is the same principle used in dictionaries: characters are compared one at a time from left to right using their Unicode code points.",
+          "By default this tool uses case-insensitive comparison, which means 'apple', 'Apple', and 'APPLE' are treated as identical for ordering purposes. Enable case-sensitive mode when you need uppercase letters to sort before lowercase (e.g., 'Z' before 'a' in ASCII order)."
+        ]
+      },
+      {
+        "heading": "Common use cases",
+        "paragraphs": [
+          "Alphabetizing name lists, tag clouds, or CSV column values are the most common tasks. Developers frequently sort import statements or configuration keys to make code reviews easier and diff outputs cleaner.",
+          "Data analysts use line sorting to quickly spot duplicate entries in exported lists or to align two datasets before a manual comparison. The duplicate-removal option condenses a list with thousands of entries to only unique values in one click."
+        ]
+      },
+      {
+        "heading": "Sorting algorithms: what happens under the hood",
+        "paragraphs": [
+          "Modern JavaScript engines use an optimized variant of TimSort (a hybrid of merge sort and insertion sort) for the Array.prototype.sort method. TimSort is stable, meaning lines that compare as equal preserve their original relative order — useful when you sort a deduplicated list and want consistent behavior.",
+          "For the vast majority of text lists you will encounter, the algorithm finishes in well under a millisecond in the browser, even for tens of thousands of lines. If you need locale-aware sorting (e.g., accented characters in French or German sorted correctly), consider using Intl.Collator in your own code, as this tool uses simple Unicode code-point comparison for maximum speed."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Paste your text", "text": "Click the input area and paste or type the lines you want to sort, one item per line." },
+      { "name": "Choose a sort direction", "text": "Select 'A → Z' for ascending order or 'Z → A' for descending order using the dropdown." },
+      { "name": "Enable optional filters", "text": "Check 'Remove duplicates' to keep only unique lines, 'Remove empty lines' to strip blank rows, or 'Trim whitespace' to strip leading and trailing spaces from each line before sorting." },
+      { "name": "Copy the result", "text": "The sorted output appears instantly on the right. Click 'Copy' to copy it to your clipboard." }
+    ]
+  },
+  "faq": [
+    { "q": "Does sorting happen automatically?", "a": "Yes. The output updates in real time as you type or change any option — there is no submit button." },
+    { "q": "Is sorting case-sensitive by default?", "a": "No. By default the tool sorts case-insensitively so that 'Apple' and 'apple' sort together. Enable the 'Case-sensitive' checkbox to use raw Unicode code-point order instead." },
+    { "q": "What counts as a line?", "a": "Each newline character (\\n) marks the end of a line. If you paste text from a spreadsheet or from Windows (\\r\\n line endings), the tool handles it correctly and sorts by logical lines." },
+    { "q": "Can I sort numbers?", "a": "The tool sorts lexicographically, not numerically. That means '10' sorts before '9' because '1' < '9'. For numeric sorting, pad numbers with leading zeros (e.g., '09' vs '10') before pasting." },
+    { "q": "What does 'Remove duplicates' do exactly?", "a": "It keeps the first occurrence of each unique line and discards subsequent identical ones. The comparison respects your case-sensitivity setting, so 'Apple' and 'apple' are treated as the same line only in case-insensitive mode." },
+    { "q": "Does my data leave my browser?", "a": "No. All processing happens locally in JavaScript. Nothing is uploaded to any server." },
+    { "q": "Is there a line limit?", "a": "There is no hard limit enforced by this tool. Performance depends on your device, but modern browsers handle hundreds of thousands of lines without noticeable lag." },
+    { "q": "How do I sort a CSV column?", "a": "Copy the column values from your spreadsheet application into the input area (they paste as one value per line), apply your options, copy the sorted output, and paste it back. Then re-attach your other columns manually or in a spreadsheet formula." }
+  ]
+}

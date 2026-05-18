@@ -1,0 +1,84 @@
+{
+  "title": "Máy Tính Xác Suất — Cơ Bản, Hoán Vị, Tổ Hợp, Xúc Xắc",
+  "shortDescription": "Tính xác suất, hoán vị (nPr), tổ hợp (nCr) và kết quả tung xúc xắc. Bốn tab chuyên dụng cho mọi bài toán xác suất thông thường.",
+  "description": "Bốn chế độ trong một công cụ: xác suất cơ bản từ số kết quả thuận lợi và tổng kết quả, hoán vị nPr, tổ hợp nCr, và xác suất ra tổng điểm cụ thể khi tung nhiều xúc xắc. Kết quả gồm phân số, thập phân, phần trăm và tỉ lệ.",
+  "metaDescription": "Máy tính xác suất miễn phí: xác suất cơ bản, hoán vị nPr, tổ hợp nCr và xác suất xúc xắc. Kết quả dạng phân số, thập phân, phần trăm và tỉ lệ.",
+  "keywords": ["máy tính xác suất", "tính tổ hợp", "tính hoán vị", "tính nCr", "tính nPr", "xác suất xúc xắc", "tính tỉ lệ"],
+  "tab": {
+    "basic": "Xác Suất Cơ Bản",
+    "permutation": "Hoán Vị (nPr)",
+    "combination": "Tổ Hợp (nCr)",
+    "dice": "Xác Suất Xúc Xắc"
+  },
+  "input": {
+    "favorable": "Số Kết Quả Thuận Lợi",
+    "total": "Tổng Số Kết Quả",
+    "n": "n (tổng số phần tử)",
+    "r": "r (số phần tử chọn)",
+    "numDice": "Số Lượng Xúc Xắc",
+    "target": "Tổng Điểm Mục Tiêu",
+    "sides": "Số Mặt Xúc Xắc"
+  },
+  "result": {
+    "probability": "Xác Suất",
+    "fraction": "Phân Số",
+    "decimal": "Thập Phân",
+    "percent": "Phần Trăm",
+    "oddsFor": "Tỉ Lệ Thuận",
+    "oddsAgainst": "Tỉ Lệ Nghịch",
+    "permutations": "Hoán Vị (nPr)",
+    "combinations": "Tổ Hợp (nCr)"
+  },
+  "empty": "Nhập các giá trị để tính toán.",
+  "error": {
+    "invalid": "Đầu vào không hợp lệ: kiểm tra tất cả các giá trị là số nguyên không âm và r ≤ n.",
+    "overflow": "n phải ≤ 170 (giới hạn giai thừa của JavaScript).",
+    "noOutcomes": "Tổng số kết quả phải lớn hơn không.",
+    "favorableExceedsTotal": "Số kết quả thuận lợi không thể vượt quá tổng số kết quả.",
+    "diceRange": "Tổng điểm mục tiêu nằm ngoài phạm vi có thể của các xúc xắc này."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Xác suất cơ bản, tỉ lệ và sự khác biệt",
+        "paragraphs": [
+          "Xác suất là tỉ số giữa số kết quả thuận lợi và tổng số kết quả có khả năng như nhau: P = thuận lợi / tổng. Nó dao động từ 0 (không thể) đến 1 (chắc chắn) và thường biểu thị bằng phần trăm. Với con xúc xắc sáu mặt cân bằng, xác suất ra số 4 là 1/6 ≈ 16,667%.",
+          "Tỉ lệ là cách khác để biểu thị thông tin tương tự. Tỉ lệ THUẬN của một sự kiện là thuận lợi : bất lợi, vậy ra số 4 có tỉ lệ 1:5. Tỉ lệ NGHỊCH là ngược lại: 5:1. Tỉ lệ phổ biến trong cá cược thể thao và trò chơi bài; xác suất phổ biến hơn trong thống kê và khoa học.",
+          "Máy tính này tự động rút gọn phân số về dạng tối giản và hiển thị dạng thập phân và phần trăm song song, giúp dễ dàng chuyển đổi giữa các biểu diễn."
+        ]
+      },
+      {
+        "heading": "Hoán vị và tổ hợp",
+        "paragraphs": [
+          "Cả hai đều liên quan đến việc chọn r phần tử từ tập n, nhưng thứ tự quan trọng trong hoán vị còn không quan trọng trong tổ hợp. Hoán vị nPr = n! / (n − r)! đếm các sắp xếp có thứ tự. Tổ hợp nCr = n! / (r! × (n − r)!) đếm các tập con không có thứ tự.",
+          "Ví dụ: chọn 2 chữ cái từ {A, B, C}. Hoán vị: AB, BA, AC, CA, BC, CB — 6 cặp có thứ tự. nPr = 3! / 1! = 6. Tổ hợp: AB, AC, BC — 3 tập con không có thứ tự. nCr = 3! / (2! × 1!) = 3. Vì mỗi tổ hợp cho r! hoán vị, nên nPr = nCr × r! luôn đúng.",
+          "Giá trị n tối đa được hỗ trợ là 170. Vượt quá đó, n! vượt phạm vi dấu phẩy động của JavaScript (khoảng 1,8 × 10³⁰⁸). Với n hoặc r rất lớn, hãy xem xét tính toán logarithm hoặc thư viện ký hiệu."
+        ]
+      },
+      {
+        "heading": "Xác suất xúc xắc và quy tắc nhân",
+        "paragraphs": [
+          "Khi tung nhiều xúc xắc giống nhau, mỗi con xúc xắc là độc lập. Tổng số kết quả là số_mặt^số_xúc_xắc. Số cách để đạt tổng điểm cụ thể được tìm bằng cách đếm các cấu hình: phân phối tổng điểm trên tất cả xúc xắc sao cho mỗi xúc xắc hiển thị giá trị từ 1 đến số mặt.",
+          "Máy tính này sử dụng quy hoạch động để đếm chính xác số cấu hình cho tổng điểm mục tiêu đã cho. Ví dụ, tung 2d6 (hai xúc xắc sáu mặt) và được tổng 7: có 6 cách (1+6, 2+5, 3+4, 4+3, 5+2, 6+1) trong tổng số 36, cho xác suất 6/36 = 1/6 ≈ 16,667%.",
+          "Các loại xúc xắc được hỗ trợ: d4, d6, d8, d10, d12 và d20 (xúc xắc RPG bàn cờ chuẩn). Số lượng xúc xắc từ 1 đến 6. Tổng điểm mục tiêu phải nằm giữa số_xúc_xắc (tất cả một) và số_xúc_xắc × số_mặt (tất cả tối đa)."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn tab", "text": "Chọn Xác Suất Cơ Bản, Hoán Vị, Tổ Hợp hoặc Xác Suất Xúc Xắc tùy bài toán của bạn." },
+      { "name": "Nhập đầu vào", "text": "Với xác suất cơ bản, nhập số kết quả thuận lợi và tổng kết quả. Với nPr/nCr, nhập n và r. Với xúc xắc, chọn số lượng xúc xắc, tổng điểm mục tiêu và số mặt." },
+      { "name": "Đọc kết quả", "text": "Kết quả xuất hiện ngay dưới dạng phân số, thập phân, phần trăm và tỉ lệ (với xác suất cơ bản)." },
+      { "name": "Kiểm tra lỗi", "text": "Nếu đầu vào không hợp lệ (r > n, tổng = 0, hoặc tổng điểm ngoài phạm vi), thông báo lỗi rõ ràng giải thích cần sửa gì." }
+    ]
+  },
+  "faq": [
+    { "q": "Sự khác biệt giữa hoán vị và tổ hợp là gì?", "a": "Hoán vị đếm các sắp xếp có thứ tự (AB ≠ BA); tổ hợp đếm các tập con không có thứ tự (AB = BA). nPr = n! / (n−r)!; nCr = n! / (r! × (n−r)!). Luôn nPr ≥ nCr với r > 1." },
+    { "q": "Tại sao n bị giới hạn ở 170?", "a": "JavaScript sử dụng dấu phẩy động IEEE 754 64-bit. 170! ≈ 7,26 × 10³⁰⁶ vừa trong double; 171! tràn thành Infinity. Nếu cần giai thừa lớn hơn, hãy dùng BigInt hoặc phương pháp dựa trên logarithm." },
+    { "q": "Tỉ lệ khác xác suất như thế nào?", "a": "Xác suất P = thuận lợi / tổng. Tỉ Lệ Thuận = thuận lợi : bất lợi = P : (1−P). Tỉ Lệ Nghịch = bất lợi : thuận lợi. Xác suất 25% tương ứng tỉ lệ 1:3 (thuận) hoặc 3:1 (nghịch)." },
+    { "q": "0! bằng bao nhiêu?", "a": "Theo quy ước, 0! = 1. Điều này giữ công thức nCr và nPr nhất quán khi r = 0 hoặc r = n." },
+    { "q": "Tôi có thể tính xác suất tung được ít nhất một tổng điểm nhất định không?", "a": "Không trực tiếp với công cụ này. Với xác suất ít nhất, hãy cộng các xác suất chính xác cho tất cả giá trị mục tiêu từ mức tối thiểu đến tối đa (số_xúc_xắc × số_mặt). Tab xúc xắc cho xác suất chính xác cho mỗi tổng điểm cụ thể." },
+    { "q": "nC0 hoặc nCn bằng bao nhiêu?", "a": "Cả hai đều bằng 1. Chỉ có một cách để không chọn gì (tập rỗng) và chỉ một cách để chọn tất cả phần tử." },
+    { "q": "Máy tính này có chính xác với giai thừa lớn không?", "a": "Với n đến 170, kết quả chính xác trong phạm vi dấu phẩy động. Với n gần 170, kết quả có thể có sai số tương đối nhỏ ở một vài chữ số cuối do làm tròn dấu phẩy động khi chia." },
+    { "q": "Có dữ liệu nào rời khỏi trình duyệt của tôi không?", "a": "Không. Tất cả các phép tính chạy cục bộ trong JavaScript. Không có gì được truyền đến máy chủ." }
+  ]
+}

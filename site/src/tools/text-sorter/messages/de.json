@@ -1,0 +1,68 @@
+{
+  "title": "Text-Zeilen-Sortierer Online — A–Z, Z–A, Duplikate entfernen",
+  "shortDescription": "Liste einfügen, Zeilen von A nach Z oder Z nach A sortieren, Duplikate entfernen und das Ergebnis sofort kopieren.",
+  "description": "Sortiert Textzeilen alphabetisch oder in umgekehrter Reihenfolge, mit optionalem Vergleich ohne Groß-/Kleinschreibung, Entfernung von Duplikaten, Löschen leerer Zeilen und Trimmen von Leerzeichen. Alles läuft im Browser — keine Daten werden an einen Server gesendet.",
+  "metaDescription": "Kostenloser Online-Text-Sortierer. Zeilen A-Z oder Z-A sortieren, Duplikate entfernen, Leerzeichen trimmen und leere Zeilen löschen — alles im Browser, sofort.",
+  "keywords": ["Textzeilen online sortieren", "Text-Sortierer", "alphabetisch sortieren", "Liste online sortieren", "doppelte Zeilen entfernen", "Zeilen-Sortierer"],
+  "label": {
+    "input": "Eingabe — Zeilen hier einfügen",
+    "output": "Sortiertes Ergebnis"
+  },
+  "option": {
+    "direction": "Reihenfolge:",
+    "dirAsc": "A → Z (aufsteigend)",
+    "dirDesc": "Z → A (absteigend)",
+    "caseSensitive": "Groß-/Kleinschreibung beachten",
+    "removeDups": "Duplikate entfernen",
+    "removeEmpty": "Leere Zeilen entfernen",
+    "trim": "Leerzeichen trimmen"
+  },
+  "action": {
+    "copy": "Kopieren",
+    "copied": "Kopiert!"
+  },
+  "stat": {
+    "lines": "{count} Zeilen"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Wie die Textsortierung funktioniert",
+        "paragraphs": [
+          "Die Sortierung zerlegt den Text in einzelne Zeilen, ordnet sie lexikografisch und fügt sie wieder zusammen. Lexikografische Reihenfolge entspricht dem Prinzip in Wörterbüchern: Zeichen werden von links nach rechts einzeln anhand ihrer Unicode-Codepunkte verglichen.",
+          "Standardmäßig verwendet das Tool einen Vergleich ohne Berücksichtigung der Groß-/Kleinschreibung, sodass „apple“, „Apple“ und „APPLE“ für Sortierzwecke als identisch behandelt werden. Aktivieren Sie den Groß-/Kleinschreibung-beachten-Modus, wenn Großbuchstaben vor Kleinbuchstaben stehen sollen (z. B. „Z“ vor „a“ in der ASCII-Reihenfolge)."
+        ]
+      },
+      {
+        "heading": "Häufige Anwendungsfälle",
+        "paragraphs": [
+          "Das Alphabetisieren von Namenslisten, Tag-Clouds oder CSV-Spaltenwerten ist die häufigste Aufgabe. Entwickler sortieren häufig Import-Anweisungen oder Konfigurationsschlüssel, um Code-Reviews zu erleichtern und Diff-Ausgaben übersichtlicher zu gestalten.",
+          "Datenanalysten nutzen die Zeilensortierung, um schnell doppelte Einträge in exportierten Listen zu erkennen oder zwei Datensätze vor einem manuellen Vergleich auszurichten. Die Option zum Entfernen von Duplikaten verdichtet eine Liste mit Tausenden von Einträgen mit einem Klick auf nur die eindeutigen Werte."
+        ]
+      },
+      {
+        "heading": "Sortieralgorithmen: Was im Hintergrund passiert",
+        "paragraphs": [
+          "Moderne JavaScript-Engines verwenden für die Methode Array.prototype.sort eine optimierte Variante von TimSort (einem Hybrid aus Merge Sort und Insertion Sort). TimSort ist stabil, d. h. Zeilen, die als gleich verglichen werden, behalten ihre ursprüngliche relative Reihenfolge — nützlich, wenn Sie eine deduplizierte Liste sortieren und ein konsistentes Verhalten wünschen.",
+          "Für die überwiegende Mehrheit der Textlisten, die Ihnen begegnen, endet der Algorithmus im Browser in deutlich weniger als einer Millisekunde, selbst bei Zehntausenden von Zeilen. Wenn Sie eine gebietsschema-bewusste Sortierung benötigen (z. B. Umlaute oder Akzentzeichen im Deutschen oder Französischen korrekt sortiert), sollten Sie in Ihrem eigenen Code Intl.Collator verwenden, da dieses Tool für maximale Geschwindigkeit einen einfachen Unicode-Codepunkt-Vergleich verwendet."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Text einfügen", "text": "Klicken Sie auf den Eingabebereich und fügen Sie die zu sortierenden Zeilen ein, oder geben Sie sie ein — ein Element pro Zeile." },
+      { "name": "Sortierreihenfolge wählen", "text": "Wählen Sie über das Dropdown-Menü „A → Z“ für aufsteigende oder „Z → A“ für absteigende Reihenfolge." },
+      { "name": "Optionale Filter aktivieren", "text": "Aktivieren Sie „Duplikate entfernen“, um nur eindeutige Zeilen zu behalten, „Leere Zeilen entfernen“, um Leerzeilen zu löschen, oder „Leerzeichen trimmen“, um führende und nachfolgende Leerzeichen jeder Zeile vor dem Sortieren zu entfernen." },
+      { "name": "Ergebnis kopieren", "text": "Das sortierte Ergebnis erscheint sofort rechts. Klicken Sie auf „Kopieren“, um es in die Zwischenablage zu kopieren." }
+    ]
+  },
+  "faq": [
+    { "q": "Wird die Sortierung automatisch durchgeführt?", "a": "Ja. Das Ergebnis wird in Echtzeit aktualisiert, während Sie tippen oder eine Option ändern — es gibt keine Schaltfläche zum Absenden." },
+    { "q": "Wird die Groß-/Kleinschreibung standardmäßig beachtet?", "a": "Nein. Standardmäßig sortiert das Tool ohne Berücksichtigung der Groß-/Kleinschreibung, sodass „Apple“ und „apple“ zusammen sortiert werden. Aktivieren Sie die Checkbox „Groß-/Kleinschreibung beachten“, um den rohen Unicode-Codepunkt-Vergleich zu verwenden." },
+    { "q": "Was gilt als Zeile?", "a": "Jedes Zeilenumbruchzeichen (\\n) markiert das Ende einer Zeile. Wenn Sie Text aus einer Tabellenkalkulation oder aus Windows (\\r\\n-Zeilenenden) einfügen, verarbeitet das Tool dies korrekt und sortiert nach logischen Zeilen." },
+    { "q": "Kann ich Zahlen sortieren?", "a": "Das Tool sortiert lexikografisch, nicht numerisch. Das bedeutet, dass „10“ vor „9“ sortiert wird, weil „1“ < „9“. Für numerisches Sortieren füllen Sie Zahlen mit führenden Nullen auf (z. B. „09“ vs. „10“), bevor Sie sie einfügen." },
+    { "q": "Was genau macht „Duplikate entfernen“?", "a": "Es behält das erste Vorkommen jeder eindeutigen Zeile und verwirft nachfolgende identische Zeilen. Der Vergleich berücksichtigt Ihre Groß-/Kleinschreibungseinstellung, sodass „Apple“ und „apple“ nur im Modus ohne Berücksichtigung der Groß-/Kleinschreibung als dieselbe Zeile behandelt werden." },
+    { "q": "Verlassen meine Daten den Browser?", "a": "Nein. Alle Verarbeitungen erfolgen lokal in JavaScript. Nichts wird auf irgendeinen Server hochgeladen." },
+    { "q": "Gibt es ein Zeilenlimit?", "a": "Dieses Tool erzwingt kein hartes Limit. Die Leistung hängt von Ihrem Gerät ab, aber moderne Browser verarbeiten Hunderttausende von Zeilen ohne merkliche Verzögerung." },
+    { "q": "Wie sortiere ich eine CSV-Spalte?", "a": "Kopieren Sie die Spaltenwerte aus Ihrer Tabellenkalkulationsanwendung in den Eingabebereich (sie werden als ein Wert pro Zeile eingefügt), wenden Sie Ihre Optionen an, kopieren Sie das sortierte Ergebnis und fügen Sie es wieder ein. Verbinden Sie dann Ihre anderen Spalten manuell oder über eine Tabellenkalkulationsformel." }
+  ]
+}

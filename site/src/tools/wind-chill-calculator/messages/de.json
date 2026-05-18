@@ -1,0 +1,141 @@
+{
+  "title": "Windchill-Rechner — Gefühlte Temperatur",
+  "shortDescription": "Berechnen Sie den Windchill-Index und erfahren Sie, wie kalt es sich bei der aktuellen Temperatur und Windgeschwindigkeit anfühlt.",
+  "description": "Geben Sie die Lufttemperatur und Windgeschwindigkeit ein, um den offiziellen Windchill-Index zu berechnen, der von Meteorologen in Kanada und den USA verwendet wird. Das Ergebnis zeigt die gefühlte Temperatur Ihrer exponierten Haut sowie das Erfrierungsrisiko und empfohlene Expositionsgrenzen.",
+  "metaDescription": "Kostenloser Windchill-Rechner nach der NWS/MSC-Formel. Geben Sie Temperatur und Windgeschwindigkeit ein, um die gefühlte Temperatur und das Erfrierungsrisiko zu ermittel…",
+  "keywords": [
+    "Windchill-Rechner",
+    "gefühlte Temperatur berechnen",
+    "Windchill-Index",
+    "Windkältefaktor",
+    "Außentemperatur gefühlt Rechner"
+  ],
+  "unitToggle": {
+    "label": "Einheitensystem",
+    "metric": "Metrisch (°C, km/h)",
+    "imperial": "Imperial (°F, mph)"
+  },
+  "input": {
+    "temperature": "Lufttemperatur",
+    "temperaturePlaceholder": "z.B. −5",
+    "windSpeed": "Windgeschwindigkeit",
+    "windSpeedPlaceholder": "z.B. 30"
+  },
+  "result": {
+    "windChill": "Windchill",
+    "feelsLike": "Gefühlt",
+    "difference": "Kälter als tatsächlich",
+    "frostbiteRisk": "Erfrierungsrisiko",
+    "exposure": "Max. sichere Expositionszeit"
+  },
+  "risk": {
+    "safe": "Kein erhebliches Risiko",
+    "watch": "Achtung — längere Exposition begrenzen",
+    "warning": "Warnung — Erfrierung in 30 Min.",
+    "danger": "Gefahr — Erfrierung in 10 Min.",
+    "critical": "Kritisch — Erfrierung in 5 Min.",
+    "extremeDanger": "Extreme Gefahr — Erfrierung in 2 Min."
+  },
+  "exposure": {
+    "safe": "Kein Limit (angemessen kleiden)",
+    "watch": "30 Minuten oder mehr",
+    "warning": "Unter 30 Minuten",
+    "danger": "Unter 10 Minuten",
+    "critical": "Unter 5 Minuten",
+    "extremeDanger": "Unter 2 Minuten"
+  },
+  "info": {
+    "outOfRange": "Windchill gilt nicht, wenn die Temperatur über 10°C (50°F) liegt oder die Windgeschwindigkeit unter 4,8 km/h (3 mph) beträgt. Die Formel ist nur unter diesen Bedingungen gültig.",
+    "noWindChill": "Kein Windchill-Effekt — die gefühlte Temperatur entspricht der tatsächlichen Temperatur.",
+    "empty": "Geben Sie Temperatur und Windgeschwindigkeit ein, um den Windchill zu berechnen."
+  },
+  "units": {
+    "celsius": "°C",
+    "fahrenheit": "°F",
+    "kmh": "km/h",
+    "mph": "mph"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Was ist Windchill und woher stammt die Formel?",
+        "paragraphs": [
+          "Windchill (auch Windchill-Index oder gefühlte Temperatur genannt) misst, wie schnell exponierte Menschenhaut in kalten, windigen Bedingungen Wärme verliert. Stehende Luft bildet eine dünne Isolierschicht um den Körper; Wind reißt diese Schicht weg, beschleunigt den Wärmeverlust und lässt die Luft kälter erscheinen, als das Thermometer anzeigt.",
+          "Der erste Windchill-Index wurde 1945 von den Antarktisforschern Paul Siple und Charles Passel entwickelt, die maßen, wie lange es dauerte, bis eine Plastikflasche Wasser unter verschiedenen Temperatur- und Windkombinationen gefror. Ihre Formel wurde jahrzehntelang weitgehend verwendet, stand aber in der Kritik, das Kältegefühl zu überschätzen.",
+          "Im November 2001 verabschiedeten der US-amerikanische National Weather Service (NWS) und Environment and Climate Change Canada (ECCC) gemeinsam eine neue Formel, die aus Versuchen mit freiwilligen Probanden abgeleitet wurde. Die Teilnehmer liefen auf Laufbändern in klimatisierten Kammern, und Sensoren für den Wärmetransfer auf der Gesichtshaut maßen die tatsächlichen Abkühlraten. Die heute verwendete Formel lautet: WC = 13,12 + 0,6215T − 11,37V^0,16 + 0,3965T×V^0,16 (Celsius/km·h), mit einem imperialen Äquivalent in °F und mph.",
+          "Die Formel ist nur physikalisch sinnvoll, wenn die Lufttemperatur bei oder unter 10°C (50°F) liegt und die Windgeschwindigkeit 4,8 km/h (3 mph) überschreitet. Außerhalb dieser Schwellenwerte bricht das Modell zusammen: Windstille erzeugt keinen Windchill, und warme Luft bedeutet Wärmegewinn statt erhöhtem Wärmeverlust."
+        ]
+      },
+      {
+        "heading": "Erfrierungsrisiko und Sicherheit bei Kälte",
+        "paragraphs": [
+          "Erfrierungen entstehen, wenn Hautgewebe gefriert. Windchill beschleunigt den Prozess erheblich: Bei einem Windchill-Wert von −27°C kann exponierte Haut innerhalb von 30 Minuten erfrieren. Bei −35°C verkürzt sich dieser Zeitraum auf 10 Minuten. Bei −45°C sind es 5 Minuten, und bei −55°C oder darunter kann eine Erfrierung innerhalb von 2 Minuten einsetzen.",
+          "Die von Environment Canada und dem NWS verwendeten Risikoschwellen sind: kein besonderes Risiko über −27°C WC; Erfrierungswarnstufe von −27°C bis −35°C; Warnung von −35°C bis −45°C; Gefahr von −45°C bis −55°C; und extreme Gefahr unter −55°C. Das sind dieselben Schwellenwerte, die in diesem Rechner angezeigt werden.",
+          "Wichtige Schutzmaßnahmen umfassen das Bedecken aller exponierten Hautstellen (besonders Wangen, Nase, Ohren, Finger und Zehen), trocken zu bleiben (nasse Kleidung verliert etwa 90 % ihres Isolationswerts), Kleidung zu schichten, um warme Luft einzuschließen, und jemandem die geplante Route und Rückkehrzeit mitzuteilen. Kinder und ältere Menschen sind anfälliger für Erfrierungen, da ihre Thermoregulationssysteme weniger effizient sind.",
+          "Windchill beeinflusst unbelebte Objekte nicht auf dieselbe Weise. Ihr Automotor, ein gefrorenes Rohr oder eine Wasserflasche kühlen nicht unter die tatsächliche Lufttemperatur ab — Windchill gilt spezifisch für Objekte, die ihre eigene Wärme erzeugen (wie der menschliche Körper). Ein draußen geparktes Auto wird die Umgebungstemperatur erreichen, aber nicht darunter sinken, unabhängig von der Windgeschwindigkeit."
+        ]
+      },
+      {
+        "heading": "Windchill versus Hitzeindex: die zwei Seiten der gefühlten Temperatur",
+        "paragraphs": [
+          "Die gefühlte Temperatur ist das übergeordnete Konzept: Sie beschreibt die Temperatur, die eine Person wahrnimmt, wobei die Wechselwirkung der Lufttemperatur mit Luftfeuchtigkeit (Hitzeindex) oder Wind (Windchill) berücksichtigt wird. Die beiden Formeln gelten für entgegengesetzte Jahreszeiten und werden niemals gleichzeitig angewandt.",
+          "Der Hitzeindex (in Kanada als \"Humidex\" bekannt) gilt, wenn Temperaturen über etwa 27°C (80°F) liegen. Hohe Luftfeuchtigkeit verlangsamt die Schweißverdunstung, was den primären Kühlmechanismus des Körpers beeinträchtigt und die Luft heißer erscheinen lässt, als das Thermometer anzeigt.",
+          "Windchill hingegen ist eine Winterkennzahl: Sie gilt unterhalb von 10°C (50°F). Anstatt die Kühlung wie Luftfeuchtigkeit im Sommer zu blockieren, beschleunigt Wind die Kühlung, indem er die Grenzschicht warmer Luft um die Haut stört.",
+          "Zusammen bieten Hitzeindex und Windchill Meteorologen ein vollständiges Bild des thermischen Außenkomforts über das gesamte Spektrum der Wetterbedingungen. Beide sind Richtwerte, keine direkten physiologischen Messungen — individuelle Faktoren wie Fitnesslevel, Kleidung, Körperzusammensetzung und Akklimatisierung beeinflussen, wie eine bestimmte Person die Temperatur tatsächlich wahrnimmt."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Wählen Sie Ihr Einheitensystem",
+        "text": "Wählen Sie Metrisch (°C und km/h) oder Imperial (°F und mph) je nach dem Wetterbericht, den Sie haben."
+      },
+      {
+        "name": "Geben Sie die Lufttemperatur ein",
+        "text": "Geben Sie die aktuelle Lufttemperatur ein. Die Formel gilt bei 10°C (50°F) oder darunter."
+      },
+      {
+        "name": "Geben Sie die Windgeschwindigkeit ein",
+        "text": "Geben Sie die anhaltende Windgeschwindigkeit ein. Sie muss über 4,8 km/h (3 mph) liegen, damit die Formel anwendbar ist."
+      },
+      {
+        "name": "Lesen Sie das Ergebnis",
+        "text": "Die berechnete Windchill-Temperatur, wie viel kälter es sich im Vergleich zur tatsächlichen Lufttemperatur anfühlt, und die Erfrierungsrisikostufe werden sofort unter den Eingabefeldern angezeigt."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was ist Windchill?",
+      "a": "Windchill ist die gefühlte Temperatur auf exponierter Menschenhaut durch die Kombination aus Kälte und Wind. Wind entfernt die dünne Schicht warmer Luft, die normalerweise an Ihrer Haut liegt, erhöht die Wärmeverlustrate und lässt Sie kälter fühlen, als das Thermometer anzeigt."
+    },
+    {
+      "q": "Welche Formel verwendet dieser Rechner?",
+      "a": "Er verwendet die offizielle NWS/Environment Canada-Formel, die 2001 eingeführt wurde. Metrisch: WC = 13,12 + 0,6215T − 11,37V^0,16 + 0,3965T×V^0,16, wobei T in °C und V in km/h. Imperial: WC = 35,74 + 0,6215T − 35,75V^0,16 + 0,4275T×V^0,16, wobei T in °F und V in mph. Die Formel wurde an menschlichen Versuchspersonen validiert und ersetzte das ältere Siple–Passel-Modell."
+    },
+    {
+      "q": "Warum gilt Windchill nicht über 10°C (50°F)?",
+      "a": "Über 10°C sagt das Windchill-Modell bei mäßigem Wind einen Wert vorher, der höher als die tatsächliche Lufttemperatur ist, was physikalisch irreführend ist. Der NWS wählte 10°C als Obergrenze, bei der die Formel den menschlichen Wärmeverlust zuverlässig darstellt. Bei warmem Wetter ist Luftfeuchtigkeit (nicht Windgeschwindigkeit) der dominante Faktor für die gefühlte Temperatur."
+    },
+    {
+      "q": "Warum gilt Windchill nicht unter 4,8 km/h (3 mph)?",
+      "a": "Bei sehr niedrigen Windgeschwindigkeiten wird die Formel unzuverlässig, weil der mathematische Term V^0,16 sich 1 annähert und die Gleichung degeneriert. Stille oder nahezu stille Bedingungen werden behandelt, indem die tatsächliche Lufttemperatur als gefühlte Temperatur angegeben wird."
+    },
+    {
+      "q": "Beeinflusst Windchill, wie schnell mein Auto oder Rohre gefrieren?",
+      "a": "Nein. Windchill beschreibt nur den Wärmeverlust von Objekten, die ihre eigene Körperwärme erzeugen — er senkt nicht die tatsächliche Lufttemperatur. Ein Motorblock, eine Wasserleitung oder eine Kraftstoffleitung werden schließlich die tatsächliche Lufttemperatur erreichen, aber durch den Wind nie darunter sinken."
+    },
+    {
+      "q": "Wie schnell können Erfrierungen auftreten?",
+      "a": "Bei einem Windchill von −27°C (−17°F) können Erfrierungen an exponierter Haut innerhalb von 30 Minuten auftreten. Bei −35°C (−31°F) beträgt das Zeitfenster etwa 10 Minuten; bei −45°C (−49°F) sinkt es auf 5 Minuten, und bei −55°C (−67°F) oder darunter können sich Erfrierungen innerhalb von 2 Minuten entwickeln. Diese Schwellenwerte stammen aus der NWS/Environment Canada-Warnkarte."
+    },
+    {
+      "q": "Ist Windchill dasselbe wie Humidex oder Hitzeindex?",
+      "a": "Nein. Humidex und Hitzeindex sind Sommerkennwerte, die berücksichtigen, dass Luftfeuchtigkeit heißes Wetter noch schwüler macht. Windchill ist ein Winterkennwert, der berücksichtigt, dass Wind kaltes Wetter noch schneidender macht. Die beiden werden niemals gleichzeitig angewandt."
+    },
+    {
+      "q": "Was sollte ich tragen, wenn der Windchill im Warnbereich liegt?",
+      "a": "Bedecken Sie alle exponierten Hautstellen: Tragen Sie eine Sturmhaube oder Gesichtsmaske, isolierte Handschuhe und wasserabweisende Außenschichten. Tragen Sie feuchtigkeitstransportierende Basislagen, um trocken zu bleiben — nasse Kleidung verliert bis zu 90 % ihres Isolationswerts. Begrenzen Sie den Aufenthalt im Freien auf unter 30 Minuten und informieren Sie jemanden, wenn Sie bei Warn- oder Gefahrenbedingungen nach draußen gehen."
+    }
+  ]
+}

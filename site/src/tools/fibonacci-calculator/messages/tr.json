@@ -1,0 +1,87 @@
+{
+  "title": "Fibonacci Hesaplayıcı — N. Terim ve Dizi",
+  "shortDescription": "100. terime kadar herhangi bir Fibonacci sayısını hesaplayın veya dizinin ilk 50 terimini listeleyin. Büyük sayılar için tam hassasiyet.",
+  "description": "N pozisyonunu girerek o terimde tam Fibonacci sayısını alın veya Fibonacci serisindeki ilk N sayıyı görüntülemek için dizi moduna geçin. Sonuçların her zaman doğru olması için keyfi hassasiyetli tam sayılar kullanılır.",
+  "metaDescription": "Ücretsiz Fibonacci hesaplayıcı. N. Fibonacci sayısını bulun veya dizinin ilk N terimini anında listeleyin — F(100)'e kadar tam sonuçlarla desteklenir.",
+  "keywords": ["fibonacci hesaplayıcı", "fibonacci dizisi", "fibonacci sayısı", "n. fibonacci terimi", "altın oran hesaplama"],
+  "empty": "Hesaplamak için yukarıya N sayısını girin.",
+  "input": {
+    "mode": "Mod",
+    "nthLabel": "N. Terim",
+    "sequenceLabel": "Dizi",
+    "n": "N (1 – {max})"
+  },
+  "result": {
+    "nthValue": "F({n})",
+    "sequence": "İlk {n} Fibonacci sayısı",
+    "term": "F({n})"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Fibonacci dizisi: tanım ve tarihçe",
+        "paragraphs": [
+          "Fibonacci dizisi iki basit kuralla tanımlanır: ilk iki terim 0 ve 1'dir; sonraki her terim önceki iki terimin toplamıdır. Bu, 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … dizisini verir. Kural aldatıcı biçimde basit görünse de bu sayılar yüzyıllardır akademisyenleri büyüleyen şekillerde matematik, bilgisayar bilimi ve doğada karşımıza çıkar.",
+          "Dizi adını, 1202 tarihli Liber Abaci kitabında tavşan popülasyonu büyümesi modeli olarak Batı Avrupa'ya tanıtan Pisalı Leonardo'dan (Fibonacci olarak bilinir) almaktadır. Ancak dizi, Sanskritçe vezin çalışan Hintli matematikçiler — Virahanka, Gopala ve Hemachandra — tarafından hece örüntülerini sayarken yüzyıllar önce tanımlanmıştı.",
+          "Ardışık Fibonacci sayılarının oranı, geometri, sanat ve estetikle derin bağlantıları olan irrasyonel bir sayı olan altın oran φ ≈ 1,61803'e yakınsar. N büyüdükçe F(N+1)/F(N) φ'ye daha da yaklaşır. Bu yakınsama, Fibonacci sarmallarının ayçiçeği tohumu düzenlemelerinde, kozalak sarmallarında ve nautilus kabuklarında neden göründüğünü açıklar."
+        ]
+      },
+      {
+        "heading": "Büyük Fibonacci sayılarını doğru hesaplama",
+        "paragraphs": [
+          "JavaScript'in standart Number türü 64 bitlik kayan noktalı değerleri depolar ve yalnızca 2^53'e kadar tam sayıları tam olarak temsil edebilir. Fibonacci sayıları üstel büyür — F(79) zaten 2^53'ü aşar — bu yüzden bu araç JavaScript'in yerleşik BigInt türünü kullanır. BigInt, yalnızca mevcut bellekle sınırlı, keyfi boyuttaki tam sayıları destekler ve F(1)'den F(100)'e kadar tüm sonuçların tam olmasını sağlar.",
+          "F(100) = 354.224.848.179.261.915.075 — 21 basamaklı bir sayı. Fibonacci sayıları yaklaşık olarak φ^N / √5 hızında büyür, dolayısıyla her terim bir öncekinden yaklaşık %61,8 daha büyüktür.",
+          "Fibonacci sayıları için kapalı form formüller mevcuttur (Binet formülü altın oranın kuvvetlerini kullanır), ancak φ irrasyonel olduğundan büyük N için doğru olmak adına keyfi hassasiyetli aritmetik gerektirir. Bu aracın kullandığı yinelemeli yöntem — ardışık terimleri basitçe toplamak — birkaç bine kadar N için hem tam hem de verimlidir."
+        ]
+      },
+      {
+        "heading": "Fibonacci sayılarının uygulama alanları",
+        "paragraphs": [
+          "Bilgisayar biliminde Fibonacci sayıları algoritma analizinde karşımıza çıkar. Öklid algoritmasının (OBEB hesaplama) en kötü durum girdisi ardışık Fibonacci sayılarıdır. Dijkstra'nın en kısa yol algoritmasında kullanılan bir veri yapısı olan Fibonacci heap, yapısındaki sınırlar nedeniyle bu dizi adını taşır.",
+          "Yazılım mühendisliğinde Fibonacci sayıları Agile geliştirmede hikaye puanı ölçeği olarak yaygın biçimde kullanılır: 1, 2, 3, 5, 8, 13. Doğrusal olmayan aralık, daha büyük görevleri tahmin etmedeki artan belirsizliği yansıtır — ardışık Fibonacci sayıları arasındaki belirgin fark, tahmin yapanları belirsiz bir seçimin bir tarafına bağlanmaya zorlar ve sahte kesinliği azaltır.",
+          "Doğada, bitkilerde yaprak, taç yaprak ve tohumların düzenlenmesi olan fillotaksi çoğunlukla Fibonacci sayılarını izler. Ayçiçekleri genellikle 55 saat yönünde ve 89 saat yönü tersine spiral içerir; enginarlar ise 8 ve 13 spiral taşır. Bu düzenleme, bitkinin her yeni organı bir öncekinden yaklaşık 137,5° (altın açı) konumuna eklemesinden kaynaklanır."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Mod seçin", "text": "Tek bir Fibonacci sayısı bulmak için 'N. Terim', ilk N terimi listelemek için 'Dizi'yi seçin." },
+      { "name": "N girin", "text": "İstediğiniz pozisyonu yazın. N. Terim modunda maksimum 100, Dizi modunda 50'dir." },
+      { "name": "Sonucu okuyun", "text": "Tam Fibonacci değeri aşağıda görünür. Büyük N için sayı çok uzun olabilir — gerekirse yatay kaydırın." },
+      { "name": "Değeri kopyalayın", "text": "Görüntülenen sayıyı seçip hesaplamalarınızda kullanmak üzere kopyalayın." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "F(0) nedir — 0 mı 1 mi?",
+      "a": "En yaygın modern anlayışa göre (burada kullanılan) F(0) = 0, F(1) = 1, F(2) = 1, F(3) = 2, … Bazı eski kitaplar diziyi F(1) = 1, F(2) = 1 ile başlatır; bu da tüm indisleri bir kaydırır."
+    },
+    {
+      "q": "Bu araç neden N = 100 ile sınırlı?",
+      "a": "F(100) zaten 21 basamaklı bir sayıdır. 100'ün ötesinde değerler bu bağlamda sınırlı pratik kullanımı olan çok uzun dizgelere dönüşür."
+    },
+    {
+      "q": "Büyük N için sonuçlar tam mı?",
+      "a": "Evet. Araç, kayan nokta yuvarlama hatası olmadan keyfi boyuttaki tam sayıları işleyen JavaScript BigInt kullanır. F(1)'den F(100)'e kadar her sonuç matematiksel olarak tam doğrudur."
+    },
+    {
+      "q": "Altın oran nedir ve Fibonacci ile ilişkisi nedir?",
+      "a": "Altın oran φ ≈ 1,61803…, x² = x + 1 denkleminin pozitif köküdür. Ardışık Fibonacci sayılarının oranı F(N+1)/F(N), N büyüdükçe φ'ye yakınsar. F(20)/F(19) = 6765/4181 ≈ 1,61803, zaten 5 ondalık basamakta doğru."
+    },
+    {
+      "q": "Fibonacci dizisi Lucas sayılarıyla aynı mı?",
+      "a": "Hayır. Lucas sayıları aynı özyinelemeli bağıntıyı kullanır (her terim önceki ikisinin toplamıdır) ancak L(0) = 2 ve L(1) = 1 ile başlar; 2, 1, 3, 4, 7, 11, 18, … verir. Fibonacci sayılarıyla birçok özelliği paylaşırlar ve her ikisi de φ'ye yakınsar."
+    },
+    {
+      "q": "Fibonacci sayıları doğada nerede görülür?",
+      "a": "Fibonacci sayıları ayçiçeklerinin spiral sayımlarında (genellikle 55 ve 89), kozalaklarda (genellikle 8 ve 13) ve ananaslarda görülür. Bu, bitkilerin φ'den türetilen ve optimal paketleme sağlayan yaklaşık 137,5° (altın açı) açıda yeni organlar eklemesinden kaynaklanır."
+    },
+    {
+      "q": "Fibonacci sayıları ne kadar hızlı büyür?",
+      "a": "Fibonacci sayıları üstel büyür, yaklaşık olarak φ^N / √5. Her terim bir öncekinin yaklaşık 1,618 katıdır. F(10) = 55, F(20) = 6.765, F(50) = 12.586.269.025, F(100) = 354.224.848.179.261.915.075."
+    },
+    {
+      "q": "Agile hikaye puanlarında neden Fibonacci sayıları kullanılır?",
+      "a": "Fibonacci ölçeği (1, 2, 3, 5, 8, 13, 21) kullanılır çünkü bitişik değerler arasındaki boşluklar büyür; ekipleri 'orta' ile 'büyük' görevleri ayırt etmeye zorlar. Bu doğrusal olmayan aralık, doğası gereği belirsiz olan işleri tahmin ederken sahte kesinliği azaltır."
+    }
+  ]
+}

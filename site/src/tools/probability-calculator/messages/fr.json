@@ -1,0 +1,128 @@
+{
+  "title": "Calculateur de probabilité — Probabilité, Permutations, Combinaisons",
+  "shortDescription": "Calculez des probabilités, des permutations (nPr), des combinaisons (nCr) et les résultats de lancers de dés. Quatre onglets dédiés couvrent tous les problèmes courants de probabilité.",
+  "description": "Quatre modes en un seul outil : probabilité de base à partir des résultats favorables et totaux, permutations nPr, combinaisons nCr, et la probabilité d'obtenir une somme donnée avec plusieurs dés. Les résultats incluent fraction, décimal, pourcentage et cotes.",
+  "metaDescription": "Calculateur de probabilité gratuit : probabilité de base, permutations nPr, combinaisons nCr et probabilité de dés. Résultats en fraction, décimal, pourcentage et cotes.",
+  "keywords": [
+    "calculateur de probabilité",
+    "calculateur de combinaisons",
+    "calculateur de permutations",
+    "calculateur nCr",
+    "calculateur nPr",
+    "probabilité de dés",
+    "calculateur de cotes"
+  ],
+  "tab": {
+    "basic": "Probabilité de base",
+    "permutation": "Permutations (nPr)",
+    "combination": "Combinaisons (nCr)",
+    "dice": "Probabilité de dés"
+  },
+  "input": {
+    "favorable": "Résultats favorables",
+    "total": "Résultats totaux",
+    "n": "n (total d'éléments)",
+    "r": "r (éléments choisis)",
+    "numDice": "Nombre de dés",
+    "target": "Somme cible",
+    "sides": "Faces du dé"
+  },
+  "result": {
+    "probability": "Probabilité",
+    "fraction": "Fraction",
+    "decimal": "Décimal",
+    "percent": "Pourcentage",
+    "oddsFor": "Cotes pour",
+    "oddsAgainst": "Cotes contre",
+    "permutations": "Permutations (nPr)",
+    "combinations": "Combinaisons (nCr)"
+  },
+  "empty": "Saisissez des valeurs pour calculer.",
+  "error": {
+    "invalid": "Saisie invalide : vérifiez que toutes les valeurs sont des entiers non négatifs et que r ≤ n.",
+    "overflow": "n doit être ≤ 170 (limite factorielle de JavaScript).",
+    "noOutcomes": "Le nombre total de résultats doit être supérieur à zéro.",
+    "favorableExceedsTotal": "Les résultats favorables ne peuvent pas dépasser les résultats totaux.",
+    "diceRange": "La somme cible est en dehors de la plage possible pour ces dés."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Probabilité de base, cotes et leurs différences",
+        "paragraphs": [
+          "La probabilité est le rapport entre les résultats favorables et les résultats totaux également probables : P = favorable / total. Elle varie de 0 (impossible) à 1 (certain) et s'exprime souvent en pourcentage. Pour un dé à six faces équilibré, la probabilité d'obtenir un 4 est 1/6 ≈ 16,667 %.",
+          "Les cotes sont une autre façon d'exprimer la même information. Les cotes POUR un événement sont favorable : défavorable, donc obtenir un 4 a des cotes de 1:5. Les cotes CONTRE sont l'inverse : 5:1. Les cotes sont courantes dans les paris sportifs et les jeux de cartes ; les probabilités sont plus répandues en statistiques et en sciences.",
+          "Ce calculateur simplifie automatiquement la fraction aux termes les plus bas et affiche les formes décimale et pourcentage côte à côte, facilitant la conversion entre les représentations."
+        ]
+      },
+      {
+        "heading": "Permutations vs. combinaisons",
+        "paragraphs": [
+          "Les deux traitent de la sélection de r éléments parmi n, mais l'ordre compte dans les permutations et ne compte pas dans les combinaisons. Permutations nPr = n! / (n − r)! compte les arrangements ordonnés. Combinaisons nCr = n! / (r! × (n − r)!) compte les sous-ensembles non ordonnés.",
+          "Exemple : choisir 2 lettres parmi {A, B, C}. Permutations : AB, BA, AC, CA, BC, CB — 6 paires ordonnées, nPr = 3! / 1! = 6. Combinaisons : AB, AC, BC — 3 sous-ensembles non ordonnés, nCr = 3! / (2! × 1!) = 3. Puisque chaque combinaison donne r! permutations, nPr = nCr × r! est toujours vrai.",
+          "Le n maximum pris en charge est 170. Au-delà, n! dépasse la plage en virgule flottante de JavaScript (environ 1,8 × 10³⁰⁸). Pour des n ou r très grands, envisagez un calcul logarithmique ou des bibliothèques symboliques."
+        ]
+      },
+      {
+        "heading": "Probabilité des dés et la règle de multiplication",
+        "paragraphs": [
+          "Lorsqu'on lance plusieurs dés identiques, chaque dé est indépendant. Le nombre total de résultats est facesNombreDés. Le nombre de façons d'obtenir une somme spécifique se trouve en comptant les compositions : distribuer la somme sur tous les dés de façon que chaque dé affiche une valeur entre 1 et le nombre de faces.",
+          "Ce calculateur utilise la programmation dynamique pour compter le nombre exact de compositions pour la somme cible donnée. Par exemple, lancer 2d6 (deux dés à six faces) et obtenir une somme de 7 : il y a 6 façons (1+6, 2+5, 3+4, 4+3, 5+2, 6+1) sur 36 au total, donnant une probabilité de 6/36 = 1/6 ≈ 16,667 %.",
+          "Types de dés pris en charge : d4, d6, d8, d10, d12 et d20 (dés RPG standard). Le nombre de dés va de 1 à 6. La somme cible doit être comprise entre le nombre de dés (tous à 1) et le nombre de dés × le nombre de faces (tous au maximum)."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choisir un onglet",
+        "text": "Sélectionnez «Probabilité de base», «Permutations», «Combinaisons» ou «Probabilité de dés» selon votre problème."
+      },
+      {
+        "name": "Saisir les valeurs",
+        "text": "Pour la probabilité de base, renseignez les résultats favorables et totaux. Pour nPr/nCr, entrez n et r. Pour les dés, choisissez le nombre de dés, la somme cible et le nombre de faces."
+      },
+      {
+        "name": "Lire les résultats",
+        "text": "Les résultats s'affichent immédiatement sous forme de fraction, décimal, pourcentage et cotes (pour la probabilité de base)."
+      },
+      {
+        "name": "Vérifier les erreurs",
+        "text": "Si les entrées sont invalides (r > n, total = 0 ou somme hors plage), un message d'erreur explique clairement ce qui doit être corrigé."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Quelle est la différence entre permutations et combinaisons ?",
+      "a": "Les permutations comptent les arrangements ordonnés (AB ≠ BA) ; les combinaisons comptent les sous-ensembles non ordonnés (AB = BA). nPr = n! / (n−r)! ; nCr = n! / (r! × (n−r)!). Pour r > 1, nPr ≥ nCr est toujours vérifié."
+    },
+    {
+      "q": "Pourquoi n est-il limité à 170 ?",
+      "a": "JavaScript utilise des nombres en virgule flottante IEEE 754 64 bits. 170! ≈ 7,26 × 10³⁰⁶ tient dans un double ; 171! déborde vers l'infini. Pour de plus grandes factorielles, utilisez BigInt ou une approche basée sur les logarithmes."
+    },
+    {
+      "q": "En quoi les cotes diffèrent-elles de la probabilité ?",
+      "a": "Probabilité P = favorable / total. Cotes Pour = favorable : défavorable = P : (1−P). Cotes Contre = défavorable : favorable. Une probabilité de 25 % correspond à des cotes de 1:3 (pour) ou 3:1 (contre)."
+    },
+    {
+      "q": "Que vaut 0! ?",
+      "a": "Par convention, 0! = 1. Cela maintient la cohérence des formules pour nCr et nPr quand r = 0 ou r = n."
+    },
+    {
+      "q": "Puis-je calculer la probabilité d'obtenir au moins une certaine somme ?",
+      "a": "Pas directement avec cet outil. Pour des probabilités «au moins», additionnez les probabilités exactes pour toutes les valeurs cibles de votre minimum au maximum (nombre de dés × nombre de faces). L'onglet dés donne la probabilité exacte pour chaque somme spécifique."
+    },
+    {
+      "q": "Que valent nC0 ou nCn ?",
+      "a": "Tous deux valent 1. Il n'y a qu'une seule façon de ne rien choisir (l'ensemble vide) et une seule façon de tout choisir."
+    },
+    {
+      "q": "Ce calculateur est-il précis pour les grandes factorielles ?",
+      "a": "Pour n jusqu'à 170, les résultats sont exacts dans la représentation en virgule flottante. Pour n proche de 170, de petites erreurs relatives peuvent apparaître dans les derniers chiffres en raison des arrondis en virgule flottante lors de la division."
+    },
+    {
+      "q": "Des données quittent-elles mon navigateur ?",
+      "a": "Non. Tous les calculs s'exécutent localement en JavaScript. Rien n'est transmis à un serveur."
+    }
+  ]
+}

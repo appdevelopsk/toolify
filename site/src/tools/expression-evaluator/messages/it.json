@@ -1,0 +1,115 @@
+{
+  "title": "Calcolatore di espressioni matematiche — valuta qualsiasi formula",
+  "shortDescription": "Digita qualsiasi espressione matematica e ottieni un risultato istantaneo. Supporta aritmetica, potenze, radici, trigonometria, logaritmi e altro.",
+  "description": "Inserisci un'espressione matematica usando +, -, *, /, ^, %, parentesi e funzioni come sqrt, sin, cos, log. I risultati appaiono istantaneamente mentre scrivi. Nessuna libreria esterna — il parser gira interamente nel tuo browser senza inviare dati a nessun server.",
+  "metaDescription": "Calcolatore gratuito di espressioni matematiche online. Supporta aritmetica, potenze, sqrt, trigonometria (gradi), log e altro. Digita qualsiasi formula per un risultato",
+  "keywords": [
+    "calcolatore espressioni matematiche",
+    "calcolatore formule online",
+    "valutatore espressioni",
+    "calcolatrice scientifica",
+    "parser matematico"
+  ],
+  "input": {
+    "label": "Espressione",
+    "hint": "es. 2^10 + sqrt(16)"
+  },
+  "result": {
+    "label": "Risultato",
+    "empty": "Digita un'espressione matematica sopra per vedere il risultato."
+  },
+  "examples": {
+    "label": "Esempi — clicca per caricare",
+    "list": [
+      "2^10 + sqrt(16)",
+      "sin(45) * cos(30)",
+      "(3 + 5) * 2^3 / 4",
+      "log10(1000) + log2(8)",
+      "sqrt(3^2 + 4^2)",
+      "floor(pi * 100) / 100"
+    ]
+  },
+  "error": {
+    "invalid": "Espressione non valida — controlla parentesi, operatori e nomi delle funzioni."
+  },
+  "note": {
+    "degrees": "Le funzioni trigonometriche (sin, cos, tan) usano i gradi."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Operazioni e funzioni supportate",
+        "paragraphs": [
+          "La calcolatrice gestisce i quattro operatori aritmetici di base (+, -, *, /) più elevamento a potenza (^) e modulo (%). Le parentesi possono essere annidate a qualsiasi profondità.",
+          "Le funzioni integrate coprono le esigenze matematiche più comuni: sqrt(x) e cbrt(x) per radice quadrata e cubica; abs(x) per il valore assoluto; sin(x), cos(x), tan(x) per la trigonometria in gradi; log(x) per il logaritmo naturale, log2(x) e log10(x) per i logaritmi in base 2 e base 10; e floor(x), ceil(x), round(x) per l'arrotondamento. Le costanti pi ed e sono disponibili per nome."
+        ]
+      },
+      {
+        "heading": "Usi pratici della valutazione di espressioni",
+        "paragraphs": [
+          "Le catene di calcolo rapido sono il punto di forza dei valutatori di espressioni. Invece di digitare numeri su una calcolatrice un passo alla volta — e rischiare di dimenticare un risultato intermedio — puoi digitare l'intera catena come un'unica espressione e vedere la risposta in una sola volta.",
+          "Compiti di ingegneria e scienze — conversioni di unità, calcoli di tensioni, formule statistiche — spesso richiedono combinazioni di radici quadrate, potenze e logaritmi. Digitare la formula completa qui lascia un registro tracciabile di ciò che hai calcolato, a differenza di una sequenza di pressioni di tasti su una calcolatrice fisica."
+        ]
+      },
+      {
+        "heading": "Ordine delle operazioni",
+        "paragraphs": [
+          "Il parser segue la precedenza matematica standard: prima le parentesi, poi l'elevamento a potenza (associativo a destra), poi moltiplicazione/divisione/modulo (da sinistra a destra), quindi addizione e sottrazione (da sinistra a destra). Corrisponde alle regole BODMAS/PEMDAS insegnate a scuola.",
+          "Il meno unario è supportato (ad es. -3^2 viene valutato come -(3^2) = -9, che corrisponde alla notazione matematica convenzionale). Se hai bisogno di (-3)^2 = 9, aggiungi parentesi esplicite. In caso di dubbio, usa le parentesi liberalmente — non nuocciono mai alla leggibilità."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Digita la tua espressione",
+        "text": "Clicca sul campo di input e digita la tua formula. Usa * per la moltiplicazione e ^ per l'elevamento a potenza."
+      },
+      {
+        "name": "Usa funzioni e costanti",
+        "text": "Aggiungi funzioni come sqrt(25) o sin(45). Usa pi ed e come costanti numeriche."
+      },
+      {
+        "name": "Prova un esempio",
+        "text": "Clicca su qualsiasi pulsante di esempio per caricare un'espressione predefinita e vedere come funziona la sintassi."
+      },
+      {
+        "name": "Leggi il risultato",
+        "text": "La risposta appare istantaneamente sotto il campo di input. Se l'espressione non è valida, un messaggio di errore spiega il motivo."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Perché le funzioni trigonometriche usano i gradi anziché i radianti?",
+      "a": "I gradi sono più intuitivi per l'uso quotidiano — la maggior parte delle persone pensa agli angoli da 0 a 360, non da 0 a 2π. Il parser converte internamente, quindi sin(90) = 1 come ci si aspetta. Se hai bisogno di radianti, moltiplica per pi/180: sin(1.5708) dà lo stesso risultato di sin(90)."
+    },
+    {
+      "q": "Qual è la differenza tra log e log10?",
+      "a": "log(x) calcola il logaritmo naturale (base e ≈ 2,718). log10(x) usa la base 10, che è ciò che la maggior parte delle persone intende quando scrive 'log' fuori dal contesto del calcolo. log2(x) usa la base 2, comune nella teoria dell'informazione e nell'informatica."
+    },
+    {
+      "q": "^ significa elevamento a potenza o XOR bit a bit?",
+      "a": "In questa calcolatrice ^ significa sempre elevamento a potenza, non XOR bit a bit. Quindi 2^10 = 1024. Per le operazioni bit a bit servirebbero altri strumenti."
+    },
+    {
+      "q": "Posso usare spazi nelle espressioni?",
+      "a": "Sì. Gli spazi vengono ignorati dal parser, quindi '2 ^ 10 + sqrt( 16 )' è equivalente a '2^10+sqrt(16)'. Aggiungi spazi dove migliorano la leggibilità."
+    },
+    {
+      "q": "Cosa succede se divido per zero?",
+      "a": "La calcolatrice intercetta la divisione per zero e visualizza un messaggio di errore invece di mostrare Infinity o NaN. Correggi l'espressione e riprova."
+    },
+    {
+      "q": "Quante cifre decimali mostra il risultato?",
+      "a": "Fino a 10 cifre decimali significative, formattate con lo stile numerico della tua area geografica. I piccoli errori di arrotondamento in virgola mobile (come 0,9999999999 invece di 1) sono una normale conseguenza dell'aritmetica binaria in virgola mobile."
+    },
+    {
+      "q": "È più sicuro che usare eval() in JavaScript?",
+      "a": "Sì. Questo strumento utilizza un parser ricorsivo discendente scritto a mano che riconosce solo gli operatori e le funzioni elencati. Non chiama mai eval() né alcun equivalente, quindi non è possibile iniettare o eseguire codice arbitrario."
+    },
+    {
+      "q": "La mia espressione esce dal browser?",
+      "a": "No. Il parser gira interamente nel tuo browser. Nulla di ciò che digiti viene inviato a un server o registrato da qualche parte."
+    }
+  ]
+}

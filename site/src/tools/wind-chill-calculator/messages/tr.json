@@ -1,0 +1,141 @@
+{
+  "title": "Rüzgar Soğutma Hesaplayıcısı — Hissedilen Sıcaklık",
+  "shortDescription": "Mevcut sıcaklık ve rüzgar hızına göre rüzgar soğutma indeksini hesaplayın ve havanın ne kadar soğuk hissettirdiğini görün.",
+  "description": "Hava sıcaklığı ve rüzgar hızını girerek Kanada ve ABD'deki meteorologların kullandığı resmi rüzgar soğutma indeksini hesaplayın. Sonuç; açık derinizin hissettiği görünür sıcaklığı, donma riskini ve önerilen maksimum maruziyet sürelerini gösterir.",
+  "metaDescription": "NWS/MSC formülüyle ücretsiz rüzgar soğutma hesaplayıcısı. Sıcaklık ve rüzgar hızını girerek hissedilen sıcaklığı ve donma riskini anında öğrenin.",
+  "keywords": [
+    "rüzgar soğutma hesaplayıcısı",
+    "hissedilen sıcaklık hesaplayıcı",
+    "wind chill indeksi",
+    "rüzgar soğutma faktörü",
+    "görünür sıcaklık hesapla"
+  ],
+  "unitToggle": {
+    "label": "Birim sistemi",
+    "metric": "Metrik (°C, km/s)",
+    "imperial": "İmparatorluk (°F, mph)"
+  },
+  "input": {
+    "temperature": "Hava Sıcaklığı",
+    "temperaturePlaceholder": "örn. −5",
+    "windSpeed": "Rüzgar Hızı",
+    "windSpeedPlaceholder": "örn. 30"
+  },
+  "result": {
+    "windChill": "Rüzgar Soğutması",
+    "feelsLike": "Hissedilen",
+    "difference": "Gerçekten daha soğuk",
+    "frostbiteRisk": "Donma Riski",
+    "exposure": "Maks. güvenli maruziyet süresi"
+  },
+  "risk": {
+    "safe": "Önemli bir risk yok",
+    "watch": "Dikkat — uzun süreli maruziyeti sınırlayın",
+    "warning": "Uyarı — 30 dakikada donma",
+    "danger": "Tehlike — 10 dakikada donma",
+    "critical": "Kritik — 5 dakikada donma",
+    "extremeDanger": "Aşırı tehlike — 2 dakikada donma"
+  },
+  "exposure": {
+    "safe": "Sınır yok (uygun giyinin)",
+    "watch": "30 dakika veya daha fazla",
+    "warning": "30 dakikadan az",
+    "danger": "10 dakikadan az",
+    "critical": "5 dakikadan az",
+    "extremeDanger": "2 dakikadan az"
+  },
+  "info": {
+    "outOfRange": "Sıcaklık 10°C (50°F) üzerinde veya rüzgar hızı 4,8 km/s (3 mph) altındaysa rüzgar soğutma formülü geçerli değildir. Formül yalnızca bu koşullarda geçerlidir.",
+    "noWindChill": "Rüzgar soğutma etkisi yok — hissedilen sıcaklık gerçek sıcaklıkla aynıdır.",
+    "empty": "Rüzgar soğutmasını hesaplamak için sıcaklık ve rüzgar hızını girin."
+  },
+  "units": {
+    "celsius": "°C",
+    "fahrenheit": "°F",
+    "kmh": "km/s",
+    "mph": "mph"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Rüzgar soğutması nedir ve formülü nereden geldi?",
+        "paragraphs": [
+          "Rüzgar soğutması (rüzgar soğutma indeksi veya hissedilen sıcaklık olarak da bilinir), soğuk ve rüzgarlı koşullarda açık insan derisinin ısısını ne kadar hızlı kaybettiğini ölçer. Durgun hava vücudun çevresinde ince bir yalıtım tabakası oluşturur; rüzgar bu tabakayı kaldırarak ısı kaybını hızlandırır ve havanın termometrenin gösterdiğinden daha soğuk hissettirmesine yol açar.",
+          "İlk rüzgar soğutma indeksi 1945 yılında Antarktika kaşifleri Paul Siple ve Charles Passel tarafından geliştirilmiştir. Farklı sıcaklık ve rüzgar kombinasyonlarında plastik bir su şişesinin donma süresini ölçmüşlerdir. Formülleri on yıllarca yaygın biçimde kullanılmış, ancak soğukluk hissini aşırı değerlendirdiği gerekçesiyle eleştirilmiştir.",
+          "Kasım 2001'de ABD Ulusal Hava Servisi (NWS) ve Kanada Çevre ve İklim Değişikliği Bakanlığı (ECCC), insan gönüllüler üzerinde yapılan deneylere dayanan yeni bir formülü ortaklaşa benimsedi. Katılımcılar iklim kontrollü odalarda koşu bantlarında yürürken yüz derisi ısı transferi sensörleri gerçek soğuma oranlarını ölçtü. Günümüzde kullanılan formül: RS = 13,12 + 0,6215T − 11,37V^0,16 + 0,3965T×V^0,16 (Celsius/km·s), °F ve mph cinsinden imperial eşdeğeriyle birlikte.",
+          "Formül yalnızca hava sıcaklığı 10°C (50°F) veya altında ve rüzgar hızı 4,8 km/s (3 mph) üzerinde olduğunda fiziksel anlam taşır. Bu eşiklerin dışında model bozulur: durgun hava rüzgar soğutması üretmez ve sıcak hava artan ısı kaybı yerine ısı kazanımı anlamına gelir."
+        ]
+      },
+      {
+        "heading": "Donma riski ve soğuk havada güvenlik",
+        "paragraphs": [
+          "Donma, deri dokusunun donması durumunda meydana gelir. Rüzgar soğutması bu süreci çarpıcı biçimde hızlandırır: −27°C rüzgar soğutmasında açık deri 30 dakika içinde donabilir. −35°C'de bu süre 10 dakikaya düşer. −45°C'de 5 dakika, −55°C veya altında ise donma 2 dakika içinde başlayabilir.",
+          "Environment Canada ve NWS tarafından kullanılan risk eşikleri şöyledir: −27°C RS üzerinde özel risk yok; −27°C ile −35°C arasında donma izleme; −35°C ile −45°C arasında uyarı; −45°C ile −55°C arasında tehlike; −55°C altında aşırı tehlike. Bu değerler hesaplayıcıda gösterilen eşiklerle aynıdır.",
+          "Temel koruyucu önlemler arasında tüm açık deriyi kapatmak (özellikle yanaklar, burun, kulaklar, parmaklar ve ayak parmakları), kuru kalmak (ıslak giysiler yalıtım değerinin yaklaşık %90'ını yitirir), sıcak havayı tutmak için katmanlı giyinmek ve planlanan güzergah ile dönüş saatini birine bildirmek yer alır. Çocuklar ve yaşlılar, termoregülasyon sistemleri daha az etkin olduğu için donmaya karşı daha savunmasızdır.",
+          "Rüzgar soğutması cansız nesneleri aynı biçimde etkilemez. Araba motorunuz, donmuş bir boru veya bir su şişesi gerçek hava sıcaklığının altına soğuyamaz; rüzgar soğutması kendi ısısını üreten nesnelere (insan vücudu gibi) özgüdür. Dışarıda park edilmiş bir araba ortam sıcaklığına ulaşır, ancak rüzgar hızından bağımsız olarak bunun altına inmez."
+        ]
+      },
+      {
+        "heading": "Rüzgar soğutması ve ısı indeksi: hissedilen sıcaklığın iki yüzü",
+        "paragraphs": [
+          "Hissedilen sıcaklık kapsamlı bir kavramdır: bir kişinin hissettiği sıcaklığı, hava sıcaklığının nem (ısı indeksi) veya rüzgarla (rüzgar soğutması) etkileşimini göz önünde bulundurarak tanımlar. İki formül zıt mevsimlerde çalışır ve hiçbir zaman aynı anda uygulanmaz.",
+          "Isı indeksi (Kanada’da “humidex” olarak da bilinir), sıcaklıklar yaklaşık 27°C (80°F) üzerinde olduğunda geçerlidir. Yüksek nem, terin buharlaşmasını yavaşlatarak vücudun temel soğutma mekanizmasını azaltır ve havayı termometrenin gösterdiğinden daha sıcak hissettir.",
+          "Rüzgar soğutması ise kışlık bir metriktir: 10°C (50°F) altında geçerlidir. Nemin yazın soğumayı engellemesinin aksine, rüzgar derinin çevresindeki sıcak hava sınır tabakasını bozarak soğumayı hızlandırır.",
+          "Isı indeksi ve rüzgar soğutması birlikte meteorologlara tüm hava koşullarında açık hava ısıl konforu hakkında eksiksiz bir tablo sunar. Her ikisi de tavsiye niteliğinde metriklerdir, doğrudan fizyolojik ölçümler değildir; kondisyon düzeyi, giysi, vücut yapısı ve aklimasyon gibi bireysel faktörler her kişinin sıcaklığı gerçekte nasıl algıladığını etkiler."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Birim sisteminizi seçin",
+        "text": "Sahip olduğunuz hava raporuna göre Metrik (°C ve km/s) veya İmparatorluk (°F ve mph) seçeneğini belirleyin."
+      },
+      {
+        "name": "Hava sıcaklığını girin",
+        "text": "Mevcut hava sıcaklığını yazın. Formül 10°C (50°F) veya altında geçerlidir."
+      },
+      {
+        "name": "Rüzgar hızını girin",
+        "text": "Süregelen rüzgar hızını yazın. Formülün uygulanması için 4,8 km/s (3 mph) üzerinde olmalıdır."
+      },
+      {
+        "name": "Sonucu okuyun",
+        "text": "Hesaplanan rüzgar soğutma sıcaklığı, gerçek hava sıcaklığına kıyasla ne kadar daha soğuk hissettirdiği ve donma riski düzeyi girişlerin altında anında görüntülenir."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Rüzgar soğutması nedir?",
+      "a": "Rüzgar soğutması, soğuk hava ve rüzgarın birleşimi nedeniyle açık insan derisinde hissedilen görünür sıcaklıktır. Rüzgar, normalde derinize dayanan ince sıcak hava tabakasını kaldırarak ısı kaybı oranını artırır ve termometrenin gösterdiğinden daha soğuk hissettirmenize neden olur."
+    },
+    {
+      "q": "Bu hesaplayıcı hangi formülü kullanıyor?",
+      "a": "2001'de benimsenen resmi NWS/Environment Canada formülünü kullanır. Metrik: RS = 13,12 + 0,6215T − 11,37V^0,16 + 0,3965T×V^0,16, T °C, V km/s cinsinden. İmparatorluk: RS = 35,74 + 0,6215T − 35,75V^0,16 + 0,4275T×V^0,16, T °F, V mph cinsinden. Formül insan deneklerle doğrulanmış ve eski Siple–Passel modelinin yerini almıştır."
+    },
+    {
+      "q": "Rüzgar soğutması neden 10°C (50°F) üzerinde geçerli değildir?",
+      "a": "10°C üzerinde rüzgar soğutma modeli orta şiddetli rüzgarlar için gerçek hava sıcaklığından yüksek bir değer öngörür; bu fiziksel olarak yanıltıcıdır. NWS, formülün insan ısı kaybını güvenilir biçimde temsil ettiği üst sınır olarak 10°C'yi seçmiştir. Sıcak havada nem (rüzgar hızı değil) hissedilen sıcaklıktaki baskın faktördür."
+    },
+    {
+      "q": "Rüzgar soğutması neden 4,8 km/s (3 mph) altında geçerli değildir?",
+      "a": "Çok düşük rüzgar hızlarında matematiksel terim V^0,16 değeri 1'e yaklaştığından formül güvenilmez hale gelir ve denklem bozulur. Sakin ya da neredeyse sakin koşullar, gerçek hava sıcaklığının görünür sıcaklık olarak raporlanmasıyla ele alınır."
+    },
+    {
+      "q": "Rüzgar soğutması arabanın veya boruların donma hızını etkiler mi?",
+      "a": "Hayır. Rüzgar soğutması yalnızca kendi vücut ısısını üreten nesnelerden ısı kaybını tanımlar; gerçek hava sıcaklığını düşürmez. Motor bloğu, su borusu veya yakıt hattı sonunda gerçek hava sıcaklığına ulaşır, ancak rüzgar nedeniyle hiçbir zaman bunun altına inmez."
+    },
+    {
+      "q": "Donma ne kadar hızlı gelişebilir?",
+      "a": "−27°C (−17°F) rüzgar soğutmasında açık deride donma 30 dakikada oluşabilir. −35°C (−31°F)'de yaklaşık 10 dakika; −45°C (−49°F)'de 5 dakikaya düşer ve −55°C (−67°F) veya altında donma 2 dakika içinde gelişebilir. Bu eşikler NWS/Environment Canada uyarı tablosundan alınmıştır."
+    },
+    {
+      "q": "Rüzgar soğutması humidex veya ısı indeksiyle aynı şey midir?",
+      "a": "Hayır. Humidex ve ısı indeksi, nemin sıcak havayı daha bunaltıcı hissettirdiğini hesaba katan yaz metrikleridir. Rüzgar soğutması, rüzgarın soğuk havayı daha dondurucu hissettirdiğini hesaba katan bir kış metriğidir. İkisi hiçbir zaman aynı anda uygulanmaz."
+    },
+    {
+      "q": "Rüzgar soğutması uyarı aralığındayken ne giymeli?",
+      "a": "Tüm açık deriyi kapatın: balaklava veya yüz maskesi, yalıtımlı eldivenler ve su geçirmez dış katmanlar giyin. Kuru kalmak için nem emici baz katmanlar tercih edin; ıslak giysiler yalıtım değerinin %90'ına kadarını yitirir. Dış mekanda maruziyeti 30 dakikanın altında tutun ve uyarı ya da tehlike koşullarında dışarı çıkıyorsanız birine haber verin."
+    }
+  ]
+}

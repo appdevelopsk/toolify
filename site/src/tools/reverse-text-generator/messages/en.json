@@ -1,0 +1,69 @@
+{
+  "title": "Reverse Text Generator — Flip Characters, Words, or Lines",
+  "shortDescription": "Reverse any text by characters, words, or lines. Correctly handles Unicode, emoji, and multi-byte characters. Instant copy to clipboard.",
+  "description": "Enter any text to reverse it instantly. Choose from three modes: reverse all characters in the string, reverse the order of words while keeping words intact, or reverse the order of lines. The tool correctly handles Unicode emoji and CJK characters that span multiple code points.",
+  "metaDescription": "Free reverse text generator. Flip text by characters, words, or lines — Unicode and emoji safe. Instant copy. Runs entirely in your browser.",
+  "keywords": ["reverse text generator", "flip text online", "reverse words", "reverse string", "reverse lines", "mirror text"],
+  "empty": "Enter text above to see the reversed result.",
+  "input": {
+    "text": "Input text",
+    "mode": "Reverse mode:"
+  },
+  "modes": {
+    "chars": "Reverse characters",
+    "words": "Reverse words",
+    "lines": "Reverse lines"
+  },
+  "result": {
+    "reversed": "Reversed output"
+  },
+  "button": {
+    "copy": "Copy result",
+    "copied": "Copied!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Practical uses for reversed text",
+        "paragraphs": [
+          "The most well-known use of character reversal is palindrome detection: a word or phrase that reads the same forwards and backwards, such as 'racecar' or 'A man a plan a canal Panama'. Reversing the string and comparing it to the original — ignoring spaces and punctuation — is the canonical algorithmic test for palindromes, and this tool lets you do it manually in seconds.",
+          "Right-to-left scripts like Arabic and Hebrew are stored in logical left-to-right order in Unicode but rendered right-to-left by bidirectional text algorithms. When working with plain text in environments that lack bidi support (some terminal emulators, legacy databases, old spreadsheets), character reversal can serve as a quick manual workaround to make the text display in the correct reading direction.",
+          "In social media, games, and creative writing, reversed text creates deliberate obfuscation or visual interest. Puzzle designers use reversed words as a simple cipher — rotating a word like 'stressed' gives 'desserts', which has a satisfying semantic twist. QR codes, barcodes, and other machine-readable formats sometimes encode payloads in reversed order as a minor anti-tampering measure. Word-order reversal is also useful in natural language processing experiments, such as testing whether a language model is truly understanding syntax or merely pattern-matching.",
+          "For data engineering, line-order reversal (the third mode) is practical when a log or append-only file needs to be read from newest to oldest. A command-line engineer would use `tac` or `tail -r` on Unix, but when working in a browser or a no-code environment this tool provides the same result without any shell access."
+        ]
+      },
+      {
+        "heading": "How character reversal works — and why it's trickier than it looks",
+        "paragraphs": [
+          "Naively reversing a string by iterating over its bytes or UTF-16 code units breaks any character that takes more than one unit to represent. In JavaScript, `'😀'.split('').reverse().join('')` produces a garbled sequence because the emoji is stored as a surrogate pair (two UTF-16 code units). This tool uses `Array.from()` which correctly iterates over Unicode scalar values (code points), not raw code units, ensuring that emoji and characters in the supplementary planes survive reversal intact.",
+          "Even code-point–correct reversal has edge cases: combining characters like accents and diacritical marks are separate code points that follow the base character. Reversing 'café' by code points puts the combining acute accent before the 'e', which technically attaches it to the space — producing 'éfac' rather than 'éfac'. For most practical use cases this doesn't matter, but it's worth knowing if you're processing text in languages with heavy use of combining marks (Vietnamese, some African languages using precomposed Unicode are unaffected; decomposed NFD form can exhibit this).",
+          "Word reversal preserves whitespace runs between words rather than collapsing them to single spaces. This means if your input has double spaces or tabs between words, the reversed output also has those spacing sequences, just in the reversed positions. This is intentional — it avoids unexpectedly changing the visual layout of tabular or columnar text."
+        ]
+      },
+      {
+        "heading": "Reversing lines for log analysis and data processing",
+        "paragraphs": [
+          "Append-only logs, event streams, and ordered exports all have the most recent entry at the bottom. When troubleshooting a crash or reviewing the last few changes, you typically want the newest entries first. Reversing lines brings the tail of the file to the top without any sorting or timestamp parsing.",
+          "This mode is also useful for converting ascending-ordered data into descending-ordered data when the consuming system expects newest-first ordering. Consider a CSV export from a financial system where transactions are in chronological order — reversing the lines (excluding the header, which you'd need to handle separately) puts the most recent transactions at the top for import into a system that processes records in the order they are encountered.",
+          "Numbered lists that need to be re-ranked from last to first can also benefit from line reversal. A ranked list of top-10 items becomes a bottom-10 list after reversal, with rank 10 first and rank 1 last — useful for inverted presentations, countdowns, or ironically themed content."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Type or paste your text", "text": "Enter text in the left panel. The reversed output appears in the right panel in real time." },
+      { "name": "Choose a reversal mode", "text": "Select 'Reverse characters' to flip every character in the string, 'Reverse words' to swap word order while keeping each word intact, or 'Reverse lines' to put the last line first." },
+      { "name": "Review the result", "text": "The character count is shown below both panels. Verify the output is what you expected before copying." },
+      { "name": "Copy to clipboard", "text": "Click 'Copy result' to copy the reversed text. The button briefly shows 'Copied!' to confirm." }
+    ]
+  },
+  "faq": [
+    { "q": "Does this handle emoji correctly?", "a": "Yes. The tool uses Array.from() to iterate over Unicode code points rather than raw UTF-16 code units, so emoji (including multi-codepoint sequences like flag emoji) reverse without corruption." },
+    { "q": "What is the difference between reversing characters and reversing words?", "a": "Character reversal flips the entire string so the last character becomes the first. Word reversal keeps each word intact but puts the last word first. 'hello world' becomes 'dlrow olleh' in character mode and 'world hello' in word mode." },
+    { "q": "Does word reversal affect punctuation attached to words?", "a": "Punctuation that is attached directly to a word (no space) travels with that word. 'Hello, world!' becomes 'world! Hello,' in word-reverse mode — the comma stays with 'Hello' and the exclamation mark stays with 'world'." },
+    { "q": "Can I reverse Japanese or Chinese text?", "a": "Yes. Character reversal works correctly for CJK characters since each ideograph is a single code point. The result reads right-to-left character by character, which may or may not be meaningful depending on the content." },
+    { "q": "Is there a length limit?", "a": "No enforced limit. Long texts are processed entirely in your browser's memory. Performance is effectively instant for texts up to millions of characters on modern hardware." },
+    { "q": "Does my text get sent to a server?", "a": "No. All processing runs locally in JavaScript. Your text never leaves your browser." },
+    { "q": "What does 'Reverse lines' do with trailing newlines?", "a": "Each newline character is the line separator. A trailing newline at the very end of your input will produce a leading empty line at the start of the reversed output. Simply delete the extra blank line if it's not wanted." },
+    { "q": "Can I use this to create a palindrome?", "a": "You can check whether a word is a palindrome by pasting it and seeing if the reversed output matches the input. To create a palindrome, concatenate the original text with its character-reversed version (e.g., 'race' + 'ecar' = 'raceecar')." }
+  ]
+}

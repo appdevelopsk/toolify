@@ -1,0 +1,87 @@
+{
+  "title": "Fibonacci Calculator — Nth Term and Sequence",
+  "shortDescription": "Calculate any Fibonacci number up to the 100th term, or list the first 50 terms of the sequence. Supports large numbers accurately.",
+  "description": "Enter a position N to get the exact Fibonacci number at that term, or switch to sequence mode to display the first N numbers in the Fibonacci series. Uses arbitrary-precision integers so results are always exact.",
+  "metaDescription": "Free Fibonacci calculator. Find the Nth Fibonacci number or list the first N terms of the sequence instantly — supports up to F(100) with exact results.",
+  "keywords": ["fibonacci calculator", "fibonacci sequence", "fibonacci number", "nth fibonacci term", "fibonacci series"],
+  "empty": "Enter a number N above to compute.",
+  "input": {
+    "mode": "Mode",
+    "nthLabel": "Nth Term",
+    "sequenceLabel": "Sequence",
+    "n": "N (1 – {max})"
+  },
+  "result": {
+    "nthValue": "F({n})",
+    "sequence": "First {n} Fibonacci numbers",
+    "term": "F({n})"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "The Fibonacci sequence: definition and history",
+        "paragraphs": [
+          "The Fibonacci sequence is defined by two simple rules: the first two terms are 0 and 1, and every subsequent term is the sum of the two preceding terms. This gives the series 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … The rule is deceptively simple, yet the numbers appear across mathematics, computer science, and nature in ways that have fascinated scholars for centuries.",
+          "The sequence is named after Leonardo of Pisa, known as Fibonacci, who introduced it to Western Europe in his 1202 book Liber Abaci as a model for rabbit population growth. However, the sequence had been described centuries earlier by Indian mathematicians studying Sanskrit prosody — Virahanka, Gopala, and Hemachandra all identified it while counting patterns of syllables. The sequence is therefore one of the oldest known integer sequences.",
+          "The ratio of successive Fibonacci numbers converges to the golden ratio φ ≈ 1.61803…, an irrational number with deep connections to geometry, art, and aesthetics. As N grows, F(N+1) / F(N) approaches φ ever more closely. This convergence explains why Fibonacci spirals appear in sunflower seed arrangements, pine cone spirals, and nautilus shells — these forms grow in ways that minimize material while maximizing packing efficiency."
+        ]
+      },
+      {
+        "heading": "Computing large Fibonacci numbers accurately",
+        "paragraphs": [
+          "JavaScript's standard Number type stores 64-bit floating-point values, which can represent integers exactly only up to 2^53 ≈ 9 quadrillion. Fibonacci numbers grow exponentially — F(79) already exceeds 2^53 — so naive floating-point arithmetic gives incorrect results for large N. This tool uses JavaScript's built-in BigInt type, which supports integers of arbitrary size limited only by available memory, ensuring every result from F(1) to F(100) is exact.",
+          "F(100) is 354,224,848,179,261,915,075 — a 21-digit number. For comparison, the estimated number of atoms in the observable universe is roughly 10^80, and F(382) ≈ 10^79. Fibonacci numbers grow roughly as φ^N / √5, so each additional term is about 61.8% larger than the one before.",
+          "There are closed-form formulas for Fibonacci numbers (Binet's formula uses powers of the golden ratio), but they require arbitrary-precision arithmetic to be exact for large N because φ is irrational. The iterative method this tool uses — simply adding consecutive terms — is both exact and efficient for N up to a few thousand."
+        ]
+      },
+      {
+        "heading": "Applications of Fibonacci numbers",
+        "paragraphs": [
+          "In computer science, Fibonacci numbers appear in algorithm analysis. The worst-case input for the Euclidean algorithm (computing GCD) is consecutive Fibonacci numbers. Fibonacci heaps, a data structure used in Dijkstra's shortest-path algorithm, are named after the sequence because of bounds on their structure. Fibonacci search is also used as a divide-and-conquer search strategy.",
+          "In software engineering, Fibonacci numbers are widely used in Agile development as story point scales: 1, 2, 3, 5, 8, 13. The non-linear spacing reflects the increasing uncertainty in estimating larger tasks — adjacent Fibonacci numbers differ by a noticeable margin that forces estimators to commit to one side of an ambiguous choice, which reduces false precision.",
+          "In nature, phyllotaxis — the arrangement of leaves, petals, and seeds on a plant — often follows Fibonacci numbers. Sunflowers typically have 55 clockwise and 89 counterclockwise spirals; artichokes have 8 and 13. This arrangement emerges from the plant's growth pattern of adding new organs at the golden angle (≈137.5°) from the previous one, which is directly related to the golden ratio φ."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choose a mode", "text": "Select 'Nth Term' to find a single Fibonacci number, or 'Sequence' to list the first N terms." },
+      { "name": "Enter N", "text": "Type the position you want. Maximum is 100 for Nth mode and 50 for Sequence mode." },
+      { "name": "Read the result", "text": "The exact Fibonacci value appears below. For large N, the number can be very long — scroll horizontally if needed." },
+      { "name": "Copy the value", "text": "Select the displayed number and copy it for use in your calculations." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "What is F(0) — is it 0 or 1?",
+      "a": "By the most common modern convention (used here), F(0) = 0, F(1) = 1, F(2) = 1, F(3) = 2, … Some older texts start the sequence at F(1) = 1, F(2) = 1, which shifts all indices by one."
+    },
+    {
+      "q": "Why does this tool cap at N = 100?",
+      "a": "F(100) is already a 21-digit number. Beyond 100, the values become very long strings with limited practical use in this context. If you need values beyond F(100), the iterative BigInt logic can be extended — the algorithm is the same."
+    },
+    {
+      "q": "Are the results exact for large N?",
+      "a": "Yes. The tool uses JavaScript BigInt, which handles integers of arbitrary size without floating-point rounding errors. Every result from F(1) to F(100) is mathematically exact."
+    },
+    {
+      "q": "What is the golden ratio and how does it relate to Fibonacci?",
+      "a": "The golden ratio φ ≈ 1.61803… is the positive root of x² = x + 1. The ratio of consecutive Fibonacci numbers F(N+1)/F(N) converges to φ as N increases. F(20)/F(19) = 6765/4181 ≈ 1.61803, already accurate to 5 decimal places."
+    },
+    {
+      "q": "Is the Fibonacci sequence the same as the Lucas numbers?",
+      "a": "No. Lucas numbers use the same recurrence (each term is the sum of the two before it) but start with L(0) = 2 and L(1) = 1, giving 2, 1, 3, 4, 7, 11, 18, … They share many properties with Fibonacci numbers and both converge to φ."
+    },
+    {
+      "q": "Where do Fibonacci numbers appear in nature?",
+      "a": "Fibonacci numbers appear in the spiral counts of sunflowers (typically 55 and 89), pinecones (typically 8 and 13), and pineapples. This occurs because plants add new organs at an angle of approximately 137.5° (the golden angle), which is derived from φ and produces optimal packing."
+    },
+    {
+      "q": "How fast do Fibonacci numbers grow?",
+      "a": "Fibonacci numbers grow exponentially, approximately as φ^N / √5. Each term is about 1.618× the previous one. F(10) = 55, F(20) = 6,765, F(50) = 12,586,269,025, F(100) = 354,224,848,179,261,915,075."
+    },
+    {
+      "q": "Why are Fibonacci numbers used in Agile story points?",
+      "a": "The Fibonacci scale (1, 2, 3, 5, 8, 13, 21) is used because the gaps between adjacent values grow, forcing teams to distinguish 'medium' from 'large' tasks. This non-linear spacing reduces false precision when estimating work that is inherently uncertain."
+    }
+  ]
+}

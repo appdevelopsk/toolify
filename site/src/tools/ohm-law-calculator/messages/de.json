@@ -1,0 +1,111 @@
+{
+  "title": "Ohmsches Gesetz Rechner — Spannung, Strom, Widerstand und Leistung",
+  "shortDescription": "Berechnen Sie Spannung, Strom, Widerstand oder Leistung mit dem Ohmschen Gesetz (V=IR) und der Leistungsformel (P=VI). Zeigt alle vier Werte mit intelligenter Einheitenanzeige.",
+  "description": "Wählen Sie die elektrische Größe, die berechnet werden soll, geben Sie die anderen beiden Werte ein und erhalten Sie sofort Spannung (V), Strom (I), Widerstand (R) und Leistung (P). Unterstützt Milliampere, Mikroampere, Kilohm, Megaohm, Milliwatt und Kilowatt. Die verwendete Formel wird bei jedem Ergebnis angezeigt.",
+  "metaDescription": "Kostenloser Ohmsches-Gesetz-Rechner. Spannung, Strom, Widerstand oder Leistung mit V=IR und P=VI berechnen. Unterstützt mA, kΩ, MΩ, mW. Sofortige Ergebnisse.",
+  "keywords": ["ohmsches gesetz rechner", "spannung strom widerstand rechner", "leistungsrechner elektronik", "ohm rechner", "V=IR rechner"],
+  "empty": "Wählen Sie, was berechnet werden soll, und geben Sie die anderen zwei Werte ein.",
+  "input": {
+    "solveLabel": "Berechnen",
+    "voltage": "Spannung",
+    "voltagePlaceholder": "z. B. 12",
+    "current": "Strom",
+    "currentPlaceholder": "z. B. 0.5",
+    "resistance": "Widerstand",
+    "resistancePlaceholder": "z. B. 100",
+    "power": "Leistung",
+    "powerPlaceholder": "z. B. 5",
+    "pairVI": "Spannung & Strom",
+    "pairVR": "Spannung & Widerstand",
+    "pairIR": "Strom & Widerstand"
+  },
+  "result": {
+    "voltage": "Spannung",
+    "current": "Strom",
+    "resistance": "Widerstand",
+    "power": "Leistung",
+    "formula": "Verwendete Formel"
+  },
+  "error": {
+    "invalidInput": "Ungültige Eingabe — bitte gültige Zahlen eingeben.",
+    "divisionByZero": "Division durch null — Widerstand oder Strom dürfen nicht null sein.",
+    "needTwoValues": "Geben Sie die zwei bekannten Werte ein, um den unbekannten zu berechnen."
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Was ist das Ohmsche Gesetz?",
+        "paragraphs": [
+          "Das Ohmsche Gesetz besagt, dass die Spannung an einem Leiter direkt proportional zum fließenden Strom ist, sofern die Temperatur konstant bleibt. Es wurde 1827 vom deutschen Physiker Georg Simon Ohm formuliert und lautet V = I × R, wobei V die Spannung in Volt (V), I der Strom in Ampere (A) und R der Widerstand in Ohm (Ω) ist. Ohm leitete diese Beziehung aus Experimenten mit Drähten unterschiedlicher Länge und Dicke ab und stellte fest, dass bei fester Spannung eine Verdoppelung des Widerstands den Strom halbiert.",
+          "Das Ohmsche Gesetz gilt für die meisten metallischen Leiter und viele resistive Materialien bei konstanter Temperatur — diese werden als ohmsche Materialien bezeichnet. Nicht-ohmsche Bauelemente wie Dioden, Transistoren und Glühlampen folgen keiner linearen V-I-Beziehung, weshalb das Ohmsche Gesetz für sie nur eine Näherung darstellt. Bei der Schaltungsentwicklung ist V = IR die meistverwendete Gleichung: Sie bestimmt den Kabelquerschnitt, die Widerstandswerte, den Spannungsabfall an Bauelementen und die sicheren Betriebsgrenzen."
+        ]
+      },
+      {
+        "heading": "Leistung in elektrischen Schaltungen",
+        "paragraphs": [
+          "Elektrische Leistung ist die Rate, mit der Energie übertragen oder verbraucht wird, gemessen in Watt (W). Drei äquivalente Formeln verbinden die Leistung mit den grundlegenden elektrischen Größen: P = V × I (Leistung gleich Spannung mal Strom), P = I² × R (nützlich, wenn Strom und Widerstand bekannt sind) und P = V² / R (nützlich, wenn Spannung und Widerstand bekannt sind). Alle drei ergeben sich direkt aus dem Ohmschen Gesetz und der Leistungsdefinition.",
+          "Verlustleistung ist praktisch bedeutsam, weil Widerstände, Kabel und andere Bauelemente elektrische Energie in Wärme umwandeln. Jeder Widerstand hat eine Nennleistung — typischerweise 0,125 W, 0,25 W, 0,5 W oder 1 W bei gängigen Bedrahtungstypen — und das Überschreiten dieser Nennleistung führt zur Überhitzung und zum Ausfall des Bauelements. Zum Beispiel fließt durch einen 100-Ω-Widerstand in einem 5-V-Schaltkreis I = 5/100 = 50 mA, und er dissipiert P = 0,05² × 100 = 0,25 W, sodass ein Viertelwatt-Widerstand die minimal sichere Wahl ist. Planen Sie stets einen Sicherheitsabstand von mindestens 50 % ein."
+        ]
+      },
+      {
+        "heading": "Reihen- und Parallelschaltungen",
+        "paragraphs": [
+          "In einer Reihenschaltung sind Widerstände hintereinandergeschaltet und derselbe Strom fließt durch alle. Der Gesamtwiderstand ist einfach die Summe: R_gesamt = R1 + R2 + R3 + ... Die Spannung teilt sich proportional zum jeweiligen Widerstand auf (V_n = I × R_n). Dies ist das Prinzip des Spannungsteilers, mit dem Arbeitspunkte eingestellt oder Sensorsignale skaliert werden.",
+          "In einer Parallelschaltung teilen sich die Widerstände dieselbe Spannung, aber der Strom verteilt sich auf die Zweige. Der Gesamtwiderstand folgt der Kehrwertformel: 1/R_gesamt = 1/R1 + 1/R2 + 1/R3 + ... Für zwei Widerstände gilt die Kurzformel R_gesamt = (R1 × R2) / (R1 + R2). Parallelkombinationen ergeben stets einen Gesamtwiderstand, der kleiner als der kleinste Einzelwiderstand ist. Das Verständnis beider Schaltungsarten ermöglicht die Auslegung von Schaltungen mit der richtigen Spannung und dem richtigen Strom für jedes Bauelement, die korrekte Dimensionierung von Sicherungen und Leitungen sowie die effiziente Fehlersuche."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Unbekannte Größe wählen",
+        "text": "Klicken Sie auf eine der vier Schaltflächen — Spannung (V), Strom (I), Widerstand (R) oder Leistung (P) —, um auszuwählen, was berechnet werden soll. Die Eingabefelder aktualisieren sich und zeigen an, welche zwei Werte Sie eingeben müssen."
+      },
+      {
+        "name": "Zwei bekannte Werte eingeben",
+        "text": "Tippen Sie die bekannten Werte in die Eingabefelder. Wählen Sie im Einheiten-Dropdown die passende Größenordnung: Milliampere (mA) oder Mikroampere (µA) für kleine Ströme, Kilohm (kΩ) oder Megaohm (MΩ) für große Widerstände sowie Milliwatt (mW) oder Kilowatt (kW) für die Leistung."
+      },
+      {
+        "name": "Alle vier Ergebnisse ablesen",
+        "text": "Der Rechner zeigt sofort Spannung, Strom, Widerstand und Leistung an. Der berechnete Wert wird blau hervorgehoben. Werte kleiner als 0,001 werden automatisch mit dem Milli- oder Mikro-Präfix dargestellt, um die Lesbarkeit zu verbessern."
+      },
+      {
+        "name": "Verwendete Formel beachten",
+        "text": "Das bernsteinfarbene Abzeichen über den Ergebnissen zeigt die verwendete Formel — zum Beispiel V = I × R oder P = V² / R. Dies hilft, die Zusammenhänge zu verstehen und die Berechnung manuell nachzuprüfen."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was besagt das Ohmsche Gesetz in einfachen Worten?",
+      "a": "Das Ohmsche Gesetz sagt: Erhöht man die Spannung, die Strom durch einen Draht treibt, fließt mehr Strom — erhöht man den Widerstand, fließt weniger Strom. Die genaue Beziehung lautet V = I × R: Spannung gleich Strom mal Widerstand. Kennt man zwei dieser drei Größen, lässt sich die dritte berechnen."
+    },
+    {
+      "q": "Welche Einheiten werden beim Ohmschen Gesetz verwendet?",
+      "a": "Spannung wird in Volt (V), Strom in Ampere (A) und Widerstand in Ohm (Ω) gemessen. Diese Einheiten sind so definiert, dass 1 V = 1 A × 1 Ω gilt. In der Praxis verwendet man häufig Milliampere (1 mA = 0,001 A) für kleine Ströme, Kilohm (1 kΩ = 1.000 Ω) für größere Widerstände und Megaohm (1 MΩ = 1.000.000 Ω) für sehr hohe Widerstände wie in Eingangsschutzschaltungen."
+    },
+    {
+      "q": "Wie berechne ich die Spannung mit dem Ohmschen Gesetz?",
+      "a": "Multiplizieren Sie den Strom (in Ampere) mit dem Widerstand (in Ohm): V = I × R. Fließen beispielsweise 2 A durch einen 50-Ω-Widerstand, beträgt der Spannungsabfall 2 × 50 = 100 V. Liegt der Strom in Milliampere vor, rechnen Sie zuerst um: 200 mA = 0,2 A, also V = 0,2 × 50 = 10 V."
+    },
+    {
+      "q": "Wie finde ich den Strom, wenn Spannung und Widerstand bekannt sind?",
+      "a": "Formen Sie das Ohmsche Gesetz um: I = V / R. An einer 9-V-Batterie, die an einen 470-Ω-Widerstand angeschlossen ist, fließt ein Strom von 9 / 470 ≈ 0,0191 A, also rund 19,1 mA. Das ist der Strom, der durch den Widerstand fließt, und er bestimmt die dissipierte Leistung."
+    },
+    {
+      "q": "Welcher Zusammenhang besteht zwischen Leistung und Ohmmschem Gesetz?",
+      "a": "Leistung (P) misst, wie schnell Energie verbraucht wird, in Watt. Sie ist über drei äquivalente Formeln mit dem Ohmschen Gesetz verknüpft: P = V × I, P = I² × R und P = V² / R. Alle drei liefern dasselbe Ergebnis; wählen Sie die Formel, die zu den bereits bekannten Größen passt. Für einen Widerstand, durch den 0,1 A bei 10 V fließen: P = 10 × 0,1 = 1 W."
+    },
+    {
+      "q": "Gilt das Ohmsche Gesetz auch für Wechselstromkreise?",
+      "a": "Das Ohmsche Gesetz gilt für reine Widerstände in Wechselstromkreisen ebenso wie in Gleichstromkreisen. Wechselstromkreise enthalten jedoch auch Kondensatoren und Induktivitäten, die Reaktanz (frequenzabhängigen Widerstand gegen Stromfluss) einführen. Die Verallgemeinerung für Wechselstrom verwendet Impedanz (Z) statt des einfachen Widerstands: V = I × Z, wobei Z eine komplexe Zahl ist. Für Arbeit in Audio-, Funk- und Leistungselektronik sind komplexe Impedanzberechnungen erforderlich, die über das grundlegende Ohmsche Gesetz hinausgehen."
+    },
+    {
+      "q": "Warum erzeugt Widerstand Wärme?",
+      "a": "Wenn Strom durch einen Widerstand fließt, stoßen Elektronen mit den Atomen des Materials zusammen und übertragen kinetische Energie als Wärme. Die als Wärme dissipierte Leistung beträgt P = I² × R — dies wird als Joulesche Wärme bezeichnet. Höherer Strom oder höherer Widerstand bedeutet mehr Wärme. Deshalb verwendet Hochstromverkabelung dicke, niederohmige Leiter, und deshalb haben Widerstände Nennleistungen, um Überhitzung zu verhindern."
+    },
+    {
+      "q": "Was passiert, wenn ich die Nennleistung eines Widerstands überschreite?",
+      "a": "Das Überschreiten der Nennleistung führt zur Überhitzung des Widerstands. Bei mäßiger Überlast kann er seinen Wert verändern oder unzuverlässig werden. Bei starker Überlast kann der Widerstand rauchen, reißen oder Feuer fangen. Berechnen Sie stets P = I² × R und wählen Sie einen Widerstand mit einer Nennleistung von mindestens dem 1,5- bis 2-Fachen der erwarteten Leistung. Gängige Nennleistungen sind 0,1 W, 0,25 W, 0,5 W, 1 W und 2 W für bedrahtete Bauelemente."
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "title": "Matris Hesaplayıcı — Toplama, Çarpma, Determinant",
+  "shortDescription": "2×2 veya 3×3 matrisler üzerinde toplama, çıkarma, çarpma, transpoze ve determinant işlemleri — tümü tarayıcınızda.",
+  "description": "Matris A (ve ikili işlemler için B) için değerler girin ve sonucu anında hesaplayın. Beş işlemle 2×2 ve 3×3 matrisleri destekler: toplama, çıkarma, çarpma, transpoze ve determinant.",
+  "metaDescription": "Ücretsiz online matris hesaplayıcı. 2×2 ve 3×3 matrislerin toplamını, çıkarmasını, çarpımını, transpozunu ve determinantını tarayıcınızda anında bulun.",
+  "keywords": ["matris hesaplayıcı", "matris çarpımı", "determinant hesaplayıcı", "matris toplama", "3x3 matris"],
+  "empty": "Hesaplamak için yukarıdaki matris değerlerini doldurun.",
+  "input": {
+    "size": "Matris boyutu",
+    "operation": "İşlem",
+    "matA": "Matris A",
+    "matB": "Matris B"
+  },
+  "result": {
+    "label": "Sonuç"
+  },
+  "operations": {
+    "add": "Toplama (A + B)",
+    "subtract": "Çıkarma (A − B)",
+    "multiply": "Çarpma (A × B)",
+    "transpose": "Transpoze (Aᵀ)",
+    "determinant": "Determinant (det A)"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Matrisler nedir ve neden önemlidir",
+        "paragraphs": [
+          "Matris, satır ve sütunlar hâlinde düzenlenmiş sayılardan oluşan dikdörtgensel bir dizidir. m×n matrisin m satırı ve n sütunu vardır. Matrisler, lineer cebirin temel nesneleridir; lineer cebir ise veri bilimi, bilgisayar grafikleri, fizik simülasyonları ve mühendislik optimizasyonunun matematiksel dilidir.",
+          "Bir matristeki her eleman satır ve sütun indeksiyle tanımlanır. i. satır ve j. sütundaki eleman aᵢⱼ olarak yazılır. 2×2 matris için a₁₁ sol-üst, a₁₂ sağ-üst, a₂₁ sol-alt, a₂₂ ise sağ-alt elemandır. Kare matrisler (eşit satır ve sütun sayısına sahip) determinant ve iz gibi dikdörtgensel matrislerde tanımlanmayan ek özelliklere sahiptir.",
+          "Matrisler, lineer dönüşümleri — toplamayı ve skalar çarpmayı korurken vektörleri vektörlere eşleyen fonksiyonları — temsil eder. 2×2 matris, iki boyutlu düzlemde her türlü döndürme, ölçekleme, yansıma ve kesme kombinasyonunu temsil eder. İki matrisin çarpımı, karşılık gelen dönüşümleri birleştirir: A 45° döndürüyor ve B 2× ölçekliyorsa AB, önce döndürme ardından ölçekleme uygular."
+        ]
+      },
+      {
+        "heading": "Matris işlemleri açıklaması",
+        "paragraphs": [
+          "Toplama ve çıkarma için her iki matrisin boyutları aynı olmalıdır. Karşılık gelen elemanlar toplanır veya çıkarılır: (A+B)ᵢⱼ = aᵢⱼ + bᵢⱼ. Her ikisi de toplama için değişme özelliği taşır (A+B = B+A), ancak çıkarma taşımaz (genel olarak A−B ≠ B−A).",
+          "Matris çarpımı daha karmaşıktır ve değişme özelliği yoktur — genel olarak AB ≠ BA. İki n×n kare matris için, çarpımın i. satır ve j. sütunundaki eleman, A'nın i. satırı ile B'nin j. sütununun nokta çarpımıdır: (AB)ᵢⱼ = Σₖ aᵢₖ bₖⱼ. 2×2 matris için bu 8 çarpma ve 4 toplama gerektirir.",
+          "Bir A matrisinin transpozu Aᵀ olarak gösterilir ve satırlarla sütunlar yer değiştirilerek elde edilir: (Aᵀ)ᵢⱼ = aⱼᵢ. A'nın birinci satırı Aᵀ'nın birinci sütunu olur. Transpoze, en küçük kareler regresyonunda (normal denklemler AᵀA içerir), temel bileşen analizinde ve sinir ağı geri yayılımında yaygın biçimde kullanılır.",
+          "Determinant, bir kare matrisi özetleyen skalar bir değerdir. 2×2 matris [[a,b],[c,d]] için det = ad − bc. 3×3 matris için birinci satır boyunca kofaktör açılımıyla hesaplanır. Determinantı 0 olan matrise tekil matris denir — tersi yoktur, yani ilişkili lineer dönüşüm uzayı daha düşük bir boyuta çöker."
+        ]
+      },
+      {
+        "heading": "Matris hesaplamalarının gerçek dünya uygulamaları",
+        "paragraphs": [
+          "Bilgisayar grafikleri tamamen matris işlemlerine dayanır. Bir 3B sahneye uygulanan her döndürme, ötelenme, ölçekleme ve perspektif projeksiyonu, homojen koordinatlar üzerindeki matris çarpımı olarak temsil edilir. Bir render hattı 4×4 matrislerin bir dizisini çarpar: model, görünüm ve projeksiyon matrisleri her köşe noktasına uygulanmadan önce birleştirilir (çarpılır). GPU'lar özellikle bu iş yükü için optimize edilmiştir.",
+          "Makine öğrenmesinde sinir ağları ağırlıkları matris olarak depolar. Bir katmandaki ileri geçiş, girdi vektörü (veya toplu matris) ile ağırlık matrisi arasında matris çarpımıdır ve ardından doğrusal olmayan bir aktivasyon fonksiyonu gelir. Geri yayılım yoluyla eğitim, transpozu kullanarak gradyanları hesaplar: δL/δW = xᵀ · δL/δy. GPT gibi büyük dil modelleri her ileri geçişte milyarlarca matris çarpımı gerçekleştirir.",
+          "Doğrusal denklem sistemleri matrisler kullanılarak yazılıp çözülebilir. ax + by = e, cx + dy = f sistemi, [[a,b],[c,d]] · [x,y]ᵀ = [e,f]ᵀ matris denklemine eşdeğerdir. Determinant sıfır değilse, benzersiz çözüm x = [x,y]ᵀ = A⁻¹[e,f]ᵀ'dir. Determinantlar, tersler ve çözülebilirlik arasındaki bu ilişki, sayısal analiz ve bilimsel hesaplamanın merkezinde yer alır."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Matris boyutunu seçin", "text": "Matrislerinize göre 2×2 veya 3×3 seçin." },
+      { "name": "İşlemi seçin", "text": "Toplama, çıkarma, çarpma, transpoze veya determinant arasından seçin." },
+      { "name": "Matris değerlerini girin", "text": "Matris A'nın (ve ikili işlemler için Matris B'nin) her hücresini doldurun. Boş hücreler 0 olarak varsayılan değer alır." },
+      { "name": "Sonucu okuyun", "text": "Hesaplanan sonuç otomatik olarak aşağıda görünür — çoğu işlem için bir matris veya determinant için tek bir sayı." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Matris çarpımı neden değişme özelliği taşımaz?",
+      "a": "Matris çarpımı, lineer dönüşümlerin bileşimini temsil eder. Döndürmenin ardından ölçekleme yapmak, ölçeklemenin ardından döndürmeden farklı sonuç verdiği gibi, AB ve BA genel olarak farklıdır. Değişme özelliği yalnızca her iki matrisin köşegen olması veya birinin birim matris olması gibi özel durumlarda geçerlidir."
+    },
+    {
+      "q": "Sıfır determinant ne anlama gelir?",
+      "a": "Sıfır determinant, matrisin tekil olduğu anlamına gelir — tersinin bulunmadığı anlamına gelir. Geometrik olarak dönüşüm en az bir boyutu çökertiyor (2D'yi bir doğruya, 3D'yi bir düzleme veya doğruya yansıtıyor) demektir. Doğrusal denklem sistemi için sıfır determinant, sistemin çözümünün ya yok olduğu ya da sonsuz çözümü olduğu anlamına gelir."
+    },
+    {
+      "q": "Bir matrisin tersini nasıl hesaplarım?",
+      "a": "2×2 matris [[a,b],[c,d]] için ters (1/det) × [[d,−b],[−c,a]]'dır; det = ad−bc ≠ 0 koşuluyla. Daha büyük matrisler için Gauss eliminasyonu veya LU ayrışımı kullanılır. Bu araç şu anda determinant ve transpozu hesaplıyor; ters doğal bir genişlemedir."
+    },
+    {
+      "q": "Birim matris nedir?",
+      "a": "Birim matris I, ana köşegende 1'lere ve diğer her yerde 0'lara sahiptir. Sayıların 1'ine karşılık gelen matris eşdeğeridir: Uyumlu boyuttaki herhangi bir A matrisi için AI = IA = A. Birim matrisle çarpmak matrisi değiştirmez."
+    },
+    {
+      "q": "Farklı boyutlardaki matrisleri çarpabilir miyim?",
+      "a": "Evet, ancak yalnızca A'daki sütun sayısı B'deki satır sayısına eşitse. Bir m×n matris ile bir n×p matrisin çarpımı m×p sonuç verir. Bu araç yalnızca kare matrisleri (2×2 veya 3×3) işler. Kare olmayan işlemler için daha özel bir hesaplayıcı gereklidir."
+    },
+    {
+      "q": "Bir matrisin izi nedir?",
+      "a": "İz, köşegen elemanların toplamıdır (a₁₁ + a₂₂ + … + aₙₙ). Özdeğerlerin toplamına eşittir ve benzerlik dönüşümleri altında değişmez (A ve P⁻¹AP aynı ize sahiptir). Bu araç şu anda izi görüntülemez, ancak köşegen değerleri toplayarak kendiniz hesaplayabilirsiniz."
+    },
+    {
+      "q": "Hesaplamalar kesin mi?",
+      "a": "Araç standart JavaScript 64-bit kayan noktalı aritmetik kullanır. Sonuçlar görüntülenirken 10 ondalık basamağa yuvarlanır. Tam sayı girişleri için çoğu sonuç kesindir. Büyük veya kötü koşullu matrisler için kayan nokta yuvarlama, son hanelerde küçük hatalar getirebilir."
+    },
+    {
+      "q": "Geometrik açıdan 'transpoze' ne anlama gelir?",
+      "a": "Bir matrisi transpoze etmek, onu ana köşegenine göre yansıtır. A bir lineer dönüşümü temsil ediyorsa Aᵀ, eşlenik dönüşümü temsil eder. Döndürme matrisleri (ortogonal matrisler) için transpoze, tersiyle eşittir — θ kadar döndürmek ve ardından −θ kadar döndürmek, döndürmeyi geri alır."
+    }
+  ]
+}

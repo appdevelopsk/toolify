@@ -1,0 +1,69 @@
+{
+  "title": "Công Cụ Đảo Ngược Văn Bản — Lật Ký Tự, Từ hoặc Dòng",
+  "shortDescription": "Đảo ngược bất kỳ văn bản nào theo ký tự, từ hoặc dòng. Xử lý chính xác Unicode, emoji và ký tự đa byte. Sao chép vào clipboard ngay lập tức.",
+  "description": "Nhập bất kỳ văn bản nào để đảo ngược ngay lập tức. Chọn từ ba chế độ: đảo ngược tất cả ký tự trong chuỗi, đảo ngược thứ tự từ trong khi giữ nguyên từng từ, hoặc đảo ngược thứ tự dòng. Công cụ xử lý chính xác emoji Unicode và ký tự CJK trải qua nhiều điểm mã.",
+  "metaDescription": "Công cụ đảo ngược văn bản miễn phí. Lật văn bản theo ký tự, từ hoặc dòng — an toàn với Unicode và emoji. Sao chép ngay. Chạy hoàn toàn trong trình duyệt của bạn.",
+  "keywords": ["công cụ đảo ngược văn bản", "lật chữ online", "đảo ngược từ", "đảo ngược chuỗi", "đảo ngược dòng", "văn bản gương"],
+  "empty": "Nhập văn bản ở trên để xem kết quả đảo ngược.",
+  "input": {
+    "text": "Văn bản nhập vào",
+    "mode": "Chế độ đảo ngược:"
+  },
+  "modes": {
+    "chars": "Đảo ngược ký tự",
+    "words": "Đảo ngược từ",
+    "lines": "Đảo ngược dòng"
+  },
+  "result": {
+    "reversed": "Kết quả đảo ngược"
+  },
+  "button": {
+    "copy": "Sao chép kết quả",
+    "copied": "Đã sao chép!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Các ứng dụng thực tế của văn bản đảo ngược",
+        "paragraphs": [
+          "Ứng dụng nổi tiếng nhất của việc đảo ngược ký tự là phát hiện palindrome: một từ hoặc cụm từ đọc giống nhau từ trái sang phải và từ phải sang trái, chẳng hạn như «racecar» hay «Anh Nha». Đảo ngược chuỗi và so sánh với bản gốc — bỏ qua khoảng trắng và dấu câu — là bài kiểm tra thuật toán cổ điển cho palindrome.",
+          "Trong tiếng Việt, ngôn ngữ có nhiều dấu thanh, việc đảo ngược ký tự có thể tạo ra những kết quả thú vị cho trò chơi chữ và giải đố. Ví dụ các từ đơn giản như «ăn» hay «nắm» khi đảo lại tạo ra tổ hợp ký tự mới. Trong các mạng xã hội, trò chơi và sáng tác, văn bản đảo ngược tạo ra sự thú vị hoặc làm khó đọc có chủ đích.",
+          "Đối với kỹ thuật dữ liệu, việc đảo ngược thứ tự dòng (chế độ thứ ba) rất thực tế khi một tệp nhật ký hoặc tệp chỉ-thêm cần được đọc từ mới nhất đến cũ nhất. Một kỹ sư dòng lệnh sẽ dùng `tac` hoặc `tail -r` trên Unix, nhưng khi làm việc trong trình duyệt hoặc môi trường không có mã, công cụ này cung cấp kết quả tương tự mà không cần truy cập shell.",
+          "Đảo ngược thứ tự từ cũng hữu ích trong các thí nghiệm xử lý ngôn ngữ tự nhiên, chẳng hạn kiểm tra xem mô hình ngôn ngữ có thực sự hiểu cú pháp hay chỉ đang khớp mẫu."
+        ]
+      },
+      {
+        "heading": "Cách hoạt động của đảo ngược ký tự — và tại sao phức tạp hơn vẻ ngoài",
+        "paragraphs": [
+          "Đảo ngược chuỗi một cách đơn giản bằng cách lặp qua các byte hoặc đơn vị mã UTF-16 sẽ phá vỡ bất kỳ ký tự nào cần nhiều hơn một đơn vị để biểu diễn. Trong JavaScript, `'😀'.split('').reverse().join('')` tạo ra một chuỗi bị hỏng vì emoji được lưu dưới dạng cặp thay thế (hai đơn vị mã UTF-16). Công cụ này sử dụng `Array.from()` lặp đúng trên các giá trị vô hướng Unicode (điểm mã), không phải đơn vị mã thô, đảm bảo emoji và ký tự trong các mặt phẳng bổ sung còn nguyên sau khi đảo ngược.",
+          "Tiếng Việt sử dụng nhiều dấu thanh và dấu phụ được kết hợp với ký tự cơ sở. Trong dạng NFD phân tách, đảo ngược ở cấp điểm mã có thể tách dấu thanh khỏi nguyên âm cơ sở — ví dụ «cà» có thể bị phân tách thành «a» và dấu huyền. Với văn bản tiếng Việt thông thường ở dạng NFC (precomposed), đây không phải vấn đề vì mỗi âm tiết thường là một đơn vị điểm mã duy nhất.",
+          "Đảo ngược từ giữ nguyên các chuỗi khoảng trắng giữa các từ thay vì thu gọn chúng thành một khoảng trắng duy nhất. Điều này có nghĩa là nếu đầu vào có khoảng trắng đôi hoặc tab giữa các từ, đầu ra đảo ngược cũng có các chuỗi khoảng trắng đó, chỉ ở vị trí đảo ngược. Điều này là có chủ đích để tránh vô tình thay đổi bố cục trực quan của văn bản dạng bảng hoặc cột."
+        ]
+      },
+      {
+        "heading": "Đảo ngược dòng để phân tích nhật ký và xử lý dữ liệu",
+        "paragraphs": [
+          "Các nhật ký chỉ-thêm, luồng sự kiện và xuất khẩu có thứ tự đều có mục nhập mới nhất ở cuối. Khi khắc phục sự cố hoặc xem xét các thay đổi gần đây, bạn thường muốn các mục nhập mới nhất xuất hiện đầu tiên. Đảo ngược dòng đưa phần cuối tệp lên đầu mà không cần sắp xếp hoặc phân tích dấu thời gian.",
+          "Chế độ này cũng hữu ích để chuyển đổi dữ liệu theo thứ tự tăng dần thành giảm dần khi hệ thống tiêu thụ mong đợi thứ tự mới nhất-trước. Hãy xem xét xuất khẩu CSV từ hệ thống tài chính nơi các giao dịch theo thứ tự thời gian — đảo ngược dòng (không bao gồm tiêu đề, cần xử lý riêng) đặt các giao dịch mới nhất lên đầu để nhập vào hệ thống xử lý bản ghi theo thứ tự gặp chúng.",
+          "Các danh sách được đánh số cần xếp hạng lại từ cuối đến đầu cũng được hưởng lợi từ đảo ngược dòng. Danh sách top-10 trở thành danh sách bottom-10 sau khi đảo ngược, với hạng 10 đứng đầu và hạng 1 đứng cuối — hữu ích cho các bài trình bày đảo ngược, đếm ngược hoặc nội dung có chủ đề hài hước."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Gõ hoặc dán văn bản của bạn", "text": "Nhập văn bản vào bảng điều khiển bên trái. Kết quả đảo ngược xuất hiện trong bảng điều khiển bên phải theo thời gian thực." },
+      { "name": "Chọn chế độ đảo ngược", "text": "Chọn «Đảo ngược ký tự» để lật mọi ký tự trong chuỗi, «Đảo ngược từ» để hoán đổi thứ tự từ trong khi giữ nguyên từng từ, hoặc «Đảo ngược dòng» để đặt dòng cuối cùng lên đầu." },
+      { "name": "Xem xét kết quả", "text": "Số ký tự được hiển thị bên dưới cả hai bảng điều khiển. Xác minh đầu ra là những gì bạn mong đợi trước khi sao chép." },
+      { "name": "Sao chép vào clipboard", "text": "Nhấp «Sao chép kết quả» để sao chép văn bản đảo ngược. Nút hiển thị «Đã sao chép!» trong giây lát để xác nhận." }
+    ]
+  },
+  "faq": [
+    { "q": "Công cụ có xử lý emoji đúng không?", "a": "Có. Công cụ sử dụng Array.from() để lặp qua các điểm mã Unicode thay vì đơn vị mã UTF-16 thô, vì vậy emoji (bao gồm chuỗi đa điểm mã như emoji cờ quốc gia) đảo ngược mà không bị hỏng." },
+    { "q": "Sự khác biệt giữa đảo ngược ký tự và đảo ngược từ là gì?", "a": "Đảo ngược ký tự lật toàn bộ chuỗi để ký tự cuối cùng trở thành ký tự đầu tiên. Đảo ngược từ giữ nguyên từng từ nhưng đặt từ cuối cùng lên đầu. «xin chào thế giới» trở thành «iớig ếht oàhc nix» ở chế độ ký tự và «thế giới xin chào» ở chế độ từ." },
+    { "q": "Đảo ngược từ có ảnh hưởng đến dấu câu gắn với từ không?", "a": "Dấu câu gắn trực tiếp với từ (không có khoảng trắng) sẽ di chuyển cùng với từ đó. «Xin chào, thế giới!» trở thành «thế giới! Xin chào,» ở chế độ đảo ngược từ." },
+    { "q": "Tôi có thể đảo ngược văn bản tiếng Nhật hoặc tiếng Trung không?", "a": "Có. Đảo ngược ký tự hoạt động chính xác cho các ký tự CJK vì mỗi biểu tượng chữ là một điểm mã duy nhất. Kết quả đọc từ phải sang trái từng ký tự, có thể có nghĩa hoặc không tùy thuộc vào nội dung." },
+    { "q": "Có giới hạn độ dài không?", "a": "Không có giới hạn bắt buộc. Văn bản dài được xử lý hoàn toàn trong bộ nhớ trình duyệt của bạn. Hiệu suất hiệu quả tức thì cho văn bản lên đến hàng triệu ký tự trên phần cứng hiện đại." },
+    { "q": "Văn bản của tôi có được gửi đến máy chủ không?", "a": "Không. Tất cả quá trình xử lý chạy cục bộ trong JavaScript. Văn bản của bạn không bao giờ rời khỏi trình duyệt." },
+    { "q": "«Đảo ngược dòng» làm gì với dòng mới ở cuối?", "a": "Mỗi ký tự dòng mới là dấu phân cách dòng. Dòng mới ở cuối đầu vào sẽ tạo ra một dòng trống ở đầu đầu ra đảo ngược. Chỉ cần xóa dòng trống thừa nếu không muốn." },
+    { "q": "Tôi có thể sử dụng công cụ này để tạo palindrome không?", "a": "Bạn có thể kiểm tra xem một từ có phải palindrome hay không bằng cách dán vào và xem liệu kết quả đảo ngược có khớp với đầu vào không. Để tạo palindrome, ghép văn bản gốc với phiên bản đảo ngược ký tự của nó (ví dụ «race» + «ecar» = «raceecar»)." }
+  ]
+}

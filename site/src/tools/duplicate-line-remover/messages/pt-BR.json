@@ -1,0 +1,108 @@
+{
+  "title": "Removedor de linhas duplicadas — Limpe listas de texto…",
+  "shortDescription": "Remova linhas duplicadas de qualquer lista de texto. Suporta correspondência sem distinção de maiúsculas, corte de espaços e controle de manter a primeira ou última ocorrência.",
+  "description": "Cole qualquer lista de linhas e esta ferramenta remove todas as duplicatas, mantendo apenas entradas únicas. As opções permitem controlar a sensibilidade a maiúsculas, cortar espaços iniciais e finais antes de comparar, e escolher se mantém a primeira ou última ocorrência de cada grupo de duplicatas.",
+  "metaDescription": "Removedor de linhas duplicadas gratuito online. Cole texto, remova linhas duplicadas instantaneamente — sem distinção de maiúsculas, corte de espaços, mantém a…",
+  "keywords": [
+    "remover linhas duplicadas",
+    "remover linhas duplicadas online",
+    "deduplicar texto",
+    "linhas únicas",
+    "limpar lista de texto"
+  ],
+  "empty": "Cole o texto acima para remover as linhas duplicadas.",
+  "input": {
+    "text": "Texto de entrada — um item por linha",
+    "caseSensitive": "Comparação com distinção de maiúsculas",
+    "trimLines": "Cortar espaços antes de comparar",
+    "keepFirst": "Manter a primeira ocorrência (desmarcar para manter a última)"
+  },
+  "result": {
+    "cleaned": "Saída deduplicada",
+    "stats": "Removida(s) {removed} linha(s) duplicada(s) — {remaining} linha(s) única(s) restante(s)."
+  },
+  "button": {
+    "copy": "Copiar resultado",
+    "copied": "Copiado!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Quando linhas duplicadas realmente importam",
+        "paragraphs": [
+          "Linhas duplicadas são inofensivas em poesia, mas criam problemas reais em dados estruturados. Em um arquivo CSV, uma linha duplicada infla silenciosamente a contagem de registros, distorce agregações e pode causar violações de chave primária ao importar o arquivo para um banco de dados. Em arquivos de log de servidor, entradas de log idênticas repetidas de um processo com falha podem encher um disco em minutos. Em arquivos de configuração, chaves duplicadas são silenciosamente substituídas — ou pior, causam erros de análise — dependendo do analisador.",
+          "Repositórios de código também sofrem com duplicação acidental de linhas: erros de copiar e colar em listas de dependências (requirements.txt, package.json), declarações de importação repetidas ou entradas duplicadas no .gitignore. Verificações automatizadas de CI geralmente detectam isso, mas colar e deduplicar rapidamente antes de confirmar é mais rápido do que depurar uma falha de pipeline.",
+          "Linhas em branco merecem atenção especial. Duas linhas em branco consecutivas são tecnicamente duplicatas, mas muitos formatos de texto (Markdown, código-fonte Python, corpos de e-mail) usam linhas em branco duplas como separadores intencionais. A opção 'cortar espaços' desta ferramenta normaliza linhas que parecem estar em branco devido a espaços perdidos, sem destruir linhas em branco intencionais — o resultado depende do seu conteúdo específico, então revise a saída."
+        ]
+      },
+      {
+        "heading": "Sensibilidade a maiúsculas: quando importa e quando não importa",
+        "paragraphs": [
+          "Por padrão, esta ferramenta compara linhas sem distinção de maiúsculas, então 'Apple', 'apple' e 'APPLE' contam como a mesma linha e apenas a primeira é mantida. Esta é a configuração correta para listas legíveis por humanos como nuvens de tags, listas de palavras-chave, nomes de cidades e endereços de e-mail, onde você quer colapsar variantes da mesma coisa.",
+          "O modo sensível a maiúsculas é essencial para código. No Python, os imports 'os' e 'OS' são tecnicamente diferentes (embora 'OS' falhasse em tempo de execução na maioria dos sistemas), e nomes de variáveis como 'Result' e 'result' são identificadores distintos. Palavras-chave SQL são insensíveis a maiúsculas por convenção, mas nomes de tabelas são sensíveis a maiúsculas em sistemas de arquivos Linux. Ao deduplicar trechos de código, chaves de configuração ou caminhos, sempre ative o modo sensível a maiúsculas.",
+          "Um meio-termo prático é executar a ferramenta duas vezes: uma vez sem distinção de maiúsculas para detectar duplicatas próximas para revisão, e uma vez com distinção de maiúsculas para a deduplicação definitiva. Esta abordagem de duas passagens detecta erros de digitação e capitalização inconsistente que a dedup automática sozinha perderia."
+        ]
+      },
+      {
+        "heading": "Como funciona o tratamento de linhas em branco e espaços",
+        "paragraphs": [
+          "Espaços finais são invisíveis na maioria dos editores de texto e operações de copiar e colar, mas fazem as linhas serem comparadas como desiguais. 'apple  ' (dois espaços finais) e 'apple' são strings diferentes, então sem o corte ativado você manteria ambas — deixando uma duplicata sutil na saída. A opção 'Cortar espaços' remove espaços iniciais e finais de cada linha antes de comparar, sem modificar o conteúdo das linhas de saída (o texto cortado é escrito no resultado).",
+          "Espaços iniciais em código recuado ou listas de esboço são significativos: cortá-los destruiria a hierarquia de recuo. Para código ou esboços estruturados, desative o corte e use o modo sensível a maiúsculas para preservar o conteúdo exato das linhas. Para listas de texto simples como palavras-chave, nomes de cidades ou caminhos de URL, o corte é quase sempre a escolha certa.",
+          "O botão 'manter primeiro vs manter último' importa mais quando sua lista tem metadados anexados a posições. Por exemplo, um log de eventos em que entradas posteriores representam estados mais recentes — nesse cenário, manter a última ocorrência (registro mais recente para cada chave) é semanticamente correto, enquanto manter a primeira preservaria dados desatualizados."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Cole seu texto",
+        "text": "Clique na área de entrada e cole sua lista. Cada linha é tratada como um item — a ferramenta divide por caracteres de nova linha."
+      },
+      {
+        "name": "Configure as opções",
+        "text": "Ative 'Distingue maiúsculas' para código ou caminhos de arquivo. Ative 'Cortar espaços' para listas de palavras-chave ou dados CSV. Alterne 'Manter primeira' para decidir qual ocorrência sobrevive quando duplicatas são encontradas."
+      },
+      {
+        "name": "Revise as estatísticas",
+        "text": "A área de resultado mostra quantas duplicatas foram removidas e quantas linhas únicas restam, para que você possa verificar se a operação foi correta."
+      },
+      {
+        "name": "Copie o resultado",
+        "text": "Clique em 'Copiar resultado' para copiar o texto deduplicado para a área de transferência e cole onde precisar."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "A ferramenta preserva a ordem das linhas?",
+      "a": "Sim. As linhas não são ordenadas — apenas as duplicatas são removidas. A ordem relativa das linhas sobreviventes é idêntica à ordem de entrada."
+    },
+    {
+      "q": "O que conta como duplicata?",
+      "a": "Duas linhas são duplicatas se forem idênticas após aplicar as opções escolhidas (dobramento de maiúsculas e/ou corte de espaços). Apenas o conteúdo do texto é comparado; números de linha e posições não são considerados."
+    },
+    {
+      "q": "Linhas em branco serão removidas?",
+      "a": "Linhas em branco são removidas apenas se forem duplicatas entre si. Se seu texto tiver três linhas em branco consecutivas e 'Manter primeira' estiver ativada, apenas a primeira linha em branco sobrevive. Se quiser remover todas as linhas em branco, use um classificador de texto com a opção 'remover linhas vazias'."
+    },
+    {
+      "q": "O que faz 'Manter última ocorrência'?",
+      "a": "Quando 'Manter primeira' está desmarcada, a ferramenta mantém a última ocorrência de cada grupo de duplicatas em vez da primeira. O resultado ainda aparece na ordem original do documento — apenas a instância sobrevivente muda."
+    },
+    {
+      "q": "Posso usar isso para deduplicar listas de e-mail?",
+      "a": "Sim. Cole um endereço de e-mail por linha. Use o modo insensível a maiúsculas (o padrão), pois endereços de e-mail são insensíveis a maiúsculas por especificação. O corte de espaços também é recomendado para dados de e-mail copiados e colados."
+    },
+    {
+      "q": "Há um limite de linhas?",
+      "a": "Não há limite imposto. A ferramenta processa tudo na memória do seu navegador. Na prática, navegadores modernos processam centenas de milhares de linhas sem atrasos perceptíveis."
+    },
+    {
+      "q": "Meus dados saem do navegador?",
+      "a": "Não. Todo o processamento ocorre completamente em JavaScript no seu dispositivo. Nada é enviado para nenhum servidor."
+    },
+    {
+      "q": "Como deduplicar um CSV por uma coluna específica?",
+      "a": "Esta ferramenta trabalha em linhas completas. Para deduplicar por uma única coluna, primeiro ordene ou extraia essa coluna em uma lista de coluna única, deduplique e depois una novamente. Para grandes conjuntos de dados, uma ferramenta dedicada como pandas do Python ou a função UNIQUE de uma planilha é mais precisa."
+    }
+  ]
+}

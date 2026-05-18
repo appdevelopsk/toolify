@@ -1,0 +1,66 @@
+{
+  "title": "Duplicate Line Remover — Clean Text Lists Instantly",
+  "shortDescription": "Remove duplicate lines from any text list. Supports case-insensitive matching, whitespace trimming, and keep-first or keep-last control.",
+  "description": "Paste any list of lines and this tool removes every duplicate, keeping only unique entries. Options let you control case sensitivity, trim leading/trailing whitespace before comparing, and choose whether to keep the first or last occurrence of each duplicate group.",
+  "metaDescription": "Free online duplicate line remover. Paste text, remove duplicate lines instantly — case-insensitive, trim whitespace, keep first or last. Runs in browser.",
+  "keywords": ["duplicate line remover", "remove duplicate lines online", "deduplicate text", "unique lines", "clean text list"],
+  "empty": "Paste text above to remove duplicate lines.",
+  "input": {
+    "text": "Input text — one item per line",
+    "caseSensitive": "Case-sensitive comparison",
+    "trimLines": "Trim whitespace before comparing",
+    "keepFirst": "Keep first occurrence (uncheck to keep last)"
+  },
+  "result": {
+    "cleaned": "Deduplicated output",
+    "stats": "Removed {removed} duplicate line(s) — {remaining} unique line(s) remaining."
+  },
+  "button": {
+    "copy": "Copy result",
+    "copied": "Copied!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "When duplicate lines actually matter",
+        "paragraphs": [
+          "Duplicate lines are innocuous in poetry, but they create real problems in structured data. In a CSV file, a duplicated row silently inflates record counts, skews aggregates, and can cause primary-key violations when the file is imported into a database. In server log files, repeated identical log entries from a crashing process can fill a disk within minutes. In configuration files, duplicate keys are silently overwritten — or worse, cause parse errors — depending on the parser.",
+          "Code repositories also suffer from accidental line duplication: copy-paste errors in dependency lists (requirements.txt, package.json), repeated import statements, or duplicate entries in .gitignore. Automated CI checks often catch these, but a quick paste-and-deduplicate before committing is faster than debugging a pipeline failure.",
+          "Blank lines deserve special attention. Two consecutive blank lines are technically duplicates, but many text formats (Markdown, Python source, email bodies) use double blank lines as intentional separators. This tool's 'trim whitespace' option normalizes lines that appear blank due to stray spaces, without destroying intentional empty lines — the result depends on your specific content, so review the output."
+        ]
+      },
+      {
+        "heading": "Case sensitivity: when it matters and when it doesn't",
+        "paragraphs": [
+          "By default this tool compares lines case-insensitively, so 'Apple', 'apple', and 'APPLE' all count as the same line and only the first is kept. This is the right setting for human-readable lists like tag clouds, keyword lists, city names, and email addresses where you want to collapse variants of the same thing.",
+          "Case-sensitive mode is essential for code. Python imports 'os' and 'OS' are technically different (though 'OS' would fail at runtime on most systems), and variable names like 'Result' and 'result' are distinct identifiers. SQL keywords are case-insensitive by convention but table names are case-sensitive on Linux file systems. When deduplicating code snippets, configuration keys, or paths, always enable case-sensitive mode.",
+          "A practical middle ground is to run the tool twice: once case-insensitively to spot near-duplicates for review, and once case-sensitively for the authoritative deduplication. This two-pass approach catches typos and inconsistent capitalisation that automated dedup alone would miss."
+        ]
+      },
+      {
+        "heading": "How blank-line and whitespace handling works",
+        "paragraphs": [
+          "Trailing spaces are invisible in most text editors and copy-paste operations, yet they make lines compare as unequal. 'apple  ' (two trailing spaces) and 'apple' are different strings, so without trimming enabled you would keep both — leaving a subtle duplicate in the output. The 'Trim whitespace' option strips leading and trailing spaces from each line before comparing, without modifying the content of the output lines (the trimmed text is written to the result).",
+          "Leading whitespace in indented code or outline lists is meaningful: trimming would destroy the indentation hierarchy. For code or structured outlines, disable trimming and use case-sensitive mode to preserve exact line content. For flat text lists such as keywords, city names, or URL paths, trimming is almost always the right choice.",
+          "The 'keep first vs keep last' toggle matters most when your list has metadata attached to positions. For example, a log of events where later entries represent more recent states — in that scenario, keeping the last occurrence (most recent record for each key) is semantically correct, while keeping the first would preserve stale data."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Paste your text", "text": "Click the input area and paste your list. Each line is treated as one item — the tool splits on newline characters." },
+      { "name": "Configure options", "text": "Enable 'Case-sensitive' for code or file paths. Enable 'Trim whitespace' for keyword lists or CSV data. Toggle 'Keep first' to decide which occurrence survives when duplicates are found." },
+      { "name": "Review the stats", "text": "The result area shows how many duplicates were removed and how many unique lines remain, so you can verify the operation was correct." },
+      { "name": "Copy the result", "text": "Click 'Copy result' to copy the deduplicated text to your clipboard, then paste it wherever you need it." }
+    ]
+  },
+  "faq": [
+    { "q": "Does the tool preserve line order?", "a": "Yes. Lines are not sorted — only duplicates are removed. The relative order of surviving lines is identical to the input order." },
+    { "q": "What counts as a duplicate?", "a": "Two lines are duplicates if they are identical after applying your chosen options (case folding and/or whitespace trimming). Only the text content is compared; line numbers and positions are not considered." },
+    { "q": "Will blank lines be removed?", "a": "Blank lines are only removed if they are duplicates of each other. If your text has three consecutive blank lines and you have 'Keep first' enabled, only the first blank line survives. If you want all blank lines removed, use a text sorter with the 'remove empty lines' option instead." },
+    { "q": "What does 'Keep last occurrence' do?", "a": "When 'Keep first' is unchecked, the tool keeps the last occurrence of each duplicate group instead of the first. The result still appears in the original document order — only the surviving instance changes." },
+    { "q": "Can I use this to deduplicate email lists?", "a": "Yes. Paste one email address per line. Use case-insensitive mode (the default) since email addresses are case-insensitive by specification. Trim whitespace is also recommended for copy-pasted email data." },
+    { "q": "Is there a line count limit?", "a": "There is no enforced limit. The tool processes everything in your browser's memory. Practically, modern browsers handle hundreds of thousands of lines without noticeable lag." },
+    { "q": "Does my data leave my browser?", "a": "No. All processing happens entirely in JavaScript on your device. Nothing is uploaded to any server." },
+    { "q": "How do I deduplicate a CSV by a specific column?", "a": "This tool works on whole lines. To deduplicate by a single column, first sort or extract that column into a single-column list, deduplicate, then rejoin. For large datasets, a dedicated tool like Python's pandas or a spreadsheet UNIQUE function is more precise." }
+  ]
+}

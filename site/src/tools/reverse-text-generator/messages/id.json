@@ -1,0 +1,69 @@
+{
+  "title": "Generator Teks Terbalik — Balik Karakter, Kata, atau Baris",
+  "shortDescription": "Balik teks apa pun berdasarkan karakter, kata, atau baris. Menangani Unicode, emoji, dan karakter multi-byte dengan benar. Salin ke clipboard seketika.",
+  "description": "Masukkan teks apa pun untuk membaliknya seketika. Pilih dari tiga mode: balik semua karakter dalam string, balik urutan kata sambil menjaga kata tetap utuh, atau balik urutan baris. Alat ini menangani emoji Unicode dan karakter CJK yang mencakup beberapa titik kode dengan benar.",
+  "metaDescription": "Generator teks terbalik gratis. Balik teks berdasarkan karakter, kata, atau baris — aman untuk Unicode dan emoji. Salin seketika. Berjalan seluruhnya di browser Anda.",
+  "keywords": ["generator teks terbalik", "balik teks online", "teks terbalik", "balik kata", "balik baris", "cermin teks"],
+  "empty": "Masukkan teks di atas untuk melihat hasil terbalik.",
+  "input": {
+    "text": "Teks masukan",
+    "mode": "Mode pembalikan:"
+  },
+  "modes": {
+    "chars": "Balik karakter",
+    "words": "Balik kata",
+    "lines": "Balik baris"
+  },
+  "result": {
+    "reversed": "Keluaran terbalik"
+  },
+  "button": {
+    "copy": "Salin hasil",
+    "copied": "Disalin!"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Kegunaan praktis teks terbalik",
+        "paragraphs": [
+          "Penggunaan pembalikan karakter yang paling terkenal adalah deteksi palindrom: sebuah kata atau frasa yang dibaca sama dari depan maupun belakang, seperti «katak» atau «kamu mak». Membalik string dan membandingkannya dengan aslinya — mengabaikan spasi dan tanda baca — adalah uji algoritma klasik untuk palindrom, dan alat ini memungkinkan Anda melakukannya secara manual dalam hitungan detik.",
+          "Dalam media sosial, permainan, dan penulisan kreatif, teks terbalik menciptakan obfuskasi yang disengaja atau daya tarik visual. Perancang teka-teki menggunakan kata-kata terbalik sebagai sandi sederhana — dalam bahasa Inggris, membalik «stressed» menghasilkan «desserts». Di Indonesia, kata «api» terbalik menjadi «ipa» yang bisa menjadi bahan permainan kata yang menarik.",
+          "Untuk rekayasa data, pembalikan urutan baris (mode ketiga) sangat praktis ketika log atau file yang hanya bisa ditambahkan perlu dibaca dari terbaru ke terlama. Di Unix, seorang insinyur baris perintah menggunakan `tac` atau `tail -r`, tetapi saat bekerja di browser atau lingkungan tanpa kode, alat ini memberikan hasil yang sama tanpa akses shell.",
+          "Pembalikan urutan kata juga berguna dalam eksperimen pemrosesan bahasa alami, seperti menguji apakah model bahasa benar-benar memahami sintaksis atau hanya melakukan pencocokan pola."
+        ]
+      },
+      {
+        "heading": "Cara kerja pembalikan karakter — dan mengapa lebih rumit dari yang terlihat",
+        "paragraphs": [
+          "Membalik string secara naif dengan mengiterasi byte atau unit kode UTF-16 akan merusak karakter apa pun yang membutuhkan lebih dari satu unit untuk direpresentasikan. Di JavaScript, `'😀'.split('').reverse().join('')` menghasilkan urutan yang rusak karena emoji disimpan sebagai pasangan pengganti (dua unit kode UTF-16). Alat ini menggunakan `Array.from()` yang secara benar mengiterasi nilai skalar Unicode (titik kode), bukan unit kode mentah, memastikan emoji dan karakter di bidang suplemen tetap utuh setelah pembalikan.",
+          "Bahasa Indonesia menggunakan Latin standar, sehingga pembalikan karakter umumnya berjalan lancar. Namun perlu dicatat bahwa beberapa karakter dengan diakritik dalam teks yang didekomposisi (NFD) dapat mengalami masalah serupa dengan bahasa yang banyak menggunakan tanda gabung. Teks Indonesia normal tidak terpengaruh oleh masalah ini.",
+          "Pembalikan kata mempertahankan urutan spasi antar kata alih-alih menyederhanakannya menjadi satu spasi. Ini berarti jika masukan Anda memiliki spasi ganda atau tab antar kata, keluaran yang dibalik juga memiliki urutan spasi tersebut, hanya di posisi yang dibalik. Ini disengaja — untuk menghindari perubahan tidak terduga pada tata letak visual teks tabel atau kolom."
+        ]
+      },
+      {
+        "heading": "Membalik baris untuk analisis log dan pemrosesan data",
+        "paragraphs": [
+          "Log yang hanya dapat ditambahkan, aliran acara, dan ekspor berurutan semuanya memiliki entri terbaru di bagian bawah. Saat memecahkan masalah crash atau meninjau beberapa perubahan terakhir, Anda biasanya menginginkan entri terbaru terlebih dahulu. Membalik baris membawa bagian bawah file ke atas tanpa pemrosesan atau penguraian cap waktu apa pun.",
+          "Mode ini juga berguna untuk mengonversi data berurutan menaik menjadi menurun ketika sistem penerima mengharapkan urutan terbaru-pertama. Pertimbangkan ekspor CSV dari sistem keuangan di mana transaksi dalam urutan kronologis — membalik baris (tidak termasuk header, yang perlu ditangani secara terpisah) menempatkan transaksi terbaru di bagian atas untuk diimpor ke sistem yang memproses rekaman sesuai urutan ditemukannya.",
+          "Daftar bernomor yang perlu diurutkan ulang dari terakhir ke pertama juga dapat memanfaatkan pembalikan baris. Daftar 10 teratas menjadi daftar 10 terbawah setelah pembalikan, dengan peringkat 10 pertama dan peringkat 1 terakhir — berguna untuk presentasi terbalik, hitung mundur, atau konten bertema ironis."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Ketik atau tempelkan teks Anda", "text": "Masukkan teks di panel kiri. Keluaran yang dibalik muncul di panel kanan secara real time." },
+      { "name": "Pilih mode pembalikan", "text": "Pilih «Balik karakter» untuk membalik setiap karakter dalam string, «Balik kata» untuk menukar urutan kata sambil menjaga setiap kata tetap utuh, atau «Balik baris» untuk menempatkan baris terakhir di awal." },
+      { "name": "Tinjau hasilnya", "text": "Jumlah karakter ditampilkan di bawah kedua panel. Verifikasi keluaran sesuai yang diharapkan sebelum menyalin." },
+      { "name": "Salin ke clipboard", "text": "Klik «Salin hasil» untuk menyalin teks yang dibalik. Tombol sebentar menampilkan «Disalin!» untuk mengonfirmasi." }
+    ]
+  },
+  "faq": [
+    { "q": "Apakah emoji ditangani dengan benar?", "a": "Ya. Alat ini menggunakan Array.from() untuk mengiterasi titik kode Unicode daripada unit kode UTF-16 mentah, sehingga emoji (termasuk urutan multi-titik-kode seperti emoji bendera) dibalik tanpa kerusakan." },
+    { "q": "Apa perbedaan membalik karakter dan membalik kata?", "a": "Pembalikan karakter membalik seluruh string sehingga karakter terakhir menjadi yang pertama. Pembalikan kata menjaga setiap kata tetap utuh tetapi menempatkan kata terakhir di awal. «halo dunia» menjadi «ainud olah» dalam mode karakter dan «dunia halo» dalam mode kata." },
+    { "q": "Apakah pembalikan kata mempengaruhi tanda baca yang melekat pada kata?", "a": "Tanda baca yang melekat langsung pada kata (tanpa spasi) ikut berpindah bersama kata tersebut. «Halo, dunia!» menjadi «dunia! Halo,» dalam mode balik kata — koma tetap dengan «Halo» dan tanda seru tetap dengan «dunia»." },
+    { "q": "Bisakah saya membalik teks Jepang atau Cina?", "a": "Ya. Pembalikan karakter bekerja dengan benar untuk karakter CJK karena setiap ideograf adalah satu titik kode. Hasilnya dibaca dari kanan ke kiri karakter demi karakter, yang mungkin atau tidak mungkin bermakna tergantung kontennya." },
+    { "q": "Apakah ada batas panjang?", "a": "Tidak ada batas yang dipaksakan. Teks panjang diproses seluruhnya di memori browser Anda. Kinerja efektif instan untuk teks hingga jutaan karakter pada perangkat keras modern." },
+    { "q": "Apakah teks saya dikirim ke server?", "a": "Tidak. Semua pemrosesan berjalan secara lokal di JavaScript. Teks Anda tidak pernah meninggalkan browser Anda." },
+    { "q": "Apa yang terjadi pada baris baru di akhir saat membalik baris?", "a": "Setiap karakter baris baru adalah pemisah baris. Baris baru di akhir masukan akan menghasilkan baris kosong di awal keluaran yang dibalik. Hapus saja baris kosong ekstra jika tidak diinginkan." },
+    { "q": "Bisakah saya menggunakan ini untuk membuat palindrom?", "a": "Anda dapat memeriksa apakah sebuah kata adalah palindrom dengan menempelkannya dan melihat apakah keluaran yang dibalik cocok dengan masukan. Untuk membuat palindrom, gabungkan teks asli dengan versi terbalik karakter-nya (mis. «race» + «ecar» = «raceecar»)." }
+  ]
+}

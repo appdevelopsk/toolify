@@ -1,0 +1,122 @@
+{
+  "title": "Geometrik Şekil Hesaplayıcı — Hacim ve Yüzey Alanı",
+  "shortDescription": "6 yaygın 3D şekil için hacim, yüzey alanı ve temel boyutları hesaplayın: küre, silindir, koni, küp, dikdörtgenler prizması ve üçgen prizma.",
+  "description": "Bir 3D şekil seçin, boyutlarını girin ve hacim, toplam yüzey alanı ile yanal alan, ayrıt uzunluğu veya uzay köşegeni gibi şekle özgü özellikleri anında alın. Tüm hesaplamalar tarayıcınızda altı ondalık basamağa kadar hassasiyetle çalışır.",
+  "metaDescription": "Ücretsiz 3D geometri hesaplayıcısı: adım adım formüllerle küre, silindir, koni, küp, dikdörtgenler prizması ve üçgen prizmanın hacim ve yüzey alanını bulun.",
+  "keywords": [
+    "geometrik şekil hesaplayıcı",
+    "hacim hesaplayıcı",
+    "yüzey alanı hesaplayıcı",
+    "3D şekil hesaplayıcı",
+    "küre hacmi",
+    "silindir hacmi",
+    "koni yüzey alanı"
+  ],
+  "shapeLabel": "Bir Şekil Seçin",
+  "shape": {
+    "sphere": "Küre",
+    "cylinder": "Silindir",
+    "cone": "Koni",
+    "cube": "Küp",
+    "rectangularPrism": "Dikdörtgenler Prizması",
+    "triangularPrism": "Üçgen Prizma"
+  },
+  "input": {
+    "radius": "Yarıçap (r)",
+    "height": "Yükseklik (h)",
+    "side": "Kenar Uzunluğu (s)",
+    "length": "Uzunluk (l)",
+    "width": "Genişlik (w)",
+    "triangleBase": "Üçgen Tabanı (b)",
+    "triangleHeight": "Üçgen Yüksekliği (h△)"
+  },
+  "result": {
+    "volume": "Hacim",
+    "surfaceArea": "Toplam Yüzey Alanı",
+    "lateralArea": "Yanal Yüzey Alanı",
+    "slantHeight": "Ayrıt Uzunluğu (s)",
+    "diagonal": "Uzay Köşegeni",
+    "baseArea": "Taban Alanı"
+  },
+  "empty": "Bir şekil seçin ve boyutlarını girin.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Yaygın 3D şekiller için hacim ve yüzey alanı formülleri",
+        "paragraphs": [
+          "Her 3D şeklin iki temel ölçümü vardır: hacim — içinde kapladığı alan miktarı — ve yüzey alanı — tüm yüzlerinin toplam alanı. Yarıçapı r olan bir kürenin hacmi (4/3)πr³ ve yüzey alanı 4πr²'dir. Taban yarıçapı r ve yüksekliği h olan bir silindirin hacmi πr²h, yanal alanı 2πrh ve toplam yüzey alanı 2πr² + 2πrh'dir. Bir koni, s = √(r² + h²) ayrıt uzunluğu ekler: hacmi (1/3)πr²h ve toplam yüzey alanı πr² + πrs'dir.",
+          "Çokyüzlüler için, kenar uzunluğu s olan bir küpün hacmi s³, yüzey alanı 6s² ve uzay köşegeni s√3'tür. l × w × h boyutlarına sahip bir dikdörtgenler prizmasının hacmi lwh, yüzey alanı 2(lw + lh + wh) ve uzay köşegeni √(l² + w² + h²)'dir. İkizkenar üçgen kesitli bir üçgen prizma — taban b, üçgen yüksekliği h△ ve prizma uzunluğu l — için hacim (1/2)bh△l ve toplam yüzey alanı yanal dikdörtgen alanı artı iki üçgen yüz toplamına eşittir.",
+          "Bu hesaplayıcı, tüm formülleri JavaScript'in 64-bit kayan nokta aritmetiğiyle tam IEEE 754 hassasiyetinde değerlendirerek gösterilen değerleri altı ondalık basamağa yuvarlar. Tüm girişleri aynı birimde tutun; hesaplayıcı birimden bağımsızdır — milimetre, santimetre, inç veya metre aynı şekilde çalışır."
+        ]
+      },
+      {
+        "heading": "Ambalaj, mimari ve mühendislikteki gerçek dünya uygulamaları",
+        "paragraphs": [
+          "Ambalaj tasarımcıları, içine ne kadar ürün sığdığını belirlemek için kutunun (dikdörtgenler prizması) hacmini ve ne kadar karton veya film gerektiğini tahmin etmek için yüzey alanını hesaplar. Yüksekliği 30 cm, genişliği 20 cm ve derinliği 8 cm olan bir tahıl kutusu 30 × 20 × 8 = 4800 cm³ tutar ve 2(30×20 + 30×8 + 20×8) = 2000 cm² malzeme gerektirir.",
+          "İnşaat mühendisleri, su depolama tankları, silolar ve basınçlı kaplar için küre ve silindir formüllerini kullanır. 2 m yarıçaplı ve 5 m yüksekliğinde silindirik bir tank π × 4 × 5 ≈ 62,83 m³ — yaklaşık 62.830 litre — tutar. Yüzey alanı, gerekli yalıtım veya korozyon önleyici kaplama miktarını belirler.",
+          "Mimaride, koni ve üçgen prizma şekilleri kulelerde, çatı pencerelerinde ve dekoratif kanatçıklarda görülür. Konik bir kulenin yanal yüzey alanını bilmek, çatıcıya ne kadar bakır veya arduvaz levha sipariş edeceğini tam olarak söyler. Taban yarıçapı 1,2 m ve yüksekliği 3 m olan bir koninin ayrıt uzunluğu √(1,44 + 9) ≈ 3,232 m ve yanal alanı π × 1,2 × 3,232 ≈ 12,18 m²'dir."
+        ]
+      },
+      {
+        "heading": "Boyutların ölçeklenmesi hacim ve yüzey alanını nasıl etkiler",
+        "paragraphs": [
+          "Bir katının üç boyutunu k katsayısıyla ölçeklendirmek, hacmini k³ ve yüzey alanını k² ile çarpar. Bu kare-küp yasasının derin pratik sonuçları vardır. Bir küpün kenarını ikiye katlayın (k = 2) ve hacmi 8 kat büyür, yüzey alanı ise yalnızca dört katına çıkar. Bu nedenle büyük nakliye konteynerleri, küçüklerden çok daha fazla malzeme başına alan verimliliği sunar.",
+          "Küre için yarıçapı ikiye katladığınızda hacim (4/3)πr³'ten (4/3)π(2r)³ = 8 × (4/3)πr³'e sekiz kat artar. Yüzey alanı 4πr²'den 4π(2r)² = 16πr²'ye dört kat artar. Küre için 3/r olan yüzey-hacim oranı yarıya iner — bu nedenle büyük hayvanların vücut hacimlerine oranla daha az yüzey alanı vardır ve bu durum ısı dağıtımını ve metabolizmayı etkiler.",
+          "Yalnızca bir boyut ölçeklendiğinde, o bileşen için etki doğrusaldir. Silindirin yüksekliğini ikiye katlamak hacmini ikiye katlar ancak toplam yüzey alanını ikinin altında artırır (çünkü iki dairesel taban değişmez). Bu asimetri, kutu tasarımı optimizasyonunda önemlidir: sabit bir hacim için en verimli silindir, yüksekliğinin çapına eşit olduğu silindirdir."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Bir 3D şekil seçin",
+        "text": "Altı şekil düğmesinden birine tıklayın — Küre, Silindir, Koni, Küp, Dikdörtgenler Prizması veya Üçgen Prizma — hesaplamak istediğiniz şekli seçmek için."
+      },
+      {
+        "name": "Gerekli boyutları girin",
+        "text": "Seçilen şekil için görünen giriş alanlarını doldurun. Tüm değerler aynı birimde pozitif sayılar olmalıdır (örneğin hepsi santimetre veya hepsi inç)."
+      },
+      {
+        "name": "Sonuçları okuyun",
+        "text": "Hacim ve toplam yüzey alanı en üstte vurgulanır. Şekle bağlı olarak yanal alan, ayrıt uzunluğu, taban alanı veya uzay köşegeni gibi ek özellikler için aşağı kaydırın."
+      },
+      {
+        "name": "Şekli veya boyutları değiştirin",
+        "text": "İstediğiniz zaman farklı bir şekil seçin veya herhangi bir boyutu ayarlayın — sonuçlar sayfa yenilenmeden anında güncellenir."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Hacim ile yüzey alanı arasındaki fark nedir?",
+      "a": "Hacim, bir katının kapladığı üç boyutlu alanı ölçer ve kübik birimlerle ifade edilir (cm³, m³, in³). Yüzey alanı, tüm dış yüzlerin toplam alanını ölçer ve kare birimlerle ifade edilir (cm², m², in²). Hacmi bir kabın tutabileceği su miktarı, yüzey alanını ise dışarıyı kaplamak için gereken boya miktarı olarak düşünün."
+    },
+    {
+      "q": "Koninin ayrıt uzunluğu yüksekliğinden nasıl farklıdır?",
+      "a": "Koninin yüksekliği h, tepeden tabanın merkezine dik olan mesafedir. Ayrıt uzunluğu s, tepeden tabanın kenarına eğimli yüzey boyunca olan mesafedir. Pisagor teoremiyle ilişkilidirler: s = √(r² + h²), burada r taban yarıçapıdır."
+    },
+    {
+      "q": "Üçgen prizma hesaplayıcısı neden ikizkenar üçgen varsayıyor?",
+      "a": "Genel üçgen kesit için çevreyi tam olarak hesaplamak üzere üç kenar uzunluğuna ihtiyaç vardır. Bu hesaplayıcı yalnızca taban ve yükseklik ister, bu nedenle ikizkenar üçgen varsayar — her biri √((b/2)² + h²) uzunluğunda iki eşit kenar. Kenar uzunluğu b olan eşkenar üçgenler için yükseklik b√3/2'dir; bu değeri girdiğinizde doğru sonucu alırsınız."
+    },
+    {
+      "q": "Hangi birimleri kullanmalıyım?",
+      "a": "Tutarlı herhangi bir birim işe yarar — milimetre, santimetre, metre, inç veya feet. Hesaplayıcı birimden bağımsızdır; yarıçapı santimetre cinsinden girerseniz hacim santimetre küp ve yüzey alanı santimetre kare olarak gösterilir. Tek bir hesaplama içinde birimleri karıştırmayın."
+    },
+    {
+      "q": "Yarıçap yerine çap kullanarak kürenin hacmini nasıl bulurum?",
+      "a": "Yarıçapı elde etmek için çapı 2'ye bölün, ardından bu değeri girin. Örneğin, çapı 10 cm olan bir kürenin yarıçapı 5 cm olup hacmi (4/3)π × 5³ ≈ 523,599 cm³'tür."
+    },
+    {
+      "q": "Dikdörtgenler prizmasının uzay köşegeni nedir?",
+      "a": "Uzay köşegeni, prizmanın içinde iki karşıt köşeyi içeri üzerinden birbirine bağlayan en uzun doğru parçasıdır. Uzunluğu √(l² + w² + h²)'dir. Kenar uzunluğu s olan küp için bu s√3'e basitleşir. Bazen ana köşegen veya cisim köşegeni olarak da adlandırılır."
+    },
+    {
+      "q": "Yarıçapı ikiye katlamak kürenin hacmini nasıl etkiler?",
+      "a": "Yarıçapı ikiye katlamak hacmi 2³ = 8 ile çarpar. Bu, V = (4/3)πr³ formülünden çıkar: r yerine 2r koyduğunuzda (4/3)π(2r)³ = 8 × (4/3)πr³ elde edersiniz. Yüzey alanı dört katına çıkar (2² = 4 çarpanı) çünkü r²'ye bağlıdır."
+    },
+    {
+      "q": "Herhangi bir veri sunucuya gönderiliyor mu?",
+      "a": "Hayır. Tüm hesaplamalar JavaScript kullanılarak tamamen tarayıcınızda çalışır. Hiçbir girdi veya sonuç herhangi bir sunucuya iletilmez."
+    }
+  ]
+}

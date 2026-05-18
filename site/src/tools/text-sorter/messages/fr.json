@@ -1,0 +1,111 @@
+{
+  "title": "Tri de Lignes de Texte en Ligne — A–Z, Z–A, Supprimer les Doublons",
+  "shortDescription": "Collez une liste, triez les lignes de A à Z ou de Z à A, supprimez les doublons et copiez le résultat immédiatement.",
+  "description": "Triez les lignes de texte par ordre alphabétique ou inverse, avec comparaison optionnelle insensible à la casse, suppression des doublons, suppression des lignes vides et suppression des espaces en début et fin de ligne. Tout s'exécute dans votre navigateur — aucune donnée n'est envoyée à un serveur.",
+  "metaDescription": "Tri de texte gratuit en ligne. Triez les lignes A-Z ou Z-A, supprimez les doublons et les vides — tout dans votre navigateur, instantanément.",
+  "keywords": [
+    "trier lignes de texte en ligne",
+    "outil de tri de texte",
+    "tri alphabétique",
+    "trier liste en ligne",
+    "supprimer lignes en double",
+    "tri de lignes"
+  ],
+  "label": {
+    "input": "Entrée — collez les lignes ici",
+    "output": "Résultat trié"
+  },
+  "option": {
+    "direction": "Ordre :",
+    "dirAsc": "A → Z (croissant)",
+    "dirDesc": "Z → A (décroissant)",
+    "caseSensitive": "Respecter la casse",
+    "removeDups": "Supprimer les doublons",
+    "removeEmpty": "Supprimer les lignes vides",
+    "trim": "Supprimer les espaces en début/fin"
+  },
+  "action": {
+    "copy": "Copier",
+    "copied": "Copié !"
+  },
+  "stat": {
+    "lines": "{count} lignes"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Fonctionnement du tri de texte",
+        "paragraphs": [
+          "Le tri divise le texte en lignes individuelles, les ordonne lexicographiquement, puis les réassemble. L'ordre lexicographique est le même principe que celui utilisé dans les dictionnaires : les caractères sont comparés un à un de gauche à droite en utilisant leurs points de code Unicode.",
+          "Par défaut, l'outil utilise une comparaison insensible à la casse, ce qui signifie que «apple», «Apple» et «APPLE» sont traités comme identiques pour l'ordre. Activez le mode sensible à la casse lorsque vous avez besoin que les majuscules soient triées avant les minuscules (par exemple, «Z» avant «a» dans l'ordre ASCII)."
+        ]
+      },
+      {
+        "heading": "Cas d'usage courants",
+        "paragraphs": [
+          "Le tri alphabétique de listes de noms, de nuages de mots-clés ou de valeurs de colonnes CSV est l'utilisation la plus courante. Les développeurs trient fréquemment les instructions d'importation ou les clés de configuration pour faciliter les revues de code et rendre les sorties diff plus lisibles.",
+          "Les analystes de données utilisent le tri de lignes pour repérer rapidement les entrées en double dans des listes exportées ou pour aligner deux jeux de données avant une comparaison manuelle. L'option de suppression des doublons condense une liste de milliers d'entrées en valeurs uniques uniquement en un clic."
+        ]
+      },
+      {
+        "heading": "Algorithmes de tri : ce qui se passe en coulisses",
+        "paragraphs": [
+          "Les moteurs JavaScript modernes utilisent une variante optimisée de TimSort (un hybride de tri fusion et tri par insertion) pour la méthode Array.prototype.sort. TimSort est stable, ce qui signifie que les lignes comparées comme égales conservent leur ordre relatif d'origine — utile lorsque vous triez une liste dédoublonnée et souhaitez un comportement cohérent.",
+          "Pour la grande majorité des listes de texte que vous rencontrerez, l'algorithme se termine en bien moins d'une milliseconde dans le navigateur, même pour des dizaines de milliers de lignes. Si vous avez besoin d'un tri tenant compte des paramètres régionaux (par exemple, les caractères accentués en français ou en allemand triés correctement), envisagez d'utiliser Intl.Collator dans votre propre code, car cet outil utilise une comparaison simple de points de code Unicode pour une vitesse maximale."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Collez votre texte",
+        "text": "Cliquez sur la zone de saisie et collez ou saisissez les lignes à trier, un élément par ligne."
+      },
+      {
+        "name": "Choisissez un sens de tri",
+        "text": "Sélectionnez «A → Z» pour l'ordre croissant ou «Z → A» pour l'ordre décroissant dans le menu déroulant."
+      },
+      {
+        "name": "Activez les filtres optionnels",
+        "text": "Cochez «Supprimer les doublons» pour ne conserver que les lignes uniques, «Supprimer les lignes vides» pour éliminer les lignes blanches, ou «Supprimer les espaces» pour retirer les espaces en début et en fin de chaque ligne avant le tri."
+      },
+      {
+        "name": "Copiez le résultat",
+        "text": "Le résultat trié apparaît instantanément à droite. Cliquez sur «Copier» pour le copier dans votre presse-papiers."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Le tri se fait-il automatiquement ?",
+      "a": "Oui. Le résultat se met à jour en temps réel au fur et à mesure que vous tapez ou modifiez une option — il n'y a pas de bouton d'envoi."
+    },
+    {
+      "q": "Le tri respecte-t-il la casse par défaut ?",
+      "a": "Non. Par défaut, l'outil trie sans distinction de casse, de sorte que «Apple» et «apple» sont triés ensemble. Activez la case «Respecter la casse» pour utiliser l'ordre brut des points de code Unicode."
+    },
+    {
+      "q": "Qu'est-ce qui compte comme une ligne ?",
+      "a": "Chaque caractère de nouvelle ligne (\\n) marque la fin d'une ligne. Si vous collez du texte depuis un tableur ou depuis Windows (fins de ligne \\r\\n), l'outil le gère correctement et trie par lignes logiques."
+    },
+    {
+      "q": "Puis-je trier des nombres ?",
+      "a": "L'outil trie lexicographiquement, pas numériquement. Cela signifie que «10» est trié avant «9» parce que «1» < «9». Pour un tri numérique, complétez les nombres avec des zéros non significatifs (par exemple, «09» vs «10») avant de coller."
+    },
+    {
+      "q": "Que fait exactement «Supprimer les doublons» ?",
+      "a": "Il conserve la première occurrence de chaque ligne unique et supprime les suivantes identiques. La comparaison respecte votre paramètre de casse, donc «Apple» et «apple» sont traités comme la même ligne uniquement en mode insensible à la casse."
+    },
+    {
+      "q": "Mes données quittent-elles mon navigateur ?",
+      "a": "Non. Tout le traitement se fait localement en JavaScript. Rien n'est envoyé à aucun serveur."
+    },
+    {
+      "q": "Y a-t-il une limite de lignes ?",
+      "a": "Aucune limite stricte n'est imposée par cet outil. Les performances dépendent de votre appareil, mais les navigateurs modernes gèrent des centaines de milliers de lignes sans délai perceptible."
+    },
+    {
+      "q": "Comment trier une colonne CSV ?",
+      "a": "Copiez les valeurs de la colonne depuis votre tableur dans la zone de saisie (elles se collent à raison d'une valeur par ligne), appliquez vos options, copiez le résultat trié et collez-le de nouveau. Ensuite, rattachez vos autres colonnes manuellement ou via une formule de tableur."
+    }
+  ]
+}
