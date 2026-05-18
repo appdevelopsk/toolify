@@ -121,6 +121,7 @@ import leaseVsBuy from "@/tools/lease-vs-buy-calculator";
 import costOfLiving from "@/tools/cost-of-living-comparison";
 import investmentFee from "@/tools/investment-fee-impact-calculator";
 import priceCompare from "@/tools/price-compare";
+import sleep from "@/tools/sleep-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -248,6 +249,7 @@ export const TOOLS: ToolMeta[] = [
   costOfLiving,
   investmentFee,
   priceCompare,
+  sleep,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
