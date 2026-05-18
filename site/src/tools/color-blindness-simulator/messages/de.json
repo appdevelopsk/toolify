@@ -1,0 +1,88 @@
+{
+  "title": "Farbenblindheit-Simulator — Farben mit anderen Augen sehen",
+  "shortDescription": "Geben Sie eine beliebige Hexadezimalfarbe ein und sehen Sie sofort, wie sie für Menschen mit Deuteranopie, Protanopie, Tritanopie und Achromatopsie aussieht. Unverzichtbar für barrierefreies Design.",
+  "description": "Geben Sie einen Hex-Farbcode ein und vergleichen Sie nebeneinander, wie die Farbe für Menschen mit Rot-Grün-Blindheit (Deuteranopie, Protanopie), Blau-Gelb-Blindheit (Tritanopie) und vollständiger Farbenblindheit (Achromatopsie) aussieht. Jeder Farbmuster zeigt die simulierten Hex- und RGB-Werte.",
+  "metaDescription": "Kostenloser Farbenblindheit-Simulator. Farben für Deuteranopie, Protanopie, Tritanopie und Achromatopsie simulieren. Für barrierefreies Design.",
+  "keywords": ["Farbenblindheit Simulator", "Deuteranopie", "Farbenblindheit Test", "barrierefreie Farben", "Farbsehschwäche"],
+  "input": {
+    "picker": "Farbwähler",
+    "hex": "Hexadezimaler Farbcode"
+  },
+  "label": {
+    "original": "Original",
+    "deuteranopia": "Deuteranopie",
+    "protanopia": "Protanopie",
+    "tritanopia": "Tritanopie",
+    "achromatopsia": "Achromatopsie"
+  },
+  "error": {
+    "invalid": "Bitte geben Sie einen gültigen Hex-Farbcode ein (z.B. #3B82F6)."
+  },
+  "empty": "Geben Sie oben einen gültigen Hex-Farbcode ein, um die Simulationen zu sehen.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Farbenblindheit in Zahlen",
+        "paragraphs": [
+          "Farbsehschwäche betrifft weltweit rund 300 Millionen Menschen — etwa 8 % der Männer und 0,5 % der Frauen nordeuropäischer Abstammung. Rot-Grün-Varianten sind bei weitem am häufigsten: Deuteranopie und Deuteranomalie (Grünschwäche) betreffen zusammen etwa 5 % der Männer, während Protanopie und Protanomalie (Rotschwäche) etwa 2,5 % betreffen. Tritanopie (Blau-Gelb) ist viel seltener und tritt bei weniger als 1 von 10.000 Menschen unabhängig vom Geschlecht auf. Die vollständige Achromatopsie ist noch seltener mit 1 Fall pro 30.000.",
+          "Diese Zahlen bedeuten, dass von 12 Männern, die Ihre Website oder App besuchen, ungefähr einer bestimmte Farbkombinationen nicht so unterscheiden kann, wie Sie es beabsichtigten. Produkte mit hohem Traffic — sei es ein Daten-Dashboard, eine Kaufschaltfläche oder ein Warnbanner — müssen dieses Publikum berücksichtigen. Zu simulieren, was diese Nutzer sehen, ist der erste Schritt hin zu inklusivem Design."
+        ]
+      },
+      {
+        "heading": "Wie die Simulation funktioniert",
+        "paragraphs": [
+          "Das menschliche Auge hat drei Typen von Zapfenzellen, die empfindlich auf lange (Rot), mittlere (Grün) und kurze (Blau) Wellenlängen des Lichts reagieren. Farbenblindheit tritt auf, wenn ein oder mehrere Zapfentypen fehlen oder eine veränderte Spektralempfindlichkeit haben. Forscher modellieren dies im LMS-Farbraum, der direkt den Zapfenantworten entspricht, und leiten Transformationsmatrizen ab, die vorhersagen, was ein farbsehgeschwächtes Auge bei einem bestimmten RGB-Wert wahrnimmt.",
+          "Dieser Simulator verwendet vereinfachte Machado-2009-Matrizen, die direkt im sRGB-Raum angewendet werden. Der Ansatz opfert ein wenig physiologische Präzision für Geschwindigkeit und Einfachheit — der wahrnehmbare Unterschied ist für Designarbeiten vernachlässigbar. Alle Ausgabewerte werden auf den Bereich 0–255 begrenzt, da die Matrixkoeffizienten bei sehr gesättigten Eingabefarben außerhalb des Gamuts liegende Ergebnisse erzeugen können. Die Achromatopsie-Simulation reduziert alle Kanäle auf den Standardluminanzwert (0,299R + 0,587G + 0,114B) und imitiert damit das vollständige Fehlen der Farbwahrnehmung.",
+          "Keine Simulation kann die gelebte Erfahrung der Farbenblindheit perfekt nachbilden, da die Zapfenantwort von Person zu Person variiert. Verwenden Sie dieses Tool als praktische Heuristik und nicht als endgültige Diagnose: Wenn ein Farbpaar im Simulator verwirrend ähnlich aussieht, wird es wahrscheinlich zumindest für einige farbenblinde Nutzer Probleme verursachen."
+        ]
+      },
+      {
+        "heading": "Designtipps für Barrierefreiheit bei Farbenblindheit",
+        "paragraphs": [
+          "Die effektivste Technik ist, niemals allein auf Farbe zu setzen, um Informationen zu vermitteln. Kombinieren Sie Farbe mit Form, Muster oder Textbeschriftung. Ein Kreisdiagramm-Segment sollte nicht nur durch seinen Farbton unterschieden werden — fügen Sie eine direkte Beschriftung oder ein eigenes Füllmuster hinzu. Ein Formularvalidierungsfehler sollte nicht nur durch einen roten Rand angezeigt werden — fügen Sie ein Symbol und eine explizite Fehlermeldung hinzu. Diese Grundsätze sind in WCAG 2.1 Erfolgskriterium 1.4.1 (Verwendung von Farbe) verankert und für die AA-Konformität obligatorisch.",
+          "Testen Sie bei der Auswahl einer Farbpalette Ihre Vordergrund- und Hintergrundpaare mit einem Kontrastprüfer (WCAG verlangt ein Mindestverhältnis von 4,5:1 für normalen Text und 3:1 für großen Text). Bevorzugen Sie über den Kontrast hinaus Farbtonkombinationen, die auch unter der Deuteranopie-Simulation unterscheidbar bleiben: Blau-Orange-Paare funktionieren gut, während Rot-Grün-Paare problematisch sind. Vermeiden Sie es, Rot und Grün als einzige Unterscheidungsmerkmale für Status oder Datenkategorien zu verwenden. Für Datenvisualisierungen sind ColorBrewer-Paletten (insbesondere die „farbenblindensicheren\" Untergruppen) ein verlässlicher Ausgangspunkt."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Wählen oder tippen Sie eine Farbe", "text": "Verwenden Sie den Farbwähler oder geben Sie einen gültigen Hex-Code ein (mit oder ohne #-Präfix)." },
+      { "name": "Vergleichen Sie die fünf Farbmuster", "text": "Das Tool zeigt Ihre Originalfarbe neben vier simulierten Ansichten — Deuteranopie, Protanopie, Tritanopie und Achromatopsie." },
+      { "name": "Lesen Sie die Hex- und RGB-Werte ab", "text": "Jedes Farbmuster zeigt den simulierten Hex-Code und das RGB-Tripel, bereit zum Kopieren in Design oder Code." },
+      { "name": "Passen Sie Ihr Design an", "text": "Wenn zwei Farbmuster für Ihren Anwendungsfall zu ähnlich aussehen, wählen Sie Farben, die in allen simulierten Ansichten unterscheidbar bleiben." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was ist Deuteranopie?",
+      "a": "Deuteranopie ist eine Form der Rot-Grün-Farbenblindheit, die durch das Fehlen mittelwelliger (grünempfindlicher) Zapfenzellen verursacht wird. Menschen mit Deuteranopie haben Schwierigkeiten, Rot- und Grüntöne zu unterscheiden, die als Gelb-, Braun- oder Graunuancen erscheinen. Es ist der häufigste Typ der Farbsehschwäche und betrifft etwa 1 % der Männer."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen Deuteranopie und Protanopie?",
+      "a": "Beide sind Rot-Grün-Farbenblindheit, aber sie betreffen unterschiedliche Zapfentypen. Protanopie umfasst das Fehlen langwelliger (rotempfindlicher) Zapfen; Deuteranopie umfasst das Fehlen mittelwelliger (grünempfindlicher) Zapfen. In der Praxis erscheinen Rotfarben bei Protanopie viel dunkler als bei Deuteranopie, weil die L-Zapfen bedeutende Helligkeitsinformationen übertragen."
+    },
+    {
+      "q": "Wie viele Menschen weltweit sind farbenblind?",
+      "a": "Weltweit haben etwa 300 Millionen Menschen eine Form der Farbsehschwäche. Rund 8 % der Männer und 0,5 % der Frauen nordeuropäischer Abstammung sind betroffen. Rot-Grün-Varianten (Deuteranopie, Deuteranomalie, Protanopie, Protanomalie) machen die überwiegende Mehrheit der Fälle aus."
+    },
+    {
+      "q": "Ist Farbenblindheit bei Männern häufiger?",
+      "a": "Ja. Die Gene, die die Fotopigmente der lang- und mittelwelligen Zapfen kodieren (OPN1LW und OPN1MW), befinden sich auf dem X-Chromosom. Da Männer nur ein X-Chromosom haben, reicht ein einziges defektes Allel aus, um Farbenblindheit zu verursachen. Frauen haben zwei X-Chromosomen, daher müssen beide Kopien den Defekt tragen — was weibliche Farbenblindheit viel seltener macht."
+    },
+    {
+      "q": "Was ist Achromatopsie?",
+      "a": "Achromatopsie (Stäbchen-Monochromasie) ist ein Zustand, bei dem alle drei Zapfentypen nicht funktionsfähig sind und die Sicht vollständig von Stäbchenzellen abhängt. Betroffene sehen die Welt in Grautönen, haben bei hellem Licht eine sehr schlechte Sehschärfe und sind oft extrem lichtempfindlich. Sie ist extrem selten und betrifft etwa 1 von 30.000 Menschen."
+    },
+    {
+      "q": "Wie genau sind die Farbenblindheit-Simulationen?",
+      "a": "Die Simulationen verwenden etablierte lineare Transformationsmatrizen (Machado 2009), die eng mit experimentellen Daten zur Farbwahrnehmung von Dichromaten übereinstimmen. Für Design- und Barrierefreiheitstests ist die Genauigkeit mehr als ausreichend. Individuelle Variation existiert — manche Menschen haben mildere anomale Trichromasie statt vollständiger Dichromasie — behandeln Sie die Simulation daher als konservative Worst-Case-Ansicht."
+    },
+    {
+      "q": "Wie designe ich für Farbenblindheit, ohne alles neu zu gestalten?",
+      "a": "Beginnen Sie damit, Ihre bestehende Palette mit diesem Simulator zu prüfen. Für jedes Farbmusterpaar, das in der Deuteranopie- oder Protanopie-Ansicht identisch aussieht, fragen Sie sich, ob ein Nutzer Ihren Inhalt auch ohne den Farbunterschied verstehen könnte. Fügen Sie bei Bedarf Symbole, Beschriftungen oder Muster hinzu. Wählen Sie kontrastierende Farbtöne, die unterscheidbar bleiben — Blau und Orange statt Rot und Grün. Führen Sie eine WCAG-Kontrastprüfung für alle Text/Hintergrund-Paare durch."
+    },
+    {
+      "q": "Funktioniert dieses Tool mit CSS-Farbnamen oder HSL-Werten?",
+      "a": "Dieses Tool akzeptiert nur Hex-Codes (#RRGGBB oder #RGB). Um CSS-Farbnamen oder HSL-Werte zu verwenden, konvertieren Sie sie zunächst mit unserem Farbkonverter in Hexadezimal und fügen Sie das Ergebnis dann hier ein."
+    }
+  ]
+}

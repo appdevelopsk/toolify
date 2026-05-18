@@ -1,0 +1,88 @@
+{
+  "title": "Simulateur de Daltonisme — Voyez les Couleurs Autrement",
+  "shortDescription": "Saisissez n'importe quelle couleur hexadécimale et visualisez instantanément comment elle apparaît aux personnes atteintes de deuteranopie, protanopie, tritanopie et achromatopsie. Indispensable pour le design accessible.",
+  "description": "Entrez un code hexadécimal et comparez côte à côte comment la couleur apparaît aux personnes daltoniens rouge-vert (deuteranopie, protanopie), bleu-jaune (tritanopie) et atteintes de cécité totale aux couleurs (achromatopsie). Chaque échantillon affiche les valeurs hexadécimales et RVB simulées.",
+  "metaDescription": "Simulateur de daltonisme gratuit. Visualisez toute couleur pour deuteranopie, protanopie, tritanopie et achromatopsie. Essentiel pour le design accessible.",
+  "keywords": ["simulateur daltonisme", "deuteranopie", "test daltonisme", "couleur accessible", "déficience vision couleurs"],
+  "input": {
+    "picker": "Sélecteur de couleur",
+    "hex": "Code couleur hexadécimal"
+  },
+  "label": {
+    "original": "Original",
+    "deuteranopia": "Deuteranopie",
+    "protanopia": "Protanopie",
+    "tritanopia": "Tritanopie",
+    "achromatopsia": "Achromatopsie"
+  },
+  "error": {
+    "invalid": "Veuillez saisir un code hexadécimal valide (ex. #3B82F6)."
+  },
+  "empty": "Saisissez un code hexadécimal valide ci-dessus pour voir les simulations.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Le daltonisme en chiffres",
+        "paragraphs": [
+          "La déficience de la vision des couleurs (DVC) touche environ 300 millions de personnes dans le monde — soit environ 8 % des hommes et 0,5 % des femmes d'ascendance nord-européenne. Les variantes rouge-vert sont de loin les plus courantes : la deuteranopie et la deuteranomalie (faiblesse au vert) touchent ensemble environ 5 % des hommes, tandis que la protanopie et la protanomalie (faiblesse au rouge) affectent environ 2,5 %. La tritanopie (bleu-jaune) est bien plus rare, touchant moins d'une personne sur 10 000 quel que soit le sexe. L'achromatopsie totale est plus rare encore, avec 1 cas sur 30 000.",
+          "Ces chiffres signifient que parmi 12 hommes qui visitent votre site web ou application, environ un ne peut pas distinguer certaines combinaisons de couleurs comme vous le souhaitiez. Les produits à fort trafic — tableau de bord, bouton d'achat ou bannière d'avertissement — doivent prendre en compte ce public. Simuler ce que voient ces utilisateurs est la première étape vers un design inclusif."
+        ]
+      },
+      {
+        "heading": "Comment fonctionne la simulation",
+        "paragraphs": [
+          "L'œil humain possède trois types de cellules cônes sensibles aux longueurs d'onde longues (rouge), moyennes (vert) et courtes (bleu). Le daltonisme survient lorsqu'un ou plusieurs types de cônes sont absents ou ont une sensibilité spectrale modifiée. Les chercheurs modélisent cela dans l'espace colorimétrique LMS, qui correspond directement aux réponses des cônes, et en dérivent des matrices de transformation prédisant ce que perçoit un œil déficient en couleurs pour une valeur RVB donnée.",
+          "Ce simulateur utilise des matrices simplifiées de Machado 2009 appliquées directement dans l'espace sRVB. L'approche sacrifie un peu de précision physiologique au profit de la rapidité et de la simplicité — la différence perceptuelle est négligeable pour le travail de design. Toutes les valeurs de sortie sont limitées à la plage 0–255, car les coefficients de la matrice peuvent produire des résultats hors gamme pour des couleurs d'entrée très saturées. La simulation d'achromatopsie ramène tous les canaux à la valeur de luminance standard (0,299R + 0,587G + 0,114B), imitant l'absence totale de perception des couleurs.",
+          "Aucune simulation ne peut parfaitement reproduire l'expérience vécue du daltonisme, car la réponse des cônes varie d'un individu à l'autre. Utilisez cet outil comme une heuristique pratique plutôt qu'un diagnostic définitif : si une paire de couleurs semble confusément similaire dans le simulateur, elle posera probablement problème à au moins certains utilisateurs daltoniens."
+        ]
+      },
+      {
+        "heading": "Conseils de design pour l'accessibilité aux daltoniens",
+        "paragraphs": [
+          "La technique la plus efficace est de ne jamais se fier uniquement à la couleur pour transmettre de l'information. Associez la couleur à la forme, au motif ou à une étiquette de texte. Un secteur d'un graphique circulaire ne doit pas être distingué uniquement par sa teinte — ajoutez une étiquette directe ou un remplissage à motif distinct. Une erreur de validation de formulaire ne doit pas se signaler uniquement par une bordure rouge — ajoutez une icône et un message d'erreur explicite. Ces principes figurent dans le critère de succès 1.4.1 des WCAG 2.1 (Utilisation de la couleur) et sont obligatoires pour la conformité AA.",
+          "Lors du choix d'une palette de couleurs, testez vos paires de premier plan et d'arrière-plan avec un vérificateur de contraste (les WCAG exigent un rapport minimum de 4,5:1 pour le texte normal et 3:1 pour les grands textes). Au-delà du contraste, privilégiez des combinaisons de teintes restant distinguables sous la simulation de deuteranopie : les paires bleu-orange fonctionnent bien, tandis que les paires rouge-vert sont problématiques. Évitez d'utiliser le rouge et le vert comme seuls différenciateurs pour tout statut ou catégorie de données. Pour la visualisation de données, les palettes ColorBrewer (notamment les sous-ensembles « adaptés aux daltoniens ») constituent un point de départ fiable."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Choisissez ou saisissez une couleur", "text": "Utilisez le sélecteur de couleur ou saisissez n'importe quel code hexadécimal valide (avec ou sans le préfixe #)." },
+      { "name": "Comparez les cinq échantillons", "text": "L'outil affiche votre couleur originale avec quatre vues simulées — deuteranopie, protanopie, tritanopie et achromatopsie." },
+      { "name": "Lisez les valeurs hexadécimales et RVB", "text": "Chaque échantillon affiche le code hexadécimal simulé et le triplet RVB, prêts à copier dans votre design ou votre code." },
+      { "name": "Ajustez votre design", "text": "Si deux échantillons semblent trop similaires pour votre cas d'usage, choisissez des couleurs qui restent distinctes dans toutes les vues simulées." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Qu'est-ce que la deuteranopie ?",
+      "a": "La deuteranopie est une forme de daltonisme rouge-vert causée par l'absence de cellules cônes à longueur d'onde moyenne (sensibles au vert). Les personnes atteintes ont du mal à distinguer les teintes rouges et vertes, qui apparaissent comme des nuances de jaune, de brun ou de gris. C'est le type le plus courant de déficience de vision des couleurs, touchant environ 1 % des hommes."
+    },
+    {
+      "q": "Quelle est la différence entre deuteranopie et protanopie ?",
+      "a": "Les deux sont des formes de daltonisme rouge-vert, mais elles affectent différents types de cônes. La protanopie implique l'absence de cônes à longue longueur d'onde (sensibles au rouge) ; la deuteranopie implique l'absence de cônes à longueur d'onde moyenne (sensibles au vert). En pratique, les couleurs rouges apparaissent beaucoup plus sombres dans la protanopie que dans la deuteranopie, car les cônes L transmettent d'importantes informations de luminance."
+    },
+    {
+      "q": "Combien de personnes dans le monde sont daltoniennes ?",
+      "a": "Environ 300 millions de personnes dans le monde ont une forme de déficience de vision des couleurs. Environ 8 % des hommes et 0,5 % des femmes d'ascendance nord-européenne sont concernés. Les variantes rouge-vert (deuteranopie, deuteranomalie, protanopie, protanomalie) représentent la grande majorité des cas."
+    },
+    {
+      "q": "Le daltonisme est-il plus courant chez les hommes ?",
+      "a": "Oui. Les gènes codant les photopigments des cônes à longueur d'onde longue et moyenne (OPN1LW et OPN1MW) sont situés sur le chromosome X. Les hommes n'ayant qu'un seul chromosome X, un unique allèle défectueux suffit à causer le daltonisme. Les femmes ont deux chromosomes X, donc les deux copies doivent porter le défaut — ce qui rend le daltonisme féminin bien plus rare."
+    },
+    {
+      "q": "Qu'est-ce que l'achromatopsie ?",
+      "a": "L'achromatopsie (monochromatisme des bâtonnets) est une condition dans laquelle les trois types de cônes ne sont pas fonctionnels, laissant la vision entièrement dépendante des cellules bâtonnets. Les personnes touchées voient le monde en niveaux de gris, ont une très mauvaise acuité visuelle en pleine lumière et sont souvent extrêmement photosensibles. Elle est extrêmement rare, touchant environ 1 personne sur 30 000."
+    },
+    {
+      "q": "Quelle est la précision des simulations de daltonisme ?",
+      "a": "Les simulations utilisent des matrices de transformation linéaire établies (Machado 2009) qui correspondent étroitement aux données expérimentales sur les couleurs perçues par les dichromatiques. Pour le design et les tests d'accessibilité, la précision est plus que suffisante. Une variation individuelle existe — certaines personnes ont une trichromatique anormale plus légère plutôt qu'une dichromatique complète — traitez donc la simulation comme une vue conservatrice du pire des cas."
+    },
+    {
+      "q": "Comment concevoir pour les daltoniens sans tout repenser ?",
+      "a": "Commencez par auditer votre palette existante avec ce simulateur. Pour toute paire d'échantillons semblant identiques en vue deuteranopie ou protanopie, demandez-vous si un utilisateur pourrait comprendre votre contenu sans la distinction de couleur. Ajoutez des icônes, étiquettes ou motifs là où c'est nécessaire. Choisissez des teintes contrastées qui restent distinguables — bleu et orange plutôt que rouge et vert. Effectuez une vérification de contraste WCAG sur toutes les paires texte/fond."
+    },
+    {
+      "q": "Cet outil fonctionne-t-il avec les noms de couleurs CSS ou les valeurs HSL ?",
+      "a": "Cet outil accepte uniquement les codes hexadécimaux (#RRVVBB ou #RVB). Pour utiliser des noms de couleurs CSS ou des valeurs HSL, commencez par les convertir en hexadécimal avec notre Convertisseur de couleurs, puis collez le résultat ici."
+    }
+  ]
+}

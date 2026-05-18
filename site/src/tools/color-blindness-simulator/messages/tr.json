@@ -1,0 +1,88 @@
+{
+  "title": "Renk Körlüğü Simülatörü — Renkleri Başkalarının Gözüyle Görün",
+  "shortDescription": "Herhangi bir hex renk kodu girin ve o rengin deuteranopi, protanopi, tritanopi ve akromatopsi durumlarında nasıl göründüğünü anında görün. Erişilebilir tasarım için vazgeçilmez araç.",
+  "description": "Bir hex renk kodu girin ve rengin kırmızı-yeşil renk körlüğü (deuteranopi, protanopi), mavi-sarı renk körlüğü (tritanopi) ve tam renk körlüğü (akromatopsi) durumlarında nasıl göründüğünü yan yana karşılaştırın. Her renk örneği simüle edilmiş hex ve RGB değerlerini gösterir.",
+  "metaDescription": "Ücretsiz renk körlüğü simülatörü. Herhangi bir rengin deuteranopi, protanopi, tritanopi ve akromatopside nasıl göründüğünü görün. Erişilebilir tasarım için vazgeçilmez.",
+  "keywords": ["renk körlüğü simülatörü", "deuteranopi", "renk körlüğü testi", "erişilebilir renk", "renk görme bozukluğu"],
+  "input": {
+    "picker": "Renk seçici",
+    "hex": "Hex renk kodu"
+  },
+  "label": {
+    "original": "Orijinal",
+    "deuteranopia": "Deuteranopi",
+    "protanopia": "Protanopi",
+    "tritanopia": "Tritanopi",
+    "achromatopsia": "Akromatopsi"
+  },
+  "error": {
+    "invalid": "Lütfen geçerli bir hex renk kodu girin (örn. #3B82F6)."
+  },
+  "empty": "Simülasyonları görmek için yukarıya geçerli bir hex renk kodu girin.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Renk körlüğü rakamlarla",
+        "paragraphs": [
+          "Renk görme bozukluğu dünya genelinde yaklaşık 300 milyon kişiyi etkiliyor — Kuzey Avrupa kökenli erkeklerin yaklaşık %8'ini ve kadınların %0,5'ini. Kırmızı-yeşil türleri çok daha yaygın: deuteranopi ve deuteranomali (yeşil zayıflığı) birlikte erkeklerin yaklaşık %5'ini etkilerken, protanopi ve protanomali (kırmızı zayıflığı) yaklaşık %2,5'ini etkiliyor. Tritanopi (mavi-sarı) çok daha nadir olup cinsiyetten bağımsız olarak 10.000 kişide 1'den azı etkiliyor. Tam akromatopsi ise 30.000'de 1 oranıyla daha da nadir.",
+          "Bu rakamlar, web sitenizi veya uygulamanızı ziyaret eden her 12 erkekten yaklaşık birinin belirli renk kombinasyonlarını sizin istediğiniz şekilde ayırt edemeyeceği anlamına gelir. Veri panoları, satın alma düğmeleri veya uyarı afişleri gibi yüksek trafikli ürünler bu kitleyi göz önünde bulundurmalıdır. Bu kullanıcıların ne gördüğünü simüle etmek, kapsayıcı tasarıma giden ilk adımdır."
+        ]
+      },
+      {
+        "heading": "Simülasyon nasıl çalışır",
+        "paragraphs": [
+          "İnsan gözünde uzun (kırmızı), orta (yeşil) ve kısa (mavi) dalga boylarına duyarlı üç tip koni hücresi bulunur. Renk körlüğü, bir veya daha fazla koni tipinin bulunmaması ya da spektral duyarlılığının değişmiş olması durumunda ortaya çıkar. Araştırmacılar bunu, koni tepkileriyle doğrudan örtüşen LMS renk uzayında modelleyerek belirli bir RGB değerini renk bozukluğu olan gözün nasıl algıladığını tahmin eden dönüşüm matrisleri türetir.",
+          "Bu simülatör, sRGB uzayında doğrudan uygulanan basitleştirilmiş Machado 2009 matrislerini kullanır. Bu yaklaşım biraz fizyolojik doğruluktan ödün vererek hız ve sadelik sağlar — algısal fark tasarım çalışmalarında ihmal edilebilir düzeydedir. Matris katsayıları çok doygun giriş renklerinde gamut dışı sonuçlar üretebileceğinden tüm çıkış değerleri 0–255 aralığında sınırlandırılır. Akromatopsi simülasyonu tüm kanalları standart parlaklık değerine (0,299R + 0,587G + 0,114B) indirgeyerek tam renk algısı yokluğunu taklit eder.",
+          "Koni tepkisi bireyden bireye değiştiğinden hiçbir simülasyon renk körlüğünün yaşanmış deneyimini mükemmel biçimde kopyalayamaz. Bu aracı kesin bir tanı yerine pratik bir rehber olarak kullanın: Simülatörde iki renk kafa karıştırıcı biçimde benzer görünüyorsa, bu renk kombinasyonu muhtemelen en azından bazı renk körü kullanıcılar için sorun yaratacaktır."
+        ]
+      },
+      {
+        "heading": "Renk körlüğü erişilebilirliği için tasarım ipuçları",
+        "paragraphs": [
+          "En etkili teknik, bilgiyi iletmek için asla yalnızca renge güvenmemektir. Rengi şekil, desen veya metin etiketiyle birleştirin. Pasta grafiğinin bir dilimi yalnızca tonuyla ayırt edilmemeli — doğrudan etiket veya farklı bir desen dolgusu ekleyin. Form doğrulama hatası yalnızca bir kenarlığı kırmızıya çevirerek gösterilmemeli — bir simge ve açık bir hata mesajı ekleyin. Bu ilkeler WCAG 2.1 Başarı Kriteri 1.4.1'de (Renk Kullanımı) yer alır ve AA uyumluluğu için zorunludur.",
+          "Bir renk paleti seçerken ön plan ve arka plan çiftlerini kontrast denetleyicisiyle test edin (WCAG normal metin için minimum 4,5:1, büyük metin için 3:1 oranı gerektirir). Kontrastın ötesinde, deuteranopi simülasyonunda da ayırt edilebilir kalan ton kombinasyonlarını tercih edin: mavi-turuncu çiftler iyi çalışırken kırmızı-yeşil çiftler sorunludur. Kırmızı ve yeşili herhangi bir durum veya veri kategorisi için tek ayırt edici unsur olarak kullanmaktan kaçının."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Renk seçin veya yazın", "text": "Renk seçiciyi kullanın ya da geçerli bir hex kodu yazın (# öneki ile veya onsuz)." },
+      { "name": "Beş renk örneğini karşılaştırın", "text": "Araç, orijinal renginizi dört simüle edilmiş görünümün yanında gösterir — deuteranopi, protanopi, tritanopi ve akromatopsi." },
+      { "name": "Hex ve RGB değerlerini okuyun", "text": "Her renk örneği simüle edilmiş hex kodunu ve RGB üçlüsünü gösterir; tasarım veya koda kopyalamaya hazırdır." },
+      { "name": "Tasarımınızı düzenleyin", "text": "İki renk örneği kullanım durumunuz için çok benzer görünüyorsa, tüm simüle edilmiş görünümlerde farklı kalan renkler seçin." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Deuteranopi nedir?",
+      "a": "Deuteranopi, orta dalga boylu (yeşile duyarlı) koni hücrelerinin yokluğundan kaynaklanan bir kırmızı-yeşil renk körlüğü türüdür. Deuteranopisi olan kişiler kırmızı ve yeşil tonları ayırt etmekte güçlük çeker; bu renkler sarı, kahverengi veya gri tonlar olarak görünür. En yaygın renk görme bozukluğu türü olup erkeklerin yaklaşık %1'ini etkiler."
+    },
+    {
+      "q": "Deuteranopi ile protanopi arasındaki fark nedir?",
+      "a": "Her ikisi de kırmızı-yeşil renk körlüğüdür ancak farklı koni tiplerini etkiler. Protanopi, uzun dalga boylu (kırmızıya duyarlı) konilerin yokluğunu içerir; deuteranopi ise orta dalga boylu (yeşile duyarlı) konilerin yokluğunu. L konileri önemli parlaklık bilgisi taşıdığından protanopide kırmızı renkler deuteranopiye kıyasla çok daha koyu görünür."
+    },
+    {
+      "q": "Dünyada kaç renk körü kişi var?",
+      "a": "Dünya genelinde yaklaşık 300 milyon kişi bir tür renk görme bozukluğuna sahiptir. Kuzey Avrupa kökenli erkeklerin yaklaşık %8'i ve kadınların %0,5'i etkileniyor. Kırmızı-yeşil türleri (deuteranopi, deuteranomali, protanopi, protanomali) vakaların büyük çoğunluğunu oluşturur."
+    },
+    {
+      "q": "Renk körlüğü erkeklerde daha mı yaygın?",
+      "a": "Evet. Uzun ve orta dalga boylu koni fotopigmentlerini kodlayan genler (OPN1LW ve OPN1MW) X kromozomunda bulunur. Erkeklerin yalnızca bir X kromozomu olduğundan tek bir kusurlu alel renk körlüğüne yol açar. Kadınların iki X kromozomu vardır, bu nedenle her iki kopyanın da kusur taşıması gerekir — bu da kadınlarda renk körlüğünü çok daha nadir kılar."
+    },
+    {
+      "q": "Akromatopsi nedir?",
+      "a": "Akromatopsi (rod monokromasi), üç koni tipinin de işlevsel olmadığı ve görmenin tamamen çubuk hücrelerine bağımlı olduğu bir durumdur. Etkilenen kişiler dünyayı gri tonlarıyla görür, parlak ışıkta görme keskinlikleri çok düşüktür ve genellikle aşırı ışık hassasiyeti yaşarlar. 30.000'de yaklaşık 1 kişiyi etkileyen son derece nadir bir durumdur."
+    },
+    {
+      "q": "Renk körlüğü simülasyonları ne kadar doğru?",
+      "a": "Simülasyonlar, dikromat bireylerin algıladığı renklere ilişkin deneysel verilerle yakından örtüşen köklü doğrusal dönüşüm matrisleri (Machado 2009) kullanır. Tasarım ve erişilebilirlik testi amaçları için doğruluk fazlasıyla yeterlidir. Bireysel farklılıklar mevcuttur — bazı kişilerde tam dikromazi yerine daha hafif anormal trikromazi olabilir — bu nedenle simülasyonu muhafazakâr bir en kötü durum görünümü olarak değerlendirin."
+    },
+    {
+      "q": "Her şeyi yeniden tasarlamadan renk körlüğü için nasıl tasarım yapabilirim?",
+      "a": "Bu simülatörle mevcut palet denetiminizle başlayın. Deuteranopi veya protanopi görünümünde özdeş görünen renk çiftleri için, renk farkı olmadan kullanıcının içeriğinizi anlayıp anlayamayacağını değerlendirin. Gerektiğinde simgeler, etiketler veya desenler ekleyin. Ayırt edilebilir kalan karşıt tonlar seçin — kırmızı ve yeşil yerine mavi ve turuncu. Tüm metin/arka plan çiftlerinde WCAG kontrast kontrolü yapın."
+    },
+    {
+      "q": "Bu araç CSS renk adlarıyla veya HSL değerleriyle çalışır mı?",
+      "a": "Bu araç yalnızca hex kodlarını (#RRGGBB veya #RGB) kabul eder. CSS renk adları veya HSL değerleri kullanmak için önce Renk Dönüştürücümüzü kullanarak bunları hex'e çevirin, ardından sonucu buraya yapıştırın."
+    }
+  ]
+}

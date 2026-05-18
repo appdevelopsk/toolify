@@ -1,0 +1,89 @@
+{
+  "title": "Color Blindness Simulator — See Colors as Others Do",
+  "shortDescription": "Enter any hex color and instantly see how it appears to people with deuteranopia, protanopia, tritanopia, and achromatopsia.",
+  "description": "Pick or type a hex color and compare side-by-side how it looks to people with the four main types of color vision deficiency. Each swatch shows the simulated hex and RGB values. Essential for accessibility testing and inclusive design.",
+  "metaDescription": "Free color blindness simulator. Enter a hex color to see how it looks with deuteranopia, protanopia, tritanopia, and achromatopsia. Great for accessible design.",
+  "keywords": ["color blindness simulator", "color vision deficiency", "deuteranopia", "protanopia", "tritanopia", "achromatopsia", "accessibility"],
+  "input": {
+    "picker": "Color picker",
+    "hex": "Hex color"
+  },
+  "label": {
+    "original": "Original",
+    "deuteranopia": "Deuteranopia",
+    "protanopia": "Protanopia",
+    "tritanopia": "Tritanopia",
+    "achromatopsia": "Achromatopsia"
+  },
+  "error": {
+    "invalid": "Please enter a valid hex color (e.g. #3B82F6)."
+  },
+  "empty": "Enter a valid hex color above to see simulations.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Color blindness by the numbers",
+        "paragraphs": [
+          "Color vision deficiency (CVD) affects approximately 300 million people worldwide — about 8% of men and 0.5% of women of Northern European descent. Red-green variants are by far the most common: deuteranopia and deuteranomaly (green-weak) together affect roughly 5% of men, while protanopia and protanomaly (red-weak) affect about 2.5%. Tritanopia (blue-yellow) is much rarer, occurring in fewer than 1 in 10,000 people regardless of sex. Total achromatopsia, the complete absence of color vision, is rarer still at 1 in 30,000.",
+          "These numbers mean that for every 12 men who look at your website or app, roughly one of them cannot distinguish certain color combinations the way you intended. High-traffic products — whether a data dashboard, a checkout button, or a warning banner — must account for this audience. Simulating what those users see is the first step toward designing inclusively."
+        ]
+      },
+      {
+        "heading": "How color vision simulation works",
+        "paragraphs": [
+          "The human eye has three types of cone cells sensitive to long (red), medium (green), and short (blue) wavelengths of light. Color blindness occurs when one or more cone types are absent or have shifted spectral sensitivity. Researchers model this in the LMS color space, which maps directly to cone responses, and then derive transformation matrices that predict what a color-deficient eye perceives when viewing a given RGB value.",
+          "This simulator uses simplified Machado 2009 matrices applied directly in sRGB space. The approach trades a small amount of physiological precision for speed and simplicity — the perceptual difference is negligible for design work. All output values are clamped to the 0–255 range, since the matrix coefficients can produce out-of-gamut results for very saturated input colors. The achromatopsia simulation collapses all channels to the standard luminance value (0.299 R + 0.587 G + 0.114 B), mimicking total absence of color perception.",
+          "No simulation can perfectly replicate the lived experience of color blindness, since cone response varies between individuals. Use this tool as a practical heuristic rather than a definitive diagnostic: if a pair of colors looks confusingly similar in the simulator, it will likely cause problems for at least some color-blind users."
+        ]
+      },
+      {
+        "heading": "Design tips for color-blind accessibility",
+        "paragraphs": [
+          "The single most effective technique is never relying on color alone to convey information. Combine color with shape, pattern, or text label. A pie chart slice should not be distinguished only by its hue — add a direct label or a distinct pattern fill. A form validation error should not just turn a border red — add an icon and an explicit error message. These principles appear in WCAG 2.1 Success Criterion 1.4.1 (Use of Color) and are mandatory for AA compliance.",
+          "When choosing a color palette, test your foreground and background pairs with a contrast checker (WCAG requires a minimum ratio of 4.5:1 for normal text and 3:1 for large text). Beyond contrast, favor hue combinations that remain distinguishable under deuteranopia simulation: blue-orange pairs work well, while red-green pairs are problematic. Avoid using red and green as the sole differentiators for any status or data category. For data visualization, the ColorBrewer palettes (especially the 'colorblind-safe' subsets) are a reliable starting point.",
+          "Interactive elements should also have non-color states: underlines on links, focus rings on inputs, and borders on buttons all help users who cannot rely on color changes alone to perceive affordances. After making changes, run your design through this simulator for each major color type to confirm that meaning survives across all four views."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pick or type a color", "text": "Use the color picker or type any valid hex code (with or without the # prefix)." },
+      { "name": "Compare the five swatches", "text": "The tool shows your original color alongside four simulated views — deuteranopia, protanopia, tritanopia, and achromatopsia." },
+      { "name": "Read the hex and RGB values", "text": "Each swatch displays the simulated hex code and RGB triplet, ready to copy into design or code." },
+      { "name": "Adjust your design", "text": "If any two swatches look too similar for your use case, choose colors that remain distinct in all simulated views." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "What is deuteranopia?",
+      "a": "Deuteranopia is a form of red-green color blindness caused by the absence of functional medium-wavelength (green-sensitive) cone cells. People with deuteranopia have difficulty distinguishing red and green hues, which appear as shades of yellow, brown, or gray. It is the most common type of color vision deficiency, affecting roughly 1% of men."
+    },
+    {
+      "q": "What is the difference between deuteranopia and protanopia?",
+      "a": "Both are red-green color blindness, but they affect different cone types. Protanopia involves missing long-wavelength (red-sensitive) cones; deuteranopia involves missing medium-wavelength (green-sensitive) cones. In practice, red colors appear much darker in protanopia than in deuteranopia, because the red channel carries significant luminance information via the L cones."
+    },
+    {
+      "q": "How many people worldwide are color blind?",
+      "a": "Approximately 300 million people globally have some form of color vision deficiency. About 8% of men and 0.5% of women of Northern European ancestry are affected. Red-green variants (deuteranopia, deuteranomaly, protanopia, protanomaly) account for the vast majority of cases."
+    },
+    {
+      "q": "Is color blindness more common in men?",
+      "a": "Yes. The genes encoding the long- and medium-wavelength cone photopigments (OPN1LW and OPN1MW) are located on the X chromosome. Since men have only one X chromosome, a single defective allele causes color blindness. Women have two X chromosomes, so both copies must carry the defect — making female color blindness much rarer."
+    },
+    {
+      "q": "What is achromatopsia?",
+      "a": "Achromatopsia (rod monochromacy) is a condition in which all three cone types are non-functional, leaving vision entirely dependent on rod cells. Affected individuals see the world in shades of gray, have very poor visual acuity in bright light, and are often extremely light-sensitive. It is extremely rare, affecting roughly 1 in 30,000 people."
+    },
+    {
+      "q": "How accurate are the color blindness simulations?",
+      "a": "The simulations use established linear transformation matrices (Machado 2009) that closely match experimental data on the perceived colors of dichromats. For design and accessibility testing purposes the accuracy is more than sufficient. Individual variation exists — some people have milder anomalous trichromacy rather than full dichromacy — so treat the simulation as a conservative worst-case view."
+    },
+    {
+      "q": "How do I design for color blindness without redesigning everything?",
+      "a": "Start by auditing your existing palette with this simulator. For any two swatches that look identical in deuteranopia or protanopia view, ask whether a user could still understand your content without the color distinction. Add icons, labels, or patterns where needed. Choose contrasting hues that remain distinguishable — blue and orange rather than red and green. Run a WCAG contrast check on all text/background pairs."
+    },
+    {
+      "q": "Does this tool work with CSS color names or HSL values?",
+      "a": "This tool accepts hex codes only (#RRGGBB or #RGB). To use CSS color names or HSL values, first convert them to hex using our Color Converter, then paste the result here."
+    }
+  ]
+}

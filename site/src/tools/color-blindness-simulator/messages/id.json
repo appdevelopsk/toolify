@@ -1,0 +1,88 @@
+{
+  "title": "Simulator Buta Warna — Lihat Warna seperti Orang Lain Melihatnya",
+  "shortDescription": "Masukkan warna hex apa pun dan lihat seketika bagaimana tampilannya bagi penderita deuteranopia, protanopia, tritanopia, dan akromatopsia. Penting untuk desain aksesibel.",
+  "description": "Masukkan kode warna hex dan bandingkan secara berdampingan bagaimana warna tersebut terlihat bagi penderita buta warna merah-hijau (deuteranopia, protanopia), buta warna biru-kuning (tritanopia), dan buta warna total (akromatopsia). Setiap swatch menampilkan nilai hex dan RGB yang disimulasikan.",
+  "metaDescription": "Simulator buta warna gratis. Lihat bagaimana warna apa pun terlihat dengan deuteranopia, protanopia, tritanopia, dan akromatopsia. Penting untuk desain aksesibel.",
+  "keywords": ["simulator buta warna", "deuteranopia", "tes buta warna", "warna aksesibel", "defisiensi penglihatan warna"],
+  "input": {
+    "picker": "Pemilih warna",
+    "hex": "Kode warna hex"
+  },
+  "label": {
+    "original": "Asli",
+    "deuteranopia": "Deuteranopia",
+    "protanopia": "Protanopia",
+    "tritanopia": "Tritanopia",
+    "achromatopsia": "Akromatopsia"
+  },
+  "error": {
+    "invalid": "Masukkan kode warna hex yang valid (contoh: #3B82F6)."
+  },
+  "empty": "Masukkan kode warna hex yang valid di atas untuk melihat simulasi.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Buta warna dalam angka",
+        "paragraphs": [
+          "Defisiensi penglihatan warna memengaruhi sekitar 300 juta orang di seluruh dunia — sekitar 8% pria dan 0,5% wanita keturunan Eropa Utara. Varian merah-hijau adalah yang paling umum: deuteranopia dan deuteranomali (kelemahan hijau) bersama-sama memengaruhi sekitar 5% pria, sementara protanopia dan protanomali (kelemahan merah) memengaruhi sekitar 2,5%. Tritanopia (biru-kuning) jauh lebih jarang, terjadi pada kurang dari 1 dari 10.000 orang tanpa memandang jenis kelamin. Akromatopsia total bahkan lebih langka, dengan 1 kasus per 30.000.",
+          "Angka-angka ini berarti bahwa dari setiap 12 pria yang mengunjungi situs web atau aplikasi Anda, sekitar satu di antaranya tidak dapat membedakan kombinasi warna tertentu seperti yang Anda maksudkan. Produk dengan lalu lintas tinggi — baik dasbor data, tombol beli, atau spanduk peringatan — harus mempertimbangkan audiens ini. Mensimulasikan apa yang dilihat pengguna tersebut adalah langkah pertama menuju desain inklusif."
+        ]
+      },
+      {
+        "heading": "Cara kerja simulasi",
+        "paragraphs": [
+          "Mata manusia memiliki tiga jenis sel kerucut yang sensitif terhadap gelombang panjang (merah), sedang (hijau), dan pendek (biru). Buta warna terjadi ketika satu atau lebih jenis kerucut tidak ada atau memiliki sensitivitas spektral yang berubah. Para peneliti memodelkan ini dalam ruang warna LMS, yang langsung sesuai dengan respons kerucut, dan menurunkan matriks transformasi yang memprediksi apa yang dirasakan mata dengan defisiensi warna saat melihat nilai RGB tertentu.",
+          "Simulator ini menggunakan matriks Machado 2009 yang disederhanakan yang diterapkan langsung di ruang sRGB. Pendekatan ini mengorbankan sedikit ketelitian fisiologis demi kecepatan dan kesederhanaan — perbedaan persepsi dapat diabaikan untuk pekerjaan desain. Semua nilai output dibatasi pada rentang 0–255 karena koefisien matriks dapat menghasilkan hasil di luar gamut untuk warna input yang sangat jenuh. Simulasi akromatopsia mereduksi semua saluran ke nilai luminansi standar (0,299R + 0,587G + 0,114B), meniru ketiadaan total persepsi warna.",
+          "Tidak ada simulasi yang dapat mereplikasi pengalaman hidup buta warna secara sempurna karena respons kerucut bervariasi antar individu. Gunakan alat ini sebagai heuristik praktis daripada diagnosis definitif."
+        ]
+      },
+      {
+        "heading": "Tips desain untuk aksesibilitas buta warna",
+        "paragraphs": [
+          "Teknik paling efektif adalah tidak pernah mengandalkan warna saja untuk menyampaikan informasi. Kombinasikan warna dengan bentuk, pola, atau label teks. Irisan diagram lingkaran tidak boleh dibedakan hanya berdasarkan rona — tambahkan label langsung atau isian pola yang berbeda. Kesalahan validasi formulir tidak boleh hanya ditandai dengan mengubah batas menjadi merah — tambahkan ikon dan pesan kesalahan yang jelas. Prinsip-prinsip ini muncul dalam Kriteria Sukses 1.4.1 WCAG 2.1 (Penggunaan Warna) dan wajib untuk kepatuhan AA.",
+          "Saat memilih palet warna, uji pasangan latar depan dan belakang dengan pemeriksa kontras (WCAG memerlukan rasio minimum 4,5:1 untuk teks normal dan 3:1 untuk teks besar). Di luar kontras, favoritkan kombinasi rona yang tetap dapat dibedakan di bawah simulasi deuteranopia: pasangan biru-oranye bekerja dengan baik, sementara pasangan merah-hijau bermasalah. Hindari penggunaan merah dan hijau sebagai satu-satunya pembeda untuk status atau kategori data apa pun."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Pilih atau ketik warna", "text": "Gunakan pemilih warna atau ketik kode hex yang valid (dengan atau tanpa awalan #)." },
+      { "name": "Bandingkan lima swatch", "text": "Alat menampilkan warna asli Anda di samping empat tampilan yang disimulasikan — deuteranopia, protanopia, tritanopia, dan akromatopsia." },
+      { "name": "Baca nilai hex dan RGB", "text": "Setiap swatch menampilkan kode hex dan triplet RGB yang disimulasikan, siap untuk disalin ke desain atau kode." },
+      { "name": "Sesuaikan desain Anda", "text": "Jika dua swatch terlihat terlalu mirip untuk kasus penggunaan Anda, pilih warna yang tetap berbeda di semua tampilan yang disimulasikan." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apa itu deuteranopia?",
+      "a": "Deuteranopia adalah bentuk buta warna merah-hijau yang disebabkan oleh tidak adanya sel kerucut gelombang sedang (sensitif hijau). Penderita deuteranopia sulit membedakan rona merah dan hijau, yang tampak sebagai corak kuning, cokelat, atau abu-abu. Ini adalah jenis defisiensi penglihatan warna yang paling umum, memengaruhi sekitar 1% pria."
+    },
+    {
+      "q": "Apa perbedaan antara deuteranopia dan protanopia?",
+      "a": "Keduanya adalah buta warna merah-hijau, tetapi memengaruhi jenis kerucut yang berbeda. Protanopia melibatkan tidak adanya kerucut gelombang panjang (sensitif merah); deuteranopia melibatkan tidak adanya kerucut gelombang sedang (sensitif hijau). Dalam praktiknya, warna merah tampak jauh lebih gelap pada protanopia daripada deuteranopia, karena kerucut L membawa informasi luminansi yang signifikan."
+    },
+    {
+      "q": "Berapa banyak orang di dunia yang buta warna?",
+      "a": "Sekitar 300 juta orang di seluruh dunia memiliki beberapa bentuk defisiensi penglihatan warna. Sekitar 8% pria dan 0,5% wanita keturunan Eropa Utara terpengaruh. Varian merah-hijau (deuteranopia, deuteranomali, protanopia, protanomali) mewakili sebagian besar kasus."
+    },
+    {
+      "q": "Apakah buta warna lebih umum pada pria?",
+      "a": "Ya. Gen yang mengkode fotopigmen kerucut gelombang panjang dan sedang (OPN1LW dan OPN1MW) terletak pada kromosom X. Karena pria hanya memiliki satu kromosom X, satu alel yang cacat menyebabkan buta warna. Wanita memiliki dua kromosom X, sehingga kedua salinan harus membawa cacat — membuat buta warna pada wanita jauh lebih jarang."
+    },
+    {
+      "q": "Apa itu akromatopsia?",
+      "a": "Akromatopsia (monokromatisme batang) adalah kondisi di mana ketiga jenis kerucut tidak berfungsi, membuat penglihatan sepenuhnya bergantung pada sel batang. Orang yang terpengaruh melihat dunia dalam corak abu-abu, memiliki ketajaman visual yang sangat buruk dalam cahaya terang, dan sering sangat sensitif terhadap cahaya. Ini sangat langka, memengaruhi sekitar 1 dari 30.000 orang."
+    },
+    {
+      "q": "Seberapa akurat simulasi buta warna?",
+      "a": "Simulasi menggunakan matriks transformasi linier yang mapan (Machado 2009) yang sangat sesuai dengan data eksperimental tentang warna yang dirasakan oleh dikromat. Untuk tujuan desain dan pengujian aksesibilitas, akurasinya lebih dari cukup. Variasi individual ada — beberapa orang memiliki trikromatisme anomali yang lebih ringan daripada dikromasia penuh — jadi perlakukan simulasi sebagai pandangan kasus terburuk yang konservatif."
+    },
+    {
+      "q": "Bagaimana cara mendesain untuk buta warna tanpa merancang ulang segalanya?",
+      "a": "Mulailah dengan mengaudit palet yang ada menggunakan simulator ini. Untuk pasangan swatch apa pun yang tampak identik dalam tampilan deuteranopia atau protanopia, tanyakan apakah pengguna dapat memahami konten Anda tanpa perbedaan warna. Tambahkan ikon, label, atau pola jika diperlukan. Pilih rona yang kontras yang tetap dapat dibedakan — biru dan oranye daripada merah dan hijau."
+    },
+    {
+      "q": "Apakah alat ini berfungsi dengan nama warna CSS atau nilai HSL?",
+      "a": "Alat ini hanya menerima kode hex (#RRGGBB atau #RGB). Untuk menggunakan nama warna CSS atau nilai HSL, pertama konversi ke hex menggunakan Konverter Warna kami, lalu tempelkan hasilnya di sini."
+    }
+  ]
+}

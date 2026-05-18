@@ -1,0 +1,88 @@
+{
+  "title": "Trình Giả Lập Mù Màu — Nhìn Màu Sắc Qua Mắt Người Khác",
+  "shortDescription": "Nhập bất kỳ mã màu hex nào và xem ngay lập tức màu đó trông như thế nào với người bị deuteranopia, protanopia, tritanopia và achromatopsia. Công cụ thiết yếu cho thiết kế tiếp cận.",
+  "description": "Nhập mã màu hex và so sánh cạnh nhau màu đó trông như thế nào với người bị mù màu đỏ-xanh lá (deuteranopia, protanopia), mù màu xanh lam-vàng (tritanopia) và mù màu hoàn toàn (achromatopsia). Mỗi mẫu hiển thị giá trị hex và RGB được mô phỏng.",
+  "metaDescription": "Trình giả lập mù màu miễn phí. Xem màu bất kỳ trông như thế nào với deuteranopia, protanopia, tritanopia và achromatopsia. Thiết yếu cho thiết kế tiếp cận.",
+  "keywords": ["trình giả lập mù màu", "deuteranopia", "kiểm tra mù màu", "màu tiếp cận", "khiếm khuyết thị giác màu"],
+  "input": {
+    "picker": "Bộ chọn màu",
+    "hex": "Mã màu hex"
+  },
+  "label": {
+    "original": "Gốc",
+    "deuteranopia": "Deuteranopia",
+    "protanopia": "Protanopia",
+    "tritanopia": "Tritanopia",
+    "achromatopsia": "Achromatopsia"
+  },
+  "error": {
+    "invalid": "Vui lòng nhập mã màu hex hợp lệ (ví dụ: #3B82F6)."
+  },
+  "empty": "Nhập mã màu hex hợp lệ ở trên để xem mô phỏng.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Mù màu qua con số",
+        "paragraphs": [
+          "Khiếm khuyết thị giác màu ảnh hưởng đến khoảng 300 triệu người trên toàn thế giới — khoảng 8% nam giới và 0,5% phụ nữ có nguồn gốc Bắc Âu. Các biến thể đỏ-xanh lá là phổ biến nhất: deuteranopia và deuteranomaly (yếu màu xanh lá) cùng nhau ảnh hưởng đến khoảng 5% nam giới, trong khi protanopia và protanomaly (yếu màu đỏ) ảnh hưởng đến khoảng 2,5%. Tritanopia (xanh lam-vàng) hiếm gặp hơn nhiều, xảy ra ở ít hơn 1 trong 10.000 người bất kể giới tính. Achromatopsia hoàn toàn còn hiếm hơn, với 1 trường hợp trong 30.000.",
+          "Những con số này có nghĩa là trong 12 nam giới truy cập trang web hoặc ứng dụng của bạn, khoảng một người không thể phân biệt một số kết hợp màu theo cách bạn dự định. Các sản phẩm có lưu lượng truy cập cao — dù là bảng điều khiển dữ liệu, nút mua hàng hay biểu ngữ cảnh báo — phải tính đến đối tượng này. Mô phỏng những gì người dùng đó nhìn thấy là bước đầu tiên hướng tới thiết kế toàn diện."
+        ]
+      },
+      {
+        "heading": "Cách mô phỏng hoạt động",
+        "paragraphs": [
+          "Mắt người có ba loại tế bào hình nón nhạy cảm với bước sóng dài (đỏ), trung bình (xanh lá) và ngắn (xanh lam). Mù màu xảy ra khi một hoặc nhiều loại hình nón vắng mặt hoặc có độ nhạy quang phổ thay đổi. Các nhà nghiên cứu mô hình hóa điều này trong không gian màu LMS, tương ứng trực tiếp với phản ứng của hình nón, và rút ra ma trận biến đổi dự đoán những gì mắt khiếm khuyết màu nhận thức khi xem giá trị RGB nhất định.",
+          "Bộ giả lập này sử dụng ma trận Machado 2009 đơn giản hóa được áp dụng trực tiếp trong không gian sRGB. Phương pháp này hy sinh một chút độ chính xác sinh lý để đổi lấy tốc độ và sự đơn giản — sự khác biệt nhận thức không đáng kể cho công việc thiết kế. Tất cả các giá trị đầu ra được giới hạn trong phạm vi 0–255. Mô phỏng achromatopsia thu gọn tất cả các kênh về giá trị độ sáng chuẩn (0,299R + 0,587G + 0,114B).",
+          "Không có mô phỏng nào có thể tái tạo hoàn hảo trải nghiệm thực tế của người mù màu vì phản ứng hình nón thay đổi giữa các cá nhân. Hãy sử dụng công cụ này như một hướng dẫn thực tế, không phải chẩn đoán dứt khoát."
+        ]
+      },
+      {
+        "heading": "Mẹo thiết kế cho khả năng tiếp cận mù màu",
+        "paragraphs": [
+          "Kỹ thuật hiệu quả nhất là không bao giờ chỉ dựa vào màu sắc để truyền đạt thông tin. Kết hợp màu sắc với hình dạng, mẫu hoặc nhãn văn bản. Một phần của biểu đồ tròn không nên được phân biệt chỉ bằng màu sắc — hãy thêm nhãn trực tiếp hoặc mẫu tô khác biệt. Lỗi xác thực biểu mẫu không nên chỉ được chỉ ra bằng cách đổi màu viền thành đỏ — hãy thêm biểu tượng và thông báo lỗi rõ ràng. Những nguyên tắc này xuất hiện trong Tiêu chí Thành công 1.4.1 của WCAG 2.1.",
+          "Khi chọn bảng màu, kiểm tra các cặp màu chữ và nền bằng công cụ kiểm tra độ tương phản (WCAG yêu cầu tỷ lệ tối thiểu 4,5:1 cho văn bản thông thường và 3:1 cho văn bản lớn). Ngoài độ tương phản, hãy ưu tiên các kết hợp màu vẫn có thể phân biệt được dưới mô phỏng deuteranopia: cặp xanh lam-cam hoạt động tốt, trong khi cặp đỏ-xanh lá có vấn đề."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Chọn hoặc nhập màu", "text": "Sử dụng bộ chọn màu hoặc nhập bất kỳ mã hex hợp lệ nào (có hoặc không có tiền tố #)." },
+      { "name": "So sánh năm mẫu", "text": "Công cụ hiển thị màu gốc của bạn cùng với bốn chế độ xem được mô phỏng — deuteranopia, protanopia, tritanopia và achromatopsia." },
+      { "name": "Đọc giá trị hex và RGB", "text": "Mỗi mẫu hiển thị mã hex được mô phỏng và bộ ba RGB, sẵn sàng sao chép vào thiết kế hoặc mã." },
+      { "name": "Điều chỉnh thiết kế của bạn", "text": "Nếu hai mẫu trông quá giống nhau cho trường hợp sử dụng của bạn, hãy chọn màu vẫn khác biệt trong tất cả các chế độ xem được mô phỏng." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Deuteranopia là gì?",
+      "a": "Deuteranopia là dạng mù màu đỏ-xanh lá gây ra bởi sự vắng mặt của các tế bào hình nón bước sóng trung bình (nhạy cảm với màu xanh lá). Người bị deuteranopia gặp khó khăn trong việc phân biệt màu đỏ và xanh lá, trông như các sắc thái vàng, nâu hoặc xám. Đây là loại khiếm khuyết thị giác màu phổ biến nhất, ảnh hưởng đến khoảng 1% nam giới."
+    },
+    {
+      "q": "Sự khác biệt giữa deuteranopia và protanopia là gì?",
+      "a": "Cả hai đều là mù màu đỏ-xanh lá, nhưng ảnh hưởng đến các loại hình nón khác nhau. Protanopia liên quan đến sự vắng mặt của hình nón bước sóng dài (nhạy cảm với màu đỏ); deuteranopia liên quan đến sự vắng mặt của hình nón bước sóng trung bình (nhạy cảm với màu xanh lá). Trong thực tế, màu đỏ trông tối hơn nhiều trong protanopia so với deuteranopia vì hình nón L mang thông tin độ sáng đáng kể."
+    },
+    {
+      "q": "Có bao nhiêu người trên thế giới bị mù màu?",
+      "a": "Khoảng 300 triệu người trên toàn cầu có một số dạng khiếm khuyết thị giác màu. Khoảng 8% nam giới và 0,5% phụ nữ có nguồn gốc Bắc Âu bị ảnh hưởng. Các biến thể đỏ-xanh lá chiếm phần lớn các trường hợp."
+    },
+    {
+      "q": "Mù màu có phổ biến hơn ở nam giới không?",
+      "a": "Có. Các gen mã hóa các quang sắc tố của hình nón bước sóng dài và trung bình (OPN1LW và OPN1MW) nằm trên nhiễm sắc thể X. Vì nam giới chỉ có một nhiễm sắc thể X, một allele khiếm khuyết duy nhất gây ra mù màu. Phụ nữ có hai nhiễm sắc thể X, vì vậy cả hai bản sao phải mang khiếm khuyết — làm cho mù màu ở phụ nữ hiếm hơn nhiều."
+    },
+    {
+      "q": "Achromatopsia là gì?",
+      "a": "Achromatopsia (đơn sắc que) là tình trạng cả ba loại hình nón đều không hoạt động, khiến thị giác hoàn toàn phụ thuộc vào tế bào que. Người bị ảnh hưởng nhìn thế giới bằng các sắc thái xám, có thị lực rất kém trong ánh sáng chói và thường cực kỳ nhạy cảm với ánh sáng. Đây là tình trạng cực kỳ hiếm gặp, ảnh hưởng đến khoảng 1 trong 30.000 người."
+    },
+    {
+      "q": "Mô phỏng mù màu chính xác đến mức nào?",
+      "a": "Các mô phỏng sử dụng ma trận biến đổi tuyến tính đã được thiết lập (Machado 2009) phù hợp chặt chẽ với dữ liệu thực nghiệm về màu sắc được nhận thức bởi người có thị giác đôi màu. Đối với mục đích thiết kế và kiểm tra khả năng tiếp cận, độ chính xác đủ hơn cần thiết. Có sự biến động cá nhân — một số người có dị sắc ba màu nhẹ hơn thay vì đôi màu hoàn toàn — vì vậy hãy coi mô phỏng là cái nhìn bảo thủ về trường hợp tệ nhất."
+    },
+    {
+      "q": "Làm thế nào để thiết kế cho người mù màu mà không phải thiết kế lại tất cả?",
+      "a": "Bắt đầu bằng cách kiểm tra bảng màu hiện tại với trình giả lập này. Đối với bất kỳ cặp mẫu nào trông giống hệt nhau trong chế độ xem deuteranopia hoặc protanopia, hãy hỏi liệu người dùng có thể hiểu nội dung của bạn mà không cần phân biệt màu không. Thêm biểu tượng, nhãn hoặc mẫu khi cần thiết. Chọn các màu tương phản vẫn có thể phân biệt được — xanh lam và cam thay vì đỏ và xanh lá."
+    },
+    {
+      "q": "Công cụ này có hoạt động với tên màu CSS hoặc giá trị HSL không?",
+      "a": "Công cụ này chỉ chấp nhận mã hex (#RRGGBB hoặc #RGB). Để sử dụng tên màu CSS hoặc giá trị HSL, trước tiên hãy chuyển đổi chúng sang hex bằng Bộ Chuyển Đổi Màu của chúng tôi, sau đó dán kết quả vào đây."
+    }
+  ]
+}

@@ -79,6 +79,7 @@ import weightLoss from "@/tools/weight-loss-calculator";
 import mdToHtml from "@/tools/markdown-to-html";
 import htmlToMd from "@/tools/html-to-markdown";
 import colorPalette from "@/tools/color-palette-generator";
+import colorBlindness from "@/tools/color-blindness-simulator";
 import angle from "@/tools/angle-converter";
 import deviceInfo from "@/tools/device-info-checker";
 import primeChecker from "@/tools/prime-checker";
@@ -122,6 +123,9 @@ import costOfLiving from "@/tools/cost-of-living-comparison";
 import investmentFee from "@/tools/investment-fee-impact-calculator";
 import priceCompare from "@/tools/price-compare";
 import sleep from "@/tools/sleep-calculator";
+import numberToWords from "@/tools/number-to-words";
+import cookingUnit from "@/tools/cooking-unit-converter";
+import readingLevel from "@/tools/reading-level-checker";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -161,6 +165,7 @@ export const TOOLS: ToolMeta[] = [
   urlEnc,
   water,
   roman,
+  numberToWords,
   mortgage,
   uuid,
   timestamp,
@@ -207,6 +212,7 @@ export const TOOLS: ToolMeta[] = [
   mdToHtml,
   htmlToMd,
   colorPalette,
+  colorBlindness,
   angle,
   deviceInfo,
   primeChecker,
@@ -250,6 +256,8 @@ export const TOOLS: ToolMeta[] = [
   investmentFee,
   priceCompare,
   sleep,
+  cookingUnit,
+  readingLevel,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));

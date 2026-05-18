@@ -1,0 +1,88 @@
+{
+  "title": "Simulador de Daltonismo — Veja as Cores como Outros Veem",
+  "shortDescription": "Digite qualquer cor hexadecimal e veja instantaneamente como ela aparece para pessoas com deuteranopia, protanopia, tritanopia e acromatopsia. Essencial para design acessível.",
+  "description": "Digite um código hexadecimal e compare lado a lado como a cor aparece para pessoas com daltonismo vermelho-verde (deuteranopia, protanopia), daltonismo azul-amarelo (tritanopia) e cegueira total para cores (acromatopsia). Cada amostra exibe os valores hexadecimais e RGB simulados. Indispensável para design acessível e inclusivo.",
+  "metaDescription": "Simulador de daltonismo gratuito. Veja como qualquer cor aparece com deuteranopia, protanopia, tritanopia e acromatopsia. Essencial para design acessível.",
+  "keywords": ["simulador daltonismo", "deuteranopia", "teste daltonismo", "cor acessível", "deficiência visão cores"],
+  "input": {
+    "picker": "Seletor de cor",
+    "hex": "Código de cor hexadecimal"
+  },
+  "label": {
+    "original": "Original",
+    "deuteranopia": "Deuteranopia",
+    "protanopia": "Protanopia",
+    "tritanopia": "Tritanopia",
+    "achromatopsia": "Acromatopsia"
+  },
+  "error": {
+    "invalid": "Por favor, insira uma cor hexadecimal válida (ex.: #3B82F6)."
+  },
+  "empty": "Insira uma cor hexadecimal válida acima para ver as simulações.",
+  "article": {
+    "sections": [
+      {
+        "heading": "Daltonismo em números",
+        "paragraphs": [
+          "A deficiência de visão das cores (DVC) afeta aproximadamente 300 milhões de pessoas em todo o mundo — cerca de 8% dos homens e 0,5% das mulheres de ascendência norte-europeia. As variantes vermelho-verde são de longe as mais comuns: a deuteranopia e a deuteranomalopia (fraqueza ao verde) juntas afetam cerca de 5% dos homens, enquanto a protanopia e a protanomalopia (fraqueza ao vermelho) afetam cerca de 2,5%. A tritanopia (azul-amarelo) é muito mais rara, ocorrendo em menos de 1 em 10.000 pessoas independentemente do sexo. A acromatopsia total é mais rara ainda, com 1 caso em 30.000.",
+          "Esses números significam que para cada 12 homens que acessam seu site ou aplicativo, aproximadamente um não consegue distinguir certas combinações de cores como você pretendia. Produtos de alto tráfego — seja um painel de dados, um botão de compra ou um banner de aviso — precisam considerar esse público. Simular o que esses usuários veem é o primeiro passo para um design inclusivo."
+        ]
+      },
+      {
+        "heading": "Como funciona a simulação",
+        "paragraphs": [
+          "O olho humano possui três tipos de células cônicas sensíveis a comprimentos de onda longos (vermelho), médios (verde) e curtos (azul). O daltonismo ocorre quando um ou mais tipos de cones estão ausentes ou têm sensibilidade espectral alterada. Os pesquisadores modelam isso no espaço de cores LMS, que corresponde diretamente às respostas dos cones, e derivam matrizes de transformação que preveem o que um olho com deficiência de cor percebe ao visualizar um valor RGB específico.",
+          "Este simulador usa matrizes simplificadas de Machado 2009 aplicadas diretamente no espaço sRGB. A abordagem sacrifica um pouco de precisão fisiológica em troca de velocidade e simplicidade — a diferença perceptual é insignificante para trabalho de design. Todos os valores de saída são limitados ao intervalo 0–255, pois os coeficientes da matriz podem produzir resultados fora da gama para cores de entrada muito saturadas. A simulação de acromatopsia colapsa todos os canais para o valor de luminância padrão (0,299R + 0,587G + 0,114B), imitando a ausência total de percepção de cor.",
+          "Nenhuma simulação pode replicar perfeitamente a experiência vivida do daltonismo, pois a resposta dos cones varia entre indivíduos. Use esta ferramenta como uma heurística prática, não como um diagnóstico definitivo: se um par de cores parece confusamente similar no simulador, provavelmente causará problemas para pelo menos alguns usuários daltônicos."
+        ]
+      },
+      {
+        "heading": "Dicas de design para acessibilidade a daltônicos",
+        "paragraphs": [
+          "A técnica mais eficaz é nunca depender apenas da cor para transmitir informações. Combine cor com forma, padrão ou rótulo de texto. Um segmento de gráfico de pizza não deve ser distinguido apenas pelo tom — adicione um rótulo direto ou um preenchimento com padrão distinto. Um erro de validação de formulário não deve ser indicado apenas tornando uma borda vermelha — adicione um ícone e uma mensagem de erro explícita. Esses princípios aparecem no Critério de Sucesso 1.4.1 da WCAG 2.1 (Uso de Cor) e são obrigatórios para conformidade AA.",
+          "Ao escolher uma paleta de cores, teste seus pares de primeiro plano e fundo com um verificador de contraste (a WCAG exige uma razão mínima de 4,5:1 para texto normal e 3:1 para texto grande). Além do contraste, prefira combinações de tons que permaneçam distinguíveis sob a simulação de deuteranopia: pares azul-laranja funcionam bem, enquanto pares vermelho-verde são problemáticos. Evite usar vermelho e verde como únicos diferenciadores para qualquer status ou categoria de dados. Para visualização de dados, as paletas ColorBrewer (especialmente os subconjuntos 'seguros para daltônicos') são um ponto de partida confiável."
+        ]
+      }
+    ],
+    "howTo": [
+      { "name": "Escolha ou digite uma cor", "text": "Use o seletor de cores ou digite qualquer código hexadecimal válido (com ou sem o prefixo #)." },
+      { "name": "Compare as cinco amostras", "text": "A ferramenta mostra sua cor original ao lado de quatro visualizações simuladas — deuteranopia, protanopia, tritanopia e acromatopsia." },
+      { "name": "Leia os valores hexadecimais e RGB", "text": "Cada amostra exibe o código hexadecimal simulado e o triplo RGB, prontos para copiar para seu design ou código." },
+      { "name": "Ajuste seu design", "text": "Se duas amostras parecerem muito semelhantes para o seu caso de uso, escolha cores que permaneçam distintas em todas as visualizações simuladas." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "O que é deuteranopia?",
+      "a": "A deuteranopia é uma forma de daltonismo vermelho-verde causada pela ausência de células cônicas de comprimento de onda médio (sensíveis ao verde). Pessoas com deuteranopia têm dificuldade em distinguir tons vermelhos e verdes, que aparecem como matizes de amarelo, marrom ou cinza. É o tipo mais comum de deficiência de visão das cores, afetando cerca de 1% dos homens."
+    },
+    {
+      "q": "Qual é a diferença entre deuteranopia e protanopia?",
+      "a": "Ambas são daltonismo vermelho-verde, mas afetam diferentes tipos de cones. A protanopia envolve a ausência de cones de comprimento de onda longo (sensíveis ao vermelho); a deuteranopia envolve a ausência de cones de comprimento de onda médio (sensíveis ao verde). Na prática, as cores vermelhas parecem muito mais escuras na protanopia do que na deuteranopia, porque os cones L carregam informações significativas de luminância."
+    },
+    {
+      "q": "Quantas pessoas no mundo são daltônicas?",
+      "a": "Aproximadamente 300 milhões de pessoas globalmente têm alguma forma de deficiência de visão das cores. Cerca de 8% dos homens e 0,5% das mulheres de ascendência norte-europeia são afetados. As variantes vermelho-verde (deuteranopia, deuteranomalopia, protanopia, protanomalopia) representam a grande maioria dos casos."
+    },
+    {
+      "q": "O daltonismo é mais comum em homens?",
+      "a": "Sim. Os genes que codificam os fotopigmentos dos cones de comprimento de onda longo e médio (OPN1LW e OPN1MW) estão localizados no cromossomo X. Como os homens têm apenas um cromossomo X, um único alelo defeituoso causa daltonismo. As mulheres têm dois cromossomos X, então ambas as cópias devem carregar o defeito — tornando o daltonismo feminino muito mais raro."
+    },
+    {
+      "q": "O que é acromatopsia?",
+      "a": "A acromatopsia (monocromatismo de bastonetes) é uma condição em que os três tipos de cones não são funcionais, deixando a visão totalmente dependente das células de bastão. As pessoas afetadas veem o mundo em tons de cinza, têm acuidade visual muito baixa em luz intensa e geralmente são extremamente sensíveis à luz. É extremamente rara, afetando cerca de 1 em cada 30.000 pessoas."
+    },
+    {
+      "q": "Quão precisas são as simulações de daltonismo?",
+      "a": "As simulações usam matrizes de transformação linear estabelecidas (Machado 2009) que correspondem de perto aos dados experimentais sobre as cores percebidas por dicromatas. Para fins de design e testes de acessibilidade, a precisão é mais do que suficiente. Existe variação individual — algumas pessoas têm tricromatismo anômalo mais leve em vez de dicromacia total — por isso trate a simulação como uma visão conservadora do pior caso."
+    },
+    {
+      "q": "Como faço design para daltonismo sem redesenhar tudo?",
+      "a": "Comece auditando sua paleta existente com este simulador. Para quaisquer duas amostras que pareçam idênticas na visualização de deuteranopia ou protanopia, pergunte se um usuário poderia entender seu conteúdo sem a distinção de cor. Adicione ícones, rótulos ou padrões onde necessário. Escolha tons contrastantes que permaneçam distinguíveis — azul e laranja em vez de vermelho e verde. Execute uma verificação de contraste WCAG em todos os pares de texto/fundo."
+    },
+    {
+      "q": "Esta ferramenta funciona com nomes de cores CSS ou valores HSL?",
+      "a": "Esta ferramenta aceita apenas códigos hexadecimais (#RRGGBB ou #RGB). Para usar nomes de cores CSS ou valores HSL, primeiro converta-os para hexadecimal usando nosso Conversor de Cores e depois cole o resultado aqui."
+    }
+  ]
+}
