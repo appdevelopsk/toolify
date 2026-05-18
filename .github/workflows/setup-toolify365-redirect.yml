@@ -1,0 +1,65 @@
+name: Setup 301 redirect toolify365.com → fxea365.com
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  redirect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Replace toolify365.com config with 301 redirect to fxea365.com
+        run: |
+          ssh -i ~/.ssh/key "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" 'bash -s' << 'ENDSSH'
+            set -e
+
+            # Find existing toolify365.com config
+            if [ -d /etc/nginx/sites-available ]; then
+              CONF=/etc/nginx/sites-available/toolify365.com
+            else
+              CONF=$(grep -rl "toolify365\.com" /etc/nginx/conf.d/ 2>/dev/null | head -1)
+            fi
+            echo "Found config: $CONF"
+
+            # Backup and replace with 301 redirect
+            sudo cp "$CONF" "${CONF}.bak"
+            sudo tee "$CONF" > /dev/null << 'EOF'
+          server {
+              listen 80;
+              server_name toolify365.com www.toolify365.com;
+              return 301 https://fxea365.com$request_uri;
+          }
+
+          server {
+              listen 443 ssl;
+              server_name toolify365.com www.toolify365.com;
+              ssl_certificate /etc/letsencrypt/live/toolify365.com/fullchain.pem;
+              ssl_certificate_key /etc/letsencrypt/live/toolify365.com/privkey.pem;
+              return 301 https://fxea365.com$request_uri;
+          }
+          EOF
+
+            sudo nginx -t
+            sudo systemctl reload nginx
+            echo "Redirect configured"
+          ENDSSH
+
+      - name: Verify redirect
+        run: |
+          sleep 3
+          STATUS=$(curl -sI https://toolify365.com/en/tools/bmi-calculator | grep "^HTTP" | awk '{print $2}')
+          LOCATION=$(curl -sI https://toolify365.com/en/tools/bmi-calculator | grep -i "^location:" | tr -d '\r')
+          echo "Status: $STATUS"
+          echo "Location: $LOCATION"
+          [ "$STATUS" = "301" ] && echo "✓ 301 redirect OK" || echo "✗ Expected 301, got $STATUS"
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/key
