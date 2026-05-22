@@ -105,7 +105,7 @@ ADSENSE_SLOT_BANNER       = 1234567890
 ADSENSE_SLOT_INARTICLE    = 2345678901
 ADSENSE_SLOT_STICKY       = 3456789012
 ADSENSE_SLOT_BELOWRESULT  = 4567890123
-GA_ID                     = G-XXXXXXXXXX  (Google Analytics, 任意)
+GA_ID                     = G-1L5GGHRR5D  (Google Analytics — 設定済み)
 ```
 
 `deploy.yml` に既にこれら env の受け口が用意されているので、Secrets を追加して任意のコミットを push すれば次の deploy で広告が自動配信される。
