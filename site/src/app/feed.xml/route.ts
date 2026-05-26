@@ -44,6 +44,7 @@ ${items}
     headers: {
       "cache-control": "public, max-age=3600, s-maxage=86400",
       "content-type": "application/rss+xml; charset=utf-8",
+      "x-robots-tag": "noindex",
     },
   });
 }

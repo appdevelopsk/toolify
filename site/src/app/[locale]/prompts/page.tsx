@@ -6,8 +6,12 @@ import { PromptCard } from "@/components/prompts/PromptCard";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
 import { PROMPT_CATEGORY_CONFIG } from "@/lib/prompts/categories";
-import { isPromptLocale, type Locale } from "@/lib/i18n/locales";
+import { isPromptLocale, PROMPT_LOCALES, type Locale } from "@/lib/i18n/locales";
 import type { PromptCategory } from "@/lib/prompts/types";
+
+export function generateStaticParams() {
+  return PROMPT_LOCALES.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata({
   params,
@@ -29,7 +33,7 @@ export default async function PromptsIndex({ params }: { params: Promise<{ local
   const { locale } = await params;
   if (!isPromptLocale(locale)) notFound();
   setRequestLocale(locale);
-  const t = await getTranslations();
+  const t = await getTranslations({ locale });
   const prompts = listPrompts();
 
   const byCategory = new Map<string, typeof prompts>();
