@@ -22,11 +22,6 @@ export function websiteJsonLd(locale: string) {
     name: siteConfig.name,
     url: `${siteConfig.url}/${locale}`,
     inLanguage: locale,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteConfig.url}/${locale}/search?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 
