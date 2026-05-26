@@ -14,14 +14,17 @@ import type { ToolCategory } from "@/lib/tools/types";
 const FEATURED_COUNT = 9;
 
 /**
- * Validate a locale string for Intl APIs.
- * Returns the canonical BCP-47 tag, or `undefined` to let the runtime pick the default.
- * Guards against `RangeError: Incorrect locale information provided` from `String.prototype.localeCompare`
- * when an unexpected path slug reaches `[locale]` (e.g. crawler or stale URL).
+ * Validate a locale string for Intl.Collator (same backend as String.prototype.localeCompare).
+ * Returns the canonical BCP-47 tag, or `undefined` to fall back to the runtime default.
+ * Guards against `RangeError: Incorrect locale information provided` when bots hit the
+ * [locale] route with arbitrary path segments (e.g. /wp-admin/, /sitemap/).
+ * Uses Intl.Collator for validation because getCanonicalLocales accepts structurally
+ * valid-looking tags that Collator may still reject.
  */
 function safeLocale(input: string): string | undefined {
   try {
     const [canonical] = Intl.getCanonicalLocales(input);
+    if (canonical) new Intl.Collator(canonical); // verify Collator accepts it
     return canonical;
   } catch {
     return undefined;
@@ -172,9 +175,15 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <ul className="mt-4 grid gap-x-4 gap-y-1 text-sm sm:grid-cols-2 lg:grid-cols-3">
           {allTools
             .slice()
-            .sort((a, b) =>
-              t(`tools.${a.slug}.title`).localeCompare(t(`tools.${b.slug}.title`), collatorLocale),
-            )
+            .sort((a, b) => {
+              const aTitle = t(`tools.${a.slug}.title`);
+              const bTitle = t(`tools.${b.slug}.title`);
+              try {
+                return aTitle.localeCompare(bTitle, collatorLocale);
+              } catch {
+                return aTitle < bTitle ? -1 : aTitle > bTitle ? 1 : 0;
+              }
+            })
             .map((m) => (
               <li key={m.slug}>
                 <Link
