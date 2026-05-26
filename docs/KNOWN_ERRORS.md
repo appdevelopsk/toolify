@@ -58,3 +58,20 @@ Documented production incidents and their root causes, for re-occurrence prevent
 **Root cause:** `next-intl`'s `createMiddleware` defaults to 307 for all locale redirects.
 
 **Fix:** Wrapped the intl middleware in `src/middleware.ts` to upgrade 307 → 301 for GET requests.
+
+---
+
+### [2026-05-26] `RangeError: Incorrect locale information provided` in A-Z tool sort
+
+**Symptom:** PM2 error log flooded with `RangeError: Incorrect locale information provided` from `String.localeCompare()` in `[locale]/page.js`. Caused SSR errors for individual requests and contributed to process instability.
+
+**Root cause:** `safeLocale()` used `Intl.getCanonicalLocales()` to validate locale input from the URL path. However, `getCanonicalLocales` accepts structurally valid BCP-47 tags (e.g. `wp-admin`) that `Intl.Collator` — the same backend used by `String.prototype.localeCompare` — may reject with `RangeError`.
+
+Bots and crawlers hitting arbitrary paths (e.g. `/wp-admin/`, `/health`) reach the `[locale]` route and trigger the A-Z tool sort with an invalid collator locale.
+
+**Fix:** Two-layer defence in `src/app/[locale]/page.tsx`:
+1. `safeLocale()` now validates using `new Intl.Collator(canonical)` in addition to `getCanonicalLocales`.
+2. The sort callback wraps `localeCompare` in try-catch and falls back to plain string comparison.
+
+**Pattern to avoid:**
+> Never rely on `Intl.getCanonicalLocales()` alone to validate a locale for use with `localeCompare` or `Intl.Collator`. Always validate with `new Intl.Collator(locale)` — or better, catch the `RangeError` at the call site.
