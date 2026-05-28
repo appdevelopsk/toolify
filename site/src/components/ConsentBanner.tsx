@@ -14,6 +14,20 @@ declare global {
   }
 }
 
+// EEA/UK/CH の主要タイムゾーン。完璧ではないがバナー表示判定の十分な目安。
+// 実際の地域別の consent default は gtag の region パラメータが Google 側で処理する。
+const EEA_TIMEZONE = /^(Europe\/(Amsterdam|Athens|Belgrade|Berlin|Bratislava|Brussels|Bucharest|Budapest|Busingen|Copenhagen|Dublin|Gibraltar|Helsinki|Isle_of_Man|Jersey|Guernsey|Lisbon|Ljubljana|London|Luxembourg|Madrid|Malta|Mariehamn|Monaco|Oslo|Paris|Prague|Riga|Rome|Sofia|Stockholm|Tallinn|Vaduz|Vatican|Vienna|Vilnius|Warsaw|Zagreb|Zurich)|Atlantic\/(Faroe|Reykjavik|Canary|Madeira|Azores))$/;
+
+function isLikelyEEA(): boolean {
+  if (typeof Intl === "undefined") return false;
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return EEA_TIMEZONE.test(tz);
+  } catch {
+    return false;
+  }
+}
+
 function applyConsent(value: ConsentValue) {
   if (typeof window === "undefined") return;
   const granted = value === "all";
@@ -28,16 +42,20 @@ function applyConsent(value: ConsentValue) {
 export function ConsentBanner() {
   const t = useTranslations("consent");
   const [value, setValue] = useState<ConsentValue>("unset");
+  const [shouldShow, setShouldShow] = useState(false);
 
   useEffect(() => {
     const saved = (localStorage.getItem(STORAGE_KEY) as ConsentValue | null) ?? "unset";
     setValue(saved);
     if (saved !== "unset") applyConsent(saved);
+    setShouldShow(isLikelyEEA());
   }, []);
 
   // CMP（Funding Choices）が設定されている場合は二重表示を避けるためこちらは出さない
   if (siteConfig.cmp.fcId) return null;
   if (value !== "unset") return null;
+  // EEA外ユーザーには表示しない（gtag default が granted のため不要）
+  if (!shouldShow) return null;
 
   function decide(v: ConsentValue) {
     localStorage.setItem(STORAGE_KEY, v);
