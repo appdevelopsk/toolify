@@ -93,6 +93,42 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <AdBanner className="mt-0 mb-8" />
 
+      {/* ── Why Toolify (trust + brand) ───────────────────────────────── */}
+      <section className="mb-12 rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900/40 sm:p-8">
+        <h2 className="text-xl font-bold">{t("home.whyTitle")}</h2>
+        <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{t("home.whyIntro")}</p>
+        <div className="mt-5 grid gap-5 sm:grid-cols-2">
+          <div>
+            <h3 className="flex items-center gap-2 text-sm font-semibold">
+              <span aria-hidden>🔒</span>
+              {t("home.whyPrivacyTitle")}
+            </h3>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{t("home.whyPrivacyText")}</p>
+          </div>
+          <div>
+            <h3 className="flex items-center gap-2 text-sm font-semibold">
+              <span aria-hidden>⚡</span>
+              {t("home.whyNoSignupTitle")}
+            </h3>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{t("home.whyNoSignupText")}</p>
+          </div>
+          <div>
+            <h3 className="flex items-center gap-2 text-sm font-semibold">
+              <span aria-hidden>📐</span>
+              {t("home.whyAccurateTitle")}
+            </h3>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{t("home.whyAccurateText")}</p>
+          </div>
+          <div>
+            <h3 className="flex items-center gap-2 text-sm font-semibold">
+              <span aria-hidden>🌐</span>
+              {t("home.whyMultilingualTitle")}
+            </h3>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{t("home.whyMultilingualText")}</p>
+          </div>
+        </div>
+      </section>
+
       {/* ── Category grid ─────────────────────────────────────────────── */}
       <section>
         <h2 className="text-xl font-bold">{t("home.byCategory")}</h2>
