@@ -42,7 +42,8 @@ export function GoogleAnalytics() {
             'analytics_storage': 'granted'
           });
           gtag('js', new Date());
-          gtag('config', '${siteConfig.analytics.gaId}', { anonymize_ip: true });
+          // page_view は PageViewTracker（SPA遷移対応）が一元送出するため自動送出を無効化。
+          gtag('config', '${siteConfig.analytics.gaId}', { anonymize_ip: true, send_page_view: false });
         `}
       </Script>
     </>

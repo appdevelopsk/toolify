@@ -1,5 +1,5 @@
 import "../globals.css";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale, getTranslations } from "next-intl/server";
@@ -14,6 +14,7 @@ import { ConsentBanner } from "@/components/ConsentBanner";
 import { AdScript } from "@/components/ads/AdScript";
 import { FundingChoices } from "@/components/cmp/FundingChoices";
 import { GoogleAnalytics } from "@/lib/analytics/gtag";
+import { PageViewTracker } from "@/lib/analytics/pageview";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/structured-data";
 
@@ -104,6 +105,9 @@ export default async function LocaleLayout({
           <ConsentBanner />
         </NextIntlClientProvider>
         <GoogleAnalytics />
+        <Suspense fallback={null}>
+          <PageViewTracker />
+        </Suspense>
         <FundingChoices />
         <AdScript />
         <JsonLd data={[organizationJsonLd(), websiteJsonLd(locale)]} />
