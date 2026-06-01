@@ -199,7 +199,7 @@ if (!registry.includes(`@/tools/${slug}"`)) {
     registry = registry.slice(0, idx) + "\n" + importLine + registry.slice(idx);
   }
   // insert into the TOOLS array, before the closing `];`
-  registry = registry.replace(/(\n)(\];\s*\n\s*const SLUG_INDEX)/, `$1  ${varName},$2`);
+  registry = registry.replace(/(\n)(\];\s*\n\s*const SLUG_INDEX)/, `$1  ${varName},\n$2`);
   registryChanged = true;
 }
 

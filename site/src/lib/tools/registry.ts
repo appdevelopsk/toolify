@@ -173,6 +173,7 @@ import geoShapes from "@/tools/geometric-shapes-calculator";
 import percentageChange from "@/tools/percentage-change-calculator";
 import hoursCalc from "@/tools/hours-calculator";
 import houseAffordability from "@/tools/house-affordability-calculator";
+import coffeeRatioCalculator from "@/tools/coffee-ratio-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -352,6 +353,7 @@ export const TOOLS: ToolMeta[] = [
   percentageChange,
   hoursCalc,
   houseAffordability,
+  coffeeRatioCalculator,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
