@@ -200,6 +200,12 @@ import a1cCalculator from "@/tools/a1c-calculator";
 import effectiveAnnualRateCalculator from "@/tools/effective-annual-rate-calculator";
 import costPerUseCalculator from "@/tools/cost-per-use-calculator";
 import proportionCalculator from "@/tools/proportion-calculator";
+import sphereVolumeCalculator from "@/tools/sphere-volume-calculator";
+import coneVolumeCalculator from "@/tools/cone-volume-calculator";
+import logarithmCalculator from "@/tools/logarithm-calculator";
+import combinationCalculator from "@/tools/combination-calculator";
+import ponderalIndexCalculator from "@/tools/ponderal-index-calculator";
+import futureValueCalculator from "@/tools/future-value-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -406,6 +412,12 @@ export const TOOLS: ToolMeta[] = [
   effectiveAnnualRateCalculator,
   costPerUseCalculator,
   proportionCalculator,
+  sphereVolumeCalculator,
+  coneVolumeCalculator,
+  logarithmCalculator,
+  combinationCalculator,
+  ponderalIndexCalculator,
+  futureValueCalculator,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
