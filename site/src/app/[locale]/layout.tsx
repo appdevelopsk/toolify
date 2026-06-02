@@ -15,6 +15,7 @@ import { AdScript } from "@/components/ads/AdScript";
 import { FundingChoices } from "@/components/cmp/FundingChoices";
 import { GoogleAnalytics } from "@/lib/analytics/gtag";
 import { PageViewTracker } from "@/lib/analytics/pageview";
+import { RegisterSW } from "@/components/pwa/RegisterSW";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/structured-data";
 
@@ -39,6 +40,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: { default: t("name"), template: `%s · ${t("name")}` },
     description: t("description"),
     applicationName: t("name"),
+    manifest: "/manifest.webmanifest",
+    appleWebApp: { capable: true, statusBarStyle: "default", title: t("name") },
     icons: {
       icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
       apple: "/icon.svg",
@@ -110,6 +113,7 @@ export default async function LocaleLayout({
         </Suspense>
         <FundingChoices />
         <AdScript />
+        <RegisterSW />
         <JsonLd data={[organizationJsonLd(), websiteJsonLd(locale)]} />
       </body>
     </html>

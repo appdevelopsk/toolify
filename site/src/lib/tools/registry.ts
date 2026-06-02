@@ -173,6 +173,45 @@ import geoShapes from "@/tools/geometric-shapes-calculator";
 import percentageChange from "@/tools/percentage-change-calculator";
 import hoursCalc from "@/tools/hours-calculator";
 import houseAffordability from "@/tools/house-affordability-calculator";
+import coffeeRatioCalculator from "@/tools/coffee-ratio-calculator";
+import readingTimeCalculator from "@/tools/reading-time-calculator";
+import profitMarginCalculator from "@/tools/profit-margin-calculator";
+import slopeCalculator from "@/tools/slope-calculator";
+import squareFootageCalculator from "@/tools/square-footage-calculator";
+import midpointCalculator from "@/tools/midpoint-calculator";
+import concreteCalculator from "@/tools/concrete-calculator";
+import proteinIntakeCalculator from "@/tools/protein-intake-calculator";
+import zScoreCalculator from "@/tools/z-score-calculator";
+import gravelCalculator from "@/tools/gravel-calculator";
+import cylinderVolumeCalculator from "@/tools/cylinder-volume-calculator";
+import kineticEnergyCalculator from "@/tools/kinetic-energy-calculator";
+import densityCalculator from "@/tools/density-calculator";
+import salesCommissionCalculator from "@/tools/sales-commission-calculator";
+import boardFeetCalculator from "@/tools/board-feet-calculator";
+import waistToHeightRatioCalculator from "@/tools/waist-to-height-ratio-calculator";
+import downPaymentCalculator from "@/tools/down-payment-calculator";
+import boxVolumeCalculator from "@/tools/box-volume-calculator";
+import tileCalculator from "@/tools/tile-calculator";
+import molarityCalculator from "@/tools/molarity-calculator";
+import averageSpeedCalculator from "@/tools/average-speed-calculator";
+import dayOfWeekCalculator from "@/tools/day-of-week-calculator";
+import bodySurfaceAreaCalculator from "@/tools/body-surface-area-calculator";
+import a1cCalculator from "@/tools/a1c-calculator";
+import effectiveAnnualRateCalculator from "@/tools/effective-annual-rate-calculator";
+import costPerUseCalculator from "@/tools/cost-per-use-calculator";
+import proportionCalculator from "@/tools/proportion-calculator";
+import sphereVolumeCalculator from "@/tools/sphere-volume-calculator";
+import coneVolumeCalculator from "@/tools/cone-volume-calculator";
+import logarithmCalculator from "@/tools/logarithm-calculator";
+import combinationCalculator from "@/tools/combination-calculator";
+import ponderalIndexCalculator from "@/tools/ponderal-index-calculator";
+import futureValueCalculator from "@/tools/future-value-calculator";
+import presentValueCalculator from "@/tools/present-value-calculator";
+import permutationCalculator from "@/tools/permutation-calculator";
+import exponentCalculator from "@/tools/exponent-calculator";
+import moduloCalculator from "@/tools/modulo-calculator";
+import maxHeartRateCalculator from "@/tools/max-heart-rate-calculator";
+import overtimePayCalculator from "@/tools/overtime-pay-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -352,6 +391,45 @@ export const TOOLS: ToolMeta[] = [
   percentageChange,
   hoursCalc,
   houseAffordability,
+  coffeeRatioCalculator,
+  readingTimeCalculator,
+  profitMarginCalculator,
+  slopeCalculator,
+  squareFootageCalculator,
+  midpointCalculator,
+  concreteCalculator,
+  proteinIntakeCalculator,
+  zScoreCalculator,
+  gravelCalculator,
+  cylinderVolumeCalculator,
+  kineticEnergyCalculator,
+  densityCalculator,
+  salesCommissionCalculator,
+  boardFeetCalculator,
+  waistToHeightRatioCalculator,
+  downPaymentCalculator,
+  boxVolumeCalculator,
+  tileCalculator,
+  molarityCalculator,
+  averageSpeedCalculator,
+  dayOfWeekCalculator,
+  bodySurfaceAreaCalculator,
+  a1cCalculator,
+  effectiveAnnualRateCalculator,
+  costPerUseCalculator,
+  proportionCalculator,
+  sphereVolumeCalculator,
+  coneVolumeCalculator,
+  logarithmCalculator,
+  combinationCalculator,
+  ponderalIndexCalculator,
+  futureValueCalculator,
+  presentValueCalculator,
+  permutationCalculator,
+  exponentCalculator,
+  moduloCalculator,
+  maxHeartRateCalculator,
+  overtimePayCalculator,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));

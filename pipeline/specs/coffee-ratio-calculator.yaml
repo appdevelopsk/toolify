@@ -1,0 +1,36 @@
+slug: coffee-ratio-calculator
+category: converter
+applicationCategory: UtilitiesApplication
+related:
+  - cooking-unit-converter
+  - tip-calculator
+primaryKeyword:
+  en: "Coffee ratio calculator"
+  ja: "コーヒー比率計算機"
+
+inputs:
+  - name: coffee
+    type: number
+    label_key: "input.coffee"
+    placeholder: "18"
+  - name: ratio
+    type: select
+    label_key: "input.ratio"
+    options: ["15", "16", "17", "18"]
+
+output:
+  type: number
+  label_key: "result.label"
+
+logic: |
+  water_grams = coffee_grams * ratio
+  ratio is the "1:N" golden-ratio denominator (15-18 typical for pour-over).
+
+seo:
+  title_pattern: "{primary_keyword}"
+  description_pattern: "{primary_keyword} — water-to-coffee golden ratio, instantly."
+  faq_count: 5
+  article_sections: 2
+  long_form_words: 1200
+
+locales: all

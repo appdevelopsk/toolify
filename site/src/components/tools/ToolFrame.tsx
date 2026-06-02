@@ -4,7 +4,10 @@ import { Link } from "@/lib/i18n/navigation";
 import { AdBanner, AdBelowResult, AdInArticle, AdSticky } from "@/components/ads/AdBanner";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { RelatedServices } from "@/components/affiliates/RelatedServices";
+import { ShareBar } from "@/components/tools/ShareBar";
+import { FavoriteButton } from "@/components/tools/FavoriteButton";
 import { isPromptLocale } from "@/lib/i18n/locales";
+import { siteConfig } from "@/lib/config";
 import type { ToolMeta } from "@/lib/tools/types";
 
 interface Props {
@@ -23,6 +26,8 @@ interface Props {
 export function ToolFrame({ meta, title, description, related, children, article, faq }: Props) {
   const t = useTranslations();
   const locale = useLocale();
+  const pageUrl = `${siteConfig.url}/${locale}/tools/${meta.slug}`;
+  const embedUrl = `${siteConfig.url}/embed/${locale}/${meta.slug}`;
   return (
     <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-6 lg:grid-cols-[minmax(0,1fr)_300px]">
       <main className="min-w-0">
@@ -33,8 +38,13 @@ export function ToolFrame({ meta, title, description, related, children, article
             { name: title },
           ]}
         />
-        <h1 className="mt-3 text-3xl font-bold tracking-tight">{title}</h1>
+        <div className="mt-3 flex items-start justify-between gap-3">
+          <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
+          <FavoriteButton slug={meta.slug} title={title} />
+        </div>
         <p className="mt-2 text-slate-600 dark:text-slate-400">{description}</p>
+
+        <ShareBar url={pageUrl} embedUrl={embedUrl} title={title} />
 
         <AdBanner className="mt-4" />
 

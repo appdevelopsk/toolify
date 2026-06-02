@@ -9,6 +9,15 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(self)
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 
+# Embeddable widgets are intentionally framable anywhere (drives backlinks).
+# Override the SAMEORIGIN default and switch to a permissive frame-ancestors policy.
+/embed/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: ALLOWALL
+  Content-Security-Policy: frame-ancestors *
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
 # Long cache for hashed assets
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable

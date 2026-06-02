@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { listTools } from "@/lib/tools/registry";
 import { ToolCard } from "@/components/tools/ToolCard";
+import { FavoritesSection } from "@/components/tools/FavoritesSection";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
@@ -55,6 +56,14 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
       <h1 className="text-3xl font-bold">{t("nav.tools")}</h1>
       <p className="mt-2 text-slate-600 dark:text-slate-400">{t("site.description")}</p>
+
+      <FavoritesSection
+        items={tools.map((m) => ({
+          meta: m,
+          title: t(`tools.${m.slug}.title`),
+          description: t(`tools.${m.slug}.shortDescription`),
+        }))}
+      />
 
       {Array.from(byCategory.entries()).map(([cat, list]) => {
         const cfg = CATEGORY_CONFIG[cat as ToolCategory];
