@@ -188,6 +188,12 @@ import kineticEnergyCalculator from "@/tools/kinetic-energy-calculator";
 import densityCalculator from "@/tools/density-calculator";
 import salesCommissionCalculator from "@/tools/sales-commission-calculator";
 import boardFeetCalculator from "@/tools/board-feet-calculator";
+import waistToHeightRatioCalculator from "@/tools/waist-to-height-ratio-calculator";
+import downPaymentCalculator from "@/tools/down-payment-calculator";
+import boxVolumeCalculator from "@/tools/box-volume-calculator";
+import tileCalculator from "@/tools/tile-calculator";
+import molarityCalculator from "@/tools/molarity-calculator";
+import averageSpeedCalculator from "@/tools/average-speed-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -382,6 +388,12 @@ export const TOOLS: ToolMeta[] = [
   densityCalculator,
   salesCommissionCalculator,
   boardFeetCalculator,
+  waistToHeightRatioCalculator,
+  downPaymentCalculator,
+  boxVolumeCalculator,
+  tileCalculator,
+  molarityCalculator,
+  averageSpeedCalculator,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
