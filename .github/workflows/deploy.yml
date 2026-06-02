@@ -25,6 +25,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 218ツール×17言語=約7,800ページのSSGでランナーのディスクが枯渇する（ENOSPC）。
+      # ビルド前に未使用のプリインストールSDKを削除して約30GB確保する。
+      - name: Free disk space
+        working-directory: /
+        run: |
+          echo "Before:"; df -h / | tail -1
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/.ghcup \
+            /usr/local/lib/android /usr/local/share/boost \
+            /usr/local/share/powershell /usr/share/swift "$AGENT_TOOLSDIRECTORY" || true
+          sudo docker image prune -af || true
+          echo "After:"; df -h / | tail -1
+
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
