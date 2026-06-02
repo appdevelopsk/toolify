@@ -206,6 +206,12 @@ import logarithmCalculator from "@/tools/logarithm-calculator";
 import combinationCalculator from "@/tools/combination-calculator";
 import ponderalIndexCalculator from "@/tools/ponderal-index-calculator";
 import futureValueCalculator from "@/tools/future-value-calculator";
+import presentValueCalculator from "@/tools/present-value-calculator";
+import permutationCalculator from "@/tools/permutation-calculator";
+import exponentCalculator from "@/tools/exponent-calculator";
+import moduloCalculator from "@/tools/modulo-calculator";
+import maxHeartRateCalculator from "@/tools/max-heart-rate-calculator";
+import overtimePayCalculator from "@/tools/overtime-pay-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -418,6 +424,12 @@ export const TOOLS: ToolMeta[] = [
   combinationCalculator,
   ponderalIndexCalculator,
   futureValueCalculator,
+  presentValueCalculator,
+  permutationCalculator,
+  exponentCalculator,
+  moduloCalculator,
+  maxHeartRateCalculator,
+  overtimePayCalculator,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
