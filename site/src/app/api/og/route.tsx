@@ -5,6 +5,17 @@ export const runtime = "edge";
 
 const SIZE = { width: 1200, height: 630 };
 
+// Locales whose scripts require complex OpenType shaping (GSUB lookupType:5/substFormat:3)
+// that the built-in Noto Sans Latin font cannot handle — satori crashes with:
+// "Error: lookupType: 5 - substFormat: 3 is not yet supported"
+// Fall back to English text for these locales to prevent 502 errors.
+const COMPLEX_SCRIPT_LOCALES = new Set([
+  "ar", "fa", "he", "ur", // Arabic / Hebrew / RTL
+  "hi", "bn", "gu", "pa", "mr", "ne", // Devanagari / Indic
+  "ta", "te", "kn", "ml", "si", // South Indian
+  "my", "km", "lo", "ka", "am", // Burmese / Khmer / Lao / Georgian / Amharic
+]);
+
 /**
  * /api/og?title=...&subtitle=...&locale=...
  *
@@ -17,6 +28,13 @@ export async function GET(req: NextRequest) {
   const subtitle = (searchParams.get("subtitle") ?? "Free, fast, ad-supported online tools").slice(0, 140);
   const locale = searchParams.get("locale") ?? "en";
   const isCjk = locale === "ja" || locale.startsWith("zh") || locale === "ko" || locale === "th";
+
+  // Complex scripts crash satori's font shaper — use safe English fallback text
+  const usesFallback = COMPLEX_SCRIPT_LOCALES.has(locale);
+  const displayTitle = usesFallback ? "Toolify" : title;
+  const displaySubtitle = usesFallback
+    ? "Free online tools — calculators, converters & more"
+    : subtitle;
 
   return new ImageResponse(
     (
@@ -62,9 +80,9 @@ export async function GET(req: NextRequest) {
               letterSpacing: "-0.02em",
             }}
           >
-            {title}
+            {displayTitle}
           </div>
-          <div style={{ fontSize: "26px", opacity: 0.85, lineHeight: 1.4 }}>{subtitle}</div>
+          <div style={{ fontSize: "26px", opacity: 0.85, lineHeight: 1.4 }}>{displaySubtitle}</div>
         </div>
       </div>
     ),
