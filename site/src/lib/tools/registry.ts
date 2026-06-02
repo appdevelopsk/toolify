@@ -178,6 +178,8 @@ import readingTimeCalculator from "@/tools/reading-time-calculator";
 import profitMarginCalculator from "@/tools/profit-margin-calculator";
 import slopeCalculator from "@/tools/slope-calculator";
 import squareFootageCalculator from "@/tools/square-footage-calculator";
+import midpointCalculator from "@/tools/midpoint-calculator";
+import concreteCalculator from "@/tools/concrete-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -362,6 +364,8 @@ export const TOOLS: ToolMeta[] = [
   profitMarginCalculator,
   slopeCalculator,
   squareFootageCalculator,
+  midpointCalculator,
+  concreteCalculator,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
