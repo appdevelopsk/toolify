@@ -194,6 +194,12 @@ import boxVolumeCalculator from "@/tools/box-volume-calculator";
 import tileCalculator from "@/tools/tile-calculator";
 import molarityCalculator from "@/tools/molarity-calculator";
 import averageSpeedCalculator from "@/tools/average-speed-calculator";
+import dayOfWeekCalculator from "@/tools/day-of-week-calculator";
+import bodySurfaceAreaCalculator from "@/tools/body-surface-area-calculator";
+import a1cCalculator from "@/tools/a1c-calculator";
+import effectiveAnnualRateCalculator from "@/tools/effective-annual-rate-calculator";
+import costPerUseCalculator from "@/tools/cost-per-use-calculator";
+import proportionCalculator from "@/tools/proportion-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -394,6 +400,12 @@ export const TOOLS: ToolMeta[] = [
   tileCalculator,
   molarityCalculator,
   averageSpeedCalculator,
+  dayOfWeekCalculator,
+  bodySurfaceAreaCalculator,
+  a1cCalculator,
+  effectiveAnnualRateCalculator,
+  costPerUseCalculator,
+  proportionCalculator,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
