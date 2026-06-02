@@ -447,48 +447,55 @@ export const TOOLS: ToolMeta[] = [
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
 
 /**
- * 再審査用 noindex リスト（AdSense「有用性の低いコンテンツ」対策 / docs/ADSENSE_RECOVERY_PLAN.md フェーズ2）。
- * ここに入れた slug はページ自体は存在し続けるが、
+ * index 対象コア allowlist（AdSense「有用性の低いコンテンツ」対策 / docs/ADSENSE_RECOVERY_PLAN.md フェーズ2）。
+ * 「差別化できる高価値ツール」だけを index する allowlist 方式。
+ * ここに無い slug はページ自体は存在し続けるが、
  *   - robots: { index: false }（generateMetadata 経由）
  *   - sitemap から除外
- * の両方が同時に適用され、新規ドメインの scaled-content 署名を下げる。
- * 承認後、各ツールに本物の差別化機能を入れてから「段階的に」リストから外して index 復帰させる。
- * ※ 面積を絞る最重要レバー。より攻めるならここを増やす（目標: index コア 40〜60 本）。
+ * の両方が適用され、新規ドメインの scaled-content 署名を大きく下げる。
+ * 承認後、本物の差別化機能を入れたツールから「段階的に」この allowlist へ戻して index 復帰させる。
+ * ※ 現状コア 67 本（全 218 中）。一気に全復帰すると velocity 信号になるので段階的に。
  */
-export const NOINDEX_SLUGS = new Set<string>([
-  // ノベルティ / コンテンツ上限が低い
-  "dice-roller", "random-number-generator", "countdown-timer", "stopwatch",
-  "pomodoro-timer", "reverse-text-generator", "lorem-ipsum-generator",
-  "coffee-ratio-calculator", "cat-age-calculator", "dog-age-calculator", "moon-phase-calculator",
-  // 幾何ボリュームの重複（geometric-shapes / circle / triangle を代表として残す）
-  "box-volume-calculator", "cone-volume-calculator", "cylinder-volume-calculator", "sphere-volume-calculator",
-  // 単一単位コンバータの重複（length/weight/temperature/volume/speed/data-size/time/currency/cooking を残す）
-  "angle-converter", "power-converter", "pressure-converter", "density-calculator",
-  "fuel-economy-converter", "css-unit-converter", "scientific-notation-converter", "board-feet-calculator",
-  // 健康系の近似重複（bmi/bmr/body-fat/ideal-weight/target-heart-rate/waist-to-height を残す）
-  "waist-hip-ratio-calculator", "ponderal-index-calculator", "body-surface-area-calculator", "max-heart-rate-calculator",
-  // 数学系の近似重複（core を残す）
-  "modulo-calculator", "exponent-calculator", "factorial-calculator", "logarithm-calculator",
-  "midpoint-calculator", "percent-error-calculator", "significant-figures-calculator",
-  "number-sequence-generator", "proportion-calculator",
-  // テキスト系の近似重複（word-counter / text-diff / case-converter を残す）
-  "character-frequency", "duplicate-line-remover", "text-sorter", "text-replace", "text-to-binary",
-  // その他ノベルティ / 飽和コモディティ
-  "caesar-cipher", "morse-code-translator", "ascii-table", "keycode-finder",
-  "resistor-color-code", "number-to-words", "roman-numeral-converter",
+export const INDEXED_SLUGS = new Set<string>([
+  // finance (14)
+  "mortgage-calculator", "mortgage-refinance-calculator", "loan-calculator",
+  "loan-amortization-schedule", "car-loan-calculator", "compound-interest-calculator",
+  "retirement-calculator", "debt-payoff-calculator", "savings-goal-calculator",
+  "paycheck-calculator", "salary-converter", "sales-tax-calculator", "vat-calculator", "tip-calculator",
+  // health (12)
+  "bmi-calculator", "bmr-calculator", "calorie-calculator", "macro-calculator",
+  "body-fat-calculator", "ideal-weight-calculator", "pregnancy-week-calculator",
+  "due-date-calculator", "ovulation-calculator", "water-intake-calculator",
+  "pace-calculator", "sleep-calculator",
+  // text / dev (12)
+  "word-counter", "case-converter", "json-formatter", "regex-tester", "jwt-decoder",
+  "subnet-calculator", "hash-generator", "uuid-generator", "base64-encoder",
+  "url-encoder", "password-generator", "qr-code-generator",
+  // math (10)
+  "percentage-calculator", "percentage-change-calculator", "fraction-calculator",
+  "statistics-calculator", "quadratic-equation-solver", "triangle-calculator",
+  "circle-calculator", "square-footage-calculator", "prime-checker", "gpa-calculator",
+  // converter (8)
+  "length-converter", "weight-converter", "temperature-converter", "volume-converter",
+  "speed-converter", "currency-converter", "cooking-unit-converter", "data-size-converter",
+  // datetime (7)
+  "age-calculator", "date-calculator", "timezone-converter", "timestamp-converter",
+  "workdays-calculator", "cron-expression-tester", "hours-calculator",
+  // color (4)
+  "color-converter", "color-palette-generator", "contrast-checker", "gradient-generator",
 ]);
 
 export function isIndexable(slug: string): boolean {
-  return !NOINDEX_SLUGS.has(slug);
+  return INDEXED_SLUGS.has(slug);
 }
 
 export function listTools(): ToolMeta[] {
   return TOOLS;
 }
 
-/** sitemap / 内部リンクのうち index 対象だけを返す（noindex ツールを除外）。 */
+/** sitemap / 内部リンクのうち index 対象（コア allowlist）だけを返す。 */
 export function listIndexableTools(): ToolMeta[] {
-  return TOOLS.filter((m) => !NOINDEX_SLUGS.has(m.slug));
+  return TOOLS.filter((m) => INDEXED_SLUGS.has(m.slug));
 }
 
 export function getTool(slug: string): ToolMeta | undefined {

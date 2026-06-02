@@ -174,7 +174,7 @@ base64-encoder, url-encoder, hash-generator, uuid-generator, case-converter
 | フェーズ | 状態 | 内容 |
 |---|---|---|
 | 1. 凍結 | ✅ | 未コミットの量産6本（cat-age/dog-age/half-life/ratio-simplifier/sip/square-root specs）はマージせず据え置き＝増加停止 |
-| 2. 剪定 | ✅ コード完了 | `registry.ts` に `NOINDEX_SLUGS`(48本) + `isIndexable()` + `listIndexableTools()`。`sitemap.ts` が noindex を除外、`buildMetadata({noindex})` で robots index:false。**ツールURL 3,706→2,890（816除外）/ index対象170本** |
+| 2. 剪定 | ✅ デプロイ済 | 第1段: `NOINDEX_SLUGS`(48) → 第2段で **allowlist 方式 `INDEXED_SLUGS`(コア67本)** に変更（finance14/health12/text12/math10/converter8/datetime7/color4）。`sitemap.ts` が非コアを除外、`buildMetadata({noindex})` で robots index:false。**ツールURL 3,706→1,139（151本noindex）**。残151本はページ存続・noindex温存し差別化後に段階復帰 |
 | 3. E-E-A-T | ✅ コード完了 | About に「ツールの作り方と検証方法」「修正受付CTA」「最終確認日」を追加し全17言語翻訳。About に Organization JSON-LD を出力 |
 | 4. 差別化 | ⬜ 未着手 | 60本コアへの本物の独自機能は反復作業。承認後に段階実装 |
 | 5. 検証 | ✅ | `typecheck` / `audit:i18n` / `audit:seo` / `build`(exit 0) PASS。Lighthouse は要実行。AdSense「問題を修正しました」申請はユーザー操作 |
@@ -189,7 +189,8 @@ base64-encoder, url-encoder, hash-generator, uuid-generator, case-converter
 > 教訓: 量産パイプラインは「壊れたまま全言語公開」する事故を起こしていた。これは AdSense「低品質」の直接要因。**承認前に全ツールを実際にレンダリングして生キー/空表示が無いか巡回すべき**（ビルドログの MISSING_MESSAGE 監視で代替可）。
 
 ### 残タスク（ユーザー判断/操作が必要）
-1. **実在事業者情報**: `NEXT_PUBLIC_ORG_NAME` / `NEXT_PUBLIC_CONTACT_EMAIL` を実値に（現状デフォルトは "Toolify" / "contact@example.com" のまま＝審査NG要因）。本番は GitHub Secrets 経由。
-2. **剪定の深掘り**: より攻めるなら `NOINDEX_SLUGS` を増やし index コアを 40〜60 本へ（現状170本）。
-3. **フェーズ4**: コアツールへ競合に無い実機能を順次実装。
-4. デプロイ→Search Console で index 安定確認後に AdSense 再審査を申請。
+1. **実在事業者情報**: CI(`deploy.yml`)の `NEXT_PUBLIC_CONTACT_EMAIL` は実Gmail(`app.develop.sk@gmail.com`)済み。`NEXT_PUBLIC_ORG_NAME` は "Toolify"（ブランド名）。実法人名があれば E-E-A-T 強化。
+2. ~~剪定の深掘り~~ → **完了**（コア67本 allowlist にデプロイ済み）。さらに攻める/緩めるは `INDEXED_SLUGS` を増減。
+3. **フェーズ4**: コア67本へ競合に無い実機能を順次実装。承認後、差別化したものから `INDEXED_SLUGS` へ戻して段階復帰。
+4. **Search Console**: sitemap 再送信 → index 反映待ち → 安定後に **AdSense「問題を修正しました」申請**（Claude では不可）。
+5. （任意）`deploy.yml` の `actions/checkout@v4`・`setup-node@v4` を Node24対応版へ（2026-06-16 以降の非推奨対応）。
