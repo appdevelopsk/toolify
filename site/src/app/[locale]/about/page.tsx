@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { organizationJsonLd } from "@/lib/seo/structured-data";
 import { siteConfig } from "@/lib/config";
 import type { Locale } from "@/lib/i18n/locales";
 
@@ -25,6 +27,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <li>{t("about.p3")}</li>
         <li>{t("about.p4")}</li>
       </ul>
+      <h2>{t("about.methodologyHeading")}</h2>
+      <p>{t("about.methodology")}</p>
       <h2>{t("about.operatedHeading")}</h2>
       <p>
         {t("about.operated", {
@@ -32,6 +36,11 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           email: siteConfig.contactEmail,
         })}
       </p>
+      <p>{t("about.contactCta", { email: siteConfig.contactEmail })}</p>
+      <p>
+        <em>{t("about.lastReviewed")}</em>
+      </p>
+      <JsonLd data={organizationJsonLd()} />
     </div>
   );
 }

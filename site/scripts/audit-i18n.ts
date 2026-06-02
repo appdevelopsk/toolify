@@ -66,6 +66,18 @@ function auditFolder(folder: string, label: string, locales: string[]): number {
       issues++;
     }
   }
+  // 構造ガード: next-intl はトップレベルのドット入りフラットキー（例 "action.copy"）を解決できず、
+  // t("action.copy") が全言語で MISSING になる。パイプライン由来のこのバグを検出する。
+  for (const locale of locales) {
+    const file = path.join(folder, `${locale}.json`);
+    if (!fs.existsSync(file)) continue;
+    const dotted = Object.keys(loadJson(file)).filter((k) => k.includes("."));
+    if (dotted.length) {
+      console.error(`[flat-key] ${label} (${locale}): トップレベルにドット入りキー（ネストが必要）:`);
+      dotted.forEach((k) => console.error(`  ! ${k}`));
+      issues++;
+    }
+  }
   return issues;
 }
 

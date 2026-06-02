@@ -10,6 +10,10 @@ type Sex = "male" | "female";
 const METRIC_GOALS = [0.25, 0.5, 0.75, 1.0] as const;
 const IMPERIAL_GOALS = [0.5, 1.0, 1.5, 2.0] as const; // lbs/week
 
+// メッセージキーは "1_0"/"2_0" のように整数も小数1桁で持つため、
+// 整数値は "_0" を付与して String(g).replace と整合させる（kg_1 等のキー欠落を防ぐ）。
+const goalKey = (g: number) => (Number.isInteger(g) ? `${g}_0` : String(g).replace(".", "_"));
+
 const SAFE_MIN: Record<Sex, number> = { male: 1500, female: 1200 };
 
 function bmrMifflin(sex: Sex, weightKg: number, heightCm: number, age: number): number {
@@ -210,12 +214,12 @@ export default function CalorieDeficitCalculator() {
             {unit === "metric"
               ? METRIC_GOALS.map((g) => (
                   <option key={g} value={String(g)}>
-                    {t(`goal.kg_${String(g).replace(".", "_")}`)}
+                    {t(`goal.kg_${goalKey(g)}`)}
                   </option>
                 ))
               : IMPERIAL_GOALS.map((g) => (
                   <option key={g} value={String(g)}>
-                    {t(`goal.lbs_${String(g).replace(".", "_")}`)}
+                    {t(`goal.lbs_${goalKey(g)}`)}
                   </option>
                 ))}
           </select>
