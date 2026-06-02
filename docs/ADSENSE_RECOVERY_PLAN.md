@@ -128,6 +128,27 @@ base64-encoder, url-encoder, hash-generator, uuid-generator, case-converter
 
 **完了条件:** index継続コアの各ツールに、競合に無い実機能＋固有説明文が入っている
 
+### 実行手順（戻ってからの着手順 / 安全・高ROI順）
+
+> 対象は `INDEXED_SLUGS` のコア67本のみ。1ツールずつ実装→`npm run build` で MISSING_MESSAGE 0 を確認→ブラウザ目視→push。
+> **盲目的に67本を一括量産しない**（テンプレ感＝HCUの逆効果）。週あたり数本ずつ、固有文章とセットで。
+
+1. **横断の共通基盤（1回作れば全コアに効く・最優先）**
+   - `useToolPermalink()`: 入力 state を URLクエリに encode/decode するフック。「条件を保存・共有」ボタン。サーバ送信なしを明記＝privacy 差別化と両立。
+   - `<ResultActions>`: コピー / CSV / 印刷（`window.print()` + print CSS）の共通コンポーネント。
+   - `<LastReviewed>`: `tool.updatedAt` を各ツール下部に表示（E-E-A-T）。
+2. **金融コア（最も収益・intent が高い → 先に差別化）**
+   - mortgage / loan-amortization-schedule / car-loan / debt-payoff: **償却スケジュール表**（月次の元金・利息内訳）＋CSV出力＋複数シナリオ横並び比較。competitor の多くは表を出さない＝明確な勝ち筋。
+   - retirement / compound-interest / savings-goal: 年次推移グラフ（軽量SVG、依存追加なし）。
+3. **開発コア（competitor が弱く実装が軽い → ROI高）**
+   - regex-tester: マッチのリアルタイムハイライト＋グループ表＋よく使うパターン集。
+   - cron-expression-tester: 次回実行時刻リスト＋人間可読の説明文。
+   - subnet-calculator: 分割サブネット表。jwt-decoder: クレーム説明ツールチップ。
+4. **健康コア**: 入力の localStorage 保存（「端末内のみ・サーバ送信なし」明記）＋locale別の単位/基準自動切替（既存の良いローカライズを機能面でも）。
+5. 実装した順に固有の解説段落（その機能の使い方・根拠）を `messages/` 17言語へ追加。`audit:i18n` の flat-key ガードと MISSING_MESSAGE 0 を必ず通す。
+
+> 復帰運用: もし noindex 中のツールを差別化して戻す場合は、`INDEXED_SLUGS` へ slug を追加。**一度に大量復帰しない**（velocity 信号）。
+
 ---
 
 ## フェーズ5 — 再審査前チェック & 申請（1日）
