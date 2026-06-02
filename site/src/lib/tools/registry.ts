@@ -182,6 +182,12 @@ import midpointCalculator from "@/tools/midpoint-calculator";
 import concreteCalculator from "@/tools/concrete-calculator";
 import proteinIntakeCalculator from "@/tools/protein-intake-calculator";
 import zScoreCalculator from "@/tools/z-score-calculator";
+import gravelCalculator from "@/tools/gravel-calculator";
+import cylinderVolumeCalculator from "@/tools/cylinder-volume-calculator";
+import kineticEnergyCalculator from "@/tools/kinetic-energy-calculator";
+import densityCalculator from "@/tools/density-calculator";
+import salesCommissionCalculator from "@/tools/sales-commission-calculator";
+import boardFeetCalculator from "@/tools/board-feet-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -370,6 +376,12 @@ export const TOOLS: ToolMeta[] = [
   concreteCalculator,
   proteinIntakeCalculator,
   zScoreCalculator,
+  gravelCalculator,
+  cylinderVolumeCalculator,
+  kineticEnergyCalculator,
+  densityCalculator,
+  salesCommissionCalculator,
+  boardFeetCalculator,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
