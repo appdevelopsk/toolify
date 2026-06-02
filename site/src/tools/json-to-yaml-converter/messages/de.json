@@ -3,18 +3,32 @@
   "shortDescription": "Konvertiere JSON zu YAML oder YAML zu JSON sofort. Bearbeite eine Seite und die andere synchronisiert sich automatisch.",
   "description": "Füge JSON links ein und erhalte YAML rechts — oder umgekehrt. Beide Panels sind in Echtzeit editierbar und synchronisieren sich automatisch. Enthält Schaltflächen zum Formatieren von JSON, Tauschen und Kopieren. Die Konvertierung läuft vollständig im Browser ohne Datenübertragung an Server.",
   "metaDescription": "Kostenloser bidirektionaler JSON ↔ YAML Konverter. Bearbeite eine Seite und die andere synchronisiert sich. Nur im Browser — deine Daten verlassen nie die Seite.",
-  "keywords": ["json zu yaml konvertieren", "yaml zu json", "json yaml konverter", "yaml online", "json yaml umwandeln"],
-  "label.json": "JSON",
-  "label.yaml": "YAML",
-  "action.copy": "Kopieren",
-  "action.copied": "Kopiert!",
-  "action.clear": "Leeren",
-  "action.swap": "Von YAML synchronisieren",
-  "action.formatJson": "JSON formatieren",
-  "error.invalidJson": "Ungültiges JSON",
-  "error.invalidYaml": "Ungültiges oder nicht unterstütztes YAML",
-  "placeholder.json": "JSON hier einfügen…",
-  "placeholder.yaml": "YAML hier einfügen…",
+  "keywords": [
+    "json zu yaml konvertieren",
+    "yaml zu json",
+    "json yaml konverter",
+    "yaml online",
+    "json yaml umwandeln"
+  ],
+  "label": {
+    "json": "JSON",
+    "yaml": "YAML"
+  },
+  "action": {
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "clear": "Leeren",
+    "swap": "Von YAML synchronisieren",
+    "formatJson": "JSON formatieren"
+  },
+  "error": {
+    "invalidJson": "Ungültiges JSON",
+    "invalidYaml": "Ungültiges oder nicht unterstütztes YAML"
+  },
+  "placeholder": {
+    "json": "JSON hier einfügen…",
+    "yaml": "YAML hier einfügen…"
+  },
   "article": {
     "sections": [
       {
@@ -40,20 +54,56 @@
       }
     ],
     "howTo": [
-      { "name": "JSON oder YAML einfügen", "text": "Klicke auf das JSON-Panel und füge JSON ein, oder auf das YAML-Panel und füge YAML ein. Das gegenüberliegende Panel wird automatisch aktualisiert." },
-      { "name": "Bearbeiten und iterieren", "text": "Beide Panels sind Echtzeit-Editoren. Ändere einen Wert im JSON und YAML spiegelt ihn sofort wider, und umgekehrt." },
-      { "name": "Formatieren und bereinigen", "text": "Verwende die Schaltfläche JSON formatieren, um unordentliches JSON vor der Konvertierung zu verschönern, was die Fehlererkennung erleichtert." },
-      { "name": "Ergebnis kopieren", "text": "Klicke auf die Kopieren-Schaltfläche über einem der Panels, um dessen Inhalt in die Zwischenablage zu legen." }
+      {
+        "name": "JSON oder YAML einfügen",
+        "text": "Klicke auf das JSON-Panel und füge JSON ein, oder auf das YAML-Panel und füge YAML ein. Das gegenüberliegende Panel wird automatisch aktualisiert."
+      },
+      {
+        "name": "Bearbeiten und iterieren",
+        "text": "Beide Panels sind Echtzeit-Editoren. Ändere einen Wert im JSON und YAML spiegelt ihn sofort wider, und umgekehrt."
+      },
+      {
+        "name": "Formatieren und bereinigen",
+        "text": "Verwende die Schaltfläche JSON formatieren, um unordentliches JSON vor der Konvertierung zu verschönern, was die Fehlererkennung erleichtert."
+      },
+      {
+        "name": "Ergebnis kopieren",
+        "text": "Klicke auf die Kopieren-Schaltfläche über einem der Panels, um dessen Inhalt in die Zwischenablage zu legen."
+      }
     ]
   },
   "faq": [
-    { "q": "Ist YAML eine Obermenge von JSON?", "a": "Ja. YAML 1.2 ist eine strikte Obermenge von JSON, was bedeutet, dass jedes gültige JSON-Dokument gültiges YAML ist. Umgekehrt gilt das nicht immer: YAML-Funktionen wie Kommentare, Anker und Block-Skalare haben kein JSON-Äquivalent." },
-    { "q": "Wofür wird YAML hauptsächlich verwendet?", "a": "YAML ist am häufigsten in Konfigurationsdateien zu finden: Docker Compose (docker-compose.yml), Kubernetes-Manifeste, GitHub Actions (.github/workflows), Ansible-Playbooks. Sein lesbarer Stil eignet sich für Dateien, die Entwickler manuell bearbeiten." },
-    { "q": "JSON oder YAML für Konfigurationsdateien?", "a": "YAML gewinnt in der Regel für menschlich bearbeitete Konfigurationen, da es Kommentare unterstützt und weniger rauschig ist. JSON ist besser für maschinell generierte oder konsumierte Konfigurationen, da das Format strenger ist. Viele Werkzeuge (ESLint, Prettier, tsconfig) akzeptieren beide." },
-    { "q": "Wie behandelt YAML Sonderzeichen?", "a": "Zeichenketten mit Doppelpunkt gefolgt von Leerzeichen, führenden Sonderzeichen ({, [, #, usw.) oder Werten, die wie Boolesche Werte oder Zahlen aussehen, müssen in Anführungszeichen gesetzt werden. Einfache Anführungszeichen deaktivieren alle Escapings; doppelte Anführungszeichen verwenden ähnliche Backslash-Escapes wie JSON. Dieser Konverter setzt automatisch Anführungszeichen, wo nötig." },
-    { "q": "Ist die Konvertierung von JSON zu YAML verlustfrei?", "a": "Für die von JSON unterstützten Typen (Zeichenketten, Zahlen, Boolesche Werte, null, Objekte, Arrays) ist die Konvertierung verlustfrei. Das einzige potenzielle Problem ist YAMLs Typinferenz bei unquotierten Werten, weshalb dieser Konverter Zeichenketten in Anführungszeichen setzt, die falsch interpretiert werden könnten." },
-    { "q": "Wie konvertiere ich YAML in Python zu JSON?", "a": "Verwende die PyYAML-Bibliothek: import yaml, json; data = yaml.safe_load(open('datei.yaml')); print(json.dumps(data, indent=2)). Die safe_load-Funktion verhindert die Ausführung beliebiger YAML-Tags, was für die Sicherheit wichtig ist." },
-    { "q": "Wie konvertiere ich JSON in Node.js zu YAML?", "a": "Mit dem js-yaml-Paket: const yaml = require('js-yaml'); const obj = JSON.parse(fs.readFileSync('datei.json')); console.log(yaml.dump(obj)). Für einen abhängigkeitsfreien Ansatz schreibt man den YAML-Serializer manuell, was dieser Konverter tut." },
-    { "q": "Welche YAML-Funktionen werden nicht unterstützt?", "a": "Dieser Konverter lässt absichtlich erweiterte YAML-Funktionen weg: Anker (&anker), Aliase (*alias), Typ-Tags (!!int, !!str), mehrzeilige Block-Skalare (| und >), Dokumenttrenner (---). Diese decken weniger als 5% des realen YAML ab. Für diese Fälle verwende eine vollständige YAML-Bibliothek." }
+    {
+      "q": "Ist YAML eine Obermenge von JSON?",
+      "a": "Ja. YAML 1.2 ist eine strikte Obermenge von JSON, was bedeutet, dass jedes gültige JSON-Dokument gültiges YAML ist. Umgekehrt gilt das nicht immer: YAML-Funktionen wie Kommentare, Anker und Block-Skalare haben kein JSON-Äquivalent."
+    },
+    {
+      "q": "Wofür wird YAML hauptsächlich verwendet?",
+      "a": "YAML ist am häufigsten in Konfigurationsdateien zu finden: Docker Compose (docker-compose.yml), Kubernetes-Manifeste, GitHub Actions (.github/workflows), Ansible-Playbooks. Sein lesbarer Stil eignet sich für Dateien, die Entwickler manuell bearbeiten."
+    },
+    {
+      "q": "JSON oder YAML für Konfigurationsdateien?",
+      "a": "YAML gewinnt in der Regel für menschlich bearbeitete Konfigurationen, da es Kommentare unterstützt und weniger rauschig ist. JSON ist besser für maschinell generierte oder konsumierte Konfigurationen, da das Format strenger ist. Viele Werkzeuge (ESLint, Prettier, tsconfig) akzeptieren beide."
+    },
+    {
+      "q": "Wie behandelt YAML Sonderzeichen?",
+      "a": "Zeichenketten mit Doppelpunkt gefolgt von Leerzeichen, führenden Sonderzeichen ({, [, #, usw.) oder Werten, die wie Boolesche Werte oder Zahlen aussehen, müssen in Anführungszeichen gesetzt werden. Einfache Anführungszeichen deaktivieren alle Escapings; doppelte Anführungszeichen verwenden ähnliche Backslash-Escapes wie JSON. Dieser Konverter setzt automatisch Anführungszeichen, wo nötig."
+    },
+    {
+      "q": "Ist die Konvertierung von JSON zu YAML verlustfrei?",
+      "a": "Für die von JSON unterstützten Typen (Zeichenketten, Zahlen, Boolesche Werte, null, Objekte, Arrays) ist die Konvertierung verlustfrei. Das einzige potenzielle Problem ist YAMLs Typinferenz bei unquotierten Werten, weshalb dieser Konverter Zeichenketten in Anführungszeichen setzt, die falsch interpretiert werden könnten."
+    },
+    {
+      "q": "Wie konvertiere ich YAML in Python zu JSON?",
+      "a": "Verwende die PyYAML-Bibliothek: import yaml, json; data = yaml.safe_load(open('datei.yaml')); print(json.dumps(data, indent=2)). Die safe_load-Funktion verhindert die Ausführung beliebiger YAML-Tags, was für die Sicherheit wichtig ist."
+    },
+    {
+      "q": "Wie konvertiere ich JSON in Node.js zu YAML?",
+      "a": "Mit dem js-yaml-Paket: const yaml = require('js-yaml'); const obj = JSON.parse(fs.readFileSync('datei.json')); console.log(yaml.dump(obj)). Für einen abhängigkeitsfreien Ansatz schreibt man den YAML-Serializer manuell, was dieser Konverter tut."
+    },
+    {
+      "q": "Welche YAML-Funktionen werden nicht unterstützt?",
+      "a": "Dieser Konverter lässt absichtlich erweiterte YAML-Funktionen weg: Anker (&anker), Aliase (*alias), Typ-Tags (!!int, !!str), mehrzeilige Block-Skalare (| und >), Dokumenttrenner (---). Diese decken weniger als 5% des realen YAML ab. Für diese Fälle verwende eine vollständige YAML-Bibliothek."
+    }
   ]
 }

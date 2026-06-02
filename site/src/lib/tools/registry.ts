@@ -173,6 +173,51 @@ import geoShapes from "@/tools/geometric-shapes-calculator";
 import percentageChange from "@/tools/percentage-change-calculator";
 import hoursCalc from "@/tools/hours-calculator";
 import houseAffordability from "@/tools/house-affordability-calculator";
+import coffeeRatioCalculator from "@/tools/coffee-ratio-calculator";
+import readingTimeCalculator from "@/tools/reading-time-calculator";
+import profitMarginCalculator from "@/tools/profit-margin-calculator";
+import slopeCalculator from "@/tools/slope-calculator";
+import squareFootageCalculator from "@/tools/square-footage-calculator";
+import midpointCalculator from "@/tools/midpoint-calculator";
+import concreteCalculator from "@/tools/concrete-calculator";
+import proteinIntakeCalculator from "@/tools/protein-intake-calculator";
+import zScoreCalculator from "@/tools/z-score-calculator";
+import gravelCalculator from "@/tools/gravel-calculator";
+import cylinderVolumeCalculator from "@/tools/cylinder-volume-calculator";
+import kineticEnergyCalculator from "@/tools/kinetic-energy-calculator";
+import densityCalculator from "@/tools/density-calculator";
+import salesCommissionCalculator from "@/tools/sales-commission-calculator";
+import boardFeetCalculator from "@/tools/board-feet-calculator";
+import waistToHeightRatioCalculator from "@/tools/waist-to-height-ratio-calculator";
+import downPaymentCalculator from "@/tools/down-payment-calculator";
+import boxVolumeCalculator from "@/tools/box-volume-calculator";
+import tileCalculator from "@/tools/tile-calculator";
+import molarityCalculator from "@/tools/molarity-calculator";
+import averageSpeedCalculator from "@/tools/average-speed-calculator";
+import dayOfWeekCalculator from "@/tools/day-of-week-calculator";
+import bodySurfaceAreaCalculator from "@/tools/body-surface-area-calculator";
+import a1cCalculator from "@/tools/a1c-calculator";
+import effectiveAnnualRateCalculator from "@/tools/effective-annual-rate-calculator";
+import costPerUseCalculator from "@/tools/cost-per-use-calculator";
+import proportionCalculator from "@/tools/proportion-calculator";
+import sphereVolumeCalculator from "@/tools/sphere-volume-calculator";
+import coneVolumeCalculator from "@/tools/cone-volume-calculator";
+import logarithmCalculator from "@/tools/logarithm-calculator";
+import combinationCalculator from "@/tools/combination-calculator";
+import ponderalIndexCalculator from "@/tools/ponderal-index-calculator";
+import futureValueCalculator from "@/tools/future-value-calculator";
+import presentValueCalculator from "@/tools/present-value-calculator";
+import permutationCalculator from "@/tools/permutation-calculator";
+import exponentCalculator from "@/tools/exponent-calculator";
+import moduloCalculator from "@/tools/modulo-calculator";
+import maxHeartRateCalculator from "@/tools/max-heart-rate-calculator";
+import overtimePayCalculator from "@/tools/overtime-pay-calculator";
+import squareRootCalculator from "@/tools/square-root-calculator";
+import halfLifeCalculator from "@/tools/half-life-calculator";
+import ratioSimplifier from "@/tools/ratio-simplifier";
+import dogAgeCalculator from "@/tools/dog-age-calculator";
+import catAgeCalculator from "@/tools/cat-age-calculator";
+import sipCalculator from "@/tools/sip-calculator";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
@@ -352,12 +397,98 @@ export const TOOLS: ToolMeta[] = [
   percentageChange,
   hoursCalc,
   houseAffordability,
+  coffeeRatioCalculator,
+  readingTimeCalculator,
+  profitMarginCalculator,
+  slopeCalculator,
+  squareFootageCalculator,
+  midpointCalculator,
+  concreteCalculator,
+  proteinIntakeCalculator,
+  zScoreCalculator,
+  gravelCalculator,
+  cylinderVolumeCalculator,
+  kineticEnergyCalculator,
+  densityCalculator,
+  salesCommissionCalculator,
+  boardFeetCalculator,
+  waistToHeightRatioCalculator,
+  downPaymentCalculator,
+  boxVolumeCalculator,
+  tileCalculator,
+  molarityCalculator,
+  averageSpeedCalculator,
+  dayOfWeekCalculator,
+  bodySurfaceAreaCalculator,
+  a1cCalculator,
+  effectiveAnnualRateCalculator,
+  costPerUseCalculator,
+  proportionCalculator,
+  sphereVolumeCalculator,
+  coneVolumeCalculator,
+  logarithmCalculator,
+  combinationCalculator,
+  ponderalIndexCalculator,
+  futureValueCalculator,
+  presentValueCalculator,
+  permutationCalculator,
+  exponentCalculator,
+  moduloCalculator,
+  maxHeartRateCalculator,
+  overtimePayCalculator,
+  squareRootCalculator,
+  halfLifeCalculator,
+  ratioSimplifier,
+  dogAgeCalculator,
+  catAgeCalculator,
+  sipCalculator,
 ];
 
 const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
 
+/**
+ * 再審査用 noindex リスト（AdSense「有用性の低いコンテンツ」対策 / docs/ADSENSE_RECOVERY_PLAN.md フェーズ2）。
+ * ここに入れた slug はページ自体は存在し続けるが、
+ *   - robots: { index: false }（generateMetadata 経由）
+ *   - sitemap から除外
+ * の両方が同時に適用され、新規ドメインの scaled-content 署名を下げる。
+ * 承認後、各ツールに本物の差別化機能を入れてから「段階的に」リストから外して index 復帰させる。
+ * ※ 面積を絞る最重要レバー。より攻めるならここを増やす（目標: index コア 40〜60 本）。
+ */
+export const NOINDEX_SLUGS = new Set<string>([
+  // ノベルティ / コンテンツ上限が低い
+  "dice-roller", "random-number-generator", "countdown-timer", "stopwatch",
+  "pomodoro-timer", "reverse-text-generator", "lorem-ipsum-generator",
+  "coffee-ratio-calculator", "cat-age-calculator", "dog-age-calculator", "moon-phase-calculator",
+  // 幾何ボリュームの重複（geometric-shapes / circle / triangle を代表として残す）
+  "box-volume-calculator", "cone-volume-calculator", "cylinder-volume-calculator", "sphere-volume-calculator",
+  // 単一単位コンバータの重複（length/weight/temperature/volume/speed/data-size/time/currency/cooking を残す）
+  "angle-converter", "power-converter", "pressure-converter", "density-calculator",
+  "fuel-economy-converter", "css-unit-converter", "scientific-notation-converter", "board-feet-calculator",
+  // 健康系の近似重複（bmi/bmr/body-fat/ideal-weight/target-heart-rate/waist-to-height を残す）
+  "waist-hip-ratio-calculator", "ponderal-index-calculator", "body-surface-area-calculator", "max-heart-rate-calculator",
+  // 数学系の近似重複（core を残す）
+  "modulo-calculator", "exponent-calculator", "factorial-calculator", "logarithm-calculator",
+  "midpoint-calculator", "percent-error-calculator", "significant-figures-calculator",
+  "number-sequence-generator", "proportion-calculator",
+  // テキスト系の近似重複（word-counter / text-diff / case-converter を残す）
+  "character-frequency", "duplicate-line-remover", "text-sorter", "text-replace", "text-to-binary",
+  // その他ノベルティ / 飽和コモディティ
+  "caesar-cipher", "morse-code-translator", "ascii-table", "keycode-finder",
+  "resistor-color-code", "number-to-words", "roman-numeral-converter",
+]);
+
+export function isIndexable(slug: string): boolean {
+  return !NOINDEX_SLUGS.has(slug);
+}
+
 export function listTools(): ToolMeta[] {
   return TOOLS;
+}
+
+/** sitemap / 内部リンクのうち index 対象だけを返す（noindex ツールを除外）。 */
+export function listIndexableTools(): ToolMeta[] {
+  return TOOLS.filter((m) => !NOINDEX_SLUGS.has(m.slug));
 }
 
 export function getTool(slug: string): ToolMeta | undefined {

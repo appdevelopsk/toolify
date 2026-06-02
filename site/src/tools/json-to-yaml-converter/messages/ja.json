@@ -3,18 +3,32 @@
   "shortDescription": "JSONとYAMLを双方向に変換。どちらかを編集すると即座に同期。外部ライブラリ不使用、ブラウザ完結。",
   "description": "左のJSONを編集すると右のYAMLが即時更新され、右のYAMLを編集すると左のJSONが更新されます。「JSON整形」「スワップ」「コピー」ボタン付き。変換はすべてブラウザ内で完結し、データは外部に送信されません。",
   "metaDescription": "JSON ↔ YAML を双方向変換。どちらかを編集すると自動同期。ブラウザのみで動作、データ送信なし。",
-  "keywords": ["JSON YAML 変換", "YAML JSON 変換", "json to yaml", "yaml to json", "YAML 変換ツール"],
-  "label.json": "JSON",
-  "label.yaml": "YAML",
-  "action.copy": "コピー",
-  "action.copied": "コピー済",
-  "action.clear": "クリア",
-  "action.swap": "YAMLから同期",
-  "action.formatJson": "JSONを整形",
-  "error.invalidJson": "無効なJSON",
-  "error.invalidYaml": "無効またはサポート外のYAML",
-  "placeholder.json": "JSONをここに貼り付け…",
-  "placeholder.yaml": "YAMLをここに貼り付け…",
+  "keywords": [
+    "JSON YAML 変換",
+    "YAML JSON 変換",
+    "json to yaml",
+    "yaml to json",
+    "YAML 変換ツール"
+  ],
+  "label": {
+    "json": "JSON",
+    "yaml": "YAML"
+  },
+  "action": {
+    "copy": "コピー",
+    "copied": "コピー済",
+    "clear": "クリア",
+    "swap": "YAMLから同期",
+    "formatJson": "JSONを整形"
+  },
+  "error": {
+    "invalidJson": "無効なJSON",
+    "invalidYaml": "無効またはサポート外のYAML"
+  },
+  "placeholder": {
+    "json": "JSONをここに貼り付け…",
+    "yaml": "YAMLをここに貼り付け…"
+  },
   "article": {
     "sections": [
       {
@@ -40,20 +54,56 @@
       }
     ],
     "howTo": [
-      { "name": "JSONまたはYAMLを貼り付ける", "text": "JSONパネルにJSONを貼り付けると自動でYAMLが生成され、YAMLパネルにYAMLを貼り付けると自動でJSONが生成されます。" },
-      { "name": "編集してリアルタイム確認", "text": "両パネルはライブエディタです。JSONを変更するとYAMLに即時反映され、YAMLを変更するとJSONに即時反映されます。" },
-      { "name": "JSONを整形する", "text": "「JSONを整形」ボタンで崩れたJSONをpretty-printに変換してから変換すると、エラーを見つけやすくなります。" },
-      { "name": "結果をコピー", "text": "各パネル上部のコピーボタンで内容をクリップボードにコピーできます。" }
+      {
+        "name": "JSONまたはYAMLを貼り付ける",
+        "text": "JSONパネルにJSONを貼り付けると自動でYAMLが生成され、YAMLパネルにYAMLを貼り付けると自動でJSONが生成されます。"
+      },
+      {
+        "name": "編集してリアルタイム確認",
+        "text": "両パネルはライブエディタです。JSONを変更するとYAMLに即時反映され、YAMLを変更するとJSONに即時反映されます。"
+      },
+      {
+        "name": "JSONを整形する",
+        "text": "「JSONを整形」ボタンで崩れたJSONをpretty-printに変換してから変換すると、エラーを見つけやすくなります。"
+      },
+      {
+        "name": "結果をコピー",
+        "text": "各パネル上部のコピーボタンで内容をクリップボードにコピーできます。"
+      }
     ]
   },
   "faq": [
-    { "q": "YAMLはJSONのスーパーセットですか?", "a": "はい。YAML 1.2はJSONの厳格なスーパーセットです。すべての有効なJSONドキュメントは有効なYAMLです。逆（YAML→JSON）は常に成立しません。コメント・アンカー・ブロックスカラーなどのYAML固有機能にJSONの対応がないためです。" },
-    { "q": "YAMLは主に何に使われますか?", "a": "設定ファイルが主な用途です。Docker Compose（docker-compose.yml）・Kubernetesマニフェスト・GitHub Actions（.github/workflows）・Ansibleプレイブックなどがその代表例です。開発者が手動で編集するファイルにYAMLの可読性が活きます。" },
-    { "q": "設定ファイルにはJSONとYAMLどちらが向いていますか?", "a": "人間が編集するならYAMLが有利です。コメントが書けて視覚的にも整理しやすいためです。機械生成・機械消費の設定にはJSONが向いています。ESLint・Prettier・tsconfigなど多くのツールが両形式に対応しています。" },
-    { "q": "YAMLで特殊文字はどう扱われますか?", "a": "コロン+スペース（: ）・先頭の { [ # 等・真偽値や数値に見える値は、クォートで囲む必要があります。シングルクォートはエスケープなし、ダブルクォートはJSONと同様のバックスラッシュエスケープです。本ツールは必要な箇所を自動クォートします。" },
-    { "q": "JSON→YAML変換はデータが失われませんか?", "a": "JSONがサポートする型（文字列・数値・真偽値・null・オブジェクト・配列）については無損失です。YAMLの型推論によるデータ欠損を防ぐため、誤認される可能性がある文字列はクォートします。" },
-    { "q": "PythonでYAMLをJSONに変換するには?", "a": "PyYAMLライブラリを使います。import yaml, json; data = yaml.safe_load(open('file.yaml')); print(json.dumps(data, indent=2)) で変換できます。safe_load は任意のYAMLタグを実行しないため安全です。" },
-    { "q": "Node.jsでJSONをYAMLに変換するには?", "a": "js-yamlパッケージを使う方法が一般的です。const yaml = require('js-yaml'); const obj = JSON.parse(fs.readFileSync('file.json')); console.log(yaml.dump(obj))。外部依存なしで書く場合は、本ツールのような純粋なシリアライザを実装します。" },
-    { "q": "対応していないYAML機能は何ですか?", "a": "アンカー（&name）・エイリアス（*name）・型タグ（!!int等）・マルチラインブロックスカラー（| や >）・ドキュメント区切り（---）は非対応です。これらは実務YAML全体の5%未満です。これらが必要な場合は専用のYAMLライブラリをご利用ください。" }
+    {
+      "q": "YAMLはJSONのスーパーセットですか?",
+      "a": "はい。YAML 1.2はJSONの厳格なスーパーセットです。すべての有効なJSONドキュメントは有効なYAMLです。逆（YAML→JSON）は常に成立しません。コメント・アンカー・ブロックスカラーなどのYAML固有機能にJSONの対応がないためです。"
+    },
+    {
+      "q": "YAMLは主に何に使われますか?",
+      "a": "設定ファイルが主な用途です。Docker Compose（docker-compose.yml）・Kubernetesマニフェスト・GitHub Actions（.github/workflows）・Ansibleプレイブックなどがその代表例です。開発者が手動で編集するファイルにYAMLの可読性が活きます。"
+    },
+    {
+      "q": "設定ファイルにはJSONとYAMLどちらが向いていますか?",
+      "a": "人間が編集するならYAMLが有利です。コメントが書けて視覚的にも整理しやすいためです。機械生成・機械消費の設定にはJSONが向いています。ESLint・Prettier・tsconfigなど多くのツールが両形式に対応しています。"
+    },
+    {
+      "q": "YAMLで特殊文字はどう扱われますか?",
+      "a": "コロン+スペース（: ）・先頭の { [ # 等・真偽値や数値に見える値は、クォートで囲む必要があります。シングルクォートはエスケープなし、ダブルクォートはJSONと同様のバックスラッシュエスケープです。本ツールは必要な箇所を自動クォートします。"
+    },
+    {
+      "q": "JSON→YAML変換はデータが失われませんか?",
+      "a": "JSONがサポートする型（文字列・数値・真偽値・null・オブジェクト・配列）については無損失です。YAMLの型推論によるデータ欠損を防ぐため、誤認される可能性がある文字列はクォートします。"
+    },
+    {
+      "q": "PythonでYAMLをJSONに変換するには?",
+      "a": "PyYAMLライブラリを使います。import yaml, json; data = yaml.safe_load(open('file.yaml')); print(json.dumps(data, indent=2)) で変換できます。safe_load は任意のYAMLタグを実行しないため安全です。"
+    },
+    {
+      "q": "Node.jsでJSONをYAMLに変換するには?",
+      "a": "js-yamlパッケージを使う方法が一般的です。const yaml = require('js-yaml'); const obj = JSON.parse(fs.readFileSync('file.json')); console.log(yaml.dump(obj))。外部依存なしで書く場合は、本ツールのような純粋なシリアライザを実装します。"
+    },
+    {
+      "q": "対応していないYAML機能は何ですか?",
+      "a": "アンカー（&name）・エイリアス（*name）・型タグ（!!int等）・マルチラインブロックスカラー（| や >）・ドキュメント区切り（---）は非対応です。これらは実務YAML全体の5%未満です。これらが必要な場合は専用のYAMLライブラリをご利用ください。"
+    }
   ]
 }

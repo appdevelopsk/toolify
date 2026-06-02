@@ -3,18 +3,32 @@
   "shortDescription": "在线双向转换 JSON 与 YAML，编辑任意一侧即时同步，纯浏览器运行。",
   "description": "在左侧粘贴 JSON 即可在右侧获得 YAML，反之亦然。两个面板均可实时编辑并自动同步。包含格式化 JSON、交换方向和复制按钮，所有转换均在浏览器本地完成，数据不上传。",
   "metaDescription": "免费在线 JSON ↔ YAML 双向转换工具。编辑任意一侧自动同步，纯浏览器运行，数据不上传不离开本地。",
-  "keywords": ["json转yaml", "yaml转json", "JSON YAML转换", "在线yaml转换", "json yaml互转"],
-  "label.json": "JSON",
-  "label.yaml": "YAML",
-  "action.copy": "复制",
-  "action.copied": "已复制！",
-  "action.clear": "清空",
-  "action.swap": "从YAML同步",
-  "action.formatJson": "格式化JSON",
-  "error.invalidJson": "无效的JSON",
-  "error.invalidYaml": "无效或不支持的YAML",
-  "placeholder.json": "在此粘贴JSON…",
-  "placeholder.yaml": "在此粘贴YAML…",
+  "keywords": [
+    "json转yaml",
+    "yaml转json",
+    "JSON YAML转换",
+    "在线yaml转换",
+    "json yaml互转"
+  ],
+  "label": {
+    "json": "JSON",
+    "yaml": "YAML"
+  },
+  "action": {
+    "copy": "复制",
+    "copied": "已复制！",
+    "clear": "清空",
+    "swap": "从YAML同步",
+    "formatJson": "格式化JSON"
+  },
+  "error": {
+    "invalidJson": "无效的JSON",
+    "invalidYaml": "无效或不支持的YAML"
+  },
+  "placeholder": {
+    "json": "在此粘贴JSON…",
+    "yaml": "在此粘贴YAML…"
+  },
   "article": {
     "sections": [
       {
@@ -40,20 +54,56 @@
       }
     ],
     "howTo": [
-      { "name": "粘贴 JSON 或 YAML", "text": "在 JSON 面板粘贴 JSON，YAML 会自动更新；或在 YAML 面板粘贴 YAML，JSON 会自动更新。" },
-      { "name": "实时编辑", "text": "两个面板均为实时编辑器，修改任意一侧，另一侧立即同步。" },
-      { "name": "格式化 JSON", "text": "点击「格式化 JSON」按钮，将混乱的 JSON 美化后再转换，便于发现错误。" },
-      { "name": "复制结果", "text": "点击面板上方的复制按钮，将内容复制到剪贴板。" }
+      {
+        "name": "粘贴 JSON 或 YAML",
+        "text": "在 JSON 面板粘贴 JSON，YAML 会自动更新；或在 YAML 面板粘贴 YAML，JSON 会自动更新。"
+      },
+      {
+        "name": "实时编辑",
+        "text": "两个面板均为实时编辑器，修改任意一侧，另一侧立即同步。"
+      },
+      {
+        "name": "格式化 JSON",
+        "text": "点击「格式化 JSON」按钮，将混乱的 JSON 美化后再转换，便于发现错误。"
+      },
+      {
+        "name": "复制结果",
+        "text": "点击面板上方的复制按钮，将内容复制到剪贴板。"
+      }
     ]
   },
   "faq": [
-    { "q": "YAML 是 JSON 的超集吗？", "a": "是的。YAML 1.2 是 JSON 的严格超集，所有有效的 JSON 文档都是有效的 YAML。反之不然：YAML 的注释、锚点、块标量等功能在 JSON 中没有对应项。" },
-    { "q": "YAML 主要用于什么场景？", "a": "主要用于配置文件：Docker Compose (docker-compose.yml)、Kubernetes 清单、GitHub Actions (.github/workflows)、Ansible Playbook 等。适合开发者手动编辑的文件。" },
-    { "q": "配置文件用 JSON 还是 YAML 更好？", "a": "人工编辑时 YAML 更友好，因为支持注释且视觉层级清晰。机器生成或机器消费的配置用 JSON 更严谨。ESLint、Prettier、tsconfig 等工具通常两种格式都支持。" },
-    { "q": "YAML 如何处理特殊字符？", "a": "包含「冒号+空格」、前导特殊符号（{、[、#）或看起来像布尔值/数字的字符串必须加引号。单引号禁用所有转义，双引号使用类似 JSON 的反斜杠转义。本工具会自动在必要处添加引号。" },
-    { "q": "JSON 转 YAML 会丢失数据吗？", "a": "对 JSON 支持的类型（字符串、数字、布尔值、null、对象、数组），转换是无损的。为防止 YAML 类型推断导致数据变形，本工具会对可能被误解的字符串自动加引号。" },
-    { "q": "Python 中如何将 YAML 转为 JSON？", "a": "使用 PyYAML：import yaml, json; data = yaml.safe_load(open('file.yaml')); print(json.dumps(data, indent=2))。使用 safe_load 可避免执行任意 YAML 标签，更安全。" },
-    { "q": "Node.js 中如何将 JSON 转为 YAML？", "a": "可以使用 js-yaml 包：const yaml = require('js-yaml'); const obj = JSON.parse(fs.readFileSync('file.json')); console.log(yaml.dump(obj))。零依赖方案则需手写序列化器，本工具即采用此方式。" },
-    { "q": "哪些 YAML 功能不被支持？", "a": "本工具不支持：锚点（&name）、别名（*name）、类型标签（!!int 等）、多行块标量（| 和 >）、文档分隔符（---）。这些功能在实际 YAML 中占比不足 5%。如需支持，请使用完整的 YAML 库。" }
+    {
+      "q": "YAML 是 JSON 的超集吗？",
+      "a": "是的。YAML 1.2 是 JSON 的严格超集，所有有效的 JSON 文档都是有效的 YAML。反之不然：YAML 的注释、锚点、块标量等功能在 JSON 中没有对应项。"
+    },
+    {
+      "q": "YAML 主要用于什么场景？",
+      "a": "主要用于配置文件：Docker Compose (docker-compose.yml)、Kubernetes 清单、GitHub Actions (.github/workflows)、Ansible Playbook 等。适合开发者手动编辑的文件。"
+    },
+    {
+      "q": "配置文件用 JSON 还是 YAML 更好？",
+      "a": "人工编辑时 YAML 更友好，因为支持注释且视觉层级清晰。机器生成或机器消费的配置用 JSON 更严谨。ESLint、Prettier、tsconfig 等工具通常两种格式都支持。"
+    },
+    {
+      "q": "YAML 如何处理特殊字符？",
+      "a": "包含「冒号+空格」、前导特殊符号（{、[、#）或看起来像布尔值/数字的字符串必须加引号。单引号禁用所有转义，双引号使用类似 JSON 的反斜杠转义。本工具会自动在必要处添加引号。"
+    },
+    {
+      "q": "JSON 转 YAML 会丢失数据吗？",
+      "a": "对 JSON 支持的类型（字符串、数字、布尔值、null、对象、数组），转换是无损的。为防止 YAML 类型推断导致数据变形，本工具会对可能被误解的字符串自动加引号。"
+    },
+    {
+      "q": "Python 中如何将 YAML 转为 JSON？",
+      "a": "使用 PyYAML：import yaml, json; data = yaml.safe_load(open('file.yaml')); print(json.dumps(data, indent=2))。使用 safe_load 可避免执行任意 YAML 标签，更安全。"
+    },
+    {
+      "q": "Node.js 中如何将 JSON 转为 YAML？",
+      "a": "可以使用 js-yaml 包：const yaml = require('js-yaml'); const obj = JSON.parse(fs.readFileSync('file.json')); console.log(yaml.dump(obj))。零依赖方案则需手写序列化器，本工具即采用此方式。"
+    },
+    {
+      "q": "哪些 YAML 功能不被支持？",
+      "a": "本工具不支持：锚点（&name）、别名（*name）、类型标签（!!int 等）、多行块标量（| 和 >）、文档分隔符（---）。这些功能在实际 YAML 中占比不足 5%。如需支持，请使用完整的 YAML 库。"
+    }
   ]
 }

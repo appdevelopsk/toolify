@@ -3,18 +3,32 @@
   "shortDescription": "Konversi JSON ke YAML atau YAML ke JSON secara instan. Edit salah satu sisi dan sisi lain otomatis sinkron.",
   "description": "Tempel JSON di kiri untuk mendapatkan YAML di kanan, atau sebaliknya. Kedua panel dapat diedit secara real-time dan sinkron otomatis. Dilengkapi tombol Format JSON, Tukar, dan Salin. Semua konversi berjalan di browser tanpa mengirim data ke server.",
   "metaDescription": "Konverter JSON ↔ YAML dua arah gratis. Edit satu sisi dan sisi lain otomatis sinkron. Hanya di browser — data Anda tidak meninggalkan halaman.",
-  "keywords": ["konversi json ke yaml", "konversi yaml ke json", "konverter json yaml", "yaml online", "json yaml gratis"],
-  "label.json": "JSON",
-  "label.yaml": "YAML",
-  "action.copy": "Salin",
-  "action.copied": "Disalin!",
-  "action.clear": "Bersihkan",
-  "action.swap": "Sinkron dari YAML",
-  "action.formatJson": "Format JSON",
-  "error.invalidJson": "JSON tidak valid",
-  "error.invalidYaml": "YAML tidak valid atau tidak didukung",
-  "placeholder.json": "Tempel JSON di sini…",
-  "placeholder.yaml": "Tempel YAML di sini…",
+  "keywords": [
+    "konversi json ke yaml",
+    "konversi yaml ke json",
+    "konverter json yaml",
+    "yaml online",
+    "json yaml gratis"
+  ],
+  "label": {
+    "json": "JSON",
+    "yaml": "YAML"
+  },
+  "action": {
+    "copy": "Salin",
+    "copied": "Disalin!",
+    "clear": "Bersihkan",
+    "swap": "Sinkron dari YAML",
+    "formatJson": "Format JSON"
+  },
+  "error": {
+    "invalidJson": "JSON tidak valid",
+    "invalidYaml": "YAML tidak valid atau tidak didukung"
+  },
+  "placeholder": {
+    "json": "Tempel JSON di sini…",
+    "yaml": "Tempel YAML di sini…"
+  },
   "article": {
     "sections": [
       {
@@ -40,20 +54,56 @@
       }
     ],
     "howTo": [
-      { "name": "Tempel JSON atau YAML Anda", "text": "Klik panel JSON dan tempel JSON, atau klik panel YAML dan tempel YAML. Panel yang berlawanan akan diperbarui secara otomatis." },
-      { "name": "Edit dan iterasi", "text": "Kedua panel adalah editor real-time. Ubah nilai di JSON dan YAML langsung mencerminkannya, dan sebaliknya." },
-      { "name": "Format dan bersihkan", "text": "Gunakan tombol Format JSON untuk mempercantik JSON yang berantakan sebelum mengkonversi, sehingga lebih mudah menemukan kesalahan." },
-      { "name": "Salin hasilnya", "text": "Klik tombol Salin di atas salah satu panel untuk menempatkan kontennya ke clipboard." }
+      {
+        "name": "Tempel JSON atau YAML Anda",
+        "text": "Klik panel JSON dan tempel JSON, atau klik panel YAML dan tempel YAML. Panel yang berlawanan akan diperbarui secara otomatis."
+      },
+      {
+        "name": "Edit dan iterasi",
+        "text": "Kedua panel adalah editor real-time. Ubah nilai di JSON dan YAML langsung mencerminkannya, dan sebaliknya."
+      },
+      {
+        "name": "Format dan bersihkan",
+        "text": "Gunakan tombol Format JSON untuk mempercantik JSON yang berantakan sebelum mengkonversi, sehingga lebih mudah menemukan kesalahan."
+      },
+      {
+        "name": "Salin hasilnya",
+        "text": "Klik tombol Salin di atas salah satu panel untuk menempatkan kontennya ke clipboard."
+      }
     ]
   },
   "faq": [
-    { "q": "Apakah YAML merupakan superset dari JSON?", "a": "Ya. YAML 1.2 adalah superset ketat dari JSON, artinya setiap dokumen JSON yang valid adalah YAML yang valid. Sebaliknya tidak selalu benar: fitur YAML seperti komentar, jangkar, dan skalar blok tidak memiliki padanan di JSON." },
-    { "q": "Untuk apa YAML terutama digunakan?", "a": "YAML paling umum digunakan dalam file konfigurasi: Docker Compose (docker-compose.yml), manifes Kubernetes, GitHub Actions (.github/workflows), playbook Ansible. Gayanya yang mudah dibaca cocok untuk file yang diedit secara manual oleh developer." },
-    { "q": "JSON atau YAML untuk file konfigurasi?", "a": "YAML umumnya menang untuk konfigurasi yang diedit manusia karena mendukung komentar dan tidak terlalu berisik secara visual. JSON lebih baik untuk konfigurasi yang dihasilkan atau dikonsumsi mesin. Banyak alat (ESLint, Prettier, tsconfig) menerima keduanya." },
-    { "q": "Bagaimana YAML menangani karakter khusus?", "a": "String yang mengandung titik dua diikuti spasi, karakter khusus di awal ({, [, #, dll.), atau nilai yang terlihat seperti boolean atau angka harus diberi tanda kutip. Tanda kutip tunggal menonaktifkan semua escape; tanda kutip ganda menggunakan escape backslash mirip JSON. Konverter ini secara otomatis menambahkan tanda kutip di mana diperlukan." },
-    { "q": "Apakah konversi JSON ke YAML tanpa kehilangan data?", "a": "Untuk tipe yang didukung JSON (string, angka, boolean, null, objek, array) konversi tidak kehilangan data. Satu-satunya masalah potensial adalah inferensi tipe YAML pada nilai tanpa tanda kutip, itulah mengapa konverter ini memberi tanda kutip pada string yang mungkin salah diinterpretasikan." },
-    { "q": "Bagaimana mengkonversi YAML ke JSON di Python?", "a": "Gunakan library PyYAML: import yaml, json; data = yaml.safe_load(open('file.yaml')); print(json.dumps(data, indent=2)). Fungsi safe_load menghindari eksekusi tag YAML sembarangan, yang penting untuk keamanan." },
-    { "q": "Bagaimana mengkonversi JSON ke YAML di Node.js?", "a": "Dengan paket js-yaml: const yaml = require('js-yaml'); const obj = JSON.parse(fs.readFileSync('file.json')); console.log(yaml.dump(obj)). Untuk pendekatan tanpa dependensi, tulis serializer YAML secara manual, seperti yang dilakukan konverter ini." },
-    { "q": "Fitur YAML apa yang tidak didukung?", "a": "Konverter ini sengaja melewati fitur YAML lanjutan: jangkar (&jangkar), alias (*alias), tag tipe (!!int, !!str), skalar blok multi-baris (| dan >), pemisah dokumen (---). Fitur-fitur ini mencakup kurang dari 5% YAML nyata. Untuk kasus tersebut, gunakan library YAML lengkap." }
+    {
+      "q": "Apakah YAML merupakan superset dari JSON?",
+      "a": "Ya. YAML 1.2 adalah superset ketat dari JSON, artinya setiap dokumen JSON yang valid adalah YAML yang valid. Sebaliknya tidak selalu benar: fitur YAML seperti komentar, jangkar, dan skalar blok tidak memiliki padanan di JSON."
+    },
+    {
+      "q": "Untuk apa YAML terutama digunakan?",
+      "a": "YAML paling umum digunakan dalam file konfigurasi: Docker Compose (docker-compose.yml), manifes Kubernetes, GitHub Actions (.github/workflows), playbook Ansible. Gayanya yang mudah dibaca cocok untuk file yang diedit secara manual oleh developer."
+    },
+    {
+      "q": "JSON atau YAML untuk file konfigurasi?",
+      "a": "YAML umumnya menang untuk konfigurasi yang diedit manusia karena mendukung komentar dan tidak terlalu berisik secara visual. JSON lebih baik untuk konfigurasi yang dihasilkan atau dikonsumsi mesin. Banyak alat (ESLint, Prettier, tsconfig) menerima keduanya."
+    },
+    {
+      "q": "Bagaimana YAML menangani karakter khusus?",
+      "a": "String yang mengandung titik dua diikuti spasi, karakter khusus di awal ({, [, #, dll.), atau nilai yang terlihat seperti boolean atau angka harus diberi tanda kutip. Tanda kutip tunggal menonaktifkan semua escape; tanda kutip ganda menggunakan escape backslash mirip JSON. Konverter ini secara otomatis menambahkan tanda kutip di mana diperlukan."
+    },
+    {
+      "q": "Apakah konversi JSON ke YAML tanpa kehilangan data?",
+      "a": "Untuk tipe yang didukung JSON (string, angka, boolean, null, objek, array) konversi tidak kehilangan data. Satu-satunya masalah potensial adalah inferensi tipe YAML pada nilai tanpa tanda kutip, itulah mengapa konverter ini memberi tanda kutip pada string yang mungkin salah diinterpretasikan."
+    },
+    {
+      "q": "Bagaimana mengkonversi YAML ke JSON di Python?",
+      "a": "Gunakan library PyYAML: import yaml, json; data = yaml.safe_load(open('file.yaml')); print(json.dumps(data, indent=2)). Fungsi safe_load menghindari eksekusi tag YAML sembarangan, yang penting untuk keamanan."
+    },
+    {
+      "q": "Bagaimana mengkonversi JSON ke YAML di Node.js?",
+      "a": "Dengan paket js-yaml: const yaml = require('js-yaml'); const obj = JSON.parse(fs.readFileSync('file.json')); console.log(yaml.dump(obj)). Untuk pendekatan tanpa dependensi, tulis serializer YAML secara manual, seperti yang dilakukan konverter ini."
+    },
+    {
+      "q": "Fitur YAML apa yang tidak didukung?",
+      "a": "Konverter ini sengaja melewati fitur YAML lanjutan: jangkar (&jangkar), alias (*alias), tag tipe (!!int, !!str), skalar blok multi-baris (| dan >), pemisah dokumen (---). Fitur-fitur ini mencakup kurang dari 5% YAML nyata. Untuk kasus tersebut, gunakan library YAML lengkap."
+    }
   ]
 }

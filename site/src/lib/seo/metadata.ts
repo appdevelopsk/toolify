@@ -12,10 +12,12 @@ interface BuildMetadataParams {
   image?: string;
   publishedTime?: string;
   modifiedTime?: string;
+  /** true の場合 robots を index:false にする（剪定した noindex ツール用 / フォローは維持） */
+  noindex?: boolean;
 }
 
 export function buildMetadata(params: BuildMetadataParams): Metadata {
-  const { locale, title, description, path, keywords, type = "website", image, publishedTime, modifiedTime } = params;
+  const { locale, title, description, path, keywords, type = "website", image, publishedTime, modifiedTime, noindex = false } = params;
   const url = `${siteConfig.url}/${locale}${path}`;
   const alternates: Record<string, string> = {};
   for (const l of LOCALES) {
@@ -55,10 +57,10 @@ export function buildMetadata(params: BuildMetadataParams): Metadata {
       ...(siteConfig.twitter ? { creator: siteConfig.twitter } : {}),
     },
     robots: {
-      index: true,
+      index: !noindex,
       follow: true,
       googleBot: {
-        index: true,
+        index: !noindex,
         follow: true,
         "max-image-preview": "large",
         "max-snippet": -1,

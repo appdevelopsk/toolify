@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { getTool, getRelated, listTools } from "@/lib/tools/registry";
+import { getTool, getRelated, listTools, isIndexable } from "@/lib/tools/registry";
 import { ToolFrame } from "@/components/tools/ToolFrame";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
@@ -37,6 +37,7 @@ export async function generateMetadata({
     keywords: t.raw("keywords") as string[],
     type: "article",
     modifiedTime: tool.updatedAt,
+    noindex: !isIndexable(slug), // 剪定済みツールは index させない（docs/ADSENSE_RECOVERY_PLAN.md フェーズ2）
   });
 }
 

@@ -1,0 +1,16 @@
+slug: protein-intake-calculator
+category: health
+applicationCategory: HealthApplication
+related:
+  - calorie-calculator
+  - macro-calculator
+primaryKeyword:
+  en: "Protein intake calculator"
+  ja: "タンパク質摂取量計算機"
+inputs:
+  - { name: weight, type: number }
+  - { name: activity, type: select, options: ["sedentary","light","active","athlete"] }
+output: { type: number }
+logic: |
+  grams/day = weight_kg * factor; sedentary 0.8, light 1.2, active 1.6, athlete 2.0
+locales: all

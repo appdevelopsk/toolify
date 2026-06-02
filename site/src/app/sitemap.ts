@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/config";
 import { LOCALES, PROMPT_LOCALES } from "@/lib/i18n/locales";
-import { listTools } from "@/lib/tools/registry";
+import { listIndexableTools } from "@/lib/tools/registry";
 import { listPrompts } from "@/lib/prompts/registry";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const sharedPaths = ["", "/tools", "/about", "/privacy", "/terms", "/contact"];
-  const tools = listTools();
+  const tools = listIndexableTools(); // noindex ツールは sitemap から除外（robots noindex と整合）
   const prompts = listPrompts();
   const entries: MetadataRoute.Sitemap = [];
 
