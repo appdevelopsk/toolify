@@ -69,6 +69,7 @@ export default async function ToolPage({
       url,
       applicationCategory: tool.applicationCategory,
       inLanguage: locale,
+      dateModified: tool.updatedAt,
     }),
     breadcrumbJsonLd([
       { name: t("nav.home"), url: `${siteConfig.url}/${locale}` },

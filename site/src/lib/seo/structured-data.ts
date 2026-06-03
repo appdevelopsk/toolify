@@ -31,6 +31,8 @@ export function softwareAppJsonLd(params: {
   url: string;
   applicationCategory: string;
   inLanguage: string;
+  /** Last-reviewed/updated date (ISO), from the tool's real updatedAt. */
+  dateModified?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -41,8 +43,16 @@ export function softwareAppJsonLd(params: {
     applicationCategory: params.applicationCategory,
     operatingSystem: "Any (Web Browser)",
     inLanguage: params.inLanguage,
+    isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    aggregateRating: undefined,
+    // E-E-A-T: real publisher entity + last-modified date. No fabricated
+    // author or aggregateRating (those would be fake signals).
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.organization,
+      url: siteConfig.url,
+    },
+    ...(params.dateModified ? { dateModified: params.dateModified } : {}),
   };
 }
 

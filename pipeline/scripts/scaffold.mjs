@@ -16,6 +16,14 @@
  *
  * Idempotent: re-running updates files in place and never double-registers.
  *
+ * ⚠️ VELOCITY FREEZE (2026-06): toolify365.com is in AdSense "low value /
+ * scaled content" remediation. Mass-producing commodity calculators is an
+ * active spam signal. Do NOT bulk-scaffold tools. A newly scaffolded tool is
+ * noindex by default (it is NOT added to INDEXED_SLUGS in registry.ts) and must
+ * stay that way until it has genuine, differentiating value — only then add its
+ * slug to INDEXED_SLUGS, gradually. See docs/ADSENSE_RECOVERY_PLAN.md and the
+ * memory note adsense-low-value-remediation.
+ *
  * Usage:
  *   node pipeline/scripts/scaffold.mjs my-new-tool
  *   node pipeline/scripts/scaffold.mjs my-new-tool --dry   # print plan only
@@ -179,6 +187,22 @@ const enMsg = {
   faq: Array.from({ length: 5 }, (_, i) => ({ q: `TODO question ${i + 1}?`, a: `TODO answer ${i + 1}.` })),
 };
 
+// Guard: next-intl resolves keys by splitting on ".", so a key literally
+// containing "." (at any nesting level) silently MISSES in every locale and
+// ships a broken tool UI. Refuse to emit such a structure.
+// See memory: toolify-i18n-flat-key-bug.
+function assertNoDottedKeys(obj, trail = "") {
+  if (!obj || typeof obj !== "object") return;
+  for (const [k, v] of Object.entries(obj)) {
+    if (k.includes(".")) {
+      console.error(`error: dotted i18n key "${trail}${k}" — next-intl cannot resolve it (use nested objects, not flat dotted keys).`);
+      process.exit(1);
+    }
+    if (v && typeof v === "object" && !Array.isArray(v)) assertNoDottedKeys(v, `${trail}${k}.`);
+  }
+}
+assertNoDottedKeys(enMsg);
+
 for (const loc of ACTIVE) {
   queue(
     path.join(SITE, "src/tools", slug, "messages", `${loc}.json`),
@@ -222,5 +246,5 @@ if (!dry && registryChanged) fs.writeFileSync(registryPath, registry);
 console.log(
   dry
     ? "\n(dry run — no files written)"
-    : `\n✓ scaffolded. Next: fill logic in Component.tsx, then run 02_seo + 03_translate, then \`cd site && npm run validate\`.`,
+    : `\n✓ scaffolded (noindex by default — NOT added to INDEXED_SLUGS). Next: fill logic in Component.tsx, then run 02_seo + 03_translate, then \`cd site && npm run validate\`.\n  ⚠️ Velocity freeze: only add this slug to INDEXED_SLUGS once it has genuine differentiating value (AdSense remediation).`,
 );
