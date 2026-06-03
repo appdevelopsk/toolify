@@ -15,6 +15,9 @@ const COMPLEX_SCRIPT_LOCALES = new Set([
   "ta", "te", "kn", "ml", "si", // South Indian
   "my", "km", "lo", "ka", "am", // Burmese / Khmer / Lao / Georgian / Amharic
   "ko", // Korean Hangul — jamo combination GSUB tables crash satori on VPS system fonts
+  "zh-CN", "zh-TW", "zh", // CJK Chinese — system Noto CJK fonts trigger GSUB substFormat:3 crash
+  "ja", // Japanese CJK — same GSUB crash as Chinese on VPS with Noto CJK installed
+  "th", // Thai — complex script shaping causes GSUB crash on VPS
 ]);
 
 /**
