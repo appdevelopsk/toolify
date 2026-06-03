@@ -20,6 +20,58 @@ const COMPLEX_SCRIPT_LOCALES = new Set([
   "th", // Thai — complex script shaping causes GSUB crash on VPS
 ]);
 
+function buildImageJsx(displayTitle: string, displaySubtitle: string, isCjk: boolean) {
+  return (
+    <div
+      style={{
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
+        backgroundImage: "linear-gradient(135deg, #0c4a6e 0%, #0ea5e9 100%)",
+        padding: "72px",
+        color: "white",
+        fontFamily: "system-ui, -apple-system, 'Hiragino Kaku Gothic ProN', sans-serif",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+        <div
+          style={{
+            width: "56px",
+            height: "56px",
+            background: "white",
+            borderRadius: "12px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#0ea5e9",
+            fontSize: "32px",
+            fontWeight: 800,
+          }}
+        >
+          T
+        </div>
+        <div style={{ fontSize: "32px", fontWeight: 700, opacity: 0.9 }}>Toolify</div>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: "20px", maxWidth: "1056px" }}>
+        <div
+          style={{
+            fontSize: isCjk ? "60px" : "72px",
+            fontWeight: 800,
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          {displayTitle}
+        </div>
+        <div style={{ fontSize: "26px", opacity: 0.85, lineHeight: 1.4 }}>{displaySubtitle}</div>
+      </div>
+    </div>
+  );
+}
+
 /**
  * /api/og?title=...&subtitle=...&locale=...
  *
@@ -40,56 +92,17 @@ export async function GET(req: NextRequest) {
     ? "Free online tools — calculators, converters & more"
     : subtitle;
 
+  // First attempt: render with actual locale text
+  try {
+    return new ImageResponse(buildImageJsx(displayTitle, displaySubtitle, isCjk), { ...SIZE });
+  } catch {
+    // satori GSUB substFormat:3 or other font-shaper error — retry with English-only fallback
+    // This prevents "failed to pipe response" from propagating as a 502
+  }
+
+  // Second attempt: guaranteed-safe English-only fallback
   return new ImageResponse(
-    (
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          justifyContent: "space-between",
-          backgroundImage: "linear-gradient(135deg, #0c4a6e 0%, #0ea5e9 100%)",
-          padding: "72px",
-          color: "white",
-          fontFamily: "system-ui, -apple-system, 'Hiragino Kaku Gothic ProN', sans-serif",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          <div
-            style={{
-              width: "56px",
-              height: "56px",
-              background: "white",
-              borderRadius: "12px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#0ea5e9",
-              fontSize: "32px",
-              fontWeight: 800,
-            }}
-          >
-            T
-          </div>
-          <div style={{ fontSize: "32px", fontWeight: 700, opacity: 0.9 }}>Toolify</div>
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px", maxWidth: "1056px" }}>
-          <div
-            style={{
-              fontSize: isCjk ? "60px" : "72px",
-              fontWeight: 800,
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            {displayTitle}
-          </div>
-          <div style={{ fontSize: "26px", opacity: 0.85, lineHeight: 1.4 }}>{displaySubtitle}</div>
-        </div>
-      </div>
-    ),
+    buildImageJsx("Toolify", "Free online tools — calculators, converters & more", false),
     { ...SIZE },
   );
 }
