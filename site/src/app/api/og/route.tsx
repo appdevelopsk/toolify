@@ -14,6 +14,7 @@ const COMPLEX_SCRIPT_LOCALES = new Set([
   "hi", "bn", "gu", "pa", "mr", "ne", // Devanagari / Indic
   "ta", "te", "kn", "ml", "si", // South Indian
   "my", "km", "lo", "ka", "am", // Burmese / Khmer / Lao / Georgian / Amharic
+  "ko", // Korean Hangul — jamo combination GSUB tables crash satori on VPS system fonts
 ]);
 
 /**
