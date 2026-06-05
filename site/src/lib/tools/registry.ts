@@ -456,33 +456,36 @@ const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
  * 承認後、本物の差別化機能を入れたツールから「段階的に」この allowlist へ戻して index 復帰させる。
  * ※ 現状コア 67 本（全 218 中）。一気に全復帰すると velocity 信号になるので段階的に。
  */
+// index allowlist — Search Console 実測（過去6か月, 2ドメイン合算）で需要が確認できた
+// ツール + 実需が明確なエバーグリーン定番のみ。2026-06-05 に量産67本リストから
+// 実需ベース52本へ更新（fuel-economy-converter=890 等の高需要ツールが旧リストで
+// noindex のまま除外されていたため是正）。詳細は docs/RECOVERY_PRUNE_PLAN.md
 export const INDEXED_SLUGS = new Set<string>([
   // finance (14)
-  "mortgage-calculator", "mortgage-refinance-calculator", "loan-calculator",
-  "loan-amortization-schedule", "car-loan-calculator", "compound-interest-calculator",
-  "retirement-calculator", "debt-payoff-calculator", "savings-goal-calculator",
-  "paycheck-calculator", "salary-converter", "sales-tax-calculator", "vat-calculator", "tip-calculator",
-  // health (12)
-  "bmi-calculator", "bmr-calculator", "calorie-calculator", "macro-calculator",
-  "body-fat-calculator", "ideal-weight-calculator", "pregnancy-week-calculator",
-  "due-date-calculator", "ovulation-calculator", "water-intake-calculator",
-  "pace-calculator", "sleep-calculator",
-  // text / dev (12)
-  "word-counter", "case-converter", "json-formatter", "regex-tester", "jwt-decoder",
-  "subnet-calculator", "hash-generator", "uuid-generator", "base64-encoder",
-  "url-encoder", "password-generator", "qr-code-generator",
-  // math (10)
-  "percentage-calculator", "percentage-change-calculator", "fraction-calculator",
-  "statistics-calculator", "quadratic-equation-solver", "triangle-calculator",
-  "circle-calculator", "square-footage-calculator", "prime-checker", "gpa-calculator",
-  // converter (8)
-  "length-converter", "weight-converter", "temperature-converter", "volume-converter",
-  "speed-converter", "currency-converter", "cooking-unit-converter", "data-size-converter",
+  "cagr-calculator", "car-loan-calculator", "compound-interest-calculator",
+  "discount-calculator", "investment-fee-impact-calculator", "loan-amortization-schedule",
+  "loan-calculator", "markup-calculator", "mortgage-calculator",
+  "roas-calculator", "salary-converter", "sales-tax-calculator",
+  "tip-calculator", "unit-price-calculator",
+  // health (9)
+  "bmi-calculator", "bmr-calculator", "calorie-calculator",
+  "due-date-calculator", "one-rep-max-calculator", "ovulation-calculator",
+  "pace-calculator", "pregnancy-week-calculator", "water-intake-calculator",
+  // text (8)
+  "caesar-cipher", "character-frequency", "password-generator",
+  "reverse-text-generator", "roman-numeral-converter", "text-replace",
+  "word-counter", "wpm-counter",
+  // math (5)
+  "fraction-calculator", "gpa-calculator", "number-base-converter",
+  "paint-calculator", "percentage-calculator",
+  // converter (9)
+  "currency-converter", "fuel-economy-converter", "length-converter",
+  "power-converter", "pressure-converter", "speed-converter",
+  "temperature-converter", "time-converter", "weight-converter",
   // datetime (7)
-  "age-calculator", "date-calculator", "timezone-converter", "timestamp-converter",
-  "workdays-calculator", "cron-expression-tester", "hours-calculator",
-  // color (4)
-  "color-converter", "color-palette-generator", "contrast-checker", "gradient-generator",
+  "age-calculator", "age-difference-calculator", "date-calculator",
+  "iso-week-calculator", "stopwatch", "timezone-converter",
+  "workdays-calculator",
 ]);
 
 export function isIndexable(slug: string): boolean {
