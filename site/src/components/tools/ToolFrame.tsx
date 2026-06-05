@@ -118,7 +118,13 @@ export function ToolFrame({ meta, title, description, related, children, article
           </section>
         )}
 
-        <p className="mt-10 text-xs text-slate-600 dark:text-slate-400">
+        {(meta.category === "finance" || meta.category === "health") && (
+          <p className="mt-8 rounded-md border-l-2 border-slate-300 bg-slate-50 px-3 py-2 text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
+            {t(meta.category === "finance" ? "tool.financeDisclaimer" : "tool.medicalDisclaimer")}
+          </p>
+        )}
+
+        <p className="mt-6 text-xs text-slate-600 dark:text-slate-400">
           {t("tool.lastUpdated")}: <time dateTime={meta.updatedAt}>{meta.updatedAt}</time>
         </p>
 
