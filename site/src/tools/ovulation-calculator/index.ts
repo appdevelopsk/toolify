@@ -13,6 +13,10 @@ const meta: ToolMeta = {
     },
     hasHowTo: true,
     hasFaq: true,
+  sources: [
+    { label: "NICHD — Preconception Care", url: "https://www.nichd.nih.gov/health/topics/preconceptioncare" },
+    { label: "ACOG — Calculating a Due Date", url: "https://www.acog.org/womens-health/faqs/calculating-a-due-date" },
+  ],
   };
 
 export default meta;

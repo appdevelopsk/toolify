@@ -78,6 +78,26 @@ export function ToolFrame({ meta, title, description, related, children, article
           </section>
         )}
 
+        {meta.sources && meta.sources.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-2xl font-bold">{t("tool.sources")}</h2>
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-600 dark:text-slate-400">
+              {meta.sources.map((s) => (
+                <li key={s.url}>
+                  <a
+                    href={s.url}
+                    rel="nofollow noopener"
+                    target="_blank"
+                    className="text-brand-600 hover:underline"
+                  >
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <RelatedServices category={meta.category} />
 
         {related.length > 0 && (

@@ -9,6 +9,9 @@ const meta: ToolMeta = {
     primaryKeyword: { en: "fuel economy converter", ja: "燃費 換算" },
     hasHowTo: true,
     hasFaq: true,
+  sources: [
+    { label: "NIST — Unit Conversions", url: "https://physics.nist.gov/cuu/Reference/unitconversions.html" },
+  ],
   };
 
 export default meta;

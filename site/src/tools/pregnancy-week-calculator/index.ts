@@ -13,6 +13,9 @@ const meta: ToolMeta = {
     },
     hasHowTo: true,
     hasFaq: true,
+  sources: [
+    { label: "ACOG — Calculating a Due Date", url: "https://www.acog.org/womens-health/faqs/calculating-a-due-date" },
+  ],
   };
 
 export default meta;

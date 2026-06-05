@@ -43,6 +43,8 @@ export function softwareAppJsonLd(params: {
   inLanguage: string;
   /** Last-reviewed/updated date (ISO), from the tool's real updatedAt. */
   dateModified?: string;
+  /** Authoritative source URLs (E-E-A-T). Emitted as schema.org citation. */
+  citations?: string[];
 }) {
   return {
     "@context": "https://schema.org",
@@ -63,6 +65,9 @@ export function softwareAppJsonLd(params: {
       url: siteConfig.url,
     },
     ...(params.dateModified ? { dateModified: params.dateModified } : {}),
+    ...(params.citations && params.citations.length
+      ? { citation: params.citations }
+      : {}),
   };
 }
 

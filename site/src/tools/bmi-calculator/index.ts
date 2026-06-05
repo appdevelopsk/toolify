@@ -9,6 +9,10 @@ const meta: ToolMeta = {
     primaryKeyword: { en: "BMI calculator", ja: "BMI計算機" },
     hasHowTo: true,
     hasFaq: true,
+  sources: [
+    { label: "World Health Organization — Obesity and overweight", url: "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight" },
+    { label: "U.S. CDC — Adult BMI Calculator", url: "https://www.cdc.gov/bmi/adult-calculator/index.html" },
+  ],
   };
 
 export default meta;
