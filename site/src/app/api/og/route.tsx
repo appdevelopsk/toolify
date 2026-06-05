@@ -72,6 +72,36 @@ function buildImageJsx(displayTitle: string, displaySubtitle: string, isCjk: boo
   );
 }
 
+// Minimal 1×1 transparent PNG (base64) — last-resort fallback when satori crashes completely
+// Returns 200 so nginx never sees a 502
+const BLANK_PNG_B64 =
+  "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
+
+/**
+ * Force-render an ImageResponse to a fully-buffered PNG Response.
+ *
+ * `new ImageResponse(...)` only constructs a *streaming* body — the actual satori
+ * rendering happens lazily as the stream is consumed (piped to nginx).  Wrapping
+ * `new ImageResponse()` in try-catch therefore does NOT catch satori GSUB errors;
+ * they surface later as "failed to pipe response" 502.
+ *
+ * Calling `await img.arrayBuffer()` forces the stream to be fully consumed *here*,
+ * so any satori exception is thrown synchronously and caught by the outer try-catch.
+ */
+async function renderOgImage(
+  title: string,
+  subtitle: string,
+  isCjk: boolean,
+): Promise<Response> {
+  const img = new ImageResponse(buildImageJsx(title, subtitle, isCjk), { ...SIZE });
+  // arrayBuffer() eagerly drains the stream — satori errors become catchable here
+  const buf = await img.arrayBuffer();
+  return new Response(buf, {
+    status: 200,
+    headers: { "Content-Type": "image/png" },
+  });
+}
+
 /**
  * /api/og?title=...&subtitle=...&locale=...
  *
@@ -92,17 +122,29 @@ export async function GET(req: NextRequest) {
     ? "Free online tools — calculators, converters & more"
     : subtitle;
 
-  // First attempt: render with actual locale text
+  // First attempt: render with (possibly fallback) locale text.
+  // Uses renderOgImage() which eagerly buffers the stream so satori errors are catchable.
   try {
-    return new ImageResponse(buildImageJsx(displayTitle, displaySubtitle, isCjk), { ...SIZE });
+    return await renderOgImage(displayTitle, displaySubtitle, isCjk);
   } catch {
-    // satori GSUB substFormat:3 or other font-shaper error — retry with English-only fallback
-    // This prevents "failed to pipe response" from propagating as a 502
+    // satori GSUB substFormat:3 or other font-shaper error — fall through to ASCII retry
   }
 
-  // Second attempt: guaranteed-safe English-only fallback
-  return new ImageResponse(
-    buildImageJsx("Toolify", "Free online tools — calculators, converters & more", false),
-    { ...SIZE },
-  );
+  // Second attempt: guaranteed ASCII-only English text
+  try {
+    return await renderOgImage(
+      "Toolify",
+      "Free online tools — calculators, converters & more",
+      false,
+    );
+  } catch {
+    // All rendering failed — return 1×1 transparent PNG so nginx gets 200, not 502
+  }
+
+  // Last resort: static 1×1 transparent PNG
+  const bytes = Uint8Array.from(atob(BLANK_PNG_B64), (c) => c.charCodeAt(0));
+  return new Response(bytes, {
+    status: 200,
+    headers: { "Content-Type": "image/png" },
+  });
 }
