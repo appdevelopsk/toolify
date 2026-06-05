@@ -13,6 +13,9 @@ const meta: ToolMeta = {
     },
     hasHowTo: true,
     hasFaq: true,
+  sources: [
+    { label: "ISO — ISO 8601 date and time format", url: "https://www.iso.org/iso-8601-date-and-time-format.html" },
+  ],
   };
 
 export default meta;

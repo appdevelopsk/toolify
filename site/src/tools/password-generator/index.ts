@@ -9,6 +9,9 @@ const meta: ToolMeta = {
     primaryKeyword: { en: "password generator", ja: "パスワード生成" },
     hasHowTo: true,
     hasFaq: true,
+  sources: [
+    { label: "NIST SP 800-63B — Digital Identity Guidelines (authentication & passwords)", url: "https://pages.nist.gov/800-63-3/sp800-63b.html" },
+  ],
   };
 
 export default meta;

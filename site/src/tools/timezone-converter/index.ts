@@ -9,6 +9,9 @@ const meta: ToolMeta = {
     primaryKeyword: { en: "timezone converter", ja: "タイムゾーン変換" },
     hasHowTo: true,
     hasFaq: true,
+  sources: [
+    { label: "IANA — Time Zone Database", url: "https://www.iana.org/time-zones" },
+  ],
   };
 
 export default meta;
