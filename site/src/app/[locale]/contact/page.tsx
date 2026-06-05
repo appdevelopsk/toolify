@@ -20,7 +20,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       <p>{t("contact.intro")}</p>
       <p>
         <strong>
-          {t("contact.operated", { org: siteConfig.organization })}
+          {t("contact.operated", { name: siteConfig.operator.name })}
         </strong>
         <br />
         <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>

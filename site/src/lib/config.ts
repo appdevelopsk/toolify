@@ -6,8 +6,19 @@ export const siteConfig = {
   name: "Toolify",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.pages.dev",
   organization: process.env.NEXT_PUBLIC_ORG_NAME ?? "Toolify",
-  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@example.com",
+  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "app.develop.sk@gmail.com",
   twitter: process.env.NEXT_PUBLIC_TWITTER_HANDLE ?? "",
+  /**
+   * 実在運営者（個人事業主）。E-E-A-T シグナルとして About / 法令ページ /
+   * Organization JSON-LD に出す。捏造禁止 — すべて本人提供の公開可能な実値。
+   */
+  operator: {
+    name: "Kenichiro.S",
+    /** 活動拠点（国レベル） */
+    country: "Japan",
+    /** 実在する公開プロフィール（schema.org sameAs に使用） */
+    url: "https://appdevelopsk.com/",
+  },
   adsense: {
     client: process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "",
     slots: {

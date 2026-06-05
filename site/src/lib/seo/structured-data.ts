@@ -7,6 +7,16 @@ export function organizationJsonLd() {
     name: siteConfig.organization,
     url: siteConfig.url,
     logo: `${siteConfig.url}/logo.png`,
+    // E-E-A-T: 実在運営者（個人事業主）を founder として明示。sameAs は
+    // 本人提供の実在プロフィールのみ。捏造した社会的証明は出さない。
+    foundingDate: "2026",
+    founder: {
+      "@type": "Person",
+      name: siteConfig.operator.name,
+      url: siteConfig.operator.url,
+      sameAs: [siteConfig.operator.url],
+    },
+    sameAs: [siteConfig.operator.url],
     contactPoint: {
       "@type": "ContactPoint",
       email: siteConfig.contactEmail,

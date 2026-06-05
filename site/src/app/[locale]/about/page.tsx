@@ -32,9 +32,17 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       <h2>{t("about.operatedHeading")}</h2>
       <p>
         {t("about.operated", {
-          org: siteConfig.organization,
-          email: siteConfig.contactEmail,
+          name: siteConfig.operator.name,
+          country: siteConfig.operator.country,
         })}
+      </p>
+      <p>{t("about.why")}</p>
+      <p>
+        {t("about.operatorLink")}{" "}
+        <a href={siteConfig.operator.url} rel="me noopener" target="_blank">
+          {siteConfig.operator.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+        </a>
+        .
       </p>
       <p>{t("about.contactCta", { email: siteConfig.contactEmail })}</p>
       <p>
