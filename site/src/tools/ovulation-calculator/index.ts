@@ -5,7 +5,7 @@ const meta: ToolMeta = {
     category: "health",
     applicationCategory: "HealthApplication",
     updatedAt: "2026-05-07",
-    related: ["due-date-calculator", "pregnancy-week-calculator", "date-calculator"],
+    related: ["menstrual-cycle-calculator", "due-date-calculator", "pregnancy-week-calculator"],
     primaryKeyword: {
       en: "ovulation calculator",
       ja: "排卵日 計算",
