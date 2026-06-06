@@ -19,6 +19,7 @@ import idealWeight from "@/tools/ideal-weight-calculator";
 import dueDate from "@/tools/due-date-calculator";
 import conceptionDate from "@/tools/conception-date-calculator";
 import menstrualCycle from "@/tools/menstrual-cycle-calculator";
+import pregnancyWeightGain from "@/tools/pregnancy-weight-gain-calculator";
 import color from "@/tools/color-converter";
 import contrast from "@/tools/contrast-checker";
 import caseConv from "@/tools/case-converter";
@@ -245,6 +246,7 @@ export const TOOLS: ToolMeta[] = [
   dueDate,
   conceptionDate,
   menstrualCycle,
+  pregnancyWeightGain,
   color,
   contrast,
   caseConv,
@@ -471,11 +473,11 @@ export const INDEXED_SLUGS = new Set<string>([
   "loan-calculator", "markup-calculator", "mortgage-calculator",
   "roas-calculator", "salary-converter", "sales-tax-calculator",
   "tip-calculator", "unit-price-calculator",
-  // health (11)
+  // health (12)
   "bmi-calculator", "bmr-calculator", "calorie-calculator",
   "conception-date-calculator", "due-date-calculator", "menstrual-cycle-calculator",
   "one-rep-max-calculator", "ovulation-calculator", "pace-calculator",
-  "pregnancy-week-calculator", "water-intake-calculator",
+  "pregnancy-week-calculator", "pregnancy-weight-gain-calculator", "water-intake-calculator",
   // text (8)
   "caesar-cipher", "character-frequency", "password-generator",
   "reverse-text-generator", "roman-numeral-converter", "text-replace",
