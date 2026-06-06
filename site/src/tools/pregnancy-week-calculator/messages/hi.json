@@ -3,15 +3,28 @@
   "shortDescription": "अपनी current pregnancy week, day-of-week, trimester, due date, और remaining days खोजें — सब आपकी last menstrual period से।",
   "description": "अपनी last menstrual period (LMP) का पहला दिन दर्ज करें। Calculator compute करता है कि आप अभी कितने weeks और days pregnant हैं, आपका trimester, due date, और जन्म तक कितने दिन।",
   "metaDescription": "मुफ्त pregnancy week calculator। आपकी last period से, current week + day, trimester, due date, remaining days, और progress bar देखें।",
-  "keywords": ["pregnancy week calculator", "current pregnancy week", "कितने weeks pregnant", "pregnancy progress", "weeks pregnant"],
-  "input": { "lmp": "Last menstrual period का पहला दिन" },
+  "keywords": [
+    "pregnancy week calculator",
+    "current pregnancy week",
+    "कितने weeks pregnant",
+    "pregnancy progress",
+    "weeks pregnant"
+  ],
+  "input": {
+    "lmp": "Last menstrual period का पहला दिन",
+    "ultrasound": "अल्ट्रासाउंड जाँच तिथि",
+    "cycleLength": "चक्र अवधि (दिन)",
+    "gaWeeks": "जाँच के समय सप्ताह",
+    "gaDays": "दिन"
+  },
   "result": {
     "weeksUnit": "सप्ताह",
     "daysUnit": "दिन",
     "trimester": "Trimester",
     "dueDate": "अनुमानित due date",
     "daysToDue": "Due date तक दिन",
-    "totalDays": "कुल दिन pregnant"
+    "totalDays": "कुल दिन pregnant",
+    "fetalAge": "भ्रूण आयु (गर्भाधान से)"
   },
   "trimester": {
     "1": "पहला (सप्ताह 1-12)",
@@ -46,19 +59,70 @@
       }
     ],
     "howTo": [
-      { "name": "LMP date दर्ज करें", "text": "आपकी last menstrual period का पहला दिन (जब bleeding शुरू हुई)।" },
-      { "name": "अपना current week पढ़ें", "text": "Plus day-of-week count (जैसे '24 weeks 3 days')।" },
-      { "name": "Trimester और due date देखें", "text": "Plus 280-day pregnancy में आपकी position दिखाने वाला progress bar।" }
+      {
+        "name": "LMP date दर्ज करें",
+        "text": "आपकी last menstrual period का पहला दिन (जब bleeding शुरू हुई)।"
+      },
+      {
+        "name": "अपना current week पढ़ें",
+        "text": "Plus day-of-week count (जैसे '24 weeks 3 days')।"
+      },
+      {
+        "name": "Trimester और due date देखें",
+        "text": "Plus 280-day pregnancy में आपकी position दिखाने वाला progress bar।"
+      }
     ]
   },
   "faq": [
-    { "q": "Conception से नहीं, LMP से count क्यों?", "a": "यह medical convention है क्योंकि conception date शायद ही कभी precisely जानी जाती है, जबकि LMP होती है। परिणाम यह है कि 'gestational age' 'embryonic age' से लगभग 2 सप्ताह अधिक है।" },
-    { "q": "यदि मुझे अपनी LMP याद नहीं?", "a": "Ultrasound (विशेषकर सप्ताह 8-13 में) fetal measurements के आधार पर gestational age accurately establish कर सकती है।" },
-    { "q": "यह कितना accurate है?", "a": "Accurate LMP और 28-day cycle दिए जाने पर mathematically exact। Real biology में variation है, इसलिए calculated due date ±2 सप्ताह का best-estimate है।" },
-    { "q": "मेरी ultrasound week अलग क्यों है?", "a": "Ultrasound actual fetus measure करती है और actual gestational age reveal कर सकती है, विशेषकर irregular cycles के लिए। Medical decisions के लिए ultrasound पर trust करें।" },
-    { "q": "Delivery के लिए '38 weeks' का क्या मतलब है?", "a": "37-42 सप्ताह full term है। 37 सप्ताह से पहले preterm है; 32 सप्ताह से पहले very preterm। 42 सप्ताह के बाद post-term है और usually labor induce होती है।" },
-    { "q": "प्रत्येक trimester exactly कब शुरू होता है?", "a": "पहला: सप्ताह 1 से सप्ताह 12 के अंत तक। दूसरा: सप्ताह 13 से सप्ताह 26 के अंत तक। तीसरा: सप्ताह 27 से delivery तक।" },
-    { "q": "यदि मेरे doctor ने due date बदली हो तो क्या मुझे LMP update करनी चाहिए?", "a": "Doctor की revised due date को अपना reference उपयोग करें। आप 280 दिन subtract करके back-calculate कर सकती हैं, या week tracking के लिए बस doctor के app/chart पर trust करें।" },
-    { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Calculation locally चलती है; कुछ भी server को नहीं भेजा जाता।" }
-  ]
+    {
+      "q": "Conception से नहीं, LMP से count क्यों?",
+      "a": "यह medical convention है क्योंकि conception date शायद ही कभी precisely जानी जाती है, जबकि LMP होती है। परिणाम यह है कि 'gestational age' 'embryonic age' से लगभग 2 सप्ताह अधिक है।"
+    },
+    {
+      "q": "यदि मुझे अपनी LMP याद नहीं?",
+      "a": "Ultrasound (विशेषकर सप्ताह 8-13 में) fetal measurements के आधार पर gestational age accurately establish कर सकती है।"
+    },
+    {
+      "q": "यह कितना accurate है?",
+      "a": "Accurate LMP और 28-day cycle दिए जाने पर mathematically exact। Real biology में variation है, इसलिए calculated due date ±2 सप्ताह का best-estimate है।"
+    },
+    {
+      "q": "मेरी ultrasound week अलग क्यों है?",
+      "a": "Ultrasound actual fetus measure करती है और actual gestational age reveal कर सकती है, विशेषकर irregular cycles के लिए। Medical decisions के लिए ultrasound पर trust करें।"
+    },
+    {
+      "q": "Delivery के लिए '38 weeks' का क्या मतलब है?",
+      "a": "37-42 सप्ताह full term है। 37 सप्ताह से पहले preterm है; 32 सप्ताह से पहले very preterm। 42 सप्ताह के बाद post-term है और usually labor induce होती है।"
+    },
+    {
+      "q": "प्रत्येक trimester exactly कब शुरू होता है?",
+      "a": "पहला: सप्ताह 1 से सप्ताह 12 के अंत तक। दूसरा: सप्ताह 13 से सप्ताह 26 के अंत तक। तीसरा: सप्ताह 27 से delivery तक।"
+    },
+    {
+      "q": "यदि मेरे doctor ने due date बदली हो तो क्या मुझे LMP update करनी चाहिए?",
+      "a": "Doctor की revised due date को अपना reference उपयोग करें। आप 280 दिन subtract करके back-calculate कर सकती हैं, या week tracking के लिए बस doctor के app/chart पर trust करें।"
+    },
+    {
+      "q": "क्या data मेरे browser से बाहर जाता है?",
+      "a": "नहीं। Calculation locally चलती है; कुछ भी server को नहीं भेजा जाता।"
+    }
+  ],
+  "mode": {
+    "lmp": "अंतिम माहवारी से",
+    "ultrasound": "अल्ट्रासाउंड से"
+  },
+  "schedule": {
+    "heading": "प्रसवपूर्व जाँच कार्यक्रम",
+    "note": "सामान्य दिशानिर्देशों (जैसे ACOG) के अनुसार अनुमानित समय; सटीक समय देश, चिकित्सक और गर्भावस्था पर निर्भर करता है — अपने अस्पताल की योजना का पालन करें।"
+  },
+  "milestone": {
+    "datingScan": "डेटिंग स्कैन / पहली जाँच",
+    "nipt": "NIPT (भ्रूण DNA) जाँच",
+    "ntScan": "NT स्कैन / संयुक्त स्क्रीनिंग",
+    "anatomyScan": "एनाटॉमी स्कैन",
+    "glucose": "ग्लूकोज जाँच",
+    "tdap": "Tdap (काली खाँसी) टीका",
+    "gbs": "ग्रुप B स्ट्रेप (GBS) जाँच",
+    "fullTerm": "पूर्णकाल आरंभ"
+  }
 }

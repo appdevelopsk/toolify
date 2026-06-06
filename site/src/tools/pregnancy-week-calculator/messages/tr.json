@@ -3,15 +3,28 @@
   "shortDescription": "Son adet döneminizden mevcut gebelik haftanızı, haftanın gününü, trimestırı, tahmini doğum tarihini ve kalan günleri bulun.",
   "description": "Son adet döneminin (SAD) ilk gününü girin. Hesaplayıcı şu an kaç hafta ve gün gebe olduğunuzu, trimestırınızı, tahmini doğum tarihini ve doğuma kaç gün kaldığını hesaplar.",
   "metaDescription": "Ücretsiz gebelik haftası hesaplayıcısı. Son adet döneminizden mevcut hafta + gün, trimestır, doğum tarihi, kalan günler ve ilerleme çubuğunu görün.",
-  "keywords": ["gebelik haftası hesaplayıcı", "güncel gebelik haftası", "kaç haftalık gebeyim", "gebelik ilerleme", "gebelik haftaları"],
-  "input": { "lmp": "Son adet döneminin ilk günü" },
+  "keywords": [
+    "gebelik haftası hesaplayıcı",
+    "güncel gebelik haftası",
+    "kaç haftalık gebeyim",
+    "gebelik ilerleme",
+    "gebelik haftaları"
+  ],
+  "input": {
+    "lmp": "Son adet döneminin ilk günü",
+    "ultrasound": "Ultrason tarihi",
+    "cycleLength": "Döngü uzunluğu (gün)",
+    "gaWeeks": "Ultrasonda hafta",
+    "gaDays": "Gün"
+  },
   "result": {
     "weeksUnit": "hafta",
     "daysUnit": "gün",
     "trimester": "Trimestır",
     "dueDate": "Tahmini doğum tarihi",
     "daysToDue": "Doğuma kalan gün",
-    "totalDays": "Toplam gebe kalınan gün"
+    "totalDays": "Toplam gebe kalınan gün",
+    "fetalAge": "Fetal yaş (döllenmeden itibaren)"
   },
   "trimester": {
     "1": "Birinci (1-12. hafta)",
@@ -46,19 +59,70 @@
       }
     ],
     "howTo": [
-      { "name": "SAD tarihini girin", "text": "Son adet döneminin ilk günü (kanamanın başladığı gün)." },
-      { "name": "Güncel haftanızı okuyun", "text": "Artı haftanın gün sayısı (ör. '24 hafta 3 gün')." },
-      { "name": "Trimestır ve doğum tarihini görüntüleyin", "text": "Artı 280 günlük gebelikte konumunuzu gösteren bir ilerleme çubuğu." }
+      {
+        "name": "SAD tarihini girin",
+        "text": "Son adet döneminin ilk günü (kanamanın başladığı gün)."
+      },
+      {
+        "name": "Güncel haftanızı okuyun",
+        "text": "Artı haftanın gün sayısı (ör. '24 hafta 3 gün')."
+      },
+      {
+        "name": "Trimestır ve doğum tarihini görüntüleyin",
+        "text": "Artı 280 günlük gebelikte konumunuzu gösteren bir ilerleme çubuğu."
+      }
     ]
   },
   "faq": [
-    { "q": "Neden konsepsiyondan değil SAD'dan sayılıyor?", "a": "Konsepsiyon tarihi nadiren kesin bilinirken SAD bilinen tıbbi gelenektir. Sonuç olarak 'gestasyonel yaş' 'embriyonik yaştan' yaklaşık 2 hafta daha fazladır." },
-    { "q": "SAD'ımı hatırlamıyorsam ne yapmalıyım?", "a": "Ultrason (özellikle 8-13. haftalarda) fetal ölçümlere dayanarak gestasyonel yaşı doğru biçimde belirleyebilir." },
-    { "q": "Bu ne kadar doğrudur?", "a": "Doğru bir SAD ve 28 günlük döngü verildiğinde matematiksel olarak kesindir. Gerçek biyoloji değişkenlik gösterdiğinden hesaplanan tahmini doğum tarihi ±2 haftalık en iyi tahmindir." },
-    { "q": "Ultrason haftam neden farklı?", "a": "Ultrason gerçek fetüsü ölçer ve özellikle düzensiz döngülerde SAD'ın önerdiğinden farklı bir gestasyonel yaş ortaya çıkarabilir. Tıbbi kararlar için ultrason tarihi esas alınır." },
-    { "q": "'38 hafta' doğum için ne anlama gelir?", "a": "37-42 hafta tam doğum zamanıdır. 37 haftadan önce doğumlar prematüre; 32 haftadan önce çok prematüredir. 42 haftadan sonra geçirim dönemi başlar ve genellikle doğum tetiklenir." },
-    { "q": "Her trimestır tam olarak ne zaman başlar?", "a": "Birinci: 1. haftadan 12. hafta sonuna (bazı görüşlerde 13. hafta). İkinci: 13. (veya 14.) haftadan 26. (veya 27.) hafta sonuna. Üçüncü: 27. (veya 28.) haftadan doğuma kadar." },
-    { "q": "Doktorum tahmini doğum tarihimi değiştirdiyse SAD'ımı güncelemeliyim?", "a": "Doktorun düzeltilmiş tahmini doğum tarihini referans olarak kullanın. 280 gün çıkararak geri hesaplayabilir veya hafta takibi için doktorun uygulamasına/çizelgesine güvenebilirsiniz." },
-    { "q": "Veriler tarayıcımdan çıkıyor mu?", "a": "Hayır. Hesaplama yerel olarak çalışır; hiçbir şey sunucuya gönderilmez." }
-  ]
+    {
+      "q": "Neden konsepsiyondan değil SAD'dan sayılıyor?",
+      "a": "Konsepsiyon tarihi nadiren kesin bilinirken SAD bilinen tıbbi gelenektir. Sonuç olarak 'gestasyonel yaş' 'embriyonik yaştan' yaklaşık 2 hafta daha fazladır."
+    },
+    {
+      "q": "SAD'ımı hatırlamıyorsam ne yapmalıyım?",
+      "a": "Ultrason (özellikle 8-13. haftalarda) fetal ölçümlere dayanarak gestasyonel yaşı doğru biçimde belirleyebilir."
+    },
+    {
+      "q": "Bu ne kadar doğrudur?",
+      "a": "Doğru bir SAD ve 28 günlük döngü verildiğinde matematiksel olarak kesindir. Gerçek biyoloji değişkenlik gösterdiğinden hesaplanan tahmini doğum tarihi ±2 haftalık en iyi tahmindir."
+    },
+    {
+      "q": "Ultrason haftam neden farklı?",
+      "a": "Ultrason gerçek fetüsü ölçer ve özellikle düzensiz döngülerde SAD'ın önerdiğinden farklı bir gestasyonel yaş ortaya çıkarabilir. Tıbbi kararlar için ultrason tarihi esas alınır."
+    },
+    {
+      "q": "'38 hafta' doğum için ne anlama gelir?",
+      "a": "37-42 hafta tam doğum zamanıdır. 37 haftadan önce doğumlar prematüre; 32 haftadan önce çok prematüredir. 42 haftadan sonra geçirim dönemi başlar ve genellikle doğum tetiklenir."
+    },
+    {
+      "q": "Her trimestır tam olarak ne zaman başlar?",
+      "a": "Birinci: 1. haftadan 12. hafta sonuna (bazı görüşlerde 13. hafta). İkinci: 13. (veya 14.) haftadan 26. (veya 27.) hafta sonuna. Üçüncü: 27. (veya 28.) haftadan doğuma kadar."
+    },
+    {
+      "q": "Doktorum tahmini doğum tarihimi değiştirdiyse SAD'ımı güncelemeliyim?",
+      "a": "Doktorun düzeltilmiş tahmini doğum tarihini referans olarak kullanın. 280 gün çıkararak geri hesaplayabilir veya hafta takibi için doktorun uygulamasına/çizelgesine güvenebilirsiniz."
+    },
+    {
+      "q": "Veriler tarayıcımdan çıkıyor mu?",
+      "a": "Hayır. Hesaplama yerel olarak çalışır; hiçbir şey sunucuya gönderilmez."
+    }
+  ],
+  "mode": {
+    "lmp": "Son adetten itibaren",
+    "ultrasound": "Ultrasondan itibaren"
+  },
+  "schedule": {
+    "heading": "Doğum öncesi takvim",
+    "note": "Yaygın kılavuzlara (ör. ACOG) göre tahmini zamanlar; kesin zaman ülkeye ve hekime göre değişir — kliniğinizin planını izleyin."
+  },
+  "milestone": {
+    "datingScan": "Tarihleme ultrasonu / ilk muayene",
+    "nipt": "NIPT (hücre dışı DNA) taraması",
+    "ntScan": "NT ultrasonu / kombine tarama",
+    "anatomyScan": "Ayrıntılı ultrason",
+    "glucose": "Glukoz taraması",
+    "tdap": "Tdap (boğmaca) aşısı",
+    "gbs": "B grubu streptokok (GBS) sürüntüsü",
+    "fullTerm": "Term başlangıcı"
+  }
 }

@@ -3,15 +3,28 @@
   "shortDescription": "Temukan minggu kehamilan saat ini, hari dalam minggu, trimester, perkiraan persalinan, dan hari yang tersisa — semuanya dari menstruasi terakhir Anda.",
   "description": "Masukkan hari pertama menstruasi terakhir Anda (HPHT). Kalkulator menghitung berapa minggu dan hari hamil Anda sekarang, trimester, perkiraan persalinan, dan berapa hari hingga kelahiran.",
   "metaDescription": "Kalkulator minggu kehamilan gratis. Dari menstruasi terakhir, lihat minggu + hari saat ini, trimester, perkiraan persalinan, hari yang tersisa, dan progress bar.",
-  "keywords": ["kalkulator minggu kehamilan", "minggu kehamilan saat ini", "berapa minggu hamil", "progress kehamilan", "usia kehamilan"],
-  "input": { "lmp": "Hari pertama menstruasi terakhir (HPHT)" },
+  "keywords": [
+    "kalkulator minggu kehamilan",
+    "minggu kehamilan saat ini",
+    "berapa minggu hamil",
+    "progress kehamilan",
+    "usia kehamilan"
+  ],
+  "input": {
+    "lmp": "Hari pertama menstruasi terakhir (HPHT)",
+    "ultrasound": "Tanggal pemeriksaan USG",
+    "cycleLength": "Panjang siklus (hari)",
+    "gaWeeks": "Minggu saat USG",
+    "gaDays": "Hari"
+  },
   "result": {
     "weeksUnit": "minggu",
     "daysUnit": "hari",
     "trimester": "Trimester",
     "dueDate": "Perkiraan persalinan",
     "daysToDue": "Hari hingga perkiraan persalinan",
-    "totalDays": "Total hari hamil"
+    "totalDays": "Total hari hamil",
+    "fetalAge": "Usia janin (sejak pembuahan)"
   },
   "trimester": {
     "1": "Pertama (minggu 1-12)",
@@ -46,19 +59,70 @@
       }
     ],
     "howTo": [
-      { "name": "Masukkan tanggal HPHT", "text": "Hari pertama menstruasi terakhir Anda (saat perdarahan dimulai)." },
-      { "name": "Baca minggu saat ini", "text": "Plus hitungan hari-dalam-minggu (misalnya '24 minggu 3 hari')." },
-      { "name": "Lihat trimester dan perkiraan persalinan", "text": "Plus progress bar yang menunjukkan posisi Anda dalam kehamilan 280 hari." }
+      {
+        "name": "Masukkan tanggal HPHT",
+        "text": "Hari pertama menstruasi terakhir Anda (saat perdarahan dimulai)."
+      },
+      {
+        "name": "Baca minggu saat ini",
+        "text": "Plus hitungan hari-dalam-minggu (misalnya '24 minggu 3 hari')."
+      },
+      {
+        "name": "Lihat trimester dan perkiraan persalinan",
+        "text": "Plus progress bar yang menunjukkan posisi Anda dalam kehamilan 280 hari."
+      }
     ]
   },
   "faq": [
-    { "q": "Mengapa menghitung dari HPHT, bukan pembuahan?", "a": "Ini adalah konvensi medis karena tanggal pembuahan jarang diketahui secara tepat, sementara HPHT iya. Hasilnya adalah 'usia gestasional' sekitar 2 minggu lebih dari 'usia embrionik'." },
-    { "q": "Bagaimana jika saya tidak ingat HPHT saya?", "a": "USG (terutama pada minggu 8-13) dapat menentukan usia gestasional secara akurat berdasarkan pengukuran janin." },
-    { "q": "Seberapa akurat ini?", "a": "Tepat secara matematis dengan HPHT yang akurat dan siklus 28 hari. Biologi nyata memiliki variasi, sehingga perkiraan persalinan yang dihitung adalah estimasi terbaik ±2 minggu." },
-    { "q": "Mengapa minggu USG saya berbeda?", "a": "USG mengukur janin sebenarnya dan mungkin mengungkapkan usia gestasional yang berbeda dari yang disarankan HPHT, terutama untuk siklus tidak teratur. Percayai USG untuk keputusan medis." },
-    { "q": "Apa yang dimaksud '38 minggu' untuk persalinan?", "a": "37-42 minggu adalah cukup bulan. Kelahiran sebelum 37 minggu adalah prematur; sebelum 32 minggu sangat prematur. Setelah 42 minggu adalah postterm dan persalinan biasanya diinduksi." },
-    { "q": "Kapan setiap trimester dimulai secara tepat?", "a": "Pertama: minggu 1 hingga akhir minggu 12 (atau 13 dalam beberapa konvensi). Kedua: minggu 13 (atau 14) hingga akhir minggu 26 (atau 27). Ketiga: dari minggu 27 (atau 28) hingga persalinan." },
-    { "q": "Haruskah saya memperbarui HPHT jika dokter mengubah perkiraan persalinan saya?", "a": "Gunakan perkiraan persalinan yang direvisi dokter sebagai referensi Anda. Anda dapat menghitung mundur dengan mengurangi 280 hari, atau cukup percayai aplikasi/grafik dokter untuk pelacakan minggu." },
-    { "q": "Apakah data meninggalkan browser saya?", "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server." }
-  ]
+    {
+      "q": "Mengapa menghitung dari HPHT, bukan pembuahan?",
+      "a": "Ini adalah konvensi medis karena tanggal pembuahan jarang diketahui secara tepat, sementara HPHT iya. Hasilnya adalah 'usia gestasional' sekitar 2 minggu lebih dari 'usia embrionik'."
+    },
+    {
+      "q": "Bagaimana jika saya tidak ingat HPHT saya?",
+      "a": "USG (terutama pada minggu 8-13) dapat menentukan usia gestasional secara akurat berdasarkan pengukuran janin."
+    },
+    {
+      "q": "Seberapa akurat ini?",
+      "a": "Tepat secara matematis dengan HPHT yang akurat dan siklus 28 hari. Biologi nyata memiliki variasi, sehingga perkiraan persalinan yang dihitung adalah estimasi terbaik ±2 minggu."
+    },
+    {
+      "q": "Mengapa minggu USG saya berbeda?",
+      "a": "USG mengukur janin sebenarnya dan mungkin mengungkapkan usia gestasional yang berbeda dari yang disarankan HPHT, terutama untuk siklus tidak teratur. Percayai USG untuk keputusan medis."
+    },
+    {
+      "q": "Apa yang dimaksud '38 minggu' untuk persalinan?",
+      "a": "37-42 minggu adalah cukup bulan. Kelahiran sebelum 37 minggu adalah prematur; sebelum 32 minggu sangat prematur. Setelah 42 minggu adalah postterm dan persalinan biasanya diinduksi."
+    },
+    {
+      "q": "Kapan setiap trimester dimulai secara tepat?",
+      "a": "Pertama: minggu 1 hingga akhir minggu 12 (atau 13 dalam beberapa konvensi). Kedua: minggu 13 (atau 14) hingga akhir minggu 26 (atau 27). Ketiga: dari minggu 27 (atau 28) hingga persalinan."
+    },
+    {
+      "q": "Haruskah saya memperbarui HPHT jika dokter mengubah perkiraan persalinan saya?",
+      "a": "Gunakan perkiraan persalinan yang direvisi dokter sebagai referensi Anda. Anda dapat menghitung mundur dengan mengurangi 280 hari, atau cukup percayai aplikasi/grafik dokter untuk pelacakan minggu."
+    },
+    {
+      "q": "Apakah data meninggalkan browser saya?",
+      "a": "Tidak. Perhitungan berjalan secara lokal; tidak ada yang dikirim ke server."
+    }
+  ],
+  "mode": {
+    "lmp": "Dari haid terakhir",
+    "ultrasound": "Dari USG"
+  },
+  "schedule": {
+    "heading": "Jadwal pemeriksaan kehamilan",
+    "note": "Perkiraan waktu menurut pedoman umum (mis. ACOG); waktu pastinya berbeda menurut negara dan dokter — ikuti rencana klinik Anda."
+  },
+  "milestone": {
+    "datingScan": "USG penanggalan / kunjungan pertama",
+    "nipt": "Skrining NIPT (DNA janin)",
+    "ntScan": "USG NT / skrining gabungan",
+    "anatomyScan": "USG anatomi",
+    "glucose": "Skrining glukosa",
+    "tdap": "Vaksin Tdap",
+    "gbs": "Usap streptokokus grup B (GBS)",
+    "fullTerm": "Mulai cukup bulan"
+  }
 }

@@ -1,12 +1,34 @@
 {
-  "title": "Due Date Calculator (LMP or conception, with trimester)",
-  "shortDescription": "Estimate your pregnancy due date from the last menstrual period or conception date. Includes gestational weeks and trimester.",
+  "title": "Due Date Calculator — LMP, IVF, ultrasound or conception",
+  "shortDescription": "Estimate your due date from your last period (with cycle-length adjustment), conception, an IVF transfer (day 3 or 5), or an ultrasound. Shows the full-term 37–42 week window and current gestational age.",
   "description": "Pick LMP (last menstrual period) or conception date and see the estimated due date, current gestational age in weeks, days remaining, and current trimester.",
-  "metaDescription": "Free pregnancy due date calculator. Estimate due date from LMP or conception, with gestational weeks, days remaining, and trimester.",
-  "keywords": ["due date calculator", "pregnancy calculator", "EDD calculator", "gestational age", "conception date"],
+  "metaDescription": "Pregnancy due date calculator for LMP, conception, IVF transfer, or ultrasound. See your due date, the full-term 37–42 week range, gestational age, and trimester.",
+  "keywords": [
+    "due date calculator",
+    "IVF due date calculator",
+    "ultrasound due date",
+    "EDD calculator",
+    "pregnancy due date"
+  ],
   "empty": "Pick a reference date to estimate your due date.",
-  "mode": { "lmp": "Last menstrual period", "conception": "Conception date" },
-  "input": { "lmp": "First day of last menstrual period", "conception": "Conception date" },
+  "mode": {
+    "lmp": "Last menstrual period",
+    "conception": "Conception date",
+    "ivf": "IVF transfer",
+    "ultrasound": "Ultrasound"
+  },
+  "input": {
+    "lmp": "First day of last menstrual period",
+    "conception": "Conception date",
+    "ivf": "Embryo transfer date",
+    "ultrasound": "Ultrasound scan date",
+    "cycleLength": "Cycle length (days)",
+    "embryoAge": "Embryo age at transfer",
+    "day3": "Day 3 (cleavage)",
+    "day5": "Day 5 (blastocyst)",
+    "gaWeeks": "Weeks at scan",
+    "gaDays": "Days"
+  },
   "result": {
     "dueDate": "Estimated due date",
     "gestationalWeeks": "Gestational weeks",
@@ -15,7 +37,9 @@
     "estimatedConception": "Estimated conception",
     "t1": "First trimester (weeks 1-13)",
     "t2": "Second trimester (weeks 14-26)",
-    "t3": "Third trimester (weeks 27-40+)"
+    "t3": "Third trimester (weeks 27-40+)",
+    "fullTermWindow": "Full-term window (37–42 weeks)",
+    "fullTermNote": "Only about 1 in 20 babies arrive on the exact due date. Any birth from 37 to 42 weeks is considered full term."
   },
   "article": {
     "sections": [
@@ -41,19 +65,52 @@
       }
     ],
     "howTo": [
-      { "name": "Pick the reference type", "text": "LMP is the standard clinical method. Conception date works if you know it precisely (e.g., from ovulation tracking)." },
-      { "name": "Enter the date", "text": "Use the date picker." },
-      { "name": "Read the result", "text": "Due date, current gestational weeks, days to go, and trimester all appear together." }
+      {
+        "name": "Pick the reference type",
+        "text": "LMP is the standard clinical method. Conception date works if you know it precisely (e.g., from ovulation tracking)."
+      },
+      {
+        "name": "Enter the date",
+        "text": "Use the date picker."
+      },
+      {
+        "name": "Read the result",
+        "text": "Due date, current gestational weeks, days to go, and trimester all appear together."
+      }
     ]
   },
   "faq": [
-    { "q": "Why 280 days?", "a": "Naegele's rule: 280 days ≈ 40 weeks from LMP. It assumes a 28-day cycle with ovulation on day 14, which gives ~266 days from conception (about 38 weeks)." },
-    { "q": "What if my cycle is longer or shorter?", "a": "The standard formula assumes 28 days. For longer cycles, the actual due date is later by (cycle length − 28) days; for shorter cycles, earlier. Talk to a clinician for an adjusted estimate." },
-    { "q": "Is the conception date the same as 'date I had sex'?", "a": "Not quite — sperm can survive 3-5 days, so conception can happen up to 5 days after intercourse. If you don't know the exact ovulation date, LMP is more reliable." },
-    { "q": "How accurate is this calculator?", "a": "It uses the same formula as most clinical apps. The accuracy of any due date is limited by the underlying biology, not the math: only ~4% of babies arrive on the calculated date." },
-    { "q": "What's an ultrasound due date?", "a": "Early ultrasound (8-13 weeks) measures the fetus and back-calculates the due date. It's more accurate than LMP for people with irregular cycles. If your scan-based due date differs, trust that one." },
-    { "q": "Does this calculator know if I had IVF?", "a": "No. For IVF, due date = embryo transfer date + 263 days (3-day embryo) or + 261 days (5-day blastocyst). Use the conception mode and adjust manually if needed." },
-    { "q": "Can the due date change during pregnancy?", "a": "Yes, especially after the first ultrasound. Providers may revise the due date based on growth measurements." },
-    { "q": "Is the data sent anywhere?", "a": "No — calculation runs locally in your browser." }
+    {
+      "q": "Why 280 days?",
+      "a": "Naegele's rule: 280 days ≈ 40 weeks from LMP. It assumes a 28-day cycle with ovulation on day 14, which gives ~266 days from conception (about 38 weeks)."
+    },
+    {
+      "q": "What if my cycle is longer or shorter?",
+      "a": "The standard formula assumes 28 days. For longer cycles, the actual due date is later by (cycle length − 28) days; for shorter cycles, earlier. Talk to a clinician for an adjusted estimate."
+    },
+    {
+      "q": "Is the conception date the same as 'date I had sex'?",
+      "a": "Not quite — sperm can survive 3-5 days, so conception can happen up to 5 days after intercourse. If you don't know the exact ovulation date, LMP is more reliable."
+    },
+    {
+      "q": "How accurate is this calculator?",
+      "a": "It uses the same formula as most clinical apps. The accuracy of any due date is limited by the underlying biology, not the math: only ~4% of babies arrive on the calculated date."
+    },
+    {
+      "q": "What's an ultrasound due date?",
+      "a": "Early ultrasound (8-13 weeks) measures the fetus and back-calculates the due date. It's more accurate than LMP for irregular cycles. Use Ultrasound mode here: enter the scan date and the gestational age the sonographer reported (e.g. 12w3d)."
+    },
+    {
+      "q": "Does this calculator know if I had IVF?",
+      "a": "Yes — switch to IVF transfer mode and pick a 3- or 5-day embryo. Due date = transfer date + 263 days (3-day) or + 261 days (5-day blastocyst); the calculator applies this automatically."
+    },
+    {
+      "q": "Can the due date change during pregnancy?",
+      "a": "Yes, especially after the first ultrasound. Providers may revise the due date based on growth measurements."
+    },
+    {
+      "q": "Is the data sent anywhere?",
+      "a": "No — calculation runs locally in your browser."
+    }
   ]
 }

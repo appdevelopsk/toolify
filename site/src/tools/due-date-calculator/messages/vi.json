@@ -3,10 +3,32 @@
   "shortDescription": "Ước tính ngày dự sinh từ kỳ kinh nguyệt cuối hoặc ngày thụ thai. Bao gồm tuần thai kỳ và tam cá nguyệt.",
   "description": "Chọn LMP (kỳ kinh nguyệt cuối) hoặc ngày thụ thai để xem ngày dự sinh ước tính, tuổi thai hiện tại tính bằng tuần, số ngày còn lại và tam cá nguyệt hiện tại.",
   "metaDescription": "Máy tính ngày dự sinh miễn phí. Ước tính ngày sinh từ LMP hoặc ngày thụ thai, kèm tuần thai kỳ, số ngày còn lại và tam cá nguyệt.",
-  "keywords": ["máy tính ngày dự sinh", "tính ngày sinh con", "máy tính mang thai", "tuổi thai kỳ", "ngày thụ thai"],
+  "keywords": [
+    "máy tính ngày dự sinh",
+    "tính ngày sinh con",
+    "máy tính mang thai",
+    "tuổi thai kỳ",
+    "ngày thụ thai"
+  ],
   "empty": "Chọn ngày tham chiếu để ước tính ngày dự sinh.",
-  "mode": { "lmp": "Kỳ kinh nguyệt cuối", "conception": "Ngày thụ thai" },
-  "input": { "lmp": "Ngày đầu tiên của kỳ kinh nguyệt cuối", "conception": "Ngày thụ thai" },
+  "mode": {
+    "lmp": "Kỳ kinh nguyệt cuối",
+    "conception": "Ngày thụ thai",
+    "ivf": "IVF (chuyển phôi)",
+    "ultrasound": "Siêu âm"
+  },
+  "input": {
+    "lmp": "Ngày đầu tiên của kỳ kinh nguyệt cuối",
+    "conception": "Ngày thụ thai",
+    "ivf": "Ngày chuyển phôi",
+    "ultrasound": "Ngày siêu âm",
+    "cycleLength": "Độ dài chu kỳ (ngày)",
+    "embryoAge": "Tuổi phôi khi chuyển",
+    "day3": "Ngày 3 (phân chia)",
+    "day5": "Ngày 5 (phôi nang)",
+    "gaWeeks": "Số tuần khi siêu âm",
+    "gaDays": "Ngày"
+  },
   "result": {
     "dueDate": "Ngày dự sinh ước tính",
     "gestationalWeeks": "Tuần thai kỳ",
@@ -15,7 +37,9 @@
     "estimatedConception": "Ngày thụ thai ước tính",
     "t1": "Tam cá nguyệt đầu (tuần 1-13)",
     "t2": "Tam cá nguyệt giữa (tuần 14-26)",
-    "t3": "Tam cá nguyệt cuối (tuần 27-40+)"
+    "t3": "Tam cá nguyệt cuối (tuần 27-40+)",
+    "fullTermWindow": "Khoảng đủ tháng (37–42 tuần)",
+    "fullTermNote": "Chỉ khoảng 1 trong 20 em bé chào đời đúng ngày dự sinh. Mọi ca sinh từ tuần 37 đến 42 đều được coi là đủ tháng."
   },
   "article": {
     "sections": [
@@ -41,19 +65,52 @@
       }
     ],
     "howTo": [
-      { "name": "Chọn loại tham chiếu", "text": "LMP là phương pháp lâm sàng tiêu chuẩn. Ngày thụ thai phù hợp nếu bạn biết chính xác (ví dụ từ theo dõi rụng trứng)." },
-      { "name": "Nhập ngày", "text": "Sử dụng bộ chọn ngày." },
-      { "name": "Đọc kết quả", "text": "Ngày dự sinh, tuần thai kỳ hiện tại, số ngày còn lại và tam cá nguyệt đều hiển thị cùng nhau." }
+      {
+        "name": "Chọn loại tham chiếu",
+        "text": "LMP là phương pháp lâm sàng tiêu chuẩn. Ngày thụ thai phù hợp nếu bạn biết chính xác (ví dụ từ theo dõi rụng trứng)."
+      },
+      {
+        "name": "Nhập ngày",
+        "text": "Sử dụng bộ chọn ngày."
+      },
+      {
+        "name": "Đọc kết quả",
+        "text": "Ngày dự sinh, tuần thai kỳ hiện tại, số ngày còn lại và tam cá nguyệt đều hiển thị cùng nhau."
+      }
     ]
   },
   "faq": [
-    { "q": "Tại sao lại là 280 ngày?", "a": "Quy tắc Naegele: 280 ngày ≈ 40 tuần từ LMP. Giả định chu kỳ 28 ngày với rụng trứng ngày 14, tương đương ~266 ngày từ khi thụ thai (khoảng 38 tuần)." },
-    { "q": "Nếu chu kỳ của tôi dài hơn hoặc ngắn hơn thì sao?", "a": "Công thức tiêu chuẩn giả định 28 ngày. Với chu kỳ dài hơn, ngày dự sinh thực tế trễ hơn (độ dài chu kỳ − 28) ngày; với chu kỳ ngắn hơn, sớm hơn. Hãy tham khảo bác sĩ để có ước tính điều chỉnh." },
-    { "q": "Ngày thụ thai có giống 'ngày quan hệ' không?", "a": "Không hẳn — tinh trùng có thể sống 3-5 ngày, nên thụ thai có thể xảy ra tới 5 ngày sau khi quan hệ. Nếu bạn không biết chính xác ngày rụng trứng, LMP đáng tin cậy hơn." },
-    { "q": "Máy tính này chính xác đến mức nào?", "a": "Sử dụng cùng công thức như hầu hết các ứng dụng lâm sàng. Độ chính xác của bất kỳ ngày dự sinh nào bị giới hạn bởi sinh học, không phải toán học: chỉ ~4% trẻ em chào đời đúng ngày dự sinh." },
-    { "q": "Ngày dự sinh qua siêu âm là gì?", "a": "Siêu âm sớm (8-13 tuần) đo thai nhi và tính ngược lại ngày dự sinh. Chính xác hơn LMP cho người có chu kỳ không đều. Nếu ngày dự sinh qua siêu âm khác, hãy tin vào kết quả đó." },
-    { "q": "Máy tính này có biết tôi làm IVF không?", "a": "Không. Với IVF, ngày dự sinh = ngày chuyển phôi + 263 ngày (phôi 3 ngày) hoặc + 261 ngày (phôi nang 5 ngày). Sử dụng chế độ ngày thụ thai và điều chỉnh thủ công nếu cần." },
-    { "q": "Ngày dự sinh có thể thay đổi trong thai kỳ không?", "a": "Có, đặc biệt sau siêu âm đầu tiên. Bác sĩ có thể điều chỉnh ngày dự sinh dựa trên các phép đo tăng trưởng." },
-    { "q": "Dữ liệu có được gửi đi đâu không?", "a": "Không — tính toán chạy cục bộ trong trình duyệt của bạn." }
+    {
+      "q": "Tại sao lại là 280 ngày?",
+      "a": "Quy tắc Naegele: 280 ngày ≈ 40 tuần từ LMP. Giả định chu kỳ 28 ngày với rụng trứng ngày 14, tương đương ~266 ngày từ khi thụ thai (khoảng 38 tuần)."
+    },
+    {
+      "q": "Nếu chu kỳ của tôi dài hơn hoặc ngắn hơn thì sao?",
+      "a": "Công thức tiêu chuẩn giả định 28 ngày. Với chu kỳ dài hơn, ngày dự sinh thực tế trễ hơn (độ dài chu kỳ − 28) ngày; với chu kỳ ngắn hơn, sớm hơn. Hãy tham khảo bác sĩ để có ước tính điều chỉnh."
+    },
+    {
+      "q": "Ngày thụ thai có giống 'ngày quan hệ' không?",
+      "a": "Không hẳn — tinh trùng có thể sống 3-5 ngày, nên thụ thai có thể xảy ra tới 5 ngày sau khi quan hệ. Nếu bạn không biết chính xác ngày rụng trứng, LMP đáng tin cậy hơn."
+    },
+    {
+      "q": "Máy tính này chính xác đến mức nào?",
+      "a": "Sử dụng cùng công thức như hầu hết các ứng dụng lâm sàng. Độ chính xác của bất kỳ ngày dự sinh nào bị giới hạn bởi sinh học, không phải toán học: chỉ ~4% trẻ em chào đời đúng ngày dự sinh."
+    },
+    {
+      "q": "Ngày dự sinh qua siêu âm là gì?",
+      "a": "Siêu âm sớm (8-13 tuần) đo thai nhi và tính ngược lại ngày dự sinh. Chính xác hơn LMP cho người có chu kỳ không đều. Nếu ngày dự sinh qua siêu âm khác, hãy tin vào kết quả đó."
+    },
+    {
+      "q": "Máy tính này có biết tôi làm IVF không?",
+      "a": "Không. Với IVF, ngày dự sinh = ngày chuyển phôi + 263 ngày (phôi 3 ngày) hoặc + 261 ngày (phôi nang 5 ngày). Sử dụng chế độ ngày thụ thai và điều chỉnh thủ công nếu cần."
+    },
+    {
+      "q": "Ngày dự sinh có thể thay đổi trong thai kỳ không?",
+      "a": "Có, đặc biệt sau siêu âm đầu tiên. Bác sĩ có thể điều chỉnh ngày dự sinh dựa trên các phép đo tăng trưởng."
+    },
+    {
+      "q": "Dữ liệu có được gửi đi đâu không?",
+      "a": "Không — tính toán chạy cục bộ trong trình duyệt của bạn."
+    }
   ]
 }

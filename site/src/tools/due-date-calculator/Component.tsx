@@ -19,56 +19,128 @@ function diffDays(a: Date, b: Date) {
   return Math.floor((b.getTime() - a.getTime()) / 86400000);
 }
 
-type Mode = "lmp" | "conception";
+type Mode = "lmp" | "conception" | "ivf" | "ultrasound";
+const MODES: Mode[] = ["lmp", "conception", "ivf", "ultrasound"];
 
 export default function DueDateCalculator() {
   const t = useTranslations("tools.due-date-calculator");
   const locale = useLocale();
   const [mode, setMode] = useState<Mode>("lmp");
   const [refDate, setRefDate] = useState("");
+  const [cycleLength, setCycleLength] = useState("28");
+  const [embryoAge, setEmbryoAge] = useState("5");
+  const [gaWeeks, setGaWeeks] = useState("12");
+  const [gaDays, setGaDays] = useState("0");
 
   const result = useMemo(() => {
     if (!refDate) return null;
-    const d = new Date(refDate);
+    const d = new Date(refDate + "T00:00:00");
     if (isNaN(d.getTime())) return null;
-    // LMP: due date = LMP + 280 days. Conception: + 266 days.
-    const dueDate = addDays(d, mode === "lmp" ? 280 : 266);
+
+    // Resolve every mode to an "anchor LMP": the day a standard 280-day (40w) EDD counts from.
+    let anchorLmp: Date;
+    if (mode === "lmp") {
+      const cyc = parseInt(cycleLength, 10);
+      if (!isFinite(cyc) || cyc < 21 || cyc > 45) return null;
+      anchorLmp = addDays(d, cyc - 28); // cycle-length correction to Naegele's rule
+    } else if (mode === "conception") {
+      anchorLmp = addDays(d, -14);
+    } else if (mode === "ivf") {
+      const age = parseInt(embryoAge, 10); // 3 or 5 day transfer
+      // conception (fertilisation) = transfer − embryo age; anchor LMP = conception − 14
+      anchorLmp = addDays(d, -age - 14);
+    } else {
+      const w = parseInt(gaWeeks, 10);
+      const dd = parseInt(gaDays, 10);
+      if (!isFinite(w) || w < 4 || w > 42 || !isFinite(dd) || dd < 0 || dd > 6) return null;
+      anchorLmp = addDays(d, -(w * 7 + dd)); // scan date − gestational age at scan
+    }
+
+    const dueDate = addDays(anchorLmp, 280);
+    const conception = addDays(anchorLmp, 14);
     const today = new Date(todayIso());
-    const conception = mode === "lmp" ? addDays(d, 14) : d;
-    const totalDaysFromConception = diffDays(conception, today);
-    const weeksFrom = mode === "lmp" ? Math.floor(diffDays(d, today) / 7) : Math.floor(diffDays(addDays(d, -14), today) / 7);
+    const gaTotal = Math.max(0, diffDays(anchorLmp, today));
+    const gaW = Math.floor(gaTotal / 7);
+    const gaD = gaTotal % 7;
     const daysToDue = diffDays(today, dueDate);
-    const trimester = weeksFrom <= 13 ? 1 : weeksFrom <= 26 ? 2 : 3;
-    return { dueDate, conception, weeksFrom: Math.max(0, weeksFrom), daysToDue, trimester, totalDaysFromConception };
-  }, [mode, refDate]);
+    const trimester = gaW <= 13 ? 1 : gaW <= 27 ? 2 : 3;
+    const termStart = addDays(dueDate, -21); // 37w0d
+    const termEnd = addDays(dueDate, 14); // 42w0d
+    return { dueDate, conception, gaW, gaD, daysToDue, trimester, termStart, termEnd };
+  }, [mode, refDate, cycleLength, embryoAge, gaWeeks, gaDays]);
 
   const dateFmt = useMemo(() => new Intl.DateTimeFormat(locale, { dateStyle: "full" }), [locale]);
+  const medFmt = useMemo(() => new Intl.DateTimeFormat(locale, { dateStyle: "medium" }), [locale]);
+
+  const inputBox = "mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900";
 
   return (
     <div>
-      <div className="mb-4 inline-flex rounded-md border border-slate-300 dark:border-slate-700">
-        <button onClick={() => setMode("lmp")} className={`px-3 py-1.5 text-sm ${mode === "lmp" ? "bg-brand-600 text-white" : ""}`}>
-          {t("mode.lmp")}
-        </button>
-        <button onClick={() => setMode("conception")} className={`px-3 py-1.5 text-sm ${mode === "conception" ? "bg-brand-600 text-white" : ""}`}>
-          {t("mode.conception")}
-        </button>
+      <div className="mb-4 flex flex-wrap gap-1 rounded-md border border-slate-300 p-1 dark:border-slate-700">
+        {MODES.map((m) => (
+          <button
+            key={m}
+            onClick={() => setMode(m)}
+            className={`rounded px-3 py-1.5 text-sm ${mode === m ? "bg-brand-600 text-white" : ""}`}
+          >
+            {t(`mode.${m}`)}
+          </button>
+        ))}
       </div>
 
-      <label className="block">
-        <span className="text-sm font-medium">{t(`input.${mode}`)}</span>
-        <input type="date" value={refDate} onChange={(e) => setRefDate(e.target.value)} max={todayIso()} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900" />
-      </label>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="block">
+          <span className="text-sm font-medium">{t(`input.${mode}`)}</span>
+          <input type="date" value={refDate} onChange={(e) => setRefDate(e.target.value)} max={todayIso()} className={inputBox} />
+        </label>
+
+        {mode === "lmp" && (
+          <label className="block">
+            <span className="text-sm font-medium">{t("input.cycleLength")}</span>
+            <input type="number" min={21} max={45} value={cycleLength} onChange={(e) => setCycleLength(e.target.value)} className={`${inputBox} tabular-nums`} />
+          </label>
+        )}
+
+        {mode === "ivf" && (
+          <label className="block">
+            <span className="text-sm font-medium">{t("input.embryoAge")}</span>
+            <select value={embryoAge} onChange={(e) => setEmbryoAge(e.target.value)} className={inputBox}>
+              <option value="3">{t("input.day3")}</option>
+              <option value="5">{t("input.day5")}</option>
+            </select>
+          </label>
+        )}
+
+        {mode === "ultrasound" && (
+          <div className="grid grid-cols-2 gap-2">
+            <label className="block">
+              <span className="text-sm font-medium">{t("input.gaWeeks")}</span>
+              <input type="number" min={4} max={42} value={gaWeeks} onChange={(e) => setGaWeeks(e.target.value)} className={`${inputBox} tabular-nums`} />
+            </label>
+            <label className="block">
+              <span className="text-sm font-medium">{t("input.gaDays")}</span>
+              <input type="number" min={0} max={6} value={gaDays} onChange={(e) => setGaDays(e.target.value)} className={`${inputBox} tabular-nums`} />
+            </label>
+          </div>
+        )}
+      </div>
 
       <div aria-live="polite" className={`mt-6 rounded-lg border p-4 ${result ? "border-brand-200 bg-brand-50 dark:border-brand-900 dark:bg-brand-900/20" : "border-slate-200 dark:border-slate-800"}`}>
         {result ? (
           <>
             <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.dueDate")}</div>
             <div className="mt-1 text-2xl font-bold">{dateFmt.format(result.dueDate)}</div>
+
+            <div className="mt-3 rounded bg-white/60 px-3 py-2 text-sm dark:bg-slate-900/40">
+              <div className="font-medium">{t("result.fullTermWindow")}</div>
+              <div className="tabular-nums">{medFmt.format(result.termStart)} – {medFmt.format(result.termEnd)}</div>
+              <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">{t("result.fullTermNote")}</p>
+            </div>
+
             <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
               <div className="flex justify-between border-b border-slate-200 py-1 dark:border-slate-800">
                 <dt>{t("result.gestationalWeeks")}</dt>
-                <dd className="tabular-nums">{result.weeksFrom}</dd>
+                <dd className="tabular-nums">{result.gaW}w {result.gaD}d</dd>
               </div>
               <div className="flex justify-between border-b border-slate-200 py-1 dark:border-slate-800">
                 <dt>{t("result.daysToDue")}</dt>
@@ -80,7 +152,7 @@ export default function DueDateCalculator() {
               </div>
               <div className="flex justify-between border-b border-slate-200 py-1 dark:border-slate-800">
                 <dt>{t("result.estimatedConception")}</dt>
-                <dd>{dateFmt.format(result.conception)}</dd>
+                <dd>{medFmt.format(result.conception)}</dd>
               </div>
             </dl>
           </>

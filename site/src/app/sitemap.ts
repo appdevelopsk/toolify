@@ -5,7 +5,7 @@ import { listIndexableTools } from "@/lib/tools/registry";
 import { listPrompts } from "@/lib/prompts/registry";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const sharedPaths = ["", "/tools", "/about", "/privacy", "/terms", "/contact"];
+  const sharedPaths = ["", "/tools", "/pregnancy", "/about", "/privacy", "/terms", "/contact"];
   const tools = listIndexableTools(); // noindex ツールは sitemap から除外（robots noindex と整合）
   const prompts = listPrompts();
   const entries: MetadataRoute.Sitemap = [];

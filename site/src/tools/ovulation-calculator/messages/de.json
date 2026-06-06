@@ -3,16 +3,27 @@
   "shortDescription": "Schätze dein Eisprungdatum, 6-tägiges fruchtbares Fenster, nächste Periode und voraussichtlichen Geburtstermin bei Empfängnis – basierend auf letzter Periode und Zykluslänge.",
   "description": "Gib den ersten Tag deiner letzten Periode und deine typische Zykluslänge ein. Der Rechner bestimmt, wann du wahrscheinlich einen Eisprung hast, das fruchtbare Fenster darum herum und prognostiziert deine nächste Periode oder den Geburtstermin bei Schwangerschaft.",
   "metaDescription": "Kostenloser Eisprung-Rechner mit fruchtbarem Fenster. Letzte Periode und Zykluslänge eingeben, um Eisprungtermin, fruchtbarste Tage und nächste Periode zu sehen.",
-  "keywords": ["Eisprung-Rechner", "fruchtbare Tage berechnen", "Fruchtbarkeitsrechner", "Eisprung berechnen", "Menstruationszyklusrechner"],
+  "keywords": [
+    "Eisprung-Rechner",
+    "fruchtbare Tage berechnen",
+    "Fruchtbarkeitsrechner",
+    "Eisprung berechnen",
+    "Menstruationszyklusrechner"
+  ],
   "input": {
     "lmp": "Erster Tag der letzten Periode",
-    "cycleLength": "Zykluslänge (Tage)"
+    "cycleLength": "Zykluslänge (Tage)",
+    "irregularToggle": "Meine Zyklen sind unregelmäßig",
+    "cycleMin": "Kürzester Zyklus (Tage)",
+    "cycleMax": "Längster Zyklus (Tage)"
   },
   "result": {
     "ovulation": "Geschätzter Eisprung",
     "fertileWindow": "Fruchtbares Fenster (Peak)",
     "nextPeriod": "Nächste erwartete Periode",
-    "dueDateIfPregnant": "Geburtstermin bei Empfängnis"
+    "dueDateIfPregnant": "Geburtstermin bei Empfängnis",
+    "testDate": "Frühester zuverlässiger Test",
+    "implantation": "Wahrscheinliche Einnistung"
   },
   "empty": "Gib deine letzte Periode und Zykluslänge ein.",
   "article": {
@@ -40,19 +51,66 @@
       }
     ],
     "howTo": [
-      { "name": "Ersten Tag der letzten Periode eingeben", "text": "Das Datum verwenden, an dem die Blutung begann, nicht den Tag davor oder danach." },
-      { "name": "Typische Zykluslänge eingeben", "text": "Vom ersten Tag einer Periode bis zum ersten Tag der nächsten. Durchschnitt ist 28 Tage." },
-      { "name": "Fruchtbares Fenster ablesen", "text": "Die 6 Tage, die am Eisprungstag enden. Sex in diesem Fenster hat die höchste Schwangerschaftswahrscheinlichkeit." }
+      {
+        "name": "Ersten Tag der letzten Periode eingeben",
+        "text": "Das Datum verwenden, an dem die Blutung begann, nicht den Tag davor oder danach."
+      },
+      {
+        "name": "Typische Zykluslänge eingeben",
+        "text": "Vom ersten Tag einer Periode bis zum ersten Tag der nächsten. Durchschnitt ist 28 Tage."
+      },
+      {
+        "name": "Fruchtbares Fenster ablesen",
+        "text": "Die 6 Tage, die am Eisprungstag enden. Sex in diesem Fenster hat die höchste Schwangerschaftswahrscheinlichkeit."
+      }
     ]
   },
   "faq": [
-    { "q": "Wie genau ist das?", "a": "Die Berechnung ist mathematisch korrekt für typische Physiologie, aber die biologische Realität variiert. Stress, Krankheit und andere Faktoren können den Eisprung um mehrere Tage verschieben. Als Ausgangsschätzung verwenden, nicht als Garantie." },
-    { "q": "Kann ich das zur Verhütung verwenden?", "a": "Nein. Die Methode des fruchtbaren Fensters (Kalender-Methode) hat eine hohe Versagensrate – etwa 24 % pro Jahr bei typischer Anwendung. Nur zur Maximierung der Empfängnischancen verwenden, nicht zur Verhütung." },
-    { "q": "Warum ist das fruchtbare Fenster 6 Tage und nicht nur 1?", "a": "Spermien überleben 3–5 Tage im Reproduktionstrakt. Geschlechtsverkehr einige Tage vor dem Eisprung kann also noch zur Empfängnis führen. Die Eizelle selbst ist nur ~24 Stunden nach dem Eisprung lebensfähig." },
-    { "q": "Was, wenn meine Zyklen unregelmäßig sind?", "a": "Dieser Rechner setzt regelmäßige Zyklen voraus. Wenn deine Zyklen um mehr als 7–9 Tage variieren, sind Vorhersagen unzuverlässig. Basaltemperatur messen oder Eisprung-Prädiktionssets (LH-Tests) für mehr Genauigkeit verwenden." },
-    { "q": "Wann tritt der LH-Anstieg auf?", "a": "Er geht dem Eisprung um 24–36 Stunden voraus. Eisprung-Prädiktionssets erkennen den Anstieg und geben das beste 1-Tages-Fenster. Mit der Fenster-Schätzung dieses Rechners kombinieren für präzisere Vorhersagen." },
-    { "q": "Was ist der beste Tag zur Empfängnis?", "a": "Statistisch gesehen der Tag vor dem Eisprung. Spermien sollten bereits vorhanden sein, wenn die Eizelle freigesetzt wird. Der Eisprungstag und der Tag davor sind ungefähr gleichwertig." },
-    { "q": "Worauf basiert der Geburtstermin?", "a": "Standard 280 Tage (40 Wochen) nach der letzten Periode. Unseren Geburtsterminrechner für mehr Optionen verwenden, einschließlich ‚2 Wochen zu Zyklustag addieren' oder bekanntes Empfängnisdatum." },
-    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Die Berechnung ist lokal; nichts wird an einen Server gesendet." }
-  ]
+    {
+      "q": "Wie genau ist das?",
+      "a": "Die Berechnung ist mathematisch korrekt für typische Physiologie, aber die biologische Realität variiert. Stress, Krankheit und andere Faktoren können den Eisprung um mehrere Tage verschieben. Als Ausgangsschätzung verwenden, nicht als Garantie."
+    },
+    {
+      "q": "Kann ich das zur Verhütung verwenden?",
+      "a": "Nein. Die Methode des fruchtbaren Fensters (Kalender-Methode) hat eine hohe Versagensrate – etwa 24 % pro Jahr bei typischer Anwendung. Nur zur Maximierung der Empfängnischancen verwenden, nicht zur Verhütung."
+    },
+    {
+      "q": "Warum ist das fruchtbare Fenster 6 Tage und nicht nur 1?",
+      "a": "Spermien überleben 3–5 Tage im Reproduktionstrakt. Geschlechtsverkehr einige Tage vor dem Eisprung kann also noch zur Empfängnis führen. Die Eizelle selbst ist nur ~24 Stunden nach dem Eisprung lebensfähig."
+    },
+    {
+      "q": "Was, wenn meine Zyklen unregelmäßig sind?",
+      "a": "Dieser Rechner setzt regelmäßige Zyklen voraus. Wenn deine Zyklen um mehr als 7–9 Tage variieren, sind Vorhersagen unzuverlässig. Basaltemperatur messen oder Eisprung-Prädiktionssets (LH-Tests) für mehr Genauigkeit verwenden."
+    },
+    {
+      "q": "Wann tritt der LH-Anstieg auf?",
+      "a": "Er geht dem Eisprung um 24–36 Stunden voraus. Eisprung-Prädiktionssets erkennen den Anstieg und geben das beste 1-Tages-Fenster. Mit der Fenster-Schätzung dieses Rechners kombinieren für präzisere Vorhersagen."
+    },
+    {
+      "q": "Was ist der beste Tag zur Empfängnis?",
+      "a": "Statistisch gesehen der Tag vor dem Eisprung. Spermien sollten bereits vorhanden sein, wenn die Eizelle freigesetzt wird. Der Eisprungstag und der Tag davor sind ungefähr gleichwertig."
+    },
+    {
+      "q": "Worauf basiert der Geburtstermin?",
+      "a": "Standard 280 Tage (40 Wochen) nach der letzten Periode. Unseren Geburtsterminrechner für mehr Optionen verwenden, einschließlich ‚2 Wochen zu Zyklustag addieren' oder bekanntes Empfängnisdatum."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Die Berechnung ist lokal; nichts wird an einen Server gesendet."
+    }
+  ],
+  "cycles": {
+    "heading": "Deine nächsten 6 fruchtbaren Phasen",
+    "fertile": "Fruchtbare Phase",
+    "ovulation": "Eisprung",
+    "period": "Nächste Periode",
+    "test": "Test ab"
+  },
+  "ics": {
+    "button": "Fruchtbare Tage zum Kalender hinzufügen (.ics)",
+    "event": "Fruchtbare Phase"
+  },
+  "note": {
+    "irregular": "Bei unregelmäßigen Zyklen kann der Eisprung in einen Bereich fallen, daher wird die fruchtbare Phase breiter angezeigt. Bestätige mit Ovulationstest (LH) oder Basaltemperatur."
+  }
 }

@@ -3,10 +3,33 @@
   "shortDescription": "अंतिम मासिक धर्म या conception date से अपनी pregnancy की अनुमानित प्रसव तिथि का अनुमान लगाएँ। gestational weeks और trimester शामिल।",
   "description": "LMP (अंतिम मासिक धर्म) या conception date चुनें और अनुमानित प्रसव तिथि, वर्तमान gestational आयु सप्ताहों में, शेष दिन और वर्तमान trimester देखें।",
   "metaDescription": "मुफ्त pregnancy due date कैलकुलेटर। LMP या conception से due date का अनुमान लगाएँ, gestational weeks, शेष दिन और trimester के साथ।",
-  "keywords": ["due date calculator", "pregnancy calculator", "गर्भावस्था कैलकुलेटर", "प्रसव तिथि", "gestational age", "prasav tithi"],
+  "keywords": [
+    "due date calculator",
+    "pregnancy calculator",
+    "गर्भावस्था कैलकुलेटर",
+    "प्रसव तिथि",
+    "gestational age",
+    "prasav tithi"
+  ],
   "empty": "अपनी due date का अनुमान लगाने के लिए एक संदर्भ तिथि चुनें।",
-  "mode": { "lmp": "अंतिम मासिक धर्म", "conception": "Conception date" },
-  "input": { "lmp": "अंतिम मासिक धर्म का पहला दिन", "conception": "Conception date" },
+  "mode": {
+    "lmp": "अंतिम मासिक धर्म",
+    "conception": "Conception date",
+    "ivf": "आईवीएफ (स्थानांतरण)",
+    "ultrasound": "अल्ट्रासाउंड"
+  },
+  "input": {
+    "lmp": "अंतिम मासिक धर्म का पहला दिन",
+    "conception": "Conception date",
+    "ivf": "भ्रूण स्थानांतरण तिथि",
+    "ultrasound": "अल्ट्रासाउंड जाँच तिथि",
+    "cycleLength": "चक्र अवधि (दिन)",
+    "embryoAge": "स्थानांतरण पर भ्रूण की आयु",
+    "day3": "दिन 3 (क्लीवेज)",
+    "day5": "दिन 5 (ब्लास्टोसिस्ट)",
+    "gaWeeks": "जाँच के समय सप्ताह",
+    "gaDays": "दिन"
+  },
   "result": {
     "dueDate": "अनुमानित प्रसव तिथि",
     "gestationalWeeks": "Gestational weeks",
@@ -15,7 +38,9 @@
     "estimatedConception": "अनुमानित conception",
     "t1": "पहली तिमाही (सप्ताह 1-13)",
     "t2": "दूसरी तिमाही (सप्ताह 14-26)",
-    "t3": "तीसरी तिमाही (सप्ताह 27-40+)"
+    "t3": "तीसरी तिमाही (सप्ताह 27-40+)",
+    "fullTermWindow": "पूर्णकालिक अवधि (37–42 सप्ताह)",
+    "fullTermNote": "लगभग 20 में से केवल 1 शिशु ठीक नियत तिथि पर जन्म लेता है। 37 से 42 सप्ताह के बीच का कोई भी जन्म पूर्णकालिक माना जाता है।"
   },
   "article": {
     "sections": [
@@ -41,19 +66,52 @@
       }
     ],
     "howTo": [
-      { "name": "संदर्भ प्रकार चुनें", "text": "LMP मानक clinical method है। Conception date काम करती है यदि आप इसे सटीक जानते हैं।" },
-      { "name": "तारीख दर्ज करें", "text": "Date picker का उपयोग करें।" },
-      { "name": "परिणाम पढ़ें", "text": "Due date, वर्तमान gestational weeks, जाने के दिन और trimester सभी एक साथ दिखते हैं।" }
+      {
+        "name": "संदर्भ प्रकार चुनें",
+        "text": "LMP मानक clinical method है। Conception date काम करती है यदि आप इसे सटीक जानते हैं।"
+      },
+      {
+        "name": "तारीख दर्ज करें",
+        "text": "Date picker का उपयोग करें।"
+      },
+      {
+        "name": "परिणाम पढ़ें",
+        "text": "Due date, वर्तमान gestational weeks, जाने के दिन और trimester सभी एक साथ दिखते हैं।"
+      }
     ]
   },
   "faq": [
-    { "q": "280 दिन क्यों?", "a": "Naegele का नियम: 280 दिन ≈ LMP से 40 सप्ताह।" },
-    { "q": "यदि मेरा चक्र लंबा या छोटा है तो?", "a": "मानक formula 28 दिन मानता है। लंबे चक्रों के लिए, actual due date बाद में होती है।" },
-    { "q": "क्या conception date 'sex की तारीख' के समान है?", "a": "बिल्कुल नहीं — शुक्राणु 3-5 दिन जीवित रह सकते हैं।" },
-    { "q": "यह कैलकुलेटर कितना सटीक है?", "a": "यह अधिकांश clinical apps जैसा ही formula उपयोग करता है। केवल ~4% बच्चे गणना की गई तारीख पर आते हैं।" },
-    { "q": "Ultrasound due date क्या है?", "a": "Early ultrasound (8-13 सप्ताह) fetus को मापती है। अनियमित चक्रों वाले लोगों के लिए यह LMP से अधिक सटीक है।" },
-    { "q": "क्या यह कैलकुलेटर जानता है कि मेरा IVF था?", "a": "नहीं। IVF के लिए, due date = embryo transfer date + 263 दिन।" },
-    { "q": "क्या pregnancy के दौरान due date बदल सकती है?", "a": "हाँ, विशेष रूप से पहले ultrasound के बाद।" },
-    { "q": "क्या डेटा कहीं भेजा जाता है?", "a": "नहीं — गणना आपके ब्राउज़र में स्थानीय रूप से चलती है।" }
+    {
+      "q": "280 दिन क्यों?",
+      "a": "Naegele का नियम: 280 दिन ≈ LMP से 40 सप्ताह।"
+    },
+    {
+      "q": "यदि मेरा चक्र लंबा या छोटा है तो?",
+      "a": "मानक formula 28 दिन मानता है। लंबे चक्रों के लिए, actual due date बाद में होती है।"
+    },
+    {
+      "q": "क्या conception date 'sex की तारीख' के समान है?",
+      "a": "बिल्कुल नहीं — शुक्राणु 3-5 दिन जीवित रह सकते हैं।"
+    },
+    {
+      "q": "यह कैलकुलेटर कितना सटीक है?",
+      "a": "यह अधिकांश clinical apps जैसा ही formula उपयोग करता है। केवल ~4% बच्चे गणना की गई तारीख पर आते हैं।"
+    },
+    {
+      "q": "Ultrasound due date क्या है?",
+      "a": "Early ultrasound (8-13 सप्ताह) fetus को मापती है। अनियमित चक्रों वाले लोगों के लिए यह LMP से अधिक सटीक है।"
+    },
+    {
+      "q": "क्या यह कैलकुलेटर जानता है कि मेरा IVF था?",
+      "a": "नहीं। IVF के लिए, due date = embryo transfer date + 263 दिन।"
+    },
+    {
+      "q": "क्या pregnancy के दौरान due date बदल सकती है?",
+      "a": "हाँ, विशेष रूप से पहले ultrasound के बाद।"
+    },
+    {
+      "q": "क्या डेटा कहीं भेजा जाता है?",
+      "a": "नहीं — गणना आपके ब्राउज़र में स्थानीय रूप से चलती है।"
+    }
   ]
 }

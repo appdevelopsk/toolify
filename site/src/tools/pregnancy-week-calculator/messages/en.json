@@ -1,17 +1,30 @@
 {
-  "title": "Pregnancy Week Calculator (current week + days)",
-  "shortDescription": "Find your current pregnancy week, day-of-week, trimester, due date, and days remaining — all from your last menstrual period.",
+  "title": "Pregnancy Week Calculator — weeks + prenatal schedule",
+  "shortDescription": "See exactly how many weeks and days pregnant you are — from your last period or an ultrasound — plus fetal age, trimester, due date, and your prenatal appointment schedule with real dates.",
   "description": "Enter the first day of your last menstrual period (LMP). The calculator computes how many weeks and days pregnant you are right now, your trimester, due date, and how many days until birth.",
-  "metaDescription": "Free pregnancy week calculator. From your last period, see current week + day, trimester, due date, days remaining, and progress bar.",
-  "keywords": ["pregnancy week calculator", "current pregnancy week", "how many weeks pregnant", "pregnancy progress", "weeks pregnant"],
-  "input": { "lmp": "First day of last menstrual period" },
+  "metaDescription": "Pregnancy week calculator from LMP or ultrasound: current week + day, fetal age, trimester, due date, and a prenatal schedule (NIPT, anatomy scan, GBS) with real dates.",
+  "keywords": [
+    "pregnancy week calculator",
+    "how many weeks pregnant",
+    "gestational age calculator",
+    "prenatal schedule",
+    "pregnancy week by week"
+  ],
+  "input": {
+    "lmp": "First day of last menstrual period",
+    "ultrasound": "Ultrasound scan date",
+    "cycleLength": "Cycle length (days)",
+    "gaWeeks": "Weeks at scan",
+    "gaDays": "Days"
+  },
   "result": {
     "weeksUnit": "weeks",
     "daysUnit": "days",
     "trimester": "Trimester",
     "dueDate": "Estimated due date",
     "daysToDue": "Days until due date",
-    "totalDays": "Total days pregnant"
+    "totalDays": "Total days pregnant",
+    "fetalAge": "Fetal age (from conception)"
   },
   "trimester": {
     "1": "First (weeks 1-12)",
@@ -46,19 +59,70 @@
       }
     ],
     "howTo": [
-      { "name": "Enter LMP date", "text": "First day of your last menstrual period (when bleeding started)." },
-      { "name": "Read your current week", "text": "Plus the day-of-week count (e.g., '24 weeks 3 days')." },
-      { "name": "View trimester and due date", "text": "Plus a progress bar showing your position in the 280-day pregnancy." }
+      {
+        "name": "Enter LMP date",
+        "text": "First day of your last menstrual period (when bleeding started)."
+      },
+      {
+        "name": "Read your current week",
+        "text": "Plus the day-of-week count (e.g., '24 weeks 3 days')."
+      },
+      {
+        "name": "View trimester and due date",
+        "text": "Plus a progress bar showing your position in the 280-day pregnancy."
+      }
     ]
   },
   "faq": [
-    { "q": "Why count from LMP, not conception?", "a": "It's the medical convention because conception date is rarely known precisely, while LMP is. The result is that 'gestational age' is about 2 weeks more than 'embryonic age'." },
-    { "q": "What if I don't remember my LMP?", "a": "An ultrasound (especially in weeks 8-13) can establish gestational age accurately based on fetal measurements." },
-    { "q": "How accurate is this?", "a": "Mathematically exact given an accurate LMP and a 28-day cycle. Real biology has variation, so the calculated due date is a best-estimate ±2 weeks." },
-    { "q": "Why is my ultrasound week different?", "a": "Ultrasound measures the actual fetus and may reveal a different gestational age than LMP suggests, especially for irregular cycles. Trust the ultrasound for medical decisions." },
-    { "q": "What does '38 weeks' mean for delivery?", "a": "37-42 weeks is full term. Births before 37 weeks are preterm; before 32 weeks are very preterm. After 42 weeks is post-term and labor is usually induced." },
-    { "q": "When does each trimester start exactly?", "a": "First: week 1 to end of week 12 (or 13 in some conventions). Second: week 13 (or 14) through end of week 26 (or 27). Third: from week 27 (or 28) until delivery." },
-    { "q": "Should I update my LMP if my doctor changed my due date?", "a": "Use the doctor's revised due date as your reference. You can back-calculate by subtracting 280 days, or just trust the doctor's app/chart for week tracking." },
-    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
-  ]
+    {
+      "q": "Why count from LMP, not conception?",
+      "a": "It's the medical convention because conception date is rarely known precisely, while LMP is. The result is that 'gestational age' is about 2 weeks more than 'embryonic age'."
+    },
+    {
+      "q": "What if I don't remember my LMP?",
+      "a": "An ultrasound (especially in weeks 8-13) can establish gestational age accurately based on fetal measurements."
+    },
+    {
+      "q": "How accurate is this?",
+      "a": "Mathematically exact given an accurate LMP and a 28-day cycle. Real biology has variation, so the calculated due date is a best-estimate ±2 weeks."
+    },
+    {
+      "q": "Why is my ultrasound week different?",
+      "a": "Ultrasound measures the actual fetus and may reveal a different gestational age than LMP suggests, especially for irregular cycles. Trust the ultrasound for medical decisions."
+    },
+    {
+      "q": "What does '38 weeks' mean for delivery?",
+      "a": "37-42 weeks is full term. Births before 37 weeks are preterm; before 32 weeks are very preterm. After 42 weeks is post-term and labor is usually induced."
+    },
+    {
+      "q": "When does each trimester start exactly?",
+      "a": "First: week 1 to end of week 12 (or 13 in some conventions). Second: week 13 (or 14) through end of week 26 (or 27). Third: from week 27 (or 28) until delivery."
+    },
+    {
+      "q": "Should I update my LMP if my doctor changed my due date?",
+      "a": "Use the doctor's revised due date as your reference. You can back-calculate by subtracting 280 days, or just trust the doctor's app/chart for week tracking."
+    },
+    {
+      "q": "Does the data leave my browser?",
+      "a": "No. Calculation runs locally; nothing is sent to a server."
+    }
+  ],
+  "mode": {
+    "lmp": "From last period",
+    "ultrasound": "From ultrasound"
+  },
+  "schedule": {
+    "heading": "Prenatal schedule",
+    "note": "Typical windows under common guidelines (e.g. ACOG); exact timing varies by country and provider — follow your clinic's plan."
+  },
+  "milestone": {
+    "datingScan": "Dating scan / first visit",
+    "nipt": "NIPT (cfDNA) screening",
+    "ntScan": "NT scan / combined screening",
+    "anatomyScan": "Anatomy scan",
+    "glucose": "Glucose screening",
+    "tdap": "Tdap vaccine",
+    "gbs": "Group B strep (GBS) swab",
+    "fullTerm": "Full term begins"
+  }
 }

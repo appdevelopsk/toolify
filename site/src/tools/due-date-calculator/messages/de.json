@@ -3,10 +3,32 @@
   "shortDescription": "Schätze deinen Schwangerschafts-Geburstermin aus dem letzten Menstruationsdatum oder Empfängnisdatum. Mit Schwangerschaftswochen und Trimester.",
   "description": "Wähle LMP (letzte Menstruation) oder Empfängnisdatum und sieh den geschätzten Geburtstermin, das aktuelle Schwangerschaftsalter in Wochen, verbleibende Tage und das aktuelle Trimester.",
   "metaDescription": "Kostenloser Geburstermin-Rechner. Geburtstermin aus LMP oder Empfängnisdatum schätzen, mit Schwangerschaftswochen, verbleibenden Tagen und Trimester.",
-  "keywords": ["Geburstermin Rechner", "Schwangerschaftsrechner", "Errechneter Geburtstermin", "Schwangerschaftsalter", "Empfängnisdatum"],
+  "keywords": [
+    "Geburstermin Rechner",
+    "Schwangerschaftsrechner",
+    "Errechneter Geburtstermin",
+    "Schwangerschaftsalter",
+    "Empfängnisdatum"
+  ],
   "empty": "Wähle ein Referenzdatum, um den Geburtstermin zu schätzen.",
-  "mode": { "lmp": "Letzte Menstruation", "conception": "Empfängnisdatum" },
-  "input": { "lmp": "Erster Tag der letzten Menstruation", "conception": "Empfängnisdatum" },
+  "mode": {
+    "lmp": "Letzte Menstruation",
+    "conception": "Empfängnisdatum",
+    "ivf": "IVF (Transfer)",
+    "ultrasound": "Ultraschall"
+  },
+  "input": {
+    "lmp": "Erster Tag der letzten Menstruation",
+    "conception": "Empfängnisdatum",
+    "ivf": "Datum des Embryotransfers",
+    "ultrasound": "Datum des Ultraschalls",
+    "cycleLength": "Zykluslänge (Tage)",
+    "embryoAge": "Embryoalter beim Transfer",
+    "day3": "Tag 3 (Teilungsstadium)",
+    "day5": "Tag 5 (Blastozyste)",
+    "gaWeeks": "Wochen beim Ultraschall",
+    "gaDays": "Tage"
+  },
   "result": {
     "dueDate": "Errechneter Geburtstermin",
     "gestationalWeeks": "Schwangerschaftswochen",
@@ -15,7 +37,9 @@
     "estimatedConception": "Geschätzter Empfängniszeitpunkt",
     "t1": "Erstes Trimester (Wochen 1–13)",
     "t2": "Zweites Trimester (Wochen 14–26)",
-    "t3": "Drittes Trimester (Wochen 27–40+)"
+    "t3": "Drittes Trimester (Wochen 27–40+)",
+    "fullTermWindow": "Termingerechter Bereich (37–42 Wochen)",
+    "fullTermNote": "Nur etwa 1 von 20 Babys kommt am errechneten Termin zur Welt. Jede Geburt zwischen 37 und 42 Wochen gilt als termingerecht."
   },
   "article": {
     "sections": [
@@ -41,19 +65,52 @@
       }
     ],
     "howTo": [
-      { "name": "Referenztyp wählen", "text": "LMP ist die klinische Standardmethode. Empfängnisdatum funktioniert, wenn du es genau kennst (z. B. durch Ovulations-Tracking)." },
-      { "name": "Datum eingeben", "text": "Datumsauswahl verwenden." },
-      { "name": "Ergebnis ablesen", "text": "Geburtstermin, aktuelle Schwangerschaftswochen, verbleibende Tage und Trimester werden zusammen angezeigt." }
+      {
+        "name": "Referenztyp wählen",
+        "text": "LMP ist die klinische Standardmethode. Empfängnisdatum funktioniert, wenn du es genau kennst (z. B. durch Ovulations-Tracking)."
+      },
+      {
+        "name": "Datum eingeben",
+        "text": "Datumsauswahl verwenden."
+      },
+      {
+        "name": "Ergebnis ablesen",
+        "text": "Geburtstermin, aktuelle Schwangerschaftswochen, verbleibende Tage und Trimester werden zusammen angezeigt."
+      }
     ]
   },
   "faq": [
-    { "q": "Warum 280 Tage?", "a": "Naegele-Regel: 280 Tage ≈ 40 Wochen ab LMP. Sie setzt einen 28-Tage-Zyklus mit Eisprung an Tag 14 voraus, was ~266 Tage ab Empfängnis (ca. 38 Wochen) ergibt." },
-    { "q": "Was, wenn mein Zyklus länger oder kürzer ist?", "a": "Die Standardformel setzt 28 Tage voraus. Bei längeren Zyklen liegt der tatsächliche Termin um (Zykluslänge − 28) Tage später; bei kürzeren Zyklen früher. Sprich mit einem Arzt für eine angepasste Schätzung." },
-    { "q": "Ist das Empfängnisdatum dasselbe wie der 'Tag des Geschlechtsverkehrs'?", "a": "Nicht ganz – Spermien können 3–5 Tage überleben, sodass die Empfängnis bis zu 5 Tage nach dem Verkehr stattfinden kann. Wenn du das genaue Ovulationsdatum nicht kennst, ist LMP zuverlässiger." },
-    { "q": "Wie genau ist dieser Rechner?", "a": "Er verwendet dieselbe Formel wie die meisten klinischen Apps. Die Genauigkeit jedes Geburtstermins wird durch die zugrunde liegende Biologie begrenzt, nicht durch die Mathematik: Nur ~4 % der Babys werden am berechneten Datum geboren." },
-    { "q": "Was ist ein Ultraschall-Geburtstermin?", "a": "Früher Ultraschall (8–13 Wochen) misst den Fötus und berechnet den Geburtstermin rückwärts. Genauer als LMP bei unregelmäßigen Zyklen. Wenn dein scan-basierter Termin abweicht, vertrau diesem." },
-    { "q": "Weiß dieser Rechner, ob ich IVF hatte?", "a": "Nein. Für IVF: Geburtstermin = Embryo-Transfer-Datum + 263 Tage (3-Tage-Embryo) oder + 261 Tage (5-Tage-Blastozyst). Den Empfängnismodus verwenden und bei Bedarf manuell anpassen." },
-    { "q": "Kann sich der Geburtstermin während der Schwangerschaft ändern?", "a": "Ja, besonders nach dem ersten Ultraschall. Ärzte können den Termin basierend auf Wachstumsmessungen anpassen." },
-    { "q": "Werden die Daten irgendwohin gesendet?", "a": "Nein – Berechnung läuft lokal in deinem Browser." }
+    {
+      "q": "Warum 280 Tage?",
+      "a": "Naegele-Regel: 280 Tage ≈ 40 Wochen ab LMP. Sie setzt einen 28-Tage-Zyklus mit Eisprung an Tag 14 voraus, was ~266 Tage ab Empfängnis (ca. 38 Wochen) ergibt."
+    },
+    {
+      "q": "Was, wenn mein Zyklus länger oder kürzer ist?",
+      "a": "Die Standardformel setzt 28 Tage voraus. Bei längeren Zyklen liegt der tatsächliche Termin um (Zykluslänge − 28) Tage später; bei kürzeren Zyklen früher. Sprich mit einem Arzt für eine angepasste Schätzung."
+    },
+    {
+      "q": "Ist das Empfängnisdatum dasselbe wie der 'Tag des Geschlechtsverkehrs'?",
+      "a": "Nicht ganz – Spermien können 3–5 Tage überleben, sodass die Empfängnis bis zu 5 Tage nach dem Verkehr stattfinden kann. Wenn du das genaue Ovulationsdatum nicht kennst, ist LMP zuverlässiger."
+    },
+    {
+      "q": "Wie genau ist dieser Rechner?",
+      "a": "Er verwendet dieselbe Formel wie die meisten klinischen Apps. Die Genauigkeit jedes Geburtstermins wird durch die zugrunde liegende Biologie begrenzt, nicht durch die Mathematik: Nur ~4 % der Babys werden am berechneten Datum geboren."
+    },
+    {
+      "q": "Was ist ein Ultraschall-Geburtstermin?",
+      "a": "Früher Ultraschall (8–13 Wochen) misst den Fötus und berechnet den Geburtstermin rückwärts. Genauer als LMP bei unregelmäßigen Zyklen. Wenn dein scan-basierter Termin abweicht, vertrau diesem."
+    },
+    {
+      "q": "Weiß dieser Rechner, ob ich IVF hatte?",
+      "a": "Nein. Für IVF: Geburtstermin = Embryo-Transfer-Datum + 263 Tage (3-Tage-Embryo) oder + 261 Tage (5-Tage-Blastozyst). Den Empfängnismodus verwenden und bei Bedarf manuell anpassen."
+    },
+    {
+      "q": "Kann sich der Geburtstermin während der Schwangerschaft ändern?",
+      "a": "Ja, besonders nach dem ersten Ultraschall. Ärzte können den Termin basierend auf Wachstumsmessungen anpassen."
+    },
+    {
+      "q": "Werden die Daten irgendwohin gesendet?",
+      "a": "Nein – Berechnung läuft lokal in deinem Browser."
+    }
   ]
 }

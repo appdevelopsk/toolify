@@ -3,15 +3,28 @@
   "shortDescription": "Calcula la semana actual de embarazo, día, trimestre, fecha probable de parto y días restantes desde la última menstruación.",
   "description": "Introduce el primer día de tu última menstruación (FUM). La calculadora computa cuántas semanas y días llevas, el trimestre, fecha de parto y días restantes.",
   "metaDescription": "Calculadora gratis de semanas de embarazo. Desde la FUM, ve semana + día, trimestre, fecha de parto, días restantes y barra de progreso.",
-  "keywords": ["calculadora semanas embarazo", "semana actual embarazo", "cuántas semanas embarazo", "progreso embarazo", "semanas embarazada"],
-  "input": { "lmp": "Primer día de la última menstruación" },
+  "keywords": [
+    "calculadora semanas embarazo",
+    "semana actual embarazo",
+    "cuántas semanas embarazo",
+    "progreso embarazo",
+    "semanas embarazada"
+  ],
+  "input": {
+    "lmp": "Primer día de la última menstruación",
+    "ultrasound": "Fecha de la ecografía",
+    "cycleLength": "Duración del ciclo (días)",
+    "gaWeeks": "Semanas en la ecografía",
+    "gaDays": "Días"
+  },
   "result": {
     "weeksUnit": "semanas",
     "daysUnit": "días",
     "trimester": "Trimestre",
     "dueDate": "Fecha probable de parto",
     "daysToDue": "Días hasta el parto",
-    "totalDays": "Días totales de embarazo"
+    "totalDays": "Días totales de embarazo",
+    "fetalAge": "Edad fetal (desde la concepción)"
   },
   "trimester": {
     "1": "Primero (semanas 1-12)",
@@ -46,19 +59,70 @@
       }
     ],
     "howTo": [
-      { "name": "Introduce la FUM", "text": "Primer día de la última menstruación (cuando empezó el sangrado)." },
-      { "name": "Lee la semana actual", "text": "Más el día (p.ej. '24 semanas 3 días')." },
-      { "name": "Ve trimestre y fecha de parto", "text": "Más una barra de progreso del embarazo de 280 días." }
+      {
+        "name": "Introduce la FUM",
+        "text": "Primer día de la última menstruación (cuando empezó el sangrado)."
+      },
+      {
+        "name": "Lee la semana actual",
+        "text": "Más el día (p.ej. '24 semanas 3 días')."
+      },
+      {
+        "name": "Ve trimestre y fecha de parto",
+        "text": "Más una barra de progreso del embarazo de 280 días."
+      }
     ]
   },
   "faq": [
-    { "q": "¿Por qué contar desde la FUM y no desde la concepción?", "a": "Es la convención médica porque la fecha de concepción rara vez se conoce con precisión, mientras que la FUM sí. La 'edad gestacional' es ~2 semanas mayor que la 'edad embrionaria'." },
-    { "q": "¿Y si no recuerdo la FUM?", "a": "Una eco (especialmente entre las 8-13 semanas) establece la edad gestacional con precisión a partir de medidas fetales." },
-    { "q": "¿Qué tan precisa es?", "a": "Matemáticamente exacta dada una FUM correcta y un ciclo de 28 días. La biología real varía, así la fecha calculada es la mejor estimación ±2 semanas." },
-    { "q": "¿Por qué mi eco da otra semana?", "a": "La eco mide el feto real y puede revelar una edad distinta a la sugerida por la FUM, especialmente en ciclos irregulares. Confía en la eco para decisiones médicas." },
-    { "q": "¿Qué significan '38 semanas' para el parto?", "a": "37-42 semanas es a término. Antes de las 37 es prematuro; antes de 32 es muy prematuro. Después de 42 se suele inducir el parto." },
-    { "q": "¿Cuándo empieza cada trimestre exactamente?", "a": "Primero: semana 1 hasta fin de la 12 (o 13 en algunas convenciones). Segundo: semana 13 (o 14) hasta fin de la 26 (o 27). Tercero: semana 27 (o 28) hasta el parto." },
-    { "q": "¿Si el médico cambió la fecha, debo actualizar la FUM?", "a": "Usa la fecha revisada del médico como referencia. Puedes recalcular FUM restando 280 días, o simplemente confiar en la app/registro del médico." },
-    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente; nada se envía a un servidor." }
-  ]
+    {
+      "q": "¿Por qué contar desde la FUM y no desde la concepción?",
+      "a": "Es la convención médica porque la fecha de concepción rara vez se conoce con precisión, mientras que la FUM sí. La 'edad gestacional' es ~2 semanas mayor que la 'edad embrionaria'."
+    },
+    {
+      "q": "¿Y si no recuerdo la FUM?",
+      "a": "Una eco (especialmente entre las 8-13 semanas) establece la edad gestacional con precisión a partir de medidas fetales."
+    },
+    {
+      "q": "¿Qué tan precisa es?",
+      "a": "Matemáticamente exacta dada una FUM correcta y un ciclo de 28 días. La biología real varía, así la fecha calculada es la mejor estimación ±2 semanas."
+    },
+    {
+      "q": "¿Por qué mi eco da otra semana?",
+      "a": "La eco mide el feto real y puede revelar una edad distinta a la sugerida por la FUM, especialmente en ciclos irregulares. Confía en la eco para decisiones médicas."
+    },
+    {
+      "q": "¿Qué significan '38 semanas' para el parto?",
+      "a": "37-42 semanas es a término. Antes de las 37 es prematuro; antes de 32 es muy prematuro. Después de 42 se suele inducir el parto."
+    },
+    {
+      "q": "¿Cuándo empieza cada trimestre exactamente?",
+      "a": "Primero: semana 1 hasta fin de la 12 (o 13 en algunas convenciones). Segundo: semana 13 (o 14) hasta fin de la 26 (o 27). Tercero: semana 27 (o 28) hasta el parto."
+    },
+    {
+      "q": "¿Si el médico cambió la fecha, debo actualizar la FUM?",
+      "a": "Usa la fecha revisada del médico como referencia. Puedes recalcular FUM restando 280 días, o simplemente confiar en la app/registro del médico."
+    },
+    {
+      "q": "¿Los datos salen del navegador?",
+      "a": "No. El cálculo corre localmente; nada se envía a un servidor."
+    }
+  ],
+  "mode": {
+    "lmp": "Desde la última regla",
+    "ultrasound": "Desde la ecografía"
+  },
+  "schedule": {
+    "heading": "Calendario prenatal",
+    "note": "Plazos orientativos según guías comunes (p. ej. ACOG); el momento exacto varía por país y profesional — sigue el plan de tu clínica."
+  },
+  "milestone": {
+    "datingScan": "Ecografía de datación / primera visita",
+    "nipt": "Cribado NIPT (ADN fetal)",
+    "ntScan": "Ecografía NT / cribado combinado",
+    "anatomyScan": "Ecografía morfológica",
+    "glucose": "Cribado de glucosa",
+    "tdap": "Vacuna Tdap",
+    "gbs": "Frotis de estreptococo grupo B (SGB)",
+    "fullTerm": "Empieza el término"
+  }
 }

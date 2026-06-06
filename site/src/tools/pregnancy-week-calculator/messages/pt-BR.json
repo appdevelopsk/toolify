@@ -3,15 +3,28 @@
   "shortDescription": "Descubra a semana atual da gravidez, o dia, o trimestre, a data prevista do parto e os dias restantes — tudo a partir da sua última menstruação.",
   "description": "Insira o primeiro dia da sua última menstruação (DUM). A calculadora calcula quantas semanas e dias de gravidez você está agora, o trimestre, a data prevista do parto e quantos dias faltam para o nascimento.",
   "metaDescription": "Calculadora gratuita de semanas de gravidez. A partir da sua última menstruação, veja a semana + dia atual, trimestre, data de parto, dias restantes e barra de progresso.",
-  "keywords": ["calculadora de semanas de gravidez", "semana atual da gravidez", "quantas semanas grávida", "progresso da gravidez", "semanas gestacionais"],
-  "input": { "lmp": "Primeiro dia da última menstruação (DUM)" },
+  "keywords": [
+    "calculadora de semanas de gravidez",
+    "semana atual da gravidez",
+    "quantas semanas grávida",
+    "progresso da gravidez",
+    "semanas gestacionais"
+  ],
+  "input": {
+    "lmp": "Primeiro dia da última menstruação (DUM)",
+    "ultrasound": "Data do ultrassom",
+    "cycleLength": "Duração do ciclo (dias)",
+    "gaWeeks": "Semanas no ultrassom",
+    "gaDays": "Dias"
+  },
   "result": {
     "weeksUnit": "semanas",
     "daysUnit": "dias",
     "trimester": "Trimestre",
     "dueDate": "Data prevista do parto",
     "daysToDue": "Dias até o parto",
-    "totalDays": "Total de dias de gravidez"
+    "totalDays": "Total de dias de gravidez",
+    "fetalAge": "Idade fetal (desde a concepção)"
   },
   "trimester": {
     "1": "Primeiro (semanas 1-12)",
@@ -46,19 +59,70 @@
       }
     ],
     "howTo": [
-      { "name": "Insira a data da DUM", "text": "Primeiro dia da sua última menstruação (quando o sangramento começou)." },
-      { "name": "Leia a semana atual", "text": "Mais a contagem de dias (ex.: '24 semanas e 3 dias')." },
-      { "name": "Veja o trimestre e a data do parto", "text": "Mais uma barra de progresso mostrando sua posição na gravidez de 280 dias." }
+      {
+        "name": "Insira a data da DUM",
+        "text": "Primeiro dia da sua última menstruação (quando o sangramento começou)."
+      },
+      {
+        "name": "Leia a semana atual",
+        "text": "Mais a contagem de dias (ex.: '24 semanas e 3 dias')."
+      },
+      {
+        "name": "Veja o trimestre e a data do parto",
+        "text": "Mais uma barra de progresso mostrando sua posição na gravidez de 280 dias."
+      }
     ]
   },
   "faq": [
-    { "q": "Por que contar a partir da DUM, não da concepção?", "a": "É a convenção médica porque a data de concepção raramente é conhecida com precisão, enquanto a DUM é. O resultado é que a 'idade gestacional' é cerca de 2 semanas maior do que a 'idade embrionária'." },
-    { "q": "E se eu não me lembrar da DUM?", "a": "Um ultrassom (especialmente nas semanas 8-13) pode estabelecer a idade gestacional com precisão baseada nas medidas fetais." },
-    { "q": "Qual é a precisão?", "a": "Matematicamente exato com uma DUM precisa e um ciclo de 28 dias. A biologia real tem variação, então a data de parto calculada é uma melhor estimativa com ±2 semanas de margem." },
-    { "q": "Por que a semana no meu ultrassom é diferente?", "a": "O ultrassom mede o feto real e pode revelar uma idade gestacional diferente do que a DUM sugere, especialmente para ciclos irregulares. Confie no ultrassom para decisões médicas." },
-    { "q": "O que significa '38 semanas' para o parto?", "a": "37-42 semanas é a termo. Nascimentos antes de 37 semanas são prematuros; antes de 32 semanas são muito prematuros. Após 42 semanas é pós-termo e o trabalho de parto normalmente é induzido." },
-    { "q": "Quando começa cada trimestre exatamente?", "a": "Primeiro: semana 1 até o final da semana 12. Segundo: semana 13 ao final da semana 26. Terceiro: da semana 27 até o parto." },
-    { "q": "Devo atualizar minha DUM se meu médico mudou a data do parto?", "a": "Use a data de parto revisada pelo médico como referência. Você pode calcular subtraindo 280 dias, ou simplesmente confiar no aplicativo/ficha do médico para acompanhamento das semanas." },
-    { "q": "Os dados saem do meu navegador?", "a": "Não. O cálculo é feito localmente; nada é enviado para um servidor." }
-  ]
+    {
+      "q": "Por que contar a partir da DUM, não da concepção?",
+      "a": "É a convenção médica porque a data de concepção raramente é conhecida com precisão, enquanto a DUM é. O resultado é que a 'idade gestacional' é cerca de 2 semanas maior do que a 'idade embrionária'."
+    },
+    {
+      "q": "E se eu não me lembrar da DUM?",
+      "a": "Um ultrassom (especialmente nas semanas 8-13) pode estabelecer a idade gestacional com precisão baseada nas medidas fetais."
+    },
+    {
+      "q": "Qual é a precisão?",
+      "a": "Matematicamente exato com uma DUM precisa e um ciclo de 28 dias. A biologia real tem variação, então a data de parto calculada é uma melhor estimativa com ±2 semanas de margem."
+    },
+    {
+      "q": "Por que a semana no meu ultrassom é diferente?",
+      "a": "O ultrassom mede o feto real e pode revelar uma idade gestacional diferente do que a DUM sugere, especialmente para ciclos irregulares. Confie no ultrassom para decisões médicas."
+    },
+    {
+      "q": "O que significa '38 semanas' para o parto?",
+      "a": "37-42 semanas é a termo. Nascimentos antes de 37 semanas são prematuros; antes de 32 semanas são muito prematuros. Após 42 semanas é pós-termo e o trabalho de parto normalmente é induzido."
+    },
+    {
+      "q": "Quando começa cada trimestre exatamente?",
+      "a": "Primeiro: semana 1 até o final da semana 12. Segundo: semana 13 ao final da semana 26. Terceiro: da semana 27 até o parto."
+    },
+    {
+      "q": "Devo atualizar minha DUM se meu médico mudou a data do parto?",
+      "a": "Use a data de parto revisada pelo médico como referência. Você pode calcular subtraindo 280 dias, ou simplesmente confiar no aplicativo/ficha do médico para acompanhamento das semanas."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. O cálculo é feito localmente; nada é enviado para um servidor."
+    }
+  ],
+  "mode": {
+    "lmp": "Desde a última menstruação",
+    "ultrasound": "Desde o ultrassom"
+  },
+  "schedule": {
+    "heading": "Calendário pré-natal",
+    "note": "Janelas típicas conforme diretrizes comuns (ex.: ACOG); o momento exato varia por país e profissional — siga o plano da sua clínica."
+  },
+  "milestone": {
+    "datingScan": "Ultrassom de datação / primeira consulta",
+    "nipt": "Rastreio NIPT (DNA fetal)",
+    "ntScan": "Ultrassom de TN / rastreio combinado",
+    "anatomyScan": "Ultrassom morfológico",
+    "glucose": "Rastreio de glicose",
+    "tdap": "Vacina dTpa",
+    "gbs": "Swab de estreptococo do grupo B (GBS)",
+    "fullTerm": "Início do termo"
+  }
 }

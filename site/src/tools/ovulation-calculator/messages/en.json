@@ -1,18 +1,29 @@
 {
-  "title": "Ovulation Calculator (fertile window + next period)",
-  "shortDescription": "Estimate your ovulation date, 6-day fertile window, next period, and due date if conception occurs — based on last menstrual period and cycle length.",
+  "title": "Ovulation Calculator — fertile window for irregular cycles",
+  "shortDescription": "Find your ovulation date and fertile window even with irregular cycles. See your next 6 fertile windows, the earliest reliable test date, and export the days to your calendar (.ics).",
   "description": "Enter the first day of your last menstrual period and your typical cycle length. The calculator finds when you're likely to ovulate, the fertile window around that, and projects forward to your next period or due date if pregnancy occurs.",
-  "metaDescription": "Free ovulation calculator with fertile window prediction. Enter last period and cycle length to see ovulation day, peak fertility days, and next period date.",
-  "keywords": ["ovulation calculator", "fertile window", "fertility calculator", "ovulation predictor", "menstrual cycle calculator"],
+  "metaDescription": "Ovulation and fertile-window calculator that handles irregular cycles — your next 6 fertile windows, ovulation days, earliest test date, and calendar (.ics) export.",
+  "keywords": [
+    "ovulation calculator",
+    "fertile window calculator",
+    "irregular cycle ovulation",
+    "fertility calculator",
+    "fertile days calendar"
+  ],
   "input": {
     "lmp": "First day of last period",
-    "cycleLength": "Cycle length (days)"
+    "cycleLength": "Cycle length (days)",
+    "irregularToggle": "My cycles are irregular",
+    "cycleMin": "Shortest cycle (days)",
+    "cycleMax": "Longest cycle (days)"
   },
   "result": {
     "ovulation": "Estimated ovulation",
     "fertileWindow": "Fertile window (peak)",
     "nextPeriod": "Next expected period",
-    "dueDateIfPregnant": "Due date if conception"
+    "dueDateIfPregnant": "Due date if conception",
+    "testDate": "Earliest accurate test",
+    "implantation": "Likely implantation"
   },
   "empty": "Enter your last period and cycle length.",
   "article": {
@@ -40,19 +51,66 @@
       }
     ],
     "howTo": [
-      { "name": "Enter the first day of your last period", "text": "Use the date you started bleeding, not the day before or day after." },
-      { "name": "Enter your typical cycle length", "text": "From the first day of one period to the first day of the next. Average is 28 days." },
-      { "name": "Read your fertile window", "text": "The 6 days ending on ovulation day. Sex during this window has the highest pregnancy chance." }
+      {
+        "name": "Enter the first day of your last period",
+        "text": "Use the date you started bleeding, not the day before or day after."
+      },
+      {
+        "name": "Enter your typical cycle length",
+        "text": "From the first day of one period to the first day of the next. Average is 28 days."
+      },
+      {
+        "name": "Read your fertile window",
+        "text": "The 6 days ending on ovulation day. Sex during this window has the highest pregnancy chance."
+      }
     ]
   },
   "faq": [
-    { "q": "How accurate is this?", "a": "The calculation is mathematically correct given typical physiology, but biological reality varies. Stress, illness, and other factors can shift ovulation by several days. Use as a starting estimate, not a guarantee." },
-    { "q": "Can I use this for birth control?", "a": "No. The fertile window method (rhythm method) has a high failure rate — about 24% per year with typical use. Use it only to maximize conception chances, not to prevent pregnancy." },
-    { "q": "Why is the fertile window 6 days, not just 1?", "a": "Sperm survive 3-5 days in the reproductive tract. So intercourse a few days before ovulation can still result in conception. The egg itself is only viable for ~24 hours after ovulation." },
-    { "q": "What if my cycles are irregular?", "a": "This calculator assumes regular cycles. If yours vary by more than 7-9 days, predictions are unreliable. Track basal body temperature or use ovulation predictor kits (LH tests) for more accuracy." },
-    { "q": "Does the LH surge happen at ovulation?", "a": "It precedes ovulation by 24-36 hours. Ovulation predictor kits detect the surge, giving you the best 1-day window. Combine with this calculator's window estimate for tighter prediction." },
-    { "q": "What's the best day to conceive?", "a": "The day before ovulation, statistically. Sperm should already be present when the egg is released. Day of ovulation and day before are roughly equal." },
-    { "q": "What's the due date based on?", "a": "Standard 280 days (40 weeks) from last menstrual period. Use our due-date calculator for more options including 'add-2-weeks-to-cycle-day' or known conception date." },
-    { "q": "Does the data leave my browser?", "a": "No. Calculation is local; nothing is sent to any server." }
-  ]
+    {
+      "q": "How accurate is this?",
+      "a": "The calculation is mathematically correct given typical physiology, but biological reality varies. Stress, illness, and other factors can shift ovulation by several days. Use as a starting estimate, not a guarantee."
+    },
+    {
+      "q": "Can I use this for birth control?",
+      "a": "No. The fertile window method (rhythm method) has a high failure rate — about 24% per year with typical use. Use it only to maximize conception chances, not to prevent pregnancy."
+    },
+    {
+      "q": "Why is the fertile window 6 days, not just 1?",
+      "a": "Sperm survive 3-5 days in the reproductive tract. So intercourse a few days before ovulation can still result in conception. The egg itself is only viable for ~24 hours after ovulation."
+    },
+    {
+      "q": "What if my cycles are irregular?",
+      "a": "This calculator assumes regular cycles. If yours vary by more than 7-9 days, predictions are unreliable. Track basal body temperature or use ovulation predictor kits (LH tests) for more accuracy."
+    },
+    {
+      "q": "Does the LH surge happen at ovulation?",
+      "a": "It precedes ovulation by 24-36 hours. Ovulation predictor kits detect the surge, giving you the best 1-day window. Combine with this calculator's window estimate for tighter prediction."
+    },
+    {
+      "q": "What's the best day to conceive?",
+      "a": "The day before ovulation, statistically. Sperm should already be present when the egg is released. Day of ovulation and day before are roughly equal."
+    },
+    {
+      "q": "What's the due date based on?",
+      "a": "Standard 280 days (40 weeks) from last menstrual period. Use our due-date calculator for more options including 'add-2-weeks-to-cycle-day' or known conception date."
+    },
+    {
+      "q": "Does the data leave my browser?",
+      "a": "No. Calculation is local; nothing is sent to any server."
+    }
+  ],
+  "cycles": {
+    "heading": "Your next 6 fertile windows",
+    "fertile": "Fertile window",
+    "ovulation": "Ovulation",
+    "period": "Period due",
+    "test": "Test from"
+  },
+  "ics": {
+    "button": "Add fertile days to calendar (.ics)",
+    "event": "Fertile window"
+  },
+  "note": {
+    "irregular": "With irregular cycles, ovulation can land anywhere in a range, so the fertile window is shown wider. Confirm with ovulation tests (LH) or basal body temperature."
+  }
 }

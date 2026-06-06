@@ -3,10 +3,32 @@
   "shortDescription": "Son adet tarihi veya gebelik tarihinden tahmini doğum tarihini hesaplayın. Gebelik haftası ve trimester bilgisi dahildir.",
   "description": "Son adet tarihi (SAS) veya gebelik tarihini seçin; tahmini doğum tarihi, mevcut gebelik yaşı (hafta), kalan gün sayısı ve trimester bilgisini görün.",
   "metaDescription": "Ücretsiz doğum tarihi hesaplayıcı. SAS veya gebelik tarihinden tahmini doğum tarihini, gebelik haftasını, kalan günleri ve trimestrı hesaplayın.",
-  "keywords": ["doğum tarihi hesaplayıcı", "gebelik hesaplayıcı", "tahmini doğum tarihi", "gebelik haftası hesaplama", "gebelik tarihi"],
+  "keywords": [
+    "doğum tarihi hesaplayıcı",
+    "gebelik hesaplayıcı",
+    "tahmini doğum tarihi",
+    "gebelik haftası hesaplama",
+    "gebelik tarihi"
+  ],
   "empty": "Tahmini doğum tarihinizi görmek için referans tarihi seçin.",
-  "mode": { "lmp": "Son adet tarihi", "conception": "Gebelik tarihi" },
-  "input": { "lmp": "Son adet döneminin ilk günü", "conception": "Gebelik tarihi" },
+  "mode": {
+    "lmp": "Son adet tarihi",
+    "conception": "Gebelik tarihi",
+    "ivf": "Tüp bebek (transfer)",
+    "ultrasound": "Ultrason"
+  },
+  "input": {
+    "lmp": "Son adet döneminin ilk günü",
+    "conception": "Gebelik tarihi",
+    "ivf": "Embriyo transfer tarihi",
+    "ultrasound": "Ultrason tarihi",
+    "cycleLength": "Döngü uzunluğu (gün)",
+    "embryoAge": "Transferde embriyo yaşı",
+    "day3": "3. gün (bölünme)",
+    "day5": "5. gün (blastokist)",
+    "gaWeeks": "Ultrasonda hafta",
+    "gaDays": "Gün"
+  },
   "result": {
     "dueDate": "Tahmini doğum tarihi",
     "gestationalWeeks": "Gebelik haftası",
@@ -15,7 +37,9 @@
     "estimatedConception": "Tahmini gebelik tarihi",
     "t1": "Birinci trimester (1-13. haftalar)",
     "t2": "İkinci trimester (14-26. haftalar)",
-    "t3": "Üçüncü trimester (27-40+. haftalar)"
+    "t3": "Üçüncü trimester (27-40+. haftalar)",
+    "fullTermWindow": "Term aralığı (37–42 hafta)",
+    "fullTermNote": "Bebeklerin yalnızca yaklaşık 20'de 1'i tam tahmini tarihte doğar. 37 ile 42 hafta arasındaki her doğum term kabul edilir."
   },
   "article": {
     "sections": [
@@ -41,19 +65,52 @@
       }
     ],
     "howTo": [
-      { "name": "Referans türünü seçin", "text": "SAS standart klinik yöntemdir. Gebelik tarihini kesin olarak biliyorsanız (örn. ovülasyon takibinden) gebelik tarihi modunu kullanın." },
-      { "name": "Tarihi girin", "text": "Tarih seçiciyi kullanın." },
-      { "name": "Sonucu okuyun", "text": "Doğum tarihi, mevcut gebelik haftası, kalan gün ve trimester bilgisi birlikte görüntülenir." }
+      {
+        "name": "Referans türünü seçin",
+        "text": "SAS standart klinik yöntemdir. Gebelik tarihini kesin olarak biliyorsanız (örn. ovülasyon takibinden) gebelik tarihi modunu kullanın."
+      },
+      {
+        "name": "Tarihi girin",
+        "text": "Tarih seçiciyi kullanın."
+      },
+      {
+        "name": "Sonucu okuyun",
+        "text": "Doğum tarihi, mevcut gebelik haftası, kalan gün ve trimester bilgisi birlikte görüntülenir."
+      }
     ]
   },
   "faq": [
-    { "q": "Neden 280 gün?", "a": "Naegele kuralı: 280 gün ≈ SAS'tan 40 hafta. 14. günde ovülasyonlu 28 günlük döngü varsayılır; gebelikten yaklaşık 266 gün (38 hafta) sonrasına denk gelir." },
-    { "q": "Döngüm daha uzun veya kısa olursa ne olur?", "a": "Standart formül 28 günü esas alır. Daha uzun döngülerde gerçek doğum tarihi (döngü uzunluğu − 28) gün daha geçtir; kısa döngülerde ise daha erkendir. Düzeltilmiş tahmin için bir klinisyenle görüşün." },
-    { "q": "Gebelik tarihi 'cinsel ilişki tarihi' ile aynı mı?", "a": "Tam olarak değil; sperm 3-5 gün yaşayabilir, dolayısıyla gebelik ilişkiden 5 güne kadar sonra gerçekleşebilir. Kesin ovülasyon tarihini bilmiyorsanız SAS daha güvenilirdir." },
-    { "q": "Bu hesaplayıcı ne kadar doğru?", "a": "Çoğu klinik uygulamanın kullandığı formülü kullanır. Herhangi bir doğum tarihi hesaplamasının doğruluğu matematiğe değil biyolojiye bağlıdır: bebeklerin yalnızca ~%4'ü hesaplanan tarihte doğar." },
-    { "q": "Ultrason doğum tarihi nedir?", "a": "Erken ultrason (8-13. haftalar) fetüsü ölçer ve doğum tarihini geriye doğru hesaplar. Düzensiz döngülerde SAS'tan daha kesindir. Ultrason tarihiniz farklıysa ona güvenin." },
-    { "q": "Bu hesaplayıcı IVF yaptığımı biliyor mu?", "a": "Hayır. IVF için doğum tarihi = embriyo transfer tarihi + 263 gün (3 günlük embriyo) veya + 261 gün (5 günlük blastosist). Gebelik tarih modunu kullanıp gerekirse manuel ayarlama yapın." },
-    { "q": "Doğum tarihi gebelik süresince değişebilir mi?", "a": "Evet, özellikle ilk ultrasondan sonra. Sağlık uzmanları büyüme ölçümlerine göre doğum tarihini revize edebilir." },
-    { "q": "Veriler bir yere gönderiliyor mu?", "a": "Hayır — hesaplama tarayıcınızda çalışır." }
+    {
+      "q": "Neden 280 gün?",
+      "a": "Naegele kuralı: 280 gün ≈ SAS'tan 40 hafta. 14. günde ovülasyonlu 28 günlük döngü varsayılır; gebelikten yaklaşık 266 gün (38 hafta) sonrasına denk gelir."
+    },
+    {
+      "q": "Döngüm daha uzun veya kısa olursa ne olur?",
+      "a": "Standart formül 28 günü esas alır. Daha uzun döngülerde gerçek doğum tarihi (döngü uzunluğu − 28) gün daha geçtir; kısa döngülerde ise daha erkendir. Düzeltilmiş tahmin için bir klinisyenle görüşün."
+    },
+    {
+      "q": "Gebelik tarihi 'cinsel ilişki tarihi' ile aynı mı?",
+      "a": "Tam olarak değil; sperm 3-5 gün yaşayabilir, dolayısıyla gebelik ilişkiden 5 güne kadar sonra gerçekleşebilir. Kesin ovülasyon tarihini bilmiyorsanız SAS daha güvenilirdir."
+    },
+    {
+      "q": "Bu hesaplayıcı ne kadar doğru?",
+      "a": "Çoğu klinik uygulamanın kullandığı formülü kullanır. Herhangi bir doğum tarihi hesaplamasının doğruluğu matematiğe değil biyolojiye bağlıdır: bebeklerin yalnızca ~%4'ü hesaplanan tarihte doğar."
+    },
+    {
+      "q": "Ultrason doğum tarihi nedir?",
+      "a": "Erken ultrason (8-13. haftalar) fetüsü ölçer ve doğum tarihini geriye doğru hesaplar. Düzensiz döngülerde SAS'tan daha kesindir. Ultrason tarihiniz farklıysa ona güvenin."
+    },
+    {
+      "q": "Bu hesaplayıcı IVF yaptığımı biliyor mu?",
+      "a": "Hayır. IVF için doğum tarihi = embriyo transfer tarihi + 263 gün (3 günlük embriyo) veya + 261 gün (5 günlük blastosist). Gebelik tarih modunu kullanıp gerekirse manuel ayarlama yapın."
+    },
+    {
+      "q": "Doğum tarihi gebelik süresince değişebilir mi?",
+      "a": "Evet, özellikle ilk ultrasondan sonra. Sağlık uzmanları büyüme ölçümlerine göre doğum tarihini revize edebilir."
+    },
+    {
+      "q": "Veriler bir yere gönderiliyor mu?",
+      "a": "Hayır — hesaplama tarayıcınızda çalışır."
+    }
   ]
 }
