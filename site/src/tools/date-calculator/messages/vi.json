@@ -3,11 +3,30 @@
   "shortDescription": "Cộng hoặc trừ năm/tháng/ngày từ một ngày, hoặc tìm chênh lệch chính xác giữa hai ngày bao gồm ngày làm việc.",
   "description": "Hai chế độ: 'cộng hoặc trừ' để tính ngày tương lai hoặc quá khứ, hoặc 'khoảng cách' để tìm hiệu số theo năm, tháng, ngày, tuần và ngày làm việc.",
   "metaDescription": "Máy tính ngày miễn phí. Cộng hoặc trừ năm/tháng/ngày, hoặc tìm hiệu giữa hai ngày kèm số ngày làm việc. Nhận biết lịch, bao gồm năm nhuận.",
-  "keywords": ["máy tính ngày", "cộng ngày vào ngày", "hiệu ngày", "ngày làm việc", "số ngày giữa hai ngày"],
+  "keywords": [
+    "máy tính ngày",
+    "cộng ngày vào ngày",
+    "hiệu ngày",
+    "ngày làm việc",
+    "số ngày giữa hai ngày"
+  ],
   "empty": "Chọn ngày để tính.",
-  "mode": { "addSubtract": "Cộng hoặc trừ", "between": "Khoảng cách giữa hai ngày" },
-  "op": { "add": "Cộng", "subtract": "Trừ" },
-  "input": { "start": "Ngày bắt đầu", "end": "Ngày kết thúc", "years": "Năm", "months": "Tháng", "days": "Ngày" },
+  "mode": {
+    "addSubtract": "Cộng hoặc trừ",
+    "between": "Khoảng cách giữa hai ngày"
+  },
+  "op": {
+    "add": "Cộng",
+    "subtract": "Trừ"
+  },
+  "input": {
+    "start": "Ngày bắt đầu",
+    "end": "Ngày kết thúc",
+    "years": "Năm",
+    "months": "Tháng",
+    "days": "Ngày",
+    "businessDayMode": "Chỉ ngày làm việc (bỏ qua cuối tuần)"
+  },
   "result": {
     "resultDate": "Ngày kết quả",
     "difference": "Hiệu số",
@@ -44,20 +63,56 @@
       }
     ],
     "howTo": [
-      { "name": "Chọn chế độ", "text": "Cộng/trừ để di chuyển từ một ngày, hoặc khoảng cách để tìm hiệu số." },
-      { "name": "Nhập ngày bắt đầu", "text": "Dùng bộ chọn ngày." },
-      { "name": "Thêm phần bù hoặc ngày kết thúc", "text": "Năm/tháng/ngày cho chế độ cộng, hoặc ngày kết thúc cho chế độ khoảng cách." },
-      { "name": "Đọc kết quả", "text": "Ngày kết quả hoặc bảng phân tích hiệu số đầy đủ." }
+      {
+        "name": "Chọn chế độ",
+        "text": "Cộng/trừ để di chuyển từ một ngày, hoặc khoảng cách để tìm hiệu số."
+      },
+      {
+        "name": "Nhập ngày bắt đầu",
+        "text": "Dùng bộ chọn ngày."
+      },
+      {
+        "name": "Thêm phần bù hoặc ngày kết thúc",
+        "text": "Năm/tháng/ngày cho chế độ cộng, hoặc ngày kết thúc cho chế độ khoảng cách."
+      },
+      {
+        "name": "Đọc kết quả",
+        "text": "Ngày kết quả hoặc bảng phân tích hiệu số đầy đủ."
+      }
     ]
   },
   "faq": [
-    { "q": "Điều gì xảy ra nếu tôi cộng 1 tháng vào ngày 31 tháng 1?", "a": "Bạn nhận được ngày 28 tháng 2 (hoặc 29 tháng 2 trong năm nhuận). Phép tính lịch giữ nguyên ngày cuối cùng của tháng mục tiêu khi ngày nguồn không tồn tại." },
-    { "q": "Ngày lễ có được trừ khỏi ngày làm việc không?", "a": "Không — chỉ cuối tuần. Trừ ngày lễ theo quốc gia thủ công dựa trên lịch pháp lý của bạn." },
-    { "q": "Công cụ có xử lý phép toán ngày âm không?", "a": "Có qua chế độ 'trừ'. Về mặt nội bộ, trừ chỉ là cộng delta âm. Chế độ 'khoảng cách giữa' luôn trả giá trị dương bất kể thứ tự." },
-    { "q": "Múi giờ nào được sử dụng?", "a": "Múi giờ địa phương của trình duyệt. Ngày được hiểu là nửa đêm theo giờ địa phương. Các phép tính qua múi giờ có thể cần điều chỉnh." },
-    { "q": "Tôi có thể cộng giờ và phút không?", "a": "Chưa — chỉ độ chi tiết ngày. Dùng công cụ timestamp riêng cho phép toán cấp giờ." },
-    { "q": "Hiệu số lớn nhất nó xử lý được là bao nhiêu?", "a": "Hàng trăm năm một cách thoải mái. Date của JavaScript hỗ trợ ±100 triệu ngày từ 1970, vì vậy đây là giới hạn thực tế." },
-    { "q": "Tại sao nó đếm cả hai điểm cuối khác nhau?", "a": "Tổng ngày là số đêm giữa hai ngày. Hai ngày liên tiếp có hiệu số 1 ngày. Đếm ngày làm việc đi qua từng ngày lịch ở giữa." },
-    { "q": "Dữ liệu có rời khỏi trình duyệt không?", "a": "Không. Tất cả toán học chạy cục bộ." }
+    {
+      "q": "Điều gì xảy ra nếu tôi cộng 1 tháng vào ngày 31 tháng 1?",
+      "a": "Bạn nhận được ngày 28 tháng 2 (hoặc 29 tháng 2 trong năm nhuận). Phép tính lịch giữ nguyên ngày cuối cùng của tháng mục tiêu khi ngày nguồn không tồn tại."
+    },
+    {
+      "q": "Ngày lễ có được trừ khỏi ngày làm việc không?",
+      "a": "Không — chỉ cuối tuần. Trừ ngày lễ theo quốc gia thủ công dựa trên lịch pháp lý của bạn."
+    },
+    {
+      "q": "Công cụ có xử lý phép toán ngày âm không?",
+      "a": "Có qua chế độ 'trừ'. Về mặt nội bộ, trừ chỉ là cộng delta âm. Chế độ 'khoảng cách giữa' luôn trả giá trị dương bất kể thứ tự."
+    },
+    {
+      "q": "Múi giờ nào được sử dụng?",
+      "a": "Múi giờ địa phương của trình duyệt. Ngày được hiểu là nửa đêm theo giờ địa phương. Các phép tính qua múi giờ có thể cần điều chỉnh."
+    },
+    {
+      "q": "Tôi có thể cộng giờ và phút không?",
+      "a": "Chưa — chỉ độ chi tiết ngày. Dùng công cụ timestamp riêng cho phép toán cấp giờ."
+    },
+    {
+      "q": "Hiệu số lớn nhất nó xử lý được là bao nhiêu?",
+      "a": "Hàng trăm năm một cách thoải mái. Date của JavaScript hỗ trợ ±100 triệu ngày từ 1970, vì vậy đây là giới hạn thực tế."
+    },
+    {
+      "q": "Tại sao nó đếm cả hai điểm cuối khác nhau?",
+      "a": "Tổng ngày là số đêm giữa hai ngày. Hai ngày liên tiếp có hiệu số 1 ngày. Đếm ngày làm việc đi qua từng ngày lịch ở giữa."
+    },
+    {
+      "q": "Dữ liệu có rời khỏi trình duyệt không?",
+      "a": "Không. Tất cả toán học chạy cục bộ."
+    }
   ]
 }

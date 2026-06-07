@@ -124,9 +124,17 @@ export function ToolFrame({ meta, title, description, related, children, article
           </p>
         )}
 
-        <p className="mt-6 text-xs text-slate-600 dark:text-slate-400">
-          {t("tool.lastUpdated")}: <time dateTime={meta.updatedAt}>{meta.updatedAt}</time>
-        </p>
+        <div className="mt-6 flex flex-col gap-1 text-xs text-slate-600 dark:text-slate-400">
+          <p>
+            {t("tool.maintainedBy", { name: siteConfig.operator.name })}{" "}
+            <Link href="/about" className="text-brand-600 hover:underline">
+              {t("tool.methodologyLink")}
+            </Link>
+          </p>
+          <p>
+            {t("tool.lastUpdated")}: <time dateTime={meta.updatedAt}>{meta.updatedAt}</time>
+          </p>
+        </div>
 
         {isPromptLocale(locale) && (
           <p className="mt-2 text-sm">

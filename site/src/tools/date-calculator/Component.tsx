@@ -41,12 +41,24 @@ export default function DateCalculator() {
   const [months, setMonths] = useState("0");
   const [days, setDays] = useState("0");
   const [endDate, setEndDate] = useState(todayIso());
+  const [businessMode, setBusinessMode] = useState(false);
 
   const result = useMemo(() => {
     if (mode === "addSubtract") {
       const d = new Date(start);
       if (isNaN(d.getTime())) return null;
       const sign = op === "add" ? 1 : -1;
+      if (businessMode) {
+        // Add/subtract whole business days (Mon–Fri), ignoring years/months.
+        let remaining = Math.abs(parseInt(days, 10) || 0);
+        const out = new Date(d);
+        while (remaining > 0) {
+          out.setDate(out.getDate() + sign);
+          const dow = out.getDay();
+          if (dow !== 0 && dow !== 6) remaining--;
+        }
+        return { type: "date" as const, date: out };
+      }
       const y = (parseInt(years, 10) || 0) * sign;
       const m = (parseInt(months, 10) || 0) * sign;
       const dd = (parseInt(days, 10) || 0) * sign;
@@ -71,7 +83,7 @@ export default function DateCalculator() {
       }
       return { type: "diff" as const, ymd, totalDays, totalMonths, totalWeeks, business };
     }
-  }, [mode, op, start, years, months, days, endDate]);
+  }, [mode, op, start, years, months, days, endDate, businessMode]);
 
   const dateFmt = useMemo(() => new Intl.DateTimeFormat(locale, { dateStyle: "full" }), [locale]);
   const fmt = useMemo(() => new Intl.NumberFormat(locale), [locale]);
@@ -108,6 +120,10 @@ export default function DateCalculator() {
               <input inputMode="numeric" value={days} onChange={(e) => setDays(e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-center dark:border-slate-700 dark:bg-slate-900" />
             </label>
           </div>
+          <label className="mt-3 flex items-center gap-2 text-sm">
+            <input type="checkbox" checked={businessMode} onChange={(e) => setBusinessMode(e.target.checked)} />
+            <span>{t("input.businessDayMode")}</span>
+          </label>
         </>
       ) : (
         <label className="mt-3 block">
