@@ -129,6 +129,29 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
+      {/* ── Featured cluster: Pregnancy & Fertility ───────────────────── */}
+      <section className="mb-12">
+        <Link
+          href="/pregnancy"
+          className="group block rounded-2xl border border-rose-200 bg-rose-50 p-6 transition hover:border-rose-300 hover:shadow-md dark:border-rose-900/40 dark:bg-rose-900/20 sm:p-8"
+        >
+          <div className="flex items-start gap-4">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-2xl dark:bg-rose-900/40" aria-hidden>
+              🤰
+            </span>
+            <div>
+              <h2 className="text-xl font-bold group-hover:text-rose-700 dark:group-hover:text-rose-300">
+                {t("pregnancy.title")}
+              </h2>
+              <p className="mt-1 max-w-2xl text-sm text-slate-600 dark:text-slate-400">{t("pregnancy.intro")}</p>
+              <span className="mt-3 inline-block text-sm font-semibold text-rose-700 dark:text-rose-300">
+                {t("home.browseAll")} →
+              </span>
+            </div>
+          </div>
+        </Link>
+      </section>
+
       {/* ── Category grid ─────────────────────────────────────────────── */}
       <section>
         <h2 className="text-xl font-bold">{t("home.byCategory")}</h2>

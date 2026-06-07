@@ -8,12 +8,23 @@ import type { Locale } from "@/lib/i18n/locales";
 import type { ToolMeta } from "@/lib/tools/types";
 
 // Pregnancy & fertility cluster, in journey order: trying to conceive → conception → tracking.
-const CLUSTER = ["ovulation-calculator", "due-date-calculator", "pregnancy-week-calculator", "conception-date-calculator"] as const;
+const CLUSTER = [
+  "menstrual-cycle-calculator",
+  "ovulation-calculator",
+  "conception-date-calculator",
+  "due-date-calculator",
+  "pregnancy-week-calculator",
+  "pregnancy-weight-gain-calculator",
+  "hcg-calculator",
+] as const;
 const STEP_KEY: Record<string, string> = {
+  "menstrual-cycle-calculator": "menstrual",
   "ovulation-calculator": "ovulation",
+  "conception-date-calculator": "conception",
   "due-date-calculator": "dueDate",
   "pregnancy-week-calculator": "pregnancyWeek",
-  "conception-date-calculator": "conception",
+  "pregnancy-weight-gain-calculator": "weightGain",
+  "hcg-calculator": "hcg",
 };
 const SOURCES = [
   { label: "ACOG — Calculating a Due Date", url: "https://www.acog.org/womens-health/faqs/calculating-a-due-date" },
