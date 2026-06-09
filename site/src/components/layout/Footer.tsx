@@ -2,6 +2,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { siteConfig } from "@/lib/config";
 import { isPromptLocale } from "@/lib/i18n/locales";
+import { NewsletterForm } from "@/components/cross/NewsletterForm";
 
 export function Footer() {
   const t = useTranslations();
@@ -10,6 +11,9 @@ export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="border-t border-slate-200 bg-slate-50 py-10 text-sm dark:border-slate-800 dark:bg-slate-950">
+      <div className="mx-auto mb-8 max-w-6xl px-4">
+        <NewsletterForm source="toolify" />
+      </div>
       <div className="mx-auto grid max-w-6xl gap-6 px-4 sm:grid-cols-2 md:grid-cols-4">
         <div>
           <div className="font-bold">{t("site.name")}</div>
@@ -50,6 +54,31 @@ export function Footer() {
             © {year} {siteConfig.organization}.
           </div>
           <div>{t("footer.rights")}</div>
+        </div>
+      </div>
+
+      {/* 関連サイト（クロスプロモ・統合集客） */}
+      <div className="mx-auto mt-8 max-w-6xl border-t border-slate-200 px-4 pt-6 dark:border-slate-800">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+          {t("crossPromo.title")}
+        </p>
+        <div className="flex flex-col gap-4 sm:flex-row sm:gap-10">
+          <a href="https://pickly.blog" className="group">
+            <span className="font-bold text-slate-800 transition-colors group-hover:text-sky-600 dark:text-slate-200">
+              Pickly
+            </span>
+            <span className="mt-0.5 block text-xs text-slate-500 dark:text-slate-400">
+              {t("crossPromo.pickly")}
+            </span>
+          </a>
+          <a href="https://fxea365.com" className="group">
+            <span className="font-bold text-slate-800 transition-colors group-hover:text-sky-600 dark:text-slate-200">
+              FXEA365
+            </span>
+            <span className="mt-0.5 block text-xs text-slate-500 dark:text-slate-400">
+              {t("crossPromo.fxea")}
+            </span>
+          </a>
         </div>
       </div>
     </footer>
