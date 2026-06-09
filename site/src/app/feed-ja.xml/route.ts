@@ -12,6 +12,7 @@ export function GET() {
   const items = tools
     .map((t) => {
       const url = `${siteConfig.url}/ja/tools/${t.slug}`;
+      const img = `${siteConfig.url}/api/og?slug=${encodeURIComponent(t.slug)}&locale=ja`;
       const titleJa = t.primaryKeyword.ja ?? t.primaryKeyword.en ?? t.slug;
       const title = escape(titleJa);
       const date = new Date(t.updatedAt).toUTCString();
@@ -22,6 +23,7 @@ export function GET() {
       <pubDate>${date}</pubDate>
       <category>${escape(t.category)}</category>
       <description>${escape(`無料の${titleJa} — ブラウザで即使える、登録不要、多言語対応。`)}</description>
+      <enclosure url="${img}" type="image/png" length="0"/>
     </item>`;
     })
     .join("\n");

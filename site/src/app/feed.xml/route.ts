@@ -14,6 +14,7 @@ export function GET() {
   const items = tools
     .map((t) => {
       const url = `${siteConfig.url}/en/tools/${t.slug}`;
+      const img = `${siteConfig.url}/api/og?slug=${encodeURIComponent(t.slug)}&locale=en`;
       const title = escape(t.primaryKeyword.en ?? t.slug);
       const date = new Date(t.updatedAt).toUTCString();
       return `    <item>
@@ -23,6 +24,7 @@ export function GET() {
       <pubDate>${date}</pubDate>
       <category>${escape(t.category)}</category>
       <description>${escape(`Free ${t.primaryKeyword.en ?? t.slug} — browser-based, no signup, multilingual.`)}</description>
+      <enclosure url="${img}" type="image/png" length="0"/>
     </item>`;
     })
     .join("\n");
