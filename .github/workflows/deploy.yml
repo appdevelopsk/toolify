@@ -112,6 +112,12 @@ jobs:
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new" \
             public/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/public/"
 
+      - name: Clear ISR / full-route cache on VPS
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new \
+            "$DEPLOY_USER@$DEPLOY_HOST" \
+            "rm -rf \"$DEPLOY_PATH/.next/cache/\" && echo 'cache cleared'"
+
       - name: Reload toolify on VPS via PM2 (zero-downtime)
         run: |
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new \
