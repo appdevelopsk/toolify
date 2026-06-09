@@ -128,7 +128,7 @@ jobs:
         run: |
           set -e
           for i in 1 2 3 4 5; do
-            if curl -sSfL -o /dev/null -w "%{http_code}" --max-time 15 https://toolify365.com/en/tools/bmi-calculator | grep -q 200; then
+            if curl -sSfL -o /dev/null -w "%{http_code}" --max-time 15 https://toolify365.com/en/tools/bmi-calculator | grep -q 200 && curl -sSf --max-time 10 https://toolify365.com/feed-ja.xml | grep -q "<rss"; then
               echo "✓ Live URL returning 200"
               exit 0
             fi
