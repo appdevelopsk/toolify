@@ -81,7 +81,7 @@ export default function PaceCalculator() {
       </label>
 
       {mode === "fromTime" ? (
-        <div className="mt-3 grid grid-cols-3 gap-2">
+        <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
           <label className="block">
             <span className="text-xs uppercase text-slate-600 dark:text-slate-400">h</span>
             <input inputMode="numeric" value={hours} onChange={(e) => setHours(e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-center font-mono dark:border-slate-700 dark:bg-slate-900" />

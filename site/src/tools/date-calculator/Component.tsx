@@ -106,7 +106,7 @@ export default function DateCalculator() {
             <button onClick={() => setOp("add")} className={`px-3 py-1.5 text-sm ${op === "add" ? "bg-brand-600 text-white" : ""}`}>{t("op.add")}</button>
             <button onClick={() => setOp("subtract")} className={`px-3 py-1.5 text-sm ${op === "subtract" ? "bg-brand-600 text-white" : ""}`}>{t("op.subtract")}</button>
           </div>
-          <div className="mt-3 grid grid-cols-3 gap-2">
+          <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
             <label className="block">
               <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("input.years")}</span>
               <input inputMode="numeric" value={years} onChange={(e) => setYears(e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-center dark:border-slate-700 dark:bg-slate-900" />

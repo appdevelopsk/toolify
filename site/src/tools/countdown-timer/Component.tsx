@@ -83,7 +83,7 @@ export default function CountdownTimer() {
             <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">
               {result.ended ? t("ended") : t("remaining")} • {targetFmt}
             </div>
-            <div className="mt-3 grid grid-cols-4 gap-2 text-center">
+            <div className="mt-3 grid grid-cols-2 gap-2 text-center sm:grid-cols-4">
               {(["days", "hours", "minutes", "seconds"] as const).map((unit) => {
                 const v = result[unit];
                 return (
