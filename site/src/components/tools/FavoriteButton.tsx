@@ -16,7 +16,7 @@ export function FavoriteButton({ slug }: { slug: string; title?: string }) {
       aria-pressed={active}
       aria-label={label}
       title={label}
-      className="mt-1 shrink-0 rounded-full p-1.5 text-slate-400 transition-colors hover:bg-amber-50 hover:text-amber-500 dark:hover:bg-slate-800"
+      className="mt-1 shrink-0 rounded-full p-1.5 text-slate-500 transition-colors hover:bg-amber-50 hover:text-amber-500 dark:hover:bg-slate-800"
     >
       <svg
         viewBox="0 0 24 24"

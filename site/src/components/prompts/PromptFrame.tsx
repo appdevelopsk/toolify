@@ -153,7 +153,7 @@ export function PromptFrame({
               {faq.map((f, i) => (
                 <details key={i} className="group p-4">
                   <summary className="cursor-pointer list-none font-medium marker:hidden">
-                    <span className="mr-2 text-slate-400 group-open:rotate-90 inline-block transition-transform">›</span>
+                    <span className="mr-2 text-slate-500 group-open:rotate-90 inline-block transition-transform">›</span>
                     {f.q}
                   </summary>
                   <p className="mt-2 text-slate-600 dark:text-slate-400">{f.a}</p>
