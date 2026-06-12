@@ -2,11 +2,12 @@ import "../globals.css";
 import { Suspense, type ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale, getTranslations } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import { routing } from "@/lib/i18n/routing";
 import { LOCALES, getDirection, type Locale } from "@/lib/i18n/locales";
+import { loadCommon } from "@/lib/i18n/loader";
 import { siteConfig } from "@/lib/config";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -73,7 +74,9 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!routing.locales.includes(locale as Locale)) notFound();
   setRequestLocale(locale);
-  const messages = await getMessages();
+  // Only send common messages (nav, consent, footer…) to the client bundle.
+  // Tool/prompt messages are server-side only — accessed via getTranslations() in RSCs.
+  const messages = await loadCommon(locale);
   const dir = getDirection(locale);
 
   return (

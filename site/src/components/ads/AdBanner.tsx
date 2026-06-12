@@ -30,6 +30,7 @@ export function AdBelowResult({ className }: { className?: string }) {
       slot={siteConfig.adsense.slots.belowResult}
       format="auto"
       className={`mt-6 ${className ?? ""}`}
+      style={{ minHeight: 280 }}
     />
   );
 }

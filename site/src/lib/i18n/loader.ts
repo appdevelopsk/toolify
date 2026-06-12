@@ -5,7 +5,7 @@ import { listPrompts } from "@/lib/prompts/registry";
 
 type Messages = Record<string, unknown>;
 
-async function loadCommon(locale: string): Promise<Messages> {
+export async function loadCommon(locale: string): Promise<Messages> {
   try {
     return (await import(`@/messages/${locale}.json`)).default;
   } catch {
@@ -49,6 +49,19 @@ async function loadPromptMessages(locale: string): Promise<Messages> {
     }
   }
   return out;
+}
+
+/** Load a single tool's messages for the client-side nested provider on tool pages. */
+export async function loadToolSlugMessages(locale: string, slug: string): Promise<Messages> {
+  try {
+    return (await import(`@/tools/${slug}/messages/${locale}.json`)).default;
+  } catch {
+    try {
+      return (await import(`@/tools/${slug}/messages/${DEFAULT_LOCALE}.json`)).default;
+    } catch {
+      return {};
+    }
+  }
 }
 
 export async function loadMessages(locale: Locale | string): Promise<Messages> {

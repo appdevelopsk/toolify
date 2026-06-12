@@ -94,7 +94,7 @@ export function AdSlot({
       <ins
         ref={ref}
         className="adsbygoogle block"
-        style={{ display: "block", ...style }}
+        style={{ display: "block" }}
         data-ad-client={siteConfig.adsense.client}
         data-ad-slot={slot}
         data-ad-format={format}

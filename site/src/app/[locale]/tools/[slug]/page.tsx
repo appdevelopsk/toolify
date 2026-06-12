@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
 import { getTool, getRelated, listTools, isIndexable } from "@/lib/tools/registry";
+import { loadToolSlugMessages } from "@/lib/i18n/loader";
 import { ToolFrame } from "@/components/tools/ToolFrame";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
@@ -81,7 +83,10 @@ export default async function ToolPage({
   if (tool.hasFaq && faq.length > 0) ld.push(faqJsonLd(faq, locale));
   if (tool.hasHowTo && article.howTo?.length) ld.push(howToJsonLd({ name: tt("title"), steps: article.howTo, inLanguage: locale }));
 
-  const { default: Component } = await import(`@/tools/${slug}/Component`);
+  const [{ default: Component }, toolMessages] = await Promise.all([
+    import(`@/tools/${slug}/Component`),
+    loadToolSlugMessages(locale, slug),
+  ]);
 
   return (
     <>
@@ -104,7 +109,10 @@ export default async function ToolPage({
         }
         faq={faq}
       >
-        <Component />
+        {/* Nested provider injects only this tool's messages for client Component. */}
+        <NextIntlClientProvider messages={{ tools: { [slug]: toolMessages } }}>
+          <Component />
+        </NextIntlClientProvider>
       </ToolFrame>
       <JsonLd data={ld} />
     </>

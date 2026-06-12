@@ -28,7 +28,12 @@ export function NewsletterForm({ source = "toolify" }: { source?: string }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, source, locale }),
       });
-      setState(res.ok ? "ok" : "err");
+      if (res.ok) {
+        setState("ok");
+        (window as { gtag?: (...args: unknown[]) => void }).gtag?.("event", "newsletter_signup", { source, locale });
+      } else {
+        setState("err");
+      }
     } catch {
       setState("err");
     }
