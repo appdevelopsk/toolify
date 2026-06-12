@@ -3,7 +3,7 @@ import { DEFAULT_LOCALE } from "./locales";
 import { listTools } from "@/lib/tools/registry";
 import { listPrompts } from "@/lib/prompts/registry";
 
-type Messages = Record<string, unknown>;
+type Messages = { [key: string]: string | Messages };
 
 export async function loadCommon(locale: string): Promise<Messages> {
   try {
