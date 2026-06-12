@@ -32,7 +32,7 @@ export function ToolFrame({ meta, title, description, related, children, article
   const embedUrl = `${siteConfig.url}/embed/${locale}/${meta.slug}`;
   return (
     <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-6 lg:grid-cols-[minmax(0,1fr)_300px]">
-      <main className="min-w-0">
+      <div className="min-w-0">
         <Breadcrumbs
           items={[
             { name: t("nav.home"), href: "/" },
@@ -152,7 +152,7 @@ export function ToolFrame({ meta, title, description, related, children, article
             </Link>
           </p>
         )}
-      </main>
+      </div>
       <aside className="hidden lg:block">
         <AdSticky />
       </aside>

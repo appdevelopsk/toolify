@@ -54,7 +54,7 @@ export function PromptFrame({
 
   return (
     <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-6 lg:grid-cols-[minmax(0,1fr)_300px]">
-      <main className="min-w-0">
+      <div className="min-w-0">
         <Breadcrumbs
           items={[
             { name: t("nav.home"), href: "/" },
@@ -206,7 +206,7 @@ export function PromptFrame({
         <p className="mt-10 text-xs text-slate-600 dark:text-slate-400">
           {t("prompt.lastUpdated")}: <time dateTime={meta.updatedAt}>{meta.updatedAt}</time>
         </p>
-      </main>
+      </div>
       <aside className="hidden lg:block">
         <AdSticky />
       </aside>
