@@ -91,6 +91,7 @@ export default async function LocaleLayout({
         {siteConfig.analytics.gaId && (
           <link rel="preconnect" href="https://www.googletagmanager.com" />
         )}
+        <link rel="preconnect" href="https://fundingchoicesmessages.google.com" />
         <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} — Latest tools (EN)`} href={`${siteConfig.url}/feed.xml`} />
         <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} — 最新ツール (日本語)`} href={`${siteConfig.url}/feed-ja.xml`} />
         <link rel="alternate" type="application/json" title={`${siteConfig.name} — Tool directory`} href={`${siteConfig.url}/tools.json`} />
@@ -107,7 +108,7 @@ export default async function LocaleLayout({
       <body className="min-h-screen flex flex-col antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
-          <div className="flex-1">{children}</div>
+          <main className="flex-1">{children}</main>
           <Footer />
           <ConsentBanner />
         </NextIntlClientProvider>

@@ -78,12 +78,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <Link
             href="/tools"
+            prefetch={false}
             className="rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
           >
             {t("home.browseAll")} →
           </Link>
           <Link
             href="/prompts"
+            prefetch={false}
             className="rounded-lg border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
           >
             {t("nav.prompts")} →
@@ -133,6 +135,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section className="mb-12">
         <Link
           href="/pregnancy"
+          prefetch={false}
           className="group block rounded-2xl border border-rose-200 bg-rose-50 p-6 transition hover:border-rose-300 hover:shadow-md dark:border-rose-900/40 dark:bg-rose-900/20 sm:p-8"
         >
           <div className="flex items-start gap-4">
@@ -164,6 +167,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <Link
                   key={cat}
                   href={`/tools#${cat}`}
+                  prefetch={false}
                   className="group flex items-center gap-3 rounded-xl border border-slate-200 p-4 transition-all hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:hover:border-slate-700"
                 >
                   <span
