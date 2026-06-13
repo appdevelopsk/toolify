@@ -30,6 +30,8 @@ export const siteConfig = {
   },
   analytics: {
     gaId: process.env.NEXT_PUBLIC_GA_ID ?? "",
+    // Microsoft Clarity（ヒートマップ/セッション録画）。clarity.microsoft.com で作成。
+    clarityId: process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID ?? "",
   },
   cmp: {
     /** Google Funding Choices publisher ID. Same value as adsense.client without the "ca-" prefix. */

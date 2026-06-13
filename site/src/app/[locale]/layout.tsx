@@ -15,6 +15,7 @@ import { ConsentBanner } from "@/components/ConsentBanner";
 import { AdScript } from "@/components/ads/AdScript";
 import { FundingChoices } from "@/components/cmp/FundingChoices";
 import { GoogleAnalytics } from "@/lib/analytics/gtag";
+import { MicrosoftClarity } from "@/lib/analytics/clarity";
 import { PageViewTracker } from "@/lib/analytics/pageview";
 import { RegisterSW } from "@/components/pwa/RegisterSW";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -113,6 +114,7 @@ export default async function LocaleLayout({
           <ConsentBanner />
         </NextIntlClientProvider>
         <GoogleAnalytics />
+        <MicrosoftClarity />
         <Suspense fallback={null}>
           <PageViewTracker />
         </Suspense>
