@@ -6,7 +6,6 @@ import { listByCategory } from "@/lib/tools/registry";
 import { CATEGORY_DESCRIPTIONS } from "@/lib/tools/category-descriptions";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import { ToolCard } from "@/components/tools/ToolCard";
-import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
 import { LOCALES, type Locale } from "@/lib/i18n/locales";
@@ -125,8 +124,6 @@ export default async function ToolCategoryPage({
           />
         ))}
       </div>
-
-      <RelatedServices />
 
       <section className="mt-12 border-t border-slate-200 pt-6 dark:border-slate-800">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">

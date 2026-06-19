@@ -4,7 +4,6 @@ import { listTools } from "@/lib/tools/registry";
 import { Link } from "@/lib/i18n/navigation";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { FavoritesSection } from "@/components/tools/FavoritesSection";
-import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
@@ -66,8 +65,6 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
           description: t(`tools.${m.slug}.shortDescription`),
         }))}
       />
-
-      <RelatedServices featured />
 
       {Array.from(byCategory.entries()).map(([cat, list]) => {
         const cfg = CATEGORY_CONFIG[cat as ToolCategory];
