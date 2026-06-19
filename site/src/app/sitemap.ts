@@ -1,8 +1,10 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/config";
 import { LOCALES, PROMPT_LOCALES } from "@/lib/i18n/locales";
-import { listIndexableTools } from "@/lib/tools/registry";
+import { listIndexableTools, listByCategory } from "@/lib/tools/registry";
+import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import { listPrompts } from "@/lib/prompts/registry";
+import type { ToolCategory } from "@/lib/tools/types";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const sharedPaths = ["", "/tools", "/pregnancy", "/about", "/privacy", "/terms", "/contact"];
@@ -75,6 +77,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const path = `/prompts/category/${cat}`;
       const alternates: Record<string, string> = {};
       for (const l of PROMPT_LOCALES) alternates[l] = `${siteConfig.url}/${l}${path}`;
+      entries.push({
+        url: `${siteConfig.url}/${locale}${path}`,
+        changeFrequency: "weekly",
+        priority: 0.5,
+        alternates: { languages: alternates },
+      });
+    }
+  }
+
+  // Tool category hubs — one per populated category, all locales (mirrors the page's
+  // generateStaticParams). These concentrate internal-link authority on each category.
+  const toolCats = (Object.keys(CATEGORY_CONFIG) as ToolCategory[]).filter(
+    (c) => listByCategory(c).length > 0,
+  );
+  for (const cat of toolCats) {
+    for (const locale of LOCALES) {
+      const path = `/tools/category/${cat}`;
+      const alternates: Record<string, string> = {};
+      for (const l of LOCALES) alternates[l] = `${siteConfig.url}/${l}${path}`;
       entries.push({
         url: `${siteConfig.url}/${locale}${path}`,
         changeFrequency: "weekly",
