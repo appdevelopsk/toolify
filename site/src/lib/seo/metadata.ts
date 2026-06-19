@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/config";
-import { LOCALES, type Locale, getDirection } from "@/lib/i18n/locales";
+import { LOCALES, type Locale, getDirection, isIndexedLocale } from "@/lib/i18n/locales";
 
 interface BuildMetadataParams {
   locale: Locale;
@@ -19,8 +19,12 @@ interface BuildMetadataParams {
 export function buildMetadata(params: BuildMetadataParams): Metadata {
   const { locale, title, description, path, keywords, type = "website", image, publishedTime, modifiedTime, noindex = false } = params;
   const url = `${siteConfig.url}/${locale}${path}`;
+  // index 対象ロケール（en/ja）のみ noindex でなければインデックスさせる。
+  // 死蔵言語(クリック0)はサイト全体のHCU評価を下げるため noindex+hreflang除外。
+  const indexable = !noindex && isIndexedLocale(locale);
   const alternates: Record<string, string> = {};
   for (const l of LOCALES) {
+    if (!isIndexedLocale(l)) continue; // hreflang も index 対象ロケールに限定
     alternates[l] = `${siteConfig.url}/${l}${path}`;
   }
   alternates["x-default"] = `${siteConfig.url}/en${path}`;
@@ -57,10 +61,10 @@ export function buildMetadata(params: BuildMetadataParams): Metadata {
       ...(siteConfig.twitter ? { creator: siteConfig.twitter } : {}),
     },
     robots: {
-      index: !noindex,
+      index: indexable,
       follow: true,
       googleBot: {
-        index: !noindex,
+        index: indexable,
         follow: true,
         "max-image-preview": "large",
         "max-snippet": -1,

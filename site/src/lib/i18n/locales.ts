@@ -30,6 +30,20 @@ export const PROMPT_LOCALES = LOCALE_DEFS.filter((l) => l.promptsActive).map((l)
 export const ALL_LOCALES = LOCALE_DEFS.map((l) => l.code);
 export const DEFAULT_LOCALE: Locale = "en";
 
+/**
+ * 検索インデックス対象ロケール（2026-06-19）。toolify は Search Console 28日で
+ * 全17言語ともクリック0（検索が完全崩壊・量産薄コンテンツがHCU判定でディインデックス）。
+ * 回復戦略（被リンク配布・埋め込み・カテゴリハブ）は全て英語狙いで、運営は日本。
+ * → en + ja のみ index 対象とし、残り15言語（222ツール×15≒3,300の死蔵ページ）を
+ *   noindex + sitemap除外してサイト全体のHCU評価を英語に集中させる。
+ *   ページ自体/UI言語切替は不変＝可逆（本配列に戻すだけ）。
+ */
+export const INDEXED_LOCALES: Locale[] = ["en", "ja"];
+
+export function isIndexedLocale(code: string): boolean {
+  return (INDEXED_LOCALES as readonly string[]).includes(code);
+}
+
 export function getLocaleDef(code: string) {
   return LOCALE_DEFS.find((l) => l.code === code);
 }
