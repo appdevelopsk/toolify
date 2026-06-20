@@ -87,6 +87,14 @@ export function Footer() {
               {t("crossPromo.nattzy")}
             </span>
           </a>
+          <a href="https://appdevelopsk.com" className="group">
+            <span className="font-bold text-slate-800 transition-colors group-hover:text-sky-600 dark:text-slate-200">
+              SK APPS
+            </span>
+            <span className="mt-0.5 block text-xs text-slate-500 dark:text-slate-400">
+              {t("crossPromo.sk")}
+            </span>
+          </a>
         </div>
       </div>
     </footer>
