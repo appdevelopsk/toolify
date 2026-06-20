@@ -7,7 +7,6 @@ import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { SisterSiteCta } from "@/components/cross/SisterSiteCta";
 import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
-import { isPromptLocale } from "@/lib/i18n/locales";
 import { siteConfig } from "@/lib/config";
 import type { ToolMeta } from "@/lib/tools/types";
 
@@ -127,25 +126,6 @@ export function ToolFrame({ meta, title, description, related, children, article
           </p>
         )}
 
-        <div className="mt-6 flex flex-col gap-1 text-xs text-slate-600 dark:text-slate-400">
-          <p>
-            {t("tool.maintainedBy", { name: siteConfig.operator.name })}{" "}
-            <Link href="/about" className="text-brand-600 hover:underline">
-              {t("tool.methodologyLink")}
-            </Link>
-          </p>
-          <p>
-            {t("tool.lastUpdated")}: <time dateTime={meta.updatedAt}>{meta.updatedAt}</time>
-          </p>
-        </div>
-
-        {isPromptLocale(locale) && (
-          <p className="mt-2 text-sm">
-            <Link href="/prompts" className="text-brand-600 hover:underline">
-              {t("tool.tryPrompts")}
-            </Link>
-          </p>
-        )}
       </div>
       <aside className="hidden lg:block">
         <AdSticky />
