@@ -5,7 +5,6 @@ import { AdBanner, AdBelowResult, AdInArticle, AdSticky } from "@/components/ads
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { SisterSiteCta } from "@/components/cross/SisterSiteCta";
-import { NewsletterForm } from "@/components/cross/NewsletterForm";
 import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
 import { isPromptLocale } from "@/lib/i18n/locales";
@@ -121,11 +120,6 @@ export function ToolFrame({ meta, title, description, related, children, article
             </ul>
           </section>
         )}
-
-        {/* 文脈内メール捕捉（フッターより高転換。source を分けて効果計測） */}
-        <div className="mt-10">
-          <NewsletterForm source="toolify-tool" />
-        </div>
 
         {(meta.category === "finance" || meta.category === "health") && (
           <p className="mt-8 rounded-md border-l-2 border-slate-300 bg-slate-50 px-3 py-2 text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
