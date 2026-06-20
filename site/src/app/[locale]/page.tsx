@@ -5,7 +5,7 @@ import { listTools } from "@/lib/tools/registry";
 import { listPrompts } from "@/lib/prompts/registry";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { PromptCard } from "@/components/prompts/PromptCard";
-import { AdBanner } from "@/components/ads/AdBanner";
+import { AdBanner, AdInFeed } from "@/components/ads/AdBanner";
 import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
@@ -238,6 +238,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           ))}
         </div>
       </section>
+
+      {/* In-feed ad at a natural mid-page break (lazy, height-reserved). */}
+      <AdInFeed className="my-12" />
 
       {/* ── Recommended services (cross-category affiliate, locale-aware) ── */}
       <RelatedServices featured />

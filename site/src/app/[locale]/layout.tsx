@@ -13,6 +13,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ConsentBanner } from "@/components/ConsentBanner";
 import { AdScript } from "@/components/ads/AdScript";
+import { AdAnchorMobile } from "@/components/ads/AdAnchorMobile";
 import { FundingChoices } from "@/components/cmp/FundingChoices";
 import { GoogleAnalytics } from "@/lib/analytics/gtag";
 import { MicrosoftClarity } from "@/lib/analytics/clarity";
@@ -111,6 +112,7 @@ export default async function LocaleLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <AdAnchorMobile />
           <ConsentBanner />
         </NextIntlClientProvider>
         <GoogleAnalytics />

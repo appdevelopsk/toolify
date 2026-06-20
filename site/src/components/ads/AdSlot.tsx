@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { siteConfig } from "@/lib/config";
 
 declare global {
@@ -38,19 +38,41 @@ export function AdSlot({
 }: AdSlotProps) {
   const ref = useRef<HTMLModElement>(null);
   const pushed = useRef(false);
+  // AdSense reports fill via data-ad-status. Track it to (a) only show the
+  // "Advertisement" label on filled slots and (b) collapse unfilled ones so
+  // no empty labeled box is left behind.
+  const [status, setStatus] = useState<"pending" | "filled" | "unfilled">("pending");
 
   useEffect(() => {
     if (!siteConfig.adsense.client || !slot) return;
-    if (pushed.current) return;
+    const el = ref.current;
+    if (!el) return;
+
+    const statusObs = new MutationObserver(() => {
+      const s = el.getAttribute("data-ad-status");
+      if (s === "filled") setStatus("filled");
+      else if (s === "unfilled") setStatus("unfilled");
+    });
+    statusObs.observe(el, { attributes: true, attributeFilter: ["data-ad-status"] });
+
+    const push = () => {
+      if (pushed.current) return;
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        pushed.current = true;
+      } catch {
+        /* AdSense not loaded yet — will retry on next mount */
+      }
+    };
+
+    let io: IntersectionObserver | undefined;
     if (lazy) {
-      const el = ref.current;
-      if (!el) return;
-      const io = new IntersectionObserver(
+      io = new IntersectionObserver(
         (entries) => {
           for (const e of entries) {
             if (e.isIntersecting) {
               push();
-              io.disconnect();
+              io?.disconnect();
               break;
             }
           }
@@ -58,17 +80,14 @@ export function AdSlot({
         { rootMargin: "200px" },
       );
       io.observe(el);
-      return () => io.disconnect();
+    } else {
+      push();
     }
-    push();
-    function push() {
-      try {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-        pushed.current = true;
-      } catch {
-        /* AdSense not loaded yet — will retry on next mount */
-      }
-    }
+
+    return () => {
+      statusObs.disconnect();
+      io?.disconnect();
+    };
   }, [slot, lazy]);
 
   if (!siteConfig.adsense.client || !slot) {
@@ -86,9 +105,11 @@ export function AdSlot({
     );
   }
 
+  // Collapse fully once AdSense reports no fill — avoids reserving space for a blank box.
+  const collapsed = status === "unfilled";
   return (
-    <div className={className} style={style}>
-      {showLabel && (
+    <div className={className} style={collapsed ? { display: "none" } : style} aria-hidden={collapsed || undefined}>
+      {showLabel && status === "filled" && (
         <div className="mb-1 text-[10px] uppercase tracking-wider text-slate-600 dark:text-slate-400">Advertisement</div>
       )}
       <ins

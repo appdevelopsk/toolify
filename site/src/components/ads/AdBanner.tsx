@@ -19,6 +19,7 @@ export function AdInArticle({ className }: { className?: string }) {
       format="fluid"
       layout="in-article"
       className={`my-8 ${className ?? ""}`}
+      style={{ minHeight: 280 }}
       lazy
     />
   );
@@ -31,6 +32,20 @@ export function AdBelowResult({ className }: { className?: string }) {
       format="auto"
       className={`mt-6 ${className ?? ""}`}
       style={{ minHeight: 280 }}
+      lazy
+    />
+  );
+}
+
+/** In-feed unit for list / home section breaks. Lazy + height-reserved to avoid CLS. */
+export function AdInFeed({ className }: { className?: string }) {
+  return (
+    <AdSlot
+      slot={siteConfig.adsense.slots.inFeed}
+      format="auto"
+      className={`mx-auto w-full max-w-3xl ${className ?? ""}`}
+      style={{ minHeight: 280 }}
+      lazy
     />
   );
 }

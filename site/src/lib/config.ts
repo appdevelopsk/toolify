@@ -26,6 +26,10 @@ export const siteConfig = {
       inArticle: process.env.NEXT_PUBLIC_ADSENSE_SLOT_INARTICLE ?? "",
       sticky: process.env.NEXT_PUBLIC_ADSENSE_SLOT_STICKY ?? "",
       belowResult: process.env.NEXT_PUBLIC_ADSENSE_SLOT_BELOWRESULT ?? "",
+      // In-feed unit for list/home section breaks (added for revenue inventory).
+      inFeed: process.env.NEXT_PUBLIC_ADSENSE_SLOT_INFEED ?? "",
+      // Dismissible mobile bottom anchor.
+      anchor: process.env.NEXT_PUBLIC_ADSENSE_SLOT_ANCHOR ?? "",
     },
   },
   analytics: {
