@@ -558,6 +558,28 @@ export const CATALOG: AffiliateOffer[] = [
 ];
 
 /**
+ * カテゴリ非依存の「おすすめサービス」を返す（トップ / 一覧ページ用）。
+ * ロケール + マーケットに合う **ライブ案件のみ**（pending除外）をカタログ順
+ * （= EPC降順に並べてある）で拾い、ID重複を除いて limit 件返す。
+ * カテゴリ別の getOffersFor と違い、面に縛られず最高値のオファーを横断表示する。
+ */
+export function getFeaturedOffers(locale: string, limit = POLICY.maxPerSlot): AffiliateOffer[] {
+  const market = inferMarketFromLocale(locale);
+  const seen = new Set<string>();
+  const out: AffiliateOffer[] = [];
+  for (const o of CATALOG) {
+    if (o.pending) continue;
+    if (o.locales && !o.locales.includes(locale)) continue;
+    if (o.markets && !o.markets.includes(market) && !o.markets.includes("global")) continue;
+    if (seen.has(o.id)) continue;
+    seen.add(o.id);
+    out.push(o);
+    if (out.length >= limit) break;
+  }
+  return out;
+}
+
+/**
  * 指定カテゴリ + ロケール + マーケットに合うオファーを返す。
  * pendingは含めるが、UIで disabled 表示にする責任は呼び出し側。
  */

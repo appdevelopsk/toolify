@@ -1,10 +1,13 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
-import { getOffersFor, POLICY } from "@/lib/affiliates/catalog";
+import { getFeaturedOffers, getOffersFor, POLICY } from "@/lib/affiliates/catalog";
 import type { OfferCategory } from "@/lib/affiliates/types";
 
 interface Props {
-  category: OfferCategory;
+  /** カテゴリ別オファー（ツール / プロンプト個別ページ用）。featured 指定時は無視。 */
+  category?: OfferCategory;
+  /** カテゴリ非依存の横断おすすめ（トップ / 一覧ページ用）。category より優先。 */
+  featured?: boolean;
   /** Override visibility: `true` shows pending offers in disabled state for QA. */
   showPending?: boolean;
 }
@@ -16,10 +19,14 @@ interface Props {
  * 各カードに「PR」ラベル + フッターから /disclosure へのリンクを担保し、
  * 景表法ステマ規制・特商法・Google AdSense ポリシーに対応する。
  */
-export function RelatedServices({ category, showPending = false }: Props) {
+export function RelatedServices({ category, featured = false, showPending = false }: Props) {
   const t = useTranslations();
   const locale = useLocale();
-  const offers = getOffersFor(category, locale, { includePending: showPending });
+  const offers = featured
+    ? getFeaturedOffers(locale)
+    : category
+      ? getOffersFor(category, locale, { includePending: showPending })
+      : [];
 
   if (offers.length === 0) return null;
 
