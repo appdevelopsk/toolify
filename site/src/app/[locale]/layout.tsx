@@ -17,6 +17,7 @@ import { AdAnchorMobile } from "@/components/ads/AdAnchorMobile";
 import { FundingChoices } from "@/components/cmp/FundingChoices";
 import { GoogleAnalytics } from "@/lib/analytics/gtag";
 import { MicrosoftClarity } from "@/lib/analytics/clarity";
+import { ImpactTracking } from "@/lib/analytics/impact";
 import { PageViewTracker } from "@/lib/analytics/pageview";
 import { RegisterSW } from "@/components/pwa/RegisterSW";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -117,6 +118,7 @@ export default async function LocaleLayout({
         </NextIntlClientProvider>
         <GoogleAnalytics />
         <MicrosoftClarity />
+        <ImpactTracking />
         <Suspense fallback={null}>
           <PageViewTracker />
         </Suspense>
