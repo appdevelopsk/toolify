@@ -23,7 +23,7 @@ export function GET() {
       <pubDate>${date}</pubDate>
       <category>${escape(t.category)}</category>
       <description>${escape(`無料の${titleJa} — ブラウザで即使える、登録不要、多言語対応。`)}</description>
-      <enclosure url="${img}" type="image/png" length="0"/>
+      <enclosure url="${escape(img)}" type="image/png" length="0"/>
     </item>`;
     })
     .join("\n");

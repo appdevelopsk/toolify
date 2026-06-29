@@ -24,7 +24,7 @@ export function GET() {
       <pubDate>${date}</pubDate>
       <category>${escape(t.category)}</category>
       <description>${escape(`Free ${t.primaryKeyword.en ?? t.slug} — browser-based, no signup, multilingual.`)}</description>
-      <enclosure url="${img}" type="image/png" length="0"/>
+      <enclosure url="${escape(img)}" type="image/png" length="0"/>
     </item>`;
     })
     .join("\n");
