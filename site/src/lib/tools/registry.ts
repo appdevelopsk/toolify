@@ -475,8 +475,8 @@ export const INDEXED_SLUGS = new Set<string>([
   "loan-calculator", "markup-calculator", "mortgage-calculator",
   "roas-calculator", "salary-converter", "sales-tax-calculator",
   "tip-calculator", "unit-price-calculator",
-  // health (13)
-  "bmi-calculator", "bmr-calculator", "calorie-calculator",
+  // health (14)
+  "bmi-calculator", "bmr-calculator", "body-fat-calculator", "calorie-calculator",
   "conception-date-calculator", "due-date-calculator", "hcg-calculator",
   "menstrual-cycle-calculator", "one-rep-max-calculator", "ovulation-calculator",
   "pace-calculator", "pregnancy-week-calculator", "pregnancy-weight-gain-calculator",
@@ -492,10 +492,11 @@ export const INDEXED_SLUGS = new Set<string>([
   "currency-converter", "fuel-economy-converter", "length-converter",
   "power-converter", "pressure-converter", "speed-converter",
   "temperature-converter", "time-converter", "weight-converter",
-  // datetime (7)
-  "age-calculator", "age-difference-calculator", "date-calculator",
+  // datetime (8)
+  "age-calculator", "age-difference-calculator", "countdown-timer", "date-calculator",
   "iso-week-calculator", "stopwatch", "timezone-converter",
   "workdays-calculator",
+  // 復帰(2026-06-29): countdown-timer/body-fat-calculator は SC実需+クリック実績あり(noindexだった)
 ]);
 
 export function isIndexable(slug: string): boolean {
