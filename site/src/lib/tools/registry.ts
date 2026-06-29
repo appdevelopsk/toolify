@@ -497,6 +497,10 @@ export const INDEXED_SLUGS = new Set<string>([
   "iso-week-calculator", "stopwatch", "timezone-converter",
   "workdays-calculator",
   // 復帰(2026-06-29): countdown-timer/body-fat-calculator は SC実需+クリック実績あり(noindexだった)
+  // 復帰v2(2026-06-29): GA4 Organic Search engaged実績ありで noindexだったツール
+  // (keep基準を「Google SC ∪ GA4実流入」に。SCだけだとAI/Bing/実検索の流入記事を誤noindexする)
+  "grade-calculator", "steps-to-distance-calculator", "password-strength-tester",
+  "ascii-table", "heat-index-calculator",
 ]);
 
 export function isIndexable(slug: string): boolean {
