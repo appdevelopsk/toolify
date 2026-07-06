@@ -54,6 +54,27 @@ export function ToolFrame({ meta, title, description, related, children, article
 
         <AdBelowResult />
 
+        {/* 関連ツール導線 — ツール結果の直後(注意が集中する位置)に移動。
+            従来は記事/FAQ/出典の後の最下部で不可視だった。回遊(PV/session)増=AdSense表示増。
+            コンパクトなチップ列で本文の邪魔をしない。 */}
+        {related.length > 0 && (
+          <section className="mt-6" aria-label={t("tool.related")}>
+            <h2 className="text-xs font-bold uppercase tracking-widest text-slate-500">{t("tool.related")}</h2>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {related.map((r) => (
+                <li key={r.slug}>
+                  <Link
+                    href={`/tools/${r.slug}`}
+                    className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:border-brand-500 hover:bg-brand-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+                  >
+                    {r.primaryKeyword[locale] ?? r.primaryKeyword.en ?? r.slug}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <section className="prose prose-slate mt-10 max-w-none dark:prose-invert">
           <h2>{t("tool.howItWorks")}</h2>
           {article}
@@ -101,24 +122,6 @@ export function ToolFrame({ meta, title, description, related, children, article
         <RelatedServices category={meta.category} />
 
         {meta.category === "finance" && <SisterSiteCta />}
-
-        {related.length > 0 && (
-          <section className="mt-10">
-            <h2 className="text-2xl font-bold">{t("tool.related")}</h2>
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-              {related.map((r) => (
-                <li key={r.slug}>
-                  <Link
-                    href={`/tools/${r.slug}`}
-                    className="block rounded-lg border border-slate-200 p-4 hover:border-brand-500 hover:bg-brand-50 dark:border-slate-800 dark:hover:bg-slate-800"
-                  >
-                    <span className="font-medium">{r.primaryKeyword[locale] ?? r.primaryKeyword.en ?? r.slug}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
 
         {(meta.category === "finance" || meta.category === "health") && (
           <p className="mt-8 rounded-md border-l-2 border-slate-300 bg-slate-50 px-3 py-2 text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
