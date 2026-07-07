@@ -35,6 +35,57 @@ export const POLICY: AffiliatePolicy = {
  * すべて pending: true で起動 → UI上は淡色・クリック不可。
  */
 export const CATALOG: AffiliateOffer[] = [
+  // === Awin配線 (pub 2887303) — AdSense代替収益。英語(en=US)流入の計上を有効化。
+  //     ★markets:["US"]のみ(["US","global"]は不可): toolifyのフィルタは "global" を「全市場ワイルドカード」
+  //     として扱うため global を含めるとJP訪問者にも出て既存a8勢を押しのける。US限定でJP(a8)を温存。
+  //     RelatedServicesはurlを直接使用。VPN枠はNordVPNに集約(Surfshark DE/ATは粗い市場に不適合)。 ===
+  {
+    id: "nordvpn-awin",
+    category: "text",
+    alsoIn: ["finance", "math", "converter", "datetime", "color", "health"],
+    markets: ["US"],
+    name: { en: "NordVPN" },
+    description: { en: "Strict no-logs VPN with 6,400+ servers in 111 countries. Threat Protection blocks ads, trackers, and malware while you work online." },
+    cta: { en: "Get NordVPN" },
+    url: { default: "https://www.awin1.com/cread.php?awinmid=15132&awinaffid=2887303&ued=https%3A%2F%2Fnordvpn.com%2F" },
+    network: "awin",
+    badge: "🛡️",
+  },
+  {
+    id: "cloudways-awin",
+    category: "text",
+    alsoIn: ["converter", "datetime", "color", "math"],
+    markets: ["US"],
+    name: { en: "Cloudways" },
+    description: { en: "Managed cloud hosting for WordPress and web apps on DigitalOcean, Vultr, and AWS. Fast setup, no server headaches." },
+    cta: { en: "Try Cloudways" },
+    url: { default: "https://www.awin1.com/cread.php?awinmid=89935&awinaffid=2887303&ued=https%3A%2F%2Fwww.cloudways.com%2F" },
+    network: "awin",
+    badge: "☁️",
+  },
+  {
+    id: "fiverr-awin",
+    category: "finance",
+    alsoIn: ["text", "converter", "datetime"],
+    markets: ["US"],
+    name: { en: "Fiverr" },
+    description: { en: "Hire freelancers for design, writing, dev, and marketing — or sell your own services. Millions of gigs at every budget." },
+    cta: { en: "Browse Fiverr" },
+    url: { default: "https://www.awin1.com/cread.php?awinmid=6288&awinaffid=2887303&ued=https%3A%2F%2Fwww.fiverr.com%2F" },
+    network: "awin",
+    badge: "💼",
+  },
+  {
+    id: "ultrahuman-awin",
+    category: "health",
+    markets: ["US"],
+    name: { en: "Ultrahuman Ring AIR" },
+    description: { en: "Smart ring tracking sleep, HRV, glucose, and recovery — turn your health numbers into daily action." },
+    cta: { en: "Shop Ultrahuman" },
+    url: { default: "https://www.awin1.com/cread.php?awinmid=69428&awinaffid=2887303&ued=https%3A%2F%2Fultrahuman.com%2F" },
+    network: "awin",
+    badge: "💍",
+  },
   // ───────── Finance / 金融 ─────────
   {
     id: "rakuten-securities-jp",
@@ -182,7 +233,7 @@ export const CATALOG: AffiliateOffer[] = [
   {
     id: "klaviyo-us",
     category: "finance",
-    markets: ["US", "global"],
+    markets: ["US"],
     locales: ["en"],
     name: { en: "Klaviyo" },
     description: {
@@ -361,7 +412,7 @@ export const CATALOG: AffiliateOffer[] = [
   {
     id: "grammarly-en",
     category: "text",
-    markets: ["US", "global"],
+    markets: ["US"],
     locales: ["en"],
     name: { en: "Grammarly" },
     description: {
