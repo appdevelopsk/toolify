@@ -197,7 +197,7 @@ base64-encoder, url-encoder, hash-generator, uuid-generator, case-converter
 | 1. 凍結 | ✅ | 未コミットの量産6本（cat-age/dog-age/half-life/ratio-simplifier/sip/square-root specs）はマージせず据え置き＝増加停止 |
 | 2. 剪定 | ✅ デプロイ済 | 第1段: `NOINDEX_SLUGS`(48) → 第2段で **allowlist 方式 `INDEXED_SLUGS`(コア67本)** に変更（finance14/health12/text12/math10/converter8/datetime7/color4）。`sitemap.ts` が非コアを除外、`buildMetadata({noindex})` で robots index:false。**ツールURL 3,706→1,139（151本noindex）**。残151本はページ存続・noindex温存し差別化後に段階復帰 |
 | 3. E-E-A-T | ✅ コード完了 | About に「ツールの作り方と検証方法」「修正受付CTA」「最終確認日」を追加し全17言語翻訳。About に Organization JSON-LD を出力 |
-| 4. 差別化 | ⬜ 未着手 | 60本コアへの本物の独自機能は反復作業。承認後に段階実装 |
+| 4. 差別化 | ✅ 実装済(2026-07-10) | コア26本に実装: 金融=償却表+CSV+シナリオ比較+SVGグラフ+出典(CFPB/SEC/FINRA)、健康=localStorage保存+単位自動切替+妊娠マイルストーン表+出典(ACOG/WHO/NHS/厚労省)、変換=実用早見表8本+祝日プリセットUS/JP/UK/DE+会議プランナー。17言語約4,100文字列手翻訳 |
 | 5. 検証 | ✅ | `typecheck` / `audit:i18n` / `audit:seo` / `build`(exit 0) PASS。Lighthouse は要実行。AdSense「問題を修正しました」申請はユーザー操作 |
 
 ### 副次的に発見・修正した壊れたツール（審査の致命傷だった）
@@ -215,3 +215,12 @@ base64-encoder, url-encoder, hash-generator, uuid-generator, case-converter
 3. **フェーズ4**: コア67本へ競合に無い実機能を順次実装。承認後、差別化したものから `INDEXED_SLUGS` へ戻して段階復帰。
 4. **Search Console**: sitemap 再送信 → index 反映待ち → 安定後に **AdSense「問題を修正しました」申請**（Claude では不可）。
 5. （任意）`deploy.yml` の `actions/checkout@v4`・`setup-node@v4` を Node24対応版へ（2026-06-16 以降の非推奨対応）。
+
+---
+
+## 2回目却下(2026-07-09)への対応記録
+
+- 2026-07-09: フェーズ1〜3実施済みの状態で再申請するも「有用性の低いコンテンツ」で再却下
+- 2026-07-10: 未着手だったフェーズ4（機能差別化）をコア26本に実装・デプロイ（上表参照）
+- **再々審査の申請条件**: デプロイから最低1週間待ち、Search Console のカバレッジが安定し、GA4で新機能ページのエンゲージが記録されてから AdSense「問題を修正しました」を押す（連続再申請は悪化信号）
+- 並行施策: docs/BACKLINK_TARGETS.md / 00_集客統合のtoolify-backlink-*を実行して被リンク・実流入を増やす（新規ドメイン×低流入がマクロ署名の残る一因）
