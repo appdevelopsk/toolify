@@ -3,7 +3,13 @@
   "shortDescription": "See how an investment grows over time with compounding interest and optional monthly contributions. Customizable compounding frequency.",
   "description": "Enter your starting balance, interest rate, time horizon, and optional monthly contribution. The calculator shows the final balance plus a breakdown of contributions vs interest earned.",
   "metaDescription": "Free compound interest calculator with monthly contributions. See final balance, total contributed, and total interest. Daily, monthly, quarterly, or annual compounding.",
-  "keywords": ["compound interest calculator", "investment growth", "savings calculator", "interest calculator", "future value"],
+  "keywords": [
+    "compound interest calculator",
+    "investment growth",
+    "savings calculator",
+    "interest calculator",
+    "future value"
+  ],
   "empty": "Fill in the fields to see the projection.",
   "input": {
     "principal": "Starting balance",
@@ -23,6 +29,11 @@
     "finalBalance": "Final balance",
     "totalContributed": "Total contributed",
     "totalInterest": "Total interest"
+  },
+  "chart": {
+    "heading": "Growth by year",
+    "contributions": "Contributions",
+    "interest": "Interest earned"
   },
   "article": {
     "sections": [
@@ -46,24 +57,70 @@
           "These projections assume a constant rate, which doesn't match reality — stock returns vary, bond rates change, and bank promotional rates expire. For long-term planning, run the calculator at three rates: pessimistic (3-4%), expected (6-7%), and optimistic (9-10%) to see a range of outcomes.",
           "Inflation eats into nominal returns. A 7% nominal return at 3% inflation is about 4% in 'real' purchasing power. If you want the real-terms balance, plug in (rate − expected inflation) instead of the nominal rate. Also, fees and taxes typically reduce real returns by 1-2% — subtract that from the rate too for a closer approximation."
         ]
+      },
+      {
+        "heading": "Formula and sources",
+        "paragraphs": [
+          "The lump sum grows as A = P × (1 + r/n)^(n·t), and monthly contributions grow with the future-value-of-a-series formula FV = m × ((1 + r/12)^(12t) − 1) ÷ (r/12). The chart stacks your cumulative contributions against the interest they have generated so far.",
+          "These are the same formulas behind the U.S. SEC's Investor.gov compound interest calculator (see Sources). Real investment returns vary from year to year, so read the smooth curve as an average-growth scenario, not a guarantee."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Enter your starting balance", "text": "How much you have invested today." },
-      { "name": "Enter the rate and term", "text": "Annual interest rate as a percentage, and how many years you plan to invest." },
-      { "name": "Pick the compounding frequency", "text": "Monthly is a good default. Daily makes a small difference; annual is conservative." },
-      { "name": "Add a monthly contribution (optional)", "text": "If you plan to add money regularly, enter the monthly amount." },
-      { "name": "Read the breakdown", "text": "Final balance, total contributed (principal + contributions), and total interest earned." }
+      {
+        "name": "Enter your starting balance",
+        "text": "How much you have invested today."
+      },
+      {
+        "name": "Enter the rate and term",
+        "text": "Annual interest rate as a percentage, and how many years you plan to invest."
+      },
+      {
+        "name": "Pick the compounding frequency",
+        "text": "Monthly is a good default. Daily makes a small difference; annual is conservative."
+      },
+      {
+        "name": "Add a monthly contribution (optional)",
+        "text": "If you plan to add money regularly, enter the monthly amount."
+      },
+      {
+        "name": "Read the breakdown",
+        "text": "Final balance, total contributed (principal + contributions), and total interest earned."
+      }
     ]
   },
   "faq": [
-    { "q": "What's a realistic interest rate to use?", "a": "Long-term US stock market averages are around 7% real / 10% nominal. Bonds historically return 2-4% real. Bank savings accounts are 0.5-5% depending on type and era. Try 6-7% as a baseline for a diversified portfolio." },
-    { "q": "Why do small rate differences matter so much over time?", "a": "Compounding multiplies. At 30 years, a 6% return triples your money about 2.86× more than a 4% return, even though the rate gap is just 2 percentage points." },
-    { "q": "Should monthly contributions be made at the start or end of the month?", "a": "We use end-of-period contribution timing (an 'ordinary annuity'). Start-of-period would add one extra period of compounding, raising the result by about 1 month's worth of interest. Close enough not to matter for planning." },
-    { "q": "Does this account for inflation?", "a": "No. Use a 'real' rate (nominal minus expected inflation) if you want today-dollar projections. A 7% return at 3% inflation is 4% real." },
-    { "q": "What about taxes and fees?", "a": "Not modeled. Subtract 1-2% from your rate as a rough adjustment for taxes (in taxable accounts) and fund fees." },
-    { "q": "Why doesn't the result match my bank's app?", "a": "Banks may compound at slightly different intervals or use simple interest for short periods. For exact bank-specific projections, use the bank's own calculator." },
-    { "q": "Can interest rates be negative?", "a": "Yes, mathematically — the formula handles it. Negative rates have appeared on European government bonds, but rarely on retail products." },
-    { "q": "Is the data sent anywhere?", "a": "No. All math runs in your browser." }
+    {
+      "q": "What's a realistic interest rate to use?",
+      "a": "Long-term US stock market averages are around 7% real / 10% nominal. Bonds historically return 2-4% real. Bank savings accounts are 0.5-5% depending on type and era. Try 6-7% as a baseline for a diversified portfolio."
+    },
+    {
+      "q": "Why do small rate differences matter so much over time?",
+      "a": "Compounding multiplies. At 30 years, a 6% return triples your money about 2.86× more than a 4% return, even though the rate gap is just 2 percentage points."
+    },
+    {
+      "q": "Should monthly contributions be made at the start or end of the month?",
+      "a": "We use end-of-period contribution timing (an 'ordinary annuity'). Start-of-period would add one extra period of compounding, raising the result by about 1 month's worth of interest. Close enough not to matter for planning."
+    },
+    {
+      "q": "Does this account for inflation?",
+      "a": "No. Use a 'real' rate (nominal minus expected inflation) if you want today-dollar projections. A 7% return at 3% inflation is 4% real."
+    },
+    {
+      "q": "What about taxes and fees?",
+      "a": "Not modeled. Subtract 1-2% from your rate as a rough adjustment for taxes (in taxable accounts) and fund fees."
+    },
+    {
+      "q": "Why doesn't the result match my bank's app?",
+      "a": "Banks may compound at slightly different intervals or use simple interest for short periods. For exact bank-specific projections, use the bank's own calculator."
+    },
+    {
+      "q": "Can interest rates be negative?",
+      "a": "Yes, mathematically — the formula handles it. Negative rates have appeared on European government bonds, but rarely on retail products."
+    },
+    {
+      "q": "Is the data sent anywhere?",
+      "a": "No. All math runs in your browser."
+    }
   ]
 }

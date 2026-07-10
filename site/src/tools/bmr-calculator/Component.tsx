@@ -2,9 +2,12 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useLocalDraft } from "@/lib/hooks/useLocalDraft";
+import { DraftNotice } from "@/lib/hooks/DraftNotice";
+import { defaultUnitSystem, type UnitSystem } from "@/lib/hooks/useUnitSystem";
 
 type Sex = "male" | "female";
-type Unit = "metric" | "imperial";
+type Unit = UnitSystem;
 
 function mifflin(sex: Sex, weightKg: number, heightCm: number, age: number): number {
   const base = 10 * weightKg + 6.25 * heightCm - 5 * age;
@@ -27,12 +30,25 @@ function katchMcArdle(leanMassKg: number): number {
 export default function BmrCalculator() {
   const t = useTranslations("tools.bmr-calculator");
   const locale = useLocale();
-  const [unit, setUnit] = useState<Unit>(locale === "en" ? "imperial" : "metric");
+  const [unit, setUnit] = useState<Unit>(defaultUnitSystem(locale));
   const [sex, setSex] = useState<Sex>("male");
   const [age, setAge] = useState("30");
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [bodyFatPct, setBodyFatPct] = useState("");
+
+  const draft = useLocalDraft(
+    "bmr-calculator",
+    { unit, sex, age, height, weight, bodyFatPct },
+    (d) => {
+      if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);
+      if (d.sex === "male" || d.sex === "female") setSex(d.sex);
+      if (typeof d.age === "string") setAge(d.age);
+      if (typeof d.height === "string") setHeight(d.height);
+      if (typeof d.weight === "string") setWeight(d.weight);
+      if (typeof d.bodyFatPct === "string") setBodyFatPct(d.bodyFatPct);
+    },
+  );
 
   const result = useMemo(() => {
     const a = parseFloat(age);
@@ -112,6 +128,13 @@ export default function BmrCalculator() {
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
+
+      <DraftNotice
+        draft={draft}
+        privacyNote={t("draft.privacyNote")}
+        restoredLabel={t("draft.restored")}
+        clearLabel={t("draft.clear")}
+      />
     </div>
   );
 }

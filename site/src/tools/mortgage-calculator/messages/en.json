@@ -3,7 +3,13 @@
   "shortDescription": "Calculate the full monthly mortgage payment including principal, interest, property tax, insurance, PMI (if applicable), and HOA fees.",
   "description": "Enter the home price, down payment, rate, term, and recurring costs to see the realistic monthly housing payment plus the total interest you'll pay.",
   "metaDescription": "Free mortgage calculator with PITI breakdown — principal, interest, property tax, insurance, PMI, and HOA. Realistic total monthly housing cost.",
-  "keywords": ["mortgage calculator", "PITI calculator", "monthly mortgage payment", "PMI calculator", "home loan calculator"],
+  "keywords": [
+    "mortgage calculator",
+    "PITI calculator",
+    "monthly mortgage payment",
+    "PMI calculator",
+    "home loan calculator"
+  ],
   "empty": "Fill in the fields to see the monthly breakdown.",
   "input": {
     "price": "Home price",
@@ -23,6 +29,32 @@
     "downPayment": "Down payment",
     "principal": "Loan principal",
     "totalInterest": "Total interest over loan"
+  },
+  "schedule": {
+    "heading": "Schedule",
+    "downloadCsv": "Download CSV",
+    "yearTemplate": "Year {n}",
+    "expandHint": "Click a year to expand its monthly breakdown; the CSV export includes every month.",
+    "col": {
+      "month": "Month",
+      "payment": "Payment",
+      "principal": "Principal",
+      "interest": "Interest",
+      "balance": "Balance"
+    }
+  },
+  "compare": {
+    "toggle": "Compare a second scenario",
+    "hide": "Hide comparison",
+    "heading": "Scenario comparison (principal & interest only)",
+    "scenarioA": "Scenario A (current inputs)",
+    "scenarioB": "Scenario B",
+    "rateB": "Annual interest rate %",
+    "yearsB": "Loan term (years)",
+    "monthlyPI": "Principal & interest",
+    "totalInterest": "Total interest over loan",
+    "totalPaid": "Total paid",
+    "difference": "Difference (B − A)"
   },
   "article": {
     "sections": [
@@ -46,24 +78,70 @@
           "Property tax: look up your county's millage rate or use 1-2% as a national US average. Insurance: ~$1,200/year is typical. HOA: only relevant if you're buying in a community with one. The calculator's PMI estimate is an approximation — your actual rate depends on credit score and loan type.",
           "For more conservative budgeting, run the calculator with a slightly higher rate than today's. Mortgage rates can rise between rate-lock dates; planning for rate volatility is wise. Also consider closing costs (typically 2-5% of the loan amount) which are not modeled here."
         ]
+      },
+      {
+        "heading": "Formula and sources",
+        "paragraphs": [
+          "The principal-and-interest payment uses the standard annuity formula M = P × r ÷ (1 − (1 + r)⁻ⁿ), where P is the loan amount after the down payment, r is the annual rate divided by 12, and n is the number of monthly installments. The amortization table above applies the same formula month by month: each payment first covers the interest accrued on the remaining balance, and the rest reduces the principal.",
+          "The PITI breakdown (principal, interest, taxes, insurance) and the PMI rule of thumb follow the definitions published by the U.S. Consumer Financial Protection Bureau; the exact pages are listed under Sources below. Lender quotes can still differ because of escrow handling, fees, and rate rounding, so treat the result as a planning figure rather than an offer."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Enter home price", "text": "The agreed sale price." },
-      { "name": "Set down payment %", "text": "20% avoids PMI; less triggers it." },
-      { "name": "Enter rate and term", "text": "Annual rate as a percent, term in years (commonly 15 or 30)." },
-      { "name": "Add recurring costs", "text": "Annual property tax, annual insurance, monthly HOA." },
-      { "name": "Read the breakdown", "text": "Total monthly cost plus a line-by-line breakdown." }
+      {
+        "name": "Enter home price",
+        "text": "The agreed sale price."
+      },
+      {
+        "name": "Set down payment %",
+        "text": "20% avoids PMI; less triggers it."
+      },
+      {
+        "name": "Enter rate and term",
+        "text": "Annual rate as a percent, term in years (commonly 15 or 30)."
+      },
+      {
+        "name": "Add recurring costs",
+        "text": "Annual property tax, annual insurance, monthly HOA."
+      },
+      {
+        "name": "Read the breakdown",
+        "text": "Total monthly cost plus a line-by-line breakdown."
+      }
     ]
   },
   "faq": [
-    { "q": "What's the difference between this and a basic loan calculator?", "a": "This adds tax, insurance, PMI, and HOA — the real-world costs above just principal and interest. Use loan-calculator for non-housing loans." },
-    { "q": "Is the PMI estimate accurate?", "a": "Approximate. PMI varies from 0.3% to 1.5% per year depending on credit score, down payment, and loan type. We use 0.5% as a typical mid-range figure." },
-    { "q": "Should I take a 15-year or 30-year mortgage?", "a": "15-year saves substantial interest but doubles the monthly P&I. 30-year offers flexibility. Choose based on cash flow and other investment options. The calculator shows total interest for each term." },
-    { "q": "How do I find my property tax rate?", "a": "Search '[your county] property tax rate' or look on your county assessor's website. Typical US rate is 1-2% of home value annually." },
-    { "q": "Should I include HOA?", "a": "Only if your home has one. HOAs vary from $0 (no HOA) to $1,000+/month for high-amenity buildings." },
-    { "q": "Why does my actual mortgage payment differ?", "a": "Lenders may include escrow for tax/insurance differently, may bundle PMI into the rate (LPMI), and may charge fees this calculator doesn't model. Always check the lender's official Loan Estimate." },
-    { "q": "Does this account for refinancing?", "a": "No. Run the calculator with the new rate after refinancing for the updated payment." },
-    { "q": "Is the data sent anywhere?", "a": "No. Calculation runs locally." }
+    {
+      "q": "What's the difference between this and a basic loan calculator?",
+      "a": "This adds tax, insurance, PMI, and HOA — the real-world costs above just principal and interest. Use loan-calculator for non-housing loans."
+    },
+    {
+      "q": "Is the PMI estimate accurate?",
+      "a": "Approximate. PMI varies from 0.3% to 1.5% per year depending on credit score, down payment, and loan type. We use 0.5% as a typical mid-range figure."
+    },
+    {
+      "q": "Should I take a 15-year or 30-year mortgage?",
+      "a": "15-year saves substantial interest but doubles the monthly P&I. 30-year offers flexibility. Choose based on cash flow and other investment options. The calculator shows total interest for each term."
+    },
+    {
+      "q": "How do I find my property tax rate?",
+      "a": "Search '[your county] property tax rate' or look on your county assessor's website. Typical US rate is 1-2% of home value annually."
+    },
+    {
+      "q": "Should I include HOA?",
+      "a": "Only if your home has one. HOAs vary from $0 (no HOA) to $1,000+/month for high-amenity buildings."
+    },
+    {
+      "q": "Why does my actual mortgage payment differ?",
+      "a": "Lenders may include escrow for tax/insurance differently, may bundle PMI into the rate (LPMI), and may charge fees this calculator doesn't model. Always check the lender's official Loan Estimate."
+    },
+    {
+      "q": "Does this account for refinancing?",
+      "a": "No. Run the calculator with the new rate after refinancing for the updated payment."
+    },
+    {
+      "q": "Is the data sent anywhere?",
+      "a": "No. Calculation runs locally."
+    }
   ]
 }

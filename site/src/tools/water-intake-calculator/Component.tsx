@@ -2,8 +2,11 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useLocalDraft } from "@/lib/hooks/useLocalDraft";
+import { DraftNotice } from "@/lib/hooks/DraftNotice";
+import { defaultUnitSystem, type UnitSystem } from "@/lib/hooks/useUnitSystem";
 
-type Unit = "metric" | "imperial";
+type Unit = UnitSystem;
 type Activity = "low" | "moderate" | "high";
 
 const ACTIVITY_FACTOR: Record<Activity, number> = { low: 1.0, moderate: 1.15, high: 1.3 };
@@ -11,9 +14,15 @@ const ACTIVITY_FACTOR: Record<Activity, number> = { low: 1.0, moderate: 1.15, hi
 export default function WaterIntakeCalculator() {
   const t = useTranslations("tools.water-intake-calculator");
   const locale = useLocale();
-  const [unit, setUnit] = useState<Unit>(locale === "en" ? "imperial" : "metric");
+  const [unit, setUnit] = useState<Unit>(defaultUnitSystem(locale));
   const [weight, setWeight] = useState("");
   const [activity, setActivity] = useState<Activity>("moderate");
+
+  const draft = useLocalDraft("water-intake-calculator", { unit, weight, activity }, (d) => {
+    if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);
+    if (typeof d.weight === "string") setWeight(d.weight);
+    if (typeof d.activity === "string" && d.activity in ACTIVITY_FACTOR) setActivity(d.activity);
+  });
 
   const result = useMemo(() => {
     const w = parseFloat(weight);
@@ -83,6 +92,13 @@ export default function WaterIntakeCalculator() {
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
+
+      <DraftNotice
+        draft={draft}
+        privacyNote={t("draft.privacyNote")}
+        restoredLabel={t("draft.restored")}
+        clearLabel={t("draft.clear")}
+      />
     </div>
   );
 }

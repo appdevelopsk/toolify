@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { buildAmortizationRows } from "@/components/tools/amortization";
+import { AmortizationTable } from "@/components/tools/AmortizationTable";
 
 export default function LoanCalculator() {
   const t = useTranslations("tools.loan-calculator");
@@ -24,6 +26,11 @@ export default function LoanCalculator() {
     const totalInterest = totalPaid - P;
     return { monthly, totalPaid, totalInterest };
   }, [principal, ratePct, years]);
+
+  const schedule = useMemo(
+    () => buildAmortizationRows(parseFloat(principal), parseFloat(ratePct), Math.round(parseFloat(years) * 12)),
+    [principal, ratePct, years],
+  );
 
   const currency = useMemo(
     () => new Intl.NumberFormat(locale, { style: "currency", currency: locale === "ja" ? "JPY" : "USD", maximumFractionDigits: 0 }),
@@ -71,6 +78,25 @@ export default function LoanCalculator() {
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
+
+      {schedule.length > 0 && (
+        <AmortizationTable
+          rows={schedule}
+          format={cents}
+          csvFilename="loan-amortization-schedule.csv"
+          labels={{
+            heading: t("schedule.heading"),
+            downloadCsv: t("schedule.downloadCsv"),
+            yearTemplate: t.raw("schedule.yearTemplate") as string,
+            expandHint: t("schedule.expandHint"),
+            month: t("schedule.col.month"),
+            payment: t("schedule.col.payment"),
+            principal: t("schedule.col.principal"),
+            interest: t("schedule.col.interest"),
+            balance: t("schedule.col.balance"),
+          }}
+        />
+      )}
     </div>
   );
 }

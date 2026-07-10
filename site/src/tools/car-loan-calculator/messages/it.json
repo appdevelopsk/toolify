@@ -3,7 +3,13 @@
   "shortDescription": "Calcola la rata mensile del finanziamento auto, gli interessi totali e il costo totale. Include aggiustamenti per anticipo e valore permuta.",
   "description": "Inserisci il prezzo dell'auto, l'anticipo, il valore della permuta, il TAEG e la durata in mesi. Restituisce la rata mensile con la formula di ammortamento standard più una ripartizione completa di capitale, interessi e costo totale.",
   "metaDescription": "Calcolatore prestito auto gratuito. Calcola rata mensile, interessi totali e costo totale da prezzo, anticipo, permuta, TAEG e durata.",
-  "keywords": ["calcolatore prestito auto", "finanziamento auto", "rata mensile auto", "mutuo veicolo", "finanziamento autoveicolo"],
+  "keywords": [
+    "calcolatore prestito auto",
+    "finanziamento auto",
+    "rata mensile auto",
+    "mutuo veicolo",
+    "finanziamento autoveicolo"
+  ],
   "empty": "Inserisci prezzo, anticipo, tasso e durata per calcolare la rata.",
   "input": {
     "price": "Prezzo del veicolo",
@@ -18,6 +24,19 @@
     "principal": "Importo del prestito",
     "interest": "Interessi totali",
     "total": "Totale dei pagamenti"
+  },
+  "schedule": {
+    "heading": "Piano di rimborso",
+    "downloadCsv": "Scarica CSV",
+    "yearTemplate": "Anno {n}",
+    "expandHint": "Fai clic su un anno per aprire il dettaglio mese per mese; l'esportazione CSV include tutti i mesi.",
+    "col": {
+      "month": "Mese",
+      "payment": "Rata",
+      "principal": "Capitale",
+      "interest": "Interessi",
+      "balance": "Saldo"
+    }
   },
   "article": {
     "sections": [
@@ -42,25 +61,74 @@
           "La rata del prestito è solo una parte del costo dell'auto. Aggiungi assicurazione (100-300 €/mese tipicamente), carburante (100-300 €/mese a seconda del percorso), manutenzione (50-150 €/mese in media), bollo e tasse (annuali) e deprezzamento (particolarmente elevato nei primi 1-3 anni). Per un'auto da 30.000 €, il costo mensile totale può facilmente essere di 700-1.000 € anche con una rata da 400 €.",
           "La «pre-approvazione» del finanziatore è tua amica. Ottieni una pre-approvazione per un importo e un tasso di prestito prima di entrare in concessionaria. I concessionari spesso aumentano il tasso (il «margine del rivenditore») di 1-3 punti percentuali; una pre-approvazione ti dà leva negoziale."
         ]
+      },
+      {
+        "heading": "Formula e fonti",
+        "paragraphs": [
+          "L'importo finanziato è il prezzo del veicolo meno l'anticipo e il valore della permuta. La rata mensile segue poi la formula standard a rata costante M = P × r ÷ (1 − (1 + r)⁻ⁿ), con r pari al tasso annuo diviso 12 e n alla durata in mesi.",
+          "È lo stesso metodo di ammortamento che il CFPB descrive per i finanziamenti auto (vedi fonti). Il finanziamento in concessionaria può aggiungere spese, imposte o polizze accessorie: confronta sempre il TAEG del contratto con il tasso inserito qui."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Inserisci il prezzo del veicolo", "text": "Prezzo finale incluse eventuali optional che acquisterai." },
-      { "name": "Inserisci il tuo anticipo", "text": "Il contante che verserai alla firma." },
-      { "name": "Inserisci il valore della permuta", "text": "Quello che il concessionario ti accredita per il tuo vecchio veicolo. Usa 0 se non fai permuta." },
-      { "name": "Inserisci il TAEG", "text": "Ottienilo dal tuo finanziatore o pre-approvazione. Intervallo tipico: 5-10% per nuove, 7-14% per usate." },
-      { "name": "Scegli la durata", "text": "60 mesi è il più comune. Più breve risparmia interessi; più lungo riduce l'onere mensile." },
-      { "name": "Leggi la ripartizione", "text": "Rata mensile, interessi totali pagati sul prestito e costo totale." }
+      {
+        "name": "Inserisci il prezzo del veicolo",
+        "text": "Prezzo finale incluse eventuali optional che acquisterai."
+      },
+      {
+        "name": "Inserisci il tuo anticipo",
+        "text": "Il contante che verserai alla firma."
+      },
+      {
+        "name": "Inserisci il valore della permuta",
+        "text": "Quello che il concessionario ti accredita per il tuo vecchio veicolo. Usa 0 se non fai permuta."
+      },
+      {
+        "name": "Inserisci il TAEG",
+        "text": "Ottienilo dal tuo finanziatore o pre-approvazione. Intervallo tipico: 5-10% per nuove, 7-14% per usate."
+      },
+      {
+        "name": "Scegli la durata",
+        "text": "60 mesi è il più comune. Più breve risparmia interessi; più lungo riduce l'onere mensile."
+      },
+      {
+        "name": "Leggi la ripartizione",
+        "text": "Rata mensile, interessi totali pagati sul prestito e costo totale."
+      }
     ]
   },
   "faq": [
-    { "q": "Quanto dovrebbe essere il mio anticipo?", "a": "Punta ad almeno il 10-20% del prezzo del veicolo. Un anticipo del 20% ti aiuta a evitare di essere «sott'acqua» rapidamente e spesso consente di ottenere tassi migliori." },
-    { "q": "Il TAEG è uguale al tasso di interesse?", "a": "Simile, ma il TAEG include alcune commissioni (di apertura pratica, ecc.) mentre il tasso di interesse è puramente il costo di prestito. Il TAEG è il numero di confronto più accurato." },
-    { "q": "Perché i concessionari citano sempre 60 o 72 mesi?", "a": "Perché fa sembrare la rata mensile accessibile. Il costo totale su 72 mesi può essere superiore del 30%+ rispetto a 36 mesi allo stesso tasso." },
-    { "q": "Posso estinguere anticipatamente il prestito auto?", "a": "La maggior parte dei prestiti lo consente senza penale, ma verifica il contratto. Leggi attentamente le condizioni prima di firmare." },
-    { "q": "Qual è un buon TAEG per un prestito auto?", "a": "In ambienti di tasso normale: 5-8% per auto nuove con buon rating creditizio, 7-12% per auto usate o rating discreto. Sopra il 14% di solito significa finanziamento subprime — esplora alternative se possibile." },
-    { "q": "Dovrei comprare o noleggiare?", "a": "Il noleggio lungo termine è adatto a proprietà breve (2-3 anni) e costo mensile prevedibile. Acquista se tieni le auto a lungo (5+ anni) — il costo totale nel tempo è inferiore. Il nostro strumento modella lo scenario di acquisto con prestito." },
-    { "q": "Come funziona la permuta in questo calcolatore?", "a": "Il valore della permuta riduce l'importo del prestito, proprio come un anticipo. Quindi auto da 30.000 € − 5.000 € di permuta − 2.000 € di anticipo = prestito di 23.000 €." },
-    { "q": "I dati lasciano il mio browser?", "a": "No. Tutto viene eseguito localmente; nulla viene inviato a un server." }
+    {
+      "q": "Quanto dovrebbe essere il mio anticipo?",
+      "a": "Punta ad almeno il 10-20% del prezzo del veicolo. Un anticipo del 20% ti aiuta a evitare di essere «sott'acqua» rapidamente e spesso consente di ottenere tassi migliori."
+    },
+    {
+      "q": "Il TAEG è uguale al tasso di interesse?",
+      "a": "Simile, ma il TAEG include alcune commissioni (di apertura pratica, ecc.) mentre il tasso di interesse è puramente il costo di prestito. Il TAEG è il numero di confronto più accurato."
+    },
+    {
+      "q": "Perché i concessionari citano sempre 60 o 72 mesi?",
+      "a": "Perché fa sembrare la rata mensile accessibile. Il costo totale su 72 mesi può essere superiore del 30%+ rispetto a 36 mesi allo stesso tasso."
+    },
+    {
+      "q": "Posso estinguere anticipatamente il prestito auto?",
+      "a": "La maggior parte dei prestiti lo consente senza penale, ma verifica il contratto. Leggi attentamente le condizioni prima di firmare."
+    },
+    {
+      "q": "Qual è un buon TAEG per un prestito auto?",
+      "a": "In ambienti di tasso normale: 5-8% per auto nuove con buon rating creditizio, 7-12% per auto usate o rating discreto. Sopra il 14% di solito significa finanziamento subprime — esplora alternative se possibile."
+    },
+    {
+      "q": "Dovrei comprare o noleggiare?",
+      "a": "Il noleggio lungo termine è adatto a proprietà breve (2-3 anni) e costo mensile prevedibile. Acquista se tieni le auto a lungo (5+ anni) — il costo totale nel tempo è inferiore. Il nostro strumento modella lo scenario di acquisto con prestito."
+    },
+    {
+      "q": "Come funziona la permuta in questo calcolatore?",
+      "a": "Il valore della permuta riduce l'importo del prestito, proprio come un anticipo. Quindi auto da 30.000 € − 5.000 € di permuta − 2.000 € di anticipo = prestito di 23.000 €."
+    },
+    {
+      "q": "I dati lasciano il mio browser?",
+      "a": "No. Tutto viene eseguito localmente; nulla viene inviato a un server."
+    }
   ]
 }

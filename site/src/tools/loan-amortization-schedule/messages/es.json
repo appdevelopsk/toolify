@@ -3,7 +3,13 @@
   "shortDescription": "Genera una tabla mes-a-mes para cualquier préstamo a tasa fija. Muestra split principal/interés por cuota, saldo final, y exporta CSV.",
   "description": "Introduce principal, tasa anual y plazo en años. Devuelve la cuota mensual, intereses totales, total pagado y un schedule fila-por-mes mostrando cómo se divide cada cuota entre principal e interés. Toggle entre vista completa o resumen anual; descarga CSV.",
   "metaDescription": "Tabla de amortización gratis. Desglose mensual principal/interés, intereses totales, saldo por periodo. Export CSV. En navegador.",
-  "keywords": ["tabla amortización", "schedule préstamo", "principal interés mensual", "calculadora amortización", "amortización hipoteca"],
+  "keywords": [
+    "tabla amortización",
+    "schedule préstamo",
+    "principal interés mensual",
+    "calculadora amortización",
+    "amortización hipoteca"
+  ],
   "input": {
     "principal": "Monto del préstamo",
     "ratePct": "Tasa anual %",
@@ -17,10 +23,9 @@
   },
   "schedule": {
     "heading": "Tabla",
-    "showAll": "Mostrar todos los meses",
-    "condense": "Condensar a anual",
     "downloadCsv": "Descargar CSV",
-    "condensedNote": "Vista condensada: muestra primer mes, cada 12º mes y mes final. Click 'Mostrar todos los meses' para detalle completo.",
+    "yearTemplate": "Año {n}",
+    "expandHint": "Haz clic en un año para desplegar el detalle mes a mes; la exportación CSV incluye todos los meses.",
     "col": {
       "month": "Mes",
       "payment": "Cuota",
@@ -54,24 +59,70 @@
           "Sin escenarios de prepago. Si haces pagos extra, el schedule más allá de ese punto deja de ser exacto. Para análisis de prepago, recomputa con el nuevo saldo.",
           "Capitalización: asume mensual (estándar para hipotecas US). Algunos productos usan diaria o simple — para esos la tabla es aproximada."
         ]
+      },
+      {
+        "heading": "Fórmula y fuentes",
+        "paragraphs": [
+          "Cada fila se calcula de forma recursiva: intereses del mes = saldo pendiente × (tipo anual ÷ 12); capital amortizado = cuota fija − intereses; nuevo saldo = saldo anterior − capital amortizado. La cuota fija procede de la fórmula M = P × r ÷ (1 − (1 + r)⁻ⁿ).",
+          "Es el método de amortización de manual que documentan Investopedia y la CFPB (enlazados en las fuentes). Los cuadros reales de los bancos pueden desviarse unos céntimos por convenios de redondeo, y más si el préstamo devenga intereses diarios o es a tipo variable."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Introduce monto", "text": "El monto prestado (principal)." },
-      { "name": "Introduce tasa", "text": "Tasa porcentual anual. Para 6.5%, escribe 6.5." },
-      { "name": "Introduce plazo", "text": "En años. La mayoría de hipotecas US son 15 o 30." },
-      { "name": "Lee resumen + tabla", "text": "Cuota mensual, intereses totales, desglose mes a mes de adónde va cada dólar." },
-      { "name": "Descarga CSV", "text": "Exporta el schedule completo para análisis en hoja de cálculo." }
+      {
+        "name": "Introduce monto",
+        "text": "El monto prestado (principal)."
+      },
+      {
+        "name": "Introduce tasa",
+        "text": "Tasa porcentual anual. Para 6.5%, escribe 6.5."
+      },
+      {
+        "name": "Introduce plazo",
+        "text": "En años. La mayoría de hipotecas US son 15 o 30."
+      },
+      {
+        "name": "Lee resumen + tabla",
+        "text": "Cuota mensual, intereses totales, desglose mes a mes de adónde va cada dólar."
+      },
+      {
+        "name": "Descarga CSV",
+        "text": "Exporta el schedule completo para análisis en hoja de cálculo."
+      }
     ]
   },
   "faq": [
-    { "q": "¿Por qué mi extracto de hipoteca muestra otros números?", "a": "Los prestamistas reales incluyen impuestos, seguro, PMI y escrow en la cuota. Esta calculadora muestra solo P&I puros. Resta esos add-ons para comparar." },
-    { "q": "¿Cómo se calcula el interés mensual?", "a": "interés mensual = saldo actual × tasa mensual. Luego principal = cuota − interés. Nuevo saldo = saldo viejo − principal. Repite n meses." },
-    { "q": "¿Por qué los pagos iniciales parecen 'desperdiciados' en interés?", "a": "No están desperdiciados — pagan por la existencia del préstamo con saldo alto. La matemática es honesta: saldo alto × tasa = interés alto. Cuando el saldo cae, el interés cae también." },
-    { "q": "¿Impacto de un cambio de 1 punto en tasa?", "a": "Cuota mensual sube ~12%, intereses totales 25-35% más en una hipoteca de 30 años. Bloquea tasas bajas si puedes." },
-    { "q": "¿Debería pagar principal extra cada mes?", "a": "Si tu préstamo no tiene penalty de prepago (la mayoría US no), sí. Incluso $100/mes extra al inicio ahorra miles. La tabla muestra el impacto." },
-    { "q": "¿Qué es un préstamo balloon?", "a": "Un préstamo donde las cuotas regulares no amortizan completo, dejando una gran cuota 'balloon' final. Común en real estate comercial; raro en residencial. Esta calculadora no modela balloons." },
-    { "q": "¿Por qué los intereses totales a 30 años son tanto más que a 15 años?", "a": "Compounding trabaja en tu contra. Al 6%, un préstamo de 30 años tiene ~2× los intereses totales de uno de 15 años pese a misma tasa. El plazo más corto significa periodo de saldo alto más corto." },
-    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo corre localmente; la descarga CSV se genera en el navegador también." }
+    {
+      "q": "¿Por qué mi extracto de hipoteca muestra otros números?",
+      "a": "Los prestamistas reales incluyen impuestos, seguro, PMI y escrow en la cuota. Esta calculadora muestra solo P&I puros. Resta esos add-ons para comparar."
+    },
+    {
+      "q": "¿Cómo se calcula el interés mensual?",
+      "a": "interés mensual = saldo actual × tasa mensual. Luego principal = cuota − interés. Nuevo saldo = saldo viejo − principal. Repite n meses."
+    },
+    {
+      "q": "¿Por qué los pagos iniciales parecen 'desperdiciados' en interés?",
+      "a": "No están desperdiciados — pagan por la existencia del préstamo con saldo alto. La matemática es honesta: saldo alto × tasa = interés alto. Cuando el saldo cae, el interés cae también."
+    },
+    {
+      "q": "¿Impacto de un cambio de 1 punto en tasa?",
+      "a": "Cuota mensual sube ~12%, intereses totales 25-35% más en una hipoteca de 30 años. Bloquea tasas bajas si puedes."
+    },
+    {
+      "q": "¿Debería pagar principal extra cada mes?",
+      "a": "Si tu préstamo no tiene penalty de prepago (la mayoría US no), sí. Incluso $100/mes extra al inicio ahorra miles. La tabla muestra el impacto."
+    },
+    {
+      "q": "¿Qué es un préstamo balloon?",
+      "a": "Un préstamo donde las cuotas regulares no amortizan completo, dejando una gran cuota 'balloon' final. Común en real estate comercial; raro en residencial. Esta calculadora no modela balloons."
+    },
+    {
+      "q": "¿Por qué los intereses totales a 30 años son tanto más que a 15 años?",
+      "a": "Compounding trabaja en tu contra. Al 6%, un préstamo de 30 años tiene ~2× los intereses totales de uno de 15 años pese a misma tasa. El plazo más corto significa periodo de saldo alto más corto."
+    },
+    {
+      "q": "¿Los datos salen del navegador?",
+      "a": "No. El cálculo corre localmente; la descarga CSV se genera en el navegador también."
+    }
   ]
 }

@@ -3,7 +3,13 @@
   "shortDescription": "Calcula el pago mensual completo de hipoteca incluyendo principal, interés, impuesto a la propiedad, seguro, PMI (si aplica) y cuotas de comunidad.",
   "description": "Introduce el precio de la vivienda, entrada, tasa, plazo y costes recurrentes para ver el pago mensual realista de vivienda más el interés total que pagarás.",
   "metaDescription": "Calculadora de hipoteca gratis con desglose PITI — principal, interés, impuesto, seguro, PMI y comunidad. Coste mensual de vivienda realista.",
-  "keywords": ["calculadora hipoteca", "calculadora PITI", "pago mensual hipoteca", "calculadora PMI", "calculadora préstamo vivienda"],
+  "keywords": [
+    "calculadora hipoteca",
+    "calculadora PITI",
+    "pago mensual hipoteca",
+    "calculadora PMI",
+    "calculadora préstamo vivienda"
+  ],
   "empty": "Rellena los campos para ver el desglose mensual.",
   "input": {
     "price": "Precio de la vivienda",
@@ -23,6 +29,32 @@
     "downPayment": "Entrada",
     "principal": "Principal del préstamo",
     "totalInterest": "Interés total durante el préstamo"
+  },
+  "schedule": {
+    "heading": "Tabla",
+    "downloadCsv": "Descargar CSV",
+    "yearTemplate": "Año {n}",
+    "expandHint": "Haz clic en un año para desplegar el detalle mes a mes; la exportación CSV incluye todos los meses.",
+    "col": {
+      "month": "Mes",
+      "payment": "Cuota",
+      "principal": "Principal",
+      "interest": "Interés",
+      "balance": "Saldo"
+    }
+  },
+  "compare": {
+    "toggle": "Comparar un segundo escenario",
+    "hide": "Ocultar comparación",
+    "heading": "Comparación de escenarios (solo capital e intereses)",
+    "scenarioA": "Escenario A (datos actuales)",
+    "scenarioB": "Escenario B",
+    "rateB": "Tasa de interés anual %",
+    "yearsB": "Plazo del préstamo (años)",
+    "monthlyPI": "Principal e interés",
+    "totalInterest": "Interés total durante el préstamo",
+    "totalPaid": "Total pagado",
+    "difference": "Diferencia (B − A)"
   },
   "article": {
     "sections": [
@@ -46,24 +78,70 @@
           "Impuesto a la propiedad: busca la tasa millage de tu condado o usa 1-2% como promedio nacional EE.UU. Seguro: ~$1,200/año es típico. Comunidad: solo relevante si compras en una con HOA. La estimación PMI de la calculadora es aproximación — tu tasa real depende del puntaje de crédito y tipo de préstamo.",
           "Para presupuestación más conservadora, ejecuta la calculadora con tasa ligeramente superior a la actual. Las tasas de hipoteca pueden subir entre fechas de bloqueo; planificar para volatilidad es sabio. Considera también costes de cierre (típicamente 2-5% del préstamo) que no se modelan aquí."
         ]
+      },
+      {
+        "heading": "Fórmula y fuentes",
+        "paragraphs": [
+          "La cuota de capital e intereses se calcula con la fórmula estándar del sistema francés: M = P × r ÷ (1 − (1 + r)⁻ⁿ), donde P es el importe del préstamo tras la entrada, r el tipo anual dividido entre 12 y n el número de mensualidades. La tabla de amortización aplica la misma fórmula mes a mes: cada cuota paga primero los intereses del saldo pendiente y el resto reduce el capital.",
+          "El desglose PITI (capital, intereses, impuestos, seguro) y la estimación del PMI siguen las definiciones publicadas por la Oficina para la Protección Financiera del Consumidor de EE. UU. (CFPB); las páginas exactas figuran en las fuentes al pie. Las ofertas de cada banco pueden variar por comisiones, redondeos y la gestión de la cuenta de depósito, así que toma el resultado como cifra orientativa, no como una oferta."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Introduce precio de vivienda", "text": "El precio de venta acordado." },
-      { "name": "Establece % de entrada", "text": "20% evita PMI; menos lo activa." },
-      { "name": "Introduce tasa y plazo", "text": "Tasa anual como porcentaje, plazo en años (comúnmente 15 o 30)." },
-      { "name": "Añade costes recurrentes", "text": "Impuesto anual, seguro anual, comunidad mensual." },
-      { "name": "Lee el desglose", "text": "Coste mensual total más desglose línea por línea." }
+      {
+        "name": "Introduce precio de vivienda",
+        "text": "El precio de venta acordado."
+      },
+      {
+        "name": "Establece % de entrada",
+        "text": "20% evita PMI; menos lo activa."
+      },
+      {
+        "name": "Introduce tasa y plazo",
+        "text": "Tasa anual como porcentaje, plazo en años (comúnmente 15 o 30)."
+      },
+      {
+        "name": "Añade costes recurrentes",
+        "text": "Impuesto anual, seguro anual, comunidad mensual."
+      },
+      {
+        "name": "Lee el desglose",
+        "text": "Coste mensual total más desglose línea por línea."
+      }
     ]
   },
   "faq": [
-    { "q": "¿Cuál es la diferencia con una calculadora básica de préstamo?", "a": "Esta añade impuestos, seguro, PMI y comunidad — los costes reales más allá de solo principal e interés. Usa loan-calculator para préstamos no de vivienda." },
-    { "q": "¿La estimación PMI es precisa?", "a": "Aproximada. PMI varía de 0.3% a 1.5% por año dependiendo de puntaje de crédito, entrada y tipo de préstamo. Usamos 0.5% como cifra típica de rango medio." },
-    { "q": "¿Hipoteca a 15 o 30 años?", "a": "15 años ahorra interés sustancial pero duplica el P&I mensual. 30 años ofrece flexibilidad. Elige según flujo de caja y otras opciones de inversión. La calculadora muestra interés total por cada plazo." },
-    { "q": "¿Cómo encuentro mi tasa de impuesto a la propiedad?", "a": "Busca '[tu condado] tasa de impuesto a la propiedad' o consulta el sitio web del tasador del condado. Tasa típica EE.UU. es 1-2% del valor de vivienda anualmente." },
-    { "q": "¿Debo incluir HOA?", "a": "Solo si tu vivienda la tiene. Las HOA varían de $0 (sin HOA) a $1,000+/mes para edificios con muchas amenidades." },
-    { "q": "¿Por qué difiere mi pago real de hipoteca?", "a": "Los prestamistas pueden incluir escrow para impuestos/seguro de forma diferente, pueden agrupar PMI en la tasa (LPMI) y pueden cobrar tarifas que esta calculadora no modela. Siempre verifica el Loan Estimate oficial del prestamista." },
-    { "q": "¿Esto considera refinanciación?", "a": "No. Ejecuta la calculadora con la nueva tasa después de refinanciar para el pago actualizado." },
-    { "q": "¿Los datos salen del navegador?", "a": "No. El cálculo se ejecuta localmente." }
+    {
+      "q": "¿Cuál es la diferencia con una calculadora básica de préstamo?",
+      "a": "Esta añade impuestos, seguro, PMI y comunidad — los costes reales más allá de solo principal e interés. Usa loan-calculator para préstamos no de vivienda."
+    },
+    {
+      "q": "¿La estimación PMI es precisa?",
+      "a": "Aproximada. PMI varía de 0.3% a 1.5% por año dependiendo de puntaje de crédito, entrada y tipo de préstamo. Usamos 0.5% como cifra típica de rango medio."
+    },
+    {
+      "q": "¿Hipoteca a 15 o 30 años?",
+      "a": "15 años ahorra interés sustancial pero duplica el P&I mensual. 30 años ofrece flexibilidad. Elige según flujo de caja y otras opciones de inversión. La calculadora muestra interés total por cada plazo."
+    },
+    {
+      "q": "¿Cómo encuentro mi tasa de impuesto a la propiedad?",
+      "a": "Busca '[tu condado] tasa de impuesto a la propiedad' o consulta el sitio web del tasador del condado. Tasa típica EE.UU. es 1-2% del valor de vivienda anualmente."
+    },
+    {
+      "q": "¿Debo incluir HOA?",
+      "a": "Solo si tu vivienda la tiene. Las HOA varían de $0 (sin HOA) a $1,000+/mes para edificios con muchas amenidades."
+    },
+    {
+      "q": "¿Por qué difiere mi pago real de hipoteca?",
+      "a": "Los prestamistas pueden incluir escrow para impuestos/seguro de forma diferente, pueden agrupar PMI en la tasa (LPMI) y pueden cobrar tarifas que esta calculadora no modela. Siempre verifica el Loan Estimate oficial del prestamista."
+    },
+    {
+      "q": "¿Esto considera refinanciación?",
+      "a": "No. Ejecuta la calculadora con la nueva tasa después de refinanciar para el pago actualizado."
+    },
+    {
+      "q": "¿Los datos salen del navegador?",
+      "a": "No. El cálculo se ejecuta localmente."
+    }
   ]
 }

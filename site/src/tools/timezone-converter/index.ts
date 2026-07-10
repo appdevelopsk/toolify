@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "timezone-converter",
     category: "datetime",
     applicationCategory: "UtilitiesApplication",
-    updatedAt: "2026-05-06",
+    updatedAt: "2026-07-10",
     related: ["countdown-timer", "timestamp-converter"],
     primaryKeyword: { en: "timezone converter", ja: "タイムゾーン変換" },
     hasHowTo: true,

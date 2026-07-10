@@ -3,7 +3,13 @@
   "shortDescription": "Erstelle einen vollständigen monatlichen Tilgungsplan für jeden Festzinskredit. Zeigt Zins-/Tilgungsanteil je Zahlung, Restschuld und CSV-Export.",
   "description": "Gib Kreditbetrag, Jahreszinssatz und Laufzeit in Jahren ein. Zeigt die monatliche Rate, Gesamtzinsen, Gesamtzahlungen und einen zeilenweisen Monatsplan, wie jede Zahlung auf Tilgung und Zinsen aufgeteilt wird. Umschalten zwischen vollständiger und jährlicher Zusammenfassung; CSV-Download.",
   "metaDescription": "Kostenloser Tilgungsplan. Monatliche Aufschlüsselung von Tilgung und Zinsen, Gesamtzinsen, Restschuld je Periode. CSV-Export. Browserbasiert.",
-  "keywords": ["Tilgungsplan", "Amortisationstabelle", "monatliche Tilgung Zinsen", "Kreditplan Rechner", "Hypothek Tilgungsplan"],
+  "keywords": [
+    "Tilgungsplan",
+    "Amortisationstabelle",
+    "monatliche Tilgung Zinsen",
+    "Kreditplan Rechner",
+    "Hypothek Tilgungsplan"
+  ],
   "input": {
     "principal": "Kreditbetrag",
     "ratePct": "Jahreszinssatz %",
@@ -17,10 +23,9 @@
   },
   "schedule": {
     "heading": "Plan",
-    "showAll": "Alle Monate anzeigen",
-    "condense": "Auf Jahresübersicht verdichten",
     "downloadCsv": "CSV herunterladen",
-    "condensedNote": "Verdichtete Ansicht: zeigt ersten Monat, jeden 12. Monat und letzten Monat. Klicke auf ‚Alle Monate anzeigen' für vollständige Details.",
+    "yearTemplate": "Jahr {n}",
+    "expandHint": "Klicken Sie auf ein Jahr, um die monatliche Aufschlüsselung aufzuklappen; der CSV-Export enthält alle Monate.",
     "col": {
       "month": "Monat",
       "payment": "Zahlung",
@@ -54,24 +59,70 @@
           "Keine Sondertilgungsszenarien. Bei Sonderzahlungen ist der Plan danach nicht mehr korrekt. Für Sondertilgungsanalyse mit dem neuen Saldo neu berechnen.",
           "Verzinsung: nimmt monatliche Verzinsung an (Standard für deutsche Hypotheken). Manche Kreditprodukte nutzen tägliche oder einfache Zinsen – dort ist der Plan eine Annäherung."
         ]
+      },
+      {
+        "heading": "Formel und Quellen",
+        "paragraphs": [
+          "Jede Zeile wird rekursiv berechnet: Monatszins = Restschuld × (Jahreszins ÷ 12); Tilgungsanteil = feste Rate − Monatszins; neue Restschuld = alte Restschuld − Tilgungsanteil. Die feste Rate selbst stammt aus der Annuitätenformel M = P × r ÷ (1 − (1 + r)⁻ⁿ).",
+          "Das ist die lehrbuchmäßige Amortisationsrechnung, wie sie Investopedia und die CFPB dokumentieren (siehe Quellen). Reale Tilgungspläne von Banken können durch Rundungskonventionen um wenige Cent abweichen — und deutlicher, wenn das Darlehen taggenau verzinst wird oder variabel verzinst ist."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Kreditbetrag eingeben", "text": "Der geliehene Betrag (Nennbetrag)." },
-      { "name": "Zinssatz eingeben", "text": "Jährlicher Zinssatz. Bei 3,5 % gib 3,5 ein." },
-      { "name": "Laufzeit eingeben", "text": "In Jahren. Typische deutsche Hypotheken haben 10–20 Jahre Festzinsbindung." },
-      { "name": "Zusammenfassung + Plan lesen", "text": "Monatliche Rate, Gesamtzinsen, monatliche Aufschlüsselung, wohin jeder Euro fließt." },
-      { "name": "CSV herunterladen", "text": "Vollständigen Plan für die Tabellenkalkulationsanalyse exportieren." }
+      {
+        "name": "Kreditbetrag eingeben",
+        "text": "Der geliehene Betrag (Nennbetrag)."
+      },
+      {
+        "name": "Zinssatz eingeben",
+        "text": "Jährlicher Zinssatz. Bei 3,5 % gib 3,5 ein."
+      },
+      {
+        "name": "Laufzeit eingeben",
+        "text": "In Jahren. Typische deutsche Hypotheken haben 10–20 Jahre Festzinsbindung."
+      },
+      {
+        "name": "Zusammenfassung + Plan lesen",
+        "text": "Monatliche Rate, Gesamtzinsen, monatliche Aufschlüsselung, wohin jeder Euro fließt."
+      },
+      {
+        "name": "CSV herunterladen",
+        "text": "Vollständigen Plan für die Tabellenkalkulationsanalyse exportieren."
+      }
     ]
   },
   "faq": [
-    { "q": "Warum zeigt mein Kontoauszug andere Zahlen?", "a": "Echte Kreditgeber berechnen Gebühren, Versicherungen und Kontoführungsgebühren in die Monatsrate ein. Dieser Rechner zeigt nur Tilgung + Zinsen. Ziehe diese Zusatzkosten ab, um zu vergleichen." },
-    { "q": "Wie werden Zinsen monatlich berechnet?", "a": "Monatliche Zinsen = aktueller Saldo × monatlicher Zinssatz. Dann Tilgung = monatliche Rate − Zinsen. Neuer Saldo = alter Saldo − Tilgung. Wiederhole für n Monate." },
-    { "q": "Warum erscheinen frühe Zahlungen so ‚verschwendet' für Zinsen?", "a": "Sie sind nicht verschwendet – sie zahlen für den Kredit bei hohem ausstehenden Saldo. Die Mathematik ist ehrlich: hohes Saldo × Zinssatz = hohe Zinsen. Mit sinkendem Saldo sinken auch die Zinsen." },
-    { "q": "Welche Auswirkung hat eine Zinsänderung um 1 Prozentpunkt?", "a": "Ungefähr 10–12 % höhere monatliche Rate und 20–30 % mehr Gesamtzinsen über eine 20-jährige Hypothek. Niedrige Zinsen, wenn möglich, festschreiben." },
-    { "q": "Soll ich jeden Monat extra tilgen?", "a": "Wenn dein Kredit keine Vorfälligkeitsentschädigung hat, ja. Schon 100 € extra pro Monat früh im Kredit spart tausende Euro an Zinsen. Der Plan zeigt die Auswirkung." },
-    { "q": "Was ist ein endfälliger Kredit?", "a": "Ein Kredit, bei dem laufende Raten die Schuld nicht vollständig tilgen und am Ende eine große ‚Balloon'-Zahlung fällig wird. Im deutschen Immobilienmarkt selten; bei Unternehmensfinanzierungen häufiger. Dieser Rechner modelliert keine endfälligen Kredite." },
-    { "q": "Warum sind die Gesamtzinsen bei 30 Jahren so viel höher als bei 15 Jahren?", "a": "Der Zinseszinseffekt wirkt gegen dich. Bei gleichem Zinssatz hat ein 30-jähriger Kredit ungefähr doppelt so viele Gesamtzinsen wie ein 15-jähriger, weil die Hochsaldo-Phase länger andauert." },
-    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Die Berechnung läuft lokal; der CSV-Download wird ebenfalls im Browser erstellt." }
+    {
+      "q": "Warum zeigt mein Kontoauszug andere Zahlen?",
+      "a": "Echte Kreditgeber berechnen Gebühren, Versicherungen und Kontoführungsgebühren in die Monatsrate ein. Dieser Rechner zeigt nur Tilgung + Zinsen. Ziehe diese Zusatzkosten ab, um zu vergleichen."
+    },
+    {
+      "q": "Wie werden Zinsen monatlich berechnet?",
+      "a": "Monatliche Zinsen = aktueller Saldo × monatlicher Zinssatz. Dann Tilgung = monatliche Rate − Zinsen. Neuer Saldo = alter Saldo − Tilgung. Wiederhole für n Monate."
+    },
+    {
+      "q": "Warum erscheinen frühe Zahlungen so ‚verschwendet' für Zinsen?",
+      "a": "Sie sind nicht verschwendet – sie zahlen für den Kredit bei hohem ausstehenden Saldo. Die Mathematik ist ehrlich: hohes Saldo × Zinssatz = hohe Zinsen. Mit sinkendem Saldo sinken auch die Zinsen."
+    },
+    {
+      "q": "Welche Auswirkung hat eine Zinsänderung um 1 Prozentpunkt?",
+      "a": "Ungefähr 10–12 % höhere monatliche Rate und 20–30 % mehr Gesamtzinsen über eine 20-jährige Hypothek. Niedrige Zinsen, wenn möglich, festschreiben."
+    },
+    {
+      "q": "Soll ich jeden Monat extra tilgen?",
+      "a": "Wenn dein Kredit keine Vorfälligkeitsentschädigung hat, ja. Schon 100 € extra pro Monat früh im Kredit spart tausende Euro an Zinsen. Der Plan zeigt die Auswirkung."
+    },
+    {
+      "q": "Was ist ein endfälliger Kredit?",
+      "a": "Ein Kredit, bei dem laufende Raten die Schuld nicht vollständig tilgen und am Ende eine große ‚Balloon'-Zahlung fällig wird. Im deutschen Immobilienmarkt selten; bei Unternehmensfinanzierungen häufiger. Dieser Rechner modelliert keine endfälligen Kredite."
+    },
+    {
+      "q": "Warum sind die Gesamtzinsen bei 30 Jahren so viel höher als bei 15 Jahren?",
+      "a": "Der Zinseszinseffekt wirkt gegen dich. Bei gleichem Zinssatz hat ein 30-jähriger Kredit ungefähr doppelt so viele Gesamtzinsen wie ein 15-jähriger, weil die Hochsaldo-Phase länger andauert."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Die Berechnung läuft lokal; der CSV-Download wird ebenfalls im Browser erstellt."
+    }
   ]
 }

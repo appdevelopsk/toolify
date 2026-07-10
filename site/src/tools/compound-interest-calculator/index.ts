@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "compound-interest-calculator",
     category: "finance",
     applicationCategory: "FinanceApplication",
-    updatedAt: "2026-05-06",
+    updatedAt: "2026-07-10",
     related: ["tip-calculator", "percentage-calculator"],
     primaryKeyword: { en: "compound interest calculator", ja: "複利計算機" },
     hasHowTo: true,

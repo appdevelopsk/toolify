@@ -14,16 +14,20 @@ function addDays(d: Date, days: number): Date {
 
 type Mode = "lmp" | "ultrasound";
 
-// Prenatal milestones by gestational week (typical windows; vary by country/provider).
+// Prenatal milestones by gestational week (typical windows; vary by country/provider),
+// including trimester boundaries (ACOG: 2nd = 14w0d, 3rd = 28w0d) and the 40w due date.
 const MILESTONES: { key: string; week: number }[] = [
   { key: "datingScan", week: 8 },
   { key: "nipt", week: 10 },
   { key: "ntScan", week: 12 },
+  { key: "t2Start", week: 14 },
   { key: "anatomyScan", week: 20 },
   { key: "glucose", week: 26 },
+  { key: "t3Start", week: 28 },
   { key: "tdap", week: 32 },
   { key: "gbs", week: 36 },
   { key: "fullTerm", week: 37 },
+  { key: "edd", week: 40 },
 ];
 
 export default function PregnancyWeekCalculator() {
@@ -63,7 +67,8 @@ export default function PregnancyWeekCalculator() {
     const fetalTotal = Math.max(0, gaDaysTotal - 14);
     const fetalW = Math.floor(fetalTotal / 7);
     const fetalD = fetalTotal % 7;
-    const trimester = weeks < 13 ? 1 : weeks < 27 ? 2 : 3;
+    // ACOG boundaries: 1st = 0–13w6d, 2nd = 14w0d–27w6d, 3rd = 28w0d+
+    const trimester = weeks <= 13 ? 1 : weeks <= 27 ? 2 : 3;
     const dueDate = addDays(anchor, 280);
     const daysToDue = Math.floor((dueDate.getTime() - now.getTime()) / 86400000);
     const progressPct = Math.min(100, (gaDaysTotal / 280) * 100);

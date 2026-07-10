@@ -2,8 +2,11 @@
 
 import { useMemo, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { useLocalDraft } from "@/lib/hooks/useLocalDraft";
+import { DraftNotice } from "@/lib/hooks/DraftNotice";
+import { defaultUnitSystem, type UnitSystem } from "@/lib/hooks/useUnitSystem";
 
-type Unit = "metric" | "imperial";
+type Unit = UnitSystem;
 
 function categoryFromBmi(bmi: number, key: (k: string) => string) {
   if (bmi < 16) return { key: "severeUnderweight", label: key("cat.severeUnderweight") };
@@ -19,9 +22,15 @@ function categoryFromBmi(bmi: number, key: (k: string) => string) {
 export default function BmiCalculator() {
   const t = useTranslations("tools.bmi-calculator");
   const locale = useLocale();
-  const [unit, setUnit] = useState<Unit>(locale === "en" ? "imperial" : "metric");
+  const [unit, setUnit] = useState<Unit>(defaultUnitSystem(locale));
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
+
+  const draft = useLocalDraft("bmi-calculator", { unit, height, weight }, (d) => {
+    if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);
+    if (typeof d.height === "string") setHeight(d.height);
+    if (typeof d.weight === "string") setWeight(d.weight);
+  });
 
   const result = useMemo(() => {
     const h = parseFloat(height);
@@ -101,6 +110,13 @@ export default function BmiCalculator() {
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("result.empty")}</div>
         )}
       </div>
+
+      <DraftNotice
+        draft={draft}
+        privacyNote={t("draft.privacyNote")}
+        restoredLabel={t("draft.restored")}
+        clearLabel={t("draft.clear")}
+      />
     </div>
   );
 }

@@ -3,7 +3,13 @@
   "shortDescription": "Calculate the monthly payment for any fixed-rate loan, plus total amount paid and total interest over the life of the loan.",
   "description": "Enter the loan principal, annual interest rate, and term in years to see the monthly payment, total amount paid, and total interest. Works for mortgages, car loans, student loans, and personal loans.",
   "metaDescription": "Free loan calculator for mortgages, car loans, and personal loans. Computes monthly payment, total paid, and total interest from principal, rate, and term.",
-  "keywords": ["loan calculator", "monthly payment calculator", "mortgage calculator", "car loan calculator", "interest"],
+  "keywords": [
+    "loan calculator",
+    "monthly payment calculator",
+    "mortgage calculator",
+    "car loan calculator",
+    "interest"
+  ],
   "empty": "Fill in all fields to see the loan breakdown.",
   "input": {
     "principal": "Loan amount",
@@ -14,6 +20,19 @@
     "monthly": "Monthly payment",
     "totalPaid": "Total paid",
     "totalInterest": "Total interest"
+  },
+  "schedule": {
+    "heading": "Schedule",
+    "downloadCsv": "Download CSV",
+    "yearTemplate": "Year {n}",
+    "expandHint": "Click a year to expand its monthly breakdown; the CSV export includes every month.",
+    "col": {
+      "month": "Month",
+      "payment": "Payment",
+      "principal": "Principal",
+      "interest": "Interest",
+      "balance": "Balance"
+    }
   },
   "article": {
     "sections": [
@@ -38,23 +57,66 @@
           "On a $250,000 mortgage at 4.5%, going from 30 to 15 years roughly doubles the monthly payment ($1,267 → $1,912) but cuts total interest from $206,000 to $94,000 — a $112,000 lifetime savings. Higher monthly, much lower total.",
           "Going from 4.5% to 6.5% on the same 30-year mortgage raises the monthly to $1,580 and increases total interest from $206,000 to $319,000. A 2 percentage-point rate change roughly increases total cost by 50%. This is why locking a rate matters."
         ]
+      },
+      {
+        "heading": "Formula and sources",
+        "paragraphs": [
+          "Monthly payment = P × r ÷ (1 − (1 + r)⁻ⁿ) — the fixed-installment (annuity) formula banks use for personal loans, student loans, and most other amortizing credit. P is the amount borrowed, r is the annual interest rate divided by 12, and n is the term in months.",
+          "The schedule table applies this formula iteratively, which is exactly how the CFPB describes amortization: early payments are interest-heavy, later ones principal-heavy. The official definitions are linked under Sources at the bottom of the page."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Enter the loan amount", "text": "The principal you're borrowing." },
-      { "name": "Enter the annual rate", "text": "As advertised by the lender (e.g., 4.5 for 4.5%)." },
-      { "name": "Enter the term", "text": "In years. Common: 30 for mortgages, 5-7 for car loans, 10-25 for student loans." },
-      { "name": "Read the breakdown", "text": "Monthly payment, lifetime cost, total interest." }
+      {
+        "name": "Enter the loan amount",
+        "text": "The principal you're borrowing."
+      },
+      {
+        "name": "Enter the annual rate",
+        "text": "As advertised by the lender (e.g., 4.5 for 4.5%)."
+      },
+      {
+        "name": "Enter the term",
+        "text": "In years. Common: 30 for mortgages, 5-7 for car loans, 10-25 for student loans."
+      },
+      {
+        "name": "Read the breakdown",
+        "text": "Monthly payment, lifetime cost, total interest."
+      }
     ]
   },
   "faq": [
-    { "q": "Why doesn't the monthly include taxes and insurance?", "a": "Because those vary widely by location, lender, and individual. The 'principal and interest' (P&I) figure is universal; add your local taxes and insurance separately." },
-    { "q": "What's the difference between APR and interest rate?", "a": "Interest rate is the cost of the money. APR includes the rate plus fees expressed annually. Use the interest rate for monthly payment math; use APR to compare loan offers." },
-    { "q": "How do extra payments affect the loan?", "a": "Each extra dollar applied to principal saves multiple dollars of future interest. Online amortization tables can show the new payoff date." },
-    { "q": "Should I take a 15-year or 30-year mortgage?", "a": "15-year saves a lot of interest and builds equity faster. 30-year has lower monthly payments and more flexibility. Choose based on your monthly cash flow and other investment options." },
-    { "q": "What's the difference between simple and compound interest?", "a": "Mortgages, auto, and personal loans use simple monthly interest (no compounding within the month). Credit cards compound daily, which is why they're more expensive than the headline APR suggests." },
-    { "q": "Why is early payment mostly interest?", "a": "At month 1, the entire principal accrues interest. As principal shrinks, less interest accrues, so more of each fixed payment goes to principal." },
-    { "q": "Does the calculator handle adjustable-rate loans?", "a": "Not directly — it assumes a fixed rate. For ARMs, run the calculator at the initial rate and again at the assumed reset rate to see the range." },
-    { "q": "Is the data sent anywhere?", "a": "No. All math runs in your browser." }
+    {
+      "q": "Why doesn't the monthly include taxes and insurance?",
+      "a": "Because those vary widely by location, lender, and individual. The 'principal and interest' (P&I) figure is universal; add your local taxes and insurance separately."
+    },
+    {
+      "q": "What's the difference between APR and interest rate?",
+      "a": "Interest rate is the cost of the money. APR includes the rate plus fees expressed annually. Use the interest rate for monthly payment math; use APR to compare loan offers."
+    },
+    {
+      "q": "How do extra payments affect the loan?",
+      "a": "Each extra dollar applied to principal saves multiple dollars of future interest. Online amortization tables can show the new payoff date."
+    },
+    {
+      "q": "Should I take a 15-year or 30-year mortgage?",
+      "a": "15-year saves a lot of interest and builds equity faster. 30-year has lower monthly payments and more flexibility. Choose based on your monthly cash flow and other investment options."
+    },
+    {
+      "q": "What's the difference between simple and compound interest?",
+      "a": "Mortgages, auto, and personal loans use simple monthly interest (no compounding within the month). Credit cards compound daily, which is why they're more expensive than the headline APR suggests."
+    },
+    {
+      "q": "Why is early payment mostly interest?",
+      "a": "At month 1, the entire principal accrues interest. As principal shrinks, less interest accrues, so more of each fixed payment goes to principal."
+    },
+    {
+      "q": "Does the calculator handle adjustable-rate loans?",
+      "a": "Not directly — it assumes a fixed rate. For ARMs, run the calculator at the initial rate and again at the assumed reset rate to see the range."
+    },
+    {
+      "q": "Is the data sent anywhere?",
+      "a": "No. All math runs in your browser."
+    }
   ]
 }

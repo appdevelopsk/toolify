@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useLocalDraft } from "@/lib/hooks/useLocalDraft";
+import { DraftNotice } from "@/lib/hooks/DraftNotice";
 
 const PCT_TABLE: { reps: number; pct: number }[] = [
   { reps: 1, pct: 100 },
@@ -23,6 +25,11 @@ export default function OneRepMaxCalculator() {
   const locale = useLocale();
   const [weight, setWeight] = useState("100");
   const [reps, setReps] = useState("5");
+
+  const draft = useLocalDraft("one-rep-max-calculator", { weight, reps }, (d) => {
+    if (typeof d.weight === "string") setWeight(d.weight);
+    if (typeof d.reps === "string") setReps(d.reps);
+  });
 
   const result = useMemo(() => {
     const w = parseFloat(weight);
@@ -97,6 +104,13 @@ export default function OneRepMaxCalculator() {
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
+
+      <DraftNotice
+        draft={draft}
+        privacyNote={t("draft.privacyNote")}
+        restoredLabel={t("draft.restored")}
+        clearLabel={t("draft.clear")}
+      />
     </div>
   );
 }

@@ -3,7 +3,13 @@
   "shortDescription": "Calcola la rata mensile per qualsiasi prestito a tasso fisso, più il totale pagato e gli interessi totali nel corso della vita del prestito.",
   "description": "Inserisci il capitale del prestito, il tasso d'interesse annuo e la durata in anni per vedere la rata mensile, il totale pagato e gli interessi totali. Funziona per mutui, prestiti auto, prestiti studenteschi e prestiti personali.",
   "metaDescription": "Calcolatore di prestiti gratuito per mutui, prestiti auto e personali. Calcola rata mensile, totale pagato e interessi totali da capitale, tasso e durata.",
-  "keywords": ["calcolatore prestiti", "calcolatore rata mensile", "calcolatore mutuo", "calcolatore prestito auto", "interessi"],
+  "keywords": [
+    "calcolatore prestiti",
+    "calcolatore rata mensile",
+    "calcolatore mutuo",
+    "calcolatore prestito auto",
+    "interessi"
+  ],
   "empty": "Compila tutti i campi per vedere il dettaglio del prestito.",
   "input": {
     "principal": "Importo del prestito",
@@ -14,6 +20,19 @@
     "monthly": "Rata mensile",
     "totalPaid": "Totale pagato",
     "totalInterest": "Interessi totali"
+  },
+  "schedule": {
+    "heading": "Piano di rimborso",
+    "downloadCsv": "Scarica CSV",
+    "yearTemplate": "Anno {n}",
+    "expandHint": "Fai clic su un anno per aprire il dettaglio mese per mese; l'esportazione CSV include tutti i mesi.",
+    "col": {
+      "month": "Mese",
+      "payment": "Rata",
+      "principal": "Capitale",
+      "interest": "Interessi",
+      "balance": "Saldo"
+    }
   },
   "article": {
     "sections": [
@@ -38,23 +57,66 @@
           "Su un mutuo da €250.000 al 4,5%, passare da 30 a 15 anni circa raddoppia la rata mensile (€1.267 → €1.912) ma riduce gli interessi totali da €206.000 a €94.000 — un risparmio a vita di €112.000. Rata più alta, totale molto più basso.",
           "Passare dal 4,5% al 6,5% sullo stesso mutuo a 30 anni porta la rata a €1.580 e aumenta gli interessi totali da €206.000 a €319.000. Una variazione del tasso di 2 punti percentuali aumenta il costo totale di circa il 50%. Ecco perché bloccare un tasso è importante."
         ]
+      },
+      {
+        "heading": "Formula e fonti",
+        "paragraphs": [
+          "Rata mensile = P × r ÷ (1 − (1 + r)⁻ⁿ): la formula a rata costante (ammortamento alla francese) usata dalle banche per prestiti personali, prestiti studenteschi e la maggior parte dei finanziamenti rateali. P è il capitale erogato, r il tasso annuo diviso 12, n la durata in mesi.",
+          "La tabella delle rate applica questa formula in modo iterativo, esattamente come il CFPB descrive l'ammortamento: le prime rate sono composte soprattutto da interessi, le ultime soprattutto da capitale. Le definizioni ufficiali sono raggiungibili dalle fonti a fondo pagina."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Inserisci l'importo del prestito", "text": "Il capitale che stai prendendo in prestito." },
-      { "name": "Inserisci il tasso annuo", "text": "Come pubblicizzato dal prestatore (es. 4,5 per 4,5%)." },
-      { "name": "Inserisci la durata", "text": "In anni. Comune: 20-30 per i mutui, 5-7 per i prestiti auto, 10-25 per i prestiti studenteschi." },
-      { "name": "Leggi il dettaglio", "text": "Rata mensile, costo totale, interessi totali." }
+      {
+        "name": "Inserisci l'importo del prestito",
+        "text": "Il capitale che stai prendendo in prestito."
+      },
+      {
+        "name": "Inserisci il tasso annuo",
+        "text": "Come pubblicizzato dal prestatore (es. 4,5 per 4,5%)."
+      },
+      {
+        "name": "Inserisci la durata",
+        "text": "In anni. Comune: 20-30 per i mutui, 5-7 per i prestiti auto, 10-25 per i prestiti studenteschi."
+      },
+      {
+        "name": "Leggi il dettaglio",
+        "text": "Rata mensile, costo totale, interessi totali."
+      }
     ]
   },
   "faq": [
-    { "q": "Perché la rata mensile non include tasse e assicurazioni?", "a": "Perché variano molto in base alla posizione, al prestatore e all'individuo. La cifra 'capitale e interessi' (P&I) è universale; aggiungi separatamente le tue tasse e assicurazioni locali." },
-    { "q": "Qual è la differenza tra TAEG e tasso d'interesse?", "a": "Il tasso d'interesse è il costo del denaro. Il TAEG include il tasso più le commissioni espresse annualmente. Usa il tasso d'interesse per il calcolo della rata mensile; usa il TAEG per confrontare le offerte di prestito." },
-    { "q": "Come influiscono i pagamenti extra sul prestito?", "a": "Ogni euro extra applicato al capitale risparmia molteplici euro di interessi futuri. Le tabelle di ammortamento online possono mostrare la nuova data di estinzione." },
-    { "q": "Dovrei scegliere un mutuo a 15 o 30 anni?", "a": "15 anni risparmia molti interessi e costruisce equity più velocemente. 30 anni ha rate mensili più basse e maggiore flessibilità. Scegli in base al tuo flusso di cassa mensile e ad altre opzioni d'investimento." },
-    { "q": "Qual è la differenza tra interessi semplici e composti?", "a": "Mutui, auto e prestiti personali usano interessi mensili semplici (senza capitalizzazione all'interno del mese). Le carte di credito si capitalizzano quotidianamente, ecco perché sono più costose di quanto suggerisca il TAEG nominale." },
-    { "q": "Perché il pagamento iniziale è principalmente interessi?", "a": "Al mese 1, sull'intero capitale maturano interessi. Man mano che il capitale si riduce, maturano meno interessi, quindi una quota maggiore di ogni rata fissa va al capitale." },
-    { "q": "Il calcolatore gestisce i prestiti a tasso variabile?", "a": "Non direttamente — assume un tasso fisso. Per i mutui a tasso variabile, esegui il calcolatore al tasso iniziale e di nuovo al tasso di reset previsto per vedere l'intervallo." },
-    { "q": "I dati vengono inviati da qualche parte?", "a": "No. Tutti i calcoli vengono eseguiti nel tuo browser." }
+    {
+      "q": "Perché la rata mensile non include tasse e assicurazioni?",
+      "a": "Perché variano molto in base alla posizione, al prestatore e all'individuo. La cifra 'capitale e interessi' (P&I) è universale; aggiungi separatamente le tue tasse e assicurazioni locali."
+    },
+    {
+      "q": "Qual è la differenza tra TAEG e tasso d'interesse?",
+      "a": "Il tasso d'interesse è il costo del denaro. Il TAEG include il tasso più le commissioni espresse annualmente. Usa il tasso d'interesse per il calcolo della rata mensile; usa il TAEG per confrontare le offerte di prestito."
+    },
+    {
+      "q": "Come influiscono i pagamenti extra sul prestito?",
+      "a": "Ogni euro extra applicato al capitale risparmia molteplici euro di interessi futuri. Le tabelle di ammortamento online possono mostrare la nuova data di estinzione."
+    },
+    {
+      "q": "Dovrei scegliere un mutuo a 15 o 30 anni?",
+      "a": "15 anni risparmia molti interessi e costruisce equity più velocemente. 30 anni ha rate mensili più basse e maggiore flessibilità. Scegli in base al tuo flusso di cassa mensile e ad altre opzioni d'investimento."
+    },
+    {
+      "q": "Qual è la differenza tra interessi semplici e composti?",
+      "a": "Mutui, auto e prestiti personali usano interessi mensili semplici (senza capitalizzazione all'interno del mese). Le carte di credito si capitalizzano quotidianamente, ecco perché sono più costose di quanto suggerisca il TAEG nominale."
+    },
+    {
+      "q": "Perché il pagamento iniziale è principalmente interessi?",
+      "a": "Al mese 1, sull'intero capitale maturano interessi. Man mano che il capitale si riduce, maturano meno interessi, quindi una quota maggiore di ogni rata fissa va al capitale."
+    },
+    {
+      "q": "Il calcolatore gestisce i prestiti a tasso variabile?",
+      "a": "Non direttamente — assume un tasso fisso. Per i mutui a tasso variabile, esegui il calcolatore al tasso iniziale e di nuovo al tasso di reset previsto per vedere l'intervallo."
+    },
+    {
+      "q": "I dati vengono inviati da qualche parte?",
+      "a": "No. Tutti i calcoli vengono eseguiti nel tuo browser."
+    }
   ]
 }

@@ -3,7 +3,13 @@
   "shortDescription": "Tính khoản thanh toán hàng tháng cho bất kỳ khoản vay lãi suất cố định nào, cùng tổng tiền đã trả và tổng lãi trong suốt thời gian vay.",
   "description": "Nhập vốn gốc vay, lãi suất hàng năm và thời hạn tính bằng năm để xem khoản thanh toán hàng tháng, tổng tiền đã trả và tổng lãi. Hoạt động cho vay mua nhà, vay mua xe, vay sinh viên và vay cá nhân.",
   "metaDescription": "Máy tính khoản vay miễn phí cho vay mua nhà, vay mua xe và vay cá nhân. Tính khoản thanh toán hàng tháng, tổng tiền đã trả và tổng lãi từ vốn gốc, lãi suất và thời hạn.",
-  "keywords": ["máy tính khoản vay", "máy tính thanh toán hàng tháng", "máy tính vay mua nhà", "máy tính vay mua xe", "lãi suất"],
+  "keywords": [
+    "máy tính khoản vay",
+    "máy tính thanh toán hàng tháng",
+    "máy tính vay mua nhà",
+    "máy tính vay mua xe",
+    "lãi suất"
+  ],
   "empty": "Điền tất cả các trường để xem phân tích khoản vay.",
   "input": {
     "principal": "Số tiền vay",
@@ -14,6 +20,19 @@
     "monthly": "Thanh toán hàng tháng",
     "totalPaid": "Tổng tiền đã trả",
     "totalInterest": "Tổng lãi"
+  },
+  "schedule": {
+    "heading": "Lịch trình",
+    "downloadCsv": "Tải xuống CSV",
+    "yearTemplate": "Năm {n}",
+    "expandHint": "Nhấp vào một năm để mở chi tiết theo từng tháng; tệp CSV xuất ra bao gồm tất cả các tháng.",
+    "col": {
+      "month": "Tháng",
+      "payment": "Thanh toán",
+      "principal": "Gốc",
+      "interest": "Lãi",
+      "balance": "Số dư"
+    }
   },
   "article": {
     "sections": [
@@ -38,23 +57,66 @@
           "Với khoản vay mua nhà 2 tỷ₫ lãi suất 8%, chuyển từ 30 xuống 15 năm gần như tăng gấp đôi khoản thanh toán hàng tháng nhưng cắt giảm đáng kể tổng lãi. Hàng tháng cao hơn, tổng thấp hơn nhiều.",
           "Tăng từ 8% lên 10% với cùng khoản vay 30 năm làm tăng đáng kể khoản thanh toán hàng tháng và tổng lãi. Thay đổi lãi suất 2 điểm phần trăm có thể tăng tổng chi phí thêm 50%. Đây là lý do tại sao khóa lãi suất quan trọng."
         ]
+      },
+      {
+        "heading": "Công thức và nguồn tham khảo",
+        "paragraphs": [
+          "Khoản trả hằng tháng = P × r ÷ (1 − (1 + r)⁻ⁿ) — công thức trả góp cố định (niên kim) mà ngân hàng dùng cho vay tiêu dùng, vay học phí và hầu hết các khoản vay trả dần khác. P là số tiền vay, r là lãi suất năm chia 12, n là kỳ hạn tính bằng tháng.",
+          "Bảng lịch trả nợ áp dụng công thức này lặp lại từng tháng, đúng như cách CFPB mô tả quá trình khấu trừ dần: các kỳ đầu chủ yếu là lãi, các kỳ cuối chủ yếu là gốc. Định nghĩa chính thức có trong các liên kết ở mục nguồn cuối trang."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Nhập số tiền vay", "text": "Vốn gốc bạn đang vay." },
-      { "name": "Nhập lãi suất hàng năm", "text": "Theo quảng cáo của người cho vay (ví dụ 8,5 cho 8,5%)." },
-      { "name": "Nhập thời hạn", "text": "Tính bằng năm. Phổ biến: 20-25 năm cho vay mua nhà, 5-7 năm cho vay mua xe, 5-15 năm cho vay cá nhân." },
-      { "name": "Đọc phân tích", "text": "Thanh toán hàng tháng, chi phí suốt đời, tổng lãi." }
+      {
+        "name": "Nhập số tiền vay",
+        "text": "Vốn gốc bạn đang vay."
+      },
+      {
+        "name": "Nhập lãi suất hàng năm",
+        "text": "Theo quảng cáo của người cho vay (ví dụ 8,5 cho 8,5%)."
+      },
+      {
+        "name": "Nhập thời hạn",
+        "text": "Tính bằng năm. Phổ biến: 20-25 năm cho vay mua nhà, 5-7 năm cho vay mua xe, 5-15 năm cho vay cá nhân."
+      },
+      {
+        "name": "Đọc phân tích",
+        "text": "Thanh toán hàng tháng, chi phí suốt đời, tổng lãi."
+      }
     ]
   },
   "faq": [
-    { "q": "Tại sao hàng tháng không bao gồm thuế và bảo hiểm?", "a": "Vì những khoản đó thay đổi rất nhiều theo địa điểm, người cho vay và cá nhân. Con số 'gốc và lãi' (P&I) là phổ quát; hãy thêm riêng thuế và bảo hiểm địa phương của bạn." },
-    { "q": "Sự khác biệt giữa APR và lãi suất là gì?", "a": "Lãi suất là chi phí của tiền. APR bao gồm lãi suất cộng phí được thể hiện hàng năm. Dùng lãi suất cho toán học thanh toán hàng tháng; dùng APR để so sánh các đề nghị vay." },
-    { "q": "Khoản thanh toán bổ sung ảnh hưởng đến khoản vay như thế nào?", "a": "Mỗi đồng bổ sung áp dụng vào vốn gốc tiết kiệm nhiều đồng lãi trong tương lai. Các bảng khấu hao trực tuyến có thể hiển thị ngày trả hết mới." },
-    { "q": "Tôi có nên chọn thế chấp 15 hay 30 năm không?", "a": "15 năm tiết kiệm nhiều lãi và tích lũy vốn chủ sở hữu nhanh hơn. 30 năm có khoản thanh toán hàng tháng thấp hơn và linh hoạt hơn. Chọn dựa trên dòng tiền hàng tháng và các lựa chọn đầu tư khác của bạn." },
-    { "q": "Sự khác biệt giữa lãi đơn và lãi kép là gì?", "a": "Vay mua nhà, xe và cá nhân sử dụng lãi đơn hàng tháng (không tính lãi kép trong tháng). Thẻ tín dụng tính lãi kép hàng ngày, đó là lý do tại sao chúng đắt hơn so với APR được quảng cáo." },
-    { "q": "Tại sao các khoản thanh toán đầu chủ yếu là lãi?", "a": "Ở tháng 1, toàn bộ vốn gốc phát sinh lãi. Khi vốn gốc giảm, ít lãi phát sinh hơn, vì vậy nhiều hơn mỗi khoản thanh toán cố định sẽ vào gốc." },
-    { "q": "Máy tính có xử lý khoản vay lãi suất thay đổi không?", "a": "Không trực tiếp — nó giả định lãi suất cố định. Với khoản vay ARM, chạy máy tính ở lãi suất ban đầu và một lần nữa ở lãi suất reset giả định để xem phạm vi." },
-    { "q": "Dữ liệu có được gửi đi đâu không?", "a": "Không. Tất cả toán học chạy trong trình duyệt của bạn." }
+    {
+      "q": "Tại sao hàng tháng không bao gồm thuế và bảo hiểm?",
+      "a": "Vì những khoản đó thay đổi rất nhiều theo địa điểm, người cho vay và cá nhân. Con số 'gốc và lãi' (P&I) là phổ quát; hãy thêm riêng thuế và bảo hiểm địa phương của bạn."
+    },
+    {
+      "q": "Sự khác biệt giữa APR và lãi suất là gì?",
+      "a": "Lãi suất là chi phí của tiền. APR bao gồm lãi suất cộng phí được thể hiện hàng năm. Dùng lãi suất cho toán học thanh toán hàng tháng; dùng APR để so sánh các đề nghị vay."
+    },
+    {
+      "q": "Khoản thanh toán bổ sung ảnh hưởng đến khoản vay như thế nào?",
+      "a": "Mỗi đồng bổ sung áp dụng vào vốn gốc tiết kiệm nhiều đồng lãi trong tương lai. Các bảng khấu hao trực tuyến có thể hiển thị ngày trả hết mới."
+    },
+    {
+      "q": "Tôi có nên chọn thế chấp 15 hay 30 năm không?",
+      "a": "15 năm tiết kiệm nhiều lãi và tích lũy vốn chủ sở hữu nhanh hơn. 30 năm có khoản thanh toán hàng tháng thấp hơn và linh hoạt hơn. Chọn dựa trên dòng tiền hàng tháng và các lựa chọn đầu tư khác của bạn."
+    },
+    {
+      "q": "Sự khác biệt giữa lãi đơn và lãi kép là gì?",
+      "a": "Vay mua nhà, xe và cá nhân sử dụng lãi đơn hàng tháng (không tính lãi kép trong tháng). Thẻ tín dụng tính lãi kép hàng ngày, đó là lý do tại sao chúng đắt hơn so với APR được quảng cáo."
+    },
+    {
+      "q": "Tại sao các khoản thanh toán đầu chủ yếu là lãi?",
+      "a": "Ở tháng 1, toàn bộ vốn gốc phát sinh lãi. Khi vốn gốc giảm, ít lãi phát sinh hơn, vì vậy nhiều hơn mỗi khoản thanh toán cố định sẽ vào gốc."
+    },
+    {
+      "q": "Máy tính có xử lý khoản vay lãi suất thay đổi không?",
+      "a": "Không trực tiếp — nó giả định lãi suất cố định. Với khoản vay ARM, chạy máy tính ở lãi suất ban đầu và một lần nữa ở lãi suất reset giả định để xem phạm vi."
+    },
+    {
+      "q": "Dữ liệu có được gửi đi đâu không?",
+      "a": "Không. Tất cả toán học chạy trong trình duyệt của bạn."
+    }
   ]
 }

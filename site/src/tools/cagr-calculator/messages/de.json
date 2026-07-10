@@ -3,7 +3,13 @@
   "shortDescription": "Berechne die durchschnittliche jährliche Wachstumsrate aus Anfangswert, Endwert und Anzahl der Jahre. Liefert CAGR %, Gesamtrendite % und Multiplikator.",
   "description": "Gib Anfangswert, Endwert und den Haltezeitraum in Jahren ein. Der Rechner gibt CAGR (den annualisierten Zinssatz, der dasselbe Endergebnis erzeugt hätte), die Gesamtrendite in Prozent, den Wertmultiplikator und den absoluten Gewinn zurück.",
   "metaDescription": "Kostenloser CAGR-Rechner. Durchschnittliche jährliche Wachstumsrate aus Start, Ende und Jahren berechnen. Gibt CAGR, Gesamtrendite und Wachstumsmultiplikator zurück.",
-  "keywords": ["CAGR Rechner", "durchschnittliche jährliche Wachstumsrate", "annualisierte Rendite", "Investitionswachstum", "CAGR Formel"],
+  "keywords": [
+    "CAGR Rechner",
+    "durchschnittliche jährliche Wachstumsrate",
+    "annualisierte Rendite",
+    "Investitionswachstum",
+    "CAGR Formel"
+  ],
   "empty": "Gib Start, Ende und Jahre ein.",
   "input": {
     "start": "Anfangswert",
@@ -15,6 +21,10 @@
     "totalReturn": "Gesamtrendite",
     "multiplier": "Multiplikator",
     "absoluteGain": "Absoluter Gewinn"
+  },
+  "chart": {
+    "heading": "Wertverlauf bei der berechneten CAGR",
+    "caption": "Die Kurve unterstellt ein völlig gleichmäßiges Wachstum mit der berechneten CAGR — reale Renditen schwanken von Jahr zu Jahr darum herum."
   },
   "article": {
     "sections": [
@@ -41,23 +51,66 @@
           "Immobilien: 5–8 % CAGR Preissteigerung, plus Mietrendite separat.",
           "Inflation: 2–3 % in stabilen Volkswirtschaften. Alles darunter ist real ein Verlust."
         ]
+      },
+      {
+        "heading": "Formel und Quellen",
+        "paragraphs": [
+          "CAGR = (Endwert ÷ Anfangswert)^(1 ÷ Jahre) − 1. Sie beantwortet genau eine Frage: Mit welcher konstanten Jahresrate hätte die Anlage wachsen müssen, um vom Anfangs- zum Endwert zu gelangen? Das Diagramm zeichnet exakt diesen geglätteten Pfad.",
+          "Die Definition folgt dem Referenzartikel von Investopedia zur durchschnittlichen jährlichen Wachstumsrate (siehe Quellen). Die CAGR blendet Schwankungen bewusst aus — zwei Anlagen mit identischer CAGR können völlig unterschiedliche Risiken tragen. Kombinieren Sie sie daher mit Kennzahlen wie maximalem Drawdown oder Volatilität."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Anfangswert eingeben", "text": "Investitionswert zu Beginn." },
-      { "name": "Endwert eingeben", "text": "Wert am Ende (oder aktueller Wert)." },
-      { "name": "Haltedauer in Jahren eingeben", "text": "Dezimalzahlen möglich (0,5 = 6 Monate)." },
-      { "name": "CAGR und Kontext ablesen", "text": "CAGR plus Gesamtrendite %, Multiplikator und absoluter Gewinn." }
+      {
+        "name": "Anfangswert eingeben",
+        "text": "Investitionswert zu Beginn."
+      },
+      {
+        "name": "Endwert eingeben",
+        "text": "Wert am Ende (oder aktueller Wert)."
+      },
+      {
+        "name": "Haltedauer in Jahren eingeben",
+        "text": "Dezimalzahlen möglich (0,5 = 6 Monate)."
+      },
+      {
+        "name": "CAGR und Kontext ablesen",
+        "text": "CAGR plus Gesamtrendite %, Multiplikator und absoluter Gewinn."
+      }
     ]
   },
   "faq": [
-    { "q": "Was ist der Unterschied zwischen CAGR und der durchschnittlichen Jahresrendite?", "a": "Das arithmetische Mittel der Jahresrenditen ignoriert die Zinseszinseffekte und ist irreführend. -50 % dann +50 % hat einen Mittelwert von 0 %, aber nur 0,75x des Endwerts (-25 % Gesamtverlust). Der CAGR erfasst das tatsächliche aufgezinste Ergebnis." },
-    { "q": "Kann CAGR negativ sein?", "a": "Ja – wenn dein Endwert kleiner als der Anfangswert ist. -10 % CAGR über 5 Jahre bedeutet 0,9^5 ≈ 0,59x des Starts, also 41 % Gesamtverlust." },
-    { "q": "Soll ich reale oder nominale Werte verwenden?", "a": "Das hängt von der Frage ab. 'Wie viel ist mein Geld gewachsen?' Nominale Werte verwenden. 'Wie viel hat meine Kaufkraft zugenommen?' Inflation vom CAGR abziehen oder inflationsbereinigte Werte verwenden." },
-    { "q": "Warum fühlt sich meine tatsächliche Rendite schlechter an als der CAGR?", "a": "CAGR glättet die Volatilität. Zwei Aktien mit demselben CAGR können sehr unterschiedliche Wege haben – eine stetig bei 7 %, die andere mit 50 % Kurseinbrüchen. Kurseinbrüche schmerzen psychologisch, auch wenn der CAGR identisch ist." },
-    { "q": "Was ist ein 'guter' CAGR?", "a": "Die Inflation (2–3 %) zu schlagen ist die Mindestanforderung. Den S&P 500 (7–10 %) zu erreichen ist solide. Ihn nach Gebühren und Steuern dauerhaft zu erreichen ist schwerer als es klingt." },
-    { "q": "Wie verhält sich CAGR zur 72er-Regel?", "a": "Die 72er-Regel ist der umgekehrte Anwendungsfall: 'Bei diesem CAGR, wie lange dauert es, sich zu verdoppeln?' = 72 / CAGR. Also verdoppelt sich ein Wert bei 10 % CAGR in ca. 7,2 Jahren." },
-    { "q": "Funktioniert das auch für schrumpfende Unternehmen?", "a": "Ja – negativer CAGR funktioniert mathematisch. Wird in der Unternehmensanalyse zur Quantifizierung von Rückgangsraten verwendet." },
-    { "q": "Verlassen die Daten meinen Browser?", "a": "Nein. Die Berechnung läuft lokal; nichts wird an einen Server gesendet." }
+    {
+      "q": "Was ist der Unterschied zwischen CAGR und der durchschnittlichen Jahresrendite?",
+      "a": "Das arithmetische Mittel der Jahresrenditen ignoriert die Zinseszinseffekte und ist irreführend. -50 % dann +50 % hat einen Mittelwert von 0 %, aber nur 0,75x des Endwerts (-25 % Gesamtverlust). Der CAGR erfasst das tatsächliche aufgezinste Ergebnis."
+    },
+    {
+      "q": "Kann CAGR negativ sein?",
+      "a": "Ja – wenn dein Endwert kleiner als der Anfangswert ist. -10 % CAGR über 5 Jahre bedeutet 0,9^5 ≈ 0,59x des Starts, also 41 % Gesamtverlust."
+    },
+    {
+      "q": "Soll ich reale oder nominale Werte verwenden?",
+      "a": "Das hängt von der Frage ab. 'Wie viel ist mein Geld gewachsen?' Nominale Werte verwenden. 'Wie viel hat meine Kaufkraft zugenommen?' Inflation vom CAGR abziehen oder inflationsbereinigte Werte verwenden."
+    },
+    {
+      "q": "Warum fühlt sich meine tatsächliche Rendite schlechter an als der CAGR?",
+      "a": "CAGR glättet die Volatilität. Zwei Aktien mit demselben CAGR können sehr unterschiedliche Wege haben – eine stetig bei 7 %, die andere mit 50 % Kurseinbrüchen. Kurseinbrüche schmerzen psychologisch, auch wenn der CAGR identisch ist."
+    },
+    {
+      "q": "Was ist ein 'guter' CAGR?",
+      "a": "Die Inflation (2–3 %) zu schlagen ist die Mindestanforderung. Den S&P 500 (7–10 %) zu erreichen ist solide. Ihn nach Gebühren und Steuern dauerhaft zu erreichen ist schwerer als es klingt."
+    },
+    {
+      "q": "Wie verhält sich CAGR zur 72er-Regel?",
+      "a": "Die 72er-Regel ist der umgekehrte Anwendungsfall: 'Bei diesem CAGR, wie lange dauert es, sich zu verdoppeln?' = 72 / CAGR. Also verdoppelt sich ein Wert bei 10 % CAGR in ca. 7,2 Jahren."
+    },
+    {
+      "q": "Funktioniert das auch für schrumpfende Unternehmen?",
+      "a": "Ja – negativer CAGR funktioniert mathematisch. Wird in der Unternehmensanalyse zur Quantifizierung von Rückgangsraten verwendet."
+    },
+    {
+      "q": "Verlassen die Daten meinen Browser?",
+      "a": "Nein. Die Berechnung läuft lokal; nichts wird an einen Server gesendet."
+    }
   ]
 }

@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "calorie-calculator",
     category: "health",
     applicationCategory: "HealthApplication",
-    updatedAt: "2026-05-06",
+    updatedAt: "2026-07-10",
     related: ["bmi-calculator", "ideal-weight-calculator"],
     primaryKeyword: { en: "calorie calculator", ja: "カロリー計算機" },
     hasHowTo: true,

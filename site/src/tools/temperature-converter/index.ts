@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "temperature-converter",
     category: "converter",
     applicationCategory: "UtilitiesApplication",
-    updatedAt: "2026-05-06",
+    updatedAt: "2026-07-10",
     related: ["length-converter"],
     primaryKeyword: { en: "temperature converter", ja: "温度変換" },
     hasHowTo: true,

@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { TrendChartSvg } from "@/components/tools/TrendChartSvg";
 
 export default function CagrCalculator() {
   const t = useTranslations("tools.cagr-calculator");
@@ -23,6 +24,22 @@ export default function CagrCalculator() {
     const absoluteGain = e - s;
     return { cagrPct, totalReturnPct, absoluteGain, multiplier: ratio };
   }, [start, end, years]);
+
+  const chart = useMemo(() => {
+    if (!result) return null;
+    const s = parseFloat(start);
+    const y = parseFloat(years);
+    if (y < 1 || y > 100) return null;
+    const yrs = Math.round(y);
+    const step = Math.max(1, Math.ceil(yrs / 50));
+    const xLabels: string[] = [];
+    const values: number[] = [];
+    for (let i = 0; i <= yrs; i += step) {
+      xLabels.push(String(i));
+      values.push(s * Math.pow(result.multiplier, i / y));
+    }
+    return { xLabels, values };
+  }, [result, start, years]);
 
   const fmtPct = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 2 }), [locale]);
   const fmtNum = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }), [locale]);
@@ -90,6 +107,19 @@ export default function CagrCalculator() {
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
+
+      {chart && (
+        <div className="mt-6">
+          <h2 className="mb-2 font-semibold">{t("chart.heading")}</h2>
+          <TrendChartSvg
+            title={t("chart.heading")}
+            xLabels={chart.xLabels}
+            series={[{ label: t("chart.heading"), values: chart.values }]}
+            formatValue={(v) => fmtNum.format(v)}
+          />
+          <p className="mt-2 text-xs text-slate-600 dark:text-slate-400">{t("chart.caption")}</p>
+        </div>
+      )}
     </div>
   );
 }

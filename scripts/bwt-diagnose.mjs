@@ -52,7 +52,7 @@ async function isLoggedIn() {
 
 if (!(await isLoggedIn())) {
   console.log("\n📋 ブラウザで Bing Webmaster Tools にサインインしてください");
-  console.log("  使用アカウント候補: app.develop.sk@gmail.com / kenichiro.s@cargate.co.jp");
+  console.log("  使用アカウント候補: app.develop.sk@gmail.com");
   console.log("  ※ Google ログインで可");
   console.log("\n  ログイン完了を待機中... (最大5分)");
 

@@ -3,7 +3,13 @@
   "shortDescription": "Calcule la mensualité de prêt auto, les intérêts totaux et le coût total. Inclut les ajustements pour l'apport personnel et la valeur de reprise.",
   "description": "Entre le prix du véhicule, l'apport, la valeur de reprise, le taux annuel et la durée en mois. Retourne la mensualité selon la formule d'amortissement standard ainsi qu'une décomposition complète du capital, des intérêts et du coût total.",
   "metaDescription": "Calculateur de prêt auto gratuit. Calcule la mensualité, les intérêts totaux et le coût total à partir du prix, de l'apport, de la reprise, du taux et de la durée.",
-  "keywords": ["calculateur prêt auto", "crédit voiture", "mensualité voiture", "financement automobile", "crédit auto"],
+  "keywords": [
+    "calculateur prêt auto",
+    "crédit voiture",
+    "mensualité voiture",
+    "financement automobile",
+    "crédit auto"
+  ],
   "empty": "Entre le prix, l'apport, le taux et la durée pour calculer la mensualité.",
   "input": {
     "price": "Prix du véhicule",
@@ -18,6 +24,19 @@
     "principal": "Montant du prêt",
     "interest": "Intérêts totaux",
     "total": "Total des paiements"
+  },
+  "schedule": {
+    "heading": "Tableau",
+    "downloadCsv": "Télécharger CSV",
+    "yearTemplate": "Année {n}",
+    "expandHint": "Cliquez sur une année pour déplier le détail mois par mois ; l'export CSV contient tous les mois.",
+    "col": {
+      "month": "Mois",
+      "payment": "Échéance",
+      "principal": "Capital",
+      "interest": "Intérêts",
+      "balance": "Capital restant"
+    }
   },
   "article": {
     "sections": [
@@ -42,25 +61,74 @@
           "La mensualité n'est qu'une partie du coût de la voiture. Ajoute l'assurance (100-300 €/mois selon le profil), le carburant (100-250 €/mois selon les trajets), l'entretien (50-150 €/mois en moyenne), la carte grise et les taxes (annuelles), et la dépréciation (particulièrement forte les années 1 à 3). Pour un véhicule à 25 000 €, le coût mensuel total peut facilement atteindre 600 à 900 € même avec une mensualité de 350 €.",
           "Comparer les offres de financement est essentiel. Demande plusieurs simulations auprès de banques et organismes de crédit avant de te rendre chez un concessionnaire. Les taux proposés chez le concessionnaire incluent souvent une marge ; une offre concurrente te donne un levier de négociation."
         ]
+      },
+      {
+        "heading": "Formule et sources",
+        "paragraphs": [
+          "Le montant financé correspond au prix du véhicule moins l'apport et la valeur de reprise. La mensualité suit ensuite la formule standard des annuités constantes M = P × r ÷ (1 − (1 + r)⁻ⁿ), avec r le taux annuel divisé par 12 et n la durée en mois.",
+          "C'est la méthode d'amortissement que le CFPB décrit pour les crédits auto (voir les sources). Le financement en concession peut ajouter des frais, des taxes ou une assurance complémentaire : comparez toujours le TAEG du contrat avec le taux saisi ici."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Entre le prix du véhicule", "text": "Prix total incluant les options que tu vas acheter." },
-      { "name": "Entre ton apport personnel", "text": "Somme en espèces versée à la signature." },
-      { "name": "Entre la valeur de reprise", "text": "Ce que le concessionnaire crédite pour ton ancien véhicule. Mets 0 si pas de reprise." },
-      { "name": "Entre le taux annuel", "text": "Obtiens-le auprès de ton établissement prêteur. Plage typique : 3-7 % pour un neuf, 5-10 % pour un occasion." },
-      { "name": "Choisis la durée", "text": "60 mois est le plus courant. Une durée plus courte économise des intérêts ; une durée plus longue réduit la mensualité." },
-      { "name": "Lis la décomposition", "text": "Mensualité, intérêts totaux payés sur le prêt et coût total." }
+      {
+        "name": "Entre le prix du véhicule",
+        "text": "Prix total incluant les options que tu vas acheter."
+      },
+      {
+        "name": "Entre ton apport personnel",
+        "text": "Somme en espèces versée à la signature."
+      },
+      {
+        "name": "Entre la valeur de reprise",
+        "text": "Ce que le concessionnaire crédite pour ton ancien véhicule. Mets 0 si pas de reprise."
+      },
+      {
+        "name": "Entre le taux annuel",
+        "text": "Obtiens-le auprès de ton établissement prêteur. Plage typique : 3-7 % pour un neuf, 5-10 % pour un occasion."
+      },
+      {
+        "name": "Choisis la durée",
+        "text": "60 mois est le plus courant. Une durée plus courte économise des intérêts ; une durée plus longue réduit la mensualité."
+      },
+      {
+        "name": "Lis la décomposition",
+        "text": "Mensualité, intérêts totaux payés sur le prêt et coût total."
+      }
     ]
   },
   "faq": [
-    { "q": "Quel devrait être mon apport personnel ?", "a": "Vise au moins 10 à 20 % du prix du véhicule. Un apport de 20 % te permet d'éviter de te retrouver rapidement « sous l'eau » et améliore souvent le taux proposé." },
-    { "q": "Le TAEG est-il le même que le taux d'intérêt ?", "a": "Proche, mais le TAEG inclut certains frais (dossier, etc.) tandis que le taux d'intérêt est uniquement le coût du crédit. Le TAEG est le chiffre de comparaison le plus représentatif." },
-    { "q": "Pourquoi les concessionnaires proposent-ils toujours 60 ou 72 mois ?", "a": "Parce que cela rend la mensualité plus abordable en apparence. Le coût total sur 72 mois peut être 30 %+ plus élevé que sur 36 mois au même taux." },
-    { "q": "Puis-je rembourser mon prêt auto par anticipation ?", "a": "La plupart des prêts en France permettent le remboursement anticipé, parfois avec des pénalités limitées par la loi. Lis toujours les conditions générales de ton contrat." },
-    { "q": "Quel est un bon taux pour un prêt auto ?", "a": "Dans un environnement de taux normal : 3-5 % pour un véhicule neuf avec un bon dossier, 5-8 % pour une occasion ou un dossier moins solide. Au-dessus de 10 %, explore d'autres options si possible." },
-    { "q": "Devrais-je acheter ou louer (LOA/LLD) ?", "a": "La LOA/LLD convient si tu gardes les véhicules peu de temps (2-3 ans) et apprécies un coût mensuel prévisible. L'achat est plus intéressant si tu gardes longtemps (5 ans et plus) — le coût total est inférieur. Notre outil modélise le scénario achat avec prêt." },
-    { "q": "Comment fonctionne la reprise dans ce calculateur ?", "a": "La valeur de reprise réduit le montant du prêt, exactement comme un apport. Donc 25 000 € de prix − 5 000 € de reprise − 2 000 € d'apport = 18 000 € de prêt." },
-    { "q": "Les données quittent-elles mon navigateur ?", "a": "Non. Tout s'exécute localement ; rien n'est envoyé à un serveur." }
+    {
+      "q": "Quel devrait être mon apport personnel ?",
+      "a": "Vise au moins 10 à 20 % du prix du véhicule. Un apport de 20 % te permet d'éviter de te retrouver rapidement « sous l'eau » et améliore souvent le taux proposé."
+    },
+    {
+      "q": "Le TAEG est-il le même que le taux d'intérêt ?",
+      "a": "Proche, mais le TAEG inclut certains frais (dossier, etc.) tandis que le taux d'intérêt est uniquement le coût du crédit. Le TAEG est le chiffre de comparaison le plus représentatif."
+    },
+    {
+      "q": "Pourquoi les concessionnaires proposent-ils toujours 60 ou 72 mois ?",
+      "a": "Parce que cela rend la mensualité plus abordable en apparence. Le coût total sur 72 mois peut être 30 %+ plus élevé que sur 36 mois au même taux."
+    },
+    {
+      "q": "Puis-je rembourser mon prêt auto par anticipation ?",
+      "a": "La plupart des prêts en France permettent le remboursement anticipé, parfois avec des pénalités limitées par la loi. Lis toujours les conditions générales de ton contrat."
+    },
+    {
+      "q": "Quel est un bon taux pour un prêt auto ?",
+      "a": "Dans un environnement de taux normal : 3-5 % pour un véhicule neuf avec un bon dossier, 5-8 % pour une occasion ou un dossier moins solide. Au-dessus de 10 %, explore d'autres options si possible."
+    },
+    {
+      "q": "Devrais-je acheter ou louer (LOA/LLD) ?",
+      "a": "La LOA/LLD convient si tu gardes les véhicules peu de temps (2-3 ans) et apprécies un coût mensuel prévisible. L'achat est plus intéressant si tu gardes longtemps (5 ans et plus) — le coût total est inférieur. Notre outil modélise le scénario achat avec prêt."
+    },
+    {
+      "q": "Comment fonctionne la reprise dans ce calculateur ?",
+      "a": "La valeur de reprise réduit le montant du prêt, exactement comme un apport. Donc 25 000 € de prix − 5 000 € de reprise − 2 000 € d'apport = 18 000 € de prêt."
+    },
+    {
+      "q": "Les données quittent-elles mon navigateur ?",
+      "a": "Non. Tout s'exécute localement ; rien n'est envoyé à un serveur."
+    }
   ]
 }

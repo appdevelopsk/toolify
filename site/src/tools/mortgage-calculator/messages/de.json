@@ -3,7 +3,13 @@
   "shortDescription": "Berechne die vollständige monatliche Hypothekenzahlung inkl. Tilgung, Zinsen, Grundsteuer, Versicherung, PMI (falls zutreffend) und Hausgeld.",
   "description": "Gib Kaufpreis, Eigenkapital, Zinssatz, Laufzeit und wiederkehrende Kosten ein, um die realistische monatliche Wohnkostenzahlung und die Gesamtzinsen zu sehen.",
   "metaDescription": "Kostenloser Hypothekenrechner mit PITI-Aufschlüsselung – Tilgung, Zinsen, Grundsteuer, Versicherung, PMI und Hausgeld. Realistische monatliche Gesamtwohnkosten.",
-  "keywords": ["Hypothekenrechner", "monatliche Hypothekenzahlung", "Immobilienfinanzierung Rechner", "Baufinanzierung Rechner", "Hauskreditrechner"],
+  "keywords": [
+    "Hypothekenrechner",
+    "monatliche Hypothekenzahlung",
+    "Immobilienfinanzierung Rechner",
+    "Baufinanzierung Rechner",
+    "Hauskreditrechner"
+  ],
   "empty": "Fülle die Felder aus, um die monatliche Aufschlüsselung zu sehen.",
   "input": {
     "price": "Kaufpreis",
@@ -23,6 +29,32 @@
     "downPayment": "Eigenkapital",
     "principal": "Kreditbetrag",
     "totalInterest": "Gesamtzinsen über die Laufzeit"
+  },
+  "schedule": {
+    "heading": "Plan",
+    "downloadCsv": "CSV herunterladen",
+    "yearTemplate": "Jahr {n}",
+    "expandHint": "Klicken Sie auf ein Jahr, um die monatliche Aufschlüsselung aufzuklappen; der CSV-Export enthält alle Monate.",
+    "col": {
+      "month": "Monat",
+      "payment": "Zahlung",
+      "principal": "Tilgung",
+      "interest": "Zinsen",
+      "balance": "Restschuld"
+    }
+  },
+  "compare": {
+    "toggle": "Zweites Szenario vergleichen",
+    "hide": "Vergleich ausblenden",
+    "heading": "Szenario-Vergleich (nur Zins und Tilgung)",
+    "scenarioA": "Szenario A (aktuelle Eingaben)",
+    "scenarioB": "Szenario B",
+    "rateB": "Jährlicher Zinssatz %",
+    "yearsB": "Kreditlaufzeit (Jahre)",
+    "monthlyPI": "Tilgung & Zinsen",
+    "totalInterest": "Gesamtzinsen über die Laufzeit",
+    "totalPaid": "Gesamtzahlungen",
+    "difference": "Differenz (B − A)"
   },
   "article": {
     "sections": [
@@ -46,24 +78,70 @@
           "Grundsteuer: Suche nach dem Hebesatz deiner Gemeinde oder verwende 0,2–0,3 % als deutschen Durchschnitt. Versicherung: ~800–1.200 €/Jahr ist typisch. Hausgeld: nur relevant, wenn du in einer Eigentümergemeinschaft kaufst. Die PMI-Schätzung des Rechners ist eine Annäherung – dein tatsächlicher Satz hängt von Bonität und Kredittyp ab.",
           "Für konservativere Budgetierung nutze den Rechner mit einem etwas höheren Zinssatz als dem aktuellen. Hypothekenzinsen können zwischen Zinsbindungsterminen steigen; eine Planung für Zinsschwankungen ist klug. Berücksichtige auch Kaufnebenkosten (typischerweise 8–12 % des Kaufpreises in Deutschland), die hier nicht modelliert werden."
         ]
+      },
+      {
+        "heading": "Formel und Quellen",
+        "paragraphs": [
+          "Die Rate aus Zins und Tilgung folgt der klassischen Annuitätenformel M = P × r ÷ (1 − (1 + r)⁻ⁿ). Dabei ist P die Darlehenssumme nach Abzug des Eigenkapitals, r der Jahreszins geteilt durch 12 und n die Zahl der Monatsraten. Der Tilgungsplan oben wendet dieselbe Formel Monat für Monat an: Jede Rate deckt zunächst die auf die Restschuld angefallenen Zinsen, der Rest tilgt das Darlehen.",
+          "Die PITI-Aufschlüsselung (Tilgung, Zinsen, Grundsteuer, Versicherung) und der PMI-Richtwert folgen den Definitionen der US-Verbraucherschutzbehörde CFPB; die genauen Seiten sind unten bei den Quellen verlinkt. Bankangebote können wegen Gebühren, Zinsrundung und Treuhandkonto-Handhabung abweichen — betrachten Sie das Ergebnis daher als Planungsgröße, nicht als Angebot."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Kaufpreis eingeben", "text": "Den vereinbarten Verkaufspreis." },
-      { "name": "Eigenkapital % festlegen", "text": "20 % vermeidet Zusatzversicherung; weniger löst sie aus." },
-      { "name": "Zinssatz und Laufzeit eingeben", "text": "Jahreszinssatz als Prozentsatz, Laufzeit in Jahren (üblich: 15–30)." },
-      { "name": "Wiederkehrende Kosten hinzufügen", "text": "Jährliche Grundsteuer, jährliche Versicherung, monatliches Hausgeld." },
-      { "name": "Aufschlüsselung lesen", "text": "Monatliche Gesamtkosten plus zeilenweise Aufschlüsselung." }
+      {
+        "name": "Kaufpreis eingeben",
+        "text": "Den vereinbarten Verkaufspreis."
+      },
+      {
+        "name": "Eigenkapital % festlegen",
+        "text": "20 % vermeidet Zusatzversicherung; weniger löst sie aus."
+      },
+      {
+        "name": "Zinssatz und Laufzeit eingeben",
+        "text": "Jahreszinssatz als Prozentsatz, Laufzeit in Jahren (üblich: 15–30)."
+      },
+      {
+        "name": "Wiederkehrende Kosten hinzufügen",
+        "text": "Jährliche Grundsteuer, jährliche Versicherung, monatliches Hausgeld."
+      },
+      {
+        "name": "Aufschlüsselung lesen",
+        "text": "Monatliche Gesamtkosten plus zeilenweise Aufschlüsselung."
+      }
     ]
   },
   "faq": [
-    { "q": "Was ist der Unterschied zu einem einfachen Kreditrechner?", "a": "Dieser ergänzt Grundsteuer, Versicherung, PMI und Hausgeld – die realen Kosten über Tilgung und Zinsen hinaus. Den Kreditrechner für Nicht-Wohnkredite verwenden." },
-    { "q": "Ist die PMI-Schätzung genau?", "a": "Ungefähr. PMI variiert je nach Bonität, Eigenkapital und Kredittyp zwischen 0,3 % und 1,5 % pro Jahr. Wir verwenden 0,5 % als typischen Mittelwert." },
-    { "q": "Sollte ich eine 15- oder 30-jährige Hypothek nehmen?", "a": "15 Jahre spart erhebliche Zinsen, verdoppelt aber die monatliche Rate. 30 Jahre bietet mehr Flexibilität. Entscheide nach Cashflow und anderen Anlageoptionen. Der Rechner zeigt Gesamtzinsen für jede Laufzeit." },
-    { "q": "Wie finde ich meinen Grundsteuersatz?", "a": "Suche nach dem Hebesatz deiner Gemeinde oder frage beim Finanzamt. Typischer Satz in Deutschland: 0,1–0,3 % des Immobilienwerts jährlich." },
-    { "q": "Soll ich das Hausgeld einbeziehen?", "a": "Nur, wenn deine Immobilie einer Eigentümergemeinschaft gehört. Hausgeld variiert von 0 € (keine WEG) bis über 500 €/Monat für hochwertige Anlagen." },
-    { "q": "Warum weicht meine tatsächliche Hypothekenzahlung ab?", "a": "Kreditgeber können Treuhandkonten für Steuer/Versicherung unterschiedlich einschließen und Gebühren berechnen, die dieser Rechner nicht modelliert. Immer das offizielle Kreditangebot des Kreditgebers prüfen." },
-    { "q": "Berücksichtigt das eine Umfinanzierung?", "a": "Nein. Den Rechner nach einer Umfinanzierung mit dem neuen Zinssatz für die aktualisierte Rate ausführen." },
-    { "q": "Werden die Daten irgendwohin gesendet?", "a": "Nein. Die Berechnung läuft lokal." }
+    {
+      "q": "Was ist der Unterschied zu einem einfachen Kreditrechner?",
+      "a": "Dieser ergänzt Grundsteuer, Versicherung, PMI und Hausgeld – die realen Kosten über Tilgung und Zinsen hinaus. Den Kreditrechner für Nicht-Wohnkredite verwenden."
+    },
+    {
+      "q": "Ist die PMI-Schätzung genau?",
+      "a": "Ungefähr. PMI variiert je nach Bonität, Eigenkapital und Kredittyp zwischen 0,3 % und 1,5 % pro Jahr. Wir verwenden 0,5 % als typischen Mittelwert."
+    },
+    {
+      "q": "Sollte ich eine 15- oder 30-jährige Hypothek nehmen?",
+      "a": "15 Jahre spart erhebliche Zinsen, verdoppelt aber die monatliche Rate. 30 Jahre bietet mehr Flexibilität. Entscheide nach Cashflow und anderen Anlageoptionen. Der Rechner zeigt Gesamtzinsen für jede Laufzeit."
+    },
+    {
+      "q": "Wie finde ich meinen Grundsteuersatz?",
+      "a": "Suche nach dem Hebesatz deiner Gemeinde oder frage beim Finanzamt. Typischer Satz in Deutschland: 0,1–0,3 % des Immobilienwerts jährlich."
+    },
+    {
+      "q": "Soll ich das Hausgeld einbeziehen?",
+      "a": "Nur, wenn deine Immobilie einer Eigentümergemeinschaft gehört. Hausgeld variiert von 0 € (keine WEG) bis über 500 €/Monat für hochwertige Anlagen."
+    },
+    {
+      "q": "Warum weicht meine tatsächliche Hypothekenzahlung ab?",
+      "a": "Kreditgeber können Treuhandkonten für Steuer/Versicherung unterschiedlich einschließen und Gebühren berechnen, die dieser Rechner nicht modelliert. Immer das offizielle Kreditangebot des Kreditgebers prüfen."
+    },
+    {
+      "q": "Berücksichtigt das eine Umfinanzierung?",
+      "a": "Nein. Den Rechner nach einer Umfinanzierung mit dem neuen Zinssatz für die aktualisierte Rate ausführen."
+    },
+    {
+      "q": "Werden die Daten irgendwohin gesendet?",
+      "a": "Nein. Die Berechnung läuft lokal."
+    }
   ]
 }

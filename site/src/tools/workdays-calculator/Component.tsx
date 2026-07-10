@@ -2,6 +2,9 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { HOLIDAY_PRESETS, type HolidayCountry } from "./holidays";
+
+const PRESET_OPTIONS = ["", "US", "JP", "UK", "DE"] as const;
 
 function parseHolidays(input: string): Set<string> {
   return new Set(
@@ -55,6 +58,12 @@ export default function WorkdaysCalculator() {
   const [includeSat, setIncludeSat] = useState(false);
   const [includeSun, setIncludeSun] = useState(false);
   const [holidays, setHolidays] = useState("");
+  const [preset, setPreset] = useState<"" | HolidayCountry>("");
+
+  const presetInRange = useMemo(() => {
+    if (!preset) return [];
+    return HOLIDAY_PRESETS[preset].filter((h) => h.date >= start && h.date <= end);
+  }, [preset, start, end]);
 
   const result = useMemo(() => {
     const sd = new Date(start + "T00:00:00");
@@ -64,8 +73,16 @@ export default function WorkdaysCalculator() {
     if (!includeSat) weekend.add(6);
     if (!includeSun) weekend.add(0);
     const hSet = parseHolidays(holidays);
+    if (preset) {
+      for (const h of HOLIDAY_PRESETS[preset]) hSet.add(h.date);
+    }
     return countWorkdays(sd, ed, weekend, hSet);
-  }, [start, end, includeSat, includeSun, holidays]);
+  }, [start, end, includeSat, includeSun, holidays, preset]);
+
+  const dateFmt = useMemo(
+    () => new Intl.DateTimeFormat(locale, { month: "short", day: "numeric", year: "numeric", weekday: "short" }),
+    [locale],
+  );
 
   return (
     <div>
@@ -90,6 +107,40 @@ export default function WorkdaysCalculator() {
           <span>{t("input.includeSun")}</span>
         </label>
       </div>
+
+      <label className="mt-4 block">
+        <span className="text-sm font-medium">{t("preset.label")}</span>
+        <select
+          value={preset}
+          onChange={(e) => setPreset(e.target.value as "" | HolidayCountry)}
+          className="mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
+        >
+          {PRESET_OPTIONS.map((p) => (
+            <option key={p} value={p}>
+              {t(`preset.${p === "" ? "none" : p.toLowerCase()}`)}
+            </option>
+          ))}
+        </select>
+        <span className="mt-1 block text-xs text-slate-600 dark:text-slate-400">{t("preset.note")}</span>
+      </label>
+
+      {preset && presetInRange.length > 0 && (
+        <div className="mt-3 rounded border border-slate-200 p-3 dark:border-slate-800">
+          <div className="text-xs font-medium uppercase tracking-wider text-slate-600 dark:text-slate-400">
+            {t("preset.listTitle")} ({presetInRange.length})
+          </div>
+          <ul className="mt-2 grid gap-1 text-sm sm:grid-cols-2">
+            {presetInRange.map((h) => (
+              <li key={h.date} className="flex justify-between gap-2">
+                <span className="tabular-nums text-slate-600 dark:text-slate-400">
+                  {dateFmt.format(new Date(h.date + "T00:00:00"))}
+                </span>
+                <span className="truncate text-right">{h.name}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <label className="mt-3 block">
         <span className="text-sm font-medium">{t("input.holidays")}</span>

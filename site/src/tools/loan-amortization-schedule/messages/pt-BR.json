@@ -3,7 +3,13 @@
   "shortDescription": "Gere uma tabela completa de amortização mês a mês para qualquer empréstimo com taxa fixa. Mostra a divisão principal/juros por pagamento, saldo final e exportação em CSV.",
   "description": "Insira o principal, a taxa anual e o prazo em anos. Retorna a parcela mensal, o total de juros, o total de pagamentos e uma tabela linha por mês mostrando como cada pagamento se divide entre principal e juros. Alterne entre visualização completa e resumo anual; baixe em CSV.",
   "metaDescription": "Tabela de amortização de empréstimo gratuita. Divisão mensal de principal/juros, total de juros, saldo final por período. Exportação CSV. No navegador.",
-  "keywords": ["tabela de amortização de empréstimo", "tabela de amortização", "principal e juros mensais", "calculadora de parcelas", "amortização de financiamento"],
+  "keywords": [
+    "tabela de amortização de empréstimo",
+    "tabela de amortização",
+    "principal e juros mensais",
+    "calculadora de parcelas",
+    "amortização de financiamento"
+  ],
   "input": {
     "principal": "Valor do empréstimo",
     "ratePct": "Taxa anual %",
@@ -17,10 +23,9 @@
   },
   "schedule": {
     "heading": "Tabela",
-    "showAll": "Mostrar todos os meses",
-    "condense": "Condensar por ano",
     "downloadCsv": "Baixar CSV",
-    "condensedNote": "Visualização condensada: mostrando o primeiro mês, cada 12º mês e o mês final. Clique em 'Mostrar todos os meses' para detalhes completos.",
+    "yearTemplate": "Ano {n}",
+    "expandHint": "Clique em um ano para abrir o detalhamento mês a mês; o CSV exportado inclui todos os meses.",
     "col": {
       "month": "Mês",
       "payment": "Parcela",
@@ -54,24 +59,70 @@
           "Sem cenários de amortização extra. Se você fizer pagamentos adicionais, a tabela a partir desse ponto não é mais precisa. Para análise de amortização antecipada, recalcule com o novo saldo.",
           "Composição: assume composição mensal (padrão para financiamentos). Alguns produtos usam juros diários ou simples — para esses, a tabela é aproximada."
         ]
+      },
+      {
+        "heading": "Fórmula e fontes",
+        "paragraphs": [
+          "Cada linha é calculada recursivamente: juros do mês = saldo devedor × (taxa anual ÷ 12); amortização = prestação fixa − juros; novo saldo = saldo anterior − amortização. A prestação fixa vem da fórmula da Tabela Price: M = P × r ÷ (1 − (1 + r)⁻ⁿ).",
+          "É o método de amortização clássico documentado pela Investopedia e pelo CFPB (links nas fontes). Os cronogramas reais dos bancos podem divergir por centavos devido a convenções de arredondamento — e por mais do que isso se o contrato usar juros diários ou taxa variável."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Insira o valor do empréstimo", "text": "O valor tomado emprestado (principal)." },
-      { "name": "Insira a taxa", "text": "Taxa percentual anual. Para 6,5%, insira 6,5." },
-      { "name": "Insira o prazo", "text": "Em anos. A maioria dos financiamentos é de 15 ou 30 anos." },
-      { "name": "Leia o resumo + tabela", "text": "Parcela mensal, total de juros, divisão mês a mês de cada real pago." },
-      { "name": "Baixe o CSV", "text": "Exporte a tabela completa para análise em planilha." }
+      {
+        "name": "Insira o valor do empréstimo",
+        "text": "O valor tomado emprestado (principal)."
+      },
+      {
+        "name": "Insira a taxa",
+        "text": "Taxa percentual anual. Para 6,5%, insira 6,5."
+      },
+      {
+        "name": "Insira o prazo",
+        "text": "Em anos. A maioria dos financiamentos é de 15 ou 30 anos."
+      },
+      {
+        "name": "Leia o resumo + tabela",
+        "text": "Parcela mensal, total de juros, divisão mês a mês de cada real pago."
+      },
+      {
+        "name": "Baixe o CSV",
+        "text": "Exporte a tabela completa para análise em planilha."
+      }
     ]
   },
   "faq": [
-    { "q": "Por que meu extrato do financiamento mostra números diferentes?", "a": "Financiadores reais incluem seguros, tarifas e outros encargos na parcela mensal. Esta calculadora mostra apenas P&J (principal + juros). Subtraia esses adicionais para comparar." },
-    { "q": "Como os juros são calculados a cada mês?", "a": "Juros mensais = saldo atual × taxa mensal. Amortização = parcela mensal − juros. Novo saldo = saldo antigo − amortização. Repita por n meses." },
-    { "q": "Por que os pagamentos iniciais parecem tão 'desperdiçados' em juros?", "a": "Não são desperdiçados — eles estão pagando pelo empréstimo a um saldo devedor alto. A matemática é honesta: saldo alto × taxa = juros altos. À medida que o saldo cai, os juros também caem." },
-    { "q": "Qual é o impacto de uma mudança de 1 ponto percentual na taxa?", "a": "Aproximadamente 12% de aumento na parcela mensal e 25-35% de aumento no total de juros em um financiamento de 30 anos. Trave taxas baixas quando possível." },
-    { "q": "Devo pagar principal extra a cada mês?", "a": "Se seu empréstimo não tem multa por amortização antecipada (a maioria dos financiamentos no Brasil não tem), sim. Mesmo um extra de R$ 200/mês no início do empréstimo economiza milhares em juros. A tabela mostra o impacto." },
-    { "q": "O que é um empréstimo balloon?", "a": "Um empréstimo em que os pagamentos regulares não amortizam totalmente, deixando um grande pagamento final ('balão'). Comum em imóveis comerciais; raro em residencial. Esta calculadora não modela balloons." },
-    { "q": "Por que o total de juros de 30 anos é muito maior que o de 15 anos?", "a": "Os juros compostos trabalham contra você. À mesma taxa, um empréstimo de 30 anos tem aproximadamente 2× o total de juros de um de 15 anos. O prazo mais curto significa que o período de saldo alto é menor." },
-    { "q": "Os dados saem do meu navegador?", "a": "Não. O cálculo é feito localmente; o download do CSV também é gerado no navegador." }
+    {
+      "q": "Por que meu extrato do financiamento mostra números diferentes?",
+      "a": "Financiadores reais incluem seguros, tarifas e outros encargos na parcela mensal. Esta calculadora mostra apenas P&J (principal + juros). Subtraia esses adicionais para comparar."
+    },
+    {
+      "q": "Como os juros são calculados a cada mês?",
+      "a": "Juros mensais = saldo atual × taxa mensal. Amortização = parcela mensal − juros. Novo saldo = saldo antigo − amortização. Repita por n meses."
+    },
+    {
+      "q": "Por que os pagamentos iniciais parecem tão 'desperdiçados' em juros?",
+      "a": "Não são desperdiçados — eles estão pagando pelo empréstimo a um saldo devedor alto. A matemática é honesta: saldo alto × taxa = juros altos. À medida que o saldo cai, os juros também caem."
+    },
+    {
+      "q": "Qual é o impacto de uma mudança de 1 ponto percentual na taxa?",
+      "a": "Aproximadamente 12% de aumento na parcela mensal e 25-35% de aumento no total de juros em um financiamento de 30 anos. Trave taxas baixas quando possível."
+    },
+    {
+      "q": "Devo pagar principal extra a cada mês?",
+      "a": "Se seu empréstimo não tem multa por amortização antecipada (a maioria dos financiamentos no Brasil não tem), sim. Mesmo um extra de R$ 200/mês no início do empréstimo economiza milhares em juros. A tabela mostra o impacto."
+    },
+    {
+      "q": "O que é um empréstimo balloon?",
+      "a": "Um empréstimo em que os pagamentos regulares não amortizam totalmente, deixando um grande pagamento final ('balão'). Comum em imóveis comerciais; raro em residencial. Esta calculadora não modela balloons."
+    },
+    {
+      "q": "Por que o total de juros de 30 anos é muito maior que o de 15 anos?",
+      "a": "Os juros compostos trabalham contra você. À mesma taxa, um empréstimo de 30 anos tem aproximadamente 2× o total de juros de um de 15 anos. O prazo mais curto significa que o período de saldo alto é menor."
+    },
+    {
+      "q": "Os dados saem do meu navegador?",
+      "a": "Não. O cálculo é feito localmente; o download do CSV também é gerado no navegador."
+    }
   ]
 }

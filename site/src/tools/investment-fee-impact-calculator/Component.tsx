@@ -2,6 +2,19 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { TrendChartSvg } from "@/components/tools/TrendChartSvg";
+
+function projectYearlyBalances(initial: number, monthlyContribution: number, annualRate: number, expenseRatio: number, years: number): number[] {
+  // Same monthly compounding as projectFinalValue, sampled at every year boundary.
+  const netMonthlyRate = (annualRate - expenseRatio) / 100 / 12;
+  const balances: number[] = [initial];
+  let balance = initial;
+  for (let m = 1; m <= years * 12; m++) {
+    balance = balance * (1 + netMonthlyRate) + monthlyContribution;
+    if (m % 12 === 0) balances.push(balance);
+  }
+  return balances;
+}
 
 function projectFinalValue(initial: number, monthlyContribution: number, annualRate: number, expenseRatio: number, years: number): number {
   // Compound monthly. Net rate per month = (return - expense) / 12.
@@ -55,6 +68,27 @@ export default function InvestmentFeeImpactCalculator() {
       grossGains,
       feesAsPctOfGains,
     };
+  }, [initial, monthlyContribution, years, annualReturn, expenseRatio]);
+
+  const chart = useMemo(() => {
+    const i = parseFloat(initial);
+    const m = parseFloat(monthlyContribution);
+    const y = Math.round(parseFloat(years));
+    const r = parseFloat(annualReturn);
+    const e = parseFloat(expenseRatio);
+    if (![i, m, y, r, e].every((v) => Number.isFinite(v) && v >= 0) || y < 1 || y > 100) return null;
+    const noFee = projectYearlyBalances(i, m, r, 0, y);
+    const withFee = projectYearlyBalances(i, m, r, e, y);
+    const step = Math.max(1, Math.ceil(y / 50));
+    const xLabels: string[] = [];
+    const noFeeSampled: number[] = [];
+    const withFeeSampled: number[] = [];
+    for (let k = 0; k <= y; k += step) {
+      xLabels.push(String(k));
+      noFeeSampled.push(noFee[k]!);
+      withFeeSampled.push(withFee[k]!);
+    }
+    return { xLabels, noFee: noFeeSampled, withFee: withFeeSampled };
   }, [initial, monthlyContribution, years, annualReturn, expenseRatio]);
 
   const currency = new Intl.NumberFormat(locale, {
@@ -134,6 +168,22 @@ export default function InvestmentFeeImpactCalculator() {
               {t("result.lowFeeSavings", { amount: currency.format(result.feesLost - result.lowFeeAlt) })}
             </p>
           </div>
+
+          {chart && (
+            <div>
+              <h3 className="mb-2 text-sm font-semibold">{t("chart.heading")}</h3>
+              <TrendChartSvg
+                title={t("chart.heading")}
+                xLabels={chart.xLabels}
+                series={[
+                  { label: t("result.noFee"), values: chart.noFee },
+                  { label: t("result.withFee"), values: chart.withFee },
+                ]}
+                formatValue={(v) => currency.format(v)}
+              />
+              <p className="mt-2 text-xs text-slate-600 dark:text-slate-400">{t("chart.caption")}</p>
+            </div>
+          )}
         </div>
       )}
     </div>

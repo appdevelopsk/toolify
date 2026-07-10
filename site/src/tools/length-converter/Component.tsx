@@ -22,6 +22,22 @@ function convert(value: number, from: UnitCode, to: UnitCode): number {
   return (value * fromMeter) / toMeter;
 }
 
+// Hand-picked real-world lengths people actually look up (not evenly spaced samples)
+const QUICK_REF: Array<{ id: string; value: number; unit: UnitCode; ref: UnitCode }> = [
+  { id: "creditCard", value: 85.6, unit: "mm", ref: "in" },
+  { id: "a4", value: 297, unit: "mm", ref: "in" },
+  { id: "smartphone", value: 6.3, unit: "in", ref: "cm" },
+  { id: "door", value: 80, unit: "in", ref: "m" },
+  { id: "height", value: 170, unit: "cm", ref: "ft" },
+  { id: "hoop", value: 10, unit: "ft", ref: "m" },
+  { id: "pool", value: 50, unit: "m", ref: "yd" },
+  { id: "pitch", value: 105, unit: "m", ref: "yd" },
+  { id: "track", value: 400, unit: "m", ref: "mi" },
+  { id: "fiveK", value: 5, unit: "km", ref: "mi" },
+  { id: "marathon", value: 42.195, unit: "km", ref: "mi" },
+  { id: "everest", value: 8849, unit: "m", ref: "ft" },
+];
+
 export default function LengthConverter() {
   const t = useTranslations("tools.length-converter");
   const locale = useLocale();
@@ -41,9 +57,20 @@ export default function LengthConverter() {
     [locale],
   );
 
+  const fmtRef = useMemo(
+    () => new Intl.NumberFormat(locale, { maximumFractionDigits: 2 }),
+    [locale],
+  );
+
   function swap() {
     setFrom(to);
     setTo(from);
+  }
+
+  function applyRow(row: (typeof QUICK_REF)[number]) {
+    if (to === row.unit) setTo(from);
+    setFrom(row.unit);
+    setValue(String(row.value));
   }
 
   return (
@@ -113,6 +140,44 @@ export default function LengthConverter() {
           );
         })}
       </div>
+
+      <section className="mt-8">
+        <h2 className="text-lg font-semibold">{t("quickRef.title")}</h2>
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{t("quickRef.hint")}</p>
+        <div className="mt-3 overflow-x-auto">
+          <table className="w-full min-w-[28rem] text-sm">
+            <thead>
+              <tr className="border-b border-slate-300 text-left dark:border-slate-700">
+                <th className="py-2 pr-2 font-medium">{t("quickRef.colItem")}</th>
+                <th className="py-2 pr-2 text-right font-medium">{t("quickRef.colValue")}</th>
+                <th className="py-2 pr-2 text-right font-medium">{t("quickRef.colEquiv")}</th>
+                <th className="py-2" aria-hidden="true"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {QUICK_REF.map((r) => (
+                <tr key={r.id} className="border-b border-slate-200 dark:border-slate-800">
+                  <td className="py-2 pr-2">{t(`quickRef.rows.${r.id}`)}</td>
+                  <td className="whitespace-nowrap py-2 pr-2 text-right tabular-nums">
+                    {fmtRef.format(r.value)} {r.unit}
+                  </td>
+                  <td className="whitespace-nowrap py-2 pr-2 text-right tabular-nums">
+                    {fmtRef.format(convert(r.value, r.unit, r.ref))} {r.ref}
+                  </td>
+                  <td className="py-2 text-right">
+                    <button
+                      onClick={() => applyRow(r)}
+                      className="rounded border border-slate-300 px-2 py-0.5 text-xs hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+                    >
+                      {t("quickRef.apply")}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
   );
 }

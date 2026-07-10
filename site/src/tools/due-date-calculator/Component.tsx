@@ -22,6 +22,23 @@ function diffDays(a: Date, b: Date) {
 type Mode = "lmp" | "conception" | "ivf" | "ultrasound";
 const MODES: Mode[] = ["lmp", "conception", "ivf", "ultrasound"];
 
+// Week-by-week milestones from the current pregnancy to the due date:
+// trimester boundaries (ACOG: 2nd = 14w0d, 3rd = 28w0d) + typical prenatal
+// checkup windows. Static data; exact timing varies by country and provider.
+const MILESTONES: { key: string; week: number }[] = [
+  { key: "datingScan", week: 8 },
+  { key: "nipt", week: 10 },
+  { key: "ntScan", week: 12 },
+  { key: "t2Start", week: 14 },
+  { key: "anatomyScan", week: 20 },
+  { key: "glucose", week: 26 },
+  { key: "t3Start", week: 28 },
+  { key: "tdap", week: 32 },
+  { key: "gbs", week: 36 },
+  { key: "fullTerm", week: 37 },
+  { key: "edd", week: 40 },
+];
+
 export default function DueDateCalculator() {
   const t = useTranslations("tools.due-date-calculator");
   const locale = useLocale();
@@ -66,7 +83,11 @@ export default function DueDateCalculator() {
     const trimester = gaW <= 13 ? 1 : gaW <= 27 ? 2 : 3;
     const termStart = addDays(dueDate, -21); // 37w0d
     const termEnd = addDays(dueDate, 14); // 42w0d
-    return { dueDate, conception, gaW, gaD, daysToDue, trimester, termStart, termEnd };
+    const schedule = MILESTONES.map((m) => {
+      const date = addDays(anchorLmp, m.week * 7);
+      return { key: m.key, week: m.week, date, past: date.getTime() < today.getTime() };
+    });
+    return { dueDate, conception, gaW, gaD, daysToDue, trimester, termStart, termEnd, schedule };
   }, [mode, refDate, cycleLength, embryoAge, gaWeeks, gaDays]);
 
   const dateFmt = useMemo(() => new Intl.DateTimeFormat(locale, { dateStyle: "full" }), [locale]);
@@ -155,6 +176,17 @@ export default function DueDateCalculator() {
                 <dd>{medFmt.format(result.conception)}</dd>
               </div>
             </dl>
+
+            <h3 className="mt-5 text-sm font-semibold">{t("schedule.heading")}</h3>
+            <ul className="mt-2 space-y-1 text-sm">
+              {result.schedule.map((m) => (
+                <li key={m.key} className={`flex justify-between gap-3 border-b border-slate-100 py-1 dark:border-slate-800 ${m.past ? "text-slate-400 line-through dark:text-slate-600" : ""}`}>
+                  <span>{t(`milestone.${m.key}`)} <span className="text-xs text-slate-400">({m.week}w)</span></span>
+                  <span className="tabular-nums whitespace-nowrap">{medFmt.format(m.date)}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 text-xs text-slate-600 dark:text-slate-400">{t("schedule.note")}</p>
           </>
         ) : (
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>

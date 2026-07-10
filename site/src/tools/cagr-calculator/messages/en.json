@@ -3,7 +3,13 @@
   "shortDescription": "Calculate compound annual growth rate from start value, end value, and number of years. Returns CAGR %, total return %, and multiplier.",
   "description": "Enter starting value, ending value, and the holding period in years. The calculator returns CAGR (the annualized rate that would have produced the same end result), total return percent, value multiplier, and absolute gain.",
   "metaDescription": "Free CAGR calculator. Compute compound annual growth rate from start, end, and years. Returns CAGR, total return, and growth multiplier.",
-  "keywords": ["CAGR calculator", "compound annual growth rate", "annualized return", "investment growth", "CAGR formula"],
+  "keywords": [
+    "CAGR calculator",
+    "compound annual growth rate",
+    "annualized return",
+    "investment growth",
+    "CAGR formula"
+  ],
   "empty": "Enter start, end, and years.",
   "input": {
     "start": "Start value",
@@ -15,6 +21,10 @@
     "totalReturn": "Total return",
     "multiplier": "Multiplier",
     "absoluteGain": "Absolute gain"
+  },
+  "chart": {
+    "heading": "Value at the computed CAGR",
+    "caption": "The line assumes perfectly steady growth at the computed CAGR — real returns fluctuate around it from year to year."
   },
   "article": {
     "sections": [
@@ -41,23 +51,66 @@
           "Real estate: 5-8% CAGR price appreciation, plus rental yield separately.",
           "Inflation: 2-3% in stable economies. Anything below this is real-terms loss."
         ]
+      },
+      {
+        "heading": "Formula and sources",
+        "paragraphs": [
+          "CAGR = (final value ÷ initial value)^(1 ÷ years) − 1. It answers one question: at what constant annual rate would the investment have had to grow to get from the start value to the end value? The chart draws exactly that smoothed path.",
+          "The definition follows Investopedia's reference article on compound annual growth rate (see Sources). CAGR deliberately hides volatility — two investments with identical CAGR can carry very different risk — so pair it with drawdown or volatility measures."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Enter the start value", "text": "Investment value at the beginning." },
-      { "name": "Enter the end value", "text": "Value at the end (or current value)." },
-      { "name": "Enter years held", "text": "Decimals OK (0.5 = 6 months)." },
-      { "name": "Read CAGR + context", "text": "CAGR plus total return %, multiplier, and absolute gain." }
+      {
+        "name": "Enter the start value",
+        "text": "Investment value at the beginning."
+      },
+      {
+        "name": "Enter the end value",
+        "text": "Value at the end (or current value)."
+      },
+      {
+        "name": "Enter years held",
+        "text": "Decimals OK (0.5 = 6 months)."
+      },
+      {
+        "name": "Read CAGR + context",
+        "text": "CAGR plus total return %, multiplier, and absolute gain."
+      }
     ]
   },
   "faq": [
-    { "q": "What's the difference between CAGR and average annual return?", "a": "Arithmetic mean of yearly returns ignores compounding and is misleading. -50% then +50% has 0% mean but only 0.75x final value (-25% total). CAGR captures the actual compounded result." },
-    { "q": "Can CAGR be negative?", "a": "Yes — if your end value is less than start. -10% CAGR over 5 years means 0.9^5 ≈ 0.59x of start, a 41% total loss." },
-    { "q": "Should I use real or nominal values?", "a": "Depends on the question. 'How much did my money grow?' use nominal. 'How much did my purchasing power grow?' subtract inflation from CAGR or use inflation-adjusted values." },
-    { "q": "Why does my actual return feel worse than CAGR?", "a": "CAGR smooths volatility. Two stocks with same CAGR can have wildly different paths — one steady 7%, another with 50% drawdowns. Drawdowns hurt psychologically even if CAGR is identical." },
-    { "q": "What's a 'good' CAGR?", "a": "Beating inflation (2-3%) is the floor. Matching S&P 500 (7-10%) is solid. Matching it consistently after fees and taxes is harder than it sounds." },
-    { "q": "How does CAGR compare to the rule of 72?", "a": "Rule of 72 is the inverse use case: 'at this CAGR, how long to double?' = 72 / CAGR. So 10% CAGR doubles in ~7.2 years." },
-    { "q": "Does this work for shrinking businesses?", "a": "Yes — negative CAGR works mathematically. Used in business analysis to quantify decline rates." },
-    { "q": "Does the data leave my browser?", "a": "No. Calculation runs locally; nothing is sent to a server." }
+    {
+      "q": "What's the difference between CAGR and average annual return?",
+      "a": "Arithmetic mean of yearly returns ignores compounding and is misleading. -50% then +50% has 0% mean but only 0.75x final value (-25% total). CAGR captures the actual compounded result."
+    },
+    {
+      "q": "Can CAGR be negative?",
+      "a": "Yes — if your end value is less than start. -10% CAGR over 5 years means 0.9^5 ≈ 0.59x of start, a 41% total loss."
+    },
+    {
+      "q": "Should I use real or nominal values?",
+      "a": "Depends on the question. 'How much did my money grow?' use nominal. 'How much did my purchasing power grow?' subtract inflation from CAGR or use inflation-adjusted values."
+    },
+    {
+      "q": "Why does my actual return feel worse than CAGR?",
+      "a": "CAGR smooths volatility. Two stocks with same CAGR can have wildly different paths — one steady 7%, another with 50% drawdowns. Drawdowns hurt psychologically even if CAGR is identical."
+    },
+    {
+      "q": "What's a 'good' CAGR?",
+      "a": "Beating inflation (2-3%) is the floor. Matching S&P 500 (7-10%) is solid. Matching it consistently after fees and taxes is harder than it sounds."
+    },
+    {
+      "q": "How does CAGR compare to the rule of 72?",
+      "a": "Rule of 72 is the inverse use case: 'at this CAGR, how long to double?' = 72 / CAGR. So 10% CAGR doubles in ~7.2 years."
+    },
+    {
+      "q": "Does this work for shrinking businesses?",
+      "a": "Yes — negative CAGR works mathematically. Used in business analysis to quantify decline rates."
+    },
+    {
+      "q": "Does the data leave my browser?",
+      "a": "No. Calculation runs locally; nothing is sent to a server."
+    }
   ]
 }

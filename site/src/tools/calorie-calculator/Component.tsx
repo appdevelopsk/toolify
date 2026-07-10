@@ -2,10 +2,13 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useLocalDraft } from "@/lib/hooks/useLocalDraft";
+import { DraftNotice } from "@/lib/hooks/DraftNotice";
+import { defaultUnitSystem, type UnitSystem } from "@/lib/hooks/useUnitSystem";
 
 type Sex = "male" | "female";
 type Activity = "sedentary" | "light" | "moderate" | "active" | "veryActive";
-type Unit = "metric" | "imperial";
+type Unit = UnitSystem;
 
 const ACTIVITY_FACTOR: Record<Activity, number> = {
   sedentary: 1.2,
@@ -23,12 +26,25 @@ function bmrMifflin(sex: Sex, weightKg: number, heightCm: number, age: number): 
 export default function CalorieCalculator() {
   const t = useTranslations("tools.calorie-calculator");
   const locale = useLocale();
-  const [unit, setUnit] = useState<Unit>(locale === "en" ? "imperial" : "metric");
+  const [unit, setUnit] = useState<Unit>(defaultUnitSystem(locale));
   const [sex, setSex] = useState<Sex>("male");
   const [age, setAge] = useState("30");
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [activity, setActivity] = useState<Activity>("moderate");
+
+  const draft = useLocalDraft(
+    "calorie-calculator",
+    { unit, sex, age, height, weight, activity },
+    (d) => {
+      if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);
+      if (d.sex === "male" || d.sex === "female") setSex(d.sex);
+      if (typeof d.age === "string") setAge(d.age);
+      if (typeof d.height === "string") setHeight(d.height);
+      if (typeof d.weight === "string") setWeight(d.weight);
+      if (typeof d.activity === "string" && d.activity in ACTIVITY_FACTOR) setActivity(d.activity);
+    },
+  );
 
   const result = useMemo(() => {
     const a = parseFloat(age);
@@ -122,6 +138,13 @@ export default function CalorieCalculator() {
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
+
+      <DraftNotice
+        draft={draft}
+        privacyNote={t("draft.privacyNote")}
+        restoredLabel={t("draft.restored")}
+        clearLabel={t("draft.clear")}
+      />
     </div>
   );
 }

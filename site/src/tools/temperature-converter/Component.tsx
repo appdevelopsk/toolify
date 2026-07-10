@@ -33,6 +33,30 @@ function fromCelsius(c: number, to: Scale): number {
 
 const SCALES: Scale[] = ["C", "F", "K", "R"];
 
+const SCALE_SYMBOL: Record<Scale, string> = { C: "°C", F: "°F", K: "K", R: "°R" };
+
+// Temperatures people actually check: cooking, health, weather, household
+const QUICK_REF: Array<{ id: string; value: number; unit: Scale; ref: Scale }> = [
+  { id: "absoluteZero", value: -273.15, unit: "C", ref: "F" },
+  { id: "freezer", value: -18, unit: "C", ref: "F" },
+  { id: "freezing", value: 0, unit: "C", ref: "F" },
+  { id: "fridge", value: 4, unit: "C", ref: "F" },
+  { id: "room", value: 20, unit: "C", ref: "F" },
+  { id: "summer", value: 30, unit: "C", ref: "F" },
+  { id: "body", value: 37, unit: "C", ref: "F" },
+  { id: "fever", value: 39, unit: "C", ref: "F" },
+  { id: "bath", value: 41, unit: "C", ref: "F" },
+  { id: "sauna", value: 80, unit: "C", ref: "F" },
+  { id: "boiling", value: 100, unit: "C", ref: "F" },
+  { id: "ovenLow", value: 150, unit: "C", ref: "F" },
+  { id: "ovenModerate", value: 180, unit: "C", ref: "F" },
+  { id: "ovenHot", value: 220, unit: "C", ref: "F" },
+];
+
+function convertScale(value: number, from: Scale, to: Scale): number {
+  return fromCelsius(toCelsius(value, from), to);
+}
+
 export default function TemperatureConverter() {
   const t = useTranslations("tools.temperature-converter");
   const locale = useLocale();
@@ -47,6 +71,12 @@ export default function TemperatureConverter() {
   }, [value, from]);
 
   const fmt = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 4 }), [locale]);
+  const fmtRef = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 2 }), [locale]);
+
+  function applyRow(row: (typeof QUICK_REF)[number]) {
+    setFrom(row.unit);
+    setValue(String(row.value));
+  }
 
   return (
     <div>
@@ -94,6 +124,44 @@ export default function TemperatureConverter() {
           </div>
         ))}
       </div>
+
+      <section className="mt-8">
+        <h2 className="text-lg font-semibold">{t("quickRef.title")}</h2>
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{t("quickRef.hint")}</p>
+        <div className="mt-3 overflow-x-auto">
+          <table className="w-full min-w-[28rem] text-sm">
+            <thead>
+              <tr className="border-b border-slate-300 text-left dark:border-slate-700">
+                <th className="py-2 pr-2 font-medium">{t("quickRef.colItem")}</th>
+                <th className="py-2 pr-2 text-right font-medium">{t("quickRef.colValue")}</th>
+                <th className="py-2 pr-2 text-right font-medium">{t("quickRef.colEquiv")}</th>
+                <th className="py-2" aria-hidden="true"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {QUICK_REF.map((r) => (
+                <tr key={r.id} className="border-b border-slate-200 dark:border-slate-800">
+                  <td className="py-2 pr-2">{t(`quickRef.rows.${r.id}`)}</td>
+                  <td className="whitespace-nowrap py-2 pr-2 text-right tabular-nums">
+                    {fmtRef.format(r.value)} {SCALE_SYMBOL[r.unit]}
+                  </td>
+                  <td className="whitespace-nowrap py-2 pr-2 text-right tabular-nums">
+                    {fmtRef.format(convertScale(r.value, r.unit, r.ref))} {SCALE_SYMBOL[r.ref]}
+                  </td>
+                  <td className="py-2 text-right">
+                    <button
+                      onClick={() => applyRow(r)}
+                      className="rounded border border-slate-300 px-2 py-0.5 text-xs hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+                    >
+                      {t("quickRef.apply")}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
   );
 }

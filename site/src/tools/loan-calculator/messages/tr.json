@@ -3,7 +3,13 @@
   "shortDescription": "Herhangi bir sabit faizli kredi için aylık ödemeyi, kredi boyunca ödenen toplam tutarı ve toplam faizi hesaplayın.",
   "description": "Kredi anaparasını, yıllık faiz oranını ve vadeyi yıl cinsinden girerek aylık ödemeyi, ödenen toplam tutarı ve toplam faizi görün. Konut kredisi, araç kredisi, öğrenci kredisi ve bireysel kredi için çalışır.",
   "metaDescription": "Konut kredisi, araç kredisi ve bireysel kredi için ücretsiz kredi hesaplayıcı. Anapara, oran ve vadeden aylık ödeme, toplam ödeme ve toplam faizi hesaplar.",
-  "keywords": ["kredi hesaplayıcı", "aylık ödeme hesaplayıcı", "konut kredisi hesaplayıcı", "araç kredisi hesaplayıcı", "faiz hesaplama"],
+  "keywords": [
+    "kredi hesaplayıcı",
+    "aylık ödeme hesaplayıcı",
+    "konut kredisi hesaplayıcı",
+    "araç kredisi hesaplayıcı",
+    "faiz hesaplama"
+  ],
   "empty": "Kredi dökümünü görmek için tüm alanları doldurun.",
   "input": {
     "principal": "Kredi tutarı",
@@ -14,6 +20,19 @@
     "monthly": "Aylık ödeme",
     "totalPaid": "Toplam ödeme",
     "totalInterest": "Toplam faiz"
+  },
+  "schedule": {
+    "heading": "Plan",
+    "downloadCsv": "CSV İndir",
+    "yearTemplate": "{n}. yıl",
+    "expandHint": "Aylık dökümü açmak için bir yıla tıklayın; CSV dışa aktarımı tüm ayları içerir.",
+    "col": {
+      "month": "Ay",
+      "payment": "Ödeme",
+      "principal": "Anapara",
+      "interest": "Faiz",
+      "balance": "Bakiye"
+    }
   },
   "article": {
     "sections": [
@@ -38,23 +57,66 @@
           "1.000.000 ₺'lik bir konut kredisinde, 30 yıldan 15 yıla geçmek aylık ödemeyi yaklaşık ikiye katlar ancak toplam faizi büyük ölçüde azaltır. Daha yüksek aylık, çok daha düşük toplam.",
           "Aynı 30 yıllık kredide oran her puan arttığında toplam maliyet önemli ölçüde yükselir. Bu nedenle oranı kilitlemek önemlidir."
         ]
+      },
+      {
+        "heading": "Formül ve kaynaklar",
+        "paragraphs": [
+          "Aylık taksit = P × r ÷ (1 − (1 + r)⁻ⁿ) — bankaların ihtiyaç kredisi, öğrenim kredisi ve çoğu taksitli kredide kullandığı sabit taksitli (anüite) formül. P alınan kredi tutarı, r yıllık faizin 12'ye bölümü, n ise ay cinsinden vadedir.",
+          "Ödeme planı tablosu bu formülü ay ay tekrarlayarak uygular; CFPB itfayı (amortisman) tam olarak böyle tanımlar: ilk taksitlerde faiz, son taksitlerde anapara ağır basar. Resmî tanımlara sayfanın altındaki kaynaklardan ulaşabilirsiniz."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Kredi tutarını girin", "text": "Ödünç aldığınız anapara." },
-      { "name": "Yıllık oranı girin", "text": "Borç veren tarafından ilan edildiği gibi (ör. %4,5 için 4,5)." },
-      { "name": "Vadeyi girin", "text": "Yıl cinsinden. Yaygın: konut kredisi için 10-30, araç kredisi için 2-5." },
-      { "name": "Dökümü okuyun", "text": "Aylık ödeme, ömür boyu maliyet, toplam faiz." }
+      {
+        "name": "Kredi tutarını girin",
+        "text": "Ödünç aldığınız anapara."
+      },
+      {
+        "name": "Yıllık oranı girin",
+        "text": "Borç veren tarafından ilan edildiği gibi (ör. %4,5 için 4,5)."
+      },
+      {
+        "name": "Vadeyi girin",
+        "text": "Yıl cinsinden. Yaygın: konut kredisi için 10-30, araç kredisi için 2-5."
+      },
+      {
+        "name": "Dökümü okuyun",
+        "text": "Aylık ödeme, ömür boyu maliyet, toplam faiz."
+      }
     ]
   },
   "faq": [
-    { "q": "Aylık ödeme neden vergi ve sigortayı içermiyor?", "a": "Çünkü bunlar konuma, borç verene ve bireye göre büyük farklılıklar gösterir. 'Anapara ve faiz' (A+F) rakamı evrenseldir; yerel vergi ve sigortanızı ayrı ekleyin." },
-    { "q": "APR ile faiz oranı arasındaki fark nedir?", "a": "Faiz oranı paranın maliyetidir. APR yıllık olarak ifade edilen oran artı ücretleri içerir. Aylık ödeme matematiği için faiz oranını kullanın; kredi tekliflerini karşılaştırmak için APR kullanın." },
-    { "q": "Ek ödemeler krediyi nasıl etkiler?", "a": "Anaparaya uygulanan her ek lira, gelecekteki birden fazla lira faiz tasarrufu sağlar. Çevrimiçi itfa tabloları yeni ödeme tarihini gösterebilir." },
-    { "q": "15 yıllık mı yoksa 30 yıllık ipotek mi almalıyım?", "a": "15 yıllık çok fazla faiz tasarrufu sağlar ve öz sermayeyi daha hızlı biriktirir. 30 yıllık daha düşük aylık ödemeler ve daha fazla esneklik sunar. Aylık nakit akışınıza ve diğer yatırım seçeneklerinize göre seçin." },
-    { "q": "Basit ve bileşik faiz arasındaki fark nedir?", "a": "Konut, otomobil ve bireysel krediler basit aylık faiz kullanır (ay içinde bileşikleşme yok). Kredi kartları günlük bileşikleşir; bu nedenle başlık APR'den daha pahalıdırlar." },
-    { "q": "Erken ödemeler neden çoğunlukla faize gidiyor?", "a": "1. ayda, tüm anapara faiz biriktirir. Anapara azaldıkça daha az faiz birikir; dolayısıyla sabit ödemenin daha fazlası anaparaya gider." },
-    { "q": "Hesaplayıcı değişken faizli kredileri destekliyor mu?", "a": "Doğrudan değil — sabit oran varsayar. Değişken faizli krediler için hesaplayıcıyı başlangıç oranında ve varsayılan reset oranında çalıştırarak aralığı görün." },
-    { "q": "Veriler bir yere gönderiliyor mu?", "a": "Hayır. Tüm matematik tarayıcınızda çalışır." }
+    {
+      "q": "Aylık ödeme neden vergi ve sigortayı içermiyor?",
+      "a": "Çünkü bunlar konuma, borç verene ve bireye göre büyük farklılıklar gösterir. 'Anapara ve faiz' (A+F) rakamı evrenseldir; yerel vergi ve sigortanızı ayrı ekleyin."
+    },
+    {
+      "q": "APR ile faiz oranı arasındaki fark nedir?",
+      "a": "Faiz oranı paranın maliyetidir. APR yıllık olarak ifade edilen oran artı ücretleri içerir. Aylık ödeme matematiği için faiz oranını kullanın; kredi tekliflerini karşılaştırmak için APR kullanın."
+    },
+    {
+      "q": "Ek ödemeler krediyi nasıl etkiler?",
+      "a": "Anaparaya uygulanan her ek lira, gelecekteki birden fazla lira faiz tasarrufu sağlar. Çevrimiçi itfa tabloları yeni ödeme tarihini gösterebilir."
+    },
+    {
+      "q": "15 yıllık mı yoksa 30 yıllık ipotek mi almalıyım?",
+      "a": "15 yıllık çok fazla faiz tasarrufu sağlar ve öz sermayeyi daha hızlı biriktirir. 30 yıllık daha düşük aylık ödemeler ve daha fazla esneklik sunar. Aylık nakit akışınıza ve diğer yatırım seçeneklerinize göre seçin."
+    },
+    {
+      "q": "Basit ve bileşik faiz arasındaki fark nedir?",
+      "a": "Konut, otomobil ve bireysel krediler basit aylık faiz kullanır (ay içinde bileşikleşme yok). Kredi kartları günlük bileşikleşir; bu nedenle başlık APR'den daha pahalıdırlar."
+    },
+    {
+      "q": "Erken ödemeler neden çoğunlukla faize gidiyor?",
+      "a": "1. ayda, tüm anapara faiz biriktirir. Anapara azaldıkça daha az faiz birikir; dolayısıyla sabit ödemenin daha fazlası anaparaya gider."
+    },
+    {
+      "q": "Hesaplayıcı değişken faizli kredileri destekliyor mu?",
+      "a": "Doğrudan değil — sabit oran varsayar. Değişken faizli krediler için hesaplayıcıyı başlangıç oranında ve varsayılan reset oranında çalıştırarak aralığı görün."
+    },
+    {
+      "q": "Veriler bir yere gönderiliyor mu?",
+      "a": "Hayır. Tüm matematik tarayıcınızda çalışır."
+    }
   ]
 }

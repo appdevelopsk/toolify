@@ -17,6 +17,56 @@ function localNowIso(): string {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
 }
 
+// UTC offset of `tz` at the given moment, in minutes
+function offsetMinutes(date: Date, tz: string): number | null {
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: tz,
+      year: "numeric", month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit", hour12: false,
+    }).formatToParts(date);
+    const p: Record<string, string> = {};
+    for (const x of parts) p[x.type] = x.value;
+    const asUtc = Date.UTC(+p.year!, +p.month! - 1, +p.day!, +p.hour! % 24, +p.minute!);
+    return Math.round((asUtc - date.getTime()) / 60000);
+  } catch {
+    return null;
+  }
+}
+
+const BIZ_START = 9 * 60;
+const BIZ_END = 18 * 60;
+
+function hhmm(totalMin: number): string {
+  const m = ((totalMin % 1440) + 1440) % 1440;
+  return `${pad(Math.floor(m / 60))}:${pad(m % 60)}`;
+}
+
+// Overlap of 9:00–18:00 business hours in both zones, at the given moment's offsets.
+// Returns intervals expressed in each zone's local time, or null when there is no overlap.
+function businessOverlap(
+  date: Date,
+  sourceTz: string,
+  targetTz: string,
+): { source: string; target: string } | null {
+  const offSource = offsetMinutes(date, sourceTz);
+  const offTarget = offsetMinutes(date, targetTz);
+  if (offSource === null || offTarget === null) return null;
+  const d = offTarget - offSource; // add to source-local time to get target-local time
+  let best: { start: number; end: number } | null = null;
+  for (const k of [-1440, 0, 1440]) {
+    // target's business window expressed in source-local minutes
+    const s = Math.max(BIZ_START, BIZ_START - d + k);
+    const e = Math.min(BIZ_END, BIZ_END - d + k);
+    if (e > s && (!best || e - s > best.end - best.start)) best = { start: s, end: e };
+  }
+  if (!best) return null;
+  return {
+    source: `${hhmm(best.start)}–${hhmm(best.end)}`,
+    target: `${hhmm(best.start + d)}–${hhmm(best.end + d)}`,
+  };
+}
+
 function inTzString(date: Date, tz: string, locale: string): string {
   try {
     return new Intl.DateTimeFormat(locale, {
@@ -106,17 +156,36 @@ export default function TimezoneConverter() {
       </div>
 
       <div aria-live="polite" className="mt-6 space-y-2">
-        {targetTzs.map((tz) => (
-          <div key={tz} className="flex items-center justify-between rounded border border-slate-200 px-4 py-3 dark:border-slate-800">
-            <div>
-              <div className="text-sm font-medium">{tz}</div>
-              <div className="font-mono text-lg tabular-nums">
-                {sourceDate ? inTzString(sourceDate, tz, locale) : "—"}
+        {targetTzs.map((tz) => {
+          const overlap = sourceDate && tz !== sourceTz ? businessOverlap(sourceDate, sourceTz, tz) : null;
+          return (
+            <div key={tz} className="rounded border border-slate-200 px-4 py-3 dark:border-slate-800">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-sm font-medium">{tz}</div>
+                  <div className="font-mono text-lg tabular-nums">
+                    {sourceDate ? inTzString(sourceDate, tz, locale) : "—"}
+                  </div>
+                </div>
+                <button onClick={() => removeTz(tz)} aria-label={t("remove")} className="text-slate-400 hover:text-red-600">×</button>
               </div>
+              {sourceDate && tz !== sourceTz && (
+                <div className="mt-2 border-t border-dashed border-slate-200 pt-2 text-xs text-slate-600 dark:border-slate-800 dark:text-slate-400">
+                  {overlap ? (
+                    <>
+                      <span className="font-medium">{t("overlap.label")}: </span>
+                      <span className="tabular-nums">{overlap.source} ({sourceTz})</span>
+                      {" = "}
+                      <span className="tabular-nums">{overlap.target} ({tz})</span>
+                    </>
+                  ) : (
+                    <span>{t("overlap.none")}</span>
+                  )}
+                </div>
+              )}
             </div>
-            <button onClick={() => removeTz(tz)} aria-label={t("remove")} className="text-slate-400 hover:text-red-600">×</button>
-          </div>
-        ))}
+          );
+        })}
         {targetTzs.length === 0 && <div className="rounded border border-dashed border-slate-300 px-4 py-3 text-sm text-slate-600 dark:text-slate-400 dark:border-slate-700">{t("empty")}</div>}
       </div>
     </div>

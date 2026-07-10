@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "workdays-calculator",
     category: "datetime",
     applicationCategory: "BusinessApplication",
-    updatedAt: "2026-05-07",
+    updatedAt: "2026-07-10",
     related: ["date-calculator", "age-calculator", "countdown-timer"],
     primaryKeyword: {
       en: "workdays calculator",

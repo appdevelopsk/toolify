@@ -3,7 +3,13 @@
   "shortDescription": "Herhangi bir sabit faizli kredi için ay ay tam itfa planı oluşturun. Ödeme başına anapara/faiz dağılımını, bitiş bakiyesini ve CSV dışa aktarmayı gösterir.",
   "description": "Anapara, yıllık oran ve yıl cinsinden vadeyi girin. Aylık ödemeyi, toplam faizi, toplam ödemeleri ve her ödemenin anapara ile faiz arasında nasıl bölündüğünü gösteren ay başına bir satırlık planı döndürür. Tam ile yıllık özet arasında geçiş yapın; CSV indirin.",
   "metaDescription": "Ücretsiz kredi itfa planı. Aylık anapara/faiz dağılımı, toplam faiz, dönem başına bitiş bakiyesi. CSV dışa aktarma. Tarayıcı tabanlı.",
-  "keywords": ["kredi itfa planı", "amortisman tablosu", "aylık anapara faiz", "kredi planı hesaplayıcı", "konut kredisi itfa"],
+  "keywords": [
+    "kredi itfa planı",
+    "amortisman tablosu",
+    "aylık anapara faiz",
+    "kredi planı hesaplayıcı",
+    "konut kredisi itfa"
+  ],
   "input": {
     "principal": "Kredi tutarı",
     "ratePct": "Yıllık oran %",
@@ -17,10 +23,9 @@
   },
   "schedule": {
     "heading": "Plan",
-    "showAll": "Tüm ayları göster",
-    "condense": "Yıllık olarak özetle",
     "downloadCsv": "CSV İndir",
-    "condensedNote": "Özetlenmiş görünüm: ilk ay, her 12. ay ve son ay gösteriliyor. Tam ayrıntı için 'Tüm ayları göster'e tıklayın.",
+    "yearTemplate": "{n}. yıl",
+    "expandHint": "Aylık dökümü açmak için bir yıla tıklayın; CSV dışa aktarımı tüm ayları içerir.",
     "col": {
       "month": "Ay",
       "payment": "Ödeme",
@@ -54,24 +59,70 @@
           "Ön ödeme senaryosu yok. Ek ödeme yaparsanız o noktanın ötesindeki plan artık doğru değildir. Ön ödeme analizi için yeni bakiyeyle yeniden hesaplayın.",
           "Bileşikleşme: aylık bileşikleşme varsayar (Türkiye'deki konut kredileri için standart). Bazı kredi ürünleri günlük veya basit faiz kullanır — bunlar için plan yaklaşık değerdir."
         ]
+      },
+      {
+        "heading": "Formül ve kaynaklar",
+        "paragraphs": [
+          "Her satır özyinelemeli hesaplanır: ayın faizi = kalan bakiye × (yıllık faiz ÷ 12); ödenen anapara = sabit taksit − faiz; yeni bakiye = önceki bakiye − ödenen anapara. Sabit taksitin kendisi anüite formülünden gelir: M = P × r ÷ (1 − (1 + r)⁻ⁿ).",
+          "Bu, Investopedia ve CFPB'nin belgelediği ders kitabı itfa yöntemidir (bağlantılar kaynaklarda). Bankaların gerçek ödeme planları yuvarlama kuralları yüzünden birkaç kuruş sapabilir; kredi günlük faiz işletiyor veya değişken faizliyse fark daha da büyür."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Kredi tutarını girin", "text": "Ödünç alınan tutar (anapara)." },
-      { "name": "Oranı girin", "text": "Yıllık faiz oranı. %6,5 için 6,5 girin." },
-      { "name": "Vadeyi girin", "text": "Yıl cinsinden. Türkiye'deki konut kredileri genellikle 10-30 yıldır." },
-      { "name": "Özet + planı okuyun", "text": "Aylık ödeme, toplam faiz, her dolar/liranın nereye gittiğinin ay ay dökümü." },
-      { "name": "CSV indirin", "text": "Elektronik tablo analizi için tam planı dışa aktarın." }
+      {
+        "name": "Kredi tutarını girin",
+        "text": "Ödünç alınan tutar (anapara)."
+      },
+      {
+        "name": "Oranı girin",
+        "text": "Yıllık faiz oranı. %6,5 için 6,5 girin."
+      },
+      {
+        "name": "Vadeyi girin",
+        "text": "Yıl cinsinden. Türkiye'deki konut kredileri genellikle 10-30 yıldır."
+      },
+      {
+        "name": "Özet + planı okuyun",
+        "text": "Aylık ödeme, toplam faiz, her dolar/liranın nereye gittiğinin ay ay dökümü."
+      },
+      {
+        "name": "CSV indirin",
+        "text": "Elektronik tablo analizi için tam planı dışa aktarın."
+      }
     ]
   },
   "faq": [
-    { "q": "Konut kredisi ekstrem neden farklı sayılar gösteriyor?", "a": "Gerçek borç verenler aylık ödemeye vergi, sigorta ve diğer giderleri dahil eder. Bu hesaplayıcı saf anapara + faiz (A+F) gösterir. Karşılaştırmak için bu eklentileri çıkarın." },
-    { "q": "Her ay faiz nasıl hesaplanıyor?", "a": "Aylık faiz = mevcut bakiye × aylık oran. Ardından anapara = aylık ödeme − faiz. Yeni bakiye = eski bakiye − anapara. n ay boyunca tekrarlayın." },
-    { "q": "Erken ödemeler neden faize bu kadar 'harcanıyor' gibi görünüyor?", "a": "Harcandıkları değil — yüksek ödenmemiş bakiyedeki kredinin var olmasının bedelini ödüyorlar. Matematik dürüst: yüksek bakiye × oran = yüksek faiz. Bakiye düştükçe faiz de düşüyor." },
-    { "q": "1 puanlık oran değişikliğinin etkisi nedir?", "a": "Aylık ödemede yaklaşık %12 artış ve 30 yıllık ipotekte toplam faizde %25-35 artış. Mümkünse düşük oranları kilitleyin." },
-    { "q": "Her ay ek anapara ödemeli miyim?", "a": "Kredinizin erken ödeme cezası yoksa (Türkiye'de konut kredilerinde çoğunlukla var, kontrol edin) evet. Kredinin başında aylık ek 500 ₺ bile binlerce lira faiz tasarrufu sağlar. Plan bunu gösterir." },
-    { "q": "Balon kredi nedir?", "a": "Düzenli ödemelerin tam amortisman yapmadığı ve büyük bir son 'balon' ödeme bırakan kredi. Ticari gayrimenkulde yaygın, konut kredisinde nadir. Bu hesaplayıcı balonları modellemez." },
-    { "q": "30 yıllık toplam faiz neden 15 yıllıktan bu kadar fazla?", "a": "Bileşikleşme aleyhinize çalışıyor. %6'da, oran aynı olmasına rağmen 30 yıllık kredinin toplam faizi 15 yıllığın yaklaşık 2 katıdır. Daha kısa vade, yüksek bakiye döneminin daha kısa olduğu anlamına gelir." },
-    { "q": "Veriler tarayıcımdan çıkıyor mu?", "a": "Hayır. Hesaplama yerel olarak çalışır; CSV indirme de tarayıcıda oluşturulur." }
+    {
+      "q": "Konut kredisi ekstrem neden farklı sayılar gösteriyor?",
+      "a": "Gerçek borç verenler aylık ödemeye vergi, sigorta ve diğer giderleri dahil eder. Bu hesaplayıcı saf anapara + faiz (A+F) gösterir. Karşılaştırmak için bu eklentileri çıkarın."
+    },
+    {
+      "q": "Her ay faiz nasıl hesaplanıyor?",
+      "a": "Aylık faiz = mevcut bakiye × aylık oran. Ardından anapara = aylık ödeme − faiz. Yeni bakiye = eski bakiye − anapara. n ay boyunca tekrarlayın."
+    },
+    {
+      "q": "Erken ödemeler neden faize bu kadar 'harcanıyor' gibi görünüyor?",
+      "a": "Harcandıkları değil — yüksek ödenmemiş bakiyedeki kredinin var olmasının bedelini ödüyorlar. Matematik dürüst: yüksek bakiye × oran = yüksek faiz. Bakiye düştükçe faiz de düşüyor."
+    },
+    {
+      "q": "1 puanlık oran değişikliğinin etkisi nedir?",
+      "a": "Aylık ödemede yaklaşık %12 artış ve 30 yıllık ipotekte toplam faizde %25-35 artış. Mümkünse düşük oranları kilitleyin."
+    },
+    {
+      "q": "Her ay ek anapara ödemeli miyim?",
+      "a": "Kredinizin erken ödeme cezası yoksa (Türkiye'de konut kredilerinde çoğunlukla var, kontrol edin) evet. Kredinin başında aylık ek 500 ₺ bile binlerce lira faiz tasarrufu sağlar. Plan bunu gösterir."
+    },
+    {
+      "q": "Balon kredi nedir?",
+      "a": "Düzenli ödemelerin tam amortisman yapmadığı ve büyük bir son 'balon' ödeme bırakan kredi. Ticari gayrimenkulde yaygın, konut kredisinde nadir. Bu hesaplayıcı balonları modellemez."
+    },
+    {
+      "q": "30 yıllık toplam faiz neden 15 yıllıktan bu kadar fazla?",
+      "a": "Bileşikleşme aleyhinize çalışıyor. %6'da, oran aynı olmasına rağmen 30 yıllık kredinin toplam faizi 15 yıllığın yaklaşık 2 katıdır. Daha kısa vade, yüksek bakiye döneminin daha kısa olduğu anlamına gelir."
+    },
+    {
+      "q": "Veriler tarayıcımdan çıkıyor mu?",
+      "a": "Hayır. Hesaplama yerel olarak çalışır; CSV indirme de tarayıcıda oluşturulur."
+    }
   ]
 }

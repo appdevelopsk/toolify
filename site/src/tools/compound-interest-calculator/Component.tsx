@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { TrendChartSvg } from "@/components/tools/TrendChartSvg";
 
 const COMPOUND_OPTIONS = [
   { value: 1, key: "annual" },
@@ -40,6 +41,34 @@ export default function CompoundInterestCalculator() {
     const totalContributed = p + m * 12 * t;
     const totalInterest = finalBalance - totalContributed;
     return { finalBalance, totalContributed, totalInterest };
+  }, [principal, ratePct, years, compoundsPerYear, monthlyContribution]);
+
+  const chart = useMemo(() => {
+    const p = parseFloat(principal);
+    const r = parseFloat(ratePct) / 100;
+    const yrs = Math.round(parseFloat(years));
+    const m = parseFloat(monthlyContribution);
+    if (![p, r, yrs, m].every(isFinite) || p < 0 || m < 0 || yrs < 1 || yrs > 100) return null;
+    const n = compoundsPerYear;
+    const step = Math.max(1, Math.ceil(yrs / 50));
+    const xLabels: string[] = [];
+    const contributions: number[] = [];
+    const interest: number[] = [];
+    for (let y = 0; y <= yrs; y += step) {
+      const lumpFv = p * Math.pow(1 + r / n, n * y);
+      let contribFv = 0;
+      if (m > 0 && r > 0) {
+        const monthlyRate = r / 12;
+        contribFv = m * ((Math.pow(1 + monthlyRate, 12 * y) - 1) / monthlyRate);
+      } else if (m > 0) {
+        contribFv = m * 12 * y;
+      }
+      const contributed = p + m * 12 * y;
+      xLabels.push(String(y));
+      contributions.push(contributed);
+      interest.push(Math.max(0, lumpFv + contribFv - contributed));
+    }
+    return { xLabels, contributions, interest };
   }, [principal, ratePct, years, compoundsPerYear, monthlyContribution]);
 
   const currency = useMemo(
@@ -129,6 +158,22 @@ export default function CompoundInterestCalculator() {
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
+
+      {chart && (
+        <div className="mt-6">
+          <h2 className="mb-2 font-semibold">{t("chart.heading")}</h2>
+          <TrendChartSvg
+            title={t("chart.heading")}
+            xLabels={chart.xLabels}
+            stacked
+            series={[
+              { label: t("chart.contributions"), values: chart.contributions },
+              { label: t("chart.interest"), values: chart.interest },
+            ]}
+            formatValue={(v) => currency.format(v)}
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -3,7 +3,13 @@
   "shortDescription": "Mira cómo crece una inversión con interés compuesto y aportes mensuales opcionales. Frecuencia de capitalización personalizable.",
   "description": "Introduce saldo inicial, tasa de interés, horizonte temporal y aporte mensual opcional. Muestra el saldo final más desglose de aportes vs interés ganado.",
   "metaDescription": "Calculadora de interés compuesto gratis con aportes mensuales. Saldo final, total aportado e interés total. Capitalización diaria, mensual, trimestral o anual.",
-  "keywords": ["calculadora interés compuesto", "crecimiento inversión", "calculadora ahorros", "calculadora interés", "valor futuro"],
+  "keywords": [
+    "calculadora interés compuesto",
+    "crecimiento inversión",
+    "calculadora ahorros",
+    "calculadora interés",
+    "valor futuro"
+  ],
   "empty": "Rellena los campos para ver la proyección.",
   "input": {
     "principal": "Saldo inicial",
@@ -23,6 +29,11 @@
     "finalBalance": "Saldo final",
     "totalContributed": "Total aportado",
     "totalInterest": "Interés total"
+  },
+  "chart": {
+    "heading": "Crecimiento año a año",
+    "contributions": "Aportaciones",
+    "interest": "Intereses generados"
   },
   "article": {
     "sections": [
@@ -46,24 +57,70 @@
           "Estas proyecciones asumen tasa constante, lo que no coincide con la realidad — los retornos de acciones varían, las tasas de bonos cambian y las tasas promocionales bancarias expiran. Para planificación a largo plazo, ejecuta con tres tasas: pesimista (3-4%), esperada (6-7%) y optimista (9-10%) para ver un rango de resultados.",
           "La inflación se come retornos nominales. 7% nominal con 3% inflación es ~4% en poder adquisitivo 'real'. Si quieres saldo en términos reales, usa (tasa − inflación esperada) en vez de tasa nominal. Comisiones e impuestos típicamente reducen retornos reales 1-2% — réstalo también para mejor aproximación."
         ]
+      },
+      {
+        "heading": "Fórmula y fuentes",
+        "paragraphs": [
+          "El capital inicial crece según A = P × (1 + r/n)^(n·t), y las aportaciones mensuales según la fórmula del valor futuro de una renta: FV = m × ((1 + r/12)^(12t) − 1) ÷ (r/12). El gráfico apila tus aportaciones acumuladas frente a los intereses que han generado.",
+          "Son las mismas fórmulas que usa la calculadora de interés compuesto de Investor.gov, el sitio para inversores de la SEC estadounidense (ver fuentes). Los rendimientos reales varían de un año a otro: lee la curva suave como un escenario de crecimiento medio, no como una garantía."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Introduce saldo inicial", "text": "Cuánto tienes invertido hoy." },
-      { "name": "Introduce tasa y plazo", "text": "Tasa de interés anual como porcentaje y cuántos años planeas invertir." },
-      { "name": "Elige frecuencia", "text": "Mensual es buen default. Diaria diferencia poco; anual es conservador." },
-      { "name": "Añade aporte mensual (opcional)", "text": "Si planeas añadir dinero regularmente, introduce el monto mensual." },
-      { "name": "Lee el desglose", "text": "Saldo final, total aportado (principal + aportes) e interés total ganado." }
+      {
+        "name": "Introduce saldo inicial",
+        "text": "Cuánto tienes invertido hoy."
+      },
+      {
+        "name": "Introduce tasa y plazo",
+        "text": "Tasa de interés anual como porcentaje y cuántos años planeas invertir."
+      },
+      {
+        "name": "Elige frecuencia",
+        "text": "Mensual es buen default. Diaria diferencia poco; anual es conservador."
+      },
+      {
+        "name": "Añade aporte mensual (opcional)",
+        "text": "Si planeas añadir dinero regularmente, introduce el monto mensual."
+      },
+      {
+        "name": "Lee el desglose",
+        "text": "Saldo final, total aportado (principal + aportes) e interés total ganado."
+      }
     ]
   },
   "faq": [
-    { "q": "¿Tasa realista a usar?", "a": "Promedios de bolsa estadounidense a largo plazo son ~7% real / 10% nominal. Bonos históricamente 2-4% real. Cuentas de ahorro 0.5-5% según tipo y época. Prueba 6-7% como base para cartera diversificada." },
-    { "q": "¿Por qué pequeñas diferencias de tasa importan tanto en el tiempo?", "a": "La capitalización multiplica. A 30 años, 6% triplica tu dinero ~2.86× más que 4%, aunque la brecha sea solo 2 puntos porcentuales." },
-    { "q": "¿Aportes al inicio o final del mes?", "a": "Usamos timing de fin de periodo (anualidad ordinaria). Inicio de periodo añadiría un periodo extra de capitalización, subiendo el resultado ~1 mes de interés. No importa para planificación." },
-    { "q": "¿Considera inflación?", "a": "No. Usa tasa 'real' (nominal menos inflación esperada) si quieres proyecciones en dólares de hoy. 7% retorno con 3% inflación es 4% real." },
-    { "q": "¿Y los impuestos y comisiones?", "a": "No modelados. Resta 1-2% de tu tasa como ajuste aproximado para impuestos (en cuentas gravables) y comisiones de fondos." },
-    { "q": "¿Por qué el resultado no coincide con la app de mi banco?", "a": "Los bancos pueden capitalizar en intervalos ligeramente distintos o usar interés simple en periodos cortos. Para proyecciones específicas del banco, usa la calculadora del banco." },
-    { "q": "¿Las tasas pueden ser negativas?", "a": "Sí, matemáticamente — la fórmula lo maneja. Tasas negativas aparecieron en bonos del gobierno europeo, raramente en productos minoristas." },
-    { "q": "¿Los datos se envían?", "a": "No. Toda la matemática corre en tu navegador." }
+    {
+      "q": "¿Tasa realista a usar?",
+      "a": "Promedios de bolsa estadounidense a largo plazo son ~7% real / 10% nominal. Bonos históricamente 2-4% real. Cuentas de ahorro 0.5-5% según tipo y época. Prueba 6-7% como base para cartera diversificada."
+    },
+    {
+      "q": "¿Por qué pequeñas diferencias de tasa importan tanto en el tiempo?",
+      "a": "La capitalización multiplica. A 30 años, 6% triplica tu dinero ~2.86× más que 4%, aunque la brecha sea solo 2 puntos porcentuales."
+    },
+    {
+      "q": "¿Aportes al inicio o final del mes?",
+      "a": "Usamos timing de fin de periodo (anualidad ordinaria). Inicio de periodo añadiría un periodo extra de capitalización, subiendo el resultado ~1 mes de interés. No importa para planificación."
+    },
+    {
+      "q": "¿Considera inflación?",
+      "a": "No. Usa tasa 'real' (nominal menos inflación esperada) si quieres proyecciones en dólares de hoy. 7% retorno con 3% inflación es 4% real."
+    },
+    {
+      "q": "¿Y los impuestos y comisiones?",
+      "a": "No modelados. Resta 1-2% de tu tasa como ajuste aproximado para impuestos (en cuentas gravables) y comisiones de fondos."
+    },
+    {
+      "q": "¿Por qué el resultado no coincide con la app de mi banco?",
+      "a": "Los bancos pueden capitalizar en intervalos ligeramente distintos o usar interés simple en periodos cortos. Para proyecciones específicas del banco, usa la calculadora del banco."
+    },
+    {
+      "q": "¿Las tasas pueden ser negativas?",
+      "a": "Sí, matemáticamente — la fórmula lo maneja. Tasas negativas aparecieron en bonos del gobierno europeo, raramente en productos minoristas."
+    },
+    {
+      "q": "¿Los datos se envían?",
+      "a": "No. Toda la matemática corre en tu navegador."
+    }
   ]
 }

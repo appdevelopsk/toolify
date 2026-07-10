@@ -2,9 +2,12 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useLocalDraft } from "@/lib/hooks/useLocalDraft";
+import { DraftNotice } from "@/lib/hooks/DraftNotice";
+import { defaultUnitSystem, type UnitSystem } from "@/lib/hooks/useUnitSystem";
 
 type Mode = "fromTime" | "fromPace";
-type Unit = "metric" | "imperial";
+type Unit = UnitSystem;
 
 const MILE_KM = 1.609344;
 
@@ -28,13 +31,28 @@ export default function PaceCalculator() {
   const t = useTranslations("tools.pace-calculator");
   const locale = useLocale();
   const [mode, setMode] = useState<Mode>("fromTime");
-  const [unit, setUnit] = useState<Unit>(locale === "en" ? "imperial" : "metric");
+  const [unit, setUnit] = useState<Unit>(defaultUnitSystem(locale));
   const [distance, setDistance] = useState("5");
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("25");
   const [seconds, setSeconds] = useState("0");
   const [paceMin, setPaceMin] = useState("5");
   const [paceSec, setPaceSec] = useState("0");
+
+  const draft = useLocalDraft(
+    "pace-calculator",
+    { mode, unit, distance, hours, minutes, seconds, paceMin, paceSec },
+    (d) => {
+      if (d.mode === "fromTime" || d.mode === "fromPace") setMode(d.mode);
+      if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);
+      if (typeof d.distance === "string") setDistance(d.distance);
+      if (typeof d.hours === "string") setHours(d.hours);
+      if (typeof d.minutes === "string") setMinutes(d.minutes);
+      if (typeof d.seconds === "string") setSeconds(d.seconds);
+      if (typeof d.paceMin === "string") setPaceMin(d.paceMin);
+      if (typeof d.paceSec === "string") setPaceSec(d.paceSec);
+    },
+  );
 
   const result = useMemo(() => {
     const d = parseFloat(distance);
@@ -136,6 +154,13 @@ export default function PaceCalculator() {
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
+
+      <DraftNotice
+        draft={draft}
+        privacyNote={t("draft.privacyNote")}
+        restoredLabel={t("draft.restored")}
+        clearLabel={t("draft.clear")}
+      />
     </div>
   );
 }

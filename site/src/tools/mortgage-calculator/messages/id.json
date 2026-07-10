@@ -3,7 +3,13 @@
   "shortDescription": "Hitung cicilan KPR bulanan lengkap termasuk pokok, bunga, pajak properti, asuransi, dan biaya lainnya.",
   "description": "Masukkan harga rumah, uang muka, suku bunga, jangka waktu, dan biaya berulang untuk melihat cicilan perumahan bulanan yang realistis plus total bunga yang akan Anda bayar.",
   "metaDescription": "Kalkulator KPR gratis dengan rincian lengkap — pokok, bunga, pajak properti, asuransi, dan biaya. Total biaya perumahan bulanan yang realistis.",
-  "keywords": ["kalkulator kpr", "cicilan kpr", "kalkulator kredit rumah", "biaya kepemilikan rumah", "kalkulator pinjaman rumah"],
+  "keywords": [
+    "kalkulator kpr",
+    "cicilan kpr",
+    "kalkulator kredit rumah",
+    "biaya kepemilikan rumah",
+    "kalkulator pinjaman rumah"
+  ],
   "empty": "Isi kolom untuk melihat rincian bulanan.",
   "input": {
     "price": "Harga rumah",
@@ -23,6 +29,32 @@
     "downPayment": "Uang muka",
     "principal": "Pokok pinjaman",
     "totalInterest": "Total bunga selama pinjaman"
+  },
+  "schedule": {
+    "heading": "Jadwal",
+    "downloadCsv": "Unduh CSV",
+    "yearTemplate": "Tahun {n}",
+    "expandHint": "Klik sebuah tahun untuk membuka rincian per bulan; ekspor CSV memuat semua bulan.",
+    "col": {
+      "month": "Bulan",
+      "payment": "Pembayaran",
+      "principal": "Pokok",
+      "interest": "Bunga",
+      "balance": "Saldo"
+    }
+  },
+  "compare": {
+    "toggle": "Bandingkan skenario kedua",
+    "hide": "Sembunyikan perbandingan",
+    "heading": "Perbandingan skenario (pokok & bunga saja)",
+    "scenarioA": "Skenario A (input saat ini)",
+    "scenarioB": "Skenario B",
+    "rateB": "Suku bunga tahunan %",
+    "yearsB": "Jangka waktu pinjaman (tahun)",
+    "monthlyPI": "Pokok & bunga",
+    "totalInterest": "Total bunga selama pinjaman",
+    "totalPaid": "Total yang dibayar",
+    "difference": "Selisih (B − A)"
   },
   "article": {
     "sections": [
@@ -46,24 +78,70 @@
           "Pajak properti: cari tarif BPHTB atau PBB di kabupaten/kota Anda atau gunakan perkiraan. Asuransi: biasanya Rp2-5 juta/tahun untuk rumah tipe menengah. Biaya pengelolaan: hanya relevan jika Anda membeli di kompleks dengan IPL (Iuran Pemeliharaan Lingkungan).",
           "Untuk penganggaran yang lebih konservatif, jalankan kalkulator dengan suku bunga sedikit lebih tinggi dari sekarang. Suku bunga KPR dapat naik antara tanggal penguncian suku bunga; perencanaan untuk volatilitas suku bunga adalah bijaksana. Pertimbangkan juga biaya penutupan (biasanya 2-5% dari jumlah pinjaman) yang tidak dimodelkan di sini."
         ]
+      },
+      {
+        "heading": "Rumus dan sumber",
+        "paragraphs": [
+          "Angsuran pokok dan bunga dihitung dengan rumus anuitas standar M = P × r ÷ (1 − (1 + r)⁻ⁿ), dengan P jumlah pinjaman setelah uang muka, r suku bunga tahunan dibagi 12, dan n jumlah angsuran bulanan. Tabel amortisasi di atas menerapkan rumus yang sama bulan demi bulan: setiap angsuran lebih dulu menutup bunga atas saldo tersisa, sisanya mengurangi pokok.",
+          "Pembagian PITI (pokok, bunga, pajak, asuransi) dan patokan PMI mengikuti definisi yang diterbitkan lembaga perlindungan konsumen keuangan AS (CFPB); halaman persisnya tercantum pada bagian sumber di bawah. Penawaran bank tetap bisa berbeda karena biaya, pembulatan bunga, dan pengelolaan rekening escrow, jadi perlakukan hasil ini sebagai angka perencanaan, bukan penawaran."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Masukkan harga rumah", "text": "Harga jual yang disepakati." },
-      { "name": "Atur % uang muka", "text": "20% menghindari PMI; lebih kecil memicunya." },
-      { "name": "Masukkan suku bunga dan jangka waktu", "text": "Suku bunga tahunan sebagai persen, jangka waktu dalam tahun (biasanya 15 atau 20)." },
-      { "name": "Tambahkan biaya berulang", "text": "Pajak properti tahunan, asuransi tahunan, IPL/biaya pengelolaan bulanan." },
-      { "name": "Baca rinciannya", "text": "Total biaya bulanan plus rincian baris per baris." }
+      {
+        "name": "Masukkan harga rumah",
+        "text": "Harga jual yang disepakati."
+      },
+      {
+        "name": "Atur % uang muka",
+        "text": "20% menghindari PMI; lebih kecil memicunya."
+      },
+      {
+        "name": "Masukkan suku bunga dan jangka waktu",
+        "text": "Suku bunga tahunan sebagai persen, jangka waktu dalam tahun (biasanya 15 atau 20)."
+      },
+      {
+        "name": "Tambahkan biaya berulang",
+        "text": "Pajak properti tahunan, asuransi tahunan, IPL/biaya pengelolaan bulanan."
+      },
+      {
+        "name": "Baca rinciannya",
+        "text": "Total biaya bulanan plus rincian baris per baris."
+      }
     ]
   },
   "faq": [
-    { "q": "Apa bedanya dengan kalkulator pinjaman dasar?", "a": "Ini menambahkan pajak, asuransi, dan biaya pengelolaan — biaya dunia nyata di atas hanya pokok dan bunga. Gunakan kalkulator pinjaman untuk pinjaman non-perumahan." },
-    { "q": "Apakah estimasi PMI akurat?", "a": "Perkiraan. PMI bervariasi dari 0,3% hingga 1,5% per tahun tergantung skor kredit, uang muka, dan jenis pinjaman. Kami menggunakan 0,5% sebagai angka perkiraan menengah." },
-    { "q": "Haruskah saya mengambil KPR 15 atau 20 tahun?", "a": "15 tahun menghemat bunga yang signifikan tetapi menggandakan P&I bulanan. 20 tahun menawarkan fleksibilitas. Pilih berdasarkan arus kas dan opsi investasi lainnya. Kalkulator menampilkan total bunga untuk setiap jangka waktu." },
-    { "q": "Bagaimana cara menemukan tarif pajak properti saya?", "a": "Cari tarif PBB di kantor pajak kota/kabupaten Anda. Tarif PBB di Indonesia bervariasi per daerah, biasanya 0,1-0,3% dari NJOP." },
-    { "q": "Haruskah saya memasukkan biaya pengelolaan?", "a": "Hanya jika rumah Anda memiliki IPL. IPL bervariasi dari Rp0 (tanpa pengelolaan) hingga lebih dari Rp1 juta/bulan untuk gedung dengan fasilitas tinggi." },
-    { "q": "Mengapa cicilan KPR saya yang sebenarnya berbeda?", "a": "Pemberi pinjaman mungkin memasukkan escrow untuk pajak/asuransi secara berbeda, mungkin menggabungkan asuransi kredit ke dalam suku bunga, dan mungkin mengenakan biaya yang tidak dimodelkan kalkulator ini. Selalu periksa Estimasi Pinjaman resmi dari pemberi pinjaman." },
-    { "q": "Apakah ini memperhitungkan refinansing?", "a": "Tidak. Jalankan kalkulator dengan suku bunga baru setelah refinansing untuk cicilan yang diperbarui." },
-    { "q": "Apakah data dikirim ke mana saja?", "a": "Tidak. Perhitungan berjalan secara lokal." }
+    {
+      "q": "Apa bedanya dengan kalkulator pinjaman dasar?",
+      "a": "Ini menambahkan pajak, asuransi, dan biaya pengelolaan — biaya dunia nyata di atas hanya pokok dan bunga. Gunakan kalkulator pinjaman untuk pinjaman non-perumahan."
+    },
+    {
+      "q": "Apakah estimasi PMI akurat?",
+      "a": "Perkiraan. PMI bervariasi dari 0,3% hingga 1,5% per tahun tergantung skor kredit, uang muka, dan jenis pinjaman. Kami menggunakan 0,5% sebagai angka perkiraan menengah."
+    },
+    {
+      "q": "Haruskah saya mengambil KPR 15 atau 20 tahun?",
+      "a": "15 tahun menghemat bunga yang signifikan tetapi menggandakan P&I bulanan. 20 tahun menawarkan fleksibilitas. Pilih berdasarkan arus kas dan opsi investasi lainnya. Kalkulator menampilkan total bunga untuk setiap jangka waktu."
+    },
+    {
+      "q": "Bagaimana cara menemukan tarif pajak properti saya?",
+      "a": "Cari tarif PBB di kantor pajak kota/kabupaten Anda. Tarif PBB di Indonesia bervariasi per daerah, biasanya 0,1-0,3% dari NJOP."
+    },
+    {
+      "q": "Haruskah saya memasukkan biaya pengelolaan?",
+      "a": "Hanya jika rumah Anda memiliki IPL. IPL bervariasi dari Rp0 (tanpa pengelolaan) hingga lebih dari Rp1 juta/bulan untuk gedung dengan fasilitas tinggi."
+    },
+    {
+      "q": "Mengapa cicilan KPR saya yang sebenarnya berbeda?",
+      "a": "Pemberi pinjaman mungkin memasukkan escrow untuk pajak/asuransi secara berbeda, mungkin menggabungkan asuransi kredit ke dalam suku bunga, dan mungkin mengenakan biaya yang tidak dimodelkan kalkulator ini. Selalu periksa Estimasi Pinjaman resmi dari pemberi pinjaman."
+    },
+    {
+      "q": "Apakah ini memperhitungkan refinansing?",
+      "a": "Tidak. Jalankan kalkulator dengan suku bunga baru setelah refinansing untuk cicilan yang diperbarui."
+    },
+    {
+      "q": "Apakah data dikirim ke mana saja?",
+      "a": "Tidak. Perhitungan berjalan secara lokal."
+    }
   ]
 }

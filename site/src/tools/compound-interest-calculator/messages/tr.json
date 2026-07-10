@@ -3,7 +3,13 @@
   "shortDescription": "Bileşik faiz ve isteğe bağlı aylık katkılarla bir yatırımın zaman içinde nasıl büyüdüğünü gör. Özelleştirilebilir bileşim sıklığı.",
   "description": "Başlangıç bakiyeni, faiz oranını, zaman ufkunu ve isteğe bağlı aylık katkını gir. Hesaplayıcı nihai bakiyeyi ve katkılar ile kazanılan faizin dökümünü gösterir.",
   "metaDescription": "Aylık katkılı ücretsiz bileşik faiz hesaplayıcı. Nihai bakiye, toplam katkı ve toplam faizi gör. Günlük, aylık, üç aylık veya yıllık bileşim.",
-  "keywords": ["bileşik faiz hesaplayıcı", "yatırım büyümesi", "birikim hesaplayıcı", "faiz hesaplayıcı", "gelecek değer"],
+  "keywords": [
+    "bileşik faiz hesaplayıcı",
+    "yatırım büyümesi",
+    "birikim hesaplayıcı",
+    "faiz hesaplayıcı",
+    "gelecek değer"
+  ],
   "empty": "Projeksiyon görmek için alanları doldur.",
   "input": {
     "principal": "Başlangıç bakiyesi",
@@ -23,6 +29,11 @@
     "finalBalance": "Nihai bakiye",
     "totalContributed": "Toplam katkı",
     "totalInterest": "Toplam faiz"
+  },
+  "chart": {
+    "heading": "Yıllara göre büyüme",
+    "contributions": "Yatırılan anapara",
+    "interest": "Kazanılan faiz"
   },
   "article": {
     "sections": [
@@ -46,24 +57,70 @@
           "Bu projeksiyonlar sabit bir oran varsayar, ancak bu gerçeklikle örtüşmez — hisse senedi getirileri değişir, tahvil faizleri değişir ve banka promosyon faizleri sona erer. Uzun vadeli planlama için hesaplayıcıyı üç oranla çalıştır: kötümser (%3-4), beklenen (%6-7) ve iyimser (%9-10); böylece sonuç aralığını görürsün.",
           "Enflasyon nominal getirileri aşındırır. %3 enflasyonda %7 nominal getiri 'gerçek' satın alma gücünde yaklaşık %4'tür. Gerçek bazdaki bakiyeyi istiyorsan nominal oran yerine (oran − beklenen enflasyon) değerini gir. Ayrıca ücretler ve vergiler gerçek getirileri genellikle %1-2 azaltır — daha yakın bir tahmin için bunu da orandan çıkar."
         ]
+      },
+      {
+        "heading": "Formül ve kaynaklar",
+        "paragraphs": [
+          "Tek seferlik yatırım A = P × (1 + r/n)^(n·t) ile büyür; aylık katkılar ise taksit dizisinin gelecek değeri formülüyle: FV = m × ((1 + r/12)^(12t) − 1) ÷ (r/12). Grafik, birikimli katkılarınızı ve bunların şimdiye dek ürettiği faizi üst üste yığarak gösterir.",
+          "Bunlar, ABD SEC'in yatırımcı sitesi Investor.gov'daki bileşik faiz hesaplayıcısının kullandığı formüllerin aynısıdır (kaynaklara bakın). Gerçek yatırım getirileri yıldan yıla değişir; pürüzsüz eğriyi bir garanti değil, ortalama büyüme senaryosu olarak okuyun."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Başlangıç bakiyeni gir", "text": "Bugün ne kadar yatırılmış olduğun." },
-      { "name": "Oran ve süreyi gir", "text": "Yüzde olarak yıllık faiz oranı ve kaç yıl yatırım yapmayı planladığın." },
-      { "name": "Bileşim sıklığını seç", "text": "Aylık iyi bir varsayılandır. Günlük küçük bir fark yaratır; yıllık muhafazakardır." },
-      { "name": "Aylık katkı ekle (isteğe bağlı)", "text": "Düzenli olarak para eklemeyi planlıyorsan aylık tutarı gir." },
-      { "name": "Dökümü oku", "text": "Nihai bakiye, toplam katkı (anapara + katkılar) ve kazanılan toplam faiz." }
+      {
+        "name": "Başlangıç bakiyeni gir",
+        "text": "Bugün ne kadar yatırılmış olduğun."
+      },
+      {
+        "name": "Oran ve süreyi gir",
+        "text": "Yüzde olarak yıllık faiz oranı ve kaç yıl yatırım yapmayı planladığın."
+      },
+      {
+        "name": "Bileşim sıklığını seç",
+        "text": "Aylık iyi bir varsayılandır. Günlük küçük bir fark yaratır; yıllık muhafazakardır."
+      },
+      {
+        "name": "Aylık katkı ekle (isteğe bağlı)",
+        "text": "Düzenli olarak para eklemeyi planlıyorsan aylık tutarı gir."
+      },
+      {
+        "name": "Dökümü oku",
+        "text": "Nihai bakiye, toplam katkı (anapara + katkılar) ve kazanılan toplam faiz."
+      }
     ]
   },
   "faq": [
-    { "q": "Kullanmak için gerçekçi bir faiz oranı nedir?", "a": "Uzun vadeli Türk borsa ortalamaları dalgalıdır; enflasyona göre ayarlanmış gerçek getiri için %3-5 gerçekçi bir başlangıç noktasıdır. Çeşitlendirilmiş bir portföy için baz çizgi olarak %6-7 dene." },
-    { "q": "Küçük oran farkları zaman içinde neden bu kadar önemli?", "a": "Bileşim çarpar. 30 yılda %6 getiri, oran farkı sadece 2 puan olmasına rağmen %4 getirisinden yaklaşık 2,86 kat daha fazla para üretir." },
-    { "q": "Aylık katkılar ay başında mı sonda mı yapılmalı?", "a": "Dönem sonu katkı zamanlaması (olağan anüite) kullanıyoruz. Dönem başı, yaklaşık 1 aylık faiz değeri kadar sonucu artıran bir bileşim dönemi daha ekler. Planlama açısından önemli olmayacak kadar yakın." },
-    { "q": "Bu enflasyonu hesaba katıyor mu?", "a": "Hayır. Bugünün lirası cinsinden projeksiyonlar istiyorsan 'gerçek' oran (nominal eksi beklenen enflasyon) kullan. %3 enflasyonda %7 getiri %4 gerçek değerdir." },
-    { "q": "Vergiler ve ücretler ne olacak?", "a": "Modellenmedi. Vergi ve fon ücretleri için kaba düzeltme olarak oranından %1-2 çıkar." },
-    { "q": "Sonuç neden bankamın uygulamasıyla örtüşmüyor?", "a": "Bankalar biraz farklı aralıklarla bileşim uygulayabilir veya kısa dönemler için basit faiz kullanabilir. Banka özelinde kesin projeksiyonlar için bankanın kendi hesaplayıcısını kullan." },
-    { "q": "Faiz oranları negatif olabilir mi?", "a": "Matematiksel olarak evet — formül bunu işler. Negatif oranlar Avrupa devlet tahvillerinde görünmüş olsa da perakende ürünlerde nadirdir." },
-    { "q": "Veri bir yere gönderiliyor mu?", "a": "Hayır. Tüm matematik tarayıcında çalışır." }
+    {
+      "q": "Kullanmak için gerçekçi bir faiz oranı nedir?",
+      "a": "Uzun vadeli Türk borsa ortalamaları dalgalıdır; enflasyona göre ayarlanmış gerçek getiri için %3-5 gerçekçi bir başlangıç noktasıdır. Çeşitlendirilmiş bir portföy için baz çizgi olarak %6-7 dene."
+    },
+    {
+      "q": "Küçük oran farkları zaman içinde neden bu kadar önemli?",
+      "a": "Bileşim çarpar. 30 yılda %6 getiri, oran farkı sadece 2 puan olmasına rağmen %4 getirisinden yaklaşık 2,86 kat daha fazla para üretir."
+    },
+    {
+      "q": "Aylık katkılar ay başında mı sonda mı yapılmalı?",
+      "a": "Dönem sonu katkı zamanlaması (olağan anüite) kullanıyoruz. Dönem başı, yaklaşık 1 aylık faiz değeri kadar sonucu artıran bir bileşim dönemi daha ekler. Planlama açısından önemli olmayacak kadar yakın."
+    },
+    {
+      "q": "Bu enflasyonu hesaba katıyor mu?",
+      "a": "Hayır. Bugünün lirası cinsinden projeksiyonlar istiyorsan 'gerçek' oran (nominal eksi beklenen enflasyon) kullan. %3 enflasyonda %7 getiri %4 gerçek değerdir."
+    },
+    {
+      "q": "Vergiler ve ücretler ne olacak?",
+      "a": "Modellenmedi. Vergi ve fon ücretleri için kaba düzeltme olarak oranından %1-2 çıkar."
+    },
+    {
+      "q": "Sonuç neden bankamın uygulamasıyla örtüşmüyor?",
+      "a": "Bankalar biraz farklı aralıklarla bileşim uygulayabilir veya kısa dönemler için basit faiz kullanabilir. Banka özelinde kesin projeksiyonlar için bankanın kendi hesaplayıcısını kullan."
+    },
+    {
+      "q": "Faiz oranları negatif olabilir mi?",
+      "a": "Matematiksel olarak evet — formül bunu işler. Negatif oranlar Avrupa devlet tahvillerinde görünmüş olsa da perakende ürünlerde nadirdir."
+    },
+    {
+      "q": "Veri bir yere gönderiliyor mu?",
+      "a": "Hayır. Tüm matematik tarayıcında çalışır."
+    }
   ]
 }
