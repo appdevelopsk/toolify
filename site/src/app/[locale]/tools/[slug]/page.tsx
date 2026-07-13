@@ -6,6 +6,7 @@ import { getTool, getRelated, listTools, isIndexable } from "@/lib/tools/registr
 import { loadToolSlugMessages } from "@/lib/i18n/loader";
 import { ToolFrame } from "@/components/tools/ToolFrame";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { NattzyComments } from "@/components/NattzyComments";
 import {
   softwareAppJsonLd,
   faqJsonLd,
@@ -115,6 +116,7 @@ export default async function ToolPage({
         </NextIntlClientProvider>
       </ToolFrame>
       <JsonLd data={ld} />
+      <NattzyComments path={`/tools/${slug}`} locale={locale} />
     </>
   );
 }

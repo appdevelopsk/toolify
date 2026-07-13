@@ -6,6 +6,7 @@ import { RELATED_TOOLS } from "@/lib/prompts/related-tools";
 import { getTool } from "@/lib/tools/registry";
 import { PromptFrame } from "@/components/prompts/PromptFrame";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { NattzyComments } from "@/components/NattzyComments";
 import { faqJsonLd, breadcrumbJsonLd } from "@/lib/seo/structured-data";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
@@ -114,6 +115,7 @@ export default async function PromptPage({
         relatedTools={relatedTools}
       />
       <JsonLd data={ld} />
+      <NattzyComments path={`/prompts/${slug}`} locale={locale} />
     </>
   );
 }
