@@ -8,6 +8,7 @@ import { SisterSiteCta } from "@/components/cross/SisterSiteCta";
 import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
 import { siteConfig } from "@/lib/config";
+import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import type { ToolMeta } from "@/lib/tools/types";
 
 interface Props {
@@ -35,6 +36,7 @@ export function ToolFrame({ meta, title, description, related, children, article
           items={[
             { name: t("nav.home"), href: "/" },
             { name: t("nav.tools"), href: "/tools" },
+            { name: CATEGORY_CONFIG[meta.category].label, href: `/tools/category/${meta.category}` },
             { name: title },
           ]}
         />

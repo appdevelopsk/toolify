@@ -3,6 +3,9 @@ import { Link } from "@/lib/i18n/navigation";
 import { siteConfig } from "@/lib/config";
 import { isPromptLocale } from "@/lib/i18n/locales";
 import { NewsletterForm } from "@/components/cross/NewsletterForm";
+import { CATEGORY_CONFIG } from "@/lib/tools/categories";
+import { listByCategory } from "@/lib/tools/registry";
+import type { ToolCategory } from "@/lib/tools/types";
 
 export function Footer() {
   const t = useTranslations();
@@ -55,6 +58,26 @@ export function Footer() {
           </div>
           <div>{t("footer.rights")}</div>
         </div>
+      </div>
+
+      {/* カテゴリハブ導線 — 全ページからハブへ内部リンクを集中させ、被リンクで得た権威を
+          ハブ経由で各ツールに流す（toolify-backlink-strategy.md P5） */}
+      <div className="mx-auto mt-8 max-w-6xl border-t border-slate-200 px-4 pt-6 dark:border-slate-800">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+          {t("nav.categories")}
+        </p>
+        <nav className="flex flex-wrap gap-x-6 gap-y-2">
+          {(Object.keys(CATEGORY_CONFIG) as ToolCategory[])
+            .filter((cat) => listByCategory(cat).length > 0)
+            .map((cat) => (
+              <Link key={cat} href={`/tools/category/${cat}`} className="hover:underline">
+                <span className="mr-1" aria-hidden>
+                  {CATEGORY_CONFIG[cat].emoji}
+                </span>
+                {CATEGORY_CONFIG[cat].label}
+              </Link>
+            ))}
+        </nav>
       </div>
 
       {/* 関連サイト（クロスプロモ・統合集客） */}
