@@ -110,7 +110,7 @@ export function Footer() {
               {t("crossPromo.nattzy")}
             </span>
           </a>
-          <a href="https://appdevelopsk.com" className="group">
+          <a href="https://appdevelopsk.com/apps.html" className="group">
             <span className="font-bold text-slate-800 transition-colors group-hover:text-sky-600 dark:text-slate-200">
               SK APPS
             </span>
