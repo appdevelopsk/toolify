@@ -14,7 +14,11 @@ export function GET() {
   const items = tools
     .map((t) => {
       const url = `${siteConfig.url}/en/tools/${t.slug}`;
-      const img = `${siteConfig.url}/api/og?slug=${encodeURIComponent(t.slug)}&locale=en`;
+      // /api/og は slug を読まず title/subtitle で描画する。slug だけ渡すと全item既定
+      // 「Toolify」画像になり、Pinterest RSS が画像ハッシュ重複でピン化を止める。
+      // format=pin で Pinterest 推奨の 1000×1500 縦長を使う。
+      const displayTitle = (t.primaryKeyword.en ?? t.slug).replace(/(?:^|\s)[a-z]/g, (c) => c.toUpperCase());
+      const img = `${siteConfig.url}/api/og?title=${encodeURIComponent(displayTitle)}&subtitle=${encodeURIComponent(`Free ${t.category} tool · No signup`)}&locale=en&format=pin`;
       const title = escape(t.primaryKeyword.en ?? t.slug);
       const date = new Date(t.updatedAt).toUTCString();
       return `    <item>

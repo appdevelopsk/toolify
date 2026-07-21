@@ -12,7 +12,11 @@ export function GET() {
   const items = tools
     .map((t) => {
       const url = `${siteConfig.url}/ja/tools/${t.slug}`;
-      const img = `${siteConfig.url}/api/og?slug=${encodeURIComponent(t.slug)}&locale=ja`;
+      // locale=ja は COMPLEX_SCRIPT_LOCALES フォールバックで全item同一「Toolify」画像になり
+      // Pinterest の画像重複排除でピン化が止まる（実測: 3週間で2pinのみ）。
+      // → 画像は locale=en + 英語タイトルで描画し、subtitle で en 版と画像ハッシュを differentiate。
+      const displayTitle = (t.primaryKeyword.en ?? t.slug).replace(/(?:^|\s)[a-z]/g, (c) => c.toUpperCase());
+      const img = `${siteConfig.url}/api/og?title=${encodeURIComponent(displayTitle)}&subtitle=${encodeURIComponent(`Free ${t.category} tool · Japanese version`)}&locale=en&format=pin`;
       const titleJa = t.primaryKeyword.ja ?? t.primaryKeyword.en ?? t.slug;
       const title = escape(titleJa);
       const date = new Date(t.updatedAt).toUTCString();
