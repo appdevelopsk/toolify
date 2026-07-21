@@ -141,6 +141,30 @@ jobs:
           echo "✗ Live URL not returning 200 after 5 attempts"
           exit 1
 
+      # Pinterest RSS自動投稿の回帰ガード（2026-07-21の実障害）:
+      # feedのenclosure画像が全item同一になると、Pinterestの画像ハッシュ重複排除で
+      # ピン化が2枚で無言停止する（/api/og がクエリを読まなくなる等の回帰で再発しうる）。
+      # 先頭3itemの画像を実取得しMD5が2種以上あることを検証。失敗=workflow赤で
+      # 朝のCI監視ルーチンが検知する。
+      - name: Guard feed pin images are unique (Pinterest dedupe)
+        run: |
+          set -e
+          urls=$(curl -sSf --max-time 15 https://toolify365.com/feed.xml \
+            | grep -o 'enclosure url="[^"]*"' | sed 's/enclosure url="//;s/"$//;s/\&amp;/\&/g' | head -3)
+          [ -n "$urls" ] || { echo "✗ feedにenclosureが無い"; exit 1; }
+          md5s=""
+          while IFS= read -r u; do
+            h=$(curl -sSf --max-time 30 "$u" | md5sum | cut -d' ' -f1)
+            echo "  $h  $u"
+            md5s="$md5s$h\n"
+          done <<< "$urls"
+          uniq_count=$(printf "%b" "$md5s" | sort -u | grep -c .)
+          if [ "$uniq_count" -lt 2 ]; then
+            echo "✗ feedのピン画像が全て同一(MD5 1種) → Pinterest重複排除でRSS投稿が止まる回帰"
+            exit 1
+          fi
+          echo "✓ ピン画像 unique ($uniq_count 種/3件)"
+
       - name: Cleanup SSH key
         if: always()
         run: rm -f ~/.ssh/deploy_key
