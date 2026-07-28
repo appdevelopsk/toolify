@@ -20,16 +20,17 @@ export const siteConfig = {
     url: "https://appdevelopsk.com/",
   },
   adsense: {
-    client: process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "",
+    // AdSenseアカウント(pub-4927026308242118)は2026-07-28にGoogleにより無効化。
+    // 再審査結果が出るまで配信コードを完全停止するため、env に関わらず空固定にする
+    // （本番CIのSecretsにslot IDが残っていても読み込まないための明示的な遮断）。
+    client: "",
     slots: {
-      banner: process.env.NEXT_PUBLIC_ADSENSE_SLOT_BANNER ?? "",
-      inArticle: process.env.NEXT_PUBLIC_ADSENSE_SLOT_INARTICLE ?? "",
-      sticky: process.env.NEXT_PUBLIC_ADSENSE_SLOT_STICKY ?? "",
-      belowResult: process.env.NEXT_PUBLIC_ADSENSE_SLOT_BELOWRESULT ?? "",
-      // In-feed unit for list/home section breaks (added for revenue inventory).
-      inFeed: process.env.NEXT_PUBLIC_ADSENSE_SLOT_INFEED ?? "",
-      // Dismissible mobile bottom anchor.
-      anchor: process.env.NEXT_PUBLIC_ADSENSE_SLOT_ANCHOR ?? "",
+      banner: "",
+      inArticle: "",
+      sticky: "",
+      belowResult: "",
+      inFeed: "",
+      anchor: "",
     },
   },
   analytics: {
@@ -38,8 +39,9 @@ export const siteConfig = {
     clarityId: process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID ?? "",
   },
   cmp: {
-    /** Google Funding Choices publisher ID. Same value as adsense.client without the "ca-" prefix. */
-    fcId: process.env.NEXT_PUBLIC_FC_ID ?? "",
+    /** Google Funding Choices publisher ID. Same value as adsense.client without the "ca-" prefix.
+     *  AdSense無効化(2026-07-28)に伴い広告同意メッセージも停止。 */
+    fcId: "",
   },
   social: {
     ogImageVersion: 1,

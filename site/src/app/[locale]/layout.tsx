@@ -59,11 +59,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         ? { yandex: process.env.NEXT_PUBLIC_YANDEX_SITE_VERIFICATION }
         : {}),
     },
-    other: {
-      ...(siteConfig.adsense.client
-        ? { "google-adsense-account": siteConfig.adsense.client }
-        : {}),
-    },
   };
 }
 
@@ -94,7 +89,6 @@ export default async function LocaleLayout({
         {siteConfig.analytics.gaId && (
           <link rel="preconnect" href="https://www.googletagmanager.com" />
         )}
-        <link rel="preconnect" href="https://fundingchoicesmessages.google.com" />
         <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} — Latest tools (EN)`} href={`${siteConfig.url}/feed.xml`} />
         <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} — 最新ツール (日本語)`} href={`${siteConfig.url}/feed-ja.xml`} />
         <link rel="alternate" type="application/json" title={`${siteConfig.name} — Tool directory`} href={`${siteConfig.url}/tools.json`} />
