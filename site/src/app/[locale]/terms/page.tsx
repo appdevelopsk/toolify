@@ -45,7 +45,7 @@ function TermsJa() {
       <h2>広告・アフィリエイト</h2>
       <p>
         本サービスは Google AdSense による広告配信および、各ツールページに「広告」ラベル付きで掲載するアフィリエイトリンクにより運営されています。アフィリエイトリンクをクリックして提携先で成果が成立した場合、当方が紹介料を受け取ることがあります。利用者の支払額は変わりません。詳細は
-        <a href="/disclosure">広告・アフィリエイトに関する開示</a>をご参照ください。
+        <a href="/ja/disclosure">広告・アフィリエイトに関する開示</a>をご参照ください。
       </p>
       <h2>知的財産</h2>
       <p>
@@ -83,7 +83,7 @@ function TermsZhCN() {
       <h2>广告与联盟链接</h2>
       <p>
         本服务通过 Google AdSense 广告及工具页面上标注"广告"的联盟链接维持运营。若您点击联盟链接并在合作方完成注册或购买，我们可能获得佣金，您的支付金额不受影响。详情请见
-        <a href="/disclosure">广告与联盟链接披露</a>。
+        <a href="/zh-CN/disclosure">广告与联盟链接披露</a>。
       </p>
       <h2>知识产权</h2>
       <p>
@@ -120,7 +120,7 @@ function TermsEs() {
       </ul>
       <h2>Publicidad y enlaces de afiliados</h2>
       <p>
-        El Servicio se mantiene mediante publicidad de Google AdSense y enlaces de afiliados etiquetados como <em>«Patrocinado»</em> en las páginas de herramientas. Si haces clic en un enlace de afiliado y realizas una acción válida (registro, compra) en el sitio del socio, podemos recibir una comisión. El precio que pagas no varía. Consulta nuestra <a href="/disclosure">Divulgación de Publicidad y Afiliados</a> para más detalles.
+        El Servicio se mantiene mediante publicidad de Google AdSense y enlaces de afiliados etiquetados como <em>«Patrocinado»</em> en las páginas de herramientas. Si haces clic en un enlace de afiliado y realizas una acción válida (registro, compra) en el sitio del socio, podemos recibir una comisión. El precio que pagas no varía. Consulta nuestra <a href="/es/disclosure">Divulgación de Publicidad y Afiliados</a> para más detalles.
       </p>
       <h2>Propiedad intelectual</h2>
       <p>
@@ -157,7 +157,7 @@ function TermsPtBR() {
       </ul>
       <h2>Publicidade e links de afiliados</h2>
       <p>
-        O Serviço é mantido por publicidade do Google AdSense e por links de afiliados identificados como <em>«Patrocinado»</em> nas páginas de ferramentas. Se você clicar em um link de afiliado e concluir uma ação qualificada (cadastro, compra) no site do parceiro, poderemos receber uma comissão. O preço que você paga não se altera. Veja nossa <a href="/disclosure">Divulgação de Publicidade e Afiliados</a> para detalhes.
+        O Serviço é mantido por publicidade do Google AdSense e por links de afiliados identificados como <em>«Patrocinado»</em> nas páginas de ferramentas. Se você clicar em um link de afiliado e concluir uma ação qualificada (cadastro, compra) no site do parceiro, poderemos receber uma comissão. O preço que você paga não se altera. Veja nossa <a href="/pt-BR/disclosure">Divulgação de Publicidade e Afiliados</a> para detalhes.
       </p>
       <h2>Propriedade intelectual</h2>
       <p>
@@ -194,7 +194,7 @@ function TermsKo() {
       </ul>
       <h2>광고 및 제휴 링크</h2>
       <p>
-        서비스는 Google AdSense 광고와 도구 페이지에 「광고」라고 표시된 제휴 링크를 통해 운영됩니다. 제휴 링크를 클릭하고 파트너 사이트에서 자격 있는 행동（가입, 구매）을 완료하면 당사가 수수료를 받을 수 있습니다. 이용자의 결제 금액에는 변동이 없습니다. 자세한 내용은 <a href="/disclosure">광고 및 제휴 공개</a>를 참조하세요.
+        서비스는 Google AdSense 광고와 도구 페이지에 「광고」라고 표시된 제휴 링크를 통해 운영됩니다. 제휴 링크를 클릭하고 파트너 사이트에서 자격 있는 행동（가입, 구매）을 완료하면 당사가 수수료를 받을 수 있습니다. 이용자의 결제 금액에는 변동이 없습니다. 자세한 내용은 <a href="/ko/disclosure">광고 및 제휴 공개</a>를 참조하세요.
       </p>
       <h2>지적재산권</h2>
       <p>
@@ -231,7 +231,7 @@ function TermsFr() {
       </ul>
       <h2>Publicité et liens d&apos;affiliation</h2>
       <p>
-        Le Service est soutenu par la publicité Google AdSense et par des liens d&apos;affiliation étiquetés <em>« Sponsorisé »</em> sur les pages d&apos;outils. Si vous cliquez sur un lien d&apos;affiliation et réalisez une action qualifiante (inscription, achat) sur le site partenaire, nous pouvons percevoir une commission. Le prix que vous payez reste inchangé. Consultez notre <a href="/disclosure">Divulgation publicitaire et d&apos;affiliation</a> pour plus de détails.
+        Le Service est soutenu par la publicité Google AdSense et par des liens d&apos;affiliation étiquetés <em>« Sponsorisé »</em> sur les pages d&apos;outils. Si vous cliquez sur un lien d&apos;affiliation et réalisez une action qualifiante (inscription, achat) sur le site partenaire, nous pouvons percevoir une commission. Le prix que vous payez reste inchangé. Consultez notre <a href="/fr/disclosure">Divulgation publicitaire et d&apos;affiliation</a> pour plus de détails.
       </p>
       <h2>Propriété intellectuelle</h2>
       <p>
@@ -268,7 +268,7 @@ function TermsDe() {
       </ul>
       <h2>Werbung und Partnerlinks</h2>
       <p>
-        Der Dienst wird durch Google AdSense-Werbung und durch auf den Werkzeugseiten als <em>„Gesponsert"</em> gekennzeichnete Partnerlinks finanziert. Wenn Sie auf einen Partnerlink klicken und beim Partner eine qualifizierende Aktion (Anmeldung, Kauf) abschließen, erhalten wir möglicherweise eine Provision. Der von Ihnen bezahlte Preis ändert sich nicht. Details finden Sie in unserer <a href="/disclosure">Werbe- und Affiliate-Offenlegung</a>.
+        Der Dienst wird durch Google AdSense-Werbung und durch auf den Werkzeugseiten als <em>„Gesponsert"</em> gekennzeichnete Partnerlinks finanziert. Wenn Sie auf einen Partnerlink klicken und beim Partner eine qualifizierende Aktion (Anmeldung, Kauf) abschließen, erhalten wir möglicherweise eine Provision. Der von Ihnen bezahlte Preis ändert sich nicht. Details finden Sie in unserer <a href="/de/disclosure">Werbe- und Affiliate-Offenlegung</a>.
       </p>
       <h2>Geistiges Eigentum</h2>
       <p>
@@ -311,7 +311,7 @@ function TermsEn() {
         The Service is supported by Google AdSense advertising and by affiliate links labelled
         <em>&ldquo;Sponsored&rdquo;</em> on tool pages. If you click an affiliate link and complete a qualifying
         action (sign-up, purchase) at the partner site, we may receive a commission. The price you pay is unchanged.
-        See our <a href="/disclosure">Advertising &amp; Affiliate Disclosure</a> for details.
+        See our <a href="/en/disclosure">Advertising &amp; Affiliate Disclosure</a> for details.
       </p>
       <h2>Intellectual property</h2>
       <p>

@@ -55,7 +55,7 @@ function PrivacyEn() {
         Some links on tool pages, labelled <em>&ldquo;Sponsored&rdquo;</em>, are affiliate links. If you click and
         complete a qualifying action (sign-up, purchase) at the partner&apos;s site, we may earn a commission. The
         price you pay is unchanged. We may use cookies set by the partner network for attribution. See our
-        {" "}<a href="/disclosure">Advertising &amp; Affiliate Disclosure</a> for details.
+        {" "}<a href="/en/disclosure">Advertising &amp; Affiliate Disclosure</a> for details.
       </p>
       <h2>Third-party services</h2>
       <ul>
@@ -107,7 +107,7 @@ function PrivacyJa() {
       <h2>アフィリエイトリンク</h2>
       <p>
         各ツールページに「広告」ラベル付きで掲載されるアフィリエイトリンクをクリックし、提携先サイトで会員登録・購入等の成果条件を満たした場合、当方が紹介料を受け取ることがあります。利用者の支払額は変わりません。計測のために提携ネットワークが Cookie を設置することがあります。詳しくは
-        <a href="/disclosure">広告・アフィリエイトに関する開示</a>をご覧ください。
+        <a href="/ja/disclosure">広告・アフィリエイトに関する開示</a>をご覧ください。
       </p>
       <h2>第三者サービス</h2>
       <ul>
@@ -159,7 +159,7 @@ function PrivacyZhCN() {
       <h2>联盟链接</h2>
       <p>
         工具页面上标注"广告"的部分链接为联盟链接。若您点击后在合作伙伴网站完成注册或购买等符合条件的操作，我们可能获得佣金，您的支付金额不受影响。合作网络可能为归因目的设置 Cookie。详情请见
-        <a href="/disclosure">广告与联盟链接披露</a>。
+        <a href="/zh-CN/disclosure">广告与联盟链接披露</a>。
       </p>
       <h2>第三方服务</h2>
       <ul>
@@ -208,7 +208,7 @@ function PrivacyEs() {
       </p>
       <h2>Enlaces de afiliados</h2>
       <p>
-        Algunos enlaces en las páginas de herramientas, etiquetados como <em>«Patrocinado»</em>, son enlaces de afiliados. Si haces clic y completas una acción válida (registro, compra) en el sitio del socio, podemos ganar una comisión. El precio que pagas no varía. Consulta nuestra <a href="/disclosure">Divulgación de Publicidad y Afiliados</a> para más detalles.
+        Algunos enlaces en las páginas de herramientas, etiquetados como <em>«Patrocinado»</em>, son enlaces de afiliados. Si haces clic y completas una acción válida (registro, compra) en el sitio del socio, podemos ganar una comisión. El precio que pagas no varía. Consulta nuestra <a href="/es/disclosure">Divulgación de Publicidad y Afiliados</a> para más detalles.
       </p>
       <h2>Servicios de terceros</h2>
       <ul>
@@ -256,7 +256,7 @@ function PrivacyPtBR() {
       </p>
       <h2>Links de afiliados</h2>
       <p>
-        Alguns links nas páginas de ferramentas, rotulados como <em>«Patrocinado»</em>, são links de afiliados. Se você clicar e concluir uma ação qualificada (cadastro, compra) no site do parceiro, podemos ganhar uma comissão. O preço que você paga não se altera. Consulte nossa <a href="/disclosure">Divulgação de Publicidade e Afiliados</a> para detalhes.
+        Alguns links nas páginas de ferramentas, rotulados como <em>«Patrocinado»</em>, são links de afiliados. Se você clicar e concluir uma ação qualificada (cadastro, compra) no site do parceiro, podemos ganhar uma comissão. O preço que você paga não se altera. Consulte nossa <a href="/pt-BR/disclosure">Divulgação de Publicidade e Afiliados</a> para detalhes.
       </p>
       <h2>Serviços de terceiros</h2>
       <ul>
@@ -304,7 +304,7 @@ function PrivacyKo() {
       </p>
       <h2>제휴 링크</h2>
       <p>
-        도구 페이지에 「광고」로 표시된 일부 링크는 제휴 링크입니다. 링크를 클릭하고 파트너 사이트에서 유효한 행동（가입, 구매）을 완료하면 당사가 수수료를 받을 수 있습니다. 이용자의 결제 금액은 변경되지 않습니다. 자세한 내용은 <a href="/disclosure">광고 및 제휴 공개</a>를 참조하세요.
+        도구 페이지에 「광고」로 표시된 일부 링크는 제휴 링크입니다. 링크를 클릭하고 파트너 사이트에서 유효한 행동（가입, 구매）을 완료하면 당사가 수수료를 받을 수 있습니다. 이용자의 결제 금액은 변경되지 않습니다. 자세한 내용은 <a href="/ko/disclosure">광고 및 제휴 공개</a>를 참조하세요.
       </p>
       <h2>제3자 서비스</h2>
       <ul>
@@ -352,7 +352,7 @@ function PrivacyFr() {
       </p>
       <h2>Liens d&apos;affiliation</h2>
       <p>
-        Certains liens sur les pages d&apos;outils, étiquetés <em>«Sponsorisé»</em>, sont des liens d&apos;affiliation. Si vous cliquez et effectuez une action éligible (inscription, achat) sur le site partenaire, nous pouvons percevoir une commission. Le prix que vous payez reste inchangé. Consultez notre <a href="/disclosure">Divulgation publicitaire et d&apos;affiliation</a> pour plus de détails.
+        Certains liens sur les pages d&apos;outils, étiquetés <em>«Sponsorisé»</em>, sont des liens d&apos;affiliation. Si vous cliquez et effectuez une action éligible (inscription, achat) sur le site partenaire, nous pouvons percevoir une commission. Le prix que vous payez reste inchangé. Consultez notre <a href="/fr/disclosure">Divulgation publicitaire et d&apos;affiliation</a> pour plus de détails.
       </p>
       <h2>Services tiers</h2>
       <ul>
@@ -400,7 +400,7 @@ function PrivacyDe() {
       </p>
       <h2>Affiliate-Links</h2>
       <p>
-        Einige Links auf Werkzeugseiten, die als <em>„Gesponsert"</em> gekennzeichnet sind, sind Affiliate-Links. Wenn Sie klicken und eine qualifizierende Aktion (Anmeldung, Kauf) auf der Partnerseite abschließen, erhalten wir möglicherweise eine Provision. Der von Ihnen gezahlte Preis ändert sich nicht. Weitere Details finden Sie in unserer <a href="/disclosure">Werbe- und Affiliate-Offenlegung</a>.
+        Einige Links auf Werkzeugseiten, die als <em>„Gesponsert"</em> gekennzeichnet sind, sind Affiliate-Links. Wenn Sie klicken und eine qualifizierende Aktion (Anmeldung, Kauf) auf der Partnerseite abschließen, erhalten wir möglicherweise eine Provision. Der von Ihnen gezahlte Preis ändert sich nicht. Weitere Details finden Sie in unserer <a href="/de/disclosure">Werbe- und Affiliate-Offenlegung</a>.
       </p>
       <h2>Drittanbieter-Dienste</h2>
       <ul>

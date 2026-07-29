@@ -7,7 +7,7 @@ import { listPrompts } from "@/lib/prompts/registry";
 import type { ToolCategory } from "@/lib/tools/types";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const sharedPaths = ["", "/tools", "/pregnancy", "/about", "/privacy", "/terms", "/contact"];
+  const sharedPaths = ["", "/tools", "/pregnancy", "/about", "/privacy", "/terms", "/contact", "/disclosure"];
   const tools = listIndexableTools(); // noindex ツールは sitemap から除外（robots noindex と整合）
   const prompts = listPrompts();
   const entries: MetadataRoute.Sitemap = [];
@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url,
         changeFrequency: "weekly",
         priority: path === "" ? 1.0 : 0.6,
-        alternates: { languages: alternates },
+        alternates: { languages: { ...alternates, "x-default": alternates["en"] } },
       });
     }
   }
@@ -38,7 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteConfig.url}/${locale}${path}`,
       changeFrequency: "weekly",
       priority: 0.6,
-      alternates: { languages: alternates },
+      alternates: { languages: { ...alternates, "x-default": alternates["en"] } },
     });
   }
 
@@ -52,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: tool.updatedAt,
         changeFrequency: "monthly",
         priority: 0.8,
-        alternates: { languages: alternates },
+        alternates: { languages: { ...alternates, "x-default": alternates["en"] } },
       });
     }
   }
@@ -67,7 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: prompt.updatedAt,
         changeFrequency: "monthly",
         priority: 0.7,
-        alternates: { languages: alternates },
+        alternates: { languages: { ...alternates, "x-default": alternates["en"] } },
       });
     }
   }
@@ -84,7 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${siteConfig.url}/${locale}${path}`,
         changeFrequency: "weekly",
         priority: 0.5,
-        alternates: { languages: alternates },
+        alternates: { languages: { ...alternates, "x-default": alternates["en"] } },
       });
     }
   }
@@ -103,7 +103,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${siteConfig.url}/${locale}${path}`,
         changeFrequency: "weekly",
         priority: 0.5,
-        alternates: { languages: alternates },
+        alternates: { languages: { ...alternates, "x-default": alternates["en"] } },
       });
     }
   }
