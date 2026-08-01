@@ -42,6 +42,9 @@ export async function generateMetadata({
     type: "article",
     modifiedTime: tool.updatedAt,
     noindex: !isIndexable(slug), // 剪定済みツールは index させない（docs/ADSENSE_RECOVERY_PLAN.md フェーズ2）
+    // ツールのタイトルは既に説明的で長いため、ルートlayoutの ` · Toolify` を外す(2026-08-01)。
+    // 接尾辞込みだと 1,223/3,774 が SERP 表示幅60を超えていた（外すだけで832本が収まる）。
+    absoluteTitle: true,
   });
 }
 

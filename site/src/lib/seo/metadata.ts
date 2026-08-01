@@ -14,10 +14,17 @@ interface BuildMetadataParams {
   modifiedTime?: string;
   /** true の場合 robots を index:false にする（剪定した noindex ツール用 / フォローは維持） */
   noindex?: boolean;
+  /**
+   * true でルート layout の title template（`%s · Toolify`）を適用しない。
+   * ツールページのようにタイトル自体が十分に説明的なページ向け。接尾辞は表示幅で
+   * 10ぶんを食い、SERP(約60幅)で訴求が切れる原因になる。
+   * 「About」「Contact」のような短いページは false のままにしてブランド名を残すこと。
+   */
+  absoluteTitle?: boolean;
 }
 
 export function buildMetadata(params: BuildMetadataParams): Metadata {
-  const { locale, title, description, path, keywords, type = "website", image, publishedTime, modifiedTime, noindex = false } = params;
+  const { locale, title, description, path, keywords, type = "website", image, publishedTime, modifiedTime, noindex = false, absoluteTitle = false } = params;
   const url = `${siteConfig.url}/${locale}${path}`;
   // index 対象ロケール（en/ja）のみ noindex でなければインデックスさせる。
   // 死蔵言語(クリック0)はサイト全体のHCU評価を下げるため noindex+hreflang除外。
@@ -34,7 +41,7 @@ export function buildMetadata(params: BuildMetadataParams): Metadata {
     `${siteConfig.url}/api/og?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(description.slice(0, 140))}&locale=${locale}`;
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: title } : title,
     description,
     keywords,
     metadataBase: new URL(siteConfig.url),
