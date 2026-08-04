@@ -137,7 +137,7 @@ function mdToHtml(md: string): string {
 
 export default function MarkdownToHtml() {
   const t = useTranslations("tools.markdown-to-html");
-  const [input, setInput] = useState("# Hello\n\nA **bold** statement and *italic* text.\n\n- Item 1\n- Item 2\n\n[Toolify](https://tools.appdevelopsk.com)");
+  const [input, setInput] = useState("# Hello\n\nA **bold** statement and *italic* text.\n\n- Item 1\n- Item 2\n\n[Toolify365](https://tools.appdevelopsk.com)");
   const [copied, setCopied] = useState(false);
 
   const html = useMemo(() => mdToHtml(input), [input]);

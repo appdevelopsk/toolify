@@ -64,7 +64,7 @@ function buildImageJsx(displayTitle: string, displaySubtitle: string, isCjk: boo
             >
               T
             </div>
-            <div style={{ fontSize: "30px", fontWeight: 700, opacity: 0.95 }}>Toolify</div>
+            <div style={{ fontSize: "30px", fontWeight: 700, opacity: 0.95 }}>Toolify365</div>
           </div>
           <div
             style={{
@@ -191,7 +191,7 @@ function buildImageJsx(displayTitle: string, displaySubtitle: string, isCjk: boo
         >
           T
         </div>
-        <div style={{ fontSize: "32px", fontWeight: 700, opacity: 0.9 }}>Toolify</div>
+        <div style={{ fontSize: "32px", fontWeight: 700, opacity: 0.9 }}>Toolify365</div>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "20px", maxWidth: "1056px" }}>
         <div

@@ -52,7 +52,7 @@ function htmlToMarkdown(html: string): string {
 
 export default function HtmlToMarkdown() {
   const t = useTranslations("tools.html-to-markdown");
-  const [input, setInput] = useState('<h1>Hello</h1>\n<p>A <strong>bold</strong> statement and <em>italic</em> text.</p>\n<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>\n<p><a href="https://tools.appdevelopsk.com">Toolify</a></p>');
+  const [input, setInput] = useState('<h1>Hello</h1>\n<p>A <strong>bold</strong> statement and <em>italic</em> text.</p>\n<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>\n<p><a href="https://tools.appdevelopsk.com">Toolify365</a></p>');
   const [copied, setCopied] = useState(false);
 
   const md = useMemo(() => htmlToMarkdown(input), [input]);

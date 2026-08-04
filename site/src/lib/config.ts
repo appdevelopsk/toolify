@@ -3,9 +3,9 @@
  * AdSense審査前は SITE_URL を実ドメインに、ADSENSE_CLIENT を本番IDに差し替える。
  */
 export const siteConfig = {
-  name: "Toolify",
+  name: "Toolify365",  // 2026-08-04: toolify.ai とのブランド衝突で指名検索「toolify」が7〜8位だったため表記統一
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.pages.dev",
-  organization: process.env.NEXT_PUBLIC_ORG_NAME ?? "Toolify",
+  organization: process.env.NEXT_PUBLIC_ORG_NAME ?? "Toolify365",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "app.develop.sk@gmail.com",
   twitter: process.env.NEXT_PUBLIC_TWITTER_HANDLE ?? "",
   /**
