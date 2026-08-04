@@ -251,7 +251,7 @@ async function renderOgImage(
  */
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const title = (searchParams.get("title") ?? "Toolify").slice(0, 80);
+  const title = (searchParams.get("title") ?? "Toolify365").slice(0, 80);
   const subtitle = (searchParams.get("subtitle") ?? "Free, fast, ad-supported online tools").slice(0, 140);
   const locale = searchParams.get("locale") ?? "en";
   const isPin = searchParams.get("format") === "pin";
@@ -259,7 +259,7 @@ export async function GET(req: NextRequest) {
 
   // Complex scripts crash satori's font shaper — use safe English fallback text
   const usesFallback = COMPLEX_SCRIPT_LOCALES.has(locale);
-  const displayTitle = usesFallback ? "Toolify" : title;
+  const displayTitle = usesFallback ? "Toolify365" : title;
   const displaySubtitle = usesFallback
     ? "Free online tools — calculators, converters & more"
     : subtitle;
@@ -275,7 +275,7 @@ export async function GET(req: NextRequest) {
   // Second attempt: guaranteed ASCII-only English text
   try {
     return await renderOgImage(
-      "Toolify",
+      "Toolify365",
       "Free online tools — calculators, converters & more",
       false,
       isPin,
