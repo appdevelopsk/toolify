@@ -23,19 +23,19 @@ export type CategoryCopy = { headline: string; body: string; tip: string };
 const BASE: Record<ToolCategory, Record<string, CategoryCopy>> = {
   health: {
     en: {
-      headline: "Free health & fitness calculators — BMI, body fat, calories, BMR",
+      headline: "Free health calculators — BMI, body fat, calories, BMR",
       body: "Every calculator here turns a number you can measure at home into something you can act on. BMI and body-fat estimates that flag where you actually stand, a BMR and calorie calculator that sets a daily target instead of a vague goal, ideal-weight and one-rep-max tools for training. No signup, no app — just the formula, the result, and what it means.",
       tip: "These give estimates, not a diagnosis. For body composition or training load, pair the numbers with how you feel and a professional's input before making big changes.",
     },
     ja: {
-      headline: "無料の健康・フィットネス計算機 — BMI・体脂肪・カロリー・基礎代謝",
+      headline: "無料の健康計算機 — BMI・体脂肪・カロリー・基礎代謝",
       body: "ここの計算機はどれも、自宅で測れる数値を「次に何をするか」に変える。今の立ち位置がわかるBMI・体脂肪率、曖昧な目標ではなく1日の目安をくれる基礎代謝(BMR)・カロリー計算、トレーニング用の理想体重・1RM。登録もアプリも不要、式と結果と意味だけ。",
       tip: "これらは推定値で診断ではない。体組成やトレーニング負荷は、数値だけでなく体感と専門家の助言を合わせて判断を。",
     },
   },
   math: {
     en: {
-      headline: "Free math & number tools — percentages, fractions, statistics, equations",
+      headline: "Free math tools — percentages, fractions, statistics",
       body: "The math you actually look up: a percentage calculator that handles increase, decrease and 'what percent of', fraction and GCD/LCM tools that show the steps, a statistics calculator for mean, median and standard deviation, plus a quadratic solver and prime checker. Each one shows the working, not just the answer, so it doubles as a quick way to check homework or a spreadsheet.",
       tip: "Most of these show intermediate steps — use them to verify a calculation you did by hand, not just to get the final number.",
     },
@@ -47,7 +47,7 @@ const BASE: Record<ToolCategory, Record<string, CategoryCopy>> = {
   },
   converter: {
     en: {
-      headline: "Free unit converters — length, weight, temperature, volume, speed",
+      headline: "Free unit converters — length, weight, temperature, volume",
       body: "Straight unit conversions without the ad maze: length and distance, weight and mass, temperature, volume, speed, area, pressure and data size. Type a value, pick the units, get an exact result you can trust — handy for recipes, travel, shipping, lab work or homework where one wrong factor changes everything.",
       tip: "For recipes and trade use, watch the unit system (metric vs US/imperial) — a 'cup' or a 'ton' isn't the same everywhere. Each converter labels which standard it uses.",
     },
@@ -59,43 +59,43 @@ const BASE: Record<ToolCategory, Record<string, CategoryCopy>> = {
   },
   datetime: {
     en: {
-      headline: "Free date & time tools — age, countdown, workdays, time zones",
+      headline: "Free date & time tools — age, countdown, workdays",
       body: "Everything that needs counting between two dates: your exact age in years, months and days, a countdown to any event, business-day and date math that skips weekends, ISO week numbers, leap-year checks and a time-zone converter for scheduling across countries. Useful for contracts, deadlines, payroll, travel and planning calls that span the globe.",
       tip: "For contracts and payroll, confirm whether the count should include the start and end day — each tool states its convention so you can match your paperwork.",
     },
     ja: {
-      headline: "無料の日付・時間ツール — 年齢・カウントダウン・営業日・タイムゾーン",
+      headline: "無料の日付・時間ツール — 年齢・カウントダウン・営業日",
       body: "2つの日付の間を数える作業をまとめて。年齢を年・月・日で正確に、任意のイベントまでのカウントダウン、週末を除く営業日・日数計算、ISO週番号、うるう年判定、国をまたぐ予定調整のタイムゾーン変換。契約・締切・給与計算・旅行・海外との通話設定に。",
       tip: "契約や給与計算では、開始日・終了日を数えに含めるかを確認。各ツールが採用する数え方を明記しているので、書類と合わせられる。",
     },
   },
   text: {
     en: {
-      headline: "Free text & code tools — word count, JSON, Base64, regex, hashing",
+      headline: "Free text & code tools — word count, JSON, Base64, regex",
       body: "Quick utilities for writers and developers: a word and character counter, JSON formatter, Base64 and URL encode/decode, a regex tester that shows live matches, text diff, case converter, hashing and UUID generation. They run in your browser, so text and code you paste stay on your machine — fast for debugging, content work or cleaning up data.",
       tip: "Everything runs client-side — pasted text and code never leave your browser, which matters for anything sensitive. Still, don't paste secrets like private keys into any online tool.",
     },
     ja: {
-      headline: "無料のテキスト・コードツール — 文字数・JSON・Base64・正規表現・ハッシュ",
+      headline: "テキスト・コードの無料ツール — 文字数・JSON・Base64",
       body: "ライターと開発者向けの小回りの効くユーティリティ。文字数・単語数カウント、JSON整形、Base64・URLのエンコード/デコード、リアルタイムにマッチを表示する正規表現テスター、テキスト差分、大文字小文字変換、ハッシュ・UUID生成。ブラウザ内で動くので貼り付けたテキストやコードは手元に留まる。デバッグ・原稿・データ整形に。",
       tip: "すべてブラウザ内(クライアント側)で動き、貼り付けた内容は外に出ない。とはいえ秘密鍵などの機密はオンラインツールに貼らないこと。",
     },
   },
   color: {
     en: {
-      headline: "Free color & design tools — pickers, palettes, contrast, gradients",
+      headline: "Free color tools — pickers, palettes, contrast, gradients",
       body: "Practical color work for the web: a color picker with HEX/RGB/HSL, palette and gradient generators, a WCAG contrast checker to keep text readable, color-blindness simulation and CSS shadow tools. Built for designers and front-end developers who need the exact value and the accessible choice, copy-paste ready.",
       tip: "Run text/background pairs through the contrast checker before shipping — WCAG AA needs 4.5:1 for body text. Passing it is the difference between a design that looks fine and one everyone can actually read.",
     },
     ja: {
-      headline: "無料のカラー・デザインツール — ピッカー・パレット・コントラスト・グラデーション",
+      headline: "無料のカラーツール — ピッカー・パレット・コントラスト",
       body: "Web制作で実用的なカラー作業。HEX/RGB/HSL対応のカラーピッカー、パレット・グラデーション生成、文字を読みやすく保つWCAGコントラストチェッカー、色覚多様性シミュレーション、CSSシャドウ。正確な値とアクセシブルな選択をコピペで欲しいデザイナー・フロントエンド開発者向け。",
       tip: "公開前に文字色と背景色をコントラストチェッカーへ。WCAG AAは本文で4.5:1が必要。これを満たすかどうかが「見た目OK」と「誰もが読める」の差になる。",
     },
   },
   finance: {
     en: {
-      headline: "Free finance calculators — loan, mortgage, compound interest, savings",
+      headline: "Free finance calculators — loan, mortgage, interest",
       body: "Money math you can check yourself: loan and mortgage payments with the real amortization, compound-interest and savings projections, car loans, retirement and inflation, sales tax and discounts. Each one shows how the number is built — principal, rate, term — so you can compare offers instead of trusting a single quote. No signup, no data leaves your browser.",
       tip: "These are planning estimates, not financial advice. Confirm the exact rate, fees and compounding frequency with the lender — small differences in those inputs move the total a lot.",
     },

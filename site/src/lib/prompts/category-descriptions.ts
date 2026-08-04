@@ -21,7 +21,7 @@ export const CATEGORY_DESCRIPTIONS: Record<PromptCategory, Record<string, Copy>>
       tip: "Pair these prompts with Claude Sonnet 4.6, Cursor, or GPT-5 for the best results. The structural rules in each prompt body matter more than the model choice.",
     },
     ja: {
-      headline: "テックリードの厳しいレビューを生き残るAIコーディングプロンプト",
+      headline: "テックリードのレビューを生き残るAIコーディングプロンプト",
       body: "ここに集めたコーディングプロンプトは共通する設計思想がある — モデルは創造的余地を与えると劣化するが、制約を与えると鋭くなる。深刻度でトリアージするコードレビュープロンプト、コードを書く代わりにソクラテス的に問うデバッグプロンプト。明示的なルールに反発させることで出力品質が上がる。",
       tip: "Claude Sonnet 4.6・Cursor・GPT-5 と組み合わせると最大効果。プロンプト本文の構造ルールがモデル選択より重要。",
     },
