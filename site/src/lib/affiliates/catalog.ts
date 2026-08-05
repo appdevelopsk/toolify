@@ -35,6 +35,41 @@ export const POLICY: AffiliatePolicy = {
  * すべて pending: true で起動 → UI上は淡色・クリック不可。
  */
 export const CATALOG: AffiliateOffer[] = [
+  // === A8 高単価案件 (2026-08-05 配線) — 承認から6週間未配線だった2件。
+  //     楽天モバイル: ¥7,000/件・EPC93.91(口座内最高)。通信費は家計の固定費なので
+  //     finance系ツール(ja)の「固定費の見直し」文脈に置く。
+  //     BIOAESTECH: ¥8,000/初回・確定率97%。health系ツール(ja)のセルフケア文脈。 ===
+  {
+    id: "rakuten-mobile-jp",
+    category: "finance",
+    alsoIn: ["converter", "math"],
+    locales: ["ja"],
+    markets: ["JP"],
+    name: { ja: "楽天モバイル", en: "Rakuten Mobile" },
+    description: {
+      ja: "データ無制限・国内通話かけ放題で月2,980円(税込3,278円)。通信費は毎月かかる固定費なので、料金計算のついでに見直すと効果が大きい。",
+      en: "Unlimited data and domestic calls from ¥2,980/mo.",
+    },
+    cta: { ja: "料金プランを見る", en: "See plans" },
+    url: { default: "https://px.a8.net/svt/ejp?a8mat=4B5Y0E+CULTTE+5W58+5YRHE" },
+    network: "a8",
+    badge: "📱",
+  },
+  {
+    id: "bioaestech-jp",
+    category: "health",
+    locales: ["ja"],
+    markets: ["JP"],
+    name: { ja: "BIOAESTECH デュアルオーブ", en: "BIOAESTECH Dual Orb" },
+    description: {
+      ja: "楽天ランキング1位のリフトケア美顔器。EMS×RFのホームケアで、エステに通わず自宅でフェイスラインを引き締める。",
+      en: "Rakuten's #1 ranked RF/EMS facial device for home lift care.",
+    },
+    cta: { ja: "詳細を見る", en: "Learn more" },
+    url: { default: "https://px.a8.net/svt/ejp?a8mat=4B5Y0E+CVSP0Y+5VXQ+5YJRM" },
+    network: "a8",
+    badge: "✨",
+  },
   // === 自社製品 (fxea365) — AdSense恒久BAN後の第一収益源。finance系ツールの
   //     訪問者に、同運営の無料MT5 EA(MQL5 Marketで実売中)を案内する。
   //     外部ASPを介さないためサイト登録の制約が無く、17言語すべてに出せる。 ===
