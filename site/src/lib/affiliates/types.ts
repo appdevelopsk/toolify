@@ -1,7 +1,7 @@
 import type { ToolCategory } from "@/lib/tools/types";
 import type { PromptCategory } from "@/lib/prompts/types";
 
-export type Market = "global" | "JP" | "US" | "CN";
+export type Market = "global" | "JP" | "US" | "CN" | "INTL";
 /** "ai" is a synthetic category used by /prompts pages for AI-tool offers
  *  that are not specific to any single prompt category. */
 export type OfferCategory = ToolCategory | PromptCategory | "ai";

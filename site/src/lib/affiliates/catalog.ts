@@ -35,15 +35,91 @@ export const POLICY: AffiliatePolicy = {
  * すべて pending: true で起動 → UI上は淡色・クリック不可。
  */
 export const CATALOG: AffiliateOffer[] = [
+  // === 自社製品 (fxea365) — AdSense恒久BAN後の第一収益源。finance系ツールの
+  //     訪問者に、同運営の無料MT5 EA(MQL5 Marketで実売中)を案内する。
+  //     外部ASPを介さないためサイト登録の制約が無く、17言語すべてに出せる。 ===
+  {
+    id: "fxea365-house",
+    category: "finance",
+    alsoIn: ["math"],
+    name: {
+      en: "FXEA365 — Free MT5 Trading Robots",
+      ja: "FXEA365 — 無料MT5自動売買EA",
+      "zh-CN": "FXEA365 — 免费MT5自动交易EA",
+      "zh-TW": "FXEA365 — 免費MT5自動交易EA",
+      ko: "FXEA365 — 무료 MT5 자동매매 EA",
+      es: "FXEA365 — Robots de trading MT5 gratis",
+      "pt-BR": "FXEA365 — Robôs de trading MT5 grátis",
+      fr: "FXEA365 — Robots de trading MT5 gratuits",
+      de: "FXEA365 — Kostenlose MT5-Handelsroboter",
+      it: "FXEA365 — Robot di trading MT5 gratuiti",
+      ru: "FXEA365 — бесплатные торговые роботы MT5",
+      ar: "FXEA365 — روبوتات تداول MT5 مجانية",
+      hi: "FXEA365 — मुफ़्त MT5 ट्रेडिंग रोबोट",
+      id: "FXEA365 — Robot trading MT5 gratis",
+      th: "FXEA365 — หุ่นยนต์เทรด MT5 ฟรี",
+      tr: "FXEA365 — Ücretsiz MT5 alım-satım robotları",
+      vi: "FXEA365 — Robot giao dịch MT5 miễn phí",
+    },
+    description: {
+      en: "From the makers of this site: MT5 expert advisors with published multi-year backtests, hard stop-losses, and a free tier — no subscription.",
+      ja: "当サイト運営元のMT5 EA。複数年バックテストを全公開、ハードSL必須設計。口座登録だけで無料版を配布中。",
+      "zh-CN": "本站同一团队开发的MT5智能交易系统：公开多年回测数据，强制硬止损，提供免费版本。",
+      "zh-TW": "本站同一團隊開發的MT5智能交易系統：公開多年回測數據，強制硬停損，提供免費版本。",
+      ko: "이 사이트 운영진이 만든 MT5 EA. 다년간 백테스트 공개, 하드 스탑로스 필수 설계, 무료 버전 제공.",
+      es: "Del mismo equipo de este sitio: EAs para MT5 con backtests de varios años publicados, stop-loss obligatorio y versión gratuita.",
+      "pt-BR": "Da mesma equipe deste site: EAs para MT5 com backtests de vários anos publicados, stop-loss obrigatório e versão gratuita.",
+      fr: "Par l'équipe de ce site : EA pour MT5 avec backtests pluriannuels publiés, stop-loss obligatoire et version gratuite.",
+      de: "Vom Team dieser Seite: MT5-EAs mit veröffentlichten mehrjährigen Backtests, hartem Stop-Loss und kostenloser Version.",
+      it: "Dallo stesso team di questo sito: EA per MT5 con backtest pluriennali pubblicati, stop-loss obbligatorio e versione gratuita.",
+      ru: "От команды этого сайта: советники MT5 с открытыми многолетними бэктестами, обязательным стоп-лоссом и бесплатной версией.",
+    },
+    cta: {
+      en: "Browse free EAs",
+      ja: "無料EAを見る",
+      "zh-CN": "查看免费EA",
+      "zh-TW": "查看免費EA",
+      ko: "무료 EA 보기",
+      es: "Ver EAs gratis",
+      "pt-BR": "Ver EAs grátis",
+      fr: "Voir les EA gratuits",
+      de: "Kostenlose EAs ansehen",
+      it: "Vedi gli EA gratuiti",
+      ru: "Смотреть бесплатные EA",
+    },
+    url: {
+      default: "https://fxea365.com/en?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      ja: "https://fxea365.com/?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      "zh-CN": "https://fxea365.com/zh-CN?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      "zh-TW": "https://fxea365.com/zh-TW?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      ko: "https://fxea365.com/ko?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      es: "https://fxea365.com/es?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      "pt-BR": "https://fxea365.com/pt-BR?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      fr: "https://fxea365.com/fr?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      de: "https://fxea365.com/de?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      it: "https://fxea365.com/it?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      ru: "https://fxea365.com/ru?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      ar: "https://fxea365.com/ar?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      hi: "https://fxea365.com/hi?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      id: "https://fxea365.com/id?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      th: "https://fxea365.com/th?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      tr: "https://fxea365.com/tr?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      vi: "https://fxea365.com/vi?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+    },
+    network: "house",
+    badge: "🤖",
+  },
+
   // === Awin配線 (pub 2887303) — AdSense代替収益。英語(en=US)流入の計上を有効化。
-  //     ★markets:["US"]のみ(["US","global"]は不可): toolifyのフィルタは "global" を「全市場ワイルドカード」
-  //     として扱うため global を含めるとJP訪問者にも出て既存a8勢を押しのける。US限定でJP(a8)を温存。
+  //     ★markets:["US","INTL"]: Awinはクロスボーダー計測に対応しており、es/de等の
+  //     国際ロケールにも出す(2026-08-05まで US 限定で、流入上位の es/de ページが
+  //     成果報酬0本だった)。"global"ワイルドカードは使わない=JP(a8)は温存。
   //     RelatedServicesはurlを直接使用。VPN枠はNordVPNに集約(Surfshark DE/ATは粗い市場に不適合)。 ===
   {
     id: "nordvpn-awin",
     category: "text",
     alsoIn: ["finance", "math", "converter", "datetime", "color", "health"],
-    markets: ["US"],
+    markets: ["US", "INTL"],
     name: { en: "NordVPN" },
     description: { en: "Strict no-logs VPN with 6,400+ servers in 111 countries. Threat Protection blocks ads, trackers, and malware while you work online." },
     cta: { en: "Get NordVPN" },
@@ -55,7 +131,7 @@ export const CATALOG: AffiliateOffer[] = [
     id: "cloudways-awin",
     category: "text",
     alsoIn: ["converter", "datetime", "color", "math"],
-    markets: ["US"],
+    markets: ["US", "INTL"],
     name: { en: "Cloudways" },
     description: { en: "Managed cloud hosting for WordPress and web apps on DigitalOcean, Vultr, and AWS. Fast setup, no server headaches." },
     cta: { en: "Try Cloudways" },
@@ -67,7 +143,7 @@ export const CATALOG: AffiliateOffer[] = [
     id: "fiverr-awin",
     category: "finance",
     alsoIn: ["text", "converter", "datetime"],
-    markets: ["US"],
+    markets: ["US", "INTL"],
     name: { en: "Fiverr" },
     description: { en: "Hire freelancers for design, writing, dev, and marketing — or sell your own services. Millions of gigs at every budget." },
     cta: { en: "Browse Fiverr" },
@@ -650,9 +726,14 @@ export function getOffersFor(category: string, locale: string, opts: { includePe
   return [...primary, ...secondary].slice(0, POLICY.maxPerSlot);
 }
 
-function inferMarketFromLocale(locale: string): "JP" | "US" | "CN" | "global" {
+function inferMarketFromLocale(locale: string): "JP" | "US" | "CN" | "INTL" {
   if (locale === "ja") return "JP";
   if (locale === "zh-CN") return "CN";
   if (locale === "en") return "US";
-  return "global";
+  // es/de/fr/pt-BR等。従来は "global" を返していたが、"global" は
+  // オファー側では「全市場ワイルドカード」の意味で使われており、
+  // 訪問者市場としては何にもマッチしない値だった。その結果
+  // es due-date(トップ流入)や de hours の各ページは成果報酬リンク0本だった
+  // (2026-08-05 実測)。INTL として明示的に扱う。
+  return "INTL";
 }
