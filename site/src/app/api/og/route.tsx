@@ -1,7 +1,27 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import type { NextRequest } from "next/server";
 
-export const runtime = "edge";
+// nodejs ランタイム必須。edge ランタイム（standalone/VPS）では satori が既定フォントを
+// 取得できず全リクエストが 1×1 透明 PNG フォールバックに落ちていた（= 全OG画像が空白、
+// Pinterest RSS が「画像なし」でフィードを拒否）。フォントは public/fonts から明示的に読む。
+export const runtime = "nodejs";
+
+const FONT_FAMILY = "Noto Sans";
+
+// standalone サーバの cwd = DEPLOY_PATH。deploy.yml が public/ をそこへ rsync する。
+let fontCache: { name: string; data: Buffer; weight: 400 | 700; style: "normal" }[] | null = null;
+function loadFonts() {
+  if (!fontCache) {
+    const dir = join(process.cwd(), "public", "fonts");
+    fontCache = [
+      { name: FONT_FAMILY, data: readFileSync(join(dir, "noto-sans-regular.ttf")), weight: 400, style: "normal" },
+      { name: FONT_FAMILY, data: readFileSync(join(dir, "noto-sans-bold.ttf")), weight: 700, style: "normal" },
+    ];
+  }
+  return fontCache;
+}
 
 const SIZE = { width: 1200, height: 630 };
 // Pinterest 推奨の縦長 2:3（統合集客: growth/pinterest-post.mjs が ?format=pin で参照）
@@ -33,7 +53,7 @@ function buildImageJsx(displayTitle: string, displaySubtitle: string, isCjk: boo
           display: "flex",
           flexDirection: "column",
           backgroundImage: "linear-gradient(160deg, #0c4a6e 0%, #0369a1 60%, #0ea5e9 100%)",
-          fontFamily: "system-ui, -apple-system, 'Hiragino Kaku Gothic ProN', sans-serif",
+          fontFamily: `${FONT_FAMILY}, sans-serif`,
           color: "white",
         }}
       >
@@ -171,7 +191,7 @@ function buildImageJsx(displayTitle: string, displaySubtitle: string, isCjk: boo
         backgroundImage: "linear-gradient(135deg, #0c4a6e 0%, #0ea5e9 100%)",
         padding: "72px",
         color: "white",
-        fontFamily: "system-ui, -apple-system, 'Hiragino Kaku Gothic ProN', sans-serif",
+        fontFamily: `${FONT_FAMILY}, sans-serif`,
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
@@ -234,6 +254,7 @@ async function renderOgImage(
 ): Promise<Response> {
   const img = new ImageResponse(buildImageJsx(title, subtitle, isCjk, isPin), {
     ...(isPin ? PIN_SIZE : SIZE),
+    fonts: loadFonts(),
   });
   // arrayBuffer() eagerly drains the stream — satori errors become catchable here
   const buf = await img.arrayBuffer();

@@ -29,12 +29,14 @@ export function GET() {
       <category>${escape(t.category)}</category>
       <description>${escape(`Free ${t.primaryKeyword.en ?? t.slug} — browser-based, no signup, multilingual.`)}</description>
       <enclosure url="${escape(img)}" type="image/png" length="0"/>
+      <media:content url="${escape(img)}" medium="image" type="image/png" width="1000" height="1500"/>
+      <media:thumbnail url="${escape(img)}" width="1000" height="1500"/>
     </item>`;
     })
     .join("\n");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>${escape(siteConfig.name)} — Latest tools</title>
     <link>${siteConfig.url}</link>
