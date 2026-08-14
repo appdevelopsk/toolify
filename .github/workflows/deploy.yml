@@ -154,8 +154,17 @@ jobs:
           [ -n "$urls" ] || { echo "✗ feedにenclosureが無い"; exit 1; }
           md5s=""
           while IFS= read -r u; do
-            h=$(curl -sSf --max-time 30 "$u" | md5sum | cut -d' ' -f1)
-            echo "  $h  $u"
+            curl -sSf --max-time 30 "$u" -o /tmp/pin.png
+            bytes=$(wc -c < /tmp/pin.png | tr -d ' ')
+            h=$(md5sum /tmp/pin.png | cut -d' ' -f1)
+            echo "  $h  ${bytes}B  $u"
+            # 2026-08-14の実障害: /api/og が edge ランタイムでフォントを読めず、
+            # 全リクエストが 70B の 1×1 透明PNG フォールバックに落ちていた。
+            # 「200が返る」だけでは検知できないのでバイト数で門番する。
+            if [ "$bytes" -lt 20000 ]; then
+              echo "✗ ピン画像が ${bytes}B しかない → /api/og が空白PNGフォールバックに落ちている"
+              exit 1
+            fi
             md5s="$md5s$h\n"
           done <<< "$urls"
           uniq_count=$(printf "%b" "$md5s" | sort -u | grep -c .)
