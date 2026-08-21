@@ -45,6 +45,31 @@ export const CATEGORY_DESCRIPTIONS: Record<PromptCategory, Record<string, Copy>>
       body: "Cada prompt de coding aquí está construido sobre la misma idea: el modelo es más útil cuando está restringido, no cuando le das libertad creativa. Prompts de code review que triajan por severidad. Prompts de debugging que hacen preguntas socráticas en lugar de escribir el fix. El output es más útil cuando el modelo tiene reglas explícitas contra las que empujar.",
       tip: "Combina estos prompts con Claude Sonnet 4.6, Cursor o GPT-5 para los mejores resultados. Las reglas estructurales del prompt importan más que la elección del modelo.",
     },
+    fr: {
+      headline: "Prompts de code qui survivent à une revue tech lead stricte",
+      body: "Chaque prompt de code ici repose sur la même idée : le modèle est plus utile sous contrainte que livré à sa latitude créative. Des prompts de revue qui trient par gravité. Des prompts de débogage qui posent des questions socratiques au lieu d'écrire le correctif. La sortie gagne en valeur quand le modèle a des règles explicites auxquelles se confronter.",
+      tip: "À combiner avec Claude Sonnet 4.6, Cursor ou GPT-5. Les règles structurelles du prompt comptent plus que le choix du modèle.",
+    },
+    ru: {
+      headline: "Промпты для кода, проходящие строгое ревью тимлида",
+      body: "Каждый промпт для кода здесь построен на одной идее: модель полезнее в рамках ограничений, а не творческой свободы. Промпты ревью, сортирующие по критичности. Промпты отладки, задающие сократовские вопросы вместо готовой правки. Результат надёжнее, когда у модели есть явные правила, которым можно возражать.",
+      tip: "Лучше всего работает с Claude Sonnet 4.6, Cursor или GPT-5. Структурные правила в тексте промпта важнее выбора модели.",
+    },
+    tr: {
+      headline: "Sıkı bir tech lead incelemesinden geçen kodlama promptları",
+      body: "Buradaki her kodlama promptu aynı fikre dayanır: model yaratıcı serbestlik verildiğinde değil, kısıtlandığında en yararlıdır. Önem derecesine göre ayıran kod inceleme promptları. Düzeltmeyi yazmak yerine Sokratik sorular soran hata ayıklama promptları. Modelin karşı çıkacağı açık kurallar olduğunda çıktı daha güvenilir olur.",
+      tip: "Claude Sonnet 4.6, Cursor veya GPT-5 ile en iyi sonucu verir. Prompt metnindeki yapısal kurallar model seçiminden önemlidir.",
+    },
+    ar: {
+      headline: "موجّهات برمجة تصمد أمام مراجعة تقنية صارمة",
+      body: "كل موجّه برمجة هنا مبني على الفكرة نفسها: النموذج أكثر فائدة حين يُقيَّد لا حين يُمنح حرية إبداعية. موجّهات مراجعة تصنّف حسب الخطورة. موجّهات تصحيح تطرح أسئلة سقراطية بدل كتابة الإصلاح. تتحسن المخرجات حين تكون لدى النموذج قواعد صريحة يقاومها.",
+      tip: "استخدمها مع Claude Sonnet 4.6 أو Cursor أو GPT-5. القواعد البنيوية داخل الموجّه أهم من اختيار النموذج.",
+    },
+    th: {
+      headline: "พรอมต์เขียนโค้ดที่ผ่านรีวิวจาก tech lead ที่เข้มงวด",
+      body: "พรอมต์เขียนโค้ดทุกตัวที่นี่ตั้งอยู่บนแนวคิดเดียวกัน: โมเดลมีประโยชน์ที่สุดเมื่อถูกจำกัดกรอบ ไม่ใช่เมื่อได้อิสระในการสร้างสรรค์ พรอมต์รีวิวโค้ดที่จัดลำดับตามความรุนแรง พรอมต์ดีบักที่ตั้งคำถามแบบโสกราตีสแทนที่จะเขียนโค้ดแก้ให้ ผลลัพธ์จะน่าเชื่อถือขึ้นเมื่อโมเดลมีกฎชัดเจนให้โต้แย้ง",
+      tip: "ใช้คู่กับ Claude Sonnet 4.6, Cursor หรือ GPT-5 ได้ผลดีที่สุด กฎเชิงโครงสร้างในตัวพรอมต์สำคัญกว่าการเลือกโมเดล",
+    },
   },
   writing: {
     en: {
@@ -76,6 +101,31 @@ export const CATEGORY_DESCRIPTIONS: Record<PromptCategory, Record<string, Copy>>
       headline: "Prompts de escritura que cortan relleno en lugar de agregarlo",
       body: "Los prompts default 'reescribe esto' inflan el largo y agregan relleno corporativo. Todo prompt de escritura aquí hace lo opuesto: fuerza un largo objetivo, suprime 'desbloquear', 'aprovechar', 'verdaderamente', y fuerza decisiones explícitas sobre tono y audiencia. El output es más corto que tu input, con el mensaje intacto.",
       tip: "Configura el tono explícitamente (cálido / neutral / firme) y un conteo objetivo de palabras. Las instrucciones vagas como 'hazlo mejor' producen output vago.",
+    },
+    fr: {
+      headline: "Prompts d'écriture qui coupent le remplissage",
+      body: "Le « réécris ceci » par défaut gonfle la longueur et ajoute du jargon corporate. Chaque prompt d'écriture ici fait l'inverse : impose une longueur cible, supprime « débloquer », « exploiter », « véritablement », et force des décisions explicites sur le ton et l'audience. La sortie est plus courte que l'entrée, le message intact.",
+      tip: "Précisez le ton (chaleureux / neutre / ferme) et un nombre de mots cible. Une consigne vague produit une sortie vague.",
+    },
+    ru: {
+      headline: "Промпты для текста, которые убирают воду, а не добавляют",
+      body: "Стандартное «перепиши это» раздувает объём и добавляет корпоративные штампы. Каждый промпт здесь делает обратное: задаёт целевую длину, подавляет «раскрыть», «использовать», «поистине» и требует явных решений о тоне и аудитории. Результат короче исходника, а смысл сохранён.",
+      tip: "Задавайте тон (тёплый / нейтральный / твёрдый) и целевой объём. Расплывчатая инструкция даёт расплывчатый результат.",
+    },
+    tr: {
+      headline: "Dolgu ekleyen değil, dolguyu kesen yazım promptları",
+      body: "Varsayılan «bunu yeniden yaz» komutu metni şişirir ve kurumsal dolgu ekler. Buradaki her yazım promptu tersini yapar: hedef uzunluk dayatır, «ortaya çıkarmak», «kaldıraç», «gerçekten» gibi kalıpları bastırır ve ton ile hedef kitle hakkında açık kararlar aldırır. Çıktı girdiden kısadır, mesaj korunur.",
+      tip: "Tonu (sıcak / nötr / kararlı) ve hedef kelime sayısını açıkça belirtin. Belirsiz talimat belirsiz çıktı üretir.",
+    },
+    ar: {
+      headline: "موجّهات كتابة تحذف الحشو بدل أن تضيفه",
+      body: "أمر «أعد صياغة هذا» الافتراضي ينفخ الطول ويضيف حشوًا مؤسسيًا. كل موجّه كتابة هنا يفعل العكس: يفرض طولًا مستهدفًا، ويكبح عبارات مثل «إطلاق العنان» و«الاستفادة» و«حقًا»، ويجبر على قرارات صريحة حول النبرة والجمهور. المخرجات أقصر من المدخلات مع بقاء الرسالة سليمة.",
+      tip: "حدّد النبرة (ودّية / محايدة / حازمة) وعدد الكلمات المستهدف. التعليمات الغامضة تنتج مخرجات غامضة.",
+    },
+    th: {
+      headline: "พรอมต์เขียนงานที่ตัดคำฟุ่มเฟือยแทนที่จะเพิ่ม",
+      body: "คำสั่ง «เขียนใหม่ให้หน่อย» แบบมาตรฐานมักทำให้ยาวขึ้นและเติมสำนวนองค์กรเข้ามา พรอมต์เขียนงานทุกตัวที่นี่ทำตรงกันข้าม: บังคับความยาวเป้าหมาย ตัดคำอย่าง «ปลดล็อก» «ใช้ประโยชน์» «อย่างแท้จริง» ออก และบังคับให้ตัดสินใจเรื่องโทนและกลุ่มผู้อ่านอย่างชัดเจน ผลลัพธ์สั้นกว่าต้นฉบับโดยที่สารยังครบ",
+      tip: "ระบุโทน (อบอุ่น / กลาง / หนักแน่น) และจำนวนคำเป้าหมาย คำสั่งที่คลุมเครือให้ผลลัพธ์ที่คลุมเครือ",
     },
   },
   design: {
@@ -109,6 +159,31 @@ export const CATEGORY_DESCRIPTIONS: Record<PromptCategory, Record<string, Copy>>
       body: "El output default de Midjourney / DALL·E converge en la misma suavidad uncanny, key light dramática y bokeh 85mm. Los prompts aquí rompen la convergencia especificando lente, dirección de luz y reglas explícitas anti-suavizado. Cada prompt tiene ejemplos funcionando en v6/v7 que puedes pegar y modificar.",
       tip: "Bloquea el seed una vez encuentres una cara que te guste. Varía lente o luz para conseguir composiciones distintas del mismo personaje sin re-tirar.",
     },
+    fr: {
+      headline: "Prompts de design qui cassent le rendu générique par défaut",
+      body: "Demandez un design à un LLM et vous obtenez le même dégradé violet centré. Les prompts de cette catégorie imposent des contraintes qui écartent ce défaut : références typographiques précises, logique de palette, hiérarchie spatiale, et interdiction explicite des tics visuels que les modèles produisent en boucle.",
+      tip: "Nommez une contrainte concrète — support, palette, référence — plutôt que « rends ça beau ».",
+    },
+    ru: {
+      headline: "Промпты дизайна, ломающие стандартный «générique» вид",
+      body: "Попросите LLM оформить что-то — получите тот же фиолетовый градиент по центру. Промпты этой категории задают ограничения, уводящие от шаблона: конкретные типографические референсы, логика палитры, пространственная иерархия и явный запрет визуальных клише, которые модели повторяют раз за разом.",
+      tip: "Назовите конкретное ограничение — носитель, палитру, референс — вместо «сделай красиво».",
+    },
+    tr: {
+      headline: "Jenerik yapay zekâ görünümünü kıran tasarım promptları",
+      body: "Bir LLM'den tasarım isteyin, aynı ortalanmış mor gradyanı alırsınız. Bu kategorideki promptlar o varsayılandan uzaklaştıran kısıtlar koyar: belirli tipografi referansları, palet mantığı, mekânsal hiyerarşi ve modellerin tekrar tekrar ürettiği görsel klişelerin açıkça yasaklanması.",
+      tip: "«Güzel yap» yerine somut bir kısıt verin — mecra, palet ya da referans.",
+    },
+    ar: {
+      headline: "موجّهات تصميم تكسر النمط النمطي الافتراضي",
+      body: "اطلب تصميمًا من نموذج لغوي فتحصل على التدرّج البنفسجي نفسه في المنتصف. موجّهات هذه الفئة تضع قيودًا تبتعد عن ذلك الافتراضي: مراجع طباعية محددة، ومنطق لوحة ألوان، وتسلسل هرمي مكاني، ومنع صريح للعادات البصرية التي تكررها النماذج.",
+      tip: "اذكر قيدًا ملموسًا — الوسيط أو لوحة الألوان أو مرجعًا — بدل «اجعله جميلًا».",
+    },
+    th: {
+      headline: "พรอมต์ดีไซน์ที่ทลายค่าเริ่มต้นแบบ «ดูโหลๆ» ของ AI",
+      body: "ขอให้ LLM ออกแบบอะไรสักอย่าง คุณก็จะได้ไล่เฉดสีม่วงจัดกลางหน้าแบบเดิม พรอมต์ในหมวดนี้ตั้งข้อจำกัดที่พาออกจากค่าเริ่มต้นนั้น: อ้างอิงงานตัวอักษรที่เจาะจง ตรรกะของชุดสี ลำดับชั้นเชิงพื้นที่ และห้ามใช้ลูกเล่นภาพซ้ำๆ ที่โมเดลชอบผลิตออกมาอย่างชัดเจน",
+      tip: "ระบุข้อจำกัดที่จับต้องได้ — สื่อ ชุดสี หรืองานอ้างอิง — แทนคำว่า «ทำให้สวย»",
+    },
   },
   research: {
     en: {
@@ -140,6 +215,31 @@ export const CATEGORY_DESCRIPTIONS: Record<PromptCategory, Record<string, Copy>>
       headline: "Prompts de investigación que sacan claims, no parafraseos",
       body: "El default 'resúmeme esto' produce resúmenes en prosa con pérdida. Los prompts de investigación aquí extraen claims estructurados — cada uno etiquetado con tipo de evidencia, página fuente y confianza — para que puedas escanear un reporte de 50 páginas en 60 segundos y saber exactamente qué está respaldado por datos vs. solo aserciones. Se empareja con el prompt de entrevista a usuarios para el ciclo completo descubrimiento → síntesis.",
       tip: "Corre cada fuente individualmente primero, luego pide al modelo comparar las tablas resultantes en un segundo pase. Mejor calidad que alimentar todas las fuentes juntas.",
+    },
+    fr: {
+      headline: "Prompts de recherche qui exposent les affirmations",
+      body: "Un résumé par défaut aplatit une source en prose neutre et perd ce qui était contesté. Les prompts de cette catégorie séparent l'affirmation de la preuve, signalent ce qui n'est pas étayé, et demandent au modèle de dire ce que la source ne dit pas — la partie que le résumé standard supprime.",
+      tip: "Demandez toujours « qu'est-ce qui n'est pas étayé ici ? » après un résumé. C'est là que se cachent les erreurs.",
+    },
+    ru: {
+      headline: "Промпты для ресёрча, вскрывающие утверждения, а не пересказ",
+      body: "Обычное резюме сглаживает источник в нейтральный текст и теряет спорные места. Промпты этой категории отделяют утверждение от доказательства, помечают неподтверждённое и требуют от модели сказать, чего источник не утверждает, — именно это стандартное резюме и выбрасывает.",
+      tip: "После резюме всегда спрашивайте: «что здесь не подтверждено?» Именно там прячутся ошибки.",
+    },
+    tr: {
+      headline: "Özet değil, iddiaları açığa çıkaran araştırma promptları",
+      body: "Varsayılan özet, kaynağı nötr bir metne düzleştirir ve tartışmalı olanı kaybeder. Bu kategorideki promptlar iddiayı kanıttan ayırır, desteklenmeyeni işaretler ve modelden kaynağın söylemediğini söylemesini ister — standart özetin attığı kısım tam olarak budur.",
+      tip: "Her özetten sonra «burada neyin dayanağı yok?» diye sorun. Hatalar orada saklanır.",
+    },
+    ar: {
+      headline: "موجّهات بحث تُظهر الادعاءات لا إعادة الصياغة",
+      body: "التلخيص الافتراضي يسطّح المصدر إلى نثر محايد ويفقد ما كان محل خلاف. موجّهات هذه الفئة تفصل الادعاء عن الدليل، وتضع علامة على غير المدعوم، وتطلب من النموذج أن يذكر ما لا يقوله المصدر — وهو تحديدًا ما يحذفه التلخيص المعتاد.",
+      tip: "اسأل دائمًا بعد أي تلخيص: «ما الذي لا دليل عليه هنا؟» فهناك تختبئ الأخطاء.",
+    },
+    th: {
+      headline: "พรอมต์วิจัยที่ดึงข้ออ้างออกมา ไม่ใช่แค่ถอดความ",
+      body: "การสรุปแบบมาตรฐานจะรีดต้นฉบับให้เหลือร้อยแก้วกลางๆ และทำให้ประเด็นที่ยังเถียงกันอยู่หายไป พรอมต์ในหมวดนี้แยกข้ออ้างออกจากหลักฐาน ทำเครื่องหมายสิ่งที่ยังไม่มีอะไรรองรับ และให้โมเดลบอกว่าต้นฉบับ «ไม่ได้» พูดอะไรไว้ ซึ่งเป็นส่วนที่บทสรุปทั่วไปตัดทิ้ง",
+      tip: "หลังได้บทสรุปให้ถามเสมอว่า «ตรงไหนที่ยังไม่มีหลักฐานรองรับ» ข้อผิดพลาดมักซ่อนอยู่ตรงนั้น",
     },
   },
   business: {
@@ -173,6 +273,31 @@ export const CATEGORY_DESCRIPTIONS: Record<PromptCategory, Record<string, Copy>>
       body: "La mayoría de agendas, weekly reviews y frameworks de decisión generados por AI caen en teatro de productividad con bullet lists que no cambian nada el lunes por la mañana. Los prompts de negocios aquí fuerzan decisiones nombradas, prioridades únicas y el incómodo check de '¿esto debería ser una reunión?' arriba. Producen documentos sobre los que actuarás, no que archivarás.",
       tip: "Usa el prompt de meeting-prep antes de tu próxima reunión recurrente. La mitad de las veces la respuesta es 'cancelar y mandar update escrito'.",
     },
+    fr: {
+      headline: "Prompts business qui forcent une décision, pas un débat",
+      body: "La plupart des prompts business produisent un mémo qui expose les deux camps et ne tranche pas. Ceux-ci imposent l'inverse : une recommandation unique, les conditions qui l'invalideraient, et le coût de se tromper. Utile quand il faut sortir d'une réunion avec une décision plutôt qu'un compte rendu.",
+      tip: "Donnez toujours vos contraintes réelles — budget, délai, personnes. Sans elles, le modèle recommande l'option générique.",
+    },
+    ru: {
+      headline: "Бизнес-промпты, которые требуют решения, а не обсуждения",
+      body: "Большинство бизнес-промптов выдают записку, где изложены обе позиции и не выбрана ни одна. Эти делают обратное: одна рекомендация, условия, при которых она неверна, и цена ошибки. Полезно, когда со встречи нужно выйти с решением, а не с протоколом.",
+      tip: "Всегда указывайте реальные ограничения — бюджет, сроки, людей. Без них модель посоветует общий вариант.",
+    },
+    tr: {
+      headline: "Tartışma değil, karar dayatan iş promptları",
+      body: "Çoğu iş promptu her iki tarafı da anlatan ve hiçbirini seçmeyen bir not üretir. Bunlar tersini yapar: tek bir öneri, o öneriyi geçersiz kılacak koşullar ve yanılmanın maliyeti. Toplantıdan tutanakla değil kararla çıkmak gerektiğinde işe yarar.",
+      tip: "Gerçek kısıtlarınızı mutlaka verin — bütçe, süre, ekip. Yoksa model en genel seçeneği önerir.",
+    },
+    ar: {
+      headline: "موجّهات أعمال تفرض قرارًا لا نقاشًا",
+      body: "معظم موجّهات الأعمال تنتج مذكرة تعرض الرأيين ولا تحسم. هذه تفعل العكس: توصية واحدة، والشروط التي تُبطلها، وكلفة الخطأ. مفيدة حين يلزم الخروج من الاجتماع بقرار لا بمحضر.",
+      tip: "اذكر دائمًا قيودك الحقيقية — الميزانية والمهلة والفريق. بدونها يوصي النموذج بالخيار العام.",
+    },
+    th: {
+      headline: "พรอมต์ธุรกิจที่บังคับให้เกิดการตัดสินใจ ไม่ใช่การถกเถียง",
+      body: "พรอมต์ธุรกิจส่วนใหญ่ให้บันทึกที่เล่าทั้งสองฝ่ายแล้วไม่เลือกอะไรเลย ชุดนี้ทำตรงกันข้าม: ข้อเสนอแนะเดียว เงื่อนไขที่จะทำให้ข้อเสนอนั้นผิด และต้นทุนหากตัดสินใจพลาด เหมาะเวลาที่ต้องออกจากห้องประชุมพร้อมข้อสรุป ไม่ใช่แค่รายงานการประชุม",
+      tip: "ระบุข้อจำกัดจริงเสมอ — งบประมาณ กรอบเวลา และคน ถ้าไม่มี โมเดลจะแนะนำทางเลือกกลางๆ",
+    },
   },
   marketing: {
     en: {
@@ -204,6 +329,31 @@ export const CATEGORY_DESCRIPTIONS: Record<PromptCategory, Record<string, Copy>>
       headline: "Prompts de marketing que producen candidatos A/B testables",
       body: "El genérico 'escríbeme 6 titulares' produce seis reescrituras de la misma idea — seis candidatos que ganan o pierden juntos. Los prompts de marketing aquí fuerzan diversidad de ángulos (problema / resultado / identidad / prueba social / escasez / comparación) para que envíes seis hipótesis A/B genuinas de una pegada, no seis reescrituras de una.",
       tip: "Corre la diversidad de ángulos por ChatGPT o Claude, luego elige 3 ángulos para testing pagado. Salta 'sé más creativo' — nombra el ángulo persuasivo explícitamente.",
+    },
+    fr: {
+      headline: "Prompts marketing qui produisent des candidats A/B testables",
+      body: "« Écris-moi une accroche » donne dix variantes qui disent la même chose. Ces prompts imposent un axe de différenciation par variante — bénéfice, objection, public — pour que le test A/B mesure quelque chose au lieu de comparer des synonymes.",
+      tip: "Indiquez l'audience et l'objection principale. Des variantes qui ne diffèrent que par les mots ne testent rien.",
+    },
+    ru: {
+      headline: "Маркетинговые промпты, дающие пригодные для A/B варианты",
+      body: "«Напиши заголовок» выдаёт десять вариантов об одном и том же. Эти промпты требуют, чтобы каждый вариант отличался по оси — выгода, возражение, аудитория, — чтобы A/B-тест что-то измерял, а не сравнивал синонимы.",
+      tip: "Укажите аудиторию и главное возражение. Варианты, отличающиеся только словами, ничего не тестируют.",
+    },
+    tr: {
+      headline: "A/B testi yapılabilir adaylar üreten pazarlama promptları",
+      body: "«Bana bir başlık yaz» dediğinizde aynı şeyi söyleyen on varyant gelir. Bu promptlar her varyantın bir eksende ayrışmasını şart koşar — fayda, itiraz, hedef kitle — böylece A/B testi eş anlamlıları değil gerçek bir farkı ölçer.",
+      tip: "Hedef kitleyi ve temel itirazı belirtin. Yalnızca kelimeleri değişen varyantlar hiçbir şey test etmez.",
+    },
+    ar: {
+      headline: "موجّهات تسويق تنتج بدائل قابلة لاختبار A/B",
+      body: "طلب «اكتب لي عنوانًا» يعطي عشر صيغ تقول الشيء نفسه. هذه الموجّهات تشترط أن يختلف كل بديل على محور واضح — المنفعة أو الاعتراض أو الجمهور — كي يقيس اختبار A/B فرقًا حقيقيًا لا مرادفات.",
+      tip: "حدّد الجمهور والاعتراض الأساسي. البدائل التي تختلف في الألفاظ فقط لا تختبر شيئًا.",
+    },
+    th: {
+      headline: "พรอมต์การตลาดที่ให้ตัวเลือกซึ่งเอาไปทำ A/B ได้จริง",
+      body: "สั่งว่า «เขียนพาดหัวให้หน่อย» แล้วจะได้สิบแบบที่พูดเรื่องเดียวกัน พรอมต์ชุดนี้บังคับให้แต่ละแบบต่างกันบนแกนที่ชัดเจน — ประโยชน์ ข้อโต้แย้ง หรือกลุ่มเป้าหมาย เพื่อให้การทดสอบ A/B วัดอะไรได้จริง ไม่ใช่แค่เทียบคำพ้องความหมาย",
+      tip: "ระบุกลุ่มเป้าหมายและข้อโต้แย้งหลัก ตัวเลือกที่ต่างกันแค่ถ้อยคำไม่ได้ทดสอบอะไรเลย",
     },
   },
 };

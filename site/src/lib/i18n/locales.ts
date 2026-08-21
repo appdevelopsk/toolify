@@ -38,7 +38,23 @@ export const DEFAULT_LOCALE: Locale = "en";
  *   noindex + sitemap除外してサイト全体のHCU評価を英語に集中させる。
  *   ページ自体/UI言語切替は不変＝可逆（本配列に戻すだけ）。
  */
-export const INDEXED_LOCALES: Locale[] = ["en", "ja"];
+/**
+ * ── 2026-08-21: ★上記「全17言語ともクリック0」は誤りだったので ar/th/tr/fr/ru を復帰。
+ *    GSC 180日を noindex化前(2026-04-01〜06-18)で切り直したところ、実績はこうだった:
+ *      ar clk3/imp83, th clk2/imp167, en clk1/imp397, tr clk1/imp148,
+ *      fr clk1/imp146, ru clk1/imp136  (合計 clk9 / imp2,005)
+ *    → 9クリック中8本が、noindex にした側のロケールから出ていた。トルコ語クエリは1.4〜3.7位。
+ *    noindex後(06-19〜)は合計22表示・0クリック、最後の表示は 2026-07-29。技術面はクリーン
+ *    (robots.txt Allow:/ ・sitemap 200/186loc・サンプルURL全200)だったので、Googleが技術的に
+ *    拒否したのではなく、こちらが消していた。pickly の deindexed-slugs.ts と同じ循環
+ *    (noindexだから実績0→その0を根拠にnoindex)の、記事単位ではなくロケール単位での再発。
+ *    復帰は実クリック実績のある5ロケールのみ。hi/id/vi/es/it/de/ko/zh 等は実績0なので据え置き。
+ *    ※2026-07-30のベースラインには zh-TW/zh-CN/ko を解除したと記録があるが、git履歴上
+ *      その変更は実在しない(本ファイルの最終変更は 6/19 の e709032)。計画のみで未実行だった。
+ *    再判定: 3〜4週後(2026-09-15頃)に GSC のロケール別クリックで効果測定。
+ *    連動必須: scripts/check-built-canonical.mjs の INDEXED も同じ配列にすること。
+ */
+export const INDEXED_LOCALES: Locale[] = ["en", "ja", "ar", "th", "tr", "fr", "ru"];
 
 export function isIndexedLocale(code: string): boolean {
   return (INDEXED_LOCALES as readonly string[]).includes(code);

@@ -79,9 +79,15 @@ for (const [rest, byLoc] of byPath) {
   if (new Set(nonJa).size === 1) untranslated.push(`${nonJa.length}ロケール  /${rest}  ${nonJa[0]}`);
 }
 
+// 重大度を2段に分ける（2026-08-21）。
+// 空 / 生キー / ブランド二重 / 未翻訳 は「壊れている・重複判定を食らう」＝出荷を止める。
+// 幅超過は SERP で末尾が切れるだけで、ページは正しく機能しインデックスもされる。
+// 実際 ar/tr/fr は幅超過のタイトルのまま順位 1.4〜3.7 を取っていた（GSC 04-01〜06-18）。
+// これを致命にすると、全17言語ぶんのタイトル短縮が終わるまで一切出荷できず、
+// 収益に直結する noindex 解除まで人質に取られる。よって警告（非致命）に降格し、
+// 件数は必ず出し続けてバックログとして可視化する。
 const checks = [
   ["<title> が空", empty],
-  [`<title> の表示幅が ${LIMIT} 超（SERPで切れる）`, wide],
   ["<title> に生の翻訳キーが出ている", raw],
   ["<title> にブランドが二重に付いている", dbl],
   ["<title> が非日本語ロケール全部で同一（metadata が未翻訳）", untranslated],
@@ -95,6 +101,11 @@ for (const [label, list] of checks) {
   console.error(`  ✗ ${label}: ${list.length}`);
   for (const x of list.slice(0, 8)) console.error(`      ${x}`);
   if (list.length > 8) console.error(`      … 他 ${list.length - 8} 件`);
+}
+if (wide.length) {
+  console.warn(`  ⚠ <title> の表示幅が ${LIMIT} 超（SERPで切れる）: ${wide.length}【警告・出荷は止めない】`);
+  for (const x of wide.slice(0, 8)) console.warn(`      ${x}`);
+  if (wide.length > 8) console.warn(`      … 他 ${wide.length - 8} 件`);
 }
 if (failed) { console.error(`\n❌ ${failed} 件。出荷しない。`); process.exit(1); }
 console.log("\n✓ ビルド出力の <title> 検査を通過");

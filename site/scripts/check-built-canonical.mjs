@@ -16,7 +16,7 @@
  *   4. hreflang クラスタが noindex ロケールを指す（間引き戦略の打ち消し）
  *
  * 検査対象外:
- *   - `noindex` ページ。INDEXED_LOCALES=["en","ja"] 以外の15言語は意図的に noindex。
+ *   - `noindex` ページ。INDEXED_LOCALES(en/ja/ar/th/tr/fr/ru) 以外の10言語は意図的に noindex。
  *   - 隣の `.meta` が status 404 のプリレンダーページ。404 で配信されるので canonical は無意味。
  *     ★404 判定に HTML 本文を使ってはいけない: not-found 境界のマークアップは全ページの
  *     RSC ペイロードに埋まるため、本文判定にすると全ページが 404 扱いになり検査が空振りする。
@@ -41,7 +41,7 @@ const ALL_LOCALES = [
   "it", "ru", "ar", "hi", "id", "th", "vi", "tr",
 ];
 // locales.ts の INDEXED_LOCALES と一致させること（片方だけ動かすと検査が嘘をつく）
-const INDEXED = ["en", "ja"];
+const INDEXED = ["en", "ja", "ar", "th", "tr", "fr", "ru"];
 const NOINDEX_LOCALES = ALL_LOCALES.filter((l) => !INDEXED.includes(l));
 const DOUBLE = new RegExp(`/(${ALL_LOCALES.join("|")})/(${ALL_LOCALES.join("|")})(/|$)`);
 
