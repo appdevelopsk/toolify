@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { useToolEvents } from "@/lib/analytics/useToolEvents";
 
 interface Props {
   /** Canonical, absolute URL of the tool page (built server-side from siteConfig). */
@@ -10,6 +11,8 @@ interface Props {
   embedUrl: string;
   /** Localized tool title, used as share text and iframe title. */
   title: string;
+  /** ツール slug。GA4 の copy_result / share イベントの識別子。 */
+  slug: string;
 }
 
 const ICON = "h-4 w-4";
@@ -80,8 +83,9 @@ function ShareIcon() {
 const btn =
   "inline-flex items-center gap-1.5 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm text-slate-700 transition-colors hover:border-brand-500 hover:bg-brand-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800";
 
-export function ShareBar({ url, embedUrl, title }: Props) {
+export function ShareBar({ url, embedUrl, title, slug }: Props) {
   const t = useTranslations("tool");
+  const { copyResult } = useToolEvents(slug);
   const [linkCopied, setLinkCopied] = useState(false);
   const [codeCopied, setCodeCopied] = useState(false);
   const [showEmbed, setShowEmbed] = useState(false);
@@ -103,9 +107,10 @@ export function ShareBar({ url, embedUrl, title }: Props) {
     { name: "Reddit", href: `https://www.reddit.com/submit?url=${enc(url)}&title=${enc(title)}`, Icon: RedditIcon },
   ];
 
-  async function copy(text: string, mark: (v: boolean) => void) {
+  async function copy(text: string, mark: (v: boolean) => void, kind: "link" | "embed") {
     try {
       await navigator.clipboard.writeText(text);
+      copyResult(kind);
       mark(true);
       setTimeout(() => mark(false), 1800);
     } catch {
@@ -122,7 +127,7 @@ export function ShareBar({ url, embedUrl, title }: Props) {
         /* user cancelled — fall through */
       }
     }
-    copy(url, setLinkCopied);
+    copy(url, setLinkCopied, "link");
   }
 
   return (
@@ -132,7 +137,7 @@ export function ShareBar({ url, embedUrl, title }: Props) {
         <span>{t("share")}</span>
       </button>
 
-      <button type="button" onClick={() => copy(url, setLinkCopied)} className={btn}>
+      <button type="button" onClick={() => copy(url, setLinkCopied, "link")} className={btn}>
         <LinkIcon />
         <span>{linkCopied ? t("copied") : t("copy")}</span>
       </button>
@@ -170,7 +175,7 @@ export function ShareBar({ url, embedUrl, title }: Props) {
             rows={3}
             className="w-full resize-none rounded border border-slate-300 bg-white p-2 font-mono text-xs text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300"
           />
-          <button type="button" onClick={() => copy(snippet, setCodeCopied)} className={`${btn} mt-2`}>
+          <button type="button" onClick={() => copy(snippet, setCodeCopied, "embed")} className={`${btn} mt-2`}>
             <LinkIcon />
             <span>{codeCopied ? t("copied") : t("copy")}</span>
           </button>

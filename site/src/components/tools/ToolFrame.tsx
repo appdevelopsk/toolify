@@ -5,6 +5,7 @@ import { AdBanner, AdBelowResult, AdInArticle, AdSticky } from "@/components/ads
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { SisterSiteCta } from "@/components/cross/SisterSiteCta";
+import { ToolInteractionTracker } from "./ToolInteractionTracker";
 import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
 import { siteConfig } from "@/lib/config";
@@ -46,13 +47,13 @@ export function ToolFrame({ meta, title, description, related, children, article
         </div>
         <p className="mt-2 text-slate-600 dark:text-slate-400">{description}</p>
 
-        <ShareBar url={pageUrl} embedUrl={embedUrl} title={title} />
+        <ShareBar url={pageUrl} embedUrl={embedUrl} title={title} slug={meta.slug} />
 
         {/* AdBanner はツール本体の“上”にあったため、モバイルでは本体がフォールド外に
             押し出されていた(個別ツール着地の engaged≒0% の構造要因)。
             まず道具を見せ、広告は結果の下に置く(2026-08-22)。 */}
         <section className="mt-6 rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 sm:p-6">
-          {children}
+          <ToolInteractionTracker slug={meta.slug}>{children}</ToolInteractionTracker>
         </section>
 
         <AdBelowResult />
