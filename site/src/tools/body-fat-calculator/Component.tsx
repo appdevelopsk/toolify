@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useLocalDraft } from "@/lib/hooks/useLocalDraft";
+import { useShareableState } from "@/lib/hooks/useShareableState";
 import { DraftNotice } from "@/lib/hooks/DraftNotice";
 import { defaultUnitSystem, type UnitSystem } from "@/lib/hooks/useUnitSystem";
 
@@ -55,6 +56,20 @@ export default function BodyFatCalculator() {
   const [weight, setWeight] = useState(initialUnit === "metric" ? "70" : "154");
 
   const draft = useLocalDraft(
+    "body-fat-calculator",
+    { unit, sex, height, waist, neck, hip, weight },
+    (d) => {
+      if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);
+      if (d.sex === "male" || d.sex === "female") setSex(d.sex);
+      if (typeof d.height === "string") setHeight(d.height);
+      if (typeof d.waist === "string") setWaist(d.waist);
+      if (typeof d.neck === "string") setNeck(d.neck);
+      if (typeof d.hip === "string") setHip(d.hip);
+      if (typeof d.weight === "string") setWeight(d.weight);
+    },
+  );
+
+  useShareableState(
     "body-fat-calculator",
     { unit, sex, height, waist, neck, hip, weight },
     (d) => {

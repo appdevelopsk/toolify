@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useLocalDraft } from "@/lib/hooks/useLocalDraft";
+import { useShareableState } from "@/lib/hooks/useShareableState";
 import { DraftNotice } from "@/lib/hooks/DraftNotice";
 import { defaultUnitSystem, type UnitSystem } from "@/lib/hooks/useUnitSystem";
 
@@ -45,6 +46,19 @@ export default function BmrCalculator() {
   const [bodyFatPct, setBodyFatPct] = useState("");
 
   const draft = useLocalDraft(
+    "bmr-calculator",
+    { unit, sex, age, height, weight, bodyFatPct },
+    (d) => {
+      if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);
+      if (d.sex === "male" || d.sex === "female") setSex(d.sex);
+      if (typeof d.age === "string") setAge(d.age);
+      if (typeof d.height === "string") setHeight(d.height);
+      if (typeof d.weight === "string") setWeight(d.weight);
+      if (typeof d.bodyFatPct === "string") setBodyFatPct(d.bodyFatPct);
+    },
+  );
+
+  useShareableState(
     "bmr-calculator",
     { unit, sex, age, height, weight, bodyFatPct },
     (d) => {

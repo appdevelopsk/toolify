@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useLocalDraft } from "@/lib/hooks/useLocalDraft";
+import { useShareableState } from "@/lib/hooks/useShareableState";
 import { DraftNotice } from "@/lib/hooks/DraftNotice";
 import { defaultUnitSystem, type UnitSystem } from "@/lib/hooks/useUnitSystem";
 
@@ -25,6 +26,12 @@ export default function WaterIntakeCalculator() {
     if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);
     if (typeof d.weight === "string") setWeight(d.weight);
     if (typeof d.activity === "string" && d.activity in ACTIVITY_FACTOR) setActivity(d.activity);
+  });
+
+  useShareableState("water-intake-calculator", { unit, weight, activity }, (d) => {
+    if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);
+    if (typeof d.weight === "string") setWeight(d.weight);
+    if (typeof d.activity === "string" && d.activity in ACTIVITY_FACTOR) setActivity(d.activity as Activity);
   });
 
   const result = useMemo(() => {

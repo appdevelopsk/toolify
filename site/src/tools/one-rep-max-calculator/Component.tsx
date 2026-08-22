@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useLocalDraft } from "@/lib/hooks/useLocalDraft";
+import { useShareableState } from "@/lib/hooks/useShareableState";
 import { DraftNotice } from "@/lib/hooks/DraftNotice";
 
 const PCT_TABLE: { reps: number; pct: number }[] = [
@@ -27,6 +28,11 @@ export default function OneRepMaxCalculator() {
   const [reps, setReps] = useState("5");
 
   const draft = useLocalDraft("one-rep-max-calculator", { weight, reps }, (d) => {
+    if (typeof d.weight === "string") setWeight(d.weight);
+    if (typeof d.reps === "string") setReps(d.reps);
+  });
+
+  useShareableState("one-rep-max-calculator", { weight, reps }, (d) => {
     if (typeof d.weight === "string") setWeight(d.weight);
     if (typeof d.reps === "string") setReps(d.reps);
   });

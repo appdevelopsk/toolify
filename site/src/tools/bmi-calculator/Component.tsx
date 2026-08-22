@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useLocalDraft } from "@/lib/hooks/useLocalDraft";
+import { useShareableState } from "@/lib/hooks/useShareableState";
 import { DraftNotice } from "@/lib/hooks/DraftNotice";
 import { defaultUnitSystem, type UnitSystem } from "@/lib/hooks/useUnitSystem";
 
@@ -34,6 +35,12 @@ export default function BmiCalculator() {
   );
 
   const draft = useLocalDraft("bmi-calculator", { unit, height, weight }, (d) => {
+    if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);
+    if (typeof d.height === "string") setHeight(d.height);
+    if (typeof d.weight === "string") setWeight(d.weight);
+  });
+
+  useShareableState("bmi-calculator", { unit, height, weight }, (d) => {
     if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);
     if (typeof d.height === "string") setHeight(d.height);
     if (typeof d.weight === "string") setWeight(d.weight);

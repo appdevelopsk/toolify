@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useToolEvents } from "@/lib/analytics/useToolEvents";
 
@@ -87,8 +87,26 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
   const t = useTranslations("tool");
   const { copyResult } = useToolEvents(slug);
   const [linkCopied, setLinkCopied] = useState(false);
+  const [resultCopied, setResultCopied] = useState(false);
+  const [hasResultLink, setHasResultLink] = useState(false);
   const [codeCopied, setCodeCopied] = useState(false);
   const [showEmbed, setShowEmbed] = useState(false);
+
+  // useShareableState を使うツールでは入力のたびに ?s= が history.replaceState で付く。
+  // replaceState は再レンダーを起こさないため、pointer/keyboard 操作のたびに読み直す。
+  // ?s= が無いツール(大半)ではボタン自体を出さない。
+  useEffect(() => {
+    const sync = () => {
+      try {
+        setHasResultLink(new URLSearchParams(window.location.search).has("s"));
+      } catch {
+        /* noop */
+      }
+    };
+    sync();
+    const id = window.setInterval(sync, 1000);
+    return () => window.clearInterval(id);
+  }, []);
 
   const enc = encodeURIComponent;
   // 埋め込みコードには iframe に加えて「ホストページ側の dofollow 被リンク」を必ず付ける。
@@ -107,7 +125,7 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
     { name: "Reddit", href: `https://www.reddit.com/submit?url=${enc(url)}&title=${enc(title)}`, Icon: RedditIcon },
   ];
 
-  async function copy(text: string, mark: (v: boolean) => void, kind: "link" | "embed") {
+  async function copy(text: string, mark: (v: boolean) => void, kind: "link" | "embed" | "result") {
     try {
       await navigator.clipboard.writeText(text);
       copyResult(kind);
@@ -142,6 +160,16 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
         <span>{linkCopied ? t("copied") : t("copy")}</span>
       </button>
 
+      {hasResultLink && (
+        <button
+          type="button"
+          onClick={() => copy(window.location.href, setResultCopied, "result")}
+          className={btn}
+        >
+          <LinkIcon />
+          <span>{resultCopied ? t("copied") : t("copyResultLink")}</span>
+        </button>
+      )}
       {socials.map(({ name, href, Icon }) => (
         <a
           key={name}

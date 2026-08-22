@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useLocalDraft } from "@/lib/hooks/useLocalDraft";
+import { useShareableState } from "@/lib/hooks/useShareableState";
 import { DraftNotice } from "@/lib/hooks/DraftNotice";
 import { defaultUnitSystem, type UnitSystem } from "@/lib/hooks/useUnitSystem";
 
@@ -40,6 +41,21 @@ export default function PaceCalculator() {
   const [paceSec, setPaceSec] = useState("0");
 
   const draft = useLocalDraft(
+    "pace-calculator",
+    { mode, unit, distance, hours, minutes, seconds, paceMin, paceSec },
+    (d) => {
+      if (d.mode === "fromTime" || d.mode === "fromPace") setMode(d.mode);
+      if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);
+      if (typeof d.distance === "string") setDistance(d.distance);
+      if (typeof d.hours === "string") setHours(d.hours);
+      if (typeof d.minutes === "string") setMinutes(d.minutes);
+      if (typeof d.seconds === "string") setSeconds(d.seconds);
+      if (typeof d.paceMin === "string") setPaceMin(d.paceMin);
+      if (typeof d.paceSec === "string") setPaceSec(d.paceSec);
+    },
+  );
+
+  useShareableState(
     "pace-calculator",
     { mode, unit, distance, hours, minutes, seconds, paceMin, paceSec },
     (d) => {

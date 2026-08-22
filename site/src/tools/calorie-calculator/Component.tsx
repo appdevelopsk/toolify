@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useLocalDraft } from "@/lib/hooks/useLocalDraft";
+import { useShareableState } from "@/lib/hooks/useShareableState";
 import { DraftNotice } from "@/lib/hooks/DraftNotice";
 import { defaultUnitSystem, type UnitSystem } from "@/lib/hooks/useUnitSystem";
 
@@ -41,6 +42,19 @@ export default function CalorieCalculator() {
   const [activity, setActivity] = useState<Activity>("moderate");
 
   const draft = useLocalDraft(
+    "calorie-calculator",
+    { unit, sex, age, height, weight, activity },
+    (d) => {
+      if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);
+      if (d.sex === "male" || d.sex === "female") setSex(d.sex);
+      if (typeof d.age === "string") setAge(d.age);
+      if (typeof d.height === "string") setHeight(d.height);
+      if (typeof d.weight === "string") setWeight(d.weight);
+      if (typeof d.activity === "string" && d.activity in ACTIVITY_FACTOR) setActivity(d.activity);
+    },
+  );
+
+  useShareableState(
     "calorie-calculator",
     { unit, sex, age, height, weight, activity },
     (d) => {
