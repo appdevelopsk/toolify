@@ -4,6 +4,7 @@ import { listTools } from "@/lib/tools/registry";
 import { Link } from "@/lib/i18n/navigation";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { FavoritesSection } from "@/components/tools/FavoritesSection";
+import { ToolSearch } from "@/components/tools/ToolSearch";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
@@ -37,6 +38,13 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
     byCategory.set(m.category, list);
   }
 
+  // 検索とお気に入りの両方が同じ「翻訳済みカード情報」を必要とするため一度だけ作る。
+  const items = tools.map((m) => ({
+    meta: m,
+    title: t(`tools.${m.slug}.title`),
+    description: t(`tools.${m.slug}.shortDescription`),
+  }));
+
   // ItemList JSON-LD: lets Google understand /tools as a structured catalog of 120 items.
   // Crawlers prioritize indexing pages whose containing list is also indexed.
   const itemListLd = {
@@ -58,13 +66,9 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
       <h1 className="text-3xl font-bold">{t("nav.tools")}</h1>
       <p className="mt-2 text-slate-600 dark:text-slate-400">{t("site.description")}</p>
 
-      <FavoritesSection
-        items={tools.map((m) => ({
-          meta: m,
-          title: t(`tools.${m.slug}.title`),
-          description: t(`tools.${m.slug}.shortDescription`),
-        }))}
-      />
+      <ToolSearch items={items} />
+
+      <FavoritesSection items={items} />
 
       {Array.from(byCategory.entries()).map(([cat, list]) => {
         const cfg = CATEGORY_CONFIG[cat as ToolCategory];
