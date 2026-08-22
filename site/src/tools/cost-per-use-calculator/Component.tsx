@@ -6,8 +6,10 @@ import { useTranslations, useLocale } from "next-intl";
 export default function CostPerUseCalculator() {
   const t = useTranslations("tools.cost-per-use-calculator");
   const locale = useLocale();
-  const [price, setPrice] = useState("");
-  const [uses, setUses] = useState("");
+  // 空欄で着地すると結果が何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [price, setPrice] = useState(() => "120");
+  const [uses, setUses] = useState(() => "200");
 
   const result = useMemo(() => {
     const p = parseFloat(price), u = parseFloat(uses);

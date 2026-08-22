@@ -9,7 +9,9 @@ type QRSize = 200 | 300 | 400;
 
 export default function QrCodeGenerator() {
   const t = useTranslations("tools.qr-code-generator");
-  const [text, setText] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [text, setText] = useState("https://example.com");
   const [errorLevel, setErrorLevel] = useState<ErrorLevel>("M");
   const [size, setSize] = useState<QRSize>(300);
   const [dataUrl, setDataUrl] = useState<string | null>(null);

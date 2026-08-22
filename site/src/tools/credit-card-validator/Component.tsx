@@ -50,7 +50,10 @@ function format(digits: string, brand: string | null): string {
 
 export default function CreditCardValidator() {
   const t = useTranslations("tools.credit-card-validator");
-  const [input, setInput] = useState("");
+  // 空欄で着地すると結果が何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  // 実在カードではない業界標準のテスト番号(Luhn通過)。
+  const [input, setInput] = useState(() => "4111 1111 1111 1111");
 
   const result = useMemo(() => {
     const digits = input.replace(/\D/g, "");

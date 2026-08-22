@@ -31,13 +31,32 @@ function fmtRange(r: Range, unit: "kg" | "lb") {
 export default function PregnancyWeightGainCalculator() {
   const t = useTranslations("tools.pregnancy-weight-gain-calculator");
   const [units, setUnits] = useState<"metric" | "imperial">("metric");
-  const [weight, setWeight] = useState("");
-  const [heightCm, setHeightCm] = useState("");
-  const [heightFt, setHeightFt] = useState("");
-  const [heightIn, setHeightIn] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  // units は "metric" 固定初期なので metric 値を入れる。imperial への切替時は
+  // 下の changeUnits が対応する値へ差し替える(60kg を 60lb と読ませると BMI が壊れるため)。
+  const [weight, setWeight] = useState("60");
+  const [heightCm, setHeightCm] = useState("165");
+  const [heightFt, setHeightFt] = useState("5");
+  const [heightIn, setHeightIn] = useState("5");
   const [week, setWeek] = useState("20");
-  const [current, setCurrent] = useState("");
+  const [current, setCurrent] = useState("66");
   const [type, setType] = useState<"single" | "twins">("single");
+
+  // 単位を切り替えたとき、体重欄の数値をそのまま残すと 60kg が 60lb と解釈され
+  // BMI が異常値になる。初期値のままなら対応する単位の代表値へ差し替える。
+  function changeUnits(m: "metric" | "imperial") {
+    if (m === units) return;
+    const swap = (v: string, toImperial: boolean) => {
+      const n = parseFloat(v);
+      if (!isFinite(n) || n <= 0) return v;
+      return String(Math.round(toImperial ? n / 0.4535924 : n * 0.4535924));
+    };
+    const toImperial = m === "imperial";
+    setWeight((prev) => swap(prev, toImperial));
+    setCurrent((prev) => swap(prev, toImperial));
+    setUnits(m);
+  }
 
   const result = useMemo(() => {
     const w = parseFloat(weight);
@@ -91,7 +110,7 @@ export default function PregnancyWeightGainCalculator() {
       <div className="mb-4 flex flex-wrap gap-2">
         <div className="inline-flex rounded-md border border-slate-300 p-1 dark:border-slate-700">
           {(["metric", "imperial"] as const).map((m) => (
-            <button key={m} onClick={() => setUnits(m)} className={`rounded px-3 py-1.5 text-sm ${units === m ? "bg-brand-600 text-white" : ""}`}>
+            <button key={m} onClick={() => changeUnits(m)} className={`rounded px-3 py-1.5 text-sm ${units === m ? "bg-brand-600 text-white" : ""}`}>
               {t(`units.${m}`)}
             </button>
           ))}

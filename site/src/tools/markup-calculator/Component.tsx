@@ -6,7 +6,9 @@ import { useLocale, useTranslations } from "next-intl";
 export default function MarkupCalculator() {
   const t = useTranslations("tools.markup-calculator");
   const locale = useLocale();
-  const [cost, setCost] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [cost, setCost] = useState("100");
   const [markupPct, setMarkupPct] = useState("30");
 
   const result = useMemo(() => {

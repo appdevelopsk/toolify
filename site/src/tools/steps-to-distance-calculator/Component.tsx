@@ -39,12 +39,15 @@ export default function StepsToDistanceCalculator() {
   const t = useTranslations("tools.steps-to-distance-calculator");
   const locale = useLocale();
 
-  const [steps, setSteps] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [steps, setSteps] = useState("10000");
   const [unit, setUnit] = useState<Unit>(locale === "en" ? "imperial" : "metric");
   const [strideMethod, setStrideMethod] = useState<StrideMethod>("height");
   const [gender, setGender] = useState<Gender>("other");
-  const [height, setHeight] = useState("");
-  const [strideLength, setStrideLength] = useState("");
+  // unit と同じインライン三項式で出し分ける(unit は後段宣言なので参照不可)。
+  const [height, setHeight] = useState(() => (locale === "en" ? "67" : "170"));
+  const [strideLength, setStrideLength] = useState(() => (locale === "en" ? "30" : "75"));
   const [weight, setWeight] = useState("");
 
   const result = useMemo(() => {

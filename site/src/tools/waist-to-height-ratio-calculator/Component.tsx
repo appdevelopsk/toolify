@@ -6,8 +6,10 @@ import { useTranslations, useLocale } from "next-intl";
 export default function WaistToHeightRatioCalculator() {
   const t = useTranslations("tools.waist-to-height-ratio-calculator");
   const locale = useLocale();
-  const [waist, setWaist] = useState("");
-  const [height, setHeight] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [waist, setWaist] = useState("80");
+  const [height, setHeight] = useState("170");
 
   const result = useMemo(() => {
     const w = parseFloat(waist), h = parseFloat(height);

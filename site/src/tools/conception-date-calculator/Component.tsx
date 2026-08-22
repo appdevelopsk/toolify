@@ -1,12 +1,19 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 function addDays(d: Date, days: number): Date {
   const r = new Date(d);
   r.setDate(r.getDate() + days);
   return r;
+}
+
+function pad(n: number) {
+  return String(n).padStart(2, "0");
+}
+function toIso(d: Date) {
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
 type Mode = "dueDate" | "birthDate";
@@ -16,6 +23,14 @@ export default function ConceptionDateCalculator() {
   const locale = useLocale();
   const [mode, setMode] = useState<Mode>("dueDate");
   const [refDate, setRefDate] = useState("");
+
+  // 空欄で着地すると結果が何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 既定 mode="dueDate" に合わせ「約半年先の予定日」を初期表示する。固定日だと
+  // すぐ過去になり陳腐化するので相対日で生成し、hydration mismatch を避けるため
+  // useState 初期化ではなくマウント後にセットする(2026-08-22)。
+  useEffect(() => {
+    setRefDate((prev) => (prev === "" ? toIso(addDays(new Date(), 180)) : prev));
+  }, []);
 
   const result = useMemo(() => {
     if (!refDate) return null;

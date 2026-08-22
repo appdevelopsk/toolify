@@ -8,7 +8,9 @@ type Mode = "all" | "letters" | "words";
 export default function CharacterFrequency() {
   const t = useTranslations("tools.character-frequency");
   const locale = useLocale();
-  const [text, setText] = useState("");
+  // 空欄で着地すると結果が何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [text, setText] = useState(() => "The quick brown fox jumps over the lazy dog");
   const [mode, setMode] = useState<Mode>("letters");
   const [caseSensitive, setCaseSensitive] = useState(false);
 

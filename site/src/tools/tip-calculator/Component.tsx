@@ -8,7 +8,10 @@ const PRESETS = [10, 15, 18, 20, 25];
 export default function TipCalculator() {
   const t = useTranslations("tools.tip-calculator");
   const locale = useLocale();
-  const [bill, setBill] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  // 通貨が ja=JPY / 他=USD で切り替わるため桁を合わせる。
+  const [bill, setBill] = useState(() => (locale === "ja" ? "5000" : "50.00"));
   const [tipPct, setTipPct] = useState("18");
   const [people, setPeople] = useState("1");
 

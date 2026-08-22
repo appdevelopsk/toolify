@@ -9,7 +9,10 @@ export default function SalesTaxCalculator() {
   const t = useTranslations("tools.sales-tax-calculator");
   const locale = useLocale();
   const [mode, setMode] = useState<Mode>("addTax");
-  const [amount, setAmount] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  // 通貨が ja=JPY / en=USD で切り替わるため桁を合わせる。
+  const [amount, setAmount] = useState(() => (locale === "ja" ? "1000" : "100"));
   const [taxPct, setTaxPct] = useState(locale === "ja" ? "10" : "8.875");
 
   const result = useMemo(() => {

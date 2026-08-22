@@ -23,6 +23,9 @@ export default function TimestampConverter() {
 
   useEffect(() => {
     setNow(Date.now());
+    // 現在時刻由来の初期値は hydration mismatch を避けるため useEffect 内で入れる。
+    // 既に値が入っている場合(復元など)は潰さない。
+    setTsInput((prev) => (prev === "" ? String(Math.floor(Date.now() / 1000)) : prev));
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);

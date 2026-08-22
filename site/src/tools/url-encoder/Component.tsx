@@ -18,7 +18,9 @@ function process(text: string, mode: Mode): { ok: true; out: string } | { ok: fa
 export default function UrlEncoder() {
   const t = useTranslations("tools.url-encoder");
   const [mode, setMode] = useState<Mode>("encode");
-  const [text, setText] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [text, setText] = useState("https://example.com/search?q=hello world&lang=ja");
   const [copied, setCopied] = useState(false);
 
   const result = useMemo(() => process(text, mode), [text, mode]);

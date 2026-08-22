@@ -35,7 +35,9 @@ function fibSequence(n: number): bigint[] {
 export default function FibonacciCalculator() {
   const t = useTranslations("tools.fibonacci-calculator");
   const [mode, setMode] = useState<Mode>("nth");
-  const [n, setN] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [n, setN] = useState(() => "10");
 
   const maxN = mode === "nth" ? NTH_MAX : SEQ_MAX;
 

@@ -6,8 +6,10 @@ import { useTranslations, useLocale } from "next-intl";
 export default function OvertimePayCalculator() {
   const t = useTranslations("tools.overtime-pay-calculator");
   const locale = useLocale();
-  const [hours, setHours] = useState("");
-  const [rate, setRate] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [hours, setHours] = useState("10");
+  const [rate, setRate] = useState("25");
   const [multiplier, setMultiplier] = useState("1.5");
 
   const result = useMemo(() => {

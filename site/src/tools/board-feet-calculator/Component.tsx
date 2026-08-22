@@ -6,9 +6,11 @@ import { useTranslations, useLocale } from "next-intl";
 export default function BoardFeetCalculator() {
   const t = useTranslations("tools.board-feet-calculator");
   const locale = useLocale();
-  const [thickness, setThickness] = useState("");
-  const [width, setWidth] = useState("");
-  const [length, setLength] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [thickness, setThickness] = useState(() => "1");
+  const [width, setWidth] = useState(() => "6");
+  const [length, setLength] = useState(() => "8");
   const [quantity, setQuantity] = useState("1");
 
   const result = useMemo(() => {

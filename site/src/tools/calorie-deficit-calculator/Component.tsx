@@ -28,14 +28,22 @@ export default function CalorieDeficitCalculator() {
   const [unit, setUnit] = useState<Unit>(locale === "en" ? "imperial" : "metric");
   const [sex, setSex] = useState<Sex>("male");
   const [age, setAge] = useState("30");
-  const [heightCm, setHeightCm] = useState("");
-  const [heightFt, setHeightFt] = useState("");
-  const [heightIn, setHeightIn] = useState("");
-  const [weight, setWeight] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 単位系に合わせた代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  // 単位判定はこのファイル自身のインライン式 locale === "en" に合わせる。
+  // height は unit で片方しか使われないため metric/imperial 両方を埋め、切替時も空にしない。
+  const [heightCm, setHeightCm] = useState(() => "170");
+  const [heightFt, setHeightFt] = useState(() => "5");
+  const [heightIn, setHeightIn] = useState(() => "7");
+  const [weight, setWeight] = useState(() =>
+    locale === "en" ? "155" : "70",
+  );
   const [activity, setActivity] = useState(1.55);
   // goal stored as kg/week regardless of unit
   const [goalKgPerWeek, setGoalKgPerWeek] = useState(0.5);
-  const [targetWeight, setTargetWeight] = useState("");
+  const [targetWeight, setTargetWeight] = useState(() =>
+    locale === "en" ? "145" : "65",
+  );
 
   const fmt = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }), [locale]);
   const fmtDec = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }), [locale]);

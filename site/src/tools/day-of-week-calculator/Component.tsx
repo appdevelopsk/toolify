@@ -1,12 +1,27 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
+
+function pad(n: number) {
+  return String(n).padStart(2, "0");
+}
+function todayIso() {
+  const d = new Date();
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
 
 export default function DayOfWeekCalculator() {
   const t = useTranslations("tools.day-of-week-calculator");
   const locale = useLocale();
   const [date, setDate] = useState("");
+
+  // 空欄で着地すると結果が何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 「今日は何曜日」を初期表示する。SSRとCSRで値がズレる(hydration mismatch)ため
+  // useState 初期化ではなくマウント後にセットする(2026-08-22)。
+  useEffect(() => {
+    setDate((prev) => (prev === "" ? todayIso() : prev));
+  }, []);
 
   const result = useMemo(() => {
     if (!date) return null;

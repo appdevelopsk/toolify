@@ -6,9 +6,11 @@ import { useTranslations, useLocale } from "next-intl";
 export default function ProportionCalculator() {
   const t = useTranslations("tools.proportion-calculator");
   const locale = useLocale();
-  const [a, setA] = useState("");
-  const [b, setB] = useState("");
-  const [c, setC] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [a, setA] = useState("2");
+  const [b, setB] = useState("3");
+  const [c, setC] = useState("8");
 
   const result = useMemo(() => {
     const av = parseFloat(a), bv = parseFloat(b), cv = parseFloat(c);

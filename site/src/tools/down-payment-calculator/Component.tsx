@@ -6,8 +6,10 @@ import { useTranslations, useLocale } from "next-intl";
 export default function DownPaymentCalculator() {
   const t = useTranslations("tools.down-payment-calculator");
   const locale = useLocale();
-  const [price, setPrice] = useState("");
-  const [percent, setPercent] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [price, setPrice] = useState(() => "300000");
+  const [percent, setPercent] = useState(() => "20");
 
   const result = useMemo(() => {
     const p = parseFloat(price), r = parseFloat(percent);

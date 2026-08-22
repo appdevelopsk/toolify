@@ -7,7 +7,9 @@ type Direction = "ascending" | "descending";
 
 export default function TextSorter() {
   const t = useTranslations("tools.text-sorter");
-  const [input, setInput] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [input, setInput] = useState("banana\napple\ncherry\ndate");
   const [direction, setDirection] = useState<Direction>("ascending");
   const [caseSensitive, setCaseSensitive] = useState(false);
   const [removeDups, setRemoveDups] = useState(false);

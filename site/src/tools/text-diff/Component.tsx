@@ -47,8 +47,10 @@ function lineDiff(a: string[], b: string[]): Line[] {
 
 export default function TextDiff() {
   const t = useTranslations("tools.text-diff");
-  const [left, setLeft] = useState("");
-  const [right, setRight] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [left, setLeft] = useState("The quick brown fox\njumps over the lazy dog\nand runs away.");
+  const [right, setRight] = useState("The quick brown fox\nleaps over the lazy dog\nand runs away.");
 
   const diff = useMemo(() => {
     if (!left && !right) return null;

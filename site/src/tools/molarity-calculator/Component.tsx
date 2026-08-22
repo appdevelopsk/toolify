@@ -6,8 +6,10 @@ import { useTranslations, useLocale } from "next-intl";
 export default function MolarityCalculator() {
   const t = useTranslations("tools.molarity-calculator");
   const locale = useLocale();
-  const [molarity, setMolarity] = useState("");
-  const [volume, setVolume] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [molarity, setMolarity] = useState("0.5");
+  const [volume, setVolume] = useState("2");
 
   const result = useMemo(() => {
     const m = parseFloat(molarity), v = parseFloat(volume);

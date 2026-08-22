@@ -33,7 +33,11 @@ function countParagraphs(text: string): number {
 export default function WordCounter() {
   const t = useTranslations("tools.word-counter");
   const locale = useLocale();
-  const [text, setText] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [text, setText] = useState(
+    "Paste or type your text here. This tool counts words, characters, sentences, and paragraphs instantly.\n\nIt also estimates reading and speaking time.",
+  );
 
   const stats = useMemo(() => {
     const characters = text.length;

@@ -6,8 +6,10 @@ import { useTranslations, useLocale } from "next-intl";
 export default function ConeVolumeCalculator() {
   const t = useTranslations("tools.cone-volume-calculator");
   const locale = useLocale();
-  const [radius, setRadius] = useState("");
-  const [height, setHeight] = useState("");
+  // 空欄で着地すると結果が何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [radius, setRadius] = useState(() => "5");
+  const [height, setHeight] = useState(() => "12");
 
   const result = useMemo(() => {
     const r = parseFloat(radius), h = parseFloat(height);

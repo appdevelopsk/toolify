@@ -41,10 +41,16 @@ function fromRoman(s: string): number | null {
 
 type Mode = "toRoman" | "fromRoman";
 
+// モード別の初期サンプル。切替時にも対応する側の値へ差し替える。
+const SAMPLES: Record<Mode, string> = { toRoman: "2026", fromRoman: "MMXXVI" };
+
 export default function RomanNumeralConverter() {
   const t = useTranslations("tools.roman-numeral-converter");
   const [mode, setMode] = useState<Mode>("toRoman");
-  const [input, setInput] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  // モードを跨ぐと "2026" は invalidRoman になるため、切替時にモード別サンプルへ差し替える。
+  const [input, setInput] = useState(SAMPLES.toRoman);
 
   const result = useMemo(() => {
     if (!input.trim()) return { ok: true as const, out: "" };
@@ -64,10 +70,10 @@ export default function RomanNumeralConverter() {
   return (
     <div>
       <div className="mb-3 inline-flex rounded-md border border-slate-300 dark:border-slate-700">
-        <button onClick={() => setMode("toRoman")} className={`px-3 py-1.5 text-sm ${mode === "toRoman" ? "bg-brand-600 text-white" : ""}`}>
+        <button onClick={() => { setMode("toRoman"); setInput(SAMPLES.toRoman); }} className={`px-3 py-1.5 text-sm ${mode === "toRoman" ? "bg-brand-600 text-white" : ""}`}>
           {t("mode.toRoman")}
         </button>
-        <button onClick={() => setMode("fromRoman")} className={`px-3 py-1.5 text-sm ${mode === "fromRoman" ? "bg-brand-600 text-white" : ""}`}>
+        <button onClick={() => { setMode("fromRoman"); setInput(SAMPLES.fromRoman); }} className={`px-3 py-1.5 text-sm ${mode === "fromRoman" ? "bg-brand-600 text-white" : ""}`}>
           {t("mode.fromRoman")}
         </button>
       </div>

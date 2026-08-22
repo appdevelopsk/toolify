@@ -6,9 +6,11 @@ import { useTranslations, useLocale } from "next-intl";
 export default function PresentValueCalculator() {
   const t = useTranslations("tools.present-value-calculator");
   const locale = useLocale();
-  const [future, setFuture] = useState("");
-  const [rate, setRate] = useState("");
-  const [years, setYears] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [future, setFuture] = useState("10000");
+  const [rate, setRate] = useState("5");
+  const [years, setYears] = useState("10");
 
   const result = useMemo(() => {
     const f = parseFloat(future), r = parseFloat(rate), y = parseFloat(years);

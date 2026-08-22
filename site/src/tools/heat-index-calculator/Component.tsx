@@ -94,8 +94,10 @@ export default function HeatIndexCalculator() {
   const locale = useLocale();
 
   const [unit, setUnit] = useState<Unit>(locale === "en" ? "imperial" : "metric");
-  const [tempInput, setTempInput] = useState("");
-  const [rhInput, setRhInput] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [tempInput, setTempInput] = useState(() => (locale === "en" ? "95" : "35"));
+  const [rhInput, setRhInput] = useState("60");
 
   const fmt = useMemo(
     () => new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }),
@@ -142,13 +144,13 @@ export default function HeatIndexCalculator() {
       {/* Unit toggle */}
       <div className="mb-4 inline-flex rounded-md border border-slate-300 dark:border-slate-700">
         <button
-          onClick={() => { setUnit("metric"); setTempInput(""); }}
+          onClick={() => { setUnit("metric"); setTempInput("35"); }}
           className={`px-3 py-1.5 text-sm rounded-l-md ${unit === "metric" ? "bg-brand-600 text-white" : ""}`}
         >
           {t("unitToggle.metric")}
         </button>
         <button
-          onClick={() => { setUnit("imperial"); setTempInput(""); }}
+          onClick={() => { setUnit("imperial"); setTempInput("95"); }}
           className={`px-3 py-1.5 text-sm rounded-r-md ${unit === "imperial" ? "bg-brand-600 text-white" : ""}`}
         >
           {t("unitToggle.imperial")}

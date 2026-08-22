@@ -19,8 +19,10 @@ export default function MacroCalculator() {
   const [unit, setUnit] = useState<Unit>(locale === "en" ? "imperial" : "metric");
   const [sex, setSex] = useState<"male" | "female">("male");
   const [age, setAge] = useState("30");
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [height, setHeight] = useState(() => (locale === "en" ? "67" : "170"));
+  const [weight, setWeight] = useState(() => (locale === "en" ? "143" : "65"));
   const [activity, setActivity] = useState(1.55);
   const [goal, setGoal] = useState<Goal>("maintain");
 

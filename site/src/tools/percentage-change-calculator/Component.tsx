@@ -15,8 +15,10 @@ export default function PercentageChangeCalculator() {
   const t = useTranslations("tools.percentage-change-calculator");
   const locale = useLocale();
   const [tab, setTab] = useState<Tab>("pct_change");
-  const [inputA, setInputA] = useState("");
-  const [inputB, setInputB] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [inputA, setInputA] = useState("100");
+  const [inputB, setInputB] = useState("125");
 
   const fmt = useMemo(
     () => new Intl.NumberFormat(locale, { maximumFractionDigits: 4 }),

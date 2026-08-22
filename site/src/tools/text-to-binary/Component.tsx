@@ -4,6 +4,9 @@ import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 
 type Mode = "encode" | "decode";
+
+// モード別の初期サンプル。切替時にも対応する側の値へ差し替える。
+const SAMPLES: Record<Mode, string> = { encode: "Hello", decode: "01001000 01100101 01101100 01101100 01101111" };
 type Separator = "space" | "none" | "newline";
 
 function textToBinary(text: string, sep: Separator): string {
@@ -36,7 +39,9 @@ function binaryToText(binary: string): { result: string; error: string | null } 
 export default function TextToBinary() {
   const t = useTranslations("tools.text-to-binary");
   const [mode, setMode] = useState<Mode>("encode");
-  const [input, setInput] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [input, setInput] = useState(SAMPLES.encode);
   const [separator, setSeparator] = useState<Separator>("space");
 
   const output = useMemo(() => {
@@ -69,7 +74,7 @@ export default function TextToBinary() {
           {(["encode", "decode"] as Mode[]).map((m) => (
             <button
               key={m}
-              onClick={() => { setMode(m); setInput(""); }}
+              onClick={() => { setMode(m); setInput(SAMPLES[m]); }}
               className={
                 "px-4 py-2 text-sm font-medium " +
                 (mode === m

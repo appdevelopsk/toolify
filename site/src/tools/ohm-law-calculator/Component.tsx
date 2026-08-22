@@ -56,18 +56,20 @@ export default function OhmLawCalculator() {
   const [solveFor, setSolveFor] = useState<SolveFor>("voltage");
 
   // Voltage inputs
-  const [voltageInput, setVoltageInput] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [voltageInput, setVoltageInput] = useState("12");
 
   // Current inputs
-  const [currentInput, setCurrentInput] = useState("");
+  const [currentInput, setCurrentInput] = useState("0.5");
   const [currentUnit, setCurrentUnit] = useState<CurrentUnit>("A");
 
   // Resistance inputs
-  const [resistanceInput, setResistanceInput] = useState("");
+  const [resistanceInput, setResistanceInput] = useState("24");
   const [resistanceUnit, setResistanceUnit] = useState<ResistanceUnit>("Ω");
 
   // Power inputs (for solving power, can pick two of V/I/R)
-  const [powerInput, setPowerInput] = useState("");
+  const [powerInput, setPowerInput] = useState("6");
   const [powerUnit, setPowerUnit] = useState<PowerUnit>("W");
   // For power mode: which pair to use
   const [powerPair, setPowerPair] = useState<"VI" | "VR" | "IR">("VI");

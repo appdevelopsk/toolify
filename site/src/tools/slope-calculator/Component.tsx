@@ -6,10 +6,12 @@ import { useTranslations, useLocale } from "next-intl";
 export default function SlopeCalculator() {
   const t = useTranslations("tools.slope-calculator");
   const locale = useLocale();
-  const [x1, setX1] = useState("");
-  const [y1, setY1] = useState("");
-  const [x2, setX2] = useState("");
-  const [y2, setY2] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [x1, setX1] = useState("1");
+  const [y1, setY1] = useState("2");
+  const [x2, setX2] = useState("4");
+  const [y2, setY2] = useState("8");
 
   const result = useMemo(() => {
     const a = parseFloat(x1), b = parseFloat(y1), c = parseFloat(x2), d = parseFloat(y2);

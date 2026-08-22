@@ -24,8 +24,10 @@ const categoryStyle: Record<NonNullable<Category>, string> = {
 
 export default function BloodPressureChecker() {
   const t = useTranslations("tools.blood-pressure-checker");
-  const [systolic, setSystolic] = useState("");
-  const [diastolic, setDiastolic] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [systolic, setSystolic] = useState(() => "118");
+  const [diastolic, setDiastolic] = useState(() => "78");
 
   const result = useMemo(() => {
     const sys = parseInt(systolic, 10);

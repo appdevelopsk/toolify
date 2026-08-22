@@ -6,9 +6,11 @@ import { useTranslations, useLocale } from "next-intl";
 export default function SipCalculator() {
   const t = useTranslations("tools.sip-calculator");
   const locale = useLocale();
-  const [monthly, setMonthly] = useState("");
-  const [rate, setRate] = useState("");
-  const [years, setYears] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [monthly, setMonthly] = useState("10000");
+  const [rate, setRate] = useState("12");
+  const [years, setYears] = useState("10");
 
   const result = useMemo(() => {
     const p = parseFloat(monthly), r = parseFloat(rate), y = parseFloat(years);

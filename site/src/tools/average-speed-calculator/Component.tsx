@@ -6,8 +6,10 @@ import { useTranslations, useLocale } from "next-intl";
 export default function AverageSpeedCalculator() {
   const t = useTranslations("tools.average-speed-calculator");
   const locale = useLocale();
-  const [distance, setDistance] = useState("");
-  const [time, setTime] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [distance, setDistance] = useState(() => "150");
+  const [time, setTime] = useState(() => "2.5");
 
   const result = useMemo(() => {
     const d = parseFloat(distance), h = parseFloat(time);

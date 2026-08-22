@@ -33,8 +33,15 @@ export default function BmrCalculator() {
   const [unit, setUnit] = useState<Unit>(defaultUnitSystem(locale));
   const [sex, setSex] = useState<Sex>("male");
   const [age, setAge] = useState("30");
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 単位系に合わせた代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  // ドラフトがあれば useLocalDraft の restore が上書きする(初期レンダーは保存されない)。
+  const [height, setHeight] = useState(() =>
+    defaultUnitSystem(locale) === "imperial" ? "67" : "170",
+  );
+  const [weight, setWeight] = useState(() =>
+    defaultUnitSystem(locale) === "imperial" ? "150" : "65",
+  );
   const [bodyFatPct, setBodyFatPct] = useState("");
 
   const draft = useLocalDraft(

@@ -15,7 +15,10 @@ export default function WaterIntakeCalculator() {
   const t = useTranslations("tools.water-intake-calculator");
   const locale = useLocale();
   const [unit, setUnit] = useState<Unit>(defaultUnitSystem(locale));
-  const [weight, setWeight] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  // unit は defaultUnitSystem(locale) 初期。unit は後段参照不可なので同じ式を再評価する。
+  const [weight, setWeight] = useState(() => (defaultUnitSystem(locale) === "imperial" ? "143" : "65"));
   const [activity, setActivity] = useState<Activity>("moderate");
 
   const draft = useLocalDraft("water-intake-calculator", { unit, weight, activity }, (d) => {
@@ -43,10 +46,10 @@ export default function WaterIntakeCalculator() {
   return (
     <div>
       <div className="mb-4 inline-flex rounded-md border border-slate-300 dark:border-slate-700">
-        <button onClick={() => setUnit("metric")} className={`px-3 py-1.5 text-sm ${unit === "metric" ? "bg-brand-600 text-white" : ""}`}>
+        <button onClick={() => { setUnit("metric"); setWeight((p) => (p === "143" ? "65" : p)); }} className={`px-3 py-1.5 text-sm ${unit === "metric" ? "bg-brand-600 text-white" : ""}`}>
           {t("unit.metric")}
         </button>
-        <button onClick={() => setUnit("imperial")} className={`px-3 py-1.5 text-sm ${unit === "imperial" ? "bg-brand-600 text-white" : ""}`}>
+        <button onClick={() => { setUnit("imperial"); setWeight((p) => (p === "65" ? "143" : p)); }} className={`px-3 py-1.5 text-sm ${unit === "imperial" ? "bg-brand-600 text-white" : ""}`}>
           {t("unit.imperial")}
         </button>
       </div>

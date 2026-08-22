@@ -6,9 +6,11 @@ import { useTranslations, useLocale } from "next-intl";
 export default function GravelCalculator() {
   const t = useTranslations("tools.gravel-calculator");
   const locale = useLocale();
-  const [length, setLength] = useState("");
-  const [width, setWidth] = useState("");
-  const [depth, setDepth] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [length, setLength] = useState(() => "20");
+  const [width, setWidth] = useState(() => "10");
+  const [depth, setDepth] = useState(() => "3");
 
   const result = useMemo(() => {
     const l = parseFloat(length), w = parseFloat(width), d = parseFloat(depth);

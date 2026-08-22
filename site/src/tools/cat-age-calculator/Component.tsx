@@ -6,7 +6,9 @@ import { useTranslations, useLocale } from "next-intl";
 export default function CatAgeCalculator() {
   const t = useTranslations("tools.cat-age-calculator");
   const locale = useLocale();
-  const [catAge, setCatAge] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [catAge, setCatAge] = useState(() => "3");
 
   const result = useMemo(() => {
     const c = parseFloat(catAge);

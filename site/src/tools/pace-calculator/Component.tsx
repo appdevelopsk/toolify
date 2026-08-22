@@ -33,7 +33,7 @@ export default function PaceCalculator() {
   const [mode, setMode] = useState<Mode>("fromTime");
   const [unit, setUnit] = useState<Unit>(defaultUnitSystem(locale));
   const [distance, setDistance] = useState("5");
-  const [hours, setHours] = useState("");
+  const [hours, setHours] = useState("0");
   const [minutes, setMinutes] = useState("25");
   const [seconds, setSeconds] = useState("0");
   const [paceMin, setPaceMin] = useState("5");

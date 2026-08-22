@@ -23,7 +23,9 @@ function reverseText(input: string, mode: Mode): string {
 
 export default function ReverseTextGenerator() {
   const t = useTranslations("tools.reverse-text-generator");
-  const [input, setInput] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [input, setInput] = useState("Hello, world!");
   const [mode, setMode] = useState<Mode>("chars");
   const [copied, setCopied] = useState(false);
 

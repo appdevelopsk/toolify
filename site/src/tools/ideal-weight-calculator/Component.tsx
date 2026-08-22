@@ -38,7 +38,9 @@ export default function IdealWeightCalculator() {
   const locale = useLocale();
   const [unit, setUnit] = useState<Unit>(locale === "en" ? "imperial" : "metric");
   const [sex, setSex] = useState<Sex>("male");
-  const [height, setHeight] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [height, setHeight] = useState(() => (locale === "en" ? "67" : "170"));
 
   const results = useMemo(() => {
     const h = parseFloat(height);

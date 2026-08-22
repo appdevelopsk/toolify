@@ -107,7 +107,11 @@ function isCjkLocale(locale: string): boolean {
 export default function ReadingLevelChecker() {
   const t = useTranslations("tools.reading-level-checker");
   const locale = useLocale();
-  const [text, setText] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [text, setText] = useState(
+    "The quick brown fox jumps over the lazy dog. Readability formulas estimate how difficult a passage is to understand. Shorter sentences and simpler words raise the score.",
+  );
 
   const stats = useMemo(() => computeStats(text), [text]);
   const fmt = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }), [locale]);

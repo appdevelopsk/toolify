@@ -23,8 +23,15 @@ export default function BmiCalculator() {
   const t = useTranslations("tools.bmi-calculator");
   const locale = useLocale();
   const [unit, setUnit] = useState<Unit>(defaultUnitSystem(locale));
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 単位系に合わせた代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  // ドラフトがあれば useLocalDraft の restore が上書きする(初期レンダーは保存されない)。
+  const [height, setHeight] = useState(() =>
+    defaultUnitSystem(locale) === "imperial" ? "67" : "170",
+  );
+  const [weight, setWeight] = useState(() =>
+    defaultUnitSystem(locale) === "imperial" ? "145" : "65",
+  );
 
   const draft = useLocalDraft("bmi-calculator", { unit, height, weight }, (d) => {
     if (d.unit === "metric" || d.unit === "imperial") setUnit(d.unit);

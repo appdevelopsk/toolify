@@ -8,7 +8,9 @@ const RATIOS = [15, 16, 17, 18] as const;
 export default function CoffeeRatioCalculator() {
   const t = useTranslations("tools.coffee-ratio-calculator");
   const locale = useLocale();
-  const [coffee, setCoffee] = useState("");
+  // 空欄で着地すると結果が何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [coffee, setCoffee] = useState(() => "18");
   const [ratio, setRatio] = useState<number>(16);
 
   const water = useMemo(() => {

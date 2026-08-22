@@ -228,10 +228,12 @@ export default function SignificantFiguresCalculator() {
   const [activeTab, setActiveTab] = useState<TabId>("count");
 
   // Tab 1: Count
-  const [countInput, setCountInput] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [countInput, setCountInput] = useState("0.004560");
 
   // Tab 2: Round
-  const [roundInput, setRoundInput] = useState("");
+  const [roundInput, setRoundInput] = useState("3.14159");
   const [sigFigsTarget, setSigFigsTarget] = useState("3");
 
   // ── Results ──

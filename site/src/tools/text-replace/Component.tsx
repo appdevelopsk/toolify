@@ -9,9 +9,12 @@ function escapeRegExp(s: string): string {
 
 export default function TextReplace() {
   const t = useTranslations("tools.text-replace");
-  const [text, setText] = useState("");
-  const [find, setFind] = useState("");
-  const [replace, setReplace] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [text, setText] = useState("hello world, hello there, hello again");
+  // find が空だと置換結果が素通りになるため、結果表示にはこれが必須。
+  const [find, setFind] = useState("hello");
+  const [replace, setReplace] = useState("hi");
   const [useRegex, setUseRegex] = useState(false);
   const [caseSensitive, setCaseSensitive] = useState(true);
   const [multiline, setMultiline] = useState(false);

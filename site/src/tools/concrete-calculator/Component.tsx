@@ -6,9 +6,11 @@ import { useTranslations, useLocale } from "next-intl";
 export default function ConcreteCalculator() {
   const t = useTranslations("tools.concrete-calculator");
   const locale = useLocale();
-  const [length, setLength] = useState("");
-  const [width, setWidth] = useState("");
-  const [thickness, setThickness] = useState("");
+  // 空欄で着地すると結果が何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [length, setLength] = useState(() => "10");
+  const [width, setWidth] = useState(() => "10");
+  const [thickness, setThickness] = useState(() => "4");
 
   const result = useMemo(() => {
     const l = parseFloat(length), w = parseFloat(width), th = parseFloat(thickness);

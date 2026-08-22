@@ -31,7 +31,10 @@ function diffYMD(birth: Date, now: Date) {
 export default function AgeCalculator() {
   const t = useTranslations("tools.age-calculator");
   const locale = useLocale();
-  const [birth, setBirth] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  // 生年月日は固定日。todayIso() 由来にすると SSR/CSR で値がズレる。
+  const [birth, setBirth] = useState(() => "1990-01-01");
   const [target, setTarget] = useState(todayIso());
 
   const result = useMemo(() => {

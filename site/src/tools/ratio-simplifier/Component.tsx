@@ -11,8 +11,10 @@ function gcd(a: number, b: number): number {
 
 export default function RatioSimplifier() {
   const t = useTranslations("tools.ratio-simplifier");
-  const [a, setA] = useState("");
-  const [b, setB] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [a, setA] = useState("1920");
+  const [b, setB] = useState("1080");
 
   const result = useMemo(() => {
     const av = parseInt(a, 10), bv = parseInt(b, 10);

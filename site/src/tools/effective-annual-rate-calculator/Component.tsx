@@ -6,8 +6,10 @@ import { useTranslations, useLocale } from "next-intl";
 export default function EffectiveAnnualRateCalculator() {
   const t = useTranslations("tools.effective-annual-rate-calculator");
   const locale = useLocale();
-  const [rate, setRate] = useState("");
-  const [periods, setPeriods] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [rate, setRate] = useState(() => "12");
+  const [periods, setPeriods] = useState(() => "12");
 
   const result = useMemo(() => {
     const r = parseFloat(rate), n = parseFloat(periods);

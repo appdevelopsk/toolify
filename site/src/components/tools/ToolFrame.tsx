@@ -48,13 +48,16 @@ export function ToolFrame({ meta, title, description, related, children, article
 
         <ShareBar url={pageUrl} embedUrl={embedUrl} title={title} />
 
-        <AdBanner className="mt-4" />
-
+        {/* AdBanner はツール本体の“上”にあったため、モバイルでは本体がフォールド外に
+            押し出されていた(個別ツール着地の engaged≒0% の構造要因)。
+            まず道具を見せ、広告は結果の下に置く(2026-08-22)。 */}
         <section className="mt-6 rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 sm:p-6">
           {children}
         </section>
 
         <AdBelowResult />
+
+        <AdBanner className="mt-4" />
 
         {/* 関連ツール導線 — ツール結果の直後(注意が集中する位置)に移動。
             従来は記事/FAQ/出典の後の最下部で不可視だった。回遊(PV/session)増=AdSense表示増。

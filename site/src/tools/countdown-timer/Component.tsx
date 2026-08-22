@@ -14,6 +14,18 @@ export default function CountdownTimer() {
   const [title, setTitle] = useState("");
   const [now, setNow] = useState<number | null>(null);
 
+  // 空欄で着地するとカウントダウンが何も描かれず、道具が動くことが伝わらないまま
+  // 離脱する。既定の目標を「翌日の00:00」に置く。固定日だと過去になり「終了しました」
+  // 表示になるので相対生成し、hydration mismatch を避けるため now と同じ useEffect
+  // 内でセットする。datetime-local の既定 step は分なので秒は持たせない(2026-08-22)。
+  useEffect(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    d.setHours(0, 0, 0, 0);
+    const iso = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T00:00`;
+    setTarget((prev) => (prev === "" ? iso : prev));
+  }, []);
+
   useEffect(() => {
     setNow(Date.now());
     const id = setInterval(() => setNow(Date.now()), 1000);

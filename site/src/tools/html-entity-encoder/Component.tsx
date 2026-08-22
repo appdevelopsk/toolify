@@ -51,6 +51,11 @@ function encodeHtml(text: string, mode: EncodeMode, encodeAll: boolean): string 
   }).join("");
 }
 
+const SAMPLES: Record<Mode, string> = {
+  encode: '<a href="https://example.com">Tom & Jerry</a>',
+  decode: "&lt;a href=&quot;https://example.com&quot;&gt;Tom &amp; Jerry&lt;/a&gt;",
+};
+
 function decodeHtml(text: string): string {
   return text
     .replace(/&([a-zA-Z]+);/g, (match) => ENTITY_TO_CHAR[match] ?? match)
@@ -61,7 +66,9 @@ function decodeHtml(text: string): string {
 export default function HtmlEntityEncoder() {
   const t = useTranslations("tools.html-entity-encoder");
   const [mode, setMode] = useState<Mode>("encode");
-  const [input, setInput] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [input, setInput] = useState(SAMPLES.encode);
   const [encodeMode, setEncodeMode] = useState<EncodeMode>("named");
   const [encodeAll, setEncodeAll] = useState(false);
 
@@ -82,7 +89,7 @@ export default function HtmlEntityEncoder() {
           {(["encode", "decode"] as Mode[]).map((m) => (
             <button
               key={m}
-              onClick={() => { setMode(m); setInput(""); }}
+              onClick={() => { setMode(m); setInput(SAMPLES[m]); }}
               className={
                 "px-4 py-2 text-sm font-medium " +
                 (mode === m

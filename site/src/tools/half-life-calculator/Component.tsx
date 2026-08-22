@@ -6,9 +6,11 @@ import { useTranslations, useLocale } from "next-intl";
 export default function HalfLifeCalculator() {
   const t = useTranslations("tools.half-life-calculator");
   const locale = useLocale();
-  const [initial, setInitial] = useState("");
-  const [elapsed, setElapsed] = useState("");
-  const [halfLife, setHalfLife] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [initial, setInitial] = useState("100");
+  const [elapsed, setElapsed] = useState("10");
+  const [halfLife, setHalfLife] = useState("5");
 
   const result = useMemo(() => {
     const i = parseFloat(initial), e = parseFloat(elapsed), h = parseFloat(halfLife);

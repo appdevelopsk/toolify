@@ -6,8 +6,10 @@ import { useTranslations, useLocale } from "next-intl";
 export default function PonderalIndexCalculator() {
   const t = useTranslations("tools.ponderal-index-calculator");
   const locale = useLocale();
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [height, setHeight] = useState("170");
+  const [weight, setWeight] = useState("65");
 
   const result = useMemo(() => {
     const h = parseFloat(height), w = parseFloat(weight);

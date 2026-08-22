@@ -199,7 +199,9 @@ const EXAMPLE_EXPRESSIONS = [
 export default function ExpressionEvaluator() {
   const t = useTranslations("tools.expression-evaluator");
   const locale = useLocale();
-  const [expr, setExpr] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [expr, setExpr] = useState(() => "(2 + 3) * 4 ^ 2");
 
   const result = useMemo(() => {
     if (!expr.trim()) return { kind: "empty" as const };

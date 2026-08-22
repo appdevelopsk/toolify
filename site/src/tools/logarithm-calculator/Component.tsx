@@ -6,7 +6,9 @@ import { useTranslations, useLocale } from "next-intl";
 export default function LogarithmCalculator() {
   const t = useTranslations("tools.logarithm-calculator");
   const locale = useLocale();
-  const [value, setValue] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [value, setValue] = useState("1000");
   const [base, setBase] = useState("10");
 
   const result = useMemo(() => {

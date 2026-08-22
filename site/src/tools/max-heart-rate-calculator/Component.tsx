@@ -6,7 +6,9 @@ import { useTranslations, useLocale } from "next-intl";
 export default function MaxHeartRateCalculator() {
   const t = useTranslations("tools.max-heart-rate-calculator");
   const locale = useLocale();
-  const [age, setAge] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [age, setAge] = useState("30");
 
   const result = useMemo(() => {
     const a = parseFloat(age);

@@ -56,8 +56,11 @@ export default function WindChillCalculator() {
   const locale = useLocale();
 
   const [unit, setUnit] = useState<UnitSystem>("metric");
-  const [tempInput, setTempInput] = useState("");
-  const [windInput, setWindInput] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  // 単位切替で空にする実装のため、切替先の代表値をハンドラで入れ直す。
+  const [tempInput, setTempInput] = useState("-5");
+  const [windInput, setWindInput] = useState("20");
 
   const fmt = useMemo(
     () => new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }),
@@ -112,8 +115,8 @@ export default function WindChillCalculator() {
               key={u}
               onClick={() => {
                 setUnit(u);
-                setTempInput("");
-                setWindInput("");
+                setTempInput(u === "imperial" ? "23" : "-5");
+                setWindInput(u === "imperial" ? "12" : "20");
               }}
               className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
                 unit === u

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 function pad(n: number) {
@@ -48,6 +48,18 @@ export default function DueDateCalculator() {
   const [embryoAge, setEmbryoAge] = useState("5");
   const [gaWeeks, setGaWeeks] = useState("12");
   const [gaDays, setGaDays] = useState("0");
+
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 最終月経を約60日前に置くと妊娠8週台(第1トリメスター)になり、マイルストーン表に
+  // 過去と未来が混在して最初の描画から結果が読める(2026-08-22)。
+  // 「今日」由来の値は SSR/CSR でズレるため useState ではなく useEffect で入れる。
+  useEffect(() => {
+    setRefDate((prev) => {
+      if (prev) return prev;
+      const d = addDays(new Date(todayIso() + "T00:00:00"), -60);
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    });
+  }, []);
 
   const result = useMemo(() => {
     if (!refDate) return null;

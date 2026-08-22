@@ -6,8 +6,10 @@ import { useTranslations, useLocale } from "next-intl";
 export default function ExponentCalculator() {
   const t = useTranslations("tools.exponent-calculator");
   const locale = useLocale();
-  const [base, setBase] = useState("");
-  const [exponent, setExponent] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [base, setBase] = useState(() => "2");
+  const [exponent, setExponent] = useState(() => "10");
 
   const result = useMemo(() => {
     const b = parseFloat(base), e = parseFloat(exponent);

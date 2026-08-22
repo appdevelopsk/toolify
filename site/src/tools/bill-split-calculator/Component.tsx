@@ -37,7 +37,9 @@ export default function BillSplitCalculator() {
   const t = useTranslations("tools.bill-split-calculator");
   const locale = useLocale();
 
-  const [bill, setBill] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [bill, setBill] = useState(() => "100");
   const [tipPct, setTipPct] = useState("15");
   const [numPeople, setNumPeople] = useState("2");
   const [isUnequal, setIsUnequal] = useState(false);

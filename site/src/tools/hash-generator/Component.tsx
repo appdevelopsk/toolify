@@ -15,7 +15,9 @@ function bufferToHex(buffer: ArrayBuffer): string {
 
 export default function HashGenerator() {
   const t = useTranslations("tools.hash-generator");
-  const [text, setText] = useState("");
+  // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
+  // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
+  const [text, setText] = useState("hello world");
   const [hashes, setHashes] = useState<Record<Algorithm, string>>({
     "SHA-1": "", "SHA-256": "", "SHA-384": "", "SHA-512": "",
   });
