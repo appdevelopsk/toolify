@@ -31,8 +31,29 @@ function serpWidth(text: string): number {
   return w;
 }
 
+/**
+ * Bing/Google は meta description を**コードポイント数**で 160 に切る。
+ * 超過ページは Bing WMT が「メタ説明が長すぎます」エラーとして計上するため、
+ * 出口(=buildMetadata)で一括クランプする。語中で切らず、末尾に … を付ける。
+ */
+const MAX_DESC = 160;
+function clampDescription(text: string): string {
+  const chars = [...text.trim()];
+  if (chars.length <= MAX_DESC) return chars.join("");
+  // 159 文字で切り、直近の区切り(空白/句読点)まで戻して自然に終わらせる。
+  let cut = chars.slice(0, MAX_DESC - 1).join("");
+  const boundary = Math.max(
+    cut.lastIndexOf(" "),
+    cut.lastIndexOf("、"), cut.lastIndexOf("。"),
+    cut.lastIndexOf("，"), cut.lastIndexOf("．"),
+  );
+  if (boundary >= MAX_DESC * 0.6) cut = cut.slice(0, boundary);
+  return `${cut.replace(/[\s、。，．,.:;·—–-]+$/u, "")}…`;
+}
+
 export function buildMetadata(params: BuildMetadataParams): Metadata {
-  const { locale, title, description, path, keywords, type = "website", image, publishedTime, modifiedTime, noindex = false, absoluteTitle = false } = params;
+  const { locale, title, description: rawDescription, path, keywords, type = "website", image, publishedTime, modifiedTime, noindex = false, absoluteTitle = false } = params;
+  const description = clampDescription(rawDescription);
   const url = `${siteConfig.url}/${locale}${path}`;
   // index 対象ロケール（en/ja）のみ noindex でなければインデックスさせる。
   // 死蔵言語(クリック0)はサイト全体のHCU評価を下げるため noindex+hreflang除外。
