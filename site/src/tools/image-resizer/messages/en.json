@@ -1,0 +1,116 @@
+{
+  "title": "Image Resizer — Free, Runs in Your Browser",
+  "shortDescription": "Resize any image by pixels, convert between PNG, JPEG and WebP, and compress it — nothing is uploaded to a server.",
+  "description": "Pick an image, set the width or height you need, and download the result. Lock the aspect ratio to avoid distortion, switch the output format between PNG, JPEG and WebP, and use the quality slider to hit a target file size. Everything is processed on your own device with the Canvas API — the file never leaves your browser.",
+  "metaDescription": "Free image resizer that runs in your browser. Resize by pixels, convert between PNG, JPEG and WebP, and compress with a quality slider — no upload, no login.",
+  "keywords": [
+    "image resizer",
+    "resize image online",
+    "convert png to jpg",
+    "compress image",
+    "webp converter"
+  ],
+  "empty": "Choose an image to get started. It is processed on your device and never uploaded.",
+  "input": {
+    "file": "Image file",
+    "width": "Width (px)",
+    "height": "Height (px)",
+    "lockRatio": "Lock aspect ratio",
+    "format": "Output format",
+    "quality": "Quality"
+  },
+  "format": {
+    "png": "PNG (lossless, supports transparency)",
+    "jpeg": "JPEG (smallest for photos, no transparency)",
+    "webp": "WebP (modern, small, supports transparency)"
+  },
+  "error": {
+    "decode": "That file could not be read as an image. Try a PNG, JPEG, WebP, or GIF.",
+    "canvas": "Your browser could not create the output image. Try a smaller size or a different format."
+  },
+  "result": {
+    "preview": "Result preview",
+    "original": "Original",
+    "download": "Download image"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "What resizing an image actually changes",
+        "paragraphs": [
+          "Resizing changes the pixel dimensions of an image — how many dots of colour it is made of. A 4000 x 3000 photo from a phone camera contains twelve million pixels; the same photo at 1200 x 900 contains just over one million. The visible content is identical, but the smaller version carries roughly a tenth of the data, which is why resizing before upload is the single most effective way to make a page load faster or an email attachment fit under a limit.",
+          "Scaling down is a lossy operation in the sense that the discarded pixels cannot be recovered: enlarging a 1200 px image back to 4000 px will produce a soft, blurry result because the browser has to invent the missing detail. Always resize from the largest original you have rather than from a copy you already shrank, and keep the original file if you might need a bigger version later.",
+          "This tool uses high-quality smoothing when it draws the scaled image, which averages neighbouring pixels instead of simply dropping them. That is what keeps text and fine edges legible at smaller sizes rather than turning them into jagged steps."
+        ]
+      },
+      {
+        "heading": "Choosing between PNG, JPEG and WebP",
+        "paragraphs": [
+          "PNG is lossless: every pixel is stored exactly, and transparency is supported. That makes it the right choice for logos, icons, diagrams, and screenshots containing text, where a compression artefact around a letter is immediately visible. The cost is file size — a photograph saved as PNG is often five to ten times larger than the same photograph as JPEG.",
+          "JPEG is lossy and tuned for photographs, where smooth gradients of colour hide the compression artefacts well. It cannot store transparency at all, so any transparent area has to be filled with a solid colour; this tool fills it with white, which is why a transparent PNG converted to JPEG comes out on a white background rather than a black one.",
+          "WebP is the modern middle ground: it supports both lossy and lossless modes as well as transparency, and typically produces files 25-35% smaller than an equivalent JPEG. Every current browser supports it, so unless you need to hand the file to an old application, WebP is usually the best default for web use."
+        ]
+      },
+      {
+        "heading": "Why browser-side processing matters",
+        "paragraphs": [
+          "Most free image tools upload your file to a server, process it there, and hand back a download link. That means a copy of your image exists on someone else's machine, subject to their retention policy and their security. For a holiday snapshot that may not matter; for a screenshot of a dashboard, a scan of an ID document, or artwork that has not been published yet, it is a real disclosure.",
+          "This tool never sends the file anywhere. The image is decoded, drawn onto a canvas at the new size, and re-encoded entirely by your own browser, which is also why it works with no account, no upload quota, no queue, and no watermark. You can confirm it yourself by opening your browser's network tab while you use the page — no request carries the image.",
+          "The practical trade-off is that very large images are limited by your device's memory rather than by a server farm. This tool caps output at 8000 pixels on a side, which is comfortably above print requirements for most documents and well within what a typical laptop or phone can handle."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Choose your image",
+        "text": "Select a PNG, JPEG, WebP, or GIF file from your device. It is decoded locally and never uploaded."
+      },
+      {
+        "name": "Set the target size",
+        "text": "Enter the width or height you need in pixels. Leave the aspect ratio locked and the other dimension is calculated for you."
+      },
+      {
+        "name": "Pick a format and quality",
+        "text": "Choose PNG, JPEG, or WebP. For the two lossy formats, use the quality slider to trade file size against detail."
+      },
+      {
+        "name": "Download the result",
+        "text": "Check the preview and the resulting file size, then download the image to your device."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Is my image uploaded to a server?",
+      "a": "No. The file is decoded, resized, and re-encoded entirely inside your browser using the Canvas API. No request carrying the image is ever sent, which you can verify in your browser's network tab."
+    },
+    {
+      "q": "What is the largest image I can resize?",
+      "a": "Output is capped at 8000 pixels on either side. The practical limit on input is your device's available memory rather than a fixed number, so very large multi-hundred-megapixel files may fail on a phone but work on a desktop."
+    },
+    {
+      "q": "Why did my transparent PNG come out with a white background?",
+      "a": "JPEG cannot store transparency. When you convert to JPEG, transparent areas have to be filled with a solid colour, and this tool uses white. Choose PNG or WebP instead if you need to keep the transparency."
+    },
+    {
+      "q": "What quality setting should I use for JPEG?",
+      "a": "Around 80 is the usual sweet spot: it typically halves the file size compared with maximum quality while remaining visually indistinguishable. Go higher for images with text or sharp edges, lower if you need to hit a strict size limit."
+    },
+    {
+      "q": "Can I make an image larger than the original?",
+      "a": "You can, but the result will look soft. Enlarging cannot recover detail that is not in the source, so the browser interpolates between existing pixels. Start from the largest original you have whenever possible."
+    },
+    {
+      "q": "Does resizing remove EXIF data such as GPS location?",
+      "a": "Yes. The image is redrawn onto a blank canvas and re-encoded, so camera metadata including GPS coordinates, device model, and timestamps is not carried over to the output file."
+    },
+    {
+      "q": "Is there a watermark or a limit on how many images I can process?",
+      "a": "Neither. There is no watermark, no account, and no daily quota, because all the work happens on your own device rather than on servers someone has to pay for."
+    },
+    {
+      "q": "Which format should I use for a website?",
+      "a": "WebP for photographs and most illustrations, since it is typically 25-35% smaller than JPEG at the same visual quality and every current browser supports it. Use PNG when you need lossless output or crisp transparency, such as for logos and icons."
+    }
+  ]
+}

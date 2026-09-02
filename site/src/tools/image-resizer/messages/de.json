@@ -1,0 +1,116 @@
+{
+  "title": "Bilder verkleinern — kostenlos, direkt im Browser",
+  "shortDescription": "Ändern Sie die Pixelmaße beliebiger Bilder, konvertieren Sie zwischen PNG, JPEG und WebP und komprimieren Sie, ohne etwas an einen Server zu senden.",
+  "description": "Wählen Sie ein Bild, geben Sie die gewünschte Breite oder Höhe ein und laden Sie das Ergebnis herunter. Sperren Sie das Seitenverhältnis, damit nichts verzerrt wird, wählen Sie als Ausgabeformat PNG, JPEG oder WebP und regeln Sie über die Qualität die angestrebte Dateigröße. Die gesamte Verarbeitung läuft über die Canvas-API auf Ihrem Gerät, die Datei verlässt den Browser also nie.",
+  "metaDescription": "Kostenloses Werkzeug zum Verkleinern von Bildern direkt im Browser. Pixelmaße ändern, zwischen PNG, JPEG und WebP konvertieren und mit einem Qualitätsregler komprimieren. Ohne Upload und ohne Anmeldung.",
+  "keywords": [
+    "bild verkleinern",
+    "bildgröße ändern online",
+    "png in jpg umwandeln",
+    "bild komprimieren",
+    "in webp konvertieren"
+  ],
+  "empty": "Wählen Sie ein Bild aus, um zu starten. Es wird auf Ihrem Gerät verarbeitet und nirgendwo hochgeladen.",
+  "input": {
+    "file": "Bilddatei",
+    "width": "Breite (px)",
+    "height": "Höhe (px)",
+    "lockRatio": "Seitenverhältnis sperren",
+    "format": "Ausgabeformat",
+    "quality": "Qualität"
+  },
+  "format": {
+    "png": "PNG (verlustfrei, mit Transparenz)",
+    "jpeg": "JPEG (am kleinsten für Fotos, ohne Transparenz)",
+    "webp": "WebP (modern, klein, mit Transparenz)"
+  },
+  "error": {
+    "decode": "Diese Datei konnte nicht als Bild gelesen werden. Versuchen Sie es mit PNG, JPEG, WebP oder GIF.",
+    "canvas": "Der Browser konnte das Ausgabebild nicht erzeugen. Versuchen Sie eine kleinere Größe oder ein anderes Format."
+  },
+  "result": {
+    "preview": "Vorschau des Ergebnisses",
+    "original": "Original",
+    "download": "Bild herunterladen"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Was sich beim Verkleinern tatsächlich ändert",
+        "paragraphs": [
+          "Beim Verkleinern ändert sich die Anzahl der Punkte, aus denen das Bild besteht, also seine Pixelmaße. Ein Handyfoto mit 4000 × 3000 Pixeln enthält rund zwölf Millionen Bildpunkte; dasselbe Foto auf 1200 × 900 gebracht behält gut eine Million. Es sieht gleich aus, überträgt aber nur etwa ein Zehntel der Daten. Deshalb ist das Verkleinern vor dem Hochladen der wirksamste Hebel, um Seiten schneller zu machen und Größenlimits für Anhänge einzuhalten.",
+          "Verkleinern ist unumkehrbar, denn verworfene Pixel kommen nicht zurück. Ein auf 1200 Pixel reduziertes Bild wieder auf 4000 Pixel aufzublasen ergibt ein weiches, unscharfes Resultat, weil der Browser die fehlenden Details erfinden muss. Skalieren Sie deshalb immer vom größten vorhandenen Original aus, nie von einer bereits verkleinerten Kopie, und heben Sie dieses Original auf, falls Sie später eine größere Fassung brauchen.",
+          "Dieses Werkzeug zeichnet das verkleinerte Bild mit hochwertiger Glättung: Benachbarte Pixel werden gemittelt, statt einfach einen Teil davon wegzuwerfen. Deshalb bleiben Text und feine Linien auch in kleinen Größen lesbar, statt ausgefranst zu wirken."
+        ]
+      },
+      {
+        "heading": "PNG, JPEG oder WebP wählen",
+        "paragraphs": [
+          "PNG ist verlustfrei: Jedes Pixel bleibt exakt erhalten, und Transparenz wird unterstützt. Damit ist es die richtige Wahl für Logos, Symbole, Diagramme und Screenshots mit Text, wo Kompressionsrauschen rund um die Buchstaben sofort auffällt. Der Preis ist die Dateigröße: Eine Fotografie als PNG ist oft fünf- bis zehnmal so groß wie dasselbe Bild als JPEG.",
+          "JPEG ist ein verlustbehaftetes Format, das auf Fotografie zugeschnitten ist, wo weiche Verläufe Kompressionsartefakte gut verbergen. Transparenz kann es überhaupt nicht speichern, transparente Flächen müssen also mit einer Volltonfarbe gefüllt werden. Dieses Werkzeug verwendet Weiß, weshalb ein transparentes PNG bei der Umwandlung in JPEG einen weißen und keinen schwarzen Hintergrund erhält.",
+          "WebP ist die moderne Option dazwischen. Es beherrscht verlustbehaftete und verlustfreie Kompression, unterstützt Transparenz und liegt bei vergleichbarer Qualität meist 25 bis 35 Prozent unter JPEG. Alle aktuellen Browser können es lesen; sofern Sie die Datei nicht an eine alte Anwendung übergeben müssen, ist WebP im Web die beste Voreinstellung."
+        ]
+      },
+      {
+        "heading": "Warum die Verarbeitung im Browser zählt",
+        "paragraphs": [
+          "Die meisten kostenlosen Bildwerkzeuge schicken Ihre Datei an einen Server, verarbeiten sie dort und geben Ihnen einen Download-Link zurück. Damit liegt eine Kopie Ihres Bildes auf dem Rechner eines anderen, den dessen Aufbewahrungsregeln und Sicherheitsniveau bestimmen. Bei Urlaubsfotos mag das gleichgültig sein; beim Screenshot eines internen Dashboards, beim Scan eines Ausweises oder bei unveröffentlichter Arbeit ist es ein echtes Leck.",
+          "Dieses Werkzeug sendet Ihre Datei nirgendwohin. Das Bild einzulesen, es in der neuen Größe auf ein Canvas zu zeichnen und neu zu kodieren, erledigt Ihr eigener Browser. Deshalb gibt es keine Konten, keine Upload-Größenbegrenzung, keine Warteschlange und keine Wasserzeichen. Sie können während der Nutzung den Netzwerk-Tab des Browsers öffnen und selbst nachsehen, dass keine Anfrage Ihr Bild überträgt.",
+          "Der tatsächliche Preis ist, dass die Grenze bei sehr großen Bildern vom Arbeitsspeicher Ihres Geräts gesetzt wird und nicht von einer Serverfarm. Das Werkzeug begrenzt die Ausgabe auf 8000 Pixel je Seite, weit mehr als nahezu jedes Druckdokument verlangt und im Rahmen dessen, was ein gewöhnliches Notebook oder Smartphone bewältigt."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Bild auswählen",
+        "text": "Wählen Sie eine PNG-, JPEG-, WebP- oder GIF-Datei von Ihrem Gerät. Sie wird lokal gelesen und nicht hochgeladen."
+      },
+      {
+        "name": "Zielgröße festlegen",
+        "text": "Geben Sie die gewünschte Breite oder Höhe in Pixeln ein. Bei gesperrtem Seitenverhältnis wird die andere Seite automatisch berechnet."
+      },
+      {
+        "name": "Format und Qualität wählen",
+        "text": "Entscheiden Sie sich für PNG, JPEG oder WebP. Bei den beiden verlustbehafteten Formaten steuert der Qualitätsregler das Verhältnis von Größe und Detail."
+      },
+      {
+        "name": "Ergebnis herunterladen",
+        "text": "Prüfen Sie Vorschau und Dateigröße der Ausgabe und speichern Sie das Bild auf Ihrem Gerät."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Wird mein Bild auf einen Server hochgeladen?",
+      "a": "Nein. Einlesen, Verkleinern und Neukodieren geschehen über die Canvas-API im Browser. Keine Netzwerkanfrage überträgt Ihr Bild, und Sie können das im Netzwerk-Tab des Browsers selbst nachprüfen."
+    },
+    {
+      "q": "Wie große Bilder lassen sich verarbeiten?",
+      "a": "Die Ausgabe ist auf 8000 Pixel je Seite begrenzt. Auf der Eingabeseite ist die eigentliche Grenze keine feste Zahl, sondern der verfügbare Arbeitsspeicher: Eine Datei mit mehreren hundert Megapixeln kann auf dem Handy scheitern und am Desktop funktionieren."
+    },
+    {
+      "q": "Warum wird der Hintergrund weiß, wenn ich ein transparentes PNG umwandle?",
+      "a": "Weil JPEG keine Transparenz speichern kann. Bei der Umwandlung müssen transparente Flächen mit einer Volltonfarbe gefüllt werden, und dieses Werkzeug nimmt dafür Weiß. Wenn die Transparenz erhalten bleiben soll, wählen Sie PNG oder WebP."
+    },
+    {
+      "q": "Welche JPEG-Qualität sollte ich einstellen?",
+      "a": "Rund 80 ist ein verlässlicher Standardwert: kaum von maximaler Qualität zu unterscheiden und meist halb so groß. Gehen Sie bei Bildern mit Text oder scharfen Kanten etwas höher und nur dann tiefer, wenn Sie ein striktes Größenlimit einhalten müssen."
+    },
+    {
+      "q": "Kann ich ein Bild über seine Originalgröße hinaus vergrößern?",
+      "a": "Ja, aber das Ergebnis wird weich. Vergrößern stellt keine Details wieder her, die nie vorhanden waren; der Browser interpoliert lediglich zwischen den bestehenden Pixeln. Beginnen Sie immer mit dem größten verfügbaren Original."
+    },
+    {
+      "q": "Entfernt das Verkleinern EXIF-Daten wie GPS?",
+      "a": "Ja. Das Bild wird auf ein leeres Canvas neu gezeichnet und neu kodiert, deshalb wandern Kamera-Metadaten wie GPS-Koordinaten, Gerätemodell und Aufnahmezeit nicht in die Ausgabedatei."
+    },
+    {
+      "q": "Gibt es Wasserzeichen oder ein Nutzungslimit?",
+      "a": "Weder noch. Da die gesamte Arbeit auf Ihrem Gerät stattfindet, muss niemand Server bezahlen: keine Wasserzeichen, keine Konten, kein Tageslimit."
+    },
+    {
+      "q": "Welches Format eignet sich für eine Website?",
+      "a": "WebP für Fotografien und die meisten Illustrationen: Es ist bei gleicher wahrgenommener Qualität 25 bis 35 Prozent kleiner als JPEG und wird von allen aktuellen Browsern unterstützt. PNG bleibt für Logos und Symbole richtig, wo verlustfreie Ausgabe oder saubere transparente Kanten nötig sind."
+    }
+  ]
+}

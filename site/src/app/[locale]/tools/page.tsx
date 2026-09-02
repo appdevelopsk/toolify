@@ -45,7 +45,7 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
     description: t(`tools.${m.slug}.shortDescription`),
   }));
 
-  // ItemList JSON-LD: lets Google understand /tools as a structured catalog of 120 items.
+  // ItemList JSON-LD: lets Google understand /tools as a structured catalog of every tool.
   // Crawlers prioritize indexing pages whose containing list is also indexed.
   const itemListLd = {
     "@context": "https://schema.org",

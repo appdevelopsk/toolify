@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 
 type Country = "JP" | "US-single" | "US-married";
 
-// Brackets — 2025/2026 approximations. (上限, 税率).
+// Brackets — IRS TY2024 / 国税庁 current tables. (上限, 税率).
 // Real rates may differ slightly by year; users should verify with their tax authority.
 const BRACKETS: Record<Country, { upper: number; rate: number }[]> = {
   JP: [

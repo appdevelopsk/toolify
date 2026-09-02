@@ -1,0 +1,116 @@
+{
+  "title": "Công cụ thay đổi kích thước ảnh — Miễn phí, chạy ngay trong trình duyệt",
+  "shortDescription": "Thay đổi kích thước ảnh theo pixel, chuyển đổi giữa PNG, JPEG và WebP, và nén ảnh — không có gì được tải lên máy chủ.",
+  "description": "Chọn một ảnh, nhập chiều rộng hoặc chiều cao bạn cần, rồi tải kết quả về. Khoá tỷ lệ khung hình để ảnh không bị méo, đổi định dạng đầu ra giữa PNG, JPEG và WebP, và dùng thanh trượt chất lượng để đạt được dung lượng tệp mong muốn. Mọi thứ được xử lý ngay trên thiết bị của bạn bằng Canvas API — tệp không bao giờ rời khỏi trình duyệt.",
+  "metaDescription": "Công cụ thay đổi kích thước ảnh miễn phí chạy trong trình duyệt của bạn. Đổi kích thước theo pixel, chuyển đổi giữa PNG, JPEG và WebP, nén bằng thanh trượt chất lượng — không tải lên, không cần đăng nhập.",
+  "keywords": [
+    "thay đổi kích thước ảnh",
+    "đổi kích thước ảnh online",
+    "chuyển png sang jpg",
+    "nén ảnh",
+    "chuyển đổi webp"
+  ],
+  "empty": "Chọn một ảnh để bắt đầu. Ảnh được xử lý trên thiết bị của bạn và không bao giờ được tải lên.",
+  "input": {
+    "file": "Tệp ảnh",
+    "width": "Chiều rộng (px)",
+    "height": "Chiều cao (px)",
+    "lockRatio": "Khoá tỷ lệ khung hình",
+    "format": "Định dạng đầu ra",
+    "quality": "Chất lượng"
+  },
+  "format": {
+    "png": "PNG (không mất dữ liệu, hỗ trợ nền trong suốt)",
+    "jpeg": "JPEG (nhỏ nhất cho ảnh chụp, không có nền trong suốt)",
+    "webp": "WebP (hiện đại, nhỏ gọn, hỗ trợ nền trong suốt)"
+  },
+  "error": {
+    "decode": "Không đọc được tệp đó dưới dạng ảnh. Hãy thử PNG, JPEG, WebP hoặc GIF.",
+    "canvas": "Trình duyệt của bạn không tạo được ảnh đầu ra. Hãy thử kích thước nhỏ hơn hoặc định dạng khác."
+  },
+  "result": {
+    "preview": "Xem trước kết quả",
+    "original": "Ảnh gốc",
+    "download": "Tải ảnh về"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Điều gì thực sự thay đổi khi bạn đổi kích thước ảnh",
+        "paragraphs": [
+          "Đổi kích thước làm thay đổi số pixel của ảnh — tức là số điểm màu tạo nên bức ảnh. Một tấm ảnh 4000 x 3000 từ camera điện thoại chứa mười hai triệu pixel; cũng tấm ảnh đó ở 1200 x 900 chỉ chứa hơn một triệu. Nội dung nhìn vẫn vậy, nhưng bản nhỏ hơn mang theo khoảng một phần mười lượng dữ liệu, và đó là lý do đổi kích thước trước khi tải lên là cách hiệu quả nhất để tăng tốc tải trang hoặc đưa tệp đính kèm email xuống dưới giới hạn dung lượng.",
+          "Thu nhỏ là quá trình mất dữ liệu theo nghĩa những pixel bị loại bỏ không thể lấy lại: phóng ảnh 1200 px trở lại 4000 px sẽ cho ra ảnh mềm và mờ, vì trình duyệt phải tự bịa ra chi tiết đã mất. Hãy luôn đổi kích thước từ tệp gốc lớn nhất bạn có, chứ không phải từ một bản đã thu nhỏ trước đó, và giữ lại bản gốc phòng khi sau này cần bản lớn hơn.",
+          "Công cụ này dùng thuật toán làm mượt chất lượng cao khi vẽ ảnh đã co giãn, tức là lấy trung bình các pixel lân cận thay vì chỉ vứt bớt chúng đi. Chính điều đó giữ cho chữ và các đường viền mảnh vẫn đọc được ở kích thước nhỏ, thay vì vỡ thành răng cưa."
+        ]
+      },
+      {
+        "heading": "Chọn giữa PNG, JPEG và WebP",
+        "paragraphs": [
+          "PNG là định dạng không mất dữ liệu: mọi pixel được lưu chính xác, và nền trong suốt được hỗ trợ. Điều đó khiến nó phù hợp cho logo, biểu tượng, sơ đồ và ảnh chụp màn hình có chữ, nơi nhiễu nén quanh các ký tự lộ ra ngay lập tức. Cái giá phải trả là dung lượng — một tấm ảnh chụp lưu dưới dạng PNG thường lớn gấp năm đến mười lần so với chính nó ở dạng JPEG.",
+          "JPEG là định dạng mất dữ liệu, được tối ưu cho nhiếp ảnh, nơi các chuyển màu mượt che giấu nhiễu nén rất tốt. Nó hoàn toàn không lưu được độ trong suốt, nên vùng trong suốt phải được tô bằng một màu đặc; công cụ này tô màu trắng, đó là lý do một tệp PNG trong suốt khi chuyển sang JPEG sẽ có nền trắng chứ không phải đen.",
+          "WebP là lựa chọn trung dung hiện đại: nó hỗ trợ cả chế độ mất dữ liệu lẫn không mất dữ liệu, cùng với nền trong suốt, và thường cho tệp nhỏ hơn JPEG tương đương 25-35%. Mọi trình duyệt hiện nay đều hỗ trợ nó, nên trừ khi bạn phải gửi tệp cho một ứng dụng cũ, WebP thường là lựa chọn mặc định tốt nhất cho web."
+        ]
+      },
+      {
+        "heading": "Vì sao xử lý phía trình duyệt lại quan trọng",
+        "paragraphs": [
+          "Phần lớn công cụ ảnh miễn phí tải tệp của bạn lên máy chủ, xử lý ở đó rồi trả về một liên kết tải xuống. Điều đó có nghĩa là một bản sao ảnh của bạn nằm trên máy của người khác, chịu chính sách lưu trữ và bảo mật của họ. Với ảnh du lịch thì có thể không sao; với ảnh chụp màn hình bảng điều khiển, bản quét giấy tờ tuỳ thân hay tác phẩm chưa công bố, đó là một sự phơi bày thực sự.",
+          "Công cụ này không gửi tệp đi bất cứ đâu. Ảnh được giải mã, vẽ lên canvas ở kích thước mới và mã hoá lại hoàn toàn bởi chính trình duyệt của bạn, cũng chính vì thế mà nó hoạt động không cần tài khoản, không hạn mức tải lên, không hàng đợi và không đóng dấu chìm. Bạn có thể tự xác minh bằng cách mở tab mạng của trình duyệt khi dùng trang này — sẽ không có yêu cầu nào mang theo ảnh.",
+          "Hệ quả thực tế là những ảnh cực lớn bị giới hạn bởi bộ nhớ thiết bị của bạn chứ không phải bởi máy chủ. Công cụ giới hạn đầu ra ở 8000 pixel mỗi cạnh, vượt xa nhu cầu in ấn của hầu hết tài liệu và vẫn nằm trong khả năng của một chiếc laptop hoặc điện thoại thông thường."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Chọn ảnh của bạn",
+        "text": "Chọn một tệp PNG, JPEG, WebP hoặc GIF từ thiết bị của bạn. Tệp được giải mã cục bộ và không bao giờ được tải lên."
+      },
+      {
+        "name": "Đặt kích thước mục tiêu",
+        "text": "Nhập chiều rộng hoặc chiều cao bạn cần, tính bằng pixel. Cứ để khoá tỷ lệ khung hình và chiều còn lại sẽ được tính giúp bạn."
+      },
+      {
+        "name": "Chọn định dạng và chất lượng",
+        "text": "Chọn PNG, JPEG hoặc WebP. Với hai định dạng mất dữ liệu, dùng thanh trượt chất lượng để cân bằng giữa dung lượng và chi tiết."
+      },
+      {
+        "name": "Tải kết quả về",
+        "text": "Kiểm tra ảnh xem trước và dung lượng tệp thu được, rồi tải ảnh về thiết bị của bạn."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Ảnh của tôi có được tải lên máy chủ không?",
+      "a": "Không. Tệp được giải mã, đổi kích thước và mã hoá lại hoàn toàn bên trong trình duyệt của bạn bằng Canvas API. Không có yêu cầu nào mang theo ảnh, và bạn có thể tự kiểm chứng trong tab mạng của trình duyệt."
+    },
+    {
+      "q": "Ảnh lớn nhất tôi có thể đổi kích thước là bao nhiêu?",
+      "a": "Đầu ra được giới hạn ở 8000 pixel mỗi cạnh. Giới hạn thực tế cho ảnh đầu vào là bộ nhớ khả dụng trên thiết bị của bạn chứ không phải một con số cố định, nên tệp hàng trăm megapixel có thể thất bại trên điện thoại nhưng thành công trên máy để bàn."
+    },
+    {
+      "q": "Vì sao ảnh PNG trong suốt của tôi lại có nền trắng?",
+      "a": "JPEG không lưu được độ trong suốt. Khi bạn chuyển sang JPEG, vùng trong suốt phải được tô bằng một màu đặc, và công cụ này dùng màu trắng. Hãy chọn PNG hoặc WebP nếu bạn cần giữ nền trong suốt."
+    },
+    {
+      "q": "Tôi nên đặt mức chất lượng nào cho JPEG?",
+      "a": "Khoảng 80 là điểm cân bằng thường thấy: nó thường giảm một nửa dung lượng so với chất lượng tối đa mà mắt thường vẫn không phân biệt được. Tăng lên với ảnh có chữ hoặc đường viền sắc nét, giảm xuống nếu bạn phải đáp ứng một giới hạn dung lượng ngặt nghèo."
+    },
+    {
+      "q": "Tôi có thể phóng ảnh to hơn bản gốc không?",
+      "a": "Có, nhưng kết quả sẽ trông mềm nhoè. Phóng to không thể khôi phục chi tiết vốn không có trong nguồn, nên trình duyệt chỉ nội suy giữa các pixel sẵn có. Hãy bắt đầu từ tệp gốc lớn nhất bạn có bất cứ khi nào có thể."
+    },
+    {
+      "q": "Đổi kích thước có xoá dữ liệu EXIF như vị trí GPS không?",
+      "a": "Có. Ảnh được vẽ lại lên một canvas trống rồi mã hoá lại, nên siêu dữ liệu máy ảnh gồm toạ độ GPS, mẫu thiết bị và dấu thời gian không đi theo sang tệp đầu ra."
+    },
+    {
+      "q": "Có đóng dấu chìm hay giới hạn số ảnh tôi được xử lý không?",
+      "a": "Không có cả hai. Không dấu chìm, không tài khoản, không hạn mức hằng ngày, vì toàn bộ công việc diễn ra trên thiết bị của bạn chứ không phải trên một máy chủ mà ai đó phải trả tiền."
+    },
+    {
+      "q": "Tôi nên dùng định dạng nào cho website?",
+      "a": "WebP cho ảnh chụp và phần lớn hình minh hoạ, vì nó thường nhỏ hơn JPEG 25-35% ở cùng chất lượng thị giác và mọi trình duyệt hiện nay đều hỗ trợ. Dùng PNG khi bạn cần đầu ra không mất dữ liệu hoặc nền trong suốt sắc nét, chẳng hạn cho logo và biểu tượng."
+    }
+  ]
+}

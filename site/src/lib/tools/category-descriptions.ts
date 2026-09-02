@@ -105,6 +105,18 @@ const BASE: Record<ToolCategory, Record<string, CategoryCopy>> = {
       tip: "これらは計画用の概算で金融アドバイスではない。正確な金利・手数料・複利頻度は貸し手に確認を。これらの入力の小さな差が総額を大きく動かす。",
     },
   },
+  image: {
+    en: {
+      headline: "Free image and file tools — resize, convert, compress",
+      body: "Practical image work that never leaves your device. Resize a photo to an exact pixel size with the aspect ratio locked, export it as PNG, JPEG or WebP, and watch the file size change as you move the quality slider. Everything runs in your browser through the Canvas API, so the picture is never uploaded to a server \u2014 useful when the file is a passport scan, a contract page or an unreleased product shot.",
+      tip: "Pick the format for the job: PNG for screenshots and flat graphics with sharp edges, JPEG for photographs, WebP when you want both and the target is the web. Resize once from the original \u2014 repeatedly shrinking an already-shrunk JPEG stacks compression artifacts.",
+    },
+    ja: {
+      headline: "無料の画像・ファイルツール — リサイズ・変換・圧縮",
+      body: "端末の外に出ない実用的な画像処理。縦横比を固定したままピクセル単位で正確にリサイズし、PNG / JPEG / WebP で書き出し、品質スライダーを動かしながらファイルサイズの変化をその場で確認できる。すべてブラウザの Canvas API で完結するため画像はサーバーへ送信されない。身分証のスキャン、契約書のページ、未発表の製品写真のように外部へ出したくないファイルで効いてくる。",
+      tip: "用途で形式を選ぶ。スクリーンショットや輪郭のはっきりした図版は PNG、写真は JPEG、Web 用で両立させたいなら WebP。リサイズは必ず元画像から一度で行う。縮小済み JPEG をさらに縮小すると圧縮ノイズが重なる。",
+    },
+  },
 };
 
 const extraTyped = extra as Record<ToolCategory, Record<string, CategoryCopy>>;

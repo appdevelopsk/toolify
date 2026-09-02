@@ -1,0 +1,116 @@
+{
+  "title": "Ridimensionare immagini — gratis, nel browser",
+  "shortDescription": "Cambia le dimensioni in pixel di qualsiasi immagine, convertila tra PNG, JPEG e WebP e comprimila senza inviare nulla a un server.",
+  "description": "Scegli un'immagine, indica la larghezza o l'altezza desiderata e scarica il risultato. Blocca le proporzioni per non deformarla, scegli il formato di uscita tra PNG, JPEG e WebP e usa il cursore della qualità per centrare il peso di file voluto. Tutta l'elaborazione avviene sul tuo dispositivo tramite l'API Canvas, quindi il file non lascia mai il browser.",
+  "metaDescription": "Strumento gratuito per ridimensionare immagini direttamente nel browser. Cambia le dimensioni in pixel, converti tra PNG, JPEG e WebP e comprimi con un cursore di qualità. Senza caricamenti e senza registrazione.",
+  "keywords": [
+    "ridimensionare immagine",
+    "cambiare dimensioni foto online",
+    "convertire png in jpg",
+    "comprimere immagine",
+    "convertire in webp"
+  ],
+  "empty": "Scegli un'immagine per iniziare. Viene elaborata sul tuo dispositivo e non viene caricata da nessuna parte.",
+  "input": {
+    "file": "File immagine",
+    "width": "Larghezza (px)",
+    "height": "Altezza (px)",
+    "lockRatio": "Blocca proporzioni",
+    "format": "Formato di uscita",
+    "quality": "Qualità"
+  },
+  "format": {
+    "png": "PNG (senza perdita, supporta la trasparenza)",
+    "jpeg": "JPEG (il più leggero per le foto, senza trasparenza)",
+    "webp": "WebP (moderno, leggero, supporta la trasparenza)"
+  },
+  "error": {
+    "decode": "Non è stato possibile leggere questo file come immagine. Prova con PNG, JPEG, WebP o GIF.",
+    "canvas": "Il browser non è riuscito a produrre l'immagine di uscita. Prova con dimensioni minori o con un altro formato."
+  },
+  "result": {
+    "preview": "Anteprima del risultato",
+    "original": "Originale",
+    "download": "Scarica immagine"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Che cosa cambia davvero quando ridimensioni",
+        "paragraphs": [
+          "Ridimensionare cambia il numero di punti che compongono l'immagine, cioè le sue dimensioni in pixel. Una foto da telefono di 4000 × 3000 contiene circa dodici milioni di pixel; la stessa foto portata a 1200 × 900 ne conserva poco più di un milione. L'aspetto è lo stesso, ma la versione ridotta trasferisce circa un decimo dei dati. Per questo ridurre prima di caricare resta il modo più efficace per velocizzare una pagina e rispettare i limiti di dimensione degli allegati.",
+          "La riduzione è irreversibile, perché i pixel scartati non tornano. Riportare a 4000 pixel un'immagine ridotta a 1200 dà un risultato morbido e sfocato, dato che il browser deve inventare il dettaglio mancante. Ridimensiona sempre partendo dall'originale più grande che hai, mai da una copia già ridotta, e conserva quell'originale se in futuro potrebbe servirti una versione più grande.",
+          "Questo strumento applica una levigatura di alta qualità quando disegna l'immagine ridotta: calcola la media dei pixel vicini invece di limitarsi a scartarne una parte. È per questo che testi e linee sottili restano leggibili anche a dimensioni piccole, invece di diventare seghettati."
+        ]
+      },
+      {
+        "heading": "Scegliere tra PNG, JPEG e WebP",
+        "paragraphs": [
+          "Il PNG è un formato senza perdita: ogni pixel viene conservato esattamente e la trasparenza è supportata. È quindi la scelta giusta per loghi, icone, diagrammi e schermate con del testo, dove il rumore di compressione attorno alle lettere si nota subito. Il prezzo è il peso: una fotografia salvata in PNG occupa spesso da cinque a dieci volte più della stessa immagine in JPEG.",
+          "Il JPEG è un formato con perdita calibrato sulla fotografia, dove le sfumature morbide nascondono bene gli artefatti di compressione. Non può conservare la trasparenza in alcun modo, perciò le aree trasparenti devono essere riempite con un colore pieno. Questo strumento usa il bianco: convertendo in JPEG un PNG trasparente otterrai uno sfondo bianco e non nero.",
+          "Il WebP è l'opzione moderna a metà strada. Supporta compressione con e senza perdita, gestisce la trasparenza e a parità di qualità pesa in genere dal 25% al 35% meno di un JPEG. Tutti i browser attuali lo leggono, quindi, a meno di dover consegnare il file a un'applicazione datata, il WebP è la migliore impostazione predefinita per il web."
+        ]
+      },
+      {
+        "heading": "Perché contare sull'elaborazione locale",
+        "paragraphs": [
+          "La maggior parte degli strumenti gratuiti per immagini invia il tuo file a un server, lo elabora lì e ti restituisce un link di download. Significa che una copia della tua immagine si trova sulla macchina di qualcun altro, soggetta alle sue politiche di conservazione e al suo livello di sicurezza. Per le foto delle vacanze può non contare nulla; per la schermata di una dashboard interna, la scansione di un documento d'identità o un lavoro non ancora pubblicato è una fuga di dati concreta.",
+          "Questo strumento non invia il tuo file da nessuna parte. Leggere l'immagine, ridisegnarla nelle nuove dimensioni su un canvas e ricodificarla sono operazioni svolte dal tuo browser. Per questo non ci sono account, né limiti di dimensione per il caricamento, né code, né filigrane. Puoi aprire il pannello di rete del browser mentre usi la pagina e verificare di persona che nessuna richiesta trasporta la tua immagine.",
+          "Il costo reale è che il limite per le immagini enormi lo impone la memoria del tuo dispositivo e non una fattoria di server. Lo strumento limita l'uscita a 8000 pixel per lato, ben oltre quanto richiede quasi qualsiasi documento da stampare e alla portata di un normale portatile o telefono."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Scegli un'immagine",
+        "text": "Seleziona un file PNG, JPEG, WebP o GIF dal tuo dispositivo. Viene letto localmente e non viene caricato."
+      },
+      {
+        "name": "Imposta la dimensione voluta",
+        "text": "Indica la larghezza o l'altezza in pixel. Con le proporzioni bloccate, l'altro lato viene calcolato da solo."
+      },
+      {
+        "name": "Scegli formato e qualità",
+        "text": "Opta per PNG, JPEG o WebP. Nei due formati con perdita, il cursore della qualità bilancia peso e dettaglio."
+      },
+      {
+        "name": "Scarica il risultato",
+        "text": "Controlla anteprima e peso del file di uscita, poi salva l'immagine sul tuo dispositivo."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "La mia immagine viene caricata su un server?",
+      "a": "No. Lettura, ridimensionamento e ricodifica avvengono dentro il browser tramite l'API Canvas. Nessuna richiesta di rete trasporta la tua immagine, e puoi verificarlo tu stesso nel pannello di rete del browser."
+    },
+    {
+      "q": "Quanto possono essere grandi le immagini elaborate?",
+      "a": "L'uscita è limitata a 8000 pixel per lato. In ingresso il limite vero non è un numero fisso ma la memoria disponibile sul dispositivo, perciò un file da centinaia di megapixel può fallire su un telefono e riuscire su un computer fisso."
+    },
+    {
+      "q": "Perché lo sfondo diventa bianco convertendo un PNG trasparente?",
+      "a": "Perché il JPEG non può conservare la trasparenza. Nella conversione le aree trasparenti vanno riempite con un colore pieno, e questo strumento usa il bianco. Se devi mantenere la trasparenza, scegli PNG o WebP."
+    },
+    {
+      "q": "Che qualità JPEG conviene impostare?",
+      "a": "Intorno a 80 è un valore predefinito affidabile: quasi indistinguibile dalla qualità massima e in genere dimezza il peso. Alza un po' con immagini che contengono testo o bordi netti, e abbassa solo quando devi rispettare un limite di peso rigido."
+    },
+    {
+      "q": "Posso ingrandire un'immagine oltre le dimensioni originali?",
+      "a": "Puoi, ma il risultato sarà morbido. L'ingrandimento non recupera dettagli mai esistiti: il browser si limita a interpolare tra i pixel presenti. Parti sempre dall'originale più grande a disposizione."
+    },
+    {
+      "q": "Il ridimensionamento rimuove i dati EXIF, come il GPS?",
+      "a": "Sì. L'immagine viene ridisegnata su un canvas vuoto e ricodificata, quindi i metadati della fotocamera, comprese le coordinate GPS, il modello del dispositivo e l'ora dello scatto, non finiscono nel file di uscita."
+    },
+    {
+      "q": "Ci sono filigrane o un limite di utilizzo?",
+      "a": "Né l'uno né l'altro. Poiché tutto il lavoro avviene sul tuo dispositivo, nessuno deve pagare dei server: niente filigrane, niente account, nessun tetto giornaliero."
+    },
+    {
+      "q": "Quale formato usare per un sito web?",
+      "a": "WebP per le fotografie e per la maggior parte delle illustrazioni: pesa dal 25% al 35% meno del JPEG a parità di qualità percepita ed è supportato da tutti i browser attuali. Usa il PNG per loghi e icone, dove servono uscita senza perdita o bordi trasparenti netti."
+    }
+  ]
+}

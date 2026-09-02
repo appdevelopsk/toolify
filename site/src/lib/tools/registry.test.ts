@@ -6,7 +6,7 @@ const TOOLS_DIR = path.resolve(__dirname, "../../tools");
 const REGISTRY_FILE = path.resolve(__dirname, "./registry.ts");
 const TYPES_FILE = path.resolve(__dirname, "./types.ts");
 
-const VALID_CATEGORIES = ["health", "math", "converter", "datetime", "text", "color", "finance"];
+const VALID_CATEGORIES = ["health", "math", "converter", "datetime", "text", "color", "finance", "image"];
 
 function listToolDirs(): string[] {
   return fs

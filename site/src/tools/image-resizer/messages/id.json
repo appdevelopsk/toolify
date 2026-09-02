@@ -1,0 +1,116 @@
+{
+  "title": "Pengubah Ukuran Gambar — Gratis, Berjalan di Peramban Anda",
+  "shortDescription": "Ubah ukuran gambar apa pun dalam piksel, konversi antara PNG, JPEG, dan WebP, lalu kompres — tidak ada yang diunggah ke server.",
+  "description": "Pilih sebuah gambar, tentukan lebar atau tinggi yang Anda butuhkan, lalu unduh hasilnya. Kunci rasio aspek agar gambar tidak terdistorsi, ganti format keluaran antara PNG, JPEG, dan WebP, dan gunakan penggeser kualitas untuk mencapai ukuran berkas yang diinginkan. Semuanya diproses di perangkat Anda sendiri dengan Canvas API — berkas tidak pernah meninggalkan peramban Anda.",
+  "metaDescription": "Pengubah ukuran gambar gratis yang berjalan di peramban Anda. Ubah ukuran dalam piksel, konversi antara PNG, JPEG, dan WebP, dan kompres dengan penggeser kualitas — tanpa unggahan, tanpa login.",
+  "keywords": [
+    "pengubah ukuran gambar",
+    "ubah ukuran gambar online",
+    "konversi png ke jpg",
+    "kompres gambar",
+    "konverter webp"
+  ],
+  "empty": "Pilih sebuah gambar untuk memulai. Gambar diproses di perangkat Anda dan tidak pernah diunggah.",
+  "input": {
+    "file": "Berkas gambar",
+    "width": "Lebar (px)",
+    "height": "Tinggi (px)",
+    "lockRatio": "Kunci rasio aspek",
+    "format": "Format keluaran",
+    "quality": "Kualitas"
+  },
+  "format": {
+    "png": "PNG (nirsusut, mendukung transparansi)",
+    "jpeg": "JPEG (paling kecil untuk foto, tanpa transparansi)",
+    "webp": "WebP (modern, kecil, mendukung transparansi)"
+  },
+  "error": {
+    "decode": "Berkas itu tidak dapat dibaca sebagai gambar. Coba PNG, JPEG, WebP, atau GIF.",
+    "canvas": "Peramban Anda tidak dapat membuat gambar keluaran. Coba ukuran yang lebih kecil atau format lain."
+  },
+  "result": {
+    "preview": "Pratinjau hasil",
+    "original": "Asli",
+    "download": "Unduh gambar"
+  },
+  "article": {
+    "sections": [
+      {
+        "heading": "Apa yang sebenarnya berubah saat mengubah ukuran gambar",
+        "paragraphs": [
+          "Mengubah ukuran akan mengubah dimensi piksel sebuah gambar — berapa banyak titik warna yang menyusunnya. Foto 4000 x 3000 dari kamera ponsel berisi dua belas juta piksel; foto yang sama pada 1200 x 900 hanya berisi sedikit di atas satu juta. Isi yang terlihat sama saja, tetapi versi yang lebih kecil membawa kira-kira sepersepuluh data, dan itulah sebabnya mengubah ukuran sebelum mengunggah adalah cara paling efektif untuk mempercepat pemuatan halaman atau membuat lampiran surel muat di bawah batas ukuran.",
+          "Memperkecil bersifat lossy dalam arti piksel yang dibuang tidak dapat dikembalikan: memperbesar gambar 1200 px kembali ke 4000 px akan menghasilkan gambar yang lembut dan buram karena peramban harus mengarang detail yang hilang. Selalu ubah ukuran dari berkas asli terbesar yang Anda miliki, bukan dari salinan yang sudah Anda perkecil, dan simpan berkas aslinya jika suatu saat Anda membutuhkan versi yang lebih besar.",
+          "Alat ini menggunakan penghalusan berkualitas tinggi saat menggambar citra yang diskalakan, yang merata-ratakan piksel bertetangga alih-alih sekadar membuangnya. Itulah yang menjaga teks dan tepi halus tetap terbaca pada ukuran kecil, bukan berubah menjadi tangga bergerigi."
+        ]
+      },
+      {
+        "heading": "Memilih antara PNG, JPEG, dan WebP",
+        "paragraphs": [
+          "PNG bersifat nirsusut: setiap piksel disimpan persis, dan transparansi didukung. Itu menjadikannya pilihan yang tepat untuk logo, ikon, diagram, dan tangkapan layar yang memuat teks, di mana artefak kompresi di sekitar huruf langsung terlihat. Biayanya adalah ukuran berkas — sebuah foto yang disimpan sebagai PNG sering kali lima sampai sepuluh kali lebih besar daripada foto yang sama sebagai JPEG.",
+          "JPEG bersifat lossy dan disetel untuk fotografi, di mana gradasi warna yang halus menyembunyikan artefak kompresi dengan baik. Format ini sama sekali tidak dapat menyimpan transparansi, sehingga area transparan harus diisi dengan warna solid; alat ini mengisinya dengan putih, itulah sebabnya PNG transparan yang dikonversi ke JPEG keluar dengan latar putih, bukan hitam.",
+          "WebP adalah jalan tengah modern: ia mendukung mode lossy maupun nirsusut serta transparansi, dan biasanya menghasilkan berkas 25-35% lebih kecil daripada JPEG setara. Semua peramban saat ini mendukungnya, jadi kecuali Anda perlu menyerahkan berkas ke aplikasi lama, WebP biasanya merupakan pilihan bawaan terbaik untuk penggunaan web."
+        ]
+      },
+      {
+        "heading": "Mengapa pemrosesan di sisi peramban itu penting",
+        "paragraphs": [
+          "Sebagian besar alat gambar gratis mengunggah berkas Anda ke server, memprosesnya di sana, dan mengembalikan tautan unduhan. Artinya, salinan gambar Anda berada di mesin orang lain, tunduk pada kebijakan penyimpanan dan keamanan mereka. Untuk foto liburan hal itu mungkin tidak penting; untuk tangkapan layar dasbor, pindaian dokumen identitas, atau karya seni yang belum dipublikasikan, itu adalah pengungkapan yang nyata.",
+          "Alat ini tidak pernah mengirim berkas ke mana pun. Gambar didekode, digambar ke kanvas pada ukuran baru, dan dikodekan ulang sepenuhnya oleh peramban Anda sendiri, yang juga menjadi alasan alat ini bekerja tanpa akun, tanpa kuota unggah, tanpa antrean, dan tanpa tanda air. Anda dapat memastikannya sendiri dengan membuka tab jaringan peramban saat menggunakan halaman ini — tidak ada permintaan yang membawa gambar tersebut.",
+          "Konsekuensi praktisnya adalah gambar yang sangat besar dibatasi oleh memori perangkat Anda, bukan oleh peladen. Alat ini membatasi keluaran pada 8000 piksel per sisi, yang jauh di atas kebutuhan cetak untuk sebagian besar dokumen dan masih dalam jangkauan laptop atau ponsel biasa."
+        ]
+      }
+    ],
+    "howTo": [
+      {
+        "name": "Pilih gambar Anda",
+        "text": "Pilih berkas PNG, JPEG, WebP, atau GIF dari perangkat Anda. Berkas didekode secara lokal dan tidak pernah diunggah."
+      },
+      {
+        "name": "Tentukan ukuran target",
+        "text": "Masukkan lebar atau tinggi yang Anda butuhkan dalam piksel. Biarkan rasio aspek terkunci dan dimensi lainnya akan dihitung untuk Anda."
+      },
+      {
+        "name": "Pilih format dan kualitas",
+        "text": "Pilih PNG, JPEG, atau WebP. Untuk dua format lossy, gunakan penggeser kualitas untuk menyeimbangkan ukuran berkas dengan detail."
+      },
+      {
+        "name": "Unduh hasilnya",
+        "text": "Periksa pratinjau dan ukuran berkas yang dihasilkan, lalu unduh gambar ke perangkat Anda."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Apakah gambar saya diunggah ke server?",
+      "a": "Tidak. Berkas didekode, diubah ukurannya, dan dikodekan ulang sepenuhnya di dalam peramban Anda menggunakan Canvas API. Tidak pernah ada permintaan yang membawa gambar tersebut, dan Anda dapat memverifikasinya di tab jaringan peramban."
+    },
+    {
+      "q": "Berapa ukuran gambar terbesar yang dapat saya ubah?",
+      "a": "Keluaran dibatasi pada 8000 piksel di kedua sisi. Batas praktis untuk masukan adalah memori yang tersedia di perangkat Anda, bukan angka tetap, sehingga berkas ratusan megapiksel bisa gagal di ponsel tetapi berhasil di komputer meja."
+    },
+    {
+      "q": "Mengapa PNG transparan saya keluar dengan latar belakang putih?",
+      "a": "JPEG tidak dapat menyimpan transparansi. Ketika Anda mengonversi ke JPEG, area transparan harus diisi dengan warna solid, dan alat ini menggunakan putih. Pilih PNG atau WebP jika Anda perlu mempertahankan transparansi."
+    },
+    {
+      "q": "Pengaturan kualitas apa yang sebaiknya saya pakai untuk JPEG?",
+      "a": "Sekitar 80 adalah titik ideal yang biasa: umumnya memangkas ukuran berkas menjadi separuh dibandingkan kualitas maksimum sambil tetap tidak terbedakan secara visual. Naikkan untuk gambar dengan teks atau tepi tajam, turunkan jika Anda harus memenuhi batas ukuran yang ketat."
+    },
+    {
+      "q": "Bisakah saya membuat gambar lebih besar daripada aslinya?",
+      "a": "Bisa, tetapi hasilnya akan tampak lembut. Pembesaran tidak dapat memulihkan detail yang tidak ada di sumbernya, sehingga peramban melakukan interpolasi di antara piksel yang ada. Mulailah dari berkas asli terbesar yang Anda miliki bila memungkinkan."
+    },
+    {
+      "q": "Apakah mengubah ukuran menghapus data EXIF seperti lokasi GPS?",
+      "a": "Ya. Gambar digambar ulang ke kanvas kosong dan dikodekan ulang, sehingga metadata kamera termasuk koordinat GPS, model perangkat, dan cap waktu tidak ikut terbawa ke berkas keluaran."
+    },
+    {
+      "q": "Apakah ada tanda air atau batas jumlah gambar yang dapat saya proses?",
+      "a": "Tidak keduanya. Tidak ada tanda air, tanpa akun, dan tanpa kuota harian, karena semua pekerjaan terjadi di perangkat Anda sendiri, bukan di server yang harus dibiayai seseorang."
+    },
+    {
+      "q": "Format mana yang sebaiknya saya gunakan untuk situs web?",
+      "a": "WebP untuk foto dan sebagian besar ilustrasi, karena biasanya 25-35% lebih kecil daripada JPEG pada kualitas visual yang sama dan semua peramban saat ini mendukungnya. Gunakan PNG bila Anda membutuhkan keluaran nirsusut atau transparansi yang tajam, misalnya untuk logo dan ikon."
+    }
+  ]
+}

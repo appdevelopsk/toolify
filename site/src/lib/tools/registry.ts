@@ -222,12 +222,14 @@ import ratioSimplifier from "@/tools/ratio-simplifier";
 import dogAgeCalculator from "@/tools/dog-age-calculator";
 import catAgeCalculator from "@/tools/cat-age-calculator";
 import sipCalculator from "@/tools/sip-calculator";
+import imageResizer from "@/tools/image-resizer";
 
 /**
  * 全ツールの中央レジストリ。新規ツール追加時はここに登録するだけで
  * ルーティング・サイトマップ・i18n loader・関連リンク全てに反映される。
  */
 export const TOOLS: ToolMeta[] = [
+  imageResizer,
   bmi,
   length,
   age,

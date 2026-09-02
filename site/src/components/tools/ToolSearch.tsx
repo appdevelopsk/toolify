@@ -8,7 +8,7 @@ import type { FavItem } from "@/components/tools/FavoritesSection";
 /**
  * /tools のサイト内検索。
  *
- * 背景: 222本のツールがカテゴリ別にベタ並びしているだけで、絞り込む手段が
+ * 背景: 200本超のツールがカテゴリ別にベタ並びしているだけで、絞り込む手段が
  * 一切なかった(2026-08-22 時点)。目的のツールに辿り着けないことが回遊ゼロの
  * 構造要因のひとつ。外部検索エンジンに出す(fxea365 の Google 外部検索と同じ轍)
  * のではなく、サイト内で完結させる。
@@ -38,7 +38,7 @@ export function ToolSearch({ items }: { items: FavItem[] }) {
   return (
     <div className="mt-6">
       <label htmlFor={inputId} className="sr-only">
-        {t("search")}
+        {t("search", { n: items.length })}
       </label>
       <div className="relative">
         <span
@@ -52,7 +52,7 @@ export function ToolSearch({ items }: { items: FavItem[] }) {
           type="search"
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder={t("search")}
+          placeholder={t("search", { n: items.length })}
           autoComplete="off"
           className="w-full rounded-lg border border-slate-300 bg-white py-2.5 pl-10 pr-3 text-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-900"
         />

@@ -36,4 +36,9 @@ export const CATEGORY_CONFIG: Record<ToolCategory, { emoji: string; label: strin
     label: "Finance",
     iconBg: "bg-green-100 dark:bg-green-950/50",
   },
+  image: {
+    emoji: "🖼️",
+    label: "Image & Files",
+    iconBg: "bg-cyan-100 dark:bg-cyan-950/50",
+  },
 };

@@ -1,4 +1,4 @@
-export type ToolCategory = "health" | "math" | "converter" | "datetime" | "text" | "color" | "finance";
+export type ToolCategory = "health" | "math" | "converter" | "datetime" | "text" | "color" | "finance" | "image";
 
 export interface ToolMeta {
   slug: string;
