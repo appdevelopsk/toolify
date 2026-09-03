@@ -3,40 +3,11 @@
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
-// Static exchange rates vs USD (approximate, 2025-06)
-const RATES: Record<string, number> = {
-  USD: 1.0,
-  EUR: 0.921,
-  GBP: 0.786,
-  JPY: 144.5,
-  CNY: 7.25,
-  KRW: 1374,
-  INR: 83.9,
-  AUD: 1.548,
-  CAD: 1.378,
-  CHF: 0.896,
-  SGD: 1.346,
-  HKD: 7.784,
-  BRL: 5.72,
-  MXN: 17.15,
-  THB: 35.8,
-  ZAR: 18.7,
-  SEK: 10.38,
-  NOK: 10.82,
-  DKK: 6.88,
-  NZD: 1.696,
-  TRY: 38.5,
-  IDR: 16350,
-  MYR: 4.73,
-  PHP: 58.2,
-  VND: 25950,
-  AED: 3.673,
-  SAR: 3.75,
-  QAR: 3.64,
-  EGP: 48.5,
-  PKR: 278,
-  BDT: 110,
-};
+import ratesData from "@/data/rates.json";
+
+// USD 基準のレート。scripts/fetch-rates.ts が prebuild で更新する（手編集しない）
+const RATES: Record<string, number> = ratesData.rates;
+const RATES_UPDATED_AT = ratesData.updatedAt;
 
 const CURRENCY_NAMES: Record<string, string> = {
   USD: "US Dollar",
@@ -220,7 +191,7 @@ export default function CurrencyConverter() {
               </div>
             </dl>
             <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
-              {t("note.disclaimer")}
+              {t("note.disclaimer", { date: RATES_UPDATED_AT })}
             </p>
           </div>
         ) : (
