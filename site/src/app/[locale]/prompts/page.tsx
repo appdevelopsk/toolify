@@ -23,8 +23,8 @@ export async function generateMetadata({
   const t = await getTranslations({ locale });
   return buildMetadata({
     locale: locale as Locale,
-    title: t("nav.prompts"),
-    description: t("site.description"),
+    title: t("prompt.pageTitle"),
+    description: t("prompt.pageMeta"),
     path: "/prompts",
   });
 }
@@ -64,8 +64,8 @@ export default async function PromptsIndex({ params }: { params: Promise<{ local
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
-      <h1 className="text-3xl font-bold">{t("nav.prompts")}</h1>
-      <p className="mt-2 text-slate-600 dark:text-slate-400">{t("site.description")}</p>
+      <h1 className="text-3xl font-bold">{t("prompt.pageTitle")}</h1>
+      <p className="mt-2 text-slate-600 dark:text-slate-400">{t("prompt.pageIntro")}</p>
 
       {[...byCategory.entries()].map(([cat, list]) => {
         const cfg = PROMPT_CATEGORY_CONFIG[cat as PromptCategory];
