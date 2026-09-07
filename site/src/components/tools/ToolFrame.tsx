@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { SisterSiteCta } from "@/components/cross/SisterSiteCta";
 import { ToolInteractionTracker } from "./ToolInteractionTracker";
+import { TrustBox } from "./TrustBox";
 import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
 import { siteConfig } from "@/lib/config";
@@ -53,7 +54,9 @@ export function ToolFrame({ meta, title, description, related, children, article
             押し出されていた(個別ツール着地の engaged≒0% の構造要因)。
             まず道具を見せ、広告は結果の下に置く(2026-08-22)。 */}
         <section className="mt-6 rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 sm:p-6">
-          <ToolInteractionTracker slug={meta.slug}>{children}</ToolInteractionTracker>
+          <ToolInteractionTracker slug={meta.slug} locale={locale} category={meta.category}>
+            {children}
+          </ToolInteractionTracker>
         </section>
 
         <AdBelowResult />
@@ -130,9 +133,7 @@ export function ToolFrame({ meta, title, description, related, children, article
         {meta.category === "finance" && <SisterSiteCta />}
 
         {(meta.category === "finance" || meta.category === "health") && (
-          <p className="mt-8 rounded-md border-l-2 border-slate-300 bg-slate-50 px-3 py-2 text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
-            {t(meta.category === "finance" ? "tool.financeDisclaimer" : "tool.medicalDisclaimer")}
-          </p>
+          <TrustBox category={meta.category} sources={meta.sources} updatedAt={meta.updatedAt} />
         )}
 
       </div>

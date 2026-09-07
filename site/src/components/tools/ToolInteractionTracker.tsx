@@ -21,7 +21,19 @@ import { trackCalculate, trackCopyResult, trackPresetClick } from "@/lib/analyti
  * 送出は1マウントにつき各1回まで。ツールは1キーストロークごとに再計算する
  * ため、間引かないと1着地で数十イベントになり engagement 指標が壊れる。
  */
-export function ToolInteractionTracker({ slug, children }: { slug: string; children: ReactNode }) {
+export function ToolInteractionTracker({
+  slug,
+  locale,
+  category,
+  children,
+}: {
+  slug: string;
+  /** ページのロケール。GA4 custom dimension `locale` に載せる。 */
+  locale?: string;
+  /** ToolMeta.category。GA4 custom dimension `category` に載せる。 */
+  category?: string;
+  children: ReactNode;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const sent = useRef({ calculate: false, copy: false, preset: false });
 
@@ -32,7 +44,7 @@ export function ToolInteractionTracker({ slug, children }: { slug: string; child
     function onInput() {
       if (sent.current.calculate) return;
       sent.current.calculate = true;
-      trackCalculate({ tool: slug });
+      trackCalculate({ tool: slug, locale, category });
     }
 
     function onClick(e: Event) {
@@ -46,7 +58,7 @@ export function ToolInteractionTracker({ slug, children }: { slug: string; child
       if (/copy|コピー|copiar|kopieren|copier|копи|复制|複製|복사/.test(label)) {
         if (sent.current.copy) return;
         sent.current.copy = true;
-        trackCopyResult({ tool: slug });
+        trackCopyResult({ tool: slug, locale, category });
         return;
       }
 
@@ -56,7 +68,7 @@ export function ToolInteractionTracker({ slug, children }: { slug: string; child
       if (/preset|sample|example|プリセット|サンプル|例|ejemplo|beispiel|exemple|пример|示例|範例|예시/.test(label)) {
         if (sent.current.preset) return;
         sent.current.preset = true;
-        trackPresetClick({ tool: slug });
+        trackPresetClick({ tool: slug, locale, category });
       }
     }
 
@@ -68,7 +80,7 @@ export function ToolInteractionTracker({ slug, children }: { slug: string; child
       el.removeEventListener("change", onInput);
       el.removeEventListener("click", onClick);
     };
-  }, [slug]);
+  }, [slug, locale, category]);
 
   return <div ref={ref}>{children}</div>;
 }
