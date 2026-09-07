@@ -24,6 +24,22 @@ npm run dev
 2. In Claude Code, follow `pipeline/prompts/01_implement.md`, `02_seo.md`, `03_translate.md` in order
 3. `cd site && npm run validate && npm run build`
 
+## Analytics: GA4 `calculate` ranking
+
+Tool usage events (`calculate`, `copy_result`, `preset_click`) carry the params
+`tool_slug`, `locale`, `category` (plus legacy `tool`). To report on them:
+
+1. GA4 Admin > Data display > Custom definitions: register **event-scoped custom
+   dimensions** `tool_slug`, `locale`, `category` (event parameter names identical).
+   Data is only collected from the registration date onwards.
+2. Grant the service account *Viewer* on the GA4 property, then:
+
+```bash
+cd site
+GA4_PROPERTY_ID=123456789 GOOGLE_APPLICATION_CREDENTIALS=/path/sa.json \
+  npm run report:calculate -- --days 28 --limit 50   # --by category | --json
+```
+
 ## Documentation
 
 - [ARCHITECTURE.md](./docs/ARCHITECTURE.md)
