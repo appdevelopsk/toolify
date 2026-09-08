@@ -30,6 +30,17 @@ export type ToolEventParams = {
   label?: string;
 };
 
+/**
+ * calculate 専用の追加パラメータ(2026-09-08)。
+ * ToolInteractionTracker が DOM から算出する。個々のツールは触らない。
+ */
+export type CalculateParams = ToolEventParams & {
+  /** 値の入っている input/textarea/select の数(checkbox/radio は checked のみ)。 */
+  input_count?: number;
+  /** 結果領域(aria-live / output / role=status / *result*)にテキストがあるか。 */
+  has_result?: boolean;
+};
+
 function emit(name: string, params: Record<string, unknown>): void {
   if (!siteConfig.analytics.gaId) return;
   if (typeof window === "undefined" || typeof window.gtag !== "function") return;
@@ -42,14 +53,36 @@ function toParams(p: ToolEventParams): Record<string, unknown> {
     tool: p.tool,
     tool_slug: p.tool,
     ...(p.locale ? { locale: p.locale } : {}),
-    ...(p.category ? { category: p.category } : {}),
+    ...(p.category ? { category: p.category, tool_category: p.category } : {}),
     ...(p.label ? { label: p.label } : {}),
   };
 }
 
 /** ツールが有効な入力で結果を算出したとき。ツール1着地につき最大1回に間引くこと。 */
-export function trackCalculate(p: ToolEventParams): void {
-  emit("calculate", toParams(p));
+export function trackCalculate(p: CalculateParams): void {
+  emit("calculate", {
+    ...toParams(p),
+    ...(typeof p.input_count === "number" ? { input_count: p.input_count } : {}),
+    ...(typeof p.has_result === "boolean" ? { has_result: p.has_result } : {}),
+  });
+}
+
+/** お気に入りの ON/OFF。state は "on" | "off"。 */
+export function trackFavoriteToggle(p: { tool: string; locale?: string; state: "on" | "off" }): void {
+  emit("favorite_toggle", { tool_slug: p.tool, state: p.state, ...(p.locale ? { locale: p.locale } : {}) });
+}
+
+/**
+ * ツール検索。クエリ文字列そのものは送らない(PII 回避・カーディナリティ抑制)。
+ * 呼び出し側でデバウンスすること(ToolSearchBox は 600ms)。
+ */
+export function trackToolSearch(p: { query_length: number; results_count: number; locale?: string; source?: string }): void {
+  emit("tool_search", {
+    query_length: p.query_length,
+    results_count: p.results_count,
+    ...(p.locale ? { locale: p.locale } : {}),
+    ...(p.source ? { source: p.source } : {}),
+  });
 }
 
 /** 結果(またはコード/URL)をクリップボードへコピーしたとき。 */

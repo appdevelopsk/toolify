@@ -4,6 +4,7 @@ import { listTools } from "@/lib/tools/registry";
 import { Link } from "@/lib/i18n/navigation";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { FavoritesSection } from "@/components/tools/FavoritesSection";
+import { RecentSection } from "@/components/tools/RecentSection";
 import { ToolSearch } from "@/components/tools/ToolSearch";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
@@ -39,8 +40,10 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
   }
 
   // 検索とお気に入りの両方が同じ「翻訳済みカード情報」を必要とするため一度だけ作る。
+  // クライアントへ渡すので ToolMeta 全体ではなく slug/category だけに絞る。
   const items = tools.map((m) => ({
-    meta: m,
+    slug: m.slug,
+    category: m.category,
     title: t(`tools.${m.slug}.title`),
     description: t(`tools.${m.slug}.shortDescription`),
   }));
@@ -69,6 +72,8 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
       <ToolSearch items={items} />
 
       <FavoritesSection items={items} />
+
+      <RecentSection items={items} />
 
       {Array.from(byCategory.entries()).map(([cat, list]) => {
         const cfg = CATEGORY_CONFIG[cat as ToolCategory];

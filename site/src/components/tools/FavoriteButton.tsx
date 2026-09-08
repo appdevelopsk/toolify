@@ -1,11 +1,12 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useFavorites } from "@/lib/favorites";
 
 export function FavoriteButton({ slug }: { slug: string; title?: string }) {
   const t = useTranslations("tool");
-  const { isFavorite, toggle } = useFavorites();
+  const locale = useLocale();
+  const { isFavorite, toggle } = useFavorites(locale);
   const active = isFavorite(slug);
   const label = active ? t("removeFavorite") : t("addFavorite");
 

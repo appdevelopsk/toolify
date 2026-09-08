@@ -4,6 +4,8 @@ import { Link } from "@/lib/i18n/navigation";
 import { listTools } from "@/lib/tools/registry";
 import { listPrompts } from "@/lib/prompts/registry";
 import { ToolCard } from "@/components/tools/ToolCard";
+import { FavoritesSection } from "@/components/tools/FavoritesSection";
+import { RecentSection } from "@/components/tools/RecentSection";
 import { PromptCard } from "@/components/prompts/PromptCard";
 import { AdBanner, AdInFeed } from "@/components/ads/AdBanner";
 import { RelatedServices } from "@/components/affiliates/RelatedServices";
@@ -218,6 +220,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           ))}
         </div>
       </section>
+
+      {/* ── Favorites / Recently used (localStorage; 初回訪問では何も出ない) ── */}
+      <FavoritesSection className="mt-12" />
+      <RecentSection className="mt-12" />
 
       {/* ── Popular tools ─────────────────────────────────────────────── */}
       <section className="mt-12">

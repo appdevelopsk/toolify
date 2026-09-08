@@ -44,7 +44,17 @@ export function ToolInteractionTracker({
     function onInput() {
       if (sent.current.calculate) return;
       sent.current.calculate = true;
-      trackCalculate({ tool: slug, locale, category });
+      const root = el as HTMLElement;
+      // 結果描画はツール側の再レンダー後なので、1 フレーム待ってから DOM を見る。
+      window.setTimeout(() => {
+        trackCalculate({
+          tool: slug,
+          locale,
+          category,
+          input_count: countFilledInputs(root),
+          has_result: hasVisibleResult(root),
+        });
+      }, 50);
     }
 
     function onClick(e: Event) {
@@ -83,4 +93,35 @@ export function ToolInteractionTracker({
   }, [slug, locale, category]);
 
   return <div ref={ref}>{children}</div>;
+}
+
+/** 値が入っている入力欄の数(空文字/未チェックは数えない)。 */
+function countFilledInputs(root: HTMLElement): number {
+  let n = 0;
+  root.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>("input, textarea, select").forEach((f) => {
+    if (f instanceof HTMLInputElement) {
+      const type = f.type;
+      if (type === "hidden" || type === "button" || type === "submit" || type === "reset") return;
+      if (type === "checkbox" || type === "radio") {
+        if (f.checked) n++;
+        return;
+      }
+    }
+    if (f.value.trim() !== "") n++;
+  });
+  return n;
+}
+
+/**
+ * 結果らしきものが描画されているか。
+ * 共通の ResultCard が無いので、aria-live / output / role=status / data-result /
+ * class に "result" を含む要素のいずれかに空でないテキストがあれば true とする
+ * (223 本中 154 本が aria-live、186 本が result クラスを持つ)。
+ */
+function hasVisibleResult(root: HTMLElement): boolean {
+  const nodes = root.querySelectorAll<HTMLElement>('[aria-live], output, [role="status"], [data-result], [class*="result"]');
+  for (const node of nodes) {
+    if ((node.textContent ?? "").trim() !== "") return true;
+  }
+  return false;
 }
