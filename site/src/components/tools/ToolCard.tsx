@@ -2,7 +2,10 @@ import { Link } from "@/lib/i18n/navigation";
 import type { ToolMeta } from "@/lib/tools/types";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 
-export function ToolCard({ meta, title, description }: { meta: ToolMeta; title: string; description: string }) {
+/** カード描画に要るのは slug と category だけ。クライアントへ渡す props を小さく保つため Pick にする。 */
+export type ToolCardMeta = Pick<ToolMeta, "slug" | "category">;
+
+export function ToolCard({ meta, title, description }: { meta: ToolCardMeta; title: string; description: string }) {
   const cfg = CATEGORY_CONFIG[meta.category];
   return (
     <Link

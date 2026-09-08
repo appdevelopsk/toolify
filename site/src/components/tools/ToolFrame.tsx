@@ -9,6 +9,7 @@ import { ToolInteractionTracker } from "./ToolInteractionTracker";
 import { TrustBox } from "./TrustBox";
 import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
+import { RecentTracker } from "@/components/tools/RecentTracker";
 import { siteConfig } from "@/lib/config";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import type { ToolMeta } from "@/lib/tools/types";
@@ -42,6 +43,7 @@ export function ToolFrame({ meta, title, description, related, children, article
             { name: title },
           ]}
         />
+        <RecentTracker slug={meta.slug} />
         <div className="mt-3 flex items-start justify-between gap-3">
           <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
           <FavoriteButton slug={meta.slug} title={title} />
