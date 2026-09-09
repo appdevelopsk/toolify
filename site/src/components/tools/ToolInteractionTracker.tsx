@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 import { trackCalculate, trackCopyResult, trackPresetClick } from "@/lib/analytics/events";
+import { useAutoShareableState } from "@/lib/hooks/useAutoShareableState";
 
 /**
  * ツール本体を包み、GA4 の calculate / copy_result / preset_click を一括計装する。
@@ -25,6 +26,7 @@ export function ToolInteractionTracker({
   slug,
   locale,
   category,
+  shareable = true,
   children,
 }: {
   slug: string;
@@ -32,6 +34,11 @@ export function ToolInteractionTracker({
   locale?: string;
   /** ToolMeta.category。GA4 custom dimension `category` に載せる。 */
   category?: string;
+  /**
+   * 入力値を ?s= に載せる汎用共有リンクを有効にするか。
+   * ツール自身が useShareableState を持つ場合は false（二重書き込み回避）。
+   */
+  shareable?: boolean;
   children: ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -91,6 +98,8 @@ export function ToolInteractionTracker({
       el.removeEventListener("click", onClick);
     };
   }, [slug, locale, category]);
+
+  useAutoShareableState(ref, slug, shareable);
 
   return <div ref={ref}>{children}</div>;
 }

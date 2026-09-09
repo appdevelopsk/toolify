@@ -12,6 +12,7 @@ import { FavoriteButton } from "@/components/tools/FavoriteButton";
 import { RecentTracker } from "@/components/tools/RecentTracker";
 import { siteConfig } from "@/lib/config";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
+import { MANUAL_SHARE_SLUGS } from "@/lib/tools/manual-share";
 import type { ToolMeta } from "@/lib/tools/types";
 
 interface Props {
@@ -56,7 +57,12 @@ export function ToolFrame({ meta, title, description, related, children, article
             押し出されていた(個別ツール着地の engaged≒0% の構造要因)。
             まず道具を見せ、広告は結果の下に置く(2026-08-22)。 */}
         <section className="mt-6 rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 sm:p-6">
-          <ToolInteractionTracker slug={meta.slug} locale={locale} category={meta.category}>
+          <ToolInteractionTracker
+            slug={meta.slug}
+            locale={locale}
+            category={meta.category}
+            shareable={!MANUAL_SHARE_SLUGS.has(meta.slug)}
+          >
             {children}
           </ToolInteractionTracker>
         </section>
