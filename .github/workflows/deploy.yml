@@ -127,19 +127,45 @@ jobs:
             "$DEPLOY_USER@$DEPLOY_HOST" \
             "pm2 reload toolify --update-env && pm2 save"
 
+      # `pm2 reload` は再起動を"シグナルした"時点で返る（2026-09-17の実障害では134msで復帰）。
+      # standalone の Next.js が約7,800ページのルートマニフェストを読み終えてポートを
+      # listen するまでには数秒かかり、その間 nginx は上流不在で 502 を返す。
+      # PM2の復帰を待つのではなく、アプリ自身が応答するまでをここで待つ。
+      - name: Wait for app to accept connections
+        run: |
+          set -e
+          for i in $(seq 1 60); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 \
+              https://toolify365.com/en/tools/bmi-calculator || echo 000)
+            if [ "$code" = "200" ]; then
+              echo "✓ アプリ復帰 (${i}回目, HTTP $code)"
+              exit 0
+            fi
+            echo "  起動待ち ${i}/60 (HTTP $code)"
+            sleep 2
+          done
+          echo "✗ 120秒待ってもアプリが200を返さない → 起動失敗の可能性"
+          exit 1
+
       - name: Smoke test live URL
         run: |
           set -e
-          for i in 1 2 3 4 5; do
-            if curl -sSfL -o /dev/null -w "%{http_code}" --max-time 15 https://toolify365.com/en/tools/bmi-calculator | grep -q 200 && curl -sSf --max-time 10 https://toolify365.com/feed-ja.xml | grep -q "<rss"; then
-              echo "✓ Live URL returning 200"
-              exit 0
-            fi
-            echo "Attempt $i failed, retrying in 5s..."
-            sleep 5
-          done
-          echo "✗ Live URL not returning 200 after 5 attempts"
-          exit 1
+          fail=0
+          code=$(curl -sL -o /dev/null -w "%{http_code}" --max-time 15 \
+            https://toolify365.com/en/tools/bmi-calculator || echo 000)
+          if [ "$code" = "200" ]; then
+            echo "✓ ツールページ 200"
+          else
+            echo "✗ ツールページが HTTP $code"
+            fail=1
+          fi
+          if curl -sSf --max-time 10 https://toolify365.com/feed-ja.xml | grep -q "<rss"; then
+            echo "✓ feed-ja.xml が RSS を返す"
+          else
+            echo "✗ feed-ja.xml が RSS を返さない"
+            fail=1
+          fi
+          exit "$fail"
 
       # Pinterest RSS自動投稿の回帰ガード（2026-07-21の実障害）:
       # feedのenclosure画像が全item同一になると、Pinterestの画像ハッシュ重複排除で
