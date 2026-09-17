@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useRef } from "react";
-import { trackCalculate, trackCopyResult, trackPresetClick } from "./events";
+import { trackCalculate, trackCopyResult, trackPresetClick, trackShare } from "./events";
 
 /**
  * ツールコンポーネントから GA4 イベントを送るためのフック。
@@ -33,5 +33,12 @@ export function useToolEvents(slug: string) {
     [slug],
   );
 
-  return { calculate, copyResult, presetClick };
+  // share は calculate と違い間引かない。共有先(X / LINE / native ...)ごとの
+  // 内訳を取るのが目的で、同一着地で複数先に共有するのは正当な行動のため。
+  const share = useCallback(
+    (label?: string) => trackShare({ tool: slug, ...(label ? { label } : {}) }),
+    [slug],
+  );
+
+  return { calculate, copyResult, presetClick, share };
 }

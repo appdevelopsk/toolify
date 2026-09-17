@@ -85,7 +85,7 @@ const btn =
 
 export function ShareBar({ url, embedUrl, title, slug }: Props) {
   const t = useTranslations("tool");
-  const { copyResult } = useToolEvents(slug);
+  const { copyResult, share } = useToolEvents(slug);
   const [linkCopied, setLinkCopied] = useState(false);
   const [resultCopied, setResultCopied] = useState(false);
   const [hasResultLink, setHasResultLink] = useState(false);
@@ -140,11 +140,15 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
         await navigator.share({ title, url });
+        // 成功時だけ送る。キャンセルは reject されるのでここには来ない。
+        share("native");
         return;
       } catch {
         /* user cancelled — fall through */
       }
     }
+    // フォールバックは copy() 側が copy_result("link") を送るため share は送らない
+    // (同一操作を2イベントで数えると共有率が二重計上になる)。
     copy(url, setLinkCopied, "link");
   }
 
@@ -179,6 +183,8 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
           className={btn}
           aria-label={`${t("share")}: ${name}`}
           title={name}
+          // target="_blank" なので現ページは破棄されず、遷移前の同期送出で取りこぼさない。
+          onClick={() => share(name)}
         >
           <Icon />
         </a>

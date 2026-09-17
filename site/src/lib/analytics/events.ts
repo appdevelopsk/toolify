@@ -94,3 +94,15 @@ export function trackCopyResult(p: ToolEventParams): void {
 export function trackPresetClick(p: ToolEventParams): void {
   emit("preset_click", toParams(p));
 }
+
+/**
+ * 共有導線を踏んだとき(ネイティブ共有・SNSリンク)。
+ *
+ * copy_result はクリップボードのみを見ており、ShareBar の主要導線
+ * (navigator.share / X / Facebook / LINE / WhatsApp / Reddit)は
+ * 一切計測されていなかった。label に共有先を入れて内訳を取る。
+ * 外部遷移は計測を待たずに起きるので、送出は必ず遷移前に行う。
+ */
+export function trackShare(p: ToolEventParams): void {
+  emit("share", toParams(p));
+}
