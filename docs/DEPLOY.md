@@ -23,6 +23,70 @@ GitHub (main) ──push──▶ Actions: deploy.yml
 - VPS では PM2 がプロセス `toolify` を常駐させ、ポート **8500** で待ち受け
 - nginx が `toolify365.com` (443) → `127.0.0.1:8500` にプロキシ。SSL は Let's Encrypt (certbot)
 
+## 0. 起動スクリプトと踏んだ罠（2026-09-17〜18 の本番障害より）
+
+PM2 が実行しているのは **`/opt/appcfg/toolify-start.sh`**。
+リポジトリ上の正本は **`ops/toolify-start.sh`** で、VPS へは**手動でコピー**する
+（`deploy.yml` は配置しない。自動配置は下記 (1) と干渉するため意図的に手動）。
+
+```bash
+scp ops/toolify-start.sh <vps>:/opt/appcfg/toolify-start.sh
+ssh <vps> 'chmod +x /opt/appcfg/toolify-start.sh && pm2 restart toolify'
+```
+
+以下は実際に本番を落とした罠。**どれも「デプロイ成功」表示のまま起きる**。
+
+### (1) 起動スクリプトを `/opt/apps/toolify/` に置いてはいけない → 502
+
+手順4の `rsync -az --delete` は `.next/standalone/` をそのディレクトリへ同期するため、
+**standalone に含まれないファイルは毎回のデプロイで消される**。
+2026-09-17 にここへ置いた `start.sh` が消え、PM2 が起動不能になり 502。
+そのため `/opt/appcfg/`（同期先の外）へ退避した。
+
+### (2) `HOSTNAME=127.0.0.1` は全ページ 500
+
+`HOSTNAME` は bind アドレスであると同時に **Next が絶対 URL を組む際の host** でもある。
+`127.0.0.1` にすると locale redirect が `https://localhost:8500/en` を返し、
+Next 自身がそこへ自己 proxy して TLS 失敗（`EPROTO`）→ 全ページ 500。
+**公開ドメイン名（`toolify365.com`）を入れる**と redirect が相対 `/en` になり 200。
+
+切り分けは **nginx と同じヘッダを付けて**叩く。素の curl は 200 を返すので当てにならない:
+
+```bash
+curl -H 'Host: toolify365.com' -H 'X-Forwarded-Proto: https' http://127.0.0.1:8500/en
+```
+
+レスポンスに `x-middleware-rewrite: https://localhost:8500/...` が出ていればこの症状。
+
+### (3) `PORT=8500` は必須（既定 3000 は別アプリが占有）
+
+standalone の既定ポート 3000 は同居する別アプリ（`30sec`）が使用中。
+未指定だと `EADDRINUSE` で起動できない。
+
+### (4) `NODE_OPTIONS` の heap 上限が小さいと OOM abort
+
+`--max-old-space-size=300` では V8 が `Ineffective mark-compacts` で落ちた（9/18 00:08・00:28）。
+現在は **400**。原則は **定常 RSS（約110〜220MB） < heap cap < `max_memory_restart`（500MB）**。
+
+### (5) 設定の実効値は保存ファイルでなくプロセスで確認する
+
+`dump.pm2` には古い `NODE_OPTIONS=300` が残っているが、
+**`pm2 save` でも `pm2 restart --update-env` でも書き換わらない**
+（PM2 は初回登録時の env を保持し、スクリプト内の `export` は記録されない）。
+ただし起動時にスクリプトの `export` が上書きするため**実効値は正しく、実害はない**
+（`pm2 delete` → `pm2 resurrect` で実測確認済み）。
+
+```bash
+# 実効値の確認（これが唯一の真実）
+ssh <vps> "tr '\0' '\n' < /proc/\$(pgrep -f 'toolify.*server.js')/environ | grep -E 'PORT|HOSTNAME|NODE_OPTIONS'"
+```
+
+### (6) デプロイ「成功」は本番の生存を意味しない
+
+上記いずれの場合も、ビルド・型・テスト・rsync・`pm2 reload` はすべて success になり、
+**落ちるのは最後のスモークテストだけ**。Actions を上から眺めると成功に見えるので、
+失敗時は必ず最終ステップと `pm2 logs toolify --err` を見ること。
+
 ## 1. デプロイ（通常運用）
 
 `main` ブランチへ push すると `deploy.yml` が自動実行される。手動実行も可:
