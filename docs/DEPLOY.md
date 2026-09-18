@@ -78,8 +78,13 @@ standalone の既定ポート 3000 は同居する別アプリ（`30sec`）が�
 
 ```bash
 # 実効値の確認（これが唯一の真実）
-ssh <vps> "tr '\0' '\n' < /proc/\$(pgrep -f 'toolify.*server.js')/environ | grep -E 'PORT|HOSTNAME|NODE_OPTIONS'"
+# pid は pm2 に聞く。pgrep -f は ssh で送った自分のコマンド文字列に先当たりし、
+# 無関係プロセスの environ を読んで誤答（heap=300 等）を返す。
+ssh <vps> "PID=\$(pm2 jlist | python3 -c 'import sys,json; print([p[\"pid\"] for p in json.load(sys.stdin) if p[\"name\"]==\"toolify\"][0])') && tr '\0' '\n' < /proc/\$PID/environ | grep -E 'PORT|HOSTNAME|NODE_OPTIONS'"
 ```
+
+`pm2 jlist` は JSON を 1 行で返すので、`pid` を綴りでなくキーで取り出せる。
+`pm2 pid toolify` でも取れるが、クラスタ時に複数行になる点に注意。
 
 ### (6) デプロイ「成功」は本番の生存を意味しない
 
