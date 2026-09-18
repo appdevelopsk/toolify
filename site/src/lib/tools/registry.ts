@@ -538,15 +538,69 @@ export function listIndexableByCategory(category: string): ToolMeta[] {
   return listByCategory(category).filter((m) => INDEXED_SLUGS.has(m.slug));
 }
 
-export function getRelated(slug: string, limit = 5): ToolMeta[] {
+/**
+ * 関連ツール。`indexableOnly` で index 対象だけに絞れる。
+ *
+ * index 対象ページの関連リンクは noindex ページへ流してはいけない。実測で
+ * 378 本中 112 本 (29.6%) が noindex 先に向いており、被リンクで得た権威が
+ * インデックスされないページへ漏れていた (2026-09-18)。
+ * 絞った上で同カテゴリの index 対象で埋め戻すと 374 本を確保でき、
+ * 関連が 3 件未満になるページは 7 → 0 に減る（=情報量は落ちない）。
+ *
+ * 既定は false。noindex ツールのページでは noindex 同士を関連に出してよい
+ * （利用者向けの導線であり、クロール上の損は無い）ため、絞るかは呼び出し側が決める。
+ */
+/**
+ * 明示 related の被リンク数（index 対象ページからの分だけ）。
+ *
+ * fill の並び順に使う。登録順のまま埋めると、カテゴリ内の先頭付近のツールばかりが
+ * 関連に出て、末尾のツールは**どこからも関連リンクを貰えない孤児**になる
+ * (実測 15 件 / 2026-09-18)。被リンクが少ないものから先に埋めることで、
+ * 手作業でリンクを捏造せずに孤児を解消する。
+ *
+ * ★ここで getRelated を呼ぶと相互再帰で無限ループになるため、**明示 related だけ**を数える。
+ */
+const INBOUND_FROM_INDEXED: Map<string, number> = (() => {
+  const counts = new Map<string, number>();
+  for (const m of TOOLS) counts.set(m.slug, 0);
+  for (const m of TOOLS) {
+    if (!INDEXED_SLUGS.has(m.slug)) continue; // 権威を流せるのは index 対象ページだけ
+    for (const s of m.related) {
+      if (s !== m.slug && counts.has(s)) counts.set(s, counts.get(s)! + 1);
+    }
+  }
+  return counts;
+})();
+
+/**
+ * 関連ツール。`indexableOnly` で index 対象だけに絞れる。
+ *
+ * index 対象ページの関連リンクは noindex ページへ流してはいけない。実測で
+ * 378 本中 112 本 (29.6%) が noindex 先に向いており、被リンクで得た権威が
+ * インデックスされないページへ漏れていた (2026-09-18)。
+ * 絞った上で同カテゴリの index 対象で埋め戻すと 374 本を確保でき、
+ * 関連が 3 件未満になるページは 7 → 0 に減る（=情報量は落ちない）。
+ *
+ * 既定は false。noindex ツールのページでは noindex 同士を関連に出してよい
+ * （利用者向けの導線であり、クロール上の損は無い）ため、絞るかは呼び出し側が決める。
+ */
+export function getRelated(slug: string, limit = 5, indexableOnly = false): ToolMeta[] {
   const tool = SLUG_INDEX.get(slug);
   if (!tool) return [];
+  const eligible = (m: ToolMeta) => !indexableOnly || INDEXED_SLUGS.has(m.slug);
   const related = tool.related
     .map((s) => SLUG_INDEX.get(s))
-    .filter((m): m is ToolMeta => Boolean(m));
+    .filter((m): m is ToolMeta => Boolean(m))
+    .filter(eligible);
   if (related.length >= limit) return related.slice(0, limit);
   const fill = TOOLS
     .filter((m) => m.slug !== slug && m.category === tool.category && !related.includes(m))
+    .filter(eligible)
+    // 被リンクの少ない順。同数なら slug 順で固定し、ビルドごとに揺れないようにする。
+    .sort((a, b) => {
+      const d = (INBOUND_FROM_INDEXED.get(a.slug) ?? 0) - (INBOUND_FROM_INDEXED.get(b.slug) ?? 0);
+      return d !== 0 ? d : a.slug.localeCompare(b.slug);
+    })
     .slice(0, limit - related.length);
   return [...related, ...fill];
 }
