@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/lib/i18n/navigation";
-import { listByCategory } from "@/lib/tools/registry";
+import { listByCategory, listIndexableByCategory } from "@/lib/tools/registry";
 import { CATEGORY_DESCRIPTIONS } from "@/lib/tools/category-descriptions";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import { ToolCard } from "@/components/tools/ToolCard";
@@ -15,7 +15,9 @@ const CATEGORIES = Object.keys(CATEGORY_CONFIG) as ToolCategory[];
 
 export function generateStaticParams() {
   // Only generate hubs for categories that actually have tools (empty hubs are HCU-bait → 404).
-  const populated = CATEGORIES.filter((c) => listByCategory(c).length > 0);
+  // 判定は総数でなく index 対象の件数。総数だと color(8件中0件) / image(1件中0件) のように
+  // 中身が全部 noindex のハブが index,follow で生成され、実質空のページになる。
+  const populated = CATEGORIES.filter((c) => listIndexableByCategory(c).length > 0);
   return LOCALES.flatMap((locale) => populated.map((cat) => ({ locale, cat })));
 }
 
@@ -33,11 +35,16 @@ export async function generateMetadata({
   const t = await getTranslations({ locale });
   const copy = getCopy(cat, locale);
   const cfg = CATEGORY_CONFIG[cat as ToolCategory];
+  // sitemap / generateStaticParams から外しただけでは足りない。dynamicParams は既定 true なので
+  // 未生成のハブもオンデマンドで 200 を返す。中身が全部 noindex のハブ (color / image) は
+  // ここで明示的に noindex にしないと index,follow のまま残る (2026-09-18 実測)。
+  const indexable = listIndexableByCategory(cat).length > 0;
   return buildMetadata({
     locale: locale as Locale,
     title: copy?.headline ?? `${cfg?.label ?? cat} — ${t("nav.tools")}`,
     description: copy?.body ?? t("site.description"),
     path: `/tools/category/${cat}`,
+    noindex: !indexable,
   });
 }
 
@@ -78,7 +85,9 @@ export default async function ToolCategoryPage({
     ],
   };
 
-  const siblings = CATEGORIES.filter((c) => c !== cat && listByCategory(c).length > 0);
+  // 隣接ハブへの内部リンク。生成されないハブ (index 対象0件) へのリンクは 404 になるため、
+  // generateStaticParams と同じ判定を使う。
+  const siblings = CATEGORIES.filter((c) => c !== cat && listIndexableByCategory(c).length > 0);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">

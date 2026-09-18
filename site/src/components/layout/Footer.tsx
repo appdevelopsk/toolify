@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/config";
 import { isPromptLocale } from "@/lib/i18n/locales";
 import { NewsletterForm } from "@/components/cross/NewsletterForm";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
-import { listByCategory } from "@/lib/tools/registry";
+import { listIndexableByCategory } from "@/lib/tools/registry";
 import type { ToolCategory } from "@/lib/tools/types";
 
 export function Footer() {
@@ -67,8 +67,10 @@ export function Footer() {
           {t("nav.categories")}
         </p>
         <nav className="flex flex-wrap gap-x-6 gap-y-2">
+          {/* 生成されないハブ (index 対象0件) へは全ページからリンクしないこと。
+              総数で判定すると color / image への 404 リンクがサイト全体に出る。 */}
           {(Object.keys(CATEGORY_CONFIG) as ToolCategory[])
-            .filter((cat) => listByCategory(cat).length > 0)
+            .filter((cat) => listIndexableByCategory(cat).length > 0)
             .map((cat) => (
               <Link key={cat} href={`/tools/category/${cat}`} className="hover:underline">
                 <span className="mr-1" aria-hidden>

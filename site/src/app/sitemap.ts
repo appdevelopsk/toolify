@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/config";
 import { LOCALES, PROMPT_LOCALES, isIndexedLocale } from "@/lib/i18n/locales";
-import { listIndexableTools, listByCategory } from "@/lib/tools/registry";
+import { listIndexableTools, listIndexableByCategory } from "@/lib/tools/registry";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import { listPrompts } from "@/lib/prompts/registry";
 import type { ToolCategory } from "@/lib/tools/types";
@@ -91,8 +91,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Tool category hubs — one per populated category, all locales (mirrors the page's
   // generateStaticParams). These concentrate internal-link authority on each category.
+  // 判定は総数でなく index 対象の件数で行う。総数だと中身が全部 noindex の
+  // カテゴリ (color / image) が実質空のハブとして sitemap に載ってしまう。
   const toolCats = (Object.keys(CATEGORY_CONFIG) as ToolCategory[]).filter(
-    (c) => listByCategory(c).length > 0,
+    (c) => listIndexableByCategory(c).length > 0,
   );
   for (const cat of toolCats) {
     for (const locale of IDX) {

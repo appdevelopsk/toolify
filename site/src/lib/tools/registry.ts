@@ -526,6 +526,18 @@ export function listByCategory(category: string): ToolMeta[] {
   return TOOLS.filter((m) => m.category === category);
 }
 
+/**
+ * カテゴリ内の index 対象ツールだけを返す。
+ *
+ * ハブを sitemap / generateStaticParams に載せるかの判定は、総数ではなく
+ * **この件数**で行う。総数で判定すると、中身が全部 noindex のカテゴリ
+ * (color=8件中0件, image=1件中0件) が `index, follow` のまま sitemap に載り、
+ * 実質空のハブを Google に送信してしまう (2026-09-18 に本番で実測)。
+ */
+export function listIndexableByCategory(category: string): ToolMeta[] {
+  return listByCategory(category).filter((m) => INDEXED_SLUGS.has(m.slug));
+}
+
 export function getRelated(slug: string, limit = 5): ToolMeta[] {
   const tool = SLUG_INDEX.get(slug);
   if (!tool) return [];
