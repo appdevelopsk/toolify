@@ -448,9 +448,15 @@ export const CATALOG: AffiliateOffer[] = [
       "zh-CN": "全球最大的天然保健品与健康食品商店。",
     },
     cta: { ja: "詳細を見る", en: "Learn more", "zh-CN": "了解更多" },
-    url: { default: "https://af.moshimo.com/af/c/click?a_id=5552959&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fwww.rakuten.co.jp%2Fiherb%2F" },
+    // 2026-09-23: 楽天iHerb店が閉店し、もしも経由の最終遷移先
+    // https://www.rakuten.co.jp/iherb/ が 404(Chrome UA・リダイレクト無しで確認)。
+    // 644ページ中105ページ(16.3%)に描画されており、収益ゼロのままユーザーを
+    // 404 へ送っていたため pending で無効化(UI淡色・クリック不可)。
+    // 復帰時は url を生きた提携リンクに差し替えて pending を外す。
+    url: { default: "#pending-iherb" },
     network: "moshimo",
     badge: "🌿",
+    pending: true,
   },
   {
     id: "asken-jp",
