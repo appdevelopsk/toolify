@@ -66,7 +66,8 @@ standalone の既定ポート 3000 は同居する別アプリ（`30sec`）が�
 ### (4) `NODE_OPTIONS` の heap 上限が小さいと OOM abort
 
 `--max-old-space-size=300` では V8 が `Ineffective mark-compacts` で落ちた（9/18 00:08・00:28）。
-現在は **400**。原則は **定常 RSS（約110〜220MB） < heap cap < `max_memory_restart`（500MB）**。
+400 でも 9/22〜25 に定常 anonRSS が 286〜307MB（比 0.68〜0.73）まで増え、Sentry の HEAP TIGHT が再発した。
+現在は **480**。原則は **定常 RSS（約260〜310MB） < heap cap < `max_memory_restart`（600MB）**。
 
 ### (5) 設定の実効値は保存ファイルでなくプロセスで確認する
 

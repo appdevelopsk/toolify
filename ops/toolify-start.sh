@@ -25,8 +25,10 @@ export HOSTNAME=toolify365.com
 # 保存されており(復旧時に pm2 set したが稼働プロセスへは反映されていなかった)、
 # どこにも固定されていないため `pm2 resurrect` の度に値が変わりうる状態だった。
 # PORT が同じ理由で 3000 に落ちた前例がある(2026-09-17)。
-# 値の原則は 定常RSS < heap cap < max_memory_restart(500MB)。
+# 値の原則は 定常RSS < heap cap < max_memory_restart(600MB)。
 # toolify は Next.js SSR で定常 RSS 約 220MB あり、300MB では比 0.73 と余裕が無く
 # 実際に V8 が `Ineffective mark-compacts` で abort した(00:08 / 00:28)。
-export NODE_OPTIONS="--max-old-space-size=400"
+# 2026-09-26: 400 でも定常 anonRSS が 286〜307MB まで増え、比 0.68〜0.73 で
+# Sentry の HEAP TIGHT が再発したため 480 へ(max_memory_restart も 500→600)。
+export NODE_OPTIONS="--max-old-space-size=480"
 exec node server.js
