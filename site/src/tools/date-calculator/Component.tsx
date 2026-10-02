@@ -133,8 +133,18 @@ export default function DateCalculator() {
       </div>
     ) : null;
 
+  // GA4 calculate の label(ToolInteractionTracker が読む)。計算モードと祝日プリセットのみ=日付・日数は送らない。
+  // add/sub = 通常の加減算(祝日は効かないので常に none)、business = 営業日で加算(business-sub は減算)、diff = 2日付の差。
+  const holidayKey = preset || "none";
+  const calcLabel =
+    mode === "between"
+      ? `diff:${holidayKey}`
+      : businessMode
+        ? `${op === "add" ? "business" : "business-sub"}:${holidayKey}`
+        : `${op === "add" ? "add" : "sub"}:none`;
+
   return (
-    <div>
+    <div data-calc-label={calcLabel}>
       <div className="mb-4 inline-flex rounded-md border border-slate-300 dark:border-slate-700">
         <button onClick={() => setMode("addSubtract")} className={`px-3 py-1.5 text-sm ${mode === "addSubtract" ? "bg-brand-600 text-white" : ""}`}>{t("mode.addSubtract")}</button>
         <button onClick={() => setMode("between")} className={`px-3 py-1.5 text-sm ${mode === "between" ? "bg-brand-600 text-white" : ""}`}>{t("mode.between")}</button>

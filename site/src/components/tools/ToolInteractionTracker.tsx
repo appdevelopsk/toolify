@@ -48,7 +48,7 @@ export function ToolInteractionTracker({
     const el = ref.current;
     if (!el) return;
 
-    // data-calc-label を持つツール(2026-10-02: pressure-converter / workdays-calculator)は
+    // data-calc-label を持つツール(2026-10-02: pressure-converter / workdays-calculator、10-03: date-calculator)は
     // 「何を計算したか」(単位ペア・祝日プリセット等)を calculate の label に載せる。
     // 最初の入力時点では単位がまだ既定値のことが多いため、入力が止まってから
     // (LABEL_SETTLE_MS) またはタブを離れる時に1回だけ送る。新しいイベント名は作らない
