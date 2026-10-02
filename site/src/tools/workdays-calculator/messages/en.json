@@ -1,9 +1,9 @@
 {
-  "title": "Workdays Calculator (skip weekends + holidays)",
+  "title": "Workdays Calculator – Business Days Between Two Dates",
   "shortDescription": "Count business days between two dates, excluding weekends and any holidays you list. Customizable: include Saturday or Sunday as workdays if needed.",
-  "description": "Pick a start and end date, optionally include Saturday or Sunday as workdays, and add holiday dates to exclude. Returns workdays, weekend days, and holidays separately.",
-  "metaDescription": "Free workdays calculator. Count business days between two dates, skip weekends and custom holidays. Useful for project deadlines, contract terms, leave planning.",
-  "keywords": ["workdays calculator", "business days calculator", "working days between dates", "weekday count", "skip weekends holidays"],
+  "description": "Enter a start and end date to see how many workdays (business days) fall between them — weekends and public holidays excluded, both dates counted. Pick a US, UK, Japan or Germany holiday preset or list your own dates. To find the date N workdays after a start date, use the Date Calculator's business-day mode.",
+  "metaDescription": "How many workdays between two dates? Count business days excluding weekends and US, UK, Japan or Germany public holidays (2026–2027) or your own list.",
+  "keywords": ["workdays calculator", "business days calculator", "workdays between two dates", "how many workdays between dates", "working days excluding weekends and holidays", "business days excluding holidays", "weekdays between dates", "workdays in 2026"],
   "empty": "Pick a start and end date to count workdays.",
   "input": {
     "start": "Start date",
@@ -40,7 +40,7 @@
         "paragraphs": [
           "Paste a list of dates in YYYY-MM-DD format (ISO 8601). Separators can be commas, spaces, or newlines. Each date you list will be excluded from the workday count if it falls on what would otherwise be a workday.",
           "For US federal holidays in 2026, paste: 2026-01-01, 2026-01-19, 2026-02-16, 2026-05-25, 2026-06-19, 2026-07-03, 2026-09-07, 2026-10-12, 2026-11-11, 2026-11-26, 2026-12-25.",
-          "For Japanese national holidays, similar lists are widely available. We don't include them automatically because (a) holidays vary by country, region, and year, and (b) some businesses observe additional company-specific days off."
+          "The holiday preset above covers the United States, Japan, the United Kingdom (England & Wales) and Germany for 2026–2027. For other countries, regional holidays or company closures, list the dates here — they are added on top of the preset."
         ]
       }
     ],
@@ -52,8 +52,10 @@
     ]
   },
   "faq": [
+    { "q": "How many workdays are between two dates?", "a": "Enter both dates: the calculator counts every Monday–Friday in the range (start and end included), then subtracts the public holidays from the preset you pick and any dates you list. Example: July 1–31, 2026 has 23 weekdays; with the US federal holiday preset (Independence Day observed on Friday, July 3) it is 22 workdays." },
+    { "q": "How do I find the date that is N workdays after a start date?", "a": "This page counts workdays between two known dates. To go the other way — for example '30 workdays from July 16, 2026' — use the Date Calculator (linked below the tool) with business-day mode on; it adds Monday–Friday days. If public holidays fall inside that span, move the result forward one workday per holiday, then confirm the count here." },
     { "q": "Are start and end dates inclusive?", "a": "Yes. If both are workdays, both are counted. If your contract counts only the days between (exclusive), subtract 2 from the result." },
-    { "q": "Why don't you include holidays automatically?", "a": "Holidays vary widely by country, region, and year. Auto-including them risks subtracting holidays that don't apply to your jurisdiction. Adding them manually keeps you in control." },
+    { "q": "Are public holidays included automatically?", "a": "Only if you pick a preset: built-in data covers public holidays in the United States, Japan, the United Kingdom (England & Wales) and Germany for 2026–2027. Holidays vary by country, region and year, so for anywhere else — or for company-specific days off — add the dates manually; they are combined with the preset." },
     { "q": "Can I use this for international contracts?", "a": "Yes — but make sure both parties agree on which holidays to count. Multinational contracts often specify 'business days as observed in the [city] of [country]' to avoid ambiguity." },
     { "q": "What if a holiday falls on a weekend?", "a": "It's not double-counted. If 2026-01-01 is a Thursday holiday, it's counted as a holiday. If 2026-12-25 falls on a Sunday, the algorithm correctly counts it as one day (weekend), not two." },
     { "q": "How does this work for a 6-day work week?", "a": "Check 'Saturday is a workday'. The calculator will count Mon-Sat as workdays and only exclude Sundays and listed holidays." },

@@ -13,6 +13,8 @@ const TO_PA: Record<string, number> = {
   mbar: 100,
   atm: 101325,
   psi: 6894.757,
+  // kgf/cm²(工学気圧 at)。日本の圧力計・タイヤ・油圧で現役(2026-10-02 追加)。
+  kgf_cm2: 98066.5,
   mmHg: 133.322,
   inHg: 3386.39,
   Torr: 133.322,
@@ -25,7 +27,7 @@ function convert(v: number, from: string, to: string): number {
   return (v * TO_PA[from]!) / TO_PA[to]!;
 }
 
-const UNIT_SYMBOL: Record<string, string> = { ft_H2O: "ft H₂O" };
+const UNIT_SYMBOL: Record<string, string> = { ft_H2O: "ft H₂O", kgf_cm2: "kgf/cm²" };
 function sym(u: string): string {
   return UNIT_SYMBOL[u] ?? u;
 }
@@ -51,6 +53,9 @@ export default function PressureConverter() {
   const locale = useLocale();
   const [value, setValue] = useState("1");
   const [from, setFrom] = useState("atm");
+  // 検索は「hPa を mmHg に」のような単位ペアで来るため、変換先を1つ選ばせて
+  // 答えを1行で先に見せる(全単位一覧はその下に残す)。
+  const [to, setTo] = useState("hPa");
 
   const allValues = useMemo(() => {
     const v = parseFloat(value);
@@ -60,16 +65,29 @@ export default function PressureConverter() {
   }, [value, from]);
 
   const fmt = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 6, minimumFractionDigits: 0 }), [locale]);
+  const primary = useMemo(() => {
+    const v = parseFloat(value);
+    if (!isFinite(v)) return null;
+    return { v, out: convert(v, from, to) };
+  }, [value, from, to]);
+
   const fmtRef = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 2 }), [locale]);
+
+  // 名称に記号が既に含まれる単位(psi / mmHg / kgf/cm² 等)は記号を重ねない。
+  function optionLabel(u: string): string {
+    const name = t(`unit.${u}`);
+    return name.includes(sym(u)) ? name : `${name} (${sym(u)})`;
+  }
 
   function applyRow(row: (typeof QUICK_REF)[number]) {
     setFrom(row.unit);
+    setTo(row.ref);
     setValue(String(row.value));
   }
 
   return (
-    <div>
-      <div className="grid gap-4 sm:grid-cols-2">
+    <div data-calc-label={`${from}>${to}`}>
+      <div className="grid gap-4 sm:grid-cols-3">
         <label className="block">
           <span className="text-sm font-medium">{t("input.value")}</span>
           <input type="number" value={value} onChange={(e) => setValue(e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 font-mono text-lg tabular-nums dark:border-slate-700 dark:bg-slate-900" />
@@ -78,17 +96,30 @@ export default function PressureConverter() {
           <span className="text-sm font-medium">{t("input.from")}</span>
           <select value={from} onChange={(e) => setFrom(e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">
             {UNITS.map((u) => (
-              <option key={u} value={u}>{t(`unit.${u}`)} ({u})</option>
+              <option key={u} value={u}>{optionLabel(u)}</option>
+            ))}
+          </select>
+        </label>
+        <label className="block">
+          <span className="text-sm font-medium">{t("input.to")}</span>
+          <select value={to} onChange={(e) => setTo(e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">
+            {UNITS.map((u) => (
+              <option key={u} value={u}>{optionLabel(u)}</option>
             ))}
           </select>
         </label>
       </div>
 
       <div aria-live="polite" className="mt-6 rounded-lg border border-slate-200 p-4 dark:border-slate-800">
+        {primary && (
+          <p data-result className="mb-3 text-xl font-semibold tabular-nums">
+            {fmt.format(primary.v)} {sym(from)} = {fmt.format(primary.out)} {sym(to)}
+          </p>
+        )}
         {allValues ? (
           <ul className="grid gap-1 sm:grid-cols-2">
             {allValues.map((u) => (
-              <li key={u.unit} className={`flex justify-between rounded px-2 py-1 ${u.unit === from ? "bg-emerald-50 font-bold dark:bg-emerald-900/20" : ""}`}>
+              <li key={u.unit} className={`flex justify-between rounded px-2 py-1 ${u.unit === from ? "bg-emerald-50 font-bold dark:bg-emerald-900/20" : u.unit === to ? "bg-sky-50 font-bold dark:bg-sky-900/20" : ""}`}>
                 <span className="text-sm">{t(`unit.${u.unit}`)}</span>
                 <span className="tabular-nums">{fmt.format(u.value)}</span>
               </li>

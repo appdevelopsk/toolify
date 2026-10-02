@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "pressure-converter",
     category: "converter",
     applicationCategory: "UtilityApplication",
-    updatedAt: "2026-07-10",
+    updatedAt: "2026-10-02",
     related: ["temperature-converter", "weight-converter", "volume-converter"],
     primaryKeyword: {
       en: "pressure converter",

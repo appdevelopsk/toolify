@@ -84,8 +84,11 @@ export default function WorkdaysCalculator() {
     [locale],
   );
 
+  // GA4 calculate の label(ToolInteractionTracker が読む)。祝日プリセットと週末設定のみ=日付は送らない。
+  const calcLabel = `${preset || "none"}${includeSat ? "+sat" : ""}${includeSun ? "+sun" : ""}`;
+
   return (
-    <div>
+    <div data-calc-label={calcLabel}>
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
           <span className="text-sm font-medium">{t("input.start")}</span>
