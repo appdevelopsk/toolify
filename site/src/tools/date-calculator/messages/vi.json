@@ -34,7 +34,8 @@
     "totalDays": "Tổng số ngày",
     "totalWeeks": "Tổng số tuần",
     "totalMonths": "Tổng số tháng",
-    "businessDays": "Ngày làm việc (Thứ 2-Thứ 6)"
+    "businessDays": "Ngày làm việc (Thứ 2-Thứ 6)",
+    "holidaysSkipped": "Ngày lễ đã bỏ qua"
   },
   "article": {
     "sections": [
@@ -42,14 +43,14 @@
         "heading": "Công cụ tính gì",
         "paragraphs": [
           "Chế độ cộng/trừ: lấy một ngày, cộng hoặc trừ số năm, tháng và ngày, và cho bạn ngày lịch kết quả. Năm và tháng sử dụng phép tính lịch (nên cộng 1 tháng vào ngày 31 tháng 1 cho ngày 28 hoặc 29 tháng 2 tùy vào năm nhuận, không phải ngày 3 tháng 3). Ngày là chính xác — cộng 30 ngày luôn tiến tới đúng 30 ngày lịch.",
-          "Chế độ khoảng cách: lấy hai ngày và cho hiệu số theo năm/tháng/ngày cùng tổng số ngày, tuần, tháng và ngày làm việc (Thứ Hai đến Thứ Sáu, không có ngày lễ). Dạng Y/M/D sử dụng cùng logic mượn ngày như máy tính tuổi của chúng tôi — hiệu số ví dụ là '2 năm, 5 tháng, 3 ngày', không phải năm thập phân."
+          "Chế độ khoảng cách: lấy hai ngày và cho hiệu số theo năm/tháng/ngày cùng tổng số ngày, tuần, tháng và ngày làm việc (Thứ Hai đến Thứ Sáu; nếu chọn mẫu ngày lễ thì ngày lễ cũng bị trừ). Dạng Y/M/D sử dụng cùng logic mượn ngày như máy tính tuổi của chúng tôi — hiệu số ví dụ là '2 năm, 5 tháng, 3 ngày', không phải năm thập phân."
         ]
       },
       {
-        "heading": "Tại sao ngày làm việc không bao gồm ngày lễ",
+        "heading": "Ngày làm việc và ngày lễ",
         "paragraphs": [
-          "Chúng tôi đếm Thứ Hai đến Thứ Sáu là ngày làm việc và loại trừ Thứ Bảy và Chủ Nhật. Ngày lễ công cộng thay đổi theo quốc gia, vùng và năm, vì vậy chúng tôi không tự động trừ chúng. Ở Việt Nam, các ngày lễ chính thức bao gồm khoảng 10-11 ngày mỗi năm (Tết, ngày Giải phóng, ngày Quốc khánh, v.v.).",
-          "Nếu ngày lễ quan trọng cho tính toán của bạn (theo dõi thời hạn, đàm phán hợp đồng), hãy đếm lịch ở đây, sau đó kiểm tra danh sách ngày lễ của đất nước bạn thủ công. Chúng tôi có thể thêm trừ ngày lễ theo quốc gia trong phiên bản tương lai."
+          "Ngày làm việc là Thứ Hai đến Thứ Sáu; Thứ Bảy và Chủ Nhật luôn được bỏ qua. Bạn cũng có thể chọn mẫu ngày lễ — Hoa Kỳ (lễ liên bang), Nhật Bản (lễ quốc gia), Vương quốc Anh (bank holiday của Anh & xứ Wales) hoặc Đức (lễ toàn quốc) — khi đó các ngày lễ này cũng được bỏ qua, cả khi cộng/trừ ngày làm việc lẫn khi đếm ngày làm việc giữa hai ngày. Các ngày lễ đã bỏ qua được liệt kê dưới kết quả. Không chọn mẫu (mặc định) thì chỉ bỏ qua cuối tuần.",
+          "Dữ liệu bao gồm 2026–2027 và giống với máy tính ngày làm việc của chúng tôi, kể cả ngày nghỉ bù. Ngày lễ của Việt Nam (như Tết) và các nước khác, ngày lễ theo vùng và ngày nghỉ của công ty chưa được bao gồm — khi đó hãy dùng máy tính ngày làm việc, nơi bạn có thể tự thêm ngày, hoặc điều chỉnh kết quả thủ công."
         ]
       },
       {
@@ -88,7 +89,7 @@
     },
     {
       "q": "Ngày lễ có được trừ khỏi ngày làm việc không?",
-      "a": "Không — chỉ cuối tuần. Trừ ngày lễ theo quốc gia thủ công dựa trên lịch pháp lý của bạn."
+      "a": "Chỉ khi bạn chọn mẫu ngày lễ. Mặc định chỉ bỏ qua Thứ Bảy và Chủ Nhật. Với mẫu Hoa Kỳ, Nhật Bản, Vương quốc Anh hoặc Đức, ngày lễ 2026–2027 của nước đó cũng được bỏ qua. Ví dụ: 10 ngày làm việc sau Thứ Năm, 30/4/2026 là ngày 14/5 nếu chỉ tính cuối tuần, nhưng là 19/5 với mẫu Nhật Bản (4–6/5 là ngày lễ)."
     },
     {
       "q": "Công cụ có xử lý phép toán ngày âm không?",
@@ -114,5 +115,15 @@
       "q": "Dữ liệu có rời khỏi trình duyệt không?",
       "a": "Không. Tất cả toán học chạy cục bộ."
     }
-  ]
+  ],
+  "preset": {
+    "label": "Ngày lễ cần bỏ qua (2026–2027)",
+    "none": "Không — chỉ cuối tuần",
+    "us": "Hoa Kỳ — ngày lễ liên bang",
+    "jp": "Nhật Bản — ngày lễ quốc gia",
+    "uk": "Vương quốc Anh — bank holiday (Anh & Wales)",
+    "de": "Đức — ngày lễ toàn quốc",
+    "note": "Cùng dữ liệu ngày lễ với máy tính ngày làm việc: ngày lễ toàn quốc 2026–2027, gồm cả ngày nghỉ bù. Không gồm ngày lễ theo vùng.",
+    "outOfRange": "Một phần khoảng thời gian nằm ngoài 2026–2027 — ngày lễ trong những năm đó không được bỏ qua."
+  }
 }

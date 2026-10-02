@@ -34,7 +34,8 @@
     "totalDays": "Giorni totali",
     "totalWeeks": "Settimane totali",
     "totalMonths": "Mesi totali",
-    "businessDays": "Giorni lavorativi (lun-ven)"
+    "businessDays": "Giorni lavorativi (lun-ven)",
+    "holidaysSkipped": "Festività saltate"
   },
   "article": {
     "sections": [
@@ -42,14 +43,14 @@
         "heading": "Cosa calcola",
         "paragraphs": [
           "Modalità aggiungi/sottrai: prende una data, aggiunge o sottrae un numero di anni, mesi e giorni, e ti dà la data di calendario risultante. Anni e mesi usano l'aritmetica del calendario (quindi aggiungere 1 mese al 31 gennaio dà il 28 o 29 febbraio a seconda dell'anno bisestile, non il 3 marzo). I giorni sono esatti — aggiungere 30 giorni avanza sempre esattamente 30 giorni di calendario.",
-          "Modalità tra: prende due date e fornisce la differenza in anni/mesi/giorni più i totali in giorni, settimane, mesi e giorni lavorativi (da lunedì a venerdì, senza festività). La forma A/M/G usa la stessa logica di prestito del nostro calcolatore di età — una differenza è ad es. '2 anni, 5 mesi, 3 giorni', non un anno decimale."
+          "Modalità tra: prende due date e fornisce la differenza in anni/mesi/giorni più i totali in giorni, settimane, mesi e giorni lavorativi (da lunedì a venerdì; scegliendo un modello di festività vengono esclusi anche i festivi). La forma A/M/G usa la stessa logica di prestito del nostro calcolatore di età — una differenza è ad es. '2 anni, 5 mesi, 3 giorni', non un anno decimale."
         ]
       },
       {
-        "heading": "Perché i giorni lavorativi non includono i festivi",
+        "heading": "Giorni lavorativi e festività",
         "paragraphs": [
-          "Contiamo da lunedì a venerdì come giorni lavorativi ed escludiamo sabato e domenica. Le festività pubbliche variano per paese, regione e anno, quindi non le sottraiamo automaticamente. Per il lavoro con giorni lavorativi in Italia, sottrai circa 12 festività nazionali all'anno dal risultato.",
-          "Se i festivi sono importanti per il tuo calcolo (tracciamento delle scadenze, negoziazioni contrattuali), fai il conteggio del calendario qui, poi controlla manualmente il calendario delle festività del tuo paese. Potremmo aggiungere la sottrazione delle festività specifiche per paese in una versione futura."
+          "I giorni lavorativi vanno da lunedì a venerdì; sabato e domenica sono sempre saltati. Puoi anche scegliere un modello di festività — Stati Uniti (federali), Giappone (nazionali), Regno Unito (bank holiday di Inghilterra e Galles) o Germania (nazionali) — e anche quei festivi vengono saltati, sia quando aggiungi o sottrai giorni lavorativi sia nel conteggio dei giorni lavorativi tra due date. I festivi saltati sono elencati sotto il risultato. Senza modello (predefinito) si saltano solo i weekend.",
+          "I dati coprono il 2026–2027 e sono gli stessi del nostro calcolatore di giorni lavorativi, compresi i giorni sostitutivi. Non sono incluse le festività italiane o di altri paesi, i patroni locali, le festività regionali né le chiusure aziendali: in questi casi usa il calcolatore di giorni lavorativi, dove puoi aggiungere le tue date, oppure correggi il risultato a mano."
         ]
       },
       {
@@ -88,7 +89,7 @@
     },
     {
       "q": "Le festività vengono sottratte dai giorni lavorativi?",
-      "a": "No — solo i fine settimana. Sottrai manualmente i festivi specifici del paese in base al calendario della tua giurisdizione."
+      "a": "Solo se scegli un modello di festività. Per impostazione predefinita si saltano solo sabati e domeniche. Con il modello Stati Uniti, Giappone, Regno Unito o Germania vengono saltate anche le festività 2026–2027 di quel paese. Esempio: 10 giorni lavorativi dopo giovedì 30 aprile 2026 sono il 14 maggio con i soli weekend, ma il 19 maggio con il modello Giappone (dal 4 al 6 maggio sono festivi)."
     },
     {
       "q": "Gestisce l'aritmetica delle date negative?",
@@ -114,5 +115,15 @@
       "q": "I dati lasciano il mio browser?",
       "a": "No. Tutta la matematica viene eseguita localmente."
     }
-  ]
+  ],
+  "preset": {
+    "label": "Festività da saltare (2026–2027)",
+    "none": "Nessuna — solo weekend",
+    "us": "Stati Uniti — festività federali",
+    "jp": "Giappone — festività nazionali",
+    "uk": "Regno Unito — bank holiday (Inghilterra e Galles)",
+    "de": "Germania — festività nazionali",
+    "note": "Stessi dati del calcolatore di giorni lavorativi: festività nazionali 2026–2027, compresi i giorni sostitutivi. Le festività regionali non sono incluse.",
+    "outOfRange": "Parte dell'intervallo è fuori dal 2026–2027: le festività di quegli anni non vengono saltate."
+  }
 }

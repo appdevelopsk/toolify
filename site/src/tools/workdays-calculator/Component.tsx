@@ -15,8 +15,10 @@ function parseHolidays(input: string): Set<string> {
   );
 }
 
+// Local calendar date → "yyyy-mm-dd". (toISOString() is UTC: east of UTC — e.g. JST — it shifted
+// every day back by one, so preset holidays matched the wrong weekday.)
 function isoDate(d: Date): string {
-  return d.toISOString().slice(0, 10);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
 function countWorkdays(

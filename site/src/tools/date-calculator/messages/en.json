@@ -34,7 +34,8 @@
     "totalDays": "Total days",
     "totalWeeks": "Total weeks",
     "totalMonths": "Total months",
-    "businessDays": "Business days (Mon-Fri)"
+    "businessDays": "Business days (Mon-Fri)",
+    "holidaysSkipped": "Public holidays skipped"
   },
   "article": {
     "sections": [
@@ -42,14 +43,14 @@
         "heading": "What it computes",
         "paragraphs": [
           "Add/subtract mode: takes a date, adds or subtracts a number of years, months, and days, and gives you the resulting calendar date. Years and months use calendar arithmetic (so adding 1 month to Jan 31 gives Feb 28 or Feb 29 depending on leap year, not Mar 3). Days are exact — adding 30 days always advances exactly 30 calendar days.",
-          "Between mode: takes two dates and gives the difference in years/months/days plus totals in days, weeks, months, and business days (Monday through Friday, no holidays). The Y/M/D form uses the same borrow logic as our age calculator — a difference is e.g. '2 years, 5 months, 3 days', not a decimal year."
+          "Between mode: takes two dates and gives the difference in years/months/days plus totals in days, weeks, months, and business days (Monday through Friday; public holidays are excluded too when you pick a holiday preset). The Y/M/D form uses the same borrow logic as our age calculator — a difference is e.g. '2 years, 5 months, 3 days', not a decimal year."
         ]
       },
       {
-        "heading": "Why business days don't include holidays",
+        "heading": "Business days and public holidays",
         "paragraphs": [
-          "We count Monday through Friday as business days and exclude Saturday and Sunday. Public holidays vary by country, region, and year, so we don't subtract them automatically. For US business-day work, subtract roughly 10 federal holidays per year from the result; for UK, about 8 bank holidays; for Japan, about 16.",
-          "If holidays matter for your calculation (deadline tracking, contract negotiations), do the calendar count here, then check your country's holiday list manually. We may add country-specific holiday subtraction in a future version."
+          "Business days are Monday through Friday; Saturday and Sunday are always skipped. You can also pick a public-holiday preset — United States (federal holidays), Japan (national holidays), United Kingdom (England & Wales bank holidays) or Germany (nationwide holidays) — and those holidays are skipped as well, both when adding or subtracting business days and in the business-day count between two dates. The skipped holidays are listed under the result. With no preset (the default), only weekends are skipped.",
+          "The holiday data covers 2026–2027 and is the same as in our Workdays Calculator, including substitute and observed days. Regional holidays (such as German state holidays or Scottish bank holidays), other countries and company closures are not included — for those, use the Workdays Calculator, where you can add your own dates, or adjust the result by hand."
         ]
       },
       {
@@ -88,7 +89,7 @@
     },
     {
       "q": "Are holidays subtracted from business days?",
-      "a": "No — only weekends. Subtract the country-specific holidays manually based on your jurisdiction's calendar."
+      "a": "Only if you pick a holiday preset. By default only Saturdays and Sundays are skipped. With the US, Japan, UK or Germany preset, that country's 2026–2027 public holidays are skipped too. Example: 10 business days after Thursday, April 30, 2026 is May 14 with weekends only, but May 19 with the Japan preset (May 4–6 are holidays)."
     },
     {
       "q": "Does it handle negative date arithmetic?",
@@ -114,5 +115,15 @@
       "q": "Does the data leave my browser?",
       "a": "No. All math runs locally."
     }
-  ]
+  ],
+  "preset": {
+    "label": "Public holidays to skip (2026–2027)",
+    "none": "None — weekends only",
+    "us": "United States — federal holidays",
+    "jp": "Japan — national holidays",
+    "uk": "United Kingdom — bank holidays (England & Wales)",
+    "de": "Germany — nationwide public holidays",
+    "note": "Same holiday data as the Workdays Calculator: nationwide public holidays for 2026–2027, including substitute and observed days. Regional holidays are not included.",
+    "outOfRange": "Part of this range is outside 2026–2027 — public holidays in those years are not skipped."
+  }
 }

@@ -34,7 +34,8 @@
     "totalDays": "Toplam gün",
     "totalWeeks": "Toplam hafta",
     "totalMonths": "Toplam ay",
-    "businessDays": "İş günleri (Pzt-Cum)"
+    "businessDays": "İş günleri (Pzt-Cum)",
+    "holidaysSkipped": "Atlanan resmî tatiller"
   },
   "article": {
     "sections": [
@@ -42,14 +43,14 @@
         "heading": "Ne hesaplar?",
         "paragraphs": [
           "Ekle/çıkar modu: bir tarih alır, yıl, ay ve gün sayısı ekler veya çıkarır ve sonuçtaki takvim tarihini verir. Yıllar ve aylar takvim aritmetiğini kullanır (yani 31 Ocak'a 1 ay eklemek, artık yıla bağlı olarak 28 Şubat veya 29 Şubat verir, 3 Mart değil). Günler kesindir — 30 gün eklemek her zaman tam 30 takvim günü ileri gider.",
-          "Arasında modu: iki tarih alır ve yıl/ay/gün cinsinden fark ile gün, hafta, ay ve iş günlerinde (Pazartesi'den Cuma'ya, tatiller hariç) toplam verir. Y/A/G formu, yaş hesaplayıcımızla aynı borç mantığını kullanır — fark örneğin '2 yıl, 5 ay, 3 gün'dür, ondalık yıl değil."
+          "Arasında modu: iki tarih alır ve yıl/ay/gün cinsinden fark ile gün, hafta, ay ve iş günlerinde (Pazartesi'den Cuma'ya; bir tatil listesi seçerseniz resmî tatiller de düşülür) toplam verir. Y/A/G formu, yaş hesaplayıcımızla aynı borç mantığını kullanır — fark örneğin '2 yıl, 5 ay, 3 gün'dür, ondalık yıl değil."
         ]
       },
       {
-        "heading": "İş günleri neden tatilleri kapsamıyor?",
+        "heading": "İş günleri ve resmî tatiller",
         "paragraphs": [
-          "Pazartesi'den Cuma'ya kadar olan günleri iş günü sayıyoruz; Cumartesi ve Pazar'ı hariç tutuyoruz. Resmi tatiller ülkeye, bölgeye ve yıla göre değiştiğinden otomatik olarak çıkarmıyoruz. Türkiye'de resmi tatil sayısı yılda yaklaşık 14,5 gündür; bunu sonuçtan manuel çıkarabilirsiniz.",
-          "Tatiller hesaplamanız için önemliyse (son tarih takibi, sözleşme müzakereleri), burada takvim sayımını yapın, ardından ülkenizin tatil listesini manuel kontrol edin. İlerideki bir sürümde ülkeye özgü tatil çıkarımı ekleyebiliriz."
+          "İş günleri Pazartesi'den Cuma'ya kadardır; Cumartesi ve Pazar her zaman atlanır. Ayrıca bir hazır tatil listesi seçebilirsiniz — ABD (federal tatiller), Japonya (ulusal tatiller), Birleşik Krallık (İngiltere ve Galler banka tatilleri) veya Almanya (ülke geneli tatiller) — bu tatiller de atlanır: hem iş günü eklerken/çıkarırken hem de iki tarih arasındaki iş günlerini sayarken. Atlanan tatiller sonucun altında listelenir. Liste seçilmezse (varsayılan) yalnızca hafta sonları atlanır.",
+          "Veriler 2026–2027 yıllarını kapsar ve iş günü hesaplayıcımızdakiyle aynıdır, telafi günleri dahil. Türkiye ve diğer ülkelerin tatilleri, bölgesel tatiller ve şirket kapanışları dahil değildir — bunlar için kendi tarihlerinizi ekleyebileceğiniz iş günü hesaplayıcısını kullanın veya sonucu elle düzeltin."
         ]
       },
       {
@@ -88,7 +89,7 @@
     },
     {
       "q": "Tatiller iş günlerinden çıkarılıyor mu?",
-      "a": "Hayır — yalnızca hafta sonları. Ülkeye özgü tatilleri yargı bölgenizin takvimine göre manuel çıkarın."
+      "a": "Yalnızca bir hazır tatil listesi seçerseniz. Varsayılan olarak sadece Cumartesi ve Pazar atlanır. ABD, Japonya, Birleşik Krallık veya Almanya listesiyle o ülkenin 2026–2027 resmî tatilleri de atlanır. Örnek: 30 Nisan 2026 Perşembe'den 10 iş günü sonrası yalnızca hafta sonlarıyla 14 Mayıs, Japonya listesiyle 19 Mayıs'tır (4–6 Mayıs tatildir)."
     },
     {
       "q": "Negatif tarih aritmetiğini işliyor mu?",
@@ -114,5 +115,15 @@
       "q": "Veriler tarayıcımı terk ediyor mu?",
       "a": "Hayır. Tüm matematik yerel olarak çalışır."
     }
-  ]
+  ],
+  "preset": {
+    "label": "Atlanacak resmî tatiller (2026–2027)",
+    "none": "Yok — yalnızca hafta sonları",
+    "us": "ABD — federal tatiller",
+    "jp": "Japonya — ulusal tatiller",
+    "uk": "Birleşik Krallık — banka tatilleri (İngiltere ve Galler)",
+    "de": "Almanya — ülke genelindeki resmî tatiller",
+    "note": "İş günü hesaplayıcısıyla aynı tatil verisi: 2026–2027 ülke geneli resmî tatiller, telafi günleri dahil. Bölgesel tatiller dahil değildir.",
+    "outOfRange": "Bu aralığın bir kısmı 2026–2027 dışında — o yıllardaki resmî tatiller atlanmaz."
+  }
 }

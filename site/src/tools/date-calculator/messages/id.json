@@ -34,7 +34,8 @@
     "totalDays": "Total hari",
     "totalWeeks": "Total minggu",
     "totalMonths": "Total bulan",
-    "businessDays": "Hari kerja (Sen-Jum)"
+    "businessDays": "Hari kerja (Sen-Jum)",
+    "holidaysSkipped": "Hari libur yang dilewati"
   },
   "article": {
     "sections": [
@@ -42,14 +43,14 @@
         "heading": "Yang dihitung",
         "paragraphs": [
           "Mode tambah/kurangi: mengambil tanggal, menambahkan atau mengurangi sejumlah tahun, bulan, dan hari, dan memberikan tanggal kalender yang dihasilkan. Tahun dan bulan menggunakan aritmetika kalender (sehingga menambahkan 1 bulan ke 31 Jan memberikan 28 Feb atau 29 Feb tergantung tahun kabisat, bukan 3 Mar). Hari bersifat tepat — menambahkan 30 hari selalu maju tepat 30 hari kalender.",
-          "Mode antara: mengambil dua tanggal dan memberikan selisih dalam tahun/bulan/hari plus total dalam hari, minggu, bulan, dan hari kerja (Senin hingga Jumat, tidak ada hari libur). Bentuk T/B/H menggunakan logika pinjaman yang sama dengan kalkulator umur kami — selisih adalah mis. '2 tahun, 5 bulan, 3 hari', bukan tahun desimal."
+          "Mode antara: mengambil dua tanggal dan memberikan selisih dalam tahun/bulan/hari plus total dalam hari, minggu, bulan, dan hari kerja (Senin hingga Jumat; jika Anda memilih preset hari libur, hari libur juga dikecualikan). Bentuk T/B/H menggunakan logika pinjaman yang sama dengan kalkulator umur kami — selisih adalah mis. '2 tahun, 5 bulan, 3 hari', bukan tahun desimal."
         ]
       },
       {
-        "heading": "Mengapa hari kerja tidak termasuk hari libur",
+        "heading": "Hari kerja dan hari libur",
         "paragraphs": [
-          "Kami menghitung Senin hingga Jumat sebagai hari kerja dan tidak termasuk Sabtu dan Minggu. Hari libur umum bervariasi berdasarkan negara, wilayah, dan tahun, sehingga kami tidak menguranginya secara otomatis. Untuk pekerjaan hari kerja Indonesia, kurangi sekitar 16-20 hari libur nasional per tahun dari hasilnya.",
-          "Jika hari libur penting untuk perhitungan Anda (pelacakan tenggat waktu, negosiasi kontrak), lakukan penghitungan kalender di sini, lalu periksa daftar hari libur negara Anda secara manual."
+          "Hari kerja adalah Senin hingga Jumat; Sabtu dan Minggu selalu dilewati. Anda juga dapat memilih preset hari libur — Amerika Serikat (libur federal), Jepang (libur nasional), Inggris Raya (bank holiday Inggris & Wales) atau Jerman (libur nasional) — sehingga hari libur tersebut ikut dilewati, baik saat menambah atau mengurangi hari kerja maupun saat menghitung hari kerja di antara dua tanggal. Hari libur yang dilewati ditampilkan di bawah hasil. Tanpa preset (bawaan), hanya akhir pekan yang dilewati.",
+          "Data mencakup 2026–2027 dan sama dengan kalkulator hari kerja kami, termasuk hari pengganti. Hari libur Indonesia atau negara lain, cuti bersama, hari libur daerah, dan libur perusahaan tidak termasuk — untuk itu gunakan kalkulator hari kerja, tempat Anda dapat menambahkan tanggal sendiri, atau sesuaikan hasilnya secara manual."
         ]
       },
       {
@@ -88,7 +89,7 @@
     },
     {
       "q": "Apakah hari libur dikurangi dari hari kerja?",
-      "a": "Tidak — hanya akhir pekan. Kurangi hari libur khusus negara secara manual berdasarkan kalender yurisdiksi Anda."
+      "a": "Hanya jika Anda memilih preset hari libur. Secara bawaan hanya Sabtu dan Minggu yang dilewati. Dengan preset Amerika Serikat, Jepang, Inggris Raya, atau Jerman, hari libur 2026–2027 negara itu juga dilewati. Contoh: 10 hari kerja setelah Kamis, 30 April 2026 adalah 14 Mei jika hanya akhir pekan, tetapi 19 Mei dengan preset Jepang (4–6 Mei adalah hari libur)."
     },
     {
       "q": "Apakah ini menangani aritmetika tanggal negatif?",
@@ -114,5 +115,15 @@
       "q": "Apakah data meninggalkan browser saya?",
       "a": "Tidak. Semua matematika berjalan secara lokal."
     }
-  ]
+  ],
+  "preset": {
+    "label": "Hari libur yang dilewati (2026–2027)",
+    "none": "Tidak ada — akhir pekan saja",
+    "us": "Amerika Serikat — libur federal",
+    "jp": "Jepang — hari libur nasional",
+    "uk": "Inggris Raya — bank holiday (Inggris & Wales)",
+    "de": "Jerman — libur nasional",
+    "note": "Data hari libur sama dengan kalkulator hari kerja: hari libur nasional 2026–2027, termasuk hari pengganti. Hari libur daerah tidak termasuk.",
+    "outOfRange": "Sebagian rentang ini di luar 2026–2027 — hari libur pada tahun-tahun tersebut tidak dilewati."
+  }
 }

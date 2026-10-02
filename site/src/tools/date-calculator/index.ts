@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "date-calculator",
     category: "datetime",
     applicationCategory: "UtilitiesApplication",
-    updatedAt: "2026-06-07",
+    updatedAt: "2026-10-03",
     related: ["age-calculator", "countdown-timer", "workdays-calculator"],
     primaryKeyword: { en: "date calculator", ja: "日付計算" },
     hasHowTo: true,

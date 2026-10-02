@@ -34,7 +34,8 @@
     "totalDays": "Total días",
     "totalWeeks": "Total semanas",
     "totalMonths": "Total meses",
-    "businessDays": "Días hábiles (lun-vie)"
+    "businessDays": "Días hábiles (lun-vie)",
+    "holidaysSkipped": "Festivos omitidos"
   },
   "article": {
     "sections": [
@@ -42,14 +43,14 @@
         "heading": "Qué calcula",
         "paragraphs": [
           "Modo sumar/restar: toma una fecha, suma o resta un número de años, meses y días, y te da la fecha resultante. Años y meses usan aritmética de calendario (así sumar 1 mes a 31 ene da 28 feb o 29 feb dependiendo de bisiesto, no 3 mar). Los días son exactos — sumar 30 días siempre avanza exactamente 30 días de calendario.",
-          "Modo entre: toma dos fechas y da la diferencia en años/meses/días más totales en días, semanas, meses y días hábiles (lun a vie, sin festivos). La forma Y/M/D usa la misma lógica de préstamo que nuestra age calculator — una diferencia es p.ej. '2 años, 5 meses, 3 días', no un año decimal."
+          "Modo entre: toma dos fechas y da la diferencia en años/meses/días más totales en días, semanas, meses y días hábiles (lun a vie; si eliges una plantilla de festivos, también se excluyen los festivos). La forma A/M/D usa la misma lógica de préstamo que nuestra calculadora de edad — una diferencia es p. ej. '2 años, 5 meses, 3 días', no un año decimal."
         ]
       },
       {
-        "heading": "Por qué los días hábiles no incluyen festivos",
+        "heading": "Días hábiles y festivos",
         "paragraphs": [
-          "Contamos lunes a viernes como días hábiles y excluimos sábado y domingo. Los festivos varían por país, región y año, así que no los restamos automáticamente. Para EE.UU. resta unos 10 festivos federales por año del resultado; UK ~8 bank holidays; España ~14 festivos.",
-          "Si los festivos importan para tu cálculo (plazos, negociaciones contractuales), haz el conteo de calendario aquí, luego revisa la lista de festivos de tu país manualmente. Podríamos añadir resta de festivos por país en versión futura."
+          "Los días hábiles son de lunes a viernes; el sábado y el domingo se omiten siempre. Además puedes elegir una plantilla de festivos — Estados Unidos (federales), Japón (nacionales), Reino Unido (bank holidays de Inglaterra y Gales) o Alemania (nacionales) — y esos festivos también se omiten, tanto al sumar o restar días hábiles como al contar los días hábiles entre dos fechas. Los festivos omitidos se listan bajo el resultado. Sin plantilla (por defecto) solo se omiten los fines de semana.",
+          "Los datos cubren 2026–2027 y son los mismos de nuestra calculadora de días laborables, incluidos los días trasladados u observados. No incluye festivos de España ni de otros países, festivos autonómicos o locales, ni cierres de empresa: para esos casos usa la calculadora de días laborables, donde puedes añadir tus propias fechas, o ajusta el resultado a mano."
         ]
       },
       {
@@ -88,7 +89,7 @@
     },
     {
       "q": "¿Se restan festivos de los días hábiles?",
-      "a": "No — solo fines de semana. Resta los festivos específicos de tu país manualmente según el calendario de tu jurisdicción."
+      "a": "Solo si eliges una plantilla de festivos. Por defecto solo se omiten sábados y domingos. Con la plantilla de EE. UU., Japón, Reino Unido o Alemania se omiten también los festivos 2026–2027 de ese país. Ejemplo: 10 días hábiles después del jueves 30 de abril de 2026 es el 14 de mayo solo con fines de semana, pero el 19 de mayo con la plantilla de Japón (del 4 al 6 de mayo son festivos)."
     },
     {
       "q": "¿Maneja aritmética con fechas negativas?",
@@ -114,5 +115,15 @@
       "q": "¿Los datos salen del navegador?",
       "a": "No. Todo el cálculo corre localmente."
     }
-  ]
+  ],
+  "preset": {
+    "label": "Festivos a omitir (2026–2027)",
+    "none": "Ninguno — solo fines de semana",
+    "us": "Estados Unidos — festivos federales",
+    "jp": "Japón — festivos nacionales",
+    "uk": "Reino Unido — bank holidays (Inglaterra y Gales)",
+    "de": "Alemania — festivos de ámbito nacional",
+    "note": "Los mismos datos de festivos que la calculadora de días laborables: festivos nacionales de 2026–2027, incluidos los días trasladados. No incluye festivos regionales.",
+    "outOfRange": "Parte del intervalo queda fuera de 2026–2027: los festivos de esos años no se omiten."
+  }
 }

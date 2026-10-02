@@ -34,7 +34,8 @@
     "totalDays": "Total de dias",
     "totalWeeks": "Total de semanas",
     "totalMonths": "Total de meses",
-    "businessDays": "Dias úteis (Seg-Sex)"
+    "businessDays": "Dias úteis (Seg-Sex)",
+    "holidaysSkipped": "Feriados pulados"
   },
   "article": {
     "sections": [
@@ -42,14 +43,14 @@
         "heading": "O que calcula",
         "paragraphs": [
           "Modo adicionar/subtrair: pega uma data, adiciona ou subtrai um número de anos, meses e dias e retorna a data resultante do calendário. Anos e meses usam aritmética de calendário (então adicionar 1 mês ao dia 31 de janeiro dá 28 de fevereiro — ou 29 de fevereiro em ano bissexto — não 3 de março). Dias são exatos — adicionar 30 dias sempre avança exatamente 30 dias do calendário.",
-          "Modo entre: pega duas datas e fornece a diferença em anos/meses/dias mais os totais em dias, semanas, meses e dias úteis (de segunda a sexta, sem feriados). O formato A/M/D usa a mesma lógica de empréstimo de nossa calculadora de idade — uma diferença é p.ex. '2 anos, 5 meses, 3 dias', não um ano decimal."
+          "Modo entre: pega duas datas e fornece a diferença em anos/meses/dias mais os totais em dias, semanas, meses e dias úteis (de segunda a sexta; ao escolher um modelo de feriados, os feriados também são excluídos). O formato A/M/D usa a mesma lógica de empréstimo de nossa calculadora de idade — uma diferença é p.ex. '2 anos, 5 meses, 3 dias', não um ano decimal."
         ]
       },
       {
-        "heading": "Por que os dias úteis não incluem feriados",
+        "heading": "Dias úteis e feriados",
         "paragraphs": [
-          "Contamos de segunda a sexta como dias úteis e excluímos sábados e domingos. Os feriados variam por país, região e ano, então não os subtraímos automaticamente. Para trabalho com dias úteis no Brasil, subtraia aproximadamente 12-13 feriados nacionais por ano do resultado; verifique também os feriados estaduais e municipais relevantes.",
-          "Se os feriados importam para seu cálculo (acompanhamento de prazos, negociações contratuais), faça a contagem de calendário aqui e depois verifique a lista de feriados do seu município manualmente. Podemos adicionar subtração de feriados específicos por país em uma versão futura."
+          "Dias úteis vão de segunda a sexta; sábado e domingo são sempre pulados. Você também pode escolher um modelo de feriados — Estados Unidos (federais), Japão (nacionais), Reino Unido (bank holidays da Inglaterra e País de Gales) ou Alemanha (nacionais) — e esses feriados também são pulados, tanto ao somar ou subtrair dias úteis quanto na contagem de dias úteis entre duas datas. Os feriados pulados aparecem abaixo do resultado. Sem modelo (padrão), só os fins de semana são pulados.",
+          "Os dados cobrem 2026–2027 e são os mesmos da nossa calculadora de dias úteis, incluindo dias substitutos. Feriados do Brasil e de outros países, feriados estaduais e municipais e recessos da empresa não estão incluídos — para esses casos, use a calculadora de dias úteis, onde você pode adicionar suas próprias datas, ou ajuste o resultado manualmente."
         ]
       },
       {
@@ -88,7 +89,7 @@
     },
     {
       "q": "Os feriados são subtraídos dos dias úteis?",
-      "a": "Não — apenas os fins de semana. Subtraia os feriados específicos do país manualmente com base no calendário da sua jurisdição."
+      "a": "Somente se você escolher um modelo de feriados. Por padrão, só sábados e domingos são pulados. Com o modelo Estados Unidos, Japão, Reino Unido ou Alemanha, os feriados 2026–2027 desse país também são pulados. Exemplo: 10 dias úteis depois de quinta-feira, 30 de abril de 2026, é 14 de maio só com fins de semana, mas 19 de maio com o modelo Japão (4 a 6 de maio são feriados)."
     },
     {
       "q": "Funciona com aritmética de datas negativas?",
@@ -114,5 +115,15 @@
       "q": "Os dados saem do meu navegador?",
       "a": "Não. Toda a matemática é feita localmente."
     }
-  ]
+  ],
+  "preset": {
+    "label": "Feriados a pular (2026–2027)",
+    "none": "Nenhum — só fins de semana",
+    "us": "Estados Unidos — feriados federais",
+    "jp": "Japão — feriados nacionais",
+    "uk": "Reino Unido — bank holidays (Inglaterra e País de Gales)",
+    "de": "Alemanha — feriados nacionais",
+    "note": "Os mesmos dados de feriados da calculadora de dias úteis: feriados nacionais de 2026–2027, incluindo dias substitutos. Feriados regionais não estão incluídos.",
+    "outOfRange": "Parte do período está fora de 2026–2027 — feriados desses anos não são pulados."
+  }
 }

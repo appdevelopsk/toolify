@@ -2,6 +2,15 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import {
+  HOLIDAY_PRESET_OPTIONS,
+  addBusinessDays,
+  countBusinessDays,
+  outsideHolidayYears,
+  parseLocalDate,
+  type HolidayCountry,
+  type HolidayEntry,
+} from "./business";
 
 type Mode = "addSubtract" | "between";
 type Op = "add" | "subtract";
@@ -42,51 +51,87 @@ export default function DateCalculator() {
   const [days, setDays] = useState("0");
   const [endDate, setEndDate] = useState(todayIso());
   const [businessMode, setBusinessMode] = useState(false);
+  // Public-holiday preset for business days. "" (default) = weekends only, as before.
+  const [preset, setPreset] = useState<"" | HolidayCountry>("");
 
   const result = useMemo(() => {
     if (mode === "addSubtract") {
-      const d = new Date(start);
+      const d = parseLocalDate(start);
       if (isNaN(d.getTime())) return null;
-      const sign = op === "add" ? 1 : -1;
+      const sign: 1 | -1 = op === "add" ? 1 : -1;
       if (businessMode) {
-        // Add/subtract whole business days (Mon–Fri), ignoring years/months.
-        let remaining = Math.abs(parseInt(days, 10) || 0);
-        const out = new Date(d);
-        while (remaining > 0) {
-          out.setDate(out.getDate() + sign);
-          const dow = out.getDay();
-          if (dow !== 0 && dow !== 6) remaining--;
-        }
-        return { type: "date" as const, date: out };
+        // Add/subtract whole business days (Mon–Fri, minus preset holidays), ignoring years/months.
+        const n = Math.abs(parseInt(days, 10) || 0);
+        const { date, skipped } = addBusinessDays(d, n, sign, preset);
+        return { type: "date" as const, date, skipped, outOfRange: !!preset && outsideHolidayYears(d, date) };
       }
       const y = (parseInt(years, 10) || 0) * sign;
       const m = (parseInt(months, 10) || 0) * sign;
       const dd = (parseInt(days, 10) || 0) * sign;
       const out = addToDate(d, y, m, dd);
-      return { type: "date" as const, date: out };
+      return { type: "date" as const, date: out, skipped: [] as HolidayEntry[], outOfRange: false };
     } else {
-      const a = new Date(start);
-      const b = new Date(endDate);
+      const a = parseLocalDate(start);
+      const b = parseLocalDate(endDate);
       if (isNaN(a.getTime()) || isNaN(b.getTime())) return null;
       const [from, to] = a <= b ? [a, b] : [b, a];
       const ymd = diffYMD(from, to);
-      const totalDays = Math.floor((to.getTime() - from.getTime()) / 86400000);
+      // Round, not floor: local midnights are 23h/25h apart across a DST change.
+      const totalDays = Math.round((to.getTime() - from.getTime()) / 86400000);
       const totalMonths = ymd.years * 12 + ymd.months;
       const totalWeeks = Math.floor(totalDays / 7);
-      // Business days (Mon-Fri only, no holidays)
-      let business = 0;
-      const cursor = new Date(from);
-      while (cursor < to) {
-        const dow = cursor.getDay();
-        if (dow !== 0 && dow !== 6) business++;
-        cursor.setDate(cursor.getDate() + 1);
-      }
-      return { type: "diff" as const, ymd, totalDays, totalMonths, totalWeeks, business };
+      // Business days (Mon-Fri; minus preset public holidays when a preset is picked)
+      const { business, skipped } = countBusinessDays(from, to, preset);
+      const outOfRange = !!preset && outsideHolidayYears(from, to);
+      return { type: "diff" as const, ymd, totalDays, totalMonths, totalWeeks, business, skipped, outOfRange };
     }
-  }, [mode, op, start, years, months, days, endDate, businessMode]);
+  }, [mode, op, start, years, months, days, endDate, businessMode, preset]);
 
   const dateFmt = useMemo(() => new Intl.DateTimeFormat(locale, { dateStyle: "full" }), [locale]);
   const fmt = useMemo(() => new Intl.NumberFormat(locale), [locale]);
+  const shortFmt = useMemo(
+    () => new Intl.DateTimeFormat(locale, { month: "short", day: "numeric", year: "numeric", weekday: "short" }),
+    [locale],
+  );
+
+  const presetSelect = (
+    <label className="mt-3 block">
+      <span className="text-sm font-medium">{t("preset.label")}</span>
+      <select
+        value={preset}
+        onChange={(e) => setPreset(e.target.value as "" | HolidayCountry)}
+        className="mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
+      >
+        {HOLIDAY_PRESET_OPTIONS.map((p) => (
+          <option key={p} value={p}>
+            {t(`preset.${p === "" ? "none" : p.toLowerCase()}`)}
+          </option>
+        ))}
+      </select>
+      <span className="mt-1 block text-xs text-slate-600 dark:text-slate-400">{t("preset.note")}</span>
+    </label>
+  );
+
+  const skippedList = (skipped: HolidayEntry[], outOfRange: boolean) =>
+    preset ? (
+      <div className="mt-4 text-sm">
+        <div className="flex justify-between border-b border-slate-200 py-1 dark:border-slate-800">
+          <span>{t("result.holidaysSkipped")}</span>
+          <span className="tabular-nums">{fmt.format(skipped.length)}</span>
+        </div>
+        {skipped.length > 0 && (
+          <ul className="mt-2 grid gap-1 sm:grid-cols-2">
+            {skipped.map((h) => (
+              <li key={h.date} className="flex justify-between gap-2">
+                <span className="tabular-nums text-slate-600 dark:text-slate-400">{shortFmt.format(parseLocalDate(h.date))}</span>
+                <span className="truncate text-right">{h.name}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {outOfRange && <p className="mt-2 text-xs text-amber-700 dark:text-amber-400">{t("preset.outOfRange")}</p>}
+      </div>
+    ) : null;
 
   return (
     <div>
@@ -124,12 +169,16 @@ export default function DateCalculator() {
             <input type="checkbox" checked={businessMode} onChange={(e) => setBusinessMode(e.target.checked)} />
             <span>{t("input.businessDayMode")}</span>
           </label>
+          {businessMode && presetSelect}
         </>
       ) : (
-        <label className="mt-3 block">
-          <span className="text-sm font-medium">{t("input.end")}</span>
-          <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900" />
-        </label>
+        <>
+          <label className="mt-3 block">
+            <span className="text-sm font-medium">{t("input.end")}</span>
+            <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900" />
+          </label>
+          {presetSelect}
+        </>
       )}
 
       <div aria-live="polite" className={`mt-6 rounded-lg border p-4 ${result ? "border-brand-200 bg-brand-50 dark:border-brand-900 dark:bg-brand-900/20" : "border-slate-200 dark:border-slate-800"}`}>
@@ -137,6 +186,7 @@ export default function DateCalculator() {
           <>
             <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.resultDate")}</div>
             <div className="mt-1 text-3xl font-bold">{dateFmt.format(result.date)}</div>
+            {businessMode && skippedList(result.skipped, result.outOfRange)}
           </>
         ) : result && result.type === "diff" ? (
           <>
@@ -150,6 +200,7 @@ export default function DateCalculator() {
               <div className="flex justify-between border-b border-slate-200 py-1 dark:border-slate-800"><dt>{t("result.totalMonths")}</dt><dd className="tabular-nums">{fmt.format(result.totalMonths)}</dd></div>
               <div className="flex justify-between border-b border-slate-200 py-1 dark:border-slate-800"><dt>{t("result.businessDays")}</dt><dd className="tabular-nums">{fmt.format(result.business)}</dd></div>
             </dl>
+            {skippedList(result.skipped, result.outOfRange)}
           </>
         ) : (
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>

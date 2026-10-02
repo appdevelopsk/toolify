@@ -34,7 +34,8 @@
     "totalDays": "Total en jours",
     "totalWeeks": "Total en semaines",
     "totalMonths": "Total en mois",
-    "businessDays": "Jours ouvrables (lun-ven)"
+    "businessDays": "Jours ouvrables (lun-ven)",
+    "holidaysSkipped": "Jours fériés exclus"
   },
   "article": {
     "sections": [
@@ -42,14 +43,14 @@
         "heading": "Ce que le calculateur calcule",
         "paragraphs": [
           "Mode ajouter/soustraire : prend une date, ajoute ou soustrait un nombre d'années, mois et jours, et donne la date calendaire résultante. Les années et les mois utilisent l'arithmétique calendaire (donc ajouter 1 mois au 31 janvier donne le 28 ou 29 février selon l'année bissextile, pas le 3 mars). Les jours sont exacts — ajouter 30 jours avance toujours exactement 30 jours calendaires.",
-          "Mode entre : prend deux dates et donne la différence en années/mois/jours plus les totaux en jours, semaines, mois et jours ouvrables (lundi au vendredi, sans jours fériés). La forme A/M/J utilise la même logique d'emprunt que notre calculateur d'âge — une différence est par exemple « 2 ans, 5 mois, 3 jours », pas une année décimale."
+          "Mode entre : prend deux dates et donne la différence en années/mois/jours plus les totaux en jours, semaines, mois et jours ouvrables (lundi au vendredi ; les jours fériés sont aussi exclus si tu choisis un modèle de jours fériés). La forme A/M/J utilise la même logique d'emprunt que notre calculateur d'âge — une différence est par exemple « 2 ans, 5 mois, 3 jours », pas une année décimale."
         ]
       },
       {
-        "heading": "Pourquoi les jours ouvrables n'incluent pas les jours fériés",
+        "heading": "Jours ouvrables et jours fériés",
         "paragraphs": [
-          "Nous comptons du lundi au vendredi comme jours ouvrables et excluons le samedi et le dimanche. Les jours fériés varient selon le pays, la région et l'année, donc nous ne les soustrayons pas automatiquement. Pour le travail en France, soustrait environ 11 jours fériés nationaux par an du résultat.",
-          "Si les jours fériés comptent pour ton calcul (suivi des échéances, négociations contractuelles), effectue le calcul calendaire ici, puis vérifie le calendrier des jours fériés de ton pays manuellement. Nous pourrions ajouter une soustraction des jours fériés spécifiques au pays dans une version future."
+          "Les jours ouvrables vont du lundi au vendredi ; le samedi et le dimanche sont toujours exclus. Tu peux aussi choisir un modèle de jours fériés — États-Unis (fédéraux), Japon (nationaux), Royaume-Uni (bank holidays d'Angleterre et du pays de Galles) ou Allemagne (nationaux) — et ces jours sont exclus à leur tour, aussi bien pour ajouter ou soustraire des jours ouvrables que pour compter les jours ouvrables entre deux dates. Les jours fériés exclus sont listés sous le résultat. Sans modèle (par défaut), seuls les week-ends sont exclus.",
+          "Les données couvrent 2026–2027 et sont les mêmes que dans notre calculateur de jours ouvrés, jours de remplacement compris. Les jours fériés français, ceux d'autres pays, les jours fériés régionaux et les fermetures d'entreprise ne sont pas inclus : utilise alors le calculateur de jours ouvrés, où tu peux ajouter tes propres dates, ou ajuste le résultat à la main."
         ]
       },
       {
@@ -88,7 +89,7 @@
     },
     {
       "q": "Les jours fériés sont-ils soustraits des jours ouvrables ?",
-      "a": "Non — seulement les week-ends. Soustrait les jours fériés nationaux manuellement selon le calendrier de ton pays."
+      "a": "Seulement si tu choisis un modèle de jours fériés. Par défaut, seuls les samedis et dimanches sont exclus. Avec le modèle États-Unis, Japon, Royaume-Uni ou Allemagne, les jours fériés 2026–2027 de ce pays sont aussi exclus. Exemple : 10 jours ouvrables après le jeudi 30 avril 2026 donnent le 14 mai avec les seuls week-ends, mais le 19 mai avec le modèle Japon (du 4 au 6 mai sont fériés)."
     },
     {
       "q": "Gère-t-il l'arithmétique de dates négative ?",
@@ -114,5 +115,15 @@
       "q": "Les données quittent-elles mon navigateur ?",
       "a": "Non. Tous les calculs s'effectuent localement."
     }
-  ]
+  ],
+  "preset": {
+    "label": "Jours fériés à exclure (2026–2027)",
+    "none": "Aucun — week-ends seulement",
+    "us": "États-Unis — jours fériés fédéraux",
+    "jp": "Japon — jours fériés nationaux",
+    "uk": "Royaume-Uni — bank holidays (Angleterre et pays de Galles)",
+    "de": "Allemagne — jours fériés nationaux",
+    "note": "Mêmes données que le calculateur de jours ouvrés : jours fériés nationaux 2026–2027, jours de remplacement compris. Les jours fériés régionaux ne sont pas inclus.",
+    "outOfRange": "Une partie de la période est hors 2026–2027 : les jours fériés de ces années ne sont pas exclus."
+  }
 }

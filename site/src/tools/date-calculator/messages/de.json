@@ -34,7 +34,8 @@
     "totalDays": "Tage gesamt",
     "totalWeeks": "Wochen gesamt",
     "totalMonths": "Monate gesamt",
-    "businessDays": "Werktage (Mo–Fr)"
+    "businessDays": "Werktage (Mo–Fr)",
+    "holidaysSkipped": "Übersprungene Feiertage"
   },
   "article": {
     "sections": [
@@ -42,14 +43,14 @@
         "heading": "Was berechnet wird",
         "paragraphs": [
           "Addieren/Subtrahieren-Modus: Nimmt ein Datum, addiert oder subtrahiert eine Anzahl von Jahren, Monaten und Tagen und gibt das resultierende Kalenderdatum zurück. Jahre und Monate verwenden Kalenderarithmetik (also ergibt das Addieren von 1 Monat zum 31. Januar den 28. Februar oder 29. Februar je nach Schaltjahr, nicht den 3. März). Tage sind exakt – das Addieren von 30 Tagen rückt immer genau 30 Kalendertage vor.",
-          "Zwischen-Modus: Nimmt zwei Daten und gibt die Differenz in Jahren/Monaten/Tagen plus Gesamtwerte in Tagen, Wochen, Monaten und Werktagen (Montag bis Freitag, keine Feiertage) zurück. Das J/M/T-Format verwendet dieselbe Borge-Logik wie unser Altersrechner – eine Differenz ist z. B. '2 Jahre, 5 Monate, 3 Tage', kein Dezimaljahr."
+          "Zwischen-Modus: Nimmt zwei Daten und gibt die Differenz in Jahren/Monaten/Tagen plus Gesamtwerte in Tagen, Wochen, Monaten und Werktagen (Montag bis Freitag; mit einer Feiertagsvorlage werden auch Feiertage abgezogen) zurück. Das J/M/T-Format verwendet dieselbe Borge-Logik wie unser Altersrechner – eine Differenz ist z. B. '2 Jahre, 5 Monate, 3 Tage', kein Dezimaljahr."
         ]
       },
       {
-        "heading": "Warum Werktage keine Feiertage einschließen",
+        "heading": "Werktage und Feiertage",
         "paragraphs": [
-          "Wir zählen Montag bis Freitag als Werktage und schließen Samstag und Sonntag aus. Gesetzliche Feiertage variieren nach Land, Region und Jahr, daher subtrahieren wir sie nicht automatisch. Für Deutschland subtrahiere ca. 9–13 Feiertage pro Jahr vom Ergebnis (je nach Bundesland).",
-          "Wenn Feiertage für deine Berechnung wichtig sind (Terminverfolgung, Vertragsverhandlungen), führe hier die Kalenderrechnung durch und prüfe anschließend den Feiertagskalender deines Bundeslandes manuell. Wir könnten länderspezifische Feiertagssubtraktion in einer zukünftigen Version hinzufügen."
+          "Werktage sind Montag bis Freitag; Samstag und Sonntag werden immer übersprungen. Zusätzlich kannst du eine Feiertagsvorlage wählen – Deutschland (bundesweite Feiertage), USA, Japan oder Großbritannien (England & Wales) –, dann werden auch diese Feiertage übersprungen: beim Addieren oder Subtrahieren von Werktagen ebenso wie bei der Werktagszählung zwischen zwei Daten. Die übersprungenen Feiertage stehen unter dem Ergebnis. Ohne Vorlage (Standard) zählen nur die Wochenenden.",
+          "Die Feiertagsdaten umfassen 2026–2027 und sind dieselben wie in unserem Arbeitstage-Rechner. Für Deutschland sind nur die bundesweiten Feiertage enthalten – Landesfeiertage wie Fronleichnam, Reformationstag oder Allerheiligen fehlen, ebenso andere Länder und Betriebsferien. Dafür nutze den Arbeitstage-Rechner, in dem du eigene Daten eintragen kannst, oder passe das Ergebnis manuell an."
         ]
       },
       {
@@ -88,7 +89,7 @@
     },
     {
       "q": "Werden Feiertage von den Werktagen subtrahiert?",
-      "a": "Nein – nur Wochenenden. Subtrahiere landes- und bundeslandspezifische Feiertage manuell basierend auf dem Kalender deines Standorts."
+      "a": "Nur wenn du eine Feiertagsvorlage wählst. Standardmäßig werden nur Samstage und Sonntage übersprungen. Mit der Vorlage Deutschland, USA, Japan oder Großbritannien werden zusätzlich die Feiertage 2026–2027 dieses Landes übersprungen. Beispiel: 10 Werktage nach Donnerstag, 30. April 2026, ist ohne Vorlage der 14. Mai, mit der Vorlage Deutschland der 18. Mai (1. Mai und Christi Himmelfahrt am 14. Mai sind Feiertage)."
     },
     {
       "q": "Wird negative Datumsarithmetik unterstützt?",
@@ -114,5 +115,15 @@
       "q": "Verlassen die Daten meinen Browser?",
       "a": "Nein. Alle Berechnungen laufen lokal."
     }
-  ]
+  ],
+  "preset": {
+    "label": "Feiertage überspringen (2026–2027)",
+    "none": "Keine — nur Wochenenden",
+    "us": "USA — bundesweite Feiertage",
+    "jp": "Japan — gesetzliche Feiertage",
+    "uk": "Großbritannien — Bank Holidays (England & Wales)",
+    "de": "Deutschland — bundesweite Feiertage",
+    "note": "Dieselben Feiertagsdaten wie im Arbeitstage-Rechner: landesweite gesetzliche Feiertage 2026–2027 inkl. Ersatz- und Brückentage. Regionale Feiertage sind nicht enthalten.",
+    "outOfRange": "Ein Teil des Zeitraums liegt außerhalb von 2026–2027 – Feiertage in diesen Jahren werden nicht übersprungen."
+  }
 }
