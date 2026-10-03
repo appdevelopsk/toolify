@@ -13,7 +13,7 @@ const meta: ToolMeta = {
   hasHowTo: true,
   hasFaq: true,
   sources: [
-    { label: "MedlinePlus — hCG Blood Test", url: "https://medlineplus.gov/lab-tests/hcg-blood-test/" },
+    { label: "MedlinePlus — hCG Blood Test", url: "https://medlineplus.gov/ency/article/003510.htm" },
     { label: "StatPearls (NCBI) — Human Chorionic Gonadotropin", url: "https://www.ncbi.nlm.nih.gov/books/NBK532950/" },
   ],
 };

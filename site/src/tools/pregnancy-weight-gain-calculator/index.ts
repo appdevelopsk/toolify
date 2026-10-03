@@ -14,7 +14,7 @@ const meta: ToolMeta = {
   hasFaq: true,
   sources: [
     { label: "NASEM / IOM — Weight Gain During Pregnancy (2009)", url: "https://nap.nationalacademies.org/catalog/12584/weight-gain-during-pregnancy-reexamining-the-guidelines" },
-    { label: "CDC — Weight Gain During Pregnancy", url: "https://www.cdc.gov/maternal-infant-health/pregnancy-weight-gain/" },
+    { label: "CDC — Weight Gain During Pregnancy", url: "https://www.cdc.gov/maternal-infant-health/pregnancy-weight/index.html" },
   ],
 };
 
