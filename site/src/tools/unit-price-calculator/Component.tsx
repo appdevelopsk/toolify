@@ -13,6 +13,28 @@ interface Item {
 
 let nextId = 1;
 
+// 単位が重さ・体積として読める時だけ、g / ml あたりへ揃えて比較と換算表示をする。
+// 読めない単位（個・枚など自由入力）は従来どおり入力値のまま割るだけ。
+type Dim = "w" | "v";
+const UNITS: Record<string, { dim: Dim; f: number }> = {
+  mg: { dim: "w", f: 0.001 }, g: { dim: "w", f: 1 }, kg: { dim: "w", f: 1000 },
+  oz: { dim: "w", f: 28.349523125 }, lb: { dim: "w", f: 453.59237 },
+  ml: { dim: "v", f: 1 }, l: { dim: "v", f: 1000 }, "fl oz": { dim: "v", f: 29.5735295625 },
+};
+const ALIASES: Record<string, string> = {
+  gram: "g", grams: "g", "グラム": "g", kilogram: "kg", kilograms: "kg", kilo: "kg", "キログラム": "kg", "キロ": "kg",
+  ounce: "oz", ounces: "oz", "オンス": "oz", lbs: "lb", pound: "lb", pounds: "lb", "ポンド": "lb",
+  milliliter: "ml", milliliters: "ml", millilitre: "ml", "ミリリットル": "ml", cc: "ml",
+  liter: "l", liters: "l", litre: "l", litres: "l", "リットル": "l",
+  floz: "fl oz", "fluid ounce": "fl oz", "fluid ounces": "fl oz", "fluid oz": "fl oz",
+};
+const SHOW: Record<Dim, string[]> = { w: ["g", "oz", "lb", "kg"], v: ["ml", "fl oz", "l"] };
+function unitKey(raw: string): string | null {
+  const k = raw.trim().toLowerCase().replace(/\./g, "").replace(/\s+/g, " ");
+  const u = ALIASES[k] ?? k;
+  return u in UNITS ? u : null;
+}
+
 export default function UnitPriceCalculator() {
   const t = useTranslations("tools.unit-price-calculator");
   const locale = useLocale();
@@ -26,15 +48,24 @@ export default function UnitPriceCalculator() {
       const p = parseFloat(it.price);
       const q = parseFloat(it.quantity);
       const valid = isFinite(p) && isFinite(q) && p > 0 && q > 0;
+      const key = unitKey(it.unit);
+      const meta = key ? UNITS[key] : undefined;
       return {
         ...it,
         unitPrice: valid ? p / q : null,
+        key,
+        dim: meta ? meta.dim : null,
+        // g（重さ）または ml（体積）あたりの価格
+        basePrice: valid && meta ? p / q / meta.f : null,
       };
     });
     const valid = out.filter((x) => x.unitPrice !== null);
     if (valid.length === 0) return out.map((x) => ({ ...x, isCheapest: false }));
-    const min = Math.min(...valid.map((x) => x.unitPrice as number));
-    return out.map((x) => ({ ...x, isCheapest: x.unitPrice !== null && x.unitPrice === min }));
+    // 全品が同じ種類（重さ同士・体積同士）の単位なら、単位が違っても g / ml あたりで比べる
+    const dims = new Set(valid.map((x) => x.dim));
+    const pick = dims.size === 1 && !dims.has(null) ? (x: (typeof out)[number]) => x.basePrice : (x: (typeof out)[number]) => x.unitPrice;
+    const min = Math.min(...valid.map((x) => pick(x) as number));
+    return out.map((x) => ({ ...x, isCheapest: x.unitPrice !== null && pick(x) === min }));
   }, [items]);
 
   const currency = useMemo(
@@ -85,6 +116,14 @@ export default function UnitPriceCalculator() {
                 {it.isCheapest && <span className="rounded bg-emerald-200 px-2 py-0.5 text-xs font-bold text-emerald-900 dark:bg-emerald-800 dark:text-emerald-100">{t("cheapest")}</span>}
               </div>
             </div>
+            {it.basePrice !== null && it.dim && (
+              <div data-unit-equivalents className="mt-1 text-right font-mono text-xs tabular-nums text-slate-600 dark:text-slate-400">
+                {SHOW[it.dim]
+                  .filter((u) => u !== it.key)
+                  .map((u) => `${currency.format((it.basePrice as number) * (UNITS[u]?.f ?? 1))} / ${u}`)
+                  .join(" · ")}
+              </div>
+            )}
           </div>
         ))}
       </div>
