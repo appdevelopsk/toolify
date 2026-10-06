@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import {
   HOLIDAY_PRESET_OPTIONS,
   addBusinessDays,
+  addCalendar,
   countBusinessDays,
   outsideHolidayYears,
   parseLocalDate,
@@ -17,14 +18,6 @@ type Op = "add" | "subtract";
 
 function pad(n: number) { return String(n).padStart(2, "0"); }
 function todayIso() { const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; }
-
-function addToDate(d: Date, years: number, months: number, days: number): Date {
-  const out = new Date(d);
-  out.setFullYear(out.getFullYear() + years);
-  out.setMonth(out.getMonth() + months);
-  out.setDate(out.getDate() + days);
-  return out;
-}
 
 function diffYMD(a: Date, b: Date) {
   // assume a <= b
@@ -68,7 +61,7 @@ export default function DateCalculator() {
       const y = (parseInt(years, 10) || 0) * sign;
       const m = (parseInt(months, 10) || 0) * sign;
       const dd = (parseInt(days, 10) || 0) * sign;
-      const out = addToDate(d, y, m, dd);
+      const out = addCalendar(d, y, m, dd);
       return { type: "date" as const, date: out, skipped: [] as HolidayEntry[], outOfRange: false };
     } else {
       const a = parseLocalDate(start);

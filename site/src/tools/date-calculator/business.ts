@@ -24,6 +24,17 @@ export function localIso(d: Date): string {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
+/**
+ * Calendar arithmetic: add years and months first, clamping to the last day of the
+ * target month (Jan 31 + 1 month = Feb 28/29, not Mar 3 as raw setMonth gives), then days.
+ * Negative values subtract.
+ */
+export function addCalendar(d: Date, years: number, months: number, days: number): Date {
+  const first = new Date(d.getFullYear() + years, d.getMonth() + months, 1);
+  const lastDay = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate();
+  return new Date(first.getFullYear(), first.getMonth(), Math.min(d.getDate(), lastDay) + days);
+}
+
 function holidayMap(preset: "" | HolidayCountry): Map<string, HolidayEntry> {
   const m = new Map<string, HolidayEntry>();
   if (preset) for (const h of HOLIDAY_PRESETS[preset]) m.set(h.date, h);

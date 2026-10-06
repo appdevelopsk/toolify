@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addBusinessDays, countBusinessDays, localIso, outsideHolidayYears, parseLocalDate } from "./business";
+import { addBusinessDays, addCalendar, countBusinessDays, localIso, outsideHolidayYears, parseLocalDate } from "./business";
 
 const d = parseLocalDate;
 
@@ -35,5 +35,21 @@ describe("date-calculator business days", () => {
   it("flags ranges outside the built-in holiday years", () => {
     expect(outsideHolidayYears(d("2026-01-05"), d("2027-12-31"))).toBe(false);
     expect(outsideHolidayYears(d("2027-12-20"), d("2028-01-10"))).toBe(true);
+  });
+
+  it("calendar months clamp to the end of the target month", () => {
+    expect(localIso(addCalendar(d("2026-01-31"), 0, 1, 0))).toBe("2026-02-28");
+    expect(localIso(addCalendar(d("2028-01-31"), 0, 1, 0))).toBe("2028-02-29");
+    expect(localIso(addCalendar(d("2028-02-29"), 1, 0, 0))).toBe("2029-02-28");
+    expect(localIso(addCalendar(d("2026-03-31"), 0, -1, 0))).toBe("2026-02-28");
+    // FAQ examples: "4 months less a day" and "5 years minus 262 days"
+    expect(localIso(addCalendar(d("2026-11-05"), 0, 4, -1))).toBe("2027-03-04");
+    expect(localIso(addCalendar(d("2026-01-01"), 5, 0, -262))).toBe("2030-04-14");
+    expect(localIso(addCalendar(d("2026-12-15"), 0, 2, 20))).toBe("2027-03-07");
+  });
+
+  it("FAQ example: 205 business days from 2026-07-16", () => {
+    expect(localIso(addBusinessDays(d("2026-07-16"), 205, 1).date)).toBe("2027-04-29");
+    expect(localIso(addBusinessDays(d("2026-07-16"), 205, 1, "US").date)).toBe("2027-05-11");
   });
 });

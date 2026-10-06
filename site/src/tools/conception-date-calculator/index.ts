@@ -4,7 +4,7 @@ const meta: ToolMeta = {
   slug: "conception-date-calculator",
   category: "health",
   applicationCategory: "HealthApplication",
-  updatedAt: "2026-06-06",
+  updatedAt: "2026-10-06",
   related: ["due-date-calculator", "pregnancy-week-calculator", "ovulation-calculator"],
   primaryKeyword: {
     en: "conception date calculator",

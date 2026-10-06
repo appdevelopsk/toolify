@@ -1,14 +1,15 @@
 {
-  "title": "Date Calculator — Add/Subtract Days or Date Difference",
+  "title": "Date Calculator — Add or Subtract Days, Months & Workdays",
   "shortDescription": "Add or subtract years/months/days from a date, or find the precise difference between two dates including business days.",
   "description": "Two modes: 'add or subtract' to compute a future or past date, or 'between' to find the difference in years, months, days, weeks, and business days.",
-  "metaDescription": "Free date calculator. Add or subtract years/months/days, or find difference between two dates with business-day count. Calendar-aware, leap years included.",
+  "metaDescription": "Add or subtract days, months, years or business days from a date and see the weekday — or count days and workdays between two dates. US/UK/JP/DE holidays.",
   "keywords": [
     "date calculator",
     "add days to date",
-    "date difference",
-    "business days",
-    "days between dates"
+    "subtract days from date",
+    "business days from date",
+    "days between dates",
+    "what day of the week"
   ],
   "empty": "Pick dates to compute.",
   "mode": {
@@ -86,6 +87,18 @@
     {
       "q": "What happens if I add 1 month to Jan 31?",
       "a": "You get Feb 28 (or Feb 29 in a leap year). Calendar arithmetic clamps to the last day of the target month when the source day doesn't exist."
+    },
+    {
+      "q": "What date is 205 business days from July 16, 2026?",
+      "a": "Tick 'Business days only', choose Add, enter 205 days and the start date Thursday, July 16, 2026. With weekends skipped only, the result is Thursday, April 29, 2027. With the US preset, 8 federal holidays (Labor Day through Presidents' Day) are skipped as well and the result moves to Tuesday, May 11, 2027. The result always shows the day of the week."
+    },
+    {
+      "q": "How do I work out '4 months less a day' from a date?",
+      "a": "Add 4 months first (Thursday, November 5, 2026 → Friday, March 5, 2027), then subtract 1 day: Thursday, March 4, 2027. To count the workdays in that period, switch to 'Difference between dates' with November 5, 2026 and March 5, 2027 — the end date is not counted, so you get the workdays from Nov 5 through Mar 4: 86 with weekends skipped, 80 with the US holiday preset."
+    },
+    {
+      "q": "How many days is 5 years minus 262 days?",
+      "a": "It depends on how many leap days fall in the span. From January 1, 2026, five years later is January 1, 2031 — 1,826 days, because February 29, 2028 is included. Subtract 262 days and you land on Sunday, April 14, 2030, which is 1,564 days after the start. In this calculator: add 5 years to the start date, then subtract 262 days from that result; the 'Difference between dates' mode shows the total days."
     },
     {
       "q": "Are holidays subtracted from business days?",
