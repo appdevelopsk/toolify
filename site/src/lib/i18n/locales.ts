@@ -53,8 +53,11 @@ export const DEFAULT_LOCALE: Locale = "en";
  *      その変更は実在しない(本ファイルの最終変更は 6/19 の e709032)。計画のみで未実行だった。
  *    再判定: 3〜4週後(2026-09-15頃)に GSC のロケール別クリックで効果測定。
  *    連動必須: scripts/check-built-canonical.mjs の INDEXED も同じ配列にすること。
+ *  ── 2026-10-06: es を復帰(ken 承認)。Bing 5/29〜10/2 で es の出産予定日が142表示・
+ *     ISO週番号が49表示と、noindex のままでも全ロケール最大の需要が出ていたため。
+ *     再判定: 2026-11-03 頃に Bing/GSC の es ページ別クリックで。
  */
-export const INDEXED_LOCALES: Locale[] = ["en", "ja", "ar", "th", "tr", "fr", "ru"];
+export const INDEXED_LOCALES: Locale[] = ["en", "ja", "ar", "th", "tr", "fr", "ru", "es"];
 
 export function isIndexedLocale(code: string): boolean {
   return (INDEXED_LOCALES as readonly string[]).includes(code);
