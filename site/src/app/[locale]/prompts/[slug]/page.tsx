@@ -36,6 +36,7 @@ export async function generateMetadata({
     keywords: t.raw("keywords") as string[],
     type: "article",
     modifiedTime: p.meta.updatedAt,
+    noindex: true, // 2026-10-11 索引対象を需要のあるツールへ絞った(sitemap.ts)
   });
 }
 

@@ -26,6 +26,7 @@ export async function generateMetadata({
     title: t("prompt.pageTitle"),
     description: t("prompt.pageMeta"),
     path: "/prompts",
+    noindex: true, // 2026-10-11 索引対象を需要のあるツールへ絞った(sitemap.ts)
   });
 }
 

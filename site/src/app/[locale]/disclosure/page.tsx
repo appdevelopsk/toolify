@@ -12,6 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t("affiliate.footerLink"),
     description: t("site.description"),
     path: "/disclosure",
+    noindex: true, // 2026-10-11 索引対象を需要のあるツールへ絞った(sitemap.ts)
   });
 }
 

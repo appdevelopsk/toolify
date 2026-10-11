@@ -38,6 +38,7 @@ export async function generateMetadata({
     title: copy?.headline ?? `${cat} — ${t("nav.prompts")}`,
     description: copy?.body ?? t("site.description"),
     path: `/prompts/category/${cat}`,
+    noindex: true, // 2026-10-11 索引対象を需要のあるツールへ絞った(sitemap.ts)
   });
 }
 

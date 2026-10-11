@@ -163,7 +163,7 @@ export function PromptFrame({
           </section>
         )}
 
-        <RelatedServices category="ai" />
+        <RelatedServices category="ai" context={`prompt-${meta.slug}`} />
 
         {relatedTools && relatedTools.length > 0 && (
           <section className="mt-10">

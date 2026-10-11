@@ -13,10 +13,12 @@
  *   1. index 対象ページに canonical が無い
  *   2. canonical / hreflang が二重ロケール接頭辞 (/en/en/... など)
  *   3. canonical が自己参照でない
- *   4. hreflang クラスタが noindex ロケールを指す（間引き戦略の打ち消し）
+ *   4. hreflang クラスタが noindex ページを指す（間引き戦略の打ち消し）
+ *      2026-10-11 からロケール×ツール単位で index を決める(registry.ts INDEX_EXCEPTIONS)ので、
+ *      ロケール名ではなく**指し先の HTML が noindex か**で判定する。
  *
  * 検査対象外:
- *   - `noindex` ページ。INDEXED_LOCALES(en/ja/ar/th/tr/fr/ru/es) 以外の9言語は意図的に noindex。
+ *   - `noindex` ページ。INDEXED_LOCALES(en/ja) 以外は INDEX_EXCEPTIONS のページを除き意図的に noindex。
  *   - 隣の `.meta` が status 404 のプリレンダーページ。404 で配信されるので canonical は無意味。
  *     ★404 判定に HTML 本文を使ってはいけない: not-found 境界のマークアップは全ページの
  *     RSC ペイロードに埋まるため、本文判定にすると全ページが 404 扱いになり検査が空振りする。
@@ -41,8 +43,7 @@ const ALL_LOCALES = [
   "it", "ru", "ar", "hi", "id", "th", "vi", "tr",
 ];
 // locales.ts の INDEXED_LOCALES と一致させること（片方だけ動かすと検査が嘘をつく）
-const INDEXED = ["en", "ja", "ar", "th", "tr", "fr", "ru", "es"];
-const NOINDEX_LOCALES = ALL_LOCALES.filter((l) => !INDEXED.includes(l));
+const INDEXED = ["en", "ja"];
 const DOUBLE = new RegExp(`/(${ALL_LOCALES.join("|")})/(${ALL_LOCALES.join("|")})(/|$)`);
 
 const files = [];
@@ -53,6 +54,14 @@ const files = [];
     else if (e.endsWith(".html")) files.push(p);
   }
 })(DIR);
+
+const NOINDEX_RE = /<meta[^>]+name="robots"[^>]*content="[^"]*noindex/i;
+// 指し先ページの noindex 判定用(パス → noindex か)。ビルド出力に無いパスは不明=検査しない。
+const noindexByPath = new Map();
+for (const f of files) {
+  const p = "/" + relative(DIR, f).replace(/\\/g, "/").replace(/\.html$/, "").replace(/\/index$/, "");
+  try { noindexByPath.set(p || "/", NOINDEX_RE.test(readFileSync(f, "utf-8"))); } catch {}
+}
 
 const unescapeHtml = (s) => s.replace(/&amp;/g, "&");
 const strip = (p) => (p.replace(/\/$/, "") || "/");
@@ -77,7 +86,7 @@ for (const f of files) {
   const path = pagePath(f);
   if (isFrameworkPage(path) || isNotFoundPage(f)) { skipped++; continue; }
   const html = readFileSync(f, "utf-8");
-  if (/<meta[^>]+name="robots"[^>]*content="[^"]*noindex/i.test(html)) { skipped++; continue; }
+  if (NOINDEX_RE.test(html)) { skipped++; continue; }
   checked++;
 
   const canonTag = html.match(/<link[^>]+rel="canonical"[^>]*>/i);
@@ -95,7 +104,7 @@ for (const f of files) {
     let hp = h;
     try { hp = new URL(h).pathname; } catch {}
     if (DOUBLE.test(hp)) { dblHreflang.push({ path, href: h }); break; }
-    if (NOINDEX_LOCALES.includes(code)) { badCluster.push({ path, code }); break; }
+    if (noindexByPath.get(strip(hp)) === true) { badCluster.push({ path, code }); break; }
   }
 }
 
@@ -109,7 +118,7 @@ show("canonical が無い", missing, (x) => x);
 show("canonical が二重ロケール接頭辞", dblCanonical, (x) => `${x.path} -> ${x.href}`);
 show("canonical が自己参照でない", notSelf, (x) => `${x.path} -> ${x.href}`);
 show("hreflang が二重ロケール接頭辞", dblHreflang, (x) => `${x.path} -> ${x.href}`);
-show("hreflang が noindex ロケールを指す", badCluster, (x) => `${x.path} -> hreflang=${x.code}`);
+show("hreflang が noindex ページを指す", badCluster, (x) => `${x.path} -> hreflang=${x.code}`);
 
 const fatal = missing.length + dblCanonical.length + notSelf.length + dblHreflang.length + badCluster.length;
 if (fatal) {

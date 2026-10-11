@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
-import { getTool, getRelated, listTools, isIndexable } from "@/lib/tools/registry";
+import { getTool, getRelated, listTools, isIndexableIn, indexableLocalesFor } from "@/lib/tools/registry";
 import { loadToolSlugMessages } from "@/lib/i18n/loader";
 import { ToolFrame } from "@/components/tools/ToolFrame";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -41,7 +41,9 @@ export async function generateMetadata({
     keywords: t.raw("keywords") as string[],
     type: "article",
     modifiedTime: tool.updatedAt,
-    noindex: !isIndexable(slug), // 剪定済みツールは index させない（docs/ADSENSE_RECOVERY_PLAN.md フェーズ2）
+    // index はロケール×ツール単位で決める(registry.ts の CORE_TOOLS_BY_DEMAND / INDEX_EXCEPTIONS・2026-10-11)
+    noindex: !isIndexableIn(locale, slug),
+    indexableLocales: indexableLocalesFor(slug),
     // ツールのタイトルは既に説明的で長いため、ルートlayoutの ` · Toolify` を外す(2026-08-01)。
     // 接尾辞込みだと 1,223/3,774 が SERP 表示幅60を超えていた（外すだけで832本が収まる）。
     absoluteTitle: true,
@@ -62,7 +64,7 @@ export default async function ToolPage({
   const tt = await getTranslations(`tools.${slug}`);
   // index 対象ページの関連リンクは index 対象だけに絞る(権威を noindex へ流さない)。
   // noindex ページ側は従来どおり全ツールから出す — 利用者向けの導線で、クロール上の損が無い。
-  const related = getRelated(slug, 6, isIndexable(slug));
+  const related = getRelated(slug, 6, isIndexableIn(locale, slug));
   const url = `${siteConfig.url}/${locale}/tools/${slug}`;
 
   const faq = (tt.raw("faq") as { q: string; a: string }[]) ?? [];

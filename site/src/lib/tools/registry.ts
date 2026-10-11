@@ -1,4 +1,5 @@
 import type { ToolMeta } from "./types";
+import { LOCALES, isIndexedLocale } from "@/lib/i18n/locales";
 
 import bmi from "@/tools/bmi-calculator";
 import length from "@/tools/length-converter";
@@ -466,47 +467,62 @@ const SLUG_INDEX = new Map(TOOLS.map((m) => [m.slug, m]));
  * 承認後、本物の差別化機能を入れたツールから「段階的に」この allowlist へ戻して index 復帰させる。
  * ※ 現状コア 67 本（全 218 中）。一気に全復帰すると velocity 信号になるので段階的に。
  */
-// index allowlist — Search Console 実測（過去6か月, 2ドメイン合算）で需要が確認できた
-// ツール + 実需が明確なエバーグリーン定番のみ。2026-06-05 に量産67本リストから
-// 実需ベース52本へ更新（fuel-economy-converter=890 等の高需要ツールが旧リストで
-// noindex のまま除外されていたため是正）。詳細は docs/RECOVERY_PRUNE_PLAN.md
-export const INDEXED_SLUGS = new Set<string>([
-  // finance (14)
-  "cagr-calculator", "car-loan-calculator", "compound-interest-calculator",
-  "discount-calculator", "investment-fee-impact-calculator", "loan-amortization-schedule",
-  "loan-calculator", "markup-calculator", "mortgage-calculator",
-  "roas-calculator", "salary-converter", "sales-tax-calculator",
-  "tip-calculator", "unit-price-calculator",
-  // health (14)
-  "bmi-calculator", "bmr-calculator", "body-fat-calculator", "calorie-calculator",
-  "conception-date-calculator", "due-date-calculator", "hcg-calculator",
-  "menstrual-cycle-calculator", "one-rep-max-calculator", "ovulation-calculator",
-  "pace-calculator", "pregnancy-week-calculator", "pregnancy-weight-gain-calculator",
-  "water-intake-calculator",
-  // text (8)
-  "caesar-cipher", "character-frequency", "password-generator",
-  "reverse-text-generator", "roman-numeral-converter", "text-replace",
-  "word-counter", "wpm-counter",
-  // math (5)
-  "fraction-calculator", "gpa-calculator", "number-base-converter",
-  "paint-calculator", "percentage-calculator",
-  // converter (9)
-  "currency-converter", "fuel-economy-converter", "length-converter",
-  "power-converter", "pressure-converter", "speed-converter",
-  "temperature-converter", "time-converter", "weight-converter",
-  // datetime (8)
-  "age-calculator", "age-difference-calculator", "countdown-timer", "date-calculator",
-  "iso-week-calculator", "stopwatch", "timezone-converter",
-  "workdays-calculator",
-  // 復帰(2026-06-29): countdown-timer/body-fat-calculator は SC実需+クリック実績あり(noindexだった)
-  // 復帰v2(2026-06-29): GA4 Organic Search engaged実績ありで noindexだったツール
-  // (keep基準を「Google SC ∪ GA4実流入」に。SCだけだとAI/Bing/実検索の流入記事を誤noindexする)
-  "grade-calculator", "steps-to-distance-calculator", "password-strength-tester",
-  "ascii-table", "heat-index-calculator",
-]);
+// ── 2026-10-11 索引対象の絞り込み(ken 承認「推奨で」) ─────────────────────────
+// Google は 5月の移転直後に読んだきり再評価しておらず、sitemap 736本の登録は 0。
+// 技術的な不具合は無い(URL 検査18本)=サイト単位の「薄い量産」判定と見て、索引対象を
+// 需要の実績があるページだけに絞る。需要は 3つの実測で順位付けした(2026-04-01〜10-10):
+//   ・Bing Webmaster pageStats(app-infra bing/latest.json 10/11)
+//   ・GSC page 別(toolify365.com と旧 tools.appdevelopsk.com の合算・5〜6月が主)
+//   ・GA4 Organic Search の landingPage(セッション/エンゲージ)
+// 旧 allowlist 57本(2026-06-05 / 06-29)は Google 需要で選んだが、その後 Google 表示は 0 に落ちた。
+// 並びは需要の大きい順。トップページの「よく使われるツール」もこの順で出す。
+export const CORE_TOOLS_BY_DEMAND = [
+  "workdays-calculator", "date-calculator", "pressure-converter", "unit-price-calculator",
+  "steps-to-distance-calculator", "wpm-counter", "age-difference-calculator", "ovulation-calculator",
+  "due-date-calculator", "power-converter", "caesar-cipher", "length-converter",
+  "iso-week-calculator", "password-strength-tester", "grade-calculator",
+  "investment-fee-impact-calculator", "pace-calculator", "roas-calculator",
+  "pregnancy-week-calculator", "timezone-converter", "reverse-text-generator",
+  "heat-index-calculator", "percentage-calculator", "character-frequency", "bmr-calculator",
+  "speed-converter", "loan-calculator", "age-calculator", "conception-date-calculator",
+] as const;
 
+export const INDEXED_SLUGS = new Set<string>(CORE_TOOLS_BY_DEMAND);
+
+/**
+ * INDEXED_LOCALES(en/ja)以外で、ページ単位で index を残すもの。
+ * 基準 = 実クリック1以上(GSC/Bing)・GA4 自然検索エンゲージ2以上・Bing 表示49以上 のどれか。
+ * noindex は Bing/Yandex からも消える。2026-06 にロケール単位の noindex で実クリックの
+ * 8/9 を自分で消した前例(locales.ts)があるので、実績のあるページだけは残す。
+ */
+export const INDEX_EXCEPTIONS: Readonly<Record<string, readonly string[]>> = {
+  th: ["date-calculator", "roman-numeral-converter", "steps-to-distance-calculator", "age-calculator"],
+  ru: ["age-difference-calculator", "heat-index-calculator", "timezone-converter", "pressure-converter"],
+  tr: ["grade-calculator", "caesar-cipher", "steps-to-distance-calculator", "pressure-converter", "salary-converter", "length-converter"],
+  ar: ["length-converter", "countdown-timer", "pace-calculator", "date-calculator", "body-fat-calculator"],
+  fr: ["speed-converter"],
+  es: ["due-date-calculator", "iso-week-calculator"],
+};
+
+/** 言語に依らず「どこかのロケールで」index 対象か(関連リンク・カテゴリハブの判定用)。 */
 export function isIndexable(slug: string): boolean {
   return INDEXED_SLUGS.has(slug);
+}
+
+/** そのロケールのツールページを index させるか。sitemap / robots / hreflang の唯一の判定。 */
+export function isIndexableIn(locale: string, slug: string): boolean {
+  if (INDEXED_SLUGS.has(slug) && isIndexedLocale(locale)) return true;
+  return INDEX_EXCEPTIONS[locale]?.includes(slug) ?? false;
+}
+
+/** ツールが index 対象になっているロケールの一覧(hreflang クラスタ用)。 */
+export function indexableLocalesFor(slug: string): string[] {
+  return LOCALES.filter((l) => isIndexableIn(l, slug));
+}
+
+/** トップの「よく使われるツール」= 需要順の索引対象。 */
+export function listFeaturedTools(): ToolMeta[] {
+  return CORE_TOOLS_BY_DEMAND.map((s) => SLUG_INDEX.get(s)).filter((m): m is ToolMeta => Boolean(m));
 }
 
 export function listTools(): ToolMeta[] {

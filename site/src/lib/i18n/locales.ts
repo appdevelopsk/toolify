@@ -56,8 +56,14 @@ export const DEFAULT_LOCALE: Locale = "en";
  *  ── 2026-10-06: es を復帰(ken 承認)。Bing 5/29〜10/2 で es の出産予定日が142表示・
  *     ISO週番号が49表示と、noindex のままでも全ロケール最大の需要が出ていたため。
  *     再判定: 2026-11-03 頃に Bing/GSC の es ページ別クリックで。
+ *  ── 2026-10-11: en + ja に戻し、他ロケールは「実績のあるページだけ」を
+ *     registry.ts の INDEX_EXCEPTIONS で個別に index する(ken 承認「推奨で」)。
+ *     Google は 8言語×92=736本の sitemap を 1本も登録していない(10/1 取得・登録0)。
+ *     ja を残す理由(数字): Bing の実クリック33のうち ja が16(全ロケール最多)、
+ *     GA4 自然検索のエンゲージも ja 11(en 4)。es は表示のみ(0クリック)なので
+ *     出産予定日・ISO週の2本だけを INDEX_EXCEPTIONS に残した。
  */
-export const INDEXED_LOCALES: Locale[] = ["en", "ja", "ar", "th", "tr", "fr", "ru", "es"];
+export const INDEXED_LOCALES: Locale[] = ["en", "ja"];
 
 export function isIndexedLocale(code: string): boolean {
   return (INDEXED_LOCALES as readonly string[]).includes(code);

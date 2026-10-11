@@ -7,7 +7,7 @@ import type { Locale } from "@/lib/i18n/locales";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale });
-  return buildMetadata({ locale: locale as Locale, title: t("nav.privacy"), description: t("site.description"), path: "/privacy" });
+  return buildMetadata({ locale: locale as Locale, title: t("nav.privacy"), description: t("site.description"), path: "/privacy", noindex: true /* 2026-10-11 索引対象を需要のあるツールへ絞った(sitemap.ts) */ });
 }
 
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {

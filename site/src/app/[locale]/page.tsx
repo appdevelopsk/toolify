@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { Link } from "@/lib/i18n/navigation";
-import { listTools } from "@/lib/tools/registry";
+import { listTools, listFeaturedTools } from "@/lib/tools/registry";
 import { listPrompts } from "@/lib/prompts/registry";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { FavoritesSection } from "@/components/tools/FavoritesSection";
@@ -14,7 +14,10 @@ import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import type { Locale } from "@/lib/i18n/locales";
 import type { ToolCategory, ToolMeta } from "@/lib/tools/types";
 
-const FEATURED_COUNT = 9;
+// 2026-10-11: 「よく使われるツール」は登録順でなく需要順の索引対象(registry.ts CORE_TOOLS_BY_DEMAND)。
+const FEATURED_COUNT = 12;
+// プロンプトは noindex にしたので、トップからのリンクは少数に留める(権威を索引対象ツールへ寄せる)。
+const PROMPTS_ON_HOME = 3;
 
 const WHY_ITEMS = [
   { emoji: "🔒", title: "home.whyPrivacyTitle", text: "home.whyPrivacyText", bg: "bg-sky-100 dark:bg-sky-950/50" },
@@ -63,7 +66,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const t = await getTranslations();
   const allTools = listTools();
   const allPrompts = listPrompts();
-  const featured = allTools.slice(0, FEATURED_COUNT);
+  const featured = listFeaturedTools().slice(0, FEATURED_COUNT);
   const remainingCount = allTools.length - featured.length;
 
   const toolTitle = (m: ToolMeta) => t(`tools.${m.slug}.title`);
@@ -249,7 +252,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <AdInFeed className="my-12" />
 
       {/* ── Recommended services (cross-category affiliate, locale-aware) ── */}
-      <RelatedServices featured />
+      <RelatedServices featured context="home" />
 
       {/* ── AI Prompts ────────────────────────────────────────────────── */}
       {allPrompts.length > 0 && (
@@ -261,7 +264,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </Link>
           </div>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {allPrompts.map((m) => (
+            {allPrompts.slice(0, PROMPTS_ON_HOME).map((m) => (
               <PromptCard
                 key={m.slug}
                 meta={m}

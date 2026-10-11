@@ -820,3 +820,24 @@ function inferMarketFromLocale(locale: string): "JP" | "US" | "CN" | "INTL" {
   // (2026-08-05 実測)。INTL として明示的に扱う。
   return "INTL";
 }
+
+/**
+ * 出稿先リンクにサイト・ページの識別子を付ける(2026-10-11)。
+ *
+ * Toolify の AWIN は Pickly と同じ publisher 口座(2887303)なので、clickref が無いと
+ * 成果をサイト別に分けられない。AWIN の成果 API は clickRefs.clickRef を返すので、
+ * `toolify-<ツール slug>` を付けて growth/asp_earnings_snapshot.mjs で集計する。
+ * A8 は口座側でサイト登録を分けない限り分離できない(ここでは触らない)。
+ *
+ * `context` はツール slug・"home"・"prompt-<slug>" など。AWIN の clickref は
+ * 英数字・ハイフン・下線のみ、長さは 50 文字以内に収める。
+ */
+export function trackedOfferUrl(offer: AffiliateOffer, href: string, context: string | undefined): string {
+  if (offer.network !== "awin" || !href.includes("awin1.com/cread.php")) return href;
+  if (/[?&]clickref=/.test(href)) return href;
+  const ref = `toolify-${(context ?? "unknown").toLowerCase().replace(/[^a-z0-9_-]+/g, "-")}`.slice(0, 50);
+  const param = `clickref=${ref}`;
+  // ued(遷移先)の前に置く。ued は URL エンコード済みなので後ろに足しても壊れないが、念のため。
+  const i = href.indexOf("&ued=");
+  return i >= 0 ? `${href.slice(0, i)}&${param}${href.slice(i)}` : `${href}&${param}`;
+}

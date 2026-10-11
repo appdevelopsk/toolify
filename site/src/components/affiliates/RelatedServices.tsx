@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
-import { getFeaturedOffers, getOffersFor, POLICY } from "@/lib/affiliates/catalog";
+import { getFeaturedOffers, getOffersFor, POLICY, trackedOfferUrl } from "@/lib/affiliates/catalog";
 import type { OfferCategory } from "@/lib/affiliates/types";
 
 interface Props {
@@ -10,6 +10,8 @@ interface Props {
   featured?: boolean;
   /** Override visibility: `true` shows pending offers in disabled state for QA. */
   showPending?: boolean;
+  /** 成果のサイト・ページ別集計用(AWIN clickref=toolify-<context>)。ツール slug・"home" など。 */
+  context?: string;
 }
 
 /**
@@ -19,7 +21,7 @@ interface Props {
  * 各カードに「PR」ラベル + フッターから /disclosure へのリンクを担保し、
  * 景表法ステマ規制・特商法・Google AdSense ポリシーに対応する。
  */
-export function RelatedServices({ category, featured = false, showPending = false }: Props) {
+export function RelatedServices({ category, featured = false, showPending = false, context }: Props) {
   const t = useTranslations();
   const locale = useLocale();
   const offers = featured
@@ -47,7 +49,7 @@ export function RelatedServices({ category, featured = false, showPending = fals
           const name = o.name[locale] ?? o.name.en ?? o.id;
           const desc = o.description[locale] ?? o.description.en ?? "";
           const cta = o.cta?.[locale] ?? o.cta?.en ?? t("affiliate.defaultCta");
-          const href = o.url[locale] ?? o.url.default ?? "#";
+          const href = trackedOfferUrl(o, o.url[locale] ?? o.url.default ?? "#", context);
           const isPending = Boolean(o.pending);
 
           return (

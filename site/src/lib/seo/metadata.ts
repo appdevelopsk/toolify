@@ -15,6 +15,12 @@ interface BuildMetadataParams {
   /** true の場合 robots を index:false にする（剪定した noindex ツール用 / フォローは維持） */
   noindex?: boolean;
   /**
+   * このページを index させるロケールの一覧(hreflang クラスタもこれで作る)。
+   * 省略時は INDEXED_LOCALES。ツールページは registry.indexableLocalesFor(slug) を渡す
+   * (en/ja 以外でも実績のあるページだけ個別に index するため)。
+   */
+  indexableLocales?: readonly string[];
+  /**
    * true でルート layout の title template（`%s · Toolify365`）を適用しない。
    * ★2026-08-04 以降、指定が無くても**接尾辞が表示幅60に収まらなければ自動で外す**。
    * このフラグは「収まっても付けたくない」場合にだけ立てればよい。
@@ -52,18 +58,23 @@ function clampDescription(text: string): string {
 }
 
 export function buildMetadata(params: BuildMetadataParams): Metadata {
-  const { locale, title, description: rawDescription, path, keywords, type = "website", image, publishedTime, modifiedTime, noindex = false, absoluteTitle = false } = params;
+  const { locale, title, description: rawDescription, path, keywords, type = "website", image, publishedTime, modifiedTime, noindex = false, absoluteTitle = false, indexableLocales } = params;
   const description = clampDescription(rawDescription);
   const url = `${siteConfig.url}/${locale}${path}`;
   // index 対象ロケール（en/ja）のみ noindex でなければインデックスさせる。
   // 死蔵言語(クリック0)はサイト全体のHCU評価を下げるため noindex+hreflang除外。
-  const indexable = !noindex && isIndexedLocale(locale);
+  const inCluster = (l: string) => (indexableLocales ? indexableLocales.includes(l) : isIndexedLocale(l));
+  const indexable = !noindex && inCluster(locale);
   const alternates: Record<string, string> = {};
-  for (const l of LOCALES) {
-    if (!isIndexedLocale(l)) continue; // hreflang も index 対象ロケールに限定
-    alternates[l] = `${siteConfig.url}/${l}${path}`;
+  // hreflang は index 対象のページ同士だけで組む。noindex ページ(剪定済み)は
+  // 自分も他も index させないので hreflang を出さない(クラスタが noindex を指す事故を防ぐ)。
+  if (indexable) {
+    for (const l of LOCALES) {
+      if (!inCluster(l)) continue;
+      alternates[l] = `${siteConfig.url}/${l}${path}`;
+    }
+    if (alternates["en"]) alternates["x-default"] = alternates["en"];
   }
-  alternates["x-default"] = `${siteConfig.url}/en${path}`;
 
   const ogImage =
     image ??
