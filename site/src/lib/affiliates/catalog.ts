@@ -420,6 +420,8 @@ export const CATALOG: AffiliateOffer[] = [
   // ───────── Health / 健康 ─────────
   {
     // A8.net link → myprotein.jp (Japanese LP, JP shipping only)
+    // 2026-10-11: A8 で未提携のままリンクを掲載していた(成果が付かない)ため pending で非表示。
+    // 提携が承認されたら、掲載サイト 002 Toolify 用の a8mat を url に入れて pending を外す。
     id: "myprotein-jp",
     category: "health",
     markets: ["JP"],
@@ -429,9 +431,10 @@ export const CATALOG: AffiliateOffer[] = [
       ja: "ヨーロッパNo.1のフィットネスブランド。プロテイン・サプリ・スポーツウェアが直送。",
     },
     cta: { ja: "公式サイトを見る" },
-    url: { default: "https://px.a8.net/svt/ejp?a8mat=4B3OR1+9IXP82+45DI+5ZU29" },
+    url: { default: "#pending-myprotein" },
     network: "a8",
     badge: "💪",
+    pending: true,
   },
   {
     id: "iherb-global",
