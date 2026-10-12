@@ -233,7 +233,8 @@ export const CATALOG: AffiliateOffer[] = [
     category: "health",
     markets: ["US"],
     name: { en: "Ultrahuman Ring AIR" },
-    description: { en: "Smart ring tracking sleep, HRV, glucose, and recovery — turn your health numbers into daily action." },
+    // 2026-10-12 監査: リング単体は血糖を測らない(血糖は別売 CGM)。glucose を機能に並べない。
+    description: { en: "Smart ring tracking sleep, HRV, and recovery — turn your health numbers into daily action. The ring does not measure blood glucose; that needs a separate CGM sold on its own." },
     cta: { en: "Shop Ultrahuman" },
     url: { default: "https://www.awin1.com/cread.php?awinmid=69428&awinaffid=2887303&ued=https%3A%2F%2Fultrahuman.com%2F" },
     network: "awin",

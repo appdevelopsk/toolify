@@ -3,78 +3,12 @@
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
-type FilingStatus = "single" | "mfj" | "hoh";
-type PayFrequency = "weekly" | "biweekly" | "semimonthly" | "monthly";
-
-const PAY_PERIODS: Record<PayFrequency, number> = {
-  weekly: 52,
-  biweekly: 26,
-  semimonthly: 24,
-  monthly: 12,
-};
-
-// 2024 US Federal Tax Brackets
-const BRACKETS: Record<FilingStatus, Array<{ max: number; rate: number }>> = {
-  single: [
-    { max: 11600, rate: 0.10 },
-    { max: 47150, rate: 0.12 },
-    { max: 100525, rate: 0.22 },
-    { max: 191950, rate: 0.24 },
-    { max: 243725, rate: 0.32 },
-    { max: 609350, rate: 0.35 },
-    { max: Infinity, rate: 0.37 },
-  ],
-  mfj: [
-    { max: 23200, rate: 0.10 },
-    { max: 94300, rate: 0.12 },
-    { max: 201050, rate: 0.22 },
-    { max: 383900, rate: 0.24 },
-    { max: 487450, rate: 0.32 },
-    { max: 731200, rate: 0.35 },
-    { max: Infinity, rate: 0.37 },
-  ],
-  hoh: [
-    { max: 16550, rate: 0.10 },
-    { max: 63100, rate: 0.12 },
-    { max: 100500, rate: 0.22 },
-    { max: 191950, rate: 0.24 },
-    { max: 243700, rate: 0.32 },
-    { max: 609350, rate: 0.35 },
-    { max: Infinity, rate: 0.37 },
-  ],
-};
-
-const STANDARD_DEDUCTIONS: Record<FilingStatus, number> = {
-  single: 14600,
-  mfj: 29200,
-  hoh: 21900,
-};
-
-const SS_WAGE_BASE = 168600;
-const SS_RATE = 0.062;
-const MEDICARE_RATE = 0.0145;
-const ADDL_MEDICARE_RATE = 0.009;
-const ADDL_MEDICARE_THRESHOLD: Record<FilingStatus, number> = {
-  single: 200000,
-  mfj: 250000,
-  hoh: 200000,
-};
-const STATE_TAX_RATE = 0.05;
-
-function calcFederalTax(taxableIncome: number, status: FilingStatus): number {
-  if (taxableIncome <= 0) return 0;
-  const brackets = BRACKETS[status];
-  let tax = 0;
-  let prev = 0;
-  for (const bracket of brackets) {
-    const chunk = Math.min(taxableIncome, bracket.max) - prev;
-    if (chunk <= 0) break;
-    tax += chunk * bracket.rate;
-    prev = bracket.max;
-    if (taxableIncome <= bracket.max) break;
-  }
-  return tax;
-}
+import {
+  calcPaycheck,
+  TAX_YEAR,
+  type FilingStatus,
+  type PayFrequency,
+} from "./calc";
 
 export default function PaycheckCalculator() {
   const t = useTranslations("tools.paycheck-calculator");
@@ -85,61 +19,16 @@ export default function PaycheckCalculator() {
   const [payFrequency, setPayFrequency] = useState<PayFrequency>("biweekly");
   const [additionalWithholding, setAdditionalWithholding] = useState("");
 
-  const result = useMemo(() => {
-    const grossAnnual = parseFloat(salary);
-    if (!isFinite(grossAnnual) || grossAnnual <= 0) return null;
-
-    const periods = PAY_PERIODS[payFrequency];
-    const grossPerPaycheck = grossAnnual / periods;
-
-    // Federal income tax
-    const standardDeduction = STANDARD_DEDUCTIONS[filingStatus];
-    const taxableIncome = Math.max(0, grossAnnual - standardDeduction);
-    const annualFederalTax = calcFederalTax(taxableIncome, filingStatus);
-    const federalTaxPerPaycheck = annualFederalTax / periods;
-
-    // State tax estimate
-    const annualStateTax = grossAnnual * STATE_TAX_RATE;
-    const stateTaxPerPaycheck = annualStateTax / periods;
-
-    // Social Security
-    const ssTaxableWages = Math.min(grossAnnual, SS_WAGE_BASE);
-    const annualSS = ssTaxableWages * SS_RATE;
-    const ssPerPaycheck = annualSS / periods;
-
-    // Medicare
-    const threshold = ADDL_MEDICARE_THRESHOLD[filingStatus];
-    const baseAnnualMedicare = grossAnnual * MEDICARE_RATE;
-    const addlAnnualMedicare = Math.max(0, grossAnnual - threshold) * ADDL_MEDICARE_RATE;
-    const annualMedicare = baseAnnualMedicare + addlAnnualMedicare;
-    const medicarePerPaycheck = annualMedicare / periods;
-
-    const addlWithholding = parseFloat(additionalWithholding) || 0;
-
-    const netPerPaycheck =
-      grossPerPaycheck -
-      federalTaxPerPaycheck -
-      stateTaxPerPaycheck -
-      ssPerPaycheck -
-      medicarePerPaycheck -
-      addlWithholding;
-
-    const annualNet = netPerPaycheck * periods;
-
-    return {
-      grossPerPaycheck,
-      federalTaxPerPaycheck,
-      stateTaxPerPaycheck,
-      ssPerPaycheck,
-      medicarePerPaycheck,
-      netPerPaycheck,
-      annualFederalTax,
-      annualStateTax,
-      annualSS,
-      annualMedicare,
-      annualNet,
-    };
-  }, [salary, filingStatus, payFrequency, additionalWithholding]);
+  const result = useMemo(
+    () =>
+      calcPaycheck(
+        parseFloat(salary),
+        filingStatus,
+        payFrequency,
+        parseFloat(additionalWithholding) || 0,
+      ),
+    [salary, filingStatus, payFrequency, additionalWithholding],
+  );
 
   const fmt = useMemo(
     () =>
@@ -158,6 +47,13 @@ export default function PaycheckCalculator() {
 
   return (
     <div>
+      <div
+        role="note"
+        className="mb-5 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900 dark:border-amber-700 dark:bg-amber-900/20 dark:text-amber-200"
+      >
+        <p className="font-semibold">{t("note.taxYearLabel", { year: String(TAX_YEAR) })}</p>
+        <p className="mt-1">{t("note.taxYearWarning", { year: String(TAX_YEAR) })}</p>
+      </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
           <span className="text-sm font-medium">{t("input.salary")}</span>
