@@ -2,6 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { isWholeUnitCurrency, toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
+
+const TOOL = "debt-payoff-calculator";
 
 type Tab = "fixedPayment" | "fixedTerm";
 
@@ -123,19 +127,20 @@ function calcFixedTerm(balance: number, monthlyRate: number, months: number): Pa
 export default function DebtPayoffCalculator() {
   const t = useTranslations("tools.debt-payoff-calculator");
   const locale = useLocale();
+  const defaults = toolDefaults(TOOL, locale);
 
   const [tab, setTab] = useState<Tab>("fixedPayment");
-  const [balance, setBalance] = useState("5000");
+  const [balance, setBalance] = useState(defaults.balance ?? "5000");
   const [ratePct, setRatePct] = useState("18");
-  const [monthlyPayment, setMonthlyPayment] = useState("150");
+  const [monthlyPayment, setMonthlyPayment] = useState(defaults.monthlyPayment ?? "150");
   const [termMonths, setTermMonths] = useState("36");
 
   const currency = useMemo(
     () =>
       new Intl.NumberFormat(locale, {
         style: "currency",
-        currency: locale === "ja" ? "JPY" : "USD",
-        maximumFractionDigits: locale === "ja" ? 0 : 2,
+        currency: toolCurrency(TOOL, locale),
+        maximumFractionDigits: isWholeUnitCurrency(toolCurrency(TOOL, locale)) ? 0 : 2,
       }),
     [locale],
   );

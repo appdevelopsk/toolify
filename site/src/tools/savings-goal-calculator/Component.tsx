@@ -2,13 +2,18 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
+
+const TOOL = "savings-goal-calculator";
 
 export default function SavingsGoalCalculator() {
   const t = useTranslations("tools.savings-goal-calculator");
   const locale = useLocale();
-  const [goal, setGoal] = useState("100000");
+  const defaults = toolDefaults(TOOL, locale);
+  const [goal, setGoal] = useState(defaults.goal ?? "100000");
   const [start, setStart] = useState("0");
-  const [monthly, setMonthly] = useState("500");
+  const [monthly, setMonthly] = useState(defaults.monthly ?? "500");
   const [ratePct, setRatePct] = useState("4");
 
   const result = useMemo(() => {
@@ -42,7 +47,7 @@ export default function SavingsGoalCalculator() {
   }, [goal, start, monthly, ratePct]);
 
   const currency = useMemo(
-    () => new Intl.NumberFormat(locale, { style: "currency", currency: locale === "ja" ? "JPY" : "USD", maximumFractionDigits: 0 }),
+    () => new Intl.NumberFormat(locale, { style: "currency", currency: toolCurrency(TOOL, locale), maximumFractionDigits: 0 }),
     [locale],
   );
 

@@ -2,6 +2,10 @@
 
 import { useCallback, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { isWholeUnitCurrency, toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
+
+const TOOL = "bill-split-calculator";
 
 const TIP_PRESETS = [10, 15, 18, 20, 25];
 const MIN_PEOPLE = 1;
@@ -36,10 +40,11 @@ function redistributeEvenly(people: Person[]): Person[] {
 export default function BillSplitCalculator() {
   const t = useTranslations("tools.bill-split-calculator");
   const locale = useLocale();
+  const defaults = toolDefaults(TOOL, locale);
 
   // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
   // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
-  const [bill, setBill] = useState(() => "100");
+  const [bill, setBill] = useState(() => defaults.bill ?? "100");
   const [tipPct, setTipPct] = useState("15");
   const [numPeople, setNumPeople] = useState("2");
   const [isUnequal, setIsUnequal] = useState(false);
@@ -51,7 +56,8 @@ export default function BillSplitCalculator() {
     () =>
       new Intl.NumberFormat(locale, {
         style: "currency",
-        currency: locale === "ja" ? "JPY" : "USD",
+        currency: toolCurrency(TOOL, locale),
+        maximumFractionDigits: isWholeUnitCurrency(toolCurrency(TOOL, locale)) ? 0 : 2,
       }),
     [locale],
   );

@@ -2,15 +2,20 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { isWholeUnitCurrency, toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
 import { buildAmortizationRows } from "@/components/tools/amortization";
 import { AmortizationTable } from "@/components/tools/AmortizationTable";
+
+const TOOL = "loan-calculator";
 
 export default function LoanCalculator() {
   const t = useTranslations("tools.loan-calculator");
   const locale = useLocale();
-  const [principal, setPrincipal] = useState("250000");
-  const [ratePct, setRatePct] = useState("4.5");
-  const [years, setYears] = useState("30");
+  const defaults = toolDefaults(TOOL, locale);
+  const [principal, setPrincipal] = useState(defaults.principal ?? "250000");
+  const [ratePct, setRatePct] = useState(defaults.ratePct ?? "4.5");
+  const [years, setYears] = useState(defaults.years ?? "30");
 
   const result = useMemo(() => {
     const P = parseFloat(principal);
@@ -33,11 +38,11 @@ export default function LoanCalculator() {
   );
 
   const currency = useMemo(
-    () => new Intl.NumberFormat(locale, { style: "currency", currency: locale === "ja" ? "JPY" : "USD", maximumFractionDigits: 0 }),
+    () => new Intl.NumberFormat(locale, { style: "currency", currency: toolCurrency(TOOL, locale), maximumFractionDigits: 0 }),
     [locale],
   );
   const cents = useMemo(
-    () => new Intl.NumberFormat(locale, { style: "currency", currency: locale === "ja" ? "JPY" : "USD", maximumFractionDigits: locale === "ja" ? 0 : 2 }),
+    () => new Intl.NumberFormat(locale, { style: "currency", currency: toolCurrency(TOOL, locale), maximumFractionDigits: isWholeUnitCurrency(toolCurrency(TOOL, locale)) ? 0 : 2 }),
     [locale],
   );
 

@@ -16,8 +16,8 @@ export const LOCALE_CURRENCY: Record<string, string> = {
 };
 
 // Currencies shown without decimals (Intl already does this for JPY/KRW/VND;
-// IDR is listed because Intl would otherwise print two decimals).
-const WHOLE_UNIT = new Set(["JPY", "KRW", "VND", "IDR"]);
+// IDR and TWD are listed because Intl would otherwise print two decimals).
+const WHOLE_UNIT = new Set(["JPY", "KRW", "VND", "IDR", "TWD"]);
 
 export function currencyForLocale(locale: string, overrides?: Record<string, string>): string {
   return overrides?.[locale] ?? LOCALE_CURRENCY[locale] ?? "USD";
@@ -30,4 +30,44 @@ export function currencyFormatter(locale: string, overrides?: Record<string, str
     currency,
     maximumFractionDigits: WHOLE_UNIT.has(currency) ? 0 : 2,
   });
+}
+
+/**
+ * ツール別の上書き(2026-10-13)。
+ * 各ツールの messages の例文が使っている通貨を実際に読んで決めた表で、
+ * 一律の対応表ではない。例文が米ドルの言語は書かない(=米ドルのまま)。
+ * "*" はそのツールの全言語(例文が全言語で米ドルのツール用)。
+ */
+export const TOOL_CURRENCY_OVERRIDES: Record<string, Record<string, string>> = {
+  "loan-calculator": { th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
+  "savings-goal-calculator": { th: "THB" },
+  "debt-payoff-calculator": { ar: "SAR", es: "EUR", ko: "KRW", th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
+  "unit-price-calculator": { ar: "SAR", es: "EUR", th: "THB" },
+  "bill-split-calculator": { ko: "KRW", th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
+  "markup-calculator": { th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
+  // ja は例文が米ドルだが、表示と初期値は以前から円(意図的)。そのまま。
+  "tip-calculator": { ar: "SAR", th: "THB" },
+  "sales-tax-calculator": { es: "EUR", th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
+  "discount-calculator": { th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
+  "compound-interest-calculator": { ko: "KRW", th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
+  "mortgage-calculator": { th: "THB" },
+  // 米国の 28/36 ルールを説明する道具で、例文は全言語が米ドル。
+  "house-affordability-calculator": { "*": "USD" },
+  // zh は例文に金額が無いので従来の表示(人民元)を保つ。ko は例文が米ドル。
+  "investment-fee-impact-calculator": { th: "THB", "zh-CN": "CNY", "zh-TW": "CNY" },
+  // hi は例文に金額が無いので従来の表示(米ドル)を保つ。ko/zh は例文が米ドル。
+  "lease-vs-buy-calculator": { th: "THB", hi: "USD" },
+  "mortgage-refinance-calculator": { th: "THB" },
+  "fire-number-calculator": { ko: "KRW", th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
+};
+
+/** ツールと言語から表示通貨を決める。上書き → 全言語指定 → 言語の基本表 → 米ドル。 */
+export function toolCurrency(tool: string, locale: string): string {
+  const o = TOOL_CURRENCY_OVERRIDES[tool];
+  return o?.[locale] ?? o?.["*"] ?? LOCALE_CURRENCY[locale] ?? "USD";
+}
+
+/** 補助単位を使わない通貨か(小数を出さない)。 */
+export function isWholeUnitCurrency(currency: string): boolean {
+  return WHOLE_UNIT.has(currency);
 }

@@ -2,13 +2,18 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { isWholeUnitCurrency, toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
+
+const TOOL = "markup-calculator";
 
 export default function MarkupCalculator() {
   const t = useTranslations("tools.markup-calculator");
   const locale = useLocale();
+  const defaults = toolDefaults(TOOL, locale);
   // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
   // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
-  const [cost, setCost] = useState("100");
+  const [cost, setCost] = useState(defaults.cost ?? "100");
   const [markupPct, setMarkupPct] = useState("30");
 
   const result = useMemo(() => {
@@ -22,7 +27,7 @@ export default function MarkupCalculator() {
   }, [cost, markupPct]);
 
   const currency = useMemo(
-    () => new Intl.NumberFormat(locale, { style: "currency", currency: locale === "ja" ? "JPY" : "USD", maximumFractionDigits: locale === "ja" ? 0 : 2 }),
+    () => new Intl.NumberFormat(locale, { style: "currency", currency: toolCurrency(TOOL, locale), maximumFractionDigits: isWholeUnitCurrency(toolCurrency(TOOL, locale)) ? 0 : 2 }),
     [locale],
   );
   const fmt = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 2 }), [locale]);

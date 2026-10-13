@@ -2,13 +2,18 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { isWholeUnitCurrency, toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
+
+const TOOL = "discount-calculator";
 
 export default function DiscountCalculator() {
   const t = useTranslations("tools.discount-calculator");
   const locale = useLocale();
+  const defaults = toolDefaults(TOOL, locale);
   // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
   // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
-  const [original, setOriginal] = useState(() => "100");
+  const [original, setOriginal] = useState(() => defaults.original ?? "100");
   const [discountPct, setDiscountPct] = useState("20");
   const [taxPct, setTaxPct] = useState("0");
 
@@ -25,7 +30,7 @@ export default function DiscountCalculator() {
   }, [original, discountPct, taxPct]);
 
   const currency = useMemo(
-    () => new Intl.NumberFormat(locale, { style: "currency", currency: locale === "ja" ? "JPY" : "USD", maximumFractionDigits: locale === "ja" ? 0 : 2 }),
+    () => new Intl.NumberFormat(locale, { style: "currency", currency: toolCurrency(TOOL, locale), maximumFractionDigits: isWholeUnitCurrency(toolCurrency(TOOL, locale)) ? 0 : 2 }),
     [locale],
   );
 

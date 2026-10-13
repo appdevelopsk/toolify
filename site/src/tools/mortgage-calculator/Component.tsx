@@ -2,18 +2,23 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { isWholeUnitCurrency, toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
 import { buildAmortizationRows, monthlyPayment } from "@/components/tools/amortization";
 import { AmortizationTable } from "@/components/tools/AmortizationTable";
+
+const TOOL = "mortgage-calculator";
 
 export default function MortgageCalculator() {
   const t = useTranslations("tools.mortgage-calculator");
   const locale = useLocale();
-  const [price, setPrice] = useState("400000");
+  const defaults = toolDefaults(TOOL, locale);
+  const [price, setPrice] = useState(defaults.price ?? "400000");
   const [downPct, setDownPct] = useState("20");
-  const [ratePct, setRatePct] = useState("6.5");
-  const [years, setYears] = useState("30");
-  const [taxAnnual, setTaxAnnual] = useState("4800");
-  const [insuranceAnnual, setInsuranceAnnual] = useState("1200");
+  const [ratePct, setRatePct] = useState(defaults.ratePct ?? "6.5");
+  const [years, setYears] = useState(defaults.years ?? "30");
+  const [taxAnnual, setTaxAnnual] = useState(defaults.taxAnnual ?? "4800");
+  const [insuranceAnnual, setInsuranceAnnual] = useState(defaults.insuranceAnnual ?? "1200");
   const [hoaMonthly, setHoaMonthly] = useState("0");
   const [showCompare, setShowCompare] = useState(false);
   const [rateBPct, setRateBPct] = useState("6.0");
@@ -59,11 +64,11 @@ export default function MortgageCalculator() {
   }, [result, showCompare, rateBPct, yearsB, years]);
 
   const currency = useMemo(
-    () => new Intl.NumberFormat(locale, { style: "currency", currency: locale === "ja" ? "JPY" : "USD", maximumFractionDigits: 0 }),
+    () => new Intl.NumberFormat(locale, { style: "currency", currency: toolCurrency(TOOL, locale), maximumFractionDigits: 0 }),
     [locale],
   );
   const cents = useMemo(
-    () => new Intl.NumberFormat(locale, { style: "currency", currency: locale === "ja" ? "JPY" : "USD", maximumFractionDigits: locale === "ja" ? 0 : 2 }),
+    () => new Intl.NumberFormat(locale, { style: "currency", currency: toolCurrency(TOOL, locale), maximumFractionDigits: isWholeUnitCurrency(toolCurrency(TOOL, locale)) ? 0 : 2 }),
     [locale],
   );
 

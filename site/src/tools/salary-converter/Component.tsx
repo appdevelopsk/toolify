@@ -4,13 +4,14 @@ import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 import { currencyFormatter } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
 
 import { convertSalary, DEFAULT_BASIS, parseHoursPerWeek, PERIODS, type Period } from "./calc";
 
 export default function SalaryConverter() {
   const t = useTranslations("tools.salary-converter");
   const locale = useLocale();
-  const [amount, setAmount] = useState("60000");
+  const [amount, setAmount] = useState(toolDefaults("salary-converter", locale).amount ?? "60000");
   const [period, setPeriod] = useState<Period>("annual");
 
   const [hoursPerWeek, setHoursPerWeek] = useState(String(DEFAULT_BASIS.hoursPerWeek));

@@ -2,17 +2,22 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { isWholeUnitCurrency, toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
+
+const TOOL = "sales-tax-calculator";
 
 type Mode = "addTax" | "fromTotal";
 
 export default function SalesTaxCalculator() {
   const t = useTranslations("tools.sales-tax-calculator");
   const locale = useLocale();
+  const defaults = toolDefaults(TOOL, locale);
   const [mode, setMode] = useState<Mode>("addTax");
   // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
   // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
   // 通貨が ja=JPY / en=USD で切り替わるため桁を合わせる。
-  const [amount, setAmount] = useState(() => (locale === "ja" ? "1000" : "100"));
+  const [amount, setAmount] = useState(() => defaults.amount ?? "100");
   const [taxPct, setTaxPct] = useState(locale === "ja" ? "10" : "8.875");
 
   const result = useMemo(() => {
@@ -30,7 +35,7 @@ export default function SalesTaxCalculator() {
   }, [mode, amount, taxPct]);
 
   const currency = useMemo(
-    () => new Intl.NumberFormat(locale, { style: "currency", currency: locale === "ja" ? "JPY" : "USD", maximumFractionDigits: locale === "ja" ? 0 : 2 }),
+    () => new Intl.NumberFormat(locale, { style: "currency", currency: toolCurrency(TOOL, locale), maximumFractionDigits: isWholeUnitCurrency(toolCurrency(TOOL, locale)) ? 0 : 2 }),
     [locale],
   );
 

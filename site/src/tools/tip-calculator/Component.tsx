@@ -2,16 +2,21 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { isWholeUnitCurrency, toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
+
+const TOOL = "tip-calculator";
 
 const PRESETS = [10, 15, 18, 20, 25];
 
 export default function TipCalculator() {
   const t = useTranslations("tools.tip-calculator");
   const locale = useLocale();
+  const defaults = toolDefaults(TOOL, locale);
   // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
   // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
   // 通貨が ja=JPY / 他=USD で切り替わるため桁を合わせる。
-  const [bill, setBill] = useState(() => (locale === "ja" ? "5000" : "50.00"));
+  const [bill, setBill] = useState(() => defaults.bill ?? "50.00");
   const [tipPct, setTipPct] = useState("18");
   const [people, setPeople] = useState("1");
 
@@ -26,7 +31,7 @@ export default function TipCalculator() {
   }, [bill, tipPct, people]);
 
   const currency = useMemo(
-    () => new Intl.NumberFormat(locale, { style: "currency", currency: locale === "ja" ? "JPY" : "USD" }),
+    () => new Intl.NumberFormat(locale, { style: "currency", currency: toolCurrency(TOOL, locale), maximumFractionDigits: isWholeUnitCurrency(toolCurrency(TOOL, locale)) ? 0 : 2 }),
     [locale],
   );
 
@@ -40,7 +45,7 @@ export default function TipCalculator() {
             value={bill}
             onChange={(e) => setBill(e.target.value)}
             className="mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
-            placeholder="50.00"
+            placeholder={defaults.bill ?? "50.00"}
           />
         </label>
         <label className="block sm:col-span-1">

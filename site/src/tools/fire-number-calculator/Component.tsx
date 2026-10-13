@@ -2,6 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
+
+const TOOL = "fire-number-calculator";
 
 function sig2(n: number): number {
   if (!isFinite(n) || n === 0) return 0;
@@ -56,15 +60,16 @@ function calcFire(
 export default function FireNumberCalculator() {
   const t = useTranslations("tools.fire-number-calculator");
   const locale = useLocale();
+  const defaults = toolDefaults(TOOL, locale);
 
-  const [expenses, setExpenses] = useState("40000");
-  const [savings, setSavings] = useState("100000");
-  const [annualSavings, setAnnualSavings] = useState("20000");
+  const [expenses, setExpenses] = useState(defaults.expenses ?? "40000");
+  const [savings, setSavings] = useState(defaults.savings ?? "100000");
+  const [annualSavings, setAnnualSavings] = useState(defaults.annualSavings ?? "20000");
   const [returnRate, setReturnRate] = useState("7");
   const [wr, setWr] = useState("4");
 
   const fmt = useMemo(
-    () => new Intl.NumberFormat(locale, { style: "currency", currency: "USD", maximumFractionDigits: 0 }),
+    () => new Intl.NumberFormat(locale, { style: "currency", currency: toolCurrency(TOOL, locale), maximumFractionDigits: 0 }),
     [locale]
   );
 

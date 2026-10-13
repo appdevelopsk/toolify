@@ -2,7 +2,11 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
 import { TrendChartSvg } from "@/components/tools/TrendChartSvg";
+
+const TOOL = "compound-interest-calculator";
 
 const COMPOUND_OPTIONS = [
   { value: 1, key: "annual" },
@@ -15,7 +19,8 @@ const COMPOUND_OPTIONS = [
 export default function CompoundInterestCalculator() {
   const t = useTranslations("tools.compound-interest-calculator");
   const locale = useLocale();
-  const [principal, setPrincipal] = useState("10000");
+  const defaults = toolDefaults(TOOL, locale);
+  const [principal, setPrincipal] = useState(defaults.principal ?? "10000");
   const [ratePct, setRatePct] = useState("5");
   const [years, setYears] = useState("10");
   const [compoundsPerYear, setCompoundsPerYear] = useState(12);
@@ -72,7 +77,7 @@ export default function CompoundInterestCalculator() {
   }, [principal, ratePct, years, compoundsPerYear, monthlyContribution]);
 
   const currency = useMemo(
-    () => new Intl.NumberFormat(locale, { style: "currency", currency: locale === "ja" ? "JPY" : "USD", maximumFractionDigits: 0 }),
+    () => new Intl.NumberFormat(locale, { style: "currency", currency: toolCurrency(TOOL, locale), maximumFractionDigits: 0 }),
     [locale],
   );
 

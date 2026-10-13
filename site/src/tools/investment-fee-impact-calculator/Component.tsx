@@ -2,7 +2,11 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
 import { TrendChartSvg } from "@/components/tools/TrendChartSvg";
+
+const TOOL = "investment-fee-impact-calculator";
 
 function projectYearlyBalances(initial: number, monthlyContribution: number, annualRate: number, expenseRatio: number, years: number): number[] {
   // Same monthly compounding as projectFinalValue, sampled at every year boundary.
@@ -31,9 +35,10 @@ function projectFinalValue(initial: number, monthlyContribution: number, annualR
 export default function InvestmentFeeImpactCalculator() {
   const t = useTranslations("tools.investment-fee-impact-calculator");
   const locale = useLocale();
+  const defaults = toolDefaults(TOOL, locale);
 
-  const [initial, setInitial] = useState("10000");
-  const [monthlyContribution, setMonthlyContribution] = useState("500");
+  const [initial, setInitial] = useState(defaults.initial ?? "10000");
+  const [monthlyContribution, setMonthlyContribution] = useState(defaults.monthlyContribution ?? "500");
   const [years, setYears] = useState("30");
   const [annualReturn, setAnnualReturn] = useState("7");
   const [expenseRatio, setExpenseRatio] = useState("1.0");
@@ -93,7 +98,7 @@ export default function InvestmentFeeImpactCalculator() {
 
   const currency = new Intl.NumberFormat(locale, {
     style: "currency",
-    currency: locale === "ja" ? "JPY" : locale === "ko" ? "KRW" : locale === "zh-CN" || locale === "zh-TW" ? "CNY" : "USD",
+    currency: toolCurrency(TOOL, locale),
     maximumFractionDigits: 0,
   });
 

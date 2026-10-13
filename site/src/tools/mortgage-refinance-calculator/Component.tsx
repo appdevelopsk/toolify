@@ -2,6 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
+
+const TOOL = "mortgage-refinance-calculator";
 
 function monthlyPayment(principal: number, monthlyRate: number, months: number): number {
   if (monthlyRate === 0) return principal / months;
@@ -12,15 +16,16 @@ function monthlyPayment(principal: number, monthlyRate: number, months: number):
 export default function MortgageRefinanceCalculator() {
   const t = useTranslations("tools.mortgage-refinance-calculator");
   const locale = useLocale();
+  const defaults = toolDefaults(TOOL, locale);
 
   // Current loan
-  const [currentBalance, setCurrentBalance] = useState("250000");
+  const [currentBalance, setCurrentBalance] = useState(defaults.currentBalance ?? "250000");
   const [currentRate, setCurrentRate] = useState("6.5");
   const [currentRemainingYears, setCurrentRemainingYears] = useState("25");
   // New loan
   const [newRate, setNewRate] = useState("5.0");
   const [newTermYears, setNewTermYears] = useState("25");
-  const [closingCosts, setClosingCosts] = useState("4000");
+  const [closingCosts, setClosingCosts] = useState(defaults.closingCosts ?? "4000");
 
   const result = useMemo(() => {
     const balance = parseFloat(currentBalance);
@@ -63,7 +68,7 @@ export default function MortgageRefinanceCalculator() {
     };
   }, [currentBalance, currentRate, currentRemainingYears, newRate, newTermYears, closingCosts]);
 
-  const currency = new Intl.NumberFormat(locale, { style: "currency", currency: locale === "ja" || locale === "zh-CN" || locale === "zh-TW" || locale === "ko" ? (locale === "ja" ? "JPY" : locale === "ko" ? "KRW" : "CNY") : "USD", maximumFractionDigits: 0 });
+  const currency = new Intl.NumberFormat(locale, { style: "currency", currency: toolCurrency(TOOL, locale), maximumFractionDigits: 0 });
 
   return (
     <div className="space-y-4">

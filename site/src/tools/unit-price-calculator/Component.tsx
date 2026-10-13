@@ -2,6 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { isWholeUnitCurrency, toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
+
+const TOOL = "unit-price-calculator";
 
 interface Item {
   id: number;
@@ -38,9 +42,10 @@ function unitKey(raw: string): string | null {
 export default function UnitPriceCalculator() {
   const t = useTranslations("tools.unit-price-calculator");
   const locale = useLocale();
+  const defaults = toolDefaults(TOOL, locale);
   const [items, setItems] = useState<Item[]>([
-    { id: nextId++, name: "", price: "10", quantity: "500", unit: "g" },
-    { id: nextId++, name: "", price: "18", quantity: "1000", unit: "g" },
+    { id: nextId++, name: "", price: defaults.price1 ?? "10", quantity: "500", unit: "g" },
+    { id: nextId++, name: "", price: defaults.price2 ?? "18", quantity: "1000", unit: "g" },
   ]);
 
   const computed = useMemo(() => {
@@ -69,7 +74,7 @@ export default function UnitPriceCalculator() {
   }, [items]);
 
   const currency = useMemo(
-    () => new Intl.NumberFormat(locale, { style: "currency", currency: locale === "ja" ? "JPY" : "USD", maximumFractionDigits: locale === "ja" ? 2 : 4 }),
+    () => new Intl.NumberFormat(locale, { style: "currency", currency: toolCurrency(TOOL, locale), maximumFractionDigits: isWholeUnitCurrency(toolCurrency(TOOL, locale)) ? 2 : 4 }),
     [locale],
   );
 

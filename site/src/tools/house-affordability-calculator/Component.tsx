@@ -2,6 +2,9 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { isWholeUnitCurrency, toolCurrency } from "@/lib/currency";
+
+const TOOL = "house-affordability-calculator";
 
 export default function HouseAffordabilityCalculator() {
   const t = useTranslations("tools.house-affordability-calculator");
@@ -125,7 +128,7 @@ export default function HouseAffordabilityCalculator() {
     () =>
       new Intl.NumberFormat(locale, {
         style: "currency",
-        currency: locale === "ja" ? "JPY" : "USD",
+        currency: toolCurrency(TOOL, locale),
         maximumFractionDigits: 0,
       }),
     [locale],
@@ -135,8 +138,8 @@ export default function HouseAffordabilityCalculator() {
     () =>
       new Intl.NumberFormat(locale, {
         style: "currency",
-        currency: locale === "ja" ? "JPY" : "USD",
-        maximumFractionDigits: locale === "ja" ? 0 : 2,
+        currency: toolCurrency(TOOL, locale),
+        maximumFractionDigits: isWholeUnitCurrency(toolCurrency(TOOL, locale)) ? 0 : 2,
       }),
     [locale],
   );

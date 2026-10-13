@@ -2,6 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { toolCurrency } from "@/lib/currency";
+import { toolDefaults } from "@/lib/tool-defaults";
+
+const TOOL = "lease-vs-buy-calculator";
 
 function loanPayment(principal: number, monthlyRate: number, months: number): number {
   if (monthlyRate === 0) return principal / months;
@@ -19,13 +23,14 @@ function loanBalanceAfter(principal: number, monthlyRate: number, totalMonths: n
 export default function LeaseVsBuyCalculator() {
   const t = useTranslations("tools.lease-vs-buy-calculator");
   const locale = useLocale();
+  const defaults = toolDefaults(TOOL, locale);
 
-  const [carPrice, setCarPrice] = useState("35000");
-  const [downPayment, setDownPayment] = useState("5000");
+  const [carPrice, setCarPrice] = useState(defaults.carPrice ?? "35000");
+  const [downPayment, setDownPayment] = useState(defaults.downPayment ?? "5000");
   const [holdYears, setHoldYears] = useState("3");
 
   // Lease
-  const [leaseMonthly, setLeaseMonthly] = useState("450");
+  const [leaseMonthly, setLeaseMonthly] = useState(defaults.leaseMonthly ?? "450");
   const [leaseTermMonths, setLeaseTermMonths] = useState("36");
 
   // Buy
@@ -92,7 +97,7 @@ export default function LeaseVsBuyCalculator() {
 
   const currency = new Intl.NumberFormat(locale, {
     style: "currency",
-    currency: locale === "ja" ? "JPY" : locale === "ko" ? "KRW" : locale === "zh-CN" || locale === "zh-TW" ? "CNY" : "USD",
+    currency: toolCurrency(TOOL, locale),
     maximumFractionDigits: 0,
   });
 
