@@ -44,7 +44,7 @@ const STATUS_COLOR = { ok: "#1f7a46", zero: "#5b6575", missing: "#b42318", unmea
 
 /** 月末までの残り日数(今日を含む・JST)。スナップショット日から数える。 */
 function remainingDays(date: string): number {
-  const [y, m, d] = date.split("-").map(Number);
+  const [y = 0, m = 1, d = 1] = date.split("-").map(Number);
   const last = new Date(Date.UTC(y, m, 0)).getUTCDate();
   return Math.max(1, last - d + 1);
 }
