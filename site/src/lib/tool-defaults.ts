@@ -156,11 +156,20 @@ export const TOOL_DEFAULTS: Record<string, Record<string, Defaults>> = {
     tr: { bill: "100" },
     vi: { bill: "500000" },
   },
+  // 税率は、国が一意に決まる言語だけその国の標準税率にする。
+  // en・es・ar・pt-BR・ru と、表示が米ドルの ko は入れない(Component の既定 8.875 のまま)。
   "sales-tax-calculator": {
-    hi: { amount: "1000" },
-    id: { amount: "100000" },
-    ja: { amount: "1000" },
-    vi: { amount: "100000" },
+    de: { taxPct: "19" },
+    fr: { taxPct: "20" },
+    hi: { amount: "1000", taxPct: "18" },
+    id: { amount: "100000", taxPct: "11" },
+    it: { taxPct: "22" },
+    ja: { amount: "1000", taxPct: "10" },
+    th: { taxPct: "7" },
+    tr: { taxPct: "20" },
+    vi: { amount: "100000", taxPct: "10" },
+    "zh-CN": { taxPct: "13" },
+    "zh-TW": { taxPct: "5" },
   },
   "discount-calculator": {
     hi: { original: "1000" },

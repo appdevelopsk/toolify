@@ -18,7 +18,7 @@ export default function SalesTaxCalculator() {
   // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
   // 通貨が ja=JPY / en=USD で切り替わるため桁を合わせる。
   const [amount, setAmount] = useState(() => defaults.amount ?? "100");
-  const [taxPct, setTaxPct] = useState(locale === "ja" ? "10" : "8.875");
+  const [taxPct, setTaxPct] = useState(() => defaults.taxPct ?? "8.875");
 
   const result = useMemo(() => {
     const a = parseFloat(amount);
