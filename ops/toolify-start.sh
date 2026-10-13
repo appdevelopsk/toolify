@@ -11,6 +11,9 @@
 # そのため 2026-09-18 に /opt/appcfg/ へ退避し、PM2 もそちらを指すようにした。
 cd /opt/apps/toolify
 set -a; [ -f .env.local ] && source .env.local; set +a
+# /admin の Basic 認証情報と収益データの場所。deploy.yml が書く .env.local は毎回上書きされるため別ファイル。
+# (rsync --delete の対象外 /opt/appcfg 配下。無ければ /admin は 403 で閉じる)
+set -a; [ -f /opt/appcfg/admin.env ] && source /opt/appcfg/admin.env; set +a
 # nginx は 127.0.0.1:8500 へ proxy_pass する。standalone の既定 3000 は
 # 別アプリ(30sec)が占有しており、未指定だと EADDRINUSE で起動できない。
 export PORT=8500
