@@ -42,3 +42,41 @@ export async function loadRevenue(): Promise<RevenueSnapshot | null> {
     return null;
   }
 }
+
+/** build-admin-history.py が作る履歴+所見(同じディレクトリの revenue-history.json)。 */
+export type HistoryCompare = { date: string; last30d: number | null; mtd: number | null; sameMonth: boolean };
+export type HistorySource = {
+  source: string;
+  window: string;
+  jpy: number | null;
+  prev7: number | null;
+  status: string;
+  note: string | null;
+  metrics: Record<string, { now?: number; prev7?: number }>;
+};
+export type HistoryBusiness = {
+  label: string;
+  now: { mtd: number; last30d: number };
+  compare: { d7?: HistoryCompare; d14?: HistoryCompare };
+  projection: { landing: number; goalPct: number | null; needPerDay: number; elapsedDays: number; daysInMonth: number };
+  series: { date: string; mtd: number | null; last30d: number | null }[];
+  sources: HistorySource[];
+  findings: string[];
+  notCollected: string[];
+};
+export type History = {
+  date: string;
+  historyDays: number;
+  firstDate: string;
+  goal: { jpyPerBusinessPerMonth: number; by: string };
+  businesses: Record<string, HistoryBusiness>;
+};
+
+export async function loadHistory(): Promise<History | null> {
+  const base = process.env.ADMIN_REVENUE_FILE || path.join(process.cwd(), "admin-data", "revenue-latest.json");
+  try {
+    return JSON.parse(await readFile(path.join(path.dirname(base), "revenue-history.json"), "utf8")) as History;
+  } catch {
+    return null;
+  }
+}
