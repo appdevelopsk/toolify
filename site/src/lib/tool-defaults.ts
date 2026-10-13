@@ -85,6 +85,7 @@ export const TOOL_DEFAULTS: Record<string, Record<string, Defaults>> = {
     ru: { initial: "100000", monthlyContribution: "5000" },
     th: { initial: "350000", monthlyContribution: "15000" },
     vi: { initial: "10000000", monthlyContribution: "500000" },
+    "zh-TW": { initial: "300000", monthlyContribution: "10000" },
   },
   "lease-vs-buy-calculator": {
     id: { carPrice: "350000000", downPayment: "50000000", leaseMonthly: "4500000" },

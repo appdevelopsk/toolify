@@ -53,8 +53,8 @@ export const TOOL_CURRENCY_OVERRIDES: Record<string, Record<string, string>> = {
   "mortgage-calculator": { ko: "KRW", th: "THB" },
   // 米国の 28/36 ルールを説明する道具で、例文は全言語が米ドル。
   "house-affordability-calculator": { "*": "USD" },
-  // zh は例文に金額が無いので従来の表示(人民元)を保つ。ko は例文が米ドル。
-  "investment-fee-impact-calculator": { th: "THB", "zh-CN": "CNY", "zh-TW": "CNY" },
+  // zh は例文に金額が無い。zh-CN は人民元、zh-TW は新台湾ドル。ko は例文が米ドル。
+  "investment-fee-impact-calculator": { th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
   // hi は例文に金額が無いので従来の表示(米ドル)を保つ。ko/zh は例文が米ドル。
   "lease-vs-buy-calculator": { th: "THB", hi: "USD" },
   "mortgage-refinance-calculator": { th: "THB" },
