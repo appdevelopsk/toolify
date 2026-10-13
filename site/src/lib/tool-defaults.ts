@@ -28,6 +28,7 @@ export const TOOL_DEFAULTS: Record<string, Record<string, Defaults>> = {
     hi: { principal: "3000000", ratePct: "8.5", years: "20" },
     id: { principal: "500000000", ratePct: "9", years: "20" },
     ja: { principal: "25000000", ratePct: "1.5", years: "35" },
+    ko: { principal: "250000000" },
     "pt-BR": { principal: "300000", ratePct: "10", years: "30" },
     ru: { principal: "5000000", ratePct: "8", years: "20" },
     th: { principal: "5000000" },
@@ -61,6 +62,7 @@ export const TOOL_DEFAULTS: Record<string, Record<string, Defaults>> = {
     hi: { price: "5000000", taxAnnual: "60000", insuranceAnnual: "15000" },
     id: { price: "500000000", taxAnnual: "6000000", insuranceAnnual: "1500000", ratePct: "9", years: "20" },
     ja: { price: "40000000", taxAnnual: "480000", insuranceAnnual: "120000" },
+    ko: { price: "400000000", taxAnnual: "4800000", insuranceAnnual: "1200000" },
     "pt-BR": { price: "500000", taxAnnual: "6000", insuranceAnnual: "1500", ratePct: "10", years: "30" },
     ru: { price: "10000000", taxAnnual: "120000", insuranceAnnual: "30000", ratePct: "9", years: "20" },
     th: { price: "5000000", taxAnnual: "60000", insuranceAnnual: "15000", ratePct: "4", years: "30" },
@@ -151,13 +153,15 @@ export const TOOL_DEFAULTS: Record<string, Record<string, Defaults>> = {
     hi: { bill: "1000" },
     id: { bill: "200000" },
     ja: { bill: "5000" },
+    ko: { bill: "50000" },
     ru: { bill: "2000" },
     th: { bill: "500" },
     tr: { bill: "100" },
     vi: { bill: "500000" },
   },
   // 税率は、国が一意に決まる言語だけその国の標準税率にする。
-  // en・es・ar・pt-BR・ru と、表示が米ドルの ko は入れない(Component の既定 8.875 のまま)。
+  // ru は 2026-01-01 からの標準税率 22%。
+  // en・es・ar・pt-BR と、表示が米ドルの ko は入れない(Component の既定 8.875 のまま)。
   "sales-tax-calculator": {
     de: { taxPct: "19" },
     fr: { taxPct: "20" },
@@ -165,6 +169,7 @@ export const TOOL_DEFAULTS: Record<string, Record<string, Defaults>> = {
     id: { amount: "100000", taxPct: "11" },
     it: { taxPct: "22" },
     ja: { amount: "1000", taxPct: "10" },
+    ru: { taxPct: "22" },
     th: { taxPct: "7" },
     tr: { taxPct: "20" },
     vi: { amount: "100000", taxPct: "10" },
@@ -175,6 +180,7 @@ export const TOOL_DEFAULTS: Record<string, Record<string, Defaults>> = {
     hi: { original: "1000" },
     id: { original: "100000" },
     ja: { original: "10000" },
+    ko: { original: "100000" },
     ru: { original: "1000" },
     th: { original: "1000" },
     vi: { original: "100000" },

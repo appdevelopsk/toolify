@@ -141,7 +141,9 @@ export default function MeetingCostCalculator() {
     "mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900";
 
   const activeResult = mode === "timer" ? timerResult : standardResult;
-  const showEmailNote = activeResult !== null && activeResult.totalCost > 1000;
+  // 色分けと「メールで済んだ」の閾値は米ドル基準。円表示(ja)は 100 倍で比べる。
+  const costScale = locale === "ja" ? 100 : 1;
+  const showEmailNote = activeResult !== null && activeResult.totalCost > 1000 * costScale;
 
   return (
     <div>
@@ -284,7 +286,7 @@ export default function MeetingCostCalculator() {
         aria-live="polite"
         className={`mt-6 rounded-lg border p-4 transition-colors ${
           activeResult && activeResult.totalCost > 0
-            ? getCostColor(activeResult.totalCost)
+            ? getCostColor(activeResult.totalCost / costScale)
             : "border-slate-200 dark:border-slate-800"
         }`}
       >
@@ -296,7 +298,7 @@ export default function MeetingCostCalculator() {
                   {t("result.totalCost")}
                 </dt>
                 <dd
-                  className={`mt-1 text-3xl font-bold tabular-nums ${getCostTextColor(activeResult.totalCost)}`}
+                  className={`mt-1 text-3xl font-bold tabular-nums ${getCostTextColor(activeResult.totalCost / costScale)}`}
                 >
                   {currency.format(activeResult.totalCost)}
                 </dd>

@@ -23,7 +23,7 @@ describe("ツール別の表示通貨", () => {
 
   it("例文が米ドルの言語は米ドルのまま、現地通貨の言語は現地通貨", () => {
     expect(toolCurrency("loan-calculator", "en")).toBe("USD");
-    expect(toolCurrency("loan-calculator", "ko")).toBe("USD");
+    expect(toolCurrency("loan-calculator", "ko")).toBe("KRW");
     expect(toolCurrency("loan-calculator", "zh-TW")).toBe("TWD");
     expect(toolCurrency("loan-calculator", "ja")).toBe("JPY");
     expect(toolCurrency("debt-payoff-calculator", "es")).toBe("EUR");

@@ -39,18 +39,18 @@ export function currencyFormatter(locale: string, overrides?: Record<string, str
  * "*" はそのツールの全言語(例文が全言語で米ドルのツール用)。
  */
 export const TOOL_CURRENCY_OVERRIDES: Record<string, Record<string, string>> = {
-  "loan-calculator": { th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
+  "loan-calculator": { ko: "KRW", th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
   "savings-goal-calculator": { th: "THB" },
   "debt-payoff-calculator": { ar: "SAR", es: "EUR", ko: "KRW", th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
   "unit-price-calculator": { ar: "SAR", es: "EUR", th: "THB" },
   "bill-split-calculator": { ko: "KRW", th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
   "markup-calculator": { th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
-  // ja は例文が米ドルだが、表示と初期値は以前から円(意図的)。そのまま。
-  "tip-calculator": { ar: "SAR", th: "THB" },
+  // ja は言語の基本表で円(例文も円)。
+  "tip-calculator": { ar: "SAR", ko: "KRW", th: "THB" },
   "sales-tax-calculator": { es: "EUR", th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
-  "discount-calculator": { th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
+  "discount-calculator": { ko: "KRW", th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
   "compound-interest-calculator": { ko: "KRW", th: "THB", "zh-CN": "CNY", "zh-TW": "TWD" },
-  "mortgage-calculator": { th: "THB" },
+  "mortgage-calculator": { ko: "KRW", th: "THB" },
   // 米国の 28/36 ルールを説明する道具で、例文は全言語が米ドル。
   "house-affordability-calculator": { "*": "USD" },
   // zh は例文に金額が無いので従来の表示(人民元)を保つ。ko は例文が米ドル。
