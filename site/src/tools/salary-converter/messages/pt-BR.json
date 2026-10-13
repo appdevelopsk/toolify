@@ -1,8 +1,8 @@
 {
   "title": "Conversor de Salário (por hora, diário, semanal, mensal, anual)",
   "shortDescription": "Converta salários entre valores por hora, diário, semanal, mensal e anual. Útil para comparar ofertas de emprego e tarifas de freelancer.",
-  "description": "Digite um valor salarial e escolha o período (por hora/diário/semanal/mensal/anual). Todos os outros períodos são atualizados instantaneamente. Assume jornada de 44 horas/semana conforme CLT brasileira.",
-  "metaDescription": "Conversor de salário gratuito. Converta entre valores por hora, diário, semanal, mensal e anual. Baseado na CLT brasileira (44 horas/semana) para comparações limpas de",
+  "description": "Digite um valor salarial e escolha o período (por hora/diário/semanal/mensal/anual). Todos os outros períodos são atualizados instantaneamente. Assume jornada de 40 horas/semana (2.080 horas/ano).",
+  "metaDescription": "Conversor de salário gratuito. Converta entre valores por hora, diário, semanal, mensal e anual. Base de 40 horas/semana (2.080 horas/ano) para comparar propostas de emprego.",
   "keywords": [
     "conversor de salário",
     "salário por hora para anual",
@@ -17,25 +17,25 @@
   "period": {
     "hourly": "Por hora",
     "daily": "Diário (8 h)",
-    "weekly": "Semanal (44 h)",
+    "weekly": "Semanal (40 h)",
     "monthly": "Mensal",
     "annual": "Anual"
   },
-  "assumption": "Assume jornada de 44 horas semanais (padrão CLT), 8 horas por dia e 52 semanas por ano (2.288 horas/ano). Ajuste mentalmente se sua jornada for diferente.",
+  "assumption": "Assume jornada de 40 horas semanais, 8 horas por dia e 52 semanas por ano (2.080 horas/ano). O limite da CLT é de 44 horas semanais: para uma jornada de 44 h, multiplique por 44/40 = 1,1 os valores semanais, mensais e anuais obtidos a partir do valor por hora.",
   "article": {
     "sections": [
       {
         "heading": "Como a conversão funciona",
         "paragraphs": [
-          "Todas as conversões passam pelo valor por hora. Usamos 2.288 horas de trabalho por ano (44 horas × 52 semanas, padrão CLT), 190,7 horas por mês (2.288 / 12), 44 por semana, 8 por dia. Qualquer período que você inserir, convertemos primeiro para por hora e depois derivamos todos os outros.",
-          "Esses fatores não são universais — países com jornadas diferentes (35 horas na França, ~37,5 em alguns países europeus) ou regimes de férias diferentes resultarão em valores distintos. Para uma jornada de 40 horas, multiplique nossos números anuais por 40/44 = 0,909 para ajustar."
+          "Todas as conversões passam pelo valor por hora. Usamos 2.080 horas de trabalho por ano (40 horas × 52 semanas), 173,33 horas por mês (2.080 / 12), 40 por semana, 8 por dia. Qualquer período que você inserir, convertemos primeiro para por hora e depois derivamos todos os outros.",
+          "Esses fatores não são universais — países com jornadas diferentes (35 horas na França, ~37,5 em alguns países europeus, até 44 horas no Brasil pela CLT) ou regimes de férias diferentes resultarão em valores distintos. Para uma jornada de 44 horas (44 × 52 = 2.288 horas/ano), multiplique por 44/40 = 1,1 nossos números anuais obtidos a partir do valor por hora."
         ]
       },
       {
         "heading": "Por que a conversão hora-ano importa",
         "paragraphs": [
           "Ao avaliar uma tarifa de freelancer ou PJ, o 'equivalente anual' é a comparação mais útil com uma vaga CLT. Um freelancer a R$ 100/hora faturando 30 horas produtivas por semana (1.500 horas/ano, considerando férias, dias sem projetos e prospecção) ganha cerca de R$ 150 mil — comparável a um salário CLT de R$ 150 mil, mas sem benefícios, férias pagas ou FGTS.",
-          "Regra geral: um PJ precisa cobrar 1,3x a 1,5x a hora equivalente de um CLT para compensar benefícios, impostos e tempo não faturável. Então um cargo CLT de R$ 10.000/mês ≈ R$ 52/hora CLT ≈ R$ 70-78/hora PJ."
+          "Regra geral: um PJ precisa cobrar 1,3x a 1,5x a hora equivalente de um CLT para compensar benefícios, impostos e tempo não faturável. Então um cargo CLT de R$ 10.000/mês ≈ R$ 58/hora CLT ≈ R$ 75-87/hora PJ."
         ]
       },
       {
@@ -64,8 +64,8 @@
   },
   "faq": [
     {
-      "q": "Por que 2.288 horas por ano?",
-      "a": "É o padrão CLT: 44 horas × 52 semanas. Algumas calculadoras usam 220 horas/mês (padrão dos tribunais trabalhistas para rescisões), o que dá 2.640 horas/ano — use consistentemente o mesmo critério."
+      "q": "Por que 2.080 horas por ano?",
+      "a": "É a base usada pela calculadora: 40 horas × 52 semanas. Pela CLT a jornada pode chegar a 44 horas semanais (44 × 52 = 2.288 horas/ano), e os tribunais trabalhistas usam o divisor de 220 horas/mês (2.640 horas/ano, porque inclui o descanso semanal remunerado) — use sempre o mesmo critério ao comparar."
     },
     {
       "q": "Isso considera impostos?",
@@ -85,11 +85,11 @@
     },
     {
       "q": "Como freelancers devem precificar?",
-      "a": "Multiplique a tarifa horária equivalente CLT por 1,3x-1,5x para cobrir benefícios, impostos e tempo não faturável. Um salário CLT de R$ 10.000/mês ≈ R$ 70-78/hora como PJ."
+      "a": "Multiplique a tarifa horária equivalente CLT por 1,3x-1,5x para cobrir benefícios, impostos e tempo não faturável. Um salário CLT de R$ 10.000/mês ≈ R$ 75-87/hora como PJ."
     },
     {
       "q": "E para trabalho em tempo parcial?",
-      "a": "Ajuste pelo valor por hora primeiro e depois use a calculadora. Ou escale o valor anual pela sua fração do tempo integral (ex.: 30 horas/semana = 0,68x do anual em 44h)."
+      "a": "Ajuste pelo valor por hora primeiro e depois use a calculadora. Ou escale o valor anual pela sua fração do tempo integral (ex.: 30 horas/semana = 0,75x do anual)."
     },
     {
       "q": "Os dados saem do meu navegador?",

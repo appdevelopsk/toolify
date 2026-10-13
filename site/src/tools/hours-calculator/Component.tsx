@@ -367,7 +367,8 @@ function HoursToDecimalTab({ t, locale }: { t: ReturnType<typeof useTranslations
         hms: formatHMS(totalSec),
       };
     } else {
-      const dec = parseFloat(decimalInput);
+      // Accept a decimal comma ("2,5") — many locales type and read decimals that way.
+      const dec = parseFloat(decimalInput.trim().replace(",", "."));
       if (!isFinite(dec) || decimalInput === "") return null;
       const totalSec = Math.round(dec * 3600);
       const { h, m, s } = decimalToHMS(dec);

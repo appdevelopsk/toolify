@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
-const ANNUAL_HOURS = 2080; // 52 weeks × 40 hours
+import { hourlyRate, meetingCost } from "./calc";
 
 type Mode = "standard" | "timer";
 
@@ -71,7 +71,7 @@ export default function MeetingCostCalculator() {
   // Hourly cost per person (shared formula base)
   const hourlyPerPerson = useMemo(() => {
     if (parsedSalary === null) return null;
-    return parsedSalary / ANNUAL_HOURS;
+    return hourlyRate(parsedSalary);
   }, [parsedSalary]);
 
   // Standard mode result
@@ -82,22 +82,19 @@ export default function MeetingCostCalculator() {
     const hours = (isFinite(h) ? h : 0) + (isFinite(m) ? m : 0) / 60;
     if (hours <= 0) return null;
 
-    const totalCost = parsedAttendees * hourlyPerPerson * hours * parsedMultiplier;
-    const costPerMinute = parsedAttendees * hourlyPerPerson * parsedMultiplier;
-    const salaryHoursConsumed = parsedAttendees * hours;
-
-    return { totalCost, costPerMinute, salaryHoursConsumed, durationHours: hours };
-  }, [parsedAttendees, hourlyPerPerson, durationHours, durationMinutes, parsedMultiplier]);
+    const r = meetingCost(parsedAttendees, parsedSalary as number, hours, parsedMultiplier);
+    if (r === null) return null;
+    return { totalCost: r.totalCost, costPerMinute: r.costPerMinute, salaryHoursConsumed: r.personHours, durationHours: hours };
+  }, [parsedAttendees, parsedSalary, hourlyPerPerson, durationHours, durationMinutes, parsedMultiplier]);
 
   // Timer mode result
   const timerResult = useMemo(() => {
     if (parsedAttendees === null || hourlyPerPerson === null) return null;
     const hours = elapsedSeconds / 3600;
-    const totalCost = parsedAttendees * hourlyPerPerson * hours * parsedMultiplier;
-    const costPerMinute = parsedAttendees * hourlyPerPerson * parsedMultiplier;
-    const salaryHoursConsumed = parsedAttendees * hours;
-    return { totalCost, costPerMinute, salaryHoursConsumed };
-  }, [parsedAttendees, hourlyPerPerson, elapsedSeconds, parsedMultiplier]);
+    const r = meetingCost(parsedAttendees, parsedSalary as number, hours, parsedMultiplier);
+    if (r === null) return null;
+    return { totalCost: r.totalCost, costPerMinute: r.costPerMinute, salaryHoursConsumed: r.personHours };
+  }, [parsedAttendees, parsedSalary, hourlyPerPerson, elapsedSeconds, parsedMultiplier]);
 
   const startTimer = useCallback(() => {
     if (timerRunning) return;
