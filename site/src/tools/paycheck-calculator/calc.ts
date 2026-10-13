@@ -1,14 +1,15 @@
 // Paycheck calculation (pure functions, no React) — kept separate so the
 // numbers can be pinned by fixed test cases (calc.test.ts).
 //
-// TAX YEAR: every constant below is the IRS / SSA figure for tax year 2024.
-// They are NOT the current-year figures. The UI shows TAX_YEAR and a warning
-// (messages: note.taxYearWarning). Do not change TAX_YEAR without replacing
+// TAX YEAR: every constant below is the IRS / SSA figure for tax year 2026
+// (Rev. Proc. 2025-32 sections 4.01 and 4.14; SSA contribution and benefit base
+// announced 2025-10-24). The UI shows TAX_YEAR, and adds a warning
+// (messages: note.taxYearWarning) once the calendar year passes TAX_YEAR. Do not change TAX_YEAR without replacing
 // every constant in this file with the official figures for that year
 // (IRS Rev. Proc. inflation adjustments + SSA contribution and benefit base)
 // and updating calc.test.ts.
 
-export const TAX_YEAR = 2024;
+export const TAX_YEAR = 2026;
 
 export type FilingStatus = "single" | "mfj" | "hoh";
 export type PayFrequency = "weekly" | "biweekly" | "semimonthly" | "monthly";
@@ -20,44 +21,44 @@ export const PAY_PERIODS: Record<PayFrequency, number> = {
   monthly: 12,
 };
 
-// 2024 US Federal Tax Brackets (IRS Rev. Proc. 2023-34)
+// 2026 US Federal Tax Brackets (IRS Rev. Proc. 2025-32, section 4.01 Tables 1-3)
 export const BRACKETS: Record<FilingStatus, Array<{ max: number; rate: number }>> = {
   single: [
-    { max: 11600, rate: 0.1 },
-    { max: 47150, rate: 0.12 },
-    { max: 100525, rate: 0.22 },
-    { max: 191950, rate: 0.24 },
-    { max: 243725, rate: 0.32 },
-    { max: 609350, rate: 0.35 },
+    { max: 12400, rate: 0.1 },
+    { max: 50400, rate: 0.12 },
+    { max: 105700, rate: 0.22 },
+    { max: 201775, rate: 0.24 },
+    { max: 256225, rate: 0.32 },
+    { max: 640600, rate: 0.35 },
     { max: Infinity, rate: 0.37 },
   ],
   mfj: [
-    { max: 23200, rate: 0.1 },
-    { max: 94300, rate: 0.12 },
-    { max: 201050, rate: 0.22 },
-    { max: 383900, rate: 0.24 },
-    { max: 487450, rate: 0.32 },
-    { max: 731200, rate: 0.35 },
+    { max: 24800, rate: 0.1 },
+    { max: 100800, rate: 0.12 },
+    { max: 211400, rate: 0.22 },
+    { max: 403550, rate: 0.24 },
+    { max: 512450, rate: 0.32 },
+    { max: 768700, rate: 0.35 },
     { max: Infinity, rate: 0.37 },
   ],
   hoh: [
-    { max: 16550, rate: 0.1 },
-    { max: 63100, rate: 0.12 },
-    { max: 100500, rate: 0.22 },
-    { max: 191950, rate: 0.24 },
-    { max: 243700, rate: 0.32 },
-    { max: 609350, rate: 0.35 },
+    { max: 17700, rate: 0.1 },
+    { max: 67450, rate: 0.12 },
+    { max: 105700, rate: 0.22 },
+    { max: 201750, rate: 0.24 },
+    { max: 256200, rate: 0.32 },
+    { max: 640600, rate: 0.35 },
     { max: Infinity, rate: 0.37 },
   ],
 };
 
 export const STANDARD_DEDUCTIONS: Record<FilingStatus, number> = {
-  single: 14600,
-  mfj: 29200,
-  hoh: 21900,
+  single: 16100,
+  mfj: 32200,
+  hoh: 24150,
 };
 
-export const SS_WAGE_BASE = 168600;
+export const SS_WAGE_BASE = 184500;
 export const SS_RATE = 0.062;
 export const MEDICARE_RATE = 0.0145;
 export const ADDL_MEDICARE_RATE = 0.009;

@@ -1,46 +1,46 @@
 import { describe, expect, it } from "vitest";
 import { calcFederalTax, calcPaycheck, STANDARD_DEDUCTIONS, SS_WAGE_BASE, TAX_YEAR } from "./calc";
 
-// Fixed cases worked out by hand from the 2024 IRS tables. If TAX_YEAR changes,
+// Fixed cases worked out by hand from the 2026 IRS tables (Rev. Proc. 2025-32). If TAX_YEAR changes,
 // every expected number here must be recomputed — the first test fails on purpose.
 
-describe("paycheck-calculator (tax year 2024)", () => {
-  it("is pinned to tax year 2024 with the 2024 constants", () => {
-    expect(TAX_YEAR).toBe(2024);
-    expect(STANDARD_DEDUCTIONS).toEqual({ single: 14600, mfj: 29200, hoh: 21900 });
-    expect(SS_WAGE_BASE).toBe(168600);
+describe("paycheck-calculator (tax year 2026)", () => {
+  it("is pinned to tax year 2026 with the 2026 constants", () => {
+    expect(TAX_YEAR).toBe(2026);
+    expect(STANDARD_DEDUCTIONS).toEqual({ single: 16100, mfj: 32200, hoh: 24150 });
+    expect(SS_WAGE_BASE).toBe(184500);
   });
 
   it("single $75,000 biweekly — the worked example in the article", () => {
-    // taxable 60,400 = 1,160 (10%) + 4,266 (12%) + 2,915 (22%) = 8,341
+    // taxable 58,900 = 1,240 (10%) + 4,560 (12%) + 1,870 (22%) = 7,670
     const r = calcPaycheck(75000, "single", "biweekly")!;
-    expect(r.annualFederalTax).toBeCloseTo(8341, 2);
+    expect(r.annualFederalTax).toBeCloseTo(7670, 2);
     expect(r.annualSS).toBeCloseTo(4650, 2);
     expect(r.annualMedicare).toBeCloseTo(1087.5, 2);
     expect(r.annualStateTax).toBeCloseTo(3750, 2);
-    // (75,000 − 8,341 − 3,750 − 4,650 − 1,087.50) / 26
-    expect(r.netPerPaycheck).toBeCloseTo(57171.5 / 26, 6);
-    expect(r.annualNet).toBeCloseTo(57171.5, 6);
+    // (75,000 − 7,670 − 3,750 − 4,650 − 1,087.50) / 26
+    expect(r.netPerPaycheck).toBeCloseTo(57842.5 / 26, 6);
+    expect(r.annualNet).toBeCloseTo(57842.5, 6);
   });
 
   it("married filing jointly $100,000 monthly", () => {
-    // taxable 70,800 = 2,320 (10%) + 5,712 (12%) = 8,032
+    // taxable 67,800 = 2,480 (10%) + 5,160 (12%) = 7,640
     const r = calcPaycheck(100000, "mfj", "monthly")!;
-    expect(r.annualFederalTax).toBeCloseTo(8032, 2);
-    expect(r.federalTaxPerPaycheck).toBeCloseTo(8032 / 12, 6);
+    expect(r.annualFederalTax).toBeCloseTo(7640, 2);
+    expect(r.federalTaxPerPaycheck).toBeCloseTo(7640 / 12, 6);
   });
 
   it("head of household $50,000 weekly", () => {
-    // taxable 28,100 = 1,655 (10%) + 1,386 (12% of 11,550) = 3,041
+    // taxable 25,850 = 1,770 (10%) + 978 (12% of 8,150) = 2,748
     const r = calcPaycheck(50000, "hoh", "weekly")!;
-    expect(r.annualFederalTax).toBeCloseTo(3041, 2);
+    expect(r.annualFederalTax).toBeCloseTo(2748, 2);
   });
 
   it("single $250,000 — Social Security cap and Additional Medicare Tax", () => {
-    // taxable 235,400 = 1,160 + 4,266 + 11,742.50 + 21,942 + 13,904 = 53,014.50
+    // taxable 233,900 = 41,024 (through 24%) + 10,280 (32% of 32,125) = 51,304
     const r = calcPaycheck(250000, "single", "semimonthly")!;
-    expect(r.annualFederalTax).toBeCloseTo(53014.5, 2);
-    expect(r.annualSS).toBeCloseTo(168600 * 0.062, 6); // 10,453.20
+    expect(r.annualFederalTax).toBeCloseTo(51304, 2);
+    expect(r.annualSS).toBeCloseTo(184500 * 0.062, 6); // 11,439
     expect(r.annualMedicare).toBeCloseTo(250000 * 0.0145 + 50000 * 0.009, 6); // 4,075
   });
 
