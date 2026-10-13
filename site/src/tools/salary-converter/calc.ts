@@ -1,9 +1,9 @@
 // Pure conversion logic for the salary converter. The UI and every locale's
 // copy (description, assumption line, article, FAQ) must describe exactly this
 // basis: 8 h/day, 40 h/week, 52 weeks/year = 2,080 h/year, 2,080/12 h/month.
-// Country-specific legal hours (35 h France, 44 h Brazil, 45 h Türkiye…) may be
-// mentioned in copy only as an adjustment the reader applies — never as what
-// the calculator uses.
+// That is the default. The UI has an "hours per week" field (default 40); when
+// the reader changes it (35 h France, 44 h Brazil, 45 h Türkiye…) the weekly,
+// monthly and annual factors follow it. The daily factor stays 8 hours.
 
 export type Period = "hourly" | "daily" | "weekly" | "monthly" | "annual";
 
@@ -49,4 +49,12 @@ export function convertSalary(amount: number, period: Period, basis: Basis = DEF
 /** Round to cents the way the UI displays (2 decimals). */
 export function round2(n: number): number {
   return Math.round((n + Number.EPSILON) * 100) / 100;
+}
+
+/** Parse the "hours per week" field. Accepts a decimal comma. Returns null unless 0 < h <= 168. */
+export function parseHoursPerWeek(input: string): number | null {
+  const text = input.trim().replace(",", ".");
+  if (!/^\d+(\.\d+)?$/.test(text)) return null;
+  const h = Number(text);
+  return h > 0 && h <= 168 ? h : null;
 }

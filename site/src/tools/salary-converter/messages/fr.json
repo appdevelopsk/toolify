@@ -12,23 +12,24 @@
   ],
   "input": {
     "amount": "Montant",
-    "period": "Période"
+    "period": "Période", "hoursPerWeek": "Heures par semaine"
   },
   "period": {
     "hourly": "Horaire",
     "daily": "Journalier (8 h)",
-    "weekly": "Hebdomadaire (40 h)",
+    "weekly": "Hebdomadaire ({hours} h)",
     "monthly": "Mensuel",
     "annual": "Annuel"
   },
-  "assumption": "Suppose une semaine de travail de 40 heures, une journée de 8 heures et 52 semaines par an (2 080 heures/an). La durée légale en France est de 35 heures : pour un contrat à 35 h, multiplie par 35/40 = 0,875 les montants hebdomadaires, mensuels et annuels obtenus à partir d'un taux horaire.",
+  "assumption": "Par défaut : semaine de travail de 40 heures, journée de 8 heures et 52 semaines par an (2 080 heures/an). La durée légale en France est de 35 heures : pour un contrat à 35 h, saisis 35 dans le champ « Heures par semaine » (35 × 52 = 1 820 heures/an). Le montant journalier est toujours calculé sur 8 heures.",
+  "basisNote": "Base actuelle : {week} h/semaine × 52 semaines = {year} h/an.",
   "article": {
     "sections": [
       {
         "heading": "Comment fonctionne la conversion",
         "paragraphs": [
           "Toutes les conversions pivotent autour du taux horaire. On utilise 2 080 heures de travail par an (40 heures × 52 semaines), 173,33 heures par mois (2 080 / 12), 40 heures par semaine, 8 heures par jour. Quelle que soit la période saisie, on la convertit d'abord en horaire, puis on dérive toutes les autres.",
-          "Ces facteurs ne sont pas universels — la durée du travail varie selon les pays (35 heures en France, ~37,5 heures dans certains pays de l'UE). Pour la semaine française de 35 heures (35 × 52 = 1 820 heures/an, soit 151,67 heures/mois), multiplie par 35/40 = 0,875 nos montants annuels obtenus à partir d'un taux horaire ; à l'inverse, multiplie par 40/35 ≈ 1,143 le taux horaire obtenu à partir d'un salaire annuel."
+          "Ces facteurs ne sont pas universels — la durée du travail varie selon les pays (35 heures en France, ~37,5 heures dans certains pays de l'UE). La valeur par défaut est 40 ; pour la semaine française de 35 heures, saisis 35 dans le champ « Heures par semaine » : le calcul se fait alors sur 35 × 52 = 1 820 heures/an, soit 151,67 heures/mois (0,875 fois les montants hebdomadaires, mensuels et annuels obtenus sur la base de 40 heures à partir d'un taux horaire)."
         ]
       },
       {
@@ -65,7 +66,7 @@
   "faq": [
     {
       "q": "Pourquoi 2 080 heures par an ?",
-      "a": "C'est la base utilisée par le calculateur : 40 heures × 52 semaines. La durée légale du travail en France est de 35 heures hebdomadaires, soit 35 × 52 = 1 820 heures par an ; pour un contrat à 35 h, multiplie par 0,875 les montants annuels obtenus à partir d'un taux horaire."
+      "a": "C'est la base par défaut du calculateur : 40 heures × 52 semaines. La durée légale du travail en France est de 35 heures hebdomadaires, soit 35 × 52 = 1 820 heures par an ; pour un contrat à 35 h, saisis 35 dans le champ « Heures par semaine » et tous les montants sont recalculés sur cette base."
     },
     {
       "q": "Est-ce que ça tient compte des impôts ?",

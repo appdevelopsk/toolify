@@ -12,23 +12,24 @@
   ],
   "input": {
     "amount": "Valor",
-    "period": "Período"
+    "period": "Período", "hoursPerWeek": "Horas por semana"
   },
   "period": {
     "hourly": "Por hora",
     "daily": "Diário (8 h)",
-    "weekly": "Semanal (40 h)",
+    "weekly": "Semanal ({hours} h)",
     "monthly": "Mensal",
     "annual": "Anual"
   },
-  "assumption": "Assume jornada de 40 horas semanais, 8 horas por dia e 52 semanas por ano (2.080 horas/ano). O limite da CLT é de 44 horas semanais: para uma jornada de 44 h, multiplique por 44/40 = 1,1 os valores semanais, mensais e anuais obtidos a partir do valor por hora.",
+  "assumption": "Padrão: jornada de 40 horas semanais, 8 horas por dia e 52 semanas por ano (2.080 horas/ano). O limite da CLT é de 44 horas semanais: para uma jornada de 44 h, digite 44 no campo 'Horas por semana' (44 × 52 = 2.288 horas/ano). O valor diário é sempre calculado com 8 horas.",
+  "basisNote": "Base atual: {week} horas/semana × 52 semanas = {year} horas/ano.",
   "article": {
     "sections": [
       {
         "heading": "Como a conversão funciona",
         "paragraphs": [
           "Todas as conversões passam pelo valor por hora. Usamos 2.080 horas de trabalho por ano (40 horas × 52 semanas), 173,33 horas por mês (2.080 / 12), 40 por semana, 8 por dia. Qualquer período que você inserir, convertemos primeiro para por hora e depois derivamos todos os outros.",
-          "Esses fatores não são universais — países com jornadas diferentes (35 horas na França, ~37,5 em alguns países europeus, até 44 horas no Brasil pela CLT) ou regimes de férias diferentes resultarão em valores distintos. Para uma jornada de 44 horas (44 × 52 = 2.288 horas/ano), multiplique por 44/40 = 1,1 nossos números anuais obtidos a partir do valor por hora."
+          "Esses fatores não são universais — países com jornadas diferentes (35 horas na França, ~37,5 em alguns países europeus, até 44 horas no Brasil pela CLT) ou regimes de férias diferentes resultarão em valores distintos. O padrão é 40; para uma jornada de 44 horas, digite 44 no campo 'Horas por semana': o cálculo passa a usar 44 × 52 = 2.288 horas/ano (1,1 vez os valores semanais, mensais e anuais obtidos com 40 horas a partir do valor por hora)."
         ]
       },
       {
@@ -65,7 +66,7 @@
   "faq": [
     {
       "q": "Por que 2.080 horas por ano?",
-      "a": "É a base usada pela calculadora: 40 horas × 52 semanas. Pela CLT a jornada pode chegar a 44 horas semanais (44 × 52 = 2.288 horas/ano), e os tribunais trabalhistas usam o divisor de 220 horas/mês (2.640 horas/ano, porque inclui o descanso semanal remunerado) — use sempre o mesmo critério ao comparar."
+      "a": "É a base padrão da calculadora: 40 horas × 52 semanas. Pela CLT a jornada pode chegar a 44 horas semanais (44 × 52 = 2.288 horas/ano) — digite 44 no campo 'Horas por semana' para calcular nessa base. Os tribunais trabalhistas usam o divisor de 220 horas/mês (2.640 horas/ano, porque inclui o descanso semanal remunerado) — use sempre o mesmo critério ao comparar."
     },
     {
       "q": "Isso considera impostos?",

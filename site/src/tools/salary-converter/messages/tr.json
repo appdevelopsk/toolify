@@ -4,22 +4,23 @@
   "description": "Bir maaş tutarı yazın ve dönemini seçin (saatlik/günlük/haftalık/aylık/yıllık). Diğer tüm dönemler anında güncellenir. Haftada 40 saat / yılda 2.080 saat varsayar.",
   "metaDescription": "Ücretsiz maaş dönüştürücü. Saatlik, günlük, haftalık, aylık ve yıllık ücret arasında dönüştürün. Temiz iş teklifi karşılaştırmaları için standart çalışma saati varsayımı.",
   "keywords": ["maaş dönüştürücü", "saatlik yıllık dönüşüm", "yıllık saatlik dönüşüm", "ücret hesaplayıcı", "ücret oranı dönüştürücü"],
-  "input": { "amount": "Tutar", "period": "Dönem" },
+  "input": { "amount": "Tutar", "period": "Dönem", "hoursPerWeek": "Haftalık çalışma saati" },
   "period": {
     "hourly": "Saatlik",
     "daily": "Günlük (8 saat)",
-    "weekly": "Haftalık (40 saat)",
+    "weekly": "Haftalık ({hours} saat)",
     "monthly": "Aylık",
     "annual": "Yıllık"
   },
-  "assumption": "Haftada 40 saatlik çalışma haftası, 8 saatlik iş günü ve yılda 52 hafta (2.080 saat/yıl) varsayar. Türkiye'de yasal üst sınır haftada 45 saattir; 45 saat çalışıyorsanız saatlik ücretten türetilen haftalık, aylık ve yıllık rakamları 45/40 = 1,125 ile çarpın.",
+  "assumption": "Varsayılan: haftada 40 saatlik çalışma haftası, 8 saatlik iş günü ve yılda 52 hafta (2.080 saat/yıl). Türkiye'de yasal üst sınır haftada 45 saattir; 45 saat çalışıyorsanız 'Haftalık çalışma saati' alanına 45 yazın (45 × 52 = 2.340 saat/yıl). Günlük tutar her zaman 8 saat üzerinden hesaplanır.",
+  "basisNote": "Geçerli esas: haftada {week} saat × 52 hafta = yılda {year} saat.",
   "article": {
     "sections": [
       {
         "heading": "Dönüşüm nasıl çalışır",
         "paragraphs": [
           "Tüm dönüşümler saatlik üzerinden pivotlanır. Yılda 2.080 çalışma saatini (40 saat × 52 hafta) kullanıyoruz; aylık 173,33 saat (2.080 / 12), haftada 40, günde 8. Hangi dönemi girerseniz girin, önce saatliğe dönüştürür, ardından diğerlerini türetiriz.",
-          "Bu faktörler evrensel değildir — birçok ülke farklı hafta uzunlukları kullanır (Fransa'da 35 saat, bazı AB ülkelerinde ~37,5 saat, Türkiye'de yasal üst sınır 45 saat) veya ücretli saatleri azaltan izin hakları tanımlar. 45 saatlik hafta (45 × 52 = 2.340 saat/yıl) için saatlik ücretten hesaplanan yıllık rakamlarımızı 45/40 = 1,125 ile çarpın; yıllık maaştan bulunan saatlik rakamı ise 40/45 = 0,889 ile çarpın."
+          "Bu faktörler evrensel değildir — birçok ülke farklı hafta uzunlukları kullanır (Fransa'da 35 saat, bazı AB ülkelerinde ~37,5 saat, Türkiye'de yasal üst sınır 45 saat) veya ücretli saatleri azaltan izin hakları tanımlar. Varsayılan 40 saattir; 45 saatlik hafta için 'Haftalık çalışma saati' alanına 45 yazın: hesap 45 × 52 = 2.340 saat/yıl üzerinden yapılır (saatlik ücretten türetilen haftalık, aylık ve yıllık rakamlar 40 saatlik esasa göre 1,125 katına çıkar)."
         ]
       },
       {
@@ -45,7 +46,7 @@
     ]
   },
   "faq": [
-    { "q": "Türkiye'de standart çalışma saati nedir?", "a": "Yasal olarak haftada en fazla 45 saat (İş Kanunu Md. 63). Bu hesaplayıcı ise ülkeden bağımsız olarak 40 saat × 52 hafta = 2.080 saat/yıl kullanır. 45 saat çalışıyorsanız (45 × 52 = 2.340 saat/yıl) saatlik ücretten bulunan yıllık rakamı 45/40 = 1,125 ile çarpın." },
+    { "q": "Türkiye'de standart çalışma saati nedir?", "a": "Yasal olarak haftada en fazla 45 saat (İş Kanunu Md. 63). Bu hesaplayıcının varsayılanı ülkeden bağımsız olarak 40 saat × 52 hafta = 2.080 saat/yıl'dır. 45 saat çalışıyorsanız 'Haftalık çalışma saati' alanını 45 yapın; hesap 45 × 52 = 2.340 saat/yıl üzerinden yapılır." },
     { "q": "Vergiler dahil mi?", "a": "Hayır, tüm rakamlar brüttür (vergi öncesi). Vergi yükü ülkenize, gelir diliminize ve indirimlere bağlıdır." },
     { "q": "Fazla mesai dahil mi?", "a": "Hayır. Türkiye İş Kanunu'na göre saatlik çalışanlar 45 saatin üzerinde 1,5 kat fazla mesai ücreti alır. 45 saatin üzerindeki saatleri fazla mesai oranınızla manuel olarak çarpın." },
     { "q": "Özlük hakları dahil mi?", "a": "Hayır. Maaşlı roller tipik olarak temel maaşın %20-40'ı değerinde özlük hakları içerir. Yalnızca tepe rakam değil, toplam ücret paketini karşılaştırın." },
