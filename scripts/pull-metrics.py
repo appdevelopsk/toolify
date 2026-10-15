@@ -1,20 +1,25 @@
 #!/opt/anaconda3/bin/python3
 """Pull GSC + GA4 metrics for toolify365.com and save a dated snapshot.
 
-Runs locally (needs this machine's gcloud ADC + the GA4 service-account key),
+Runs locally (needs the GSC service-account key on the NAS + the GA4 service-account key),
 so it CANNOT run as a remote Claude /schedule agent — driven by a local
 launchd job instead (~/Library/LaunchAgents/com.toolify.metrics.plist).
 
 Output: scripts/metrics-output/metrics-YYYY-MM-DD.json  +  one summary line in
 scripts/metrics-output/summary.log
 """
-import json, os, subprocess, urllib.request, urllib.error, urllib.parse, datetime
+import json, os, urllib.request, urllib.error, urllib.parse, datetime
 
-GCLOUD = "/opt/homebrew/bin/gcloud"
-QUOTA_PROJECT = "pickly-496207"
 GSC_SITE = "https://toolify365.com/"
+# 2026-10-15: GSC は gcloud ADC (scope 不足で 6/15 から毎週 403 "insufficient authentication scopes"
+# = clicks/impr が 0 と記録されていた) をやめ、growth/gsc-snapshot.mjs と同じ SA
+# (pickly@pickly-496207・toolify365.com の GSC に追加済み) の webmasters.readonly で取る。
+GSC_KEY = "/Volumes/NAS/Projects/pickly/.secrets/ga4-service-account.json"
 GA4_KEY = "/Users/ken/Downloads/food-roulette-sk-33ec9b039d54.json"
-GA4_PROPERTIES = ["534395895", "538597795"]
+# 2026-10-15: 534395895 は旧 Toolify365 プロパティで battery_charging_map アプリの
+# android/ios ストリームと同居しており、合算で activeUsers が水増しされていた(6/22〜7/13 の ~3,200 等)。
+# growth/config.json の sites.toolify.ga4PropertyId (538597795) と同じものだけを使う。
+GA4_PROPERTIES = ["538597795"]
 OUTDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "metrics-output")
 
 TODAY = datetime.date.today()
@@ -31,16 +36,19 @@ def _post(url, token, body, extra_headers=None):
 
 
 def gsc_token():
-    return subprocess.check_output(
-        [GCLOUD, "auth", "application-default", "print-access-token"],
-        text=True, stderr=subprocess.DEVNULL).strip()
+    from google.oauth2 import service_account
+    import google.auth.transport.requests as tr
+    creds = service_account.Credentials.from_service_account_file(
+        GSC_KEY, scopes=["https://www.googleapis.com/auth/webmasters.readonly"])
+    creds.refresh(tr.Request())
+    return creds.token
 
 
 def pull_gsc():
     token = gsc_token()
     site = urllib.parse.quote(GSC_SITE, safe="")
     url = f"https://searchconsole.googleapis.com/webmasters/v3/sites/{site}/searchAnalytics/query"
-    hdr = {"x-goog-user-project": QUOTA_PROJECT}
+    hdr = None
     out = {}
     for dim in (["date"], ["page"], ["query"]):
         body = {"startDate": START.isoformat(), "endDate": END.isoformat(),
