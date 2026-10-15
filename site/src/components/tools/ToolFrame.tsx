@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { Link } from "@/lib/i18n/navigation";
 import { AdBanner, AdBelowResult, AdInArticle, AdSticky } from "@/components/ads/AdBanner";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { SisterSiteCta } from "@/components/cross/SisterSiteCta";
 import { ToolInteractionTracker } from "./ToolInteractionTracker";
+import { RelatedToolLink } from "./RelatedToolLink";
 import { TrustBox } from "./TrustBox";
 import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
@@ -80,12 +80,15 @@ export function ToolFrame({ meta, title, description, related, children, article
             <ul className="mt-3 flex flex-wrap gap-2">
               {related.map((r) => (
                 <li key={r.slug}>
-                  <Link
-                    href={`/tools/${r.slug}`}
+                  <RelatedToolLink
+                    from={meta.slug}
+                    to={r.slug}
+                    locale={locale}
+                    category={meta.category}
                     className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:border-brand-500 hover:bg-brand-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
                   >
                     {r.primaryKeyword[locale] ?? r.primaryKeyword.en ?? r.slug}
-                  </Link>
+                  </RelatedToolLink>
                 </li>
               ))}
             </ul>

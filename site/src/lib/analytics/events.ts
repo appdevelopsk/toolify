@@ -67,6 +67,11 @@ export function trackCalculate(p: CalculateParams): void {
   });
 }
 
+/** 関連ツール導線(結果直下のチップ)のクリック。label=行き先ツールの slug。 */
+export function trackRelatedClick(p: ToolEventParams): void {
+  emit("related_click", toParams(p));
+}
+
 /** お気に入りの ON/OFF。state は "on" | "off"。 */
 export function trackFavoriteToggle(p: { tool: string; locale?: string; state: "on" | "off" }): void {
   emit("favorite_toggle", { tool_slug: p.tool, state: p.state, ...(p.locale ? { locale: p.locale } : {}) });
