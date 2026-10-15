@@ -136,7 +136,7 @@ export function ToolFrame({ meta, title, description, related, children, article
           </section>
         )}
 
-        <RelatedServices category={meta.category} context={meta.slug} />
+        <RelatedServices category={meta.category} context={meta.slug} tool={meta.slug} />
 
         {meta.category === "finance" && <SisterSiteCta />}
 

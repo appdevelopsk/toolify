@@ -13,6 +13,16 @@ export interface AffiliateOffer {
   category: OfferCategory;
   /** Additional categories where this offer can also appear (cross-category reach). */
   alsoIn?: OfferCategory[];
+  /**
+   * カテゴリ外でも個別に出すツール slug(例: 楽天モバイルを data-size-converter に)。
+   * カテゴリ単位では粗すぎる場合だけ使う。
+   */
+  tools?: string[];
+  /**
+   * カテゴリは一致してもツールの用件と合わないので出さないツール slug
+   * (例: 妊娠系ツールに美顔器、ペットの年齢計算に人の健康機器)。
+   */
+  excludeTools?: string[];
   /** Markets where this offer is valid; if absent treated as "global". */
   markets?: Market[];
   /** Locales (BCP47) where this offer is shown; if absent shown to all. */

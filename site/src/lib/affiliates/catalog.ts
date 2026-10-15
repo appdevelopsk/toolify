@@ -34,6 +34,34 @@ export const POLICY: AffiliatePolicy = {
  * カタログ初期データ。実際のアフィリリンクはASP承認後に差替え。
  * すべて pending: true で起動 → UI上は淡色・クリック不可。
  */
+/**
+ * ツールの用件と広告の関連(2026-10-15 監査 T2)。
+ * カテゴリ単位の割り当てだと「出産予定日の計算に NordVPN」のような無関係な枠が出ていた。
+ *   - VPN は text(パスワード・ハッシュ等のセキュリティ/開発系)と、旅行・リモートワークで
+ *     使う通貨換算・タイムゾーン換算だけに出す。健康・金融・数学・単位・日付・色からは外す。
+ *   - 妊娠系ツールに美顔器(EMS/RF は妊娠中の使用を避ける機器)を出さない。
+ *   - ペットの年齢計算に人の健康機器(美顔器・スマートリング)を出さない。
+ *   - 楽天モバイル(通信費)は金融ツールとデータ容量換算だけ。数学・単位換算から外す。
+ *   - FXEA365(自動売買)は金融ツールと、率・確率・統計の数学ツールだけ。
+ * 合う提携先が無いツールは枠を出さない(RelatedServices が 0 件で何も描画しない)。
+ * 新しい提携先・未提携(pending)のものはここで増やさない。
+ */
+const PREGNANCY_TOOLS = [
+  "due-date-calculator",
+  "conception-date-calculator",
+  "hcg-calculator",
+  "pregnancy-week-calculator",
+  "pregnancy-weight-gain-calculator",
+];
+const PET_TOOLS = ["cat-age-calculator", "dog-age-calculator"];
+const VPN_EXTRA_TOOLS = ["currency-converter", "timezone-converter"];
+const FXEA_MATH_TOOLS = [
+  "percentage-calculator",
+  "percentage-change-calculator",
+  "probability-calculator",
+  "statistics-calculator",
+];
+
 export const CATALOG: AffiliateOffer[] = [
   // === A8 高単価案件 (2026-08-05 配線) — 承認から6週間未配線だった2件。
   //     楽天モバイル: ¥7,000/件・EPC93.91(口座内最高)。通信費は家計の固定費なので
@@ -42,7 +70,7 @@ export const CATALOG: AffiliateOffer[] = [
   {
     id: "rakuten-mobile-jp",
     category: "finance",
-    alsoIn: ["converter", "math"],
+    tools: ["data-size-converter"],
     locales: ["ja"],
     markets: ["JP"],
     name: { ja: "楽天モバイル", en: "Rakuten Mobile" },
@@ -58,6 +86,7 @@ export const CATALOG: AffiliateOffer[] = [
   {
     id: "bioaestech-jp",
     category: "health",
+    excludeTools: [...PREGNANCY_TOOLS, ...PET_TOOLS],
     locales: ["ja"],
     markets: ["JP"],
     name: { ja: "BIOAESTECH デュアルオーブ", en: "BIOAESTECH Dual Orb" },
@@ -76,7 +105,7 @@ export const CATALOG: AffiliateOffer[] = [
   {
     id: "fxea365-house",
     category: "finance",
-    alsoIn: ["math"],
+    tools: FXEA_MATH_TOOLS,
     name: {
       en: "FXEA365 — Free MT5 Trading Robots",
       ja: "FXEA365 — 無料MT5自動売買EA",
@@ -123,23 +152,23 @@ export const CATALOG: AffiliateOffer[] = [
       ru: "Смотреть бесплатные EA",
     },
     url: {
-      default: "https://fxea365.com/en?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      ja: "https://fxea365.com/?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      "zh-CN": "https://fxea365.com/zh-CN?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      "zh-TW": "https://fxea365.com/zh-TW?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      ko: "https://fxea365.com/ko?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      es: "https://fxea365.com/es?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      "pt-BR": "https://fxea365.com/pt-BR?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      fr: "https://fxea365.com/fr?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      de: "https://fxea365.com/de?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      it: "https://fxea365.com/it?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      ru: "https://fxea365.com/ru?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      ar: "https://fxea365.com/ar?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      hi: "https://fxea365.com/hi?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      id: "https://fxea365.com/id?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      th: "https://fxea365.com/th?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      tr: "https://fxea365.com/tr?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
-      vi: "https://fxea365.com/vi?utm_source=toolify365&utm_medium=cross&utm_campaign=finance-tools",
+      default: "https://fxea365.com/en?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      ja: "https://fxea365.com/?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      "zh-CN": "https://fxea365.com/zh-CN?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      "zh-TW": "https://fxea365.com/zh-TW?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      ko: "https://fxea365.com/ko?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      es: "https://fxea365.com/es?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      "pt-BR": "https://fxea365.com/pt-BR?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      fr: "https://fxea365.com/fr?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      de: "https://fxea365.com/de?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      it: "https://fxea365.com/it?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      ru: "https://fxea365.com/ru?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      ar: "https://fxea365.com/ar?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      hi: "https://fxea365.com/hi?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      id: "https://fxea365.com/id?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      th: "https://fxea365.com/th?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      tr: "https://fxea365.com/tr?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
+      vi: "https://fxea365.com/vi?utm_source=toolify365&utm_medium=referral&utm_campaign=finance-tools",
     },
     network: "house",
     badge: "🤖",
@@ -153,7 +182,7 @@ export const CATALOG: AffiliateOffer[] = [
   {
     id: "nordvpn-awin",
     category: "text",
-    alsoIn: ["finance", "math", "converter", "datetime", "color", "health"],
+    tools: VPN_EXTRA_TOOLS,
     markets: ["US", "INTL"],
     name: { en: "NordVPN" },
     description: {
@@ -231,6 +260,7 @@ export const CATALOG: AffiliateOffer[] = [
   {
     id: "ultrahuman-awin",
     category: "health",
+    excludeTools: PET_TOOLS,
     markets: ["US"],
     name: { en: "Ultrahuman Ring AIR" },
     // 2026-10-12 監査: リング単体は血糖を測らない(血糖は別売 CGM)。glucose を機能に並べない。
@@ -480,10 +510,10 @@ export const CATALOG: AffiliateOffer[] = [
   // Ordered by EPC descending so the top 3 (maxPerSlot) are highest-value for ja locale.
   // NordVPN EPC 89.71 → xserver EPC 51.66 → ConoHa EPC 49.89 are the visible trio for ja.
   {
-    // A8.net link → NordVPN Japanese LP. EPC 89.71 — keep first; alsoIn で全カテゴリへ展開
+    // A8.net link → NordVPN Japanese LP. EPC 89.71 — text(セキュリティ/開発系)と旅行系ツールだけ(2026-10-15 T2)
     id: "nordvpn-jp",
     category: "text",
-    alsoIn: ["finance", "math", "converter", "datetime", "color", "health"],
+    tools: VPN_EXTRA_TOOLS,
     markets: ["JP"],
     locales: ["ja"],
     name: { ja: "NordVPN" },
@@ -797,11 +827,20 @@ export function getFeaturedOffers(locale: string, limit = POLICY.maxPerSlot): Af
  * 指定カテゴリ + ロケール + マーケットに合うオファーを返す。
  * pendingは含めるが、UIで disabled 表示にする責任は呼び出し側。
  */
-export function getOffersFor(category: string, locale: string, opts: { includePending?: boolean } = {}): AffiliateOffer[] {
+export function getOffersFor(
+  category: string,
+  locale: string,
+  opts: { includePending?: boolean; tool?: string } = {},
+): AffiliateOffer[] {
   const market = inferMarketFromLocale(locale);
+  const tool = opts.tool;
   const matches = (o: AffiliateOffer) => {
-    const inCategory = o.category === category || (o.alsoIn?.includes(category as AffiliateOffer["category"]) ?? false);
+    const inCategory =
+      o.category === category ||
+      (o.alsoIn?.includes(category as AffiliateOffer["category"]) ?? false) ||
+      (tool !== undefined && (o.tools?.includes(tool) ?? false));
     if (!inCategory) return false;
+    if (tool !== undefined && o.excludeTools?.includes(tool)) return false;
     if (o.locales && !o.locales.includes(locale)) return false;
     if (o.markets && !o.markets.includes(market) && !o.markets.includes("global")) return false;
     if (!opts.includePending && o.pending) return false;

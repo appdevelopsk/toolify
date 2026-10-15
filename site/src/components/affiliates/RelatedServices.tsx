@@ -12,6 +12,8 @@ interface Props {
   showPending?: boolean;
   /** 成果のサイト・ページ別集計用(AWIN clickref=toolify-<context>)。ツール slug・"home" など。 */
   context?: string;
+  /** ツール slug。用件と合わない提携先を外す(catalog の tools / excludeTools)。 */
+  tool?: string;
 }
 
 /**
@@ -21,13 +23,13 @@ interface Props {
  * 各カードに「PR」ラベル + フッターから /disclosure へのリンクを担保し、
  * 景表法ステマ規制・特商法・Google AdSense ポリシーに対応する。
  */
-export function RelatedServices({ category, featured = false, showPending = false, context }: Props) {
+export function RelatedServices({ category, featured = false, showPending = false, context, tool }: Props) {
   const t = useTranslations();
   const locale = useLocale();
   const offers = featured
     ? getFeaturedOffers(locale)
     : category
-      ? getOffersFor(category, locale, { includePending: showPending })
+      ? getOffersFor(category, locale, { includePending: showPending, tool })
       : [];
 
   if (offers.length === 0) return null;
@@ -86,6 +88,11 @@ export function RelatedServices({ category, featured = false, showPending = fals
                     href={href}
                     target="_blank"
                     rel="sponsored noopener noreferrer"
+                    data-offer-id={o.id}
+                    data-network={o.network ?? "unknown"}
+                    data-offer-category={o.category}
+                    data-placement={featured ? "home" : (context ?? "unknown")}
+                    {...(tool ? { "data-tool": tool } : {})}
                     className="mt-3 inline-flex w-fit items-center gap-1 text-sm font-medium text-brand-600 hover:underline"
                   >
                     {cta} →

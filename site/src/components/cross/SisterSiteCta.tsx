@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { withSisterUtm } from "@/lib/cross/utm";
 
 /**
  * 姉妹サイト fxea365（無料MT5自動売買EA）への文脈内クロスプロモCTA。
@@ -16,7 +17,7 @@ export function SisterSiteCta() {
       </p>
       <p className="mt-1 text-sm text-emerald-800/80 dark:text-emerald-300/80">{t("fxea")}</p>
       <a
-        href="https://fxea365.com"
+        href={withSisterUtm("https://fxea365.com", "finance-cta")}
         rel="noopener"
         className="mt-3 inline-flex w-fit items-center gap-1 rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-emerald-700"
       >

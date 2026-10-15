@@ -19,6 +19,7 @@ import { GoogleAnalytics } from "@/lib/analytics/gtag";
 import { MicrosoftClarity } from "@/lib/analytics/clarity";
 import { ImpactTracking } from "@/lib/analytics/impact";
 import { PageViewTracker } from "@/lib/analytics/pageview";
+import { AffiliateClickTracker } from "@/lib/analytics/affiliate-click";
 import { RegisterSW } from "@/components/pwa/RegisterSW";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/structured-data";
@@ -116,6 +117,7 @@ export default async function LocaleLayout({
         <Suspense fallback={null}>
           <PageViewTracker />
         </Suspense>
+        <AffiliateClickTracker />
         <FundingChoices />
         <AdScript />
         <RegisterSW />

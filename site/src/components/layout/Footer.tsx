@@ -3,6 +3,7 @@ import { Link } from "@/lib/i18n/navigation";
 import { siteConfig } from "@/lib/config";
 import { isPromptLocale } from "@/lib/i18n/locales";
 import { NewsletterForm } from "@/components/cross/NewsletterForm";
+import { withSisterUtm } from "@/lib/cross/utm";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import { listIndexableByCategory } from "@/lib/tools/registry";
 import type { ToolCategory } from "@/lib/tools/types";
@@ -88,7 +89,7 @@ export function Footer() {
           {t("crossPromo.title")}
         </p>
         <div className="flex flex-col gap-4 sm:flex-row sm:gap-10">
-          <a href="https://pickly.blog" className="group">
+          <a href={withSisterUtm("https://pickly.blog", "footer")} className="group">
             <span className="font-bold text-slate-800 transition-colors group-hover:text-sky-600 dark:text-slate-200">
               Pickly
             </span>
@@ -96,7 +97,7 @@ export function Footer() {
               {t("crossPromo.pickly")}
             </span>
           </a>
-          <a href="https://fxea365.com" className="group">
+          <a href={withSisterUtm("https://fxea365.com", "footer")} className="group">
             <span className="font-bold text-slate-800 transition-colors group-hover:text-sky-600 dark:text-slate-200">
               FXEA365
             </span>
@@ -104,7 +105,7 @@ export function Footer() {
               {t("crossPromo.fxea")}
             </span>
           </a>
-          <a href="https://nattzy.com" className="group">
+          <a href={withSisterUtm("https://nattzy.com", "footer")} className="group">
             <span className="font-bold text-slate-800 transition-colors group-hover:text-sky-600 dark:text-slate-200">
               nattzy
             </span>
@@ -112,7 +113,7 @@ export function Footer() {
               {t("crossPromo.nattzy")}
             </span>
           </a>
-          <a href="https://appdevelopsk.com/apps.html" className="group">
+          <a href={withSisterUtm("https://appdevelopsk.com/apps.html", "footer")} className="group">
             <span className="font-bold text-slate-800 transition-colors group-hover:text-sky-600 dark:text-slate-200">
               SK APPS
             </span>

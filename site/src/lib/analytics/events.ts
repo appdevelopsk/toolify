@@ -106,3 +106,35 @@ export function trackPresetClick(p: ToolEventParams): void {
 export function trackShare(p: ToolEventParams): void {
   emit("share", toParams(p));
 }
+
+/**
+ * 提携リンク(RelatedServices の広告枠)のクリック(2026-10-15 監査 T3)。
+ *
+ * 命名・パラメータは Pickly の AffiliateClickTracker に合わせる
+ * (event=affiliate_click / offer_id / network / link_url)。Pickly の article_slug に当たる
+ * ページ識別は `placement`(ツール slug・"home"・"prompt-<slug>" = AWIN clickref と同じ値)と
+ * `tool_slug`(ツールページのみ)で送る。FXEA の affiliate_category / affiliate_label も併送し、
+ * 3サイトを同じ探索レポートで並べられるようにする。
+ * ★GA4 管理画面で offer_id / network / placement をイベントスコープのカスタムディメンションに
+ *   登録するまでレポートには出ない(登録前のデータは遡及しない)。
+ */
+export function trackAffiliateClick(p: {
+  offer_id: string;
+  network?: string;
+  link_url: string;
+  placement?: string;
+  category?: string;
+  tool?: string;
+  locale?: string;
+}): void {
+  emit("affiliate_click", {
+    offer_id: p.offer_id,
+    network: p.network ?? "unknown",
+    link_url: p.link_url,
+    placement: p.placement ?? "unknown",
+    affiliate_label: p.offer_id,
+    ...(p.category ? { affiliate_category: p.category } : {}),
+    ...(p.tool ? { tool_slug: p.tool } : {}),
+    ...(p.locale ? { locale: p.locale } : {}),
+  });
+}
