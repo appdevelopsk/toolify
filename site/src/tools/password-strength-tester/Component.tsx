@@ -8,7 +8,25 @@ const COMMON_PASSWORDS = new Set([
   "iloveyou", "admin", "welcome", "monkey", "dragon", "letmein",
   "sunshine", "princess", "qwerty123", "starwars", "passw0rd",
   "football", "baseball", "master", "trustno1", "111111", "1234567",
+  "login", "hello", "freedom", "whatever", "shadow", "superman", "batman",
+  "michael", "jessica", "charlie", "mustang", "access", "flower", "hunter",
+  "secret", "summer", "winter", "spring", "autumn", "computer", "internet",
+  "pokemon", "samsung", "google", "naruto", "sakura", "tanaka", "yamada",
+  "password123", "letmein123", "welcome1", "admin123", "changeme",
 ]);
+
+const LEET: Record<string, string> = { "@": "a", "4": "a", "0": "o", "1": "l", "!": "i", "3": "e", "$": "s", "5": "s", "7": "t" };
+
+/** l33t 置換と前後の数字・記号を外して、辞書語が土台かを調べる。 */
+function hasCommonBase(pw: string): boolean {
+  const lowered = pw.toLowerCase().replace(/[@4013!$57]/g, (c) => LEET[c] ?? c);
+  const stripped = lowered.replace(/[^a-z]+$/g, "").replace(/^[^a-z]+/g, "");
+  return stripped.length >= 4 && COMMON_PASSWORDS.has(stripped);
+}
+
+const SEQ = /(0123|1234|2345|3456|4567|5678|6789|abcd|bcde|cdef|qwer|wert|erty|asdf|sdfg)/i;
+const YEAR = /(19|20)\d{2}/;
+const REPEAT = /(.)\1{2,}/;
 
 interface Analysis {
   length: number;
@@ -22,6 +40,10 @@ interface Analysis {
   isCommon: boolean;
   hasRepeated: boolean;
   hasSequential: boolean;
+  hasYear: boolean;
+  isCommonBase: boolean;
+  /** あと何文字足せば、オフライン攻撃でも約100年以上持つか(0 = 既に十分)。 */
+  extraChars: number;
   score: number; // 0-4
   warnings: string[];
 }
@@ -37,7 +59,21 @@ function analyze(pw: string): Analysis | null {
   if (hasUpper) charsetSize += 26;
   if (hasDigit) charsetSize += 10;
   if (hasSymbol) charsetSize += 33;
-  const entropyBits = pw.length * Math.log2(charsetSize || 1);
+  // 年・連番・繰り返しは「文字種×長さ」で数えると強さを水増しするので、
+  // 該当部分は固定の少ビットとして扱い、残りの文字だけを charset で数える。
+  const hasYear = YEAR.test(pw);
+  const hasRepeated = REPEAT.test(pw);
+  const hasSequential = SEQ.test(pw);
+  let rest = pw;
+  let patternBits = 0;
+  if (hasYear) { rest = rest.replace(YEAR, ""); patternBits += 7; }
+  if (hasSequential) { rest = rest.replace(SEQ, ""); patternBits += 5; }
+  if (hasRepeated) { rest = rest.replace(REPEAT, "$1"); patternBits += 3; }
+  const isCommon = COMMON_PASSWORDS.has(pw.toLowerCase());
+  const isCommonBase = !isCommon && hasCommonBase(pw);
+  let entropyBits = rest.length * Math.log2(charsetSize || 1) + patternBits;
+  // 辞書語+小細工は攻撃側が最初に試す。実効強度は 20 bit 程度に抑える。
+  if (isCommonBase) entropyBits = Math.min(entropyBits, 20);
   // Approximations: 1e10 hash/sec offline (GPU), 1000/sec online fast, 100/sec online with rate-limit
   const guesses = Math.pow(2, entropyBits) / 2;
   const crackTime = {
@@ -45,18 +81,20 @@ function analyze(pw: string): Analysis | null {
     onlineFast: guesses / 1000,
     onlineSlow: guesses / 100,
   };
-  const isCommon = COMMON_PASSWORDS.has(pw.toLowerCase());
-  const hasRepeated = /(.)\1{2,}/.test(pw);
-  const hasSequential = /(0123|1234|2345|3456|4567|5678|6789|abcd|bcde|cdef|qwer|wert|erty|asdf|sdfg)/i.test(pw);
   const warnings: string[] = [];
   if (isCommon) warnings.push("isCommon");
+  if (isCommonBase) warnings.push("isCommonBase");
   if (pw.length < 8) warnings.push("tooShort");
   if (hasRepeated) warnings.push("hasRepeated");
   if (hasSequential) warnings.push("hasSequential");
+  if (hasYear) warnings.push("hasYear");
   if (charsetSize <= 26) warnings.push("limitedCharset");
+  // オフラインで約100年(3.15e9 秒)持つ目安 ≈ 67 bit。ランダムな英数字(62種)で足りない分を数える。
+  const extraChars = entropyBits >= 67 ? 0 : Math.ceil((67 - entropyBits) / Math.log2(62));
 
   let score: number;
   if (isCommon || pw.length < 6) score = 0;
+  else if (isCommonBase) score = 1;
   else if (entropyBits < 30) score = 1;
   else if (entropyBits < 50) score = 2;
   else if (entropyBits < 70) score = 3;
@@ -67,6 +105,7 @@ function analyze(pw: string): Analysis | null {
     hasLower, hasUpper, hasDigit, hasSymbol,
     charsetSize, entropyBits,
     crackTime, isCommon, hasRepeated, hasSequential,
+    hasYear, isCommonBase, extraChars,
     score, warnings,
   };
 }
@@ -147,6 +186,15 @@ export default function PasswordStrengthTester() {
               <Row label={t("result.crackOnlineFast")} value={formatTime(a.crackTime.onlineFast, t)} />
               <Row label={t("result.crackOnlineSlow")} value={formatTime(a.crackTime.onlineSlow, t)} />
             </dl>
+          </div>
+
+          <div className="rounded border border-sky-300 bg-sky-50 p-3 text-sm dark:border-sky-900 dark:bg-sky-900/20">
+            <div className="font-medium text-sky-900 dark:text-sky-200">{t("tips.heading")}</div>
+            <ul className="mt-1 list-inside list-disc text-sky-800 dark:text-sky-300">
+              {a.extraChars > 0 && <li>{t("tips.longer", { n: a.extraChars })}</li>}
+              {a.score < 4 && <li>{t("tips.passphrase")}</li>}
+              <li>{t("tips.manager")}</li>
+            </ul>
           </div>
 
           {a.warnings.length > 0 && (
