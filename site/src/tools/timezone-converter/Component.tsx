@@ -2,12 +2,17 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useShareableState } from "@/lib/hooks/useShareableState";
 
 const COMMON_TIMEZONES = [
   "UTC", "America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles",
   "America/Sao_Paulo", "Europe/London", "Europe/Paris", "Europe/Berlin", "Europe/Moscow",
   "Africa/Cairo", "Asia/Dubai", "Asia/Kolkata", "Asia/Bangkok", "Asia/Singapore",
   "Asia/Shanghai", "Asia/Tokyo", "Asia/Seoul", "Australia/Sydney", "Pacific/Auckland",
+  "America/Toronto", "America/Mexico_City", "America/Anchorage", "Pacific/Honolulu",
+  "Atlantic/Reykjavik", "Europe/Madrid", "Europe/Istanbul", "Africa/Lagos", "Africa/Johannesburg",
+  "Asia/Karachi", "Asia/Dhaka", "Asia/Ho_Chi_Minh", "Asia/Jakarta", "Asia/Manila",
+  "Asia/Hong_Kong", "Asia/Taipei", "Australia/Perth",
 ];
 
 function pad(n: number) { return String(n).padStart(2, "0"); }
@@ -97,6 +102,16 @@ export default function TimezoneConverter() {
       }
     }
   }, [sourceTz]);
+
+  useShareableState(
+    "timezone-converter",
+    { sourceTz, targetTzs, dt },
+    (d) => {
+      if (typeof d.sourceTz === "string" && COMMON_TIMEZONES.includes(d.sourceTz)) setSourceTz(d.sourceTz);
+      if (Array.isArray(d.targetTzs)) setTargetTzs(d.targetTzs.filter((x: unknown): x is string => typeof x === "string" && COMMON_TIMEZONES.includes(x)));
+      if (typeof d.dt === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(d.dt)) setDt(d.dt);
+    },
+  );
 
   // Interpret the local datetime-local string as a moment in sourceTz, return Date
   const sourceDate = useMemo(() => {

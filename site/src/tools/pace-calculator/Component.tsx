@@ -12,6 +12,14 @@ type Unit = UnitSystem;
 
 const MILE_KM = 1.609344;
 
+// 距離プリセット(ラベルは言語に依らない表記)。km は実距離、mi は一般的な丸め表記
+const RACES = [
+  { label: "5K", km: 5, mi: "3.1" },
+  { label: "10K", km: 10, mi: "6.2" },
+  { label: "21.1K", km: 21.0975, mi: "13.1" },
+  { label: "42.2K", km: 42.195, mi: "26.2" },
+];
+
 function toSec(h: string, m: string, s: string): number | null {
   const H = parseInt(h, 10) || 0;
   const M = parseInt(m, 10) || 0;
@@ -109,6 +117,19 @@ export default function PaceCalculator() {
         </div>
       </div>
 
+      <div className="mb-3 flex flex-wrap items-center gap-2">
+        <span className="text-xs uppercase text-slate-600 dark:text-slate-400">{t("preset")}:</span>
+        {RACES.map((r) => (
+          <button
+            key={r.label}
+            onClick={() => setDistance(unit === "metric" ? String(r.km) : r.mi)}
+            className="rounded border border-slate-300 px-2.5 py-1 text-sm hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+          >
+            {r.label}
+          </button>
+        ))}
+      </div>
+
       <label className="block">
         <span className="text-sm font-medium">{t("input.distance")} ({unit === "metric" ? "km" : "mi"})</span>
         <input inputMode="decimal" value={distance} onChange={(e) => setDistance(e.target.value)} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900" />
@@ -170,6 +191,20 @@ export default function PaceCalculator() {
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
+
+      {result && (
+        <div className="mt-4 rounded-lg border border-slate-200 p-4 dark:border-slate-800">
+          <div className="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">{t("result.projections")}</div>
+          <ul className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {RACES.map((r) => (
+              <li key={r.label} className="rounded bg-slate-50 px-3 py-2 dark:bg-slate-900">
+                <div className="text-xs text-slate-600 dark:text-slate-400">{r.label}</div>
+                <div className="font-mono text-lg font-semibold tabular-nums">{fmtTime(result.pacePerKm * r.km)}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <DraftNotice
         draft={draft}
