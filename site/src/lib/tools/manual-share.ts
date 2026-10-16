@@ -10,6 +10,7 @@
  */
 export const MANUAL_SHARE_SLUGS: ReadonlySet<string> = new Set([
   "body-fat-calculator",
+  "age-calculator",
   "bmi-calculator",
   "bmr-calculator",
   "calorie-calculator",

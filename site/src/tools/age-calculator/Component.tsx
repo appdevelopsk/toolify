@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useShareableState } from "@/lib/hooks/useShareableState";
 
 function pad(n: number) {
   return String(n).padStart(2, "0");
@@ -28,6 +29,24 @@ function diffYMD(birth: Date, now: Date) {
   return { years, months, days };
 }
 
+// 基準日以降で最初の誕生日(2/29 生まれの平年は 3/1 とみなす)。日付はローカル暦で扱う。
+function nextBirthday(birthIso: string, targetIso: string): { date: Date; days: number } | null {
+  const bm = birthIso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  const tm = targetIso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!bm || !tm) return null;
+  const bMonth = +bm[2]! - 1;
+  const bDay = +bm[3]!;
+  const target = new Date(+tm[1]!, +tm[2]! - 1, +tm[3]!);
+  for (let y = target.getFullYear(); y <= target.getFullYear() + 1; y++) {
+    let d = new Date(y, bMonth, bDay);
+    if (d.getMonth() !== bMonth) d = new Date(y, 2, 1);
+    if (d >= target) {
+      return { date: d, days: Math.round((d.getTime() - target.getTime()) / 86400000) };
+    }
+  }
+  return null;
+}
+
 export default function AgeCalculator() {
   const t = useTranslations("tools.age-calculator");
   const locale = useLocale();
@@ -36,6 +55,12 @@ export default function AgeCalculator() {
   // 生年月日は固定日。todayIso() 由来にすると SSR/CSR で値がズレる。
   const [birth, setBirth] = useState(() => "1990-01-01");
   const [target, setTarget] = useState(todayIso());
+
+  useShareableState("age-calculator", { birth, target }, (d) => {
+    const iso = /^\d{4}-\d{2}-\d{2}$/;
+    if (typeof d.birth === "string" && iso.test(d.birth)) setBirth(d.birth);
+    if (typeof d.target === "string" && iso.test(d.target)) setTarget(d.target);
+  });
 
   const result = useMemo(() => {
     if (!birth) return null;
@@ -51,6 +76,17 @@ export default function AgeCalculator() {
   }, [birth, target]);
 
   const fmt = useMemo(() => new Intl.NumberFormat(locale), [locale]);
+  const dateFmt = useMemo(
+    () => new Intl.DateTimeFormat(locale, { year: "numeric", month: "long", day: "numeric", weekday: "long" }),
+    [locale],
+  );
+  const extra = useMemo(() => {
+    if (!result) return null;
+    const bm = birth.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!bm) return null;
+    const birthDate = new Date(+bm[1]!, +bm[2]! - 1, +bm[3]!);
+    return { birthDate, next: nextBirthday(birth, target) };
+  }, [result, birth, target]);
 
   return (
     <div>
@@ -108,6 +144,20 @@ export default function AgeCalculator() {
                 <dd className="tabular-nums">{fmt.format(result.totalHours)}</dd>
               </div>
             </dl>
+            {extra && (
+              <dl className="mt-3 grid gap-2 text-sm sm:grid-cols-2">
+                <div className="flex justify-between border-b border-slate-200 py-1 dark:border-slate-800">
+                  <dt>{t("result.birthWeekday")}</dt>
+                  <dd>{dateFmt.format(extra.birthDate)}</dd>
+                </div>
+                {extra.next && (
+                  <div className="flex justify-between border-b border-slate-200 py-1 dark:border-slate-800">
+                    <dt>{t("result.nextBirthday")}</dt>
+                    <dd>{dateFmt.format(extra.next.date)} · {fmt.format(extra.next.days)} {t("result.daysLeftUnit")}</dd>
+                  </div>
+                )}
+              </dl>
+            )}
           </>
         ) : (
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("result.empty")}</div>
