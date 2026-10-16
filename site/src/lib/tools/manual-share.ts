@@ -15,5 +15,6 @@ export const MANUAL_SHARE_SLUGS: ReadonlySet<string> = new Set([
   "calorie-calculator",
   "one-rep-max-calculator",
   "pace-calculator",
+  "timezone-converter",
   "water-intake-calculator",
 ]);
