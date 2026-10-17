@@ -2,8 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useShareableState } from "@/lib/hooks/useShareableState";
 
-type Mode = "pct_of" | "what_pct" | "pct_change";
+type Mode = "pct_of" | "what_pct" | "pct_change" | "pct_add" | "pct_sub";
+const MODES: Mode[] = ["pct_of", "what_pct", "pct_change", "pct_add", "pct_sub"];
 
 export default function PercentageCalculator() {
   const t = useTranslations("tools.percentage-calculator");
@@ -13,6 +15,12 @@ export default function PercentageCalculator() {
   // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
   const [a, setA] = useState("20");
   const [b, setB] = useState("250");
+
+  useShareableState("percentage-calculator", { mode, a, b }, (d) => {
+    if (typeof d.mode === "string" && (MODES as string[]).includes(d.mode)) setMode(d.mode as Mode);
+    if (typeof d.a === "string") setA(d.a);
+    if (typeof d.b === "string") setB(d.b);
+  });
 
   const result = useMemo(() => {
     const x = parseFloat(a);
@@ -25,19 +33,25 @@ export default function PercentageCalculator() {
         return y === 0 ? null : (x / y) * 100;
       case "pct_change":
         return x === 0 ? null : ((y - x) / x) * 100;
+      case "pct_add":
+        return y * (1 + x / 100);
+      case "pct_sub":
+        return y * (1 - x / 100);
     }
   }, [mode, a, b]);
 
   const fmt = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 4 }), [locale]);
-  const labelA = t(`mode.${mode}.labelA`);
-  const labelB = t(`mode.${mode}.labelB`);
+  // 加算・減算モードは「X% of Y」と同じ入力欄(X=率, Y=値)なので文言を流用する。
+  const base: Mode = mode === "pct_add" || mode === "pct_sub" ? "pct_of" : mode;
+  const labelA = t(`mode.${base}.labelA`);
+  const labelB = t(`mode.${base}.labelB`);
   const resultLabel = t(`mode.${mode}.resultLabel`);
-  const resultUnit = t(`mode.${mode}.resultUnit`);
+  const resultUnit = base === mode ? t(`mode.${mode}.resultUnit`) : "";
 
   return (
     <div>
       <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
-        {(["pct_of", "what_pct", "pct_change"] as Mode[]).map((m) => (
+        {MODES.map((m) => (
           <button
             key={m}
             onClick={() => setMode(m)}
