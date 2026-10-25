@@ -13,7 +13,7 @@ for (const name of names) {
     const x = JSON.parse(readFileSync(join(root, name), "utf8"));
     const explanation = x.article?.sections?.[2]?.paragraphs?.[2] ?? "";
     const answer = x.faq?.[5]?.a ?? "";
-    if (!explanation.includes("32 psi") || !explanation.includes("1 atm")) {
+    if (!explanation.includes("32 psi") || !/(?:1 atm|1 атм)/.test(explanation)) {
       errors.push(name + ": missing gauge-to-gauge example or local atmosphere reference");
     }
     if (answer.length < 70) errors.push(name + ": FAQ gauge answer too short");
