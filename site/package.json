@@ -9,7 +9,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "fetch:rates": "tsx scripts/fetch-rates.ts",
-    "prebuild": "tsx scripts/fetch-rates.ts",
+    "prebuild": "tsx scripts/fetch-rates.ts && node scripts/check-pressure-reference.mjs",
     "sitemap": "tsx scripts/generate-sitemap.ts",
     "validate": "tsx scripts/validate.ts",
     "audit:seo": "tsx scripts/audit-seo.ts",
@@ -19,7 +19,8 @@
     "test:watch": "vitest",
     "indexnow": "tsx scripts/indexnow.ts",
     "report:calculate": "node scripts/calculate-ranking.mjs",
-    "postbuild": "node scripts/check-built-titles.mjs && node scripts/check-built-canonical.mjs && node scripts/check-built-descriptions.mjs"
+    "postbuild": "node scripts/check-built-titles.mjs && node scripts/check-built-canonical.mjs && node scripts/check-built-descriptions.mjs",
+    "check:pressure": "node scripts/check-pressure-reference.mjs"
   },
   "dependencies": {
     "@types/qrcode": "^1.5.6",
