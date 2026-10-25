@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 import ratesData from "@/data/rates.json";
@@ -60,6 +60,14 @@ export default function CurrencyConverter() {
   const [amount, setAmount] = useState("100");
   const [from, setFrom] = useState("USD");
   const [to, setTo] = useState("JPY");
+  // The bundled fallback file may be old if a rate API fetch failed during
+  // prebuild. Compute age only after hydration to avoid static-HTML mismatch.
+  const [rateIsStale, setRateIsStale] = useState(false);
+  useEffect(() => {
+    const updated = Date.parse(`${RATES_UPDATED_AT}T00:00:00Z`);
+    const ageMs = Date.now() - updated;
+    setRateIsStale(!Number.isFinite(updated) || ageMs >= 7 * 86400000 || ageMs < -86400000);
+  }, []);
 
   function handleSwap() {
     setFrom(to);
@@ -104,6 +112,11 @@ export default function CurrencyConverter() {
 
   return (
     <div>
+      {rateIsStale && (
+        <p role="alert" className="mb-4 rounded-lg border border-amber-600 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-950 dark:bg-amber-950/30 dark:text-amber-100">
+          {t("note.staleWarning", { date: RATES_UPDATED_AT })}
+        </p>
+      )}
       <div className="mb-4 flex flex-wrap gap-1">
         {QUICK_PAIRS.map((p) => (
           <button
