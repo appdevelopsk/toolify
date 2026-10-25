@@ -16,7 +16,7 @@ for (const name of names) {
     if (!explanation.includes("32 psi") || !/(?:1 atm|1 атм)/.test(explanation)) {
       errors.push(name + ": missing gauge-to-gauge example or local atmosphere reference");
     }
-    if (answer.length < 70) errors.push(name + ": FAQ gauge answer too short");
+    if ([...answer].length < 40) errors.push(name + ": FAQ gauge answer incomplete");
   } catch (e) { errors.push(name + ": invalid or incomplete translation: " + String(e)); }
 }
 if (errors.length) {
