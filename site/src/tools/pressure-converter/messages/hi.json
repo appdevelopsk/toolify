@@ -50,7 +50,7 @@
         "paragraphs": [
           "Gauge pressure atmospheric के ऊपर pressure measure करती है। PSIG (PSI gauge) atmosphere के ऊपर pressure का मतलब है — 32 psi tire में actually ~46.7 psi absolute है (32 gauge + 14.7 atm)।",
           "Absolute pressure vacuum (0 psi) से measure होती है। PSIA (PSI absolute) physics formulas उपयोग करती है। Industrial और consumer applications mostly gauge उपयोग करते हैं; physics और aviation mostly absolute।",
-          "यह converter absolute values पर operate करता है। Gauge को absolute में convert करने के लिए, enter करने से पहले 1 atm (14.7 psi या 1.013 bar) जोड़ें। Absolute को gauge में convert करने के लिए, subtract करें।"
+          "यह टूल दबाव की इकाइयाँ बदलता है, संदर्भ नहीं: 32 psi गेज दबाव लगभग 2.21 bar गेज दबाव के बराबर है। एब्सोल्यूट दबाव पाने के लिए वास्तविक स्थानीय वायुमंडलीय दबाव जोड़ें (समुद्र तल पर लगभग 1 atm); एब्सोल्यूट से गेज में लौटने के लिए घटाएँ।"
         ]
       }
     ],
@@ -66,7 +66,7 @@
     { "q": "भारत में tires PSI में rate होते हैं, Europe में bar में क्यों?", "a": "Historical: US imperial units उपयोग करता है, Europe metric। Tire pressures US ranges में 30-35 psi हैं, Europe में ~2.07-2.41 bar के equivalent। दोनों pump types आमतौर पर petrol stations पर available हैं।" },
     { "q": "mmHg और Torr में क्या अंतर है?", "a": "practically identical: 1 Torr = 1 mmHg = 133.322 Pa। Torr same physics से derived unit है; mmHg mercury column को refer करता है।" },
     { "q": "Vacuum के लिए यह कैसे काम करता है?", "a": "Vacuum बस बहुत कम pressure है। Atmospheric 760 Torr है; medium vacuum 0.1 Torr है; high vacuum 10⁻⁶ Torr। Calculator small values को floating-point precision तक correctly handle करता है।" },
-    { "q": "क्या gauge और absolute supported हैं?", "a": "Implicitly absolute। Gauge को absolute में convert करें enter करने से पहले 1 atm जोड़कर, फिर आवश्यकतानुसार back to gauge।" },
+    { "q": "क्या gauge और absolute supported हैं?", "a": "हाँ, इकाई रूपांतरण के लिए। गेज दबाव गेज ही रहता है और एब्सोल्यूट दबाव एब्सोल्यूट ही। संदर्भ बदलने के लिए स्थानीय वायुमंडलीय दबाव अलग से जोड़ें या घटाएँ; 1 atm सिर्फ़ मानक अनुमान है।" },
     { "q": "Feet of water के बारे में क्या?", "a": "Plumbing और hydraulics में उपयोग। 1 ft water column = 2989 Pa ≈ 0.433 psi। Water tank pressure या water column manometer readings के लिए useful।" },
     { "q": "क्या data मेरे browser से बाहर जाता है?", "a": "नहीं। Conversion locally चलता है; कुछ भी server को नहीं भेजा जाता।" }
   ],

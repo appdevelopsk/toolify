@@ -50,7 +50,7 @@
         "paragraphs": [
           "Manométrica (gauge) mide presión sobre la atmosférica. PSIG significa sobre atmósfera — un neumático a 32 psi tiene ~46.7 psi absoluta (32 gauge + 14.7 atm).",
           "Absoluta se mide desde el vacío (0 psi). PSIA es lo que usan las fórmulas físicas. Aplicaciones industriales y de consumo suelen usar gauge; física y aviación absoluta.",
-          "Este conversor opera en valores absolutos — las presiones se convierten como si fuesen absolutas. Para gauge → absoluta, suma 1 atm (14.7 psi o 1.013 bar). Para absoluta → gauge, resta."
+          "Esta herramienta convierte unidades de presión sin cambiar su referencia: 32 psi manométricos equivalen a unos 2,21 bar manométricos. Para obtener presión absoluta, suma la presión atmosférica local real (aproximadamente 1 atm al nivel del mar); para volver a la manométrica, réstala."
         ]
       }
     ],
@@ -66,7 +66,7 @@
     { "q": "¿Por qué neumáticos en PSI en EE.UU. y bar en Europa?", "a": "Histórico: EE.UU. imperial, Europa métrico. Presiones de 30-35 psi en EE.UU. equivalen a ~2.07-2.41 bar. Las gasolineras modernas tienen ambos tipos." },
     { "q": "¿Diferencia mmHg vs Torr?", "a": "Prácticamente idénticas: 1 Torr = 1 mmHg = 133.322 Pa. Torr deriva de la misma física; mmHg refiere a la columna de mercurio. Algunos contextos científicos prefieren uno u otro." },
     { "q": "¿Sirve para vacío?", "a": "El vacío es solo presión muy baja. Atmosférica 760 Torr; vacío medio 0.1 Torr; alto 10⁻⁶ Torr. La calculadora maneja valores pequeños hasta precisión de coma flotante (~10⁻⁹ Pa)." },
-    { "q": "¿Soporta gauge y absoluta?", "a": "Implícitamente absoluta. Convierte gauge → absoluta sumando 1 atm antes de introducir, y vuelta tras." },
+    { "q": "¿Soporta gauge y absoluta?", "a": "Sí, para convertir unidades. La presión manométrica sigue siendo manométrica y la absoluta sigue siendo absoluta. Para cambiar de referencia, suma o resta aparte la presión atmosférica local; 1 atm es solo una aproximación estándar." },
     { "q": "¿Y los pies de agua?", "a": "Usados en fontanería e hidráulica. 1 ft de columna de agua = 2989 Pa ≈ 0.433 psi. Útil para presión de tanque de agua o lecturas de manómetro." },
     { "q": "¿Los datos salen del navegador?", "a": "No. La conversión corre localmente; nada se envía a un servidor." }
   ],

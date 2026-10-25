@@ -52,7 +52,7 @@
         "paragraphs": [
           "Gauge pressure measures pressure above atmospheric. PSIG (PSI gauge) means pressure above atmosphere — a 32 psi tire really has ~46.7 psi absolute (32 gauge + 14.7 atm).",
           "Absolute pressure is measured from a vacuum (0 psi). PSIA (PSI absolute) is what physics formulas use. Industrial and consumer applications mostly use gauge; physics and aviation mostly use absolute.",
-          "This converter operates on absolute values — pressures are converted as if they're absolute. To convert gauge to absolute, add 1 atm (14.7 psi or 1.013 bar). To convert absolute to gauge, subtract."
+          "This tool converts pressure units without changing the reference point: a gauge-pressure reading stays gauge pressure (for example, 32 psi gauge ≈ 2.21 bar gauge). To obtain absolute pressure, first add the measured local atmospheric pressure (about 1 atm at sea level); subtract it to go from absolute back to gauge."
         ]
       }
     ],
@@ -68,7 +68,7 @@
     { "q": "Why do tires use PSI in the US but bar in Europe?", "a": "Historical: US uses imperial units, Europe uses metric. Tire pressures are 30-35 psi in US ranges, equivalent to ~2.07-2.41 bar in Europe. Both pump types are commonly available in modern gas stations." },
     { "q": "What's the difference between mmHg and Torr?", "a": "Practically identical: 1 Torr = 1 mmHg = 133.322 Pa. Torr is the unit derived from the same physics; mmHg refers to the mercury column. Some scientific contexts prefer one over the other." },
     { "q": "How does this work for vacuum?", "a": "Vacuum is just very low pressure. Atmospheric is 760 Torr; medium vacuum is 0.1 Torr; high vacuum is 10⁻⁶ Torr. The calculator handles small values correctly down to floating-point precision (~10⁻⁹ Pa)." },
-    { "q": "Are gauge and absolute supported?", "a": "Implicitly absolute. Convert gauge to absolute by adding 1 atm before entering, then back to gauge after if needed." },
+    { "q": "Are gauge and absolute supported?", "a": "Yes, for unit conversion. The tool keeps the input pressure reference: gauge stays gauge and absolute stays absolute. To change reference, add or subtract local atmospheric pressure separately; 1 atm is only a standard approximation." },
     { "q": "What about feet of water?", "a": "Used in plumbing and hydraulics. 1 ft of water column = 2989 Pa ≈ 0.433 psi. Useful for water tank pressure or water column manometer readings." },
     { "q": "Does the data leave my browser?", "a": "No. Conversion runs locally; nothing is sent to a server." }
   ],
