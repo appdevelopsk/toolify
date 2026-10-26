@@ -1,0 +1,38 @@
+name: Toolify live indexability recovery (12 URLs)
+on:
+  pull_request:
+    paths:
+      - 'scripts/toolify-live-index-gate.mjs'
+      - 'scripts/tests/toolify-live-index-gate.test.mjs'
+      - '.github/workflows/toolify-live-index.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/toolify-live-index-gate.mjs'
+      - '.github/workflows/toolify-live-index.yml'
+  workflow_dispatch:
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test scripts/tests/toolify-live-index-gate.test.mjs
+  live:
+    needs: source
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/toolify-live-index-gate.mjs
