@@ -600,13 +600,23 @@ const INBOUND_FROM_INDEXED: Map<string, number> = (() => {
  * 既定は false。noindex ツールのページでは noindex 同士を関連に出してよい
  * （利用者向けの導線であり、クロール上の損は無い）ため、絞るかは呼び出し側が決める。
  */
-export function getRelated(slug: string, limit = 5, indexableOnly = false): ToolMeta[] {
+export function getRelated(
+  slug: string,
+  limit = 5,
+  indexableOnly = false,
+  locale?: string,
+): ToolMeta[] {
   const tool = SLUG_INDEX.get(slug);
   if (!tool) return [];
-  const eligible = (m: ToolMeta) => !indexableOnly || INDEXED_SLUGS.has(m.slug);
+  // Pages indexed as locale-specific exceptions must NOT link to related
+  // tools that are noindex in that locale. CORE_TOOLS_BY_DEMAND covers en/ja
+  // broadly but does not imply indexability for ar/th/tr/ru/es/fr.
+  const eligible = (m: ToolMeta) => !indexableOnly ||
+    (locale ? isIndexableIn(locale, m.slug) : INDEXED_SLUGS.has(m.slug));
   const related = tool.related
     .map((s) => SLUG_INDEX.get(s))
     .filter((m): m is ToolMeta => Boolean(m))
+    .filter((m) => m.slug !== slug)
     .filter(eligible);
   if (related.length >= limit) return related.slice(0, limit);
   const fill = TOOLS

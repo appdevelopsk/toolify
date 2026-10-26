@@ -94,3 +94,36 @@ describe("tool registry consistency", () => {
     }
   });
 });
+
+
+describe("SEO links match the locale-specific indexability policy", () => {
+  it("does not recommend noindex tool URLs from indexable exception locales", async () => {
+    const { getRelated, isIndexableIn } = await import("./registry");
+    const cases = [
+      ["th", "date-calculator"],
+      ["tr", "grade-calculator"],
+      ["ar", "length-converter"],
+      ["ru", "pressure-converter"],
+      ["es", "due-date-calculator"],
+      ["fr", "speed-converter"],
+      ["en", "workdays-calculator"],
+      ["ja", "date-calculator"],
+    ] as const;
+    for (const [locale, slug] of cases) {
+      expect(isIndexableIn(locale, slug), `${locale}/${slug} should be indexable`).toBe(true);
+      const related = getRelated(slug, 6, true, locale);
+      for (const target of related) {
+        expect(target.slug).not.toBe(slug);
+        expect(isIndexableIn(locale, target.slug),
+          `${locale}/${slug} should not link to noindex ${target.slug}`).toBe(true);
+      }
+      expect(new Set(related.map((tool) => tool.slug)).size).toBe(related.length);
+    }
+  });
+  it("leaves ordinary user navigation unrestricted on noindex pages", async () => {
+    const { getRelated } = await import("./registry");
+    const old = getRelated("date-calculator", 6, false);
+    const localized = getRelated("date-calculator", 6, false, "th");
+    expect(localized.map((x) => x.slug)).toEqual(old.map((x) => x.slug));
+  });
+});
