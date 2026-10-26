@@ -64,7 +64,7 @@ export default async function ToolPage({
   const tt = await getTranslations(`tools.${slug}`);
   // index 対象ページの関連リンクは index 対象だけに絞る(権威を noindex へ流さない)。
   // noindex ページ側は従来どおり全ツールから出す — 利用者向けの導線で、クロール上の損が無い。
-  const related = getRelated(slug, 6, isIndexableIn(locale, slug));
+  const related = getRelated(slug, 6, isIndexableIn(locale, slug), locale);
   const url = `${siteConfig.url}/${locale}/tools/${slug}`;
 
   const faq = (tt.raw("faq") as { q: string; a: string }[]) ?? [];
