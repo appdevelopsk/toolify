@@ -13,12 +13,17 @@ const CM_PER_IN = 2.54;
 const KG_PER_LB = 0.45359237;
 
 function navyBodyFat(sex: Sex, heightCm: number, neckCm: number, waistCm: number, hipCm: number): number {
-  // US Navy method (cm version)
+  // US Navy method. 係数 86.010/70.041/36.76・163.205/97.684/78.387 はインチ版の式なので
+  // cm 入力はインチへ換算してから当てる(cm のまま当てると男性 170/85/38 で 24.4%・正は 17.8%)。
+  const h = heightCm / CM_PER_IN;
+  const n = neckCm / CM_PER_IN;
+  const w = waistCm / CM_PER_IN;
+  const hp = hipCm / CM_PER_IN;
   if (sex === "male") {
-    return 86.010 * Math.log10(waistCm - neckCm) - 70.041 * Math.log10(heightCm) + 36.76;
+    return 86.010 * Math.log10(w - n) - 70.041 * Math.log10(h) + 36.76;
   }
   // female
-  return 163.205 * Math.log10(waistCm + hipCm - neckCm) - 97.684 * Math.log10(heightCm) - 78.387;
+  return 163.205 * Math.log10(w + hp - n) - 97.684 * Math.log10(h) - 78.387;
 }
 
 function bfCategory(sex: Sex, bfPct: number): string {

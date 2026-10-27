@@ -7,16 +7,27 @@ function escapeHtml(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
-function inline(s: string): string {
-  // Order matters: code first, then bold/italic/links
-  s = s.replace(/`([^`]+)`/g, (_, code) => `<code>${escapeHtml(code)}</code>`);
+/** href/src に許す scheme。javascript:/data: 等は "#" に落とす(共有リンク ?s= 経由の反射型 XSS 対策)。 */
+function safeUrl(u: string): string {
+  const v = u.trim();
+  if (/^(https?:|mailto:|tel:|\/|#|\.)/i.test(v)) return v;
+  if (!/^[a-z][a-z0-9+.-]*:/i.test(v)) return v; // scheme なし(相対パス)
+  return "#";
+}
+
+function inline(raw: string): string {
+  // 生の HTML は必ずエスケープしてから Markdown 記法だけを HTML に戻す。
+  // 入力は ?s= 共有リンクからも復元されるため、未エスケープだと他人に XSS を踏ませられる。
+  let s = escapeHtml(raw);
+  // Order matters: code first, then bold/italic/links(code の中身は既にエスケープ済み)
+  s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
   s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   s = s.replace(/__([^_]+)__/g, "<strong>$1</strong>");
   s = s.replace(/\*([^*]+)\*/g, "<em>$1</em>");
   s = s.replace(/_([^_]+)_/g, "<em>$1</em>");
   s = s.replace(/~~([^~]+)~~/g, "<del>$1</del>");
-  s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img alt="$1" src="$2">');
-  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+  s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (_, alt, src) => `<img alt="${alt}" src="${safeUrl(src)}">`);
+  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, text, href) => `<a href="${safeUrl(href)}">${text}</a>`);
   return s;
 }
 
