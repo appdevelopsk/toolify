@@ -1,9 +1,19 @@
 {
-  "title": "Workdays Calculator – Business Days Between Two Dates",
-  "shortDescription": "Count business days between two dates, excluding weekends and any holidays you list. Customizable: include Saturday or Sunday as workdays if needed.",
-  "description": "Enter a start and end date to see how many workdays (business days) fall between them — weekends and public holidays excluded, both dates counted. Pick a US, UK, Japan or Germany holiday preset or list your own dates. To find the date N workdays after a start date, use the Date Calculator's business-day mode.",
-  "metaDescription": "How many workdays between two dates? Count business days excluding weekends and US, UK, Japan or Germany public holidays (2026–2027) or your own list.",
-  "keywords": ["workdays calculator", "business days calculator", "workdays between two dates", "how many workdays between dates", "working days excluding weekends and holidays", "business days excluding holidays", "weekdays between dates", "workdays in 2026"],
+  "title": "Workdays Calculator – Number of Workdays Between Two Dates (Weekends & Holidays Excluded)",
+  "shortDescription": "Count the number of workdays between two dates, not including weekends and holidays. Pick a US, UK, Japan or Germany holiday preset or paste your own list; Saturday or Sunday can be counted as workdays.",
+  "description": "Enter a start and end date to get the total number of workdays (business days) between them, with weekends and public holidays excluded and both dates counted. Example: 1 Aug 2026 to 31 Jul 2027 is 365 calendar days, 260 Monday–Friday days, and 249 workdays after the US federal holiday preset. To find the date N workdays after a start date, use the Date Calculator's business-day mode.",
+  "metaDescription": "Number of workdays between two dates, not including weekends and holidays: count business days with a US, UK, Japan or Germany holiday preset (2026–2027) or your own list.",
+  "keywords": [
+    "workdays calculator",
+    "number of workdays between two dates",
+    "workdays between two dates excluding holidays",
+    "work days not including weekends and holidays",
+    "total workdays between dates",
+    "how many business days between two dates",
+    "business days calculator",
+    "working days calculator",
+    "weekdays between dates"
+  ],
   "empty": "Pick a start and end date to count workdays.",
   "input": {
     "start": "Start date",
@@ -21,6 +31,14 @@
   },
   "article": {
     "sections": [
+      {
+        "heading": "Worked examples: number of workdays between two dates",
+        "paragraphs": [
+          "A typical contract or payroll question looks like 'total workdays between 1 August 2026 and 31 July 2027'. The range is 365 calendar days. 260 of them are Monday–Friday. With the US federal holiday preset, 11 holidays fall on weekdays, so the answer is 249 workdays. With no holidays selected the tool reports 260.",
+          "Shorter ranges work the same way. 25 August 2026 to 30 January 2027 is 159 calendar days, 114 weekdays, and 107 workdays once the 7 US federal holidays in that span (Labor Day through Martin Luther King Jr. Day) are removed. 1 October 2026 to 31 December 2026 is 92 days, 66 weekdays, and 62 workdays after Columbus Day, Veterans Day, Thanksgiving and Christmas Day.",
+          "If your country or company observes different holidays, choose 'None' in the preset and paste the dates you need. The counts update instantly, and the 'Holidays' line in the result shows how many listed dates actually fell on a weekday inside the range."
+        ]
+      },
       {
         "heading": "Why workday counting matters",
         "paragraphs": [
@@ -45,23 +63,73 @@
       }
     ],
     "howTo": [
-      { "name": "Set start and end dates", "text": "Both inclusive — both dates count if they're workdays." },
-      { "name": "Pick weekend days", "text": "By default Saturday and Sunday are weekends. Toggle them as workdays if needed." },
-      { "name": "Add holidays to exclude", "text": "List ISO dates separated by commas, spaces, or newlines." },
-      { "name": "Read the breakdown", "text": "Workdays, weekend days, holidays, and total calendar days." }
+      {
+        "name": "Set start and end dates",
+        "text": "Both inclusive — both dates count if they're workdays."
+      },
+      {
+        "name": "Pick weekend days",
+        "text": "By default Saturday and Sunday are weekends. Toggle them as workdays if needed."
+      },
+      {
+        "name": "Add holidays to exclude",
+        "text": "List ISO dates separated by commas, spaces, or newlines."
+      },
+      {
+        "name": "Read the breakdown",
+        "text": "Workdays, weekend days, holidays, and total calendar days."
+      }
     ]
   },
   "faq": [
-    { "q": "How many workdays are between two dates?", "a": "Enter both dates: the calculator counts every Monday–Friday in the range (start and end included), then subtracts the public holidays from the preset you pick and any dates you list. Example: July 1–31, 2026 has 23 weekdays; with the US federal holiday preset (Independence Day observed on Friday, July 3) it is 22 workdays." },
-    { "q": "How do I find the date that is N workdays after a start date?", "a": "This page counts workdays between two known dates. To go the other way — for example '30 workdays from July 16, 2026' — use the Date Calculator (linked below the tool): turn on business-day mode and pick the same public-holiday preset (US, Japan, UK or Germany, 2026–2027); it skips weekends and those holidays and lists the holidays it skipped. Dates you typed in this page's own holiday list are not carried over, so move that result forward one workday for each such extra day off. To double-check, count here from the day after your start date to the result — it should equal N." },
-    { "q": "Are start and end dates inclusive?", "a": "Yes. If both are workdays, both are counted. If your contract counts only the days between (exclusive), subtract 2 from the result." },
-    { "q": "Are public holidays included automatically?", "a": "Only if you pick a preset: built-in data covers public holidays in the United States, Japan, the United Kingdom (England & Wales) and Germany for 2026–2027. Holidays vary by country, region and year, so for anywhere else — or for company-specific days off — add the dates manually; they are combined with the preset." },
-    { "q": "Can I use this for international contracts?", "a": "Yes — but make sure both parties agree on which holidays to count. Multinational contracts often specify 'business days as observed in the [city] of [country]' to avoid ambiguity." },
-    { "q": "What if a holiday falls on a weekend?", "a": "It's not double-counted. If 2026-01-01 is a Thursday holiday, it's counted as a holiday. If 2027-12-25 falls on a Saturday, the algorithm correctly counts it as one day (weekend), not two." },
-    { "q": "How does this work for a 6-day work week?", "a": "Check 'Saturday is a workday'. The calculator will count Mon-Sat as workdays and only exclude Sundays and listed holidays." },
-    { "q": "What's the maximum date range I can compute?", "a": "Hundreds of years at minimum. The browser handles date arithmetic up to ±100 million days from 1970." },
-    { "q": "Can I export the workday list?", "a": "Not as a download, but you can copy the displayed numbers. For a per-day list, a spreadsheet is more flexible." },
-    { "q": "Does the data leave my browser?", "a": "No. Everything runs locally; nothing is sent to a server." }
+    {
+      "q": "How many workdays are between two dates?",
+      "a": "Enter both dates: the calculator counts every Monday–Friday in the range (start and end included), then subtracts the public holidays from the preset you pick and any dates you list. Example: July 1–31, 2026 has 23 weekdays; with the US federal holiday preset (Independence Day observed on Friday, July 3) it is 22 workdays."
+    },
+    {
+      "q": "How do I count work days not including weekends and holidays?",
+      "a": "Pick a start date and an end date, then choose a holiday preset (United States, Japan, United Kingdom or Germany) or paste your own holiday dates. The 'Workdays' result is the number of Monday–Friday days in the range minus any listed holidays that fall on a weekday. Weekend days and holidays are shown separately so you can check the breakdown."
+    },
+    {
+      "q": "How many workdays are there between 1 June 2026 and 31 May 2027?",
+      "a": "365 calendar days, of which 261 are Monday–Friday. With the US federal holiday preset (Juneteenth 2026 through Memorial Day 2027, 11 weekday holidays) the result is 250 workdays. Other presets give different totals: run the same dates with the UK, Japan or Germany preset to compare."
+    },
+    {
+      "q": "How do I find the date that is N workdays after a start date?",
+      "a": "This page counts workdays between two known dates. To go the other way — for example '30 workdays from July 16, 2026' — use the Date Calculator (linked below the tool): turn on business-day mode and pick the same public-holiday preset (US, Japan, UK or Germany, 2026–2027); it skips weekends and those holidays and lists the holidays it skipped. Dates you typed in this page's own holiday list are not carried over, so move that result forward one workday for each such extra day off. To double-check, count here from the day after your start date to the result — it should equal N."
+    },
+    {
+      "q": "Are start and end dates inclusive?",
+      "a": "Yes. If both are workdays, both are counted. If your contract counts only the days between (exclusive), subtract 2 from the result."
+    },
+    {
+      "q": "Are public holidays included automatically?",
+      "a": "Only if you pick a preset: built-in data covers public holidays in the United States, Japan, the United Kingdom (England & Wales) and Germany for 2026–2027. Holidays vary by country, region and year, so for anywhere else — or for company-specific days off — add the dates manually; they are combined with the preset."
+    },
+    {
+      "q": "Can I use this for international contracts?",
+      "a": "Yes — but make sure both parties agree on which holidays to count. Multinational contracts often specify 'business days as observed in the [city] of [country]' to avoid ambiguity."
+    },
+    {
+      "q": "What if a holiday falls on a weekend?",
+      "a": "It's not double-counted. If 2026-01-01 is a Thursday holiday, it's counted as a holiday. If 2027-12-25 falls on a Saturday, the algorithm correctly counts it as one day (weekend), not two."
+    },
+    {
+      "q": "How does this work for a 6-day work week?",
+      "a": "Check 'Saturday is a workday'. The calculator will count Mon-Sat as workdays and only exclude Sundays and listed holidays."
+    },
+    {
+      "q": "What's the maximum date range I can compute?",
+      "a": "Hundreds of years at minimum. The browser handles date arithmetic up to ±100 million days from 1970."
+    },
+    {
+      "q": "Can I export the workday list?",
+      "a": "Not as a download, but you can copy the displayed numbers. For a per-day list, a spreadsheet is more flexible."
+    },
+    {
+      "q": "Does the data leave my browser?",
+      "a": "No. Everything runs locally; nothing is sent to a server."
+    }
   ],
   "preset": {
     "label": "Public-holiday preset (2026–2027)",
