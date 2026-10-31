@@ -1,4 +1,3 @@
-import type { Locale } from "@/lib/i18n/locales";
 const copy = {
  en:["Software","Explore free software","Start free. Upgrade only when you need larger limits.","Available now","Coming soon","Open software","Free","Pro features planned","Browser processing keeps your files on your device.","Input","Output","Process","Download","Free-tier limit exceeded.","Paste your content here","Unable to process this input. Check its format.","Minify JSON","Back to software","Payments and paid plans are not available yet. No purchase is required."],
  ja:["ソフトウェア","無料ソフトウェアを探す","まずは無料。大容量処理が必要になったらアップグレード。","利用可能","開発予定","ソフトを開く","無料","Pro機能は準備中","処理はブラウザ内で完結し、ファイルは端末外へ送信しません。","入力","出力","処理する","ダウンロード","無料版の容量・件数制限を超えました。","ここに内容を貼り付けてください","処理に失敗しました。形式をご確認ください。","JSONを圧縮","ソフト一覧に戻る","有料プランと決済は準備中です。購入は不要です。"],
