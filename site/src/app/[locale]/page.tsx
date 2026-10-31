@@ -11,6 +11,7 @@ import { AdBanner, AdInFeed } from "@/components/ads/AdBanner";
 import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
+import { softwareCopy } from "@/lib/software/copy";
 import type { Locale } from "@/lib/i18n/locales";
 import type { ToolCategory, ToolMeta } from "@/lib/tools/types";
 
@@ -64,6 +65,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const collatorLocale = safeLocale(locale);
   const t = await getTranslations();
+  const software = softwareCopy(locale);
   const allTools = listTools();
   const allPrompts = listPrompts();
   const featured = listFeaturedTools().slice(0, FEATURED_COUNT);
@@ -123,6 +125,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           >
             {t("nav.prompts")} →
           </Link>
+          <Link href="/software" prefetch={false} className="rounded-lg border border-brand-300 bg-brand-50 px-5 py-2.5 text-sm font-semibold text-brand-700 transition hover:bg-brand-100 dark:border-brand-700 dark:bg-slate-900 dark:text-brand-400">{software.nav} →</Link>
         </div>
         {/* Quick category jump chips */}
         <div className="mt-8 flex flex-wrap justify-center gap-2">
