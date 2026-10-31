@@ -4,6 +4,8 @@ import { Link } from "@/lib/i18n/navigation";
 import { listTools, listFeaturedTools } from "@/lib/tools/registry";
 import { listPrompts } from "@/lib/prompts/registry";
 import { ToolCard } from "@/components/tools/ToolCard";
+import { HomeToolSearch } from "@/components/tools/HomeToolSearch";
+import { AVAILABLE_SOFTWARE } from "@/lib/software/catalog";
 import { FavoritesSection } from "@/components/tools/FavoritesSection";
 import { RecentSection } from "@/components/tools/RecentSection";
 import { PromptCard } from "@/components/prompts/PromptCard";
@@ -127,6 +129,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </Link>
           <Link href="/software" prefetch={false} className="rounded-lg border border-brand-300 bg-brand-50 px-5 py-2.5 text-sm font-semibold text-brand-700 transition hover:bg-brand-100 dark:border-brand-700 dark:bg-slate-900 dark:text-brand-400">{software.nav} →</Link>
         </div>
+        <HomeToolSearch locale={locale} items={allTools.map(m=>({slug:m.slug,title:t(`tools.${m.slug}.title`),description:t(`tools.${m.slug}.shortDescription`),category:m.category}))}/>
         {/* Quick category jump chips */}
         <div className="mt-8 flex flex-wrap justify-center gap-2">
           {grouped.map(({ cat, cfg }) => (
@@ -143,32 +146,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
-      <AdBanner className="mt-8 mb-12" />
-
-      {/* ── Why Toolify (trust + brand) ───────────────────────────────── */}
-      <section className="mb-12">
-        <h2 className="text-xl font-bold">{t("home.whyTitle")}</h2>
-        <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{t("home.whyIntro")}</p>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2">
-          {WHY_ITEMS.map((item) => (
-            <div
-              key={item.title}
-              className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-5 transition-shadow hover:shadow-md dark:border-slate-800 dark:bg-slate-900/40"
-            >
-              <span
-                className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-2xl ${item.bg}`}
-                aria-hidden
-              >
-                {item.emoji}
-              </span>
-              <div className="min-w-0">
-                <h3 className="text-sm font-semibold">{t(item.title)}</h3>
-                <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{t(item.text)}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ── Featured cluster: Pregnancy & Fertility ───────────────────── */}
       <section className="mb-12">
@@ -192,6 +169,20 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </div>
           </div>
         </Link>
+      </section>
+
+      {/* Software product discovery: free functionality first, no fake purchase buttons. */}
+      <section className="mt-10 rounded-3xl border border-brand-200 bg-gradient-to-br from-brand-50 via-white to-slate-50 p-5 dark:border-slate-700 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900 sm:p-8" aria-labelledby="home-software-heading">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div><p className="text-xs font-bold uppercase tracking-widest text-brand-700 dark:text-brand-400">{software.free}</p>
+            <h2 id="home-software-heading" className="mt-2 text-2xl font-bold">{software.title}</h2>
+            <p className="mt-2 max-w-xl text-sm text-slate-600 dark:text-slate-300">{software.subtitle}</p></div>
+          <Link href="/software" prefetch={false} className="rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700">{software.nav} →</Link>
+        </div>
+        <div className="mt-5 grid gap-3 sm:grid-cols-3">{AVAILABLE_SOFTWARE.map(product=><Link key={product.slug} href={`/software/${product.slug}`} prefetch={false} className="group rounded-xl border border-slate-200 bg-white p-4 transition hover:border-brand-400 hover:shadow-lg dark:border-slate-700 dark:bg-slate-900">
+          <p className="text-xs text-brand-700 dark:text-brand-400">{software.available}</p><h3 className="mt-2 font-bold group-hover:text-brand-600">{product.name} →</h3>
+          <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-400">{product.description}</p>
+        </Link>)}</div>
       </section>
 
       {/* ── Category grid ─────────────────────────────────────────────── */}
@@ -250,6 +241,33 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           ))}
         </div>
       </section>
+
+      {/* ── Why Toolify (trust + brand) ───────────────────────────────── */}
+      <section className="mb-12">
+        <h2 className="text-xl font-bold">{t("home.whyTitle")}</h2>
+        <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{t("home.whyIntro")}</p>
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          {WHY_ITEMS.map((item) => (
+            <div
+              key={item.title}
+              className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-5 transition-shadow hover:shadow-md dark:border-slate-800 dark:bg-slate-900/40"
+            >
+              <span
+                className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-2xl ${item.bg}`}
+                aria-hidden
+              >
+                {item.emoji}
+              </span>
+              <div className="min-w-0">
+                <h3 className="text-sm font-semibold">{t(item.title)}</h3>
+                <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{t(item.text)}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <AdBanner className="my-10" />
 
       {/* In-feed ad at a natural mid-page break (lazy, height-reserved). */}
       <AdInFeed className="my-12" />
