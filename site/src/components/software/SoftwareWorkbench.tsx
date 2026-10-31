@@ -9,7 +9,6 @@ export function SoftwareWorkbench({ slug, labels }: {slug: ActiveSlug; labels: {
   const [output, setOutput] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [minify, setMinify] = useState(false);
-  const [busy, setBusy] = useState(false);
   const process = () => {
     setError(""); setOutput(null);
     try {
