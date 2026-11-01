@@ -1,9 +1,8 @@
 "use client";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 /** Activates the existing header search; avoids downloading a second search index on home. */
 export function HeroSearchTrigger() {
  const locale = useLocale();
- const t = useTranslations("tool");
  const prompt = locale === "ja" ? "ツール名・用途から検索" : "Find a tool or search by task";
  return <div className="mx-auto mt-8 max-w-2xl text-start">
    <button type="button" onClick={() => document.dispatchEvent(new Event("toolify:open-search"))}
