@@ -53,6 +53,12 @@ export function HeaderSearch() {
     requestAnimationFrame(() => inputRef.current?.focus());
   }, []);
   useSearchShortcut(activate, 0);
+  // Hero and header share a single search index, results UI, and analytics path.
+  useEffect(() => {
+    const openFromHero = () => activate();
+    document.addEventListener("toolify:open-search", openFromHero);
+    return () => document.removeEventListener("toolify:open-search", openFromHero);
+  }, [activate]);
 
   const close = useCallback(() => {
     setOpen(false);
