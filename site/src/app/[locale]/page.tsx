@@ -4,7 +4,7 @@ import { Link } from "@/lib/i18n/navigation";
 import { listTools, listFeaturedTools } from "@/lib/tools/registry";
 import { listPrompts } from "@/lib/prompts/registry";
 import { ToolCard } from "@/components/tools/ToolCard";
-import { HomeToolSearch } from "@/components/tools/HomeToolSearch";
+import { HeroSearchTrigger } from "@/components/tools/HeroSearchTrigger";
 import { AVAILABLE_SOFTWARE } from "@/lib/software/catalog";
 import { FavoritesSection } from "@/components/tools/FavoritesSection";
 import { RecentSection } from "@/components/tools/RecentSection";
@@ -129,7 +129,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </Link>
           <Link href="/software" prefetch={false} className="rounded-lg border border-brand-300 bg-brand-50 px-5 py-2.5 text-sm font-semibold text-brand-700 transition hover:bg-brand-100 dark:border-brand-700 dark:bg-slate-900 dark:text-brand-400">{software.nav} →</Link>
         </div>
-        <HomeToolSearch locale={locale} items={allTools.map(m=>({slug:m.slug,title:t(`tools.${m.slug}.title`),description:t(`tools.${m.slug}.shortDescription`),category:m.category}))}/>
+        <HeroSearchTrigger />
         {/* Quick category jump chips */}
         <div className="mt-8 flex flex-wrap justify-center gap-2">
           {grouped.map(({ cat, cfg }) => (
