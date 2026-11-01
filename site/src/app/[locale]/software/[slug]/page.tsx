@@ -1,3 +1,6 @@
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/metadata";
+import type { Locale } from "@/lib/i18n/locales";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/lib/i18n/navigation";
@@ -5,6 +8,11 @@ import { AVAILABLE_SOFTWARE, findSoftware } from "@/lib/software/catalog";
 import { softwareCopy } from "@/lib/software/copy";
 import { SoftwareWorkbench } from "@/components/software/SoftwareWorkbench";
 export function generateStaticParams() {return AVAILABLE_SOFTWARE.map(p=>({slug:p.slug}));}
+export async function generateMetadata({params}:{params:Promise<{locale:string;slug:string}>}):Promise<Metadata>{
+  const {locale,slug}=await params; const product=findSoftware(slug); const t=softwareCopy(locale);
+  if(!product) return {};
+  return buildMetadata({locale:locale as Locale,title:`${product.name} – ${t.title}`,description:`${t.subtitle} ${t.privacy}`,path:`/software/${product.slug}`});
+}
 export default async function SoftwareProductPage({params}:{params:Promise<{locale:string;slug:string}>}) {
   const {locale,slug}=await params;setRequestLocale(locale);
   const product=findSoftware(slug); if(!product || product.mode!=="available") notFound();

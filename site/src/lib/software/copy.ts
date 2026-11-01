@@ -20,5 +20,6 @@ const copy = {
 export function softwareCopy(locale: string) {
   const normalized = locale.replace(/-/g,"_") as keyof typeof copy;
   const c: readonly string[] = copy[normalized] ?? copy.en;
-  return {nav:c[0],title:c[1],subtitle:c[2],available:c[3],planned:c[4],open:c[5],free:c[6],pro:c[7],privacy:c[8],input:c[9],output:c[10],process:c[11],download:c[12],limit:c[13],placeholder:c[14],error:c[15],minify:c[16],back:c[17],payment:c[18]};
+  const g=(i:number):string=>c[i] ?? copy.en[i] ?? "";
+  return {nav:g(0),title:g(1),subtitle:g(2),available:g(3),planned:g(4),open:g(5),free:g(6),pro:g(7),privacy:g(8),input:g(9),output:g(10),process:g(11),download:g(12),limit:g(13),placeholder:g(14),error:g(15),minify:g(16),back:g(17),payment:g(18)};
 }

@@ -29,7 +29,7 @@ export function serializeCsv(rows: string[][]): string {
 export function cleanCsv(input: string): string {
   const rows = parseCsv(input);
   if (!rows.length) return "";
-  const width = rows[0].length;
+  const width = rows[0]?.length ?? 0;
   if (rows.some(row => row.length !== width)) throw new Error("CSV rows have different column counts");
   const seen = new Set<string>();
   const filtered = rows.filter((row, index) => {

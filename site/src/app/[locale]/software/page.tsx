@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/metadata";
+import type { Locale } from "@/lib/i18n/locales";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/lib/i18n/navigation";
 import { SOFTWARE_PRODUCTS } from "@/lib/software/catalog";
 import { DISTRIBUTION } from "@/lib/software/distribution";
 import { softwareCopy } from "@/lib/software/copy";
+export async function generateMetadata({params}:{params:Promise<{locale:string}>}):Promise<Metadata>{
+  const {locale}=await params; const t=softwareCopy(locale);
+  return buildMetadata({locale:locale as Locale,title:t.title,description:`${t.subtitle} ${t.privacy}`,path:"/software"});
+}
 export default async function SoftwareIndex({params}:{params:Promise<{locale:string}>}) {
   const {locale}=await params; setRequestLocale(locale); const t=softwareCopy(locale);
   return <main className="mx-auto max-w-6xl px-4 py-12">
