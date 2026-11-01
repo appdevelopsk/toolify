@@ -3,6 +3,7 @@ import { Link } from "@/lib/i18n/navigation";
 import { siteConfig } from "@/lib/config";
 import { isPromptLocale } from "@/lib/i18n/locales";
 import { NewsletterForm } from "@/components/cross/NewsletterForm";
+import { softwareCopy } from "@/lib/software/copy";
 import { withSisterUtm } from "@/lib/cross/utm";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import { listIndexableByCategory } from "@/lib/tools/registry";
@@ -13,6 +14,7 @@ export function Footer() {
   const locale = useLocale();
   const showPrompts = isPromptLocale(locale);
   const year = new Date().getFullYear();
+  const softwareLabel = softwareCopy(locale).nav;
   return (
     <footer className="border-t border-slate-200 bg-slate-50 py-10 text-sm dark:border-slate-800 dark:bg-slate-950">
       <div className="mx-auto mb-8 max-w-6xl px-4">
@@ -27,6 +29,7 @@ export function Footer() {
           <Link href="/tools" className="hover:underline">
             {t("nav.tools")}
           </Link>
+          <Link href="/software" className="hover:underline">{softwareLabel}</Link>
           <Link href="/pregnancy" className="hover:underline">
             {t("nav.pregnancy")}
           </Link>
