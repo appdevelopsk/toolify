@@ -97,7 +97,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <div className="mx-auto max-w-6xl px-4">
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="relative -mx-4 overflow-hidden bg-gradient-to-b from-brand-50 via-white to-white px-4 py-16 text-center dark:from-slate-900 dark:via-slate-950 dark:to-slate-950 sm:py-20">
+      <section className="relative -mx-4 overflow-hidden bg-gradient-to-b from-brand-50 via-white to-white px-4 py-12 text-center dark:from-slate-900 dark:via-slate-950 dark:to-slate-950 sm:py-16">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto h-64 max-w-3xl rounded-full bg-brand-200/30 blur-3xl dark:bg-brand-900/20"
@@ -112,7 +112,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <p className="mx-auto mt-4 max-w-xl text-lg text-slate-600 dark:text-slate-400">
           {t("home.subheading")}
         </p>
-        <div className="mt-7 flex flex-wrap justify-center gap-3">
+        <HeroSearchTrigger />
+        <div className="mt-5 flex flex-wrap justify-center gap-3">
           <Link
             href="/tools"
             prefetch={false}
@@ -129,66 +130,32 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </Link>
           <Link href="/software" prefetch={false} className="rounded-lg border border-brand-300 bg-brand-50 px-5 py-2.5 text-sm font-semibold text-brand-700 transition hover:bg-brand-100 dark:border-brand-700 dark:bg-slate-900 dark:text-brand-400">{software.nav} →</Link>
         </div>
-        <HeroSearchTrigger />
-        {/* Quick category jump chips */}
-        <div className="mt-8 flex flex-wrap justify-center gap-2">
-          {grouped.map(({ cat, cfg }) => (
-            <Link
-              key={cat}
-              href={`/tools#${cat}`}
-              prefetch={false}
-              className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 transition hover:border-brand-300 hover:text-brand-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-brand-700 dark:hover:text-brand-400"
-            >
-              <span aria-hidden>{cfg.emoji}</span>
-              {cfg.label}
-            </Link>
+      </section>
+
+      {/* ── Popular tools ─────────────────────────────────────────────── */}
+      <section className="mt-12">
+        <div className="flex items-baseline justify-between">
+          <h2 className="text-xl font-bold">{t("home.popular")}</h2>
+          <Link href="/tools" className="text-sm text-brand-600 hover:underline dark:text-brand-500">
+            {remainingCount > 0 ? t("home.morePlus", { n: remainingCount }) : t("home.browseAll")} →
+          </Link>
+        </div>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {featured.slice(0, 6).map((m) => (
+            <ToolCard
+              key={m.slug}
+              meta={m}
+              title={t(`tools.${m.slug}.title`)}
+              description={t(`tools.${m.slug}.shortDescription`)}
+            />
           ))}
         </div>
       </section>
 
-
-      {/* ── Featured cluster: Pregnancy & Fertility ───────────────────── */}
-      <section className="mb-12">
-        <Link
-          href="/pregnancy"
-          prefetch={false}
-          className="group block rounded-2xl border border-rose-200 bg-rose-50 p-6 transition hover:border-rose-300 hover:shadow-md dark:border-rose-900/40 dark:bg-rose-900/20 sm:p-8"
-        >
-          <div className="flex items-start gap-4">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-2xl dark:bg-rose-900/40" aria-hidden>
-              🤰
-            </span>
-            <div>
-              <h2 className="text-xl font-bold group-hover:text-rose-700 dark:group-hover:text-rose-300">
-                {t("pregnancy.title")}
-              </h2>
-              <p className="mt-1 max-w-2xl text-sm text-slate-600 dark:text-slate-400">{t("pregnancy.intro")}</p>
-              <span className="mt-3 inline-block text-sm font-semibold text-rose-700 dark:text-rose-300">
-                {t("home.browseAll")} →
-              </span>
-            </div>
-          </div>
-        </Link>
-      </section>
-
-      {/* Software product discovery: free functionality first, no fake purchase buttons. */}
-      <section className="mt-10 rounded-3xl border border-brand-200 bg-gradient-to-br from-brand-50 via-white to-slate-50 p-5 dark:border-slate-700 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900 sm:p-8" aria-labelledby="home-software-heading">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div><p className="text-xs font-bold uppercase tracking-widest text-brand-700 dark:text-brand-400">{software.free}</p>
-            <h2 id="home-software-heading" className="mt-2 text-2xl font-bold">{software.title}</h2>
-            <p className="mt-2 max-w-xl text-sm text-slate-600 dark:text-slate-300">{software.subtitle}</p></div>
-          <Link href="/software" prefetch={false} className="rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700">{software.nav} →</Link>
-        </div>
-        <div className="mt-5 grid gap-3 sm:grid-cols-3">{AVAILABLE_SOFTWARE.map(product=><Link key={product.slug} href={`/software/${product.slug}`} prefetch={false} className="group rounded-xl border border-slate-200 bg-white p-4 transition hover:border-brand-400 hover:shadow-lg dark:border-slate-700 dark:bg-slate-900">
-          <p className="text-xs text-brand-700 dark:text-brand-400">{software.available}</p><h3 className="mt-2 font-bold group-hover:text-brand-600">{product.name} →</h3>
-          <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-400">{product.description}</p>
-        </Link>)}</div>
-      </section>
-
       {/* ── Category grid ─────────────────────────────────────────────── */}
-      <section>
+      <section className="mt-10">
         <h2 className="text-xl font-bold">{t("home.byCategory")}</h2>
-        <div className="mt-4 grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {grouped.map(({ cat, cfg, tools }) => (
             <Link
               key={cat}
@@ -218,32 +185,50 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
+      {/* Software product discovery: free functionality first, no fake purchase buttons. */}
+      <section className="mt-10 rounded-3xl border border-brand-200 bg-gradient-to-br from-brand-50 via-white to-slate-50 p-5 dark:border-slate-700 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900 sm:p-8" aria-labelledby="home-software-heading">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div><p className="text-xs font-bold uppercase tracking-widest text-brand-700 dark:text-brand-400">{software.free}</p>
+            <h2 id="home-software-heading" className="mt-2 text-2xl font-bold">{software.title}</h2>
+            <p className="mt-2 max-w-xl text-sm text-slate-600 dark:text-slate-300">{software.subtitle}</p></div>
+          <Link href="/software" prefetch={false} className="rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700">{software.nav} →</Link>
+        </div>
+        <div className="mt-5 grid gap-3 sm:grid-cols-3">{AVAILABLE_SOFTWARE.map(product=><Link key={product.slug} href={`/software/${product.slug}`} prefetch={false} className="group rounded-xl border border-slate-200 bg-white p-4 transition hover:border-brand-400 hover:shadow-lg dark:border-slate-700 dark:bg-slate-900">
+          <p className="text-xs text-brand-700 dark:text-brand-400">{software.available}</p><h3 className="mt-2 font-bold group-hover:text-brand-600">{product.name} →</h3>
+          <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-400">{product.description}</p>
+        </Link>)}</div>
+      </section>
+
       {/* ── Favorites / Recently used (localStorage; 初回訪問では何も出ない) ── */}
       <FavoritesSection className="mt-12" />
       <RecentSection className="mt-12" />
 
-      {/* ── Popular tools ─────────────────────────────────────────────── */}
-      <section className="mt-12">
-        <div className="flex items-baseline justify-between">
-          <h2 className="text-xl font-bold">{t("home.popular")}</h2>
-          <Link href="/tools" className="text-sm text-brand-600 hover:underline dark:text-brand-500">
-            {remainingCount > 0 ? t("home.morePlus", { n: remainingCount }) : t("home.browseAll")} →
-          </Link>
-        </div>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((m) => (
-            <ToolCard
-              key={m.slug}
-              meta={m}
-              title={t(`tools.${m.slug}.title`)}
-              description={t(`tools.${m.slug}.shortDescription`)}
-            />
-          ))}
-        </div>
+      {/* ── Featured cluster: Pregnancy & Fertility ───────────────────── */}
+      <section className="mt-10">
+        <Link
+          href="/pregnancy"
+          prefetch={false}
+          className="group block rounded-2xl border border-rose-200 bg-rose-50 p-6 transition hover:border-rose-300 hover:shadow-md dark:border-rose-900/40 dark:bg-rose-900/20 sm:p-8"
+        >
+          <div className="flex items-start gap-4">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-2xl dark:bg-rose-900/40" aria-hidden>
+              🤰
+            </span>
+            <div>
+              <h2 className="text-xl font-bold group-hover:text-rose-700 dark:group-hover:text-rose-300">
+                {t("pregnancy.title")}
+              </h2>
+              <p className="mt-1 max-w-2xl text-sm text-slate-600 dark:text-slate-400">{t("pregnancy.intro")}</p>
+              <span className="mt-3 inline-block text-sm font-semibold text-rose-700 dark:text-rose-300">
+                {t("home.browseAll")} →
+              </span>
+            </div>
+          </div>
+        </Link>
       </section>
 
       {/* ── Why Toolify (trust + brand) ───────────────────────────────── */}
-      <section className="mb-12">
+      <section className="mt-12">
         <h2 className="text-xl font-bold">{t("home.whyTitle")}</h2>
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{t("home.whyIntro")}</p>
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
