@@ -10,7 +10,7 @@ export function ToolCard({ meta, title, description }: { meta: ToolCardMeta; tit
   return (
     <Link
       href={`/tools/${meta.slug}`}
-      className="group flex items-start gap-3 rounded-xl border border-slate-200 p-4 transition-all hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:hover:border-slate-700"
+      className="group flex min-h-28 items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-slate-800 dark:bg-slate-900/60 dark:hover:border-brand-700"
     >
       <span
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-xl ${cfg.iconBg}`}
@@ -18,7 +18,7 @@ export function ToolCard({ meta, title, description }: { meta: ToolCardMeta; tit
       >
         {cfg.emoji}
       </span>
-      <div className="min-w-0">
+      <div className="min-w-0 flex-1">
         <h3 className="font-semibold leading-snug group-hover:text-brand-600 dark:group-hover:text-brand-500">
           {title}
         </h3>
