@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { softwareCopy } from "@/lib/software/copy";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 
 /**
@@ -13,6 +14,7 @@ import { Link, usePathname } from "@/lib/i18n/navigation";
  */
 export function MobileMenu({ showPrompts, children }: { showPrompts: boolean; children?: ReactNode }) {
   const t = useTranslations("nav");
+  const software = softwareCopy(useLocale());
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -57,6 +59,7 @@ export function MobileMenu({ showPrompts, children }: { showPrompts: boolean; ch
           <Link href="/tools" className={linkCls}>
             {t("tools")}
           </Link>
+          <Link href="/software" className={linkCls}>{software.nav}</Link>
           {showPrompts && (
             <Link href="/prompts" className={linkCls}>
               {t("prompts")}
