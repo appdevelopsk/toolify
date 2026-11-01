@@ -297,45 +297,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
       )}
 
-      {/* ── Full catalog (SEO: every tool reachable in one click from home) ── */}
-      <section className="mt-12 border-t border-slate-200 pt-10 dark:border-slate-800">
+      {/* Compact catalog CTA: full alphabetical navigation lives on /tools. */}
+      <section className="mt-12 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center dark:border-slate-800 dark:bg-slate-900 sm:p-8">
         <h2 className="text-xl font-bold">{t("home.allTools")}</h2>
-        <div className="mt-5 space-y-3">
-          {grouped.map(({ cat, cfg, tools }) => (
-            <details
-              key={cat}
-              className="group rounded-2xl border border-slate-200 bg-white open:shadow-sm dark:border-slate-800 dark:bg-slate-900/40"
-            >
-              <summary className="flex cursor-pointer list-none items-center gap-3 p-4 marker:hidden">
-                <span
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xl ${cfg.iconBg}`}
-                  aria-hidden
-                >
-                  {cfg.emoji}
-                </span>
-                <span className="font-semibold">{cfg.label}</span>
-                <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">
-                  {t("home.toolsCount", { n: tools.length })}
-                </span>
-                <span className="ml-auto text-slate-400 transition-transform group-open:rotate-180" aria-hidden>
-                  ▾
-                </span>
-              </summary>
-              <ul className="grid gap-x-4 gap-y-1.5 border-t border-slate-100 p-4 text-sm dark:border-slate-800 sm:grid-cols-2 lg:grid-cols-3">
-                {tools.map((m) => (
-                  <li key={m.slug}>
-                    <Link
-                      href={`/tools/${m.slug}`}
-                      className="text-slate-600 hover:text-brand-600 hover:underline dark:text-slate-400 dark:hover:text-brand-500"
-                    >
-                      {t(`tools.${m.slug}.title`)}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </details>
-          ))}
-        </div>
+        <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{t("home.subheading")}</p>
+        <Link href="/tools" prefetch={false} className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl bg-brand-600 px-6 py-2.5 font-semibold text-white hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2">{t("home.browseAll")} →</Link>
       </section>
     </div>
   );
