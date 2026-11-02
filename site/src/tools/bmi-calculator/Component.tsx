@@ -66,16 +66,20 @@ export default function BmiCalculator() {
 
   return (
     <div>
-      <div className="mb-4 inline-flex rounded-md border border-slate-300 dark:border-slate-700">
+      <div className="mb-4 inline-flex flex-wrap rounded-lg border border-slate-300 dark:border-slate-700">
         <button
           onClick={() => setUnit("metric")}
-          className={`px-3 py-1.5 text-sm ${unit === "metric" ? "bg-brand-600 text-white" : ""}`}
+          type="button"
+          aria-pressed={unit === "metric"}
+          className={`min-h-11 px-4 py-2 text-sm ${unit === "metric" ? "bg-brand-600 text-white" : ""}`}
         >
           {t("unit.metric")}
         </button>
         <button
           onClick={() => setUnit("imperial")}
-          className={`px-3 py-1.5 text-sm ${unit === "imperial" ? "bg-brand-600 text-white" : ""}`}
+          type="button"
+          aria-pressed={unit === "imperial"}
+          className={`min-h-11 px-4 py-2 text-sm ${unit === "imperial" ? "bg-brand-600 text-white" : ""}`}
         >
           {t("unit.imperial")}
         </button>
@@ -110,7 +114,7 @@ export default function BmiCalculator() {
 
       <div
         aria-live="polite"
-        className={`mt-6 rounded-lg border p-4 ${
+        className={`mt-6 rounded-2xl border p-5 shadow-sm ${
           result !== null ? "border-brand-200 bg-brand-50 dark:border-brand-900 dark:bg-brand-900/20" : "border-slate-200 dark:border-slate-800"
         }`}
       >
