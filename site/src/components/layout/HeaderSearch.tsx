@@ -78,13 +78,13 @@ export function HeaderSearch() {
     if (!focused && !open) return;
     function onDown(e: MouseEvent) {
       if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
-        setFocused(false);
-        setOpen(false);
+        close();
+        inputRef.current?.blur();
       }
     }
     document.addEventListener("mousedown", onDown);
     return () => document.removeEventListener("mousedown", onDown);
-  }, [focused, open]);
+  }, [focused, open, close]);
 
   useEffect(() => setActive(0), [query]);
 
@@ -129,8 +129,7 @@ export function HeaderSearch() {
             <Link
               href={`/tools/${h.slug}`}
               onMouseEnter={() => setActive(i)}
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={() => close()}
+              onClick={() => { close(); inputRef.current?.blur(); }}
               className={`flex min-h-11 items-center gap-2 px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${i === active ? "bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-brand-400" : "text-slate-700 dark:text-slate-200"}`}
             >
               <span className="text-base" aria-hidden>
