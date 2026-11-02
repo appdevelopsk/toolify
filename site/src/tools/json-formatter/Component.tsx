@@ -51,14 +51,14 @@ export default function JsonFormatter() {
           <button onClick={() => { setMode("format"); invalidateCopy(); }} className={`px-3 py-1.5 text-sm ${mode === "format" ? "bg-brand-600 text-white" : ""}`}>
             {t("mode.format")}
           </button>
-          <button onClick={() => { setMode("minify"); setCopied(false); }} className={`px-3 py-1.5 text-sm ${mode === "minify" ? "bg-brand-600 text-white" : ""}`}>
+          <button onClick={() => { setMode("minify"); invalidateCopy(); }} className={`px-3 py-1.5 text-sm ${mode === "minify" ? "bg-brand-600 text-white" : ""}`}>
             {t("mode.minify")}
           </button>
         </div>
         {mode === "format" && (
           <label className="flex items-center gap-2 text-sm">
             {t("indent")}:
-            <select value={indent} onChange={(e) => { setIndent(parseInt(e.target.value, 10)); setCopied(false); }} className="rounded border border-slate-300 px-2 py-1 dark:border-slate-700 dark:bg-slate-900">
+            <select value={indent} onChange={(e) => { setIndent(parseInt(e.target.value, 10)); invalidateCopy(); }} className="rounded border border-slate-300 px-2 py-1 dark:border-slate-700 dark:bg-slate-900">
               <option value={2}>2</option>
               <option value={4}>4</option>
               <option value={8}>8</option>
@@ -69,7 +69,7 @@ export default function JsonFormatter() {
 
       <label className="block">
         <span className="text-sm font-medium">{t("input")}</span>
-        <textarea value={text} onChange={(e) => { setText(e.target.value); setCopied(false); }} rows={6} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 font-mono text-sm dark:border-slate-700 dark:bg-slate-900" />
+        <textarea value={text} onChange={(e) => { setText(e.target.value); invalidateCopy(); }} rows={6} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 font-mono text-sm dark:border-slate-700 dark:bg-slate-900" />
       </label>
 
       <div aria-live="polite" className="mt-4">
