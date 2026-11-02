@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { copyText } from "@/lib/clipboard/copyText";
 
@@ -23,6 +23,8 @@ export default function JsonFormatter() {
   const [mode, setMode] = useState<Mode>("format");
   const [indent, setIndent] = useState(2);
   const [copied, setCopied] = useState(false);
+  const revision = useRef(0);
+  const invalidateCopy = () => { revision.current += 1; setCopied(false); };
 
   const result = useMemo(() => process(text, mode, indent), [text, mode, indent]);
   // Never leave a successful copied state for a result that has changed.
@@ -30,7 +32,9 @@ export default function JsonFormatter() {
 
   async function copy() {
     if (!result.ok || !result.out) return;
-    setCopied(await copyText(result.out));
+    const requestRevision = revision.current;
+    const success = await copyText(result.out);
+    if (requestRevision === revision.current) setCopied(success);
   }
 
   const stats = useMemo(() => {
@@ -44,7 +48,7 @@ export default function JsonFormatter() {
     <div>
       <div className="mb-3 flex flex-wrap items-center gap-3">
         <div className="inline-flex rounded-md border border-slate-300 dark:border-slate-700">
-          <button onClick={() => { setMode("format"); setCopied(false); }} className={`px-3 py-1.5 text-sm ${mode === "format" ? "bg-brand-600 text-white" : ""}`}>
+          <button onClick={() => { setMode("format"); invalidateCopy(); }} className={`px-3 py-1.5 text-sm ${mode === "format" ? "bg-brand-600 text-white" : ""}`}>
             {t("mode.format")}
           </button>
           <button onClick={() => { setMode("minify"); setCopied(false); }} className={`px-3 py-1.5 text-sm ${mode === "minify" ? "bg-brand-600 text-white" : ""}`}>
