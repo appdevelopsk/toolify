@@ -1,0 +1,10 @@
+/** Resolve a text copy without falsely reporting success when Clipboard API is unavailable. */
+export async function copyText(text: string): Promise<boolean> {
+  if (!text || typeof navigator === "undefined" || !navigator.clipboard?.writeText) return false;
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    return false;
+  }
+}
