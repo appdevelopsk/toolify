@@ -76,14 +76,14 @@ export function HeaderSearch() {
   // 外側クリックで閉じる
   useEffect(() => {
     if (!focused && !open) return;
-    function onDown(e: MouseEvent) {
+    function onDown(e: PointerEvent) {
       if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
         close();
         inputRef.current?.blur();
       }
     }
-    document.addEventListener("mousedown", onDown);
-    return () => document.removeEventListener("mousedown", onDown);
+    document.addEventListener("pointerdown", onDown);
+    return () => document.removeEventListener("pointerdown", onDown);
   }, [focused, open, close]);
 
   useEffect(() => setActive(0), [query]);
