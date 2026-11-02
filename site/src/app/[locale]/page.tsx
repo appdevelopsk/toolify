@@ -18,7 +18,7 @@ import type { Locale } from "@/lib/i18n/locales";
 import type { ToolCategory, ToolMeta } from "@/lib/tools/types";
 
 // 2026-10-11: 「よく使われるツール」は登録順でなく需要順の索引対象(registry.ts CORE_TOOLS_BY_DEMAND)。
-const FEATURED_COUNT = 12;
+const FEATURED_COUNT = 6;
 // プロンプトは noindex にしたので、トップからのリンクは少数に留める(権威を索引対象ツールへ寄せる)。
 const PROMPTS_ON_HOME = 3;
 
@@ -141,7 +141,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </Link>
         </div>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.slice(0, 6).map((m) => (
+          {featured.map((m) => (
             <ToolCard
               key={m.slug}
               meta={m}
