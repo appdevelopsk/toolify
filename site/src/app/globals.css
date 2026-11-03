@@ -38,3 +38,46 @@ body {
 @view-transition {
   navigation: auto;
 }
+
+/* Shared tool workspaces: improve mobile form usability without replacing
+   individual calculators' labels, validation, or result styling. */
+.tool-workspace :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"]), select, textarea) {
+  max-width: 100%;
+  min-height: 2.75rem;
+}
+.tool-workspace :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea, button):focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+@media (max-width: 639px) {
+  .tool-workspace :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"]), select, textarea) {
+    font-size: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tool-workspace *, .tool-workspace *::before, .tool-workspace *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Common result and action affordances, scoped to tools only. */
+.tool-workspace [aria-live="polite"] {
+  overflow-wrap: anywhere;
+}
+.tool-workspace :is(pre, code) {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.tool-workspace :is(button, [role="button"]) {
+  touch-action: manipulation;
+}
+.tool-workspace [role="alert"] {
+  overflow-wrap: anywhere;
+}
+@media (prefers-contrast: more) {
+  .tool-workspace :is(input, select, textarea, button):focus-visible {
+    outline-width: 3px;
+  }
+}

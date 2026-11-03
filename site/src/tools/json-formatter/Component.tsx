@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { copyText } from "@/lib/clipboard/copyText";
 
 type Mode = "format" | "minify";
 
@@ -22,14 +23,18 @@ export default function JsonFormatter() {
   const [mode, setMode] = useState<Mode>("format");
   const [indent, setIndent] = useState(2);
   const [copied, setCopied] = useState(false);
+  const revision = useRef(0);
+  const invalidateCopy = () => { revision.current += 1; setCopied(false); };
 
   const result = useMemo(() => process(text, mode, indent), [text, mode, indent]);
+  // Never leave a successful copied state for a result that has changed.
+  const displayedCopied = copied && result.ok && result.out.length > 0;
 
   async function copy() {
     if (!result.ok || !result.out) return;
-    await navigator.clipboard.writeText(result.out);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1200);
+    const requestRevision = revision.current;
+    const success = await copyText(result.out);
+    if (requestRevision === revision.current) setCopied(success);
   }
 
   const stats = useMemo(() => {
@@ -43,17 +48,17 @@ export default function JsonFormatter() {
     <div>
       <div className="mb-3 flex flex-wrap items-center gap-3">
         <div className="inline-flex rounded-md border border-slate-300 dark:border-slate-700">
-          <button onClick={() => setMode("format")} className={`px-3 py-1.5 text-sm ${mode === "format" ? "bg-brand-600 text-white" : ""}`}>
+          <button onClick={() => { setMode("format"); invalidateCopy(); }} className={`px-3 py-1.5 text-sm ${mode === "format" ? "bg-brand-600 text-white" : ""}`}>
             {t("mode.format")}
           </button>
-          <button onClick={() => setMode("minify")} className={`px-3 py-1.5 text-sm ${mode === "minify" ? "bg-brand-600 text-white" : ""}`}>
+          <button onClick={() => { setMode("minify"); invalidateCopy(); }} className={`px-3 py-1.5 text-sm ${mode === "minify" ? "bg-brand-600 text-white" : ""}`}>
             {t("mode.minify")}
           </button>
         </div>
         {mode === "format" && (
           <label className="flex items-center gap-2 text-sm">
             {t("indent")}:
-            <select value={indent} onChange={(e) => setIndent(parseInt(e.target.value, 10))} className="rounded border border-slate-300 px-2 py-1 dark:border-slate-700 dark:bg-slate-900">
+            <select value={indent} onChange={(e) => { setIndent(parseInt(e.target.value, 10)); invalidateCopy(); }} className="rounded border border-slate-300 px-2 py-1 dark:border-slate-700 dark:bg-slate-900">
               <option value={2}>2</option>
               <option value={4}>4</option>
               <option value={8}>8</option>
@@ -64,15 +69,15 @@ export default function JsonFormatter() {
 
       <label className="block">
         <span className="text-sm font-medium">{t("input")}</span>
-        <textarea value={text} onChange={(e) => setText(e.target.value)} rows={6} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 font-mono text-sm dark:border-slate-700 dark:bg-slate-900" />
+        <textarea value={text} onChange={(e) => { setText(e.target.value); invalidateCopy(); }} rows={6} className="mt-1 w-full rounded border border-slate-300 px-3 py-2 font-mono text-sm dark:border-slate-700 dark:bg-slate-900" />
       </label>
 
       <div aria-live="polite" className="mt-4">
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium">{t("output")}</span>
           {result.ok && result.out && (
-            <button onClick={copy} className="text-xs hover:underline">
-              {copied ? t("copied") : t("copy")}
+            <button type="button" onClick={copy} className="min-h-11 rounded-lg border border-slate-300 px-4 text-sm font-medium hover:border-brand-500 hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-slate-700 dark:hover:bg-slate-800">
+              {displayedCopied ? t("copied") : t("copy")}
             </button>
           )}
         </div>

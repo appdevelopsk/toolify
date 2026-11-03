@@ -45,8 +45,8 @@ export function ToolFrame({ meta, title, description, related, children, article
           ]}
         />
         <RecentTracker slug={meta.slug} />
-        <div className="mt-3 flex items-start justify-between gap-3">
-          <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
+        <div className="mt-4 flex items-start justify-between gap-3">
+          <h1 className="min-w-0 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">{title}</h1>
           <FavoriteButton slug={meta.slug} title={title} />
         </div>
         <p className="mt-2 text-slate-600 dark:text-slate-400">{description}</p>
@@ -56,7 +56,7 @@ export function ToolFrame({ meta, title, description, related, children, article
         {/* AdBanner はツール本体の“上”にあったため、モバイルでは本体がフォールド外に
             押し出されていた(個別ツール着地の engaged≒0% の構造要因)。
             まず道具を見せ、広告は結果の下に置く(2026-08-22)。 */}
-        <section className="mt-6 rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 sm:p-6">
+        <section className="tool-workspace mt-5 min-w-0 overflow-x-auto rounded-2xl border border-slate-200 bg-white p-4 shadow-sm ring-1 ring-transparent focus-within:ring-brand-300 dark:border-slate-700 dark:bg-slate-900 sm:p-6">
           <ToolInteractionTracker
             slug={meta.slug}
             locale={locale}
@@ -85,7 +85,7 @@ export function ToolFrame({ meta, title, description, related, children, article
                     to={r.slug}
                     locale={locale}
                     category={meta.category}
-                    className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:border-brand-500 hover:bg-brand-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+                    className="inline-flex min-h-11 items-center rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:border-brand-500 hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
                   >
                     {r.primaryKeyword[locale] ?? r.primaryKeyword.en ?? r.slug}
                   </RelatedToolLink>

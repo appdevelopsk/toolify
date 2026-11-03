@@ -44,6 +44,7 @@ export function HeaderSearch() {
     [index, query, categoryKeywords],
   );
   const showList = focused && query.length > 0;
+  const activeOptionId = showList && hits.length ? `${listId}-option-${Math.min(active, hits.length - 1)}` : undefined;
 
   useDebouncedSearchEvent(query, hits.length, locale, "header");
 
@@ -75,15 +76,15 @@ export function HeaderSearch() {
   // 外側クリックで閉じる
   useEffect(() => {
     if (!focused && !open) return;
-    function onDown(e: MouseEvent) {
+    function onDown(e: PointerEvent) {
       if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
-        setFocused(false);
-        setOpen(false);
+        close();
+        inputRef.current?.blur();
       }
     }
-    document.addEventListener("mousedown", onDown);
-    return () => document.removeEventListener("mousedown", onDown);
-  }, [focused, open]);
+    document.addEventListener("pointerdown", onDown);
+    return () => document.removeEventListener("pointerdown", onDown);
+  }, [focused, open, close]);
 
   useEffect(() => setActive(0), [query]);
 
@@ -124,13 +125,12 @@ export function HeaderSearch() {
         <li className="px-3 py-2 text-slate-500">{t("searchNoResults")}</li>
       ) : (
         hits.map((h, i) => (
-          <li key={h.slug} role="option" aria-selected={i === active}>
+          <li key={h.slug} id={`${listId}-option-${i}`} role="option" aria-selected={i === active}>
             <Link
               href={`/tools/${h.slug}`}
               onMouseEnter={() => setActive(i)}
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={() => close()}
-              className={`flex items-center gap-2 px-3 py-2 ${i === active ? "bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-brand-400" : "text-slate-700 dark:text-slate-200"}`}
+              onClick={() => { close(); inputRef.current?.blur(); }}
+              className={`flex min-h-11 items-center gap-2 px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${i === active ? "bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-brand-400" : "text-slate-700 dark:text-slate-200"}`}
             >
               <span className="text-base" aria-hidden>
                 {CATEGORY_CONFIG[h.category].emoji}
@@ -148,15 +148,17 @@ export function HeaderSearch() {
       {/* モバイル: アイコンのみ */}
       <button
         type="button"
-        onClick={() => (open ? close() : activate())}
+        onClick={() => { if (open) { close(); inputRef.current?.blur(); } else { activate(); } }}
         aria-label={open ? t("searchClose") : t("searchOpen")}
         aria-expanded={open}
-        className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 sm:hidden"
+        aria-controls="header-mobile-search"
+        className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:text-slate-300 dark:hover:bg-slate-800 sm:hidden"
       >
         <SearchIcon />
       </button>
 
       <div
+        id="header-mobile-search"
         className={
           open
             ? "absolute inset-x-0 top-full z-50 border-b border-slate-200 bg-white p-3 shadow-md dark:border-slate-800 dark:bg-slate-900 sm:static sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none"
@@ -176,11 +178,12 @@ export function HeaderSearch() {
             onKeyDown={onKeyDown}
             placeholder={t("searchPlaceholder")}
             aria-label={t("searchOpen")}
-            aria-controls={listId}
+            aria-controls={showList ? listId : undefined}
             aria-expanded={showList}
+            aria-activedescendant={activeOptionId}
             role="combobox"
             autoComplete="off"
-            className="w-full rounded-lg border border-slate-300 bg-white py-1.5 pl-8 pr-3 text-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-900 sm:w-44 md:w-60"
+            className="min-h-11 w-full rounded-lg border border-slate-300 bg-white py-2 pl-8 pr-3 text-base outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-900 sm:w-44 sm:text-sm md:w-60"
           />
         </div>
         <div className="mt-2 sm:mt-0">{list}</div>
