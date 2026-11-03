@@ -1,3 +1,5 @@
+import { parseCsv } from "./processors";
+
 /** Browser-only anonymous limits. Server-side paid entitlements must be verified
  * before any subscription, permanent license or cloud/AI feature is enabled. */
 export const FREE_SOFTWARE_LIMITS = {
@@ -8,4 +10,15 @@ export const FREE_SOFTWARE_LIMITS = {
 export type FreeSoftwareSlug = keyof typeof FREE_SOFTWARE_LIMITS;
 export function isWithinBytes(input: string, maxBytes: number): boolean {
   return new TextEncoder().encode(input).byteLength <= maxBytes;
+}
+
+/** CSV rows are records, not physical newline-separated lines: quoted cells may contain newlines. */
+export function isWithinSoftwareLimits(slug: FreeSoftwareSlug, input: string): boolean {
+  const limits = FREE_SOFTWARE_LIMITS[slug];
+  if (!isWithinBytes(input, limits.maxBytes)) return false;
+  switch (slug) {
+    case "csv-cleaner-pro": return parseCsv(input).length <= limits.maxRows;
+    case "text-batch-studio": return input.split(/\r?\n/).length <= limits.maxLines;
+    case "json-studio": return true;
+  }
 }
