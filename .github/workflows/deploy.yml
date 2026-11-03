@@ -218,6 +218,17 @@ jobs:
           fi
           echo "✓ Public HTML matches deployed commit ${GITHUB_SHA}"
 
+      - name: Verify public release endpoint
+        run: |
+          set -euo pipefail
+          actual=$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' \
+            "https://toolify365.com/api/release?verify=${GITHUB_SHA}" | tr -d '\r\n')
+          if [ "$actual" != "$GITHUB_SHA" ]; then
+            echo "::error::Release endpoint returned '$actual' rather than '${GITHUB_SHA}'"
+            exit 1
+          fi
+          echo "✓ Release endpoint matches deployed commit ${GITHUB_SHA}"
+
       - name: Cleanup SSH key
         if: always()
         run: rm -f ~/.ssh/deploy_key
