@@ -57,6 +57,19 @@ function clampDescription(text: string): string {
   return `${cut.replace(/[\s、。，．,.:;·—–-]+$/u, "")}…`;
 }
 
+/**
+ * Open Graph の og:locale は language_TERRITORY 形式(例 en_US)。"en" のような言語だけの値は
+ * Facebook 等が無効として無視する(2026-11-03 本番実測で全ページ "en"/"ja" だった)。
+ */
+const OG_LOCALE: Record<string, string> = {
+  en: "en_US", ja: "ja_JP", "zh-CN": "zh_CN", "zh-TW": "zh_TW", ko: "ko_KR", es: "es_ES",
+  "pt-BR": "pt_BR", fr: "fr_FR", de: "de_DE", it: "it_IT", ru: "ru_RU", ar: "ar_AR",
+  hi: "hi_IN", id: "id_ID", th: "th_TH", vi: "vi_VN", tr: "tr_TR",
+};
+export function ogLocale(locale: string): string {
+  return OG_LOCALE[locale] ?? locale.replace("-", "_");
+}
+
 export function buildMetadata(params: BuildMetadataParams): Metadata {
   const { locale, title, description: rawDescription, path, keywords, type = "website", image, publishedTime, modifiedTime, noindex = false, absoluteTitle = false, indexableLocales } = params;
   const description = clampDescription(rawDescription);
@@ -101,7 +114,7 @@ export function buildMetadata(params: BuildMetadataParams): Metadata {
       title,
       description,
       siteName: siteConfig.name,
-      locale,
+      locale: ogLocale(locale),
       images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
       ...(publishedTime && type === "article" ? { publishedTime } : {}),
       ...(modifiedTime && type === "article" ? { modifiedTime } : {}),

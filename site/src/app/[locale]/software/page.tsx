@@ -8,7 +8,9 @@ import { DISTRIBUTION } from "@/lib/software/distribution";
 import { softwareCopy } from "@/lib/software/copy";
 export async function generateMetadata({params}:{params:Promise<{locale:string}>}):Promise<Metadata>{
   const {locale}=await params; const t=softwareCopy(locale);
-  return buildMetadata({locale:locale as Locale,title:t.title,description:`${t.subtitle} ${t.privacy}`,path:"/software"});
+  // 2026-11-03: noindex。sitemap に無いのに index,follow だった(sitemap = index 対象と一致させる方針・10/11 d573a94)。
+  // 製品説明が英語のみ(ja 等で混在)・需要実績なしの薄いページのため、需要と翻訳が揃うまで索引させない。
+  return buildMetadata({locale:locale as Locale,title:t.title,description:`${t.subtitle} ${t.privacy}`,path:"/software",noindex:true});
 }
 export default async function SoftwareIndex({params}:{params:Promise<{locale:string}>}) {
   const {locale}=await params; setRequestLocale(locale); const t=softwareCopy(locale);

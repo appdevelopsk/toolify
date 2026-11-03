@@ -4,7 +4,10 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: siteConfig.organization,
+    // 2026-11-03: ブランド表記 Toolify365 に揃える。本番の NEXT_PUBLIC_ORG_NAME は "Toolify"
+    // (deploy.yml)で WebSite の name と食い違い、toolify.ai と混同される(config.ts 8/4 の統一方針)。
+    // 法務ページの事業者表記(siteConfig.organization)は変えない。
+    name: siteConfig.name,
     url: siteConfig.url,
     logo: `${siteConfig.url}/logo.png`,
     // E-E-A-T: 実在運営者（個人事業主）を founder として明示。sameAs は
@@ -61,7 +64,7 @@ export function softwareAppJsonLd(params: {
     // author or aggregateRating (those would be fake signals).
     publisher: {
       "@type": "Organization",
-      name: siteConfig.organization,
+      name: siteConfig.name,
       url: siteConfig.url,
     },
     ...(params.dateModified ? { dateModified: params.dateModified } : {}),

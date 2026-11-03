@@ -21,8 +21,9 @@ export async function generateMetadata({
   const t = await getTranslations({ locale });
   return buildMetadata({
     locale: locale as Locale,
-    title: t("nav.tools"),
-    description: t("site.description"),
+    // 2026-11-03: トップと同じ description・汎用 title「All tools」だったので一覧専用の文言にする。
+    title: t("site.toolsTitle"),
+    description: t("site.toolsDescription", { count: listTools().length }),
     path: "/tools",
   });
 }
