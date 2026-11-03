@@ -68,9 +68,13 @@ jobs:
           cache: "npm"
           cache-dependency-path: site/package-lock.json
       - run: npm ci --no-fund --no-audit
-      - run: npm run build
-        env:
-          NEXT_PUBLIC_SITE_URL: https://example.pages.dev
+      # Reuse the production build validated by the preceding job instead of
+      # generating 8,000+ static pages a second time on another runner.
+      - name: Download validated build
+        uses: actions/download-artifact@v4
+        with:
+          name: next-build-${{ github.sha }}
+          path: site/.next
       - name: Start server
         run: |
           npm start &
