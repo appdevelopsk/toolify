@@ -49,13 +49,13 @@ function TermsJa() {
       </p>
       <h2>知的財産</h2>
       <p>
-        サイトのデザイン・テキスト・コードは {siteConfig.organization} に帰属します。各ツールの計算式・公式は一般に公開されている事実情報であり、引用元は各ツール内に記載しています。
+        サイトのデザイン・テキスト・コードは {siteConfig.name} に帰属します。各ツールの計算式・公式は一般に公開されている事実情報であり、引用元は各ツール内に記載しています。
       </p>
       <h2>準拠法</h2>
       <p>本規約は日本法を準拠法とし、関連する紛争は東京地方裁判所を専属管轄とします。</p>
       <h2>お問い合わせ</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -87,13 +87,13 @@ function TermsZhCN() {
       </p>
       <h2>知识产权</h2>
       <p>
-        网站设计、文字及代码归 {siteConfig.organization} 所有。工具中引用的数学公式为公开已知事实，引用来源已在各工具页面内标注。
+        网站设计、文字及代码归 {siteConfig.name} 所有。工具中引用的数学公式为公开已知事实，引用来源已在各工具页面内标注。
       </p>
       <h2>适用法律</h2>
       <p>本条款受日本法律管辖，相关争议提交东京地方法院解决。</p>
       <h2>联系我们</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -124,13 +124,13 @@ function TermsEs() {
       </p>
       <h2>Propiedad intelectual</h2>
       <p>
-        El diseño, el texto y el código del sitio pertenecen a {siteConfig.organization}. Las fórmulas matemáticas citadas en las herramientas son hechos de dominio público y las fuentes se indican dentro de cada herramienta.
+        El diseño, el texto y el código del sitio pertenecen a {siteConfig.name}. Las fórmulas matemáticas citadas en las herramientas son hechos de dominio público y las fuentes se indican dentro de cada herramienta.
       </p>
       <h2>Ley aplicable</h2>
       <p>Estos términos se rigen por la legislación japonesa; las disputas están sujetas al Tribunal de Distrito de Tokio.</p>
       <h2>Contacto</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -161,13 +161,13 @@ function TermsPtBR() {
       </p>
       <h2>Propriedade intelectual</h2>
       <p>
-        O design, o texto e o código do site pertencem a {siteConfig.organization}. As fórmulas matemáticas referenciadas nas ferramentas são fatos de conhecimento público e as fontes são citadas em cada ferramenta.
+        O design, o texto e o código do site pertencem a {siteConfig.name}. As fórmulas matemáticas referenciadas nas ferramentas são fatos de conhecimento público e as fontes são citadas em cada ferramenta.
       </p>
       <h2>Lei aplicável</h2>
       <p>Estes termos são regidos pelas leis do Japão; as disputas estão sujeitas ao Tribunal Distrital de Tóquio.</p>
       <h2>Contato</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -198,13 +198,13 @@ function TermsKo() {
       </p>
       <h2>지적재산권</h2>
       <p>
-        사이트 디자인, 텍스트, 코드는 {siteConfig.organization}에 귀속됩니다. 도구에서 인용된 수학 공식은 공개된 사실이며, 출처는 각 도구 내에 명시되어 있습니다.
+        사이트 디자인, 텍스트, 코드는 {siteConfig.name}에 귀속됩니다. 도구에서 인용된 수학 공식은 공개된 사실이며, 출처는 각 도구 내에 명시되어 있습니다.
       </p>
       <h2>준거법</h2>
       <p>본 약관은 일본법에 따르며, 분쟁은 도쿄 지방법원의 전속 관할에 따릅니다.</p>
       <h2>문의</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -235,13 +235,13 @@ function TermsFr() {
       </p>
       <h2>Propriété intellectuelle</h2>
       <p>
-        Le design, le texte et le code du site appartiennent à {siteConfig.organization}. Les formules mathématiques citées dans les outils sont des faits de notoriété publique et les sources sont indiquées dans chaque outil.
+        Le design, le texte et le code du site appartiennent à {siteConfig.name}. Les formules mathématiques citées dans les outils sont des faits de notoriété publique et les sources sont indiquées dans chaque outil.
       </p>
       <h2>Droit applicable</h2>
       <p>Les présentes conditions sont régies par le droit japonais ; les litiges relèvent de la compétence du tribunal de district de Tokyo.</p>
       <h2>Contact</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -272,13 +272,13 @@ function TermsDe() {
       </p>
       <h2>Geistiges Eigentum</h2>
       <p>
-        Design, Text und Code der Website gehören {siteConfig.organization}. Die in den Werkzeugen referenzierten mathematischen Formeln sind allgemein bekannte Fakten; die Quellen sind in jedem Werkzeug angegeben.
+        Design, Text und Code der Website gehören {siteConfig.name}. Die in den Werkzeugen referenzierten mathematischen Formeln sind allgemein bekannte Fakten; die Quellen sind in jedem Werkzeug angegeben.
       </p>
       <h2>Anwendbares Recht</h2>
       <p>Diese Bedingungen unterliegen japanischem Recht; Streitigkeiten unterliegen der Zuständigkeit des Bezirksgerichts Tokio.</p>
       <h2>Kontakt</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -315,14 +315,14 @@ function TermsEn() {
       </p>
       <h2>Intellectual property</h2>
       <p>
-        Site design, text, and code belong to {siteConfig.organization}. Mathematical formulas referenced in tools
+        Site design, text, and code belong to {siteConfig.name}. Mathematical formulas referenced in tools
         are publicly known facts and sources are cited within each tool.
       </p>
       <h2>Governing law</h2>
       <p>These terms are governed by the laws of Japan; disputes are subject to the Tokyo District Court.</p>
       <h2>Contact</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );

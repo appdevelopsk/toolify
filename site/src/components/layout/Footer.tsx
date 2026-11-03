@@ -58,7 +58,7 @@ export function Footer() {
         </nav>
         <div className="text-xs text-slate-600 dark:text-slate-400">
           <div>
-            © {year} {siteConfig.organization}.
+            © {year} {siteConfig.name}.
           </div>
           <div>{t("footer.rights")}</div>
         </div>

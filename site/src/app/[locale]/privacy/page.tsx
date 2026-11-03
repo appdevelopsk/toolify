@@ -29,7 +29,7 @@ function PrivacyEn() {
       <h1>Privacy Policy</h1>
       <p>Last updated: 2026-05-06</p>
       <p>
-        This policy explains how {siteConfig.organization} (&ldquo;we&rdquo;) collects, uses, and protects information
+        This policy explains how {siteConfig.name} (&ldquo;we&rdquo;) collects, uses, and protects information
         when you use {siteConfig.name} ({siteConfig.url}). By using the site you agree to this policy.
       </p>
       <h2>Data we don&apos;t collect</h2>
@@ -75,7 +75,7 @@ function PrivacyEn() {
       <p>We may update this policy and will revise the &ldquo;last updated&rdquo; date above when we do.</p>
       <h2>Contact</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -87,7 +87,7 @@ function PrivacyJa() {
       <h1>プライバシーポリシー</h1>
       <p>最終更新日: 2026-05-06</p>
       <p>
-        本ポリシーは {siteConfig.organization}（以下「当方」）が提供する {siteConfig.name}（{siteConfig.url}）における個人情報の取扱いを定めるものです。本サービスをご利用いただくことで、本ポリシーに同意したものとみなします。
+        本ポリシーは {siteConfig.name}（以下「当方」）が提供する {siteConfig.name}（{siteConfig.url}）における個人情報の取扱いを定めるものです。本サービスをご利用いただくことで、本ポリシーに同意したものとみなします。
       </p>
       <h2>収集しない情報</h2>
       <p>
@@ -127,7 +127,7 @@ function PrivacyJa() {
       <p>本ポリシーは予告なく改定する場合があります。改定時は「最終更新日」を更新します。</p>
       <h2>お問い合わせ</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -139,7 +139,7 @@ function PrivacyZhCN() {
       <h1>隐私政策</h1>
       <p>最后更新：2026-05-06</p>
       <p>
-        本政策说明 {siteConfig.organization}（以下简称"我们"）在您使用 {siteConfig.name}（{siteConfig.url}）时如何收集、使用和保护信息。使用本网站即表示您同意本政策。
+        本政策说明 {siteConfig.name}（以下简称"我们"）在您使用 {siteConfig.name}（{siteConfig.url}）时如何收集、使用和保护信息。使用本网站即表示您同意本政策。
       </p>
       <h2>我们不收集的数据</h2>
       <p>
@@ -178,7 +178,7 @@ function PrivacyZhCN() {
       <p>我们可能更新本政策，届时将修改上方的"最后更新"日期。</p>
       <h2>联系我们</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -190,7 +190,7 @@ function PrivacyEs() {
       <h1>Política de Privacidad</h1>
       <p>Última actualización: 2026-05-06</p>
       <p>
-        Esta política explica cómo {siteConfig.organization} («nosotros») recopila, usa y protege la información cuando utilizas {siteConfig.name} ({siteConfig.url}). Al usar el sitio, aceptas esta política.
+        Esta política explica cómo {siteConfig.name} («nosotros») recopila, usa y protege la información cuando utilizas {siteConfig.name} ({siteConfig.url}). Al usar el sitio, aceptas esta política.
       </p>
       <h2>Datos que no recopilamos</h2>
       <p>
@@ -226,7 +226,7 @@ function PrivacyEs() {
       <p>Podemos actualizar esta política y revisaremos la fecha de «última actualización» cuando lo hagamos.</p>
       <h2>Contacto</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -238,7 +238,7 @@ function PrivacyPtBR() {
       <h1>Política de Privacidade</h1>
       <p>Última atualização: 2026-05-06</p>
       <p>
-        Esta política explica como {siteConfig.organization} («nós») coleta, usa e protege informações quando você usa {siteConfig.name} ({siteConfig.url}). Ao usar o site, você concorda com esta política.
+        Esta política explica como {siteConfig.name} («nós») coleta, usa e protege informações quando você usa {siteConfig.name} ({siteConfig.url}). Ao usar o site, você concorda com esta política.
       </p>
       <h2>Dados que não coletamos</h2>
       <p>
@@ -274,7 +274,7 @@ function PrivacyPtBR() {
       <p>Podemos atualizar esta política e revisaremos a data de «última atualização» quando o fizermos.</p>
       <h2>Contato</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -286,7 +286,7 @@ function PrivacyKo() {
       <h1>개인정보 처리방침</h1>
       <p>최종 업데이트: 2026-05-06</p>
       <p>
-        본 방침은 {siteConfig.organization}（이하 "당사"）이 귀하가 {siteConfig.name}（{siteConfig.url}）을 이용할 때 정보를 수집·사용·보호하는 방법을 설명합니다. 사이트 이용은 본 방침에 동의함을 의미합니다.
+        본 방침은 {siteConfig.name}（이하 "당사"）이 귀하가 {siteConfig.name}（{siteConfig.url}）을 이용할 때 정보를 수집·사용·보호하는 방법을 설명합니다. 사이트 이용은 본 방침에 동의함을 의미합니다.
       </p>
       <h2>수집하지 않는 데이터</h2>
       <p>
@@ -322,7 +322,7 @@ function PrivacyKo() {
       <p>본 방침은 변경될 수 있으며, 변경 시 위의 「최종 업데이트」 날짜를 수정합니다.</p>
       <h2>문의</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -334,7 +334,7 @@ function PrivacyFr() {
       <h1>Politique de confidentialité</h1>
       <p>Dernière mise à jour : 2026-05-06</p>
       <p>
-        Cette politique explique comment {siteConfig.organization} («nous») collecte, utilise et protège les informations lorsque vous utilisez {siteConfig.name} ({siteConfig.url}). En utilisant le site, vous acceptez cette politique.
+        Cette politique explique comment {siteConfig.name} («nous») collecte, utilise et protège les informations lorsque vous utilisez {siteConfig.name} ({siteConfig.url}). En utilisant le site, vous acceptez cette politique.
       </p>
       <h2>Données que nous ne collectons pas</h2>
       <p>
@@ -370,7 +370,7 @@ function PrivacyFr() {
       <p>Nous pouvons mettre à jour cette politique et réviserons la date de «dernière mise à jour» ci-dessus.</p>
       <h2>Contact</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
@@ -382,7 +382,7 @@ function PrivacyDe() {
       <h1>Datenschutzerklärung</h1>
       <p>Zuletzt aktualisiert: 2026-05-06</p>
       <p>
-        Diese Erklärung beschreibt, wie {siteConfig.organization} («wir») Informationen erhebt, verwendet und schützt, wenn Sie {siteConfig.name} ({siteConfig.url}) nutzen. Durch die Nutzung der Website stimmen Sie dieser Erklärung zu.
+        Diese Erklärung beschreibt, wie {siteConfig.name} («wir») Informationen erhebt, verwendet und schützt, wenn Sie {siteConfig.name} ({siteConfig.url}) nutzen. Durch die Nutzung der Website stimmen Sie dieser Erklärung zu.
       </p>
       <h2>Daten, die wir nicht erheben</h2>
       <p>
@@ -418,7 +418,7 @@ function PrivacyDe() {
       <p>Wir können diese Erklärung aktualisieren und werden das Datum der «letzten Aktualisierung» oben entsprechend anpassen.</p>
       <h2>Kontakt</h2>
       <p>
-        {siteConfig.organization} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+        {siteConfig.name} — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
       </p>
     </>
   );
