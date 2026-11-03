@@ -45,4 +45,4 @@ jobs:
       # so Lighthouse SEO scores it 0.66 despite the intended robots directive.
       - name: Lighthouse CI
         run: npx --yes @lhci/cli@0.14 autorun --collect.url=http://localhost:3000/en --collect.url=http://localhost:3000/en/tools/workdays-calculator --upload.target=temporary-public-storage --assert.assertions.categories:performance=0.85 --assert.assertions.categories:accessibility=0.9 --assert.assertions.categories:seo=0.9
-        continue-on-error: true
+        # Lighthouse thresholds must fail CI; do not silently mask SEO/accessibility regressions.
