@@ -61,6 +61,7 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_SITE_URL: https://toolify365.com
+          NEXT_PUBLIC_RELEASE_SHA: ${{ github.sha }}
           NEXT_PUBLIC_ORG_NAME: Toolify
           NEXT_PUBLIC_CONTACT_EMAIL: app.develop.sk@gmail.com
           NEXT_PUBLIC_ADSENSE_CLIENT: ca-pub-4927026308242118
@@ -199,6 +200,23 @@ jobs:
             exit 1
           fi
           echo "✓ ピン画像 unique ($uniq_count 種/3件)"
+
+      # A 200 response can still be the previous release (proxy/PM2/cache mismatch).
+      # Verify that the public homepage HTML was built from the commit deployed here.
+      - name: Verify live release SHA
+        run: |
+          set -euo pipefail
+          page=$(mktemp)
+          trap 'rm -f "$page"' EXIT
+          curl -fsSL --max-time 25 -H 'Cache-Control: no-cache' \
+            "https://toolify365.com/en?release_verify=${GITHUB_SHA}" -o "$page"
+          if ! grep -Fq "data-release-sha=\"${GITHUB_SHA}\"" "$page"; then
+            echo "::error::Public homepage does not expose deployed commit ${GITHUB_SHA}. Check PM2 deployment, nginx/CDN cache and origin response."
+            echo "Observed release markers:"
+            grep -o 'data-release-sha="[^"]*"' "$page" | head -3 || true
+            exit 1
+          fi
+          echo "✓ Public HTML matches deployed commit ${GITHUB_SHA}"
 
       - name: Cleanup SSH key
         if: always()

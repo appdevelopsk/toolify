@@ -95,7 +95,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     .sort((a, b) => b.tools.length - a.tools.length);
 
   return (
-    <div className="mx-auto max-w-6xl px-4">
+    <div data-release-sha={process.env.NEXT_PUBLIC_RELEASE_SHA || undefined} className="mx-auto max-w-6xl px-4">
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className="relative -mx-4 overflow-hidden bg-gradient-to-b from-brand-50 via-white to-white px-4 py-12 text-center dark:from-slate-900 dark:via-slate-950 dark:to-slate-950 sm:py-16">
         <div
