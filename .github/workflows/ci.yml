@@ -41,6 +41,8 @@ jobs:
         run: |
           npm start &
           npx wait-on http://localhost:3000 -t 60000
+      # Test an indexable tool: BMI is intentionally noindex by SEO pruning policy,
+      # so Lighthouse SEO scores it 0.66 despite the intended robots directive.
       - name: Lighthouse CI
-        run: npx --yes @lhci/cli@0.14 autorun --collect.url=http://localhost:3000/en --collect.url=http://localhost:3000/en/tools/bmi-calculator --upload.target=temporary-public-storage --assert.assertions.categories:performance=0.85 --assert.assertions.categories:accessibility=0.9 --assert.assertions.categories:seo=0.9
+        run: npx --yes @lhci/cli@0.14 autorun --collect.url=http://localhost:3000/en --collect.url=http://localhost:3000/en/tools/workdays-calculator --upload.target=temporary-public-storage --assert.assertions.categories:performance=0.85 --assert.assertions.categories:accessibility=0.9 --assert.assertions.categories:seo=0.9
         continue-on-error: true
