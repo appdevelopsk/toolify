@@ -51,6 +51,17 @@ jobs:
         working-directory: site
     steps:
       - uses: actions/checkout@v4
+      # Standalone SSG duplicates thousands of pages while tracing; the default
+      # hosted runner can exhaust its disk (ENOSPC) during .next/standalone copy.
+      - name: Free disk space before Lighthouse build
+        working-directory: /
+        run: |
+          df -h /
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/.ghcup \
+            /usr/local/lib/android /usr/local/share/boost \
+            /usr/local/share/powershell /usr/share/swift "${AGENT_TOOLSDIRECTORY}" || true
+          sudo docker image prune -af || true
+          df -h /
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
