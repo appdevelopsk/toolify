@@ -14,18 +14,18 @@ describe("software free processors",()=>{
  it("keeps JSON arrays intact",()=>expect(formatJson('[1,2,3]',true)).toBe("[1,2,3]"));
  it("trims CRLF and duplicates in text",()=>expect(cleanTextLines("first\r\nsecond\r\nfirst")).toBe("first\nsecond"));
  it("counts quoted newlines as one CSV record instead of physical lines", () => {
-   const csv = 'id,value\\n1,"' + Array.from({ length: 1100 }, (_, i) => String(i)).join("\\n") + '"';
+   const csv = 'id,value\n1,"' + Array.from({ length: 1100 }, (_, i) => String(i)).join("\n") + '"';
    expect(isWithinSoftwareLimits("csv-cleaner-pro", csv)).toBe(true);
-   expect(cleanCsv(csv)).toContain('"0\\n1');
+   expect(cleanCsv(csv)).toContain('"0\n1');
  });
  it("accepts exactly 1000 CSV records and rejects record 1001", () => {
    const records = ["id,value", ...Array.from({ length: 999 }, (_, i) => `${i},ok`)];
-   expect(isWithinSoftwareLimits("csv-cleaner-pro", records.join("\\n"))).toBe(true);
-   expect(isWithinSoftwareLimits("csv-cleaner-pro", [...records, "1000,extra"].join("\\n"))).toBe(false);
+   expect(isWithinSoftwareLimits("csv-cleaner-pro", records.join("\n"))).toBe(true);
+   expect(isWithinSoftwareLimits("csv-cleaner-pro", [...records, "1000,extra"].join("\n"))).toBe(false);
  });
  it("enforces text line and JSON byte limits", () => {
-   expect(isWithinSoftwareLimits("text-batch-studio", Array(5000).fill("a").join("\\n"))).toBe(true);
-   expect(isWithinSoftwareLimits("text-batch-studio", Array(5001).fill("a").join("\\n"))).toBe(false);
+   expect(isWithinSoftwareLimits("text-batch-studio", Array(5000).fill("a").join("\n"))).toBe(true);
+   expect(isWithinSoftwareLimits("text-batch-studio", Array(5001).fill("a").join("\n"))).toBe(false);
    expect(isWithinSoftwareLimits("json-studio", "x".repeat(100001))).toBe(false);
  });
 
