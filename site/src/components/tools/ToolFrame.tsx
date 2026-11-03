@@ -11,7 +11,7 @@ import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
 import { RecentTracker } from "@/components/tools/RecentTracker";
 import { siteConfig } from "@/lib/config";
-import { CATEGORY_CONFIG } from "@/lib/tools/categories";
+import { categoryLabel } from "@/lib/tools/categories";
 import { MANUAL_SHARE_SLUGS } from "@/lib/tools/manual-share";
 import type { ToolMeta } from "@/lib/tools/types";
 
@@ -40,7 +40,7 @@ export function ToolFrame({ meta, title, description, related, children, article
           items={[
             { name: t("nav.home"), href: "/" },
             { name: t("nav.tools"), href: "/tools" },
-            { name: CATEGORY_CONFIG[meta.category].label, href: `/tools/category/${meta.category}` },
+            { name: categoryLabel(meta.category, locale), href: `/tools/category/${meta.category}` },
             { name: title },
           ]}
         />
