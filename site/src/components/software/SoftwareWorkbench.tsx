@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { FREE_SOFTWARE_LIMITS, isWithinBytes } from "@/lib/software/limits";
+import { isWithinSoftwareLimits } from "@/lib/software/limits";
 import { cleanCsv, cleanTextLines, formatJson } from "@/lib/software/processors";
 
 type ActiveSlug = "csv-cleaner-pro" | "json-studio" | "text-batch-studio";
@@ -12,10 +12,7 @@ export function SoftwareWorkbench({ slug, labels }: {slug: ActiveSlug; labels: {
   const process = () => {
     setError(""); setOutput(null);
     try {
-      const limits = FREE_SOFTWARE_LIMITS[slug];
-      if (!isWithinBytes(input, limits.maxBytes)) throw new Error(labels.limit);
-      if (slug === "csv-cleaner-pro" && input.split(/\r?\n/).length > FREE_SOFTWARE_LIMITS["csv-cleaner-pro"].maxRows) throw new Error(labels.limit);
-      if (slug === "text-batch-studio" && input.split(/\r?\n/).length > FREE_SOFTWARE_LIMITS["text-batch-studio"].maxLines) throw new Error(labels.limit);
+      if (!isWithinSoftwareLimits(slug, input)) throw new Error(labels.limit);
       setOutput(slug === "csv-cleaner-pro" ? cleanCsv(input) : slug === "json-studio" ? formatJson(input, minify) : cleanTextLines(input));
     } catch (e) { setError(e instanceof Error && e.message === labels.limit ? labels.limit : labels.error); }
   };
