@@ -17,8 +17,8 @@ export function isWithinSoftwareLimits(slug: FreeSoftwareSlug, input: string): b
   const limits = FREE_SOFTWARE_LIMITS[slug];
   if (!isWithinBytes(input, limits.maxBytes)) return false;
   switch (slug) {
-    case "csv-cleaner-pro": return parseCsv(input).length <= limits.maxRows;
-    case "text-batch-studio": return input.split(/\r?\n/).length <= limits.maxLines;
+    case "csv-cleaner-pro": return parseCsv(input).length <= FREE_SOFTWARE_LIMITS["csv-cleaner-pro"].maxRows;
+    case "text-batch-studio": return input.split(/\r?\n/).length <= FREE_SOFTWARE_LIMITS["text-batch-studio"].maxLines;
     case "json-studio": return true;
   }
 }
