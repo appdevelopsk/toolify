@@ -8,6 +8,14 @@ describe("software free processors",()=>{
  it("formats JSON",()=>expect(formatJson('{"a":1}',false)).toBe('{\n  "a": 1\n}'));
  it("rejects invalid JSON",()=>expect(()=>formatJson("{",true)).toThrow());
  it("deduplicates text lines",()=>expect(cleanTextLines(" A \nB\nA\n\nC")).toBe("A\nB\nC"));
+ it("handles legacy CR-only and mixed newline styles without losing or merging lines", () => {
+   expect(cleanTextLines(" A\rB\rA\r\nC\nB")).toBe("A\nB\nC");
+ });
+ it("enforces the 5000-line limit for CR-only and mixed newline inputs", () => {
+   expect(isWithinSoftwareLimits("text-batch-studio", Array(5000).fill("a").join("\r"))).toBe(true);
+   expect(isWithinSoftwareLimits("text-batch-studio", Array(5001).fill("a").join("\r"))).toBe(false);
+   expect(isWithinSoftwareLimits("text-batch-studio", Array(5001).fill("a").join("\r\n"))).toBe(false);
+ });
  it("counts UTF-8 bytes",()=>expect(isWithinBytes("あ",2)).toBe(false));
  it("does not alter quoted CSV cells containing newlines",()=>expect(cleanCsv('id,value\n1,"line 1\nline 2"\n2,ok')).toBe('id,value\r\n1,"line 1\nline 2"\r\n2,ok'));
  it("preserves quoted CSV fields containing commas",()=>expect(cleanCsv('id,value\n1,"x,y"')).toBe('id,value\r\n1,"x,y"'));
