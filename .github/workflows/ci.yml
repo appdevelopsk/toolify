@@ -39,8 +39,15 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: next-build-${{ github.sha }}
-          path: site/.next/
-          retention-days: 7
+          # Upload only files required for next start / Lighthouse (not the
+          # duplicate standalone tree or build cache). Dot-directory is hidden.
+          path: |
+            site/.next/**
+            !site/.next/standalone/**
+            !site/.next/cache/**
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 2
 
   lighthouse:
     runs-on: ubuntu-latest
