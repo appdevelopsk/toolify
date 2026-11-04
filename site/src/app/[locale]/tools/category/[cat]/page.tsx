@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/lib/i18n/navigation";
-import { listByCategory, listIndexableByCategory } from "@/lib/tools/registry";
+import { isIndexableIn, listByCategory, listIndexableByCategory } from "@/lib/tools/registry";
 import { CATEGORY_DESCRIPTIONS } from "@/lib/tools/category-descriptions";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import { ToolCard } from "@/components/tools/ToolCard";
@@ -63,13 +63,15 @@ export default async function ToolCategoryPage({
   const t = await getTranslations();
   const copy = getCopy(cat, locale);
 
-  // ItemList JSON-LD: marks this hub as a curated catalog of N tools in the category.
+  // Keep structured-data entries aligned with this locale's index policy.
+  // Visible cards remain available to users, including noindex utilities.
+  const indexableTools = tools.filter((m) => isIndexableIn(locale, m.slug));
   const itemListLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: copy?.headline ?? `${cfg.label} tools`,
-    numberOfItems: tools.length,
-    itemListElement: tools.map((m, i) => ({
+    numberOfItems: indexableTools.length,
+    itemListElement: indexableTools.map((m, i) => ({
       "@type": "ListItem",
       position: i + 1,
       url: `${siteConfig.url}/${locale}/tools/${m.slug}`,
@@ -91,7 +93,9 @@ export default async function ToolCategoryPage({
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
+      {indexableTools.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
+      )}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
       <nav className="text-sm text-slate-500 dark:text-slate-400">
