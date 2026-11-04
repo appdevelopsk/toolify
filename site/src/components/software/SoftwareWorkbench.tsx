@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { isWithinSoftwareLimits } from "@/lib/software/limits";
-import { cleanCsv, cleanTextLines, formatJson } from "@/lib/software/processors";
+import { cleanCsv, cleanTextLines, formatJson, prepareSoftwareDownload } from "@/lib/software/processors";
 
 type ActiveSlug = "csv-cleaner-pro" | "json-studio" | "text-batch-studio";
 export function SoftwareWorkbench({ slug, labels }: {slug: ActiveSlug; labels: {input:string; output:string; process:string; download:string; limit:string; placeholder:string; error:string; minify:string}}) {
@@ -20,7 +20,7 @@ export function SoftwareWorkbench({ slug, labels }: {slug: ActiveSlug; labels: {
     if (output === null) return;
     const mime = slug === "csv-cleaner-pro" ? "text/csv" : slug === "json-studio" ? "application/json" : "text/plain";
     const ext = slug === "csv-cleaner-pro" ? "csv" : slug === "json-studio" ? "json" : "txt";
-    const url = URL.createObjectURL(new Blob([output], {type: mime + ";charset=utf-8"}));
+    const url = URL.createObjectURL(new Blob([prepareSoftwareDownload(output, ext)], {type: mime + ";charset=utf-8"}));
     const a = document.createElement("a"); a.href = url; a.download = "toolify365-output." + ext; document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
