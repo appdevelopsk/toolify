@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {cleanCsv,parseCsv,serializeCsv,formatJson,cleanTextLines} from "./processors";
+import {cleanCsv,parseCsv,serializeCsv,formatJson,cleanTextLines,prepareSoftwareDownload} from "./processors";
 import {isWithinBytes, isWithinSoftwareLimits} from "./limits";
 describe("software free processors",()=>{
  it("supports quoted comma, double-quote and multiline CSV",()=>{const csv='a,b\n"hello, world","a""b"\n"x\ny",z';expect(parseCsv(serializeCsv(parseCsv(csv)))).toEqual(parseCsv(csv));});
@@ -30,6 +30,17 @@ describe("software free processors",()=>{
    const records = ["id,value", ...Array.from({ length: 999 }, (_, i) => `${i},ok`)];
    expect(isWithinSoftwareLimits("csv-cleaner-pro", records.join("\n"))).toBe(true);
    expect(isWithinSoftwareLimits("csv-cleaner-pro", [...records, "1000,extra"].join("\n"))).toBe(false);
+ });
+ it("prefixes international CSV downloads with exactly one UTF-8 BOM", () => {
+   const csv = cleanCsv("name,city\n山田,東京");
+   const downloaded = prepareSoftwareDownload(csv, "csv");
+   expect(downloaded).toBe("\uFEFF" + csv);
+   expect(prepareSoftwareDownload(downloaded, "csv")).toBe(downloaded);
+   expect(new TextEncoder().encode(downloaded).slice(0, 3)).toEqual(new Uint8Array([0xef, 0xbb, 0xbf]));
+ });
+ it("does not alter JSON or plain text downloads", () => {
+   expect(prepareSoftwareDownload('{"name":"東京"}', "json")).toBe('{"name":"東京"}');
+   expect(prepareSoftwareDownload("あ\nい", "txt")).toBe("あ\nい");
  });
  it("enforces text line and JSON byte limits", () => {
    expect(isWithinSoftwareLimits("text-batch-studio", Array(5000).fill("a").join("\n"))).toBe(true);

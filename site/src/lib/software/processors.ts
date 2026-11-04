@@ -51,3 +51,8 @@ export function cleanTextLines(input: string): string {
     seen.add(s); return true;
   }).join("\n");
 }
+
+/** Include a UTF-8 BOM for CSV downloads so Excel detects non-ASCII text. */
+export function prepareSoftwareDownload(content: string, kind: "csv" | "json" | "txt"): string {
+  return kind === "csv" ? "\uFEFF" + content.replace(/^\uFEFF/, "") : content;
+}
