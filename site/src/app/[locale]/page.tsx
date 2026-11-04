@@ -14,7 +14,7 @@ import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import { softwareCopy } from "@/lib/software/copy";
-import type { Locale } from "@/lib/i18n/locales";
+import { isIndexedLocale, type Locale } from "@/lib/i18n/locales";
 import type { ToolCategory, ToolMeta } from "@/lib/tools/types";
 
 // 2026-10-11: 「よく使われるツール」は登録順でなく需要順の索引対象(registry.ts CORE_TOOLS_BY_DEMAND)。
@@ -159,7 +159,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           {grouped.map(({ cat, cfg, tools }) => (
             <Link
               key={cat}
-              href={listIndexableByCategory(cat).length > 0 ? `/tools/category/${cat}` : `/tools#${cat}`}
+              href={isIndexedLocale(locale) && listIndexableByCategory(cat).length > 0 ? `/tools/category/${cat}` : `/tools#${cat}`}
               prefetch={false}
               className="group flex items-center gap-3 rounded-xl border border-slate-200 p-4 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md dark:border-slate-800 dark:hover:border-brand-700"
             >
