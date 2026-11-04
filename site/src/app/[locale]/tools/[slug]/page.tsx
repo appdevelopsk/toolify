@@ -16,7 +16,7 @@ import {
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
 import { categoryLabel } from "@/lib/tools/categories";
-import { LOCALES, type Locale } from "@/lib/i18n/locales";
+import { LOCALES, isIndexedLocale, type Locale } from "@/lib/i18n/locales";
 
 export function generateStaticParams() {
   return LOCALES.flatMap((locale) =>
@@ -86,10 +86,12 @@ export default async function ToolPage({
     breadcrumbJsonLd([
       { name: t("nav.home"), url: `${siteConfig.url}/${locale}` },
       { name: t("nav.tools"), url: `${siteConfig.url}/${locale}/tools` },
-      {
+      // Category hubs are sitemap-indexed only for en/ja. Avoid linking an
+      // indexable locale-exception tool to a noindex category hub in JSON-LD.
+      ...(isIndexedLocale(locale) ? [{
         name: categoryLabel(tool.category, locale),
         url: `${siteConfig.url}/${locale}/tools/category/${tool.category}`,
-      },
+      }] : []),
       { name: tt("title"), url },
     ]),
   ];
