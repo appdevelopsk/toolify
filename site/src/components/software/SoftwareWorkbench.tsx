@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-import { isWithinSoftwareLimits } from "@/lib/software/limits";
+import { FREE_SOFTWARE_LIMITS, isWithinSoftwareLimits } from "@/lib/software/limits";
 import { cleanCsv, cleanTextLines, formatJson, prepareSoftwareDownload } from "@/lib/software/processors";
 
 type ActiveSlug = "csv-cleaner-pro" | "json-studio" | "text-batch-studio";
-export function SoftwareWorkbench({ slug, labels }: {slug: ActiveSlug; labels: {input:string; output:string; process:string; download:string; limit:string; placeholder:string; error:string; minify:string}}) {
+export function SoftwareWorkbench({ slug, labels }: {slug: ActiveSlug; labels: {input:string; output:string; process:string; download:string; upload:string; limit:string; placeholder:string; error:string; minify:string}}) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState<string | null>(null);
   const [error, setError] = useState("");
@@ -16,6 +16,23 @@ export function SoftwareWorkbench({ slug, labels }: {slug: ActiveSlug; labels: {
       setOutput(slug === "csv-cleaner-pro" ? cleanCsv(input) : slug === "json-studio" ? formatJson(input, minify) : cleanTextLines(input));
     } catch (e) { setError(e instanceof Error && e.message === labels.limit ? labels.limit : labels.error); }
   };
+  const loadFile = async (file: File | undefined) => {
+    if (!file) return;
+    setError(""); setOutput(null);
+    // Guard the file size before allocating a potentially large string.
+    if (file.size > FREE_SOFTWARE_LIMITS[slug].maxBytes) {
+      setInput(""); setError(labels.limit); return;
+    }
+    try {
+      const text = await file.text();
+      if (!isWithinSoftwareLimits(slug, text)) {
+        setInput(""); setError(labels.limit); return;
+      }
+      setInput(text);
+    } catch {
+      setInput(""); setError(labels.error);
+    }
+  };
   const download = () => {
     if (output === null) return;
     const mime = slug === "csv-cleaner-pro" ? "text/csv" : slug === "json-studio" ? "application/json" : "text/plain";
@@ -25,6 +42,12 @@ export function SoftwareWorkbench({ slug, labels }: {slug: ActiveSlug; labels: {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
   return <div className="space-y-4 rounded-xl border border-slate-200 p-5 dark:border-slate-700">
+    <label className="block text-sm font-semibold" htmlFor="software-file">{labels.upload}</label>
+    <input id="software-file" type="file"
+      accept={slug === "csv-cleaner-pro" ? ".csv,text/csv" : slug === "json-studio" ? ".json,application/json" : ".txt,text/plain"}
+      className="block w-full text-base sm:text-sm file:mr-3 file:min-h-11 file:rounded-lg file:border file:border-slate-300 file:bg-transparent file:px-4 file:py-2 file:font-semibold dark:file:border-slate-700"
+      onChange={e => { const file = e.currentTarget.files?.[0]; e.currentTarget.value = ""; void loadFile(file); }}
+    />
     <label className="block text-sm font-semibold" htmlFor="software-input">{labels.input}</label>
     <textarea id="software-input" className="min-h-40 w-full rounded-lg border border-slate-300 bg-transparent p-3 font-mono text-base sm:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-slate-700" value={input} onChange={e=>{setInput(e.target.value);setOutput(null);setError("");}} placeholder={labels.placeholder}/>
     {slug === "json-studio" && <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={minify} onChange={e=>{setMinify(e.target.checked);setOutput(null);setError("");}}/>{labels.minify}</label>}
