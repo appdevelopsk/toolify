@@ -15,7 +15,7 @@ import {
 } from "@/lib/seo/structured-data";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
-import { CATEGORY_CONFIG } from "@/lib/tools/categories";
+import { categoryLabel } from "@/lib/tools/categories";
 import { LOCALES, type Locale } from "@/lib/i18n/locales";
 
 export function generateStaticParams() {
@@ -87,7 +87,7 @@ export default async function ToolPage({
       { name: t("nav.home"), url: `${siteConfig.url}/${locale}` },
       { name: t("nav.tools"), url: `${siteConfig.url}/${locale}/tools` },
       {
-        name: CATEGORY_CONFIG[tool.category].label,
+        name: categoryLabel(tool.category, locale),
         url: `${siteConfig.url}/${locale}/tools/category/${tool.category}`,
       },
       { name: tt("title"), url },
