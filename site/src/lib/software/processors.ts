@@ -46,7 +46,7 @@ export function formatJson(input: string, minify: boolean): string {
 }
 export function cleanTextLines(input: string): string {
   const seen = new Set<string>();
-  return input.split(/\r?\n/).map(s => s.trim()).filter(s => {
+  return input.split(/\r\n|\n|\r/).map(s => s.trim()).filter(s => {
     if (!s || seen.has(s)) return false;
     seen.add(s); return true;
   }).join("\n");
