@@ -32,15 +32,15 @@ describe("software free processors",()=>{
    expect(isWithinSoftwareLimits("csv-cleaner-pro", [...records, "1000,extra"].join("\n"))).toBe(false);
  });
  it("prefixes international CSV downloads with exactly one UTF-8 BOM", () => {
-   const csv = cleanCsv("name,city\\n山田,東京");
+   const csv = cleanCsv("name,city\n山田,東京");
    const downloaded = prepareSoftwareDownload(csv, "csv");
-   expect(downloaded).toBe("\\uFEFF" + csv);
+   expect(downloaded).toBe("\uFEFF" + csv);
    expect(prepareSoftwareDownload(downloaded, "csv")).toBe(downloaded);
    expect(new TextEncoder().encode(downloaded).slice(0, 3)).toEqual(new Uint8Array([0xef, 0xbb, 0xbf]));
  });
  it("does not alter JSON or plain text downloads", () => {
    expect(prepareSoftwareDownload('{"name":"東京"}', "json")).toBe('{"name":"東京"}');
-   expect(prepareSoftwareDownload("あ\\nい", "txt")).toBe("あ\\nい");
+   expect(prepareSoftwareDownload("あ\nい", "txt")).toBe("あ\nい");
  });
  it("enforces text line and JSON byte limits", () => {
    expect(isWithinSoftwareLimits("text-batch-studio", Array(5000).fill("a").join("\n"))).toBe(true);
