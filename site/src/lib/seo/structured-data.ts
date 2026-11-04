@@ -6,7 +6,7 @@ export function organizationJsonLd() {
     "@type": "Organization",
     // 2026-11-03: ブランド表記 Toolify365 に揃える。本番の NEXT_PUBLIC_ORG_NAME は "Toolify"
     // (deploy.yml)で WebSite の name と食い違い、toolify.ai と混同される(config.ts 8/4 の統一方針)。
-    // 2026-11-04: フッター©・privacy/terms の表記も siteConfig.name へ。disclosure の特商法「事業者」行だけ siteConfig.organization のまま(法的表記のため ken 判断)。
+    // 2026-11-04: フッター©・privacy/terms の表記も siteConfig.name へ。disclosure の特商法「事業者」行も 11/4 ken 承認で siteConfig.name へ。
     name: siteConfig.name,
     url: siteConfig.url,
     logo: `${siteConfig.url}/logo.png`,

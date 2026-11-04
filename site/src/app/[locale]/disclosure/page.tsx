@@ -148,7 +148,7 @@ function Ja() {
 
       <h2>特定商取引法に基づく表記</h2>
       <ul>
-        <li>事業者: {siteConfig.organization}</li>
+        <li>事業者: {siteConfig.name}</li>
         <li>運営責任者: 坂本 健一郎（Kenichiro Sakamoto）</li>
         <li>お問い合わせ: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a></li>
         <li>
