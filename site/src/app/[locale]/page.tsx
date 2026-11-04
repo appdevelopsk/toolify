@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { Link } from "@/lib/i18n/navigation";
-import { listTools, listFeaturedTools } from "@/lib/tools/registry";
+import { listTools, listFeaturedTools, listIndexableByCategory } from "@/lib/tools/registry";
 import { listPrompts } from "@/lib/prompts/registry";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { HeroSearchTrigger } from "@/components/tools/HeroSearchTrigger";
@@ -159,7 +159,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           {grouped.map(({ cat, cfg, tools }) => (
             <Link
               key={cat}
-              href={`/tools#${cat}`}
+              href={listIndexableByCategory(cat).length > 0 ? `/tools/category/${cat}` : `/tools#${cat}`}
               prefetch={false}
               className="group flex items-center gap-3 rounded-xl border border-slate-200 p-4 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md dark:border-slate-800 dark:hover:border-brand-700"
             >
