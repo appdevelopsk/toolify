@@ -12,7 +12,7 @@ import { selectRecentRecommendations } from "@/lib/tools/recent-recommendations"
  * This is intentionally shown only to returning visitors and does not store inputs.
  * Reuses the existing recent-slug store and lazily fetched localized search index.
  */
-export function ContinueWithRecent({ currentSlug, category }: { currentSlug: string; category: string }) {
+export function ContinueWithRecent({ currentSlug, category, relatedSlugs = [] }: { currentSlug: string; category: string; relatedSlugs?: string[] }) {
   const locale = useLocale();
   const t = useTranslations("tool");
   const recent = useRecent();
@@ -21,7 +21,7 @@ export function ContinueWithRecent({ currentSlug, category }: { currentSlug: str
 
   if (!index || !hasHistory) return null;
   const bySlug = new Map(index.map((item) => [item.slug, item]));
-  const alternatives = selectRecentRecommendations(recent, currentSlug, new Set(bySlug.keys()));
+  const alternatives = selectRecentRecommendations(recent, currentSlug, new Set(bySlug.keys()), 3, new Set(relatedSlugs));
   const items = alternatives.map((slug) => bySlug.get(slug)).filter((item) => item !== undefined);
   if (items.length === 0) return null;
 
