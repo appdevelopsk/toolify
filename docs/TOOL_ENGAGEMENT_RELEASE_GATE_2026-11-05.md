@@ -47,3 +47,18 @@ Decision rule: keep if repeat flows and meaningful tool engagement rise without 
 
 ## Separate future scope
 Scenario side-by-side comparison should be designed per calculator domain, not forced generically onto hundreds of tools. Input-resume requires explicit privacy and storage policies; **not implemented** in this PR. Both are deliberately excluded from an untested blanket rollout.
+
+## Added domain-specific workbench: percentage calculator
+
+- A/B comparison: save current scenario as A in React state, compare it with changing B. Difference is shown only when modes match, to avoid comparing unlike units. No data is stored by A/B alone.
+- Opt-in resume: user explicitly saves numeric percentage parameters to `localStorage` for at most 7 days. Restoring or deleting requires a button press. No auto-save, analytics payload of input values, API transmission or forced restoration. Browser storage errors must not prevent basic calculator use.
+- Copy: all 17 active locales in `scenario-copy.ts`; no changes to unrelated calculators.
+- New tests in `scenario-comparison.test.ts` and `scenario-resume.test.ts`. The tests are authored but **not executed**.
+- QA: try comparison with equal and different calculation modes, denominator zero, invalid/empty inputs, negative values; verify save/resume/delete, reload, expired draft, blocked storage, direct `?s=` share links, private mode and locale switch. Verify no input value appears in GA4.
+- Privacy copy should be reviewed before deployment; values can persist in the browser up to 7 days if explicitly saved. Users on shared devices should be able to delete them.
+
+These features are scoped to percentage calculator because comparison semantics and suitable storage policies differ across tools. They are not a claim of fleet-wide support.
+
+## Current release status
+
+Draft PR only; no successful `npm ci`, Vitest, TypeScript compilation, production build, manual device QA, main merge, VPS deployment or measured engagement uplift. No GitHub Actions run. Owner must pass all checks and approve before merging.
