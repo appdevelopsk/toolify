@@ -15,8 +15,8 @@ export function hasSoftwareAnchor(html, slug, locale) {
     const href = tag.match(/\bhref\s*=\s*["']([^"']+)["']/i)?.[1]?.replace(/&amp;/g, '&');
     if (!href) return false;
     try {
-      const path = new URL(href, 'https://toolify365.com').pathname.replace(/\/$/, '');
-      return path === `/${locale}${destination}`;
+      const url = new URL(href, 'https://toolify365.com');
+      return url.origin === 'https://toolify365.com' && url.pathname.replace(/\/$/, '') === `/${locale}${destination}`;
     } catch { return false; }
   });
 }
