@@ -31,3 +31,9 @@ PR #39 stays draft / NO-GO until full build and real-device QA succeed. This doc
 - GitHub code readback confirmed the order after commit; visual, iPhone, ad placement and RPM impact still require real device QA and post-release measurement.
 - `percentage-calculator` was verified present in `MANUAL_SHARE_SLUGS`: its own `useShareableState` intentionally disables generic URL writing from `useAutoShareableState`, so this PR does not need to add a second serialization path.
 - GA4 cannot currently be queried with the selected connection: HYPD reports connected GA4 accounts but no selected property. Select the Toolify365 property before any baseline analysis; do not infer current engagement from other businesses.
+
+## ShareBar URL polling optimization (2026-11-05)
+- Replaced unconditional one-second URL polling with change events and history/BFCache resynchronization.
+- Both manual and automatic share hooks now notify the result-link control immediately after replaceState.
+- Added source-level regression tests in ShareBar.events.test.ts; full project Vitest and browser tests not run.
+- Validate result-link availability after edits, navigation and tab restoration before release. No performance uplift claimed.
