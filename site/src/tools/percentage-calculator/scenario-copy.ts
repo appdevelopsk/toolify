@@ -23,3 +23,28 @@ export function scenarioCopy(locale: string) {
   const labels = COPY[locale as keyof typeof COPY] ?? COPY.en;
   return { heading: labels[0], save: labels[1], restore: labels[2], clear: labels[3], difference: labels[4] };
 }
+
+const RESUME_COPY: Record<string, readonly [string, string, string, string]> = {
+  en: ["Save for later", "Resume saved", "Delete saved", "Saved on this device for up to 7 days"],
+  ja: ["後で再開するため保存", "保存した条件を再開", "保存内容を削除", "この端末に最大7日間保存します"],
+  "zh-CN": ["保存以便稍后继续", "恢复已保存内容", "删除保存内容", "在本设备最多保存7天"],
+  "zh-TW": ["儲存以便稍後繼續", "還原已儲存內容", "刪除儲存內容", "在此裝置最多儲存7天"],
+  ko: ["나중에 계속하기 위해 저장", "저장한 내용 복원", "저장 내용 삭제", "이 기기에 최대 7일 저장"],
+  es: ["Guardar para después", "Recuperar guardado", "Eliminar guardado", "Se guarda en este dispositivo hasta 7 días"],
+  "pt-BR": ["Salvar para depois", "Retomar salvo", "Excluir salvo", "Armazenado neste dispositivo por até 7 dias"],
+  fr: ["Enregistrer pour plus tard", "Reprendre la sauvegarde", "Supprimer la sauvegarde", "Enregistré sur cet appareil pendant 7 jours maximum"],
+  de: ["Für später speichern", "Gespeichertes fortsetzen", "Gespeichertes löschen", "Bis zu 7 Tage auf diesem Gerät gespeichert"],
+  it: ["Salva per dopo", "Riprendi il salvataggio", "Elimina il salvataggio", "Salvato su questo dispositivo per massimo 7 giorni"],
+  ru: ["Сохранить на потом", "Восстановить сохранённое", "Удалить сохранённое", "Хранится на этом устройстве до 7 дней"],
+  ar: ["حفظ لوقت لاحق", "استعادة المحفوظ", "حذف المحفوظ", "يُحفظ على هذا الجهاز لمدة تصل إلى 7 أيام"],
+  hi: ["बाद के लिए सहेजें", "सहेजा हुआ पुनः खोलें", "सहेजा हुआ हटाएँ", "इस डिवाइस पर अधिकतम 7 दिनों तक सहेजा जाता है"],
+  id: ["Simpan untuk nanti", "Lanjutkan tersimpan", "Hapus tersimpan", "Disimpan di perangkat ini hingga 7 hari"],
+  th: ["บันทึกไว้ใช้ภายหลัง", "กลับไปยังที่บันทึก", "ลบข้อมูลที่บันทึก", "บันทึกในอุปกรณ์นี้สูงสุด 7 วัน"],
+  vi: ["Lưu để dùng sau", "Tiếp tục bản lưu", "Xóa bản lưu", "Lưu trên thiết bị này tối đa 7 ngày"],
+  tr: ["Sonrası için kaydet", "Kaydı sürdür", "Kaydı sil", "Bu cihazda en fazla 7 gün saklanır"],
+};
+
+export function resumeCopy(locale: string) {
+  const labels = RESUME_COPY[locale] ?? RESUME_COPY.en;
+  return { save: labels[0], restore: labels[1], clear: labels[2], disclosure: labels[3] };
+}
