@@ -47,7 +47,7 @@ function fields(root: HTMLElement): HTMLElement[] {
     root.querySelectorAll<HTMLElement>("input, select, textarea"),
   ).filter((el) => {
     // Do not share fields explicitly marked private or browser-autofilled as PII.
-    const privateField = el.hasAttribute("data-private") || el.getAttribute("data-share") === "off";
+    const privateField = !!el.closest("[data-private], [data-share=\"off\"]");
     if (el instanceof HTMLInputElement) {
       return isShareableField(el.type, el.autocomplete, privateField);
     }
