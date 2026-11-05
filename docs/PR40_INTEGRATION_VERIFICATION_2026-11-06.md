@@ -51,3 +51,6 @@ Run this only after production deployment (the old site has no new CTA and corre
 - PR #39 continued receiving changes while this integration was being prepared. Its updated `useAutoShareableState.ts` and sharing regression test have been copied into this branch; confirm fresh tree state again just before final merge because upstream may keep changing.
 - Source-readback verified `ToolFrame` positions: workspace, recent navigation, software CTA, and ad blocks in that order; five analytics exports intact. This does not establish working browser behavior.
 - Do not merge while PR #39 is actively evolving. Freeze both PR heads, recheck latest changed files, and run complete tests against the final integration tree.
+
+## One-command combined local gate (2026-11-06)
+The existing root `scripts/check-engagement-release.sh` now runs both PR #39's full checks and PR #38's dependency-free `test:smoke-html` before typecheck/Vitest/audits/build. On an owner-accessible checkout run `bash scripts/check-engagement-release.sh` from repository root; it uses `npm ci` and does not run GitHub Actions, merge or deploy. The shell script itself has not been run in this environment (private repo cannot be cloned). A passing run still requires real browser/GA4 checks before merging and owner-managed deployment.
