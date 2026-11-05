@@ -135,7 +135,7 @@ function buttons(root: HTMLElement): HTMLButtonElement[] {
 /** Only buttons within an active multi-button mode selector may be replayed from a URL. */
 function isModeButton(btn: HTMLButtonElement): boolean {
   const parent = btn.parentElement;
-  if (!parent || btn.disabled || btn.type === "submit") return false;
+  if (!parent || btn.disabled || (btn.type === "submit" && btn.closest("form"))) return false;
   const siblings = Array.from(parent.children).filter(
     (el): el is HTMLButtonElement => el instanceof HTMLButtonElement,
   );
