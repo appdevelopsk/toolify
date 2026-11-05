@@ -2,30 +2,11 @@
 
 import { Link } from "@/lib/i18n/navigation";
 import { trackSoftwareClick } from "@/lib/analytics/events";
-import { AVAILABLE_SOFTWARE } from "@/lib/software/catalog";
+import { availableRecommendations } from "@/lib/software/recommendations";
 import { softwareCopy } from "@/lib/software/copy";
 
-/**
- * Intent-based recommendations only: never promote planned products as usable.
- * Product inventory is sourced from the live software catalog.
- */
-export const SOFTWARE_RECOMMENDATIONS: Readonly<Record<string, readonly string[]>> = {
-  "csv-json-converter": ["csv-cleaner-pro", "json-studio"],
-  "json-formatter": ["json-studio"],
-  "json-to-yaml-converter": ["json-studio"],
-  "duplicate-line-remover": ["text-batch-studio"],
-  "text-sorter": ["text-batch-studio"],
-  "text-replace": ["text-batch-studio"],
-  "word-counter": ["text-batch-studio"],
-  "character-frequency": ["text-batch-studio"],
-  "reverse-text-generator": ["text-batch-studio"],
-};
-
 export function ToolSoftwareRecommendations({ slug, locale }: { slug: string; locale: string }) {
-  const recommended = SOFTWARE_RECOMMENDATIONS[slug] ?? [];
-  const products = recommended
-    .map((target) => AVAILABLE_SOFTWARE.find((p) => p.slug === target))
-    .filter((product): product is (typeof AVAILABLE_SOFTWARE)[number] => Boolean(product));
+  const products = availableRecommendations(slug);
   if (!products.length) return null;
   const copy = softwareCopy(locale);
   return (
