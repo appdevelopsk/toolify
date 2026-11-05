@@ -34,3 +34,10 @@ This file is a checkpoint, not a passing full-release certificate.
 - Added test cases for overlap and validated six cases with standalone Node assertions and TypeScript strict compilation. This is not a full React or Next build.
 - HYPD live-browser and mobile Lighthouse audits could not run: the linked service reported the tools unavailable on the current plan. No external mobile performance score or rendered DOM result was obtained.
 - Main merge and production deployment remain blocked by full-build/device verification, and no improvement in GA4 engagement has been measured.
+
+## Security-focused share URL regression (2026-11-05)
+- Generic share-state collection excludes password and hidden input types, in addition to file and action-only controls; the policy is centralized in share-input-policy.ts.
+- Both generic read and write are capped at 1800 encoded characters; the manual hook is capped at 4096 encoded characters in both directions. Oversized external payloads are rejected before decoding.
+- Added share-input-policy.test.ts; independently compiled this exact pure policy source with strict TypeScript and executed 18 standalone Node assertions, all passed. Full project Vitest/build and interactive browser QA remain pending.
+- Privacy caveat: other generic input values may still enter a shareable URL. Never describe all tool inputs as local-only or claim privacy audit completion.
+- Before release, test older ordinary shared links, password/hidden inputs, history navigation, copy-result-link availability, consent and mobile behavior. No rollout or engagement gain verified.
