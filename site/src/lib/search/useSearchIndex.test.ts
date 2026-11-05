@@ -10,9 +10,7 @@ describe("locale-aware search index hook", () => {
     expect(source).toContain("return enabled && loaded?.locale === locale ? loaded.items : null");
   });
   it("ignores malformed search index payloads", () => {
-    expect(source).toContain("Array.isArray(j?.tools)");
-    expect(source).toContain('typeof item.slug === "string"');
-    expect(source).toContain('typeof item.title === "string"');
-    expect(source).toContain('typeof item.category === "string"');
+    expect(source).toContain("parseSearchIndexPayload(payload)");
+    expect(source).toContain('from "./search-index-payload"');
   });
 });
