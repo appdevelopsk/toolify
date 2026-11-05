@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { scenarioResult, type PercentageMode } from "./scenario-comparison";
+import { parseSharedPercentageState } from "./scenario-share";
 import { scenarioCopy, resumeCopy } from "./scenario-copy";
 import { SCENARIO_STORAGE_KEY, parseSavedScenario, serializeSavedScenario, type SavedPercentageScenario } from "./scenario-resume";
 import { useLocale, useTranslations } from "next-intl";
@@ -34,10 +35,11 @@ export default function PercentageCalculator() {
   }, []);
 
   useShareableState("percentage-calculator", { mode, a, b }, (d) => {
-    if (typeof d.mode === "string" && (MODES as string[]).includes(d.mode)) setMode(d.mode as Mode);
-    // Untrusted share URLs must not inject unbounded strings into live inputs.
-    if (typeof d.a === "string" && d.a.length <= 40) setA(d.a);
-    if (typeof d.b === "string" && d.b.length <= 40) setB(d.b);
+    const shared = parseSharedPercentageState(d);
+    if (!shared) return;
+    setMode(shared.mode);
+    setA(shared.a);
+    setB(shared.b);
   });
 
   const result = useMemo(() => scenarioResult(mode, a, b), [mode, a, b]);
