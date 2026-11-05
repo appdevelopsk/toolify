@@ -65,3 +65,6 @@ cd site
 SITE_URL=https://toolify365.com npm run audit:live-growth
 ```
 This performs read-only HTTP checks on key en/ja tool and software pages, expected contextual CTA HTML, canonical presence, robots and sitemap. HTTP connectivity is required; a failure from a restricted runner is NOT proof that the production site is down. This script is not a substitute for browser interaction tests, GA4 DebugView, live Search Console URL Inspection or a local production build.
+
+## Extended release safeguards (2026-11-05)
+The `audit:live-growth` script now also checks that known index-eligible core tool pages do **not** return a noindex meta tag and appear in the served sitemap, while verifying same-origin self-canonical and unexpected redirects. This is a *post-deployment* check; it intentionally fails when the current production deployment does not yet contain the PR's CTA. Do not run it as a pre-deploy gate against the old production version.
