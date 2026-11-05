@@ -17,6 +17,7 @@ export const SOFTWARE_RECOMMENDATIONS: Readonly<Record<string, readonly string[]
   "text-sorter": ["text-batch-studio"],
   "text-replace": ["text-batch-studio"],
   "word-counter": ["text-batch-studio"],
+  "character-frequency": ["text-batch-studio"],
   "reverse-text-generator": ["text-batch-studio"],
 };
 
