@@ -164,3 +164,24 @@ export function trackScenarioAction(p: {
     action: p.action,
   });
 }
+
+/**
+ * Transition from a free tool to currently available in-browser software.
+ * destination is a finite catalog slug; do not send user-generated content.
+ */
+export function trackSoftwareClick(p: ToolEventParams & { destination: string }): void {
+  emit("software_click", {
+    ...toParams(p),
+    destination: p.destination,
+  });
+}
+
+/** In-browser software usage: only catalog slug and success state, never user input. */
+export function trackSoftwareProcess(p: { software: string; success: boolean }): void {
+  emit("software_process", { software_slug: p.software, success: p.success });
+}
+
+/** In-browser generated file download; never send file names or contents. */
+export function trackSoftwareDownload(p: { software: string }): void {
+  emit("software_download", { software_slug: p.software });
+}
