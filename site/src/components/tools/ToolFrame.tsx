@@ -96,12 +96,13 @@ export function ToolFrame({ meta, title, description, related, children, article
         {/* Return-visit path: show up to three previously used tools without storing inputs. */}
         <ContinueWithRecent currentSlug={meta.slug} category={meta.category} relatedSlugs={related.map((r) => r.slug)} />
 
+        {/* Intent-matched free software follows related/recent navigation, before monetization blocks. */}
+        <ToolSoftwareRecommendations slug={meta.slug} locale={locale} />
+
         {/* Keep task-follow-up navigation immediately after results; retain monetization units below it. */}
         <AdBelowResult />
 
         <AdBanner className="mt-4" />
-
-        <ToolSoftwareRecommendations slug={meta.slug} locale={locale} />
 
         <section className="prose prose-slate mt-10 max-w-none dark:prose-invert">
           <h2>{t("tool.howItWorks")}</h2>
