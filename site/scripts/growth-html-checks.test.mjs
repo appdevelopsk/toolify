@@ -15,7 +15,8 @@ test('canonical regardless of attribute order', () => {
   assert.equal(canonicalHref('<link rel="alternate" href="foo">'), null);
 });
 test('CTA must be an anchor, not an inert script string', () => {
-  assert.equal(hasSoftwareAnchor('<a href="/en/software/json-studio">Open</a>', 'json-studio'), true);
-  assert.equal(hasSoftwareAnchor('<script>"/en/software/json-studio"</script>', 'json-studio'), false);
-  assert.equal(hasSoftwareAnchor('<a href="/en/software/json-studio-evil">Open</a>', 'json-studio'), false);
+  assert.equal(hasSoftwareAnchor('<a href="/en/software/json-studio">Open</a>', 'json-studio', 'en'), true);
+  assert.equal(hasSoftwareAnchor('<script>"/en/software/json-studio"</script>', 'json-studio', 'en'), false);
+  assert.equal(hasSoftwareAnchor('<a href="/en/software/json-studio-evil">Open</a>', 'json-studio', 'en'), false);
+  assert.equal(hasSoftwareAnchor('<a href="/en/software/json-studio">Open</a>', 'json-studio', 'ja'), false);
 });
