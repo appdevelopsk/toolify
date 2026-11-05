@@ -45,7 +45,7 @@ function fields(root: HTMLElement): HTMLElement[] {
   ).filter((el) => {
     if (el instanceof HTMLInputElement) {
       // file は値をプログラムから復元できない。button/submit は状態を持たない。
-      return !["file", "button", "submit", "reset", "image"].includes(el.type);
+      return !["file", "button", "submit", "reset", "image", "password", "hidden"].includes(el.type);
     }
     return true;
   });
@@ -111,6 +111,8 @@ function encodeState(value: object): string {
 }
 
 function decodeState(raw: string): unknown {
+  // Ignore oversized external URLs before base64 decoding and JSON parsing.
+  if (raw.length > MAX_ENCODED) throw new Error("Share state exceeds size limit");
   const b64 = raw.replace(/-/g, "+").replace(/_/g, "/");
   const bin = atob(b64);
   const bytes = new Uint8Array(bin.length);
