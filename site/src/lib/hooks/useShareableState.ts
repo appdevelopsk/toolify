@@ -17,6 +17,8 @@ import { useEffect, useRef, useState } from "react";
  *   サーバーへの送信はどこにも無い（?s= はクライアントでのみ読まれる）。
  */
 
+const MAX_SHARED_STATE_LENGTH = 4096;
+
 /** JSON → base64url。URL に載せても壊れない形にする。 */
 function encodeState(value: object): string {
   const json = JSON.stringify(value);
@@ -28,6 +30,7 @@ function encodeState(value: object): string {
 }
 
 function decodeState(raw: string): unknown {
+  if (raw.length > MAX_SHARED_STATE_LENGTH) throw new Error("Share state exceeds size limit");
   const b64 = raw.replace(/-/g, "+").replace(/_/g, "/");
   const bin = atob(b64);
   const bytes = new Uint8Array(bin.length);
@@ -72,6 +75,7 @@ export function useShareableState<T extends object>(
     if (prev === null || prev === serialized) return;
     try {
       const encoded = encodeState(JSON.parse(serialized) as object);
+      if (encoded.length > MAX_SHARED_STATE_LENGTH) return;
       const url = new URL(window.location.href);
       url.searchParams.set("s", encoded);
       window.history.replaceState(null, "", url.toString());
