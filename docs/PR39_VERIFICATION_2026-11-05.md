@@ -41,3 +41,10 @@ This file is a checkpoint, not a passing full-release certificate.
 - Added share-input-policy.test.ts; independently compiled this exact pure policy source with strict TypeScript and executed 18 standalone Node assertions, all passed. Full project Vitest/build and interactive browser QA remain pending.
 - Privacy caveat: other generic input values may still enter a shareable URL. Never describe all tool inputs as local-only or claim privacy audit completion.
 - Before release, test older ordinary shared links, password/hidden inputs, history navigation, copy-result-link availability, consent and mobile behavior. No rollout or engagement gain verified.
+
+## PII-oriented generic sharing guard (2026-11-05)
+- Automatic share URL collection now excludes email and telephone input types in addition to passwords/hidden controls.
+- It also rejects fields explicitly marked `data-private` or `data-share="off"`, and browser autofill fields such as name, address, postal code, date of birth, account username and payment card tokens (for inputs, selects and textareas).
+- Added `share-input-policy.integration.test.ts` alongside policy unit tests. New source verified via GitHub readback. A reconstructed local copy of the pure `share-input-policy.ts` passed strict TypeScript compilation and **36 independent Node assertions**. The new Vitest source was **not** run as a full project test.
+- Corrected both sharing hook comments: state placed in `?s=` is **not strictly device-local**; URL history, HTTP requests, copied links and referrers can expose it. Arbitrary remaining free-text values are not guaranteed non-sensitive; a tool-by-tool privacy assessment remains required before release.
+- Run the full local release gate, plus manual tests that standard numeric sharing still works, sensitive autofilled values never enter `?s=`, older links open acceptably, and no analytics payload includes entered values.
