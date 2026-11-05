@@ -14,6 +14,16 @@ describe("selectRecentRecommendations", () => {
       .toEqual(["age-calculator"]);
   });
 
+  it("does not duplicate links from the related section", () => {
+    expect(selectRecentRecommendations(
+      ["age-calculator", "length-converter", "percentage-calculator"],
+      "bmi-calculator",
+      known,
+      3,
+      new Set(["age-calculator", "percentage-calculator"]),
+    )).toEqual(["length-converter"]);
+  });
+
   it("limits suggestions and returns none for new users", () => {
     expect(selectRecentRecommendations([], "bmi-calculator", known)).toEqual([]);
     expect(selectRecentRecommendations(["age-calculator", "length-converter", "percentage-calculator"], "bmi-calculator", known, 2))
