@@ -28,3 +28,9 @@ This file is a checkpoint, not a passing full-release certificate.
 - Added `scenario-share.ts` and `scenario-share.test.ts` to reject incomplete, malformed, oversized, and non-calculable URL payloads as a whole. Calculator fields are no longer partially restored from an invalid `?s=` payload.
 - In the isolated local TypeScript harness, all four pure source modules passed strict checking. The existing 29 assertions and nine new share-state assertions passed (38 total). This is not a full repository Vitest run or Next.js build.
 - No GitHub Actions, production deployment, or verified engagement uplift.
+
+## 2026-11-05 — Related/recent navigation deduplication
+- Updated recent recommendation selection to omit slugs already present in the existing related-tools section. This avoids using the same screen real estate for duplicate destinations.
+- Added test cases for overlap and validated six cases with standalone Node assertions and TypeScript strict compilation. This is not a full React or Next build.
+- HYPD live-browser and mobile Lighthouse audits could not run: the linked service reported the tools unavailable on the current plan. No external mobile performance score or rendered DOM result was obtained.
+- Main merge and production deployment remain blocked by full-build/device verification, and no improvement in GA4 engagement has been measured.
