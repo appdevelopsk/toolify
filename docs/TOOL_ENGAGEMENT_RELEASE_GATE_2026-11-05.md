@@ -62,3 +62,10 @@ These features are scoped to percentage calculator because comparison semantics 
 ## Current release status
 
 Draft PR only; no successful `npm ci`, Vitest, TypeScript compilation, production build, manual device QA, main merge, VPS deployment or measured engagement uplift. No GitHub Actions run. Owner must pass all checks and approve before merging.
+
+## Additional audit (same day)
+- Hardened percentage input parser: strict decimal text only; reject blank text, trailing symbols, hexadecimal, nonfinite results. Existing five calculation modes preserved.
+- Added GA4 `scenario_action` event with `tool_slug`, `locale` and `action` only. Permitted actions: `compare_save`, `compare_restore`, `compare_clear`, `draft_save`, `draft_restore`, `draft_clear`. No numerical inputs, result values, or stored state are included.
+- Register event-scoped `action` as custom dimension if needed for GA4 reporting. No backfill.
+- Isolated JavaScript algorithm reproduction: 12/12 assertions passed. This is NOT the project's Vitest run or Next.js production build.
+- Public /en/tools/percentage-calculator still lacked new compare/resume sections when inspected on 2026-11-05: no verified release.
