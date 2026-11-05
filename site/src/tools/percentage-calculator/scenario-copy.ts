@@ -45,6 +45,6 @@ const RESUME_COPY: Record<string, readonly [string, string, string, string]> = {
 };
 
 export function resumeCopy(locale: string) {
-  const labels = RESUME_COPY[locale] ?? RESUME_COPY.en;
+  const labels = RESUME_COPY[locale] ?? RESUME_COPY.en!;
   return { save: labels[0], restore: labels[1], clear: labels[2], disclosure: labels[3] };
 }
