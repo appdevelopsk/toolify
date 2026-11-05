@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { trackSoftwareProcess, trackSoftwareDownload } from "@/lib/analytics/events";
 import { FREE_SOFTWARE_LIMITS, isWithinSoftwareLimits } from "@/lib/software/limits";
 import { cleanCsv, cleanTextLines, formatJson, prepareSoftwareDownload } from "@/lib/software/processors";
 
@@ -13,8 +14,13 @@ export function SoftwareWorkbench({ slug, labels }: {slug: ActiveSlug; labels: {
     setError(""); setOutput(null);
     try {
       if (!isWithinSoftwareLimits(slug, input)) throw new Error(labels.limit);
-      setOutput(slug === "csv-cleaner-pro" ? cleanCsv(input) : slug === "json-studio" ? formatJson(input, minify) : cleanTextLines(input));
-    } catch (e) { setError(e instanceof Error && e.message === labels.limit ? labels.limit : labels.error); }
+      const result = slug === "csv-cleaner-pro" ? cleanCsv(input) : slug === "json-studio" ? formatJson(input, minify) : cleanTextLines(input);
+      setOutput(result);
+      trackSoftwareProcess({ software: slug, success: true });
+    } catch (e) {
+      trackSoftwareProcess({ software: slug, success: false });
+      setError(e instanceof Error && e.message === labels.limit ? labels.limit : labels.error);
+    }
   };
   const loadFile = async (file: File | undefined) => {
     if (!file) return;
@@ -39,6 +45,7 @@ export function SoftwareWorkbench({ slug, labels }: {slug: ActiveSlug; labels: {
     const ext = slug === "csv-cleaner-pro" ? "csv" : slug === "json-studio" ? "json" : "txt";
     const url = URL.createObjectURL(new Blob([prepareSoftwareDownload(output, ext)], {type: mime + ";charset=utf-8"}));
     const a = document.createElement("a"); a.href = url; a.download = "toolify365-output." + ext; document.body.appendChild(a); a.click(); a.remove();
+    trackSoftwareDownload({ software: slug });
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
   return <div className="space-y-4 rounded-xl border border-slate-200 p-5 dark:border-slate-700">
