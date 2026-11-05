@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { SearchItem } from "./matcher";
+import { parseSearchIndexPayload } from "./search-index-payload";
 
 /**
  * ロケール別の検索インデックス(/{locale}/search-index.json)を遅延取得する。
@@ -19,10 +20,7 @@ export function loadSearchIndex(locale: string): Promise<SearchItem[]> {
   if (!p) {
     p = fetch(`/${locale}/search-index.json`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
-      .then((j: { tools?: unknown }) => Array.isArray(j?.tools)
-        ? j.tools.filter((item): item is SearchItem =>
-            !!item && typeof item === "object" && typeof item.slug === "string" && typeof item.title === "string" && typeof item.category === "string")
-        : [])
+      .then((payload: unknown) => parseSearchIndexPayload(payload))
       .catch(() => {
         cache.delete(locale);
         return [] as SearchItem[];
