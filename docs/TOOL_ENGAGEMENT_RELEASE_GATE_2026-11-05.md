@@ -78,3 +78,10 @@ Draft PR only; no successful `npm ci`, Vitest, TypeScript compilation, productio
 - Checked all 17 active locale keys exist in both comparison and resume copy maps (source inspection only; not visual proof).
 - Attempt to read GitHub repository via `git ls-remote` in container failed `Could not resolve host: github.com`; full project checkout, npm install, Vitest, browser and production QA remain blocked.
 - GitHub Actions not used, no merge or deployment claimed. PR must remain draft until full checks and owner-controlled deployment.
+
+
+## 2026-11-05 subsequent accessibility and regression follow-up
+- Added `aria-pressed` to percentage mode controls; mode selection now announces the selected state. Group label uses the localized tool title, and the A/B comparison section has an explicitly associated heading.
+- Added `scenario-copy.test.ts`: loops through every active locale from the central registry, validates all comparison/resume labels, and checks unknown-locale English fallback. Test source was committed; full Vitest still needs execution.
+- Public search-result snapshots of en/ja percentage pages still show the original calculator, not the new PR controls; do not treat indexed snapshots as a verified deployment or a substitute for a live browser check.
+- Direct git fetch is still blocked by GitHub hostname resolution in the working container. GitHub connector commits are not local project build evidence.
