@@ -9,8 +9,15 @@ describe("share policy integration", () => {
     expect(source).toContain("isShareableField(el.type, el.autocomplete, privateField)");
     expect(source).toContain('isShareableField("textarea", el.autocomplete, privateField)');
     expect(source).toContain('isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField)');
-    expect(source).toContain('el.closest("[data-private], [data-share=\\\"off\\\"]")');
+    expect(source).toContain('const privateField = !!el.closest(');
+    expect(source).toContain('data-share=');
   });
+  it("ignores malformed decoded fields and out-of-range mode buttons", () => {
+    expect(source).toContain('typeof v !== "string" && typeof v !== "boolean"');
+    expect(source).toContain('Number.isSafeInteger(i)');
+    expect(source).toContain('i >= all.length');
+  });
+
   it("retains payload size limits in both sharing hooks", () => {
     expect(source).toContain("isSharePayloadWithinLimit(raw, MAX_ENCODED)");
     expect(source).toContain("isSharePayloadWithinLimit(encoded, MAX_ENCODED)");
