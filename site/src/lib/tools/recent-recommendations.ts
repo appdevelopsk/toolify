@@ -8,12 +8,13 @@ export function selectRecentRecommendations(
   currentSlug: string,
   availableSlugs: ReadonlySet<string>,
   limit = 3,
+  excludedSlugs: ReadonlySet<string> = new Set(),
 ): string[] {
   if (limit <= 0) return [];
   const seen = new Set<string>([currentSlug]);
   const selected: string[] = [];
   for (const slug of recent) {
-    if (seen.has(slug) || !availableSlugs.has(slug)) continue;
+    if (seen.has(slug) || excludedSlugs.has(slug) || !availableSlugs.has(slug)) continue;
     seen.add(slug);
     selected.push(slug);
     if (selected.length >= limit) break;
