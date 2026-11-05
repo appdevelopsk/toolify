@@ -7,6 +7,7 @@ import { SisterSiteCta } from "@/components/cross/SisterSiteCta";
 import { ToolInteractionTracker } from "./ToolInteractionTracker";
 import { RelatedToolLink } from "./RelatedToolLink";
 import { ContinueWithRecent } from "./ContinueWithRecent";
+import { ToolSoftwareRecommendations } from "./ToolSoftwareRecommendations";
 import { TrustBox } from "./TrustBox";
 import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
@@ -99,6 +100,8 @@ export function ToolFrame({ meta, title, description, related, children, article
         <AdBelowResult />
 
         <AdBanner className="mt-4" />
+
+        <ToolSoftwareRecommendations slug={meta.slug} locale={locale} />
 
         <section className="prose prose-slate mt-10 max-w-none dark:prose-invert">
           <h2>{t("tool.howItWorks")}</h2>
