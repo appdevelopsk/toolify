@@ -178,7 +178,7 @@ export function useAutoShareableState(
               const k = keyOf(el, seen);
               const v = saved[k];
               // `k in saved` では index 型が絞れないので値を取って判定する。
-              if (v === undefined) continue;
+              if (typeof v !== "string" && typeof v !== "boolean") continue;
               if (only && !only(el)) continue;
               writeValue(el, v);
             }
