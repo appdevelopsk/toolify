@@ -69,3 +69,10 @@ This file is a checkpoint, not a passing full-release certificate.
 - Added a source regression assertion in `share-input-policy.integration.test.ts`. GitHub readback confirmed code and test source; the project Vitest suite and browser QA **have not run**.
 - Remaining test: valid triangle right/sss/sas links, malicious links pointing to action buttons, mode toggles, alternate tools with button-driven modes, mobile UI and sharing result links.
 - Release stays NO-GO until the owner-accessible full build and manual QA pass. No performance or revenue lift has been demonstrated.
+
+## 2026-11-06 — Search-index localization and payload hardening
+- `useSearchIndex` now keys fetched data by the requested locale and returns null while an index for the new locale is loading, rather than displaying stale-language titles.
+- Extracted malformed search-index response handling into `site/src/lib/search/search-index-payload.ts`. Missing arrays and malformed entries are ignored; valid tool entries are preserved.
+- Added unit tests for parsed payloads plus a source-level regression test for locale-scoped display. Reconstructed the exact parser in a standalone local TypeScript harness with a minimal type stub: strict compilation and 10 Node assertions passed.
+- This is not a full Next.js app compile or UI-level language-switch test. No GitHub Actions, merge or deployment were performed.
+- Full-repo checkout remains blocked by DNS from this container, confirmed again. Run `bash scripts/check-engagement-release.sh` in the owner environment and verify locale switches in browser before release.
