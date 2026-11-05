@@ -93,7 +93,7 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
   const [showEmbed, setShowEmbed] = useState(false);
 
   // useShareableState を使うツールでは入力のたびに ?s= が history.replaceState で付く。
-  // replaceState は再レンダーを起こさないため、pointer/keyboard 操作のたびに読み直す。
+  // replaceState は再レンダーを起こさないため、書き換え通知と履歴イベントで同期する。
   // ?s= が無いツール(大半)ではボタン自体を出さない。
   useEffect(() => {
     const sync = () => {
@@ -104,8 +104,16 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
       }
     };
     sync();
-    const id = window.setInterval(sync, 1000);
-    return () => window.clearInterval(id);
+    // Both share hooks dispatch this event after their history.replaceState.
+    // Also resync on browser history navigation and BFCache return.
+    window.addEventListener("toolify:share-state-change", sync);
+    window.addEventListener("popstate", sync);
+    window.addEventListener("pageshow", sync);
+    return () => {
+      window.removeEventListener("toolify:share-state-change", sync);
+      window.removeEventListener("popstate", sync);
+      window.removeEventListener("pageshow", sync);
+    };
   }, []);
 
   const enc = encodeURIComponent;
