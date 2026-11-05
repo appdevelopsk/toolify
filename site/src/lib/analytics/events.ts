@@ -143,3 +143,14 @@ export function trackAffiliateClick(p: {
     ...(p.locale ? { locale: p.locale } : {}),
   });
 }
+
+/**
+ * Transition from a free tool to currently available in-browser software.
+ * destination is a finite catalog slug; do not send user-generated content.
+ */
+export function trackSoftwareClick(p: ToolEventParams & { destination: string }): void {
+  emit("software_click", {
+    ...toParams(p),
+    destination: p.destination,
+  });
+}
