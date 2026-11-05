@@ -34,18 +34,34 @@ async function get(path) {
     signal: AbortSignal.timeout(12000),
   });
   const text = await response.text();
-  return { status: response.status, text, url: response.url };
+  return { status: response.status, text, url: response.url, contentType: response.headers.get("content-type") ?? "" };
 }
 for (const path of paths) {
   try {
     const page = await get(path);
     if (page.status !== 200) failures.push(`${path}: HTTP ${page.status}`);
+    const finalUrl = new URL(page.url);
+    if (finalUrl.origin !== base.origin || finalUrl.pathname.replace(/\\/$/, "") !== path) {
+      failures.push(`${path}: unexpected redirect to ${page.url}`);
+    }
+    if (!page.contentType.includes("text/html")) failures.push(`${path}: not HTML (${page.contentType})`);
     const product = ctas.get(path);
     if (product && !page.text.includes(`/software/${product}`)) {
       failures.push(`${path}: expected software CTA missing (${product})`);
     }
-    if (path.includes("/tools/") && !/<link[^>]+rel="canonical"/i.test(page.text)) {
-      failures.push(`${path}: canonical link missing`);
+    if (path.includes("/tools/")) {
+      const canonicalTag = page.text.match(/<link[^>]*rel="canonical"[^>]*>/i)?.[0];
+      const canonicalHref = canonicalTag?.match(/href="([^"]+)"/i)?.[1];
+      if (!canonicalHref) {
+        failures.push(`${path}: canonical link missing`);
+      } else {
+        try {
+          const canonical = new URL(canonicalHref.replace(/&amp;/g, "&"), base);
+          if (canonical.origin !== base.origin || canonical.pathname.replace(/\\/$/, "") !== path) {
+            failures.push(`${path}: unexpected canonical ${canonical.href}`);
+          }
+        } catch { failures.push(`${path}: malformed canonical`); }
+      }
     }
     console.log(`${page.status} ${path}`);
   } catch (error) {
