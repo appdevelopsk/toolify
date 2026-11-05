@@ -85,3 +85,10 @@ Draft PR only; no successful `npm ci`, Vitest, TypeScript compilation, productio
 - Added `scenario-copy.test.ts`: loops through every active locale from the central registry, validates all comparison/resume labels, and checks unknown-locale English fallback. Test source was committed; full Vitest still needs execution.
 - Public search-result snapshots of en/ja percentage pages still show the original calculator, not the new PR controls; do not treat indexed snapshots as a verified deployment or a substitute for a live browser check.
 - Direct git fetch is still blocked by GitHub hostname resolution in the working container. GitHub connector commits are not local project build evidence.
+
+## 20:16 JST follow-up — release automation and verification
+- Added `scripts/check-engagement-release.sh`, a fail-fast local runner using the checked-in `site/package-lock.json`. It runs npm ci, typecheck, tests, validation, SEO and i18n audits, and a Next production build; it **never deploys or merges**. Usage: `bash scripts/check-engagement-release.sh` from the repository root.
+- Corrected local-draft delete handling: if browser storage rejects removal, the UI no longer falsely reports a successful deletion or emits `draft_clear`.
+- Public `https://toolify365.com/en/tools/percentage-calculator` retrieved on 2026-11-05 still shows normal inputs/result, not A/B or saved draft sections. This supports **no verified production rollout**, although server HTML inspection cannot substitute for complete browser hydration QA.
+- Container `git ls-remote https://github.com/appdevelopsk/toolify.git HEAD` fails DNS resolution (`Could not resolve host: github.com`); cannot claim `npm ci`, project-wide Vitest, typecheck, build or device QA succeeded.
+- Revisit privacy disclosure before release: existing `useShareableState` writes numerical state to the browser URL as `?s=`, separate from opt-in localStorage drafts. URL state can be shared or appear in browser history; do not describe **all** numeric input state as solely localStorage-only.
