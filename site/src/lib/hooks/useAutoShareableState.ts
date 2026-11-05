@@ -192,6 +192,7 @@ export function useAutoShareableState(
             const all = buttons(root);
             for (const raw of b.split(",")) {
               const i = Number(raw);
+              if (!Number.isSafeInteger(i) || i < 0 || i >= all.length) continue;
               const btn = all[i];
               if (btn && !btn.className.includes(ACTIVE_CLASS)) btn.click();
             }
