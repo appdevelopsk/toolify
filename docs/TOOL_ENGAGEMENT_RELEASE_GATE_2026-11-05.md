@@ -92,3 +92,10 @@ Draft PR only; no successful `npm ci`, Vitest, TypeScript compilation, productio
 - Public `https://toolify365.com/en/tools/percentage-calculator` retrieved on 2026-11-05 still shows normal inputs/result, not A/B or saved draft sections. This supports **no verified production rollout**, although server HTML inspection cannot substitute for complete browser hydration QA.
 - Container `git ls-remote https://github.com/appdevelopsk/toolify.git HEAD` fails DNS resolution (`Could not resolve host: github.com`); cannot claim `npm ci`, project-wide Vitest, typecheck, build or device QA succeeded.
 - Revisit privacy disclosure before release: existing `useShareableState` writes numerical state to the browser URL as `?s=`, separate from opt-in localStorage drafts. URL state can be shared or appear in browser history; do not describe **all** numeric input state as solely localStorage-only.
+
+## 2026-11-05 20:16 onward — QA gate hardening
+- The percentage calculator now limits each numeric string restored from a user-provided `?s=` share URL to 40 characters, matching the saved-draft bound. Existing mode whitelist remains in place.
+- The manual `scripts/check-engagement-release.sh` runner now also executes `npm run audit:index-policy -- --json` before the production build, to flag locale index-policy regressions.
+- GitHub PR #39 was checked for reviews and combined commit status: no reviews and no successful status checks were returned. This **does not mean tests passed**.
+- This session's local `git ls-remote` failed because the environment cannot resolve `github.com`. Node and npm are installed locally, but the full project dependencies and sources cannot be obtained with normal Git.
+- The draft PR must remain NO-GO for production until an owner-accessible checkout executes the full test runner and browser/device tests.
