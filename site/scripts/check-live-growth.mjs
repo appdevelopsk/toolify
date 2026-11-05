@@ -41,7 +41,7 @@ for (const path of paths) {
     const page = await get(path);
     if (page.status !== 200) failures.push(`${path}: HTTP ${page.status}`);
     const finalUrl = new URL(page.url);
-    if (finalUrl.origin !== base.origin || finalUrl.pathname.replace(/\\/$/, "") !== path) {
+    if (finalUrl.origin !== base.origin || finalUrl.pathname.replace(/[/]$/, "") !== path) {
       failures.push(`${path}: unexpected redirect to ${page.url}`);
     }
     if (!page.contentType.includes("text/html")) failures.push(`${path}: not HTML (${page.contentType})`);
@@ -57,7 +57,7 @@ for (const path of paths) {
       } else {
         try {
           const canonical = new URL(canonicalHref.replace(/&amp;/g, "&"), base);
-          if (canonical.origin !== base.origin || canonical.pathname.replace(/\\/$/, "") !== path) {
+          if (canonical.origin !== base.origin || canonical.pathname.replace(/[/]$/, "") !== path) {
             failures.push(`${path}: unexpected canonical ${canonical.href}`);
           }
         } catch { failures.push(`${path}: malformed canonical`); }
