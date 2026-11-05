@@ -137,7 +137,7 @@ export default function PercentageCalculator() {
           <dl className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3" aria-live="polite">
             <div><dt className="text-xs font-semibold">A · {t(`mode.${baseline.mode}.title`)}</dt><dd className="mt-1 text-xl font-semibold tabular-nums">{fmt.format(baseline.value)}</dd></div>
             <div><dt className="text-xs font-semibold">B · {t(`mode.${mode}.title`)}</dt><dd className="mt-1 text-xl font-semibold tabular-nums">{result === null ? "—" : fmt.format(result)}</dd></div>
-            <div><dt className="text-xs font-semibold">{comparisonText.difference}</dt><dd className="mt-1 text-xl font-semibold tabular-nums">{result === null ? "—" : fmt.format(result - baseline.value)}</dd></div>
+            <div><dt className="text-xs font-semibold">{comparisonText.difference}</dt><dd className="mt-1 text-xl font-semibold tabular-nums">{result === null || baseline.mode !== mode ? "—" : fmt.format(result - baseline.value)}</dd></div>
           </dl>
         )}
       </section>
