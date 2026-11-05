@@ -1,0 +1,21 @@
+import { test } from 'node:test';
+import { strict as assert } from 'node:assert';
+import { hasNoindex, canonicalHref, hasSoftwareAnchor } from './growth-html-checks.mjs';
+
+test('robots and googlebot directives independent of attribute order', () => {
+  assert.equal(hasNoindex('<meta name="robots" content="noindex,follow">'), true);
+  assert.equal(hasNoindex("<meta content='follow, noindex' name='googlebot'>"), true);
+  assert.equal(hasNoindex('<meta name="robots" content="index, follow">'), false);
+  assert.equal(hasNoindex('<meta name="description" content="noindex">'), false);
+  assert.equal(hasNoindex('<meta name="robots" content="noindexing">'), false);
+});
+test('canonical regardless of attribute order', () => {
+  assert.equal(canonicalHref('<link href="https://toolify365.com/en/tools/foo" rel="canonical">'), 'https://toolify365.com/en/tools/foo');
+  assert.equal(canonicalHref('<link rel="canonical" href="https://toolify365.com/en/tools/foo">'), 'https://toolify365.com/en/tools/foo');
+  assert.equal(canonicalHref('<link rel="alternate" href="foo">'), null);
+});
+test('CTA must be an anchor, not an inert script string', () => {
+  assert.equal(hasSoftwareAnchor('<a href="/en/software/json-studio">Open</a>', 'json-studio'), true);
+  assert.equal(hasSoftwareAnchor('<script>"/en/software/json-studio"</script>', 'json-studio'), false);
+  assert.equal(hasSoftwareAnchor('<a href="/en/software/json-studio-evil">Open</a>', 'json-studio'), false);
+});
