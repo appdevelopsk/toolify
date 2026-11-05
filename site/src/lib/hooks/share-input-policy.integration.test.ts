@@ -18,6 +18,14 @@ describe("share policy integration", () => {
     expect(source).toContain('i >= all.length');
   });
 
+  it("replays URL button indices only within a mode-selector group", () => {
+    expect(source).toContain("function isModeButton(btn: HTMLButtonElement)");
+    expect(source).toContain("siblings.length >= 2");
+    expect(source).toContain("btn.closest(\"form\")");
+    expect(source).toContain("btn && isModeButton(btn)");
+    expect(source).toContain("isModeButton(b) && b.className.includes(ACTIVE_CLASS)");
+  });
+
   it("retains payload size limits in both sharing hooks", () => {
     expect(source).toContain("isSharePayloadWithinLimit(raw, MAX_ENCODED)");
     expect(source).toContain("isSharePayloadWithinLimit(encoded, MAX_ENCODED)");
