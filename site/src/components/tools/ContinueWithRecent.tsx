@@ -3,7 +3,8 @@
 import { useLocale, useTranslations } from "next-intl";
 import { useRecent } from "@/lib/recent";
 import { useSearchIndex } from "@/lib/search/useSearchIndex";
-import { RelatedToolLink } from "./RelatedToolLink";
+import { Link } from "@/lib/i18n/navigation";
+import { trackRecentToolClick } from "@/lib/analytics/events";
 
 /**
  * Offers a contextual return path after completing a tool.
@@ -28,16 +29,14 @@ export function ContinueWithRecent({ currentSlug, category }: { currentSlug: str
       <ul className="mt-3 grid gap-2 sm:grid-cols-2">
         {items.map((item) => (
           <li key={item.slug}>
-            <RelatedToolLink
-              from={currentSlug}
-              to={item.slug}
-              locale={locale}
-              category={category}
+            <Link
+              href={`/tools/${item.slug}`}
+              onClick={() => trackRecentToolClick({ tool: currentSlug, locale, category, destination: item.slug })}
               className="flex min-h-11 items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-brand-700 hover:border-brand-400 hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-slate-700 dark:bg-slate-950 dark:text-brand-400 dark:hover:bg-slate-800"
             >
               {item.title}
               <span className="ml-auto pl-2" aria-hidden="true">→</span>
-            </RelatedToolLink>
+            </Link>
           </li>
         ))}
       </ul>
