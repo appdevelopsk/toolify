@@ -26,5 +26,6 @@ export function parseSavedScenario(raw: string | null, now: number): SavedPercen
 export function serializeSavedScenario(mode: PercentageMode, a: string, b: string, now: number): string | null {
   if (a.length > 40 || b.length > 40) return null;
   if (!VALID_MODES.has(mode) || scenarioResult(mode, a, b) === null) return null;
+  if (!Number.isFinite(now) || now < 0) return null;
   return JSON.stringify({ mode, a, b, savedAt: now });
 }
