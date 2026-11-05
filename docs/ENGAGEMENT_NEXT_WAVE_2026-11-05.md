@@ -23,3 +23,11 @@
 
 ## Operational release policy
 PR #39 stays draft / NO-GO until full build and real-device QA succeed. This document is a plan for further implementation, not a claim of production changes, conversion lifts or GA4 access.
+
+## Additional implementation: result-first navigation (2026-11-05)
+- `ToolFrame` now shows the existing related tool row and the new recent tool row **immediately after the workspace, before the below-result and banner ad units**. Both ad units, the in-article ad, and sidebar ad are retained; this is an ordering change, not an ad removal.
+- The previous related/recent deduplication means suggestions maximize distinct follow-up actions.
+- Added `site/src/components/tools/ToolFrame.order.test.ts` to enforce source-level order and retained ad components. This test was committed but has NOT been run inside the project's Vitest environment.
+- GitHub code readback confirmed the order after commit; visual, iPhone, ad placement and RPM impact still require real device QA and post-release measurement.
+- `percentage-calculator` was verified present in `MANUAL_SHARE_SLUGS`: its own `useShareableState` intentionally disables generic URL writing from `useAutoShareableState`, so this PR does not need to add a second serialization path.
+- GA4 cannot currently be queried with the selected connection: HYPD reports connected GA4 accounts but no selected property. Select the Toolify365 property before any baseline analysis; do not infer current engagement from other businesses.
