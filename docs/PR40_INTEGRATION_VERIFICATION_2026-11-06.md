@@ -44,3 +44,10 @@ Run this only after production deployment (the old site has no new CTA and corre
 
 ## Current release result
 **NO-GO**: full checkout, TypeScript/Vitest/Next build, cross-feature browser checks and production deploy not executed in this environment. Direct clone to private GitHub repository fails DNS resolution here. No search traffic or revenue improvement verified.
+
+## 2026-11-06 incremental integration QA
+- The merged `ToolFrame` now presents contextual software CTAs **after** related/recent navigation but **before** advertising blocks. The corresponding `ToolFrame.order.test.ts` asserts this order.
+- Actual Node 22.16.0 isolated execution of exact HTML helpers and tests from the integration branch: **3 passed / 0 failed**. The full Next/Vitest suite remains unrun because `git ls-remote` still cannot resolve `github.com` from the local container.
+- PR #39 continued receiving changes while this integration was being prepared. Its updated `useAutoShareableState.ts` and sharing regression test have been copied into this branch; confirm fresh tree state again just before final merge because upstream may keep changing.
+- Source-readback verified `ToolFrame` positions: workspace, recent navigation, software CTA, and ad blocks in that order; five analytics exports intact. This does not establish working browser behavior.
+- Do not merge while PR #39 is actively evolving. Freeze both PR heads, recheck latest changed files, and run complete tests against the final integration tree.
