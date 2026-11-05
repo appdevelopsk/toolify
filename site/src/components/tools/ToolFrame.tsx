@@ -68,10 +68,6 @@ export function ToolFrame({ meta, title, description, related, children, article
           </ToolInteractionTracker>
         </section>
 
-        <AdBelowResult />
-
-        <AdBanner className="mt-4" />
-
         {/* 関連ツール導線 — ツール結果の直後(注意が集中する位置)に移動。
             従来は記事/FAQ/出典の後の最下部で不可視だった。回遊(PV/session)増=AdSense表示増。
             コンパクトなチップ列で本文の邪魔をしない。 */}
@@ -98,6 +94,11 @@ export function ToolFrame({ meta, title, description, related, children, article
 
         {/* Return-visit path: show up to three previously used tools without storing inputs. */}
         <ContinueWithRecent currentSlug={meta.slug} category={meta.category} relatedSlugs={related.map((r) => r.slug)} />
+
+        {/* Keep task-follow-up navigation immediately after results; retain monetization units below it. */}
+        <AdBelowResult />
+
+        <AdBanner className="mt-4" />
 
         <section className="prose prose-slate mt-10 max-w-none dark:prose-invert">
           <h2>{t("tool.howItWorks")}</h2>
