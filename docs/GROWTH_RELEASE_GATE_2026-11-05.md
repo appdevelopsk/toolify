@@ -57,3 +57,11 @@ Count users/sessions when possible, not only raw events. Exclude internal traffi
 
 ## Current evidence
 Source-only reviews are not equivalent to running the above commands. The connected GSC access returned a 3-day sample (2026-10-31 to 2026-11-02) with no suggested opportunities; it cannot establish a 28-day comparison or zero traffic.
+
+## Post-deployment automated smoke check (new)
+Run only **after** a successful owner deployment:
+```bash
+cd site
+SITE_URL=https://toolify365.com npm run audit:live-growth
+```
+This performs read-only HTTP checks on key en/ja tool and software pages, expected contextual CTA HTML, canonical presence, robots and sitemap. HTTP connectivity is required; a failure from a restricted runner is NOT proof that the production site is down. This script is not a substitute for browser interaction tests, GA4 DebugView, live Search Console URL Inspection or a local production build.
