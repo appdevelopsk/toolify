@@ -16,6 +16,8 @@ echo "[engagement] SEO audit"
 npm run audit:seo
 echo "[engagement] Localization audit"
 npm run audit:i18n
+echo "[engagement] Index eligibility policy audit"
+npm run audit:index-policy -- --json
 echo "[engagement] Next.js production build"
 npm run build
 echo "[engagement] PASS: local static/test/build checks. Manual browser/GA4 QA and explicit deployment are still required."
