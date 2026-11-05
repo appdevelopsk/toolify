@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, type RefObject } from "react";
-import { isShareableInputType, isSharePayloadWithinLimit } from "./share-input-policy";
+import { isShareableField, isSharePayloadWithinLimit } from "./share-input-policy";
 
 /**
  * ツール本体の DOM 入力を丸ごと ?s= に載せ、共有リンクから復元する。
@@ -44,11 +44,15 @@ function fields(root: HTMLElement): HTMLElement[] {
   return Array.from(
     root.querySelectorAll<HTMLElement>("input, select, textarea"),
   ).filter((el) => {
+    // Do not share fields explicitly marked private or browser-autofilled as PII.
+    const privateField = el.hasAttribute("data-private") || el.getAttribute("data-share") === "off";
     if (el instanceof HTMLInputElement) {
-      // file は値をプログラムから復元できない。button/submit は状態を持たない。
-      return isShareableInputType(el.type);
+      return isShareableField(el.type, el.autocomplete, privateField);
     }
-    return true;
+    if (el instanceof HTMLTextAreaElement) {
+      return isShareableField("textarea", el.autocomplete, privateField);
+    }
+    return isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField);
   });
 }
 
