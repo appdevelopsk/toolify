@@ -69,3 +69,12 @@ Draft PR only; no successful `npm ci`, Vitest, TypeScript compilation, productio
 - Register event-scoped `action` as custom dimension if needed for GA4 reporting. No backfill.
 - Isolated JavaScript algorithm reproduction: 12/12 assertions passed. This is NOT the project's Vitest run or Next.js production build.
 - Public /en/tools/percentage-calculator still lacked new compare/resume sections when inspected on 2026-11-05: no verified release.
+
+
+## 2026-11-05 additional manual verification
+- Corrected draft validation to reject mathematically invalid or malformed percentage input; save is disabled if result is null.
+- Restore now re-reads and validates current localStorage at click time, preventing stale in-memory state from bypassing 7-day expiry in a long-lived tab.
+- Narrow independent test from connector-sourced pure TypeScript modules: `tsc --strict` passed and 22 Node assertions passed. These cover the 5 computation modes, invalid numbers, expiry, corruption, and recent-tool selection. This is **NOT** the project-wide `npm test` or Next build.
+- Checked all 17 active locale keys exist in both comparison and resume copy maps (source inspection only; not visual proof).
+- Attempt to read GitHub repository via `git ls-remote` in container failed `Could not resolve host: github.com`; full project checkout, npm install, Vitest, browser and production QA remain blocked.
+- GitHub Actions not used, no merge or deployment claimed. PR must remain draft until full checks and owner-controlled deployment.
