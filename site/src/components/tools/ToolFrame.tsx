@@ -10,6 +10,7 @@ import { TrustBox } from "./TrustBox";
 import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
 import { RecentTracker } from "@/components/tools/RecentTracker";
+import { ToolSoftwareRecommendations } from "./ToolSoftwareRecommendations";
 import { siteConfig } from "@/lib/config";
 import { categoryLabel } from "@/lib/tools/categories";
 import { MANUAL_SHARE_SLUGS } from "@/lib/tools/manual-share";
@@ -94,6 +95,8 @@ export function ToolFrame({ meta, title, description, related, children, article
             </ul>
           </section>
         )}
+
+        <ToolSoftwareRecommendations slug={meta.slug} locale={locale} />
 
         <section className="prose prose-slate mt-10 max-w-none dark:prose-invert">
           <h2>{t("tool.howItWorks")}</h2>
