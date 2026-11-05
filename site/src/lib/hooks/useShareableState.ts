@@ -13,8 +13,9 @@ import { useEffect, useRef, useState } from "react";
  *   履歴が積まれて「戻る」が壊れるため使わない。
  * - 初期レンダーでは書かない（useLocalDraft と同様 prevRef ガード）。
  *   これにより「素の /tools/bmi-calculator」が勝手に ?s= 付き URL に変わらない。
- * - 値は端末を離れない。URL に載るのはユーザー自身が共有した時だけで、
- *   サーバーへの送信はどこにも無い（?s= はクライアントでのみ読まれる）。
+ * - 注意: ?s= は入力時にブラウザーのURLを更新する。URLは共有時だけでなく
+ *   履歴、アクセスログ、Referrerなどを通じて外部に伝わる可能性がある。
+ *   個人情報や機密値をこのフックの状態に含めないこと。
  */
 
 const MAX_SHARED_STATE_LENGTH = 4096;
