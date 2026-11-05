@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, type RefObject } from "react";
+import { isShareableInputType, isSharePayloadWithinLimit } from "./share-input-policy";
 
 /**
  * ツール本体の DOM 入力を丸ごと ?s= に載せ、共有リンクから復元する。
@@ -45,7 +46,7 @@ function fields(root: HTMLElement): HTMLElement[] {
   ).filter((el) => {
     if (el instanceof HTMLInputElement) {
       // file は値をプログラムから復元できない。button/submit は状態を持たない。
-      return !["file", "button", "submit", "reset", "image", "password", "hidden"].includes(el.type);
+      return isShareableInputType(el.type);
     }
     return true;
   });
@@ -112,7 +113,7 @@ function encodeState(value: object): string {
 
 function decodeState(raw: string): unknown {
   // Ignore oversized external URLs before base64 decoding and JSON parsing.
-  if (raw.length > MAX_ENCODED) throw new Error("Share state exceeds size limit");
+  if (!isSharePayloadWithinLimit(raw, MAX_ENCODED)) throw new Error("Share state exceeds size limit");
   const b64 = raw.replace(/-/g, "+").replace(/_/g, "/");
   const bin = atob(b64);
   const bytes = new Uint8Array(bin.length);
@@ -213,7 +214,7 @@ export function useAutoShareableState(
       timer = window.setTimeout(() => {
         try {
           const encoded = encodeState(snapshot(root));
-          if (encoded.length > MAX_ENCODED) return;
+          if (!isSharePayloadWithinLimit(encoded, MAX_ENCODED)) return;
           const url = new URL(window.location.href);
           url.searchParams.set("s", encoded);
           window.history.replaceState(null, "", url.toString());
