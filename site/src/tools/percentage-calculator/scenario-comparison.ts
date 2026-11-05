@@ -2,8 +2,10 @@ export type PercentageMode = "pct_of" | "what_pct" | "pct_change" | "pct_add" | 
 
 /** Pure calculation shared by the live result and A/B comparison. */
 export function scenarioResult(mode: PercentageMode, a: string, b: string): number | null {
-  const x = Number.parseFloat(a);
-  const y = Number.parseFloat(b);
+  // Number.parseFloat("20abc") silently accepts 20; reject malformed input instead.
+  if (!a.trim() || !b.trim()) return null;
+  const x = Number(a.trim());
+  const y = Number(b.trim());
   if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
   let value: number;
   switch (mode) {
