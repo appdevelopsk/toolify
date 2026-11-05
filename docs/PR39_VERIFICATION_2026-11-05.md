@@ -61,3 +61,11 @@ This file is a checkpoint, not a passing full-release certificate.
 - The generic URL restore path now ignores decoded field values unless they are strings or booleans, and skips non-integer or out-of-bounds mode button indices. Added source regression checks.
 - `git ls-remote` still cannot resolve github.com in the working container, preventing a full checkout and project-level npm ci, Vitest, Next build and browser QA.
 - Remains **NO-GO** until a full owner-accessible checkout passes all tests, browser/privacy/analytics checks, and an explicit production deploy. No live engagement improvement measured.
+
+## 2026-11-06 — URL-driven button activation risk
+- Identified that auto-shared URLs previously could trigger clicks on arbitrary tool buttons by index, not just mode controls.
+- Limited URL replay and recording of mode-button indices to sibling groups with at least two buttons and an existing active-mode styling marker; disabled and in-form submit controls cannot be replayed.
+- Preserved triangle-calculator's non-form mode buttons, which have browser-default submit type but are not form submission controls.
+- Added a source regression assertion in `share-input-policy.integration.test.ts`. GitHub readback confirmed code and test source; the project Vitest suite and browser QA **have not run**.
+- Remaining test: valid triangle right/sss/sas links, malicious links pointing to action buttons, mode toggles, alternate tools with button-driven modes, mobile UI and sharing result links.
+- Release stays NO-GO until the owner-accessible full build and manual QA pass. No performance or revenue lift has been demonstrated.
