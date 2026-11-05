@@ -4,7 +4,7 @@ export type PercentageMode = "pct_of" | "what_pct" | "pct_change" | "pct_add" | 
 export function scenarioResult(mode: PercentageMode, a: string, b: string): number | null {
   // Number.parseFloat("20abc") silently accepts 20; reject malformed input instead.
   if (!a.trim() || !b.trim()) return null;
-  const decimal = /^[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:[eE][+-]?\\d+)?$/;
+  const decimal = /^[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?$/;
   if (!decimal.test(a.trim()) || !decimal.test(b.trim())) return null;
   const x = Number(a.trim());
   const y = Number(b.trim());
