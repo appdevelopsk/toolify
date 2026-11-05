@@ -52,7 +52,7 @@ for (const path of paths) {
     }
     if (!page.contentType.includes("text/html")) failures.push(`${path}: not HTML (${page.contentType})`);
     const product = ctas.get(path);
-    if (product && !hasSoftwareAnchor(page.text, product)) {
+    if (product && !hasSoftwareAnchor(page.text, product, path.split("/")[1])) {
       failures.push(`${path}: expected software CTA missing (${product})`);
     }
     if (expectedIndexed.includes(path) && hasNoindex(page.text)) {
