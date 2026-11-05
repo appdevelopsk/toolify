@@ -75,6 +75,7 @@ export default function PercentageCalculator() {
           <input
             inputMode="decimal"
             value={a}
+            maxLength={40}
             onChange={(e) => setA(e.target.value)}
             className="mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
           />
@@ -84,6 +85,7 @@ export default function PercentageCalculator() {
           <input
             inputMode="decimal"
             value={b}
+            maxLength={40}
             onChange={(e) => setB(e.target.value)}
             className="mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
           />
