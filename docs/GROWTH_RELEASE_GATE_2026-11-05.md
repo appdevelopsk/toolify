@@ -68,3 +68,6 @@ This performs read-only HTTP checks on key en/ja tool and software pages, expect
 
 ## Extended release safeguards (2026-11-05)
 The `audit:live-growth` script now also checks that known index-eligible core tool pages do **not** return a noindex meta tag and appear in the served sitemap, while verifying same-origin self-canonical and unexpected redirects. This is a *post-deployment* check; it intentionally fails when the current production deployment does not yet contain the PR's CTA. Do not run it as a pre-deploy gate against the old production version.
+
+## Dependency-free regression test (2026-11-05)
+`cd site && npm run test:smoke-html` runs the Node built-in test suite for HTML meta robots, canonical extraction, and actual on-domain, same-locale software CTA anchor detection. This was also exercised in an isolated Node.js 22 environment (3 test groups passing). It is **not** a substitute for Next.js/Vitest full tests, real browser QA or deploy verification.
