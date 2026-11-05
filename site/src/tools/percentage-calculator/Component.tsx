@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { scenarioResult, type PercentageMode } from "./scenario-comparison";
+import { scenarioCopy } from "./scenario-copy";
 import { useLocale, useTranslations } from "next-intl";
 import { useShareableState } from "@/lib/hooks/useShareableState";
 
@@ -11,6 +12,7 @@ const MODES: Mode[] = ["pct_of", "what_pct", "pct_change", "pct_add", "pct_sub"]
 export default function PercentageCalculator() {
   const t = useTranslations("tools.percentage-calculator");
   const locale = useLocale();
+  const comparisonText = scenarioCopy(locale);
   const [mode, setMode] = useState<Mode>("pct_of");
   // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
   // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
@@ -93,17 +95,17 @@ export default function PercentageCalculator() {
       </div>
       {/* Temporary comparison: no automatic storage, analytics payload, or server transfer. */}
       <section className="mt-5 rounded-lg border border-slate-200 p-4 dark:border-slate-700">
-        <h3 className="text-sm font-semibold">{locale.startsWith("ja") ? "条件を比較" : "A / B"}</h3>
+        <h3 className="text-sm font-semibold">{comparisonText.heading}</h3>
         <div className="mt-3 flex flex-wrap gap-2">
-          <button type="button" disabled={result === null} onClick={() => { if (result !== null) setBaseline({ mode, a, b, value: result }); }} className="min-h-11 rounded-lg bg-brand-600 px-3 py-2 text-sm font-medium text-white disabled:opacity-50">{locale.startsWith("ja") ? "現在の条件をAに保存" : "Set A"}</button>
-          {baseline && <button type="button" onClick={() => { setMode(baseline.mode); setA(baseline.a); setB(baseline.b); }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{locale.startsWith("ja") ? "Aに戻す" : "Restore A"}</button>}
-          {baseline && <button type="button" onClick={() => setBaseline(null)} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{locale.startsWith("ja") ? "比較を解除" : "Clear A"}</button>}
+          <button type="button" disabled={result === null} onClick={() => { if (result !== null) setBaseline({ mode, a, b, value: result }); }} className="min-h-11 rounded-lg bg-brand-600 px-3 py-2 text-sm font-medium text-white disabled:opacity-50">{comparisonText.save}</button>
+          {baseline && <button type="button" onClick={() => { setMode(baseline.mode); setA(baseline.a); setB(baseline.b); }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{comparisonText.restore}</button>}
+          {baseline && <button type="button" onClick={() => setBaseline(null)} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{comparisonText.clear}</button>}
         </div>
         {baseline && (
           <dl className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3" aria-live="polite">
             <div><dt className="text-xs font-semibold">A · {t(`mode.${baseline.mode}.title`)}</dt><dd className="mt-1 text-xl font-semibold tabular-nums">{fmt.format(baseline.value)}</dd></div>
             <div><dt className="text-xs font-semibold">B · {t(`mode.${mode}.title`)}</dt><dd className="mt-1 text-xl font-semibold tabular-nums">{result === null ? "—" : fmt.format(result)}</dd></div>
-            <div><dt className="text-xs font-semibold">{locale.startsWith("ja") ? "差分 (B − A)" : "B − A"}</dt><dd className="mt-1 text-xl font-semibold tabular-nums">{result === null ? "—" : fmt.format(result - baseline.value)}</dd></div>
+            <div><dt className="text-xs font-semibold">{comparisonText.difference}</dt><dd className="mt-1 text-xl font-semibold tabular-nums">{result === null ? "—" : fmt.format(result - baseline.value)}</dd></div>
           </dl>
         )}
       </section>
