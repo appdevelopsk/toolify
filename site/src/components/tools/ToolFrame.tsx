@@ -6,6 +6,7 @@ import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { SisterSiteCta } from "@/components/cross/SisterSiteCta";
 import { ToolInteractionTracker } from "./ToolInteractionTracker";
 import { RelatedToolLink } from "./RelatedToolLink";
+import { ContinueWithRecent } from "./ContinueWithRecent";
 import { TrustBox } from "./TrustBox";
 import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
@@ -94,6 +95,9 @@ export function ToolFrame({ meta, title, description, related, children, article
             </ul>
           </section>
         )}
+
+        {/* Return-visit path: show up to three previously used tools without storing inputs. */}
+        <ContinueWithRecent currentSlug={meta.slug} category={meta.category} />
 
         <section className="prose prose-slate mt-10 max-w-none dark:prose-invert">
           <h2>{t("tool.howItWorks")}</h2>
