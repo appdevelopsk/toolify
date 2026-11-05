@@ -132,6 +132,16 @@ function buttons(root: HTMLElement): HTMLButtonElement[] {
   return Array.from(root.querySelectorAll<HTMLButtonElement>("button"));
 }
 
+/** Only buttons within an active multi-button mode selector may be replayed from a URL. */
+function isModeButton(btn: HTMLButtonElement): boolean {
+  const parent = btn.parentElement;
+  if (!parent || btn.disabled || btn.type === "submit") return false;
+  const siblings = Array.from(parent.children).filter(
+    (el): el is HTMLButtonElement => el instanceof HTMLButtonElement,
+  );
+  return siblings.length >= 2 && siblings.some((b) => b.className.includes(ACTIVE_CLASS));
+}
+
 /** 現在の DOM 状態を構造キー→値のオブジェクトに落とす。 */
 function snapshot(root: HTMLElement): Record<string, string | boolean> {
   const seen = new Map<string, number>();
@@ -144,7 +154,7 @@ function snapshot(root: HTMLElement): Record<string, string | boolean> {
   }
   // 選択中モードボタンの index 一覧(カンマ区切り)。該当が無ければキー自体を作らない。
   const active = buttons(root)
-    .map((b, i) => (b.className.includes(ACTIVE_CLASS) ? i : -1))
+    .map((b, i) => (isModeButton(b) && b.className.includes(ACTIVE_CLASS) ? i : -1))
     .filter((i) => i >= 0);
   if (active.length > 0) out.b = active.join(",");
   return out;
@@ -194,7 +204,7 @@ export function useAutoShareableState(
               const i = Number(raw);
               if (!Number.isSafeInteger(i) || i < 0 || i >= all.length) continue;
               const btn = all[i];
-              if (btn && !btn.className.includes(ACTIVE_CLASS)) btn.click();
+              if (btn && isModeButton(btn) && !btn.className.includes(ACTIVE_CLASS)) btn.click();
             }
           }
           // 2nd: 切替で現れたフィールドを含めて全体を当てる。
