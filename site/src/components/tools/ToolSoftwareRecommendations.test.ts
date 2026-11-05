@@ -5,7 +5,7 @@ import { INDEXED_SLUGS, getTool } from "@/lib/tools/registry";
 
 describe("tool -> available software recommendations", () => {
   it("points only to products currently available", () => {
-    const available = new Set(AVAILABLE_SOFTWARE.map((product) => product.slug));
+    const available = new Set<string>(AVAILABLE_SOFTWARE.map((product) => product.slug));
     for (const [tool, recommendations] of Object.entries(SOFTWARE_RECOMMENDATIONS)) {
       expect(getTool(tool), `Unknown tool: ${tool}`).toBeDefined();
       expect(recommendations.length, tool).toBeGreaterThan(0);
