@@ -151,3 +151,16 @@ export function trackRecentToolClick(p: ToolEventParams & { destination: string 
     destination_tool: p.destination,
   });
 }
+
+/** Privacy-safe interaction measurement for percentage scenario features. No inputs or results. */
+export function trackScenarioAction(p: {
+  tool: "percentage-calculator";
+  locale?: string;
+  action: "compare_save" | "compare_restore" | "compare_clear" | "draft_save" | "draft_restore" | "draft_clear";
+}): void {
+  emit("scenario_action", {
+    tool_slug: p.tool,
+    ...(p.locale ? { locale: p.locale } : {}),
+    action: p.action,
+  });
+}
