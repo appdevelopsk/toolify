@@ -1,4 +1,7 @@
+"use client";
+
 import { Link } from "@/lib/i18n/navigation";
+import { trackSoftwareClick } from "@/lib/analytics/events";
 import { AVAILABLE_SOFTWARE } from "@/lib/software/catalog";
 import { softwareCopy } from "@/lib/software/copy";
 
@@ -34,6 +37,7 @@ export function ToolSoftwareRecommendations({ slug, locale }: { slug: string; lo
             <Link
               href={`/software/${product.slug}`}
               prefetch={false}
+              onClick={() => trackSoftwareClick({ tool: slug, locale, destination: product.slug })}
               className="inline-flex min-h-11 items-center rounded-lg border border-brand-600 px-3 py-2 text-sm font-semibold text-brand-700 hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:text-brand-300 dark:hover:bg-slate-800"
             >
               {copy.open}: {product.name}
