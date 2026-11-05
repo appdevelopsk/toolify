@@ -51,11 +51,12 @@ export default function PercentageCalculator() {
 
   return (
     <div>
-      <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
+      <div role="group" aria-label={comparisonText.heading} className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
         {MODES.map((m) => (
           <button
             key={m}
             onClick={() => setMode(m)}
+            aria-pressed={mode === m}
             className={`rounded border px-3 py-2 text-sm ${
               mode === m
                 ? "border-brand-500 bg-brand-50 dark:bg-brand-900/20"
@@ -142,8 +143,8 @@ export default function PercentageCalculator() {
         <p className="mt-2 text-xs text-slate-600 dark:text-slate-400">{resumeText.disclosure}</p>
       </section>
       {/* Temporary comparison: no automatic storage, analytics payload, or server transfer. */}
-      <section className="mt-5 rounded-lg border border-slate-200 p-4 dark:border-slate-700">
-        <h3 className="text-sm font-semibold">{comparisonText.heading}</h3>
+      <section className="mt-5 rounded-lg border border-slate-200 p-4 dark:border-slate-700" aria-labelledby="percentage-compare-heading">
+        <h3 id="percentage-compare-heading" className="text-sm font-semibold">{comparisonText.heading}</h3>
         <div className="mt-3 flex flex-wrap gap-2">
           <button type="button" disabled={result === null} onClick={() => { if (result !== null) { setBaseline({ mode, a, b, value: result }); trackScenarioAction({ tool: "percentage-calculator", locale, action: "compare_save" }); } }} className="min-h-11 rounded-lg bg-brand-600 px-3 py-2 text-sm font-medium text-white disabled:opacity-50">{comparisonText.save}</button>
           {baseline && <button type="button" onClick={() => { setMode(baseline.mode); setA(baseline.a); setB(baseline.b); trackScenarioAction({ tool: "percentage-calculator", locale, action: "compare_restore" }); }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{comparisonText.restore}</button>}
