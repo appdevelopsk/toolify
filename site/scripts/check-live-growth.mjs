@@ -26,6 +26,11 @@ const ctas = new Map([
   ["/en/tools/csv-json-converter", "csv-cleaner-pro"],
 ]);
 const failures = [];
+const expectedIndexed = [
+  "/en/tools/character-frequency",
+  "/ja/tools/character-frequency",
+  "/en/tools/reverse-text-generator",
+];
 async function get(path) {
   const url = new URL(path, base);
   const response = await fetch(url, {
@@ -48,6 +53,9 @@ for (const path of paths) {
     const product = ctas.get(path);
     if (product && !page.text.includes(`/software/${product}`)) {
       failures.push(`${path}: expected software CTA missing (${product})`);
+    }
+    if (expectedIndexed.includes(path) && /<meta[^>]+name="robots"[^>]*content="[^"]*noindex/i.test(page.text)) {
+      failures.push(`${path}: indexed core tool unexpectedly noindex`);
     }
     if (path.includes("/tools/")) {
       const canonicalTag = page.text.match(/<link[^>]*rel="canonical"[^>]*>/i)?.[0];
@@ -73,7 +81,12 @@ for (const path of ["/robots.txt", "/sitemap.xml"]) {
     const page = await get(path);
     if (page.status !== 200) failures.push(`${path}: HTTP ${page.status}`);
     if (path === "/robots.txt" && !page.text.includes("Sitemap:")) failures.push("robots.txt: missing sitemap reference");
-    if (path === "/sitemap.xml" && !page.text.includes("<loc>")) failures.push("sitemap.xml: no URL locations");
+    if (path === "/sitemap.xml") {
+      if (!page.text.includes("<loc>")) failures.push("sitemap.xml: no URL locations");
+      for (const target of expectedIndexed) {
+        if (!page.text.includes(`${base.origin}${target}`)) failures.push(`sitemap.xml: expected indexed tool missing (${target})`);
+      }
+    }
     console.log(`${page.status} ${path}`);
   } catch (error) {
     failures.push(`${path}: ${error instanceof Error ? error.message : String(error)}`);
