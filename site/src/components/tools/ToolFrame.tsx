@@ -97,7 +97,7 @@ export function ToolFrame({ meta, title, description, related, children, article
         )}
 
         {/* Return-visit path: show up to three previously used tools without storing inputs. */}
-        <ContinueWithRecent currentSlug={meta.slug} category={meta.category} />
+        <ContinueWithRecent currentSlug={meta.slug} category={meta.category} relatedSlugs={related.map((r) => r.slug)} />
 
         <section className="prose prose-slate mt-10 max-w-none dark:prose-invert">
           <h2>{t("tool.howItWorks")}</h2>
