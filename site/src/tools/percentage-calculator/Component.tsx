@@ -116,9 +116,22 @@ export default function PercentageCalculator() {
               setSaved(parseSavedScenario(next, Date.now()));
               trackScenarioAction({ tool: "percentage-calculator", locale, action: "draft_save" });
             } catch { /* Storage unavailable: do not interrupt calculation. */ }
-          }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium dark:border-slate-700">{resumeText.save}</button>
+          }} disabled={result === null} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700">{resumeText.save}</button>
           {saved && <>
-            <button type="button" onClick={() => { setMode(saved.mode); setA(saved.a); setB(saved.b); trackScenarioAction({ tool: "percentage-calculator", locale, action: "draft_restore" }); }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{resumeText.restore}</button>
+            <button type="button" onClick={() => {
+              try {
+                const valid = parseSavedScenario(window.localStorage.getItem(SCENARIO_STORAGE_KEY), Date.now());
+                if (!valid) {
+                  window.localStorage.removeItem(SCENARIO_STORAGE_KEY);
+                  setSaved(null);
+                  return;
+                }
+                setMode(valid.mode);
+                setA(valid.a);
+                setB(valid.b);
+                trackScenarioAction({ tool: "percentage-calculator", locale, action: "draft_restore" });
+              } catch { setSaved(null); }
+            }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{resumeText.restore}</button>
             <button type="button" onClick={() => {
               try { window.localStorage.removeItem(SCENARIO_STORAGE_KEY); } catch {}
               setSaved(null);
