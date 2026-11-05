@@ -23,3 +23,8 @@ This file is a checkpoint, not a passing full-release certificate.
 - Added maxLength=40 to both percentage number inputs to match URL restore and saved draft limits.
 - English production page inspected: new compare and resume sections not found in fetched HTML.
 - No merge, deployment, or verified engagement uplift.
+
+## Shared-link restore hardening (2026-11-05)
+- Added `scenario-share.ts` and `scenario-share.test.ts` to reject incomplete, malformed, oversized, and non-calculable URL payloads as a whole. Calculator fields are no longer partially restored from an invalid `?s=` payload.
+- In the isolated local TypeScript harness, all four pure source modules passed strict checking. The existing 29 assertions and nine new share-state assertions passed (38 total). This is not a full repository Vitest run or Next.js build.
+- No GitHub Actions, production deployment, or verified engagement uplift.
