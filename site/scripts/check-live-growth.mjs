@@ -26,10 +26,10 @@ const ctas = new Map([
   ["/en/tools/csv-json-converter", "csv-cleaner-pro"],
 ]);
 const failures = [];
-const hasNoindex = (html) => [...html.matchAll(/<meta\\b[^>]*>/gi)].some(([tag]) => {
-  const name = tag.match(/\\bname=["\x27](robots|googlebot)["\x27]/i);
-  const content = tag.match(/\\bcontent=["\x27]([^"\x27]+)["\x27]/i)?.[1] ?? "";
-  return Boolean(name) && /(?:^|[,\\s])noindex(?:$|[,\\s])/i.test(content);
+const hasNoindex = (html) => [...html.matchAll(/<meta[^>]*>/gi)].some(([tag]) => {
+  const name = tag.match(/name=["'](robots|googlebot)["']/i);
+  const content = tag.match(/content=["']([^"']+)["']/i)?.[1] ?? "";
+  return Boolean(name) && /(^|[ ,])noindex($|[ ,])/i.test(content);
 });
 const expectedIndexed = [
   "/en/tools/character-frequency",
