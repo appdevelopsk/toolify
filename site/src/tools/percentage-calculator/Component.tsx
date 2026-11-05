@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { scenarioResult, type PercentageMode } from "./scenario-comparison";
-import { scenarioCopy } from "./scenario-copy";
+import { scenarioCopy, resumeCopy } from "./scenario-copy";
+import { SCENARIO_STORAGE_KEY, parseSavedScenario, serializeSavedScenario, type SavedPercentageScenario } from "./scenario-resume";
 import { useLocale, useTranslations } from "next-intl";
 import { useShareableState } from "@/lib/hooks/useShareableState";
 
@@ -13,12 +14,23 @@ export default function PercentageCalculator() {
   const t = useTranslations("tools.percentage-calculator");
   const locale = useLocale();
   const comparisonText = scenarioCopy(locale);
+  const resumeText = resumeCopy(locale);
   const [mode, setMode] = useState<Mode>("pct_of");
   // 空欄で着地すると結果カードが何も描かれず、道具が動くことが伝わらないまま離脱する。
   // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
   const [a, setA] = useState("20");
   const [b, setB] = useState("250");
   const [baseline, setBaseline] = useState<{ mode: Mode; a: string; b: string; value: number } | null>(null);
+  const [saved, setSaved] = useState<SavedPercentageScenario | null>(null);
+
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(SCENARIO_STORAGE_KEY);
+      const value = parseSavedScenario(raw, Date.now());
+      setSaved(value);
+      if (raw && !value) window.localStorage.removeItem(SCENARIO_STORAGE_KEY);
+    } catch { /* Browser storage may be disabled; calculator remains functional. */ }
+  }, []);
 
   useShareableState("percentage-calculator", { mode, a, b }, (d) => {
     if (typeof d.mode === "string" && (MODES as string[]).includes(d.mode)) setMode(d.mode as Mode);
@@ -93,6 +105,26 @@ export default function PercentageCalculator() {
           <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
         )}
       </div>
+      <section className="mt-5 rounded-lg border border-slate-200 p-4 dark:border-slate-700" aria-label={resumeText.save}>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={() => {
+            try {
+              const next = serializeSavedScenario(mode, a, b, Date.now());
+              if (!next) return;
+              window.localStorage.setItem(SCENARIO_STORAGE_KEY, next);
+              setSaved(parseSavedScenario(next, Date.now()));
+            } catch { /* Storage unavailable: do not interrupt calculation. */ }
+          }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium dark:border-slate-700">{resumeText.save}</button>
+          {saved && <>
+            <button type="button" onClick={() => { setMode(saved.mode); setA(saved.a); setB(saved.b); }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{resumeText.restore}</button>
+            <button type="button" onClick={() => {
+              try { window.localStorage.removeItem(SCENARIO_STORAGE_KEY); } catch {}
+              setSaved(null);
+            }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{resumeText.clear}</button>
+          </>}
+        </div>
+        <p className="mt-2 text-xs text-slate-600 dark:text-slate-400">{resumeText.disclosure}</p>
+      </section>
       {/* Temporary comparison: no automatic storage, analytics payload, or server transfer. */}
       <section className="mt-5 rounded-lg border border-slate-200 p-4 dark:border-slate-700">
         <h3 className="text-sm font-semibold">{comparisonText.heading}</h3>
