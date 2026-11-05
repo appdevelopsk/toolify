@@ -35,8 +35,9 @@ export default function PercentageCalculator() {
 
   useShareableState("percentage-calculator", { mode, a, b }, (d) => {
     if (typeof d.mode === "string" && (MODES as string[]).includes(d.mode)) setMode(d.mode as Mode);
-    if (typeof d.a === "string") setA(d.a);
-    if (typeof d.b === "string") setB(d.b);
+    // Untrusted share URLs must not inject unbounded strings into live inputs.
+    if (typeof d.a === "string" && d.a.length <= 40) setA(d.a);
+    if (typeof d.b === "string" && d.b.length <= 40) setB(d.b);
   });
 
   const result = useMemo(() => scenarioResult(mode, a, b), [mode, a, b]);
