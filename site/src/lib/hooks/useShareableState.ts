@@ -75,6 +75,7 @@ export function useShareableState<T extends object>(
       const url = new URL(window.location.href);
       url.searchParams.set("s", encoded);
       window.history.replaceState(null, "", url.toString());
+      window.dispatchEvent(new Event("toolify:share-state-change"));
     } catch {
       /* URL が長すぎる等 — 共有できないだけで計算は続行 */
     }
