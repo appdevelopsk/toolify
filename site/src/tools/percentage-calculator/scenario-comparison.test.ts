@@ -13,6 +13,9 @@ describe("percentage scenarios", () => {
     expect(scenarioResult("pct_of", "", "250")).toBeNull();
     expect(scenarioResult("pct_of", "   ", "250")).toBeNull();
     expect(scenarioResult("pct_of", "20xyz", "250")).toBeNull();
+    expect(scenarioResult("pct_of", "0x10", "250")).toBeNull();
+    expect(scenarioResult("pct_of", "20%", "250")).toBeNull();
+    expect(scenarioResult("pct_of", "-2.5", "100")).toBe(-2.5);
     expect(scenarioResult("what_pct", "20", "0")).toBeNull();
     expect(scenarioResult("pct_change", "0", "20")).toBeNull();
     expect(scenarioResult("pct_of", "Infinity", "250")).toBeNull();
