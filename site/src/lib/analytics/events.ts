@@ -143,3 +143,11 @@ export function trackAffiliateClick(p: {
     ...(p.locale ? { locale: p.locale } : {}),
   });
 }
+
+/** Returning-visitor navigation. No inputs, query content, or URL values are tracked. */
+export function trackRecentToolClick(p: ToolEventParams & { destination: string }): void {
+  emit("recent_tool_click", {
+    ...toParams(p),
+    destination_tool: p.destination,
+  });
+}
