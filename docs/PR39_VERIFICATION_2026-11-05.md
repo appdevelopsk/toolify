@@ -48,3 +48,16 @@ This file is a checkpoint, not a passing full-release certificate.
 - Added `share-input-policy.integration.test.ts` alongside policy unit tests. New source verified via GitHub readback. A reconstructed local copy of the pure `share-input-policy.ts` passed strict TypeScript compilation and **36 independent Node assertions**. The new Vitest source was **not** run as a full project test.
 - Corrected both sharing hook comments: state placed in `?s=` is **not strictly device-local**; URL history, HTTP requests, copied links and referrers can expose it. Arbitrary remaining free-text values are not guaranteed non-sensitive; a tool-by-tool privacy assessment remains required before release.
 - Run the full local release gate, plus manual tests that standard numeric sharing still works, sensitive autofilled values never enter `?s=`, older links open acceptably, and no analytics payload includes entered values.
+
+## 2026-11-06 security follow-up
+- Fixed auto-sharing privacy exclusions to respect data-private or data-share="off" on enclosing field groups, not just on the input itself.
+- Updated share-input-policy.integration.test.ts to assert the ancestor exclusion selector. GitHub readback confirmed the change.
+- Full local test/build remains unavailable in the present execution environment; this update is not evidence of successful production deployment or GA4 uplift.
+
+## 2026-11-06: release blocker re-evaluation
+- Verified every npm script invoked by `scripts/check-engagement-release.sh` exists in `site/package.json`. This establishes script-name consistency only; it does **not** execute the scripts.
+- Six connector-readback consistency checks passed for release script names, ancestor privacy guard, input/textarea/select exclusion, URL length limits, lack of ShareBar polling and navigation-before-ad order.
+- Fixed a fragile string-escaping expectation in `share-input-policy.integration.test.ts`.
+- The generic URL restore path now ignores decoded field values unless they are strings or booleans, and skips non-integer or out-of-bounds mode button indices. Added source regression checks.
+- `git ls-remote` still cannot resolve github.com in the working container, preventing a full checkout and project-level npm ci, Vitest, Next build and browser QA.
+- Remains **NO-GO** until a full owner-accessible checkout passes all tests, browser/privacy/analytics checks, and an explicit production deploy. No live engagement improvement measured.
