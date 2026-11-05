@@ -26,6 +26,11 @@ const ctas = new Map([
   ["/en/tools/csv-json-converter", "csv-cleaner-pro"],
 ]);
 const failures = [];
+const hasNoindex = (html) => [...html.matchAll(/<meta\\b[^>]*>/gi)].some(([tag]) => {
+  const name = tag.match(/\\bname=["\x27](robots|googlebot)["\x27]/i);
+  const content = tag.match(/\\bcontent=["\x27]([^"\x27]+)["\x27]/i)?.[1] ?? "";
+  return Boolean(name) && /(?:^|[,\\s])noindex(?:$|[,\\s])/i.test(content);
+});
 const expectedIndexed = [
   "/en/tools/character-frequency",
   "/ja/tools/character-frequency",
@@ -54,7 +59,7 @@ for (const path of paths) {
     if (product && !page.text.includes(`/software/${product}`)) {
       failures.push(`${path}: expected software CTA missing (${product})`);
     }
-    if (expectedIndexed.includes(path) && /<meta[^>]+name="robots"[^>]*content="[^"]*noindex/i.test(page.text)) {
+    if (expectedIndexed.includes(path) && hasNoindex(page.text)) {
       failures.push(`${path}: indexed core tool unexpectedly noindex`);
     }
     if (path.includes("/tools/")) {
