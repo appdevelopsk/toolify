@@ -5,6 +5,7 @@ import { useRecent } from "@/lib/recent";
 import { useSearchIndex } from "@/lib/search/useSearchIndex";
 import { Link } from "@/lib/i18n/navigation";
 import { trackRecentToolClick } from "@/lib/analytics/events";
+import { selectRecentRecommendations } from "@/lib/tools/recent-recommendations";
 
 /**
  * Offers a contextual return path after completing a tool.
@@ -15,11 +16,12 @@ export function ContinueWithRecent({ currentSlug, category }: { currentSlug: str
   const locale = useLocale();
   const t = useTranslations("tool");
   const recent = useRecent();
-  const alternatives = recent.filter((slug) => slug !== currentSlug).slice(0, 3);
-  const index = useSearchIndex(locale, alternatives.length > 0);
+  const hasHistory = recent.some((slug) => slug !== currentSlug);
+  const index = useSearchIndex(locale, hasHistory);
 
-  if (!index || alternatives.length === 0) return null;
+  if (!index || !hasHistory) return null;
   const bySlug = new Map(index.map((item) => [item.slug, item]));
+  const alternatives = selectRecentRecommendations(recent, currentSlug, new Set(bySlug.keys()));
   const items = alternatives.map((slug) => bySlug.get(slug)).filter((item) => item !== undefined);
   if (items.length === 0) return null;
 
