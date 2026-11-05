@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { SOFTWARE_RECOMMENDATIONS } from "./ToolSoftwareRecommendations";
 import { AVAILABLE_SOFTWARE } from "@/lib/software/catalog";
+import { INDEXED_SLUGS } from "@/lib/tools/registry";
 
 describe("tool -> available software recommendations", () => {
   it("points only to products currently available", () => {
@@ -10,6 +11,12 @@ describe("tool -> available software recommendations", () => {
       expect(new Set(recommendations).size, tool).toBe(recommendations.length);
       for (const slug of recommendations) expect(available.has(slug), `${tool} -> ${slug}`).toBe(true);
     }
+  });
+
+  it("includes at least one already-indexable tool page", () => {
+    const indexedMatches = Object.keys(SOFTWARE_RECOMMENDATIONS).filter((slug) => INDEXED_SLUGS.has(slug));
+    expect(indexedMatches).toContain("reverse-text-generator");
+    expect(indexedMatches).toContain("character-frequency");
   });
 
   it("routes CSV and JSON use cases to related free products", () => {
