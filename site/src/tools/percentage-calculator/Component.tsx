@@ -134,9 +134,13 @@ export default function PercentageCalculator() {
               } catch { setSaved(null); }
             }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{resumeText.restore}</button>
             <button type="button" onClick={() => {
-              try { window.localStorage.removeItem(SCENARIO_STORAGE_KEY); } catch {}
-              setSaved(null);
-              trackScenarioAction({ tool: "percentage-calculator", locale, action: "draft_clear" });
+              try {
+                window.localStorage.removeItem(SCENARIO_STORAGE_KEY);
+                setSaved(null);
+                trackScenarioAction({ tool: "percentage-calculator", locale, action: "draft_clear" });
+              } catch {
+                // Do not report successful deletion if browser storage refused it.
+              }
             }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{resumeText.clear}</button>
           </>}
         </div>
