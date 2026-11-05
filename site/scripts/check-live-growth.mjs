@@ -1,3 +1,4 @@
+import { hasNoindex, canonicalHref, hasSoftwareAnchor } from "./growth-html-checks.mjs";
 /**
  * Read-only production smoke check for growth funnel rollout.
  * Usage: SITE_URL=https://toolify365.com node scripts/check-live-growth.mjs
@@ -26,11 +27,6 @@ const ctas = new Map([
   ["/en/tools/csv-json-converter", "csv-cleaner-pro"],
 ]);
 const failures = [];
-const hasNoindex = (html) => [...html.matchAll(/<meta[^>]*>/gi)].some(([tag]) => {
-  const name = tag.match(/name=["'](robots|googlebot)["']/i);
-  const content = tag.match(/content=["']([^"']+)["']/i)?.[1] ?? "";
-  return Boolean(name) && /(^|[ ,])noindex($|[ ,])/i.test(content);
-});
 const expectedIndexed = [
   "/en/tools/character-frequency",
   "/ja/tools/character-frequency",
@@ -56,20 +52,19 @@ for (const path of paths) {
     }
     if (!page.contentType.includes("text/html")) failures.push(`${path}: not HTML (${page.contentType})`);
     const product = ctas.get(path);
-    if (product && !page.text.includes(`/software/${product}`)) {
+    if (product && !hasSoftwareAnchor(page.text, product)) {
       failures.push(`${path}: expected software CTA missing (${product})`);
     }
     if (expectedIndexed.includes(path) && hasNoindex(page.text)) {
       failures.push(`${path}: indexed core tool unexpectedly noindex`);
     }
     if (path.includes("/tools/")) {
-      const canonicalTag = page.text.match(/<link[^>]*rel="canonical"[^>]*>/i)?.[0];
-      const canonicalHref = canonicalTag?.match(/href="([^"]+)"/i)?.[1];
-      if (!canonicalHref) {
+      const canonicalValue = canonicalHref(page.text);
+      if (!canonicalValue) {
         failures.push(`${path}: canonical link missing`);
       } else {
         try {
-          const canonical = new URL(canonicalHref.replace(/&amp;/g, "&"), base);
+          const canonical = new URL(canonicalValue, base);
           if (canonical.origin !== base.origin || canonical.pathname.replace(/[/]$/, "") !== path) {
             failures.push(`${path}: unexpected canonical ${canonical.href}`);
           }
