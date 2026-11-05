@@ -71,3 +71,16 @@ The `audit:live-growth` script now also checks that known index-eligible core to
 
 ## Dependency-free regression test (2026-11-05)
 `cd site && npm run test:smoke-html` runs the Node built-in test suite for HTML meta robots, canonical extraction, and actual on-domain, same-locale software CTA anchor detection. This was also exercised in an isolated Node.js 22 environment (3 test groups passing). It is **not** a substitute for Next.js/Vitest full tests, real browser QA or deploy verification.
+
+## Parallel PR integration guard — PR #39
+PR #39 (engagement) also edits `site/src/components/tools/ToolFrame.tsx` and `site/src/lib/analytics/events.ts`, both changed in this PR #38. Do **not** overwrite either file with an entire version copied from one PR while merging the other.
+
+When integrating:
+1. Rebase/merge both branches locally in a scratch branch (not `main`).
+2. Preserve in `ToolFrame.tsx` BOTH PR #39's engagement/navigation UI and PR #38's `ToolSoftwareRecommendations` section.
+3. Preserve in `events.ts` ALL existing event exports plus PR #39 event changes and PR #38 `trackSoftwareClick`, `trackSoftwareProcess`, `trackSoftwareDownload`.
+4. Resolve conflicts, run TypeScript, all tests including `test:smoke-html`, audits and build, and review DOM/keyboard order of CTA vs related/recents.
+5. Only after passing checks merge/release through the owner process. Avoid untested sequential merges.
+
+## Isolated execution evidence
+Node.js 22 `node --test` was run on exact reproduced copies of `growth-html-checks.mjs` and its test cases in the working container: 3/3 subtests passed (robots/googlebot; canonical; valid destination/locale/origin). This does **not** validate the complete Next.js application, GitHub PR head in a cloned checkout, nor the deployed website.
