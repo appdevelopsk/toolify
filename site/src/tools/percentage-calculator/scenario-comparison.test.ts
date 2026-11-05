@@ -11,6 +11,8 @@ describe("percentage scenarios", () => {
   });
   it("handles empty, zero denominator and non-finite values", () => {
     expect(scenarioResult("pct_of", "", "250")).toBeNull();
+    expect(scenarioResult("pct_of", "   ", "250")).toBeNull();
+    expect(scenarioResult("pct_of", "20xyz", "250")).toBeNull();
     expect(scenarioResult("what_pct", "20", "0")).toBeNull();
     expect(scenarioResult("pct_change", "0", "20")).toBeNull();
     expect(scenarioResult("pct_of", "Infinity", "250")).toBeNull();
