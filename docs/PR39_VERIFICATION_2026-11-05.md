@@ -16,3 +16,10 @@
 In an owner-accessible checkout run `bash scripts/check-engagement-release.sh`, then test English/Japanese desktop and mobile, blocked storage, expired draft, URL share, keyboard accessibility and consent. Merge and deploy only after all gates pass; measure 7/28-day GA4 engagement.
 
 This file is a checkpoint, not a passing full-release certificate.
+
+## Follow-up verification
+- Rechecked local Git access: DNS resolution of github.com still fails.
+- Re-ran isolated TypeScript strict compilation and 29 independent assertions: passed. This is not the app-wide build.
+- Added maxLength=40 to both percentage number inputs to match URL restore and saved draft limits.
+- English production page inspected: new compare and resume sections not found in fetched HTML.
+- No merge, deployment, or verified engagement uplift.
