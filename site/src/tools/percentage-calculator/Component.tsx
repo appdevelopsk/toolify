@@ -6,6 +6,7 @@ import { scenarioCopy, resumeCopy } from "./scenario-copy";
 import { SCENARIO_STORAGE_KEY, parseSavedScenario, serializeSavedScenario, type SavedPercentageScenario } from "./scenario-resume";
 import { useLocale, useTranslations } from "next-intl";
 import { useShareableState } from "@/lib/hooks/useShareableState";
+import { trackScenarioAction } from "@/lib/analytics/events";
 
 type Mode = PercentageMode;
 const MODES: Mode[] = ["pct_of", "what_pct", "pct_change", "pct_add", "pct_sub"];
@@ -113,13 +114,15 @@ export default function PercentageCalculator() {
               if (!next) return;
               window.localStorage.setItem(SCENARIO_STORAGE_KEY, next);
               setSaved(parseSavedScenario(next, Date.now()));
+              trackScenarioAction({ tool: "percentage-calculator", locale, action: "draft_save" });
             } catch { /* Storage unavailable: do not interrupt calculation. */ }
           }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium dark:border-slate-700">{resumeText.save}</button>
           {saved && <>
-            <button type="button" onClick={() => { setMode(saved.mode); setA(saved.a); setB(saved.b); }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{resumeText.restore}</button>
+            <button type="button" onClick={() => { setMode(saved.mode); setA(saved.a); setB(saved.b); trackScenarioAction({ tool: "percentage-calculator", locale, action: "draft_restore" }); }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{resumeText.restore}</button>
             <button type="button" onClick={() => {
               try { window.localStorage.removeItem(SCENARIO_STORAGE_KEY); } catch {}
               setSaved(null);
+              trackScenarioAction({ tool: "percentage-calculator", locale, action: "draft_clear" });
             }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{resumeText.clear}</button>
           </>}
         </div>
@@ -129,9 +132,9 @@ export default function PercentageCalculator() {
       <section className="mt-5 rounded-lg border border-slate-200 p-4 dark:border-slate-700">
         <h3 className="text-sm font-semibold">{comparisonText.heading}</h3>
         <div className="mt-3 flex flex-wrap gap-2">
-          <button type="button" disabled={result === null} onClick={() => { if (result !== null) setBaseline({ mode, a, b, value: result }); }} className="min-h-11 rounded-lg bg-brand-600 px-3 py-2 text-sm font-medium text-white disabled:opacity-50">{comparisonText.save}</button>
-          {baseline && <button type="button" onClick={() => { setMode(baseline.mode); setA(baseline.a); setB(baseline.b); }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{comparisonText.restore}</button>}
-          {baseline && <button type="button" onClick={() => setBaseline(null)} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{comparisonText.clear}</button>}
+          <button type="button" disabled={result === null} onClick={() => { if (result !== null) { setBaseline({ mode, a, b, value: result }); trackScenarioAction({ tool: "percentage-calculator", locale, action: "compare_save" }); } }} className="min-h-11 rounded-lg bg-brand-600 px-3 py-2 text-sm font-medium text-white disabled:opacity-50">{comparisonText.save}</button>
+          {baseline && <button type="button" onClick={() => { setMode(baseline.mode); setA(baseline.a); setB(baseline.b); trackScenarioAction({ tool: "percentage-calculator", locale, action: "compare_restore" }); }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{comparisonText.restore}</button>}
+          {baseline && <button type="button" onClick={() => { setBaseline(null); trackScenarioAction({ tool: "percentage-calculator", locale, action: "compare_clear" }); }} className="min-h-11 rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700">{comparisonText.clear}</button>}
         </div>
         {baseline && (
           <dl className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3" aria-live="polite">
