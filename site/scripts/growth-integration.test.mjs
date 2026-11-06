@@ -38,5 +38,9 @@ test('synthetic restoration events cannot inflate active tool engagement', () =>
   const restore = read('../src/lib/hooks/useAutoShareableState.ts');
   assert.ok(tracker.includes('if (!e.isTrusted || sent.current.calculate) return'));
   assert.ok(tracker.includes('if (!e.isTrusted) return'));
+  assert.ok(tracker.includes('sent.current = { calculate: false, copy: false, preset: false }'));
+  assert.ok(tracker.includes('if (disposed) return'));
+  assert.ok(tracker.includes('window.clearTimeout(calculateDelay)'));
+  assert.ok(tracker.includes('}, [slug, locale, category])'));
   assert.ok(restore.includes('dispatchEvent(new Event("input", { bubbles: true }))'));
 });
