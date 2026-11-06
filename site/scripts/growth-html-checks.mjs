@@ -10,8 +10,10 @@ export function canonicalHref(html) {
   return tag?.match(/\bhref\s*=\s*["']([^"']+)["']/i)?.[1]?.replace(/&amp;/g, '&') ?? null;
 }
 export function hasSoftwareAnchor(html, slug, locale, origin = 'https://toolify365.com') {
+  // Ignore serialized RSC/hydration script text and style content: only real HTML anchors count.
+  const markup = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '');
   const destination = `/software/${slug}`;
-  return [...html.matchAll(/<a\b[^>]*>/gi)].some(([tag]) => {
+  return [...markup.matchAll(/<a\b[^>]*>/gi)].some(([tag]) => {
     const href = tag.match(/\bhref\s*=\s*["']([^"']+)["']/i)?.[1]?.replace(/&amp;/g, '&');
     if (!href) return false;
     try {
