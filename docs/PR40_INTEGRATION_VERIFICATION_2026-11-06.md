@@ -94,3 +94,10 @@ The existing root `scripts/check-engagement-release.sh` now runs both PR #39's f
 - The updated share policy excludes password/email/tel and autofill-sensitive inputs, developer-labeled sensitive identifiers (including camelCase) and explicitly private fields. This is a defense-in-depth filter; it **does not guarantee** all free text is non-sensitive.
 - Added a fifth dependency-free `growth-integration.test.mjs` check for policy constants and actual hook integration; the full suite has NOT been run in a checked-out app.
 - Running full build requires source checkout, npm install, TypeScript/Vitest, SEO/i18n audits, device QA. Keep PR #40 Draft/NO-GO pending the full owner-accessible `bash scripts/check-engagement-release.sh` gate.
+
+## 2026-11-06 — Latest PR #39 sync and HTTP indexing guard
+- Current PR #39 had 13 candidate file differences against integrated PR #40; fetched and compared each file. Nine matched by SHA. Four were synchronized: `docs/PR39_VERIFICATION_2026-11-05.md`, `ShareBar.events.test.ts`, `useAutoShareableState.ts`, and `useShareableState.ts`.
+- Added support for HTTP `X-Robots-Tag` noindex directives to `hasNoindex(html, xRobotsTag)`, and `check-live-growth.mjs` now includes the response header when checking intended indexable pages.
+- Added tests for `noindex, nofollow`, `googlebot: noindex`, and non-matching `noindexing` / `index` values. The existing comment/hydration-anchor tests remain.
+- Ran a *local reconstruction* of the updated helper with Node.js `node --test`: **3 subtest groups passed, 0 failed**. The reconstruction validates the detection logic but does not establish that the full integrated GitHub checkout/build has passed.
+- Direct git clone still fails DNS (`Could not resolve host: github.com`). Keep this PR draft until full tests, browser verification, owner review and deployment.
