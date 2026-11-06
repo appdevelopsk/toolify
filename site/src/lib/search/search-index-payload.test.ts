@@ -13,6 +13,21 @@ describe("search index payload validation", () => {
       expect(parseSearchIndexPayload(payload)).toEqual([]);
     }
   });
+  it("rejects unsafe links, unknown categories, duplicate slugs and oversized labels", () => {
+    const payload = { tools: [
+      { ...tool, slug: "../secret" },
+      { ...tool, slug: "other/path" },
+      { ...tool, slug: "%2F%2Fevil" },
+      { ...tool, category: "unknown" },
+      { ...tool, title: " " },
+      { ...tool, title: "X".repeat(201) },
+      tool,
+      { ...tool, title: "Duplicate" },
+      { ...tool, slug: "tip-calculator" },
+    ] };
+    expect(parseSearchIndexPayload(payload))
+      .toEqual([tool, { ...tool, slug: "tip-calculator" }]);
+  });
   it("ignores malformed entries without losing valid recommendations", () => {
     const data = { tools: [null, "invalid", [], { slug: "", title: "Empty", category: "math" }, { slug: "s", category: "math" }, tool] };
     expect(parseSearchIndexPayload(data)).toEqual([tool]);
