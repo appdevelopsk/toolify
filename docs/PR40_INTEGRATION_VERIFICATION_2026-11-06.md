@@ -62,3 +62,11 @@ The existing root `scripts/check-engagement-release.sh` now runs both PR #39's f
 - Registered `npm run test:integration` and added it to `scripts/check-engagement-release.sh` along with `test:smoke-html`.
 - GitHub connector readback verified all three tests are present, the new npm command is wired, the UI order is workspace → recent → software CTA → ad, and the five tracking functions are retained. **This is source readback, not a completed run of the full integration gate.**
 - Direct clone still fails DNS from available execution environment. Avoid merging PR #40 until full npm install, Vitest, typecheck, browser/device checks and build run in an authorized checkout.
+
+## 2026-11-06 fresh PR39 parity and rendered HTML regression
+- Compared latest PR #39 changes to integration PR #40: 7 highlighted files (sharing policy/hook, search-index validation/hook/tests and verification record) were fetched by the GitHub connector and all seven file contents matched exactly.
+- Repeated local direct git clone probe: `Could not resolve host: github.com`; full repository checkout still not available in execution container.
+- Ran Node.js 22.16.0 with a local copy of the exact growth HTML helper/test modules: **3 test groups passed, zero failed**.
+- Identified a misleading success case: serialized HTML text inside hydration `<script>` or `<style>` could appear to be a real software CTA. The HTML helper now ignores script and style blocks; added regression cases for fake anchors in both elements.
+- Re-executed the updated local HTML test copy after the fix: **3/3 tests pass**. This validates the helper unit tests, not live rendering.
+- Main merge and deploy remain blocked on full integrated local gate, browser checks, review, and owner deployment.
