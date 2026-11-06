@@ -83,3 +83,8 @@ The existing root `scripts/check-engagement-release.sh` now runs both PR #39's f
 - Fixed `site/scripts/growth-html-checks.mjs` to strip HTML comments, script, and style payloads for **all three** validators (`hasNoindex`, `canonicalHref`, and `hasSoftwareAnchor`). Added negative tests for fake SEO tags inside comments and hydration payloads.
 - Ran a local exact-source recreation of the GitHub helper/test with Node v22.16.0: `node --test` **3 subtests passed, 0 failed**. Verified test execution, but full application runtime and connected GitHub checkout remain untested (DNS error).
 - Continue to hold draft PR40 until `bash scripts/check-engagement-release.sh` passes from the integrated branch, plus browser QA and owner-controlled deployment.
+
+## 2026-11-06 latest parity refresh
+- Compared eleven candidate files from the latest PR39 head to the integration branch using exact GitHub blob SHA. Eight matched; synced three differing files: `docs/PR39_VERIFICATION_2026-11-05.md`, `ToolInteractionTracker.tsx`, and `ToolInteractionTracker.trust.test.ts`.
+- The latest PR39 tracker now resets event deduplication on tool route change and cancels delayed tracking when the component unmounts. Updated dependency-free integration test assertions to keep those protections.
+- The full Node/Next integrated release gate has **not** run in this environment and its results must not be inferred from source inspection. PR40 remains draft; owner-managed deploy pending.
