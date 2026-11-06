@@ -118,3 +118,10 @@ The existing root `scripts/check-engagement-release.sh` now runs both PR #39's f
 - The updated restore logic rejects invalid types, nonfinite numeric inputs, and select/radio values outside available options. When a new shared URL payload exceeds the allowed limit, the hook also removes a stale old `?s=` state rather than leaving an outdated result link.
 - Added a sixth cross-PR Node integration test group in `site/scripts/growth-integration.test.mjs` for those restoration/cleanup contracts. Checked its six source assertions against the exact integrated source content via GitHub readback; all matched.
 - **Not a full test run:** direct `git ls-remote` still fails `Could not resolve host: github.com`; full `npm ci`, Vitest, typecheck, Next production build, browser QA and release remain unverified. Keep PR #40 Draft.
+
+## 2026-11-07 — PR39 embed HTML safety integration
+- Compared 16 candidate changed files from current PR39 to integrated PR40. Twelve exact GitHub blobs matched; four were synchronized: `docs/PR39_VERIFICATION_2026-11-05.md`, `ShareBar.tsx`, `embed-html.ts`, and `embed-html.test.ts`.
+- The upstream PR39 now assembles tool iframe snippets through a pure helper that HTML-escapes localized titles, iframe src, and anchor href attributes. The new `embed-html.test.ts` checks title escaping and quote/markup injection.
+- Added seventh cross-PR dependency-free integration test group to assert ShareBar uses `buildToolEmbedSnippet` and that the escape helper is applied to title and two URLs. GitHub readback confirmed all asserted source fragments.
+- Using a *local ES module adaptation* of the GitHub helper and three corresponding assertions, Node v22.16.0 `node --test` returned **3 passing tests, 0 failures**. This does not verify the repository's Vitest, TypeScript or Next.js build.
+- Direct `git ls-remote` remains blocked by DNS; no GitHub Actions, merge, production deployment or measured uplift.
