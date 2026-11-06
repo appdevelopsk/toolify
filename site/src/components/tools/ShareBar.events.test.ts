@@ -13,6 +13,19 @@ describe("share URL controls", () => {
     expect(shareBar).not.toContain("setInterval(sync");
   });
 
+  it("clears previously shared result links when new inputs become too large", () => {
+    for (const file of [
+      "../../lib/hooks/useShareableState.ts",
+      "../../lib/hooks/useAutoShareableState.ts",
+    ]) {
+      const source = get(file);
+      expect(source).toContain('stale.searchParams.has("s")');
+      expect(source).toContain('stale.searchParams.delete("s")');
+      expect(source).toContain('window.history.replaceState(window.history.state, "", stale.toString())');
+      expect(source).toContain('window.dispatchEvent(new Event("toolify:share-state-change"))');
+    }
+  });
+
   it("notifies ShareBar after both URL writer implementations update state", () => {
     for (const file of [
       "../../lib/hooks/useShareableState.ts",
