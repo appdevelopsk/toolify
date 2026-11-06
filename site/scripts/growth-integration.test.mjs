@@ -98,3 +98,11 @@ test('deployment paths retain VPS lock and public release SHA verification safeg
   assert.ok(lock.includes('release)'));
   assert.ok(lock.includes('TAKEOVER stale lock'));
 });
+
+test('release gate fails closed when integration lacks latest origin/main ancestry', () => {
+  const gate = read('../../scripts/check-engagement-release.sh');
+  assert.ok(gate.includes('git -C "$ROOT" fetch --no-tags origin main'));
+  assert.ok(gate.includes('git -C "$ROOT" merge-base --is-ancestor refs/remotes/origin/main HEAD'));
+  assert.ok(gate.includes('integration branch is not based on the latest origin/main'));
+  assert.ok(gate.includes('exit 3'));
+});
