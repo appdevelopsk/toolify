@@ -77,3 +77,9 @@ The existing root `scripts/check-engagement-release.sh` now runs both PR #39's f
 - Copied the GitHub HTML helper and its test cases into an isolated local Node.js 22.16.0 environment and executed `node --test`: **3 passed, 0 failed**. The test covers noindex, canonical, real CTA anchor/locale/domain and fake script/style elements. Test copies, not an actual full repository checkout.
 - Direct `git ls-remote https://github.com/appdevelopsk/toolify.git HEAD` again failed with `Could not resolve host: github.com`. No full `npm ci`, typecheck, complete Vitest, production build, visual QA or merge/deploy performed.
 - Current decision remains **NO-GO**, pending full local gate, manual QA and owner deployment.
+
+## 2026-11-06 11:21 JST: latest PR39 sync and HTML false-positive hardening
+- Compared current PR39 and PR40 source: the only mismatched upstream file contents at review were `docs/PR39_VERIFICATION_2026-11-05.md` and `site/src/lib/search/search-index-payload.test.ts`; both synchronized.
+- Fixed `site/scripts/growth-html-checks.mjs` to strip HTML comments, script, and style payloads for **all three** validators (`hasNoindex`, `canonicalHref`, and `hasSoftwareAnchor`). Added negative tests for fake SEO tags inside comments and hydration payloads.
+- Ran a local exact-source recreation of the GitHub helper/test with Node v22.16.0: `node --test` **3 subtests passed, 0 failed**. Verified test execution, but full application runtime and connected GitHub checkout remain untested (DNS error).
+- Continue to hold draft PR40 until `bash scripts/check-engagement-release.sh` passes from the integrated branch, plus browser QA and owner-controlled deployment.
