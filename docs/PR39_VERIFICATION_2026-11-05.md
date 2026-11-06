@@ -92,3 +92,9 @@ This file is a checkpoint, not a passing full-release certificate.
 - Read back both GitHub hook files and the test. Both hooks contain the new call and still dispatch share-state-change; neither retains the previous null overwrite.
 - Remaining manual QA: edit inputs, use back/forward, switch locale and tools through client navigation, restore shared links after BFCache return and confirm no hydration/router errors.
 - Source changes and static readback are verified. **Full Vitest, Next production build, real browser QA, merge and deploy are still pending.**
+
+## 2026-11-06 — Test fixture correction and isolated verification
+- Found misleading `search-index-payload.test.ts` malformed fixture: `slug: "s"` is structurally valid under the new parser; the fixture also lacked a title, masking the invalid-slug assumption. Replaced it with a genuinely unsafe path `../unsafe` plus a valid title so that exclusion is specifically attributable to the slug format.
+- Added a separate regression case that explicitly preserves a valid one-character slug; this checks that the validator is not over-restrictive.
+- Reproduced the parser logic in an isolated local TypeScript harness with a minimal compatible SearchItem type definition; `tsc --strict` passed and 10 grouped Node assertions passed, including normal, invalid, duplicate and short-slug scenarios. This is NOT a run of project Vitest or Next build.
+- Git CLI still cannot resolve github.com in the execution environment; continue requiring owner-accessible `bash scripts/check-engagement-release.sh`, browser QA and reviewed deployment before merging PR #39.
