@@ -8,6 +8,10 @@ describe("search index payload validation", () => {
     expect(parseSearchIndexPayload({ tools: [tool, { ...tool, slug: "tip-calculator" }] }))
       .toEqual([tool, { ...tool, slug: "tip-calculator" }]);
   });
+  it("does not mistakenly discard structurally valid short slugs", () => {
+    expect(parseSearchIndexPayload({ tools: [{ ...tool, slug: "s" }] }))
+      .toEqual([{ ...tool, slug: "s" }]);
+  });
   it("fails closed for malformed payloads without crashing recommendations", () => {
     for (const payload of [null, {}, [], { tools: null }, { tools: "bad" }, 7]) {
       expect(parseSearchIndexPayload(payload)).toEqual([]);
