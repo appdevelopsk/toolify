@@ -8,6 +8,10 @@ describe("search index payload validation", () => {
     expect(parseSearchIndexPayload({ tools: [tool, { ...tool, slug: "tip-calculator" }] }))
       .toEqual([tool, { ...tool, slug: "tip-calculator" }]);
   });
+  it("does not mistakenly discard structurally valid short slugs", () => {
+    expect(parseSearchIndexPayload({ tools: [{ ...tool, slug: "s" }] }))
+      .toEqual([{ ...tool, slug: "s" }]);
+  });
   it("fails closed for malformed payloads without crashing recommendations", () => {
     for (const payload of [null, {}, [], { tools: null }, { tools: "bad" }, 7]) {
       expect(parseSearchIndexPayload(payload)).toEqual([]);
@@ -29,7 +33,7 @@ describe("search index payload validation", () => {
       .toEqual([tool, { ...tool, slug: "tip-calculator" }]);
   });
   it("ignores malformed entries without losing valid recommendations", () => {
-    const data = { tools: [null, "invalid", [], { slug: "", title: "Empty", category: "math" }, { slug: "s", category: "math" }, tool] };
+    const data = { tools: [null, "invalid", [], { slug: "", title: "Empty", category: "math" }, { slug: "../unsafe", title: "Unsafe", category: "math" }, tool] };
     expect(parseSearchIndexPayload(data)).toEqual([tool]);
   });
 });
