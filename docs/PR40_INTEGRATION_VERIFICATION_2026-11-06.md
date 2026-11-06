@@ -106,3 +106,9 @@ The existing root `scripts/check-engagement-release.sh` now runs both PR #39's f
 - Connected Google Search Console property `https://toolify365.com/` confirmed; queried SMEPost GSC opportunity feed with minimum 1 impression.
 - Accessible finalized **3-day** window: **2026-11-01 to 2026-11-03**. Tool returned **zero opportunity rows**. This does NOT mean organic traffic is zero or there are no SEO problems.
 - The connected account is restricted to recent three days and does not permit a prior-period comparison. Without a 28-day page/query view, do not claim a recovery, ranking movement, or estimate revenue from SEO changes; leave index eligibility policy unchanged.
+
+## 2026-11-06 — Free-text share opt-in integration regression
+- Compared 13 current PR39 candidate paths, synchronized four: PR39 verification record, `share-input-policy.integration.test.ts`, `share-input-policy.test.ts`, `share-input-policy.ts`. Remaining nine candidate file SHAs matched.
+- The new PR39 policy defaults generic free-text fields (text, textarea, search, url) to **not** enter shared URLs unless a reviewed control explicitly declares `data-share="on"`; excludes sensitive identifiers/autocomplete and private fields even with opt-in.
+- A real stale integration test was found: `site/scripts/growth-integration.test.mjs` still expected the old four-argument `isShareableField` calls. Updated its three hook assertions to use `explicitTextOptIn` as the fifth argument, and added opt-in policy guard assertions. Direct GitHub source readback confirmed all three expected call sites and policy checks match.
+- This is **source assertion/readback evidence**, not a claim that Node/Vitest/Next production build was executed on the integrated checkout. PR #40 remains Draft/NO-GO until complete local gate plus QA pass.
