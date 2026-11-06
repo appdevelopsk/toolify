@@ -49,13 +49,14 @@ function fields(root: HTMLElement): HTMLElement[] {
     // Do not share fields explicitly marked private or browser-autofilled as PII.
     const privateField = !!el.closest("[data-private], [data-share=\"off\"]");
     const identifier = `${el.getAttribute("name") ?? ""} ${el.id}`;
+    const explicitTextOptIn = el.getAttribute("data-share") === "on";
     if (el instanceof HTMLInputElement) {
-      return isShareableField(el.type, el.autocomplete, privateField, identifier);
+      return isShareableField(el.type, el.autocomplete, privateField, identifier, explicitTextOptIn);
     }
     if (el instanceof HTMLTextAreaElement) {
-      return isShareableField("textarea", el.autocomplete, privateField, identifier);
+      return isShareableField("textarea", el.autocomplete, privateField, identifier, explicitTextOptIn);
     }
-    return isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField, identifier);
+    return isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField, identifier, explicitTextOptIn);
   });
 }
 
@@ -232,7 +233,16 @@ export function useAutoShareableState(
       timer = window.setTimeout(() => {
         try {
           const encoded = encodeState(snapshot(root));
-          if (!isSharePayloadWithinLimit(encoded, MAX_ENCODED)) return;
+          if (!isSharePayloadWithinLimit(encoded, MAX_ENCODED)) {
+            // Do not retain a previously generated, now-stale shared result URL.
+            const stale = new URL(window.location.href);
+            if (stale.searchParams.has("s")) {
+              stale.searchParams.delete("s");
+              window.history.replaceState(window.history.state, "", stale.toString());
+              window.dispatchEvent(new Event("toolify:share-state-change"));
+            }
+            return;
+          }
           const url = new URL(window.location.href);
           url.searchParams.set("s", encoded);
           window.history.replaceState(window.history.state, "", url.toString());
