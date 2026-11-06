@@ -23,7 +23,11 @@ export function isShareableField(
   autocomplete = "",
   privateField = false,
   identifier = "",
+  explicitTextOptIn = false,
 ): boolean {
+  // Free-form inputs are private by default. Opt-in belongs to reviewed tools.
+  const freeTextType = ["text", "search", "url", "textarea"].includes(type.toLowerCase());
+  if (freeTextType && !explicitTextOptIn) return false;
   const normalizedIdentifier = identifier.replace(/([a-z0-9])([A-Z])/g, "$1-$2").replace(/\s+/g, "-");
   if (privateField || !isShareableInputType(type) || SENSITIVE_IDENTIFIER.test(normalizedIdentifier)) return false;
   const tokens = autocomplete.toLowerCase().trim().split(/\s+/);
