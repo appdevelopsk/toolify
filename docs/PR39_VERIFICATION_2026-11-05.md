@@ -118,3 +118,10 @@ This file is a checkpoint, not a passing full-release certificate.
 - Filters credential/personal-data hint names including `apiKey`, `privateKey`, `refresh_token`, `creditCard`, `cardNumber`, `billingEmail`, `contactPhone`, and `postalCode`; camelCase is normalized. Regular numeric field identifiers such as `amount`, `valueA`, `angleC` remain eligible.
 - Added unit and integration test assertions. GitHub readback verifies the new source and test wiring. Reused the exact source pattern in a JavaScript regex check: **17 identifier cases passed** (12 excluded, 5 allowed). This check is limited to identifier matching, not full Vitest/React/Next behavior.
 - Remaining risk: arbitrary free-text can still contain sensitive content even without sensitive field names. Full tool-by-tool privacy review remains a release blocker. Real browser/GA4/consent checks and full `bash scripts/check-engagement-release.sh` are not complete.
+
+## 2026-11-06 — Oversized share URL stale-state protection
+- In both manual and generic sharing hooks, when new input state exceeds the URL size cap, the previous `?s=` is now removed rather than silently left in the URL. This prevents an older result from being offered as if it represented the current calculator input.
+- Both paths preserve `window.history.state` and dispatch `toolify:share-state-change` when removing a stale result URL, so the ShareBar "copy result link" control can disappear.
+- Updated `ShareBar.events.test.ts` with regression expectations for both hooks.
+- GitHub readback verified source/test presence of removal, history preservation and notification, but project-level Vitest, Next build and real browser behavior remain unverified.
+- Browser acceptance: generate result URL, exceed size cap, confirm result-link button disappears while normal share stays available; shorten input, confirm result link regenerates; verify back/forward and client route navigation.
