@@ -22,10 +22,21 @@ describe("generic share URL input policy", () => {
     }
     expect(isShareableField("text", "off", true)).toBe(false);
     expect(isShareableField("number", "off", true)).toBe(false);
-    expect(isShareableField("text", "off")).toBe(true);
+    expect(isShareableField("text", "off")).toBe(false);
     expect(isShareableField("number")).toBe(true);
     expect(isShareableField("select", "country")).toBe(false);
     expect(isShareableField("textarea", "street-address")).toBe(false);
+  });
+
+  it("requires reviewed explicit opt-in for free-form text while retaining numeric fields", () => {
+    for (const type of ["text", "textarea", "search", "url"]) {
+      expect(isShareableField(type)).toBe(false);
+      expect(isShareableField(type, "off", false, "notes", true)).toBe(true);
+    }
+    expect(isShareableField("text", "email", false, "notes", true)).toBe(false);
+    expect(isShareableField("text", "off", true, "notes", true)).toBe(false);
+    expect(isShareableField("number")).toBe(true);
+    expect(isShareableField("checkbox")).toBe(true);
   });
 
   it("excludes sensitive name/id identifiers even without autocomplete", () => {
@@ -34,7 +45,7 @@ describe("generic share URL input policy", () => {
       "cardNumber", "cvv", "billingEmail", "contactPhone", "postalCode",
       "secret", "privateKey", "socialSecurity",
     ]) {
-      expect(isShareableField("text", "off", false, identifier)).toBe(false);
+      expect(isShareableField("text", "off", false, identifier, true)).toBe(false);
     }
     for (const identifier of ["amount", "result", "valueA", "percentage", "angleC"]) {
       expect(isShareableField("number", "off", false, identifier)).toBe(true);
