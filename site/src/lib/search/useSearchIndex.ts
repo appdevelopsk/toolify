@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { SearchItem } from "./matcher";
+import { parseSearchIndexPayload } from "./search-index-payload";
 
 /**
  * ロケール別の検索インデックス(/{locale}/search-index.json)を遅延取得する。
@@ -19,7 +20,7 @@ export function loadSearchIndex(locale: string): Promise<SearchItem[]> {
   if (!p) {
     p = fetch(`/${locale}/search-index.json`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
-      .then((j: { tools?: SearchItem[] }) => j.tools ?? [])
+      .then((payload: unknown) => parseSearchIndexPayload(payload))
       .catch(() => {
         cache.delete(locale);
         return [] as SearchItem[];
@@ -30,16 +31,18 @@ export function loadSearchIndex(locale: string): Promise<SearchItem[]> {
 }
 
 export function useSearchIndex(locale: string, enabled: boolean): SearchItem[] | null {
-  const [items, setItems] = useState<SearchItem[] | null>(null);
+  // Associate data with the locale that produced it to avoid flashing stale labels
+  // when a visitor switches languages while a different index is loading.
+  const [loaded, setLoaded] = useState<{ locale: string; items: SearchItem[] } | null>(null);
   useEffect(() => {
     if (!enabled) return;
     let alive = true;
     loadSearchIndex(locale).then((list) => {
-      if (alive) setItems(list);
+      if (alive) setLoaded({ locale, items: list });
     });
     return () => {
       alive = false;
     };
   }, [locale, enabled]);
-  return items;
+  return enabled && loaded?.locale === locale ? loaded.items : null;
 }

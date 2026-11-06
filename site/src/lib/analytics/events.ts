@@ -143,3 +143,45 @@ export function trackAffiliateClick(p: {
     ...(p.locale ? { locale: p.locale } : {}),
   });
 }
+
+/** Returning-visitor navigation. No inputs, query content, or URL values are tracked. */
+export function trackRecentToolClick(p: ToolEventParams & { destination: string }): void {
+  emit("recent_tool_click", {
+    ...toParams(p),
+    destination_tool: p.destination,
+  });
+}
+
+/** Privacy-safe interaction measurement for percentage scenario features. No inputs or results. */
+export function trackScenarioAction(p: {
+  tool: "percentage-calculator";
+  locale?: string;
+  action: "compare_save" | "compare_restore" | "compare_clear" | "draft_save" | "draft_restore" | "draft_clear";
+}): void {
+  emit("scenario_action", {
+    tool_slug: p.tool,
+    ...(p.locale ? { locale: p.locale } : {}),
+    action: p.action,
+  });
+}
+
+/**
+ * Transition from a free tool to currently available in-browser software.
+ * destination is a finite catalog slug; do not send user-generated content.
+ */
+export function trackSoftwareClick(p: ToolEventParams & { destination: string }): void {
+  emit("software_click", {
+    ...toParams(p),
+    destination: p.destination,
+  });
+}
+
+/** In-browser software usage: only catalog slug and success state, never user input. */
+export function trackSoftwareProcess(p: { software: string; success: boolean }): void {
+  emit("software_process", { software_slug: p.software, success: p.success });
+}
+
+/** In-browser generated file download; never send file names or contents. */
+export function trackSoftwareDownload(p: { software: string }): void {
+  emit("software_download", { software_slug: p.software });
+}

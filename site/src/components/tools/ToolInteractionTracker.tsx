@@ -47,6 +47,8 @@ export function ToolInteractionTracker({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // A client-side route can reuse this mounted component for a different tool.
+    sent.current = { calculate: false, copy: false, preset: false };
 
     // data-calc-label を持つツール(2026-10-02: pressure-converter / workdays-calculator、10-03: date-calculator)は
     // 「何を計算したか」(単位ペア・祝日プリセット等)を calculate の label に載せる。
@@ -54,8 +56,11 @@ export function ToolInteractionTracker({
     // (LABEL_SETTLE_MS) またはタブを離れる時に1回だけ送る。新しいイベント名は作らない
     // = 全ツールで calculate は従来どおり1着地1回(重複発火しない)。
     let settle: number | undefined;
+    let calculateDelay: number | undefined;
+    let disposed = false;
 
     function sendWithLabel() {
+      if (disposed) return;
       if (sent.current.calculate) return;
       sent.current.calculate = true;
       if (settle !== undefined) window.clearTimeout(settle);
@@ -72,8 +77,9 @@ export function ToolInteractionTracker({
       });
     }
 
-    function onInput() {
-      if (sent.current.calculate) return;
+    function onInput(e: Event) {
+      // URL restore uses synthetic input/change events, not real user actions.
+      if (!e.isTrusted || sent.current.calculate) return;
       const root = el as HTMLElement;
       if (root.querySelector("[data-calc-label]")) {
         if (settle !== undefined) window.clearTimeout(settle);
@@ -82,7 +88,8 @@ export function ToolInteractionTracker({
       }
       sent.current.calculate = true;
       // 結果描画はツール側の再レンダー後なので、1 フレーム待ってから DOM を見る。
-      window.setTimeout(() => {
+      calculateDelay = window.setTimeout(() => {
+        if (disposed) return;
         trackCalculate({
           tool: slug,
           locale,
@@ -98,6 +105,8 @@ export function ToolInteractionTracker({
     }
 
     function onClick(e: Event) {
+      // Programmatic mode replay must not inflate GA4 user-action events.
+      if (!e.isTrusted) return;
       const target = e.target as HTMLElement | null;
       const btn = target?.closest?.("button");
       if (!btn) return;
@@ -127,8 +136,10 @@ export function ToolInteractionTracker({
     el.addEventListener("click", onClick);
     document.addEventListener("visibilitychange", onHide);
     return () => {
+      disposed = true;
       document.removeEventListener("visibilitychange", onHide);
       if (settle !== undefined) window.clearTimeout(settle);
+      if (calculateDelay !== undefined) window.clearTimeout(calculateDelay);
       el.removeEventListener("input", onInput);
       el.removeEventListener("change", onInput);
       el.removeEventListener("click", onClick);

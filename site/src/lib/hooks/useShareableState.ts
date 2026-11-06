@@ -13,9 +13,12 @@ import { useEffect, useRef, useState } from "react";
  *   履歴が積まれて「戻る」が壊れるため使わない。
  * - 初期レンダーでは書かない（useLocalDraft と同様 prevRef ガード）。
  *   これにより「素の /tools/bmi-calculator」が勝手に ?s= 付き URL に変わらない。
- * - 値は端末を離れない。URL に載るのはユーザー自身が共有した時だけで、
- *   サーバーへの送信はどこにも無い（?s= はクライアントでのみ読まれる）。
+ * - 注意: ?s= は入力時にブラウザーのURLを更新する。URLは共有時だけでなく
+ *   履歴、アクセスログ、Referrerなどを通じて外部に伝わる可能性がある。
+ *   個人情報や機密値をこのフックの状態に含めないこと。
  */
+
+const MAX_SHARED_STATE_LENGTH = 4096;
 
 /** JSON → base64url。URL に載せても壊れない形にする。 */
 function encodeState(value: object): string {
@@ -28,6 +31,7 @@ function encodeState(value: object): string {
 }
 
 function decodeState(raw: string): unknown {
+  if (raw.length > MAX_SHARED_STATE_LENGTH) throw new Error("Share state exceeds size limit");
   const b64 = raw.replace(/-/g, "+").replace(/_/g, "/");
   const bin = atob(b64);
   const bytes = new Uint8Array(bin.length);
@@ -72,9 +76,20 @@ export function useShareableState<T extends object>(
     if (prev === null || prev === serialized) return;
     try {
       const encoded = encodeState(JSON.parse(serialized) as object);
+      if (encoded.length > MAX_SHARED_STATE_LENGTH) {
+        // Do not let a stale result link represent a newer, unshareable value.
+        const stale = new URL(window.location.href);
+        if (stale.searchParams.has("s")) {
+          stale.searchParams.delete("s");
+          window.history.replaceState(window.history.state, "", stale.toString());
+          window.dispatchEvent(new Event("toolify:share-state-change"));
+        }
+        return;
+      }
       const url = new URL(window.location.href);
       url.searchParams.set("s", encoded);
-      window.history.replaceState(null, "", url.toString());
+      window.history.replaceState(window.history.state, "", url.toString());
+      window.dispatchEvent(new Event("toolify:share-state-change"));
     } catch {
       /* URL が長すぎる等 — 共有できないだけで計算は続行 */
     }

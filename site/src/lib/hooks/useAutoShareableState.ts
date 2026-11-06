@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, type RefObject } from "react";
+import { isShareableField, isSharePayloadWithinLimit, isValidRestoredFieldValue } from "./share-input-policy";
 
 /**
  * ツール本体の DOM 入力を丸ごと ?s= に載せ、共有リンクから復元する。
@@ -32,7 +33,9 @@ import { useEffect, type RefObject } from "react";
  * 規約が当てはまらないツールでは `b` が空になり、従来通り入力値だけが復元される
  * (モードは既定のまま = 壊れるのではなく、共有範囲が狭まるだけ)。
  *
- * 値は端末を離れない。URL に載るのはユーザーが自分で共有した時だけ。
+ * URLクエリは入力中も更新され、履歴・アクセスログ・Referrer等を通して
+ * 他者に渡る可能性がある。機密入力は fields() で除外するが、残る自由入力は
+ * 非機密と保証できないため、利用ツールごとに別途プライバシー確認が必要。
  */
 
 /** 選択中を表す配色クラス。ToolFrame 配下のツール本体に限って探す。 */
@@ -43,11 +46,17 @@ function fields(root: HTMLElement): HTMLElement[] {
   return Array.from(
     root.querySelectorAll<HTMLElement>("input, select, textarea"),
   ).filter((el) => {
+    // Do not share fields explicitly marked private or browser-autofilled as PII.
+    const privateField = !!el.closest("[data-private], [data-share=\"off\"]");
+    const identifier = `${el.getAttribute("name") ?? ""} ${el.id}`;
+    const explicitTextOptIn = el.getAttribute("data-share") === "on";
     if (el instanceof HTMLInputElement) {
-      // file は値をプログラムから復元できない。button/submit は状態を持たない。
-      return !["file", "button", "submit", "reset", "image"].includes(el.type);
+      return isShareableField(el.type, el.autocomplete, privateField, identifier, explicitTextOptIn);
     }
-    return true;
+    if (el instanceof HTMLTextAreaElement) {
+      return isShareableField("textarea", el.autocomplete, privateField, identifier, explicitTextOptIn);
+    }
+    return isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField, identifier, explicitTextOptIn);
   });
 }
 
@@ -111,6 +120,8 @@ function encodeState(value: object): string {
 }
 
 function decodeState(raw: string): unknown {
+  // Ignore oversized external URLs before base64 decoding and JSON parsing.
+  if (!isSharePayloadWithinLimit(raw, MAX_ENCODED)) throw new Error("Share state exceeds size limit");
   const b64 = raw.replace(/-/g, "+").replace(/_/g, "/");
   const bin = atob(b64);
   const bytes = new Uint8Array(bin.length);
@@ -121,6 +132,16 @@ function decodeState(raw: string): unknown {
 /** ツール本体内のボタン。選択中(bg-brand-600)の index を後で復元する。 */
 function buttons(root: HTMLElement): HTMLButtonElement[] {
   return Array.from(root.querySelectorAll<HTMLButtonElement>("button"));
+}
+
+/** Only buttons within an active multi-button mode selector may be replayed from a URL. */
+function isModeButton(btn: HTMLButtonElement): boolean {
+  const parent = btn.parentElement;
+  if (!parent || btn.disabled || (btn.type === "submit" && btn.closest("form"))) return false;
+  const siblings = Array.from(parent.children).filter(
+    (el): el is HTMLButtonElement => el instanceof HTMLButtonElement,
+  );
+  return siblings.length >= 2 && siblings.some((b) => b.className.includes(ACTIVE_CLASS));
 }
 
 /** 現在の DOM 状態を構造キー→値のオブジェクトに落とす。 */
@@ -135,7 +156,7 @@ function snapshot(root: HTMLElement): Record<string, string | boolean> {
   }
   // 選択中モードボタンの index 一覧(カンマ区切り)。該当が無ければキー自体を作らない。
   const active = buttons(root)
-    .map((b, i) => (b.className.includes(ACTIVE_CLASS) ? i : -1))
+    .map((b, i) => (isModeButton(b) && b.className.includes(ACTIVE_CLASS) ? i : -1))
     .filter((i) => i >= 0);
   if (active.length > 0) out.b = active.join(",");
   return out;
@@ -169,8 +190,12 @@ export function useAutoShareableState(
               const k = keyOf(el, seen);
               const v = saved[k];
               // `k in saved` では index 型が絞れないので値を取って判定する。
-              if (v === undefined) continue;
+              if (typeof v !== "string" && typeof v !== "boolean") continue;
               if (only && !only(el)) continue;
+              const kind = el instanceof HTMLInputElement ? el.type : el instanceof HTMLSelectElement ? "select" : "textarea";
+              if (!isValidRestoredFieldValue(kind, v)) continue;
+              if (el instanceof HTMLSelectElement && !Array.from(el.options).some((option) => option.value === v)) continue;
+              if (el instanceof HTMLInputElement && el.type === "radio" && el.value !== v) continue;
               writeValue(el, v);
             }
           };
@@ -183,8 +208,9 @@ export function useAutoShareableState(
             const all = buttons(root);
             for (const raw of b.split(",")) {
               const i = Number(raw);
+              if (!Number.isSafeInteger(i) || i < 0 || i >= all.length) continue;
               const btn = all[i];
-              if (btn && !btn.className.includes(ACTIVE_CLASS)) btn.click();
+              if (btn && isModeButton(btn) && !btn.className.includes(ACTIVE_CLASS)) btn.click();
             }
           }
           // 2nd: 切替で現れたフィールドを含めて全体を当てる。
@@ -211,10 +237,20 @@ export function useAutoShareableState(
       timer = window.setTimeout(() => {
         try {
           const encoded = encodeState(snapshot(root));
-          if (encoded.length > MAX_ENCODED) return;
+          if (!isSharePayloadWithinLimit(encoded, MAX_ENCODED)) {
+            // Do not retain a previously generated, now-stale shared result URL.
+            const stale = new URL(window.location.href);
+            if (stale.searchParams.has("s")) {
+              stale.searchParams.delete("s");
+              window.history.replaceState(window.history.state, "", stale.toString());
+              window.dispatchEvent(new Event("toolify:share-state-change"));
+            }
+            return;
+          }
           const url = new URL(window.location.href);
           url.searchParams.set("s", encoded);
-          window.history.replaceState(null, "", url.toString());
+          window.history.replaceState(window.history.state, "", url.toString());
+          window.dispatchEvent(new Event("toolify:share-state-change"));
         } catch {
           /* 共有できないだけで計算は続行 */
         }

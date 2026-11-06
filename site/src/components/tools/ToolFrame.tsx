@@ -6,6 +6,8 @@ import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { SisterSiteCta } from "@/components/cross/SisterSiteCta";
 import { ToolInteractionTracker } from "./ToolInteractionTracker";
 import { RelatedToolLink } from "./RelatedToolLink";
+import { ContinueWithRecent } from "./ContinueWithRecent";
+import { ToolSoftwareRecommendations } from "./ToolSoftwareRecommendations";
 import { TrustBox } from "./TrustBox";
 import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
@@ -67,10 +69,6 @@ export function ToolFrame({ meta, title, description, related, children, article
           </ToolInteractionTracker>
         </section>
 
-        <AdBelowResult />
-
-        <AdBanner className="mt-4" />
-
         {/* 関連ツール導線 — ツール結果の直後(注意が集中する位置)に移動。
             従来は記事/FAQ/出典の後の最下部で不可視だった。回遊(PV/session)増=AdSense表示増。
             コンパクトなチップ列で本文の邪魔をしない。 */}
@@ -94,6 +92,17 @@ export function ToolFrame({ meta, title, description, related, children, article
             </ul>
           </section>
         )}
+
+        {/* Return-visit path: show up to three previously used tools without storing inputs. */}
+        <ContinueWithRecent currentSlug={meta.slug} category={meta.category} relatedSlugs={related.map((r) => r.slug)} />
+
+        {/* Intent-matched free software follows related/recent navigation, before monetization blocks. */}
+        <ToolSoftwareRecommendations slug={meta.slug} locale={locale} />
+
+        {/* Keep task-follow-up navigation immediately after results; retain monetization units below it. */}
+        <AdBelowResult />
+
+        <AdBanner className="mt-4" />
 
         <section className="prose prose-slate mt-10 max-w-none dark:prose-invert">
           <h2>{t("tool.howItWorks")}</h2>
