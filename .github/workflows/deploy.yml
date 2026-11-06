@@ -104,6 +104,28 @@ jobs:
             "$RAKUTEN_APP_ID" "$RAKUTEN_ACCESS_KEY" "$RAKUTEN_AFFILIATE_ID" "$RAKUTEN_ORIGIN_URL" \
             > .next/standalone/.env.local
 
+      # `concurrency` above only serialises Actions runs. The local fallback
+      # (toolify_deploy_local.sh) rsyncs into the same directory, and on
+      # 2026-11-06 both ran at once → mixed builds → all pages 500 for ~6 min.
+      # Both paths take this VPS-side lock (ops/deploy-lock.sh) before rsync.
+      - name: Acquire VPS deploy lock (shared with local deploy)
+        id: lock
+        run: |
+          set -u
+          for i in $(seq 1 50); do
+            rc=0
+            ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new \
+              "$DEPLOY_USER@$DEPLOY_HOST" \
+              bash -s -- acquire "$DEPLOY_PATH.deploy.lock.d" "actions-${GITHUB_RUN_ID}" \
+              < ../ops/deploy-lock.sh || rc=$?
+            [ "$rc" = 0 ] && exit 0
+            [ "$rc" = 3 ] || { echo "✗ lock helper failed (rc=$rc)"; exit 1; }
+            echo "  another deploy holds the lock; waiting ${i}/50"
+            sleep 30
+          done
+          echo "✗ deploy lock still busy after 25 min"
+          exit 1
+
       - name: rsync standalone artifacts to VPS
         run: |
           rsync -az --delete \
@@ -147,6 +169,14 @@ jobs:
           done
           echo "✗ 120秒待ってもアプリが200を返さない → 起動失敗の可能性"
           exit 1
+
+      - name: Release VPS deploy lock
+        if: always() && steps.lock.outcome == 'success'
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new \
+            "$DEPLOY_USER@$DEPLOY_HOST" \
+            bash -s -- release "$DEPLOY_PATH.deploy.lock.d" "actions-${GITHUB_RUN_ID}" \
+            < ../ops/deploy-lock.sh || true
 
       - name: Smoke test live URL
         run: |
