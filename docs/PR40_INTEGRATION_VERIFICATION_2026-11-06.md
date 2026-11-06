@@ -125,3 +125,10 @@ The existing root `scripts/check-engagement-release.sh` now runs both PR #39's f
 - Added seventh cross-PR dependency-free integration test group to assert ShareBar uses `buildToolEmbedSnippet` and that the escape helper is applied to title and two URLs. GitHub readback confirmed all asserted source fragments.
 - Using a *local ES module adaptation* of the GitHub helper and three corresponding assertions, Node v22.16.0 `node --test` returned **3 passing tests, 0 failures**. This does not verify the repository's Vitest, TypeScript or Next.js build.
 - Direct `git ls-remote` remains blocked by DNS; no GitHub Actions, merge, production deployment or measured uplift.
+
+## 2026-11-07 — Full PR39 parity and newly advanced main
+- Compared the latest PR39 branch with PR40 integration, reading **all 16 PR39-only paths** and comparing exact GitHub blob SHAs. **16/16 matched**: shared URL hooks and policy, tracker and regression tests, locale search parser/hook/tests, escaped embed helper/tests, ShareBar/tests, and PR39 verification notes. There is no need to copy these files again.
+- Rechecked GitHub branch ancestry. **PR40 now diverges from main: 6 commits ahead, 2 commits behind**, with just six PR40-only file differences. Main's two additional changes are `.github/workflows/deploy.yml` and `ops/deploy-lock.sh`. Do not overwrite these owner-controlled release safeguards. GitHub Actions remain prohibited for this work.
+- Main contains most earlier integrated growth/engagement code, but the PR40-specific escaped embedding helper and tests remain not in main. Do not infer PR40 has been fully merged.
+- Confirmed local Node v22.16.0 and tsc 5.8.3 available. Direct `git ls-remote https://github.com/appdevelopsk/toolify.git HEAD` still fails with `Could not resolve host: github.com`, preventing complete repo checkout and the required local release gate.
+- Release remains **NO-GO**: integrate latest main's deployment safeguards into the owner-accessible integration branch before full `bash scripts/check-engagement-release.sh`, browser/GA4/consent QA, review and owner deployment. No unverified performance or revenue claims.
