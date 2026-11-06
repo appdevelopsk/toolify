@@ -21,3 +21,8 @@
 - Execute from repository root: `bash scripts/check-postmerge-embed-release.sh`.
 - Local standalone embed helper tests re-run with Node v22.16.0: **3 passed, 0 failed**, but the full release gate remains **unrun** until checkout, npm dependencies and browser/device QA can be performed.
 - Do not merge PR #41 solely on source inspections or isolated tests.
+
+## Further URL scheme hardening — 2026-11-07
+- The first PR41 embed helper escaped HTML attributes but accepted `javascript:`, `data:`, and relative iframe/link URLs. Added `safeEmbedUrl` that requires HTTPS (or HTTP only on localhost/127.0.0.1 for local development); invalid iframe URLs fall back to `about:blank`, invalid tool links to the Toolify365 homepage.
+- Updated the cross-PR integration source assertions and `embed-html.test.ts` with scheme rejection and legitimate HTTPS/local-development cases.
+- Reconstructed the final helper as a small standalone Node ES module matching the GitHub logic: `node --test` **4 passed, 0 failed** (HTML escaping, query attribute escaping, unsafe URL schemes, valid HTTPS/local URLs). The full PR41 Vitest, TypeScript and Next.js build are **not verified**. No GitHub Actions, merge or deployment initiated.
