@@ -101,3 +101,8 @@ The existing root `scripts/check-engagement-release.sh` now runs both PR #39's f
 - Added tests for `noindex, nofollow`, `googlebot: noindex`, and non-matching `noindexing` / `index` values. The existing comment/hydration-anchor tests remain.
 - Ran a *local reconstruction* of the updated helper with Node.js `node --test`: **3 subtest groups passed, 0 failed**. The reconstruction validates the detection logic but does not establish that the full integrated GitHub checkout/build has passed.
 - Direct git clone still fails DNS (`Could not resolve host: github.com`). Keep this PR draft until full tests, browser verification, owner review and deployment.
+
+## GSC check — 2026-11-06
+- Connected Google Search Console property `https://toolify365.com/` confirmed; queried SMEPost GSC opportunity feed with minimum 1 impression.
+- Accessible finalized **3-day** window: **2026-11-01 to 2026-11-03**. Tool returned **zero opportunity rows**. This does NOT mean organic traffic is zero or there are no SEO problems.
+- The connected account is restricted to recent three days and does not permit a prior-period comparison. Without a 28-day page/query view, do not claim a recovery, ranking movement, or estimate revenue from SEO changes; leave index eligibility policy unchanged.
