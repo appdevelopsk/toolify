@@ -71,3 +71,14 @@ test('shared URL restoration validates untrusted input and clears stale oversize
   assert.ok(hook.includes('stale.searchParams.delete("s")'));
   assert.ok(hook.includes('window.dispatchEvent(new Event("toolify:share-state-change"))'));
 });
+
+test('embedded tool HTML escapes title and attribute values', () => {
+  const share = read('../src/components/tools/ShareBar.tsx');
+  const html = read('../src/lib/tools/embed-html.ts');
+  assert.ok(share.includes('buildToolEmbedSnippet'));
+  assert.ok(html.includes('export function escapeHtml(value: string)'));
+  assert.ok(html.includes('const safeTitle = escapeHtml(title)'));
+  assert.ok(html.includes('const safeEmbedUrl = escapeHtml(embedUrl)'));
+  assert.ok(html.includes('const safeToolUrl = escapeHtml(toolUrl)'));
+  assert.ok(html.includes('rel="noopener"'));
+});
