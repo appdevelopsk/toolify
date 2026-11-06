@@ -9,6 +9,8 @@ echo "[engagement] Installing from package-lock.json"
 npm ci
 echo "[integration] Dependency-free HTML checks"
 npm run test:smoke-html
+echo "[integration] Cross-PR regression checks"
+npm run test:integration
 echo "[engagement] Type checking"
 npm run typecheck
 echo "[engagement] Vitest"
