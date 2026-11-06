@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isShareableInputType, isShareableField, isSharePayloadWithinLimit } from "./share-input-policy";
+import { isShareableInputType, isShareableField, isSharePayloadWithinLimit, isValidRestoredFieldValue } from "./share-input-policy";
 
 describe("generic share URL input policy", () => {
   it("never serializes credentials or invisible inputs", () => {
@@ -50,6 +50,21 @@ describe("generic share URL input policy", () => {
     for (const identifier of ["amount", "result", "valueA", "percentage", "angleC"]) {
       expect(isShareableField("number", "off", false, identifier)).toBe(true);
     }
+  });
+
+  it("validates decoded input types instead of coercing untrusted URL data", () => {
+    expect(isValidRestoredFieldValue("checkbox", true)).toBe(true);
+    expect(isValidRestoredFieldValue("checkbox", "true")).toBe(false);
+    expect(isValidRestoredFieldValue("radio", "mode-a")).toBe(true);
+    expect(isValidRestoredFieldValue("radio", false)).toBe(false);
+    for (const value of ["2.5", "-3", "1e3", ""]) {
+      expect(isValidRestoredFieldValue("number", value)).toBe(true);
+    }
+    for (const value of ["NaN", "Infinity", "12abc", true, 10, "1".repeat(1801)]) {
+      expect(isValidRestoredFieldValue("number", value)).toBe(false);
+    }
+    expect(isValidRestoredFieldValue("textarea", "text")).toBe(true);
+    expect(isValidRestoredFieldValue("textarea", null)).toBe(false);
   });
 
   it("rejects oversized or invalid encoded payload sizes", () => {
