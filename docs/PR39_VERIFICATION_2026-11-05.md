@@ -125,3 +125,11 @@ This file is a checkpoint, not a passing full-release certificate.
 - Updated `ShareBar.events.test.ts` with regression expectations for both hooks.
 - GitHub readback verified source/test presence of removal, history preservation and notification, but project-level Vitest, Next build and real browser behavior remain unverified.
 - Browser acceptance: generate result URL, exceed size cap, confirm result-link button disappears while normal share stays available; shorten input, confirm result link regenerates; verify back/forward and client route navigation.
+
+## 2026-11-06 — Private-by-default automatic free-text URL sharing
+- Significant privacy model change: `useAutoShareableState` no longer serializes `text`, `search`, `url` or `textarea` fields into `?s=` automatically. A reviewed tool must explicitly mark such a field `data-share="on"` to permit its inclusion.
+- Numeric fields, selects, checkboxes, dates and other non-free-text controls retain existing eligibility after private/type/autocomplete/name/id exclusions. Explicit privacy exclusions still override opt-in.
+- Added pure policy and hook integration regression assertions and confirmed **7 GitHub source consistency checks** for policy, opt-in wiring and tests. These checks DO NOT constitute running Vitest, TypeScript project typecheck or Next.js build.
+- Trade-off: text-processing tools may no longer preserve their entire text input when copying generic result links. This intentional reduction needs UX acceptance and tool-by-tool review before enabling any opt-in. Previously generated links can still be opened, but excluded text values are not restored by the generic hook.
+- The separate manually registered `useShareableState` hook is not automatically covered by this change; its tool-specific state must be reviewed for sensitive content.
+- Release remains NO-GO pending full owner-accessible build/test gate, text tool privacy review, mobile browser QA, analytics consent and actual deployment verification.
