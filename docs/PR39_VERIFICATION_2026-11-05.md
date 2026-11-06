@@ -112,3 +112,9 @@ This file is a checkpoint, not a passing full-release certificate.
 - Added a corresponding `ToolInteractionTracker.trust.test.ts` source regression case and confirmed five source consistency checks by GitHub readback.
 - This static verification is NOT a real Vitest run or GA4 DebugView test. Browser acceptance still needs navigate tool A → B without a full reload, operate B and verify its first calculate, then leave before the pending event and verify no late analytics event.
 - Release stays draft/NO-GO; no full Next build, review, deployment or observed revenue/engagement improvement.
+
+## 2026-11-06 — Name/id-based sensitive input protection
+- Auto-generated `?s=` state formerly inspected input type, browser autocomplete and opt-out attributes, but did not check developer-assigned field `name` or `id`. Added an optional identifier parameter in `share-input-policy.ts` and wired `name` + `id` for input, textarea and select.
+- Filters credential/personal-data hint names including `apiKey`, `privateKey`, `refresh_token`, `creditCard`, `cardNumber`, `billingEmail`, `contactPhone`, and `postalCode`; camelCase is normalized. Regular numeric field identifiers such as `amount`, `valueA`, `angleC` remain eligible.
+- Added unit and integration test assertions. GitHub readback verifies the new source and test wiring. Reused the exact source pattern in a JavaScript regex check: **17 identifier cases passed** (12 excluded, 5 allowed). This check is limited to identifier matching, not full Vitest/React/Next behavior.
+- Remaining risk: arbitrary free-text can still contain sensitive content even without sensitive field names. Full tool-by-tool privacy review remains a release blocker. Real browser/GA4/consent checks and full `bash scripts/check-engagement-release.sh` are not complete.
