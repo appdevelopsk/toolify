@@ -44,3 +44,15 @@ test('synthetic restoration events cannot inflate active tool engagement', () =>
   assert.ok(tracker.includes('}, [slug, locale, category])'));
   assert.ok(restore.includes('dispatchEvent(new Event("input", { bubbles: true }))'));
 });
+
+test('automatic share URLs exclude sensitive named and autofilled fields', () => {
+  const policy = read('../src/lib/hooks/share-input-policy.ts');
+  const hook = read('../src/lib/hooks/useAutoShareableState.ts');
+  assert.ok(policy.includes('SENSITIVE_IDENTIFIER'));
+  assert.ok(policy.includes('SENSITIVE_AUTOCOMPLETE'));
+  assert.ok(policy.includes('SENSITIVE_IDENTIFIER.test(normalizedIdentifier)'));
+  assert.ok(hook.includes('const identifier ='));
+  assert.ok(hook.includes('isShareableField(el.type, el.autocomplete, privateField, identifier)'));
+  assert.ok(hook.includes('isShareableField("textarea", el.autocomplete, privateField, identifier)'));
+  assert.ok(hook.includes('isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField, identifier)'));
+});
