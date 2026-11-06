@@ -26,3 +26,9 @@
 - The first PR41 embed helper escaped HTML attributes but accepted `javascript:`, `data:`, and relative iframe/link URLs. Added `safeEmbedUrl` that requires HTTPS (or HTTP only on localhost/127.0.0.1 for local development); invalid iframe URLs fall back to `about:blank`, invalid tool links to the Toolify365 homepage.
 - Updated the cross-PR integration source assertions and `embed-html.test.ts` with scheme rejection and legitimate HTTPS/local-development cases.
 - Reconstructed the final helper as a small standalone Node ES module matching the GitHub logic: `node --test` **4 passed, 0 failed** (HTML escaping, query attribute escaping, unsafe URL schemes, valid HTTPS/local URLs). The full PR41 Vitest, TypeScript and Next.js build are **not verified**. No GitHub Actions, merge or deployment initiated.
+
+## 2026-11-07 verified standalone Node check
+- Retrieved current `site/src/lib/tools/embed-html.ts` from the PR41 branch, copied its exact implementation into an isolated local workspace, and ran `node --experimental-strip-types --test test.mjs` on Node v22.16.0.
+- **Five independent Node subtests passed (5/5, exit 0):** markup entities, src/href attribute escaping, injected markup/handler protection, disallowed javascript/data/relative/http remote schemes, HTTPS and local development.
+- This tests the actual helper implementation in isolation with a separate Node test harness, **not** the repository's Vitest suite or whole Next.js application. The four in-repo Vitest test cases are authored but remain unrun with `npm ci` on a full checkout.
+- At check time PR41 remained open, draft, 11 commits ahead of main and 0 behind; no deploy/merge performed in this work.
