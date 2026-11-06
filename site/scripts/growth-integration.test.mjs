@@ -59,3 +59,15 @@ test('automatic share URLs exclude sensitive named and autofilled fields', () =>
   assert.ok(hook.includes('isShareableField("textarea", el.autocomplete, privateField, identifier, explicitTextOptIn)'));
   assert.ok(hook.includes('isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField, identifier, explicitTextOptIn)'));
 });
+
+test('shared URL restoration validates untrusted input and clears stale oversized state', () => {
+  const policy = read('../src/lib/hooks/share-input-policy.ts');
+  const hook = read('../src/lib/hooks/useAutoShareableState.ts');
+  assert.ok(policy.includes('export function isValidRestoredFieldValue('));
+  assert.ok(policy.includes('Number.isFinite(Number(value))'));
+  assert.ok(hook.includes('if (!isValidRestoredFieldValue(kind, v)) continue'));
+  assert.ok(hook.includes('Array.from(el.options).some((option) => option.value === v)'));
+  assert.ok(hook.includes('el.type === "radio" && el.value !== v'));
+  assert.ok(hook.includes('stale.searchParams.delete("s")'));
+  assert.ok(hook.includes('window.dispatchEvent(new Event("toolify:share-state-change"))'));
+});
