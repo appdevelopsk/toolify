@@ -11,7 +11,13 @@
 - `git ls-remote https://github.com/appdevelopsk/toolify.git HEAD` fails DNS in this environment. Full project install, TypeScript, Vitest, Next production build, browser QA and production deployment are **unverified**.
 
 ## Owner release gate
-1. On a machine with repository and npm access, checkout this follow-up branch and run `cd site && npm ci && npm run test:smoke-html && npm run test:integration && npm run typecheck && npm test && npm run build`. (The old root integration release shell script checks the now-merged PR40 branch and **must not be used unchanged** on this follow-up.)
+1. On a machine with repository and npm access, checkout this follow-up branch and run `bash scripts/check-postmerge-embed-release.sh` from the repository root. The old PR40 release gate is specific to the merged branch and must not be used here.
 2. Verify on desktop and mobile that ShareBar emits safe embed HTML, copy/share actions work, and the iframe route and tool page are functional in en/ja.
 3. Review and merge this follow-up PR only after all checks pass. Owner-managed deploy; then confirm live behavior and no regression. GitHub Actions are **not** used.
 4. Measure GA4 funnel and 28-day GSC/Bing data after deployment; don't infer traffic or revenue growth from merges or isolated tests.
+
+## Dedicated PR #41 release gate (2026-11-07)
+- Added `scripts/check-postmerge-embed-release.sh`, guarded to **only** run from `fix/toolify-postmerge-embed-safety-20261107`. It performs `npm ci`, both dependency-free Node checks, TypeScript, Vitest, validation, SEO/i18n/index policy audits, and production Next build. Does not use GitHub Actions or deploy.
+- Execute from repository root: `bash scripts/check-postmerge-embed-release.sh`.
+- Local standalone embed helper tests re-run with Node v22.16.0: **3 passed, 0 failed**, but the full release gate remains **unrun** until checkout, npm dependencies and browser/device QA can be performed.
+- Do not merge PR #41 solely on source inspections or isolated tests.
