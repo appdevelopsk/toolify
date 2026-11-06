@@ -37,3 +37,18 @@ export function isShareableField(
 export function isSharePayloadWithinLimit(encoded: string, limit: number): boolean {
   return limit > 0 && encoded.length <= limit;
 }
+
+/**
+ * URL state is untrusted. Do not coerce arbitrary JSON values into DOM controls.
+ * The caller additionally verifies select/radio values against current options.
+ */
+export function isValidRestoredFieldValue(type: string, value: unknown): value is string | boolean {
+  const normalizedType = type.toLowerCase();
+  if (normalizedType === "checkbox") return typeof value === "boolean";
+  if (normalizedType === "radio") return typeof value === "string" && value.length <= 1800;
+  if (typeof value !== "string" || value.length > 1800) return false;
+  if (normalizedType === "number" || normalizedType === "range") {
+    return value === "" || (value.trim() !== "" && Number.isFinite(Number(value)));
+  }
+  return true;
+}
