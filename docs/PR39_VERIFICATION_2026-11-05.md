@@ -139,3 +139,10 @@ This file is a checkpoint, not a passing full-release certificate.
 - Only boolean values may restore checkboxes; radio controls require string values that exactly match the target radio's own value; select controls require an option present in the current select. Numeric/range fields require a finite numeric string or an empty string. String values are limited to 1800 characters.
 - Added unit and integration regression tests for the policy and hook wiring. GitHub source readback confirms **6 static consistency checks** (policy export, use, select/radio validation, tests). The Vitest tests have been added but **have not run**.
 - Remaining concerns: browser behavior when options change dynamically, old share link compatibility, and manually registered `useShareableState` consumers. Full owner checkout QA, typecheck/build, consent verification and desktop/mobile tests remain release blockers.
+
+## 2026-11-06 — Escaped embeddable HTML output
+- Extracted `buildToolEmbedSnippet` and `escapeHtml` into `site/src/lib/tools/embed-html.ts`; ShareBar now uses the helper for its iframe-plus-attribution snippet.
+- Localized titles and URL attributes are escaped for `&`, `<`, `>`, double quote and single quote. Prior code did not escape all characters consistently, risking malformed snippets.
+- Added `embed-html.test.ts` with three regression cases covering entities, query-string ampersands and HTML/attribute injection attempts. GitHub readback confirmed helper code, ShareBar wiring and test source.
+- No entire repository checkout or Vitest execution was available. A direct `git ls-remote` attempt still failed because github.com DNS resolution is unavailable in the execution container.
+- Release remains NO-GO. Run the local gate, execute embed tests, and review generated HTML in a real host page before enabling release.
