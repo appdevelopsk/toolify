@@ -133,3 +133,9 @@ This file is a checkpoint, not a passing full-release certificate.
 - Trade-off: text-processing tools may no longer preserve their entire text input when copying generic result links. This intentional reduction needs UX acceptance and tool-by-tool review before enabling any opt-in. Previously generated links can still be opened, but excluded text values are not restored by the generic hook.
 - The separate manually registered `useShareableState` hook is not automatically covered by this change; its tool-specific state must be reviewed for sensitive content.
 - Release remains NO-GO pending full owner-accessible build/test gate, text tool privacy review, mobile browser QA, analytics consent and actual deployment verification.
+
+## 2026-11-06 — Untrusted shared URL value type and option checks
+- Generic URL restore now validates decoded values against the target DOM input type before calling native setters or clicking checkbox/radio controls.
+- Only boolean values may restore checkboxes; radio controls require string values that exactly match the target radio's own value; select controls require an option present in the current select. Numeric/range fields require a finite numeric string or an empty string. String values are limited to 1800 characters.
+- Added unit and integration regression tests for the policy and hook wiring. GitHub source readback confirms **6 static consistency checks** (policy export, use, select/radio validation, tests). The Vitest tests have been added but **have not run**.
+- Remaining concerns: browser behavior when options change dynamically, old share link compatibility, and manually registered `useShareableState` consumers. Full owner checkout QA, typecheck/build, consent verification and desktop/mobile tests remain release blockers.
