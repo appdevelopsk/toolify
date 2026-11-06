@@ -54,3 +54,11 @@ Run this only after production deployment (the old site has no new CTA and corre
 
 ## One-command combined local gate (2026-11-06)
 The existing root `scripts/check-engagement-release.sh` now runs both PR #39's full checks and PR #38's dependency-free `test:smoke-html` before typecheck/Vitest/audits/build. On an owner-accessible checkout run `bash scripts/check-engagement-release.sh` from repository root; it uses `npm ci` and does not run GitHub Actions, merge or deploy. The shell script itself has not been run in this environment (private repo cannot be cloned). A passing run still requires real browser/GA4 checks before merging and owner-managed deployment.
+
+## 2026-11-06 morning sync (search safety + combined regression gate)
+- PR #39 added `search-index-payload.ts` and tests plus `useSearchIndex` validation. These were ported to PR #40, then the latest stricter payload validation (known categories, safe slug pattern, title limits, deduplication) and expanded tests were resynced.
+- Compared against category configuration: parser's eight categories match `ToolCategory`'s eight configured categories.
+- Added `site/scripts/growth-integration.test.mjs` with three dependency-free checks: workspace/navigation/CTA/ad order, five GA4 exports and consumers, and catalog-gated recommendation wiring.
+- Registered `npm run test:integration` and added it to `scripts/check-engagement-release.sh` along with `test:smoke-html`.
+- GitHub connector readback verified all three tests are present, the new npm command is wired, the UI order is workspace → recent → software CTA → ad, and the five tracking functions are retained. **This is source readback, not a completed run of the full integration gate.**
+- Direct clone still fails DNS from available execution environment. Avoid merging PR #40 until full npm install, Vitest, typecheck, browser/device checks and build run in an authorized checkout.
