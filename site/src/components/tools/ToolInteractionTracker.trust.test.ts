@@ -13,6 +13,16 @@ describe("user-initiated tool engagement telemetry", () => {
     expect(restore).toContain('el.dispatchEvent(new Event("input", { bubbles: true }))');
   });
 
+  it("resets event dedup for client navigation and cancels delayed telemetry on unmount", () => {
+    expect(source).toContain("sent.current = { calculate: false, copy: false, preset: false }");
+    expect(source).toContain("let calculateDelay: number | undefined");
+    expect(source).toContain("let disposed = false");
+    expect(source).toContain("if (disposed) return");
+    expect(source).toContain("disposed = true");
+    expect(source).toContain("window.clearTimeout(calculateDelay)");
+    expect(source).toContain("}, [slug, locale, category])");
+  });
+
   it("does not count programmatic mode replay as preset or copy actions", () => {
     expect(source).toContain("function onClick(e: Event)");
     expect(source).toContain("if (!e.isTrusted) return");
