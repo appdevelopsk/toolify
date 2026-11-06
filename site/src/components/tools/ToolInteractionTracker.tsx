@@ -72,8 +72,9 @@ export function ToolInteractionTracker({
       });
     }
 
-    function onInput() {
-      if (sent.current.calculate) return;
+    function onInput(e: Event) {
+      // URL restore uses synthetic input/change events, not real user actions.
+      if (!e.isTrusted || sent.current.calculate) return;
       const root = el as HTMLElement;
       if (root.querySelector("[data-calc-label]")) {
         if (settle !== undefined) window.clearTimeout(settle);
@@ -98,6 +99,8 @@ export function ToolInteractionTracker({
     }
 
     function onClick(e: Event) {
+      // Programmatic mode replay must not inflate GA4 user-action events.
+      if (!e.isTrusted) return;
       const target = e.target as HTMLElement | null;
       const btn = target?.closest?.("button");
       if (!btn) return;
