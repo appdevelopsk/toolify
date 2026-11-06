@@ -70,3 +70,10 @@ The existing root `scripts/check-engagement-release.sh` now runs both PR #39's f
 - Identified a misleading success case: serialized HTML text inside hydration `<script>` or `<style>` could appear to be a real software CTA. The HTML helper now ignores script and style blocks; added regression cases for fake anchors in both elements.
 - Re-executed the updated local HTML test copy after the fix: **3/3 tests pass**. This validates the helper unit tests, not live rendering.
 - Main merge and deploy remain blocked on full integrated local gate, browser checks, review, and owner deployment.
+
+## 2026-11-06 10:12 JST: renewed checks and branch safety
+- Compared the latest PR #39 against PR #40: nine changed candidate paths were checked; five already matched and four were updated on integration (verification document, ShareBar event tests, manual share hook, auto share hook). Do not confuse Git ancestry divergence with file mismatch.
+- Strengthened `scripts/check-engagement-release.sh` to refuse execution unless the checked-out branch is `integration/toolify-growth-engagement-20261106`; this prevents accidentally running the release gate against `main` or a detached head.
+- Copied the GitHub HTML helper and its test cases into an isolated local Node.js 22.16.0 environment and executed `node --test`: **3 passed, 0 failed**. The test covers noindex, canonical, real CTA anchor/locale/domain and fake script/style elements. Test copies, not an actual full repository checkout.
+- Direct `git ls-remote https://github.com/appdevelopsk/toolify.git HEAD` again failed with `Could not resolve host: github.com`. No full `npm ci`, typecheck, complete Vitest, production build, visual QA or merge/deploy performed.
+- Current decision remains **NO-GO**, pending full local gate, manual QA and owner deployment.
