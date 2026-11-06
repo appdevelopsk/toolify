@@ -132,3 +132,8 @@ The existing root `scripts/check-engagement-release.sh` now runs both PR #39's f
 - Main contains most earlier integrated growth/engagement code, but the PR40-specific escaped embedding helper and tests remain not in main. Do not infer PR40 has been fully merged.
 - Confirmed local Node v22.16.0 and tsc 5.8.3 available. Direct `git ls-remote https://github.com/appdevelopsk/toolify.git HEAD` still fails with `Could not resolve host: github.com`, preventing complete repo checkout and the required local release gate.
 - Release remains **NO-GO**: integrate latest main's deployment safeguards into the owner-accessible integration branch before full `bash scripts/check-engagement-release.sh`, browser/GA4/consent QA, review and owner deployment. No unverified performance or revenue claims.
+
+## 2026-11-07 — Isolated embed helper execution and draft-state limitation
+- Recreated the exact GitHub `site/src/lib/tools/embed-html.ts` source in a local temporary harness, and executed `tsc --strict --target es2022` successfully. Ran **9 direct Node assertions**, all passed, against entity escaping and attempted HTML/attribute injection. This is isolated pure-helper execution, **not** project Vitest or Next build.
+- Updated PR #40 metadata to clearly mark **NO-GO** and list pending integration/build/device gates. The current PR metadata reports `draft=false`, and attempting to convert it to draft failed with GitHub GraphQL `FORBIDDEN` (insufficient permission); no assertion that it was made a draft.
+- At this check, PR40 has zero submitted reviews and remains 2 commits behind main. Do not merge from the normal open PR UI until its full gates pass and the owner explicitly approves.
