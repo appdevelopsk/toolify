@@ -86,6 +86,9 @@ test('embedded tool HTML escapes title and attribute values', () => {
 test('deployment paths retain VPS lock and public release SHA verification safeguards', () => {
   const workflow = read('../../.github/workflows/deploy.yml');
   const lock = read('../../ops/deploy-lock.sh');
+  // PR40 is owner-deployed. GitHub Actions must not auto-deploy on main merges.
+  assert.match(workflow, /on:\\s*\\n\\s*workflow_dispatch:\\s*\\{\\}/);
+  assert.doesNotMatch(workflow, /\\n\\s*push:\\s*\\n\\s*branches:\\s*\\[main\\]/);
   assert.ok(workflow.includes('Acquire VPS deploy lock (shared with local deploy)'));
   assert.ok(workflow.includes('Release VPS deploy lock'));
   assert.ok(workflow.includes('Verify live release SHA'));
