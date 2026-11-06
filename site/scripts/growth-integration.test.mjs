@@ -51,8 +51,11 @@ test('automatic share URLs exclude sensitive named and autofilled fields', () =>
   assert.ok(policy.includes('SENSITIVE_IDENTIFIER'));
   assert.ok(policy.includes('SENSITIVE_AUTOCOMPLETE'));
   assert.ok(policy.includes('SENSITIVE_IDENTIFIER.test(normalizedIdentifier)'));
+  assert.ok(policy.includes('explicitTextOptIn = false'));
+  assert.ok(policy.includes('freeTextType && !explicitTextOptIn'));
   assert.ok(hook.includes('const identifier ='));
-  assert.ok(hook.includes('isShareableField(el.type, el.autocomplete, privateField, identifier)'));
-  assert.ok(hook.includes('isShareableField("textarea", el.autocomplete, privateField, identifier)'));
-  assert.ok(hook.includes('isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField, identifier)'));
+  assert.ok(hook.includes('const explicitTextOptIn = el.getAttribute("data-share") === "on"'));
+  assert.ok(hook.includes('isShareableField(el.type, el.autocomplete, privateField, identifier, explicitTextOptIn)'));
+  assert.ok(hook.includes('isShareableField("textarea", el.autocomplete, privateField, identifier, explicitTextOptIn)'));
+  assert.ok(hook.includes('isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField, identifier, explicitTextOptIn)'));
 });
