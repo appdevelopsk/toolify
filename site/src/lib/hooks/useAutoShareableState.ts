@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, type RefObject } from "react";
-import { isShareableField, isSharePayloadWithinLimit } from "./share-input-policy";
+import { isShareableField, isSharePayloadWithinLimit, isValidRestoredFieldValue } from "./share-input-policy";
 
 /**
  * ツール本体の DOM 入力を丸ごと ?s= に載せ、共有リンクから復元する。
@@ -192,6 +192,10 @@ export function useAutoShareableState(
               // `k in saved` では index 型が絞れないので値を取って判定する。
               if (typeof v !== "string" && typeof v !== "boolean") continue;
               if (only && !only(el)) continue;
+              const kind = el instanceof HTMLInputElement ? el.type : el instanceof HTMLSelectElement ? "select" : "textarea";
+              if (!isValidRestoredFieldValue(kind, v)) continue;
+              if (el instanceof HTMLSelectElement && !Array.from(el.options).some((option) => option.value === v)) continue;
+              if (el instanceof HTMLInputElement && el.type === "radio" && el.value !== v) continue;
               writeValue(el, v);
             }
           };
