@@ -49,13 +49,14 @@ function fields(root: HTMLElement): HTMLElement[] {
     // Do not share fields explicitly marked private or browser-autofilled as PII.
     const privateField = !!el.closest("[data-private], [data-share=\"off\"]");
     const identifier = `${el.getAttribute("name") ?? ""} ${el.id}`;
+    const explicitTextOptIn = el.getAttribute("data-share") === "on";
     if (el instanceof HTMLInputElement) {
-      return isShareableField(el.type, el.autocomplete, privateField, identifier);
+      return isShareableField(el.type, el.autocomplete, privateField, identifier, explicitTextOptIn);
     }
     if (el instanceof HTMLTextAreaElement) {
-      return isShareableField("textarea", el.autocomplete, privateField, identifier);
+      return isShareableField("textarea", el.autocomplete, privateField, identifier, explicitTextOptIn);
     }
-    return isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField, identifier);
+    return isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField, identifier, explicitTextOptIn);
   });
 }
 
