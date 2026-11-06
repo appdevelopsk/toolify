@@ -234,7 +234,7 @@ export function useAutoShareableState(
           if (!isSharePayloadWithinLimit(encoded, MAX_ENCODED)) return;
           const url = new URL(window.location.href);
           url.searchParams.set("s", encoded);
-          window.history.replaceState(null, "", url.toString());
+          window.history.replaceState(window.history.state, "", url.toString());
           window.dispatchEvent(new Event("toolify:share-state-change"));
         } catch {
           /* 共有できないだけで計算は続行 */
