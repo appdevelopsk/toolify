@@ -32,3 +32,11 @@ test('catalog-gated software CTA mappings are present', () => {
   assert.ok(recs.includes('availableRecommendations'));
   assert.ok(frame.includes('slug={meta.slug} locale={locale}'));
 });
+
+test('synthetic restoration events cannot inflate active tool engagement', () => {
+  const tracker = read('../src/components/tools/ToolInteractionTracker.tsx');
+  const restore = read('../src/lib/hooks/useAutoShareableState.ts');
+  assert.ok(tracker.includes('if (!e.isTrusted || sent.current.calculate) return'));
+  assert.ok(tracker.includes('if (!e.isTrusted) return'));
+  assert.ok(restore.includes('dispatchEvent(new Event("input", { bubbles: true }))'));
+});
