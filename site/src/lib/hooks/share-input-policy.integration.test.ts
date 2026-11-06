@@ -6,12 +6,13 @@ const manual = readFileSync(new URL("./useShareableState.ts", import.meta.url), 
 
 describe("share policy integration", () => {
   it("uses the PII-aware policy for inputs, textareas and selects", () => {
-    expect(source).toContain("isShareableField(el.type, el.autocomplete, privateField, identifier)");
-    expect(source).toContain('isShareableField("textarea", el.autocomplete, privateField, identifier)');
-    expect(source).toContain('isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField, identifier)');
+    expect(source).toContain("isShareableField(el.type, el.autocomplete, privateField, identifier, explicitTextOptIn)");
+    expect(source).toContain('isShareableField("textarea", el.autocomplete, privateField, identifier, explicitTextOptIn)');
+    expect(source).toContain('isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField, identifier, explicitTextOptIn)');
     expect(source).toContain('const privateField = !!el.closest(');
     expect(source).toContain('data-share=');
     expect(source).toContain('const identifier = `${el.getAttribute("name") ?? ""} ${el.id}`');
+    expect(source).toContain('const explicitTextOptIn = el.getAttribute("data-share") === "on"');
   });
   it("ignores malformed decoded fields and out-of-range mode buttons", () => {
     expect(source).toContain('typeof v !== "string" && typeof v !== "boolean"');
