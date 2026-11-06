@@ -40,7 +40,7 @@ async function get(path) {
     signal: AbortSignal.timeout(12000),
   });
   const text = await response.text();
-  return { status: response.status, text, url: response.url, contentType: response.headers.get("content-type") ?? "" };
+  return { status: response.status, text, url: response.url, contentType: response.headers.get("content-type") ?? "", xRobotsTag: response.headers.get("x-robots-tag") ?? "" };
 }
 for (const path of paths) {
   try {
@@ -55,7 +55,7 @@ for (const path of paths) {
     if (product && !hasSoftwareAnchor(page.text, product, path.split("/")[1], base.origin)) {
       failures.push(`${path}: expected software CTA missing (${product})`);
     }
-    if (expectedIndexed.includes(path) && hasNoindex(page.text)) {
+    if (expectedIndexed.includes(path) && hasNoindex(page.text, page.xRobotsTag)) {
       failures.push(`${path}: indexed core tool unexpectedly noindex`);
     }
     if (path.includes("/tools/")) {
