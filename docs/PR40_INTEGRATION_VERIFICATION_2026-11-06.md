@@ -88,3 +88,9 @@ The existing root `scripts/check-engagement-release.sh` now runs both PR #39's f
 - Compared eleven candidate files from the latest PR39 head to the integration branch using exact GitHub blob SHA. Eight matched; synced three differing files: `docs/PR39_VERIFICATION_2026-11-05.md`, `ToolInteractionTracker.tsx`, and `ToolInteractionTracker.trust.test.ts`.
 - The latest PR39 tracker now resets event deduplication on tool route change and cancels delayed tracking when the component unmounts. Updated dependency-free integration test assertions to keep those protections.
 - The full Node/Next integrated release gate has **not** run in this environment and its results must not be inferred from source inspection. PR40 remains draft; owner-managed deploy pending.
+
+## 2026-11-06 evening update: PR39 sensitive-field share policy sync
+- Checked current PR39 vs integration PR40 across 13 candidate files. Eight exact blob SHAs matched; five newer files were brought forward: PR39 verification record, `share-input-policy.integration.test.ts`, `share-input-policy.test.ts`, `share-input-policy.ts`, and `useAutoShareableState.ts`.
+- The updated share policy excludes password/email/tel and autofill-sensitive inputs, developer-labeled sensitive identifiers (including camelCase) and explicitly private fields. This is a defense-in-depth filter; it **does not guarantee** all free text is non-sensitive.
+- Added a fifth dependency-free `growth-integration.test.mjs` check for policy constants and actual hook integration; the full suite has NOT been run in a checked-out app.
+- Running full build requires source checkout, npm install, TypeScript/Vitest, SEO/i18n audits, device QA. Keep PR #40 Draft/NO-GO pending the full owner-accessible `bash scripts/check-engagement-release.sh` gate.
