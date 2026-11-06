@@ -78,7 +78,8 @@ test('embedded tool HTML escapes title and attribute values', () => {
   assert.ok(share.includes('buildToolEmbedSnippet'));
   assert.ok(html.includes('export function escapeHtml(value: string)'));
   assert.ok(html.includes('const safeTitle = escapeHtml(title)'));
-  assert.ok(html.includes('const safeEmbedUrl = escapeHtml(embedUrl)'));
-  assert.ok(html.includes('const safeToolUrl = escapeHtml(toolUrl)'));
+  assert.ok(html.includes("const safeEmbedSrc = escapeHtml(safeEmbedUrl(embedUrl, 'about:blank'))"));
+  assert.ok(html.includes("const safeToolUrl = escapeHtml(safeEmbedUrl(toolUrl, 'https://toolify365.com'))"));
   assert.ok(html.includes('rel="noopener"'));
+  assert.ok(html.includes('if (parsed.protocol === "https:" || localDev) return value'));
 });
