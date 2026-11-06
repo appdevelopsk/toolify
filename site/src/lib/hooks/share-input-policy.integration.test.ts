@@ -20,6 +20,12 @@ describe("share policy integration", () => {
     expect(source).toContain('i >= all.length');
   });
 
+  it("rejects invalid restored field types and unavailable option values", () => {
+    expect(source).toContain("isValidRestoredFieldValue(kind, v)");
+    expect(source).toContain('option.value === v');
+    expect(source).toContain('el.type === "radio" && el.value !== v');
+  });
+
   it("replays URL button indices only within a mode-selector group", () => {
     expect(source).toContain("function isModeButton(btn: HTMLButtonElement)");
     expect(source).toContain("siblings.length >= 2");
