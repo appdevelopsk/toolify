@@ -76,3 +76,11 @@ This file is a checkpoint, not a passing full-release certificate.
 - Added unit tests for parsed payloads plus a source-level regression test for locale-scoped display. Reconstructed the exact parser in a standalone local TypeScript harness with a minimal type stub: strict compilation and 10 Node assertions passed.
 - This is not a full Next.js app compile or UI-level language-switch test. No GitHub Actions, merge or deployment were performed.
 - Full-repo checkout remains blocked by DNS from this container, confirmed again. Run `bash scripts/check-engagement-release.sh` in the owner environment and verify locale switches in browser before release.
+
+## 2026-11-06 — Search index link validation
+- Strengthened the localized search-index parser used by recent-tool navigation: accept only hyphenated ASCII tool slugs (max 100 chars), known tool categories, nonempty localized titles (max 200 chars); drop duplicate slugs.
+- Reject malformed path traversal, percent-encoded separators, unknown categories and oversized titles without hiding valid tool suggestions.
+- Expanded `search-index-payload.test.ts` for malformed URL targets, duplicate slugs, and title/category validation.
+- Reconstructed the exact pure parser in an isolated local TypeScript harness with a minimal compatible SearchItem type stub. `tsc --strict` passed and 15 Node assertions passed.
+- **These are isolated checks, not the full repository Vitest/Next build**. No production deployment, mobile QA, or GA4 engagement uplift verified.
+- Next gate: full checkout and `bash scripts/check-engagement-release.sh`, then check actual en/ja locale switching and malformed index behavior on mobile.
