@@ -24,7 +24,8 @@ export function isShareableField(
   privateField = false,
   identifier = "",
 ): boolean {
-  if (privateField || !isShareableInputType(type) || SENSITIVE_IDENTIFIER.test(identifier)) return false;
+  const normalizedIdentifier = identifier.replace(/([a-z0-9])([A-Z])/g, "$1-$2").replace(/\s+/g, "-");
+  if (privateField || !isShareableInputType(type) || SENSITIVE_IDENTIFIER.test(normalizedIdentifier)) return false;
   const tokens = autocomplete.toLowerCase().trim().split(/\s+/);
   return !tokens.some((token) => SENSITIVE_AUTOCOMPLETE.test(token));
 }
