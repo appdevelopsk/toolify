@@ -76,7 +76,16 @@ export function useShareableState<T extends object>(
     if (prev === null || prev === serialized) return;
     try {
       const encoded = encodeState(JSON.parse(serialized) as object);
-      if (encoded.length > MAX_SHARED_STATE_LENGTH) return;
+      if (encoded.length > MAX_SHARED_STATE_LENGTH) {
+        // Do not let a stale result link represent a newer, unshareable value.
+        const stale = new URL(window.location.href);
+        if (stale.searchParams.has("s")) {
+          stale.searchParams.delete("s");
+          window.history.replaceState(window.history.state, "", stale.toString());
+          window.dispatchEvent(new Event("toolify:share-state-change"));
+        }
+        return;
+      }
       const url = new URL(window.location.href);
       url.searchParams.set("s", encoded);
       window.history.replaceState(window.history.state, "", url.toString());
