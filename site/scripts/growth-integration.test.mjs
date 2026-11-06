@@ -82,3 +82,16 @@ test('embedded tool HTML escapes title and attribute values', () => {
   assert.ok(html.includes('const safeToolUrl = escapeHtml(toolUrl)'));
   assert.ok(html.includes('rel="noopener"'));
 });
+
+test('deployment paths retain VPS lock and public release SHA verification safeguards', () => {
+  const workflow = read('../../.github/workflows/deploy.yml');
+  const lock = read('../../ops/deploy-lock.sh');
+  assert.ok(workflow.includes('Acquire VPS deploy lock (shared with local deploy)'));
+  assert.ok(workflow.includes('Release VPS deploy lock'));
+  assert.ok(workflow.includes('Verify live release SHA'));
+  assert.ok(workflow.includes('Verify public release endpoint'));
+  assert.ok(workflow.includes('../ops/deploy-lock.sh'));
+  assert.ok(lock.includes('acquire)'));
+  assert.ok(lock.includes('release)'));
+  assert.ok(lock.includes('TAKEOVER stale lock'));
+});
