@@ -232,7 +232,16 @@ export function useAutoShareableState(
       timer = window.setTimeout(() => {
         try {
           const encoded = encodeState(snapshot(root));
-          if (!isSharePayloadWithinLimit(encoded, MAX_ENCODED)) return;
+          if (!isSharePayloadWithinLimit(encoded, MAX_ENCODED)) {
+            // Do not retain a previously generated, now-stale shared result URL.
+            const stale = new URL(window.location.href);
+            if (stale.searchParams.has("s")) {
+              stale.searchParams.delete("s");
+              window.history.replaceState(window.history.state, "", stale.toString());
+              window.dispatchEvent(new Event("toolify:share-state-change"));
+            }
+            return;
+          }
           const url = new URL(window.location.href);
           url.searchParams.set("s", encoded);
           window.history.replaceState(window.history.state, "", url.toString());
