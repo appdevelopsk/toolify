@@ -9,6 +9,14 @@ if [[ "$ACTUAL_BRANCH" != "$EXPECTED_BRANCH" ]]; then
   echo "[integration] ERROR: checkout $EXPECTED_BRANCH before running the release gate (current: ${ACTUAL_BRANCH:-detached})." >&2
   exit 2
 fi
+# A passing build from a stale integration branch must not be released.
+# Fetch remote main without triggering workflows; check ancestry, do not merge.
+echo "[integration] Fetching latest origin/main for release ancestry check"
+git -C "$ROOT" fetch --no-tags origin main
+if ! git -C "$ROOT" merge-base --is-ancestor refs/remotes/origin/main HEAD; then
+  echo "[integration] ERROR: integration branch is not based on the latest origin/main. Merge/rebase and rerun release gate." >&2
+  exit 3
+fi
 cd "$ROOT/site"
 echo "[engagement] Node $(node --version), npm $(npm --version)"
 echo "[engagement] Installing from package-lock.json"
