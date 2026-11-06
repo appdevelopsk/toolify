@@ -84,3 +84,11 @@ This file is a checkpoint, not a passing full-release certificate.
 - Reconstructed the exact pure parser in an isolated local TypeScript harness with a minimal compatible SearchItem type stub. `tsc --strict` passed and 15 Node assertions passed.
 - **These are isolated checks, not the full repository Vitest/Next build**. No production deployment, mobile QA, or GA4 engagement uplift verified.
 - Next gate: full checkout and `bash scripts/check-engagement-release.sh`, then check actual en/ja locale switching and malformed index behavior on mobile.
+
+## 2026-11-06 — Next.js history state preservation
+- Fixed both `useShareableState` and `useAutoShareableState`: share URL updates now call `history.replaceState(history.state, "", url)` rather than replacing the history state with `null`.
+- This preserves the client router's pre-existing navigation state when adding/updating `?s=`. Avoid interpreting it as a verified navigation fix until tested in a browser.
+- Updated ShareBar.events.test.ts to assert preserved history state and reject the old null-overwrite pattern.
+- Read back both GitHub hook files and the test. Both hooks contain the new call and still dispatch share-state-change; neither retains the previous null overwrite.
+- Remaining manual QA: edit inputs, use back/forward, switch locale and tools through client navigation, restore shared links after BFCache return and confirm no hydration/router errors.
+- Source changes and static readback are verified. **Full Vitest, Next production build, real browser QA, merge and deploy are still pending.**
