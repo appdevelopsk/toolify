@@ -105,3 +105,10 @@ This file is a checkpoint, not a passing full-release certificate.
 - GitHub readback confirms 5 source consistency checks (trusted input/click guards, listener registration, synthetic restore dispatch and test assertions) passed. **This is static readback, not running Vitest, a browser, or a GA4 debugging session.**
 - Browser acceptance: load an auto-shared URL, confirm no `calculate`/preset/copy event before user action; change a field manually and confirm one `calculate`; check consent denied/granted modes; verify no analytics values include user input.
 - Release remains NO-GO pending full tests/build and manual owner QA, without GitHub Actions.
+
+## 2026-11-06 — Client-side route transitions and delayed GA4 events
+- `ToolInteractionTracker` now resets one-shot `calculate` / `copy_result` / `preset_click` flags whenever the effect is recreated for a changed tool slug, locale or category. This avoids carrying dedup state from an earlier client-side route.
+- Cancelled the delayed 50 ms calculation event on unmount and added a disposed guard. Without this, a queued timer could send an event after a tool was left.
+- Added a corresponding `ToolInteractionTracker.trust.test.ts` source regression case and confirmed five source consistency checks by GitHub readback.
+- This static verification is NOT a real Vitest run or GA4 DebugView test. Browser acceptance still needs navigate tool A → B without a full reload, operate B and verify its first calculate, then leave before the pending event and verify no late analytics event.
+- Release stays draft/NO-GO; no full Next build, review, deployment or observed revenue/engagement improvement.
