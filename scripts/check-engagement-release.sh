@@ -3,6 +3,12 @@
 # Does NOT deploy, merge, or run GitHub Actions.
 set -Eeuo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+EXPECTED_BRANCH="integration/toolify-growth-engagement-20261106"
+ACTUAL_BRANCH="$(git -C "$ROOT" branch --show-current)"
+if [[ "$ACTUAL_BRANCH" != "$EXPECTED_BRANCH" ]]; then
+  echo "[integration] ERROR: checkout $EXPECTED_BRANCH before running the release gate (current: ${ACTUAL_BRANCH:-detached})." >&2
+  exit 2
+fi
 cd "$ROOT/site"
 echo "[engagement] Node $(node --version), npm $(npm --version)"
 echo "[engagement] Installing from package-lock.json"
