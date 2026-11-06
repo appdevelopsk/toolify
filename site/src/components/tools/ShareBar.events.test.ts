@@ -19,6 +19,8 @@ describe("share URL controls", () => {
       "../../lib/hooks/useAutoShareableState.ts",
     ]) {
       const source = get(file);
+      expect(source).toContain('window.history.replaceState(window.history.state, "", url.toString())');
+      expect(source).not.toContain('window.history.replaceState(null, "", url.toString())');
       const replaceAt = source.indexOf("window.history.replaceState(");
       const notifyAt = source.indexOf('window.dispatchEvent(new Event("toolify:share-state-change"))');
       expect(replaceAt).toBeGreaterThan(0);
