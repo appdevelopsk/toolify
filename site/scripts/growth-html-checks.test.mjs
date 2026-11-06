@@ -8,6 +8,10 @@ test('robots and googlebot directives independent of attribute order', () => {
   assert.equal(hasNoindex('<meta name="robots" content="index, follow">'), false);
   assert.equal(hasNoindex('<meta name="description" content="noindex">'), false);
   assert.equal(hasNoindex('<meta name="robots" content="noindexing">'), false);
+  assert.equal(hasNoindex("", "noindex, nofollow"), true);
+  assert.equal(hasNoindex("", "googlebot: noindex, follow"), true);
+  assert.equal(hasNoindex("", "noindexing"), false);
+  assert.equal(hasNoindex("", "index, follow"), false);
   assert.equal(hasNoindex('<!-- <meta name="robots" content="noindex"> -->'), false);
   assert.equal(hasNoindex('<script>"<meta name=\\"robots\\" content=\\"noindex\\">"</script>'), false);
 });
