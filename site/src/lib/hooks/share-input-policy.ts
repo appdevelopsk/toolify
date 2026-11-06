@@ -15,12 +15,16 @@ export function isShareableInputType(type: string): boolean {
 }
 
 /** Exclude explicitly sensitive/autofilled fields and opt-out controls. */
+/** Field identifiers are developer-controlled hints, not a complete PII classifier. */
+const SENSITIVE_IDENTIFIER = /(?:^|[-_])(?:password|passwd|secret|api[-_]?key|access[-_]?token|refresh[-_]?token|auth[-_]?token|private[-_]?key|credit[-_]?card|card[-_]?number|cvv|cvc|ssn|social[-_]?security|email|phone|telephone|address|postal[-_]?code)(?:$|[-_])/i;
+
 export function isShareableField(
   type: string,
   autocomplete = "",
   privateField = false,
+  identifier = "",
 ): boolean {
-  if (privateField || !isShareableInputType(type)) return false;
+  if (privateField || !isShareableInputType(type) || SENSITIVE_IDENTIFIER.test(identifier)) return false;
   const tokens = autocomplete.toLowerCase().trim().split(/\s+/);
   return !tokens.some((token) => SENSITIVE_AUTOCOMPLETE.test(token));
 }
