@@ -1,0 +1,23 @@
+import { describe, expect, it } from "vitest";
+import { buildToolEmbedSnippet, escapeHtml } from "./embed-html";
+
+describe("safe tool embed HTML", () => {
+  it("escapes all HTML-special characters in localized titles", () => {
+    expect(escapeHtml(`A&B <"C"> 'D'`))
+      .toBe("A&amp;B &lt;&quot;C&quot;&gt; &#39;D&#39;");
+  });
+  it("escapes attribute values without double-escaping titles", () => {
+    const snippet = buildToolEmbedSnippet('A&B "Calculator"', 'https://toolify365.com/en/embed?a=1&b=2', 'https://toolify365.com/en/tools?a=1&b=2');
+    expect(snippet).toContain('title="A&amp;B &quot;Calculator&quot;"');
+    expect(snippet).toContain('src="https://toolify365.com/en/embed?a=1&amp;b=2"');
+    expect(snippet).toContain('href="https://toolify365.com/en/tools?a=1&amp;b=2"');
+    expect(snippet).toContain('>A&amp;B &quot;Calculator&quot;</a>');
+  });
+  it("cannot inject markup through title or a quoted attribute", () => {
+    const snippet = buildToolEmbedSnippet('"><script>alert(1)</script>', 'https://toolify365.com/embed" onload="alert(1)', "https://toolify365.com/tool' onclick='evil()");
+    expect(snippet).not.toContain('<script>');
+    expect(snippet).not.toContain('src="https://toolify365.com/embed" onload=');
+    expect(snippet).not.toContain("href=\"https://toolify365.com/tool' onclick=");
+    expect(snippet).toContain('&lt;script&gt;');
+  });
+});
