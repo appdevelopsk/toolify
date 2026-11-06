@@ -98,3 +98,10 @@ This file is a checkpoint, not a passing full-release certificate.
 - Added a separate regression case that explicitly preserves a valid one-character slug; this checks that the validator is not over-restrictive.
 - Reproduced the parser logic in an isolated local TypeScript harness with a minimal compatible SearchItem type definition; `tsc --strict` passed and 10 grouped Node assertions passed, including normal, invalid, duplicate and short-slug scenarios. This is NOT a run of project Vitest or Next build.
 - Git CLI still cannot resolve github.com in the execution environment; continue requiring owner-accessible `bash scripts/check-engagement-release.sh`, browser QA and reviewed deployment before merging PR #39.
+
+## 2026-11-06 — GA4 synthetic restore measurement correction
+- `ToolInteractionTracker.tsx` now ignores untrusted DOM input/change and click events when tracking `calculate`, `copy_result`, and `preset_click`. Auto shared-URL restore uses programmatic events and `.click()`, so those should not count as actual user engagement.
+- Added `ToolInteractionTracker.trust.test.ts` to assert that the user-event boundary and event subscriptions remain in place.
+- GitHub readback confirms 5 source consistency checks (trusted input/click guards, listener registration, synthetic restore dispatch and test assertions) passed. **This is static readback, not running Vitest, a browser, or a GA4 debugging session.**
+- Browser acceptance: load an auto-shared URL, confirm no `calculate`/preset/copy event before user action; change a field manually and confirm one `calculate`; check consent denied/granted modes; verify no analytics values include user input.
+- Release remains NO-GO pending full tests/build and manual owner QA, without GitHub Actions.
