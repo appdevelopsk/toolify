@@ -48,13 +48,14 @@ function fields(root: HTMLElement): HTMLElement[] {
   ).filter((el) => {
     // Do not share fields explicitly marked private or browser-autofilled as PII.
     const privateField = !!el.closest("[data-private], [data-share=\"off\"]");
+    const identifier = `${el.getAttribute("name") ?? ""} ${el.id}`;
     if (el instanceof HTMLInputElement) {
-      return isShareableField(el.type, el.autocomplete, privateField);
+      return isShareableField(el.type, el.autocomplete, privateField, identifier);
     }
     if (el instanceof HTMLTextAreaElement) {
-      return isShareableField("textarea", el.autocomplete, privateField);
+      return isShareableField("textarea", el.autocomplete, privateField, identifier);
     }
-    return isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField);
+    return isShareableField("select", el.getAttribute("autocomplete") ?? "", privateField, identifier);
   });
 }
 
