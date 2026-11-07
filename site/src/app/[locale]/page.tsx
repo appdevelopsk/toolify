@@ -14,7 +14,7 @@ import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import { softwareCopy } from "@/lib/software/copy";
-import { workflowCopy } from "@/lib/workflows/catalog";
+import { WORKFLOWS, workflowCopy } from "@/lib/workflows/catalog";
 import { isIndexedLocale, type Locale } from "@/lib/i18n/locales";
 import type { ToolCategory, ToolMeta } from "@/lib/tools/types";
 
@@ -185,6 +185,25 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <span className="ml-auto text-slate-300 transition-transform group-hover:translate-x-0.5 group-hover:text-brand-500 dark:text-slate-600" aria-hidden>
                 →
               </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Curated task journeys: meaningful steps, not arbitrary pageview inflation. */}
+      <section className="mt-10" aria-labelledby="workflow-home-heading">
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <h2 id="workflow-home-heading" className="text-xl font-bold">{workflow.heading}</h2>
+          <Link href="/workflows" prefetch={false}
+            className="text-sm font-semibold text-brand-700 hover:underline dark:text-brand-400">{workflow.nav} →</Link>
+        </div>
+        <p className="mt-2 max-w-3xl text-sm text-slate-600 dark:text-slate-400">{workflow.description}</p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {WORKFLOWS.map((flow) => (
+            <Link key={flow.id} href={`/workflows#${flow.id}`} prefetch={false}
+              className="flex min-h-24 items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 font-semibold text-slate-700 transition hover:border-brand-400 hover:bg-brand-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800">
+              <span className="text-2xl" aria-hidden>{flow.emoji}</span>
+              <span>{workflow.title(flow.id)} →</span>
             </Link>
           ))}
         </div>
