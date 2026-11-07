@@ -119,10 +119,9 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
   }, [url, slug]); // Resync result-link visibility on locale or tool navigation.
 
   const enc = encodeURIComponent;
-  // 埋め込みコードには iframe に加えて「ホストページ側の dofollow 被リンク」を必ず付ける。
-  // iframe 内の "Powered by" は toolify 自身のドキュメント内に閉じており被リンク価値が渡らないため、
-  // 埋め込んだ他サイトの HTML に、ツール名をアンカーテキストにした当該ツールページへの直リンクを置く。
-  // これが量産ツール(222本)を被リンク資産に変える肝（toolify は権威性不足で平均48位＝page5のため）。
+  // 埋め込みコードには、利用者が出典を確認できる視認可能なリンクを添える。
+  // ウィジェット配布による被リンクの検索順位操作は避け、
+  // HTML生成側で nofollow とセキュリティ属性を付与する。
   const snippet = buildToolEmbedSnippet(title, embedUrl, url);
 
   const socials = [
