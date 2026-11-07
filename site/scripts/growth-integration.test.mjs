@@ -104,12 +104,12 @@ test('postmerge release requires fresh main and manual-only deployment', () => {
 
 test('main push trigger guard detects the real YAML syntax', () => {
   const blocked = spawnSync('grep', ['-Fq', 'branches: [main]'], {
-    input: 'on:\\n  push:\\n    branches: [main]\\n',
+    input: ['on:', '  push:', '    branches: [main]', ''].join(String.fromCharCode(10)),
     encoding: 'utf8',
   });
   assert.equal(blocked.status, 0, 'an on-main-push deploy must be rejected');
   const allowed = spawnSync('grep', ['-Fq', 'branches: [main]'], {
-    input: 'on:\\n  workflow_dispatch: {}\\n',
+    input: ['on:', '  workflow_dispatch: {}', ''].join(String.fromCharCode(10)),
     encoding: 'utf8',
   });
   assert.equal(allowed.status, 1, 'manual-only deploy must be allowed');
