@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
 import { readFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
 
 const read = (path) => readFileSync(new URL(path, import.meta.url), 'utf8');
 const frame = read('../src/components/tools/ToolFrame.tsx');
@@ -93,9 +94,23 @@ test('postmerge release requires fresh main and manual-only deployment', () => {
   assert.ok(gate.includes('merge-base --is-ancestor refs/remotes/origin/main HEAD'));
   assert.ok(gate.includes('latest origin/main is not merged'));
   assert.ok(gate.includes('main push auto-deploy must be disabled'));
+  assert.ok(gate.includes("grep -Fq 'branches: [main]'"));
   assert.ok(workflow.includes('workflow_dispatch: {}'));
   assert.ok(!workflow.includes('branches: [main]'), 'must not automatically deploy on main');
   assert.ok(workflow.includes('Acquire VPS deploy lock (shared with local deploy)'));
   assert.ok(workflow.includes('Verify live release SHA'));
   assert.ok(workflow.includes('Verify public release endpoint'));
+});
+
+test('main push trigger guard detects the real YAML syntax', () => {
+  const blocked = spawnSync('grep', ['-Fq', 'branches: [main]'], {
+    input: 'on:\\n  push:\\n    branches: [main]\\n',
+    encoding: 'utf8',
+  });
+  assert.equal(blocked.status, 0, 'an on-main-push deploy must be rejected');
+  const allowed = spawnSync('grep', ['-Fq', 'branches: [main]'], {
+    input: 'on:\\n  workflow_dispatch: {}\\n',
+    encoding: 'utf8',
+  });
+  assert.equal(allowed.status, 1, 'manual-only deploy must be allowed');
 });
