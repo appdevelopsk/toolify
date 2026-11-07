@@ -106,3 +106,14 @@ test('postmerge release requires fresh main and validated manual-only deployment
   assert.ok(workflow.includes('Verify live release SHA'));
   assert.ok(workflow.includes('Verify public release endpoint'));
 });
+
+test('native share cancellation cannot silently copy the URL', () => {
+  const bar = read('../src/components/tools/ShareBar.tsx');
+  const policy = read('../src/lib/tools/share-errors.ts');
+  const gate = read('../../scripts/check-postmerge-embed-release.sh');
+  assert.ok(bar.includes('import { isShareCancelled } from "@/lib/tools/share-errors"'));
+  assert.ok(bar.includes('if (isShareCancelled(error)) return;'));
+  assert.ok(bar.includes('await navigator.share({ title, url })'));
+  assert.ok(policy.includes('error.name === "AbortError"'));
+  assert.ok(gate.includes('scripts/share-errors-node.test.mjs'));
+});
