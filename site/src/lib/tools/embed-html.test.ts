@@ -13,6 +13,17 @@ describe("safe tool embed HTML", () => {
     expect(snippet).toContain('href="https://toolify365.com/en/tools?a=1&amp;b=2"');
     expect(snippet).toContain('>A&amp;B &quot;Calculator&quot;</a>');
   });
+  it("qualifies distributed widget attribution links without affecting visible citations", () => {
+    const snippet = buildToolEmbedSnippet("My Tool", "https://toolify365.com/embed/en/test", "https://toolify365.com/en/tools/test");
+    const links = [...snippet.matchAll(/<a\\b[^>]*>/g)].map((m) => m[0]);
+    expect(links).toHaveLength(2);
+    for (const link of links) {
+      expect(link).toContain('rel="noopener noreferrer nofollow"');
+      expect(link).toContain('target="_blank"');
+    }
+    expect(snippet).toContain('>My Tool</a>');
+    expect(snippet).toContain('>toolify365</a>');
+  });
   it("cannot inject markup through title or a quoted attribute", () => {
     const snippet = buildToolEmbedSnippet('"><script>alert(1)</script>', 'https://toolify365.com/embed" onload="alert(1)', "https://toolify365.com/tool' onclick='evil()");
     expect(snippet).not.toContain('<script>');
