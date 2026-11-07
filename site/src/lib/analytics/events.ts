@@ -1,6 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/lib/config";
+import { sanitizePageViewUrl } from "./pageview-url";
 
 /**
  * GA4 カスタムイベントの一元送出。
@@ -44,7 +45,11 @@ export type CalculateParams = ToolEventParams & {
 function emit(name: string, params: Record<string, unknown>): void {
   if (!siteConfig.analytics.gaId) return;
   if (typeof window === "undefined" || typeof window.gtag !== "function") return;
-  window.gtag("event", name, params);
+  window.gtag("event", name, {
+    ...params,
+    // Never let share-state ?s= leak via implicit GA4 event page_location.
+    ...sanitizePageViewUrl(window.location.href),
+  });
 }
 
 /** ToolEventParams を GA4 送出用の params に正規化する(undefined は落とす)。 */
