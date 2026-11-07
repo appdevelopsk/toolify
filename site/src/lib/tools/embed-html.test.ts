@@ -35,8 +35,8 @@ describe("safe tool embed HTML", () => {
     for (const source of [
       "https://username:password@toolify365.com/en/embed",
       "https://username@toolify365.com/en/embed",
-      "\\nhttps://toolify365.com/en/embed",
-      "https://toolify365.com/en/embed\\t",
+      "\nhttps://toolify365.com/en/embed",
+      "https://toolify365.com/en/embed\t",
       " https://toolify365.com/en/embed",
     ]) {
       const snippet = buildToolEmbedSnippet("Safe", source, source);
