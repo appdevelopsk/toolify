@@ -14,7 +14,7 @@ import type { ToolCategory } from "@/lib/tools/types";
  *   - 外す: about/privacy/terms/contact/disclosure と /prompts 一式(いずれも noindex)
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const sharedPaths = ["", "/tools", "/pregnancy", "/workflows"];
+  const sharedPaths = ["", "/tools", "/pregnancy"];
   const entries: MetadataRoute.Sitemap = [];
   const IDX = LOCALES.filter(isIndexedLocale);
 
