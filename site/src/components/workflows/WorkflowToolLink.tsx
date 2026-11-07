@@ -18,7 +18,11 @@ export function WorkflowToolLink({
   const locale = useLocale();
   return (
     <Link href={`/tools/${slug}?wf=${workflow}&ws=${step}`} prefetch={false}
-      onClick={() => trackWorkflowStepClick({ workflow, step, destination: slug, locale })}
+      onClick={(event) => {
+        // Browser-generated activation only. Ignore synthetic bot/test clicks.
+        if (!event.nativeEvent.isTrusted) return;
+        trackWorkflowStepClick({ workflow, step, destination: slug, locale });
+      }}
       className="mt-4 inline-flex min-h-11 items-center justify-center rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">
       {children}
     </Link>
