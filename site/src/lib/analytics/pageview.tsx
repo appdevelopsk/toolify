@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { sanitizePageViewUrl } from "./pageview-url";
 import { siteConfig } from "@/lib/config";
 
 /**
@@ -12,19 +13,15 @@ import { siteConfig } from "@/lib/config";
  */
 export function PageViewTracker() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (!siteConfig.analytics.gaId) return;
     if (typeof window === "undefined" || typeof window.gtag !== "function") return;
-    const query = searchParams?.toString();
-    const path = query ? `${pathname}?${query}` : pathname;
     window.gtag("event", "page_view", {
-      page_path: path,
-      page_location: window.location.href,
+      ...sanitizePageViewUrl(window.location.href),
       page_title: document.title,
     });
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   return null;
 }
