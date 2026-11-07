@@ -157,3 +157,9 @@ The existing root `scripts/check-engagement-release.sh` now runs both PR #39's f
 - Added a ninth dependency-free source regression test group in `site/scripts/growth-integration.test.mjs` guarding the ancestry check. GitHub readback verified four source-check assertions and wiring; **the npm script itself remains unexecuted**.
 - At review PR40 was still **2 commits behind main**. Consequently the new release gate would reject the branch until an authorized merge/rebase incorporates those commits. Earlier matching blobs for two deployment files do not constitute an ancestry merge.
 - No GitHub Actions, merge, deployment or production KPI improvement verified. **NO-GO** remains until full local gate and physical/browser/GA4 verification are complete.
+
+## 2026-11-07 — Explicit remote tracking refresh for ancestry gate
+- Verified PR40 is 2 commits behind latest `main`; direct complete checkout remains unavailable in this environment due `github.com` DNS resolution failure.
+- Hardened `scripts/check-engagement-release.sh`: replace `git fetch --no-tags origin main` with `git fetch --no-tags origin main:refs/remotes/origin/main` so the exact remote-tracking ref used by `merge-base --is-ancestor` is explicitly updated before testing ancestry.
+- Updated `site/scripts/growth-integration.test.mjs` expectation and fetched both GitHub files to verify four consistency checks: explicit fetch, ancestry predicate, nonzero stop, and test wiring.
+- Static readback does not constitute a full gate run, and no full Git checkout, GitHub Actions, main merge or deployment was performed. NO-GO remains until the release gate and manual browser/GA4 checks pass.
