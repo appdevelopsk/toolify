@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
-import { trackCalculate, trackCopyResult, trackPresetClick } from "@/lib/analytics/events";
+import { trackCalculate, trackCopyResult, trackPresetClick, trackWorkflowCalculate } from "@/lib/analytics/events";
+import { getWorkflowContext } from "@/lib/workflows/steps";
 import { useAutoShareableState } from "@/lib/hooks/useAutoShareableState";
 
 /**
@@ -59,6 +60,12 @@ export function ToolInteractionTracker({
     let calculateDelay: number | undefined;
     let disposed = false;
 
+    function attributeWorkflowUse(resultVisible: boolean) {
+      if (!resultVisible) return;
+      const ctx = getWorkflowContext(window.location.search, slug);
+      if (ctx) trackWorkflowCalculate({ ...ctx, tool: slug, locale });
+    }
+
     function sendWithLabel() {
       if (disposed) return;
       if (sent.current.calculate) return;
@@ -67,14 +74,16 @@ export function ToolInteractionTracker({
       settle = undefined;
       const root = el as HTMLElement;
       const label = readCalcLabel(root);
+      const hasResult = hasVisibleResult(root);
       trackCalculate({
         tool: slug,
         locale,
         category,
         ...(label ? { label } : {}),
         input_count: countFilledInputs(root),
-        has_result: hasVisibleResult(root),
+        has_result: hasResult,
       });
+      attributeWorkflowUse(hasResult);
     }
 
     function onInput(e: Event) {
@@ -90,13 +99,15 @@ export function ToolInteractionTracker({
       // 結果描画はツール側の再レンダー後なので、1 フレーム待ってから DOM を見る。
       calculateDelay = window.setTimeout(() => {
         if (disposed) return;
+        const hasResult = hasVisibleResult(root);
         trackCalculate({
           tool: slug,
           locale,
           category,
           input_count: countFilledInputs(root),
-          has_result: hasVisibleResult(root),
+          has_result: hasResult,
         });
+        attributeWorkflowUse(hasResult);
       }, 50);
     }
 
