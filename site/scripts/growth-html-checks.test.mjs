@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
-import { hasNoindex, canonicalHref, hasSoftwareAnchor } from './growth-html-checks.mjs';
+import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasSitemapLocation } from './growth-html-checks.mjs';
 
 test('robots and googlebot directives independent of attribute order', () => {
   assert.equal(hasNoindex('<meta name="robots" content="noindex,follow">'), true);
@@ -37,4 +37,15 @@ test('CTA must be an anchor, not an inert script string', () => {
   assert.equal(hasSoftwareAnchor('<a href="/en/software/json-studio">Open</a>', 'json-studio', 'ja'), false);
   assert.equal(hasSoftwareAnchor('<a href="https://other.example/en/software/json-studio">Open</a>', 'json-studio', 'en'), false);
   assert.equal(hasSoftwareAnchor('<a href="https://staging.example/en/software/json-studio">Open</a>', 'json-studio', 'en', 'https://staging.example'), true);
+});
+
+test('sitemap target requires exact loc match, not URL prefix', () => {
+  const target = 'https://toolify365.com/en/tools/character-frequency';
+  const xml = '<urlset><url><loc>' + target + '-fake</loc></url></urlset>';
+  assert.equal(hasSitemapLocation(xml, target), false);
+  assert.equal(hasSitemapLocation('<urlset><url><loc>' + target + '</loc></url></urlset>', target), true);
+  assert.equal(hasSitemapLocation('<loc>https://toolify365.com/en/tools/character-frequency?ref=x</loc>', target), false);
+  assert.equal(hasSitemapLocation('<loc>https://wrong.example/en/tools/character-frequency</loc>', target), false);
+  assert.equal(hasSitemapLocation('<loc>invalid relative address</loc>', target), false);
+  assert.equal(hasSitemapLocation('<loc>https://toolify365.com/en/tools/character-frequency</loc>', target), false);
 });
