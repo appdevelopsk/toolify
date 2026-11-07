@@ -15,6 +15,23 @@ export const WORKFLOWS = [
 export type WorkflowId = (typeof WORKFLOWS)[number]["id"];
 
 /**
+ * Resolve a useful follow-up without cookies, URL state or user-entered data.
+ * All 12 slugs are unique across the curated journeys.
+ */
+export function getWorkflowContinuation(slug: string):
+  | { workflow: WorkflowId; nextSlug: string; nextStep: number }
+  | undefined {
+  for (const workflow of WORKFLOWS) {
+    const index = workflow.tools.findIndex((value: string) => value === slug);
+    if (index < 0 || index + 1 >= workflow.tools.length) continue;
+    const nextSlug = workflow.tools[index + 1];
+    if (nextSlug) return { workflow: workflow.id, nextSlug, nextStep: index + 2 };
+  }
+  return undefined;
+}
+
+
+/**
  * [navigation, heading, explanation, step label, open label, privacy note,
  *  data workflow, writing workflow, shopping workflow, scheduling workflow].
  * Full 17-locale coverage. Existing tool translations provide each step's
