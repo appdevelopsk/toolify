@@ -1,7 +1,6 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
 import { readFileSync } from 'node:fs';
-import { spawnSync } from 'node:child_process';
 
 const read = (path) => readFileSync(new URL(path, import.meta.url), 'utf8');
 const frame = read('../src/components/tools/ToolFrame.tsx');
@@ -87,38 +86,23 @@ test('embedded tool HTML escapes title and attribute values', () => {
   assert.ok(html.includes('value.trim() !== value'));
 });
 
-test('postmerge release requires fresh main and manual-only deployment', () => {
+test('postmerge release requires fresh main and validated manual-only deployment', () => {
   const gate = read('../../scripts/check-postmerge-embed-release.sh');
   const workflow = read('../../.github/workflows/deploy.yml');
+  const parser = read('../../scripts/verify-manual-deploy.mjs');
+  const parserTests = read('../../scripts/verify-manual-deploy.test.mjs');
   assert.ok(gate.includes('fetch --no-tags origin main:refs/remotes/origin/main'));
   assert.ok(gate.includes('merge-base --is-ancestor refs/remotes/origin/main HEAD'));
   assert.ok(gate.includes('latest origin/main is not merged'));
-  assert.ok(gate.includes('push-triggered VPS deployment must be disabled'));
-  assert.ok(gate.includes('grep -Eq'));
+  assert.ok(gate.includes('node "$ROOT/scripts/verify-manual-deploy.mjs" "$ROOT/.github/workflows/deploy.yml"'));
+  assert.ok(gate.includes('node --test "$ROOT/scripts/verify-manual-deploy.test.mjs"'));
+  assert.ok(parser.includes('Unexpected workflow trigger'));
+  assert.ok(parser.includes('blocks !== 1 || manual !== 1'));
+  assert.ok(parserTests.includes('on: [push]'));
+  assert.ok(parserTests.includes('on: push'));
   assert.ok(workflow.includes('workflow_dispatch: {}'));
-  assert.ok(!workflow.includes('branches: [main]'), 'must not automatically deploy on main');
   assert.ok(!workflow.split(String.fromCharCode(10)).some((line) => line.trimStart().startsWith('push:')), 'no YAML push trigger');
   assert.ok(workflow.includes('Acquire VPS deploy lock (shared with local deploy)'));
   assert.ok(workflow.includes('Verify live release SHA'));
   assert.ok(workflow.includes('Verify public release endpoint'));
-});
-
-test('main push guard rejects both branch-specific and unqualified YAML push triggers', () => {
-  const expression = '^[[:space:]]*push:[[:space:]]*';
-  for (const yaml of [
-    ['on:', '  push:', '    branches: [main]', ''],
-    ['on:', '  push: {}', ''],
-    ['on:', '  workflow_dispatch: {}', '  push:', ''],
-  ]) {
-    const result = spawnSync('grep', ['-Eq', expression], {
-      input: yaml.join(String.fromCharCode(10)),
-      encoding: 'utf8',
-    });
-    assert.equal(result.status, 0, 'unsafe push trigger should be detected');
-  }
-  const safe = spawnSync('grep', ['-Eq', expression], {
-    input: ['on:', '  workflow_dispatch: {}', ''].join(String.fromCharCode(10)),
-    encoding: 'utf8',
-  });
-  assert.equal(safe.status, 1, 'manual-only workflow is allowed');
 });
