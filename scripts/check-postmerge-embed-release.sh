@@ -18,7 +18,12 @@ fi
 # Do not run GitHub Actions; only validate workflow source locally.
 node "$ROOT/scripts/verify-manual-deploy.mjs" "$ROOT/.github/workflows/deploy.yml"
 node --test "$ROOT/scripts/verify-manual-deploy.test.mjs"
+# The site config falls back to example.pages.dev when the public origin is unset.
+# Pin this production release gate to the canonical origin to prevent wrong
+# canonical, share and iframe URLs in an otherwise successful Next build.
+export NEXT_PUBLIC_SITE_URL="https://toolify365.com"
 cd "$ROOT/site"
+echo "[postmerge] production origin=$NEXT_PUBLIC_SITE_URL"
 echo "[postmerge] node=$(node --version) npm=$(npm --version)"
 NODE_MAJOR="$(node -p 'process.versions.node.split(".")[0]')"
 if (( NODE_MAJOR < 22 )); then
