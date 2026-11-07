@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
-import { verifyManualDeployWorkflow } from "./verify-manual-deploy.mjs";
+import { verifyManualDeployWorkflow, verifyWorkflowPath } from "./verify-manual-deploy.mjs";
 
 const allowed = [
   "name: Deploy to VPS",
@@ -73,5 +73,42 @@ test("CLI exits 0 for manual-only and 4 for automatic deploy", () => {
     assert.equal(rejected.status, 4, rejected.stdout);
   } finally {
     rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test("validates every .yml and .yaml workflow in a directory", () => {
+  const dir = mkdtempSync(join(tmpdir(), "toolify-workflows-"));
+  try {
+    writeFileSync(join(dir, "deploy.yml"), allowed);
+    writeFileSync(join(dir, "ci.yaml"), allowed);
+    writeFileSync(join(dir, "README.txt"), "on: push");
+    assert.equal(verifyWorkflowPath(dir), 2);
+
+    writeFileSync(join(dir, "ci.yaml"), "on:\\n  pull_request: {}\\n");
+    assert.throws(() => verifyWorkflowPath(dir), /ci\\.yaml/);
+
+    rmSync(join(dir, "ci.yaml"));
+    rmSync(join(dir, "deploy.yml"));
+    assert.throws(() => verifyWorkflowPath(dir), /No YAML workflows/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("directory CLI rejects an automatic CI workflow even if deploy.yml is manual-only", () => {
+  const dir = mkdtempSync(join(tmpdir(), "toolify-workflows-cli-"));
+  const cli = fileURLToPath(new URL("./verify-manual-deploy.mjs", import.meta.url));
+  try {
+    writeFileSync(join(dir, "deploy.yml"), allowed);
+    writeFileSync(join(dir, "ci.yml"), allowed);
+    let result = spawnSync(process.execPath, [cli, dir], { encoding: "utf8" });
+    assert.equal(result.status, 0, result.stderr);
+
+    writeFileSync(join(dir, "ci.yml"), "on:\\n  push: {}\\n");
+    result = spawnSync(process.execPath, [cli, dir], { encoding: "utf8" });
+    assert.equal(result.status, 4, result.stdout);
+    assert.match(result.stderr, /ci\\.yml/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
   }
 });
