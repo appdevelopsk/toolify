@@ -42,13 +42,14 @@ const COPY: Record<Locale, readonly string[]> = {
 
 export function workflowCopy(locale: string) {
   const c = COPY[locale as Locale] ?? COPY.en;
+  const get = (index: number): string => c[index] ?? COPY.en[index] ?? "";
   return {
-    nav: c[0],
-    heading: c[1],
-    description: c[2],
-    step: c[3],
-    open: c[4],
-    privacy: c[5],
-    title: (id: WorkflowId) => c[6 + WORKFLOWS.findIndex((flow) => flow.id === id)],
+    nav: get(0),
+    heading: get(1),
+    description: get(2),
+    step: get(3),
+    open: get(4),
+    privacy: get(5),
+    title: (id: WorkflowId): string => get(6 + WORKFLOWS.findIndex((flow) => flow.id === id)),
   };
 }
