@@ -14,6 +14,7 @@ import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import { softwareCopy } from "@/lib/software/copy";
+import { workflowCopy } from "@/lib/workflows/catalog";
 import { isIndexedLocale, type Locale } from "@/lib/i18n/locales";
 import type { ToolCategory, ToolMeta } from "@/lib/tools/types";
 
@@ -68,6 +69,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const collatorLocale = safeLocale(locale);
   const t = await getTranslations();
   const software = softwareCopy(locale);
+  const workflow = workflowCopy(locale);
   const allTools = listTools();
   const allPrompts = listPrompts();
   const featured = listFeaturedTools().slice(0, FEATURED_COUNT);
@@ -120,6 +122,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             className="rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
           >
             {t("home.browseAll")} →
+          </Link>
+          <Link href="/workflows" prefetch={false} className="rounded-lg border border-brand-300 bg-white px-5 py-2.5 text-sm font-semibold text-brand-700 transition hover:bg-brand-50 dark:border-slate-700 dark:bg-slate-900 dark:text-brand-400">
+            {workflow.nav} →
           </Link>
           <Link
             href="/prompts"
