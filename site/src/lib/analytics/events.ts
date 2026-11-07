@@ -185,3 +185,21 @@ export function trackSoftwareProcess(p: { software: string; success: boolean }):
 export function trackSoftwareDownload(p: { software: string }): void {
   emit("software_download", { software_slug: p.software });
 }
+
+/**
+ * Guided workflow navigation. Fixed workflow IDs and tool slugs only.
+ * No entered values, query strings, URLs, or personal information.
+ */
+export function trackWorkflowStepClick(p: {
+  workflow: "data" | "writing" | "shopping" | "scheduling";
+  step: number;
+  destination: string;
+  locale?: string;
+}): void {
+  emit("workflow_step_click", {
+    workflow_id: p.workflow,
+    step_number: p.step,
+    destination_tool: p.destination,
+    ...(p.locale ? { locale: p.locale } : {}),
+  });
+}
