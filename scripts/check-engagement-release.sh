@@ -12,7 +12,7 @@ fi
 # A passing build from a stale integration branch must not be released.
 # Fetch remote main without triggering workflows; check ancestry, do not merge.
 echo "[integration] Fetching latest origin/main for release ancestry check"
-git -C "$ROOT" fetch --no-tags origin main
+git -C "$ROOT" fetch --no-tags origin main:refs/remotes/origin/main
 if ! git -C "$ROOT" merge-base --is-ancestor refs/remotes/origin/main HEAD; then
   echo "[integration] ERROR: integration branch is not based on the latest origin/main. Merge/rebase and rerun release gate." >&2
   exit 3
