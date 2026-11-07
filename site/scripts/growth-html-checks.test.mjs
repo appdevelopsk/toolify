@@ -49,3 +49,20 @@ test('sitemap target requires exact loc match, not URL prefix', () => {
   assert.equal(hasSitemapLocation('<loc>invalid relative address</loc>', target), false);
   assert.equal(hasSitemapLocation('<loc>https://toolify365.com/en/tools/character-frequency', target), false);
 });
+
+test('SEO and CTA checks require real attribute names, never lookalike data-*', () => {
+  assert.equal(hasNoindex('<meta data-name="robots" content="noindex">'), false);
+  assert.equal(hasNoindex('<meta name="robots" data-content="noindex" content="index">'), false);
+  assert.equal(hasNoindex('<meta data-note="name=robots" content="noindex">'), false);
+  assert.equal(hasNoindex('<meta name="robots" content="noindex" data-content="index">'), true);
+
+  assert.equal(canonicalHref('<link data-rel="canonical" href="/fake">'), null);
+  assert.equal(canonicalHref('<link rel="canonical" data-href="/fake" href="/real">'), '/real');
+  assert.equal(canonicalHref('<link data-meta="rel=canonical" rel="stylesheet" href="/fake">'), null);
+  assert.equal(canonicalHref('<link rel="alternate canonical" href="/real">'), '/real');
+
+  assert.equal(hasSoftwareAnchor('<a data-href="/en/software/json-studio">Open</a>', 'json-studio', 'en'), false);
+  assert.equal(hasSoftwareAnchor('<a href="/wrong" data-href="/en/software/json-studio">Open</a>', 'json-studio', 'en'), false);
+  assert.equal(hasSoftwareAnchor('<a data-note="href=/en/software/json-studio" href="/wrong">Open</a>', 'json-studio', 'en'), false);
+  assert.equal(hasSoftwareAnchor('<a data-href="/wrong" href="/en/software/json-studio">Open</a>', 'json-studio', 'en'), true);
+});
