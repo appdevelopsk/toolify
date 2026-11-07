@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useToolEvents } from "@/lib/analytics/useToolEvents";
+import { buildToolEmbedSnippet } from "@/lib/tools/embed-html";
+import { isShareCancelled } from "@/lib/tools/share-errors";
 
 interface Props {
   /** Canonical, absolute URL of the tool page (built server-side from siteConfig). */
@@ -114,16 +116,13 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
       window.removeEventListener("popstate", sync);
       window.removeEventListener("pageshow", sync);
     };
-  }, []);
+  }, [url, slug]); // Resync result-link visibility on locale or tool navigation.
 
   const enc = encodeURIComponent;
-  // 埋め込みコードには iframe に加えて「ホストページ側の dofollow 被リンク」を必ず付ける。
-  // iframe 内の "Powered by" は toolify 自身のドキュメント内に閉じており被リンク価値が渡らないため、
-  // 埋め込んだ他サイトの HTML に、ツール名をアンカーテキストにした当該ツールページへの直リンクを置く。
-  // これが量産ツール(222本)を被リンク資産に変える肝（toolify は権威性不足で平均48位＝page5のため）。
-  const safeTitle = title.replace(/"/g, "&quot;");
-  const anchorTitle = title.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  const snippet = `<iframe src="${embedUrl}" width="100%" height="520" style="border:1px solid #e2e8f0;border-radius:12px" loading="lazy" title="${safeTitle}"></iframe>\n<p style="font:13px/1.6 system-ui,-apple-system,sans-serif;text-align:center;margin:6px 0;color:#64748b">Free <a href="${url}" target="_blank" rel="noopener">${anchorTitle}</a> by <a href="https://toolify365.com" target="_blank" rel="noopener">toolify365</a></p>`;
+  // 埋め込みコードには、利用者が出典を確認できる視認可能なリンクを添える。
+  // ウィジェット配布による被リンクの検索順位操作は避け、
+  // HTML生成側で nofollow とセキュリティ属性を付与する。
+  const snippet = buildToolEmbedSnippet(title, embedUrl, url);
 
   const socials = [
     { name: "X", href: `https://twitter.com/intent/tweet?text=${enc(title)}&url=${enc(url)}`, Icon: XIcon },
@@ -151,8 +150,10 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
         // 成功時だけ送る。キャンセルは reject されるのでここには来ない。
         share("native");
         return;
-      } catch {
-        /* user cancelled — fall through */
+      } catch (error) {
+        // Explicit cancellation is not consent to copy a link to the clipboard.
+        if (isShareCancelled(error)) return;
+        // Share API unavailable/failed for another reason: copy fallback below.
       }
     }
     // フォールバックは copy() 側が copy_result("link") を送るため share は送らない

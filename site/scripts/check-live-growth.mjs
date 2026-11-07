@@ -1,4 +1,4 @@
-import { hasNoindex, canonicalHref, hasSoftwareAnchor } from "./growth-html-checks.mjs";
+import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasSitemapLocation } from "./growth-html-checks.mjs";
 /**
  * Read-only production smoke check for growth funnel rollout.
  * Usage: SITE_URL=https://toolify365.com node scripts/check-live-growth.mjs
@@ -47,7 +47,7 @@ for (const path of paths) {
     const page = await get(path);
     if (page.status !== 200) failures.push(`${path}: HTTP ${page.status}`);
     const finalUrl = new URL(page.url);
-    if (finalUrl.origin !== base.origin || finalUrl.pathname.replace(/[/]$/, "") !== path) {
+    if (finalUrl.origin !== base.origin || finalUrl.pathname.replace(/[/]$/, "") !== path || finalUrl.search || finalUrl.hash) {
       failures.push(`${path}: unexpected redirect to ${page.url}`);
     }
     if (!page.contentType.includes("text/html")) failures.push(`${path}: not HTML (${page.contentType})`);
@@ -65,7 +65,7 @@ for (const path of paths) {
       } else {
         try {
           const canonical = new URL(canonicalValue, base);
-          if (canonical.origin !== base.origin || canonical.pathname.replace(/[/]$/, "") !== path) {
+          if (canonical.origin !== base.origin || canonical.pathname.replace(/[/]$/, "") !== path || canonical.search || canonical.hash) {
             failures.push(`${path}: unexpected canonical ${canonical.href}`);
           }
         } catch { failures.push(`${path}: malformed canonical`); }
@@ -84,7 +84,7 @@ for (const path of ["/robots.txt", "/sitemap.xml"]) {
     if (path === "/sitemap.xml") {
       if (!page.text.includes("<loc>")) failures.push("sitemap.xml: no URL locations");
       for (const target of expectedIndexed) {
-        if (!page.text.includes(`${base.origin}${target}`)) failures.push(`sitemap.xml: expected indexed tool missing (${target})`);
+        if (!hasSitemapLocation(page.text, `${base.origin}${target}`)) failures.push(`sitemap.xml: expected indexed tool missing (${target})`);
       }
     }
     console.log(`${page.status} ${path}`);
