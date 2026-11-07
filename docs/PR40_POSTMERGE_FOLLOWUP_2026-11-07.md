@@ -39,3 +39,11 @@
 - Expanded `embed-html.test.ts` with credentials, newline, tab, and whitespace cases, and strengthened the cross-PR integration source regression.
 - Ran `node --test` on an isolated JS adaptation of the updated helper: **4 subtest groups passed, zero failed**, including unsafe schemes, credentials, controls, attribute encoding, and valid HTTPS/local links. This does not constitute the full repository's Vitest or production build.
 - PR41 remains NO-GO until checked-out full build and browser QA pass. GitHub Actions were not used; production not verified.
+
+## 2026-11-07: exact-source executable checks and deployment-trigger guard
+- Added `site/scripts/embed-html-node.test.mjs` as a Node >=22 **dependency-free test of the actual TypeScript implementation**, and wired it into `scripts/check-postmerge-embed-release.sh` **before** `npm ci`.
+- Verified Git blob SHAs on locally materialized files **exactly match** PR #41: `embed-html.ts` = `fc7733a85e2bd49aaf888a7149a77c586254bbb7`, `embed-html-node.test.mjs` = `60cc425603c19b5ed075869f640e55e0e992e533`, and release script = `18c3d1ee9d4d925011e7fd816e9b64af8b118aa7`.
+- Executed the exact Node script with `node --experimental-strip-types --test`: **6/6 passed, 0 failed**. Direct isolated helper typecheck `tsc --noEmit --target es2022 --lib es2022,dom --skipLibCheck` passed.
+- Found and corrected an actual release script bug: the old `branches: [main]` detection regexp did **not** match the actual YAML. The new guard rejects a `push:` trigger in `.github/workflows/deploy.yml` irrespective of its branch list.
+- Tested the complete branch/remote/deploy guard in a local Git repository with a **local-only origin**, without Actions: push-enabled workflow stopped with exit **4**; manual-only workflow passed the guard and reached the actual TypeScript Node test (**6 passed**). Bash syntax check passed; wrong branch guard previously returned exit **2**. The local mock then cannot run `npm ci`/full site build, which **remains unverified**.
+- GitHub comparison showed production `main` still has `on.push.branches: [main]` while PR #41 uses `workflow_dispatch` only. Do **not** merge without confirming this workflow change, the full test/build suite, and owner approval. GitHub Actions were not executed.
