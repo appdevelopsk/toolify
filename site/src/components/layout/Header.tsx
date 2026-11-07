@@ -45,7 +45,7 @@ export function Header() {
             </Link>
             <LanguageSwitcher />
           </nav>
-          <MobileMenu showPrompts={showPrompts}>
+          <MobileMenu showPrompts={showPrompts} workflowNav={workflow.nav}>
             <LanguageSwitcher />
           </MobileMenu>
         </div>
