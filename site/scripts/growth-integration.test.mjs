@@ -82,4 +82,6 @@ test('embedded tool HTML escapes title and attribute values', () => {
   assert.ok(html.includes("const safeToolUrl = escapeHtml(safeEmbedUrl(toolUrl, 'https://toolify365.com'))"));
   assert.ok(html.includes('rel="noopener"'));
   assert.ok(html.includes('if (parsed.protocol === "https:" || localDev) return value'));
+  assert.ok(html.includes('if (parsed.username || parsed.password) return fallback'));
+  assert.ok(html.includes('value.trim() !== value'));
 });
