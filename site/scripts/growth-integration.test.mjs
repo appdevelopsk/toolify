@@ -94,10 +94,14 @@ test('postmerge release requires fresh main and validated manual-only deployment
   assert.ok(gate.includes('fetch --no-tags origin main:refs/remotes/origin/main'));
   assert.ok(gate.includes('merge-base --is-ancestor refs/remotes/origin/main HEAD'));
   assert.ok(gate.includes('latest origin/main is not merged'));
-  assert.ok(gate.includes('node "$ROOT/scripts/verify-manual-deploy.mjs" "$ROOT/.github/workflows/deploy.yml"'));
+  assert.ok(gate.includes('node "$ROOT/scripts/verify-manual-deploy.mjs" "$ROOT/.github/workflows"'));
   assert.ok(gate.includes('node --test "$ROOT/scripts/verify-manual-deploy.test.mjs"'));
   assert.ok(parser.includes('Unexpected workflow trigger'));
   assert.ok(parser.includes('blocks !== 1 || manual !== 1'));
+  assert.ok(parser.includes('export function verifyWorkflowPath(path)'));
+  assert.ok(parserTests.includes('validates every .yml and .yaml workflow'));
+  assert.ok(parserTests.includes('directory CLI rejects an automatic CI workflow'));
+
   assert.ok(parserTests.includes('on: [push]'));
   assert.ok(parserTests.includes('on: push'));
   assert.ok(workflow.includes('workflow_dispatch: {}'));
