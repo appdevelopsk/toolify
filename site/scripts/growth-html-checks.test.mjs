@@ -47,5 +47,5 @@ test('sitemap target requires exact loc match, not URL prefix', () => {
   assert.equal(hasSitemapLocation('<loc>https://toolify365.com/en/tools/character-frequency?ref=x</loc>', target), false);
   assert.equal(hasSitemapLocation('<loc>https://wrong.example/en/tools/character-frequency</loc>', target), false);
   assert.equal(hasSitemapLocation('<loc>invalid relative address</loc>', target), false);
-  assert.equal(hasSitemapLocation('<loc>https://toolify365.com/en/tools/character-frequency</loc>', target), false);
+  assert.equal(hasSitemapLocation('<loc>https://toolify365.com/en/tools/character-frequency', target), false);
 });
