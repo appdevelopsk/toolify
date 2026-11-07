@@ -3,7 +3,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { softwareCopy } from "@/lib/software/copy";
-import { workflowCopy } from "@/lib/workflows/catalog";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 
 /**
@@ -13,11 +12,9 @@ import { Link, usePathname } from "@/lib/i18n/navigation";
  * 横幅を使い切っていたため、ナビと言語切替をここへ収容し、ヘッダー本体は
  * ロゴ / 検索アイコン / メニューの 3 点にする。デスクトップは従来どおり。
  */
-export function MobileMenu({ showPrompts, children }: { showPrompts: boolean; children?: ReactNode }) {
+export function MobileMenu({ showPrompts, workflowNav, children }: { showPrompts: boolean; workflowNav: string; children?: ReactNode }) {
   const t = useTranslations("nav");
-  const locale = useLocale();
-  const software = softwareCopy(locale);
-  const workflow = workflowCopy(locale);
+  const software = softwareCopy(useLocale());
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -62,7 +59,7 @@ export function MobileMenu({ showPrompts, children }: { showPrompts: boolean; ch
           <Link href="/tools" className={linkCls}>
             {t("tools")}
           </Link>
-          <Link href="/workflows" className={linkCls}>{workflow.nav}</Link>
+          <Link href="/workflows" className={linkCls}>{workflowNav}</Link>
           <Link href="/software" className={linkCls}>{software.nav}</Link>
           {showPrompts && (
             <Link href="/prompts" className={linkCls}>
