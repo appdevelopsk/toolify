@@ -48,6 +48,9 @@ test('sitemap target requires exact loc match, not URL prefix', () => {
   assert.equal(hasSitemapLocation('<loc>https://wrong.example/en/tools/character-frequency</loc>', target), false);
   assert.equal(hasSitemapLocation('<loc>invalid relative address</loc>', target), false);
   assert.equal(hasSitemapLocation('<loc>https://toolify365.com/en/tools/character-frequency', target), false);
+  assert.equal(hasSitemapLocation('<!-- <loc>' + target + '</loc> -->', target), false);
+  assert.equal(hasSitemapLocation('<![CDATA[<loc>' + target + '</loc>]]>', target), false);
+  assert.equal(hasSitemapLocation('<!-- <loc>' + target + '</loc> --><loc>' + target + '</loc>', target), true);
 });
 
 test('SEO and CTA checks require real attribute names, never lookalike data-*', () => {
