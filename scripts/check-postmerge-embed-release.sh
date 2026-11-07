@@ -14,13 +14,10 @@ if ! git -C "$ROOT" merge-base --is-ancestor refs/remotes/origin/main HEAD; then
   echo "[postmerge] ERROR: latest origin/main is not merged into this PR branch." >&2
   exit 3
 fi
-# Parse the event declaration fail-closed. A grep for "push:" misses on: [push].
-# Do not run GitHub Actions; only validate workflow source locally.
+# Check EVERY GitHub workflow for manual-only triggers using one fail-closed policy.
+# Do not execute GitHub Actions; inspect workflow YAML locally.
 node "$ROOT/scripts/verify-manual-deploy.mjs" "$ROOT/.github/workflows"
 node --test "$ROOT/scripts/verify-manual-deploy.test.mjs"
-# Ensure all workflow YAML files avoid automatic triggers, not just deploy.yml.
-node "$ROOT/scripts/verify-manual-workflows.mjs" "$ROOT/.github/workflows"
-node --test "$ROOT/scripts/verify-manual-workflows.test.mjs"
 # The site config falls back to example.pages.dev when the public origin is unset.
 # Pin this production release gate to the canonical origin to prevent wrong
 # canonical, share and iframe URLs in an otherwise successful Next build.
