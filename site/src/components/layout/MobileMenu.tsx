@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { softwareCopy } from "@/lib/software/copy";
+import { workflowCopy } from "@/lib/workflows/catalog";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 
 /**
@@ -14,7 +15,9 @@ import { Link, usePathname } from "@/lib/i18n/navigation";
  */
 export function MobileMenu({ showPrompts, children }: { showPrompts: boolean; children?: ReactNode }) {
   const t = useTranslations("nav");
-  const software = softwareCopy(useLocale());
+  const locale = useLocale();
+  const software = softwareCopy(locale);
+  const workflow = workflowCopy(locale);
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -59,6 +62,7 @@ export function MobileMenu({ showPrompts, children }: { showPrompts: boolean; ch
           <Link href="/tools" className={linkCls}>
             {t("tools")}
           </Link>
+          <Link href="/workflows" className={linkCls}>{workflow.nav}</Link>
           <Link href="/software" className={linkCls}>{software.nav}</Link>
           {showPrompts && (
             <Link href="/prompts" className={linkCls}>
