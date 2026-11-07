@@ -8,6 +8,17 @@ if [[ "$ACTUAL_BRANCH" != "$EXPECTED_BRANCH" ]]; then
   echo "[postmerge] ERROR: expected $EXPECTED_BRANCH, found ${ACTUAL_BRANCH:-detached}" >&2
   exit 2
 fi
+# Fetch the remote-tracking ref we actually verify, instead of trusting an old local ref.
+git -C "$ROOT" fetch --no-tags origin main:refs/remotes/origin/main
+if ! git -C "$ROOT" merge-base --is-ancestor refs/remotes/origin/main HEAD; then
+  echo "[postmerge] ERROR: latest origin/main is not merged into this PR branch." >&2
+  exit 3
+fi
+# This PR must never enable an automatic GitHub Actions deploy on main push.
+if grep -Eq '^[[:space:]]+branches:[[:space:]]*\\[main\\]' "$ROOT/.github/workflows/deploy.yml"; then
+  echo "[postmerge] ERROR: main push auto-deploy must be disabled before release." >&2
+  exit 4
+fi
 cd "$ROOT/site"
 echo "[postmerge] node=$(node --version) npm=$(npm --version)"
 npm ci
