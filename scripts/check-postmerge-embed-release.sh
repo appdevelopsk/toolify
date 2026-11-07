@@ -14,9 +14,10 @@ if ! git -C "$ROOT" merge-base --is-ancestor refs/remotes/origin/main HEAD; then
   echo "[postmerge] ERROR: latest origin/main is not merged into this PR branch." >&2
   exit 3
 fi
-# This PR must never enable an automatic GitHub Actions deploy on main push.
-if grep -Fq 'branches: [main]' "$ROOT/.github/workflows/deploy.yml"; then
-  echo "[postmerge] ERROR: main push auto-deploy must be disabled before release." >&2
+# This PR must not allow any automatic push-triggered VPS deployment.
+# Match the YAML push: key directly: the previous branches:[main] regex missed it.
+if grep -Eq '^[[:space:]]*push:[[:space:]]*' "$ROOT/.github/workflows/deploy.yml"; then
+  echo "[postmerge] ERROR: push-triggered VPS deployment must be disabled before release." >&2
   exit 4
 fi
 cd "$ROOT/site"
