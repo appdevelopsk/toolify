@@ -1,4 +1,5 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync, statSync } from "node:fs";
+import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 
 /**
@@ -48,6 +49,22 @@ export function verifyManualDeployWorkflow(source) {
   return true;
 }
 
+/** Validate every workflow in a directory; a single safe deploy.yml is not sufficient. */
+export function verifyWorkflowPath(path) {
+  const files = statSync(path).isDirectory()
+    ? readdirSync(path).filter((entry) => /\\.ya?ml$/i.test(entry)).sort().map((entry) => join(path, entry))
+    : [path];
+  if (files.length === 0) throw new Error("No YAML workflows were found");
+  for (const file of files) {
+    try {
+      verifyManualDeployWorkflow(readFileSync(file, "utf8"));
+    } catch (error) {
+      throw new Error(`${file}: ${error.message}`);
+    }
+  }
+  return files.length;
+}
+
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const file = process.argv[2];
   if (!file) {
@@ -55,8 +72,8 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     process.exitCode = 2;
   } else {
     try {
-      verifyManualDeployWorkflow(readFileSync(file, "utf8"));
-      process.stdout.write("[postmerge] PASS: manual-only GitHub workflow trigger\n");
+      const count = verifyWorkflowPath(file);
+      process.stdout.write(`[postmerge] PASS: ${count} manual-only GitHub workflow trigger(s)\n`);
     } catch (error) {
       process.stderr.write(`[postmerge] ERROR: ${error.message}\n`);
       process.exitCode = 4;
