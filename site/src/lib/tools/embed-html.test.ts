@@ -32,6 +32,17 @@ describe("safe tool embed HTML", () => {
       .toContain('src="https://toolify365.com/en/embed"');
     expect(buildToolEmbedSnippet("Safe", "http://localhost:3000/en/embed", "http://127.0.0.1:3000/en/tools"))
       .toContain('src="http://localhost:3000/en/embed"');
+    for (const source of [
+      "https://username:password@toolify365.com/en/embed",
+      "https://username@toolify365.com/en/embed",
+      "\\nhttps://toolify365.com/en/embed",
+      "https://toolify365.com/en/embed\\t",
+      " https://toolify365.com/en/embed",
+    ]) {
+      const snippet = buildToolEmbedSnippet("Safe", source, source);
+      expect(snippet).toContain('src="about:blank"');
+      expect(snippet).toContain('href="https://toolify365.com"');
+    }
   });
 
 });
