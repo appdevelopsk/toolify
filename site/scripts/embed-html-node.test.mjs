@@ -46,6 +46,18 @@ test('reject URL credentials, control characters and surrounding whitespace', ()
   }
 });
 
+test('distributed widget attribution links are visible and qualified as nofollow', () => {
+  const html = build('My Tool', 'https://toolify365.com/embed/en/test', 'https://toolify365.com/en/tools/test');
+  const links = [...html.matchAll(/<a\b[^>]*>/g)].map(m => m[0]);
+  assert.equal(links.length, 2);
+  for (const link of links) {
+    assert.ok(link.includes('rel="noopener noreferrer nofollow"'));
+    assert.ok(link.includes('target="_blank"'));
+  }
+  assert.ok(html.includes('>My Tool</a>'));
+  assert.ok(html.includes('>toolify365</a>'));
+});
+
 test('allow HTTPS and local development addresses', () => {
   assert.ok(build('Safe','https://toolify365.com/en/embed','https://toolify365.com/en/tools').includes('src="https://toolify365.com/en/embed"'));
   assert.ok(build('Safe','http://localhost:3000/en/embed','http://127.0.0.1:3000/en/tools').includes('src="http://localhost:3000/en/embed"'));
