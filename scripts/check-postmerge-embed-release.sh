@@ -18,6 +18,9 @@ fi
 # Do not run GitHub Actions; only validate workflow source locally.
 node "$ROOT/scripts/verify-manual-deploy.mjs" "$ROOT/.github/workflows"
 node --test "$ROOT/scripts/verify-manual-deploy.test.mjs"
+# Ensure all workflow YAML files avoid automatic triggers, not just deploy.yml.
+node "$ROOT/scripts/verify-manual-workflows.mjs" "$ROOT/.github/workflows"
+node --test "$ROOT/scripts/verify-manual-workflows.test.mjs"
 # The site config falls back to example.pages.dev when the public origin is unset.
 # Pin this production release gate to the canonical origin to prevent wrong
 # canonical, share and iframe URLs in an otherwise successful Next build.
