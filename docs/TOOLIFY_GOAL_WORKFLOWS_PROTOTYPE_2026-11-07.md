@@ -1,41 +1,46 @@
-# Toolify365 Goal-Based Workflows Prototype — 2026-11-07
+# Toolify365 — user acquisition & task-focused engagement prototype
+Updated: 2026-11-08 JST. Branch: `feat/goal-based-tool-workflows-20261107`
 
-## Scope implemented on `feat/goal-based-tool-workflows-20261107`
+## What is implemented
+- A 17-locale goal-based guide at `/{locale}/workflows` with four journeys: data cleaning, writing, shopping, scheduling (12 existing working tool slugs; 3 steps each).
+- Homepage CTA plus four goal cards, large-screen header link, mobile menu link.
+- A contextual **next useful step** immediately after the existing tool workspace on eight non-terminal steps, before existing related tools and ads. No existing ad units removed or changed.
+- `WorkflowToolLink` includes only an approved `?wf=<id>&ws=<1..3>` navigation tag, validated against the current tool slug; it is not an arbitrary redirect or data payload.
+- `workflow_step_click` records deliberate navigation; `workflow_calculate` records a human-origin input/change with visible result on a validated workflow route. Existing `calculate` instrumentation remains unchanged. Analytics passes fixed IDs, step numbers and locale, no typed values or result text. This is an **interaction proxy** and not proof the task was completed.
+- New Vitest unit and source-wiring tests. `steps.ts` separated from 17-locale copy to avoid shipping all translations in the client attribution helper.
+- No data is passed from one tool to another. No new persistent browser storage, paywall, ad, or outbound placement.
 
-- New localized landing page: `/{locale}/workflows`.
-- Four workflows of three **existing, usable** tools each: data conversion, writing/publishing, shopping comparison, and scheduling.
-- Homepage discovery CTA, desktop navigation (large screens), mobile menu link.
-- Language-aware tool titles and step descriptions, plus workflow copy for all 17 supported locales.
-- `/workflows` added to the sitemap of indexable locales (English/Japanese only); other 15 routes remain available but inherit `noindex` from the existing metadata helper.
-- A `workflow_step_click` event for deliberate click-through, containing only static workflow ID, step number, static destination slug and locale. No user input/results/URLs.
-- Unit tests for workflow IDs, step integrity, real tool registry references, locale label coverage, and fallback behavior.
-- This is a navigation/learning prototype; it does **not** transfer inputs between tools, save personal data, add a paywall, or add ad units.
+## SEO decision: pilot **noindex** for every locale
+The site's existing intentional allowlist consists of 29 demand-supported core tool slugs. Only four of the 12 chosen steps are core-indexable: `date-calculator`, `workdays-calculator`, `timezone-converter`, `unit-price-calculator`. Indexing a thin, 12-tool aggregation before search-intent evidence risks undermining current recovery strategy.
+- The new `/workflows` guide is explicitly `noindex,follow` in **all 17 languages**, and is absent from `sitemap.ts`.
+- Existing canonical, locale and sitemap policies for tools are unchanged. Guide stays reachable to humans from internal navigation.
+- Later indexing requires distinct substantial content, demonstrated query demand and separate SEO review; do not automatically release all languages for indexing.
+- Focus real-user acquisition on improving existing demand-proven tool entry pages and the quality of their next actions, not creating bulk indexed URLs.
 
-## Verification evidence
+## Executed validation
+1. GitHub readback: **16/16 source-contract assertions passed** across 13 relevant files (route, noindex/sitemap parity, entrypoints, 17 locale labels, ordering, step attribution, human input guard, event privacy).
+2. `steps.ts` was reconstructed exactly from GitHub in the local runtime; its **Git blob SHA `3b28219344f90589f15f5753e46082db45c3985b` matched the branch**.
+3. Ran `tsc --noEmit --strict --noUncheckedIndexedAccess` on that exact `steps.ts`: **PASS**.
+4. Compiled `steps.ts` with global TypeScript and ran dependency-free `node --test`: **3/3 test groups PASS**, validating four workflows/12 unique tools, every allowed route attribution, tampered and duplicate query rejection, and eight follow-up mappings.
+5. Previously verified all 12 tool slugs in the central registry and all 12 en + 12 ja tool title/shortDescription translation files.
+6. Search Console connector (site owner access): free finalized **2026-11-02–2026-11-04** view returned **no opportunity candidates** at minImpressions=1 (also mobile). Three days is insufficient to conclude traffic/demand is absent.
+7. HYPD GA4: connected properties exist but **none selected**, so a 28-day engagement baseline is **unavailable**: https://app.hypd.ai/sources?utm_source=mcp&utm_content=none_selected .
+8. HYPD mobile Lighthouse: **plan_denied**, not run: https://app.hypd.ai/plans?utm_source=mcp&utm_content=tool_access_plan&utm_term=lp_audit_lighthouse .
+9. Container `git ls-remote https://github.com/appdevelopsk/toolify.git HEAD` failed due DNS resolution, so full source clone, npm install and complete project build could not be executed here.
 
-- GitHub readback of eight updated source files: 11/11 simple source-contract checks passed (route, links, sitemap, localization declarations, event path, step counts).
-- All 12 referenced tool slugs appeared in the existing central registry.
-- All 12 English and 12 Japanese tool-title/short-description translation files were fetched and contained both required fields.
-- **NOT EXECUTED:** full `npm ci`, `npm run typecheck`, `npm test`, `npm run validate`, `npm run audit:seo`, `npm run audit:i18n`, `npm run audit:index-policy`, `npm run build`; this environment cannot clone the complete repo. The source-only checks above are not equivalent to these.
-- **NOT EXECUTED:** real mobile/desktop/RTL browser QA, consent and GA4 DebugView QA, GitHub Actions, merge, deployment, Search Console submission.
+## Release state — NO-GO
+- **Not executed:** full `npm ci`, project-wide `npm run typecheck`, Vitest, `npm run validate`, SEO/i18n/index audits, `npm run build`, real browser device/RTL/consent QA, GA4 DebugView, release deployment, signed release SHA live verification, or real-user outcome study.
+- Main's `.github/workflows/ci.yml` still has `pull_request` trigger and `deploy.yml` has main push auto-deploy. Creating a PR would automatically invoke Actions, contrary to the current no-Actions release safety preference. **No PR was opened, no merge performed, no Actions manually run.**
+- Existing draft PR #41 is still open, unmerged and explicitly NO-GO until its own manual-only workflow changes and tests are accepted. This feature branch stays independent and ahead of main; resolve PR41 before any release.
 
-## Release gate — NO-GO until passed
+## Owner release checklist
+1. Adopt validated manual-only CI/deploy workflow fix (PR #41) with authorized review **without auto Actions side effects**. Verify all workflow event triggers before opening this feature PR or merging main.
+2. In an authorized full checkout on the *exact feature branch*: `cd site && npm ci && npm run typecheck && npm test && npm run validate && npm run audit:seo && npm run audit:i18n && npm run audit:index-policy && npm run build`; stop if anything fails.
+3. Browser QA on desktop/mobile `en`, `ja`, RTL `ar`, a representative fallback locale, responsive 640/768/1024 widths, all 12 tool links and eight next-step links; consent and share-state URL query coexistence.
+4. Confirm source of `workflow_calculate` events in GA4 DebugView and verify event-scoped `workflow_id`, `step_number`, `tool_slug`, and `destination_tool` custom definitions only after GA4 property selection; ensure consent applies.
+5. Manually deploy from the reviewed main commit with VPS deploy lock and SHA verification; run live smoke and compare engaged real sessions, `workflow_step_click`, `workflow_calculate`, tool `calculate`, actual page usage, and LCP/INP/CLS. Separate bot spikes from organic human traffic.
 
-1. On an authorized local clone of **this exact branch**, run `cd site && npm ci && npm run typecheck && npm test && npm run validate && npm run audit:seo && npm run audit:i18n && npm run audit:index-policy && npm run build`.
-2. Check en/ja page semantics, tool routing and step titles; check 15 other locales for fallback and RTL (`ar`). Validate responsive header at 640/768/1024px and mobile menu at narrow widths.
-3. Test Google/Bing canonical + hreflang + sitemap parity: only `en`/`ja` indexable, noindex for other 15. Run live checks **after** deploying.
-4. Verify consent-aware GA4 `workflow_step_click` in DebugView; create event-scoped `workflow_id`, `step_number`, `destination_tool` custom definitions if needed. Never log inputs.
-5. Resolve the unrelated **draft PR #41** release hardening and manual-only workflow gate before introducing this work into production; keep all GitHub Actions uninvoked. Obtain review and use owner-controlled manual deployment. Do not merge/deploy solely on source checks.
-
-## Outcome experiment (real humans rather than bots)
-
-- Baseline: preceding 28 days by landing page, traffic source, locale and device (Google Search Console clicks, GA4 engaged sessions and engaged time, GA4 `calculate` events, pages/session).
-- Segment organic and referral traffic, exclude known crawler/invalid traffic and bot spikes before comparing.
-- Primary outcome: `calculate` or meaningful tool result achieved **after** a workflow click, measured per consented human session; if GA4 cannot join results, use `workflow_step_click` as a **navigation proxy only**.
-- Secondary: proportion opening step 2 and step 3, engaged sessions, returning visitors, search clicks to `/en/workflows` and `/ja/workflows`.
-- Guardrails: no deterioration in Core Web Vitals, tool completion, accessibility, organic clicks, consent behavior or ad-policy compliance.
-- A/B rollout requires enough real sessions and comparable traffic mix; no positive uplift or revenue is claimed now.
-
-## Caveats
-
-`workflow_step_click` by itself is not evidence of a completed calculation. The prototype's browser-back navigation is intentionally simple: the journey page is the checklist, each utility remains a standalone page. Iterate with research before adding automatic local persistence, especially for finance/health/free-text tools.
+## How to judge success
+Primary: higher *meaningful tool interactions per consented human session* without lower individual-tool completion or performance.
+Secondary: step 2/3 progression, return sessions, organic clicks to established indexable tool pages and engagement by locale/device/traffic source.
+**No verified increase in users, dwell time, sales or search ranking is claimed.**
