@@ -97,7 +97,7 @@ test('postmerge release requires fresh main and manual-only deployment', () => {
   assert.ok(gate.includes('grep -Eq'));
   assert.ok(workflow.includes('workflow_dispatch: {}'));
   assert.ok(!workflow.includes('branches: [main]'), 'must not automatically deploy on main');
-  assert.ok(!workflow.split(String.fromCharCode(10)).some((line) => /^[ \\t]*push:/.test(line)), 'no YAML push trigger');
+  assert.ok(!workflow.split(String.fromCharCode(10)).some((line) => line.trimStart().startsWith('push:')), 'no YAML push trigger');
   assert.ok(workflow.includes('Acquire VPS deploy lock (shared with local deploy)'));
   assert.ok(workflow.includes('Verify live release SHA'));
   assert.ok(workflow.includes('Verify public release endpoint'));
