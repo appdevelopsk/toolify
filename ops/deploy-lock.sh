@@ -23,12 +23,16 @@ now=$(date +%s)
 case $cmd in
   acquire)
     if mkdir "$L" 2>/dev/null; then
-      echo "$me $now" > "$L/owner"
+      if ! printf '%s %s\n' "$me" "$now" > "$L/owner"; then
+        rmdir "$L" 2>/dev/null || true
+        echo "Cannot write lock owner metadata: $L/owner" >&2
+        exit 1
+      fi
       echo "ACQUIRED $L by $me"
       exit 0
     fi
     o=$(cut -d' ' -f1 "$L/owner" 2>/dev/null || true)
-    t=$(stat -c %Y "$L/owner" 2>/dev/null || stat -c %Y "$L" 2>/dev/null || echo "$now")
+    t=$(stat -c %Y "$L/owner" 2>/dev/null || stat -f %m "$L/owner" 2>/dev/null || stat -c %Y "$L" 2>/dev/null || stat -f %m "$L" 2>/dev/null || echo "$now")
     age=$(( now - t ))
     # Do not take over an old lock automatically. The previous code overwrote
     # the owner file without any atomic claim; two waiters could both enter a
@@ -44,7 +48,11 @@ case $cmd in
   release)
     o=$(cut -d' ' -f1 "$L/owner" 2>/dev/null || true)
     if [[ $o == "$me" ]]; then
-      rm -f "$L/owner" && rmdir "$L" && echo "RELEASED $L by $me"
+      if ! { rm -f "$L/owner" && rmdir "$L"; }; then
+        echo "Failed to release lock: $L" >&2
+        exit 1
+      fi
+      echo "RELEASED $L by $me"
     else
       echo "NOT OWNER (held by ${o:-nobody}); left as is"
     fi
