@@ -93,24 +93,32 @@ test('postmerge release requires fresh main and manual-only deployment', () => {
   assert.ok(gate.includes('fetch --no-tags origin main:refs/remotes/origin/main'));
   assert.ok(gate.includes('merge-base --is-ancestor refs/remotes/origin/main HEAD'));
   assert.ok(gate.includes('latest origin/main is not merged'));
-  assert.ok(gate.includes('main push auto-deploy must be disabled'));
-  assert.ok(gate.includes("grep -Fq 'branches: [main]'"));
+  assert.ok(gate.includes('push-triggered VPS deployment must be disabled'));
+  assert.ok(gate.includes('grep -Eq'));
   assert.ok(workflow.includes('workflow_dispatch: {}'));
   assert.ok(!workflow.includes('branches: [main]'), 'must not automatically deploy on main');
+  assert.ok(!workflow.split(String.fromCharCode(10)).some((line) => /^[ \\t]*push:/.test(line)), 'no YAML push trigger');
   assert.ok(workflow.includes('Acquire VPS deploy lock (shared with local deploy)'));
   assert.ok(workflow.includes('Verify live release SHA'));
   assert.ok(workflow.includes('Verify public release endpoint'));
 });
 
-test('main push trigger guard detects the real YAML syntax', () => {
-  const blocked = spawnSync('grep', ['-Fq', 'branches: [main]'], {
-    input: ['on:', '  push:', '    branches: [main]', ''].join(String.fromCharCode(10)),
-    encoding: 'utf8',
-  });
-  assert.equal(blocked.status, 0, 'an on-main-push deploy must be rejected');
-  const allowed = spawnSync('grep', ['-Fq', 'branches: [main]'], {
+test('main push guard rejects both branch-specific and unqualified YAML push triggers', () => {
+  const expression = '^[[:space:]]*push:[[:space:]]*';
+  for (const yaml of [
+    ['on:', '  push:', '    branches: [main]', ''],
+    ['on:', '  push: {}', ''],
+    ['on:', '  workflow_dispatch: {}', '  push:', ''],
+  ]) {
+    const result = spawnSync('grep', ['-Eq', expression], {
+      input: yaml.join(String.fromCharCode(10)),
+      encoding: 'utf8',
+    });
+    assert.equal(result.status, 0, 'unsafe push trigger should be detected');
+  }
+  const safe = spawnSync('grep', ['-Eq', expression], {
     input: ['on:', '  workflow_dispatch: {}', ''].join(String.fromCharCode(10)),
     encoding: 'utf8',
   });
-  assert.equal(allowed.status, 1, 'manual-only deploy must be allowed');
+  assert.equal(safe.status, 1, 'manual-only workflow is allowed');
 });
