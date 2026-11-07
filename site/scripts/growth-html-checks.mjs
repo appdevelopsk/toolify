@@ -44,7 +44,9 @@ export function hasSoftwareAnchor(html, slug, locale, origin = 'https://toolify3
 
 /** Match complete <loc> values, never URL prefixes that may identify a different page. */
 export function hasSitemapLocation(xml, target) {
-  return [...xml.matchAll(/<loc(?:\s[^>]*)?>([^<]+)<\/loc\s*>/gi)].some(([, value]) => {
+  // Comments and CDATA may contain convincing but non-indexable <loc> text.
+  const liveXml = xml.replace(/<!--[\s\S]*?-->/g, '').replace(/<!\[CDATA\[[\s\S]*?\]\]>/g, '');
+  return [...liveXml.matchAll(/<loc(?:\s[^>]*)?>([^<]+)<\/loc\s*>/gi)].some(([, value]) => {
     try {
       return new URL(value.trim().replace(/&amp;/g, '&')).href === new URL(target).href;
     } catch { return false; }
