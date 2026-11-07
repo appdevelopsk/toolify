@@ -16,7 +16,7 @@ if ! git -C "$ROOT" merge-base --is-ancestor refs/remotes/origin/main HEAD; then
 fi
 # Parse the event declaration fail-closed. A grep for "push:" misses on: [push].
 # Do not run GitHub Actions; only validate workflow source locally.
-node "$ROOT/scripts/verify-manual-deploy.mjs" "$ROOT/.github/workflows/deploy.yml"
+node "$ROOT/scripts/verify-manual-deploy.mjs" "$ROOT/.github/workflows"
 node --test "$ROOT/scripts/verify-manual-deploy.test.mjs"
 # The site config falls back to example.pages.dev when the public origin is unset.
 # Pin this production release gate to the canonical origin to prevent wrong
