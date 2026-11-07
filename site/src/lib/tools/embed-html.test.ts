@@ -15,7 +15,7 @@ describe("safe tool embed HTML", () => {
   });
   it("qualifies distributed widget attribution links without affecting visible citations", () => {
     const snippet = buildToolEmbedSnippet("My Tool", "https://toolify365.com/embed/en/test", "https://toolify365.com/en/tools/test");
-    const links = [...snippet.matchAll(/<a\\b[^>]*>/g)].map((m) => m[0]);
+    const links = [...snippet.matchAll(/<a\b[^>]*>/g)].map((m) => m[0]);
     expect(links).toHaveLength(2);
     for (const link of links) {
       expect(link).toContain('rel="noopener noreferrer nofollow"');
