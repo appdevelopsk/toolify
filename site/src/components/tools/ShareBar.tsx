@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useToolEvents } from "@/lib/analytics/useToolEvents";
 import { buildToolEmbedSnippet } from "@/lib/tools/embed-html";
+import { isShareCancelled } from "@/lib/tools/share-errors";
 
 interface Props {
   /** Canonical, absolute URL of the tool page (built server-side from siteConfig). */
@@ -150,8 +151,10 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
         // 成功時だけ送る。キャンセルは reject されるのでここには来ない。
         share("native");
         return;
-      } catch {
-        /* user cancelled — fall through */
+      } catch (error) {
+        // Explicit cancellation is not consent to copy a link to the clipboard.
+        if (isShareCancelled(error)) return;
+        // Share API unavailable/failed for another reason: copy fallback below.
       }
     }
     // フォールバックは copy() 側が copy_result("link") を送るため share は送らない
