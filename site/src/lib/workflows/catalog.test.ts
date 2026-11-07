@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { LOCALES } from "@/lib/i18n/locales";
 import { getTool } from "@/lib/tools/registry";
 import { WORKFLOWS, workflowCopy, getWorkflowContinuation } from "./catalog";
+import { getWorkflowContext } from "./steps";
 
 describe("goal-based workflows", () => {
   it("has four three-step journeys with real, unique tools", () => {
@@ -45,6 +46,20 @@ describe("goal-based workflows", () => {
     }
     expect(getWorkflowContinuation("unknown-tool")).toBeUndefined();
     expect(getWorkflowContinuation("__proto__")).toBeUndefined();
+  });
+
+
+  it("accepts only a valid workflow query pointing to its current tool", () => {
+    for (const flow of WORKFLOWS) for (const [index, slug] of flow.tools.entries()) {
+      expect(getWorkflowContext(`?wf=${flow.id}&ws=${index + 1}`, slug)).toEqual({
+        workflow: flow.id, step: index + 1,
+      });
+      expect(getWorkflowContext(`?wf=${flow.id}&ws=${index + 1}`, "different-tool")).toBeUndefined();
+    }
+    expect(getWorkflowContext("?wf=data&ws=999", "csv-json-converter")).toBeUndefined();
+    expect(getWorkflowContext("?wf=data&wf=writing&ws=1", "csv-json-converter")).toBeUndefined();
+    expect(getWorkflowContext("?wf=data&ws=1&ws=2", "csv-json-converter")).toBeUndefined();
+    expect(getWorkflowContext("?wf=__proto__&ws=1", "csv-json-converter")).toBeUndefined();
   });
 
   it("does not depend on user data and has a predictable fallback", () => {
