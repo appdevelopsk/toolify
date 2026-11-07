@@ -8,6 +8,7 @@ import { ToolInteractionTracker } from "./ToolInteractionTracker";
 import { RelatedToolLink } from "./RelatedToolLink";
 import { ContinueWithRecent } from "./ContinueWithRecent";
 import { ToolSoftwareRecommendations } from "./ToolSoftwareRecommendations";
+import { WorkflowNextStep } from "@/components/workflows/WorkflowNextStep";
 import { TrustBox } from "./TrustBox";
 import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
@@ -68,6 +69,9 @@ export function ToolFrame({ meta, title, description, related, children, article
             {children}
           </ToolInteractionTracker>
         </section>
+
+        {/* Next useful action, only for the 8 non-terminal workflow tools. */}
+        <WorkflowNextStep slug={meta.slug} />
 
         {/* 関連ツール導線 — ツール結果の直後(注意が集中する位置)に移動。
             従来は記事/FAQ/出典の後の最下部で不可視だった。回遊(PV/session)増=AdSense表示増。
