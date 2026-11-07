@@ -14,7 +14,7 @@ export function escapeHtml(value: string): string {
 /** Reject active or opaque URL schemes even after HTML attribute escaping. */
 function safeEmbedUrl(value: string, fallback: string): string {
   // WHATWG URL parsing trims some controls; reject them before parsing.
-  if (/[\\u0000-\\u001f\\u007f]/.test(value) || value.trim() !== value) return fallback;
+  if (/[\u0000-\u001f\u007f]/.test(value) || value.trim() !== value) return fallback;
   try {
     const parsed = new URL(value);
     // Userinfo in copied embed snippets risks leaking credentials.
