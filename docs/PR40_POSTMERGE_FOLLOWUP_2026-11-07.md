@@ -32,3 +32,10 @@
 - **Five independent Node subtests passed (5/5, exit 0):** markup entities, src/href attribute escaping, injected markup/handler protection, disallowed javascript/data/relative/http remote schemes, HTTPS and local development.
 - This tests the actual helper implementation in isolation with a separate Node test harness, **not** the repository's Vitest suite or whole Next.js application. The four in-repo Vitest test cases are authored but remain unrun with `npm ci` on a full checkout.
 - At check time PR41 remained open, draft, 11 commits ahead of main and 0 behind; no deploy/merge performed in this work.
+
+## 2026-11-07 security follow-up: credentials and control characters
+- Found a real URL parsing edge case: WHATWG `new URL()` accepts HTTPS URLs with embedded usernames/passwords and trims leading newlines/trailing tabs. URL scheme-only checks previously let these through.
+- Hardened `site/src/lib/tools/embed-html.ts`: reject ASCII control characters, surrounding whitespace, and parsed URL userinfo before allowing HTTPS/localhost.
+- Expanded `embed-html.test.ts` with credentials, newline, tab, and whitespace cases, and strengthened the cross-PR integration source regression.
+- Ran `node --test` on an isolated JS adaptation of the updated helper: **4 subtest groups passed, zero failed**, including unsafe schemes, credentials, controls, attribute encoding, and valid HTTPS/local links. This does not constitute the full repository's Vitest or production build.
+- PR41 remains NO-GO until checked-out full build and browser QA pass. GitHub Actions were not used; production not verified.
