@@ -26,6 +26,9 @@ describe("workflow entrypoint & task-completion wiring", () => {
     expect(home).toContain("WORKFLOWS.map");
     expect(desktop).toContain('href="/workflows"');
     expect(mobile).toContain('href="/workflows"');
+    expect(desktop).toContain("workflowNav={workflow.nav}");
+    expect(mobile).toContain("workflowNav: string");
+    expect(mobile).not.toContain("workflowCopy");
     expect(sitemap).not.toContain('"/workflows"');
     expect(page).toContain('path: "/workflows"');
     expect(page).toContain("noindex: true");
