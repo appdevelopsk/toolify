@@ -116,7 +116,7 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
       window.removeEventListener("popstate", sync);
       window.removeEventListener("pageshow", sync);
     };
-  }, []);
+  }, [url, slug]); // Resync result-link visibility on locale or tool navigation.
 
   const enc = encodeURIComponent;
   // 埋め込みコードには iframe に加えて「ホストページ側の dofollow 被リンク」を必ず付ける。
