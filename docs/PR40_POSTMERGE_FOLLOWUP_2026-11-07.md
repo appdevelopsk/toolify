@@ -47,3 +47,15 @@
 - Found and corrected an actual release script bug: the old `branches: [main]` detection regexp did **not** match the actual YAML. The new guard rejects a `push:` trigger in `.github/workflows/deploy.yml` irrespective of its branch list.
 - Tested the complete branch/remote/deploy guard in a local Git repository with a **local-only origin**, without Actions: push-enabled workflow stopped with exit **4**; manual-only workflow passed the guard and reached the actual TypeScript Node test (**6 passed**). Bash syntax check passed; wrong branch guard previously returned exit **2**. The local mock then cannot run `npm ci`/full site build, which **remains unverified**.
 - GitHub comparison showed production `main` still has `on.push.branches: [main]` while PR #41 uses `workflow_dispatch` only. Do **not** merge without confirming this workflow change, the full test/build suite, and owner approval. GitHub Actions were not executed.
+
+## 2026-11-07 — Release gate branch/history/deploy prevention exercised (follow-up)
+- Confirmed PR #40 has been **merged**; existing PR #38 is superseded by that integration and was closed without merging. Main source readback shows the software CTA, catalog mappings, analytics, and HTML/live-growth checks present. PR #41 remains the draft for **post-merge** fixes.
+- On the PR #41 branch, removed `on.push` from `.github/workflows/deploy.yml` while preserving `workflow_dispatch`, deployment lock, and release SHA checks. This changes the **proposed** workflow only; main production automation remains unchanged until an approved merge.
+- Improved the PR #41 release gate to fetch latest `origin/main` and fail if not an ancestor; it also rejects a YAML `push:` trigger. Found and fixed a broken original grep expression, and synchronized the dependency-free integration test with the newer push-key matcher.
+- Recreated the release gate script with an **exact matching Git blob SHA** (`18c3d1ee9d4d925011e7fd816e9b64af8b118aa7`); `bash -n` passed. Exercised the actual script against a temporary real local Git origin:
+  - wrong branch → exit **2**,
+  - feature branch lacking newest remote main commit → exit **3**,
+  - auto-deploy `push:` workflow → exit **4**,
+  - current main ancestry + manual-only workflow → exit **0** with **npm calls stubbed** and the real isolated embed Node tests executing (**6/6 passed**).
+- Fetched exact Git blobs for `site/src/lib/tools/embed-html.ts` (`fc7733a85e2bd49aaf888a7149a77c586254bbb7`) and `site/scripts/embed-html-node.test.mjs` (`60cc425603c19b5ed075869f640e55e0e992e533`); `node --experimental-strip-types --test` yielded **6 pass, 0 fail**, and isolated `tsc --strict --noEmit` passed.
+- These are genuine isolated tests and release **preflight** simulations; no `npm ci`, app-wide tests, actual Next build, live browser/GA4 verification or production deployment. GitHub Actions never invoked. PR41 remains **DRAFT/NO-GO** pending complete owner-accessible checkout and release gate.
