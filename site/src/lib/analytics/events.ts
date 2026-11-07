@@ -203,3 +203,18 @@ export function trackWorkflowStepClick(p: {
     ...(p.locale ? { locale: p.locale } : {}),
   });
 }
+
+/** Confirmed user interaction on a valid workflow step (no inputs or results). */
+export function trackWorkflowCalculate(p: {
+  workflow: "data" | "writing" | "shopping" | "scheduling";
+  step: number;
+  tool: string;
+  locale?: string;
+}): void {
+  emit("workflow_calculate", {
+    workflow_id: p.workflow,
+    step_number: p.step,
+    tool_slug: p.tool,
+    ...(p.locale ? { locale: p.locale } : {}),
+  });
+}
