@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "next-intl";
+import type { ReactNode } from "react";
 import { Link } from "@/lib/i18n/navigation";
 import { trackWorkflowStepClick } from "@/lib/analytics/events";
 import type { WorkflowId } from "@/lib/workflows/catalog";
@@ -12,7 +13,7 @@ export function WorkflowToolLink({
   slug: string;
   workflow: WorkflowId;
   step: number;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const locale = useLocale();
   return (
