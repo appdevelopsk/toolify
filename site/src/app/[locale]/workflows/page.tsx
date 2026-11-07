@@ -4,6 +4,7 @@ import { Link } from "@/lib/i18n/navigation";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { getTool } from "@/lib/tools/registry";
 import { WORKFLOWS, workflowCopy } from "@/lib/workflows/catalog";
+import { WorkflowToolLink } from "@/components/workflows/WorkflowToolLink";
 import type { Locale } from "@/lib/i18n/locales";
 
 export async function generateMetadata({
@@ -68,9 +69,9 @@ export default async function WorkflowIndex({
                     <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-400">{copy.step} {index + 1} / {flow.tools.length}</p>
                     <h3 className="mt-2 text-base font-bold">{t(`tools.${slug}.title`)}</h3>
                     <p className="mt-2 flex-1 text-sm leading-6 text-slate-600 dark:text-slate-300">{t(`tools.${slug}.shortDescription`)}</p>
-                    <Link href={`/tools/${slug}`} prefetch={false} className="mt-4 inline-flex min-h-11 items-center justify-center rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">
+                    <WorkflowToolLink slug={slug} workflow={flow.id} step={index + 1}>
                       {copy.open} →
-                    </Link>
+                    </WorkflowToolLink>
                   </li>
                 );
               })}
