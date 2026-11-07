@@ -84,8 +84,8 @@ test("validates every .yml and .yaml workflow in a directory", () => {
     writeFileSync(join(dir, "README.txt"), "on: push");
     assert.equal(verifyWorkflowPath(dir), 2);
 
-    writeFileSync(join(dir, "ci.yaml"), "on:\\n  pull_request: {}\\n");
-    assert.throws(() => verifyWorkflowPath(dir), /ci\\.yaml/);
+    writeFileSync(join(dir, "ci.yaml"), "on:\n  pull_request: {}\n");
+    assert.throws(() => verifyWorkflowPath(dir), /ci\.yaml/);
 
     rmSync(join(dir, "ci.yaml"));
     rmSync(join(dir, "deploy.yml"));
@@ -104,10 +104,10 @@ test("directory CLI rejects an automatic CI workflow even if deploy.yml is manua
     let result = spawnSync(process.execPath, [cli, dir], { encoding: "utf8" });
     assert.equal(result.status, 0, result.stderr);
 
-    writeFileSync(join(dir, "ci.yml"), "on:\\n  push: {}\\n");
+    writeFileSync(join(dir, "ci.yml"), "on:\n  push: {}\n");
     result = spawnSync(process.execPath, [cli, dir], { encoding: "utf8" });
     assert.equal(result.status, 4, result.stdout);
-    assert.match(result.stderr, /ci\\.yml/);
+    assert.match(result.stderr, /ci\.yml/);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
