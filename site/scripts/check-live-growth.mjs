@@ -1,4 +1,4 @@
-import { hasNoindex, canonicalHref, hasSoftwareAnchor } from "./growth-html-checks.mjs";
+import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasSitemapLocation } from "./growth-html-checks.mjs";
 /**
  * Read-only production smoke check for growth funnel rollout.
  * Usage: SITE_URL=https://toolify365.com node scripts/check-live-growth.mjs
@@ -84,7 +84,7 @@ for (const path of ["/robots.txt", "/sitemap.xml"]) {
     if (path === "/sitemap.xml") {
       if (!page.text.includes("<loc>")) failures.push("sitemap.xml: no URL locations");
       for (const target of expectedIndexed) {
-        if (!page.text.includes(`${base.origin}${target}`)) failures.push(`sitemap.xml: expected indexed tool missing (${target})`);
+        if (!hasSitemapLocation(page.text, `${base.origin}${target}`)) failures.push(`sitemap.xml: expected indexed tool missing (${target})`);
       }
     }
     console.log(`${page.status} ${path}`);
