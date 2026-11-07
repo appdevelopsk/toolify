@@ -44,3 +44,26 @@ The site's existing intentional allowlist consists of 29 demand-supported core t
 Primary: higher *meaningful tool interactions per consented human session* without lower individual-tool completion or performance.
 Secondary: step 2/3 progression, return sessions, organic clicks to established indexable tool pages and engagement by locale/device/traffic source.
 **No verified increase in users, dwell time, sales or search ranking is claimed.**
+
+
+## 2026-11-08 08:10 JST follow-up — performance, privacy and bot-quality hardening
+
+**Additional implementation**
+- Avoid hydrating 17 complete workflow-copy arrays in the shared mobile menu: server `Header` now passes only the localized `workflowNav` string. Added a source regression check for the prop and no client copy import.
+- Discovered a pre-existing GA4 data-leak and overcount risk: `PageViewTracker` transmitted full URL query strings (including `?s=` containing tool share state) and reacted to query changes. Added `sanitizePageViewUrl`, stripping all query/hash from `page_path` and `page_location`, and made SPA page views depend only on pathname.
+- Also override `page_location` with query-free pathname in all custom GA4 event emissions and initial gtag config. This protects against implicit query collection in other event paths; it does NOT audit external third-party tracking SDK behavior or previously captured analytics data.
+- Track only genuine browser-origin activations in `WorkflowToolLink` using `event.nativeEvent.isTrusted`; synthetic JS `.click()` no longer inflates workflow navigation metrics. This is a basic hygiene filter, **not** bot detection against automation that generates trusted events.
+- New `pageview-url.test.ts` and `privacy.wiring.test.ts` cover query stripping, event wiring, and trusted-interaction guards.
+
+**Executed validation**
+- Current GitHub branch `pageview-url.ts` Git blob SHA **48ccf03e386526aa8c3288e634e7eb3beb3f6fc0** independently matched the exact file recreated in the local test workspace. Ran TypeScript 5.8.3 with strict, noUncheckedIndexedAccess: **PASS**. Compiled helper and executed three Node runtime cases: **3/3 PASS** (sensitive query and fragment stripped, locale path and port preserved, encoded path retained).
+- Current `steps.ts` Git blob SHA **3b28219344f90589f15f5753e46082db45c3985b** independently matched the local test file. Strict TypeScript: **PASS**. Node runtime assertions passed for four curated journeys, 12 unique steps, eight correct continuations, 12 valid context matches, 12 wrong-tool rejections, and five tampered/duplicate query cases.
+- GitHub readback from this feature branch: **12/12 source-contract checks passed** across 11 files, including mobile bundle, noindex parity, trusted events and query sanitizer wiring. These are **not a substitute** for production Next.js build or full Vitest suite.
+- Latest checked live homepage at `https://toolify365.com/en` does not contain the new guide: no production rollout was performed.
+- Metricool brand has **no connected social network**, so outbound social posts cannot be scheduled: https://app.metricool.com/brands/connections?blogId=7709450
+- Toolify GA4 is connected in HYPD but no property is selected; select it at https://app.hypd.ai/sources?utm_source=mcp&utm_content=none_selected before requesting the 28-day baseline.
+
+**Release status remains NO-GO**
+- Container cannot resolve github.com for a full clone, and cannot run the full npm/Next.js suite in an owner checkout here.
+- Existing `main` auto-triggered PR/merge workflows and unmerged PR #41 manual-only safety work remain unresolved. No PR creation, Actions run, merge, deployment, public Search Console submission or actual performance uplift is claimed.
+- Manual owner QA must additionally test that normal links and result-share URLs still work, GA4 `page_location` has **no** `?s=`, and route-based pages/session reporting is preserved with the new path-only counting policy.
