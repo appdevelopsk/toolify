@@ -7,11 +7,11 @@ function renderedMarkup(html) {
 }
 export function hasNoindex(html, xRobotsTag = "") {
   // X-Robots-Tag may be repeated/comma-delimited, and can target a specific crawler.
-  if (/(?:^|[,\s:])noindex(?:$|[,\s])/i.test(xRobotsTag)) return true;
+  if (/(?:^|[,\s:])(?:noindex|none)(?:$|[,\s])/i.test(xRobotsTag)) return true;
   return [...renderedMarkup(html).matchAll(/<meta[^>]*>/gi)].some(([tag]) => {
     const name = tag.match(/\bname\s*=\s*["'](robots|googlebot)["']/i);
     const value = tag.match(/\bcontent\s*=\s*["']([^"']+)["']/i)?.[1] ?? '';
-    return Boolean(name) && /(?:^|[,\s])noindex(?:$|[,\s])/i.test(value);
+    return Boolean(name) && /(?:^|[,\s])(?:noindex|none)(?:$|[,\s])/i.test(value);
   });
 }
 export function canonicalHref(html) {
