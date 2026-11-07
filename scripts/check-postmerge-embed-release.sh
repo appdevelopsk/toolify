@@ -15,7 +15,7 @@ if ! git -C "$ROOT" merge-base --is-ancestor refs/remotes/origin/main HEAD; then
   exit 3
 fi
 # This PR must never enable an automatic GitHub Actions deploy on main push.
-if grep -Eq '^[[:space:]]+branches:[[:space:]]*\\[main\\]' "$ROOT/.github/workflows/deploy.yml"; then
+if grep -Fq 'branches: [main]' "$ROOT/.github/workflows/deploy.yml"; then
   echo "[postmerge] ERROR: main push auto-deploy must be disabled before release." >&2
   exit 4
 fi
