@@ -85,3 +85,17 @@ test('embedded tool HTML escapes title and attribute values', () => {
   assert.ok(html.includes('if (parsed.username || parsed.password) return fallback'));
   assert.ok(html.includes('value.trim() !== value'));
 });
+
+test('postmerge release requires fresh main and manual-only deployment', () => {
+  const gate = read('../../scripts/check-postmerge-embed-release.sh');
+  const workflow = read('../../.github/workflows/deploy.yml');
+  assert.ok(gate.includes('fetch --no-tags origin main:refs/remotes/origin/main'));
+  assert.ok(gate.includes('merge-base --is-ancestor refs/remotes/origin/main HEAD'));
+  assert.ok(gate.includes('latest origin/main is not merged'));
+  assert.ok(gate.includes('main push auto-deploy must be disabled'));
+  assert.ok(workflow.includes('workflow_dispatch: {}'));
+  assert.ok(!workflow.includes('branches: [main]'), 'must not automatically deploy on main');
+  assert.ok(workflow.includes('Acquire VPS deploy lock (shared with local deploy)'));
+  assert.ok(workflow.includes('Verify live release SHA'));
+  assert.ok(workflow.includes('Verify public release endpoint'));
+});
