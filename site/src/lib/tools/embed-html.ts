@@ -33,5 +33,5 @@ export function buildToolEmbedSnippet(title: string, embedUrl: string, toolUrl: 
   const safeTitle = escapeHtml(title);
   const safeEmbedSrc = escapeHtml(safeEmbedUrl(embedUrl, 'about:blank'));
   const safeToolUrl = escapeHtml(safeEmbedUrl(toolUrl, 'https://toolify365.com'));
-  return `<iframe src="${safeEmbedSrc}" width="100%" height="520" style="border:1px solid #e2e8f0;border-radius:12px" loading="lazy" title="${safeTitle}"></iframe>\n<p style="font:13px/1.6 system-ui,-apple-system,sans-serif;text-align:center;margin:6px 0;color:#64748b">Free <a href="${safeToolUrl}" target="_blank" rel="noopener">${safeTitle}</a> by <a href="https://toolify365.com" target="_blank" rel="noopener">toolify365</a></p>`;
+  return `<iframe src="${safeEmbedSrc}" width="100%" height="520" style="border:1px solid #e2e8f0;border-radius:12px" loading="lazy" title="${safeTitle}"></iframe>\n<p style="font:13px/1.6 system-ui,-apple-system,sans-serif;text-align:center;margin:6px 0;color:#64748b">Free <a href="${safeToolUrl}" target="_blank" rel="noopener noreferrer nofollow">${safeTitle}</a> by <a href="https://toolify365.com" target="_blank" rel="noopener noreferrer nofollow">toolify365</a></p>`;
 }
