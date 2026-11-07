@@ -14,12 +14,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const copy = workflowCopy(locale);
-  // Existing index policy: only en/ja are indexable; all other locales still work.
+  // Pilot only: do not index a new hub before unique search demand is verified.
   return buildMetadata({
     locale: locale as Locale,
     title: copy.heading,
     description: copy.description,
     path: "/workflows",
+    noindex: true,
   });
 }
 
