@@ -25,7 +25,7 @@ if (( NODE_MAJOR < 22 )); then
   echo "[postmerge] ERROR: Node >=22 required for dependency-free TypeScript regression." >&2
   exit 2
 fi
-node --experimental-strip-types --test scripts/embed-html-node.test.mjs
+node --experimental-strip-types --test scripts/embed-html-node.test.mjs scripts/share-errors-node.test.mjs
 npm ci
 npm run test:smoke-html
 npm run test:integration
