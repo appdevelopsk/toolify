@@ -18,6 +18,8 @@ fi
 # Do not execute GitHub Actions; inspect workflow YAML locally.
 node "$ROOT/scripts/verify-manual-deploy.mjs" "$ROOT/.github/workflows"
 node --test "$ROOT/scripts/verify-manual-deploy.test.mjs"
+# Exercise the shared VPS deploy lock safely against temporary local paths.
+bash "$ROOT/ops/tests/deploy-lock.test.sh"
 # The site config falls back to example.pages.dev when the public origin is unset.
 # Pin this production release gate to the canonical origin to prevent wrong
 # canonical, share and iframe URLs in an otherwise successful Next build.
