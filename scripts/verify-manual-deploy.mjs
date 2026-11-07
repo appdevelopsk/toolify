@@ -52,7 +52,7 @@ export function verifyManualDeployWorkflow(source) {
 /** Validate every workflow in a directory; a single safe deploy.yml is not sufficient. */
 export function verifyWorkflowPath(path) {
   const files = statSync(path).isDirectory()
-    ? readdirSync(path).filter((entry) => /\\.ya?ml$/i.test(entry)).sort().map((entry) => join(path, entry))
+    ? readdirSync(path).filter((entry) => /\.ya?ml$/i.test(entry)).sort().map((entry) => join(path, entry))
     : [path];
   if (files.length === 0) throw new Error("No YAML workflows were found");
   for (const file of files) {
