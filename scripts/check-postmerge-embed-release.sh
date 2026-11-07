@@ -14,12 +14,10 @@ if ! git -C "$ROOT" merge-base --is-ancestor refs/remotes/origin/main HEAD; then
   echo "[postmerge] ERROR: latest origin/main is not merged into this PR branch." >&2
   exit 3
 fi
-# This PR must not allow any automatic push-triggered VPS deployment.
-# Match the YAML push: key directly: the previous branches:[main] regex missed it.
-if grep -Eq '^[[:space:]]*push:[[:space:]]*' "$ROOT/.github/workflows/deploy.yml"; then
-  echo "[postmerge] ERROR: push-triggered VPS deployment must be disabled before release." >&2
-  exit 4
-fi
+# Parse the event declaration fail-closed. A grep for "push:" misses on: [push].
+# Do not run GitHub Actions; only validate workflow source locally.
+node "$ROOT/scripts/verify-manual-deploy.mjs" "$ROOT/.github/workflows/deploy.yml"
+node --test "$ROOT/scripts/verify-manual-deploy.test.mjs"
 cd "$ROOT/site"
 echo "[postmerge] node=$(node --version) npm=$(npm --version)"
 NODE_MAJOR="$(node -p 'process.versions.node.split(".")[0]')"
