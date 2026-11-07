@@ -33,7 +33,7 @@ export function Header() {
             <Link href="/tools" className={navCls}>
               {t("nav.tools")}
             </Link>
-            <Link href="/workflows" className={navCls}>{workflow.nav}</Link>
+            <Link href="/workflows" className={`${navCls} hidden lg:inline`}>{workflow.nav}</Link>
             <Link href="/software" className={navCls}>{software.nav}</Link>
             {showPrompts && (
               <Link href="/prompts" className={navCls}>
