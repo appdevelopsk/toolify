@@ -44,6 +44,28 @@ describe("on-demand result sharing", () => {
     expect(hook).toContain('root.removeEventListener("click", onModeClick)');
   });
 
+  it("shows the result-link control only for supported nonempty share states", () => {
+    const bar = get("./ShareBar.tsx");
+    const helper = get("../../lib/hooks/result-share-link.ts");
+    const auto = get("../../lib/hooks/useAutoShareableState.ts");
+    const manual = get("../../lib/hooks/useShareableState.ts");
+    expect(bar).toContain("const [canCopyResult, setCanCopyResult] = useState(false)");
+    expect(bar).toContain("{canCopyResult && (");
+    expect(bar).toContain("new CustomEvent<ResultLinkAvailabilityRequest>");
+    expect(bar).toContain("window.addEventListener(RESULT_LINK_CAPABILITY_CHANGED, checkAvailability)");
+    expect(helper).toContain("RESULT_LINK_AVAILABILITY_REQUEST =");
+    expect(helper).toContain("RESULT_LINK_CAPABILITY_CHANGED =");
+    expect(auto).toContain("Object.keys(current).length === 0");
+    expect(manual).toContain("Object.keys(state).length === 0");
+    for (const source of [auto, manual]) {
+      expect(source).toContain("const onAvailabilityRequest = (event: Event) => {");
+      expect(source).toContain("window.addEventListener(RESULT_LINK_AVAILABILITY_REQUEST, onAvailabilityRequest)");
+      expect(source).toContain("window.removeEventListener(RESULT_LINK_AVAILABILITY_REQUEST, onAvailabilityRequest)");
+    }
+    expect(auto).toContain("availabilityFrame = requestAnimationFrame(");
+    expect(auto).toContain("cancelAnimationFrame(availabilityFrame)");
+  });
+
   it("keeps hydrated manual sharing intact until an actual value edit", () => {
     const manual = get("../../lib/hooks/useShareableState.ts");
     expect(manual).toContain("restoredExpectedSerialized.current = JSON.stringify(parsed)");
