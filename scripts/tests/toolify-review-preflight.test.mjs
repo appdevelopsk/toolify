@@ -124,6 +124,17 @@ test("postdeployment workflow smoke is opt-in, read-only and locale aware", () =
   assert.ok(!live.includes("workflow_dispatch"));
 });
 
+test("GA4 history-based pageview duplication blocks release until owner attestation", () => {
+  const gate = source("scripts/check-toolify-review-release.sh");
+  assert.ok(gate.includes('TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED:-'));
+  assert.ok(gate.includes('!= "confirmed"'));
+  assert.ok(gate.includes("Enhanced Measurement"));
+  assert.ok(gate.includes("DebugView"));
+  assert.ok(gate.includes("exit 4"));
+  assert.ok(gate.indexOf('bash "$ROOT/scripts/check-postmerge-embed-release.sh"')
+    < gate.indexOf("TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED"));
+});
+
 test("manual release gate is locked to reviewed branch and production origin", () => {
   const gate = source("scripts/check-postmerge-embed-release.sh");
   assert.ok(gate.includes("review/toolify-growth-manual-release-20261108"));
