@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  classifyRestoredShareChange,
   clearStaleResultShareState,
   createResultShareLink,
   migrateLegacyShareQuery,
@@ -36,6 +37,30 @@ describe("privacy-first on-demand tool result links", () => {
     expect(migrateLegacyShareQuery("https://toolify365.com/ja/tools/bmi?s=OLD&wf=data"))
       .toBe("https://toolify365.com/ja/tools/bmi?wf=data#s=OLD");
     expect(migrateLegacyShareQuery("https://toolify365.com/ja/tools/bmi#s=NEW")).toBeNull();
+  });
+
+  it("preserves the share fragment while restoring state and clears on a later edit", () => {
+    const initial = '{"a":1}';
+    const restored = '{"a":5}';
+    // Mount effect reads the pre-restoration value and must leave the URL alone.
+    const mounted = classifyRestoredShareChange(null, initial, restored);
+    expect(mounted).toEqual({ clearStale: false, nextExpected: restored });
+    // Hydration updates React state to match the incoming shared payload.
+    const hydrated = classifyRestoredShareChange(initial, restored, mounted.nextExpected);
+    expect(hydrated).toEqual({ clearStale: false, nextExpected: null });
+    // Editing the restored tool value makes the old share link stale.
+    expect(classifyRestoredShareChange(restored, '{"a":9}', hydrated.nextExpected))
+      .toEqual({ clearStale: true, nextExpected: null });
+    // If the incoming payload equals defaults, the initial effect consumes it.
+    expect(classifyRestoredShareChange(null, restored, restored))
+      .toEqual({ clearStale: false, nextExpected: null });
+  });
+
+  it("clears the URL if a tool normalizes the restored value differently", () => {
+    expect(classifyRestoredShareChange('{"a":1}', '{"a":5,"normalized":true}', '{"a":5}'))
+      .toEqual({ clearStale: true, nextExpected: null });
+    expect(classifyRestoredShareChange('{"a":5}', '{"a":5}', null))
+      .toEqual({ clearStale: false, nextExpected: null });
   });
 
   it("removes only stale result state after an actual edit", () => {
