@@ -305,3 +305,25 @@ The integrated review branch now changes the user experience:
 Verify at least one generic numeric tool, one text-only tool, one dynamic mode-button tool and one manual-state tool in a clean mobile and desktop browser. Confirm input does not mutate URLs; the copy-result button is absent when no meaningful state is available; it appears after valid shareable inputs; the clipboard contains a fragment link; a fresh session restores its mode/inputs; and subsequent edits clear stale `#s=`. Confirm legacy `?s=` links still restore. Validate consent, GA4 and external scripts; old incoming query links still hit the server once before client migration.
 
 **Do not merge, deploy or report acquisition/retention gains until the full manual release gate, browser/17-locale QA, and owner approval pass.**
+
+
+## 2026-11-08 — result-copy query minimization and mobile input coalescing
+
+### Additional review-only fixes
+
+1. **Result links leaked unrelated query metadata:** `createResultShareLink` previously removed only `s` before copying. `?token=`, `?email=`, `?utm_*=` and arbitrary untrusted parameters remained in the *copied* link. It now clears all query fields and retains only a single validated `wf` from `data/writing/shopping/scheduling` **paired with** a single `ws` of `1/2/3`. Missing, duplicate and invalid pairs are omitted. `#s=...` contains the intentionally shared result state. Legacy `?s=` restoration and in-page migration remain supported.
+2. **Unsafe target URLs:** result-copy helper now rejects malformed/relative input, non-HTTP(S) schemes (including `javascript:`, `data:`, `mailto:`) and embedded URL credentials. Normal site HTTPS URLs continue to work.
+3. **Excess work on mobile input:** `useAutoShareableState` previously notified two ShareBars after every input event, requiring repeated snapshot encoding. Notifications now coalesce to **at most one per animation frame**, including dynamic mode selection, without changing the on-demand copy result response.
+4. Updated Vitest tests in `site/src/lib/hooks/result-share-link.test.ts` and `site/src/components/tools/ShareBar.events.test.ts`, native Node preflight `scripts/tests/toolify-review-preflight.test.mjs`, and README security description.
+
+### Tests actually executed
+
+- The **exact GitHub blob** `site/src/lib/hooks/result-share-link.ts` (SHA `6b5bea7204eb783ebb7ccd3475c6a20395c8d443`) was reconstructed in a local Node 22 workspace. Local `git hash-object` matched exactly.
+- `tsc --strict --noUncheckedIndexedAccess --target ES2022 --module CommonJS --lib ES2022,DOM --noEmit`: **PASS** for that helper module.
+- Actual `node --experimental-strip-types --test` against that exact helper source: **6/6 tests PASSED**. Includes 12 legitimate workflow pair combinations, duplicate/malformed/out-of-range workflow metadata, malformed/oversized result payloads, legacy link migration and stale-state cleanup, credential/unsafe-scheme refusal.
+- Extracted the exact reviewed `useAutoShareableState` scheduler body (SHA `3d002bafa5b4d3f3d340eeb4bc1d12a447b6d2e4`) and executed it in a controlled V8 animation-frame shim: **120 simulated input notifications coalesced to 2 scheduled events**, 4 assertions passed.
+- These checks are **not** the full repository TypeScript/Vitest suite, a real mobile browser trace, or a Next production build. No code has been merged into `main` or deployed, and no user/revenue growth has been attributed to it.
+
+### Still required for GO
+
+Run all manual release gates in a complete owner checkout, verify source SHA, Next production build, unit suites and 17-locale rendering, browser sharing/restore on actual iOS/Android, GA4 DebugView query safety, Clarity URL/cookie review, and postdeployment live smoke. **Current state: NO-GO**. A copied fragment is still readable by recipient/page scripts; the new change strips *extra* query data, not the intentionally shared result.
