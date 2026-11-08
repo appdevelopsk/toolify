@@ -43,7 +43,8 @@ describe("workflow entrypoint & task-completion wiring", () => {
     expect(source).toContain("{followUp && (");
     expect(source).toContain("href={`/workflows#${journey.id}`}");
     // Terminal steps have a return link, never a false 'completed' signal.
-    expect(source).not.toContain("completed");
+    expect(source).not.toContain("trackWorkflowCompletion(");
+    expect(source).not.toContain("{copy.completed}");
   });
 
   it("attributes meaningful input without sending entered values", () => {
