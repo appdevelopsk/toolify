@@ -58,11 +58,12 @@ export function useShareableState<T extends object>(
   useEffect(() => {
     try {
       const raw = readResultShareState(window.location.href);
-      if (!raw) return;
-      const parsed = decodeState(raw);
-      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
-        restoreRef.current(parsed as T);
-        setRestored(true);
+      if (raw) {
+        const parsed = decodeState(raw);
+        if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+          restoreRef.current(parsed as T);
+          setRestored(true);
+        }
       }
     } catch {
       /* 壊れた ?s= は無視して既定値のまま動かす */
