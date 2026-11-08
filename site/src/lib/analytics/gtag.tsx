@@ -44,7 +44,9 @@ export function GoogleAnalytics() {
           gtag('js', new Date());
           // page_view は PageViewTracker（SPA遷移対応）が一元送出するため自動送出を無効化。
           gtag('config', '${siteConfig.analytics.gaId}', { anonymize_ip: true, send_page_view: false, page_location: window.location.origin + window.location.pathname });
-          // Notify client trackers only after consent defaults and GA config.
+          // Mark readiness only after consent defaults and GA config are queued.
+          // Other scripts creating window.gtag before our setup are not enough.
+          window.__toolifyGtagReady = true;
           window.dispatchEvent(new Event('toolify:gtag-ready'));
         `}
       </Script>
