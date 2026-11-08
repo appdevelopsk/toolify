@@ -68,7 +68,9 @@ test('shared URL restoration validates untrusted input and clears stale oversize
   assert.ok(hook.includes('if (!isValidRestoredFieldValue(kind, v)) continue'));
   assert.ok(hook.includes('Array.from(el.options).some((option) => option.value === v)'));
   assert.ok(hook.includes('el.type === "radio" && el.value !== v'));
-  assert.ok(hook.includes('stale.searchParams.delete("s")'));
+  assert.ok(hook.includes('readResultShareState(window.location.href)'));
+  assert.ok(hook.includes('clearStaleResultShareState(window.location.href)'));
+  assert.ok(hook.includes('window.addEventListener(RESULT_LINK_REQUEST, onRequest)'));
   assert.ok(hook.includes('window.dispatchEvent(new Event("toolify:share-state-change"))'));
 });
 
