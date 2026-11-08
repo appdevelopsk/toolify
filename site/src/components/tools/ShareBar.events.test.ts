@@ -3,53 +3,44 @@ import { describe, expect, it } from "vitest";
 
 const get = (path: string) => readFileSync(new URL(path, import.meta.url), "utf8");
 
-describe("share URL controls", () => {
-  it("uses change notifications rather than permanent URL polling", () => {
-    const shareBar = get("./ShareBar.tsx");
-    expect(shareBar).toContain('window.addEventListener("toolify:share-state-change", sync)');
-    expect(shareBar).toContain('window.removeEventListener("toolify:share-state-change", sync)');
-    expect(shareBar).toContain('window.addEventListener("popstate", sync)');
-    expect(shareBar).toContain('window.addEventListener("pageshow", sync)');
-    expect(shareBar).not.toContain("setInterval(sync");
+describe("on-demand result sharing", () => {
+  it("copies result state only from an explicit click without mutating browser location", () => {
+    const bar = get("./ShareBar.tsx");
+    expect(bar).toContain("function copyResultLink()");
+    expect(bar).toContain("new CustomEvent<ResultLinkRequest>(RESULT_LINK_REQUEST");
+    expect(bar).toContain('onClick={copyResultLink}');
+    expect(bar).toContain('copy(resultLink, setResultCopied, "result")');
+    expect(bar).not.toContain("copy(window.location.href");
+    expect(bar).not.toContain("hasResultLink &&");
   });
 
-  it("resyncs result-link visibility when the tool or locale route changes", () => {
-    const shareBar = get("./ShareBar.tsx");
-    expect(shareBar).toContain("}, [url, slug]);");
-  });
-
-  it("does not copy a link after explicit native share cancellation", () => {
-    const shareBar = get("./ShareBar.tsx");
-    expect(shareBar).toContain('import { isShareCancelled } from "@/lib/tools/share-errors"');
-    expect(shareBar).toContain("if (isShareCancelled(error)) return;");
-    expect(shareBar).toContain('copy(url, setLinkCopied, "link")');
-  });
-
-  it("clears previously shared result links when new inputs become too large", () => {
-    for (const file of [
-      "../../lib/hooks/useShareableState.ts",
-      "../../lib/hooks/useAutoShareableState.ts",
-    ]) {
-      const source = get(file);
-      expect(source).toContain('stale.searchParams.has("s")');
-      expect(source).toContain('stale.searchParams.delete("s")');
-      expect(source).toContain('window.history.replaceState(window.history.state, "", stale.toString())');
-      expect(source).toContain('window.dispatchEvent(new Event("toolify:share-state-change"))');
+  it("both share hooks respond to current result requests without per-keystroke URLs", () => {
+    for (const name of ["useShareableState.ts", "useAutoShareableState.ts"]) {
+      const src = get("../../lib/hooks/" + name);
+      expect(src).toContain("window.addEventListener(RESULT_LINK_REQUEST, onRequest)");
+      expect(src).toContain("window.removeEventListener(RESULT_LINK_REQUEST, onRequest)");
+      expect(src).toContain("createResultShareLink(window.location.href, encoded,");
+      expect(src).not.toContain('url.searchParams.set("s", encoded)');
     }
   });
 
-  it("notifies ShareBar after both URL writer implementations update state", () => {
-    for (const file of [
-      "../../lib/hooks/useShareableState.ts",
-      "../../lib/hooks/useAutoShareableState.ts",
-    ]) {
-      const source = get(file);
-      expect(source).toContain('window.history.replaceState(window.history.state, "", url.toString())');
-      expect(source).not.toContain('window.history.replaceState(null, "", url.toString())');
-      const replaceAt = source.indexOf("window.history.replaceState(");
-      const notifyAt = source.indexOf('window.dispatchEvent(new Event("toolify:share-state-change"))');
-      expect(replaceAt).toBeGreaterThan(0);
-      expect(notifyAt).toBeGreaterThan(replaceAt);
+  it("restores legacy query state, then removes stale data after edits", () => {
+    for (const name of ["useShareableState.ts", "useAutoShareableState.ts"]) {
+      const src = get("../../lib/hooks/" + name);
+      expect(src).toContain("readResultShareState(window.location.href)");
+      expect(src).toContain("migrateLegacyShareQuery(window.location.href)");
+      expect(src).toContain("clearStaleResultShareState(window.location.href)");
+      expect(src).toContain('window.history.replaceState(window.history.state, "",');
+      expect(src).toContain('window.dispatchEvent(new Event("toolify:share-state-change"))');
     }
+  });
+
+  it("uses fragment-only result links and keeps native share cancellation safe", () => {
+    const policy = get("../../lib/hooks/result-share-link.ts");
+    expect(policy).toContain('url.hash = `s=${encoded}`');
+    expect(policy).toContain('url.searchParams.delete("s")');
+    const bar = get("./ShareBar.tsx");
+    expect(bar).toContain("if (isShareCancelled(error)) return;");
+    expect(bar).toContain('copy(url, setLinkCopied, "link")');
   });
 });
