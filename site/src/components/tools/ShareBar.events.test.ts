@@ -63,6 +63,8 @@ describe("on-demand result sharing", () => {
       expect(source).toContain("window.removeEventListener(RESULT_LINK_AVAILABILITY_REQUEST, onAvailabilityRequest)");
     }
     expect(auto).toContain("availabilityFrame = requestAnimationFrame(");
+    expect(auto).toContain("if (availabilityFrame !== undefined) return");
+    expect(auto).toContain("scheduleAvailability()");
     expect(auto).toContain("cancelAnimationFrame(availabilityFrame)");
   });
 
