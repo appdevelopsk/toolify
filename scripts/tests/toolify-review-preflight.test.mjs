@@ -90,16 +90,25 @@ test("affiliate analytics strips URL queries and ignores synthetic link clicks",
 
 test("manual result sharing never exposes state in URL queries or history on input", () => {
   const raw = "YWJjMTIz";
-  const base = "https://toolify365.com/ja/tools/bmi-calculator?wf=data&s=OLD";
+  const base = "https://toolify365.com/ja/tools/bmi-calculator?wf=data&ws=1&s=OLD";
   const newLink = createResultShareLink(base, raw, 1800);
   assert.equal(newLink,
-    "https://toolify365.com/ja/tools/bmi-calculator?wf=data#s=YWJjMTIz");
+    "https://toolify365.com/ja/tools/bmi-calculator?wf=data&ws=1#s=YWJjMTIz");
   assert.equal(readResultShareState(newLink), raw);
   assert.equal(readResultShareState(base), "OLD");
   assert.equal(migrateLegacyShareQuery(base),
-    "https://toolify365.com/ja/tools/bmi-calculator?wf=data#s=OLD");
+    "https://toolify365.com/ja/tools/bmi-calculator?wf=data&ws=1#s=OLD");
   assert.equal(clearStaleResultShareState(newLink),
-    "https://toolify365.com/ja/tools/bmi-calculator?wf=data");
+    "https://toolify365.com/ja/tools/bmi-calculator?wf=data&ws=1");
+  const privateLink = createResultShareLink(
+    "https://toolify365.com/ja/tools/bmi-calculator?token=SECRET&email=user%40example.com&wf=data&ws=1",
+    raw, 1800,
+  );
+  assert.equal(privateLink, "https://toolify365.com/ja/tools/bmi-calculator?wf=data&ws=1#s=YWJjMTIz");
+  for (const bad of ["?wf=data&ws=9", "?wf=data&ws=1&ws=2", "?token=SECRET"]) {
+    assert.equal(createResultShareLink("https://toolify365.com/en/tools/word-counter" + bad, raw, 1800),
+      "https://toolify365.com/en/tools/word-counter#s=YWJjMTIz");
+  }
   for (const invalid of ["", "ABC+", "A/B", "A=B", "tool input"]) {
     assert.equal(createResultShareLink(base, invalid, 1800), null);
   }
