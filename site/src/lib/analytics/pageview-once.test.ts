@@ -46,6 +46,30 @@ describe("consent-ready one-shot GA4 pageview", () => {
     expect(results).toHaveLength(1);
   });
 
+  it("sanitizes same-site and external referrers on the actual emitted payload", () => {
+    const sent: PageViewPayload[] = [];
+    for (const referrer of [
+      "https://toolify365.com/en/tools/date-calculator?s=encoded-private",
+      "https://partner.example/private/account?token=secret",
+    ]) {
+      const send = createPageViewSender(() => ({
+        ready: true,
+        href: "https://toolify365.com/en/tools/word-counter?s=hidden",
+        referrer,
+        title: "Word counter",
+        emit: (payload) => { sent.push(payload); },
+      }));
+      expect(send()).toBe(true);
+    }
+    expect(sent.map((item) => item.page_referrer)).toEqual([
+      "https://toolify365.com/en/tools/date-calculator",
+      "https://partner.example",
+    ]);
+    expect(sent.every((item) => !JSON.stringify(item).includes("secret")
+      && !JSON.stringify(item).includes("encoded-private")
+      && !JSON.stringify(item).includes("hidden"))).toBe(true);
+  });
+
   it("allows another page view only when pathname navigation creates a new sender", () => {
     const results: PageViewPayload[] = [];
     let href = "https://toolify365.com/en/tools/word-counter";
