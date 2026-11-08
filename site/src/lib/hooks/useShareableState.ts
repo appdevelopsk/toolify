@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   RESULT_LINK_REQUEST, type ResultLinkRequest,
-  clearStaleResultShareState, createResultShareLink,
+  classifyRestoredShareChange, clearStaleResultShareState, createResultShareLink,
   migrateLegacyShareQuery, readResultShareState,
 } from "./result-share-link";
 
@@ -107,11 +107,11 @@ export function useShareableState<T extends object>(
   useEffect(() => {
     const prev = prevRef.current;
     prevRef.current = serialized;
-    if (restoredExpectedSerialized.current === serialized) {
-      restoredExpectedSerialized.current = null;
-      return;
-    }
-    if (prev === null || prev === serialized) return;
+    const change = classifyRestoredShareChange(
+      prev, serialized, restoredExpectedSerialized.current,
+    );
+    restoredExpectedSerialized.current = change.nextExpected;
+    if (!change.clearStale) return;
     // A restored link becomes stale after the underlying inputs change.
     // Never put the next value in browser history automatically.
     const clean = clearStaleResultShareState(window.location.href);
