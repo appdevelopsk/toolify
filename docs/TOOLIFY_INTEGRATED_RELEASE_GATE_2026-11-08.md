@@ -283,3 +283,25 @@ The integrated review branch now changes the user experience:
 - Exercise all 17 locales, iOS/Android Safari/Chrome, keyboard/mobile, and tools manually using the custom share hook. The safe-default Clarity hotfix is separate and does not include the new share flow.
 
 **Status: review code is committed, but release remains NO-GO until full tests, browser privacy/consent validation, owner approval and manually verified deployment.** Do not claim live growth or privacy risk is fully eliminated.
+
+
+## 2026-11-08 23:13 JST: result-link hydration and usability follow-up
+
+### New bugs found and committed fixes
+
+1. **Manual-state restoration race:** `useShareableState` could misinterpret the initial state restored from a new `#s=` result link as a user edit and immediately remove the fragment. Its restoration effect now records the expected JSON state; a pure `classifyRestoredShareChange` function distinguishes hydration from edits. Later edits still invalidate stale result data; an unexpected normalized value safely invalidates the old result rather than misrepresenting it.
+2. **Button-based mode changes:** Some dynamic tools change geometry/time/calculator modes by clicking buttons without emitting input/change events. `useAutoShareableState` now detects **trusted** clicks on actual multi-option mode button groups, invalidates stale restored URL state, and rechecks share availability in the next animation frame after React renders dynamic inputs. Synthetic mode replay during initial restore remains ignored.
+3. **Empty or unshareable results:** the result copy button was previously shown even for a tool with no shareable fields, potentially copying a meaningless `#s=e30` empty-object payload. The two hooks now explicitly reject empty and oversized snapshots. `ShareBar` subscribes to the tool's actual sharing availability and only shows the existing localized `copyResultLink` button when a valid result can be shared. This uses existing translations for all 17 UI locales; no new locale strings.
+4. **Code maintenance:** stale comments claiming automatic `?s=` updates and incorrect fixed tool counts were updated so a future change will not reintroduce the problem.
+
+### Verification executed
+
+- Exact reviewed `result-share-link.ts` `classifyRestoredShareChange` function body was executed in restricted V8 after removing its TypeScript annotations: **8/8 cases PASS**, including hydration, unchanged initial defaults, actual edit, and normalized states.
+- The exact currently committed handler bodies from `useAutoShareableState.ts` (Git blob `e0f266430996423d499c0602c1e850134081dc92`) and `useShareableState.ts` (Git blob `ec17064d748031be363a48f976c4395e84d93775`) were exercised in V8 with controlled state/encoding instead of a React browser: **14/14 checks PASS**, covering empty state, shareable numeric state, oversized encoded data and cross-tool isolation for both handlers.
+- Added/updated Vitest `result-share-link.test.ts` and `ShareBar.events.test.ts`, plus mandatory Node preflight `scripts/tests/toolify-review-preflight.test.mjs`, to enforce restoration classification, mode-switch invalidation and availability handshake. Full-project Vitest/Next build and actual React browser interaction were **NOT run**; source-level and extracted-handler checks do not prove them.
+
+### Required owner QA, next stage
+
+Verify at least one generic numeric tool, one text-only tool, one dynamic mode-button tool and one manual-state tool in a clean mobile and desktop browser. Confirm input does not mutate URLs; the copy-result button is absent when no meaningful state is available; it appears after valid shareable inputs; the clipboard contains a fragment link; a fresh session restores its mode/inputs; and subsequent edits clear stale `#s=`. Confirm legacy `?s=` links still restore. Validate consent, GA4 and external scripts; old incoming query links still hit the server once before client migration.
+
+**Do not merge, deploy or report acquisition/retention gains until the full manual release gate, browser/17-locale QA, and owner approval pass.**
