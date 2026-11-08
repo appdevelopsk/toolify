@@ -152,3 +152,13 @@ The checked preflight tests explicitly assert that the flag is required, that a 
 
 ### Current release state
 **NO-GO:** GA4 admin setting and DebugView, full repository dependency install/Next production build, RTL/mobile browser QA and manual production release have not been independently verified here. The audit is source-focused; no traffic, dwell, conversion or earnings uplift is claimed.
+
+
+### Current-turn verification after latest-main merge
+
+- Read latest `main` and review ref, confirmed the review branch now **includes latest main as a parent**; compared refs showed **0 commits behind main**.
+- Exact source contract checks passed **7/7** for `ToolFrame`, mobile breadcrumb support, path-to-workflow ordering, the fail-closed operator flag, and related regression guards.
+- Re-fetched the full content of all **8** integrated `.github/workflows/*.yml` files and inspected each full `on:` block. **8/8 were manual-dispatch-only**. A preliminary broad regex that searched job blocks was discarded; only the scoped event-block parser results are authoritative.
+- Copied the **exact GitHub blob** `scripts/check-toolify-review-release.sh` to the local shell workspace: `git hash-object` returned **ad3b2793d53afe9de0bc8a76870b55ce28576604**, matching the GitHub `fetch_file` blob SHA. `bash -n` **passed**.
+- Rechecked HYPD: GA4 properties are connected, but **zero are selected for tool access**, so the property-level Enhanced Measurement setting remains **unverified**. The release gate now deliberately fails with exit 4 unless the owner explicitly attests verification, after full static/build checks.
+- The release gate has **not** been run end-to-end; it requires a complete checkout, dependencies, GA4 owner access, browser QA and ultimately manual deployment authorization. Source/bare shell syntax successes are not end-to-end evidence.
