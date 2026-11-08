@@ -48,7 +48,8 @@ export function SoftwareWorkbench({ slug, labels }: {slug: ActiveSlug; labels: {
     trackSoftwareDownload({ software: slug });
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
-  return <div className="space-y-4 rounded-xl border border-slate-200 p-5 dark:border-slate-700">
+  // User-supplied local files, editor contents and generated output are private.
+  return <div data-clarity-mask="true" className="space-y-4 rounded-xl border border-slate-200 p-5 dark:border-slate-700">
     <label className="block text-sm font-semibold" htmlFor="software-file">{labels.upload}</label>
     <input id="software-file" type="file"
       accept={slug === "csv-cleaner-pro" ? ".csv,text/csv" : slug === "json-studio" ? ".json,application/json" : ".txt,text/plain"}
