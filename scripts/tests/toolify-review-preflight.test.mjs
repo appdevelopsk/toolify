@@ -7,6 +7,7 @@ import { WORKFLOWS, getWorkflowContext, getWorkflowContinuation } from "../../si
 import { sanitizeOutboundLinkUrl, sanitizePageReferrer, sanitizePageViewUrl } from "../../site/src/lib/analytics/pageview-url.ts";
 import { verifyWorkflowPath } from "../verify-manual-deploy.mjs";
 import { canLoadClarity } from "../../site/src/lib/analytics/clarity-policy.ts";
+import { shouldLoadImpactTracking } from "../../site/src/lib/analytics/impact-policy.ts";
 import {
   RESULT_LINK_REQUEST, classifyRestoredShareChange, readResultShareState, createResultShareLink,
   migrateLegacyShareQuery, clearStaleResultShareState,
@@ -223,6 +224,23 @@ test("GA4 initialization, pageviews and custom events use sanitized page URLs", 
   assert.doesNotMatch(page, /useSearchParams/);
   assert.match(events, /sanitizePageViewUrl\(window\.location\.href\)/);
   assert.doesNotMatch(page, /page_location:\s*window\.location\.href/);
+});
+
+test("affiliate vendor skips direct visits carrying private result share state", () => {
+  assert.equal(shouldLoadImpactTracking("https://toolify365.com/en"), true);
+  assert.equal(shouldLoadImpactTracking("https://toolify365.com/en/tools/bmi-calculator?wf=data&ws=1"), true);
+  for (const href of [
+    "https://toolify365.com/ja/tools/bmi-calculator#s=private-data",
+    "https://toolify365.com/ja/tools/bmi-calculator?s=legacy",
+    "https://toolify365.com/en/tools/bmi-calculator?s=",
+    "javascript:alert(1)",
+    "not a URL",
+  ]) assert.equal(shouldLoadImpactTracking(href), false);
+
+  const vendor = source("site/src/lib/analytics/impact.tsx");
+  assert.ok(vendor.includes('"use client"'));
+  assert.ok(vendor.includes("setMayLoad(shouldLoadImpactTracking(window.location.href))"));
+  assert.ok(vendor.includes("if (!mayLoad) return null"));
 });
 
 test("Clarity vendor is disabled by default until exact owner review", () => {
