@@ -249,3 +249,37 @@ Exact-source hotfix native Node 22 tests: **4/4 PASS**, with all four test input
 Standalone details: https://github.com/appdevelopsk/toolify/blob/fix/toolify-clarity-safe-default-20261108/docs/CLARITY_PRIVACY_SAFE_DEFAULT_2026-11-08.md
 
 **No full checkout/build or real browser consent/privacy QA has yet passed; neither the standalone hotfix nor the integrated 17-language workflows should be described as deployed or proven to grow real users.** GitHub pull requests against a still-automatic main may run base-branch workflows, so do not create a PR just to bypass this manual-only policy.
+
+
+## 2026-11-08 — on-demand result link privacy improvement
+
+### Root cause and review-branch implementation
+
+The two previously deployed-style hooks `useAutoShareableState` (generic tools) and `useShareableState` (seven manually wired tools) previously called `window.history.replaceState(...?s=encoded-inputs)` **after input changes**, even when a user did not choose to share. This could expose result state in address history, network requests and third-party page script URL observations. GA4 `page_location` and Clarity DOM masking alone do not prevent this.
+
+The integrated review branch now changes the user experience:
+
+1. Input changes **no longer write a new `?s=` query or any new result state into the browser URL**. After editing an opened legacy shared link, existing stale result state is removed. This also handles preset-triggered (programmatic) inputs after initial restoration.
+2. `ShareBar`'s localized **Copy result link** button requests a synchronous state snapshot on the explicit user click. The active hook responds by generating a `#s=BASE64URL` fragment on a URL copy; it does not alter `window.location` or history on normal input.
+3. New fragment links restore in the same two existing share hooks. Legacy `?s=` links remain readable. After successful page hydration an old query is migrated to a fragment while preserving legitimate `?wf=` and `?ws=` attribution.
+4. The pure helper `site/src/lib/hooks/result-share-link.ts` validates a bounded Base64URL alphabet. Invalid or too-large payloads fail closed. The actual sharing is still intentional and recipient-visible; **base64 is encoding, not encryption**.
+5. Added `result-share-link.test.ts` (Vitest), updated `ShareBar.events.test.ts` and `growth-integration.test.mjs`, and added actual helper assertions plus wiring checks to `scripts/tests/toolify-review-preflight.test.mjs`.
+
+### What was actually run
+
+- Reconstructed the exact GitHub `result-share-link.ts` source file in a local isolated Node 22 environment. Local `git hash-object` matched Git blob **8ea9cf18223fe0cb3e6e0d2209b41ad583c892f3**.
+- `tsc --strict --noUncheckedIndexedAccess --target ES2022 --module CommonJS --lib ES2022,DOM`: **PASS** on the helper.
+- Actual Node.js execution of **12/12** source-helper assertions: new `#s=` creation; query-state exclusion; newer and legacy state parsing; migration; malformed/oversized rejection; stale state clearing while retaining workflow attribution.
+- The modified React hooks, React client component and full Next.js bundle have **not** completed project-wide typecheck, Vitest, browser QA or production build here. Those new test files are committed but have not been run in the full repository; the Node helper results are **not equivalent** to end-to-end UX verification.
+
+### Manual browser QA (owner release gate)
+
+- Check a clean English/Japanese/Arabic tool page and type in numeric/select/text inputs. The address bar must **not** gain `?s=` or `#s=` spontaneously.
+- Click **Copy result link**. The clipboard must receive a usable `#s=` URL, while the browser's current address is unchanged. Use an isolated test value only, not sensitive data.
+- Open that link in a new clean browser session. The selected mode and inputs should restore correctly, including multi-button modes; copied output must match expected calculation.
+- Open an existing `?s=` link. Verify it still restores, moves to `#s=`, and does not lose `?wf=` and `?ws=` workflow attribution. Editing input should clear stale `#s=`.
+- Verify pressing normal copy, native share and social share still sends canonical tool links; cancellation of the native share sheet does not silently copy.
+- Inspect network and GA4 DebugView for any user inputs in URL/referrer fields and inspect Clarity/Impact behavior. **A fragment is not sent in HTTP requests/referrers, but is readable by scripts and copied-link recipients.** Existing incoming legacy query links can still reach the server before the client redirects them, so old links are not retroactively made private.
+- Exercise all 17 locales, iOS/Android Safari/Chrome, keyboard/mobile, and tools manually using the custom share hook. The safe-default Clarity hotfix is separate and does not include the new share flow.
+
+**Status: review code is committed, but release remains NO-GO until full tests, browser privacy/consent validation, owner approval and manually verified deployment.** Do not claim live growth or privacy risk is fully eliminated.
