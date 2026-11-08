@@ -46,15 +46,20 @@ export function ToolFrame({ meta, title, description, related, children, article
             { name: categoryLabel(meta.category, locale), href: `/tools/category/${meta.category}` },
             { name: title },
           ]}
+          hideCurrentOnMobile
         />
         <RecentTracker slug={meta.slug} />
         <div className="mt-4 flex items-start justify-between gap-3">
           <h1 className="min-w-0 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">{title}</h1>
           <FavoriteButton slug={meta.slug} title={title} />
         </div>
-        <p className="mt-2 text-slate-600 dark:text-slate-400">{description}</p>
+        {/* スマホはツール本体が約500px目から始まっていた(2026-11-08 Clarity 28日: ツール SP の 50%到達 1.6%)。
+            SP だけ説明を2行に縮め、共有ボタン(8個・2〜3行)はツール本体の下へ回す。PC は従来どおり。 */}
+        <p className="mt-2 line-clamp-2 text-slate-600 dark:text-slate-400 sm:line-clamp-none">{description}</p>
 
-        <ShareBar url={pageUrl} embedUrl={embedUrl} title={title} slug={meta.slug} />
+        <div className="hidden sm:block">
+          <ShareBar url={pageUrl} embedUrl={embedUrl} title={title} slug={meta.slug} />
+        </div>
 
         {/* AdBanner はツール本体の“上”にあったため、モバイルでは本体がフォールド外に
             押し出されていた(個別ツール着地の engaged≒0% の構造要因)。
@@ -70,8 +75,12 @@ export function ToolFrame({ meta, title, description, related, children, article
           </ToolInteractionTracker>
         </section>
 
-        {/* Next useful action, only for the 8 non-terminal workflow tools. */}
+        {/* Keep the first guided follow-up visible on mobile, before the many share controls. */}
         <WorkflowNextStep slug={meta.slug} />
+
+        <div className="sm:hidden">
+          <ShareBar url={pageUrl} embedUrl={embedUrl} title={title} slug={meta.slug} />
+        </div>
 
         {/* 関連ツール導線 — ツール結果の直後(注意が集中する位置)に移動。
             従来は記事/FAQ/出典の後の最下部で不可視だった。回遊(PV/session)増=AdSense表示増。
