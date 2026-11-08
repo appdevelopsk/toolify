@@ -10,10 +10,11 @@ import {
 } from "./result-share-link";
 
 /**
- * ツール本体の DOM 入力を丸ごと ?s= に載せ、共有リンクから復元する。
+ * ツール本体の共有対象 DOM 入力をコピー操作時だけ #s= にエンコードし、
+ * 共有リンクから復元する。入力中は結果データをURLへ書き込まない。
  *
- * なぜ DOM 総なめ方式か: useShareableState は (slug, value, restore) を
- * ツール側が手書きする契約で、223本中7本しか採用されていない。残り216本に
+ * なぜ DOM 走査方式か: useShareableState は (slug, value, restore) を
+ * ツール側が手書きする契約で、一部のツールしか採用していない。全ツールに
  * 個別の restore コールバックを書くのは非現実的で、実装差異による取りこぼしも
  * 避けられない。入力の実体はどれも DOM 上の input/select/textarea なので、
  * ToolInteractionTracker と同じく「バブリングを1箇所で拾う」方が網羅的。
