@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useToolEvents } from "@/lib/analytics/useToolEvents";
 import { buildToolEmbedSnippet } from "@/lib/tools/embed-html";
 import { isShareCancelled } from "@/lib/tools/share-errors";
-import { RESULT_LINK_REQUEST, type ResultLinkRequest } from "@/lib/hooks/result-share-link";
+import {
+  RESULT_LINK_REQUEST, RESULT_LINK_AVAILABILITY_REQUEST, RESULT_LINK_CAPABILITY_CHANGED,
+  type ResultLinkRequest, type ResultLinkAvailabilityRequest,
+} from "@/lib/hooks/result-share-link";
 
 interface Props {
   /** Canonical, absolute URL of the tool page (built server-side from siteConfig). */
@@ -91,8 +94,29 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
   const { copyResult, share } = useToolEvents(slug);
   const [linkCopied, setLinkCopied] = useState(false);
   const [resultCopied, setResultCopied] = useState(false);
+  const [canCopyResult, setCanCopyResult] = useState(false);
   const [codeCopied, setCodeCopied] = useState(false);
   const [showEmbed, setShowEmbed] = useState(false);
+
+  useEffect(() => {
+    const checkAvailability = () => {
+      let available = false;
+      window.dispatchEvent(new CustomEvent<ResultLinkAvailabilityRequest>(
+        RESULT_LINK_AVAILABILITY_REQUEST, {
+          detail: {
+            slug,
+            respond: (enabled) => { available = enabled; },
+          },
+        },
+      ));
+      setCanCopyResult(available);
+    };
+    // The tool hook can mount after the desktop ShareBar; subscribe first,
+    // then probe synchronously. The hook sends a signal after registration.
+    window.addEventListener(RESULT_LINK_CAPABILITY_CHANGED, checkAvailability);
+    checkAvailability();
+    return () => window.removeEventListener(RESULT_LINK_CAPABILITY_CHANGED, checkAvailability);
+  }, [slug]);
 
   // The live input state is requested only after an explicit user click.
   // No result data is written into location, history or third-party URLs.
@@ -162,14 +186,16 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
         <span>{linkCopied ? t("copied") : t("copy")}</span>
       </button>
 
-      <button
-        type="button"
-        onClick={copyResultLink}
-        className={btn}
-      >
-        <LinkIcon />
-        <span>{resultCopied ? t("copied") : t("copyResultLink")}</span>
-      </button>
+      {canCopyResult && (
+        <button
+          type="button"
+          onClick={copyResultLink}
+          className={btn}
+        >
+          <LinkIcon />
+          <span>{resultCopied ? t("copied") : t("copyResultLink")}</span>
+        </button>
+      )}
       {socials.map(({ name, href, Icon }) => (
         <a
           key={name}
