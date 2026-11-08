@@ -41,6 +41,26 @@ test("all 17 localized homepage privacy claims explain optional result links", (
   }
 });
 
+test("privacy policy accurately describes shared links and regional GA4 defaults", () => {
+  const policy = source("site/src/app/[locale]/privacy/page.tsx");
+  for (const name of [
+    "PrivacyEn", "PrivacyJa", "PrivacyZhCN", "PrivacyEs",
+    "PrivacyPtBR", "PrivacyKo", "PrivacyFr", "PrivacyDe",
+  ]) {
+    const start = policy.indexOf(`function ${name}()`);
+    assert.ok(start >= 0, `${name}: component`);
+    const next = policy.indexOf("function Privacy", start + 20);
+    const body = policy.slice(start, next < 0 ? undefined : next);
+    assert.ok(body.includes("2026-11-08"), `${name}: updated date`);
+    assert.equal(body.split("<p>").length, body.split("</p>").length,
+      `${name}: paragraph markup`);
+    assert.ok(body.includes("Google Analytics 4"), `${name}: analytics disclosure`);
+  }
+  assert.ok(policy.includes("Older links using query parameters"));
+  assert.ok(policy.includes("旧形式のリンクでは初回アクセス時"));
+  assert.ok(policy.includes("may be granted by default in other regions"));
+});
+
 test("12 real, distinct curated steps have exact next-step mappings", () => {
   assert.equal(WORKFLOWS.length, 4);
   const slugs = new Set();
