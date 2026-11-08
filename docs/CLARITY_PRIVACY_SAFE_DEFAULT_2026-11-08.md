@@ -62,3 +62,13 @@ Reconstructed `scripts/check-clarity-hotfix-release.sh` from the exact remote fi
 **Full site checkout/install/build and browser QA were not performed in this session.** The hotfix is therefore **NO-GO** for production deployment.
 
 **Scope limitation:** This hotfix reduces Clarity exposure by default; it does not remove `?s=` from browser-visible URLs, protect against all other third-party scripts, or establish actual growth uplift. The larger review branch remains separately NO-GO.
+
+
+### Further executed local validation (2026-11-08)
+
+- Reproduced the GitHub source **byte-for-byte** for the new native test `scripts/tests/clarity-hotfix-policy.test.mjs` (**8b67d444ca954619c2843d784adf1f3297ca78dc**), `clarity-policy.ts` (**2baaa9b04093e3d9228e385f230e622004f4dd54**), `clarity.tsx` (**53b49456fe58cc6831188c161d717429014ba03e**), and `site/.env.example` (**ffca83d6d92813f171dae498dd83679f465b6254**). All four local `git hash-object` outputs exactly matched their GitHub blobs.
+- Ran `node --experimental-strip-types --test scripts/tests/clarity-hotfix-policy.test.mjs` on Node v22.16.0 with the exact matching source. **4 tests passed, 0 failed** (7 invalid approval values, blank IDs, server component wiring, documented environment defaults).
+- The standalone operator gate `scripts/check-clarity-hotfix-release.sh` also matched its GitHub blob **d7a948cdb1421dc63a86576d64433e95931be11d** and passed `bash -n`.
+- Executed the actual gate in an isolated temporary Git checkout under the expected release-branch name. With `NEXT_PUBLIC_CLARITY_URL_PRIVACY_APPROVED=confirmed` it rejected the build as intended: **exit 5**. With an unset flag but a deliberately newer local bare `origin/main` not contained in the branch, it safely fetched that origin and rejected the outdated branch: **exit 3**.
+- The actual `verifyManualDeployWorkflow` source parser (SHA **c19591c078f8e62557934da9942af0efb56ae0dd**) was run against **all eight source workflows fetched from this branch: 8/8 PASS**. Five synthetic automatic-event triggers (push, pull_request, schedule, combined trigger) were rejected. The other native parser test suite is committed but has not been run in the full repository.
+- Still NOT verified: complete project dependency install, integrated Vitest, Next.js build, real browser network/consent QA, production release. No GitHub Actions were run.
