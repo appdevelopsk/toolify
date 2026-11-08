@@ -31,7 +31,15 @@ export function createResultShareLink(href: string, encoded: string, maxLength: 
   if (!encoded || maxLength < 1 || encoded.length > maxLength || !/^[A-Za-z0-9_-]+$/.test(encoded)) {
     return null;
   }
-  const url = new URL(href);
+  // A copied link must never contain an executable or opaque URL scheme,
+  // nor username/password credentials hidden in an authority component.
+  let url: URL;
+  try {
+    url = new URL(href);
+  } catch {
+    return null;
+  }
+  if (!["https:", "http:"].includes(url.protocol) || url.username || url.password) return null;
   // Never copy unrelated query parameters (?token, ?email, ?utm_*, etc.)
   // into a user-visible result link. Only the fixed, two-key workflow
   // context is retained so guided 3-step task navigation still works.
