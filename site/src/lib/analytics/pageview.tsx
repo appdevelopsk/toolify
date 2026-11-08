@@ -5,6 +5,12 @@ import { usePathname } from "next/navigation";
 import { createPageViewSender } from "./pageview-once";
 import { siteConfig } from "@/lib/config";
 
+declare global {
+  interface Window {
+    __toolifyGtagReady?: boolean;
+  }
+}
+
 /**
  * One page_view per localized pathname. Query-only changes to ?s= share
  * state do not create another visit. The GA script sends a ready signal only
