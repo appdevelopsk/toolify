@@ -87,3 +87,12 @@ SITE_URL=https://toolify365.com npm run audit:live-workflows
 ```
 
 **Release remains NO-GO until full build, RTL/mobile tests, GA4 consent DebugView, owner review and manual deploy SHA verification pass.** Any web traffic or revenue increase is unverified.
+
+
+### New smoke script synthetic HTTP execution (2026-11-08)
+
+- Executed the **exact GitHub-source** `site/scripts/check-live-workflows.mjs` (Git blob `4354a84b7f3f07427ebe843b7c6429a79d2f3c02`) in a restricted V8 async runner with a controlled URL shim and a synthetic HTTP-response source. This exercised the script's real control flow, not a live public server.
+- **Positive control PASS:** 12 mocked requests returned valid multilingual guides, real 12-step links, next links, final return links, noindex/canonicals, and no new sitemap entries. The smoke concluded PASS.
+- **Negative control PASS:** removed the final return link from the synthetic timezone-converter HTML. The script issued 12 checks and exited with code 1, identifying `/en/tools/timezone-converter: missing final-step guide return`.
+- Earlier helper-only verification: **19/19 assertions** passed with exact-source `growth-html-checks.mjs` and a URL shim. Workflow routing: **47/47 assertions**.
+- The new regression Vitest/Node files have been committed to GitHub, but the **full tests have not executed** because full repository checkout and npm dependencies remain unavailable. Real-device/mobile and public network tests remain owner-only release gates.
