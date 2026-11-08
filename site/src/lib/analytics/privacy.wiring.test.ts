@@ -58,6 +58,17 @@ describe("tool input and browser event privacy", () => {
     expect(tracker).toContain("a[data-offer-id]");
   });
 
+  it("defers impact.com initialization on direct result-sharing visits", () => {
+    const impact = text("./impact.tsx");
+    const policy = text("./impact-policy.ts");
+    expect(impact).toContain('"use client"');
+    expect(impact).toContain("setMayLoad(shouldLoadImpactTracking(window.location.href))");
+    expect(impact).toContain("if (!mayLoad) return null");
+    expect(impact).toContain('id="impact-init"');
+    expect(policy).toContain('url.searchParams.has("s")');
+    expect(policy).toContain('url.hash.startsWith("#s=")');
+  });
+
   it("disables Clarity script loading unless URL privacy review is explicitly approved", () => {
     const clarity = text("./clarity.tsx");
     const config = text("../config.ts");
