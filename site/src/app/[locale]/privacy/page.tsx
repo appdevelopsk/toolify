@@ -27,15 +27,14 @@ function PrivacyEn() {
   return (
     <>
       <h1>Privacy Policy</h1>
-      <p>Last updated: 2026-05-06</p>
+      <p>Last updated: 2026-11-08</p>
       <p>
         This policy explains how {siteConfig.name} (&ldquo;we&rdquo;) collects, uses, and protects information
         when you use {siteConfig.name} ({siteConfig.url}). By using the site you agree to this policy.
       </p>
-      <h2>Data we don&apos;t collect</h2>
+      <h2>Tool inputs and result-sharing links</h2>
       <p>
-        Tool inputs (numbers, dates, text you type into a calculator) are processed entirely in your browser. We do not
-        send those inputs to our servers and we do not store them.
+        Most calculations run in your browser. If you create or open a result-sharing link, its URL may include selected inputs. Recipients and scripts running on that page may be able to read those values. Older links using query parameters can also send inputs in the initial web request. Do not include sensitive information in shared links.
       </p>
       <h2>Cookies and analytics</h2>
       <p>
@@ -85,13 +84,13 @@ function PrivacyJa() {
   return (
     <>
       <h1>プライバシーポリシー</h1>
-      <p>最終更新日: 2026-05-06</p>
+      <p>最終更新日: 2026-11-08</p>
       <p>
         本ポリシーは {siteConfig.name}（以下「当方」）が提供する {siteConfig.name}（{siteConfig.url}）における個人情報の取扱いを定めるものです。本サービスをご利用いただくことで、本ポリシーに同意したものとみなします。
       </p>
-      <h2>収集しない情報</h2>
+      <h2>ツールへの入力と結果共有リンク</h2>
       <p>
-        各ツールへの入力値（計算機に入力した数値・日付・テキスト等）はすべてお使いのブラウザ内で処理され、当方のサーバーへ送信・保存することはありません。
+        多くの計算はブラウザ内で処理されます。ただし結果共有リンクを作成・閲覧すると、選択した入力値がURLに含まれる場合があります。リンクの受信者やページ上のスクリプトから読み取られる可能性があり、旧形式のリンクでは初回アクセス時にクエリ情報がサーバーへ送られる場合があります。機密情報を結果リンクに含めないでください。
       </p>
       <h2>Cookieとアクセス解析</h2>
       <p>
@@ -137,13 +136,13 @@ function PrivacyZhCN() {
   return (
     <>
       <h1>隐私政策</h1>
-      <p>最后更新：2026-05-06</p>
+      <p>最后更新：2026-11-08</p>
       <p>
         本政策说明 {siteConfig.name}（以下简称"我们"）在您使用 {siteConfig.name}（{siteConfig.url}）时如何收集、使用和保护信息。使用本网站即表示您同意本政策。
       </p>
-      <h2>我们不收集的数据</h2>
+      <h2>工具输入与结果分享链接</h2>
       <p>
-        工具输入内容（您在计算器中输入的数字、日期、文本等）完全在您的浏览器中处理，我们不会将其发送至服务器，也不会存储这些数据。
+        大部分计算在浏览器中完成。但创建或打开结果分享链接时，网址可能包含您选择的输入值。收件人以及页面上运行的脚本可能读取这些值。旧版查询参数链接还可能在首次访问时将输入值发送至服务器。请勿在分享链接中包含敏感信息。
       </p>
       <h2>Cookie 与数据分析</h2>
       <p>
@@ -188,13 +187,13 @@ function PrivacyEs() {
   return (
     <>
       <h1>Política de Privacidad</h1>
-      <p>Última actualización: 2026-05-06</p>
+      <p>Última actualización: 2026-11-08</p>
       <p>
         Esta política explica cómo {siteConfig.name} («nosotros») recopila, usa y protege la información cuando utilizas {siteConfig.name} ({siteConfig.url}). Al usar el sitio, aceptas esta política.
       </p>
-      <h2>Datos que no recopilamos</h2>
+      <h2>Entradas de herramientas y enlaces de resultados</h2>
       <p>
-        Las entradas de las herramientas (números, fechas, texto que escribes en una calculadora) se procesan completamente en tu navegador. No enviamos esas entradas a nuestros servidores ni las almacenamos.
+        La mayoría de los cálculos se realizan en tu navegador. Al crear o abrir un enlace de resultados, la URL puede incluir valores que hayas introducido. Los destinatarios y los scripts de la página pueden leerlos. Los enlaces antiguos con parámetros de consulta también pueden enviar esos valores al servidor en la primera visita. No compartas información sensible en estos enlaces.
       </p>
       <h2>Cookies y analítica</h2>
       <p>
@@ -236,13 +235,13 @@ function PrivacyPtBR() {
   return (
     <>
       <h1>Política de Privacidade</h1>
-      <p>Última atualização: 2026-05-06</p>
+      <p>Última atualização: 2026-11-08</p>
       <p>
         Esta política explica como {siteConfig.name} («nós») coleta, usa e protege informações quando você usa {siteConfig.name} ({siteConfig.url}). Ao usar o site, você concorda com esta política.
       </p>
-      <h2>Dados que não coletamos</h2>
+      <h2>Entradas das ferramentas e links de resultados</h2>
       <p>
-        As entradas das ferramentas (números, datas, texto que você digita em uma calculadora) são processadas inteiramente no seu navegador. Não enviamos essas entradas para nossos servidores e não as armazenamos.
+        A maioria dos cálculos ocorre no navegador. Ao criar ou abrir um link de resultado, a URL pode incluir valores informados. Destinatários e scripts executados na página podem lê-los. Links antigos com parâmetros de consulta também podem enviar esses dados ao servidor no primeiro acesso. Não inclua informações sensíveis em links compartilhados.
       </p>
       <h2>Cookies e análise</h2>
       <p>
@@ -284,13 +283,13 @@ function PrivacyKo() {
   return (
     <>
       <h1>개인정보 처리방침</h1>
-      <p>최종 업데이트: 2026-05-06</p>
+      <p>최종 업데이트: 2026-11-08</p>
       <p>
         본 방침은 {siteConfig.name}（이하 "당사"）이 귀하가 {siteConfig.name}（{siteConfig.url}）을 이용할 때 정보를 수집·사용·보호하는 방법을 설명합니다. 사이트 이용은 본 방침에 동의함을 의미합니다.
       </p>
-      <h2>수집하지 않는 데이터</h2>
+      <h2>도구 입력값과 결과 공유 링크</h2>
       <p>
-        도구 입력 값（계산기에 입력한 숫자, 날짜, 텍스트 등）은 전적으로 귀하의 브라우저 내에서 처리됩니다. 당사는 해당 입력 값을 서버로 전송하거나 저장하지 않습니다.
+        대부분의 계산은 브라우저에서 처리됩니다. 결과 공유 링크를 만들거나 열면 선택한 입력값이 URL에 포함될 수 있습니다. 링크 수신자와 페이지에서 실행되는 스크립트가 해당 값을 읽을 수 있습니다. 기존 쿼리 방식 링크는 최초 접속 시 입력값이 서버에 전달될 수도 있습니다. 민감한 정보는 공유 링크에 포함하지 마세요.
       </p>
       <h2>쿠키 및 분석</h2>
       <p>
@@ -332,13 +331,13 @@ function PrivacyFr() {
   return (
     <>
       <h1>Politique de confidentialité</h1>
-      <p>Dernière mise à jour : 2026-05-06</p>
+      <p>Dernière mise à jour : 2026-11-08</p>
       <p>
         Cette politique explique comment {siteConfig.name} («nous») collecte, utilise et protège les informations lorsque vous utilisez {siteConfig.name} ({siteConfig.url}). En utilisant le site, vous acceptez cette politique.
       </p>
-      <h2>Données que nous ne collectons pas</h2>
+      <h2>Saisies des outils et liens de résultat</h2>
       <p>
-        Les données saisies dans les outils (chiffres, dates, textes que vous entrez dans une calculatrice) sont traitées entièrement dans votre navigateur. Nous ne les envoyons pas à nos serveurs et ne les stockons pas.
+        La plupart des calculs s'effectuent dans votre navigateur. Un lien de résultat créé ou ouvert peut contenir des valeurs saisies dans son URL. Les destinataires et les scripts exécutés sur la page peuvent les lire. Les anciens liens utilisant des paramètres de requête peuvent aussi transmettre ces valeurs au serveur lors du premier accès. N'incluez aucune information sensible dans un lien partagé.
       </p>
       <h2>Cookies et analyse</h2>
       <p>
@@ -380,13 +379,13 @@ function PrivacyDe() {
   return (
     <>
       <h1>Datenschutzerklärung</h1>
-      <p>Zuletzt aktualisiert: 2026-05-06</p>
+      <p>Zuletzt aktualisiert: 2026-11-08</p>
       <p>
         Diese Erklärung beschreibt, wie {siteConfig.name} («wir») Informationen erhebt, verwendet und schützt, wenn Sie {siteConfig.name} ({siteConfig.url}) nutzen. Durch die Nutzung der Website stimmen Sie dieser Erklärung zu.
       </p>
-      <h2>Daten, die wir nicht erheben</h2>
+      <h2>Werkzeugeingaben und Ergebnislinks</h2>
       <p>
-        Eingaben in die Werkzeuge (Zahlen, Daten, Text, den Sie in einen Rechner eingeben) werden vollständig in Ihrem Browser verarbeitet. Wir übermitteln diese Eingaben nicht an unsere Server und speichern sie nicht.
+        Die meisten Berechnungen erfolgen im Browser. Wenn Sie einen Ergebnislink erstellen oder öffnen, kann dessen URL ausgewählte Eingabewerte enthalten. Empfänger und auf der Seite laufende Skripte können diese lesen. Ältere Links mit Abfrageparametern können die Werte schon beim ersten Aufruf an den Server senden. Teilen Sie keine vertraulichen Daten über Ergebnislinks.
       </p>
       <h2>Cookies und Analyse</h2>
       <p>
