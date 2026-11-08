@@ -6,6 +6,7 @@ import { test } from "node:test";
 import { WORKFLOWS, getWorkflowContext, getWorkflowContinuation } from "../../site/src/lib/workflows/steps.ts";
 import { sanitizeOutboundLinkUrl, sanitizePageReferrer, sanitizePageViewUrl } from "../../site/src/lib/analytics/pageview-url.ts";
 import { verifyWorkflowPath } from "../verify-manual-deploy.mjs";
+import { canLoadClarity } from "../../site/src/lib/analytics/clarity-policy.ts";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const source = (path) => readFileSync(join(ROOT, path), "utf8");
@@ -132,6 +133,19 @@ test("GA4 initialization, pageviews and custom events use sanitized page URLs", 
   assert.doesNotMatch(page, /useSearchParams/);
   assert.match(events, /sanitizePageViewUrl\(window\.location\.href\)/);
   assert.doesNotMatch(page, /page_location:\s*window\.location\.href/);
+});
+
+test("Clarity vendor is disabled by default until exact owner review", () => {
+  assert.equal(canLoadClarity("project-id", undefined), false);
+  assert.equal(canLoadClarity("project-id", ""), false);
+  assert.equal(canLoadClarity("project-id", "true"), false);
+  assert.equal(canLoadClarity("", "confirmed"), false);
+  assert.equal(canLoadClarity("  ", "confirmed"), false);
+  assert.equal(canLoadClarity("project-id", "confirmed"), true);
+  const sourceCode = source("site/src/lib/analytics/clarity.tsx");
+  assert.ok(sourceCode.includes(
+    "canLoadClarity(id, process.env.NEXT_PUBLIC_CLARITY_URL_PRIVACY_APPROVED)"
+  ));
 });
 
 test("GA4 referrer, Clarity input masking and bootstrap safeguards stay wired", () => {
