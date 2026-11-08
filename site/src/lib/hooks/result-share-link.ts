@@ -21,7 +21,7 @@ export function readResultShareState(href: string): string | null {
 }
 
 export function createResultShareLink(href: string, encoded: string, maxLength: number): string | null {
-  if (!encoded || maxLength < 1 || encoded.length > maxLength || !/^[\w-]+$/.test(encoded)) {
+  if (!encoded || maxLength < 1 || encoded.length > maxLength || !/^[A-Za-z0-9_-]+$/.test(encoded)) {
     return null;
   }
   const url = new URL(href);
@@ -40,7 +40,7 @@ export function migrateLegacyShareQuery(href: string): string | null {
   if (raw === null) return null;
   url.searchParams.delete("s");
   // Never carry arbitrary invalid query values into a new shared fragment.
-  if (!url.hash.startsWith("#s=") && /^[\\w-]+$/.test(raw)) url.hash = `s=${raw}`;
+  if (!url.hash.startsWith("#s=") && /^[A-Za-z0-9_-]+$/.test(raw)) url.hash = `s=${raw}`;
   return url.toString();
 }
 
