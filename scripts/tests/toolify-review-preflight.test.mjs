@@ -8,7 +8,7 @@ import { sanitizeOutboundLinkUrl, sanitizePageReferrer, sanitizePageViewUrl } fr
 import { verifyWorkflowPath } from "../verify-manual-deploy.mjs";
 import { canLoadClarity } from "../../site/src/lib/analytics/clarity-policy.ts";
 import {
-  RESULT_LINK_REQUEST, readResultShareState, createResultShareLink,
+  RESULT_LINK_REQUEST, classifyRestoredShareChange, readResultShareState, createResultShareLink,
   migrateLegacyShareQuery, clearStaleResultShareState,
 } from "../../site/src/lib/hooks/result-share-link.ts";
 
@@ -116,6 +116,22 @@ test("manual result sharing never exposes state in URL queries or history on inp
     assert.ok(!code.includes('url.searchParams.set("s", encoded)'));
     assert.ok(code.includes("clearStaleResultShareState(window.location.href)"));
   }
+});
+
+test("restored result fragments survive hydration but not subsequent user edits", () => {
+  const oldValue = '{"amount":1}';
+  const newValue = '{"amount":50}';
+  const initial = classifyRestoredShareChange(null, oldValue, newValue);
+  assert.deepEqual(initial, { clearStale: false, nextExpected: newValue });
+  const hydrated = classifyRestoredShareChange(oldValue, newValue, initial.nextExpected);
+  assert.deepEqual(hydrated, { clearStale: false, nextExpected: null });
+  assert.deepEqual(
+    classifyRestoredShareChange(newValue, '{"amount":52}', hydrated.nextExpected),
+    { clearStale: true, nextExpected: null },
+  );
+  const hook = source("site/src/lib/hooks/useShareableState.ts");
+  assert.ok(hook.includes("restoredExpectedSerialized.current = JSON.stringify(parsed)"));
+  assert.ok(hook.includes("classifyRestoredShareChange("));
 });
 
 test("all GitHub Actions workflows are manual-only", () => {
