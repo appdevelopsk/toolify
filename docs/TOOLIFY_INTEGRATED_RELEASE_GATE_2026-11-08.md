@@ -222,3 +222,17 @@ Keep status **NO-GO** until `npm ci`, all tests, production Next build, actual d
 **Remaining privacy risk:** Clarity's `data-clarity-mask` controls DOM recordings, **not** share URL query state. Microsoft states that support-assisted query masking does not apply to referrers or clicked URLs. This must be reviewed by the owner; if safety cannot be confirmed, keep Clarity disabled. The impact.com tag and any other external script's access to `?s=` also remain unverified.
 
 **Final state:** Review branch only; NO-GO without real GA4+Clarity owner configuration, full Next build/Vitest, RTL/mobile/device QA, approval and owner manual deployment. Do not attribute increased traffic/engagement/revenue to unpublished code.
+
+
+## 2026-11-08 — Clarity default-off source hardening and isolated hotfix
+
+The previously identified `?s=` URL-state privacy problem was not resolved by DOM masking alone. The integrated review branch now fails closed on the **Clarity vendor tag itself**:
+
+- `site/src/lib/analytics/clarity-policy.ts`: pure `canLoadClarity(projectId, approval)` with strict `approval === "confirmed"` and nonblank project ID checks.
+- `site/src/lib/analytics/clarity.tsx`: renders no Clarity script by default, even if an old Clarity project ID is configured. Explicit reviewed build-time opt-in: `NEXT_PUBLIC_CLARITY_URL_PRIVACY_APPROVED=confirmed`.
+- `site/.env.example`: documents the opt-in. Added `clarity-policy.test.ts` (Vitest), integrated source wiring tests, and mandatory native release-preflight cases.
+- Verified the exact source Git SHA `2baaa9b04093e3d9228e385f230e622004f4dd54` using local `git hash-object`. Actual Node v22.16.0 runtime assertions: **9/9 PASS**. `tsc --strict --noUncheckedIndexedAccess --noEmit`: **PASS**.
+- Created independent minimal source-only hotfix branch `fix/toolify-clarity-safe-default-20261108` from main, comprising **four implementation/test/config files plus one explanatory document**, to allow a smaller manual validation/release path without bringing the whole growth pilot along.
+- Standalone report: https://github.com/appdevelopsk/toolify/blob/fix/toolify-clarity-safe-default-20261108/docs/CLARITY_PRIVACY_SAFE_DEFAULT_2026-11-08.md
+
+**Clarity recording will be disabled on the future deployment unless the newly introduced flag is approved**, but this change is not yet on production. Other scripts may still read `?s=`; neither branch should claim to eliminate all share-link privacy risks. Full Next build, browser/network validation, EEA consent QA, owner release approval, and any manual deployment remain NOT DONE.
