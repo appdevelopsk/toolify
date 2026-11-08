@@ -30,11 +30,35 @@ The exact `clarity-policy.ts` Git blob SHA `2baaa9b04093e3d9228e385f230e622004f4
 
 This does not verify the complete Next.js build, server rendering, browser consent flow or actual Clarity network requests. No PR, main merge, GitHub Actions run or production deployment was initiated.
 
+## Manual-only workflow safety
+
+The initial isolated branch inherited CI/deploy/live-index workflows with automatic `push`/`pull_request` triggers from main. Those **three workflow trigger blocks have now been replaced with exactly `on: workflow_dispatch: {}`**. Other jobs, deploy instructions, and the five existing manual-only workflows remain unchanged.
+
+The branch includes the audited, fail-closed parser and native tests from the main review prototype:
+- `scripts/verify-manual-deploy.mjs` / `scripts/verify-manual-deploy.test.mjs`
+- `scripts/tests/clarity-hotfix-policy.test.mjs`
+- `scripts/check-clarity-hotfix-release.sh` — one operator-run local gate; **no GitHub Actions, merge or deployment is triggered**.
+
+The real parser was applied to all eight workflow definitions retrieved from the isolated branch, and **8/8 passed**. All five synthetic unapproved event formats (including push, PR, schedule and combined manual/push) were rejected. This is source-only trigger validation; GitHub's base-branch PR workflows can still run before a safe main merge, so **do not create a PR or merge without reviewing that base-branch behavior**.
+
 ## Owner release gate
 
-1. Perform `npm ci`, `npm run typecheck`, `npm test`, `npm run build` in `site/` from the exact release candidate. Do not use GitHub Actions.
-2. In a clean browser profile, verify no network request to `clarity.ms` appears when `NEXT_PUBLIC_CLARITY_URL_PRIVACY_APPROVED` is unset, even with an existing Clarity ID.
-3. For any later opt-in, review EEA/UK consent independently, test URL/referrer/clicked-link masking for `?s=`, and verify share-state does not reach external scripts or recording metadata. If not demonstrably safe, leave Clarity disabled.
-4. A deployment still requires normal manual release approval and post-deploy smoke and release-SHA verification.
+Check out the exact branch and run from the repository root:
+
+```bash
+git fetch origin fix/toolify-clarity-safe-default-20261108
+git switch --track origin/fix/toolify-clarity-safe-default-20261108
+bash scripts/check-clarity-hotfix-release.sh
+```
+
+The gate requires Node 22+, verifies the **latest** `origin/main` ancestry, rejects Clarity opt-in for this privacy-first release, inspects all workflow triggers, executes Node source regressions, then performs `npm ci`, TypeScript, Vitest, validation, SEO/i18n audits and a production Next.js build against `NEXT_PUBLIC_SITE_URL=https://toolify365.com`. It **does not deploy**.
+
+In a clean browser profile after a successful build, check that no request to `clarity.ms` occurs even with a legacy project ID, and that the existing tools, shares, GA4, consent and navigation are unaffected. Any future opt-in requires separate URL/referrer/clicked-link masking and EEA/UK consent review. Manual release approval and postdeployment URL, sitemap, and release-SHA verification are separate obligations.
+
+### Executed release-gate checks
+
+Reconstructed `scripts/check-clarity-hotfix-release.sh` from the exact remote file (Git blob `d7a948cdb1421dc63a86576d64433e95931be11d`). Local `git hash-object` matched and `bash -n` passed. In a temporary local Git repository named for the exact release branch, with `NEXT_PUBLIC_CLARITY_URL_PRIVACY_APPROVED=confirmed`, executing the **actual** script returned **exit 5 / NO-GO** before any fetch, dependency install, Actions or deployment, as designed.
+
+**Full site checkout/install/build and browser QA were not performed in this session.** The hotfix is therefore **NO-GO** for production deployment.
 
 **Scope limitation:** This hotfix reduces Clarity exposure by default; it does not remove `?s=` from browser-visible URLs, protect against all other third-party scripts, or establish actual growth uplift. The larger review branch remains separately NO-GO.
