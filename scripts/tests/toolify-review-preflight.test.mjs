@@ -9,6 +9,7 @@ import { verifyWorkflowPath } from "../verify-manual-deploy.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const source = (path) => readFileSync(join(ROOT, path), "utf8");
+const sourceFile = source;
 
 test("12 real, distinct curated steps have exact next-step mappings", () => {
   assert.equal(WORKFLOWS.length, 4);
@@ -79,6 +80,14 @@ test("both navigation routes and real-human interaction guards exist", () => {
   assert.match(link, /nativeEvent\.isTrusted/);
   assert.match(input, /!e\.isTrusted/);
   assert.match(input, /getWorkflowContext/);
+});
+
+test("the final workflow step returns to guide without unverified completion claims", () => {
+  const source = sourceFile("site/src/components/workflows/WorkflowNextStep.tsx");
+  assert.match(source, /if \(!journey\) return null/);
+  assert.ok(source.includes("{followUp && ("));
+  assert.ok(source.includes("/workflows#"));
+  assert.doesNotMatch(source, /completed:/);
 });
 
 test("GA4 initialization, pageviews and custom events use sanitized page URLs", () => {
