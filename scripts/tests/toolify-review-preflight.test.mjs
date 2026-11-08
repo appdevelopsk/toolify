@@ -64,7 +64,7 @@ test("new guide is noindex and not exposed in sitemap", () => {
   const guide = source("site/src/app/[locale]/workflows/page.tsx");
   const sitemap = source("site/src/app/sitemap.ts");
   assert.match(guide, /noindex:\s*true/);
-  assert.doesNotMatch(sitemap, /["']\\/workflows["']/);
+  assert.ok(!sitemap.includes('"/workflows"') && !sitemap.includes("'/workflows'"));
   assert.match(guide, /getTool\(slug\)/);
 });
 
@@ -94,7 +94,7 @@ test("GA4 initialization, pageviews and custom events use sanitized page URLs", 
 
 test("manual release gate is locked to reviewed branch and production origin", () => {
   const gate = source("scripts/check-postmerge-embed-release.sh");
-  assert.match(gate, /review\\/toolify-growth-manual-release-20261108/);
-  assert.match(gate, /NEXT_PUBLIC_SITE_URL="https:\\/\\/toolify365.com"/);
+  assert.ok(gate.includes("review/toolify-growth-manual-release-20261108"));
+  assert.ok(gate.includes('NEXT_PUBLIC_SITE_URL="https://toolify365.com"'));
   assert.match(gate, /verify-manual-deploy.mjs/);
 });
