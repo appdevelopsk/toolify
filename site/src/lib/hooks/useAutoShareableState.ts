@@ -261,8 +261,10 @@ export function useAutoShareableState(
       }
     };
 
-    const onChange = (event: Event) => {
-      if (restoring || !event.isTrusted) return;
+    const onChange = () => {
+      // Synthetic input after restoration can be a genuine preset change.
+      // Restoration itself remains suppressed by the restoring flag.
+      if (restoring) return;
       const clean = clearStaleResultShareState(window.location.href);
       if (!clean) return;
       window.history.replaceState(window.history.state, "", clean);
