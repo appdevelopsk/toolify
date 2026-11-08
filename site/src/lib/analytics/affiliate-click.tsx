@@ -13,6 +13,8 @@ import { trackAffiliateClick } from "./events";
 export function AffiliateClickTracker() {
   useEffect(() => {
     const handler = (e: MouseEvent) => {
+      // Ignore programmatic clicks; count a trusted browser activation only.
+      if (!e.isTrusted) return;
       const link = (e.target as Element | null)?.closest?.("a[data-offer-id]") as HTMLAnchorElement | null;
       if (!link) return;
       const d = link.dataset;
