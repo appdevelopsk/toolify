@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
-  RESULT_LINK_REQUEST, type ResultLinkRequest,
+  RESULT_LINK_REQUEST, RESULT_LINK_AVAILABILITY_REQUEST, RESULT_LINK_CAPABILITY_CHANGED,
+  type ResultLinkRequest, type ResultLinkAvailabilityRequest,
   classifyRestoredShareChange, clearStaleResultShareState, createResultShareLink,
   migrateLegacyShareQuery, readResultShareState,
 } from "./result-share-link";
@@ -85,18 +86,38 @@ export function useShareableState<T extends object>(
       }
     }
 
+    const captureEncodedState = (): string | null => {
+      const state = JSON.parse(currentSerialized.current) as object;
+      if (!state || typeof state !== "object" || Object.keys(state).length === 0) return null;
+      const encoded = encodeState(state);
+      return encoded.length <= MAX_SHARED_STATE_LENGTH ? encoded : null;
+    };
     const onRequest = (event: Event) => {
       const detail = (event as CustomEvent<ResultLinkRequest>).detail;
       if (detail?.slug !== toolSlug || typeof detail.respond !== "function") return;
       try {
-        const encoded = encodeState(JSON.parse(currentSerialized.current) as object);
-        detail.respond(createResultShareLink(window.location.href, encoded, MAX_SHARED_STATE_LENGTH));
+        const encoded = captureEncodedState();
+        detail.respond(encoded ? createResultShareLink(window.location.href, encoded, MAX_SHARED_STATE_LENGTH) : null);
       } catch {
         detail.respond(null);
       }
     };
+    const onAvailabilityRequest = (event: Event) => {
+      const detail = (event as CustomEvent<ResultLinkAvailabilityRequest>).detail;
+      if (detail?.slug !== toolSlug || typeof detail.respond !== "function") return;
+      try {
+        detail.respond(captureEncodedState() !== null);
+      } catch {
+        detail.respond(false);
+      }
+    };
     window.addEventListener(RESULT_LINK_REQUEST, onRequest);
-    return () => window.removeEventListener(RESULT_LINK_REQUEST, onRequest);
+    window.addEventListener(RESULT_LINK_AVAILABILITY_REQUEST, onAvailabilityRequest);
+    window.dispatchEvent(new Event(RESULT_LINK_CAPABILITY_CHANGED));
+    return () => {
+      window.removeEventListener(RESULT_LINK_REQUEST, onRequest);
+      window.removeEventListener(RESULT_LINK_AVAILABILITY_REQUEST, onAvailabilityRequest);
+    };
     // Re-register only when the tool slug changes.
   }, [toolSlug]);
 
@@ -107,6 +128,7 @@ export function useShareableState<T extends object>(
   useEffect(() => {
     const prev = prevRef.current;
     prevRef.current = serialized;
+    window.dispatchEvent(new Event(RESULT_LINK_CAPABILITY_CHANGED));
     const change = classifyRestoredShareChange(
       prev, serialized, restoredExpectedSerialized.current,
     );
