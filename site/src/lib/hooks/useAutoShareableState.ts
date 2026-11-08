@@ -271,14 +271,29 @@ export function useAutoShareableState(
       window.dispatchEvent(new Event("toolify:share-state-change"));
     };
 
+    // Multi-button tool modes may update React state without emitting
+    // input/change. Invalidate a previously restored result on a real mode
+    // selection, but never on synthetic replay during hydration.
+    const onModeClick = (event: MouseEvent) => {
+      if (restoring || !event.isTrusted) return;
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const button = target.closest("button");
+      if (button instanceof HTMLButtonElement && root.contains(button) && isModeButton(button)) {
+        onChange();
+      }
+    };
+
     window.addEventListener(RESULT_LINK_REQUEST, onRequest);
     root.addEventListener("input", onChange);
     root.addEventListener("change", onChange);
+    root.addEventListener("click", onModeClick);
     return () => {
       if (raf !== undefined) cancelAnimationFrame(raf);
       window.removeEventListener(RESULT_LINK_REQUEST, onRequest);
       root.removeEventListener("input", onChange);
       root.removeEventListener("change", onChange);
+      root.removeEventListener("click", onModeClick);
     };
   }, [ref, slug, enabled]);
 }
