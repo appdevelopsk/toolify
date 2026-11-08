@@ -1,5 +1,6 @@
 import Script from "next/script";
 import { siteConfig } from "@/lib/config";
+import { canLoadClarity } from "./clarity-policy";
 
 /**
  * Microsoft Clarity — ヒートマップ + セッション録画（無料・無制限）。
@@ -17,7 +18,7 @@ export function MicrosoftClarity() {
   const id = siteConfig.analytics.clarityId;
   // No third-party Clarity recording until URL masking and consent are reviewed.
   // Intentional build-time opt-in; do not infer approval from an existing ID.
-  if (!id || process.env.NEXT_PUBLIC_CLARITY_URL_PRIVACY_APPROVED !== "confirmed") return null;
+  if (!canLoadClarity(id, process.env.NEXT_PUBLIC_CLARITY_URL_PRIVACY_APPROVED)) return null;
   return (
     <Script id="clarity-init" strategy="afterInteractive">
       {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${id}");`}
