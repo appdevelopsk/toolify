@@ -5,6 +5,7 @@ import { HeaderSearch } from "./HeaderSearch";
 import { MobileMenu } from "./MobileMenu";
 import { isPromptLocale } from "@/lib/i18n/locales";
 import { softwareCopy } from "@/lib/software/copy";
+import { workflowCopy } from "@/lib/workflows/catalog";
 
 /**
  * デスクトップ(sm以上): ロゴ / 検索 / ツール / プロンプト / About / 言語 — 従来の並び。
@@ -15,6 +16,7 @@ export function Header() {
   const locale = useLocale();
   const showPrompts = isPromptLocale(locale);
   const software = softwareCopy(locale);
+  const workflow = workflowCopy(locale);
   const navCls = "text-slate-600 hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-500";
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/90">
@@ -31,6 +33,7 @@ export function Header() {
             <Link href="/tools" className={navCls}>
               {t("nav.tools")}
             </Link>
+            <Link href="/workflows" className={`${navCls} hidden lg:inline`}>{workflow.nav}</Link>
             <Link href="/software" className={navCls}>{software.nav}</Link>
             {showPrompts && (
               <Link href="/prompts" className={navCls}>
@@ -42,7 +45,7 @@ export function Header() {
             </Link>
             <LanguageSwitcher />
           </nav>
-          <MobileMenu showPrompts={showPrompts}>
+          <MobileMenu showPrompts={showPrompts} workflowNav={workflow.nav}>
             <LanguageSwitcher />
           </MobileMenu>
         </div>

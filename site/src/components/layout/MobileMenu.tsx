@@ -12,7 +12,7 @@ import { Link, usePathname } from "@/lib/i18n/navigation";
  * 横幅を使い切っていたため、ナビと言語切替をここへ収容し、ヘッダー本体は
  * ロゴ / 検索アイコン / メニューの 3 点にする。デスクトップは従来どおり。
  */
-export function MobileMenu({ showPrompts, children }: { showPrompts: boolean; children?: ReactNode }) {
+export function MobileMenu({ showPrompts, workflowNav, children }: { showPrompts: boolean; workflowNav: string; children?: ReactNode }) {
   const t = useTranslations("nav");
   const software = softwareCopy(useLocale());
   const pathname = usePathname();
@@ -59,6 +59,7 @@ export function MobileMenu({ showPrompts, children }: { showPrompts: boolean; ch
           <Link href="/tools" className={linkCls}>
             {t("tools")}
           </Link>
+          <Link href="/workflows" className={linkCls}>{workflowNav}</Link>
           <Link href="/software" className={linkCls}>{software.nav}</Link>
           {showPrompts && (
             <Link href="/prompts" className={linkCls}>

@@ -1,6 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/lib/config";
+import { sanitizePageViewUrl } from "./pageview-url";
 
 /**
  * GA4 カスタムイベントの一元送出。
@@ -44,7 +45,12 @@ export type CalculateParams = ToolEventParams & {
 function emit(name: string, params: Record<string, unknown>): void {
   if (!siteConfig.analytics.gaId) return;
   if (typeof window === "undefined" || typeof window.gtag !== "function") return;
-  window.gtag("event", name, params);
+  // GA4 may infer page_location from the current URL on custom events.
+  // Every tool may add ?s=<encoded share input>; override with path-only data.
+  window.gtag("event", name, {
+    ...params,
+    ...sanitizePageViewUrl(window.location.href),
+  });
 }
 
 /** ToolEventParams を GA4 送出用の params に正規化する(undefined は落とす)。 */
@@ -184,4 +190,37 @@ export function trackSoftwareProcess(p: { software: string; success: boolean }):
 /** In-browser generated file download; never send file names or contents. */
 export function trackSoftwareDownload(p: { software: string }): void {
   emit("software_download", { software_slug: p.software });
+}
+
+/**
+ * Guided workflow navigation. Fixed workflow IDs and tool slugs only.
+ * No entered values, query strings, URLs, or personal information.
+ */
+export function trackWorkflowStepClick(p: {
+  workflow: "data" | "writing" | "shopping" | "scheduling";
+  step: number;
+  destination: string;
+  locale?: string;
+}): void {
+  emit("workflow_step_click", {
+    workflow_id: p.workflow,
+    step_number: p.step,
+    destination_tool: p.destination,
+    ...(p.locale ? { locale: p.locale } : {}),
+  });
+}
+
+/** Confirmed user interaction on a valid workflow step (no inputs or results). */
+export function trackWorkflowCalculate(p: {
+  workflow: "data" | "writing" | "shopping" | "scheduling";
+  step: number;
+  tool: string;
+  locale?: string;
+}): void {
+  emit("workflow_calculate", {
+    workflow_id: p.workflow,
+    step_number: p.step,
+    tool_slug: p.tool,
+    ...(p.locale ? { locale: p.locale } : {}),
+  });
 }
