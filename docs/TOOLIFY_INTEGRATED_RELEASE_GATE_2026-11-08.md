@@ -118,3 +118,37 @@ The pre-existing `PageViewTracker` could mount before the `next/script` `afterIn
 - Public `https://toolify365.com/en` still displays the existing tool homepage, not the new workflow navigation. No merger, Actions run, manual deploy, or conversion improvement is claimed.
 
 **New manual browser QA:** open a new browser session with delayed/blocked GA script loading; verify one `page_view` when GA4 initializes, zero duplicate pageviews from `?s=` URL edits, one new view for SPA route navigation, and no data-carrying URL fields in GA4 DebugView. Confirm consent handling in EEA and non-EEA contexts.
+
+
+## 2026-11-08 18:31 JST: newest main reconciled and GA4 enhanced pageview double-count gate
+
+### Main synchronization (actual Git merge)
+The latest `main` commit `82b1137908678bc5ca97c4b84fccf82b4a53ac5a` changed two files: `Breadcrumbs.tsx` and `ToolFrame.tsx` to improve mobile-first navigation. A **two-parent merge commit** `73fa4e541fd55c9358f5d0873f894151048679a5` was created on the **review branch only**, retaining main's `hideCurrentOnMobile`, the two-line mobile description, and ShareBar placement after the tool on small screens.
+
+The integrated ToolFrame places `WorkflowNextStep` directly after the live tool workspace, **before** mobile share buttons and related/advertising blocks, to keep a next action visible. No other main features were replaced. Corresponding regression tests were added to `site/src/lib/workflows/wiring.test.ts`. No production main merge, PR, Actions run or deploy was performed.
+
+### Newly confirmed GA4 double-count and privacy issue
+Google's official GA4 documentation states that `send_page_view: false` disables a default config-triggered `page_view`, **but does not disable Enhanced Measurement's history-based pageviews**. If the GA4 Web stream option **Page changes based on browser history events** is enabled, SPA push/replace/popState navigation can generate additional automatic pageviews. This site also uses `history.replaceState` to preserve `?s=` tool inputs, so this could both inflate pageviews and expose query-state URLs.
+
+Official reference:
+https://developers.google.com/analytics/devguides/collection/ga4/views
+
+**Required owner-only configuration:** In Google Analytics 4, open Admin > Data collection and modification > Data streams > select the Toolify365 Web stream > Enhanced measurement > Page views > advanced settings. **Disable "Page changes based on browser history events".** Keep the site's own one-shot, query-sanitized `PageViewTracker`. Then verify with GA4 DebugView that each actual route produces one `page_view`, changing `?s=` alone produces zero more, and `page_location` and `page_referrer` do not expose tool input data.
+
+The GA4 Admin setting is **not available through the connected read-only HYPD API**, which currently reports no selected GA4 property. The owner can select it at:
+https://app.hypd.ai/sources?utm_source=mcp&utm_content=none_selected
+
+### Fail-closed release policy
+`scripts/check-toolify-review-release.sh` first performs all existing local source/Node/npm/TypeScript/Vitest/SEO/build checks. Afterward it checks the explicit operator-attestation environment flag `TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED=confirmed`. Without that exact value it exits **4 / NO-GO** and prints the GA4 setting and DebugView instructions.
+
+This variable is **only a manual operator declaration**, not a machine verification of GA4 configuration. It does not automatically disable the setting, authorize merge, or deploy. Passing the flag does not replace full browser, consent or live-release checks.
+
+```bash
+# After verifying the GA4 Data Stream option and completing local checkout:
+TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED=confirmed bash scripts/check-toolify-review-release.sh
+```
+
+The checked preflight tests explicitly assert that the flag is required, that a missing flag remains NO-GO, and that the latest mobile-first ToolFrame changes survive the merge.
+
+### Current release state
+**NO-GO:** GA4 admin setting and DebugView, full repository dependency install/Next production build, RTL/mobile browser QA and manual production release have not been independently verified here. The audit is source-focused; no traffic, dwell, conversion or earnings uplift is claimed.
