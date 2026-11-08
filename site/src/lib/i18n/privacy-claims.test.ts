@@ -44,7 +44,7 @@ describe("homepage privacy copy stays accurate in all locales", () => {
       const part = source.slice(start, next < 0 ? undefined : next);
       expect(part, `${name}: update date`).toContain("2026-11-08");
       expect(part, `${name}: first data section`).toContain("<h2>");
-      expect((part.match(/<p>/g) ?? []).length).toBe((part.match(/<\\/p>/g) ?? []).length);
+      expect(part.split("<p>").length).toBe(part.split("</p>").length);
     }
     expect(source).toContain("Older links using query parameters");
     expect(source).toContain("旧形式のリンクでは初回アクセス時");
