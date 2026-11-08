@@ -22,6 +22,12 @@ describe("tool input and browser event privacy", () => {
     expect(init).toContain("page_location: window.location.origin + window.location.pathname");
     expect(init).toContain("window.__toolifyGtagReady = true");
     expect(init).toContain("window.dispatchEvent(new Event('toolify:gtag-ready'))");
+    expect(init.indexOf("gtag('consent', 'default'"))
+      .toBeLessThan(init.indexOf("gtag('config'"));
+    expect(init.indexOf("gtag('config'"))
+      .toBeLessThan(init.indexOf("window.__toolifyGtagReady = true"));
+    expect(init.indexOf("window.__toolifyGtagReady = true"))
+      .toBeLessThan(init.indexOf("window.dispatchEvent(new Event('toolify:gtag-ready'))"));
     expect(events).toContain("...sanitizePageViewUrl(window.location.href)");
     expect(events).not.toContain("page_location: window.location.href");
   });
