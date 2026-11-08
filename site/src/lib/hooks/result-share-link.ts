@@ -7,10 +7,17 @@
  * Third-party scripts may still inspect fragments; do not include secrets.
  */
 export const RESULT_LINK_REQUEST = "toolify:result-link-request";
+export const RESULT_LINK_AVAILABILITY_REQUEST = "toolify:result-link-availability-request";
+export const RESULT_LINK_CAPABILITY_CHANGED = "toolify:result-link-capability-changed";
 
 export type ResultLinkRequest = {
   slug: string;
   respond: (url: string | null) => void;
+};
+
+export type ResultLinkAvailabilityRequest = {
+  slug: string;
+  respond: (available: boolean) => void;
 };
 
 export function readResultShareState(href: string): string | null {
