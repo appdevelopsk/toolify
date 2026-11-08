@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { sanitizePageViewUrl } from "./pageview-url";
+import { sanitizePageReferrer, sanitizePageViewUrl } from "./pageview-url";
 
 describe("privacy-safe pageview URL", () => {
   it("omits all query parameters including share state and workflow tags", () => {
@@ -14,6 +14,26 @@ describe("privacy-safe pageview URL", () => {
       page_path: "/ar/tools/date-calculator",
       page_location: "http://localhost:3000/ar/tools/date-calculator",
     });
+  });
+
+  it("removes same-site share data from GA4 referrers without losing the route", () => {
+    expect(sanitizePageReferrer(
+      "https://toolify365.com/ja/tools/word-counter?s=private-input&wf=writing#result",
+      "https://toolify365.com/ja/tools/slug-generator"
+    )).toBe("https://toolify365.com/ja/tools/word-counter");
+  });
+
+  it("keeps only the external referrer origin to protect third-party paths", () => {
+    expect(sanitizePageReferrer(
+      "https://example.org/private/jane@example.com?token=secret#sensitive",
+      "https://toolify365.com/en"
+    )).toBe("https://example.org");
+  });
+
+  it("removes invalid, empty and non-web referrers", () => {
+    for (const url of ["", "not a URL", "about:blank", "javascript:alert(1)", "data:text/html,payload"]) {
+      expect(sanitizePageReferrer(url, "https://toolify365.com/en")).toBe("");
+    }
   });
 
   it("does not alter encoded safe route segments", () => {
