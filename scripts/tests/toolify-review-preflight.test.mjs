@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { WORKFLOWS, getWorkflowContext, getWorkflowContinuation } from "../../site/src/lib/workflows/steps.ts";
-import { sanitizePageViewUrl } from "../../site/src/lib/analytics/pageview-url.ts";
+import { sanitizePageReferrer, sanitizePageViewUrl } from "../../site/src/lib/analytics/pageview-url.ts";
 import { verifyWorkflowPath } from "../verify-manual-deploy.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
@@ -54,6 +54,20 @@ test("GA4 page identity excludes query and hash but retains the locale route", (
     page_path: "/ar",
     page_location: "http://localhost:3000/ar"
   });
+});
+
+test("GA4 referrer sanitizer preserves usable attribution without user input", () => {
+  assert.equal(sanitizePageReferrer(
+    "https://toolify365.com/en/tools/word-counter?s=private&wf=writing#result",
+    "https://toolify365.com/en/tools/slug-generator",
+  ), "https://toolify365.com/en/tools/word-counter");
+  assert.equal(sanitizePageReferrer(
+    "https://partner.example/private/jane@example.com?token=secret",
+    "https://toolify365.com/en",
+  ), "https://partner.example");
+  for (const invalid of ["", "not-a-url", "javascript:alert(1)", "about:blank"]) {
+    assert.equal(sanitizePageReferrer(invalid, "https://toolify365.com/en"), "");
+  }
 });
 
 test("all GitHub Actions workflows are manual-only", () => {
