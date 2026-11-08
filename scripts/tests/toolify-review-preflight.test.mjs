@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { WORKFLOWS, getWorkflowContext, getWorkflowContinuation } from "../../site/src/lib/workflows/steps.ts";
-import { sanitizePageReferrer, sanitizePageViewUrl } from "../../site/src/lib/analytics/pageview-url.ts";
+import { sanitizeOutboundLinkUrl, sanitizePageReferrer, sanitizePageViewUrl } from "../../site/src/lib/analytics/pageview-url.ts";
 import { verifyWorkflowPath } from "../verify-manual-deploy.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
@@ -68,6 +68,19 @@ test("GA4 referrer sanitizer preserves usable attribution without user input", (
   for (const invalid of ["", "not-a-url", "javascript:alert(1)", "about:blank"]) {
     assert.equal(sanitizePageReferrer(invalid, "https://toolify365.com/en"), "");
   }
+});
+
+test("affiliate analytics strips URL queries and ignores synthetic link clicks", () => {
+  assert.equal(sanitizeOutboundLinkUrl(
+    "https://partner.example/tools?clickref=private-uid#promotion"
+  ), "https://partner.example/tools");
+  for (const invalid of ["", "/relative", "javascript:alert(1)"]) {
+    assert.equal(sanitizeOutboundLinkUrl(invalid), "");
+  }
+  const events = source("site/src/lib/analytics/events.ts");
+  const tracker = source("site/src/lib/analytics/affiliate-click.tsx");
+  assert.ok(events.includes("link_url: sanitizeOutboundLinkUrl(p.link_url)"));
+  assert.ok(tracker.includes("if (!e.isTrusted) return"));
 });
 
 test("all GitHub Actions workflows are manual-only", () => {
