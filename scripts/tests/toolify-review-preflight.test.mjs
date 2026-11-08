@@ -107,6 +107,24 @@ test("GA4 initialization, pageviews and custom events use sanitized page URLs", 
   assert.doesNotMatch(page, /page_location:\s*window\.location\.href/);
 });
 
+test("GA4 referrer, Clarity input masking and bootstrap safeguards stay wired", () => {
+  const urls = source("site/src/lib/analytics/pageview-url.ts");
+  const sender = source("site/src/lib/analytics/pageview-once.ts");
+  const page = source("site/src/lib/analytics/pageview.tsx");
+  const bootstrap = source("site/src/lib/analytics/gtag.tsx");
+  const events = source("site/src/lib/analytics/events.ts");
+  const tracker = source("site/src/components/tools/ToolInteractionTracker.tsx");
+  const software = source("site/src/components/software/SoftwareWorkbench.tsx");
+  assert.ok(urls.includes("export function sanitizePageReferrer("));
+  assert.ok(sender.includes("sanitizePageReferrer(current.referrer, current.href)"));
+  assert.ok(page.includes("lastSentLocation.current ?? document.referrer"));
+  assert.ok(page.includes("lastSentLocation.current = payload.page_location"));
+  assert.ok(bootstrap.includes("page_referrer: toolifySafeReferrer"));
+  assert.ok(events.includes("page_referrer: sanitizePageReferrer(document.referrer, window.location.href)"));
+  assert.ok(tracker.includes('data-clarity-mask="true"'));
+  assert.ok(software.includes('data-clarity-mask="true"'));
+});
+
 test("postdeployment workflow smoke is opt-in, read-only and locale aware", () => {
   const live = source("site/scripts/check-live-workflows.mjs");
   const helpers = source("site/scripts/growth-html-checks.mjs");
