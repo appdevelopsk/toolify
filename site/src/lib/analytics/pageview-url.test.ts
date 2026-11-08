@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { sanitizePageReferrer, sanitizePageViewUrl } from "./pageview-url";
+import { sanitizeOutboundLinkUrl, sanitizePageReferrer, sanitizePageViewUrl } from "./pageview-url";
 
 describe("privacy-safe pageview URL", () => {
   it("omits all query parameters including share state and workflow tags", () => {
@@ -33,6 +33,18 @@ describe("privacy-safe pageview URL", () => {
   it("removes invalid, empty and non-web referrers", () => {
     for (const url of ["", "not a URL", "about:blank", "javascript:alert(1)", "data:text/html,payload"]) {
       expect(sanitizePageReferrer(url, "https://toolify365.com/en")).toBe("");
+    }
+  });
+
+  it("removes outbound affiliate tracking IDs without changing the destination path", () => {
+    expect(sanitizeOutboundLinkUrl(
+      "https://partner.example/products/calculator?awc=account-id&clickref=private#offer"
+    )).toBe("https://partner.example/products/calculator");
+  });
+
+  it("rejects non-web outbound affiliate links and invalid URLs", () => {
+    for (const href of ["", "/relative", "javascript:alert(1)", "data:text/html,unsafe"]) {
+      expect(sanitizeOutboundLinkUrl(href)).toBe("");
     }
   });
 
