@@ -1,7 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/lib/config";
-import { sanitizePageViewUrl } from "./pageview-url";
+import { sanitizePageReferrer, sanitizePageViewUrl } from "./pageview-url";
 
 /**
  * GA4 カスタムイベントの一元送出。
@@ -50,6 +50,7 @@ function emit(name: string, params: Record<string, unknown>): void {
   window.gtag("event", name, {
     ...params,
     ...sanitizePageViewUrl(window.location.href),
+    page_referrer: sanitizePageReferrer(document.referrer, window.location.href),
   });
 }
 
