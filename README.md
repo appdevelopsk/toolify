@@ -1,6 +1,26 @@
-# Toolify (web_advertisement)
+# Toolify365 — free browser tools
 
-Multilingual, ad-supported online tools site — Next.js 15 + AdSense + next-intl.
+[Open Toolify365](https://toolify365.com/en) · [日本語](https://toolify365.com/ja)
+
+Toolify365 provides **223 free tools** (calculators, converters and text/data utilities) in **17 interface languages**. Tools are accessible without creating an account. Many calculations run directly in the browser; tool-specific privacy notes and sharing behavior apply.
+
+### What you can do
+
+- **Plan dates:** calculate date differences, business days and time zones.
+- **Compare purchases:** discount, sales tax and unit price calculators.
+- **Work with text:** word counting, case conversion and URL slugs.
+- **Clean data:** CSV/JSON conversion, JSON formatting and YAML output.
+
+A new **guided workflows** prototype connects these existing tools into four three-step journeys. Its source is on a review branch and **is not deployed** until the full manual release gate and mobile QA pass.
+
+### Privacy and measurement
+
+The site uses privacy-aware GA4/consent handling and may offer result-sharing URLs. In-progress code changes ensure GA4 receives path-only page URLs, not user-entered share-state query parameters. Do not assume branch-only changes are live until the verified release SHA is published.
+
+### Developer overview
+
+Next.js 15 + React 19 + next-intl + TypeScript. The repository contains website source, localization, SEO audits and manual deployment scripts.
+
 
 ## Quick start
 
