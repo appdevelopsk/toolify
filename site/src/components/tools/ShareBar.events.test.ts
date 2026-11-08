@@ -35,6 +35,22 @@ describe("on-demand result sharing", () => {
     }
   });
 
+  it("clears stale URL state on trusted mode-button clicks, not synthetic restore clicks", () => {
+    const hook = get("../../lib/hooks/useAutoShareableState.ts");
+    expect(hook).toContain("const onModeClick = (event: MouseEvent) => {");
+    expect(hook).toContain("if (restoring || !event.isTrusted) return");
+    expect(hook).toContain("isModeButton(button)");
+    expect(hook).toContain('root.addEventListener("click", onModeClick)');
+    expect(hook).toContain('root.removeEventListener("click", onModeClick)');
+  });
+
+  it("keeps hydrated manual sharing intact until an actual value edit", () => {
+    const manual = get("../../lib/hooks/useShareableState.ts");
+    expect(manual).toContain("restoredExpectedSerialized.current = JSON.stringify(parsed)");
+    expect(manual).toContain("classifyRestoredShareChange(");
+    expect(manual).toContain("if (!change.clearStale) return");
+  });
+
   it("uses fragment-only result links and keeps native share cancellation safe", () => {
     const policy = get("../../lib/hooks/result-share-link.ts");
     expect(policy).toContain('url.hash = `s=${encoded}`');
