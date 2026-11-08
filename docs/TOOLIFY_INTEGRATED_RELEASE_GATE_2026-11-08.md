@@ -236,3 +236,16 @@ The previously identified `?s=` URL-state privacy problem was not resolved by DO
 - Standalone report: https://github.com/appdevelopsk/toolify/blob/fix/toolify-clarity-safe-default-20261108/docs/CLARITY_PRIVACY_SAFE_DEFAULT_2026-11-08.md
 
 **Clarity recording will be disabled on the future deployment unless the newly introduced flag is approved**, but this change is not yet on production. Other scripts may still read `?s=`; neither branch should claim to eliminate all share-link privacy risks. Full Next build, browser/network validation, EEA consent QA, owner release approval, and any manual deployment remain NOT DONE.
+
+
+## 2026-11-08 21:23 JST: safer isolated Clarity hotfix release path
+
+A separate branch `fix/toolify-clarity-safe-default-20261108` retains the Clarity-off-by-default source and was extended with manual-only release safety **without** bringing the full growth pilot. CI, deploy and live-index workflow triggers were changed to exactly `on: workflow_dispatch: {}`; all 8 branch workflow files passed the actual fail-closed YAML-event parser. None were executed.
+
+Hotfix-only local gate: `bash scripts/check-clarity-hotfix-release.sh`. It rejects a wrong branch, Node below 22, an attempt to opt in Clarity, stale `origin/main`, and any automatic GitHub Actions trigger. It then runs source tests, site TypeScript/validation/SEO/i18n checks, Vitest and Next production build without merging or deploying.
+
+Exact-source hotfix native Node 22 tests: **4/4 PASS**, with all four test inputs independently matched to their GitHub blob hashes. The shell script itself also matched GitHub's hash and passed `bash -n`. Two fail-closed execution cases were reproduced in an isolated Git environment: Clarity opt-in rejected with **exit 5**; newer origin/main not incorporated rejected with **exit 3**.
+
+Standalone details: https://github.com/appdevelopsk/toolify/blob/fix/toolify-clarity-safe-default-20261108/docs/CLARITY_PRIVACY_SAFE_DEFAULT_2026-11-08.md
+
+**No full checkout/build or real browser consent/privacy QA has yet passed; neither the standalone hotfix nor the integrated 17-language workflows should be described as deployed or proven to grow real users.** GitHub pull requests against a still-automatic main may run base-branch workflows, so do not create a PR just to bypass this manual-only policy.
