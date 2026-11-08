@@ -36,8 +36,9 @@ export function ToolInteractionTracker({
   /** ToolMeta.category。GA4 custom dimension `category` に載せる。 */
   category?: string;
   /**
-   * 入力値を ?s= に載せる汎用共有リンクを有効にするか。
-   * ツール自身が useShareableState を持つ場合は false（二重書き込み回避）。
+   * 入力値を明示的なコピー時だけ #s= 形式へエンコードする
+   * 汎用スナップショットを有効にするか。手動 useShareableState が
+   * あるツールは false（二重応答を回避）。
    */
   shareable?: boolean;
   children: ReactNode;
