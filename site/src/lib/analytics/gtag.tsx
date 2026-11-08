@@ -43,7 +43,25 @@ export function GoogleAnalytics() {
           });
           gtag('js', new Date());
           // page_view は PageViewTracker（SPA遷移対応）が一元送出するため自動送出を無効化。
-          gtag('config', '${siteConfig.analytics.gaId}', { anonymize_ip: true, send_page_view: false, page_location: window.location.origin + window.location.pathname });
+          // GA4 defaults page_referrer to document.referrer, which can include
+          // our ?s= result-sharing state or another site's private query.
+          var toolifySafeReferrer = '';
+          try {
+            var previousUrl = new URL(document.referrer);
+            if (previousUrl.protocol === 'http:' || previousUrl.protocol === 'https:') {
+              toolifySafeReferrer = previousUrl.origin === window.location.origin
+                ? previousUrl.origin + previousUrl.pathname
+                : previousUrl.origin;
+            }
+          } catch (error) {
+            // Empty or non-HTTP(S) referrers have no public attribution URL.
+          }
+          gtag('config', '${siteConfig.analytics.gaId}', {
+            anonymize_ip: true,
+            send_page_view: false,
+            page_location: window.location.origin + window.location.pathname,
+            page_referrer: toolifySafeReferrer
+          });
           // Mark readiness only after consent defaults and GA config are queued.
           // Other scripts creating window.gtag before our setup are not enough.
           window.__toolifyGtagReady = true;
