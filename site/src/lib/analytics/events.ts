@@ -1,7 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/lib/config";
-import { sanitizePageReferrer, sanitizePageViewUrl } from "./pageview-url";
+import { sanitizeOutboundLinkUrl, sanitizePageReferrer, sanitizePageViewUrl } from "./pageview-url";
 
 /**
  * GA4 カスタムイベントの一元送出。
@@ -142,7 +142,7 @@ export function trackAffiliateClick(p: {
   emit("affiliate_click", {
     offer_id: p.offer_id,
     network: p.network ?? "unknown",
-    link_url: p.link_url,
+    link_url: sanitizeOutboundLinkUrl(p.link_url),
     placement: p.placement ?? "unknown",
     affiliate_label: p.offer_id,
     ...(p.category ? { affiliate_category: p.category } : {}),
