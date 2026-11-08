@@ -52,3 +52,44 @@ export function hasSitemapLocation(xml, target) {
     } catch { return false; }
   });
 }
+
+/**
+ * Validate a real rendered guided-workflow anchor, not a hydration string or
+ * a lookalike data-href. No additional query parameters (including ?s= user
+ * input state) may be smuggled into the generated guided destination.
+ */
+export function hasWorkflowStepAnchor(html, { locale, slug, workflow, step }, origin = "https://toolify365.com") {
+  const markup = renderedMarkup(html);
+  return [...markup.matchAll(/<a\b[^>]*>/gi)].some(([tag]) => {
+    const href = attributeValue(tag, "href")?.replace(/&amp;/g, "&");
+    if (!href) return false;
+    try {
+      const url = new URL(href, origin);
+      const params = [...url.searchParams.entries()];
+      return url.origin === new URL(origin).origin
+        && url.pathname === `/${locale}/tools/${slug}`
+        && !url.hash
+        && params.length === 2
+        && url.searchParams.getAll("wf").length === 1
+        && url.searchParams.get("wf") === workflow
+        && url.searchParams.getAll("ws").length === 1
+        && url.searchParams.get("ws") === String(step);
+    } catch { return false; }
+  });
+}
+
+/** The last step of every journey should offer an actual same-site guide link. */
+export function hasWorkflowGuideAnchor(html, { locale, workflow }, origin = "https://toolify365.com") {
+  const markup = renderedMarkup(html);
+  return [...markup.matchAll(/<a\b[^>]*>/gi)].some(([tag]) => {
+    const href = attributeValue(tag, "href")?.replace(/&amp;/g, "&");
+    if (!href) return false;
+    try {
+      const url = new URL(href, origin);
+      return url.origin === new URL(origin).origin
+        && url.pathname === `/${locale}/workflows`
+        && url.hash === `#${workflow}`
+        && !url.search;
+    } catch { return false; }
+  });
+}
