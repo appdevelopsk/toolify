@@ -294,6 +294,7 @@ export function useAutoShareableState(
     // Multi-button tool modes may update React state without emitting
     // input/change. Invalidate a previously restored result on a real mode
     // selection, but never on synthetic replay during hydration.
+    let availabilityFrame: number | undefined;
     const onModeClick = (event: MouseEvent) => {
       if (restoring || !event.isTrusted) return;
       const target = event.target;
@@ -301,6 +302,12 @@ export function useAutoShareableState(
       const button = target.closest("button");
       if (button instanceof HTMLButtonElement && root.contains(button) && isModeButton(button)) {
         onChange();
+        // Dynamic input controls may appear only after React commits the mode.
+        if (availabilityFrame !== undefined) cancelAnimationFrame(availabilityFrame);
+        availabilityFrame = requestAnimationFrame(() => {
+          availabilityFrame = undefined;
+          notifyAvailability();
+        });
       }
     };
 
@@ -312,6 +319,7 @@ export function useAutoShareableState(
     root.addEventListener("click", onModeClick);
     return () => {
       if (raf !== undefined) cancelAnimationFrame(raf);
+      if (availabilityFrame !== undefined) cancelAnimationFrame(availabilityFrame);
       window.removeEventListener(RESULT_LINK_REQUEST, onRequest);
       window.removeEventListener(RESULT_LINK_AVAILABILITY_REQUEST, onAvailabilityRequest);
       root.removeEventListener("input", onChange);
