@@ -176,8 +176,8 @@ test("GA4 history-based pageview duplication blocks release until owner attestat
   assert.ok(gate.includes("Enhanced Measurement"));
   assert.ok(gate.includes("DebugView"));
   assert.ok(gate.includes("exit 4"));
-  assert.ok(gate.indexOf('bash "$ROOT/scripts/check-postmerge-embed-release.sh"')
-    < gate.indexOf("TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED"));
+  assert.ok(gate.indexOf("TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED")
+    < gate.indexOf('bash "$ROOT/scripts/check-postmerge-embed-release.sh"'));
 });
 
 test("Clarity URL privacy requires an owner review before release", () => {
@@ -189,6 +189,8 @@ test("Clarity URL privacy requires an owner review before release", () => {
   assert.ok(gate.includes("exit 5"));
   assert.ok(gate.indexOf("TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED")
     < gate.indexOf("TOOLIFY_CLARITY_URLS_REVIEWED"));
+  assert.ok(gate.indexOf("TOOLIFY_CLARITY_URLS_REVIEWED")
+    < gate.indexOf('bash "$ROOT/scripts/check-postmerge-embed-release.sh"'));
 });
 
 test("manual release gate is locked to reviewed branch and production origin", () => {
