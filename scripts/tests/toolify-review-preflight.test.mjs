@@ -153,6 +153,17 @@ test("GA4 history-based pageview duplication blocks release until owner attestat
     < gate.indexOf("TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED"));
 });
 
+test("Clarity URL privacy requires an owner review before release", () => {
+  const gate = source("scripts/check-toolify-review-release.sh");
+  assert.ok(gate.includes('TOOLIFY_CLARITY_URLS_REVIEWED:-'));
+  assert.ok(gate.includes('!= "confirmed"'));
+  assert.ok(gate.includes("Clarity may capture ?s="));
+  assert.ok(gate.includes("DOM data-clarity-mask protects content, not URLs"));
+  assert.ok(gate.includes("exit 5"));
+  assert.ok(gate.indexOf("TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED")
+    < gate.indexOf("TOOLIFY_CLARITY_URLS_REVIEWED"));
+});
+
 test("manual release gate is locked to reviewed branch and production origin", () => {
   const gate = source("scripts/check-postmerge-embed-release.sh");
   assert.ok(gate.includes("review/toolify-growth-manual-release-20261108"));
