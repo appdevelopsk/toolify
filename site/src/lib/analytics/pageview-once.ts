@@ -1,12 +1,14 @@
-import { sanitizePageViewUrl } from "./pageview-url";
+import { sanitizePageReferrer, sanitizePageViewUrl } from "./pageview-url";
 
 export type PageViewPayload = ReturnType<typeof sanitizePageViewUrl> & {
   page_title: string;
+  page_referrer?: string;
 };
 
 export type PageViewSnapshot = {
   ready: boolean;
   href: string;
+  referrer?: string;
   title: string;
   emit?: (payload: PageViewPayload) => void;
 };
@@ -26,6 +28,9 @@ export function createPageViewSender(snapshot: () => PageViewSnapshot): () => bo
     current.emit({
       ...safe,
       page_title: current.title,
+      ...(current.referrer !== undefined ? {
+        page_referrer: sanitizePageReferrer(current.referrer, current.href),
+      } : {}),
     });
     sent = true;
     return true;
