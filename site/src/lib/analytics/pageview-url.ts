@@ -34,3 +34,19 @@ export function sanitizePageReferrer(referrer: string, currentHref: string): str
     return "";
   }
 }
+
+/**
+ * Outbound affiliate analytics only needs the target origin/path plus the
+ * existing offer_id and network. Drop all tracking tokens, identifiers,
+ * queries and fragments from the GA4 link_url event parameter.
+ * The actual affiliate destination used by the browser is unchanged.
+ */
+export function sanitizeOutboundLinkUrl(href: string): string {
+  try {
+    const target = new URL(href);
+    if (target.protocol !== "http:" && target.protocol !== "https:") return "";
+    return target.origin + target.pathname;
+  } catch {
+    return "";
+  }
+}
