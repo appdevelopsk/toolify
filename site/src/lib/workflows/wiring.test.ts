@@ -16,6 +16,21 @@ describe("workflow entrypoint & task-completion wiring", () => {
     expect(related).toBeLessThan(ads);
   });
 
+  it("retains main's mobile-first tool layout and shows the next step before share controls", () => {
+    const frame = file("../../components/tools/ToolFrame.tsx");
+    const crumbs = file("../../components/layout/Breadcrumbs.tsx");
+    const workspace = frame.indexOf('<section className="tool-workspace');
+    const guide = frame.indexOf("<WorkflowNextStep");
+    const mobileShare = frame.indexOf('<div className="sm:hidden">');
+    expect(frame).toContain("hideCurrentOnMobile");
+    expect(crumbs).toContain("hideCurrentOnMobile?: boolean");
+    expect(frame).toContain("line-clamp-2");
+    expect(frame).toContain('<div className="hidden sm:block">');
+    expect([workspace, guide, mobileShare].every((v) => v >= 0)).toBe(true);
+    expect(workspace).toBeLessThan(guide);
+    expect(guide).toBeLessThan(mobileShare);
+  });
+
   it("has search, mobile and homepage entrypoints without duplicating tools", () => {
     const home = file("../../app/[locale]/page.tsx");
     const desktop = file("../../components/layout/Header.tsx");
