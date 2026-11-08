@@ -18,7 +18,8 @@ Git history is anchored to PR #41 head `f2cd481c6fc5c9cd4a97c376eef1144b1a8e36a1
 Clone/checkout the exact integration branch and run:
 
 ```bash
-git switch review/toolify-growth-manual-release-20261108
+git fetch origin review/toolify-growth-manual-release-20261108
+git switch --track origin/review/toolify-growth-manual-release-20261108
 bash scripts/check-toolify-review-release.sh
 ```
 
@@ -33,6 +34,16 @@ The script **does not** run GitHub Actions, merge, contact the VPS, or deploy. I
 3. PR41 remains draft/open; main is still unchanged. The integration branch had **zero GitHub Actions workflow runs** at its checked revision.
 4. Previously, isolated exact-source `steps.ts` and `pageview-url.ts` passed strict TypeScript and Node tests; GitHub readback of feature source contracts passed. These checks are not equal to a full repo build.
 5. Public homepage `https://toolify365.com/en` did **not** show the workflow guide. No rollout or human engagement uplift is verified.
+
+
+### Additional isolated execution in this session
+
+- Materialized exact GitHub blob contents to the local test workspace and confirmed matching SHA for `steps.ts` (`3b28219344f90589f15f5753e46082db45c3985b`), `pageview-url.ts` (`48ccf03e386526aa8c3288e634e7eb3beb3f6fc0`), and `verify-manual-deploy.mjs` (`c19591c078f8e62557934da9942af0efb56ae0dd`).
+- The new preflight test's local source hash `f304dd8b69e7d9aca83686863548177e5d8f3451` matched the actual GitHub blob. `node --check`: **PASS**.
+- The new review release wrapper's hash `0321a196c1fe510f737150bcb9cfdd54e41a6e6b` also matched the GitHub blob; `bash -n`: **PASS**.
+- Exact-source TypeScript `--strict --noUncheckedIndexedAccess --noEmit` on the two pure helper modules: **PASS**.
+- Ran the new preflight with `--test-name-pattern='12 real|workflow query|GA4 page identity'` against exact GitHub-source pure modules: **3/3 passed**. The other five subtests were **not executed** locally because they read additional full-repository files.
+- In a separate connector read of the actual integrated branch, strict manual-only event-block checks passed for **all 8 workflows**; this was a source audit, not an Actions run or a browser QA.
 
 ## Remaining NO-GO checks
 
