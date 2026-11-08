@@ -101,6 +101,23 @@ test("GA4 initialization, pageviews and custom events use sanitized page URLs", 
   assert.doesNotMatch(page, /page_location:\s*window\.location\.href/);
 });
 
+test("postdeployment workflow smoke is opt-in, read-only and locale aware", () => {
+  const live = source("site/scripts/check-live-workflows.mjs");
+  const helpers = source("site/scripts/growth-html-checks.mjs");
+  const scripts = JSON.parse(source("site/package.json")).scripts;
+  assert.equal(scripts["audit:live-workflows"],
+    "node --experimental-strip-types scripts/check-live-workflows.mjs");
+  assert.ok(live.includes('["en", "ja", "ar"]'));
+  assert.ok(live.includes("hasWorkflowStepAnchor"));
+  assert.ok(live.includes("hasWorkflowGuideAnchor"));
+  assert.ok(live.includes("hasNoindex"));
+  assert.ok(live.includes("hasSitemapLocation"));
+  assert.ok(live.includes("if (errors.length)"));
+  assert.ok(helpers.includes("export function hasWorkflowStepAnchor"));
+  assert.ok(helpers.includes("export function hasWorkflowGuideAnchor"));
+  assert.ok(!live.includes("workflow_dispatch"));
+});
+
 test("manual release gate is locked to reviewed branch and production origin", () => {
   const gate = source("scripts/check-postmerge-embed-release.sh");
   assert.ok(gate.includes("review/toolify-growth-manual-release-20261108"));
