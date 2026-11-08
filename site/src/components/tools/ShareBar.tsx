@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useToolEvents } from "@/lib/analytics/useToolEvents";
 import { buildToolEmbedSnippet } from "@/lib/tools/embed-html";
 import { isShareCancelled } from "@/lib/tools/share-errors";
+import { RESULT_LINK_REQUEST, type ResultLinkRequest } from "@/lib/hooks/result-share-link";
 
 interface Props {
   /** Canonical, absolute URL of the tool page (built server-side from siteConfig). */
@@ -90,33 +91,21 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
   const { copyResult, share } = useToolEvents(slug);
   const [linkCopied, setLinkCopied] = useState(false);
   const [resultCopied, setResultCopied] = useState(false);
-  const [hasResultLink, setHasResultLink] = useState(false);
   const [codeCopied, setCodeCopied] = useState(false);
   const [showEmbed, setShowEmbed] = useState(false);
 
-  // useShareableState を使うツールでは入力のたびに ?s= が history.replaceState で付く。
-  // replaceState は再レンダーを起こさないため、書き換え通知と履歴イベントで同期する。
-  // ?s= が無いツール(大半)ではボタン自体を出さない。
-  useEffect(() => {
-    const sync = () => {
-      try {
-        setHasResultLink(new URLSearchParams(window.location.search).has("s"));
-      } catch {
-        /* noop */
-      }
-    };
-    sync();
-    // Both share hooks dispatch this event after their history.replaceState.
-    // Also resync on browser history navigation and BFCache return.
-    window.addEventListener("toolify:share-state-change", sync);
-    window.addEventListener("popstate", sync);
-    window.addEventListener("pageshow", sync);
-    return () => {
-      window.removeEventListener("toolify:share-state-change", sync);
-      window.removeEventListener("popstate", sync);
-      window.removeEventListener("pageshow", sync);
-    };
-  }, [url, slug]); // Resync result-link visibility on locale or tool navigation.
+  // The live input state is requested only after an explicit user click.
+  // No result data is written into location, history or third-party URLs.
+  function copyResultLink() {
+    let resultLink: string | null = null;
+    window.dispatchEvent(new CustomEvent<ResultLinkRequest>(RESULT_LINK_REQUEST, {
+      detail: {
+        slug,
+        respond: (value) => { resultLink = value; },
+      },
+    }));
+    if (resultLink) void copy(resultLink, setResultCopied, "result");
+  }
 
   const enc = encodeURIComponent;
   // 埋め込みコードには、利用者が出典を確認できる視認可能なリンクを添える。
@@ -173,16 +162,14 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
         <span>{linkCopied ? t("copied") : t("copy")}</span>
       </button>
 
-      {hasResultLink && (
-        <button
-          type="button"
-          onClick={() => copy(window.location.href, setResultCopied, "result")}
-          className={btn}
-        >
-          <LinkIcon />
-          <span>{resultCopied ? t("copied") : t("copyResultLink")}</span>
-        </button>
-      )}
+      <button
+        type="button"
+        onClick={copyResultLink}
+        className={btn}
+      >
+        <LinkIcon />
+        <span>{resultCopied ? t("copied") : t("copyResultLink")}</span>
+      </button>
       {socials.map(({ name, href, Icon }) => (
         <a
           key={name}
