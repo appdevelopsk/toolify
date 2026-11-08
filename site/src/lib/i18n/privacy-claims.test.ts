@@ -29,6 +29,27 @@ describe("homepage privacy copy stays accurate in all locales", () => {
     expect(ALL_LOCALES).toHaveLength(17);
     expect(Object.keys(SHARE_NOTICE).sort()).toEqual([...ALL_LOCALES].sort());
   });
+  it("updates all eight authored privacy policies with legacy-link disclosure", () => {
+    const source = readFileSync(
+      new URL("../../app/[locale]/privacy/page.tsx", import.meta.url), "utf8"
+    );
+    const names = [
+      "PrivacyEn", "PrivacyJa", "PrivacyZhCN", "PrivacyEs",
+      "PrivacyPtBR", "PrivacyKo", "PrivacyFr", "PrivacyDe",
+    ];
+    for (const name of names) {
+      const start = source.indexOf(`function ${name}()`);
+      const next = source.indexOf("function Privacy", start + 20);
+      expect(start, `${name}: function exists`).toBeGreaterThanOrEqual(0);
+      const part = source.slice(start, next < 0 ? undefined : next);
+      expect(part, `${name}: update date`).toContain("2026-11-08");
+      expect(part, `${name}: first data section`).toContain("<h2>");
+      expect((part.match(/<p>/g) ?? []).length).toBe((part.match(/<\\/p>/g) ?? []).length);
+    }
+    expect(source).toContain("Older links using query parameters");
+    expect(source).toContain("旧形式のリンクでは初回アクセス時");
+  });
+
   for (const locale of ALL_LOCALES) {
     it(`includes a localized explanation of browser processing and result links: ${locale}`, () => {
       const file = new URL(`../../messages/${locale}.json`, import.meta.url);
