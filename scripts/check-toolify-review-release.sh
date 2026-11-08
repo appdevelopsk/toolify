@@ -14,13 +14,6 @@ if (( MAJOR < 22 )); then
   echo "[review] ERROR: Node >=22 required" >&2
   exit 2
 fi
-# Runs the no-dependency test before npm install; validates the joined branch
-# (all manual-only Actions triggers, route integrity and data-minimal GA4 URLs).
-node --experimental-strip-types --test "$ROOT/scripts/tests/toolify-review-preflight.test.mjs"
-# Existing PR41 gate checks origin/main freshness, workflow policy, VPS lock,
-# HTML/embed smoke, npm ci, unit suites, SEO/i18n/index audits and Next build.
-bash "$ROOT/scripts/check-postmerge-embed-release.sh"
-
 # Google's Enhanced Measurement may send page_views for browser history changes
 # even if our config sets send_page_view:false. It can double-count navigation
 # and collect private share-state query parameters. This is a GA4 stream setting,
@@ -46,5 +39,14 @@ if [[ "${TOOLIFY_CLARITY_URLS_REVIEWED:-}" != "confirmed" ]]; then
   echo "[review] the operator verifies the configured production behavior." >&2
   exit 5
 fi
-echo "[review] Static checks passed; GA4 and Clarity operator reviews attested."
-echo "[review] Browser/consent QA and manual deployment remain separate."
+
+# Only after both owner-side privacy checks are attested, spend resources on
+# full release checks. These attestations are NOT automatic proof of safety.
+# Runs the no-dependency test before npm install; validates the joined branch
+# (all manual-only Actions triggers, route integrity and data-minimal GA4 URLs).
+node --experimental-strip-types --test "$ROOT/scripts/tests/toolify-review-preflight.test.mjs"
+# Existing PR41 gate checks origin/main freshness, workflow policy, VPS lock,
+# HTML/embed smoke, npm ci, unit suites, SEO/i18n/index audits and Next build.
+bash "$ROOT/scripts/check-postmerge-embed-release.sh"
+echo "[review] PASS: source, dependency/build gate and owner privacy attestations."
+echo "[review] Browser/device/consent QA and manual deployment remain separate."
