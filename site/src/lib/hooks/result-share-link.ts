@@ -32,7 +32,19 @@ export function createResultShareLink(href: string, encoded: string, maxLength: 
     return null;
   }
   const url = new URL(href);
-  url.searchParams.delete("s");
+  // Never copy unrelated query parameters (?token, ?email, ?utm_*, etc.)
+  // into a user-visible result link. Only the fixed, two-key workflow
+  // context is retained so guided 3-step task navigation still works.
+  const workflow = url.searchParams.getAll("wf");
+  const step = url.searchParams.getAll("ws");
+  const validWorkflow = workflow.length === 1
+    && ["data", "writing", "shopping", "scheduling"].includes(workflow[0] ?? "");
+  const validStep = step.length === 1 && /^[1-3]$/.test(step[0] ?? "");
+  url.search = "";
+  if (validWorkflow && validStep) {
+    url.searchParams.set("wf", workflow[0]!);
+    url.searchParams.set("ws", step[0]!);
+  }
   url.hash = `s=${encoded}`;
   return url.toString();
 }
