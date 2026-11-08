@@ -3,7 +3,8 @@
 import { useEffect, type RefObject } from "react";
 import { isShareableField, isSharePayloadWithinLimit, isValidRestoredFieldValue } from "./share-input-policy";
 import {
-  RESULT_LINK_REQUEST, type ResultLinkRequest,
+  RESULT_LINK_REQUEST, RESULT_LINK_AVAILABILITY_REQUEST, RESULT_LINK_CAPABILITY_CHANGED,
+  type ResultLinkRequest, type ResultLinkAvailabilityRequest,
   clearStaleResultShareState, createResultShareLink,
   migrateLegacyShareQuery, readResultShareState,
 } from "./result-share-link";
@@ -222,6 +223,7 @@ export function useAutoShareableState(
           raf = requestAnimationFrame(() => {
             apply();
             restoring = false;
+            window.dispatchEvent(new Event(RESULT_LINK_CAPABILITY_CHANGED));
           });
         } else {
           restoring = false;
@@ -250,21 +252,39 @@ export function useAutoShareableState(
     // Never write user inputs into the page URL on each keystroke.
     // Only a direct "Copy result link" action asks for a snapshot, and the
     // returned fragment URL is copied without changing browser history.
+    const captureEncodedState = (): string | null => {
+      const current = snapshot(root);
+      if (Object.keys(current).length === 0) return null;
+      const encoded = encodeState(current);
+      return isSharePayloadWithinLimit(encoded, MAX_ENCODED) ? encoded : null;
+    };
     const onRequest = (event: Event) => {
       const detail = (event as CustomEvent<ResultLinkRequest>).detail;
       if (detail?.slug !== slug || typeof detail.respond !== "function") return;
       try {
-        const encoded = encodeState(snapshot(root));
-        detail.respond(createResultShareLink(window.location.href, encoded, MAX_ENCODED));
+        const encoded = captureEncodedState();
+        detail.respond(encoded ? createResultShareLink(window.location.href, encoded, MAX_ENCODED) : null);
       } catch {
         detail.respond(null);
       }
     };
+    const onAvailabilityRequest = (event: Event) => {
+      const detail = (event as CustomEvent<ResultLinkAvailabilityRequest>).detail;
+      if (detail?.slug !== slug || typeof detail.respond !== "function") return;
+      try {
+        detail.respond(captureEncodedState() !== null);
+      } catch {
+        detail.respond(false);
+      }
+    };
+    const notifyAvailability = () =>
+      window.dispatchEvent(new Event(RESULT_LINK_CAPABILITY_CHANGED));
 
     const onChange = () => {
       // Synthetic input after restoration can be a genuine preset change.
       // Restoration itself remains suppressed by the restoring flag.
       if (restoring) return;
+      notifyAvailability();
       const clean = clearStaleResultShareState(window.location.href);
       if (!clean) return;
       window.history.replaceState(window.history.state, "", clean);
@@ -285,12 +305,15 @@ export function useAutoShareableState(
     };
 
     window.addEventListener(RESULT_LINK_REQUEST, onRequest);
+    window.addEventListener(RESULT_LINK_AVAILABILITY_REQUEST, onAvailabilityRequest);
+    notifyAvailability();
     root.addEventListener("input", onChange);
     root.addEventListener("change", onChange);
     root.addEventListener("click", onModeClick);
     return () => {
       if (raf !== undefined) cancelAnimationFrame(raf);
       window.removeEventListener(RESULT_LINK_REQUEST, onRequest);
+      window.removeEventListener(RESULT_LINK_AVAILABILITY_REQUEST, onAvailabilityRequest);
       root.removeEventListener("input", onChange);
       root.removeEventListener("change", onChange);
       root.removeEventListener("click", onModeClick);
