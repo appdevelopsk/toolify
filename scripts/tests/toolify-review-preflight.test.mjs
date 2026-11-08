@@ -1,0 +1,100 @@
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
+import { test } from "node:test";
+import { WORKFLOWS, getWorkflowContext, getWorkflowContinuation } from "../../site/src/lib/workflows/steps.ts";
+import { sanitizePageViewUrl } from "../../site/src/lib/analytics/pageview-url.ts";
+import { verifyWorkflowPath } from "../verify-manual-deploy.mjs";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
+const source = (path) => readFileSync(join(ROOT, path), "utf8");
+
+test("12 real, distinct curated steps have exact next-step mappings", () => {
+  assert.equal(WORKFLOWS.length, 4);
+  const slugs = new Set();
+  for (const flow of WORKFLOWS) {
+    assert.equal(flow.tools.length, 3);
+    flow.tools.forEach((slug, i) => {
+      assert.match(slug, /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+      assert.equal(slugs.has(slug), false);
+      slugs.add(slug);
+      const expected = i < 2
+        ? { workflow: flow.id, nextSlug: flow.tools[i + 1], nextStep: i + 2 }
+        : undefined;
+      assert.deepEqual(getWorkflowContinuation(slug), expected);
+      assert.deepEqual(getWorkflowContext(`?wf=${flow.id}&ws=${i + 1}`, slug),
+        { workflow: flow.id, step: i + 1 });
+      assert.equal(getWorkflowContext(`?wf=${flow.id}&ws=${i + 1}`, "unknown-tool"), undefined);
+    });
+  }
+  assert.equal(slugs.size, 12);
+  assert.equal(getWorkflowContinuation("unknown-tool"), undefined);
+});
+
+test("workflow query rejects tampering and duplicates", () => {
+  const bad = [
+    "?wf=data&ws=999", "?wf=data&ws=0",
+    "?wf=data&wf=writing&ws=1", "?wf=data&ws=1&ws=2",
+    "?wf=__proto__&ws=1", "?wf=data&ws=1.0"
+  ];
+  for (const query of bad)
+    assert.equal(getWorkflowContext(query, "csv-json-converter"), undefined);
+});
+
+test("GA4 page identity excludes query and hash but retains the locale route", () => {
+  assert.deepEqual(sanitizePageViewUrl(
+    "https://toolify365.com/ja/tools/word-counter?wf=writing&ws=1&s=private-input#result"
+  ), {
+    page_path: "/ja/tools/word-counter",
+    page_location: "https://toolify365.com/ja/tools/word-counter"
+  });
+  assert.deepEqual(sanitizePageViewUrl("http://localhost:3000/ar?x=1"), {
+    page_path: "/ar",
+    page_location: "http://localhost:3000/ar"
+  });
+});
+
+test("all GitHub Actions workflows are manual-only", () => {
+  const count = verifyWorkflowPath(join(ROOT, ".github/workflows"));
+  assert.ok(count >= 3);
+});
+
+test("new guide is noindex and not exposed in sitemap", () => {
+  const guide = source("site/src/app/[locale]/workflows/page.tsx");
+  const sitemap = source("site/src/app/sitemap.ts");
+  assert.match(guide, /noindex:\s*true/);
+  assert.doesNotMatch(sitemap, /["']\\/workflows["']/);
+  assert.match(guide, /getTool\(slug\)/);
+});
+
+test("both navigation routes and real-human interaction guards exist", () => {
+  const header = source("site/src/components/layout/Header.tsx");
+  const menu = source("site/src/components/layout/MobileMenu.tsx");
+  const link = source("site/src/components/workflows/WorkflowToolLink.tsx");
+  const input = source("site/src/components/tools/ToolInteractionTracker.tsx");
+  assert.match(header, /workflowNav=\{workflow\.nav\}/);
+  assert.match(menu, /workflowNav:\s*string/);
+  assert.doesNotMatch(menu, /workflowCopy/);
+  assert.match(link, /nativeEvent\.isTrusted/);
+  assert.match(input, /!e\.isTrusted/);
+  assert.match(input, /getWorkflowContext/);
+});
+
+test("GA4 initialization, pageviews and custom events use sanitized page URLs", () => {
+  const init = source("site/src/lib/analytics/gtag.tsx");
+  const page = source("site/src/lib/analytics/pageview.tsx");
+  const events = source("site/src/lib/analytics/events.ts");
+  assert.match(init, /window\.location\.origin \+ window\.location\.pathname/);
+  assert.match(page, /sanitizePageViewUrl\(window\.location\.href\)/);
+  assert.doesNotMatch(page, /useSearchParams/);
+  assert.match(events, /sanitizePageViewUrl\(window\.location\.href\)/);
+  assert.doesNotMatch(page, /page_location:\s*window\.location\.href/);
+});
+
+test("manual release gate is locked to reviewed branch and production origin", () => {
+  const gate = source("scripts/check-postmerge-embed-release.sh");
+  assert.match(gate, /review\\/toolify-growth-manual-release-20261108/);
+  assert.match(gate, /NEXT_PUBLIC_SITE_URL="https:\\/\\/toolify365.com"/);
+  assert.match(gate, /verify-manual-deploy.mjs/);
+});
