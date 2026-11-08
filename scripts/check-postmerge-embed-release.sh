@@ -2,12 +2,16 @@
 # Release gate for post-merge PR #41. No GitHub Actions, merge or deploy.
 set -Eeuo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-EXPECTED_BRANCH="fix/toolify-postmerge-embed-safety-20261107"
+# Explicitly reviewed branches only. This integrated review candidate includes
+# the PR41 manual-only workflow policy plus the Toolify growth/privacy patches.
 ACTUAL_BRANCH="$(git -C "$ROOT" branch --show-current)"
-if [[ "$ACTUAL_BRANCH" != "$EXPECTED_BRANCH" ]]; then
-  echo "[postmerge] ERROR: expected $EXPECTED_BRANCH, found ${ACTUAL_BRANCH:-detached}" >&2
-  exit 2
-fi
+case "$ACTUAL_BRANCH" in
+  fix/toolify-postmerge-embed-safety-20261107|review/toolify-growth-manual-release-20261108) ;;
+  *)
+    echo "[postmerge] ERROR: unsupported release-check branch: ${ACTUAL_BRANCH:-detached}" >&2
+    exit 2
+    ;;
+esac
 # Fetch the remote-tracking ref we actually verify, instead of trusting an old local ref.
 git -C "$ROOT" fetch --no-tags origin main:refs/remotes/origin/main
 if ! git -C "$ROOT" merge-base --is-ancestor refs/remotes/origin/main HEAD; then
