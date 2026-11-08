@@ -15,7 +15,7 @@ A new **guided workflows** prototype connects these existing tools into four thr
 
 ### Privacy and measurement
 
-The site uses privacy-aware GA4/consent handling and may offer result-sharing URLs. In-progress code changes ensure GA4 receives path-only page URLs, not user-entered share-state query parameters. Do not assume branch-only changes are live until the verified release SHA is published.
+The site uses GA4 consent handling and optional result sharing. The **review-only** implementation does not place tool inputs in the browser URL as a user types. The “Copy result link” action generates a fragment-based `#s=` URL, while older `?s=` links still restore. Fragments are not sent in HTTP requests, but other browser scripts and recipients can still read them; never share secrets. GA4 sends path-only page URLs. Clarity is disabled by default unless its privacy review is explicitly approved. These changes are **not deployed** until the verified manual release completes.
 
 ### Developer overview
 
