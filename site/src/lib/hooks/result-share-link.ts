@@ -39,7 +39,8 @@ export function migrateLegacyShareQuery(href: string): string | null {
   const raw = url.searchParams.get("s");
   if (raw === null) return null;
   url.searchParams.delete("s");
-  if (!url.hash.startsWith("#s=") && raw.length > 0) url.hash = `s=${raw}`;
+  // Never carry arbitrary invalid query values into a new shared fragment.
+  if (!url.hash.startsWith("#s=") && /^[\\w-]+$/.test(raw)) url.hash = `s=${raw}`;
   return url.toString();
 }
 
