@@ -205,3 +205,20 @@ bash scripts/check-toolify-review-release.sh
 ```
 
 Keep status **NO-GO** until `npm ci`, all tests, production Next build, actual desktop/mobile/RTL sessions, GA4 DebugView, the Clarity query safety review, manual production release approval and live SHA/smoke checks pass. No bot-adjusted traffic or revenue uplift has been demonstrated.
+
+
+### 2026-11-08 20:05 JST — Further data minimization and executed release-gate regression
+
+- GA4 `affiliate_click.link_url` now contains **only the external destination origin and pathname**, not full affiliate query tokens, click IDs or fragments. The actual clickable affiliate link and campaign/tracking destination remain **unchanged**, as do `offer_id` and `network` attribution fields.
+- The document-level affiliate click tracker ignores **untrusted/synthetic** browser events (limited noise reduction, not a reliable method to identify all bots). Added Vitest and native preflight checks.
+- Extended `pageview-url.ts` with `sanitizeOutboundLinkUrl` and tests for valid HTTPS destinations, query stripping, relative URLs, JavaScript/data URLs and invalid inputs.
+- Recreated the **exact current GitHub blob** `pageview-url.ts` (SHA **89fcd61cd0aaba1f14a997d50fbe6c47424b1837**) and `pageview-once.ts` (SHA **42b1185f9895a5876dbb3fb4af9ad5a0cbcae5a7**) in a local Node 22/TypeScript workspace. Both `git hash-object` results matched their corresponding GitHub SHA.
+- Executed TypeScript `--strict --noUncheckedIndexedAccess` and actual Node assertions: **18/18** for pageview/referrer/once-only behavior plus **6/6** for affiliate destination URL scrubbing. This does not imply full-site typecheck or an observed production conversion.
+- Extracted and executed the current GA4 bootstrap inline script from the reviewed GitHub file using a controlled V8 browser/URL shim. **7/7 checks passed**: consent defaults before config, `send_page_view:false`, clean `page_location`, external origin-only and same-site query-free referrer, and readiness signal after config.
+- Reordered `scripts/check-toolify-review-release.sh` so owner-only GA4/Clarity attestations are validated **before** the potentially expensive preflight / `npm ci` / Next.js build. The script never merges, deploys, or triggers Actions.
+- Reproduced the exact new release-gate GitHub blob (SHA **aa5ec3ea5a85d32bcb415742ff4e447c88378c99**) locally. `bash -n` **PASS**. In an isolated temporary Git repository with the expected review branch, executed the actual shell twice: no flags → **exit 4** (GA4 NO-GO); GA4 attested but Clarity missing → **exit 5** (Clarity NO-GO). Both rejection messages were confirmed. This was deliberately not a complete build or production deploy.
+- On the public site as of 2026-11-08, the homepage still displays 223 existing tools and **does not yet expose the new workflow pilot**. A live postdeployment smoke test remains pending.
+
+**Remaining privacy risk:** Clarity's `data-clarity-mask` controls DOM recordings, **not** share URL query state. Microsoft states that support-assisted query masking does not apply to referrers or clicked URLs. This must be reviewed by the owner; if safety cannot be confirmed, keep Clarity disabled. The impact.com tag and any other external script's access to `?s=` also remain unverified.
+
+**Final state:** Review branch only; NO-GO without real GA4+Clarity owner configuration, full Next build/Vitest, RTL/mobile/device QA, approval and owner manual deployment. Do not attribute increased traffic/engagement/revenue to unpublished code.
