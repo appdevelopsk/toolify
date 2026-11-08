@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
-import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasSitemapLocation } from './growth-html-checks.mjs';
+import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasSitemapLocation, hasWorkflowStepAnchor, hasWorkflowGuideAnchor } from './growth-html-checks.mjs';
 
 test('robots and googlebot directives independent of attribute order', () => {
   assert.equal(hasNoindex('<meta name="robots" content="noindex,follow">'), true);
@@ -68,4 +68,29 @@ test('SEO and CTA checks require real attribute names, never lookalike data-*', 
   assert.equal(hasSoftwareAnchor('<a href="/wrong" data-href="/en/software/json-studio">Open</a>', 'json-studio', 'en'), false);
   assert.equal(hasSoftwareAnchor('<a data-note="href=/en/software/json-studio" href="/wrong">Open</a>', 'json-studio', 'en'), false);
   assert.equal(hasSoftwareAnchor('<a data-href="/wrong" href="/en/software/json-studio">Open</a>', 'json-studio', 'en'), true);
+});
+
+
+test('guided link validation requires exact rendered destinations and fixed query keys', () => {
+  const target = { locale: 'en', slug: 'json-formatter', workflow: 'data', step: 2 };
+  assert.equal(hasWorkflowStepAnchor('<a href="/en/tools/json-formatter?wf=data&amp;ws=2">Open</a>', target), true);
+  assert.equal(hasWorkflowStepAnchor('<a href="/en/tools/json-formatter?wf=data&ws=2&s=private">Open</a>', target), false);
+  assert.equal(hasWorkflowStepAnchor('<a href="/en/tools/json-formatter?wf=data&ws=2&wf=data">Open</a>', target), false);
+  assert.equal(hasWorkflowStepAnchor('<a href="/en/tools/json-formatter?wf=data&ws=2&ws=2">Open</a>', target), false);
+  assert.equal(hasWorkflowStepAnchor('<a href="/en/tools/json-formatter?wf=writing&ws=2">Open</a>', target), false);
+  assert.equal(hasWorkflowStepAnchor('<a href="/en/tools/json-formatter?wf=data&ws=3">Open</a>', target), false);
+  assert.equal(hasWorkflowStepAnchor('<a href="https://outside.example/en/tools/json-formatter?wf=data&ws=2">Open</a>', target), false);
+  assert.equal(hasWorkflowStepAnchor('<a data-href="/en/tools/json-formatter?wf=data&ws=2">Open</a>', target), false);
+  assert.equal(hasWorkflowStepAnchor('<script>const html = \x60<a href="/en/tools/json-formatter?wf=data&ws=2">Open</a>\x60</script>', target), false);
+  assert.equal(hasWorkflowStepAnchor('<!-- <a href="/en/tools/json-formatter?wf=data&ws=2">Open</a> -->', target), false);
+});
+
+test('terminal guide return links must match locale, fragment and same origin', () => {
+  const target = { locale: 'ja', workflow: 'scheduling' };
+  assert.equal(hasWorkflowGuideAnchor('<a href="/ja/workflows#scheduling">More</a>', target), true);
+  assert.equal(hasWorkflowGuideAnchor('<a href="/en/workflows#scheduling">More</a>', target), false);
+  assert.equal(hasWorkflowGuideAnchor('<a href="/ja/workflows#shopping">More</a>', target), false);
+  assert.equal(hasWorkflowGuideAnchor('<a href="/ja/workflows?s=private#scheduling">More</a>', target), false);
+  assert.equal(hasWorkflowGuideAnchor('<a data-href="/ja/workflows#scheduling">More</a>', target), false);
+  assert.equal(hasWorkflowGuideAnchor('<!-- <a href="/ja/workflows#scheduling">More</a> -->', target), false);
 });
