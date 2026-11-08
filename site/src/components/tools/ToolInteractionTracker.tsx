@@ -159,7 +159,9 @@ export function ToolInteractionTracker({
 
   useAutoShareableState(ref, slug, shareable);
 
-  return <div ref={ref}>{children}</div>;
+  // Clarity replay must never expose user-entered tool inputs or computed results.
+  // The mask applies to all descendant DOM content in every existing tool.
+  return <div ref={ref} data-clarity-mask="true">{children}</div>;
 }
 
 /** 入力が止まったとみなすまでの待ち時間(data-calc-label を持つツールのみ)。 */
