@@ -280,12 +280,22 @@ export function useAutoShareableState(
     };
     const notifyAvailability = () =>
       window.dispatchEvent(new Event(RESULT_LINK_CAPABILITY_CHANGED));
+    // Two responsive ShareBars may be mounted; do not re-encode the entire
+    // form twice per keystroke. At most one capability probe per paint.
+    let availabilityFrame: number | undefined;
+    const scheduleAvailability = () => {
+      if (availabilityFrame !== undefined) return;
+      availabilityFrame = requestAnimationFrame(() => {
+        availabilityFrame = undefined;
+        notifyAvailability();
+      });
+    };
 
     const onChange = () => {
       // Synthetic input after restoration can be a genuine preset change.
       // Restoration itself remains suppressed by the restoring flag.
       if (restoring) return;
-      notifyAvailability();
+      scheduleAvailability();
       const clean = clearStaleResultShareState(window.location.href);
       if (!clean) return;
       window.history.replaceState(window.history.state, "", clean);
@@ -295,20 +305,15 @@ export function useAutoShareableState(
     // Multi-button tool modes may update React state without emitting
     // input/change. Invalidate a previously restored result on a real mode
     // selection, but never on synthetic replay during hydration.
-    let availabilityFrame: number | undefined;
     const onModeClick = (event: MouseEvent) => {
       if (restoring || !event.isTrusted) return;
       const target = event.target;
       if (!(target instanceof Element)) return;
       const button = target.closest("button");
       if (button instanceof HTMLButtonElement && root.contains(button) && isModeButton(button)) {
+        // Notification is already scheduled for the next paint in onChange,
+        // after React can commit mode-specific fields.
         onChange();
-        // Dynamic input controls may appear only after React commits the mode.
-        if (availabilityFrame !== undefined) cancelAnimationFrame(availabilityFrame);
-        availabilityFrame = requestAnimationFrame(() => {
-          availabilityFrame = undefined;
-          notifyAvailability();
-        });
       }
     };
 
