@@ -54,6 +54,10 @@ export function useShareableState<T extends object>(
   const [restored, setRestored] = useState(false);
   const restoreRef = useRef(restore);
   restoreRef.current = restore;
+  // A restored shared state should not count as a user edit. Match the
+  // expected serialized value, not merely the next render (which could be
+  // a genuine edit if a tool ignores some restored fields).
+  const restoredExpectedSerialized = useRef<string | null>(null);
 
   useEffect(() => {
     try {
@@ -61,6 +65,7 @@ export function useShareableState<T extends object>(
       if (raw) {
         const parsed = decodeState(raw);
         if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+          restoredExpectedSerialized.current = JSON.stringify(parsed);
           restoreRef.current(parsed as T);
           setRestored(true);
         }
@@ -102,6 +107,10 @@ export function useShareableState<T extends object>(
   useEffect(() => {
     const prev = prevRef.current;
     prevRef.current = serialized;
+    if (restoredExpectedSerialized.current === serialized) {
+      restoredExpectedSerialized.current = null;
+      return;
+    }
     if (prev === null || prev === serialized) return;
     // A restored link becomes stale after the underlying inputs change.
     // Never put the next value in browser history automatically.
