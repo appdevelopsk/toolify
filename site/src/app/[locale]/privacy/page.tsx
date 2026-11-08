@@ -38,8 +38,7 @@ function PrivacyEn() {
       </p>
       <h2>Cookies and analytics</h2>
       <p>
-        We use Google Analytics 4 to understand which tools are used and how visitors arrive at the site. Analytics
-        cookies are only set if you grant consent through our cookie banner. We use IP anonymization.
+        We use Google Analytics 4 to understand traffic and tool usage. Our current configuration defaults analytics storage to denied in the EEA, UK and Switzerland, while it may be granted by default in other regions. Advertising and affiliate tags may also operate on the site. Our analytics events are designed to omit tool input values.
       </p>
       <h2>Advertising</h2>
       <p>
@@ -94,7 +93,7 @@ function PrivacyJa() {
       </p>
       <h2>Cookieとアクセス解析</h2>
       <p>
-        どのツールがよく使われているか、どこから来訪したかを把握するため Google Analytics 4 を利用します。解析用Cookieは、画面下部の同意バナーで許可いただいた場合のみ有効化されます。IPアドレスは匿名化されています。
+        アクセス状況やツールの利用状況を把握するため Google Analytics 4 を利用しています。現行設定ではEEA・英国・スイスの解析ストレージは初期状態で拒否され、それ以外の地域では初期状態で許可される場合があります。広告・アフィリエイトのタグも利用しています。解析イベントにはツールの入力値を含めない設計です。
       </p>
       <h2>広告について</h2>
       <p>
@@ -146,7 +145,7 @@ function PrivacyZhCN() {
       </p>
       <h2>Cookie 与数据分析</h2>
       <p>
-        我们使用 Google Analytics 4 了解哪些工具最受欢迎以及访客的来源。仅在您通过 Cookie 横幅授予同意后，才会设置分析 Cookie。我们对 IP 地址进行匿名化处理。
+        我们使用 Google Analytics 4 了解流量和工具使用情况。当前设置在欧洲经济区、英国和瑞士默认拒绝分析存储，在其他地区可能默认允许。网站还可能使用广告和联盟营销标签。分析事件的设计旨在避免包含工具输入值。
       </p>
       <h2>广告</h2>
       <p>
@@ -197,7 +196,7 @@ function PrivacyEs() {
       </p>
       <h2>Cookies y analítica</h2>
       <p>
-        Usamos Google Analytics 4 para entender qué herramientas se utilizan y cómo llegan los visitantes al sitio. Las cookies de analítica solo se establecen si otorgas tu consentimiento a través de nuestro banner de cookies. Usamos anonimización de IP.
+        Usamos Google Analytics 4 para analizar el tráfico y el uso de las herramientas. La configuración actual deniega por defecto el almacenamiento analítico en el EEE, Reino Unido y Suiza, y puede permitirlo por defecto en otras regiones. También pueden operar etiquetas publicitarias y de afiliación. Los eventos de analítica están diseñados para excluir los datos introducidos en las herramientas.
       </p>
       <h2>Publicidad</h2>
       <p>
@@ -245,7 +244,7 @@ function PrivacyPtBR() {
       </p>
       <h2>Cookies e análise</h2>
       <p>
-        Usamos o Google Analytics 4 para entender quais ferramentas são usadas e como os visitantes chegam ao site. Cookies de análise só são definidos se você conceder consentimento por meio do nosso banner de cookies. Usamos anonimização de IP.
+        Usamos o Google Analytics 4 para compreender o tráfego e o uso das ferramentas. A configuração atual nega por padrão o armazenamento analítico no EEE, Reino Unido e Suíça, mas pode permiti-lo por padrão em outras regiões. Tags de publicidade e afiliados também podem operar no site. Os eventos de análise são projetados para não incluir os valores inseridos nas ferramentas.
       </p>
       <h2>Publicidade</h2>
       <p>
@@ -293,7 +292,7 @@ function PrivacyKo() {
       </p>
       <h2>쿠키 및 분석</h2>
       <p>
-        당사는 Google Analytics 4를 통해 어떤 도구가 이용되는지, 방문자가 어떻게 사이트에 도달하는지 파악합니다. 분석 쿠키는 쿠키 배너에서 동의를 허용한 경우에만 설정됩니다. IP 익명화를 사용합니다.
+        Google Analytics 4를 사용하여 방문 및 도구 이용 현황을 파악합니다. 현재 설정은 EEA, 영국 및 스위스에서 분석 저장을 기본적으로 거부하지만 다른 지역에서는 기본 허용될 수 있습니다. 광고 및 제휴 태그도 사용될 수 있습니다. 분석 이벤트에는 도구 입력값이 포함되지 않도록 설계되어 있습니다.
       </p>
       <h2>광고</h2>
       <p>
@@ -341,7 +340,7 @@ function PrivacyFr() {
       </p>
       <h2>Cookies et analyse</h2>
       <p>
-        Nous utilisons Google Analytics 4 pour comprendre quels outils sont utilisés et comment les visiteurs arrivent sur le site. Les cookies d&apos;analyse ne sont placés que si vous donnez votre consentement via notre bandeau cookie. Nous utilisons l&apos;anonymisation des adresses IP.
+        Nous utilisons Google Analytics 4 pour comprendre le trafic et l'utilisation des outils. La configuration actuelle refuse par défaut le stockage analytique dans l'EEE, au Royaume-Uni et en Suisse, mais peut l'autoriser par défaut ailleurs. Des balises publicitaires et d'affiliation peuvent aussi fonctionner sur le site. Les événements d'analyse sont conçus pour exclure les valeurs saisies dans les outils.
       </p>
       <h2>Publicité</h2>
       <p>
@@ -389,7 +388,7 @@ function PrivacyDe() {
       </p>
       <h2>Cookies und Analyse</h2>
       <p>
-        Wir nutzen Google Analytics 4, um zu verstehen, welche Werkzeuge verwendet werden und wie Besucher auf die Website gelangen. Analyse-Cookies werden nur gesetzt, wenn Sie über unser Cookie-Banner einwilligen. Wir verwenden IP-Anonymisierung.
+        Wir verwenden Google Analytics 4 zur Analyse von Zugriffen und Werkzeugnutzung. Die aktuelle Konfiguration verweigert Analysespeicherung im EWR, im Vereinigten Königreich und in der Schweiz standardmäßig; in anderen Regionen kann sie standardmäßig erlaubt sein. Werbe- und Affiliate-Tags können ebenfalls verwendet werden. Analyseereignisse sollen keine Werkzeugeingaben enthalten.
       </p>
       <h2>Werbung</h2>
       <p>
