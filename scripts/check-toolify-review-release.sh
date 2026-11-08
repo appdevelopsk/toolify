@@ -33,4 +33,18 @@ if [[ "${TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED:-}" != "confirmed" ]]; then
   echo "[review] verifying the stream setting. No automated deployment performed." >&2
   exit 4
 fi
-echo "[review] Static checks passed; GA4 owner setting attested. Browser/consent and deployment remain manual."
+# Clarity element masking does not mask captured URLs. A ?s= share state can
+# appear in page/referrer/clicked URLs; Microsoft requires a separate support
+# request for query masking, which does not cover referrer/clicked URLs.
+# The owner must review the remaining risk or disable Clarity before release.
+if [[ "${TOOLIFY_CLARITY_URLS_REVIEWED:-}" != "confirmed" ]]; then
+  echo "[review] NO-GO: Clarity may capture ?s= tool inputs in recorded URLs." >&2
+  echo "[review] DOM data-clarity-mask protects content, not URLs." >&2
+  echo "[review] Confirm Clarity is disabled, or review s-parameter masking" >&2
+  echo "[review] with Microsoft and remaining referrer/click URL capture." >&2
+  echo "[review] Set TOOLIFY_CLARITY_URLS_REVIEWED=confirmed only after" >&2
+  echo "[review] the operator verifies the configured production behavior." >&2
+  exit 5
+fi
+echo "[review] Static checks passed; GA4 and Clarity operator reviews attested."
+echo "[review] Browser/consent QA and manual deployment remain separate."
