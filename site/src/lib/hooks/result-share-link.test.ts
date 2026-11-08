@@ -19,6 +19,33 @@ describe("privacy-first on-demand tool result links", () => {
     expect(url.hash).toBe("#s=YWJjLTEyMw");
   });
 
+  it("never copies unrelated URL query data into a result link", () => {
+    const link = createResultShareLink(
+      "https://toolify365.com/en/tools/word-counter?token=SECRET&email=user%40example.com&utm_campaign=private&wf=data&ws=1&s=OLD#old",
+      "YWJj", 1800
+    );
+    expect(link).toBe("https://toolify365.com/en/tools/word-counter?wf=data&ws=1#s=YWJj");
+    expect(link).not.toContain("SECRET");
+    expect(link).not.toContain("user%40example.com");
+    expect(link).not.toContain("campaign");
+  });
+
+  it("drops malformed or repeated workflow parameters entirely", () => {
+    const cases = [
+      "?wf=data&ws=4",
+      "?wf=__proto__&ws=1",
+      "?wf=data&wf=writing&ws=1",
+      "?wf=data&ws=1&ws=2",
+      "?wf=data",
+      "?ws=1",
+      "?token=PRIVATE",
+    ];
+    for (const search of cases) {
+      const link = createResultShareLink("https://toolify365.com/ja/tools/bmi" + search, "YWJj", 1800);
+      expect(link).toBe("https://toolify365.com/ja/tools/bmi#s=YWJj");
+    }
+  });
+
   it("refuses absent, oversized and invalid payloads", () => {
     for (const payload of ["", "abc+", "a/=", "a b", "x".repeat(5)]) {
       expect(createResultShareLink("https://toolify365.com/en", payload, 4)).toBeNull();
