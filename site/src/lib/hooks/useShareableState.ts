@@ -1,21 +1,23 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import {
+  RESULT_LINK_REQUEST, type ResultLinkRequest,
+  clearStaleResultShareState, createResultShareLink,
+  migrateLegacyShareQuery, readResultShareState,
+} from "./result-share-link";
 
 /**
- * ツールの入力値を URL のクエリ (?s=...) に載せ、計算結果ごと共有・ブックマークできるようにする。
+ * 明示的な「結果リンクをコピー」で現在値を #s= フラグメントにエンコードする。
  *
  * useLocalDraft と同じ (slug, value, restore) 契約。違いは保存先だけで、
  * localStorage ではなく現在の URL を書き換える。
  *
  * - 復元はマウント時に一度だけ。?s= が無ければ何もしない（既定値のまま）。
- * - 書き込みは history.replaceState。pushState にすると入力1文字ごとに
- *   履歴が積まれて「戻る」が壊れるため使わない。
- * - 初期レンダーでは書かない（useLocalDraft と同様 prevRef ガード）。
- *   これにより「素の /tools/bmi-calculator」が勝手に ?s= 付き URL に変わらない。
- * - 注意: ?s= は入力時にブラウザーのURLを更新する。URLは共有時だけでなく
- *   履歴、アクセスログ、Referrerなどを通じて外部に伝わる可能性がある。
- *   個人情報や機密値をこのフックの状態に含めないこと。
+ * - 入力中はURLを書き換えない。既存 ?s= は引き続き復元し、
+ *   復元後に #s= へ移動するため、以降のHTTPリクエストには含まれない。
+ * - フラグメントは外部JavaScriptから閲覧可能なため、機密情報の共有は
+ *   禁止。初期状態への復元とユーザー操作を区別して処理する。
  */
 
 const MAX_SHARED_STATE_LENGTH = 4096;
@@ -55,7 +57,7 @@ export function useShareableState<T extends object>(
 
   useEffect(() => {
     try {
-      const raw = new URLSearchParams(window.location.search).get("s");
+      const raw = readResultShareState(window.location.href);
       if (!raw) return;
       const parsed = decodeState(raw);
       if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
@@ -65,34 +67,47 @@ export function useShareableState<T extends object>(
     } catch {
       /* 壊れた ?s= は無視して既定値のまま動かす */
     }
-    // toolSlug はキーではないが、ツールが切り替わったら読み直すため依存に置く。
+    // Old ?s= URLs remain readable, but are relocated after hydration.
+    const legacy = new URL(window.location.href).searchParams.get("s");
+    if (legacy !== null) {
+      const migrated = legacy.length > 0 && legacy.length <= MAX_SHARED_STATE_LENGTH
+        ? migrateLegacyShareQuery(window.location.href)
+        : clearStaleResultShareState(window.location.href);
+      if (migrated) {
+        window.history.replaceState(window.history.state, "", migrated);
+        window.dispatchEvent(new Event("toolify:share-state-change"));
+      }
+    }
+
+    const onRequest = (event: Event) => {
+      const detail = (event as CustomEvent<ResultLinkRequest>).detail;
+      if (detail?.slug !== toolSlug || typeof detail.respond !== "function") return;
+      try {
+        const encoded = encodeState(JSON.parse(currentSerialized.current) as object);
+        detail.respond(createResultShareLink(window.location.href, encoded, MAX_SHARED_STATE_LENGTH));
+      } catch {
+        detail.respond(null);
+      }
+    };
+    window.addEventListener(RESULT_LINK_REQUEST, onRequest);
+    return () => window.removeEventListener(RESULT_LINK_REQUEST, onRequest);
+    // Re-register only when the tool slug changes.
   }, [toolSlug]);
 
   const serialized = JSON.stringify(value);
+  const currentSerialized = useRef(serialized);
+  currentSerialized.current = serialized;
   const prevRef = useRef<string | null>(null);
   useEffect(() => {
     const prev = prevRef.current;
     prevRef.current = serialized;
     if (prev === null || prev === serialized) return;
-    try {
-      const encoded = encodeState(JSON.parse(serialized) as object);
-      if (encoded.length > MAX_SHARED_STATE_LENGTH) {
-        // Do not let a stale result link represent a newer, unshareable value.
-        const stale = new URL(window.location.href);
-        if (stale.searchParams.has("s")) {
-          stale.searchParams.delete("s");
-          window.history.replaceState(window.history.state, "", stale.toString());
-          window.dispatchEvent(new Event("toolify:share-state-change"));
-        }
-        return;
-      }
-      const url = new URL(window.location.href);
-      url.searchParams.set("s", encoded);
-      window.history.replaceState(window.history.state, "", url.toString());
-      window.dispatchEvent(new Event("toolify:share-state-change"));
-    } catch {
-      /* URL が長すぎる等 — 共有できないだけで計算は続行 */
-    }
+    // A restored link becomes stale after the underlying inputs change.
+    // Never put the next value in browser history automatically.
+    const clean = clearStaleResultShareState(window.location.href);
+    if (!clean) return;
+    window.history.replaceState(window.history.state, "", clean);
+    window.dispatchEvent(new Event("toolify:share-state-change"));
   }, [serialized]);
 
   return { restored };
