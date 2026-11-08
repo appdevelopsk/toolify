@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { createPageViewSender } from "./pageview-once";
 import { siteConfig } from "@/lib/config";
@@ -18,6 +18,8 @@ declare global {
  */
 export function PageViewTracker() {
   const pathname = usePathname();
+  // Current mounted navigation may need its previous same-site page as referrer.
+  const lastSentLocation = useRef<string | null>(null);
 
   useEffect(() => {
     if (!siteConfig.analytics.gaId) return;
@@ -27,9 +29,13 @@ export function PageViewTracker() {
       return {
         ready: window.__toolifyGtagReady === true,
         href: window.location.href,
+        referrer: lastSentLocation.current ?? document.referrer,
         title: document.title,
         emit: typeof gtag === "function"
-          ? (payload) => gtag("event", "page_view", payload)
+          ? (payload) => {
+            gtag("event", "page_view", payload);
+            lastSentLocation.current = payload.page_location;
+          }
           : undefined,
       };
     });
