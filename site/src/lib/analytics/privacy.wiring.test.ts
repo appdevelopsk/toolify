@@ -48,6 +48,16 @@ describe("tool input and browser event privacy", () => {
     expect(urls).toContain("export function sanitizePageReferrer(");
   });
 
+  it("keeps affiliate analytics source-safe and ignores synthetic clicks", () => {
+    const events = text("./events.ts");
+    const tracker = text("./affiliate-click.tsx");
+    const urls = text("./pageview-url.ts");
+    expect(events).toContain("link_url: sanitizeOutboundLinkUrl(p.link_url)");
+    expect(urls).toContain("export function sanitizeOutboundLinkUrl(");
+    expect(tracker).toContain("if (!e.isTrusted) return");
+    expect(tracker).toContain("a[data-offer-id]");
+  });
+
   it("masks browser-local tool and software content from Clarity recordings", () => {
     const tracker = text("../../components/tools/ToolInteractionTracker.tsx");
     const software = text("../../components/software/SoftwareWorkbench.tsx");
