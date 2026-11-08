@@ -2,6 +2,11 @@
 
 import { useEffect, type RefObject } from "react";
 import { isShareableField, isSharePayloadWithinLimit, isValidRestoredFieldValue } from "./share-input-policy";
+import {
+  RESULT_LINK_REQUEST, type ResultLinkRequest,
+  clearStaleResultShareState, createResultShareLink,
+  migrateLegacyShareQuery, readResultShareState,
+} from "./result-share-link";
 
 /**
  * ツール本体の DOM 入力を丸ごと ?s= に載せ、共有リンクから復元する。
@@ -33,9 +38,9 @@ import { isShareableField, isSharePayloadWithinLimit, isValidRestoredFieldValue 
  * 規約が当てはまらないツールでは `b` が空になり、従来通り入力値だけが復元される
  * (モードは既定のまま = 壊れるのではなく、共有範囲が狭まるだけ)。
  *
- * URLクエリは入力中も更新され、履歴・アクセスログ・Referrer等を通して
- * 他者に渡る可能性がある。機密入力は fields() で除外するが、残る自由入力は
- * 非機密と保証できないため、利用ツールごとに別途プライバシー確認が必要。
+ * 入力中の状態はURLに書き込まない。結果リンクを明示的にコピーする時だけ
+ * ハッシュフラグメントに含める。フラグメントも外部JSから参照できるため
+ * 機密情報を共有しないよう利用者に注意が必要。
  */
 
 /** 選択中を表す配色クラス。ToolFrame 配下のツール本体に限って探す。 */
@@ -179,7 +184,7 @@ export function useAutoShareableState(
     let restoring = true;
     let raf: number | undefined;
     try {
-      const raw = new URLSearchParams(window.location.search).get("s");
+      const raw = readResultShareState(window.location.href);
       if (raw) {
         const parsed = decodeState(raw);
         if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
@@ -228,40 +233,48 @@ export function useAutoShareableState(
       restoring = false; // 壊れた ?s= は無視して既定値のまま動かす
     }
 
-    // --- 記録 ---
-    // 入力のたびに URL を書く。replaceState なので「戻る」は壊れない。
-    let timer: number | undefined;
-    const onChange = () => {
-      if (restoring) return; // 復元由来の合成イベントで URL を書かない
-      window.clearTimeout(timer);
-      timer = window.setTimeout(() => {
-        try {
-          const encoded = encodeState(snapshot(root));
-          if (!isSharePayloadWithinLimit(encoded, MAX_ENCODED)) {
-            // Do not retain a previously generated, now-stale shared result URL.
-            const stale = new URL(window.location.href);
-            if (stale.searchParams.has("s")) {
-              stale.searchParams.delete("s");
-              window.history.replaceState(window.history.state, "", stale.toString());
-              window.dispatchEvent(new Event("toolify:share-state-change"));
-            }
-            return;
-          }
-          const url = new URL(window.location.href);
-          url.searchParams.set("s", encoded);
-          window.history.replaceState(window.history.state, "", url.toString());
-          window.dispatchEvent(new Event("toolify:share-state-change"));
-        } catch {
-          /* 共有できないだけで計算は続行 */
-        }
-      }, 250);
+    // Incoming legacy ?s= links can still restore; after hydration their state
+    // moves into a URL fragment so subsequent HTTP navigation/referrers omit it.
+    const incoming = new URL(window.location.href);
+    if (incoming.searchParams.has("s")) {
+      const legacy = incoming.searchParams.get("s");
+      const safe = legacy && isSharePayloadWithinLimit(legacy, MAX_ENCODED)
+        ? migrateLegacyShareQuery(window.location.href)
+        : clearStaleResultShareState(window.location.href);
+      if (safe) {
+        window.history.replaceState(window.history.state, "", safe);
+        window.dispatchEvent(new Event("toolify:share-state-change"));
+      }
+    }
+
+    // Never write user inputs into the page URL on each keystroke.
+    // Only a direct "Copy result link" action asks for a snapshot, and the
+    // returned fragment URL is copied without changing browser history.
+    const onRequest = (event: Event) => {
+      const detail = (event as CustomEvent<ResultLinkRequest>).detail;
+      if (detail?.slug !== slug || typeof detail.respond !== "function") return;
+      try {
+        const encoded = encodeState(snapshot(root));
+        detail.respond(createResultShareLink(window.location.href, encoded, MAX_ENCODED));
+      } catch {
+        detail.respond(null);
+      }
     };
 
+    const onChange = (event: Event) => {
+      if (restoring || !event.isTrusted) return;
+      const clean = clearStaleResultShareState(window.location.href);
+      if (!clean) return;
+      window.history.replaceState(window.history.state, "", clean);
+      window.dispatchEvent(new Event("toolify:share-state-change"));
+    };
+
+    window.addEventListener(RESULT_LINK_REQUEST, onRequest);
     root.addEventListener("input", onChange);
     root.addEventListener("change", onChange);
     return () => {
       if (raf !== undefined) cancelAnimationFrame(raf);
-      window.clearTimeout(timer);
+      window.removeEventListener(RESULT_LINK_REQUEST, onRequest);
       root.removeEventListener("input", onChange);
       root.removeEventListener("change", onChange);
     };
