@@ -59,7 +59,8 @@ function PrivacyEn() {
       <ul>
         <li>Google AdSense (ads) — <a href="https://policies.google.com/technologies/ads">policy</a></li>
         <li>Google Analytics 4 (analytics) — <a href="https://policies.google.com/privacy">policy</a></li>
-        <li>Affiliate networks (A8.net, Moshimo, ValueCommerce, Rakuten Affiliate) — see partner policies</li>
+        <li>Affiliate networks (including Awin and impact.com) — see partner policies</li>
+        <li>Microsoft Clarity (optional, only after a URL privacy review) — see provider policies</li>
       </ul>
       <h2>Your rights</h2>
       <p>
@@ -111,7 +112,8 @@ function PrivacyJa() {
       <ul>
         <li>Google AdSense（広告配信）</li>
         <li>Google Analytics 4（アクセス解析）</li>
-        <li>アフィリエイトASP（A8.net、もしもアフィリエイト、バリューコマース、楽天アフィリエイト）</li>
+        <li>アフィリエイトネットワーク（Awin、impact.com等）</li>
+        <li>Microsoft Clarity（URLのプライバシー確認後に有効化される場合があります）</li>
       </ul>
       <h2>権利行使</h2>
       <p>
