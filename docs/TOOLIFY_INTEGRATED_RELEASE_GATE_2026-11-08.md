@@ -63,3 +63,27 @@ The script **does not** run GitHub Actions, merge, contact the VPS, or deploy. I
 ## Decision standard
 
 **GO only if** full manual gate + browser/consent/SEO QA pass and the owner approves the operational change. Otherwise **NO-GO**, keep the existing production release. Do not claim increased sessions, dwell time, conversions or revenue without observed post-release consented human traffic.
+
+
+## 2026-11-08 13:27 JST follow-up: finish-path navigation and live smoke
+
+### Additional committed implementation
+- All 12 curated tools (including four last steps) now show an accurate `Step N / 3` and a return-to-guide link immediately after the tool workspace. For the first eight, the next suggested utility is shown, but no user-task completion is fabricated.
+- Added two HTML-level link assertions, `hasWorkflowStepAnchor` and `hasWorkflowGuideAnchor`, in the shared smoke helper. They parse real `<a href>` tags, ignoring comments/script payloads and fake `data-href`; they reject cross-site URLs, incorrect locales/fragments and unexpected or duplicated `?wf`/`?ws` parameters, as well as any `?s=` share state.
+- Added HTML helper regression cases for valid links and 15+ error conditions.
+- Added a **read-only postdeployment workflow smoke**: `site/scripts/check-live-workflows.mjs`. It checks `/en/workflows`, `/ja/workflows`, `/ar/workflows`, 12 links per locale, four first-tool next-step links, four final-tool return links, canonical URLs, noindex, and sitemap absence. `npm run audit:live-workflows` invokes it. This script does not send analytics events, request indexing, merge, run Actions or deploy.
+- Updated dependency-free integrated preflight contract to verify the existence of the dedicated postdeployment script. It is **not run predeployment** because the guide is not publicly released yet.
+
+### Verification
+- Latest integrated branch source `steps.ts` from GitHub was executed after type-annotation removal in a restricted V8 runtime with compatible URL-query parser: **47/47 assertions passed**, covering 4 workflows, 12 valid steps, 8 continuations and tampering/duplicate cases. SHA **3b28219344f90589f15f5753e46082db45c3985b**.
+- Latest GitHub-source `growth-html-checks.mjs` was parsed and executed with an isolated URL shim: **19/19 link checks passed** (valid destinations, injection/duplicate rejection, script/comment/data-href rejection and guide return). SHA **5ecd035db6541c2b3985c787bd44771d698e8fc3**.
+- These are constrained pure-source runtime checks, **not** an npm/Next.js production build or real browser test. The new live smoke was **not executed against production**, because the required new routes are not deployed.
+- The local container still cannot resolve github.com, so the full project cannot be checked out for npm ci, TypeScript across all files, Vitest and build. This remains a release blocker.
+
+### Postdeployment only (after passing full owner QA and manual release)
+```bash
+cd site
+SITE_URL=https://toolify365.com npm run audit:live-workflows
+```
+
+**Release remains NO-GO until full build, RTL/mobile tests, GA4 consent DebugView, owner review and manual deploy SHA verification pass.** Any web traffic or revenue increase is unverified.
