@@ -112,6 +112,15 @@ test("manual result sharing never exposes state in URL queries or history on inp
   for (const invalid of ["", "ABC+", "A/B", "A=B", "tool input"]) {
     assert.equal(createResultShareLink(base, invalid, 1800), null);
   }
+  for (const unsafe of [
+    "javascript:alert(1)",
+    "data:text/html,payload",
+    "mailto:secret@example.com",
+    "https://user:pass@toolify365.com/ja/tools/bmi-calculator",
+    "not a URL",
+  ]) {
+    assert.equal(createResultShareLink(unsafe, raw, 1800), null);
+  }
 
   const generic = source("site/src/lib/hooks/useAutoShareableState.ts");
   const manual = source("site/src/lib/hooks/useShareableState.ts");
