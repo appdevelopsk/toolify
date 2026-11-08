@@ -134,6 +134,26 @@ test("restored result fragments survive hydration but not subsequent user edits"
   assert.ok(hook.includes("classifyRestoredShareChange("));
 });
 
+test("empty result links stay hidden across all tool types", () => {
+  const bar = source("site/src/components/tools/ShareBar.tsx");
+  const generic = source("site/src/lib/hooks/useAutoShareableState.ts");
+  const manual = source("site/src/lib/hooks/useShareableState.ts");
+  const helper = source("site/src/lib/hooks/result-share-link.ts");
+  assert.ok(bar.includes("{canCopyResult && ("));
+  assert.ok(bar.includes("new CustomEvent<ResultLinkAvailabilityRequest>"));
+  assert.ok(bar.includes("window.addEventListener(RESULT_LINK_CAPABILITY_CHANGED, checkAvailability)"));
+  assert.ok(helper.includes("RESULT_LINK_AVAILABILITY_REQUEST"));
+  assert.ok(helper.includes("RESULT_LINK_CAPABILITY_CHANGED"));
+  assert.ok(generic.includes("Object.keys(current).length === 0"));
+  assert.ok(manual.includes("Object.keys(state).length === 0"));
+  for (const hook of [generic, manual]) {
+    assert.ok(hook.includes("captureEncodedState() !== null"));
+    assert.ok(hook.includes("window.addEventListener(RESULT_LINK_AVAILABILITY_REQUEST, onAvailabilityRequest)"));
+    assert.ok(hook.includes("window.removeEventListener(RESULT_LINK_AVAILABILITY_REQUEST, onAvailabilityRequest)"));
+  }
+  assert.ok(generic.includes("availabilityFrame = requestAnimationFrame("));
+});
+
 test("all GitHub Actions workflows are manual-only", () => {
   const count = verifyWorkflowPath(join(ROOT, ".github/workflows"));
   assert.ok(count >= 3);
