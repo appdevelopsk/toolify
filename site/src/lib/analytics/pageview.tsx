@@ -2,30 +2,31 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { sanitizePageViewUrl } from "./pageview-url";
+import { createPageViewSender } from "./pageview-once";
 import { siteConfig } from "@/lib/config";
 
 /**
- * One page_view per localized pathname navigation. A query-only change to
- * a share link (?s=...) is not a new page. The GA bootstrap runs with
- * afterInteractive, so the first effect can precede window.gtag.
+ * One page_view per localized pathname. Query-only changes to ?s= share
+ * state do not create another visit. The GA script sends a ready signal only
+ * after Consent Mode defaults and its send_page_view:false config.
  */
 export function PageViewTracker() {
   const pathname = usePathname();
 
   useEffect(() => {
     if (!siteConfig.analytics.gaId) return;
-    let sent = false;
 
-    const send = () => {
-      if (sent || typeof window.gtag !== "function") return;
-      sent = true;
-      const safe = sanitizePageViewUrl(window.location.href);
-      window.gtag("event", "page_view", {
-        ...safe,
-        page_title: document.title,
-      });
-    };
+    const send = createPageViewSender(() => {
+      const gtag = window.gtag;
+      return {
+        ready: window.__toolifyGtagReady === true,
+        href: window.location.href,
+        title: document.title,
+        emit: typeof gtag === "function"
+          ? (payload) => gtag("event", "page_view", payload)
+          : undefined,
+      };
+    });
 
     window.addEventListener("toolify:gtag-ready", send);
     send();
