@@ -162,3 +162,46 @@ The checked preflight tests explicitly assert that the flag is required, that a 
 - Copied the **exact GitHub blob** `scripts/check-toolify-review-release.sh` to the local shell workspace: `git hash-object` returned **ad3b2793d53afe9de0bc8a76870b55ce28576604**, matching the GitHub `fetch_file` blob SHA. `bash -n` **passed**.
 - Rechecked HYPD: GA4 properties are connected, but **zero are selected for tool access**, so the property-level Enhanced Measurement setting remains **unverified**. The release gate now deliberately fails with exit 4 unless the owner explicitly attests verification, after full static/build checks.
 - The release gate has **not** been run end-to-end; it requires a complete checkout, dependencies, GA4 owner access, browser QA and ultimately manual deployment authorization. Source/bare shell syntax successes are not end-to-end evidence.
+
+
+## 2026-11-08 20:05 JST: GA4 referral privacy + Microsoft Clarity masking
+
+### Implemented on this review branch, not production
+
+- The shared `pageview-url.ts` now exports `sanitizePageReferrer(referrer, currentHref)`. Referrers from Toolify's own origin retain **origin + pathname only**, while external referrers retain **origin only**. Query strings and hashes are removed; invalid/non-HTTP(S) values become empty.
+- `pageview-once.ts` adds an optional, sanitized `page_referrer` parameter to one-shot GA4 `page_view` events. `PageViewTracker` retains the previously emitted clean page location for subsequent SPA pageviews, rather than reusing a stale `document.referrer` on each transition.
+- `gtag.tsx` overrides GA4's default `document.referrer` at configuration using the same safety policy. All first-party custom GA4 events now explicitly supply a sanitized `page_referrer`; `page_location` and `page_path` remain query-free.
+- The shared `ToolInteractionTracker` uses `data-clarity-mask="true"` around every utility workspace; `SoftwareWorkbench` applies the same masking to browser-local input, imported file contents and rendered output. This guards rendered DOM content in future Clarity recordings without editing the 223 individual tools.
+- Added Vitest and no-dependency preflight assertions for same-site/external referrer safety and Clarity masking. The release gate now requires the operator to review Clarity URL privacy via `TOOLIFY_CLARITY_URLS_REVIEWED=confirmed`. Missing review returns exit **5**. It also retains the separate GA4 Enhanced Measurement owner gate (exit **4**).
+- Neither environment variable actually configures the external service, triggers GitHub Actions, merges, or deploys; these are **operator attestations**, not automated proof.
+
+### Executed evidence
+
+- Retrieved the precise GitHub blobs for `pageview-url.ts` (**c9d7fc25b3bc23b3d9079cdd64e8b053987bbfbb**) and `pageview-once.ts` (**42b1185f9895a5876dbb3fb4af9ad5a0cbcae5a7**) and independently reconstructed them in a temporary Node 22 checkout. `git hash-object` matched **both blobs exactly**.
+- `tsc --strict --noUncheckedIndexedAccess --target ES2022 --module CommonJS --noEmit`: **PASS**.
+- Compiled the same source and ran Node 22.16 exact-source runtime assertions: **18 PASS** (query/fragment removal, same-origin/external attribution, invalid URL rejection, consent readiness, once-only delivery, exception recovery and next-route referrer).
+- This is **not** a full Next.js/Vitest/release build. The external GA4/Clarity settings and real browser behavior have **not been independently verified** in this session.
+
+### Important Clarity limitation and release decision
+
+Microsoft documents that DOM content masking **does not mask URLs**. For URL query-parameter masking, a project owner must contact Clarity support; even that setting does not cover referrer or clicked URLs. Therefore adding `data-clarity-mask` alone does **not** establish safety for Toolify's `?s=` result-sharing URLs.
+
+- Before release, owner should verify whether Clarity is enabled on this deployment, and if so arrange masking of `s` and assess referrer/clicked URL exposure using a test account. If adequate protection cannot be demonstrated, **disable Clarity** until result-sharing state can be redesigned not to include user inputs in URLs. Check whether the impact.com script or other external tags also receive URL state.
+- The release guard refuses GO until that review is explicitly attested, even if GA4 is configured correctly. The existing GA4 requirement separately checks that history-event pageviews are disabled and DebugView contains no private URL state.
+- Avoid assuming an already-deployed production site has these protections; the changes are review-only.
+
+Official sources:
+- https://learn.microsoft.com/en-us/clarity/setup-and-installation/clarity-masking
+- https://learn.microsoft.com/en-us/clarity/faq/
+- https://developers.google.com/analytics/devguides/collection/ga4/reference/config
+
+### Updated manual preflight
+
+```bash
+# Only after the full local owner checkout, GA4 Admin and Clarity review:
+TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED=confirmed \
+TOOLIFY_CLARITY_URLS_REVIEWED=confirmed \
+bash scripts/check-toolify-review-release.sh
+```
+
+Keep status **NO-GO** until `npm ci`, all tests, production Next build, actual desktop/mobile/RTL sessions, GA4 DebugView, the Clarity query safety review, manual production release approval and live SHA/smoke checks pass. No bot-adjusted traffic or revenue uplift has been demonstrated.
