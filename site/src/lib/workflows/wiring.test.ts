@@ -35,6 +35,17 @@ describe("workflow entrypoint & task-completion wiring", () => {
     expect(page).toContain("getTool(slug)");
   });
 
+  it("links all twelve steps back to their journey including terminal steps", () => {
+    const source = file("../../components/workflows/WorkflowNextStep.tsx");
+    expect(source).toContain("WORKFLOWS.find");
+    expect(source).toContain("if (!journey) return null");
+    expect(source).toContain("const currentStep =");
+    expect(source).toContain("{followUp && (");
+    expect(source).toContain("href={`/workflows#${journey.id}`}");
+    // Terminal steps have a return link, never a false 'completed' signal.
+    expect(source).not.toContain("completed");
+  });
+
   it("attributes meaningful input without sending entered values", () => {
     const track = file("../../components/tools/ToolInteractionTracker.tsx");
     const events = file("../analytics/events.ts");
