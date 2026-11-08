@@ -327,3 +327,42 @@ Verify at least one generic numeric tool, one text-only tool, one dynamic mode-b
 ### Still required for GO
 
 Run all manual release gates in a complete owner checkout, verify source SHA, Next production build, unit suites and 17-locale rendering, browser sharing/restore on actual iOS/Android, GA4 DebugView query safety, Clarity URL/cookie review, and postdeployment live smoke. **Current state: NO-GO**. A copied fragment is still readable by recipient/page scripts; the new change strips *extra* query data, not the intentionally shared result.
+
+
+## 2026-11-08 — Main crawler policy, direct-share vendor guard and privacy copy
+
+### Latest main synchronized without losing review changes
+
+Main advanced by one commit `6b126c8b7d17ee219c034258192739aaf55dc174` with a safer robots.txt policy: `/api/` is disallowed while generated `/api/og` images remain crawlable. The full `robots.ts` and `robots.test.ts` Git blobs were incorporated into the integrated review branch with a two-parent merge commit `2ae80a8ee9b44cec1208b9b5ed4bd8c4bd114d57`; the independent Clarity hotfix also received the same main update with merge `5384a310aaa5f63faef6b7603212221f394065de`. **Neither was merged to main.**
+
+### Direct result-sharing links: initial affiliate vendor mitigation
+
+The global `ImpactTracking` component previously injected the impact.com script on every initial load. Direct links using `#s=` or older `?s=` may carry selected inputs, which third-party scripts can access. The review branch now uses a small pure `shouldLoadImpactTracking` policy and renders the impact tag client-side **only when the current initial URL has no shared-result state**. Normal pages continue to permit normal affiliate tracking.
+
+- `site/src/lib/analytics/impact-policy.ts` and `impact-policy.test.ts`: strict HTTP(S) parsing, block `?s` and `#s=`, fail closed on malformed URLs.
+- `site/src/lib/analytics/impact.tsx`: `"use client"`, initial `useState(false)`, browser check in `useEffect`, no vendor tag until check is complete.
+- `privacy.wiring.test.ts` and `scripts/tests/toolify-review-preflight.test.mjs`: enforce the wiring and allow/deny cases.
+- Retrieved the exact source blob `04b52b456544db29e155ff14639931daa65bbf1f`, reconstructed it locally with **identical `git hash-object`**, and executed **14/14 Node 22.16 assertions** with the real WHATWG URL implementation. `tsc --strict --noUncheckedIndexedAccess` for the helper **PASS**.
+
+**Limit:** This is **initial direct-entry protection only**. Third-party scripts previously loaded in the same SPA session cannot be unloaded by this conditional component. Other vendors, including analytics and advertising scripts, may still inspect URLs. The site must not claim complete secrecy of share fragments. The vendor tag and conversion impact require real-browser QA before release.
+
+### Corrected privacy claims in all UI languages and authored policy pages
+
+The public homepage previously made absolute claims such as “We never see your inputs — no servers, no logging.” Given the existing shared-result URL behavior and third-party tags, these claims were too broad. On the review branch:
+
+- Updated three existing homepage copy keys (`home.subheading`, `home.whyPrivacyTitle`, `home.whyPrivacyText`) for **all 17 active UI locales**: `en, ja, zh-CN, zh-TW, ko, es, pt-BR, fr, de, it, ru, ar, hi, id, th, vi, tr`.
+- Copy now distinguishes mostly browser-local calculations from result links users intentionally share and from site analytics/advertising. No new translation keys or source routes.
+- Corrected **all eight authored privacy-policy versions** (`en, ja, zh-CN, es, pt-BR, ko, fr, de`) to disclose that new result links may contain selected inputs in URL fragments; older query-based links can transmit state in the initial HTTP request. These sections no longer unconditionally claim that every input stays on-device.
+- Updated those eight policy versions' analytics paragraphs to reflect the current regional Consent Mode default behavior: EEA/UK/Switzerland start denied; outside those areas analytics storage may be granted by default. Updated the displayed policy date to `2026-11-08`.
+- English and Japanese third-party lists now mention Awin, impact.com and optional Clarity rather than only the stale prior affiliate-network names.
+- The **other nine locales still fall back to the English privacy policy** (an existing limitation). Localization/legal approval is still required before claiming a complete privacy-policy localization.
+- Added `site/src/lib/i18n/privacy-claims.test.ts` (Vitest) and mandatory native release preflight tests for 17-language copy, eight policy variants and third-party tag protection.
+- Fetched and `JSON.parse`d all 17 reviewed homepage messages: **17/17 valid**, all 17 contained a localized result-sharing caution and preserved the original message structure. Checked **8/8 localized policy sections** for updated date and balanced paragraph markup. These source checks are not a full Next.js build, translation QA or legal opinion.
+
+### Remaining blockers
+
+Full npm dependency install/Vitest, Next.js production build, Safari/Chrome/mobile and 17-locale QA, initial direct-share vendor network inspections, optional Clarity/GA4 settings in their actual dashboards, conversion tracking on ordinary pages, legal review of policy changes, release approval and manually verified deployment remain **NOT DONE / NO-GO**. No Actions, production merge or deployment was triggered. No traffic, time-on-site or conversion uplift is claimed from code not yet deployed.
+
+References for implementation limitations:
+- https://nextjs.org/docs/app/api-reference/components/script
+- https://learn.microsoft.com/en-us/clarity/faq/
