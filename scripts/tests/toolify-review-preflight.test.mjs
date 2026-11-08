@@ -7,6 +7,7 @@ import { WORKFLOWS, getWorkflowContext, getWorkflowContinuation } from "../../si
 import { sanitizeOutboundLinkUrl, sanitizePageReferrer, sanitizePageViewUrl } from "../../site/src/lib/analytics/pageview-url.ts";
 import { verifyWorkflowPath } from "../verify-manual-deploy.mjs";
 import { canLoadClarity } from "../../site/src/lib/analytics/clarity-policy.ts";
+import { ALL_LOCALES } from "../../site/src/lib/i18n/locales.ts";
 import { shouldLoadImpactTracking } from "../../site/src/lib/analytics/impact-policy.ts";
 import {
   RESULT_LINK_REQUEST, classifyRestoredShareChange, readResultShareState, createResultShareLink,
@@ -16,6 +17,29 @@ import {
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const source = (path) => readFileSync(join(ROOT, path), "utf8");
 const sourceFile = source;
+
+test("all 17 localized homepage privacy claims explain optional result links", () => {
+  const tokens = {
+    en: "Result links", ja: "結果リンク",
+    "zh-CN": "结果分享链接", "zh-TW": "結果分享連結",
+    ko: "결과 공유 링크", es: "Los enlaces de resultados",
+    "pt-BR": "Links de resultados", fr: "Les liens de résultat",
+    de: "Ergebnislinks", it: "I link ai risultati",
+    ru: "Ссылки на результаты", ar: "روابط النتائج",
+    hi: "परिणाम के लिंक", id: "Tautan hasil",
+    th: "ลิงก์ผลลัพธ์", vi: "Liên kết kết quả",
+    tr: "Sonuç bağlantıları",
+  };
+  assert.equal(ALL_LOCALES.length, 17);
+  assert.deepEqual([...ALL_LOCALES].sort(), Object.keys(tokens).sort());
+  for (const locale of ALL_LOCALES) {
+    const home = JSON.parse(source(`site/src/messages/${locale}.json`)).home;
+    assert.ok(home.subheading.length >= 20, `${locale}: subheading`);
+    assert.ok(home.whyPrivacyTitle.length >= 4, `${locale}: title`);
+    assert.ok(home.whyPrivacyText.length >= 30, `${locale}: body`);
+    assert.ok(home.whyPrivacyText.includes(tokens[locale]), `${locale}: sharing caveat`);
+  }
+});
 
 test("12 real, distinct curated steps have exact next-step mappings", () => {
   assert.equal(WORKFLOWS.length, 4);
