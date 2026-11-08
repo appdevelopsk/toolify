@@ -46,6 +46,18 @@ describe("privacy-first on-demand tool result links", () => {
     }
   });
 
+  it("rejects executable, opaque or credential-bearing target URLs", () => {
+    for (const target of [
+      "javascript:alert(1)",
+      "data:text/html,payload",
+      "mailto:test@example.com",
+      "https://user:secret@toolify365.com/en/tools/bmi",
+      "invalid relative url",
+    ]) {
+      expect(createResultShareLink(target, "YWJj", 1800)).toBeNull();
+    }
+  });
+
   it("refuses absent, oversized and invalid payloads", () => {
     for (const payload of ["", "abc+", "a/=", "a b", "x".repeat(5)]) {
       expect(createResultShareLink("https://toolify365.com/en", payload, 4)).toBeNull();
