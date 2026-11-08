@@ -61,8 +61,10 @@ describe("tool input and browser event privacy", () => {
   it("disables Clarity script loading unless URL privacy review is explicitly approved", () => {
     const clarity = text("./clarity.tsx");
     const config = text("../config.ts");
-    expect(clarity).toContain('NEXT_PUBLIC_CLARITY_URL_PRIVACY_APPROVED !== "confirmed"');
-    expect(clarity).toContain("if (!id ||");
+    expect(clarity).toContain("canLoadClarity(id, process.env.NEXT_PUBLIC_CLARITY_URL_PRIVACY_APPROVED)");
+    const policy = text("./clarity-policy.ts");
+    expect(policy).toContain('urlPrivacyApproved === "confirmed"');
+    expect(clarity).toContain("if (!canLoadClarity(");
     expect(clarity).toContain('id="clarity-init"');
     expect(config).toContain("NEXT_PUBLIC_CLARITY_PROJECT_ID");
   });
