@@ -7,6 +7,10 @@ import { WORKFLOWS, getWorkflowContext, getWorkflowContinuation } from "../../si
 import { sanitizeOutboundLinkUrl, sanitizePageReferrer, sanitizePageViewUrl } from "../../site/src/lib/analytics/pageview-url.ts";
 import { verifyWorkflowPath } from "../verify-manual-deploy.mjs";
 import { canLoadClarity } from "../../site/src/lib/analytics/clarity-policy.ts";
+import {
+  RESULT_LINK_REQUEST, readResultShareState, createResultShareLink,
+  migrateLegacyShareQuery, clearStaleResultShareState,
+} from "../../site/src/lib/hooks/result-share-link.ts";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const source = (path) => readFileSync(join(ROOT, path), "utf8");
@@ -82,6 +86,36 @@ test("affiliate analytics strips URL queries and ignores synthetic link clicks",
   const tracker = source("site/src/lib/analytics/affiliate-click.tsx");
   assert.ok(events.includes("link_url: sanitizeOutboundLinkUrl(p.link_url)"));
   assert.ok(tracker.includes("if (!e.isTrusted) return"));
+});
+
+test("manual result sharing never exposes state in URL queries or history on input", () => {
+  const raw = "YWJjMTIz";
+  const base = "https://toolify365.com/ja/tools/bmi-calculator?wf=data&s=OLD";
+  const newLink = createResultShareLink(base, raw, 1800);
+  assert.equal(newLink,
+    "https://toolify365.com/ja/tools/bmi-calculator?wf=data#s=YWJjMTIz");
+  assert.equal(readResultShareState(newLink), raw);
+  assert.equal(readResultShareState(base), "OLD");
+  assert.equal(migrateLegacyShareQuery(base),
+    "https://toolify365.com/ja/tools/bmi-calculator?wf=data#s=OLD");
+  assert.equal(clearStaleResultShareState(newLink),
+    "https://toolify365.com/ja/tools/bmi-calculator?wf=data");
+  for (const invalid of ["", "ABC+", "A/B", "A=B", "tool input"]) {
+    assert.equal(createResultShareLink(base, invalid, 1800), null);
+  }
+
+  const generic = source("site/src/lib/hooks/useAutoShareableState.ts");
+  const manual = source("site/src/lib/hooks/useShareableState.ts");
+  const bar = source("site/src/components/tools/ShareBar.tsx");
+  assert.equal(RESULT_LINK_REQUEST, "toolify:result-link-request");
+  assert.ok(generic.includes("window.addEventListener(RESULT_LINK_REQUEST, onRequest)"));
+  assert.ok(manual.includes("window.addEventListener(RESULT_LINK_REQUEST, onRequest)"));
+  assert.ok(bar.includes("new CustomEvent<ResultLinkRequest>(RESULT_LINK_REQUEST"));
+  assert.ok(bar.includes("onClick={copyResultLink}"));
+  for (const code of [generic, manual]) {
+    assert.ok(!code.includes('url.searchParams.set("s", encoded)'));
+    assert.ok(code.includes("clearStaleResultShareState(window.location.href)"));
+  }
 });
 
 test("all GitHub Actions workflows are manual-only", () => {
