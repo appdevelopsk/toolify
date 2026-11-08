@@ -58,6 +58,15 @@ describe("tool input and browser event privacy", () => {
     expect(tracker).toContain("a[data-offer-id]");
   });
 
+  it("disables Clarity script loading unless URL privacy review is explicitly approved", () => {
+    const clarity = text("./clarity.tsx");
+    const config = text("../config.ts");
+    expect(clarity).toContain('NEXT_PUBLIC_CLARITY_URL_PRIVACY_APPROVED !== "confirmed"');
+    expect(clarity).toContain("if (!id ||");
+    expect(clarity).toContain('id="clarity-init"');
+    expect(config).toContain("NEXT_PUBLIC_CLARITY_PROJECT_ID");
+  });
+
   it("masks browser-local tool and software content from Clarity recordings", () => {
     const tracker = text("../../components/tools/ToolInteractionTracker.tsx");
     const software = text("../../components/software/SoftwareWorkbench.tsx");
