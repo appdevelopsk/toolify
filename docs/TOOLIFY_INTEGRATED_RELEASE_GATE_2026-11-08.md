@@ -96,3 +96,25 @@ SITE_URL=https://toolify365.com npm run audit:live-workflows
 - **Negative control PASS:** removed the final return link from the synthetic timezone-converter HTML. The script issued 12 checks and exited with code 1, identifying `/en/tools/timezone-converter: missing final-step guide return`.
 - Earlier helper-only verification: **19/19 assertions** passed with exact-source `growth-html-checks.mjs` and a URL shim. Workflow routing: **47/47 assertions**.
 - The new regression Vitest/Node files have been committed to GitHub, but the **full tests have not executed** because full repository checkout and npm dependencies remain unavailable. Real-device/mobile and public network tests remain owner-only release gates.
+
+
+## 2026-11-08 17:16 JST: initial pageview loss / consent readiness fixed
+
+### Problem and patch
+The pre-existing `PageViewTracker` could mount before the `next/script` `afterInteractive` GA4 initializer. It would see no `window.gtag` and return without retrying, silently losing an initial `page_view`. Relying on a non-null `window.gtag` alone would be unsafe if another script created that global before Toolify's consent defaults ran.
+
+**Review-branch only** implementation:
+- New pure `site/src/lib/analytics/pageview-once.ts`: constructs a one-shot sender that refuses to emit until GA4 setup explicitly declares readiness, strips all `?s=`, `?wf=`, and fragment information via `sanitizePageViewUrl`, and can retry if the emitter was absent or threw before a successful send.
+- `gtag.tsx` sets `window.__toolifyGtagReady = true` **after** the region-specific/global Consent Mode defaults and `gtag('config', ..., send_page_view:false)` call, then dispatches `toolify:gtag-ready`.
+- `pageview.tsx` installs/cleans an event listener for the ready notification and immediately attempts a send if config already finished. React's `useEffect` depends only on pathname: query-only share-link updates cannot create additional pageviews; each real pathname transition gets a fresh one-shot sender.
+- Added three `pageview-once.test.ts` Vitest cases and updated the integration/wiring tests to require ordering `consent defaults -> config -> ready flag -> signal`.
+
+### Executed verification
+- Exact-source `pageview-once.ts` Git blob SHA **ee5dfb0f2a4075683f8fd4d205e5c3f731efeacf** and `pageview-url.ts` SHA **48ccf03e386526aa8c3288e634e7eb3beb3f6fc0** were copied to a temporary isolated Node workspace. `git hash-object` matched **both SHA values exactly**.
+- TypeScript 5.8.3 `--strict --noUncheckedIndexedAccess --target ES2022 --module CommonJS`: **PASS**.
+- Actual Node 22.16.0 runtime assertions: **13 PASS**; premature send suppressed, post-ready send exactly once, query and fragment redacted, missing emitter and temporary errors retry, and next-path transition allowed.
+- Full Next.js typecheck, Vitest, build and browser GA4 DebugView remain **NOT VERIFIED**, because the environment cannot clone and install the complete remote repo.
+- Read-only connected GSC opportunity result on 2026-11-08: exact Toolify365 property, finalized **2026-11-03 through 2026-11-05**, `minImpressions=1`, **0 returned candidates**, free recent-three-days mode with **no previous-period comparison**. This cannot demonstrate absence of search demand, so do not expand indexed locales or publish unverified SEO claims.
+- Public `https://toolify365.com/en` still displays the existing tool homepage, not the new workflow navigation. No merger, Actions run, manual deploy, or conversion improvement is claimed.
+
+**New manual browser QA:** open a new browser session with delayed/blocked GA script loading; verify one `page_view` when GA4 initializes, zero duplicate pageviews from `?s=` URL edits, one new view for SPA route navigation, and no data-carrying URL fields in GA4 DebugView. Confirm consent handling in EEA and non-EEA contexts.
