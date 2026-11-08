@@ -54,3 +54,24 @@ export function clearStaleResultShareState(href: string): string | null {
   if (containsFragment) url.hash = "";
   return url.toString();
 }
+
+
+/**
+ * Distinguish the first hydration-driven state update from subsequent edits.
+ * A restored value exactly matching the serialized shared state is not an edit.
+ * If the tool normalizes/ignores the restored state, a later different value
+ * is treated as an edit and the obsolete fragment is removed.
+ */
+export function classifyRestoredShareChange(
+  previous: string | null,
+  current: string,
+  expectedRestored: string | null,
+): { clearStale: boolean; nextExpected: string | null } {
+  if (expectedRestored !== null && current === expectedRestored) {
+    return { clearStale: false, nextExpected: null };
+  }
+  if (previous === null || previous === current) {
+    return { clearStale: false, nextExpected: expectedRestored };
+  }
+  return { clearStale: true, nextExpected: null };
+}
