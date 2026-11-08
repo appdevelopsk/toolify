@@ -161,6 +161,8 @@ test("empty result links stay hidden across all tool types", () => {
     assert.ok(hook.includes("window.removeEventListener(RESULT_LINK_AVAILABILITY_REQUEST, onAvailabilityRequest)"));
   }
   assert.ok(generic.includes("availabilityFrame = requestAnimationFrame("));
+  assert.ok(generic.includes("if (availabilityFrame !== undefined) return"));
+  assert.ok(generic.includes("scheduleAvailability()"));
 });
 
 test("all GitHub Actions workflows are manual-only", () => {
