@@ -34,3 +34,14 @@ test("the default environment does not implicitly enable Clarity recording", () 
   assert.match(env, /^NEXT_PUBLIC_CLARITY_PROJECT_ID=$/m);
   assert.match(env, /^NEXT_PUBLIC_CLARITY_URL_PRIVACY_APPROVED=$/m);
 });
+
+test("the release gate rejects dirty worktrees and validates sources before network or build", () => {
+  const script = read("scripts/check-clarity-hotfix-release.sh");
+  assert.ok(script.includes("status --porcelain --untracked-files=normal"));
+  assert.ok(script.includes("NO-GO: checkout has local or untracked changes"));
+  assert.ok(script.includes("exit 6"));
+  assert.ok(script.includes('node --check "$ROOT/scripts/tests/clarity-hotfix-policy.test.mjs"'));
+  assert.ok(script.includes('bash -n "$ROOT/scripts/check-clarity-hotfix-release.sh"'));
+  assert.ok(script.indexOf("status --porcelain --untracked-files=normal")
+    < script.indexOf("git -C \"$ROOT\" fetch --no-tags origin main"));
+});
