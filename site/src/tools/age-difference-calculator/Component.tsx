@@ -2,24 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-
-function diffYMD(a: Date, b: Date): { y: number; m: number; d: number } {
-  let earlier = a < b ? a : b;
-  let later = a < b ? b : a;
-  let y = later.getFullYear() - earlier.getFullYear();
-  let m = later.getMonth() - earlier.getMonth();
-  let d = later.getDate() - earlier.getDate();
-  if (d < 0) {
-    m--;
-    const prev = new Date(later.getFullYear(), later.getMonth(), 0);
-    d += prev.getDate();
-  }
-  if (m < 0) {
-    y--;
-    m += 12;
-  }
-  return { y, m, d };
-}
+import { diffYMD } from "./dateMath";
 
 export default function AgeDifferenceCalculator() {
   const t = useTranslations("tools.age-difference-calculator");
@@ -34,7 +17,7 @@ export default function AgeDifferenceCalculator() {
     const b = new Date(d2 + "T00:00:00");
     if (isNaN(a.getTime()) || isNaN(b.getTime())) return null;
     const ymd = diffYMD(a, b);
-    const totalDays = Math.abs(Math.round((b.getTime() - a.getTime()) / 86400000));
+    const totalDays = ymd.totalDays;
     const totalMonths = ymd.y * 12 + ymd.m;
     const totalWeeks = Math.floor(totalDays / 7);
     const elder = a < b ? n1 || "A" : n2 || "B";
@@ -73,7 +56,9 @@ export default function AgeDifferenceCalculator() {
         {result ? (
           <div>
             <div className="rounded bg-emerald-50 p-3 text-center dark:bg-emerald-900/20">
-              <div className="text-xs">{t("result.elderYounger", { elder: result.elder, younger: result.younger })}</div>
+              {result.totalDays > 0 && (
+                <div className="text-xs">{t("result.elderYounger", { elder: result.elder, younger: result.younger })}</div>
+              )}
               <div className="mt-1 font-mono text-3xl font-bold tabular-nums">
                 {result.ymd.y > 0 && <span>{result.ymd.y}{t("result.y")} </span>}
                 {result.ymd.m > 0 && <span>{result.ymd.m}{t("result.m")} </span>}
