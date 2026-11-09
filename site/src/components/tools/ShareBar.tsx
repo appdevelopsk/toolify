@@ -196,6 +196,11 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
           <span>{resultCopied ? t("copied") : t("copyResultLink")}</span>
         </button>
       )}
+      {canCopyResult && (
+        <p className="w-full text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+          {t("resultShareWarning")}
+        </p>
+      )}
       {socials.map(({ name, href, Icon }) => (
         <a
           key={name}
