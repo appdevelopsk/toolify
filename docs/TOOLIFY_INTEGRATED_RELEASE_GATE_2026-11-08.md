@@ -366,3 +366,30 @@ Full npm dependency install/Vitest, Next.js production build, Safari/Chrome/mobi
 References for implementation limitations:
 - https://nextjs.org/docs/app/api-reference/components/script
 - https://learn.microsoft.com/en-us/clarity/faq/
+
+
+## 2026-11-09 — Privacy notice beside result-link copy and verified crawl/locale gates
+
+### 1. Current main and public deployment
+
+The integrated review branch retained the main crawler-policy sync. Latest public homepage inspection still showed the pre-release 223-tool website and **the old absolute privacy copy**. The 17-language homepage edits and review-only new workflows have not been deployed. Do not infer new visitors, conversions, retention or new-site correctness from source-only changes.
+
+### 2. Exposed-sharing warning in every UI locale (committed)
+
+The 17 localized `tool.resultShareWarning` strings were added to `site/src/messages/{en,ja,zh-CN,zh-TW,ko,es,pt-BR,fr,de,it,ru,ar,hi,id,th,vi,tr}.json`. `ShareBar.tsx` now renders the warning directly below **Copy result link** when a valid shared result is available. English: "Result links include selected inputs. Never share private information." Japanese: "結果リンクには入力値が含まれます。個人情報や機密情報は共有しないでください。"
+
+This notice is visible and not solely a tooltip. The existing localized button label and copy mechanics are unchanged. No external tracking or revenue links were changed. `ShareBar.events.test.ts` and mandatory `scripts/tests/toolify-review-preflight.test.mjs` have regression checks for all 17 notice strings and UI wiring.
+
+### 3. Executed evidence from GitHub sources
+
+- Parsed the exact current **17/17 JSON message files**; all have nonempty `tool.resultShareWarning` text of length at least 20 characters.
+- Verified that the warning appears under `onClick={copyResultLink}` and is conditional on `canCopyResult`, that the Vitest and native preflight assertions are present, and that no existing translation strings were removed.
+- Independently inspected the homepage privacy text **17/17 locales** and updated policy paragraphs **8/8 authored variants** for translated caveats, updated dates, balanced paragraph tags, and regional GA4 disclosure. The remaining 9 locales still render the English policy detail.
+- Confirmed `robots.ts` preserves normal tool crawling and generated `/api/og` images while disallowing `/api/`, and added the source contract to mandatory native preflight.
+- Connected Search Console finalized three-day opportunity window `2026-11-04` to `2026-11-06` returned **zero ranked improvement candidates** with `minImpressions=1`; free view supplies no prior-period comparison. This **does not show that the site has zero impressions or no SEO potential**. No unjustified keyword edits were made.
+
+### 4. Release gate / owner-only dependencies
+
+**NO-GO remains.** A complete repository checkout and `npm ci`, the entire Next.js TypeScript/Vitest/Next build pipeline, and browser/device checks on real iOS/Android have not passed here. The source-only checks above are not substitutes for those tests. Actual GA4 Enhanced Measurement and Clarity account settings, impact.com/ads consent and URL-capture behavior, nine remaining localized policy variants, independent privacy/legal review and a normal manually approved deployment are not verified.
+
+Do not create a PR that could trigger base-branch Actions, run GitHub Actions, or merge/deploy without the owner’s release process. The public site still needs a verified release SHA and a live postdeployment smoke test before these changes can be considered live.
