@@ -18,6 +18,17 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const source = (path) => readFileSync(join(ROOT, path), "utf8");
 const sourceFile = source;
 
+test("robots.txt preserves crawlable tools while excluding dynamic API crawl", () => {
+  const policy = source("site/src/app/robots.ts");
+  const tests = source("site/src/app/robots.test.ts");
+  assert.ok(policy.includes('userAgent: "*"'));
+  assert.ok(policy.includes('allow: ["/", "/api/og"]'));
+  assert.ok(policy.includes('disallow: ["/api/"]'));
+  assert.ok(policy.includes('sitemap: `${siteConfig.url}/sitemap.xml`'));
+  assert.ok(tests.includes("prevents API crawling but leaves generated OG images accessible"));
+  assert.ok(!policy.includes('disallow: ["/"]'));
+});
+
 test("all 17 localized homepage privacy claims explain optional result links", () => {
   const tokens = {
     en: "Result links", ja: "結果リンク",
