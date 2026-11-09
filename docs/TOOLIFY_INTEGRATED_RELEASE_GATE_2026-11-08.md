@@ -393,3 +393,35 @@ This notice is visible and not solely a tooltip. The existing localized button l
 **NO-GO remains.** A complete repository checkout and `npm ci`, the entire Next.js TypeScript/Vitest/Next build pipeline, and browser/device checks on real iOS/Android have not passed here. The source-only checks above are not substitutes for those tests. Actual GA4 Enhanced Measurement and Clarity account settings, impact.com/ads consent and URL-capture behavior, nine remaining localized policy variants, independent privacy/legal review and a normal manually approved deployment are not verified.
 
 Do not create a PR that could trigger base-branch Actions, run GitHub Actions, or merge/deploy without the owner’s release process. The public site still needs a verified release SHA and a live postdeployment smoke test before these changes can be considered live.
+
+
+## 2026-11-09 — 17-language share warning and actual preflight syntax fix
+
+### User-visible privacy safeguard
+
+The integrated review branch now displays a clear warning immediately after the **Copy result link** control, conditional on the result being shareable. The new `tool.resultShareWarning` key is translated in all 17 active locales. This prevents the UI from describing base64-encoded result links as private or secure. The Japanese warning is: **「結果リンクには入力値が含まれます。個人情報や機密情報は共有しないでください。」**
+
+- The ShareBar warning is visible text, not just a hover-only tooltip.
+- All **17/17 exact reviewed locale JSON files** were parsed and confirmed to contain nonempty warning text at least 20 characters.
+- Source-level regression tests were added to `site/src/components/tools/ShareBar.events.test.ts` and `scripts/tests/toolify-review-preflight.test.mjs`.
+- Sharing still uses on-demand `#s=` result URLs; the recipients and page scripts can still read the fragment. This change is a user disclosure, not encryption.
+
+### Release-test-blocking syntax error found and corrected
+
+A manual syntax audit detected an **actual invalid JavaScript regular expression** in `scripts/tests/toolify-review-preflight.test.mjs`: a double-backslash pattern in `createPageViewSender` matching caused `SyntaxError: Invalid regular expression ... Unterminated group` before the preflight could run.
+
+- Fixed it to a valid single-escaped literal `/createPageViewSender\\(/`.
+- Reparsed the exact current GitHub source in a V8 JavaScript parser after stripping module imports and substituting `import.meta`: **syntax PASS**. This is syntax-only evidence; no full native preflight execution is claimed.
+- Added `node --check "$ROOT/scripts/tests/toolify-review-preflight.test.mjs"` to `scripts/check-toolify-review-release.sh` **before** owner GA4/Clarity attestations, the Node suite, npm dependency installation and Next.js build. The release preflight's source contracts check this ordering.
+- `site/scripts/growth-integration.test.mjs` and `site/scripts/check-live-workflows.mjs` also passed the corresponding lightweight V8 syntax parse; no integration, network or browser tests were run.
+
+### Fresh public and Search Console constraints
+
+- The public `https://toolify365.com/en` still showed the older claim `All your data stays on your device`, 223 tools, and lacked the new workflow guide. **The review-branch changes are not live.**
+- Google Search Console property `https://toolify365.com/` returned **zero SEO opportunity candidates** for the restricted finalized period 2026-11-04 to 2026-11-06 with `minImpressions=1`. The connected free view has no comparison period. This does not demonstrate zero impressions or zero organic users and is insufficient to justify ranking-driven content edits.
+
+### Verified source regression and release state
+
+- Latest source review: homepage privacy copy **17/17 locales**, authored privacy-policy sections **8/8**, source crawler directive preserves `/api/og` and excludes `/api/`.
+- The integrated review branch remains **NO-GO** for production: no complete repository `npm ci`, Next.js build, full Vitest, actual browser/mobile/RTL/17-locale UI verification, GA4 account/debug, Clarity and impact.com network/consent checks, policy legal review or operator manual deploy was performed.
+- Never interpret source-only checks as proof of improved real-user traffic, engagement, conversions or revenue.
