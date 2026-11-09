@@ -14,9 +14,24 @@ if (( MAJOR < 22 )); then
   echo "[review] ERROR: Node >=22 required" >&2
   exit 2
 fi
+# Do not validate or package a workspace with tracked modifications or
+# unexpected untracked files. A local build could otherwise differ from the
+# reviewed GitHub commit even while its branch name matches.
+if [[ -n "$(git -C "$ROOT" status --porcelain --untracked-files=normal)" ]]; then
+  echo "[review] NO-GO: checkout contains local changes or untracked files." >&2
+  echo "[review] Commit/review the changes or use a clean release checkout." >&2
+  exit 6
+fi
 # Catch JavaScript syntax errors before operator-only GA4/Clarity approvals,
 # dependency installation or expensive Next.js compilation.
 node --check "$ROOT/scripts/tests/toolify-review-preflight.test.mjs"
+node --check "$ROOT/scripts/verify-manual-deploy.mjs"
+node --check "$ROOT/scripts/verify-manual-deploy.test.mjs"
+node --check "$ROOT/site/scripts/growth-integration.test.mjs"
+node --check "$ROOT/site/scripts/growth-html-checks.mjs"
+node --check "$ROOT/site/scripts/check-live-workflows.mjs"
+bash -n "$ROOT/scripts/check-postmerge-embed-release.sh"
+bash -n "$ROOT/ops/tests/deploy-lock.test.sh"
 # Google's Enhanced Measurement may send page_views for browser history changes
 # even if our config sets send_page_view:false. It can double-count navigation
 # and collect private share-state query parameters. This is a GA4 stream setting,
