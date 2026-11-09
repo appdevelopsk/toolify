@@ -75,6 +75,14 @@ describe("on-demand result sharing", () => {
     expect(manual).toContain("if (!change.clearStale) return");
   });
 
+  it("shows localized privacy advice only when a result link is available", () => {
+    const bar = get("./ShareBar.tsx");
+    expect(bar).toContain('t("resultShareWarning")');
+    expect(bar).toContain('className="w-full text-xs leading-relaxed');
+    const ui = bar.slice(bar.indexOf("onClick={copyResultLink}"));
+    expect(ui).toContain("{canCopyResult && (");
+  });
+
   it("uses fragment-only result links and keeps native share cancellation safe", () => {
     const policy = get("../../lib/hooks/result-share-link.ts");
     expect(policy).toContain('url.hash = `s=${encoded}`');
