@@ -90,3 +90,10 @@ Executed `node --experimental-strip-types --test scripts/tests/clarity-hotfix-po
 Ran the exact script against a temporary local Git repository (not GitHub Actions, production or an app build): Clarity opt-in with existing project ID rejected (**exit 5**), untracked file rejected (**exit 6**), wrong branch rejected (**exit 2**). The previously verified stale origin/main guard remains in place.
 
 **No full Next.js production build, iOS/Android/RTL browser tests, actual Clarity network verification, merge or deployment has been performed. Status stays NO-GO.**
+
+
+### 2026-11-09 — Latest main calendar arithmetic merged
+
+Two new main commits (current main `baa6c46654d1aa75420945ce26d96dfc6e809a76`) adjusted the age-difference calculator's date arithmetic and tests. They were incorporated through the explicit two-parent merge `da180793f0aa82d849024284aca31bbddb2a9a21` without changing the isolated Clarity fail-closed policy or the manual-only workflow restrictions.
+
+The new pure `dateMath.ts` source was validated independently with its exact GitHub Git blob SHA `129996c70a4a69da023c5229c5c813531a964818`. Runtime leap-year/month-end/DST/symmetry checks **8/8 PASS**, isolated TypeScript strict check **PASS**. The full Next.js site build, real browser Clarity network verification and manually authorized release remain **NOT DONE / NO-GO**.
