@@ -72,3 +72,21 @@ Reconstructed `scripts/check-clarity-hotfix-release.sh` from the exact remote fi
 - Executed the actual gate in an isolated temporary Git checkout under the expected release-branch name. With `NEXT_PUBLIC_CLARITY_URL_PRIVACY_APPROVED=confirmed` it rejected the build as intended: **exit 5**. With an unset flag but a deliberately newer local bare `origin/main` not contained in the branch, it safely fetched that origin and rejected the outdated branch: **exit 3**.
 - The actual `verifyManualDeployWorkflow` source parser (SHA **c19591c078f8e62557934da9942af0efb56ae0dd**) was run against **all eight source workflows fetched from this branch: 8/8 PASS**. Five synthetic automatic-event triggers (push, pull_request, schedule, combined trigger) were rejected. The other native parser test suite is committed but has not been run in the full repository.
 - Still NOT verified: complete project dependency install, integrated Vitest, Next.js build, real browser network/consent QA, production release. No GitHub Actions were run.
+
+
+### 2026-11-09 — Dirty-checkout guard and 5/5 exact-source hotfix tests
+
+The isolated hotfix manual gate now checks **clean Git worktree** (tracked and untracked source) and executes `node --check` on its native test and workflow verifier plus `bash -n` on the release gate before GitHub fetch or expensive build steps. The clean-checkout failure exits **6**, independently of Clarity approval (exit **5**) and wrong branch (exit **2**).
+
+The exact current GitHub sources were independently reconstructed in the local container, with `git hash-object` matching **all five**:
+- `scripts/check-clarity-hotfix-release.sh`: `22abd874b2fcf52e7b4795f89a4167f962487549`
+- `scripts/tests/clarity-hotfix-policy.test.mjs`: `9438d84bacafd64edfe5b5d06ae10c186e515f98`
+- `site/src/lib/analytics/clarity-policy.ts`: `2baaa9b04093e3d9228e385f230e622004f4dd54`
+- `site/src/lib/analytics/clarity.tsx`: `53b49456fe58cc6831188c161d717429014ba03e`
+- `site/.env.example`: `ffca83d6d92813f171dae498dd83679f465b6254`
+
+Executed `node --experimental-strip-types --test scripts/tests/clarity-hotfix-policy.test.mjs` on Node 22.16.0: **5 tests passed / 0 failed**, including newly added release-gate ordering/source tests. `node --check` and `bash -n` also passed.
+
+Ran the exact script against a temporary local Git repository (not GitHub Actions, production or an app build): Clarity opt-in with existing project ID rejected (**exit 5**), untracked file rejected (**exit 6**), wrong branch rejected (**exit 2**). The previously verified stale origin/main guard remains in place.
+
+**No full Next.js production build, iOS/Android/RTL browser tests, actual Clarity network verification, merge or deployment has been performed. Status stays NO-GO.**
