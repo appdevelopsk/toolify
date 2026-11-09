@@ -357,6 +357,29 @@ test("postdeployment workflow smoke is opt-in, read-only and locale aware", () =
   assert.ok(!live.includes("workflow_dispatch"));
 });
 
+test("manual release refuses dirty worktrees and syntax-checks all critical entrypoints", () => {
+  const gate = source("scripts/check-toolify-review-release.sh");
+  assert.ok(gate.includes('status --porcelain --untracked-files=normal'));
+  assert.ok(gate.includes("NO-GO: checkout contains local changes"));
+  assert.ok(gate.includes("exit 6"));
+  for (const file of [
+    "scripts/tests/toolify-review-preflight.test.mjs",
+    "scripts/verify-manual-deploy.mjs",
+    "scripts/verify-manual-deploy.test.mjs",
+    "site/scripts/growth-integration.test.mjs",
+    "site/scripts/growth-html-checks.mjs",
+    "site/scripts/check-live-workflows.mjs",
+  ]) assert.ok(gate.includes(`node --check "$ROOT/${file}"`), file);
+  for (const file of [
+    "scripts/check-postmerge-embed-release.sh",
+    "ops/tests/deploy-lock.test.sh",
+  ]) assert.ok(gate.includes(`bash -n "$ROOT/${file}"`), file);
+  assert.ok(gate.indexOf("status --porcelain --untracked-files=normal")
+    < gate.indexOf("TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED:-"));
+  assert.ok(gate.indexOf('node --check "$ROOT/site/scripts/check-live-workflows.mjs"')
+    < gate.indexOf("TOOLIFY_CLARITY_URLS_REVIEWED:-"));
+});
+
 test("mandatory preflight is syntax checked before owner-only release gates", () => {
   const script = source("scripts/check-toolify-review-release.sh");
   const syntaxCheck = 'node --check "$ROOT/scripts/tests/toolify-review-preflight.test.mjs"';
