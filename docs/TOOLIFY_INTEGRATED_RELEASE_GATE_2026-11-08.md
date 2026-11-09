@@ -453,3 +453,32 @@ The Clarity-only branch `fix/toolify-clarity-safe-default-20261108` has equivale
 ### Scope and operator next steps
 
 The source-based branch is **NOT GO** for production. An owner with GitHub network access and the correct runtime must still clone the reviewed branch, run the exact manual release gate and confirm GA4 Enhanced Measurement setting, Clarity behavior/URL protection, all full Next.js TypeScript/Vitest/SEO/i18n/build checks, 17-language UI/RTL/mobile device tests, then separately approve/deploy and verify the live SHA. **Do not treat a boolean environment flag as external-setting proof.**
+
+
+## 2026-11-09 — Latest main age-difference synchronization and tested date math
+
+### Two new upstream commits integrated in both branches
+
+During the review, main advanced from `6b126c8b7d17ee219c034258192739aaf55dc174` to `baa6c46654d1aa75420945ce26d96dfc6e809a76` with two commits changing exactly three files in the age-difference calculator:
+
+- `site/src/tools/age-difference-calculator/Component.tsx` (Git blob `d74c37c914f66741331587862eeb722153a37a23`)
+- `site/src/tools/age-difference-calculator/dateMath.ts` (Git blob `129996c70a4a69da023c5229c5c813531a964818`)
+- `site/src/tools/age-difference-calculator/dateMath.test.ts` (Git blob `998a327ac31fe41dedb187258e7d0c2e3d1d7bf5`)
+
+Before merging, both review and Clarity-hotfix branches matched the prior main's calculator component and lacked the two new files, so no independent review changes to those paths were overwritten. Real two-parent commits integrated the new main into both branches:
+- Integrated growth review merge: `afe2affddff11ddfb7fb7365e16e34ef56671796`
+- Independent Clarity hotfix merge: `da180793f0aa82d849024284aca31bbddb2a9a21`
+
+No main merge, PR creation, GitHub Actions execution or deployment occurred.
+
+### Exact-source date math verification executed
+
+The new `dateMath.ts` source was copied byte-for-byte into a local TypeScript/Node 22.16 workspace; its Git hash `129996c70a4a69da023c5229c5c813531a964818` matched GitHub exactly. Actual runtime checks: **8/8 PASS** for January 31 to March 1 (regular and leap years), Feb 29 annual anniversary, leap day transition, DST transition days, same date, and reverse-date symmetry. `tsc --strict --noUncheckedIndexedAccess --target ES2022 --module esnext --noEmit`: **PASS** on the exact helper.
+
+An additional dependency-free native review preflight test imports `diffYMD` from the updated main helper and checks all the leap/DST/month-end cases forward and backward. Source syntax parsed successfully after the change (27 native `test(...)` blocks in the preflight file). **Full native preflight and the entire Next.js build are still not executed**.
+
+### Existing release blockers remain
+
+The release scripts now fail closed on dirty/untracked local workspaces, invalid source syntax, owner GA4 and Clarity settings, stale main, and non-manual workflow triggers. The script itself was reproduced exactly and exercised in an isolated local Git repository for exit codes 1, 2, 4, 5 and 6. The Clarity-only exact-source Node test suite passed 5/5, and that hotfix gate rejected wrong branch, dirty worktree, and unauthorized Clarity enablement.
+
+The owner still needs to run the full local release gate with network and npm dependencies, validate GA4/Clarity/Impact third-party URL exposure and consent, check browser/iOS/Android/RTL and 17 languages, then separately authorize manual deployment and verify the live release SHA. **Release status is NO-GO until those checks are actually completed.**
