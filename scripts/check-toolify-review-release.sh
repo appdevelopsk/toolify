@@ -14,6 +14,9 @@ if (( MAJOR < 22 )); then
   echo "[review] ERROR: Node >=22 required" >&2
   exit 2
 fi
+# Catch JavaScript syntax errors before operator-only GA4/Clarity approvals,
+# dependency installation or expensive Next.js compilation.
+node --check "$ROOT/scripts/tests/toolify-review-preflight.test.mjs"
 # Google's Enhanced Measurement may send page_views for browser history changes
 # even if our config sets send_page_view:false. It can double-count navigation
 # and collect private share-state query parameters. This is a GA4 stream setting,
