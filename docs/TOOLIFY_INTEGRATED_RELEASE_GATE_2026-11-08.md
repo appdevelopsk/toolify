@@ -425,3 +425,31 @@ A manual syntax audit detected an **actual invalid JavaScript regular expression
 - Latest source review: homepage privacy copy **17/17 locales**, authored privacy-policy sections **8/8**, source crawler directive preserves `/api/og` and excludes `/api/`.
 - The integrated review branch remains **NO-GO** for production: no complete repository `npm ci`, Next.js build, full Vitest, actual browser/mobile/RTL/17-locale UI verification, GA4 account/debug, Clarity and impact.com network/consent checks, policy legal review or operator manual deploy was performed.
 - Never interpret source-only checks as proof of improved real-user traffic, engagement, conversions or revenue.
+
+
+## 2026-11-09 — Clean-checkout and fail-fast release QA
+
+### Manual release blockers found and addressed
+
+The full Next.js checkout and dependency installation cannot be run in this isolated session: the container cannot resolve `github.com` for `git ls-remote`. Consequently **no full repository build, release, merge, deployment, Actions execution, or real-browser QA** is claimed here.
+
+The existing review candidate passed additional source checks against its current GitHub contents: **31/31 contract checks** for robots SEO, privacy labels, affiliate click tracking, result-sharing hooks, navigation, GA4 consent initialization/pageview, Clarity default-off and impact.com direct-entry policy. These are **source checks**, not full test suite results.
+
+`scripts/check-toolify-review-release.sh` now rejects a dirty checkout before proceeding (exit **6**), using `git status --porcelain --untracked-files=normal`. It also runs **six Node syntax checks and two shell syntax checks** before owner GA4/Clarity attestation, native preflight, dependency installation and the full Next.js build. The mandatory native preflight asserts these guards exist and execute in the correct order.
+
+### Executed exact-source release script QA
+
+The current review-gate Git blob `1425ca6bf6faca01d16964ab76b746d551b5195c` was reproduced byte-for-byte in a temporary local Git repository. Local `git hash-object` matched GitHub. `bash -n` **PASS**.
+
+The actual script was run against isolated test git states (no network or real release):
+- **No GA4 owner attestation, clean branch** → exit **4** / NO-GO.
+- **GA4 attested, Clarity owner attestation missing** → exit **5** / NO-GO.
+- **Untracked file in checkout** → exit **6** / NO-GO.
+- **Incorrect branch** → exit **2** / NO-GO.
+- **Committed malformed mandatory Node preflight file** → exit **1** at `node --check`, before any GA4/Clarity check or build.
+
+The Clarity-only branch `fix/toolify-clarity-safe-default-20261108` has equivalent clean-checkout and early syntax checks in `scripts/check-clarity-hotfix-release.sh`. It remains independent from this growth pilot.
+
+### Scope and operator next steps
+
+The source-based branch is **NOT GO** for production. An owner with GitHub network access and the correct runtime must still clone the reviewed branch, run the exact manual release gate and confirm GA4 Enhanced Measurement setting, Clarity behavior/URL protection, all full Next.js TypeScript/Vitest/SEO/i18n/build checks, 17-language UI/RTL/mobile device tests, then separately approve/deploy and verify the live SHA. **Do not treat a boolean environment flag as external-setting proof.**
