@@ -357,6 +357,14 @@ test("postdeployment workflow smoke is opt-in, read-only and locale aware", () =
   assert.ok(!live.includes("workflow_dispatch"));
 });
 
+test("mandatory preflight is syntax checked before owner-only release gates", () => {
+  const script = source("scripts/check-toolify-review-release.sh");
+  const syntaxCheck = 'node --check "$ROOT/scripts/tests/toolify-review-preflight.test.mjs"';
+  assert.ok(script.includes(syntaxCheck));
+  assert.ok(script.indexOf(syntaxCheck)
+    < script.indexOf('TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED:-'));
+});
+
 test("GA4 history-based pageview duplication blocks release until owner attestation", () => {
   const gate = source("scripts/check-toolify-review-release.sh");
   assert.ok(gate.includes('TOOLIFY_GA4_HISTORY_PAGEVIEWS_DISABLED:-'));
