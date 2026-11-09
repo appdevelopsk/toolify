@@ -16,6 +16,20 @@ if (( MAJOR < 22 )); then
   exit 2
 fi
 
+# Reject any source changes not included in the reviewed hotfix commit.
+# Tracked changes and unexpected untracked files can alter an otherwise clean build.
+if [[ -n "$(git -C "$ROOT" status --porcelain --untracked-files=normal)" ]]; then
+  echo "[clarity-hotfix] NO-GO: checkout has local or untracked changes." >&2
+  echo "[clarity-hotfix] Build from a clean reviewed commit." >&2
+  exit 6
+fi
+
+# Fail fast on malformed release scripts before network or npm operations.
+node --check "$ROOT/scripts/tests/clarity-hotfix-policy.test.mjs"
+node --check "$ROOT/scripts/verify-manual-deploy.mjs"
+node --check "$ROOT/scripts/verify-manual-deploy.test.mjs"
+bash -n "$ROOT/scripts/check-clarity-hotfix-release.sh"
+
 # This hotfix intentionally SHIPS WITH CLARITY OFF. Do not mistakenly opt
 # back in merely because an old project ID exists in deployment variables.
 if [[ "${NEXT_PUBLIC_CLARITY_URL_PRIVACY_APPROVED:-}" == "confirmed" ]]; then
