@@ -9,6 +9,7 @@ import { verifyWorkflowPath } from "../verify-manual-deploy.mjs";
 import { canLoadClarity } from "../../site/src/lib/analytics/clarity-policy.ts";
 import { ALL_LOCALES } from "../../site/src/lib/i18n/locales.ts";
 import { shouldLoadImpactTracking } from "../../site/src/lib/analytics/impact-policy.ts";
+import { diffYMD } from "../../site/src/tools/age-difference-calculator/dateMath.ts";
 import {
   RESULT_LINK_REQUEST, classifyRestoredShareChange, readResultShareState, createResultShareLink,
   migrateLegacyShareQuery, clearStaleResultShareState,
@@ -17,6 +18,24 @@ import {
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const source = (path) => readFileSync(join(ROOT, path), "utf8");
 const sourceFile = source;
+
+test("merged age-difference date math handles month ends, leap days and DST", () => {
+  const date = (str) => new Date(str + "T00:00:00");
+  const cases = [
+    ["2023-01-31", "2023-03-01", { y: 0, m: 1, d: 1, totalDays: 29 }],
+    ["2024-01-31", "2024-03-01", { y: 0, m: 1, d: 1, totalDays: 30 }],
+    ["2024-02-29", "2025-02-28", { y: 1, m: 0, d: 0, totalDays: 365 }],
+    ["2024-02-28", "2024-03-01", { y: 0, m: 0, d: 2, totalDays: 2 }],
+    ["2026-03-07", "2026-03-09", { y: 0, m: 0, d: 2, totalDays: 2 }],
+    ["2026-11-01", "2026-11-03", { y: 0, m: 0, d: 2, totalDays: 2 }],
+  ];
+  for (const [from, to, expected] of cases) {
+    assert.deepEqual(diffYMD(date(from), date(to)), expected);
+    assert.deepEqual(diffYMD(date(to), date(from)), expected);
+  }
+  assert.deepEqual(diffYMD(date("1990-05-15"), date("1990-05-15")),
+    { y: 0, m: 0, d: 0, totalDays: 0 });
+});
 
 test("robots.txt preserves crawlable tools while excluding dynamic API crawl", () => {
   const policy = source("site/src/app/robots.ts");
