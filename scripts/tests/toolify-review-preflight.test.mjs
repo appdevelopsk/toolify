@@ -29,6 +29,17 @@ test("robots.txt preserves crawlable tools while excluding dynamic API crawl", (
   assert.ok(!policy.includes('disallow: ["/"]'));
 });
 
+test("result link copy warns users about exposing selected inputs in all 17 locales", () => {
+  const bar = source("site/src/components/tools/ShareBar.tsx");
+  assert.ok(bar.includes('t("resultShareWarning")'));
+  assert.ok(bar.includes('className="w-full text-xs leading-relaxed'));
+  for (const locale of ALL_LOCALES) {
+    const msg = JSON.parse(source(`site/src/messages/${locale}.json`)).tool?.resultShareWarning;
+    assert.equal(typeof msg, "string", locale);
+    assert.ok(msg.length >= 20, locale);
+  }
+});
+
 test("all 17 localized homepage privacy claims explain optional result links", () => {
   const tokens = {
     en: "Result links", ja: "結果リンク",
