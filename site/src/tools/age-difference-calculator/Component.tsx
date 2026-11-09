@@ -56,7 +56,9 @@ export default function AgeDifferenceCalculator() {
         {result ? (
           <div>
             <div className="rounded bg-emerald-50 p-3 text-center dark:bg-emerald-900/20">
-              <div className="text-xs">{t("result.elderYounger", { elder: result.elder, younger: result.younger })}</div>
+              {result.totalDays > 0 && (
+                <div className="text-xs">{t("result.elderYounger", { elder: result.elder, younger: result.younger })}</div>
+              )}
               <div className="mt-1 font-mono text-3xl font-bold tabular-nums">
                 {result.ymd.y > 0 && <span>{result.ymd.y}{t("result.y")} </span>}
                 {result.ymd.m > 0 && <span>{result.ymd.m}{t("result.m")} </span>}
