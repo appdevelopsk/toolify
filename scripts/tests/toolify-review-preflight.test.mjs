@@ -280,7 +280,7 @@ test("GA4 initialization, pageviews and custom events use sanitized page URLs", 
   const page = source("site/src/lib/analytics/pageview.tsx");
   const events = source("site/src/lib/analytics/events.ts");
   assert.match(init, /window\.location\.origin \+ window\.location\.pathname/);
-  assert.match(page, /createPageViewSender\\(/);
+  assert.match(page, /createPageViewSender\(/);
   assert.ok(page.includes("__toolifyGtagReady === true"));
   assert.ok(page.includes('window.addEventListener("toolify:gtag-ready", send)'));
   assert.ok(init.includes("window.__toolifyGtagReady = true"));
