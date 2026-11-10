@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Toolify365 — Goal-based tool journeys (experiment)</title>
+<style>
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#192333;background:#f5f7fb}
+*{box-sizing:border-box}body{margin:0}main{max-width:1040px;margin:auto;padding:38px 20px 80px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+a{color:#1763b4}button,select,input{font:inherit}button,select{cursor:pointer}
+header a{text-decoration:none;font-weight:750;font-size:1.15rem}
+.hero{padding:32px 0 22px}.eyebrow{text-transform:uppercase;color:#496782;font-weight:700;font-size:.8rem;letter-spacing:.1em}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.13;margin:10px 0}p{line-height:1.6;color:#516177}
+.search{width:100%;border:1px solid #b5c4d6;border-radius:12px;padding:15px 18px;background:white}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}.filters button{border:1px solid #cbd5e1;border-radius:999px;background:white;padding:10px 15px}
+.filters button[aria-pressed=true]{background:#173b68;color:white;border-color:#173b68}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
+.card{background:white;border:1px solid #e0e7f0;border-radius:18px;padding:22px;box-shadow:0 5px 20px #1c35520a}
+.card h2{font-size:1.3rem;margin:4px 0 8px}.tag{font-size:.75rem;font-weight:700;color:#42658a}
+.steps{list-style:none;margin:18px 0;padding:0}.steps li{display:flex;gap:10px;margin:10px 0;align-items:flex-start}
+.num{display:inline-grid;place-items:center;flex:0 0 25px;height:25px;border-radius:50%;background:#eaf1fa;font-size:.78rem;font-weight:700}
+.steps a{font-weight:650}.action{display:inline-block;text-decoration:none;border-radius:10px;background:#1763b4;color:white;padding:11px 15px;font-weight:700}
+.action:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #e59f21;outline-offset:3px}
+.note{margin-top:24px;padding:15px;border-radius:12px;background:#e8eff7;color:#384c67;font-size:.9rem}
+footer{padding-top:30px;color:#667788;font-size:.84rem}
+@media(prefers-reduced-motion:no-preference){button,a{transition:background .15s ease}}
+</style>
+</head>
+<body><main>
+<header><a href="https://toolify365.com/en" rel="noopener">🔧 Toolify365</a><label for="locale"><span id="langLabel">Language</span> <select id="locale"><option value="en">English</option><option value="ja">日本語</option></select></label></header>
+<section class="hero"><div class="eyebrow" id="eyebrow">Explore by goal · experimental prototype</div><h1 id="title">Find the right tool — and the next step.</h1><p id="intro">A focused path from one practical task to the next. Free tools, no login. Each tool opens on the live Toolify365 site.</p></section>
+<label for="q" id="searchLabel">Find a workflow</label><input id="q" class="search" type="search" autocomplete="off" placeholder="Try: deadlines, writing, data" />
+<nav class="filters" aria-label="Workflow categories" id="filters"></nav>
+<p id="count" aria-live="polite"></p><section id="cards" class="grid" aria-label="Tool workflows"></section>
+<p class="note" id="disclaimer">Prototype only: no input is sent to a server or stored. Tool links lead to the live site. No usage analytics is collected by this prototype.</p>
+<footer><a href="https://toolify365.com/en/tools">Browse all 223 tools</a> · <a href="https://toolify365.com/en/software">Software</a></footer>
+</main>
+<script>
+"use strict";
+const journeys=[
+{id:"deadlines",category:"productivity",en:{name:"Plan a project deadline",desc:"Count workdays, compute the delivery date, then confirm the timezone.",keywords:"project deadline workdays dates business days timezones"},ja:{name:"プロジェクトの納期を決める",desc:"営業日数を数え、納期を計算し、時差を確認します。",keywords:"仕事 納期 営業日 日付 時差"},steps:[["Workdays calculator","営業日数を数える","workdays-calculator"],["Date calculator","日付を加減算する","date-calculator"],["Timezone converter","時差を確認する","timezone-converter"]]},
+{id:"writing",category:"content",en:{name:"Prepare and polish writing",desc:"Estimate reading length, check writing pace, then refine copy.",keywords:"writing editor words reading typing content"},ja:{name:"文章を作成・改善する",desc:"文字数と読了時間を確認し、入力スピードを測定します。",keywords:"文章 文字数 読了時間 タイピング"},steps:[["Word counter","文字数と読了時間を確認","word-counter"],["WPM typing test","タイピング速度を測定","wpm-counter"]]},
+{id:"data",category:"data",en:{name:"Clean a data export",desc:"Remove CSV issues, validate JSON, and normalize lists.",keywords:"csv json data text duplicate clean export"},ja:{name:"データを整理する",desc:"CSVの重複を削除し、JSONとテキストを整理します。",keywords:"CSV JSON データ 重複 整理"},steps:[["CSV Cleaner Pro","CSVを整理","@software"],["JSON Studio","JSONを検証","@software"],["Text Batch Studio","テキストを一括整形","@software"]]},
+{id:"image",category:"content",en:{name:"Prepare a web image",desc:"Resize an image, then check the dimensions and proportions.",keywords:"image resize pixels aspect ratio web content"},ja:{name:"Web用の画像を準備する",desc:"画像サイズを変更し、縦横比を確認します。",keywords:"画像 リサイズ 縦横比 ピクセル"},steps:[["Image resizer","画像をリサイズ","image-resizer"],["Aspect ratio calculator","縦横比を確認","aspect-ratio-calculator"]]}
+];
+const strings={
+en:{lang:"Language",eye:"Explore by goal · experimental prototype",title:"Find the right tool — and the next step.",intro:"A focused path from one practical task to the next. Free tools, no login. Each tool opens on the live Toolify365 site.",search:"Find a workflow",placeholder:"Try: deadlines, writing, data",all:"All",productivity:"Work",content:"Content",data:"Data",open:"Start workflow",steps:"Tools in this workflow",results:n=>n+" workflows",empty:"No matching workflows. Try another keyword.",disclaimer:"Prototype only: no input is sent to a server or stored. Tool links lead to the live site. No usage analytics is collected by this prototype.",browse:"Browse all 223 tools"},
+ja:{lang:"言語",eye:"目的から探す · 実験版",title:"必要なツールから、次の作業まで。",intro:"目的に合わせて複数の無料ツールを順番に使えます。登録不要。各ツールは公開サイトで開きます。",search:"目的を検索",placeholder:"例：納期、文章、データ",all:"すべて",productivity:"仕事",content:"制作",data:"データ",open:"この手順で始める",steps:"利用するツール",results:n=>n+" 件の手順",empty:"一致する手順がありません。別の言葉で検索してください。",disclaimer:"試作品です。検索語は送信・保存されません。ツールへのリンクは公開サイトへ移動します。この試作では利用計測を行いません。",browse:"223ツールをすべて見る"}
+};
+const q=document.getElementById("q"),locale=document.getElementById("locale"),filters=document.getElementById("filters"),cards=document.getElementById("cards");
+let category="all";const safe=t=>String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const url=(slug,lang)=>slug==="@software"?"https://toolify365.com/"+lang+"/software":"https://toolify365.com/"+lang+"/tools/"+encodeURIComponent(slug);
+function render(){
+const lang=locale.value,s=strings[lang];document.documentElement.lang=lang;
+document.getElementById("langLabel").textContent=s.lang;document.getElementById("eyebrow").textContent=s.eye;
+document.getElementById("title").textContent=s.title;document.getElementById("intro").textContent=s.intro;
+document.getElementById("searchLabel").textContent=s.search;q.placeholder=s.placeholder;document.getElementById("disclaimer").textContent=s.disclaimer;
+document.querySelector("footer a").textContent=s.browse;document.querySelector("footer a").href="https://toolify365.com/"+lang+"/tools";
+document.querySelector("footer a:last-child").href="https://toolify365.com/"+lang+"/software";
+filters.innerHTML=["all","productivity","content","data"].map(c=>'<button type="button" data-category="'+c+'" aria-pressed="'+(category===c)+'">'+safe(s[c])+'</button>').join("");
+const term=q.value.trim().toLocaleLowerCase(),shown=journeys.filter(j=>(category==="all"||j.category===category)&&(!term||[j.en.name,j.en.desc,j.en.keywords,j.ja.name,j.ja.desc,j.ja.keywords].join(" ").toLocaleLowerCase().includes(term)));
+document.getElementById("count").textContent=s.results(shown.length);
+cards.innerHTML=shown.map(j=>'<article class="card"><span class="tag">'+safe(s[j.category])+'</span><h2>'+safe(j[lang].name)+'</h2><p>'+safe(j[lang].desc)+'</p><div class="tag">'+safe(s.steps)+'</div><ol class="steps">'+j.steps.map((step,i)=>'<li><span class="num">'+(i+1)+'</span><a rel="noopener" href="'+url(step[2],lang)+'">'+safe(lang==="ja"?step[1]:step[0])+'</a></li>').join("")+'</ol><a class="action" rel="noopener" href="'+url(j.steps[0][2],lang)+'">'+safe(s.open)+'</a></article>').join("")||'<p>'+safe(s.empty)+'</p>';
+}
+filters.addEventListener("click",e=>{const b=e.target.closest("button[data-category]");if(b){category=b.dataset.category;render();}});
+q.addEventListener("input",render);locale.addEventListener("change",render);render();
+</script>
+</body></html>
