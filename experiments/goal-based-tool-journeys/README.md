@@ -50,3 +50,10 @@ Links are plain anchors, not automatic recommendations after a result is calcula
 6. Do not conflate raw session duration with task success; optimize completed tasks and meaningful return visits.
 
 No GitHub Actions run, production deploy, or retention/traffic uplift was verified by this change.
+
+## Next-step journey navigation (2026-11-11)
+- `JourneyNextStep.tsx` is now rendered immediately after the tool workspace by `ToolFrame.tsx`.
+- The first and second tools in each journey offer the next tool; last tools have no redundant next-step block.
+- This addresses the initial prototype's major friction: the visitor previously lost the sequence after opening the first tool.
+- The action reuses `journey_tool_click`, with `step_position=2` or `3`. Track qualified click-through by distinct human session after consent, and do not misinterpret event counts alone as task completion.
+- Static source review complete; **no executable test/build verification** available from this runtime because repository clone to the runtime failed (DNS resolution) and the PR head has zero GitHub check-runs.
