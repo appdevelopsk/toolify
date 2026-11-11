@@ -5,7 +5,7 @@ import { Link } from "@/lib/i18n/navigation";
 import { isIndexableIn, listByCategory, listIndexableByCategory } from "@/lib/tools/registry";
 import { orderCategoryToolsForLocale } from "@/lib/tools/category-order";
 import { CATEGORY_DESCRIPTIONS } from "@/lib/tools/category-descriptions";
-import { CATEGORY_CONFIG } from "@/lib/tools/categories";
+import { CATEGORY_CONFIG, categoryLabel } from "@/lib/tools/categories";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
@@ -86,7 +86,7 @@ export default async function ToolCategoryPage({
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: t("nav.tools"), item: `${siteConfig.url}/${locale}/tools` },
-      { "@type": "ListItem", position: 2, name: cfg.label, item: `${siteConfig.url}/${locale}/tools/category/${cat}` },
+      { "@type": "ListItem", position: 2, name: categoryLabel(cat, locale), item: `${siteConfig.url}/${locale}/tools/category/${cat}` },
     ],
   };
 
@@ -108,7 +108,7 @@ export default async function ToolCategoryPage({
         <span className="mx-2" aria-hidden>
           ›
         </span>
-        <span className="text-slate-700 dark:text-slate-300">{cfg.label}</span>
+        <span className="text-slate-700 dark:text-slate-300">{categoryLabel(cat, locale)}</span>
       </nav>
 
       <div className="mt-4 flex items-center gap-3">
@@ -118,14 +118,14 @@ export default async function ToolCategoryPage({
         >
           {cfg.emoji}
         </span>
-        <h1 className="text-3xl font-bold">{copy?.headline ?? `${cfg.label}`}</h1>
+        <h1 className="text-3xl font-bold">{copy?.headline ?? categoryLabel(cat, locale)}</h1>
       </div>
 
       {copy && (
         <>
           <p className="mt-4 max-w-3xl text-slate-700 dark:text-slate-300">{copy.body}</p>
           <aside className="mt-4 max-w-3xl rounded-md border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900 dark:border-amber-700/50 dark:bg-amber-950/30 dark:text-amber-200">
-            <strong>Tip:</strong> {copy.tip}
+            <strong>{locale === "ja" ? "ヒント：" : "Tip:"}</strong> {copy.tip}
           </aside>
         </>
       )}
@@ -155,7 +155,7 @@ export default async function ToolCategoryPage({
                 className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-sm transition-colors hover:border-brand-500 hover:bg-brand-50 dark:border-slate-700 dark:hover:bg-slate-800"
               >
                 <span aria-hidden>{sc.emoji}</span>
-                {sc.label}
+                {categoryLabel(c, locale)}
               </Link>
             );
           })}
