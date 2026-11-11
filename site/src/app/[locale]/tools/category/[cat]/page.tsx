@@ -86,7 +86,7 @@ export default async function ToolCategoryPage({
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: t("nav.tools"), item: `${siteConfig.url}/${locale}/tools` },
-      { "@type": "ListItem", position: 2, name: categoryLabel(cat, locale), item: `${siteConfig.url}/${locale}/tools/category/${cat}` },
+      { "@type": "ListItem", position: 2, name: categoryLabel(cat as ToolCategory, locale), item: `${siteConfig.url}/${locale}/tools/category/${cat}` },
     ],
   };
 
@@ -108,7 +108,7 @@ export default async function ToolCategoryPage({
         <span className="mx-2" aria-hidden>
           ›
         </span>
-        <span className="text-slate-700 dark:text-slate-300">{categoryLabel(cat, locale)}</span>
+        <span className="text-slate-700 dark:text-slate-300">{categoryLabel(cat as ToolCategory, locale)}</span>
       </nav>
 
       <div className="mt-4 flex items-center gap-3">
@@ -118,7 +118,7 @@ export default async function ToolCategoryPage({
         >
           {cfg.emoji}
         </span>
-        <h1 className="text-3xl font-bold">{copy?.headline ?? categoryLabel(cat, locale)}</h1>
+        <h1 className="text-3xl font-bold">{copy?.headline ?? categoryLabel(cat as ToolCategory, locale)}</h1>
       </div>
 
       {copy && (
