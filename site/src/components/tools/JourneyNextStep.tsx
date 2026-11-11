@@ -14,6 +14,7 @@ export function JourneyNextStep({
   const index = journey.slugs.findIndex((step) => step === slug);
   if (index < 0 || index === journey.slugs.length - 1) return null;
   const nextSlug = journey.slugs[index + 1];
+  if (!nextSlug) return null;
   const ja = locale === "ja";
   return (
     <section className="mt-5 rounded-xl border border-brand-200 bg-brand-50 p-4 dark:border-brand-900 dark:bg-slate-900"
