@@ -9,6 +9,7 @@ import { RelatedToolLink } from "./RelatedToolLink";
 import { ContinueWithRecent } from "./ContinueWithRecent";
 import { JourneyNextStep } from "./JourneyNextStep";
 import { ToolSoftwareRecommendations } from "./ToolSoftwareRecommendations";
+import { NattzyRemoteWorkLink } from "./NattzyRemoteWorkLink";
 import { TrustBox } from "./TrustBox";
 import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
@@ -111,6 +112,7 @@ export function ToolFrame({ meta, title, description, related, children, article
 
         {/* Intent-matched free software follows related/recent navigation, before monetization blocks. */}
         <ToolSoftwareRecommendations slug={meta.slug} locale={locale} />
+        <NattzyRemoteWorkLink slug={meta.slug} locale={locale} />
 
         {/* Keep task-follow-up navigation immediately after results; retain monetization units below it. */}
         <AdBelowResult />
