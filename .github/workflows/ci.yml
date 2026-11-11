@@ -32,8 +32,9 @@ jobs:
       - name: Production build
         run: npm run build
         env:
-          # ビルド成功確認のみ。本番デプロイ時は Cloudflare Pages 側で正しい値を設定
-          NEXT_PUBLIC_SITE_URL: https://example.pages.dev
+          # CI は本番公開しないが、生成物のcanonical/sitemapは本番ドメインで検証する。
+          # Cloudflare Pages の本番設定も別途確認する（ここでは変更しない）。
+          NEXT_PUBLIC_SITE_URL: https://toolify365.com
       # Run Lighthouse against exactly the build verified above. Keeping the
       # server in this same job avoids duplicating 8,000+ static pages or
       # transferring the multi-GB .next tree between runners.
