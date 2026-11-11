@@ -7,6 +7,7 @@ import { AdBanner, AdBelowResult, AdInArticle, AdSticky } from "@/components/ads
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import type { PromptMeta } from "@/lib/prompts/types";
+import { NattzyPromptDiscussion } from "@/components/NattzyPromptDiscussion";
 
 interface Props {
   meta: PromptMeta;
@@ -64,6 +65,7 @@ export function PromptFrame({
         />
         <h1 className="mt-3 text-3xl font-bold tracking-tight">{title}</h1>
         <p className="mt-2 text-slate-600 dark:text-slate-400">{description}</p>
+        <NattzyPromptDiscussion slug={meta.slug} locale={locale} />
 
         <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
           <span>
