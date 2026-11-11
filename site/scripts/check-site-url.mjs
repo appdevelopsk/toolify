@@ -1,3 +1,5 @@
+import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 /** Fail early if an SEO build would publish example/preview host canonicals. */
 export function validateSiteUrl(value) {
   if (!value || typeof value !== 'string') throw new Error('NEXT_PUBLIC_SITE_URL is required for production builds');
@@ -12,7 +14,7 @@ export function validateSiteUrl(value) {
   return url.origin;
 }
 
-if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href) {
+if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   try {
     console.log(`Canonical origin: ${validateSiteUrl(process.env.NEXT_PUBLIC_SITE_URL)}`);
   } catch (error) {
