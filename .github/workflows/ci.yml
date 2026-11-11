@@ -10,6 +10,9 @@ jobs:
   validate-and-build:
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      # CI is non-deploying, but SSR and Lighthouse must use production canonical URLs.
+      NEXT_PUBLIC_SITE_URL: https://toolify365.com
     defaults:
       run:
         working-directory: site
@@ -31,10 +34,6 @@ jobs:
         run: npm test
       - name: Production build
         run: npm run build
-        env:
-          # CI は本番公開しないが、生成物のcanonical/sitemapは本番ドメインで検証する。
-          # Cloudflare Pages の本番設定も別途確認する（ここでは変更しない）。
-          NEXT_PUBLIC_SITE_URL: https://toolify365.com
       # Run Lighthouse against exactly the build verified above. Keeping the
       # server in this same job avoids duplicating 8,000+ static pages or
       # transferring the multi-GB .next tree between runners.
