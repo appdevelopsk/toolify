@@ -7,7 +7,7 @@ import { CORE_TOOLS_BY_DEMAND, isIndexableIn } from "./registry";
  * Stable fallback preserves registry order for equally ranked tools.
  */
 export function orderCategoryToolsForLocale(tools: readonly ToolMeta[], locale: string): ToolMeta[] {
-  const rank = new Map<string, number>(CORE_TOOLS_BY_DEMAND.map((slug, i) => [slug, i]));
+  const rank = new Map<string, number>(CORE_TOOLS_BY_DEMAND.map((slug, i): [string, number] => [slug, i]));
   return tools.map((tool, index) => ({
     tool, index,
     indexed: isIndexableIn(locale, tool.slug),
