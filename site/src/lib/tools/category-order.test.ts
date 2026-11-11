@@ -6,7 +6,7 @@ import type { ToolCategory } from "./types";
 describe("category discovery prioritizes genuinely indexable demand", () => {
   for (const locale of ["en", "ja", "es"]) {
     it(`keeps all tools and moves locale-indexed tools first in ${locale}`, () => {
-      for (const cat of ["date", "text", "math", "finance", "health", "conversion", "color", "image"] as ToolCategory[]) {
+      for (const cat of ["datetime", "text", "math", "finance", "health", "converter", "color", "image"] as ToolCategory[]) {
         const original = listByCategory(cat);
         const ordered = orderCategoryToolsForLocale(original, locale);
         expect(ordered.map(x => x.slug).sort()).toEqual(original.map(x => x.slug).sort());
@@ -19,7 +19,7 @@ describe("category discovery prioritizes genuinely indexable demand", () => {
     });
   }
   it("orders the existing date tools by measured core demand", () => {
-    const original = listByCategory("date");
+    const original = listByCategory("datetime");
     const ordered = orderCategoryToolsForLocale(original, "en");
     const core = ordered.filter(t => CORE_TOOLS_BY_DEMAND.includes(t.slug as typeof CORE_TOOLS_BY_DEMAND[number]));
     const ranks = core.map(t => CORE_TOOLS_BY_DEMAND.indexOf(t.slug as typeof CORE_TOOLS_BY_DEMAND[number]));
