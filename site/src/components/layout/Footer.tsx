@@ -5,7 +5,7 @@ import { isPromptLocale } from "@/lib/i18n/locales";
 import { NewsletterForm } from "@/components/cross/NewsletterForm";
 import { softwareCopy } from "@/lib/software/copy";
 import { withSisterUtm } from "@/lib/cross/utm";
-import { CATEGORY_CONFIG } from "@/lib/tools/categories";
+import { CATEGORY_CONFIG, categoryLabel } from "@/lib/tools/categories";
 import { listIndexableByCategory } from "@/lib/tools/registry";
 import type { ToolCategory } from "@/lib/tools/types";
 
@@ -80,7 +80,7 @@ export function Footer() {
                 <span className="mr-1" aria-hidden>
                   {CATEGORY_CONFIG[cat].emoji}
                 </span>
-                {CATEGORY_CONFIG[cat].label}
+                {categoryLabel(cat, locale)}
               </Link>
             ))}
         </nav>
