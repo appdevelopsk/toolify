@@ -32,3 +32,21 @@ Visitors who start with a goal (e.g. project deadline) will more often discover 
 
 ## Notes
 Links are plain anchors, not automatic recommendations after a result is calculated. Production integration in the site's real UI still needs implementation and tests.
+
+## Production integration added on this branch (2026-11-11)
+- The real homepage now renders four EN/JA goal journeys via `site/src/components/tools/ToolJourneys.tsx`, using registered tool slugs and localized tool names.
+- All 12 destinations have been statically cross-checked against `site/src/lib/tools/registry.ts` (12/12 present).
+- `JourneyLink.tsx` sends a fixed-ID `journey_tool_click` event through the site's existing consent-aware GA4 pathway. Parameters: `journey_id`, `destination_tool`, `locale`, `step_position`. No user inputs or search terms.
+- `ToolJourneys.test.ts` defines link integrity tests. These tests were **added but not executed** in this session.
+- UI is intentionally scoped to EN/JA; other 15 locales remain unchanged. That is not a complete 17-language rollout.
+- The standalone `index.html` remains a historical prototype; do not publish it as an independent indexable page.
+
+### Release verification still needed
+1. `cd site && npm ci && npm test -- ToolJourneys.test.ts` (or `npx vitest run src/components/tools/ToolJourneys.test.ts`).
+2. `cd site && npm run build`; check localized EN/JA homepage output and all 12 linked tool routes.
+3. Verify mobile, keyboard navigation, dark mode, and consent behavior in a real browser.
+4. Ensure GA4 custom dimensions are registered and event is observed only with valid analytics consent.
+5. Deploy through the owner's normal release path; monitor human sessions, next-tool transitions, search clicks and page performance.
+6. Do not conflate raw session duration with task success; optimize completed tasks and meaningful return visits.
+
+No GitHub Actions run, production deploy, or retention/traffic uplift was verified by this change.
