@@ -9,7 +9,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "fetch:rates": "tsx scripts/fetch-rates.ts",
-    "prebuild": "tsx scripts/fetch-rates.ts && node scripts/check-pressure-reference.mjs && node scripts/check-currency-rate-freshness.mjs",
+    "prebuild": "node scripts/check-site-url.mjs && tsx scripts/fetch-rates.ts && node scripts/check-pressure-reference.mjs && node scripts/check-currency-rate-freshness.mjs",
     "sitemap": "tsx scripts/generate-sitemap.ts",
     "validate": "tsx scripts/validate.ts",
     "audit:seo": "tsx scripts/audit-seo.ts",
@@ -25,7 +25,8 @@
     "audit:index-policy": "tsx scripts/report-index-policy.ts",
     "audit:live-growth": "node scripts/check-live-growth.mjs",
     "test:smoke-html": "node --test scripts/growth-html-checks.test.mjs",
-    "test:integration": "node --test scripts/growth-integration.test.mjs"
+    "test:integration": "node --test scripts/growth-integration.test.mjs",
+    "check:site-url": "node --test scripts/check-site-url.test.mjs"
   },
   "dependencies": {
     "@types/qrcode": "^1.5.6",
