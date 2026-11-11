@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { listTools } from "@/lib/tools/registry";
+import { isIndexableIn, listIndexableByCategory, listTools } from "@/lib/tools/registry";
 import { Link } from "@/lib/i18n/navigation";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { FavoritesSection } from "@/components/tools/FavoritesSection";
@@ -9,7 +9,7 @@ import { ToolSearch } from "@/components/tools/ToolSearch";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
-import type { Locale } from "@/lib/i18n/locales";
+import { isIndexedLocale, type Locale } from "@/lib/i18n/locales";
 import type { ToolCategory } from "@/lib/tools/types";
 
 export async function generateMetadata({
@@ -33,6 +33,9 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
   setRequestLocale(locale);
   const t = await getTranslations();
   const tools = listTools();
+  // Keep the SEO ItemList in sync with noindex and sitemap policy. The visual
+  // catalog still shows every tool for users in every language.
+  const indexableTools = tools.filter((tool) => isIndexableIn(locale, tool.slug));
   const byCategory = new Map<string, typeof tools>();
   for (const m of tools) {
     const list = byCategory.get(m.category) ?? [];
@@ -49,14 +52,14 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
     description: t(`tools.${m.slug}.shortDescription`),
   }));
 
-  // ItemList JSON-LD: lets Google understand /tools as a structured catalog of every tool.
-  // Crawlers prioritize indexing pages whose containing list is also indexed.
+  // ItemList JSON-LD only recommends crawlable, index-eligible destinations.
+  // Non-indexed language/tool combinations remain usable in the visible catalog.
   const itemListLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: t("nav.tools"),
-    numberOfItems: tools.length,
-    itemListElement: tools.map((m, i) => ({
+    numberOfItems: indexableTools.length,
+    itemListElement: indexableTools.map((m, i) => ({
       "@type": "ListItem",
       position: i + 1,
       url: `${siteConfig.url}/${locale}/tools/${m.slug}`,
@@ -66,7 +69,9 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
+      {indexableTools.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
+      )}
       <h1 className="text-3xl font-bold">{t("nav.tools")}</h1>
       <p className="mt-2 text-slate-600 dark:text-slate-400">{t("site.description")}</p>
 
@@ -88,7 +93,7 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
                 {cfg.emoji}
               </span>
               <h2 className="text-xl font-bold">
-                <Link href={`/tools/category/${cat}`} className="hover:text-brand-600 hover:underline">
+                <Link href={isIndexedLocale(locale) && listIndexableByCategory(cat).length > 0 ? `/tools/category/${cat}` : `/tools#${cat}`} className="hover:text-brand-600 hover:underline">
                   {cfg.label}
                 </Link>
               </h2>
