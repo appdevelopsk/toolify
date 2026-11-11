@@ -1,6 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/lib/config";
+import { consumeJourneyForTool, rememberJourneyClick } from "./journey-attribution";
 
 /**
  * GA4 カスタムイベントの一元送出。
@@ -65,6 +66,20 @@ export function trackCalculate(p: CalculateParams): void {
     ...(typeof p.input_count === "number" ? { input_count: p.input_count } : {}),
     ...(typeof p.has_result === "boolean" ? { has_result: p.has_result } : {}),
   });
+  // Count actual interaction only after a click to this exact tool in this tab.
+  // "journey_tool_interaction" is NOT necessarily task completion.
+  if (siteConfig.analytics.gaId && typeof window !== "undefined" && typeof window.gtag === "function") {
+    const attribution = consumeJourneyForTool(p.tool);
+    if (attribution) {
+      emit("journey_tool_interaction", {
+        journey_id: attribution.journey_id,
+        destination_tool: attribution.destination_tool,
+        tool_slug: p.tool,
+        step_position: attribution.step_position,
+        ...(p.locale ? { locale: p.locale } : {}),
+      });
+    }
+  }
 }
 
 /** 関連ツール導線(結果直下のチップ)のクリック。label=行き先ツールの slug。 */
@@ -188,6 +203,7 @@ export function trackSoftwareDownload(p: { software: string }): void {
 
 /** Privacy-preserving goal journey navigation. Only fixed IDs, no search/input values. */
 export function trackJourneyClick(p: { journey: string; destination: string; locale: string; position: number }): void {
+  rememberJourneyClick(p.journey, p.destination, p.position);
   emit("journey_tool_click", {
     journey_id: p.journey,
     destination_tool: p.destination,
