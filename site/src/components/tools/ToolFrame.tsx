@@ -80,6 +80,10 @@ export function ToolFrame({ meta, title, description, related, children, article
           <ShareBar url={pageUrl} embedUrl={embedUrl} title={title} slug={meta.slug} />
         </div>
 
+        {/* Contextual forum follow-up stays visible immediately after the tool task,
+            before lengthy related/navigation sections; only timezone-converter renders it. */}
+        <NattzyRemoteWorkLink slug={meta.slug} locale={locale} />
+
         {/* Goal-specific follow-up after the workspace. No value transfer. */}
         <JourneyNextStep slug={meta.slug} locale={locale} toolTitle={(slug) => t(`tools.${slug}.title`)} />
 
@@ -112,7 +116,6 @@ export function ToolFrame({ meta, title, description, related, children, article
 
         {/* Intent-matched free software follows related/recent navigation, before monetization blocks. */}
         <ToolSoftwareRecommendations slug={meta.slug} locale={locale} />
-        <NattzyRemoteWorkLink slug={meta.slug} locale={locale} />
 
         {/* Keep task-follow-up navigation immediately after results; retain monetization units below it. */}
         <AdBelowResult />
