@@ -56,3 +56,12 @@ function destinationFromRaw(raw: string): string {
   } catch { /* ignored */ }
   return "";
 }
+
+/** Track attribution only when a real primary-button click navigates this tab. */
+export function isSameTabJourneyClick(event: {
+  isTrusted: boolean; defaultPrevented: boolean; button: number;
+  metaKey: boolean; ctrlKey: boolean; shiftKey: boolean; altKey: boolean;
+}): boolean {
+  return event.isTrusted && !event.defaultPrevented && event.button === 0 &&
+    !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey;
+}
