@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/lib/i18n/navigation";
 import { useToolEvents } from "@/lib/analytics/useToolEvents";
 
 interface Props {
@@ -85,6 +86,7 @@ const btn =
 
 export function ShareBar({ url, embedUrl, title, slug }: Props) {
   const t = useTranslations("tool");
+  const locale = useLocale();
   const { copyResult, share } = useToolEvents(slug);
   const [linkCopied, setLinkCopied] = useState(false);
   const [resultCopied, setResultCopied] = useState(false);
@@ -217,6 +219,11 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
             rows={3}
             className="w-full resize-none rounded border border-slate-300 bg-white p-2 font-mono text-xs text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300"
           />
+          <p className="mt-3 text-xs text-slate-600 dark:text-slate-400">
+            <Link href="/embed-guide" className="underline underline-offset-2 hover:text-brand-600">
+              {locale === "ja" ? "ブログ・海外サイトへの設置方法" : "How to install this widget on your website"}
+            </Link>
+          </p>
           <button type="button" onClick={() => copy(snippet, setCodeCopied, "embed")} className={`${btn} mt-2`}>
             <LinkIcon />
             <span>{codeCopied ? t("copied") : t("copy")}</span>
