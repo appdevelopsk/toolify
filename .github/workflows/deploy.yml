@@ -259,6 +259,30 @@ jobs:
           fi
           echo "✓ Release endpoint matches deployed commit ${GITHUB_SHA}"
 
+      # An origin SHA check alone can pass while a feature is absent from rendered HTML.
+      # Verify that the goal-first navigation and the post-tool next step are SSR-visible.
+      - name: Verify deployed goal journeys are rendered
+        run: |
+          set -euo pipefail
+          for locale in en ja; do
+            homepage=$(mktemp)
+            toolpage=$(mktemp)
+            trap 'rm -f "$homepage" "$toolpage"' EXIT
+            curl -fsSL --max-time 25 -H 'Cache-Control: no-cache'               "https://toolify365.com/${locale}?journey_verify=${GITHUB_SHA}" -o "$homepage"
+            curl -fsSL --max-time 25 -H 'Cache-Control: no-cache'               "https://toolify365.com/${locale}/tools/workdays-calculator?journey_verify=${GITHUB_SHA}" -o "$toolpage"
+            if ! grep -Fq 'id="goal-journeys-heading"' "$homepage"; then
+              echo "::error::Goal journeys missing in ${locale} homepage HTML"
+              exit 1
+            fi
+            if ! grep -Fq '/tools/date-calculator' "$toolpage"; then
+              echo "::error::Next-step destination missing on ${locale} workdays tool HTML"
+              exit 1
+            fi
+            echo "✓ ${locale}: SSR journey discovery and next-step link present"
+            rm -f "$homepage" "$toolpage"
+            trap - EXIT
+          done
+
       - name: Cleanup SSH key
         if: always()
         run: rm -f ~/.ssh/deploy_key
