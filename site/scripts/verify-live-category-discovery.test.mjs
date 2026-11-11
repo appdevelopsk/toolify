@@ -29,3 +29,8 @@ test("rejects English-only footer categories on Japanese page", () => {
   const page = fixture("ja").replace("<footer>健康・フィットネス</footer>", "<footer>Health & Fitness</footer>");
   assert.throws(() => inspectCategoryHtml(page, "ja"), /footer category/);
 });
+
+test("accepts HTML-escaped English footer category", () => {
+  const page = fixture("en").replace("<footer>Health & Fitness</footer>", "<footer>Health &amp; Fitness</footer>");
+  assert.doesNotThrow(() => inspectCategoryHtml(page, "en"));
+});

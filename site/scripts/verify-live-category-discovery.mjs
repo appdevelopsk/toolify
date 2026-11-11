@@ -27,7 +27,9 @@ export function inspectCategoryHtml(html, locale) {
   // category navigation on Japanese pages.
   const footer = html.match(/<footer\b[\s\S]*?<\/footer>/i)?.[0] ?? "";
   const footerLabel = locale === "ja" ? "健康・フィットネス" : "Health & Fitness";
-  if (!footer.includes(footerLabel)) {
+  // HTML text escapes ampersands; compare equivalent text representations.
+  const normalizedFooter = footer.replace(/&amp;/gi, "&");
+  if (!normalizedFooter.includes(footerLabel)) {
     throw new Error(`${locale}: global footer category links not localized`);
   }
 }
