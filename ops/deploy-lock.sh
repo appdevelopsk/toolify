@@ -17,23 +17,30 @@
 set -u
 cmd=${1:-}; L=${2:-}; me=${3:-}; stale=${4:-3600}
 [[ -n $cmd && -n $L && -n $me ]] || { echo "usage: acquire|release <lockdir> <owner> [stale_sec]"; exit 2; }
+[[ $stale =~ ^[0-9]+$ ]] || { echo "stale_sec must be a non-negative integer" >&2; exit 2; }
 [[ $L == */.deploy.lock.d ]] && { echo "lockdir must be outside the deploy dir: $L"; exit 2; }
 now=$(date +%s)
 case $cmd in
   acquire)
     if mkdir "$L" 2>/dev/null; then
-      echo "$me $now" > "$L/owner"
+      if ! printf '%s %s\n' "$me" "$now" > "$L/owner"; then
+        rmdir "$L" 2>/dev/null || true
+        echo "Cannot write lock owner metadata: $L/owner" >&2
+        exit 1
+      fi
       echo "ACQUIRED $L by $me"
       exit 0
     fi
     o=$(cut -d' ' -f1 "$L/owner" 2>/dev/null || true)
-    t=$(stat -c %Y "$L/owner" 2>/dev/null || stat -c %Y "$L" 2>/dev/null || echo "$now")
+    t=$(stat -c %Y "$L/owner" 2>/dev/null || stat -f %m "$L/owner" 2>/dev/null || stat -c %Y "$L" 2>/dev/null || stat -f %m "$L" 2>/dev/null || echo "$now")
     age=$(( now - t ))
-    # A deploy that died without releasing must not block forever.
+    # Do not take over an old lock automatically. The previous code overwrote
+    # the owner file without any atomic claim; two waiters could both enter a
+    # live deployment (or steal a lock from a slow, still-running deploy).
+    # A stale lock requires verification that the prior deployment has stopped.
     if (( age > stale )); then
-      echo "$me $now" > "$L/owner"
-      echo "TAKEOVER stale lock of ${o:-unknown} (age ${age}s > ${stale}s) by $me"
-      exit 0
+      echo "STALE $L held by ${o:-unknown} for ${age}s; refusing unsafe automatic takeover. Verify the prior deploy is inactive before manually clearing the lock." >&2
+      exit 3
     fi
     echo "BUSY $L held by ${o:-unknown} for ${age}s"
     exit 3
@@ -41,7 +48,11 @@ case $cmd in
   release)
     o=$(cut -d' ' -f1 "$L/owner" 2>/dev/null || true)
     if [[ $o == "$me" ]]; then
-      rm -f "$L/owner" && rmdir "$L" && echo "RELEASED $L by $me"
+      if ! { rm -f "$L/owner" && rmdir "$L"; }; then
+        echo "Failed to release lock: $L" >&2
+        exit 1
+      fi
+      echo "RELEASED $L by $me"
     else
       echo "NOT OWNER (held by ${o:-nobody}); left as is"
     fi

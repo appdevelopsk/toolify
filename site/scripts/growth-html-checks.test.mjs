@@ -1,17 +1,23 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
-import { hasNoindex, canonicalHref, hasSoftwareAnchor } from './growth-html-checks.mjs';
+import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasSitemapLocation } from './growth-html-checks.mjs';
 
 test('robots and googlebot directives independent of attribute order', () => {
   assert.equal(hasNoindex('<meta name="robots" content="noindex,follow">'), true);
   assert.equal(hasNoindex("<meta content='follow, noindex' name='googlebot'>"), true);
   assert.equal(hasNoindex('<meta name="robots" content="index, follow">'), false);
+  assert.equal(hasNoindex('<meta name="robots" content="none">'), true);
+  assert.equal(hasNoindex('<meta name="googlebot" content="nofollow, none">'), true);
+  assert.equal(hasNoindex('<meta name="robots" content="nonetheless">'), false);
   assert.equal(hasNoindex('<meta name="description" content="noindex">'), false);
   assert.equal(hasNoindex('<meta name="robots" content="noindexing">'), false);
   assert.equal(hasNoindex("", "noindex, nofollow"), true);
   assert.equal(hasNoindex("", "googlebot: noindex, follow"), true);
   assert.equal(hasNoindex("", "noindexing"), false);
   assert.equal(hasNoindex("", "index, follow"), false);
+  assert.equal(hasNoindex("", "none"), true);
+  assert.equal(hasNoindex("", "googlebot: none, follow"), true);
+  assert.equal(hasNoindex("", "nonewhat"), false);
   assert.equal(hasNoindex('<!-- <meta name="robots" content="noindex"> -->'), false);
   assert.equal(hasNoindex('<script>"<meta name=\\"robots\\" content=\\"noindex\\">"</script>'), false);
 });
@@ -31,4 +37,35 @@ test('CTA must be an anchor, not an inert script string', () => {
   assert.equal(hasSoftwareAnchor('<a href="/en/software/json-studio">Open</a>', 'json-studio', 'ja'), false);
   assert.equal(hasSoftwareAnchor('<a href="https://other.example/en/software/json-studio">Open</a>', 'json-studio', 'en'), false);
   assert.equal(hasSoftwareAnchor('<a href="https://staging.example/en/software/json-studio">Open</a>', 'json-studio', 'en', 'https://staging.example'), true);
+});
+
+test('sitemap target requires exact loc match, not URL prefix', () => {
+  const target = 'https://toolify365.com/en/tools/character-frequency';
+  const xml = '<urlset><url><loc>' + target + '-fake</loc></url></urlset>';
+  assert.equal(hasSitemapLocation(xml, target), false);
+  assert.equal(hasSitemapLocation('<urlset><url><loc>' + target + '</loc></url></urlset>', target), true);
+  assert.equal(hasSitemapLocation('<loc>https://toolify365.com/en/tools/character-frequency?ref=x</loc>', target), false);
+  assert.equal(hasSitemapLocation('<loc>https://wrong.example/en/tools/character-frequency</loc>', target), false);
+  assert.equal(hasSitemapLocation('<loc>invalid relative address</loc>', target), false);
+  assert.equal(hasSitemapLocation('<loc>https://toolify365.com/en/tools/character-frequency', target), false);
+  assert.equal(hasSitemapLocation('<!-- <loc>' + target + '</loc> -->', target), false);
+  assert.equal(hasSitemapLocation('<![CDATA[<loc>' + target + '</loc>]]>', target), false);
+  assert.equal(hasSitemapLocation('<!-- <loc>' + target + '</loc> --><loc>' + target + '</loc>', target), true);
+});
+
+test('SEO and CTA checks require real attribute names, never lookalike data-*', () => {
+  assert.equal(hasNoindex('<meta data-name="robots" content="noindex">'), false);
+  assert.equal(hasNoindex('<meta name="robots" data-content="noindex" content="index">'), false);
+  assert.equal(hasNoindex('<meta data-note="name=robots" content="noindex">'), false);
+  assert.equal(hasNoindex('<meta name="robots" content="noindex" data-content="index">'), true);
+
+  assert.equal(canonicalHref('<link data-rel="canonical" href="/fake">'), null);
+  assert.equal(canonicalHref('<link rel="canonical" data-href="/fake" href="/real">'), '/real');
+  assert.equal(canonicalHref('<link data-meta="rel=canonical" rel="stylesheet" href="/fake">'), null);
+  assert.equal(canonicalHref('<link rel="alternate canonical" href="/real">'), '/real');
+
+  assert.equal(hasSoftwareAnchor('<a data-href="/en/software/json-studio">Open</a>', 'json-studio', 'en'), false);
+  assert.equal(hasSoftwareAnchor('<a href="/wrong" data-href="/en/software/json-studio">Open</a>', 'json-studio', 'en'), false);
+  assert.equal(hasSoftwareAnchor('<a data-note="href=/en/software/json-studio" href="/wrong">Open</a>', 'json-studio', 'en'), false);
+  assert.equal(hasSoftwareAnchor('<a data-href="/wrong" href="/en/software/json-studio">Open</a>', 'json-studio', 'en'), true);
 });

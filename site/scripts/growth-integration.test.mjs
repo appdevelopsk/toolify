@@ -71,3 +71,53 @@ test('shared URL restoration validates untrusted input and clears stale oversize
   assert.ok(hook.includes('stale.searchParams.delete("s")'));
   assert.ok(hook.includes('window.dispatchEvent(new Event("toolify:share-state-change"))'));
 });
+
+test('embedded tool HTML escapes title and attribute values', () => {
+  const share = read('../src/components/tools/ShareBar.tsx');
+  const html = read('../src/lib/tools/embed-html.ts');
+  assert.ok(share.includes('buildToolEmbedSnippet'));
+  assert.ok(html.includes('export function escapeHtml(value: string)'));
+  assert.ok(html.includes('const safeTitle = escapeHtml(title)'));
+  assert.ok(html.includes("const safeEmbedSrc = escapeHtml(safeEmbedUrl(embedUrl, 'about:blank'))"));
+  assert.ok(html.includes("const safeToolUrl = escapeHtml(safeEmbedUrl(toolUrl, 'https://toolify365.com'))"));
+  assert.ok(html.includes('rel="noopener noreferrer nofollow"'));
+  assert.ok(html.includes('if (parsed.protocol === "https:" || localDev) return value'));
+  assert.ok(html.includes('if (parsed.username || parsed.password) return fallback'));
+  assert.ok(html.includes('value.trim() !== value'));
+});
+
+test('postmerge release requires fresh main and validated manual-only deployment', () => {
+  const gate = read('../../scripts/check-postmerge-embed-release.sh');
+  const workflow = read('../../.github/workflows/deploy.yml');
+  const parser = read('../../scripts/verify-manual-deploy.mjs');
+  const parserTests = read('../../scripts/verify-manual-deploy.test.mjs');
+  assert.ok(gate.includes('fetch --no-tags origin main:refs/remotes/origin/main'));
+  assert.ok(gate.includes('merge-base --is-ancestor refs/remotes/origin/main HEAD'));
+  assert.ok(gate.includes('latest origin/main is not merged'));
+  assert.ok(gate.includes('node "$ROOT/scripts/verify-manual-deploy.mjs" "$ROOT/.github/workflows"'));
+  assert.ok(gate.includes('node --test "$ROOT/scripts/verify-manual-deploy.test.mjs"'));
+  assert.ok(parser.includes('Unexpected workflow trigger'));
+  assert.ok(parser.includes('blocks !== 1 || manual !== 1'));
+  assert.ok(parser.includes('export function verifyWorkflowPath(path)'));
+  assert.ok(parserTests.includes('validates every .yml and .yaml workflow'));
+  assert.ok(parserTests.includes('directory CLI rejects an automatic CI workflow'));
+
+  assert.ok(parserTests.includes('on: [push]'));
+  assert.ok(parserTests.includes('on: push'));
+  assert.ok(workflow.includes('workflow_dispatch: {}'));
+  assert.ok(!workflow.split(String.fromCharCode(10)).some((line) => line.trimStart().startsWith('push:')), 'no YAML push trigger');
+  assert.ok(workflow.includes('Acquire VPS deploy lock (shared with local deploy)'));
+  assert.ok(workflow.includes('Verify live release SHA'));
+  assert.ok(workflow.includes('Verify public release endpoint'));
+});
+
+test('native share cancellation cannot silently copy the URL', () => {
+  const bar = read('../src/components/tools/ShareBar.tsx');
+  const policy = read('../src/lib/tools/share-errors.ts');
+  const gate = read('../../scripts/check-postmerge-embed-release.sh');
+  assert.ok(bar.includes('import { isShareCancelled } from "@/lib/tools/share-errors"'));
+  assert.ok(bar.includes('if (isShareCancelled(error)) return;'));
+  assert.ok(bar.includes('await navigator.share({ title, url })'));
+  assert.ok(policy.includes('error.name === "AbortError"'));
+  assert.ok(gate.includes('scripts/share-errors-node.test.mjs'));
+});

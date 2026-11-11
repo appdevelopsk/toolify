@@ -1,3 +1,14 @@
+/** Match full HTML attributes, not data-name/data-rel/data-href or quoted text. */
+function attributeValue(tag, wanted) {
+  const pattern = /(?:^|\s)([^\s=/>]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>]+)))?/g;
+  for (const match of tag.matchAll(pattern)) {
+    if (match[1].toLowerCase() === wanted) {
+      return match[2] ?? match[3] ?? match[4] ?? '';
+    }
+  }
+  return null;
+}
+
 function renderedMarkup(html) {
   // Ignore comments and serialized hydration/script payloads that can contain fake tags.
   return html
@@ -7,26 +18,37 @@ function renderedMarkup(html) {
 }
 export function hasNoindex(html, xRobotsTag = "") {
   // X-Robots-Tag may be repeated/comma-delimited, and can target a specific crawler.
-  if (/(?:^|[,\s:])noindex(?:$|[,\s])/i.test(xRobotsTag)) return true;
+  if (/(?:^|[,\s:])(?:noindex|none)(?:$|[,\s])/i.test(xRobotsTag)) return true;
   return [...renderedMarkup(html).matchAll(/<meta[^>]*>/gi)].some(([tag]) => {
-    const name = tag.match(/\bname\s*=\s*["'](robots|googlebot)["']/i);
-    const value = tag.match(/\bcontent\s*=\s*["']([^"']+)["']/i)?.[1] ?? '';
-    return Boolean(name) && /(?:^|[,\s])noindex(?:$|[,\s])/i.test(value);
+    const name = attributeValue(tag, 'name')?.toLowerCase();
+    const value = attributeValue(tag, 'content') ?? '';
+    return (name === 'robots' || name === 'googlebot') && /(?:^|[,\s])(?:noindex|none)(?:$|[,\s])/i.test(value);
   });
 }
 export function canonicalHref(html) {
-  const tag = [...renderedMarkup(html).matchAll(/<link[^>]*>/gi)].map(([v]) => v).find(t => /\brel\s*=\s*["']canonical["']/i.test(t));
-  return tag?.match(/\bhref\s*=\s*["']([^"']+)["']/i)?.[1]?.replace(/&amp;/g, '&') ?? null;
+  const tag = [...renderedMarkup(html).matchAll(/<link[^>]*>/gi)].map(([v]) => v).find(t => (attributeValue(t, 'rel') ?? '').toLowerCase().split(/\s+/).includes('canonical'));
+  return attributeValue(tag ?? '', 'href')?.replace(/&amp;/g, '&') ?? null;
 }
 export function hasSoftwareAnchor(html, slug, locale, origin = 'https://toolify365.com') {
   const markup = renderedMarkup(html);
   const destination = `/software/${slug}`;
   return [...markup.matchAll(/<a\b[^>]*>/gi)].some(([tag]) => {
-    const href = tag.match(/\bhref\s*=\s*["']([^"']+)["']/i)?.[1]?.replace(/&amp;/g, '&');
+    const href = attributeValue(tag, 'href')?.replace(/&amp;/g, '&');
     if (!href) return false;
     try {
       const url = new URL(href, origin);
       return url.origin === new URL(origin).origin && url.pathname.replace(/\/$/, '') === `/${locale}${destination}`;
+    } catch { return false; }
+  });
+}
+
+/** Match complete <loc> values, never URL prefixes that may identify a different page. */
+export function hasSitemapLocation(xml, target) {
+  // Comments and CDATA may contain convincing but non-indexable <loc> text.
+  const liveXml = xml.replace(/<!--[\s\S]*?-->/g, '').replace(/<!\[CDATA\[[\s\S]*?\]\]>/g, '');
+  return [...liveXml.matchAll(/<loc(?:\s[^>]*)?>([^<]+)<\/loc\s*>/gi)].some(([, value]) => {
+    try {
+      return new URL(value.trim().replace(/&amp;/g, '&')).href === new URL(target).href;
     } catch { return false; }
   });
 }
