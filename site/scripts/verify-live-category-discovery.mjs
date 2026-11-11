@@ -23,6 +23,13 @@ export function inspectCategoryHtml(html, locale) {
   if (locale === "ja" && !html.includes("ヒント：")) {
     throw new Error("ja: Japanese category tip label missing");
   }
+  // The global footer appears on every page. Do not regress to English
+  // category navigation on Japanese pages.
+  const footer = html.match(/<footer\b[\s\S]*?<\/footer>/i)?.[0] ?? "";
+  const footerLabel = locale === "ja" ? "健康・フィットネス" : "Health & Fitness";
+  if (!footer.includes(footerLabel)) {
+    throw new Error(`${locale}: global footer category links not localized`);
+  }
 }
 
 async function main() {
