@@ -7,6 +7,7 @@ import { SisterSiteCta } from "@/components/cross/SisterSiteCta";
 import { ToolInteractionTracker } from "./ToolInteractionTracker";
 import { RelatedToolLink } from "./RelatedToolLink";
 import { ContinueWithRecent } from "./ContinueWithRecent";
+import { JourneyNextStep } from "./JourneyNextStep";
 import { ToolSoftwareRecommendations } from "./ToolSoftwareRecommendations";
 import { TrustBox } from "./TrustBox";
 import { ShareBar } from "@/components/tools/ShareBar";
@@ -77,6 +78,9 @@ export function ToolFrame({ meta, title, description, related, children, article
         <div className="sm:hidden">
           <ShareBar url={pageUrl} embedUrl={embedUrl} title={title} slug={meta.slug} />
         </div>
+
+        {/* Goal-specific follow-up after the workspace. No value transfer. */}
+        <JourneyNextStep slug={meta.slug} locale={locale} toolTitle={(slug) => t(`tools.${slug}.title`)} />
 
         {/* 関連ツール導線 — ツール結果の直後(注意が集中する位置)に移動。
             従来は記事/FAQ/出典の後の最下部で不可視だった。回遊(PV/session)増=AdSense表示増。
