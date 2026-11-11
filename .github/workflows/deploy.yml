@@ -289,6 +289,16 @@ jobs:
           node --test scripts/verify-live-category-discovery.test.mjs
           node scripts/verify-live-category-discovery.mjs
 
+      # The existing public release SHA check proves the deployed build, but cannot
+      # prove that an individual acquisition feature is present. Check SSR anchors.
+      # These are read-only and do not create synthetic forum traffic or registrations.
+      - name: Verify Nattzy contextual referrals after deployment
+        run: |
+          set -euo pipefail
+          npm run test:nattzy-cta
+          npm run audit:nattzy-cta
+          npm run audit:nattzy-timezone
+
       - name: Cleanup SSH key
         if: always()
         run: rm -f ~/.ssh/deploy_key
