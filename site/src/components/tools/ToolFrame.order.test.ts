@@ -18,6 +18,21 @@ describe("tool result follow-up placement", () => {
     expect(software).toBeLessThan(resultAd);
     expect(resultAd).toBeLessThan(bannerAd);
   });
+  it("places the single timezone discussion CTA directly after tool/share and before follow-ups", () => {
+    const workspace = source.indexOf("<ToolInteractionTracker");
+    const mobileShare = source.indexOf('<div className="sm:hidden">');
+    const discussion = source.indexOf("<NattzyRemoteWorkLink");
+    const journey = source.indexOf("<JourneyNextStep");
+    const software = source.indexOf("<ToolSoftwareRecommendations");
+    const ads = source.indexOf("<AdBelowResult");
+    expect([workspace, mobileShare, discussion, journey, software, ads].every(i => i >= 0)).toBe(true);
+    expect(workspace).toBeLessThan(mobileShare);
+    expect(mobileShare).toBeLessThan(discussion);
+    expect(discussion).toBeLessThan(journey);
+    expect(discussion).toBeLessThan(software);
+    expect(discussion).toBeLessThan(ads);
+    expect(source.split("<NattzyRemoteWorkLink").length - 1).toBe(1);
+  });
   it("retains the existing ad inventory", () => {
     expect(source).toContain("<AdBelowResult");
     expect(source).toContain("<AdBanner");
