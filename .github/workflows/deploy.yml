@@ -283,6 +283,12 @@ jobs:
             trap - EXIT
           done
 
+      # Guard category discovery and Japanese SEO labels on the actual public release.
+      - name: Verify deployed category discovery and localized breadcrumbs
+        run: |
+          node --test scripts/verify-live-category-discovery.test.mjs
+          node scripts/verify-live-category-discovery.mjs
+
       - name: Cleanup SSH key
         if: always()
         run: rm -f ~/.ssh/deploy_key
