@@ -1,4 +1,4 @@
-import { Link } from "@/lib/i18n/navigation";
+import { JourneyLink } from "./JourneyLink";
 import { listTools } from "@/lib/tools/registry";
 
 /**
@@ -51,17 +51,17 @@ export function ToolJourneys({ locale, toolTitle }: { locale: string; toolTitle:
               {journey.slugs.filter((slug) => validSlugs.has(slug)).map((slug, index) => (
                 <li key={slug} className="flex items-start gap-2 text-sm">
                   <span aria-hidden="true" className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-50 font-semibold text-brand-700 dark:bg-slate-800 dark:text-brand-400">{index + 1}</span>
-                  <Link prefetch={false} href={`/tools/${slug}`} className="min-h-9 rounded text-brand-700 underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:text-brand-400">
+                  <JourneyLink journey={journey.id} destination={slug} locale={locale} position={index + 1} href={`/tools/${slug}`} className="min-h-9 rounded text-brand-700 underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:text-brand-400">
                     {toolTitle(slug)}
-                  </Link>
+                  </JourneyLink>
                 </li>
               ))}
             </ol>
             {validSlugs.has(journey.slugs[0]) && (
-              <Link prefetch={false} href={`/tools/${journey.slugs[0]}`}
+              <JourneyLink journey={journey.id} destination={journey.slugs[0]} locale={locale} position={1} href={`/tools/${journey.slugs[0]}`}
                 className="mt-5 inline-flex min-h-11 items-center rounded-lg bg-brand-600 px-4 text-sm font-semibold text-white hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">
                 {ja ? "最初のツールを開く" : "Start this workflow"} →
-              </Link>
+              </JourneyLink>
             )}
           </article>
         ))}
