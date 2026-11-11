@@ -34,6 +34,8 @@ jobs:
         run: npm run check:site-url
       - name: Unit tests
         run: npm test
+      - name: Category discovery verifier tests
+        run: node --test scripts/verify-live-category-discovery.test.mjs
       - name: Production build
         run: npm run build
       # Run Lighthouse against exactly the build verified above. Keeping the
