@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/lib/i18n/navigation";
 import { isIndexableIn, listByCategory, listIndexableByCategory } from "@/lib/tools/registry";
+import { orderCategoryToolsForLocale } from "@/lib/tools/category-order";
 import { CATEGORY_DESCRIPTIONS } from "@/lib/tools/category-descriptions";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import { ToolCard } from "@/components/tools/ToolCard";
@@ -60,12 +61,14 @@ export default async function ToolCategoryPage({
   if (!cfg) notFound();
   const tools = listByCategory(cat);
   if (tools.length === 0) notFound();
+  // Prioritize proven-demand, indexable tools without hiding other utilities.
+  const orderedTools = orderCategoryToolsForLocale(tools, locale);
   const t = await getTranslations();
   const copy = getCopy(cat, locale);
 
   // Keep structured-data entries aligned with this locale's index policy.
   // Visible cards remain available to users, including noindex utilities.
-  const indexableTools = tools.filter((m) => isIndexableIn(locale, m.slug));
+  const indexableTools = orderedTools.filter((m) => isIndexableIn(locale, m.slug));
   const itemListLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -128,7 +131,7 @@ export default async function ToolCategoryPage({
       )}
 
       <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {tools.map((m) => (
+        {orderedTools.map((m) => (
           <ToolCard
             key={m.slug}
             meta={m}
