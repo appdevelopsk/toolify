@@ -14,6 +14,7 @@ function fixture(locale, { reversed = false, jsonld = true, tip = true } = {}) {
     jsonld ? `<script type="application/ld+json">{"@type":"BreadcrumbList","itemListElement":[{"name":"${label}"}]}</script>` : "",
     locale === "ja" && tip ? "<aside>ヒント：</aside>" : "",
     ...links,
+    `<footer>${locale === "ja" ? "健康・フィットネス" : "Health & Fitness"}</footer>`,
   ].join("");
 }
 for (const locale of ["en", "ja"]) {
@@ -23,3 +24,8 @@ for (const locale of ["en", "ja"]) {
 }
 test("rejects missing Japanese tip label", () => assert.throws(() => inspectCategoryHtml(fixture("ja", { tip:false }), "ja"), /tip label/));
 test("rejects unsupported locales", () => assert.throws(() => inspectCategoryHtml("", "fr"), /Unsupported locale/));
+
+test("rejects English-only footer categories on Japanese page", () => {
+  const page = fixture("ja").replace("<footer>健康・フィットネス</footer>", "<footer>Health & Fitness</footer>");
+  assert.throws(() => inspectCategoryHtml(page, "ja"), /footer category/);
+});
