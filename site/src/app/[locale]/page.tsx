@@ -4,6 +4,7 @@ import { Link } from "@/lib/i18n/navigation";
 import { listTools, listFeaturedTools, listIndexableByCategory } from "@/lib/tools/registry";
 import { listPrompts } from "@/lib/prompts/registry";
 import { ToolCard } from "@/components/tools/ToolCard";
+import { ToolJourneys } from "@/components/tools/ToolJourneys";
 import { HeroSearchTrigger } from "@/components/tools/HeroSearchTrigger";
 import { AVAILABLE_SOFTWARE } from "@/lib/software/catalog";
 import { FavoritesSection } from "@/components/tools/FavoritesSection";
@@ -151,6 +152,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           ))}
         </div>
       </section>
+
+      {/* Goal-first journeys: SSR links, indexed locales only, no extra tracking or user data. */}
+      <ToolJourneys locale={locale} toolTitle={(slug) => t(`tools.${slug}.title`)} />
 
       {/* ── Category grid ─────────────────────────────────────────────── */}
       <section className="mt-10">

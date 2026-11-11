@@ -185,3 +185,13 @@ export function trackSoftwareProcess(p: { software: string; success: boolean }):
 export function trackSoftwareDownload(p: { software: string }): void {
   emit("software_download", { software_slug: p.software });
 }
+
+/** Privacy-preserving goal journey navigation. Only fixed IDs, no search/input values. */
+export function trackJourneyClick(p: { journey: string; destination: string; locale: string; position: number }): void {
+  emit("journey_tool_click", {
+    journey_id: p.journey,
+    destination_tool: p.destination,
+    locale: p.locale,
+    step_position: p.position,
+  });
+}
