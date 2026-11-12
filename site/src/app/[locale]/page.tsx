@@ -13,7 +13,7 @@ import { PromptCard } from "@/components/prompts/PromptCard";
 import { AdBanner, AdInFeed } from "@/components/ads/AdBanner";
 import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { CATEGORY_CONFIG } from "@/lib/tools/categories";
+import { CATEGORY_CONFIG, categoryLabel } from "@/lib/tools/categories";
 import { softwareCopy } from "@/lib/software/copy";
 import { isIndexedLocale, type Locale } from "@/lib/i18n/locales";
 import type { ToolCategory, ToolMeta } from "@/lib/tools/types";
@@ -175,7 +175,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </span>
               <div className="min-w-0">
                 <div className="text-sm font-semibold group-hover:text-brand-600 dark:group-hover:text-brand-500">
-                  {cfg.label}
+                  {categoryLabel(cat, locale)}
                 </div>
                 <div className="text-xs text-slate-600 dark:text-slate-400">
                   {t("home.toolsCount", { n: tools.length })}
