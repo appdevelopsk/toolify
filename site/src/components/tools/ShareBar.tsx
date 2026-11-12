@@ -133,6 +133,9 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
     { name: "LINE", href: `https://social-plugins.line.me/lineit/share?url=${enc(url)}`, Icon: LineIcon },
     { name: "WhatsApp", href: `https://api.whatsapp.com/send?text=${enc(`${title} ${url}`)}`, Icon: WhatsAppIcon },
     { name: "Reddit", href: `https://www.reddit.com/submit?url=${enc(url)}&title=${enc(title)}`, Icon: RedditIcon },
+    // Professional and international messaging communities: direct, localized tool URL.
+    { name: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}`, Icon: LinkIcon },
+    { name: "Telegram", href: `https://t.me/share/url?url=${enc(url)}&text=${enc(title)}`, Icon: ShareIcon },
   ];
 
   async function copy(text: string, mark: (v: boolean) => void, kind: "link" | "embed" | "result") {
