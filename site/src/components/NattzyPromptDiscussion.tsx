@@ -1,3 +1,4 @@
+import React from "react";
 /** Curated topic links for a few related prompt templates. No embed or tracking. */
 // Keep the destinations public and stable, with no personal data in UTM parameters.
 // Do not turn this into a generic CTA across unrelated tools/prompts.
