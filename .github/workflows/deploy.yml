@@ -289,6 +289,13 @@ jobs:
           node --test scripts/verify-live-category-discovery.test.mjs
           node scripts/verify-live-category-discovery.mjs
 
+      # Protect globally localized discovery and measured international shares
+      # on the actual deployed release, not only in GitHub source/CI.
+      - name: Verify international growth UX on live site
+        run: |
+          npm run test:smoke-html
+          SITE_URL=https://toolify365.com npm run audit:live-growth
+
       # The existing public release SHA check proves the deployed build, but cannot
       # prove that an individual acquisition feature is present. Check SSR anchors.
       # These are read-only and do not create synthetic forum traffic or registrations.
