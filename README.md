@@ -1,6 +1,34 @@
-# Toolify (web_advertisement)
+# Toolify365 — Free Online Calculators, Converters & Developer Utilities
 
-Multilingual, ad-supported online tools site — Next.js 15 + AdSense + next-intl.
+**Try Toolify365:** https://toolify365.com/en — free browser-based tools, with no account required.
+
+Find the right tool for a specific task rather than installing an app or creating a login. The live site has **17 language interfaces**. Search engine indexing is intentionally limited to selected localized pages; not every translated page is intended to appear in search.
+
+## Start with a tool
+
+| Task | Open |
+| --- | --- |
+| Format or validate JSON | [JSON Formatter](https://toolify365.com/en/tools/json-formatter) |
+| Compare time zones for meetings | [Timezone Converter](https://toolify365.com/en/tools/timezone-converter) |
+| Count words and estimate reading time | [Word Counter](https://toolify365.com/en/tools/word-counter) |
+| Compare unit prices | [Unit Price Calculator](https://toolify365.com/en/tools/unit-price-calculator) |
+| Resize images in your browser | [Image Resizer](https://toolify365.com/en/tools/image-resizer) |
+| Explore all tools by category | [All Tools](https://toolify365.com/en/tools) |
+
+Each tool has a direct URL that you can bookmark or share. Individual tools may have their own data-handling and browser requirements; check the on-page guidance before entering sensitive content.
+
+## For developers and site owners
+
+- Pick a tool matching your users' task and link to that individual tool page.
+- Some tool pages offer an optional embed snippet. Keep attribution transparent and follow your site's link policies.
+- Feedback and bug reports are welcome through GitHub issues. Please include tool slug, language, device, and reproducible steps; do not paste passwords or sensitive input data.
+- This repository powers the public site; public visibility alone should not be interpreted as permission to redistribute its source. Check the repository license before reuse.
+
+## Implementation
+
+Multilingual, ad-supported tools site built with Next.js 15, AdSense and next-intl. The development and analytics instructions follow.
+
+---
 
 ## Quick start
 
