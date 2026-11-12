@@ -33,6 +33,11 @@ describe("tool result follow-up placement", () => {
     expect(discussion).toBeLessThan(ads);
     expect(source.split("<NattzyRemoteWorkLink").length - 1).toBe(1);
   });
+  it("uses already-translated tool titles for international related-tool links", () => {
+    expect(source).toContain("t(`tools.${r.slug}.title`)");
+    expect(source).not.toContain("r.primaryKeyword[locale]");
+    expect(source).toContain("<JourneyNextStep");
+  });
   it("retains the existing ad inventory", () => {
     expect(source).toContain("<AdBelowResult");
     expect(source).toContain("<AdBanner");
