@@ -23,7 +23,7 @@ export default async function SoftwareProductPage({params}:{params:Promise<{loca
   const active=product.slug as "csv-cleaner-pro"|"json-studio"|"text-batch-studio";
   return <main className="mx-auto max-w-4xl px-4 py-12">
     <Link href="/software" className="text-sm text-brand-600">{t.back}</Link>
-    <h1 className="mt-4 text-3xl font-bold">{product.name}</h1><p className="mt-2 text-slate-600 dark:text-slate-300">{product.description}</p>
+    <h1 className="mt-4 text-3xl font-bold">{product.name}</h1><p className="mt-2 text-slate-600 dark:text-slate-300">{softwareDescription(product.slug, locale, product.description)}</p>
     <p className="my-4 text-sm">{t.free}: {product.free}</p>
     <SoftwareWorkbench slug={active} labels={{input:t.input,output:t.output,process:t.process,download:t.download,upload:t.upload,limit:t.limit,placeholder:t.placeholder,error:t.error,minify:t.minify}}/>
     <p className="mt-4 text-sm text-slate-500">{t.privacy}</p>
