@@ -6,13 +6,14 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/lib/i18n/navigation";
 import { AVAILABLE_SOFTWARE, findSoftware } from "@/lib/software/catalog";
 import { softwareCopy } from "@/lib/software/copy";
+import { softwareDescription } from "@/lib/software/descriptions";
 import { SoftwareWorkbench } from "@/components/software/SoftwareWorkbench";
 export function generateStaticParams() {return AVAILABLE_SOFTWARE.map(p=>({slug:p.slug}));}
 export async function generateMetadata({params}:{params:Promise<{locale:string;slug:string}>}):Promise<Metadata>{
   const {locale,slug}=await params; const product=findSoftware(slug); const t=softwareCopy(locale);
   if(!product) return {};
   // 2026-11-03: noindex(一覧と同じ理由)。説明文は製品ごとに変える(3製品が同一 description だった)。
-  const description=locale==="en"?`${product.description} ${t.privacy}`:`${product.name} — ${t.subtitle} ${t.privacy}`;
+  const description=`${softwareDescription(product.slug, locale, product.description)} ${t.privacy}`;
   return buildMetadata({locale:locale as Locale,title:`${product.name} – ${t.title}`,description,path:`/software/${product.slug}`,noindex:true});
 }
 export default async function SoftwareProductPage({params}:{params:Promise<{locale:string;slug:string}>}) {
