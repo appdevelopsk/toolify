@@ -7,13 +7,14 @@ import { ToolCard } from "@/components/tools/ToolCard";
 import { ToolJourneys } from "@/components/tools/ToolJourneys";
 import { HeroSearchTrigger } from "@/components/tools/HeroSearchTrigger";
 import { AVAILABLE_SOFTWARE } from "@/lib/software/catalog";
+import { softwareDescription } from "@/lib/software/descriptions";
 import { FavoritesSection } from "@/components/tools/FavoritesSection";
 import { RecentSection } from "@/components/tools/RecentSection";
 import { PromptCard } from "@/components/prompts/PromptCard";
 import { AdBanner, AdInFeed } from "@/components/ads/AdBanner";
 import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { CATEGORY_CONFIG } from "@/lib/tools/categories";
+import { CATEGORY_CONFIG, categoryLabel } from "@/lib/tools/categories";
 import { softwareCopy } from "@/lib/software/copy";
 import { isIndexedLocale, type Locale } from "@/lib/i18n/locales";
 import type { ToolCategory, ToolMeta } from "@/lib/tools/types";
@@ -105,7 +106,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         />
         <div className="inline-flex items-center gap-1.5 rounded-full border border-brand-100 bg-white/70 px-3 py-1 text-sm font-medium text-brand-700 shadow-sm backdrop-blur dark:border-slate-700 dark:bg-slate-800/70 dark:text-brand-500">
           <span aria-hidden>⚡</span>
-          {allTools.length} free tools · no login required
+          {t("home.toolsCount", { n: allTools.length })} · {t("home.whyNoSignupTitle")}
         </div>
         <h1 className="mx-auto mt-5 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
           {t("home.heading")}
@@ -175,7 +176,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </span>
               <div className="min-w-0">
                 <div className="text-sm font-semibold group-hover:text-brand-600 dark:group-hover:text-brand-500">
-                  {cfg.label}
+                  {categoryLabel(cat, locale)}
                 </div>
                 <div className="text-xs text-slate-600 dark:text-slate-400">
                   {t("home.toolsCount", { n: tools.length })}
@@ -199,7 +200,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
         <div className="mt-5 grid gap-3 sm:grid-cols-3">{AVAILABLE_SOFTWARE.map(product=><Link key={product.slug} href={`/software/${product.slug}`} prefetch={false} className="group rounded-xl border border-slate-200 bg-white p-4 transition hover:border-brand-400 hover:shadow-lg dark:border-slate-700 dark:bg-slate-900">
           <p className="text-xs text-brand-700 dark:text-brand-400">{software.available}</p><h3 className="mt-2 font-bold group-hover:text-brand-600">{product.name} →</h3>
-          <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-400">{product.description}</p>
+          <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-400">{softwareDescription(product.slug, locale, product.description)}</p>
         </Link>)}</div>
       </section>
 

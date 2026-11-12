@@ -8,7 +8,7 @@ import { RecentSection } from "@/components/tools/RecentSection";
 import { ToolSearch } from "@/components/tools/ToolSearch";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/config";
-import { CATEGORY_CONFIG } from "@/lib/tools/categories";
+import { CATEGORY_CONFIG, categoryLabel } from "@/lib/tools/categories";
 import { isIndexedLocale, type Locale } from "@/lib/i18n/locales";
 import type { ToolCategory } from "@/lib/tools/types";
 
@@ -94,7 +94,7 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
               </span>
               <h2 className="text-xl font-bold">
                 <Link href={isIndexedLocale(locale) && listIndexableByCategory(cat).length > 0 ? `/tools/category/${cat}` : `/tools#${cat}`} className="hover:text-brand-600 hover:underline">
-                  {cfg.label}
+                  {categoryLabel(cat as ToolCategory, locale)}
                 </Link>
               </h2>
               <span className="ml-auto rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-300">
