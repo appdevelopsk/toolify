@@ -48,15 +48,15 @@ export function hasAttributedSocialShare(html, source, path, origin = 'https://t
   if (!config) return false;
   let expected;
   try { expected = new URL(path, origin); } catch { return false; }
-  return [...renderedMarkup(html).matchAll(/<a\\b[^>]*>/gi)].some(([tag]) => {
-    const href = tag.match(/\\bhref\\s*=\\s*["']([^"']+)["']/i)?.[1]?.replace(/&amp;/g, '&');
+  return [...renderedMarkup(html).matchAll(/<a\b[^>]*>/gi)].some(([tag]) => {
+    const href = tag.match(/\bhref\s*=\s*["']([^"']+)["']/i)?.[1]?.replace(/&amp;/g, '&');
     if (!href) return false;
     try {
       const intent = new URL(href);
       if (intent.protocol !== 'https:' || intent.hostname !== config[0] || intent.pathname !== config[1]) return false;
       const target = new URL(intent.searchParams.get(config[2]));
       return target.origin === expected.origin
-        && target.pathname.replace(/\\/$/, '') === expected.pathname.replace(/\\/$/, '')
+        && target.pathname.replace(/\/$/, '') === expected.pathname.replace(/\/$/, '')
         && target.searchParams.get('utm_source') === source
         && target.searchParams.get('utm_medium') === 'social'
         && target.searchParams.get('utm_campaign') === 'tool_share';
