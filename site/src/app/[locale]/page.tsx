@@ -105,7 +105,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         />
         <div className="inline-flex items-center gap-1.5 rounded-full border border-brand-100 bg-white/70 px-3 py-1 text-sm font-medium text-brand-700 shadow-sm backdrop-blur dark:border-slate-700 dark:bg-slate-800/70 dark:text-brand-500">
           <span aria-hidden>⚡</span>
-          {allTools.length} free tools · no login required
+          {t("home.toolsCount", { n: allTools.length })} · {t("home.whyNoSignupTitle")}
         </div>
         <h1 className="mx-auto mt-5 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
           {t("home.heading")}
