@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { useToolEvents } from "@/lib/analytics/useToolEvents";
+import { socialShareUrl, escapeEmbedHtml } from "@/lib/analytics/shareAttribution";
 
 interface Props {
   /** Canonical, absolute URL of the tool page (built server-side from siteConfig). */
@@ -119,23 +120,22 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
   }, []);
 
   const enc = encodeURIComponent;
-  // 埋め込みコードには iframe に加えて「ホストページ側の dofollow 被リンク」を必ず付ける。
-  // iframe 内の "Powered by" は toolify 自身のドキュメント内に閉じており被リンク価値が渡らないため、
-  // 埋め込んだ他サイトの HTML に、ツール名をアンカーテキストにした当該ツールページへの直リンクを置く。
-  // これが量産ツール(222本)を被リンク資産に変える肝（toolify は権威性不足で平均48位＝page5のため）。
-  const safeTitle = title.replace(/"/g, "&quot;");
-  const anchorTitle = title.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  const snippet = `<iframe src="${embedUrl}" width="100%" height="520" style="border:1px solid #e2e8f0;border-radius:12px" loading="lazy" title="${safeTitle}"></iframe>\n<p style="font:13px/1.6 system-ui,-apple-system,sans-serif;text-align:center;margin:6px 0;color:#64748b">Free <a href="${url}" target="_blank" rel="noopener">${anchorTitle}</a> by <a href="https://toolify365.com" target="_blank" rel="noopener">toolify365</a></p>`;
+  // Keep optional embed attribution visible to readers without ranking-credit links.
+  // Broadly distributed widget links are qualified per Google spam guidelines.
+  const safeTitle = escapeEmbedHtml(title);
+  const snippet = `<iframe src="${embedUrl}" width="100%" height="520" style="border:1px solid #e2e8f0;border-radius:12px" loading="lazy" title="${safeTitle}"></iframe>\n<p style="font:13px/1.6 system-ui,-apple-system,sans-serif;text-align:center;margin:6px 0;color:#64748b">Free <a href="${url}" target="_blank" rel="nofollow noopener">${safeTitle}</a> by <a href="https://toolify365.com" target="_blank" rel="nofollow noopener">Toolify365</a></p>`;
 
+  // Attribute social shares without changing canonical, copy or embed URLs.
+  const trackable = (source: string) => enc(socialShareUrl(url, source));
   const socials = [
-    { name: "X", href: `https://twitter.com/intent/tweet?text=${enc(title)}&url=${enc(url)}`, Icon: XIcon },
-    { name: "Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}`, Icon: FacebookIcon },
-    { name: "LINE", href: `https://social-plugins.line.me/lineit/share?url=${enc(url)}`, Icon: LineIcon },
-    { name: "WhatsApp", href: `https://api.whatsapp.com/send?text=${enc(`${title} ${url}`)}`, Icon: WhatsAppIcon },
-    { name: "Reddit", href: `https://www.reddit.com/submit?url=${enc(url)}&title=${enc(title)}`, Icon: RedditIcon },
+    { name: "X", href: `https://twitter.com/intent/tweet?text=${enc(title)}&url=${trackable("x")}`, Icon: XIcon },
+    { name: "Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${trackable("facebook")}`, Icon: FacebookIcon },
+    { name: "LINE", href: `https://social-plugins.line.me/lineit/share?url=${trackable("line")}`, Icon: LineIcon },
+    { name: "WhatsApp", href: `https://api.whatsapp.com/send?text=${enc(`${title} ${socialShareUrl(url, "whatsapp")}`)}`, Icon: WhatsAppIcon },
+    { name: "Reddit", href: `https://www.reddit.com/submit?url=${trackable("reddit")}&title=${enc(title)}`, Icon: RedditIcon },
     // Professional and international messaging communities: direct, localized tool URL.
-    { name: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}`, Icon: LinkIcon },
-    { name: "Telegram", href: `https://t.me/share/url?url=${enc(url)}&text=${enc(title)}`, Icon: ShareIcon },
+    { name: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${trackable("linkedin")}`, Icon: LinkIcon },
+    { name: "Telegram", href: `https://t.me/share/url?url=${trackable("telegram")}&text=${enc(title)}`, Icon: ShareIcon },
   ];
 
   async function copy(text: string, mark: (v: boolean) => void, kind: "link" | "embed" | "result") {
