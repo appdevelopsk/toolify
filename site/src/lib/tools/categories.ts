@@ -1,4 +1,5 @@
 import type { ToolCategory } from "./types";
+import { localizedCategoryLabel } from "./categoryLabels";
 
 export const CATEGORY_CONFIG: Record<ToolCategory, { emoji: string; label: string; iconBg: string }> = {
   health: {
@@ -44,23 +45,7 @@ export const CATEGORY_CONFIG: Record<ToolCategory, { emoji: string; label: strin
 };
 
 
-/**
- * Breadcrumb display names must match the language of the tool page.
- * Keep CATEGORY_CONFIG labels as the English fallback for all existing consumers.
- * Japanese names are shared by the visible breadcrumb and BreadcrumbList JSON-LD
- * so both representations describe the same hierarchy.
- */
-const CATEGORY_LABEL_JA: Record<ToolCategory, string> = {
-  health: "健康・フィットネス",
-  math: "数学・数字",
-  converter: "単位変換",
-  datetime: "日付・時刻",
-  text: "テキスト・コード",
-  color: "色・デザイン",
-  finance: "金融",
-  image: "画像・ファイル",
-};
-
+/** Category labels in navigation, tool breadcrumbs and BreadcrumbList JSON-LD. */
 export function categoryLabel(category: ToolCategory, locale: string): string {
-  return locale === "ja" ? CATEGORY_LABEL_JA[category] : CATEGORY_CONFIG[category].label;
+  return localizedCategoryLabel(category, locale);
 }
