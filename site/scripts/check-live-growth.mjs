@@ -1,4 +1,4 @@
-import { hasNoindex, canonicalHref, hasSoftwareAnchor } from "./growth-html-checks.mjs";
+import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare } from "./growth-html-checks.mjs";
 /**
  * Read-only production smoke check for growth funnel rollout.
  * Usage: SITE_URL=https://toolify365.com node scripts/check-live-growth.mjs
@@ -58,6 +58,14 @@ for (const path of paths) {
     if (expectedIndexed.includes(path) && hasNoindex(page.text, page.xRobotsTag)) {
       failures.push(`${path}: indexed core tool unexpectedly noindex`);
     }
+    // Verify real user-clickable share destinations after production deployment.
+    if (path === "/en/tools/json-formatter" || path === "/ja/tools/character-frequency") {
+      for (const source of ["linkedin", "telegram"]) {
+        if (!hasAttributedSocialShare(page.text, source, path, base.origin)) {
+          failures.push(`${path}: missing or incorrect ${source} social share attribution`);
+        }
+      }
+    }
     if (path.includes("/tools/")) {
       const canonicalValue = canonicalHref(page.text);
       if (!canonicalValue) {
@@ -92,6 +100,29 @@ for (const path of ["/robots.txt", "/sitemap.xml"]) {
     failures.push(`${path}: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
+// Goal-first navigation now serves all 17 active languages. Check an RTL and
+// Latin non-indexed locale on production without changing their SEO policy.
+for (const [locale, heading] of [
+  ["en", "Start with what you want to do"],
+  ["ja", "目的からツールを探す"],
+  ["es", "Empieza por lo que necesitas hacer"],
+  ["ar", "ابدأ بما تريد إنجازه"],
+]) {
+  const path = `/${locale}`;
+  try {
+    const page = await get(path);
+    if (page.status !== 200) failures.push(`${path}: HTTP ${page.status}`);
+    // Limit matching to server-rendered heading, not translated RSC scripts.
+    const visibleHtml = page.text.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+    if (!visibleHtml.includes(`id="goal-journeys-heading"`) || !visibleHtml.includes(heading)) {
+      failures.push(`${path}: localized goal journey heading missing`);
+    }
+    console.log(`${page.status} ${path} (localized journeys)`);
+  } catch (error) {
+    failures.push(`${path}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
 if (failures.length) {
   console.error("\nLive growth smoke FAILED:");
   failures.forEach((failure) => console.error("- " + failure));
