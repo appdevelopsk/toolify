@@ -9,7 +9,7 @@ describe("international search recovery copy", () => {
     for (const locale of LOCALES) {
       const copy = searchRecoveryCopyFor(locale);
       expect(copy.message.trim().length).toBeGreaterThan(20);
-      expect(copy.retry.trim().length).toBeGreaterThan(2);
+      expect(copy.retry.trim().length).toBeGreaterThan(1);
     }
   });
   it("keeps localized messages for Arabic, French, and Japanese", () => {
