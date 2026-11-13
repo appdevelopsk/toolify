@@ -8,14 +8,14 @@ describe("robots.txt crawl policy", () => {
     expect(result.host).toBeTruthy();
   });
 
-  it("prevents API crawling but leaves generated OG images accessible", () => {
+  it("protects dynamic APIs but allows only safe public release and OG resources", () => {
     const result = robots();
     const rule = Array.isArray(result.rules) ? result.rules[0] : result.rules;
     if (!rule) throw new Error("Missing robots crawl rules");
 
     expect(rule.userAgent).toBe("*");
     expect(rule.disallow).toContain("/api/");
-    expect(rule.allow).toContain("/api/og");
+    expect(rule.allow).toContain("/api/og");\n    expect(rule.allow).toContain("/api/release");\n    // This is a narrow, longer path override: no general /api access.\n    expect(rule.allow).not.toContain("/api/");
     expect(rule.allow).toContain("/");
   });
 });
