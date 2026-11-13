@@ -48,7 +48,7 @@ export function HeaderSearch() {
   const showList = focused && query.length > 0;
   const activeOptionId = showList && hits.length ? `${listId}-option-${Math.min(active, hits.length - 1)}` : undefined;
 
-  useDebouncedSearchEvent(query, hits.length, locale, "header");
+  useDebouncedSearchEvent(query, hits.length, locale, "header", index !== null);
 
   const activate = useCallback(() => {
     setOpen(true);
