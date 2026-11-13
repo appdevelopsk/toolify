@@ -36,7 +36,12 @@ export function parseSearchAttribution(
         (data.result_position as number) > 10) return;
     if (typeof data.at !== "number" || !Number.isFinite(data.at) ||
         now < data.at || now - data.at > MAX_AGE_MS) return;
-    return data as SearchAttribution;
+    return {
+      destination_tool: data.destination_tool,
+      search_source: data.search_source,
+      result_position: data.result_position as number,
+      at: data.at,
+    };
   } catch { return; }
 }
 
