@@ -1,20 +1,23 @@
 import { describe, expect, it } from "vitest";
 import { buildPublisherEmbedSnippet, escapeEmbedAttribute, FEATURED_EMBED_SLUGS } from "./embed-guide";
+import { LOCALES } from "@/lib/i18n/locales";
 
 describe("share-safe international widget installation snippets", () => {
   it("curates four unique registered tool slugs", () => {
     expect(FEATURED_EMBED_SLUGS).toHaveLength(4);
     expect(new Set(FEATURED_EMBED_SLUGS).size).toBe(4);
   });
-  it("includes a lazy iframe and a visible canonical tool link for both languages", () => {
-    for (const locale of ["en", "ja"]) {
+  it("includes lazy localized widgets and a visible canonical tool link in all 17 languages", () => {
+    for (const locale of LOCALES) {
       for (const slug of FEATURED_EMBED_SLUGS) {
         const result = buildPublisherEmbedSnippet(slug, "A useful tool", locale);
         expect(result).toContain(`/embed/${locale}/${slug}`);
         expect(result).toContain(`/tools/${slug}`);
         expect(result).toContain('loading="lazy"');
-        expect(result).toContain('target="_blank" rel="noopener noreferrer"');
+        expect(result).toContain('target="_blank" rel="nofollow noopener noreferrer"');
         expect(result).not.toContain("utm_");
+        expect(result).toContain(`/${locale}/tools/${slug}`);
+        expect(result).not.toContain('rel="noopener noreferrer"');
       }
     }
   });
@@ -26,6 +29,6 @@ describe("share-safe international widget installation snippets", () => {
   });
   it("rejects unregistered slugs and unsupported locales", () => {
     expect(() => buildPublisherEmbedSnippet("any-route", "Title", "en")).toThrow();
-    expect(() => buildPublisherEmbedSnippet("workdays-calculator", "Title", "fr")).toThrow();
+    expect(() => buildPublisherEmbedSnippet("workdays-calculator", "Title", "zz")).toThrow();
   });
 });
