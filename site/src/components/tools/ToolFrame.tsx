@@ -84,7 +84,7 @@ export function ToolFrame({ meta, title, description, related, children, article
             before lengthy related/navigation sections; only timezone-converter renders it. */}
         <NattzyRemoteWorkLink slug={meta.slug} locale={locale} />
 
-        {/* Goal-specific follow-up after the workspace. No value transfer. */}
+        {/* Goal-specific follow-up after the workspace in all active languages. No value transfer. */}
         <JourneyNextStep slug={meta.slug} locale={locale} toolTitle={(slug) => t(`tools.${slug}.title`)} />
 
         {/* 関連ツール導線 — ツール結果の直後(注意が集中する位置)に移動。
@@ -103,7 +103,7 @@ export function ToolFrame({ meta, title, description, related, children, article
                     category={meta.category}
                     className="inline-flex min-h-11 items-center rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:border-brand-500 hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
                   >
-                    {r.primaryKeyword[locale] ?? r.primaryKeyword.en ?? r.slug}
+                    {t(`tools.${r.slug}.title`)}
                   </RelatedToolLink>
                 </li>
               ))}

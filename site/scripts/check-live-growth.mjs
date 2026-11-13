@@ -123,6 +123,32 @@ for (const [locale, heading] of [
   }
 }
 
+// Check post-tool cross-navigation in non-indexed languages as a user feature,
+// without asserting or changing locale-specific indexability.
+for (const [locale, nextLabel] of [
+  ["es", "Siguiente herramienta: "],
+  ["ar", "الأداة التالية: "],
+  ["pt-BR", "Próxima ferramenta: "],
+]) {
+  const path = `/${locale}/tools/workdays-calculator`;
+  try {
+    const page = await get(path);
+    if (page.status !== 200) failures.push(`${path}: HTTP ${page.status}`);
+    const visibleHtml = page.text
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
+      .replace(/<!--[\s\S]*?-->/g, "");
+    if (!visibleHtml.includes(nextLabel)) {
+      failures.push(`${path}: translated next-step label missing`);
+    }
+    if (!visibleHtml.includes(`href="/${locale}/tools/date-calculator"`)) {
+      failures.push(`${path}: next-tool link missing or wrong locale`);
+    }
+    console.log(`${page.status} ${path} (next step)`);
+  } catch (error) {
+    failures.push(`${path}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
 if (failures.length) {
   console.error("\nLive growth smoke FAILED:");
   failures.forEach((failure) => console.error("- " + failure));
