@@ -1,4 +1,4 @@
-name: Restore toolify365.com (remove redirect, re-enable app)
+name: Restore toolify365.com app vhost only
 
 on:
   workflow_dispatch: {}
@@ -15,6 +15,8 @@ jobs:
           chmod 600 ~/.ssh/key
           ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
 
+      # Emergency recovery touches Toolify365 ONLY. Foreign-domain configs belong
+      # to their own repositories and must never be deleted by this workflow.
       - name: Restore toolify365.com nginx config to proxy app
         run: |
           ssh -i ~/.ssh/key "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" 'bash -s' << 'ENDSSH'
@@ -57,23 +59,6 @@ jobs:
             sudo nginx -t
             sudo systemctl reload nginx
             echo "toolify365.com restored to app proxy"
-          ENDSSH
-
-      - name: Remove fxea365.com nginx config
-        run: |
-          ssh -i ~/.ssh/key "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" 'bash -s' << 'ENDSSH'
-            set -e
-
-            if [ -d /etc/nginx/sites-enabled ]; then
-              sudo rm -f /etc/nginx/sites-enabled/fxea365.com
-              sudo rm -f /etc/nginx/sites-available/fxea365.com
-            else
-              sudo rm -f /etc/nginx/conf.d/fxea365.com.conf
-            fi
-
-            sudo nginx -t
-            sudo systemctl reload nginx
-            echo "fxea365.com nginx config removed"
           ENDSSH
 
       - name: Smoke test toolify365.com
