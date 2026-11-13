@@ -38,6 +38,7 @@ describe("GA4 initial page view readiness", () => {
     expect(tracker).toContain('window.addEventListener("toolify:ga4-ready", sendWhenReady)');
     expect(tracker).toContain('window.removeEventListener("toolify:ga4-ready", sendWhenReady)');
     expect(tracker).toContain("sendWhenReady();");
-    expect(tracker).toContain("shouldSendPageView(ready, window.gtag, page_location, lastPageLocation.current)");
+    expect(tracker).toContain("shouldSendPageView(ready, gtag, page_location, lastPageLocation.current)");
+    expect(tracker).toContain('if (typeof gtag !== "function") return;');
   });
 });
