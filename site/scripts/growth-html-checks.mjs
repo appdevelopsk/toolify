@@ -63,3 +63,18 @@ export function hasAttributedSocialShare(html, source, path, origin = 'https://t
     } catch { return false; }
   });
 }
+
+/** Validate the public catalog that powers lazy international search. */
+export function isHealthySearchIndex(data, locale) {
+  if (!data || typeof data !== 'object' || Array.isArray(data)) return false;
+  if (data.version !== 1 || data.locale !== locale || !Array.isArray(data.tools)) return false;
+  if (data.tools.length < 100 || data.count !== data.tools.length) return false;
+  const bySlug = new Map();
+  for (const item of data.tools) {
+    if (!item || typeof item !== 'object' ||
+        typeof item.slug !== 'string' || typeof item.title !== 'string' ||
+        !item.title.trim() || bySlug.has(item.slug)) return false;
+    bySlug.set(item.slug, item);
+  }
+  return ['workdays-calculator', 'json-formatter'].every(slug => bySlug.has(slug));
+}
