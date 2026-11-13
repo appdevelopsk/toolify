@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 import { safePageViewUrl } from "./pageview-url";
+import { shouldSendPageView } from "./pageview-ready";
 
 /**
  * GA4 SPA navigation events. The real browser URL can contain search text
@@ -27,8 +28,7 @@ export function PageViewTracker() {
       // Wait for the site's own init signal rather than losing the first
       // page_view or sending it to the wrong measurement configuration.
       const ready = (window as Window & { __toolifyGa4Ready?: boolean }).__toolifyGa4Ready;
-      if (!ready || typeof window.gtag !== "function") return;
-      if (lastPageLocation.current === page_location) return;
+      if (!shouldSendPageView(ready, window.gtag, page_location, lastPageLocation.current)) return;
       window.gtag("event", "page_view", {
         page_path,
         page_location,
