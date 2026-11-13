@@ -1,4 +1,4 @@
-import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare } from "./growth-html-checks.mjs";
+import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare, isHealthySearchIndex } from "./growth-html-checks.mjs";
 /**
  * Read-only production smoke check for growth funnel rollout.
  * Usage: SITE_URL=https://toolify365.com node scripts/check-live-growth.mjs
@@ -161,12 +161,7 @@ for (const locale of ["en", "fr", "ar"]) {
       continue;
     }
     const data = JSON.parse(page.text);
-    if (!data || data.locale !== locale || data.version !== 1 ||
-        !Array.isArray(data.tools) || data.tools.length < 100 ||
-        data.count !== data.tools.length ||
-        !["workdays-calculator", "json-formatter"].every(
-          (slug) => data.tools.some((tool) => tool.slug === slug && typeof tool.title === "string" && tool.title.trim()),
-        )) {
+    if (!isHealthySearchIndex(data, locale)) {
       failures.push(`${path}: malformed or incomplete localized search index`);
       continue;
     }
