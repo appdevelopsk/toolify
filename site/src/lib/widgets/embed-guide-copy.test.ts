@@ -57,4 +57,12 @@ describe("native-language widget publishing guide", () => {
     expect(button).toContain('t("copied") : t("copy")');
   });
 
+  it("offers the publisher guide from every tool in the visitor's own language", () => {
+    const shareBar = readFileSync(new URL("../../components/tools/ShareBar.tsx", import.meta.url), "utf8");
+    expect(shareBar).toContain('href="/embed-guide"');
+    expect(shareBar).toContain('t("embed")');
+    expect(shareBar).toContain('t("howItWorks")');
+    expect(shareBar).not.toContain('locale === "ja" ?');
+  });
+
 });
