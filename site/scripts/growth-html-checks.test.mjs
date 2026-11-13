@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
-import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare } from './growth-html-checks.mjs';
+import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare, isHealthySearchIndex } from './growth-html-checks.mjs';
 
 test('robots and googlebot directives independent of attribute order', () => {
   assert.equal(hasNoindex('<meta name="robots" content="noindex,follow">'), true);
@@ -60,4 +60,22 @@ test('Telegram share intents preserve localized canonical path and attribution',
   intent.searchParams.set('url', target.toString());
   intent.searchParams.set('text', 'Word Counter');
   assert.equal(hasAttributedSocialShare('<a href="' + intent.toString().replace(/&/g, '&amp;') + '">Telegram</a>', 'telegram', '/ar/tools/word-counter'), true);
+});
+
+test('international search index smoke validates actual catalog rather than HTTP 200 only', () => {
+  const tools = [
+    { slug: 'workdays-calculator', title: 'Working Days' },
+    { slug: 'json-formatter', title: 'JSON Formatter' },
+    ...Array.from({ length: 98 }, (_, i) => ({ slug: 'tool-' + i, title: 'Tool ' + i })),
+  ];
+  const data = { version: 1, locale: 'fr', count: tools.length, tools };
+  assert.equal(isHealthySearchIndex(data, 'fr'), true);
+  assert.equal(isHealthySearchIndex(data, 'ar'), false);
+  assert.equal(isHealthySearchIndex({ ...data, version: 2 }, 'fr'), false);
+  assert.equal(isHealthySearchIndex({ ...data, count: 223 }, 'fr'), false);
+  assert.equal(isHealthySearchIndex({ ...data, tools: [] }, 'fr'), false);
+  assert.equal(isHealthySearchIndex({ ...data, tools: tools.slice(1) }, 'fr'), false);
+  assert.equal(isHealthySearchIndex({ ...data, tools: [...tools.slice(0,99), tools[0]] }, 'fr'), false);
+  assert.equal(isHealthySearchIndex({ ...data, tools: [...tools.slice(0,99), { slug: 'bad', title: '' }] }, 'fr'), false);
+  assert.equal(isHealthySearchIndex(null, 'fr'), false);
 });

@@ -1,4 +1,4 @@
-import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare } from "./growth-html-checks.mjs";
+import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare, isHealthySearchIndex } from "./growth-html-checks.mjs";
 /**
  * Read-only production smoke check for growth funnel rollout.
  * Usage: SITE_URL=https://toolify365.com node scripts/check-live-growth.mjs
@@ -144,6 +144,28 @@ for (const [locale, nextLabel] of [
       failures.push(`${path}: next-tool link missing or wrong locale`);
     }
     console.log(`${page.status} ${path} (next step)`);
+  } catch (error) {
+    failures.push(`${path}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
+// A 200 HTML page is not enough: overseas visitors need the on-demand
+// localized search index to actually find tools. Fail release verification
+// if it is unavailable or silently returns an invalid/empty catalog.
+for (const locale of ["en", "fr", "ar"]) {
+  const path = `/${locale}/search-index.json`;
+  try {
+    const page = await get(path);
+    if (page.status !== 200 || !page.contentType.includes("application/json")) {
+      failures.push(`${path}: search index unavailable (HTTP ${page.status}, ${page.contentType})`);
+      continue;
+    }
+    const data = JSON.parse(page.text);
+    if (!isHealthySearchIndex(data, locale)) {
+      failures.push(`${path}: malformed or incomplete localized search index`);
+      continue;
+    }
+    console.log(`${page.status} ${path} (${data.tools.length} tools)`);
   } catch (error) {
     failures.push(`${path}: ${error instanceof Error ? error.message : String(error)}`);
   }
