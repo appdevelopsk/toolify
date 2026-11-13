@@ -23,6 +23,8 @@ jobs:
           node-version: "24"
           cache: "npm"
           cache-dependency-path: site/package-lock.json
+      - name: Guard brand DNS/vhost isolation before build
+        run: node --test ../scripts/tests/vhost-cross-brand-safety.test.mjs
       - run: npm ci --no-fund --no-audit
       - name: TypeScript check
         run: npm run typecheck
