@@ -9,6 +9,8 @@ import { useSearchIndex } from "@/lib/search/useSearchIndex";
 import { useCategoryKeywords } from "@/lib/search/useCategoryKeywords";
 import { useSearchShortcut } from "@/lib/search/useSearchShortcut";
 import { useDebouncedSearchEvent } from "@/lib/search/useDebouncedSearchEvent";
+import { trackSearchResultClick } from "@/lib/analytics/events";
+import { isSameTabJourneyClick } from "@/lib/analytics/journey-attribution";
 
 const LIMIT = 10;
 
@@ -88,7 +90,10 @@ export function HeaderSearch() {
 
   useEffect(() => setActive(0), [query]);
 
-  function go(slug: string) {
+  function go(slug: string, position: number, trusted: boolean) {
+    if (trusted) {
+      trackSearchResultClick({ destination: slug, source: "header", position, locale });
+    }
     close();
     inputRef.current?.blur();
     router.push(`/tools/${slug}`);
@@ -108,7 +113,7 @@ export function HeaderSearch() {
     } else if (e.key === "Enter" && hits.length) {
       e.preventDefault();
       const target = hits[Math.min(active, hits.length - 1)];
-      if (target) go(target.slug);
+      if (target) go(target.slug, Math.min(active, hits.length - 1) + 1, e.isTrusted);
     }
   }
 
@@ -129,7 +134,13 @@ export function HeaderSearch() {
             <Link
               href={`/tools/${h.slug}`}
               onMouseEnter={() => setActive(i)}
-              onClick={() => { close(); inputRef.current?.blur(); }}
+              onClick={(event) => {
+                if (isSameTabJourneyClick(event)) {
+                  trackSearchResultClick({ destination: h.slug, source: "header", position: i + 1, locale });
+                }
+                close();
+                inputRef.current?.blur();
+              }}
               className={`flex min-h-11 items-center gap-2 px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${i === active ? "bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-brand-400" : "text-slate-700 dark:text-slate-200"}`}
             >
               <span className="text-base" aria-hidden>
