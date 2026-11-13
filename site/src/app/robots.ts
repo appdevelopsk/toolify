@@ -3,7 +3,9 @@ import { siteConfig } from "@/lib/config";
 
 /**
  * Keep public pages and Open Graph images crawlable while preventing crawler
- * traffic from hitting dynamic API endpoints such as price-search.\n * The static /api/release endpoint exposes only a public commit SHA, and is\n * crawlable for read-only external deployment checks (but has a noindex header).
+ * traffic from hitting dynamic API endpoints such as price-search.
+ * The static /api/release endpoint exposes only a public commit SHA, and is
+ * crawlable for read-only external deployment checks (but has a noindex header).
  * This is a crawl directive, not an access-control or noindex mechanism.
  */
 export default function robots(): MetadataRoute.Robots {
