@@ -9,6 +9,8 @@ import { searchTools } from "@/lib/search/matcher";
 import { useCategoryKeywords } from "@/lib/search/useCategoryKeywords";
 import { useSearchShortcut } from "@/lib/search/useSearchShortcut";
 import { useDebouncedSearchEvent } from "@/lib/search/useDebouncedSearchEvent";
+import { trackSearchResultClick } from "@/lib/analytics/events";
+import { isSameTabJourneyClick } from "@/lib/analytics/journey-attribution";
 
 const LIMIT = 10;
 
@@ -51,6 +53,9 @@ export function ToolSearch({ items }: { items: FavItem[] }) {
     const first = hits?.[0];
     if (e.key === "Enter" && first) {
       e.preventDefault();
+      if (e.isTrusted) {
+        trackSearchResultClick({ destination: first.slug, source: "tools_page", position: 1, locale });
+      }
       router.push(`/tools/${first.slug}`);
     } else if (e.key === "Escape") {
       setQ("");
@@ -103,8 +108,14 @@ export function ToolSearch({ items }: { items: FavItem[] }) {
                 {t("searchResults", { n: hits.length })}
               </div>
               <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {hits.map((it) => (
-                  <ToolCard key={it.slug} meta={it} title={it.title} description={it.description ?? ""} />
+                {hits.map((it, index) => (
+                  <ToolCard key={it.slug} meta={it} title={it.title} description={it.description ?? ""}
+                    onNavigate={(event) => {
+                      if (isSameTabJourneyClick(event)) {
+                        trackSearchResultClick({ destination: it.slug, source: "tools_page", position: index + 1, locale });
+                      }
+                    }}
+                  />
                 ))}
               </div>
             </>
