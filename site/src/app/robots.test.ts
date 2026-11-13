@@ -15,7 +15,9 @@ describe("robots.txt crawl policy", () => {
 
     expect(rule.userAgent).toBe("*");
     expect(rule.disallow).toContain("/api/");
-    expect(rule.allow).toContain("/api/og");\n    expect(rule.allow).toContain("/api/release");\n    // This is a narrow, longer path override: no general /api access.\n    expect(rule.allow).not.toContain("/api/");
+    expect(rule.allow).toContain("/api/og");
+    expect(rule.allow).toContain("/api/release");
+    // This is a narrow, longer path override: no general /api access.\n    expect(rule.allow).not.toContain("/api/");
     expect(rule.allow).toContain("/");
   });
 });
