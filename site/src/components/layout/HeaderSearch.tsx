@@ -5,7 +5,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/lib/i18n/navigation";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 import { searchTools } from "@/lib/search/matcher";
-import { useSearchIndex } from "@/lib/search/useSearchIndex";
+import { useSearchIndexStatus } from "@/lib/search/useSearchIndex";
+import { searchRecoveryCopyFor } from "@/lib/search/searchRecoveryCopy";
 import { useCategoryKeywords } from "@/lib/search/useCategoryKeywords";
 import { useSearchShortcut } from "@/lib/search/useSearchShortcut";
 import { useDebouncedSearchEvent } from "@/lib/search/useDebouncedSearchEvent";
@@ -40,7 +41,8 @@ export function HeaderSearch() {
   const rootRef = useRef<HTMLDivElement>(null);
 
   const query = q.trim();
-  const index = useSearchIndex(locale, focused || open || query.length > 0);
+  const { items: index, failed: searchUnavailable, retry: retrySearch } = useSearchIndexStatus(locale, focused || open || query.length > 0);
+  const recoveryCopy = searchRecoveryCopyFor(locale);
   const hits = useMemo(
     () => (query && index ? searchTools(index, query, { limit: LIMIT, categoryKeywords }) : []),
     [index, query, categoryKeywords],
@@ -117,7 +119,16 @@ export function HeaderSearch() {
     }
   }
 
-  const list = showList && (
+  const list = showList && (searchUnavailable ? (
+    <div id={listId} role="status"
+      className="rounded-lg border border-amber-300 bg-white p-4 text-sm shadow-lg dark:border-amber-700 dark:bg-slate-900 sm:absolute sm:right-0 sm:top-full sm:mt-2 sm:w-80">
+      <p className="text-slate-700 dark:text-slate-200">{recoveryCopy.message}</p>
+      <button type="button" onClick={retrySearch}
+        className="mt-3 min-h-11 rounded-lg border border-brand-600 px-4 font-semibold text-brand-700 hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:text-brand-400 dark:hover:bg-slate-800">
+        {recoveryCopy.retry}
+      </button>
+    </div>
+  ) : (
     <ul
       id={listId}
       role="listbox"
@@ -152,7 +163,7 @@ export function HeaderSearch() {
         ))
       )}
     </ul>
-  );
+  ));
 
   return (
     <div ref={rootRef} className="sm:relative">
