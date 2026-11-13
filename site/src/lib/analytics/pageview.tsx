@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 import { safePageViewUrl } from "./pageview-url";
+import { shouldSendPageView } from "./pageview-ready";
 
 /**
  * GA4 SPA navigation events. The real browser URL can contain search text
@@ -17,16 +18,34 @@ export function PageViewTracker() {
   const lastPageLocation = useRef("");
 
   useEffect(() => {
-    if (!siteConfig.analytics.gaId) return;
-    if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+    if (!siteConfig.analytics.gaId || typeof window === "undefined") return;
+    let disposed = false;
     const { page_path, page_location } = safePageViewUrl(pathname, window.location.href);
-    if (lastPageLocation.current === page_location) return;
-    window.gtag("event", "page_view", {
-      page_path,
-      page_location,
-      page_title: document.title,
-    });
-    lastPageLocation.current = page_location;
+
+    const sendWhenReady = () => {
+      if (disposed) return;
+      // Other tags may expose gtag before Toolify's GA4 config is ready.
+      // Wait for the site's own init signal rather than losing the first
+      // page_view or sending it to the wrong measurement configuration.
+      const ready = (window as Window & { __toolifyGa4Ready?: boolean }).__toolifyGa4Ready;
+      const gtag = window.gtag;
+      if (!shouldSendPageView(ready, gtag, page_location, lastPageLocation.current)) return;
+      if (typeof gtag !== "function") return;
+      gtag("event", "page_view", {
+        page_path,
+        page_location,
+        page_title: document.title,
+      });
+      lastPageLocation.current = page_location;
+    };
+
+    window.addEventListener("toolify:ga4-ready", sendWhenReady);
+    // Covers the reverse race: GA4 may already be initialized at mount.
+    sendWhenReady();
+    return () => {
+      disposed = true;
+      window.removeEventListener("toolify:ga4-ready", sendWhenReady);
+    };
   }, [pathname, searchParams]);
 
   return null;

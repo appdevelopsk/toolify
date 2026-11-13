@@ -39,6 +39,7 @@ describe("page view tracker integration", () => {
     const source = readFileSync(new URL("./pageview.tsx", import.meta.url), "utf8");
     expect(source).toContain("safePageViewUrl(pathname, window.location.href)");
     expect(source).not.toContain("page_location: window.location.href");
-    expect(source).toContain("lastPageLocation.current === page_location");
+    expect(source).toContain("shouldSendPageView(ready, gtag, page_location, lastPageLocation.current)");
+    expect(source).toContain("lastPageLocation.current = page_location");
   });
 });
