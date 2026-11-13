@@ -1,11 +1,12 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useState, useId } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useId } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/lib/i18n/navigation";
 import { ToolCard } from "@/components/tools/ToolCard";
 import type { FavItem } from "@/components/tools/FavoritesSection";
 import { searchTools } from "@/lib/search/matcher";
+import { prefilledToolQuery } from "@/lib/search/prefilled-query";
 import { useCategoryKeywords } from "@/lib/search/useCategoryKeywords";
 import { useSearchShortcut } from "@/lib/search/useSearchShortcut";
 import { useDebouncedSearchEvent } from "@/lib/search/useDebouncedSearchEvent";
@@ -33,6 +34,16 @@ export function ToolSearch({ items }: { items: FavItem[] }) {
   const router = useRouter();
   const categoryKeywords = useCategoryKeywords();
   const [q, setQ] = useState("");
+
+  // OpenSearch/browser search navigates to /{locale}/tools?q=... . The query
+  // must be visible in the input and run locally, without server rendering
+  // arbitrary search terms or storing text in analytics.
+  useEffect(() => {
+    const syncUrlQuery = () => setQ(prefilledToolQuery(window.location.search));
+    syncUrlQuery();
+    window.addEventListener("popstate", syncUrlQuery);
+    return () => window.removeEventListener("popstate", syncUrlQuery);
+  }, []);
   const inputId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
 
