@@ -28,8 +28,10 @@ export function PageViewTracker() {
       // Wait for the site's own init signal rather than losing the first
       // page_view or sending it to the wrong measurement configuration.
       const ready = (window as Window & { __toolifyGa4Ready?: boolean }).__toolifyGa4Ready;
-      if (!shouldSendPageView(ready, window.gtag, page_location, lastPageLocation.current)) return;
-      window.gtag("event", "page_view", {
+      const gtag = window.gtag;
+      if (!shouldSendPageView(ready, gtag, page_location, lastPageLocation.current)) return;
+      if (typeof gtag !== "function") return;
+      gtag("event", "page_view", {
         page_path,
         page_location,
         page_title: document.title,
