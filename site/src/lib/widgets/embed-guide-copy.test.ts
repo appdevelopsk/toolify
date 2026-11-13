@@ -48,4 +48,13 @@ describe("native-language widget publishing guide", () => {
       }
     }
   });
+  it("lets publishers copy a localized snippet with one click and tracks success only", () => {
+    const page = readFileSync(new URL("../../app/[locale]/embed-guide/page.tsx", import.meta.url), "utf8");
+    const button = readFileSync(new URL("../../components/tools/CopyEmbedSnippet.tsx", import.meta.url), "utf8");
+    expect(page).toContain("<CopyEmbedSnippet snippet={snippet} slug={slug} />");
+    expect(button).toContain("const success = await copyText(snippet)");
+    expect(button).toContain('if (success) copyResult("embed")');
+    expect(button).toContain('t("copied") : t("copy")');
+  });
+
 });
