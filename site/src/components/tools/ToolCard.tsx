@@ -1,15 +1,17 @@
 import { Link } from "@/lib/i18n/navigation";
+import type { MouseEvent } from "react";
 import type { ToolMeta } from "@/lib/tools/types";
 import { CATEGORY_CONFIG } from "@/lib/tools/categories";
 
 /** カード描画に要るのは slug と category だけ。クライアントへ渡す props を小さく保つため Pick にする。 */
 export type ToolCardMeta = Pick<ToolMeta, "slug" | "category">;
 
-export function ToolCard({ meta, title, description }: { meta: ToolCardMeta; title: string; description: string }) {
+export function ToolCard({ meta, title, description, onNavigate }: { meta: ToolCardMeta; title: string; description: string; onNavigate?: (event: MouseEvent<HTMLAnchorElement>) => void }) {
   const cfg = CATEGORY_CONFIG[meta.category];
   return (
     <Link
       href={`/tools/${meta.slug}`}
+      onClick={onNavigate}
       className="group flex min-h-28 items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-slate-800 dark:bg-slate-900/60 dark:hover:border-brand-700"
     >
       <span
