@@ -5,6 +5,7 @@ import { LOCALES, type Locale } from "@/lib/i18n/locales";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { buildPublisherEmbedSnippet, FEATURED_EMBED_SLUGS } from "@/lib/widgets/embed-guide";
 import { embedGuideCopyFor } from "@/lib/widgets/embed-guide-copy";
+import { CopyEmbedSnippet } from "@/components/tools/CopyEmbedSnippet";
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
@@ -56,7 +57,10 @@ export default async function EmbedGuidePage({ params }: { params: Promise<{ loc
               <article key={slug} className="rounded-xl border border-slate-200 p-5 dark:border-slate-800">
                 <h3 className="font-semibold">{title}</h3>
                 <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{copy.referenceNote}</p>
-                <label htmlFor={`embed-${slug}`} className="mt-4 block text-sm font-medium">{copy.copyCode}</label>
+                <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
+                  <label htmlFor={`embed-${slug}`} className="block text-sm font-medium">{copy.copyCode}</label>
+                  <CopyEmbedSnippet snippet={snippet} slug={slug} />
+                </div>
                 <textarea
                   id={`embed-${slug}`}
                   readOnly
