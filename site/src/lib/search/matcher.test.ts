@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { searchTools, type SearchItem } from "./matcher";
+import { normalize, searchTools, type SearchItem } from "./matcher";
 
 const items: SearchItem[] = [
   { slug: "bmi-calculator", category: "health", title: "BMI Calculator", keyword: "bmi", description: "Body mass index" },
@@ -32,6 +32,41 @@ describe("searchTools", () => {
   it("matches built-in category words and descriptions", () => {
     expect(searchTools(items, "colour").map((x) => x.slug)).toEqual(["hex-to-rgb"]);
     expect(searchTools(items, "characters").map((x) => x.slug)).toEqual(["word-counter"]);
+  });
+
+  it("matches accent-free French, Spanish and Portuguese user searches", () => {
+    const multilingual: SearchItem[] = [
+      { slug: "health-helper", category: "health", title: "Santé & forme" },
+      { slug: "price-helper", category: "finance", title: "Cálculo de precio" },
+      { slug: "text-helper", category: "text", title: "Conversão de texto" },
+    ];
+    expect(searchTools(multilingual, "sante")[0]?.slug).toBe("health-helper");
+    expect(searchTools(multilingual, "calculo")[0]?.slug).toBe("price-helper");
+    expect(searchTools(multilingual, "conversao")[0]?.slug).toBe("text-helper");
+  });
+
+  it("finds Vietnamese and Turkish category terms without diacritics", () => {
+    const subset = [
+      { slug: "unit-helper", category: "converter" as const, title: "Đơn vị" },
+      { slug: "health-helper", category: "health" as const, title: "Sức khỏe" },
+      { slug: "turkish-helper", category: "math" as const, title: "Sağlık Endeksi" },
+    ];
+    expect(searchTools(subset, "don vi")[0]?.slug).toBe("unit-helper");
+    expect(searchTools(subset, "suc khoe")[0]?.slug).toBe("health-helper");
+    expect(searchTools(subset, "saglik")[0]?.slug).toBe("turkish-helper");
+  });
+
+  it("preserves Japanese, Arabic and Devanagari combining marks", () => {
+    expect(normalize("ＡＢＣ")).toBe("abc");
+    expect(normalize("ガ")).toBe(normalize("ガ"));
+    expect(normalize("हिन्दी")).toBe("हिन्दी");
+    expect(normalize("العَرَبيّة")).toBe("العَرَبيّة");
+  });
+
+  it("maps common non-decomposing Latin letters", () => {
+    expect(normalize("Straße")).toBe("strasse");
+    expect(normalize("Œuvre")).toBe("oeuvre");
+    expect(normalize("İNDİRİM")).toBe("indirim");
   });
 
   it("respects the limit", () => {

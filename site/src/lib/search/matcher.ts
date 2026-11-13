@@ -28,8 +28,28 @@ const CATEGORY_BASE: Record<ToolCategory, string> = {
   image: "image photo picture",
 };
 
+/**
+ * Search is forgiving of omitted Latin diacritics (French, Spanish, Portuguese,
+ * Vietnamese, Turkish, etc.) while preserving combining marks in unrelated
+ * writing systems (e.g. Devanagari and Arabic).
+ *
+ * NFKD also preserves width-insensitive matching for Japanese full-width input.
+ * Do NOT remove all Unicode combining marks globally: that would corrupt
+ * scripts where those marks are meaningful letters/vowels.
+ */
 export function normalize(s: string): string {
-  return s.normalize("NFKC").toLowerCase().trim();
+  return s
+    .normalize("NFKD")
+    .toLowerCase()
+    .replace(/(\p{Script=Latin})\p{M}+/gu, "$1")
+    .replace(/[đð]/g, "d")
+    .replace(/ı/g, "i")
+    .replace(/ł/g, "l")
+    .replace(/ø/g, "o")
+    .replace(/æ/g, "ae")
+    .replace(/œ/g, "oe")
+    .replace(/ß/g, "ss")
+    .trim();
 }
 
 function score(item: SearchItem, q: string, catWords: string): number {
