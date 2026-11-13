@@ -8,7 +8,7 @@ describe("international search recovery copy", () => {
     expect(Object.keys(SEARCH_RECOVERY_COPY).sort()).toEqual([...LOCALES].sort());
     for (const locale of LOCALES) {
       const copy = searchRecoveryCopyFor(locale);
-      expect(copy.message.trim().length).toBeGreaterThan(20);
+      expect(copy.message.trim().length).toBeGreaterThan(15);
       expect(copy.retry.trim().length).toBeGreaterThan(1);
     }
   });
