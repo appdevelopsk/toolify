@@ -2,6 +2,7 @@
 
 import { siteConfig } from "@/lib/config";
 import { consumeJourneyForTool, rememberJourneyClick } from "./journey-attribution";
+import { consumeSearchForTool, rememberSearchClick, type SearchSource } from "./search-attribution";
 
 /**
  * GA4 カスタムイベントの一元送出。
@@ -79,6 +80,17 @@ export function trackCalculate(p: CalculateParams): void {
         ...(p.locale ? { locale: p.locale } : {}),
       });
     }
+    // Search is measured separately from task journeys. It is an active
+    // tool interaction, NOT proof that the user's task was completed.
+    const searchAttribution = consumeSearchForTool(p.tool);
+    if (searchAttribution) {
+      emit("search_tool_interaction", {
+        tool_slug: p.tool,
+        search_source: searchAttribution.search_source,
+        result_position: searchAttribution.result_position,
+        ...(p.locale ? { locale: p.locale } : {}),
+      });
+    }
   }
 }
 
@@ -102,6 +114,28 @@ export function trackToolSearch(p: { query_length: number; results_count: number
     results_count: p.results_count,
     ...(p.locale ? { locale: p.locale } : {}),
     ...(p.source ? { source: p.source } : {}),
+  });
+}
+
+/**
+ * Attribution for a real search result navigation (mouse, touch, or keyboard).
+ * Unlike tool_search this measures which result was opened. Never send the
+ * search phrase, raw URL, input values, or other uncontrolled free text.
+ */
+export function trackSearchResultClick(p: {
+  destination: string;
+  source: SearchSource;
+  position: number;
+  locale?: string;
+}): void {
+  if (!siteConfig.analytics.gaId ||
+      typeof window === "undefined" || typeof window.gtag !== "function") return;
+  rememberSearchClick(p.destination, p.source, p.position);
+  emit("search_result_click", {
+    tool_slug: p.destination,
+    search_source: p.source,
+    result_position: p.position,
+    ...(p.locale ? { locale: p.locale } : {}),
   });
 }
 
