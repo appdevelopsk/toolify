@@ -18,8 +18,9 @@ export function safePageViewUrl(pathname: string, currentHref: string): {
   const safe = new URL(pathname.startsWith("/") ? pathname : browserUrl.pathname, browserUrl.origin);
   for (const key of CAMPAIGN_KEYS) {
     const values = browserUrl.searchParams.getAll(key);
-    if (values.length === 1 && SAFE_CAMPAIGN.test(values[0])) {
-      safe.searchParams.set(key, values[0]);
+    const value = values[0];
+    if (values.length === 1 && typeof value === "string" && SAFE_CAMPAIGN.test(value)) {
+      safe.searchParams.set(key, value);
     }
   }
   return { page_path: safe.pathname, page_location: safe.toString() };
