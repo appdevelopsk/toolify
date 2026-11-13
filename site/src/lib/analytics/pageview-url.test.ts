@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { safePageViewUrl } from "./pageview-url";
+import { readFileSync } from "node:fs";
 
 describe("GA4 SPA page view URL privacy", () => {
   it("never sends browser OpenSearch terms or user tool state", () => {
@@ -30,5 +31,14 @@ describe("GA4 SPA page view URL privacy", () => {
     const a = safePageViewUrl("/en/tools", "https://toolify365.com/en/tools?q=first");
     const b = safePageViewUrl("/en/tools", "https://toolify365.com/en/tools?q=second");
     expect(a.page_location).toBe(b.page_location);
+  });
+});
+
+describe("page view tracker integration", () => {
+  it("uses the sanitized page location instead of the raw browser href", () => {
+    const source = readFileSync(new URL("./pageview.tsx", import.meta.url), "utf8");
+    expect(source).toContain("safePageViewUrl(pathname, window.location.href)");
+    expect(source).not.toContain("page_location: window.location.href");
+    expect(source).toContain("lastPageLocation.current === page_location");
   });
 });
