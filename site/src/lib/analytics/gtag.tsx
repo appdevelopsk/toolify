@@ -44,6 +44,11 @@ export function GoogleAnalytics() {
           gtag('js', new Date());
           // page_view は PageViewTracker（SPA遷移対応）が一元送出するため自動送出を無効化。
           gtag('config', '${siteConfig.analytics.gaId}', { anonymize_ip: true, send_page_view: false });
+          // PageViewTracker can mount before Next's afterInteractive GA4 setup.
+          // Dispatch only after the Toolify-specific config is queued, and let
+          // the tracker send the initial page view once (not per hydration).
+          window.__toolifyGa4Ready = true;
+          window.dispatchEvent(new Event('toolify:ga4-ready'));
         `}
       </Script>
     </>
