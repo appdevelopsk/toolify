@@ -20,7 +20,8 @@ Each tool has a direct URL that you can bookmark or share. Individual tools may 
 ## For developers and site owners
 
 - Pick a tool matching your users' task and link to that individual tool page.
-- Some tool pages offer an optional embed snippet. Keep attribution transparent and follow your site's link policies.
+- **Embed live calculators on your site:** [Copy iframe code and preview widgets](https://toolify365.com/en/embed-guide) — working days, dates, percentages, time zones. The guide is available in all 17 interface languages (for example, [Français](https://toolify365.com/fr/embed-guide), [Español](https://toolify365.com/es/embed-guide), [العربية](https://toolify365.com/ar/embed-guide)).
+- Choose a widget relevant to your readers' task, test it on mobile, and keep the visible full-tool link. Distributed reference links use `rel="nofollow"`; do not add keyword-rich followed links for ranking manipulation.
 - Feedback and bug reports are welcome through GitHub issues. Please include tool slug, language, device, and reproducible steps; do not paste passwords or sensitive input data.
 - This repository powers the public site; public visibility alone should not be interpreted as permission to redistribute its source. Check the repository license before reuse.
 
