@@ -80,7 +80,7 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
       {/* Put high-intent destinations above the full catalog so visitors can start a task immediately.
           Use existing translated labels and respect the locale-specific indexing policy. */}
       {(() => {
-        const quickSlugs = ["json-formatter", "word-counter", "timezone-converter", "unit-price-calculator"];
+        const quickSlugs = ["workdays-calculator", "date-calculator", "timezone-converter", "unit-price-calculator"];
         const quickTools = quickSlugs
           .filter((slug) => isIndexableIn(locale, slug))
           .map((slug) => items.find((item) => item.slug === slug))
