@@ -9,7 +9,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "fetch:rates": "tsx scripts/fetch-rates.ts",
-    "prebuild": "node scripts/check-site-url.mjs && tsx scripts/fetch-rates.ts && node scripts/check-pressure-reference.mjs && node scripts/check-currency-rate-freshness.mjs",
+    "prebuild": "node --test scripts/workdays-faq-parity.test.mjs && node scripts/check-site-url.mjs && tsx scripts/fetch-rates.ts && node scripts/check-pressure-reference.mjs && node scripts/check-currency-rate-freshness.mjs",
     "sitemap": "tsx scripts/generate-sitemap.ts",
     "validate": "tsx scripts/validate.ts",
     "audit:seo": "tsx scripts/audit-seo.ts",
@@ -29,7 +29,8 @@
     "check:site-url": "node --test scripts/check-site-url.test.mjs",
     "audit:nattzy-cta": "node scripts/check-nattzy-cta.mjs",
     "test:nattzy-cta": "node --test scripts/check-nattzy-cta.test.mjs",
-    "audit:nattzy-timezone": "node scripts/check-nattzy-cta.mjs --timezone"
+    "audit:nattzy-timezone": "node scripts/check-nattzy-cta.mjs --timezone",
+    "test:workdays-faq": "node --test scripts/workdays-faq-parity.test.mjs"
   },
   "dependencies": {
     "@types/qrcode": "^1.5.6",

@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useShareableState } from "@/lib/hooks/useShareableState";
 import { HOLIDAY_PRESETS, type HolidayCountry } from "./holidays";
+import { countWorkdays, isoDate } from "./workday-range";
 
 const PRESET_OPTIONS = ["", "US", "JP", "UK", "DE"] as const;
 
@@ -14,40 +15,6 @@ function parseHolidays(input: string): Set<string> {
       .map((s) => s.trim())
       .filter(Boolean),
   );
-}
-
-// Local calendar date → "yyyy-mm-dd". (toISOString() is UTC: east of UTC — e.g. JST — it shifted
-// every day back by one, so preset holidays matched the wrong weekday.)
-function isoDate(d: Date): string {
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-}
-
-function countWorkdays(
-  start: Date,
-  end: Date,
-  weekend: Set<number>,
-  holidays: Set<string>,
-): { workdays: number; weekendDays: number; holidayDays: number; total: number } {
-  if (start > end) return { workdays: 0, weekendDays: 0, holidayDays: 0, total: 0 };
-  let workdays = 0;
-  let weekendDays = 0;
-  let holidayDays = 0;
-  let total = 0;
-  const cur = new Date(start);
-  while (cur <= end) {
-    total++;
-    const dow = cur.getDay();
-    const dStr = isoDate(cur);
-    if (weekend.has(dow)) {
-      weekendDays++;
-    } else if (holidays.has(dStr)) {
-      holidayDays++;
-    } else {
-      workdays++;
-    }
-    cur.setDate(cur.getDate() + 1);
-  }
-  return { workdays, weekendDays, holidayDays, total };
 }
 
 // start から n 営業日後(n<0 は前)の日付。開始日自体は数えない。
@@ -73,6 +40,7 @@ export default function WorkdaysCalculator() {
   const [end, setEnd] = useState(futureStr);
   const [includeSat, setIncludeSat] = useState(false);
   const [includeSun, setIncludeSun] = useState(false);
+  const [excludeEndpoints, setExcludeEndpoints] = useState(false);
   const [holidays, setHolidays] = useState("");
   const [preset, setPreset] = useState<"" | HolidayCountry>("");
   const [mode, setMode] = useState<"range" | "add">("range");
@@ -80,7 +48,7 @@ export default function WorkdaysCalculator() {
 
   useShareableState(
     "workdays-calculator",
-    { mode, start, end, days, includeSat, includeSun, holidays, preset },
+    { mode, start, end, days, includeSat, includeSun, excludeEndpoints, holidays, preset },
     (d) => {
       if (d.mode === "range" || d.mode === "add") setMode(d.mode);
       if (typeof d.start === "string") setStart(d.start);
@@ -88,6 +56,7 @@ export default function WorkdaysCalculator() {
       if (typeof d.days === "string") setDays(d.days);
       if (typeof d.includeSat === "boolean") setIncludeSat(d.includeSat);
       if (typeof d.includeSun === "boolean") setIncludeSun(d.includeSun);
+      if (typeof d.excludeEndpoints === "boolean") setExcludeEndpoints(d.excludeEndpoints);
       if (typeof d.holidays === "string") setHolidays(d.holidays);
       if (d.preset === "" || (typeof d.preset === "string" && d.preset in HOLIDAY_PRESETS)) setPreset(d.preset as "" | HolidayCountry);
     },
@@ -95,8 +64,10 @@ export default function WorkdaysCalculator() {
 
   const presetInRange = useMemo(() => {
     if (!preset) return [];
-    return HOLIDAY_PRESETS[preset].filter((h) => h.date >= start && h.date <= end);
-  }, [preset, start, end]);
+    return HOLIDAY_PRESETS[preset].filter((h) =>
+      h.date >= start && h.date <= end && !(mode === "range" && excludeEndpoints && (h.date === start || h.date === end))
+    );
+  }, [preset, start, end, mode, excludeEndpoints]);
 
   const afterDate = useMemo(() => {
     if (mode !== "add") return null;
@@ -122,8 +93,8 @@ export default function WorkdaysCalculator() {
     if (preset) {
       for (const h of HOLIDAY_PRESETS[preset]) hSet.add(h.date);
     }
-    return countWorkdays(sd, ed, weekend, hSet);
-  }, [start, end, includeSat, includeSun, holidays, preset]);
+    return countWorkdays(sd, ed, weekend, hSet, excludeEndpoints);
+  }, [start, end, includeSat, includeSun, excludeEndpoints, holidays, preset]);
 
   const dateFmt = useMemo(
     () => new Intl.DateTimeFormat(locale, { month: "short", day: "numeric", year: "numeric", weekday: "short" }),
@@ -131,7 +102,7 @@ export default function WorkdaysCalculator() {
   );
 
   // GA4 calculate の label(ToolInteractionTracker が読む)。祝日プリセットと週末設定のみ=日付は送らない。
-  const calcLabel = `${mode === "add" ? "add:" : ""}${preset || "none"}${includeSat ? "+sat" : ""}${includeSun ? "+sun" : ""}`;
+  const calcLabel = `${mode === "add" ? "add:" : ""}${preset || "none"}${includeSat ? "+sat" : ""}${includeSun ? "+sun" : ""}${mode === "range" && excludeEndpoints ? "+exclusive" : ""}`;
 
   return (
     <div data-calc-label={calcLabel}>
@@ -167,6 +138,12 @@ export default function WorkdaysCalculator() {
           <input type="checkbox" checked={includeSun} onChange={(e) => setIncludeSun(e.target.checked)} />
           <span>{t("input.includeSun")}</span>
         </label>
+        {mode === "range" && (
+          <label className="inline-flex items-center gap-2">
+            <input type="checkbox" checked={excludeEndpoints} onChange={(e) => setExcludeEndpoints(e.target.checked)} />
+            <span>{t("input.excludeEndpoints")}</span>
+          </label>
+        )}
       </div>
 
       <label className="mt-4 block">
@@ -225,7 +202,7 @@ export default function WorkdaysCalculator() {
           ) : (
             <div className="text-sm text-slate-600 dark:text-slate-400">{t("empty")}</div>
           )
-        ) : result && result.total > 0 ? (
+        ) : result && start <= end ? (
           <dl className="grid gap-2 text-sm">
             <div className="flex justify-between rounded bg-emerald-50 px-3 py-2 dark:bg-emerald-900/20">
               <dt className="font-medium">{t("result.workdays")}</dt>

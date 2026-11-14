@@ -1,7 +1,7 @@
 {
   "title": "Workdays Calculator – Count Working Days Between Two Dates (Free)",
   "shortDescription": "Count business days between two dates, excluding weekends and any holidays you list. Customizable: include Saturday or Sunday as workdays if needed.",
-  "description": "Enter a start and end date to see how many workdays (business days) fall between them — weekends and public holidays excluded, both dates counted. Pick a US, UK, Japan or Germany holiday preset or list your own dates. To find the date N workdays after a start date, use the Date Calculator's business-day mode.",
+  "description": "Choose Date range to count working days between two dates, or 'N workdays from a date' to find a future or past workday. Customize weekends, 2026–2027 US/UK/Japan/Germany holiday presets and your own dates; the start day is excluded in the N-workdays mode.",
   "metaDescription": "Enter a start and end date to get the number of working days instantly. Skips weekends and US, UK, Japan or Germany holidays, or your own list. Free tool.",
   "keywords": ["workdays calculator", "business days calculator", "workdays between two dates", "how many workdays between dates", "working days excluding weekends and holidays", "business days excluding holidays", "weekdays between dates", "workdays in 2026"],
   "empty": "Pick a start and end date to count workdays.",
@@ -14,6 +14,7 @@
     "end": "End date",
     "includeSat": "Saturday is a workday",
     "includeSun": "Sunday is a workday",
+    "excludeEndpoints": "Exclude start and end dates",
     "holidays": "Holidays to exclude (one per line)",
     "holidaysHint": "ISO format: 2026-01-01. Comma, space, or newline-separated.",
     "days": "Number of workdays (negative = before)"
@@ -38,7 +39,7 @@
         "heading": "Why we let you customize weekends",
         "paragraphs": [
           "Most countries use Saturday-Sunday as the weekend, but it varies. Most Middle Eastern and some North African countries observe Friday-Saturday as the weekend. Some industries (retail, hospitality) consider weekends as workdays.",
-          "Our toggles let you mark Saturday or Sunday as workdays individually. So you can configure: Mon-Fri only (default), 6-day work week (include Saturday), or even Sunday-only weekend (uncheck Sunday)."
+          "You can include Saturday or Sunday as workdays with the toggles, or leave both as weekends (the default). These controls cannot make Friday a weekend, so a Friday–Saturday weekend is not modeled directly here. For legal or contractual deadlines, verify the applicable local calendar rather than relying on this toggle alone."
         ]
       },
       {
@@ -59,8 +60,8 @@
   },
   "faq": [
     { "q": "How many workdays are between two dates?", "a": "Enter both dates: the calculator counts every Monday–Friday in the range (start and end included), then subtracts the public holidays from the preset you pick and any dates you list. Example: July 1–31, 2026 has 23 weekdays; with the US federal holiday preset (Independence Day observed on Friday, July 3) it is 22 workdays." },
-    { "q": "How do I find the date that is N workdays after a start date?", "a": "This page counts workdays between two known dates. To go the other way — for example '30 workdays from July 16, 2026' — use the Date Calculator (linked below the tool): turn on business-day mode and pick the same public-holiday preset (US, Japan, UK or Germany, 2026–2027); it skips weekends and those holidays and lists the holidays it skipped. Dates you typed in this page's own holiday list are not carried over, so move that result forward one workday for each such extra day off. To double-check, count here from the day after your start date to the result — it should equal N." },
-    { "q": "Are start and end dates inclusive?", "a": "Yes. If both are workdays, both are counted. If your contract counts only the days between (exclusive), subtract 2 from the result." },
+    { "q": "How do I find the date that is N workdays after a start date?", "a": "Use the 'N workdays from a date' mode on this calculator, enter a start date and signed number of workdays (negative for earlier dates), then choose the same weekend settings, holiday preset and any custom holiday dates. The start date itself is not counted. All listed custom holidays are applied here; you do not need to transfer them to another calculator. To double-check a positive N, switch to Date range and count from the day after your start date through the result (inclusive) with the same settings." },
+    { "q": "Are start and end dates inclusive?", "a": "Yes. A start or end date is counted only if it is a workday after applying your weekend and holiday settings. If you need only dates strictly between them, subtract each distinct endpoint that was actually counted (0, 1 or 2), not always 2. For the same start and end date, the exclusive result is 0. Or select 'Exclude start and end dates' in Date range to calculate this automatically." },
     { "q": "Are public holidays included automatically?", "a": "Only if you pick a preset: built-in data covers public holidays in the United States, Japan, the United Kingdom (England & Wales) and Germany for 2026–2027. Holidays vary by country, region and year, so for anywhere else — or for company-specific days off — add the dates manually; they are combined with the preset." },
     { "q": "Can I use this for international contracts?", "a": "Yes — but make sure both parties agree on which holidays to count. Multinational contracts often specify 'business days as observed in the [city] of [country]' to avoid ambiguity." },
     { "q": "What if a holiday falls on a weekend?", "a": "It's not double-counted. If 2026-01-01 is a Thursday holiday, it's counted as a holiday. If 2027-12-25 falls on a Saturday, the algorithm correctly counts it as one day (weekend), not two." },

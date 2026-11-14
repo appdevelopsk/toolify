@@ -20,6 +20,7 @@
     "end": "End date",
     "includeSat": "Saturday workday है",
     "includeSun": "Sunday workday है",
+    "excludeEndpoints": "शुरुआत और अंत की तारीखें न गिनें",
     "holidays": "Exclude करने के लिए holidays (एक per line)",
     "holidaysHint": "ISO format: 2026-01-01। Comma, space, या newline-separated।",
     "days": "कार्यदिवसों की संख्या (ऋणात्मक = पहले)"
@@ -78,7 +79,7 @@
   "faq": [
     {
       "q": "क्या start और end dates inclusive हैं?",
-      "a": "हाँ। दोनों workdays हों तो दोनों count होती हैं। यदि आपका contract केवल बीच के days count करे (exclusive), result में से 2 subtract करें।"
+      "a": "हाँ, लेकिन start और end में से हर तारीख तभी गिनी जाती है जब आपके चुने गए weekend और holiday नियमों के अनुसार वह workday हो। केवल बीच के दिन गिनने के लिए वास्तव में गिने गए अलग-अलग endpoints ही घटाएँ (0, 1 या 2), हमेशा 2 नहीं। यदि दोनों तारीखें एक ही दिन हैं तो exclusive परिणाम 0 होगा। तारीखों की सीमा वाले मोड में 'शुरुआत और अंत की तारीखें न गिनें' चुनकर यह गणना अपने-आप भी कर सकते हैं।"
     },
     {
       "q": "क्या सार्वजनिक छुट्टियाँ अपने-आप घटाई जाती हैं?",
