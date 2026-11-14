@@ -47,3 +47,20 @@ test("brand isolation checks run before build and before the VPS SSH stage", () 
     assert.ok(build > gate, "build must follow domain safety gate in " + file);
   }
 });
+
+test("production origin is fixed before all release tests, not only during build", () => {
+  // 2026-11-14: deploy Vitest read the example.pages.dev fallback because
+  // NEXT_PUBLIC_SITE_URL was injected only for the subsequent build step.
+  // Keep canonical/robots/sitemap assertions strict, not mocked or skipped.
+  for (const file of ["ci.yml", "deploy.yml"]) {
+    const workflow = load(file);
+    const jobHeader = workflow.split("\n    steps:\n", 1)[0];
+    assert.match(jobHeader, /^      NEXT_PUBLIC_SITE_URL: https:\/\/toolify365\.com\s*$/m,
+      file + " must set canonical origin at job level before npm test");
+    assert.match(workflow, /- name: Unit tests\n\s+run: npm test/,
+      file + " must retain real unit tests");
+  }
+  const config = readFileSync(resolve(root, "site/src/lib/config.ts"), "utf8");
+  assert.match(config, /url: process\.env\.NEXT_PUBLIC_SITE_URL/,
+    "siteConfig must derive its canonical URL from the guarded job environment");
+});
