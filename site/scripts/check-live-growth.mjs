@@ -97,9 +97,8 @@ for (const locale of ["en", "ja"]) {
     const visibleHtml = page.text.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
     for (const slug of ["workdays-calculator", "date-calculator", "timezone-converter", "unit-price-calculator"]) {
       const href = `href="/${locale}/tools/${slug}"`;
-      // The indexability policy can differ by language; only check EN links
-      // exhaustively, and require at least one useful quick link for JA.
-      if (locale === "en" && !visibleHtml.includes(href)) {
+      // All four destinations are eligible in both English and Japanese.
+      if (!visibleHtml.includes(href)) {
         failures.push(`${path}: missing quick-start link ${slug}`);
       }
     }
