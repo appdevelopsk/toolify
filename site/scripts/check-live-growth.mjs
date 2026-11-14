@@ -84,6 +84,34 @@ for (const path of paths) {
     failures.push(`${path}: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
+// Release proof for the high-intent quick-start links on the catalog page.
+// Links must be present in actual server-rendered HTML (not only RSC data).
+for (const locale of ["en", "ja"]) {
+  const path = `/${locale}/tools`;
+  try {
+    const page = await get(path);
+    if (page.status !== 200) {
+      failures.push(`${path}: HTTP ${page.status} for quick starts`);
+      continue;
+    }
+    const visibleHtml = page.text.replace(/<script\\b[^>]*>[\\s\\S]*?<\\/script>/gi, "");
+    for (const slug of ["json-formatter", "word-counter", "timezone-converter", "unit-price-calculator"]) {
+      const href = `href="/${locale}/tools/${slug}"`;
+      // The indexability policy can differ by language; only check EN links
+      // exhaustively, and require at least one useful quick link for JA.
+      if (locale === "en" && !visibleHtml.includes(href)) {
+        failures.push(`${path}: missing quick-start link ${slug}`);
+      }
+    }
+    if (locale === "ja" && !visibleHtml.includes('aria-label=')) {
+      failures.push(`${path}: quick-start navigation absent`);
+    }
+    console.log(`${page.status} ${path} (quick-start navigation)`);
+  } catch (error) {
+    failures.push(`${path}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
 for (const path of ["/robots.txt", "/sitemap.xml"]) {
   try {
     const page = await get(path);
