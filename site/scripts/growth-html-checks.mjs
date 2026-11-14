@@ -78,3 +78,15 @@ export function isHealthySearchIndex(data, locale) {
   }
   return ['workdays-calculator', 'json-formatter'].every(slug => bySlug.has(slug));
 }
+
+/**
+ * An iframe may render HTML successfully with HTTP 200 while browsers refuse
+ * third-party framing. Both a restrictive X-Frame-Options header and a
+ * restrictive frame-ancestors policy break Toolify's publisher widgets.
+ * No cookie, browsing or user-input data is collected by this check.
+ */
+export function permitsPublicEmbedding(xFrameOptions = '', contentSecurityPolicy = '') {
+  if (xFrameOptions.trim()) return false;
+  const policies = contentSecurityPolicy.split(/;|,/).map(part => part.trim().toLowerCase());
+  return policies.some(part => /^frame-ancestors\s+\*$/.test(part));
+}

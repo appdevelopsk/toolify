@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/lib/i18n/navigation";
-import { LOCALES, type Locale } from "@/lib/i18n/locales";
+import { LOCALES, isIndexedLocale, type Locale } from "@/lib/i18n/locales";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { buildPublisherEmbedSnippet, FEATURED_EMBED_SLUGS } from "@/lib/widgets/embed-guide";
 import { embedGuideCopyFor } from "@/lib/widgets/embed-guide-copy";
@@ -19,8 +19,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: copy.metaTitle,
     description: copy.metaDescription,
     path: "/embed-guide",
-    // This is an installation helper. It does not compete with canonical tool pages.
-    noindex: true,
+    // Publisher-intent content is distinct from individual calculator pages.
+    // Index only mature en/ja locales; keep the 15 locale pruning policy intact.
+    noindex: !isIndexedLocale(locale),
   });
 }
 

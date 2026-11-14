@@ -14,7 +14,10 @@ import type { ToolCategory } from "@/lib/tools/types";
  *   - 外す: about/privacy/terms/contact/disclosure と /prompts 一式(いずれも noindex)
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const sharedPaths = ["", "/tools", "/pregnancy"];
+  // The embed guide serves a distinct publisher intent (how to add a working
+  // calculator to a blog/site). It has useful instructions and sample code.
+  // Keep only en/ja eligible; other 15 translated guides remain noindex.
+  const sharedPaths = ["", "/tools", "/pregnancy", "/embed-guide"];
   const entries: MetadataRoute.Sitemap = [];
   const IDX = LOCALES.filter(isIndexedLocale);
 

@@ -27,11 +27,11 @@ describe("native-language widget publishing guide", () => {
     expect(embedGuideCopyFor("unknown")).toEqual(EMBED_GUIDE_COPY.en);
   });
 
-  it("retains indexed tool SEO policy but does not index an installation helper", () => {
+  it("keeps only en/ja publisher guides indexable while other 15 remain pruned", () => {
     const page = readFileSync(new URL("../../app/[locale]/embed-guide/page.tsx", import.meta.url), "utf8");
     expect(page).toContain("embedGuideCopyFor(locale)");
     expect(page).toContain("buildPublisherEmbedSnippet(slug, title, locale)");
-    expect(page).toContain('noindex: true');
+    expect(page).toContain('noindex: !isIndexedLocale(locale)');
     expect(page).not.toContain('const language = locale === "ja" ? "ja" : "en"');
     expect(page).toContain('dir="ltr"');
   });
