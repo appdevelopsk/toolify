@@ -18,6 +18,11 @@ jobs:
       run:
         working-directory: site
     env:
+      # Canonical origin must be the same for Vitest/metadata/sitemap,
+      # SSR build and public release. CI has this at job level already;
+      # deploy previously set it only in the build step, so unit tests
+      # used config.ts's example.pages.dev fallback and aborted before SSH.
+      NEXT_PUBLIC_SITE_URL: https://toolify365.com
       DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
       DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
       DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
