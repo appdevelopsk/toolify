@@ -171,6 +171,28 @@ for (const locale of ["en", "fr", "ar"]) {
   }
 }
 
+// Publisher referrals depend on a real server-rendered discovery entry point.
+// Verify all representative locales, not just the guide page itself.
+for (const locale of ["en", "ja", "fr", "ar"]) {
+  const path = `/${locale}`;
+  try {
+    const page = await get(path);
+    if (page.status !== 200) {
+      failures.push(`${path}: HTTP ${page.status} for publisher CTA`);
+      continue;
+    }
+    if (!page.text.includes('id="publisher-embed"')) {
+      failures.push(`${path}: publisher entry point missing from homepage`);
+    }
+    if (!page.text.includes(`href="/${locale}/embed-guide"`)) {
+      failures.push(`${path}: localized publisher guide link missing`);
+    }
+    console.log(`${page.status} ${path} (publisher entry point)`);
+  } catch (error) {
+    failures.push(`${path}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
 // Publisher acquisition contract: only the useful English/Japanese guide is
 // index-eligible. Every other localized guide remains available to users but
 // noindex (the site-wide locale pruning policy is unchanged).
