@@ -1,4 +1,4 @@
-import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare, isHealthySearchIndex } from "./growth-html-checks.mjs";
+import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare, isHealthySearchIndex, permitsPublicEmbedding } from "./growth-html-checks.mjs";
 /**
  * Read-only production smoke check for growth funnel rollout.
  * Usage: SITE_URL=https://toolify365.com node scripts/check-live-growth.mjs
@@ -40,7 +40,7 @@ async function get(path) {
     signal: AbortSignal.timeout(12000),
   });
   const text = await response.text();
-  return { status: response.status, text, url: response.url, contentType: response.headers.get("content-type") ?? "", xRobotsTag: response.headers.get("x-robots-tag") ?? "" };
+  return { status: response.status, text, url: response.url, contentType: response.headers.get("content-type") ?? "", xRobotsTag: response.headers.get("x-robots-tag") ?? "", xFrameOptions: response.headers.get("x-frame-options") ?? "", csp: response.headers.get("content-security-policy") ?? "" };
 }
 for (const path of paths) {
   try {
@@ -166,6 +166,54 @@ for (const locale of ["en", "fr", "ar"]) {
       continue;
     }
     console.log(`${page.status} ${path} (${data.tools.length} tools)`);
+  } catch (error) {
+    failures.push(`${path}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
+// Publisher acquisition contract: only the useful English/Japanese guide is
+// index-eligible. Every other localized guide remains available to users but
+// noindex (the site-wide locale pruning policy is unchanged).
+for (const locale of ["en", "ja", "fr", "ar"]) {
+  const guidePath = `/${locale}/embed-guide`;
+  try {
+    const page = await get(guidePath);
+    if (page.status !== 200) failures.push(`${guidePath}: HTTP ${page.status}`);
+    const expectedNoindex = locale !== "en" && locale !== "ja";
+    if (hasNoindex(page.text, page.xRobotsTag) !== expectedNoindex) {
+      failures.push(`${guidePath}: unexpected guide robots policy`);
+    }
+    const canonical = canonicalHref(page.text);
+    if (canonical !== new URL(guidePath, base).toString()) {
+      failures.push(`${guidePath}: unexpected canonical ${canonical ?? "(missing)"}`);
+    }
+    if (!page.text.includes(`/embed/${locale}/workdays-calculator`)) {
+      failures.push(`${guidePath}: localized copy-ready widget path missing`);
+    }
+    console.log(`${page.status} ${guidePath} (publisher guide)`);
+  } catch (error) {
+    failures.push(`${guidePath}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
+// A visible iframe page is useless if nginx/Next send restrictive framing
+// headers. Check both HTML and actual HTTP headers, not source configuration.
+for (const locale of ["en", "fr", "ar"]) {
+  const path = `/embed/${locale}/workdays-calculator`;
+  try {
+    const page = await get(path);
+    if (page.status !== 200 || !page.contentType.includes("text/html")) {
+      failures.push(`${path}: invalid widget response ${page.status} ${page.contentType}`);
+      continue;
+    }
+    if (!hasNoindex(page.text, page.xRobotsTag)) failures.push(`${path}: iframe page must be noindex`);
+    if (!permitsPublicEmbedding(page.xFrameOptions, page.csp)) {
+      failures.push(`${path}: external iframe blocked or frame-ancestors policy missing`);
+    }
+    if (canonicalHref(page.text) !== new URL(`/${locale}/tools/workdays-calculator`, base).toString()) {
+      failures.push(`${path}: widget does not canonicalize to localized tool`);
+    }
+    console.log(`${page.status} ${path} (external iframe headers)`);
   } catch (error) {
     failures.push(`${path}: ${error instanceof Error ? error.message : String(error)}`);
   }
