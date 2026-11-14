@@ -93,7 +93,7 @@ export default function LoremIpsumGenerator() {
           <input type="checkbox" checked={startLorem} onChange={(e) => setStartLorem(e.target.checked)} />
           {t("startLorem")}
         </label>
-        <button onClick={() => setSeed((s) => s + 1)} className="rounded bg-brand-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-700">
+        <button onClick={() => setSeed((s) => s + 1)} data-calculate-action className="rounded bg-brand-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-700">
           {t("regenerate")}
         </button>
       </div>
