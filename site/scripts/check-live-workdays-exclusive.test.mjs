@@ -18,6 +18,7 @@ for(const item of TARGETS) {
     const x=fixture(item);
     assert.ok(inspectWorkdaysHtml(x.replace(item.faq,"old inaccurate advice"),item).errors.includes("CORRECTED_BOUNDARY_FAQ_NOT_VISIBLE"));
     assert.ok(inspectWorkdaysHtml(x.replace(item.label,"missing label"),item).errors.includes("NEW_CHECKBOX_NOT_VISIBLE"));
+    assert.ok(inspectWorkdaysHtml(x.replace('<input type="checkbox">',''),item).errors.includes("CHECKBOX_CONTROL_NOT_RENDERED"));
     assert.ok(inspectWorkdaysHtml(x.replace('rel="canonical"','rel="alternate"'),item).errors.includes("WRONG_CANONICAL"));
     assert.ok(inspectWorkdaysHtml(x.replace('lang="'+item.locale+'"','lang="other"'),item).errors.includes("WRONG_HTML_LANG"));
  });
