@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
-import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare, isHealthySearchIndex } from './growth-html-checks.mjs';
+import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare, isHealthySearchIndex, permitsPublicEmbedding } from './growth-html-checks.mjs';
 
 test('robots and googlebot directives independent of attribute order', () => {
   assert.equal(hasNoindex('<meta name="robots" content="noindex,follow">'), true);
@@ -78,4 +78,15 @@ test('international search index smoke validates actual catalog rather than HTTP
   assert.equal(isHealthySearchIndex({ ...data, tools: [...tools.slice(0,99), tools[0]] }, 'fr'), false);
   assert.equal(isHealthySearchIndex({ ...data, tools: [...tools.slice(0,99), { slug: 'bad', title: '' }] }, 'fr'), false);
   assert.equal(isHealthySearchIndex(null, 'fr'), false);
+});
+
+test('global publisher iframe widgets fail if HTTP 200 is accompanied by restrictive framing headers', () => {
+  assert.equal(permitsPublicEmbedding('', 'frame-ancestors *'), true);
+  assert.equal(permitsPublicEmbedding('', "default-src 'self'; frame-ancestors *; object-src 'none'"), true);
+  assert.equal(permitsPublicEmbedding('SAMEORIGIN', 'frame-ancestors *'), false);
+  assert.equal(permitsPublicEmbedding('DENY', 'frame-ancestors *'), false);
+  assert.equal(permitsPublicEmbedding('', "frame-ancestors 'self'"), false);
+  assert.equal(permitsPublicEmbedding('', 'frame-ancestors https://a.example'), false);
+  assert.equal(permitsPublicEmbedding('', ''), false);
+  assert.equal(permitsPublicEmbedding('', 'frame-src *'), false);
 });
