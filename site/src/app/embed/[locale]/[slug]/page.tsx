@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
-import { loadToolSlugMessages } from "@/lib/i18n/loader";
+import { loadCommon, loadToolSlugMessages } from "@/lib/i18n/loader";
 import { getTool, listTools } from "@/lib/tools/registry";
 import { siteConfig } from "@/lib/config";
 import { LOCALES, type Locale } from "@/lib/i18n/locales";
@@ -44,8 +44,13 @@ export default async function EmbedPage({
   const canonical = `${siteConfig.url}/${locale}/tools/${slug}`;
   const home = `${siteConfig.url}/${locale}`;
 
-  const [{ default: Component }, toolMessages] = await Promise.all([
+  // next-intl treats nested `messages` props atomically. Supply a single
+  // complete but small dictionary so widgets can use both common labels and
+  // their own tool translations. No 223-tool/prompt payload and no duplicate
+  // serialization of the common dictionary from an outer provider.
+  const [{ default: Component }, commonMessages, toolMessages] = await Promise.all([
     import(`@/tools/${slug}/Component`),
+    loadCommon(locale),
     loadToolSlugMessages(locale, slug),
   ]);
 
@@ -60,9 +65,12 @@ export default async function EmbedPage({
         {tt("title")}
       </a>
       <section className="mt-3 rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
-        {/* Keep only this widget's localizations in the hydrated client tree.
-            Common messages are supplied by the lightweight /embed layout. */}
-        <NextIntlClientProvider messages={{ tools: { [slug]: toolMessages } }}>
+        {/* One provider: the common UI strings and this tool's translations.
+            next-intl does not merge nested messages dictionaries. */}
+        <NextIntlClientProvider
+          locale={locale}
+          messages={{ ...commonMessages, tools: { [slug]: toolMessages } }}
+        >
           <Component />
         </NextIntlClientProvider>
       </section>
