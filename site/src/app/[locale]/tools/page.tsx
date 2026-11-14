@@ -77,6 +77,26 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
 
       <ToolSearch items={items} />
 
+      {/* Put high-intent destinations above the full catalog so visitors can start a task immediately.
+          Use existing translated labels and respect the locale-specific indexing policy. */}
+      {(() => {
+        const quickSlugs = ["json-formatter", "word-counter", "timezone-converter", "unit-price-calculator"];
+        const quickTools = quickSlugs
+          .filter((slug) => isIndexableIn(locale, slug))
+          .map((slug) => items.find((item) => item.slug === slug))
+          .filter((item): item is (typeof items)[number] => Boolean(item));
+        return quickTools.length > 0 ? (
+          <nav aria-label={t("site.toolsTitle")} className="mt-5 flex flex-wrap gap-2">
+            {quickTools.map((item) => (
+              <Link key={item.slug} href={`/tools/${item.slug}`}
+                className="rounded-full border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:border-brand-500 hover:text-brand-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 dark:border-slate-700 dark:text-slate-200">
+                {item.title}
+              </Link>
+            ))}
+          </nav>
+        ) : null;
+      })()}
+
       <FavoritesSection items={items} />
 
       <RecentSection items={items} />
