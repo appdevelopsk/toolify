@@ -34,7 +34,8 @@ describe("consent-aware early GA4 engagement delivery", () => {
     expect(w.gtag).not.toHaveBeenCalled();
     w.__toolifyGa4Ready = true;
     w.dispatchEvent(new Event("toolify:ga4-ready"));
-    expect(w.gtag).toHaveBeenCalledExactlyOnceWith("event", "calculate", calculated);
+    expect(w.gtag).toHaveBeenCalledTimes(1);
+    expect(w.gtag).toHaveBeenCalledWith("event", "calculate", calculated);
     w.dispatchEvent(new Event("toolify:ga4-ready"));
     expect(w.gtag).toHaveBeenCalledTimes(1);
   });
