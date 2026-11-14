@@ -85,7 +85,7 @@ export default function UuidGenerator() {
           {t("count")}:
           <input type="number" min={1} max={100} value={count} onChange={(e) => setCount(Math.max(1, Math.min(100, parseInt(e.target.value, 10) || 1)))} className="w-20 rounded border border-slate-300 px-2 py-1 dark:border-slate-700 dark:bg-slate-900" />
         </label>
-        <button onClick={regenerate} className="rounded bg-brand-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-700">{t("regenerate")}</button>
+        <button onClick={regenerate} data-calculate-action className="rounded bg-brand-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-700">{t("regenerate")}</button>
         {list.length > 1 && (
           <button onClick={copyAll} className="rounded border border-slate-300 px-3 py-1.5 text-sm hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800">
             {copiedAll ? t("copied") : t("copyAll")}

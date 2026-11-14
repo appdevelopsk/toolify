@@ -91,7 +91,7 @@ export default function RandomNumberGenerator() {
           <input type="checkbox" checked={unique} onChange={(e) => setUnique(e.target.checked)} />
           {t("unique")}
         </label>
-        <button onClick={generate} className="rounded bg-brand-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-700">{t("regenerate")}</button>
+        <button onClick={generate} data-calculate-action className="rounded bg-brand-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-700">{t("regenerate")}</button>
         {list.length > 0 && (
           <button onClick={copyAll} className="rounded border border-slate-300 px-3 py-1.5 text-sm hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800">
             {copied ? t("copied") : t("copyAll")}

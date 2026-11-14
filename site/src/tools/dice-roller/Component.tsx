@@ -73,7 +73,7 @@ export default function DiceRoller() {
         </label>
       </div>
 
-      <button onClick={roll} className="mt-4 w-full rounded bg-brand-600 px-6 py-3 text-lg font-bold text-white hover:bg-brand-700 sm:w-auto">
+      <button onClick={roll} data-calculate-action className="mt-4 w-full rounded bg-brand-600 px-6 py-3 text-lg font-bold text-white hover:bg-brand-700 sm:w-auto">
         🎲 {t("roll", { count, sides, modifier: mod >= 0 ? `+${mod}` : `${mod}` })}
       </button>
 
