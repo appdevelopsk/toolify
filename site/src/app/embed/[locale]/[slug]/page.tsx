@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import { loadToolSlugMessages } from "@/lib/i18n/loader";
 import { getTool, listTools } from "@/lib/tools/registry";
 import { siteConfig } from "@/lib/config";
 import { LOCALES, type Locale } from "@/lib/i18n/locales";
@@ -42,7 +44,10 @@ export default async function EmbedPage({
   const canonical = `${siteConfig.url}/${locale}/tools/${slug}`;
   const home = `${siteConfig.url}/${locale}`;
 
-  const { default: Component } = await import(`@/tools/${slug}/Component`);
+  const [{ default: Component }, toolMessages] = await Promise.all([
+    import(`@/tools/${slug}/Component`),
+    loadToolSlugMessages(locale, slug),
+  ]);
 
   return (
     <div className="mx-auto max-w-2xl p-4">
@@ -55,7 +60,11 @@ export default async function EmbedPage({
         {tt("title")}
       </a>
       <section className="mt-3 rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
-        <Component />
+        {/* Keep only this widget's localizations in the hydrated client tree.
+            Common messages are supplied by the lightweight /embed layout. */}
+        <NextIntlClientProvider messages={{ tools: { [slug]: toolMessages } }}>
+          <Component />
+        </NextIntlClientProvider>
       </section>
       <p className="mt-3 text-right text-xs text-slate-500">
         <a href={home} target="_blank" rel="noopener" className="hover:text-brand-600 hover:underline">
