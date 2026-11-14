@@ -2,7 +2,8 @@ import "../../globals.css";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
+import { loadCommon } from "@/lib/i18n/loader";
 
 import { routing } from "@/lib/i18n/routing";
 import { LOCALES, getDirection, type Locale } from "@/lib/i18n/locales";
@@ -25,7 +26,10 @@ export default async function EmbedLayout({
   const { locale } = await params;
   if (!routing.locales.includes(locale as Locale)) notFound();
   setRequestLocale(locale);
-  const messages = await getMessages();
+  // An embed renders only one tool. Sending all 223 tool translations and prompt
+  // messages to every iframe wastes bandwidth and delays client hydration on
+  // international blogs. The nested tool page supplies just its own messages.
+  const messages = await loadCommon(locale);
   const dir = getDirection(locale);
 
   return (
