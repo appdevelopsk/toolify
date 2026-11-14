@@ -94,7 +94,7 @@ for (const locale of ["en", "ja"]) {
       failures.push(`${path}: HTTP ${page.status} for quick starts`);
       continue;
     }
-    const visibleHtml = page.text.replace(/<script\\b[^>]*>[\\s\\S]*?<\\/script>/gi, "");
+    const visibleHtml = page.text.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
     for (const slug of ["json-formatter", "word-counter", "timezone-converter", "unit-price-calculator"]) {
       const href = `href="/${locale}/tools/${slug}"`;
       // The indexability policy can differ by language; only check EN links
