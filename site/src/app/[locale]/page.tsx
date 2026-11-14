@@ -16,6 +16,7 @@ import { RelatedServices } from "@/components/affiliates/RelatedServices";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { CATEGORY_CONFIG, categoryLabel } from "@/lib/tools/categories";
 import { softwareCopy } from "@/lib/software/copy";
+import { embedGuideCopyFor } from "@/lib/widgets/embed-guide-copy";
 import { isIndexedLocale, type Locale } from "@/lib/i18n/locales";
 import type { ToolCategory, ToolMeta } from "@/lib/tools/types";
 
@@ -70,6 +71,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const collatorLocale = safeLocale(locale);
   const t = await getTranslations();
   const software = softwareCopy(locale);
+  const publisherGuide = embedGuideCopyFor(locale);
   const allTools = listTools();
   const allPrompts = listPrompts();
   const featured = listFeaturedTools().slice(0, FEATURED_COUNT);
@@ -187,6 +189,27 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* International publisher acquisition: the existing 17-language embed kit
+          is accessible from home without loading additional client JS. Keep it
+          below the main tool discovery sections so typical visitors are not
+          distracted from their own tasks. Only en/ja guides are indexable,
+          but every locale has a functional, user-facing kit. */}
+      <section id="publisher-embed" className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900 sm:p-7" aria-labelledby="publisher-embed-heading">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 id="publisher-embed-heading" className="text-lg font-bold">{publisherGuide.heading}</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">{publisherGuide.intro}</p>
+          </div>
+          <Link
+            href="/embed-guide"
+            prefetch={false}
+            className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg border border-brand-600 px-4 text-sm font-semibold text-brand-700 hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:text-brand-400 dark:hover:bg-slate-800"
+          >
+            {publisherGuide.installHeading} →
+          </Link>
         </div>
       </section>
 
