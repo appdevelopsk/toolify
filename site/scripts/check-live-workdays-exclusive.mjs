@@ -37,11 +37,11 @@ export function inspectWorkdaysHtml(html, item, origin="https://toolify365.com")
   const body = visibleText(html);
   if (!body) errors.push("VISIBLE_BODY_MISSING");
   // A mention in FAQ text alone must not masquerade as a real checkbox.
-  const markup=html.replace(/<script\\b[^>]*>[\\s\\S]*?<\\/script>/gi,"")
-    .replace(/<style\\b[^>]*>[\\s\\S]*?<\\/style>/gi,"")
-    .match(/<body\\b[^>]*>([\\s\\S]*?)<\\/body>/i)?.[1] ?? "";
-  const checkboxLabel=[...markup.matchAll(/<label\\b[^>]*>([\\s\\S]*?)<\\/label>/gi)]
-    .some(m=>/<input\\b[^>]*type=(["'])checkbox\\1/i.test(m[1]) && m[1].includes(item.label));
+  const markup=html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,"")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,"")
+    .match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? "";
+  const checkboxLabel=[...markup.matchAll(/<label\b[^>]*>([\s\S]*?)<\/label>/gi)]
+    .some(m=>/<input\b[^>]*type=(["'])checkbox\1/i.test(m[1]) && m[1].includes(item.label));
   if(!checkboxLabel) errors.push("CHECKBOX_CONTROL_NOT_RENDERED");
   for (const [code,phrase] of [
     ["NEW_CHECKBOX_NOT_VISIBLE",item.label],
