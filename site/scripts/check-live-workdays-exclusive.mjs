@@ -36,6 +36,13 @@ export function inspectWorkdaysHtml(html, item, origin="https://toolify365.com")
   const path = "/" + item.locale + "/tools/workdays-calculator";
   const body = visibleText(html);
   if (!body) errors.push("VISIBLE_BODY_MISSING");
+  // A mention in FAQ text alone must not masquerade as a real checkbox.
+  const markup=html.replace(/<script\\b[^>]*>[\\s\\S]*?<\\/script>/gi,"")
+    .replace(/<style\\b[^>]*>[\\s\\S]*?<\\/style>/gi,"")
+    .match(/<body\\b[^>]*>([\\s\\S]*?)<\\/body>/i)?.[1] ?? "";
+  const checkboxLabel=[...markup.matchAll(/<label\\b[^>]*>([\\s\\S]*?)<\\/label>/gi)]
+    .some(m=>/<input\\b[^>]*type=(["'])checkbox\\1/i.test(m[1]) && m[1].includes(item.label));
+  if(!checkboxLabel) errors.push("CHECKBOX_CONTROL_NOT_RENDERED");
   for (const [code,phrase] of [
     ["NEW_CHECKBOX_NOT_VISIBLE",item.label],
     ["EXISTING_ADD_MODE_NOT_VISIBLE",item.mode],
@@ -74,6 +81,10 @@ export async function run(url=process.argv[2]||"https://toolify365.com") {
       const actual=new URL(response.url);
       if(actual.origin!==root.origin || actual.pathname.replace(/\/$/,"")!==path)throw Error("UNEXPECTED_REDIRECT: "+response.url);
       const proof=inspectWorkdaysHtml(await response.text(),item,root.origin);
+      if ((item.locale==="en" || item.locale==="ja") && /\\bnoindex\\b/i.test(response.headers.get("x-robots-tag")||"")) {
+        proof.errors.push("INDEXABLE_LOCALE_HTTP_NOINDEX");
+        proof.ok=false;
+      }
       results.push({url,status:response.status,...proof});
     }catch(e){results.push({url,ok:false,errors:[e.message||String(e)]});}
   }
