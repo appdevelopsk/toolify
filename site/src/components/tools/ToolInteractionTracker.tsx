@@ -111,6 +111,30 @@ export function ToolInteractionTracker({
       const btn = target?.closest?.("button");
       if (!btn) return;
 
+      // Some tools do their real work on a button press (Roll, Generate,
+      // Regenerate) without changing an input. Count only explicitly marked
+      // result-producing actions, not navigation, mode switches or presets.
+      // The trusted-event and once-per-mount gates also prevent replay/bots
+      // or repeated clicks from inflating active usage rates.
+      if (btn.hasAttribute("data-calculate-action")) {
+        if (sent.current.calculate) return;
+        sent.current.calculate = true;
+        if (settle !== undefined) window.clearTimeout(settle);
+        settle = undefined;
+        calculateDelay = window.setTimeout(() => {
+          if (disposed) return;
+          const root = el as HTMLElement;
+          trackCalculate({
+            tool: slug,
+            locale,
+            category,
+            input_count: countFilledInputs(root),
+            has_result: hasVisibleResult(root),
+          });
+        }, 50);
+        return;
+      }
+
       // コピー系ボタン: ラベル/aria-label に copy を含むもの。
       // 各ツールが独自にクリップボード実装を持つため、文言で判別するしかない。
       const label = `${btn.getAttribute("aria-label") ?? ""} ${btn.textContent ?? ""}`.toLowerCase();
