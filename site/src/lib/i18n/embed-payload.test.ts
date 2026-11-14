@@ -37,7 +37,7 @@ describe("lightweight international iframe translations", () => {
       expect(typeof workdays.title).toBe("string");
       const minimized = { ...common, tools: { "workdays-calculator": workdays } };
       expect(Object.keys(minimized.tools)).toEqual(["workdays-calculator"]);
-      expect(minimized.nav).toEqual(common.nav);
+      expect((minimized as Record<string, unknown>)["nav"]).toEqual(common.nav);
       expect(minimized.tools["workdays-calculator"].title).toBe(workdays.title);
     }
   });
