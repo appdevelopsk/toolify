@@ -1,6 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/lib/config";
+import { dispatchGa4Event } from "./early-event-delivery";
 import { consumeJourneyForTool, rememberJourneyClick } from "./journey-attribution";
 import { consumeSearchForTool, rememberSearchClick, type SearchSource } from "./search-attribution";
 
@@ -12,7 +13,8 @@ import { consumeSearchForTool, rememberSearchClick, type SearchSource } from "./
  * 測る手段が無かった。滞在率改善(初期値投入・関連導線)の効果判定には
  * 「着地したか」ではなく「計算したか / 結果をコピーしたか」が要る。
  *
- * ガードは PageViewTracker と同一: gaId 未設定 / SSR / gtag 未ロードでは黙って no-op。
+ * gaId 未設定 / SSR では no-op。初期化前の短時間の実操作は
+ * メモリ上の上限付きキューで同意設定とGA4 configの完了まで保留する。
  * Consent Mode v2 は gtag.tsx 側で既定 denied(EEA) を設定済みのため、
  * ここで同意状態を再判定する必要はない(gtag 側が保留・破棄を行う)。
  *
@@ -45,8 +47,7 @@ export type CalculateParams = ToolEventParams & {
 
 function emit(name: string, params: Record<string, unknown>): void {
   if (!siteConfig.analytics.gaId) return;
-  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
-  window.gtag("event", name, params);
+  dispatchGa4Event(name, params);
 }
 
 /** ToolEventParams を GA4 送出用の params に正規化する(undefined は落とす)。 */
@@ -69,7 +70,7 @@ export function trackCalculate(p: CalculateParams): void {
   });
   // Count actual interaction only after a click to this exact tool in this tab.
   // "journey_tool_interaction" is NOT necessarily task completion.
-  if (siteConfig.analytics.gaId && typeof window !== "undefined" && typeof window.gtag === "function") {
+  if (siteConfig.analytics.gaId && typeof window !== "undefined") {
     const attribution = consumeJourneyForTool(p.tool);
     if (attribution) {
       emit("journey_tool_interaction", {
@@ -128,8 +129,7 @@ export function trackSearchResultClick(p: {
   position: number;
   locale?: string;
 }): void {
-  if (!siteConfig.analytics.gaId ||
-      typeof window === "undefined" || typeof window.gtag !== "function") return;
+  if (!siteConfig.analytics.gaId || typeof window === "undefined") return;
   rememberSearchClick(p.destination, p.source, p.position);
   emit("search_result_click", {
     tool_slug: p.destination,
@@ -239,7 +239,7 @@ export function trackSoftwareDownload(p: { software: string }): void {
 export function trackJourneyClick(p: { journey: string; destination: string; locale: string; position: number }): void {
   // Do not persist an attribution if the navigation event itself cannot be sent.
   // Otherwise a delayed GA4 load could produce an "interaction" without its click.
-  if (!siteConfig.analytics.gaId || typeof window === "undefined" || typeof window.gtag !== "function") return;
+  if (!siteConfig.analytics.gaId || typeof window === "undefined") return;
   rememberJourneyClick(p.journey, p.destination, p.position);
   emit("journey_tool_click", {
     journey_id: p.journey,
