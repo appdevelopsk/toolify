@@ -3,63 +3,7 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 
-// RFC 4180 compliant CSV parser (handles quoted fields with commas, escaped quotes, line breaks).
-function parseCsv(text: string, delimiter: string): string[][] {
-  const rows: string[][] = [];
-  let row: string[] = [];
-  let field = "";
-  let inQuotes = false;
-  let i = 0;
-  while (i < text.length) {
-    const ch = text[i];
-    if (inQuotes) {
-      if (ch === '"') {
-        if (text[i + 1] === '"') {
-          field += '"';
-          i += 2;
-          continue;
-        }
-        inQuotes = false;
-        i++;
-        continue;
-      }
-      field += ch;
-      i++;
-    } else {
-      if (ch === '"') {
-        inQuotes = true;
-        i++;
-      } else if (ch === delimiter) {
-        row.push(field);
-        field = "";
-        i++;
-      } else if (ch === "\n" || ch === "\r") {
-        row.push(field);
-        rows.push(row);
-        row = [];
-        field = "";
-        if (ch === "\r" && text[i + 1] === "\n") i += 2;
-        else i++;
-      } else {
-        field += ch;
-        i++;
-      }
-    }
-  }
-  if (field || row.length) {
-    row.push(field);
-    rows.push(row);
-  }
-  return rows.filter((r) => r.length > 1 || (r.length === 1 && r[0] !== ""));
-}
-
-function escapeCsvField(value: unknown, delimiter: string): string {
-  const s = value === null || value === undefined ? "" : String(value);
-  if (s.includes(delimiter) || s.includes('"') || s.includes("\n") || s.includes("\r")) {
-    return '"' + s.replace(/"/g, '""') + '"';
-  }
-  return s;
-}
+import { parseCsv, escapeCsvField, assertUniqueHeaders } from "./csv-utils";
 
 export default function CsvJsonConverter() {
   const t = useTranslations("tools.csv-json-converter");
@@ -78,14 +22,12 @@ export default function CsvJsonConverter() {
         if (rows.length === 0) return { ok: true as const, value: "[]" };
         if (headerRow) {
           const headers = rows[0]!;
-          const data = rows.slice(1).map((r) => {
-            const obj: Record<string, string> = {};
-            for (let i = 0; i < headers.length; i++) {
-              const key = headers[i]!;
-              obj[key] = r[i] ?? "";
-            }
-            return obj;
-          });
+          assertUniqueHeaders(headers);
+          const data = rows.slice(1).map((r) =>
+            // Object.fromEntries preserves a literal "__proto__" column as data,
+            // rather than silently dropping it through the Object prototype setter.
+            Object.fromEntries(headers.map((key, i) => [key, r[i] ?? ""] as const)) as Record<string, string>
+          );
           return { ok: true as const, value: JSON.stringify(data, null, 2) };
         }
         return { ok: true as const, value: JSON.stringify(rows, null, 2) };
