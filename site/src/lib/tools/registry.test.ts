@@ -127,3 +127,20 @@ describe("SEO links match the locale-specific indexability policy", () => {
     expect(localized.map((x) => x.slug)).toEqual(old.map((x) => x.slug));
   });
 });
+
+
+describe("small 2026-11-15 search discovery trial", () => {
+  it("indexes exactly two additional proven interactive tools in en and ja", async () => {
+    const { INDEX_DISCOVERY_TRIAL_SLUGS, CORE_TOOLS_BY_DEMAND, isIndexableIn, indexableLocalesFor } = await import("./registry");
+    expect([...INDEX_DISCOVERY_TRIAL_SLUGS]).toEqual(["image-resizer", "csv-json-converter"]);
+    for (const slug of INDEX_DISCOVERY_TRIAL_SLUGS) {
+      expect(CORE_TOOLS_BY_DEMAND).not.toContain(slug);
+      expect(indexableLocalesFor(slug)).toEqual(["en", "ja"]);
+      expect(isIndexableIn("en", slug)).toBe(true);
+      expect(isIndexableIn("ja", slug)).toBe(true);
+      expect(isIndexableIn("es", slug)).toBe(false);
+      expect(isIndexableIn("th", slug)).toBe(false);
+    }
+    expect(isIndexableIn("en", "json-formatter")).toBe(false);
+  });
+});
