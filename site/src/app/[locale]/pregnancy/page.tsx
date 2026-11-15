@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { getTool } from "@/lib/tools/registry";
+import { getTool, isIndexableIn } from "@/lib/tools/registry";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { siteConfig } from "@/lib/config";
 import type { Locale } from "@/lib/i18n/locales";
@@ -47,13 +47,16 @@ export default async function PregnancyHub({ params }: { params: Promise<{ local
   setRequestLocale(locale);
   const t = await getTranslations();
   const tools = CLUSTER.map((slug) => getTool(slug)).filter(Boolean) as ToolMeta[];
+  // Keep the seven-step user journey, but never advertise deliberate noindex
+  // destinations as Google ItemList results on this crawlable hub.
+  const indexableTools = tools.filter((tool) => isIndexableIn(locale, tool.slug));
 
   const itemListLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: t("pregnancy.title"),
-    numberOfItems: tools.length,
-    itemListElement: tools.map((m, i) => ({
+    numberOfItems: indexableTools.length,
+    itemListElement: indexableTools.map((m, i) => ({
       "@type": "ListItem",
       position: i + 1,
       url: `${siteConfig.url}/${locale}/tools/${m.slug}`,
@@ -63,7 +66,9 @@ export default async function PregnancyHub({ params }: { params: Promise<{ local
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
+      {indexableTools.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
+      )}
 
       <h1 className="text-3xl font-bold">{t("pregnancy.title")}</h1>
       <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">{t("pregnancy.intro")}</p>
