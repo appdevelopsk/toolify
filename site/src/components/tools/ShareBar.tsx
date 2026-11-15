@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { useToolEvents } from "@/lib/analytics/useToolEvents";
-import { socialShareUrl, escapeEmbedHtml } from "@/lib/analytics/shareAttribution";
+import { socialShareUrl } from "@/lib/analytics/shareAttribution";
+import { buildToolEmbedSnippet } from "@/lib/tools/embed-html";
+import { isShareCancelled } from "@/lib/tools/share-errors";
 
 interface Props {
   /** Canonical, absolute URL of the tool page (built server-side from siteConfig). */
@@ -121,8 +123,8 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
   const enc = encodeURIComponent;
   // Keep optional embed attribution visible to readers without ranking-credit links.
   // Broadly distributed widget links are qualified per Google spam guidelines.
-  const safeTitle = escapeEmbedHtml(title);
-  const snippet = `<iframe src="${embedUrl}" width="100%" height="520" style="border:1px solid #e2e8f0;border-radius:12px" loading="lazy" title="${safeTitle}"></iframe>\n<p style="font:13px/1.6 system-ui,-apple-system,sans-serif;text-align:center;margin:6px 0;color:#64748b">Free <a href="${url}" target="_blank" rel="nofollow noopener">${safeTitle}</a> by <a href="https://toolify365.com" target="_blank" rel="nofollow noopener">Toolify365</a></p>`;
+  // Generate a validated, escaped and nofollow-qualified snippet.
+  const snippet = buildToolEmbedSnippet(title, embedUrl, url);
 
   // Attribute social shares without changing canonical, copy or embed URLs.
   const trackable = (source: string) => enc(socialShareUrl(url, source));
@@ -155,8 +157,10 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
         // 成功時だけ送る。キャンセルは reject されるのでここには来ない。
         share("native");
         return;
-      } catch {
-        /* user cancelled — fall through */
+      } catch (error) {
+        // Explicit cancellation is not a request to copy to the clipboard.
+        if (isShareCancelled(error)) return;
+        // Other share failures can still use the existing link-copy fallback.
       }
     }
     // フォールバックは copy() 側が copy_result("link") を送るため share は送らない
