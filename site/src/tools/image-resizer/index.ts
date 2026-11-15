@@ -4,11 +4,15 @@ const meta: ToolMeta = {
   slug: "image-resizer",
   category: "image",
   applicationCategory: "MultimediaApplication",
-  updatedAt: "2026-08-22",
+  updatedAt: "2026-11-15",
   related: ["qr-code-generator", "base64-encoder", "color-converter"],
   primaryKeyword: { en: "image resizer", ja: "画像リサイズ" },
   hasHowTo: true,
   hasFaq: true,
+  sources: [
+    { label: "MDN — Canvas drawImage()", url: "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage" },
+    { label: "MDN — Canvas toBlob()", url: "https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob" },
+  ],
 };
 
 export default meta;
