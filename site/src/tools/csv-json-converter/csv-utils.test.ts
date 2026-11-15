@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { assertUniqueHeaders, escapeCsvField, parseCsv } from "./csv-utils";
+import { assertRowWidth, assertUniqueHeaders, escapeCsvField, parseCsv } from "./csv-utils";
 
 describe("CSV import integrity", () => {
   it("parses the default sample and CRLF rows", () => {
@@ -31,6 +31,12 @@ describe("CSV import integrity", () => {
     expect(() => assertUniqueHeaders(["name", "name"])).toThrow(/Duplicate/);
     expect(() => assertUniqueHeaders(["name", " "])).toThrow(/empty/);
     expect(() => assertUniqueHeaders(["__proto__", "name"])).not.toThrow();
+  });
+
+  it("rejects ragged rows before losing or inventing data", () => {
+    expect(() => assertRowWidth(["Alice", "30"], 2, 2)).not.toThrow();
+    expect(() => assertRowWidth(["Bob", "25", "extra"], 2, 3)).toThrow(/CSV row 3 has 3 fields; expected 2/);
+    expect(() => assertRowWidth(["Carol"], 2, 4)).toThrow(/CSV row 4 has 1 fields; expected 2/);
   });
 
   it("exports quoted cells safely as CSV text", () => {
