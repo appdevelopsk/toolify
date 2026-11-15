@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 
-import { parseCsv, escapeCsvField, assertUniqueHeaders } from "./csv-utils";
+import { parseCsv, escapeCsvField, assertUniqueHeaders, assertRowWidth } from "./csv-utils";
 
 export default function CsvJsonConverter() {
   const t = useTranslations("tools.csv-json-converter");
@@ -23,11 +23,12 @@ export default function CsvJsonConverter() {
         if (headerRow) {
           const headers = rows[0]!;
           assertUniqueHeaders(headers);
-          const data = rows.slice(1).map((r) =>
+          const data = rows.slice(1).map((r, index) => {
+            assertRowWidth(r, headers.length, index + 2);
             // Object.fromEntries preserves a literal "__proto__" column as data,
             // rather than silently dropping it through the Object prototype setter.
-            Object.fromEntries(headers.map((key, i) => [key, r[i] ?? ""] as const)) as Record<string, string>
-          );
+            return Object.fromEntries(headers.map((key, i) => [key, r[i]] as const)) as Record<string, string>;
+          });
           return { ok: true as const, value: JSON.stringify(data, null, 2) };
         }
         return { ok: true as const, value: JSON.stringify(rows, null, 2) };
