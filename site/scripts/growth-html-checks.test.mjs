@@ -90,3 +90,32 @@ test('global publisher iframe widgets fail if HTTP 200 is accompanied by restric
   assert.equal(permitsPublicEmbedding('', ''), false);
   assert.equal(permitsPublicEmbedding('', 'frame-src *'), false);
 });
+
+
+test('exact HTML attributes prevent fake robots and canonical claims', () => {
+  assert.equal(hasNoindex('<meta data-name="robots" content="noindex">'), false);
+  assert.equal(hasNoindex('<meta name="robots" data-content="noindex">'), false);
+  assert.equal(hasNoindex('<meta name="robots" content="none">'), true);
+  assert.equal(hasNoindex('<meta name=googlebot content=none>'), true);
+  assert.equal(hasNoindex('', 'googlebot: none'), true);
+  assert.equal(hasNoindex('', 'nonesuch'), false);
+  assert.equal(canonicalHref('<link data-rel="canonical" href="/fake">'), null);
+  assert.equal(canonicalHref('<link rel="alternate" data-href="/fake">'), null);
+  assert.equal(canonicalHref('<link rel="canonical" data-href="/fake">'), null);
+  assert.equal(canonicalHref('<link rel="canonical" href="/real">'), '/real');
+  assert.equal(canonicalHref('<link rel="alternate canonical" href="/real">'), '/real');
+});
+
+test('only real clickable anchors satisfy internal CTA and shared URL audits', () => {
+  assert.equal(hasSoftwareAnchor('<a data-href="/en/software/json-studio">Unlinked</a>', 'json-studio', 'en'), false);
+  assert.equal(hasSoftwareAnchor('<a href="/en/software/json-studio">Linked</a>', 'json-studio', 'en'), true);
+  const target = new URL('https://toolify365.com/en/tools/json-formatter');
+  target.searchParams.set('utm_source', 'linkedin');
+  target.searchParams.set('utm_medium', 'social');
+  target.searchParams.set('utm_campaign', 'tool_share');
+  const intent = new URL('https://www.linkedin.com/sharing/share-offsite/');
+  intent.searchParams.set('url', target.toString());
+  const encoded = intent.toString().replace(/&/g, '&amp;');
+  assert.equal(hasAttributedSocialShare(`<a data-href="${encoded}">Not a link</a>`, 'linkedin', '/en/tools/json-formatter'), false);
+  assert.equal(hasAttributedSocialShare(`<a href="${encoded}">Share</a>`, 'linkedin', '/en/tools/json-formatter'), true);
+});
