@@ -487,7 +487,25 @@ export const CORE_TOOLS_BY_DEMAND = [
   "speed-converter", "loan-calculator", "age-calculator", "conception-date-calculator",
 ] as const;
 
-export const INDEXED_SLUGS = new Set<string>(CORE_TOOLS_BY_DEMAND);
+/**
+ * 2026-11-15: small, reversible discovery experiment — two genuinely
+ * interactive, privacy-preserving utilities already linked from homepage
+ * journeys. Only en/ja are eligible, using the existing canonical/hreflang
+ * policy. Do not restore all 223 tools or all 17 locales at once.
+ *
+ * Evaluation: compare GSC page impressions/clicks/index coverage for these
+ * exact four URLs over 28 days, alongside core-tool controls. If a trial page
+ * lacks clear search utility or index coverage deteriorates, revert it.
+ */
+export const INDEX_DISCOVERY_TRIAL_SLUGS = [
+  "image-resizer",
+  "csv-json-converter",
+] as const;
+
+export const INDEXED_SLUGS = new Set<string>([
+  ...CORE_TOOLS_BY_DEMAND,
+  ...INDEX_DISCOVERY_TRIAL_SLUGS,
+]);
 
 /**
  * INDEXED_LOCALES(en/ja)以外で、ページ単位で index を残すもの。
