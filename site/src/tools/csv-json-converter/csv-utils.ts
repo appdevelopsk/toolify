@@ -85,6 +85,13 @@ export function assertUniqueHeaders(headers: string[]): void {
   }
 }
 
+/** Do not discard surplus cells or invent missing values when headers are used. */
+export function assertRowWidth(row: string[], expected: number, line: number): void {
+  if (row.length !== expected) {
+    throw new Error("CSV row " + line + " has " + row.length + " fields; expected " + expected);
+  }
+}
+
 /** Escape a cell before placing it in a delimited text export. */
 export function escapeCsvField(value: unknown, delimiter: string): string {
   const s = value === null || value === undefined ? "" : String(value);
