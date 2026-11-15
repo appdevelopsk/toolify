@@ -3,7 +3,13 @@
   "shortDescription": "Three percentage calculators in one: 'X% of Y', 'X is what % of Y', and percentage change between two values.",
   "description": "Pick a mode, enter two numbers, and get the answer instantly. Handles 'percent of', 'what percent', and 'percent change' — the three operations behind almost every percentage question.",
   "metaDescription": "Free percentage calculator: find X% of Y, what percent one number is of another, or the percent change between two values. Instant, in-browser.",
-  "keywords": ["percentage calculator", "percent of", "percentage change", "discount calculator", "increase decrease percent"],
+  "keywords": [
+    "percentage calculator",
+    "percent of",
+    "percentage change",
+    "discount calculator",
+    "increase decrease percent"
+  ],
   "empty": "Enter both values to see the result.",
   "mode": {
     "pct_of": {
@@ -59,23 +65,67 @@
           "Percentage points vs percent. If a poll moves from 40% to 42%, that's a change of 2 percentage points but a 5% relative increase. The calculator's 'percent change' mode reports the relative change.",
           "Discount stacking. A '20% off' coupon applied after a '20% off' sale is 36% off the original (0.8 × 0.8 = 0.64), not 40%. Run the calculator twice in 'percent of' mode to see this directly."
         ]
+      },
+      {
+        "heading": "Worked examples: discounts, grades and month-over-month change",
+        "paragraphs": [
+          "A 15% discount on a 3,480 purchase: 3,480 × 0.15 = 522 off, so the final price is 3,480 − 522 = 2,958. Choose “X% of Y”, enter X = 15 and Y = 3480 to see the discount amount; use “Subtract X% from Y” to see the final price directly.",
+          "42 correct answers out of 56 questions: 42 ÷ 56 × 100 = 75%. Choose “X is what % of Y”, enter X = 42 (correct answers) and Y = 56 (total questions).",
+          "A monthly bill rises from 1,150 to 1,380: (1,380 − 1,150) ÷ 1,150 × 100 = 20% increase. Choose “Change from A to B”, enter A = 1150 and B = 1380. If the bill falls from 1,380 to 1,150 instead, the change is about −16.67%; switching the old and new values changes the denominator."
+        ]
       }
     ],
     "howTo": [
-      { "name": "Pick a mode", "text": "Choose 'percent of', 'what percent', or 'percent change' depending on what you're trying to find." },
-      { "name": "Enter the first number", "text": "The label tells you which value goes here for the chosen mode." },
-      { "name": "Enter the second number", "text": "The result updates as you type." },
-      { "name": "Read the answer", "text": "The result includes the appropriate unit (%, plain number) for the mode you chose." }
+      {
+        "name": "Pick a mode",
+        "text": "Choose 'percent of', 'what percent', or 'percent change' depending on what you're trying to find."
+      },
+      {
+        "name": "Enter the first number",
+        "text": "The label tells you which value goes here for the chosen mode."
+      },
+      {
+        "name": "Enter the second number",
+        "text": "The result updates as you type."
+      },
+      {
+        "name": "Read the answer",
+        "text": "The result includes the appropriate unit (%, plain number) for the mode you chose."
+      }
     ]
   },
   "faq": [
-    { "q": "Is the calculation accurate to many decimals?", "a": "Yes — we use double-precision floating point and round display to four decimals. For very high-precision financial work, treat the result as approximate at the 16th significant digit." },
-    { "q": "Why does percent change ask for old then new?", "a": "Because the formula divides by the old value. Swapping the two inputs flips the sign of the result." },
-    { "q": "How do I calculate a discounted price?", "a": "Use 'percent of' with X = the discount percent and Y = the original price; subtract the result from the original. Or use percent-of with X = (100 − discount) and Y = price for the final price directly." },
-    { "q": "How do I find percent off if I know both prices?", "a": "Use 'percent change' with A = original price and B = sale price. The negative number is your discount." },
-    { "q": "What if I enter a negative number?", "a": "All three modes accept negatives. Percent change in particular is well-defined: change from −5 to 5 is −200% (the sign of the divisor flips the result)." },
-    { "q": "Can I use this for tax calculations?", "a": "Yes — 'percent of' with X = tax rate and Y = pre-tax amount gives the tax. Add it to the original or use percent-of with X = (100 + tax)." },
-    { "q": "Why doesn't 'increase by 50% then decrease by 50%' return the original?", "a": "Because percentages compound. 100 × 1.5 × 0.5 = 75, not 100. Run the percent-change mode end-to-end to see the net change is −25%." },
-    { "q": "Does this work for grade calculations?", "a": "Yes. Use 'what percent' with X = points earned and Y = points possible to get your percentage grade." }
+    {
+      "q": "Is the calculation accurate to many decimals?",
+      "a": "Yes — we use double-precision floating point and round display to four decimals. For very high-precision financial work, treat the result as approximate at the 16th significant digit."
+    },
+    {
+      "q": "Why does percent change ask for old then new?",
+      "a": "Because the formula divides by the old value. Swapping the two inputs flips the sign of the result."
+    },
+    {
+      "q": "How do I calculate a discounted price?",
+      "a": "Use 'percent of' with X = the discount percent and Y = the original price; subtract the result from the original. Or use percent-of with X = (100 − discount) and Y = price for the final price directly."
+    },
+    {
+      "q": "How do I find percent off if I know both prices?",
+      "a": "Use 'percent change' with A = original price and B = sale price. The negative number is your discount."
+    },
+    {
+      "q": "What if I enter a negative number?",
+      "a": "All three modes accept negatives. Percent change in particular is well-defined: change from −5 to 5 is −200% (the sign of the divisor flips the result)."
+    },
+    {
+      "q": "Can I use this for tax calculations?",
+      "a": "Yes — 'percent of' with X = tax rate and Y = pre-tax amount gives the tax. Add it to the original or use percent-of with X = (100 + tax)."
+    },
+    {
+      "q": "Why doesn't 'increase by 50% then decrease by 50%' return the original?",
+      "a": "Because percentages compound. 100 × 1.5 × 0.5 = 75, not 100. Run the percent-change mode end-to-end to see the net change is −25%."
+    },
+    {
+      "q": "Does this work for grade calculations?",
+      "a": "Yes. Use 'what percent' with X = points earned and Y = points possible to get your percentage grade."
+    }
   ]
 }
