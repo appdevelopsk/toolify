@@ -118,7 +118,7 @@ export function ShareBar({ url, embedUrl, title, slug }: Props) {
       window.removeEventListener("popstate", sync);
       window.removeEventListener("pageshow", sync);
     };
-  }, []);
+  }, [url, slug]); // Recheck shared-result state on locale/tool navigation.
 
   const enc = encodeURIComponent;
   // Keep optional embed attribution visible to readers without ranking-credit links.
