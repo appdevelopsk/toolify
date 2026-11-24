@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useShareableState } from "@/lib/hooks/useShareableState";
 
@@ -54,13 +54,23 @@ export default function AgeCalculator() {
   // 代表値を初期表示し、最初の描画から結果を見せる(2026-08-22)。
   // 生年月日は固定日。todayIso() 由来にすると SSR/CSR で値がズレる。
   const [birth, setBirth] = useState(() => "1990-01-01");
-  const [target, setTarget] = useState(todayIso());
+  const [target, setTarget] = useState("");
+  // 「今日」由来の既定値は静的書き出し時とブラウザーで値がズレる(hydration mismatch)ため、
+  // useState 初期化ではなくマウント後に入れる。
+  // max 属性も同じ理由でマウント後に入れる(属性の食い違いは hydration で直されず、書き出し日のまま残る)。
+  const [today, setToday] = useState("");
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    setTarget((prev) => (prev === "" ? todayIso() : prev));
+    setToday(todayIso());
+    setReady(true);
+  }, []);
 
   useShareableState("age-calculator", { birth, target }, (d) => {
     const iso = /^\d{4}-\d{2}-\d{2}$/;
     if (typeof d.birth === "string" && iso.test(d.birth)) setBirth(d.birth);
     if (typeof d.target === "string" && iso.test(d.target)) setTarget(d.target);
-  });
+  }, { ready });
 
   const result = useMemo(() => {
     if (!birth) return null;
@@ -97,7 +107,7 @@ export default function AgeCalculator() {
             type="date"
             value={birth}
             onChange={(e) => setBirth(e.target.value)}
-            max={todayIso()}
+            max={today || undefined}
             className="mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900"
           />
         </label>

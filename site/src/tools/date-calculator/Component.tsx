@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import {
   HOLIDAY_PRESET_OPTIONS,
@@ -38,11 +38,17 @@ export default function DateCalculator() {
   const locale = useLocale();
   const [mode, setMode] = useState<Mode>("addSubtract");
   const [op, setOp] = useState<Op>("add");
-  const [start, setStart] = useState(todayIso());
+  const [start, setStart] = useState("");
   const [years, setYears] = useState("0");
   const [months, setMonths] = useState("0");
   const [days, setDays] = useState("0");
-  const [endDate, setEndDate] = useState(todayIso());
+  const [endDate, setEndDate] = useState("");
+  // 「今日」由来の既定値は静的書き出し時とブラウザーで値がズレる(hydration mismatch)ため、
+  // useState 初期化ではなくマウント後に入れる。
+  useEffect(() => {
+    setStart((prev) => (prev === "" ? todayIso() : prev));
+    setEndDate((prev) => (prev === "" ? todayIso() : prev));
+  }, []);
   const [businessMode, setBusinessMode] = useState(false);
   // Public-holiday preset for business days. "" (default) = weekends only, as before.
   const [preset, setPreset] = useState<"" | HolidayCountry>("");

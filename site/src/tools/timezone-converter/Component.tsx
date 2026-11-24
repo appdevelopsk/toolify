@@ -91,7 +91,12 @@ export default function TimezoneConverter() {
   const locale = useLocale();
   const [sourceTz, setSourceTz] = useState<string>("");
   const [targetTzs, setTargetTzs] = useState<string[]>(["America/New_York", "Europe/London", "Asia/Tokyo"]);
-  const [dt, setDt] = useState<string>(localNowIso());
+  const [dt, setDt] = useState<string>("");
+  // 「今日」由来の既定値は静的書き出し時とブラウザーで値がズレる(hydration mismatch)ため、
+  // useState 初期化ではなくマウント後に入れる。
+  useEffect(() => {
+    setDt((prev) => (prev === "" ? localNowIso() : prev));
+  }, []);
 
   useEffect(() => {
     if (!sourceTz) {

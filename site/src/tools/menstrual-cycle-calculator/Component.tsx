@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 function isoDate(d: Date): string {
@@ -18,7 +18,12 @@ function icsDate(d: Date): string {
 export default function MenstrualCycleCalculator() {
   const t = useTranslations("tools.menstrual-cycle-calculator");
   const locale = useLocale();
-  const [lastPeriod, setLastPeriod] = useState(() => isoDate(addDays(new Date(), -7)));
+  const [lastPeriod, setLastPeriod] = useState("");
+  // 「今日」由来の既定値は静的書き出し時とブラウザーで値がズレる(hydration mismatch)ため、
+  // useState 初期化ではなくマウント後に入れる。
+  useEffect(() => {
+    setLastPeriod((prev) => (prev === "" ? isoDate(addDays(new Date(), -7)) : prev));
+  }, []);
   const [cycleLength, setCycleLength] = useState("28");
   const [periodLength, setPeriodLength] = useState("5");
 

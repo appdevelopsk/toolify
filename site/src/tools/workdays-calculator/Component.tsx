@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useShareableState } from "@/lib/hooks/useShareableState";
 import { HOLIDAY_PRESETS, type HolidayCountry } from "./holidays";
@@ -33,11 +33,17 @@ function addWorkdays(start: Date, n: number, weekend: Set<number>, holidays: Set
 export default function WorkdaysCalculator() {
   const t = useTranslations("tools.workdays-calculator");
   const locale = useLocale();
-  const today = new Date();
-  const todayStr = isoDate(today);
-  const futureStr = isoDate(new Date(today.getTime() + 30 * 86400000));
-  const [start, setStart] = useState(todayStr);
-  const [end, setEnd] = useState(futureStr);
+  // 「今日」由来の既定値は静的書き出し時とブラウザーで値がズレる(hydration mismatch #418)。
+  // useState 初期化ではなくマウント後に入れる。共有リンク(?s=)の復元は後続の effect が上書きする。
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    const today = new Date();
+    setStart((prev) => (prev === "" ? isoDate(today) : prev));
+    setEnd((prev) => (prev === "" ? isoDate(new Date(today.getTime() + 30 * 86400000)) : prev));
+    setReady(true);
+  }, []);
   const [includeSat, setIncludeSat] = useState(false);
   const [includeSun, setIncludeSun] = useState(false);
   const [excludeEndpoints, setExcludeEndpoints] = useState(false);
@@ -60,6 +66,7 @@ export default function WorkdaysCalculator() {
       if (typeof d.holidays === "string") setHolidays(d.holidays);
       if (d.preset === "" || (typeof d.preset === "string" && d.preset in HOLIDAY_PRESETS)) setPreset(d.preset as "" | HolidayCountry);
     },
+    { ready },
   );
 
   const presetInRange = useMemo(() => {

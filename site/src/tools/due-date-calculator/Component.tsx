@@ -53,7 +53,10 @@ export default function DueDateCalculator() {
   // 最終月経を約60日前に置くと妊娠8週台(第1トリメスター)になり、マイルストーン表に
   // 過去と未来が混在して最初の描画から結果が読める(2026-08-22)。
   // 「今日」由来の値は SSR/CSR でズレるため useState ではなく useEffect で入れる。
+  // max 属性も同じ(属性の食い違いは hydration で直されず、書き出し日のまま残る)。
+  const [maxDate, setMaxDate] = useState("");
   useEffect(() => {
+    setMaxDate(todayIso());
     setRefDate((prev) => {
       if (prev) return prev;
       const d = addDays(new Date(todayIso() + "T00:00:00"), -60);
@@ -124,7 +127,7 @@ export default function DueDateCalculator() {
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
           <span className="text-sm font-medium">{t(`input.${mode}`)}</span>
-          <input type="date" value={refDate} onChange={(e) => setRefDate(e.target.value)} max={todayIso()} className={inputBox} />
+          <input type="date" value={refDate} onChange={(e) => setRefDate(e.target.value)} max={maxDate || undefined} className={inputBox} />
         </label>
 
         {mode === "lmp" && (

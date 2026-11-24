@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 const SYNODIC = 29.53058868;
@@ -57,7 +57,12 @@ function nextEvent(from: Date, target: number): Date {
 export default function MoonPhaseCalculator() {
   const t = useTranslations("tools.moon-phase-calculator");
   const locale = useLocale();
-  const [date, setDate] = useState(isoDate(new Date()));
+  const [date, setDate] = useState("");
+  // 「今日」由来の既定値は静的書き出し時とブラウザーで値がズレる(hydration mismatch)ため、
+  // useState 初期化ではなくマウント後に入れる。
+  useEffect(() => {
+    setDate((prev) => (prev === "" ? isoDate(new Date()) : prev));
+  }, []);
 
   const result = useMemo(() => {
     const d = new Date(date + "T12:00:00");

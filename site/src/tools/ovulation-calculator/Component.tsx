@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 function addDays(d: Date, days: number): Date {
@@ -25,11 +25,15 @@ type Cycle = {
 export default function OvulationCalculator() {
   const t = useTranslations("tools.ovulation-calculator");
   const locale = useLocale();
-  const [lmp, setLmp] = useState(() => {
+  const [lmp, setLmp] = useState("");
+  // 「今日」由来の既定値は静的書き出し時とブラウザーで値がズレる(hydration mismatch)ため、
+  // useState 初期化ではなくマウント後に入れる。
+  useEffect(() => {
     const d = new Date();
     d.setDate(d.getDate() - 14);
-    return d.toISOString().slice(0, 10);
-  });
+    const iso = d.toISOString().slice(0, 10);
+    setLmp((prev) => (prev === "" ? iso : prev));
+  }, []);
   const [cycleLength, setCycleLength] = useState("28");
   const [irregular, setIrregular] = useState(false);
   const [cycleMin, setCycleMin] = useState("26");

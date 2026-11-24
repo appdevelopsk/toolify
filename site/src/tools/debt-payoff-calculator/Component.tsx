@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { isWholeUnitCurrency, toolCurrency } from "@/lib/currency";
 import { toolDefaults } from "@/lib/tool-defaults";
@@ -76,7 +76,7 @@ function buildAmortizationSummary(
   };
 }
 
-function calcFixedPayment(balance: number, monthlyRate: number, payment: number): PayoffResult | { error: string } {
+function calcFixedPayment(balance: number, monthlyRate: number, payment: number, today: Date | null): PayoffResult | { error: string } {
   const monthlyInterest = balance * monthlyRate;
   if (payment <= monthlyInterest) {
     return { error: "paymentTooLow" };
@@ -94,14 +94,18 @@ function calcFixedPayment(balance: number, monthlyRate: number, payment: number)
   const totalPaid = totalsRow.payment;
   const totalInterest = totalsRow.interest;
 
-  const now = new Date();
-  now.setMonth(now.getMonth() + months);
-  const payoffDate = now.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+  // today が null(マウント前)の間は完済月を空で返す。
+  let payoffDate = "";
+  if (today) {
+    const now = new Date(today);
+    now.setMonth(now.getMonth() + months);
+    payoffDate = now.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+  }
 
   return { months, payoffDate, totalInterest, totalPaid, monthlyPayment: payment, rows, totalsRow };
 }
 
-function calcFixedTerm(balance: number, monthlyRate: number, months: number): PayoffResult | { error: string } {
+function calcFixedTerm(balance: number, monthlyRate: number, months: number, today: Date | null): PayoffResult | { error: string } {
   if (months <= 0 || !isFinite(months)) return { error: "invalidInput" };
 
   let payment: number;
@@ -117,9 +121,13 @@ function calcFixedTerm(balance: number, monthlyRate: number, months: number): Pa
   const totalPaid = totalsRow.payment;
   const totalInterest = totalsRow.interest;
 
-  const now = new Date();
-  now.setMonth(now.getMonth() + months);
-  const payoffDate = now.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+  // today が null(マウント前)の間は完済月を空で返す。
+  let payoffDate = "";
+  if (today) {
+    const now = new Date(today);
+    now.setMonth(now.getMonth() + months);
+    payoffDate = now.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+  }
 
   return { months, payoffDate, totalInterest, totalPaid, monthlyPayment: payment, rows, totalsRow };
 }
@@ -145,6 +153,13 @@ export default function DebtPayoffCalculator() {
     [locale],
   );
 
+  // 完済月は「今日」が起点。静的書き出し時とブラウザーで月がズレうる(hydration mismatch)ため、
+  // 起点はマウント後(と入力の変更時)に取る。
+  const [today, setToday] = useState<Date | null>(null);
+  useEffect(() => {
+    setToday(new Date());
+  }, [tab, balance, ratePct, monthlyPayment, termMonths]);
+
   const result = useMemo((): PayoffResult | { error: string } | null => {
     const P = parseFloat(balance);
     const r = parseFloat(ratePct) / 100 / 12;
@@ -153,13 +168,13 @@ export default function DebtPayoffCalculator() {
     if (tab === "fixedPayment") {
       const pmt = parseFloat(monthlyPayment);
       if (!isFinite(pmt) || pmt <= 0) return null;
-      return calcFixedPayment(P, r, pmt);
+      return calcFixedPayment(P, r, pmt, today);
     } else {
       const n = parseInt(termMonths, 10);
       if (!isFinite(n) || n <= 0) return null;
-      return calcFixedTerm(P, r, n);
+      return calcFixedTerm(P, r, n, today);
     }
-  }, [tab, balance, ratePct, monthlyPayment, termMonths]);
+  }, [tab, balance, ratePct, monthlyPayment, termMonths, today]);
 
   const minPaymentHint = useMemo(() => {
     const P = parseFloat(balance);

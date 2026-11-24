@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 function isoDate(d: Date): string {
@@ -34,9 +34,15 @@ export default function PregnancyWeekCalculator() {
   const t = useTranslations("tools.pregnancy-week-calculator");
   const locale = useLocale();
   const [mode, setMode] = useState<Mode>("lmp");
-  const [lmp, setLmp] = useState(() => isoDate(addDays(new Date(), -70)));
+  const [lmp, setLmp] = useState("");
   const [cycleLength, setCycleLength] = useState("28");
-  const [scanDate, setScanDate] = useState(() => isoDate(new Date()));
+  const [scanDate, setScanDate] = useState("");
+  // 「今日」由来の既定値は静的書き出し時とブラウザーで値がズレる(hydration mismatch)ため、
+  // useState 初期化ではなくマウント後に入れる。
+  useEffect(() => {
+    setLmp((prev) => (prev === "" ? isoDate(addDays(new Date(), -70)) : prev));
+    setScanDate((prev) => (prev === "" ? isoDate(new Date()) : prev));
+  }, []);
   const [gaWeeks, setGaWeeks] = useState("12");
   const [gaDays, setGaDays] = useState("0");
 

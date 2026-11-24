@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 function isLeap(y: number): boolean {
@@ -22,7 +22,11 @@ function prevLeap(y: number): number {
 export default function LeapYearChecker() {
   const t = useTranslations("tools.leap-year-checker");
   const locale = useLocale();
-  const [year, setYear] = useState(String(new Date().getFullYear()));
+  const [year, setYear] = useState("");
+  // 「今年」は静的書き出しの年とズレうる(年またぎの hydration mismatch)ため、マウント後に入れる。
+  useEffect(() => {
+    setYear((prev) => (prev === "" ? String(new Date().getFullYear()) : prev));
+  }, []);
 
   const result = useMemo(() => {
     const y = parseInt(year, 10);

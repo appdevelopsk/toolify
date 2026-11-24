@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 export default function EmergencyFundCalculator() {
@@ -10,6 +10,13 @@ export default function EmergencyFundCalculator() {
   const [months, setMonths] = useState("6");
   const [currentSavings, setCurrentSavings] = useState("500000");
   const [monthlyContribution, setMonthlyContribution] = useState("30000");
+
+  // 達成予定月は「今日」が起点。静的書き出し時とブラウザーで月がズレうる(hydration mismatch)ため、
+  // 起点はマウント後(と入力の変更時)に取り、それまでは「—」で描く。
+  const [today, setToday] = useState<Date | null>(null);
+  useEffect(() => {
+    setToday(new Date());
+  }, [monthlyExpenses, months, currentSavings, monthlyContribution]);
 
   const result = useMemo(() => {
     const e = parseFloat(monthlyExpenses);
@@ -22,9 +29,9 @@ export default function EmergencyFundCalculator() {
     const progress = Math.min(100, (cs / target) * 100);
     let monthsToFill: number | null = null;
     if (gap > 0 && mc > 0) monthsToFill = Math.ceil(gap / mc);
-    const targetDate = monthsToFill != null ? (() => { const d = new Date(); d.setMonth(d.getMonth() + monthsToFill); return d; })() : null;
+    const targetDate = monthsToFill != null && today ? (() => { const d = new Date(today); d.setMonth(d.getMonth() + monthsToFill); return d; })() : null;
     return { target, gap, progress, monthsToFill, targetDate, hasEnough: cs >= target };
-  }, [monthlyExpenses, months, currentSavings, monthlyContribution]);
+  }, [monthlyExpenses, months, currentSavings, monthlyContribution, today]);
 
   const fmt = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }), [locale]);
   const fmtDate = useMemo(() => new Intl.DateTimeFormat(locale, { year: "numeric", month: "long" }), [locale]);

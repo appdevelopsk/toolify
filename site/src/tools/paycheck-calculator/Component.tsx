@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 import {
@@ -12,6 +12,11 @@ import {
 
 export default function PaycheckCalculator() {
   const t = useTranslations("tools.paycheck-calculator");
+  // 「今年」は静的書き出しの年とズレうる(年またぎの hydration mismatch)ため、マウント後に判定する。
+  const [pastTaxYear, setPastTaxYear] = useState(false);
+  useEffect(() => {
+    setPastTaxYear(new Date().getFullYear() > TAX_YEAR);
+  }, []);
   const locale = useLocale();
 
   const [salary, setSalary] = useState("75000");
@@ -52,7 +57,7 @@ export default function PaycheckCalculator() {
         className="mb-5 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900 dark:border-amber-700 dark:bg-amber-900/20 dark:text-amber-200"
       >
         <p className="font-semibold">{t("note.taxYearLabel", { year: String(TAX_YEAR) })}</p>
-        {new Date().getFullYear() > TAX_YEAR && (
+        {pastTaxYear && (
           <p className="mt-1">{t("note.taxYearWarning", { year: String(TAX_YEAR) })}</p>
         )}
       </div>
