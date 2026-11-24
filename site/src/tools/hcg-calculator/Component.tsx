@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useEffect, useMemo, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 
 function localDateTime(d: Date): string {
   const p = (n: number) => String(n).padStart(2, "0");
@@ -10,6 +10,7 @@ function localDateTime(d: Date): string {
 
 export default function HcgCalculator() {
   const t = useTranslations("tools.hcg-calculator");
+  const locale = useLocale();
   const [v1, setV1] = useState("50");
   const [v2, setV2] = useState("110");
   const [t1, setT1] = useState(() => localDateTime(new Date(Date.now() - 2 * 86400000)));
@@ -39,7 +40,7 @@ export default function HcgCalculator() {
     return { hours, ratio, trend, doublingTime, halfLife, rise48, riseDaily };
   }, [v1, v2, t1, t2]);
 
-  const num = (n: number, digits = 1) => n.toLocaleString(undefined, { maximumFractionDigits: digits });
+  const num = (n: number, digits = 1) => n.toLocaleString(locale, { maximumFractionDigits: digits });
   const inputBox = "mt-1 w-full rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900";
 
   return (

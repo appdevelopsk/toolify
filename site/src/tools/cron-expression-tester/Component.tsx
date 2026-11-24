@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 interface FieldSpec {
@@ -81,6 +81,12 @@ export default function CronExpressionTester() {
   const t = useTranslations("tools.cron-expression-tester");
   const locale = useLocale();
   const [expr, setExpr] = useState("0 9 * * 1-5");
+  // 「次回実行」は現在時刻が起点。静的書き出し時とブラウザーで必ずズレる(hydration mismatch)ため、
+  // 起点はマウント後(と式の変更時)に取り直し、それまでは一覧を空で描く。
+  const [from, setFrom] = useState<Date | null>(null);
+  useEffect(() => {
+    setFrom(new Date());
+  }, [expr]);
 
   const result = useMemo(() => {
     const tokens = expr.trim().split(/\s+/);
@@ -92,12 +98,12 @@ export default function CronExpressionTester() {
       sets.push(parsed);
     }
     try {
-      const next = nextNRuns(sets, 5);
+      const next = from ? nextNRuns(sets, 5, from) : [];
       return { next, sets };
     } catch (e) {
       return { error: e instanceof Error ? e.message : String(e) };
     }
-  }, [expr, t]);
+  }, [expr, t, from]);
 
   const dateFmt = useMemo(() => new Intl.DateTimeFormat(locale, { dateStyle: "full", timeStyle: "short" }), [locale]);
 

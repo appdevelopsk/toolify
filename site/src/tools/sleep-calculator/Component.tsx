@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 
 type Mode = "wakeUp" | "bedtime";
@@ -74,7 +74,11 @@ function calcBedtimeMode(bedMinutes: number): SleepResult[] {
 export default function SleepCalculator() {
   const t = useTranslations("tools.sleep-calculator");
   const [mode, setMode] = useState<Mode>("wakeUp");
-  const [timeValue, setTimeValue] = useState(nowTimeString);
+  const [timeValue, setTimeValue] = useState("");
+  // 現在時刻は静的書き出し時とブラウザーで必ずズレる(hydration mismatch)ため、マウント後に入れる。
+  useEffect(() => {
+    setTimeValue((prev) => (prev === "" ? nowTimeString() : prev));
+  }, []);
 
   const results = useMemo((): SleepResult[] | null => {
     const parsed = parseTime(timeValue);

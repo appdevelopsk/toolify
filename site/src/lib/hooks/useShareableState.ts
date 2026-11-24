@@ -16,6 +16,9 @@ import { useEffect, useRef, useState } from "react";
  * - 注意: ?s= は入力時にブラウザーのURLを更新する。URLは共有時だけでなく
  *   履歴、アクセスログ、Referrerなどを通じて外部に伝わる可能性がある。
  *   個人情報や機密値をこのフックの状態に含めないこと。
+ * - options.ready: 「今日の日付」などマウント後にしか決まらない既定値を持つツール用。
+ *   false の間は書き込み側が何も記録しない。true になった最初の値を基準(初期値)として
+ *   扱うので、マウント後に既定値を入れても素の URL に ?s= が付かない。既定は true。
  */
 
 const MAX_SHARED_STATE_LENGTH = 4096;
@@ -48,7 +51,9 @@ export function useShareableState<T extends object>(
   toolSlug: string,
   value: T,
   restore: (saved: T) => void,
+  options?: { ready?: boolean },
 ): ShareableState {
+  const ready = options?.ready ?? true;
   const [restored, setRestored] = useState(false);
   const restoreRef = useRef(restore);
   restoreRef.current = restore;
@@ -71,6 +76,7 @@ export function useShareableState<T extends object>(
   const serialized = JSON.stringify(value);
   const prevRef = useRef<string | null>(null);
   useEffect(() => {
+    if (!ready) return;
     const prev = prevRef.current;
     prevRef.current = serialized;
     if (prev === null || prev === serialized) return;
@@ -93,7 +99,7 @@ export function useShareableState<T extends object>(
     } catch {
       /* URL が長すぎる等 — 共有できないだけで計算は続行 */
     }
-  }, [serialized]);
+  }, [serialized, ready]);
 
   return { restored };
 }

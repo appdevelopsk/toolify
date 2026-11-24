@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 function isoDate(d: Date): string {
@@ -32,8 +32,12 @@ function weeksInYear(year: number): number {
 export default function IsoWeekCalculator() {
   const t = useTranslations("tools.iso-week-calculator");
   const locale = useLocale();
-  const today = new Date();
-  const [date, setDate] = useState(isoDate(today));
+  const [date, setDate] = useState("");
+  // 「今日」由来の既定値は静的書き出し時とブラウザーで値がズレる(hydration mismatch)ため、
+  // useState 初期化ではなくマウント後に入れる。
+  useEffect(() => {
+    setDate((prev) => (prev === "" ? isoDate(new Date()) : prev));
+  }, []);
 
   const result = useMemo(() => {
     const d = new Date(date + "T12:00:00");
