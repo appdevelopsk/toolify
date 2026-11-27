@@ -74,7 +74,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const publisherGuide = embedGuideCopyFor(locale);
   const allTools = listTools();
   const allPrompts = listPrompts();
-  const featured = listFeaturedTools().slice(0, FEATURED_COUNT);
+  const featured = listFeaturedTools(locale).slice(0, FEATURED_COUNT);
   const remainingCount = allTools.length - featured.length;
 
   const toolTitle = (m: ToolMeta) => t(`tools.${m.slug}.title`);
