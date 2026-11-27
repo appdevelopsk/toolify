@@ -104,3 +104,14 @@ export function permitsPublicEmbedding(xFrameOptions = '', contentSecurityPolicy
   const policies = contentSecurityPolicy.split(/;|,/).map(part => part.trim().toLowerCase());
   return policies.some(part => /^frame-ancestors\s+\*$/.test(part));
 }
+
+/** Extract primary URL entries from the generated urlset, not hreflang hrefs. */
+export function sitemapLocations(xml) {
+  const clean = xml.replace(/<!--[\s\S]*?-->/g, "");
+  if (!/<urlset(?:\s|>)/i.test(clean) || !/<\/urlset\s*>/i.test(clean)) return [];
+  return [...clean.matchAll(/<url(?:\s[^>]*)?>([\s\S]*?)<\/url\s*>/gi)]
+    .flatMap(([, body]) => {
+      const loc = [...body.matchAll(/<loc\s*>([^<]+)<\/loc\s*>/gi)];
+      return loc.length === 1 ? [loc[0][1].trim().replace(/&amp;/g, "&")] : [];
+    });
+}
