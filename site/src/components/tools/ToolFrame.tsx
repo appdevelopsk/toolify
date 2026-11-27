@@ -15,6 +15,9 @@ import { ShareBar } from "@/components/tools/ShareBar";
 import { FavoriteButton } from "@/components/tools/FavoriteButton";
 import { RecentTracker } from "@/components/tools/RecentTracker";
 import { siteConfig } from "@/lib/config";
+import { Link } from "@/lib/i18n/navigation";
+import { isFeaturedPublisherTool } from "@/lib/widgets/embed-guide";
+import { embedGuideCopyFor } from "@/lib/widgets/embed-guide-copy";
 import { categoryLabel } from "@/lib/tools/categories";
 import { MANUAL_SHARE_SLUGS } from "@/lib/tools/manual-share";
 import type { ToolMeta } from "@/lib/tools/types";
@@ -79,6 +82,15 @@ export function ToolFrame({ meta, title, description, related, children, article
         <div className="sm:hidden">
           <ShareBar url={pageUrl} embedUrl={embedUrl} title={title} slug={meta.slug} />
         </div>
+
+        {/* Publisher discovery follows the actual tool, never delaying first value. */}
+        {isFeaturedPublisherTool(meta.slug) && (
+          <div className="mt-3">
+            <Link href="/embed-guide" className="inline-flex min-h-11 items-center text-sm font-medium text-brand-700 underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:text-brand-400">
+              {embedGuideCopyFor(locale).heading}
+            </Link>
+          </div>
+        )}
 
         {/* Contextual forum follow-up stays visible immediately after the tool task,
             before lengthy related/navigation sections; only timezone-converter renders it. */}
