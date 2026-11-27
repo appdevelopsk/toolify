@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useShareableState } from "@/lib/hooks/useShareableState";
+import { nowInZone, resolveWallTime } from "./timezone-math";
 
 const COMMON_TIMEZONES = [
   "UTC", "America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles",
@@ -17,18 +18,13 @@ const COMMON_TIMEZONES = [
 
 function pad(n: number) { return String(n).padStart(2, "0"); }
 
-function localNowIso(): string {
-  const d = new Date();
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
-
 // UTC offset of `tz` at the given moment, in minutes
 function offsetMinutes(date: Date, tz: string): number | null {
   try {
     const parts = new Intl.DateTimeFormat("en-US", {
       timeZone: tz,
       year: "numeric", month: "2-digit", day: "2-digit",
-      hour: "2-digit", minute: "2-digit", hour12: false,
+      hour: "2-digit", minute: "2-digit", hourCycle: "h23",
     }).formatToParts(date);
     const p: Record<string, string> = {};
     for (const x of parts) p[x.type] = x.value;
@@ -95,13 +91,14 @@ export default function TimezoneConverter() {
   // 「今日」由来の既定値は静的書き出し時とブラウザーで値がズレる(hydration mismatch)ため、
   // useState 初期化ではなくマウント後に入れる。
   useEffect(() => {
-    setDt((prev) => (prev === "" ? localNowIso() : prev));
-  }, []);
+    if (sourceTz) setDt((prev) => (prev === "" ? nowInZone(sourceTz) : prev));
+  }, [sourceTz]);
 
   useEffect(() => {
     if (!sourceTz) {
       try {
-        setSourceTz(Intl.DateTimeFormat().resolvedOptions().timeZone);
+        const browserZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        setSourceTz(COMMON_TIMEZONES.includes(browserZone) ? browserZone : "UTC");
       } catch {
         setSourceTz("UTC");
       }
@@ -113,39 +110,17 @@ export default function TimezoneConverter() {
     { sourceTz, targetTzs, dt },
     (d) => {
       if (typeof d.sourceTz === "string" && COMMON_TIMEZONES.includes(d.sourceTz)) setSourceTz(d.sourceTz);
-      if (Array.isArray(d.targetTzs)) setTargetTzs(d.targetTzs.filter((x: unknown): x is string => typeof x === "string" && COMMON_TIMEZONES.includes(x)));
+      if (Array.isArray(d.targetTzs)) setTargetTzs([...new Set(d.targetTzs.filter((x: unknown): x is string => typeof x === "string" && COMMON_TIMEZONES.includes(x)))]);
       if (typeof d.dt === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(d.dt)) setDt(d.dt);
     },
   );
 
-  // Interpret the local datetime-local string as a moment in sourceTz, return Date
-  const sourceDate = useMemo(() => {
-    if (!dt || !sourceTz) return null;
-    // Parse pieces
-    const m = dt.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
-    if (!m) return null;
-    const [, y, mo, d, h, mi] = m;
-    // Try to find the UTC moment such that when displayed in sourceTz it shows the input. Two-step Newton-style:
-    let guess = new Date(Date.UTC(+y!, +mo! - 1, +d!, +h!, +mi!));
-    for (let i = 0; i < 3; i++) {
-      const fmt = new Intl.DateTimeFormat("en-US", {
-        timeZone: sourceTz,
-        year: "numeric", month: "2-digit", day: "2-digit",
-        hour: "2-digit", minute: "2-digit", hour12: false,
-      }).formatToParts(guess);
-      const parts: Record<string, string> = {};
-      for (const p of fmt) parts[p.type] = p.value;
-      const observedUtc = Date.UTC(+parts.year!, +parts.month! - 1, +parts.day!, +parts.hour! % 24, +parts.minute!);
-      const diff = observedUtc - guess.getTime();
-      if (diff === 0) break;
-      guess = new Date(guess.getTime() - diff);
-    }
-    return guess;
-  }, [dt, sourceTz]);
+  // Interpret the entered wall time in the selected IANA zone.
+  const sourceDate = useMemo(() => resolveWallTime(dt, sourceTz), [dt, sourceTz]);
 
-  function setNow() { setDt(localNowIso()); }
+  function setNow() { setDt(nowInZone(sourceTz)); }
   function addTz(tz: string) {
-    if (!targetTzs.includes(tz)) setTargetTzs((arr) => [...arr, tz]);
+    if (COMMON_TIMEZONES.includes(tz) && !targetTzs.includes(tz)) setTargetTzs((arr) => [...arr, tz]);
   }
   function removeTz(tz: string) { setTargetTzs((arr) => arr.filter((x) => x !== tz)); }
 
@@ -161,7 +136,7 @@ export default function TimezoneConverter() {
         <label className="block">
           <span className="text-sm font-medium">{t("input.dt")}</span>
           <div className="mt-1 flex gap-2">
-            <input type="datetime-local" value={dt} onChange={(e) => setDt(e.target.value)} className="flex-1 rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900" />
+            <input type="datetime-local" value={dt} onChange={(e) => setDt(e.target.value)} aria-invalid={Boolean(dt && sourceTz && !sourceDate)} className="flex-1 rounded border border-slate-300 px-3 py-2 dark:border-slate-700 dark:bg-slate-900" />
             <button onClick={setNow} className="rounded border border-slate-300 px-3 py-1.5 text-sm hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800">{t("now")}</button>
           </div>
         </label>
