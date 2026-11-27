@@ -42,7 +42,7 @@ function inspect() {
   if (invalid.length) throw Error(invalid.join(" | "));
   return {
     runAtUtc: new Date().toISOString(),
-    warning: "This is a SOURCE CONFIGURATION INTENT audit, NOT a GSC URL Inspection response. 3711 intentionally noindexed pages must not be counted as Google exclusions.",
+    warning: `This is a SOURCE CONFIGURATION INTENT audit, NOT a GSC URL Inspection response. ${all.length - allowed.length} intentionally noindexed pages must not be counted as Google exclusions.`,
     fullToolLocalePages: all.length,
     tools: tools.length,
     locales: LOCALES.length,
@@ -66,7 +66,7 @@ try {
     console.log("Toolify intended index candidates: "+report.indexCandidates+"/"+report.fullToolLocalePages+
       " tool-locale pages; intentionally noindex "+report.deliberatelyNoindex);
     console.table(report.byLocale);
-    console.log("Use --urls to get exact 80 intended inspection targets. Actual Google status requires GSC URL Inspection.");
+    console.log(`Use --urls to get exact ${report.indexCandidates} intended inspection targets. Actual Google status requires GSC URL Inspection.`);
   }
 } catch (e) {
   console.error("[index-policy] FAIL: "+String(e));
