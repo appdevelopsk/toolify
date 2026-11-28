@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "ovulation-calculator",
     category: "health",
     applicationCategory: "HealthApplication",
-    updatedAt: "2026-05-07",
+    updatedAt: "2026-11-28",
     related: ["menstrual-cycle-calculator", "due-date-calculator", "pregnancy-week-calculator"],
     primaryKeyword: {
       en: "ovulation calculator",

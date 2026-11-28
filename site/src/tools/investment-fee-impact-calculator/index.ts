@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "investment-fee-impact-calculator",
     category: "finance",
     applicationCategory: "FinanceApplication",
-    updatedAt: "2026-07-10",
+    updatedAt: "2026-11-28",
     related: ["compound-interest-calculator", "retirement-calculator", "cagr-calculator"],
     primaryKeyword: { en: "investment fee impact calculator", ja: "投資 信託報酬 影響" },
     hasHowTo: true,

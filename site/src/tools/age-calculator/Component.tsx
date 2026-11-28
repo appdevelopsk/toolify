@@ -21,6 +21,9 @@ function diffYMD(birth: Date, now: Date) {
     months -= 1;
     const prev = new Date(now.getFullYear(), now.getMonth(), 0);
     days += prev.getDate();
+    // 前月に誕生日の日付が無い(1/31 生まれの 3/1 など)と負になる。存在しない記念日は
+    // 2/29 生まれと同じく翌月1日とみなす(2026-11-28)。
+    if (days < 0) days = now.getDate() - 1;
   }
   if (months < 0) {
     years -= 1;

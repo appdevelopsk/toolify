@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "bmr-calculator",
     category: "health",
     applicationCategory: "HealthApplication",
-    updatedAt: "2026-07-10",
+    updatedAt: "2026-11-28",
     related: ["calorie-calculator", "macro-calculator", "bmi-calculator"],
     primaryKeyword: { en: "BMR calculator", ja: "基礎代謝 計算" },
     hasHowTo: true,
