@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
-import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare, isHealthySearchIndex, permitsPublicEmbedding } from './growth-html-checks.mjs';
+import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare, isHealthySearchIndex, permitsPublicEmbedding, sitemapLocations } from './growth-html-checks.mjs';
 
 test('robots and googlebot directives independent of attribute order', () => {
   assert.equal(hasNoindex('<meta name="robots" content="noindex,follow">'), true);
@@ -118,4 +118,27 @@ test('only real clickable anchors satisfy internal CTA and shared URL audits', (
   const encoded = intent.toString().replace(/&/g, '&amp;');
   assert.equal(hasAttributedSocialShare(`<a data-href="${encoded}">Not a link</a>`, 'linkedin', '/en/tools/json-formatter'), false);
   assert.equal(hasAttributedSocialShare(`<a href="${encoded}">Share</a>`, 'linkedin', '/en/tools/json-formatter'), true);
+});
+
+
+test('sitemap coverage requires primary loc entries rather than hreflang alternate URLs', () => {
+  const en = 'https://toolify365.com/en/tools/foo';
+  const ja = 'https://toolify365.com/ja/tools/foo';
+  assert.deepEqual(sitemapLocations('<urlset><url><loc>'+en+'</loc><xhtml:link href="'+ja+'"/></url></urlset>'), [en]);
+  assert.deepEqual(sitemapLocations('<urlset><!--<url><loc>'+ja+'</loc></url>--></urlset>'), []);
+  assert.deepEqual(sitemapLocations('<sitemapindex><sitemap><loc>'+en+'</loc></sitemap></sitemapindex>'), []);
+  assert.deepEqual(sitemapLocations('<urlset><url><loc>'+en+'</loc><loc>'+ja+'</loc></url></urlset>'), []);
+  assert.deepEqual(sitemapLocations('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+en+'</loc></url><url><loc>'+ja+'</loc></url></urlset>'), [en,ja]);
+});
+
+test('mixed valid and malformed primary sitemap entries fail closed', () => {
+  const en = 'https://toolify365.com/en/tools/foo';
+  const ja = 'https://toolify365.com/ja/tools/foo';
+  const row = url => '<url><loc>'+url+'</loc></url>';
+  const wrap = body => '<urlset>'+body+'</urlset>';
+  for (const bad of ['<url/>','<url></url>','<url><loc></loc></url>','<url><loc>   </loc></url>','<url><loc>'+en+'</loc><loc>'+ja+'</loc></url>',row('/relative'),row('ftp://toolify365.com/en/tools/foo'),row('https://u:p@toolify365.com/en/tools/foo'),row('https://toolify365.com/a b')]) {
+    assert.deepEqual(sitemapLocations(wrap(row(en)+bad)), [], bad);
+  }
+  assert.deepEqual(sitemapLocations(wrap(row(en+'?x=1&amp;y=2'))),[en+'?x=1&y=2']);
+  assert.deepEqual(sitemapLocations(wrap(row(en)+row(en))),[en,en]);
 });

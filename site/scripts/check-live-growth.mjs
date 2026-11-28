@@ -1,4 +1,4 @@
-import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare, isHealthySearchIndex, permitsPublicEmbedding } from "./growth-html-checks.mjs";
+import { hasNoindex, canonicalHref, hasSoftwareAnchor, hasAttributedSocialShare, isHealthySearchIndex, permitsPublicEmbedding, sitemapLocations } from "./growth-html-checks.mjs";
 /**
  * Read-only production smoke check for growth funnel rollout.
  * Usage: SITE_URL=https://toolify365.com node scripts/check-live-growth.mjs
@@ -117,9 +117,11 @@ for (const path of ["/robots.txt", "/sitemap.xml"]) {
     if (page.status !== 200) failures.push(`${path}: HTTP ${page.status}`);
     if (path === "/robots.txt" && !page.text.includes("Sitemap:")) failures.push("robots.txt: missing sitemap reference");
     if (path === "/sitemap.xml") {
-      if (!page.text.includes("<loc>")) failures.push("sitemap.xml: no URL locations");
+      const locations = sitemapLocations(page.text);
+      if (!locations.length) failures.push("sitemap.xml: no primary URL locations");
+      if (new Set(locations).size !== locations.length) failures.push("sitemap.xml: duplicate primary URL locations");
       for (const target of expectedIndexed) {
-        if (!page.text.includes(`${base.origin}${target}`)) failures.push(`sitemap.xml: expected indexed tool missing (${target})`);
+        if (!locations.includes(`${base.origin}${target}`)) failures.push(`sitemap.xml: expected indexed tool missing as primary URL (${target})`);
       }
     }
     console.log(`${page.status} ${path}`);
