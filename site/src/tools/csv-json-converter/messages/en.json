@@ -49,6 +49,14 @@
           "Trailing newline: a CSV ending in '\\n' adds an empty last row in some parsers; we filter empty rows automatically.",
           "Numbers as strings: CSV has no types — '42' becomes the string \"42\" in JSON. If you need typed values, run a post-processing step that coerces known number columns."
         ]
+      },
+      {
+        "heading": "Worked examples",
+        "paragraphs": [
+          "CSV to JSON with \"First row is header\" on. Input rows: name,city,note / \"Smith, Jane\",Boston,\"Said \"\"hi\"\"\" / Lee,Tokyo, — the output is [{\"name\": \"Smith, Jane\", \"city\": \"Boston\", \"note\": \"Said \\\"hi\\\"\"}, {\"name\": \"Lee\", \"city\": \"Tokyo\", \"note\": \"\"}]. The comma inside quotes stays part of the value, the doubled quote \"\" becomes one quote, and the trailing comma produces an empty string.",
+          "JSON to CSV with uneven keys: [{\"id\": 1, \"tag\": \"a\"}, {\"id\": 2, \"note\": \"x,y\"}] becomes three lines — id,tag,note / 1,a, / 2,,\"x,y\". The header is the union of all keys in order of first appearance, missing values become empty fields, and a value containing the delimiter is wrapped in quotes.",
+          "Delimiter matters: with ; as the delimiter, the line 1,5;2 splits into two fields, \"1,5\" and \"2\" — the usual format in locales that write decimals with a comma."
+        ]
       }
     ],
     "howTo": [

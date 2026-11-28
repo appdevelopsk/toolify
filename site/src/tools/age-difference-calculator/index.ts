@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "age-difference-calculator",
     category: "datetime",
     applicationCategory: "EducationApplication",
-    updatedAt: "2026-05-07",
+    updatedAt: "2026-11-28",
     related: ["age-calculator", "date-calculator", "iso-week-calculator"],
     primaryKeyword: {
       en: "age difference calculator",
@@ -13,6 +13,10 @@ const meta: ToolMeta = {
     },
     hasHowTo: true,
     hasFaq: true,
+    sources: [
+      { label: "Wikipedia — Gregorian calendar (leap-year rule)", url: "https://en.wikipedia.org/wiki/Gregorian_calendar" },
+      { label: "Wikipedia — ISO 8601 (calendar dates)", url: "https://en.wikipedia.org/wiki/ISO_8601" },
+    ],
   };
 
 export default meta;

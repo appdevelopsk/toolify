@@ -78,6 +78,14 @@
           "Avoid patterns: dates, names, '123', 'qwer', repeated characters all reduce real entropy below the formula value. Attack tools include extensive 'rule-based' transformations (e.g., 'password' → 'P@ssw0rd!').",
           "Use a password manager: humans pick patterns; managers don't. Bitwarden, 1Password, KeePass generate truly random passwords per site, with 16+ characters across all charsets. The only password you need to remember is the master password — and that one should be a long memorable passphrase."
         ]
+      },
+      {
+        "heading": "Worked examples",
+        "paragraphs": [
+          "A random 10-character password using lowercase, uppercase, digits and symbols (pool 26 + 26 + 10 + 33 = 95): 10 × log₂(95) ≈ 65.7 bits. At the tool's offline assumption of 10¹⁰ guesses per second, half the space takes about 3 × 10⁹ seconds — roughly 95 years — and the tool suggests about one more character to clear its 67-bit target.",
+          "A random 16-character lowercase string (no repeats or sequences): 16 × log₂(26) ≈ 75.2 bits, about 69,000 years offline. Length beat variety here, though the tool still warns that a single character set is limited.",
+          "A random 20-character mix of letters and digits (pool 62): 20 × log₂(62) ≈ 119.1 bits — far beyond any practical brute-force attack. These figures assume truly random characters; words, names and years are guessed much sooner."
+        ]
       }
     ],
     "howTo": [
