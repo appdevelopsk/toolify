@@ -130,3 +130,15 @@ test('sitemap coverage requires primary loc entries rather than hreflang alterna
   assert.deepEqual(sitemapLocations('<urlset><url><loc>'+en+'</loc><loc>'+ja+'</loc></url></urlset>'), []);
   assert.deepEqual(sitemapLocations('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+en+'</loc></url><url><loc>'+ja+'</loc></url></urlset>'), [en,ja]);
 });
+
+test('mixed valid and malformed primary sitemap entries fail closed', () => {
+  const en = 'https://toolify365.com/en/tools/foo';
+  const ja = 'https://toolify365.com/ja/tools/foo';
+  const row = url => '<url><loc>'+url+'</loc></url>';
+  const wrap = body => '<urlset>'+body+'</urlset>';
+  for (const bad of ['<url/>','<url></url>','<url><loc></loc></url>','<url><loc>   </loc></url>','<url><loc>'+en+'</loc><loc>'+ja+'</loc></url>',row('/relative'),row('ftp://toolify365.com/en/tools/foo'),row('https://u:p@toolify365.com/en/tools/foo'),row('https://toolify365.com/a b')]) {
+    assert.deepEqual(sitemapLocations(wrap(row(en)+bad)), [], bad);
+  }
+  assert.deepEqual(sitemapLocations(wrap(row(en+'?x=1&amp;y=2'))),[en+'?x=1&y=2']);
+  assert.deepEqual(sitemapLocations(wrap(row(en)+row(en))),[en,en]);
+});
