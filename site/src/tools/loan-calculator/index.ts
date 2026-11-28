@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "loan-calculator",
     category: "finance",
     applicationCategory: "FinanceApplication",
-    updatedAt: "2026-07-10",
+    updatedAt: "2026-11-28",
     related: ["compound-interest-calculator", "sales-tax-calculator"],
     primaryKeyword: { en: "loan calculator", ja: "ローン計算" },
     hasHowTo: true,

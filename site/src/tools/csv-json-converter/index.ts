@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "csv-json-converter",
     category: "text",
     applicationCategory: "DeveloperApplication",
-    updatedAt: "2026-11-15",
+    updatedAt: "2026-11-28",
     related: ["json-formatter", "markdown-to-html", "text-replace"],
     primaryKeyword: { en: "CSV to JSON converter", ja: "CSV JSON 変換" },
     hasHowTo: true,

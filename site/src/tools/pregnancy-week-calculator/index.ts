@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "pregnancy-week-calculator",
     category: "health",
     applicationCategory: "HealthApplication",
-    updatedAt: "2026-10-06",
+    updatedAt: "2026-11-28",
     related: ["due-date-calculator", "conception-date-calculator", "hcg-calculator", "ovulation-calculator", "age-calculator"],
     primaryKeyword: {
       en: "pregnancy week calculator",

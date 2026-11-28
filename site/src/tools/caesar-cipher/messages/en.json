@@ -36,6 +36,14 @@
           "Modern attackers break a Caesar cipher in microseconds by frequency analysis (E is the most common letter in English; whatever maps to a frequent letter in the ciphertext is probably E). Don't use it for anything you care about.",
           "Use it for: educational examples, puzzle games, ARGs (alternate reality games), hiding text in plain sight, ROT13 spoiler tags. Don't use it for: passwords, financial data, anything with consequences."
         ]
+      },
+      {
+        "heading": "Worked examples",
+        "paragraphs": [
+          "Encode \"ATTACK AT DAWN\" with shift 5: A→F, T→Y, C→H, K→P, D→I, W→B, N→S, giving \"FYYFHP FY IFBS\". Spaces stay where they are, so word lengths remain visible — one reason the cipher is easy to attack.",
+          "Wrap-around: \"Zebra\" with shift 1 becomes \"Afcsb\". Z wraps back to A because the shift is computed modulo 26, and the capital letter stays capital.",
+          "Breaking it: if you receive \"FYYFHP\" and do not know the key, decode with shifts 1 to 25 in turn. Shift 5 is the only one that produces an English word (\"ATTACK\"), which shows why 25 possible keys offer no real protection."
+        ]
       }
     ],
     "howTo": [
