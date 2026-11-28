@@ -144,3 +144,23 @@ describe("small 2026-11-15 search discovery trial", () => {
     expect(isIndexableIn("en", "json-formatter")).toBe(false);
   });
 });
+
+describe("localized discovery without widening indexing", () => {
+  it("prioritizes locally eligible exceptions and keeps default en/ja discovery", async () => {
+    const { listFeaturedTools, listQuickTools, INDEX_EXCEPTIONS, isIndexableIn } = await import("./registry");
+    for (const [locale, slugs] of Object.entries(INDEX_EXCEPTIONS)) {
+      const featured = listFeaturedTools(locale).map(t => t.slug);
+      expect(featured.slice(0, slugs.length)).toEqual(slugs);
+      expect(new Set(featured).size).toBe(featured.length);
+      const quick = listQuickTools(locale).map(t => t.slug);
+      expect(quick).toEqual(slugs);
+      expect(quick.every(slug => isIndexableIn(locale, slug))).toBe(true);
+    }
+    for (const locale of ["en", "ja"]) {
+      expect(listFeaturedTools(locale).map(t => t.slug)).toEqual(listFeaturedTools().map(t => t.slug));
+      expect(listQuickTools(locale).map(t => t.slug)).toEqual(["workdays-calculator", "date-calculator", "timezone-converter", "unit-price-calculator"]);
+    }
+    expect(listQuickTools("ko")).toEqual([]);
+    expect(listFeaturedTools("ko").length).toBeGreaterThan(0);
+  });
+});

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { isIndexableIn, listIndexableByCategory, listTools } from "@/lib/tools/registry";
+import { isIndexableIn, listIndexableByCategory, listTools, listQuickTools } from "@/lib/tools/registry";
 import { Link } from "@/lib/i18n/navigation";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { FavoritesSection } from "@/components/tools/FavoritesSection";
@@ -80,10 +80,8 @@ export default async function ToolsIndex({ params }: { params: Promise<{ locale:
       {/* Put high-intent destinations above the full catalog so visitors can start a task immediately.
           Use existing translated labels and respect the locale-specific indexing policy. */}
       {(() => {
-        const quickSlugs = ["workdays-calculator", "date-calculator", "timezone-converter", "unit-price-calculator"];
-        const quickTools = quickSlugs
-          .filter((slug) => isIndexableIn(locale, slug))
-          .map((slug) => items.find((item) => item.slug === slug))
+        const quickTools = listQuickTools(locale)
+          .map((tool) => items.find((item) => item.slug === tool.slug))
           .filter((item): item is (typeof items)[number] => Boolean(item));
         return quickTools.length > 0 ? (
           <nav aria-label={t("site.toolsTitle")} className="mt-5 flex flex-wrap gap-2">

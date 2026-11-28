@@ -539,8 +539,19 @@ export function indexableLocalesFor(slug: string): string[] {
 }
 
 /** トップの「よく使われるツール」= 需要順の索引対象。 */
-export function listFeaturedTools(): ToolMeta[] {
-  return CORE_TOOLS_BY_DEMAND.map((s) => SLUG_INDEX.get(s)).filter((m): m is ToolMeta => Boolean(m));
+export function listFeaturedTools(locale?: string): ToolMeta[] {
+  const ordered = locale && INDEX_EXCEPTIONS[locale]
+    ? [...new Set([...INDEX_EXCEPTIONS[locale]!, ...CORE_TOOLS_BY_DEMAND])]
+    : [...CORE_TOOLS_BY_DEMAND];
+  return ordered.map((s) => SLUG_INDEX.get(s)).filter((m): m is ToolMeta => Boolean(m));
+}
+
+/** Localized index-eligible entry points, without expanding the indexing policy. */
+export function listQuickTools(locale: string): ToolMeta[] {
+  const defaults = ["workdays-calculator", "date-calculator", "timezone-converter", "unit-price-calculator"];
+  const ordered = [...new Set([...(INDEX_EXCEPTIONS[locale] ?? []), ...defaults])];
+  return ordered.filter(slug => isIndexableIn(locale, slug))
+    .map(slug => SLUG_INDEX.get(slug)).filter((m): m is ToolMeta => Boolean(m)).slice(0, 6);
 }
 
 export function listTools(): ToolMeta[] {
