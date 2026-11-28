@@ -12,6 +12,7 @@ import {
   type HolidayCountry,
   type HolidayEntry,
 } from "./business";
+import { diffYMD as diffYMDCore } from "@/tools/age-difference-calculator/dateMath";
 
 type Mode = "addSubtract" | "between";
 type Op = "add" | "subtract";
@@ -20,17 +21,9 @@ function pad(n: number) { return String(n).padStart(2, "0"); }
 function todayIso() { const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; }
 
 function diffYMD(a: Date, b: Date) {
-  // assume a <= b
-  let years = b.getFullYear() - a.getFullYear();
-  let months = b.getMonth() - a.getMonth();
-  let days = b.getDate() - a.getDate();
-  if (days < 0) {
-    months -= 1;
-    const prev = new Date(b.getFullYear(), b.getMonth(), 0);
-    days += prev.getDate();
-  }
-  if (months < 0) { years -= 1; months += 12; }
-  return { years, months, days };
+  // 1/31→3/1 で日数が負になる旧実装を置き換え(2026-11-28)
+  const r = diffYMDCore(a, b);
+  return { years: r.y, months: r.m, days: r.d };
 }
 
 export default function DateCalculator() {
