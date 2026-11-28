@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildPublisherEmbedSnippet, escapeEmbedAttribute, FEATURED_EMBED_SLUGS } from "./embed-guide";
+import { buildPublisherEmbedSnippet, escapeEmbedAttribute, FEATURED_EMBED_SLUGS, isFeaturedPublisherTool, buildWidgetPublisherGuideHref } from "./embed-guide";
 import { LOCALES } from "@/lib/i18n/locales";
 
 describe("share-safe international widget installation snippets", () => {
@@ -30,5 +30,30 @@ describe("share-safe international widget installation snippets", () => {
   it("rejects unregistered slugs and unsupported locales", () => {
     expect(() => buildPublisherEmbedSnippet("any-route", "Title", "en")).toThrow();
     expect(() => buildPublisherEmbedSnippet("workdays-calculator", "Title", "zz")).toThrow();
+  });
+});
+
+describe("publisher discovery loop", () => {
+  it("uses localized guide destinations with only fixed attribution labels", () => {
+    for (const locale of LOCALES) {
+      for (const slug of FEATURED_EMBED_SLUGS) {
+        expect(isFeaturedPublisherTool(slug)).toBe(true);
+        const href = buildWidgetPublisherGuideHref(locale, slug);
+        expect(href).not.toBeNull();
+        const url = new URL(href!, "https://toolify365.com");
+        expect(url.pathname).toBe(`/${locale}/embed-guide`);
+        expect(Object.fromEntries(url.searchParams)).toEqual({
+          utm_source: "toolify_widget",
+          utm_medium: "referral",
+          utm_campaign: "publisher_discovery",
+        });
+      }
+    }
+  });
+  it("keeps unrelated tools and invalid locales outside the pilot", () => {
+    expect(isFeaturedPublisherTool("json-formatter")).toBe(false);
+    expect(buildWidgetPublisherGuideHref("en", "json-formatter")).toBeNull();
+    expect(buildWidgetPublisherGuideHref("../en", "workdays-calculator")).toBeNull();
+    expect(buildWidgetPublisherGuideHref("en?input=secret", "workdays-calculator")).toBeNull();
   });
 });

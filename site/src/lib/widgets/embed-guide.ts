@@ -9,6 +9,24 @@ export const FEATURED_EMBED_SLUGS = [
   "timezone-converter",
 ] as const;
 
+/** Keep publisher discovery scoped to the four supported guide examples. */
+export function isFeaturedPublisherTool(slug: string): boolean {
+  return FEATURED_EMBED_SLUGS.some((value) => value === slug);
+}
+
+/** A voluntary click from a widget, not an impression or proof of placement.
+ * Fixed campaign labels only: no host, user identifier, or calculator input.
+ */
+export function buildWidgetPublisherGuideHref(locale: string, slug: string): string | null {
+  if (!isFeaturedPublisherTool(slug) || !(LOCALES as readonly string[]).includes(locale)) return null;
+  const query = new URLSearchParams({
+    utm_source: "toolify_widget",
+    utm_medium: "referral",
+    utm_campaign: "publisher_discovery",
+  });
+  return `/${locale}/embed-guide?${query.toString()}`;
+}
+
 export function escapeEmbedAttribute(value: string): string {
   return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;")
     .replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;");
@@ -16,7 +34,7 @@ export function escapeEmbedAttribute(value: string): string {
 
 /** Generates publisher-owned HTML, never inserts user values or tracking IDs. */
 export function buildPublisherEmbedSnippet(slug: string, title: string, locale: string): string {
-  if (!FEATURED_EMBED_SLUGS.some((value) => value === slug) || !(LOCALES as readonly string[]).includes(locale)) {
+  if (!isFeaturedPublisherTool(slug) || !(LOCALES as readonly string[]).includes(locale)) {
     throw new Error("Unsupported embedded tool or locale");
   }
   const origin = siteConfig.url;

@@ -5,6 +5,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { loadCommon, loadToolSlugMessages } from "@/lib/i18n/loader";
 import { getTool, listTools } from "@/lib/tools/registry";
 import { siteConfig } from "@/lib/config";
+import { buildWidgetPublisherGuideHref } from "@/lib/widgets/embed-guide";
+import { embedGuideCopyFor } from "@/lib/widgets/embed-guide-copy";
 import { LOCALES, type Locale } from "@/lib/i18n/locales";
 
 export function generateStaticParams() {
@@ -43,6 +45,7 @@ export default async function EmbedPage({
   const tt = await getTranslations(`tools.${slug}`);
   const canonical = `${siteConfig.url}/${locale}/tools/${slug}`;
   const home = `${siteConfig.url}/${locale}`;
+  const publisherGuideHref = buildWidgetPublisherGuideHref(locale, slug);
 
   // next-intl treats nested `messages` props atomically. Supply a single
   // complete but small dictionary so widgets can use both common labels and
@@ -74,6 +77,13 @@ export default async function EmbedPage({
           <Component />
         </NextIntlClientProvider>
       </section>
+      {publisherGuideHref && (
+        <p className="mt-3 text-right text-sm">
+          <a href={publisherGuideHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-brand-700 underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:text-brand-400">
+            {embedGuideCopyFor(locale).heading}
+          </a>
+        </p>
+      )}
       <p className="mt-3 text-right text-xs text-slate-500">
         <a href={home} target="_blank" rel="noopener" className="hover:text-brand-600 hover:underline">
           {`Powered by ${siteConfig.name}`}
