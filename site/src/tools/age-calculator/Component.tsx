@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useShareableState } from "@/lib/hooks/useShareableState";
-import { diffYMD as diffYMDCore } from "@/tools/age-difference-calculator/dateMath";
 
 function pad(n: number) {
   return String(n).padStart(2, "0");
@@ -15,9 +14,22 @@ function todayIso() {
 }
 
 function diffYMD(birth: Date, now: Date) {
-  // 1/31→3/1 で日数が負になる旧実装を置き換え(2026-11-28)
-  const r = diffYMDCore(birth, now);
-  return { years: r.y, months: r.m, days: r.d };
+  let years = now.getFullYear() - birth.getFullYear();
+  let months = now.getMonth() - birth.getMonth();
+  let days = now.getDate() - birth.getDate();
+  if (days < 0) {
+    months -= 1;
+    const prev = new Date(now.getFullYear(), now.getMonth(), 0);
+    days += prev.getDate();
+    // 前月に誕生日の日付が無い(1/31 生まれの 3/1 など)と負になる。存在しない記念日は
+    // 2/29 生まれと同じく翌月1日とみなす(2026-11-28)。
+    if (days < 0) days = now.getDate() - 1;
+  }
+  if (months < 0) {
+    years -= 1;
+    months += 12;
+  }
+  return { years, months, days };
 }
 
 // 基準日以降で最初の誕生日(2/29 生まれの平年は 3/1 とみなす)。日付はローカル暦で扱う。
