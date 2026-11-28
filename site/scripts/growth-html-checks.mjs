@@ -109,9 +109,19 @@ export function permitsPublicEmbedding(xFrameOptions = '', contentSecurityPolicy
 export function sitemapLocations(xml) {
   const clean = xml.replace(/<!--[\s\S]*?-->/g, "");
   if (!/<urlset(?:\s|>)/i.test(clean) || !/<\/urlset\s*>/i.test(clean)) return [];
-  return [...clean.matchAll(/<url(?:\s[^>]*)?>([\s\S]*?)<\/url\s*>/gi)]
-    .flatMap(([, body]) => {
-      const loc = [...body.matchAll(/<loc\s*>([^<]+)<\/loc\s*>/gi)];
-      return loc.length === 1 ? [loc[0][1].trim().replace(/&amp;/g, "&")] : [];
-    });
+  const locations = [];
+  const entries = [...clean.matchAll(/<url(?:\s[^>]*)?>([\s\S]*?)<\/url\s*>/gi)];
+  if (entries.length !== [...clean.matchAll(/<url(?=[\s/>])/gi)].length) return [];
+  for (const [, body] of entries) {
+    const loc = [...body.matchAll(/<loc\s*>([^<]+)<\/loc\s*>/gi)];
+    if (loc.length !== 1 || [...body.matchAll(/<loc(?=[\s/>])/gi)].length !== 1) return [];
+    const value = loc[0][1].trim().replace(/&amp;/g, "&");
+    if (!value || /\s/.test(value)) return [];
+    try {
+      const parsed = new URL(value);
+      if (!['http:', 'https:'].includes(parsed.protocol) || parsed.username || parsed.password) return [];
+    } catch { return []; }
+    locations.push(value);
+  }
+  return locations;
 }
