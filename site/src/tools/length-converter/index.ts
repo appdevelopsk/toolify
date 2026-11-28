@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "length-converter",
     category: "converter",
     applicationCategory: "UtilitiesApplication",
-    updatedAt: "2026-07-10",
+    updatedAt: "2026-11-28",
     related: ["bmi-calculator", "age-calculator"],
     primaryKeyword: { en: "length converter", ja: "長さ単位変換" },
     hasHowTo: true,

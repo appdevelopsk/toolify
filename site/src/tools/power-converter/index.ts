@@ -4,7 +4,7 @@ const meta: ToolMeta = {
     slug: "power-converter",
     category: "converter",
     applicationCategory: "UtilityApplication",
-    updatedAt: "2026-07-10",
+    updatedAt: "2026-11-28",
     related: ["pressure-converter", "angle-converter", "temperature-converter"],
     primaryKeyword: {
       en: "power converter",
